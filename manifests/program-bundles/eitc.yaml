@@ -40,7 +40,7 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 12
-      state: 194
+      state: 195
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -56,7 +56,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 61
-      state: 197
+      state: 198
 layers:
 - jurisdiction: us
   screener:
@@ -1030,10 +1030,10 @@ layers:
     - path: us-ca/guidance/ftb/reports/california-eitc-report-2019
       references: 1
       part: Credits
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/rtc/17052
+    name: us-ca/statute/rtc/17052
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/rtc/17052
     source_url: null
     sources:
     - policyengine-references
@@ -1041,7 +1041,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-ca/statute/rtc/17054.1
+    - path: us-ca/statute/rtc/17052
       references: 2
       part: Credits
   full:
@@ -1127,10 +1127,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/rtc/17052
+    name: us-ca/statute/rtc/17052
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/rtc/17052
     source_url: null
     part: Credits
     sources:
@@ -1246,6 +1246,20 @@ layers:
     - path: us-co/guidance/state-auditor/tax-expenditure-evaluations/te19-colorado-eitc
       references: 1
       part: Credits
+  - key: us-co/statute/39/39-22-123.5
+    name: us-co/statute/39/39-22-123.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-123.5
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-123.5
+      references: 1
+      part: Credits
   - key: us-co/statute/crs-2023/title-39
     name: Colorado Revised Statutes 2023, Title 39 (Taxation), official OLLS compilation
     layer: state
@@ -1342,6 +1356,15 @@ layers:
     name: 'Office of the State Auditor Tax Expenditure Evaluation: Colorado Earned Income Tax Credit'
     layer: state
     citation_path: us-co/guidance/state-auditor/tax-expenditure-evaluations/te19-colorado-eitc
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-co/statute/39/39-22-123.5
+    name: us-co/statute/39/39-22-123.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-123.5
     source_url: null
     part: Credits
     sources:
@@ -1861,31 +1884,8 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-ga
-  screener:
-  - key: us-ga/statute/48/48-7-27
-    name: us-ga/statute/48/48-7-27
-    layer: state
-    citation_path: us-ga/statute/48/48-7-27
-    source_url: null
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-    cited:
-    - path: us-ga/statute/48/48-7-27
-      references: 1
-      part: Credits
-  full:
-  - key: us-ga/statute/48/48-7-27
-    name: us-ga/statute/48/48-7-27
-    layer: state
-    citation_path: us-ga/statute/48/48-7-27
-    source_url: null
-    part: Credits
-    sources:
-    - screener
-    scope: in
+  screener: []
+  full: []
 - jurisdiction: us-hi
   screener:
   - key: us-hi/form/dotax/ty2022/n-356
@@ -2126,10 +2126,10 @@ layers:
     - path: us-il/guidance/idor/eitc
       references: 1
       part: Credits
-  - key: us-il/statute/305/5
-    name: us-il/statute/305/5
+  - key: us-il/statute/35/5
+    name: us-il/statute/35/5
     layer: state
-    citation_path: us-il/statute/305/5
+    citation_path: us-il/statute/35/5
     source_url: null
     sources:
     - policyengine-references
@@ -2137,7 +2137,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-il/statute/305/5/5-2
+    - path: us-il/statute/35/5/212-current
       references: 1
       part: Credits
   full:
@@ -2204,10 +2204,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-il/statute/305/5
-    name: us-il/statute/305/5
+  - key: us-il/statute/35/5
+    name: us-il/statute/35/5
     layer: state
-    citation_path: us-il/statute/305/5
+    citation_path: us-il/statute/35/5
     source_url: null
     part: Credits
     sources:
@@ -2215,6 +2215,26 @@ layers:
     scope: in
 - jurisdiction: us-in
   screener:
+  - key: https://forms.in.gov/Download.aspx?id=15784
+    name: forms.in.gov/Download.aspx
+    layer: state
+    citation_path: null
+    source_url: https://forms.in.gov/Download.aspx?id=15784
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+  - key: https://forms.in.gov/Download.aspx?id=15792
+    name: forms.in.gov/Download.aspx
+    layer: state
+    citation_path: null
+    source_url: https://forms.in.gov/Download.aspx?id=15792
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
   - key: https://iga.in.gov/legislative/2025/bills/senate/243
     name: iga.in.gov/legislative/2025/bills/senate/243
     layer: state
@@ -2225,19 +2245,19 @@ layers:
     references: 1
     scope: in
     part: Credits
-  - key: us-in/form/dor/ty2025/it-40
-    name: Form IT-40, Indiana Full-Year Resident Individual Income Tax Return (2025)
+  - key: us-in/form/dor/ty2025/it-40-booklet
+    name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
     layer: state
-    citation_path: us-in/form/dor/ty2025/it-40
+    citation_path: us-in/form/dor/ty2025/it-40-booklet
     source_url: null
     sources:
     - policyengine-references
-    references: 4
+    references: 2
     scope: in
     part: Credits
     cited:
-    - path: us-in/form/dor/ty2025/it-40
-      references: 4
+    - path: us-in/form/dor/ty2025/it-40-booklet
+      references: 2
       part: Credits
   - key: us-in/statute/6
     name: us-in/statute/6
@@ -2254,6 +2274,24 @@ layers:
       references: 3
       part: Credits
   full:
+  - key: https://forms.in.gov/Download.aspx?id=15784
+    name: forms.in.gov/Download.aspx
+    layer: state
+    citation_path: null
+    source_url: https://forms.in.gov/Download.aspx?id=15784
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: https://forms.in.gov/Download.aspx?id=15792
+    name: forms.in.gov/Download.aspx
+    layer: state
+    citation_path: null
+    source_url: https://forms.in.gov/Download.aspx?id=15792
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: https://iga.in.gov/legislative/2025/bills/senate/243
     name: iga.in.gov/legislative/2025/bills/senate/243
     layer: state
@@ -2263,10 +2301,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-in/form/dor/ty2025/it-40
-    name: Form IT-40, Indiana Full-Year Resident Individual Income Tax Return (2025)
+  - key: us-in/form/dor/ty2025/it-40-booklet
+    name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
     layer: state
-    citation_path: us-in/form/dor/ty2025/it-40
+    citation_path: us-in/form/dor/ty2025/it-40-booklet
     source_url: null
     part: Credits
     sources:
@@ -2874,10 +2912,10 @@ layers:
     - path: us-md/guidance/dls/fiscal-notes/2023/hb0547
       references: 1
       part: Credits
-  - key: us-md/statute/human-services/5-501
-    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
     layer: state
-    citation_path: us-md/statute/human-services/5-501
+    citation_path: us-md/statute/gtg/10-704
     source_url: null
     sources:
     - policyengine-references
@@ -2885,7 +2923,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-md/statute/human-services/5-501
+    - path: us-md/statute/gtg/10-704
       references: 1
       part: Credits
   full:
@@ -2934,10 +2972,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-md/statute/human-services/5-501
-    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
     layer: state
-    citation_path: us-md/statute/human-services/5-501
+    citation_path: us-md/statute/gtg/10-704
     source_url: null
     part: Credits
     sources:
@@ -3092,10 +3130,10 @@ layers:
     - path: us-mi/form/treasury/ty2025/mi-1040-book
       references: 1
       part: Credits
-  - key: us-mi/statute/400.10d
-    name: Michigan Compiled Laws 400.10d, FIP asset test
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
     layer: state
-    citation_path: us-mi/statute/400.10d
+    citation_path: us-mi/statute/206.272
     source_url: null
     sources:
     - policyengine-references
@@ -3103,7 +3141,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-mi/statute/400.10d
+    - path: us-mi/statute/206.272
       references: 1
       part: Credits
   full:
@@ -3143,10 +3181,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-mi/statute/400.10d
-    name: Michigan Compiled Laws 400.10d, FIP asset test
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
     layer: state
-    citation_path: us-mi/statute/400.10d
+    citation_path: us-mi/statute/206.272
     source_url: null
     part: Credits
     sources:
@@ -4815,27 +4853,12 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Credits
     cited:
     - path: us-ut/statute/59-10-1044
-      references: 1
-      part: Credits
-  - key: us-ut/statute/59-10-1044--version-2022050420220504
-    name: Utah Code 59-10-1044, prior version (effective 5/4/2022, superseded 5/3/2023; le.utah.gov version file
-      C59-10-S1044_2022050420220504)
-    layer: state
-    citation_path: us-ut/statute/59-10-1044--version-2022050420220504
-    source_url: null
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-    cited:
-    - path: us-ut/statute/59-10-1044--version-2022050420220504
-      references: 1
+      references: 2
       part: Credits
   full:
   - key: us-ut/form/ustc/ty2021/tc-40-instructions
@@ -4887,16 +4910,6 @@ layers:
     name: us-ut/statute/59-10-1044
     layer: state
     citation_path: us-ut/statute/59-10-1044
-    source_url: null
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: us-ut/statute/59-10-1044--version-2022050420220504
-    name: Utah Code 59-10-1044, prior version (effective 5/4/2022, superseded 5/3/2023; le.utah.gov version file
-      C59-10-S1044_2022050420220504)
-    layer: state
-    citation_path: us-ut/statute/59-10-1044--version-2022050420220504
     source_url: null
     part: Credits
     sources:

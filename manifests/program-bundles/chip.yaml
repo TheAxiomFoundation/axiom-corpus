@@ -43,8 +43,8 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 77
-      state: 140
+      federal: 74
+      state: 148
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -59,38 +59,11 @@ tiers:
     state_manifests: chip|child-health|kidscare
     known_sources: 0
     in_scope_by_layer:
-      federal: 254
-      state: 1524
+      federal: 286
+      state: 1535
 layers:
 - jurisdiction: us
   screener:
-  - key: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
-    name: Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)
-    layer: federal
-    citation_path: null
-    source_url: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
-  - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -942,6 +915,17 @@ layers:
     reason: 'Not a source of rules: data.medicaid.gov dataset landing page (a data catalog record rendered by JavaScript),
       not a source of rules'
     part: Income
+  - key: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
+    name: Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)
+    layer: federal
+    citation_path: null
+    source_url: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: dataset export (CSV of state eligibility levels); the CMS eligibility-levels
+      page is held at us/form/cms/medicaid-chip-bhp-eligibility-levels'
+    part: Household and eligibility
   - key: https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf
     name: files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Poli
     layer: federal
@@ -1008,6 +992,17 @@ layers:
     scope: excluded
     reason: 'Secondary source: not law'
     part: Income
+  - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
+    name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: MACStats Exhibit 32 (enrollment statistics) by MACPAC, a legislative-branch
+      advisory commission; data, not rules'
+    part: Other
   - key: https://www.macpac.gov/publication/chip-spending-by-state/
     name: macpac.gov/publication/chip-spending-by-state/
     layer: federal
@@ -1033,6 +1028,17 @@ layers:
     reason: 'Not a source of rules: MACStats Exhibit 35, a secondary compilation of state eligibility levels; the
       rules are the state plans (CMS eligibility-levels page held at us/form/cms/medicaid-chip-bhp-eligibility-levels)'
     part: Income
+  - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
+    name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: MACStats: Medicaid and CHIP Data Book, December 2022 (172 pages of statistics);
+      data, not rules'
+    part: Other
   - key: https://www.macpac.gov/wp-content/uploads/2023/12/EXHIBIT-16.-Medicaid-Spending-by-State-Category-and-Source-of-Funds-FY-2022.pdf
     name: Medicaid Spending by State, Category, and Source of Funds, FY 2022 (millions) | MACPAC
     layer: federal
@@ -1056,33 +1062,6 @@ layers:
       page); data, not rules'
     part: Household and eligibility
   full:
-  - key: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
-    name: Medicaid and CHIP Eligibility Levels | CMS Data.Medicaid.gov CSV download (April 1, 2018)
-    layer: federal
-    citation_path: null
-    source_url: https://download.medicaid.gov/data/medicaid-and-chip-eligibility-levels.xy8t-auhk.csv
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    part: Other
-    sources:
-    - screener
-    scope: in
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -3063,11 +3042,51 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/al/al-21-0022/summary
+    name: CMS CHIP SPA AL-21-0022 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/al/al-21-0022/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=109811
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/al/al-21-0022/pdf
     name: CMS CHIP SPA AL-21-0022 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/al/al-21-0022/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/AL-21-0022.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/al/al-23-0026-rim2/summary
+    name: CMS CHIP SPA AL-23-0026-RIM2 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/al/al-23-0026-rim2/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147101
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/al/al-24-0031-fcep-and-al-24-0031-absc/summary
+    name: CMS CHIP SPA AL-24-0031-FCEP and AL-24-0031-ABSC Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/al/al-24-0031-fcep-and-al-24-0031-absc/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=164786
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/ca/ca-24-0046/summary
+    name: CMS CHIP SPA CA-24-0046 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ca/ca-24-0046/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=167541
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3083,11 +3102,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/ca/ca-21-0032/summary
+    name: CMS CHIP SPA CA-21-0032 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ca/ca-21-0032/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=126251
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/ca/ca-21-0032/pdf
     name: CMS CHIP SPA CA-21-0032 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/ca/ca-21-0032/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/CA/CA-21-0032.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/ct/ct-22-0001-and-ct-22-0001-chip/summary
+    name: CMS CHIP SPA CT-22-0001 & CT-22-0001-CHIP Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ct/ct-22-0001-and-ct-22-0001-chip/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=145381
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3103,11 +3142,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/il/il-21-0006-chip/summary
+    name: CMS CHIP SPA IL-21-0006-CHIP Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/il/il-21-0006-chip/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144706
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/il/il-21-0006-chip/pdf
     name: CMS CHIP SPA IL-21-0006-CHIP PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/il/il-21-0006-chip/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/IL-21-0006-CHIP.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/il/il-21-0007-chip/summary
+    name: CMS CHIP SPA IL-21-0007-CHIP Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/il/il-21-0007-chip/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144711
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3123,11 +3182,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/il/il-21-0014/summary
+    name: CMS CHIP SPA IL-21-0014 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/il/il-21-0014/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=126246
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/il/il-21-0014/pdf
     name: CMS CHIP SPA IL-21-0014 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/il/il-21-0014/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/IL/IL-21-0014.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/ma/ma-chipspa-15/summary
+    name: CMS CHIP SPA MA-CHIPSPA-15 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ma/ma-chipspa-15/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3381
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3143,11 +3222,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/md/md-23-0002-chip-and-md-23-0003-chip-and-md-23-0004-chip/summary
+    name: CMS CHIP SPA MD-23-0002-CHIP & MD-23-0003-CHIP & MD-23-0004-CHIP Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/md/md-23-0002-chip-and-md-23-0003-chip-and-md-23-0004-chip/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=152926
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/md/md-23-0002-chip-and-md-23-0003-chip-and-md-23-0004-chip/pdf
     name: CMS CHIP SPA MD-23-0002-CHIP & MD-23-0003-CHIP & MD-23-0004-CHIP PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/md/md-23-0002-chip-and-md-23-0003-chip-and-md-23-0004-chip/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/MD-23-0002-0003-0004-CHIP.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/me/me-23-0025/summary
+    name: CMS CHIP SPA ME-23-0025 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/me/me-23-0025/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=158866
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3163,11 +3262,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/me/me-20-0021/summary
+    name: CMS CHIP SPA ME-20-0021 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/me/me-20-0021/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144721
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/me/me-20-0021/pdf
     name: CMS CHIP SPA ME-20-0021 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/me/me-20-0021/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/ME-20-0021.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/me/me-22-0020/summary
+    name: CMS CHIP SPA ME-22-0020 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/me/me-22-0020/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=144716
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3183,11 +3302,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/me/me-23-0006-me-23-0007/summary
+    name: CMS CHIP SPA ME-23-0006-ME-23-0007 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/me/me-23-0006-me-23-0007/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147821
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/me/me-23-0006-me-23-0007/pdf
     name: CMS CHIP SPA ME-23-0006-ME-23-0007 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/me/me-23-0006-me-23-0007/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/ME-23-0006-ME-23-0007.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/mi/mi-13-0001-mc1/summary
+    name: CMS CHIP SPA MI-13-0001-MC1 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/mi/mi-13-0001-mc1/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3216
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3203,11 +3342,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/mn/mn-chipspa-4/summary
+    name: CMS CHIP SPA MN-CHIPSPA-4 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/mn/mn-chipspa-4/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3596
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/mn/mn-chipspa-4/pdf
     name: CMS CHIP SPA MN-CHIPSPA-4 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/mn/mn-chipspa-4/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/MN/MN-CHIPSPA-4.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/mn/mn-22-0001/summary
+    name: CMS CHIP SPA MN-22-0001 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/mn/mn-22-0001/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=136871
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3223,11 +3382,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/mo/mo-15-0009/summary
+    name: CMS CHIP SPA MO-15-0009 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/mo/mo-15-0009/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3401
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/mo/mo-15-0009/pdf
     name: CMS CHIP SPA MO-15-0009 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/mo/mo-15-0009/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/MO/MO-15-0009.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/ne/ne-cspa-07/summary
+    name: CMS CHIP SPA NE-CSPA-07 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ne/ne-cspa-07/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1396
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3243,11 +3422,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/ny/ny-23-0034-chip-and-ny-23-0034a-chip/summary
+    name: CMS CHIP SPA NY-23-0034-CHIP and NY-23-0034A-CHIP Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ny/ny-23-0034-chip-and-ny-23-0034a-chip/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=158071
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/ny/ny-23-0034-chip-and-ny-23-0034a-chip/pdf
     name: CMS CHIP SPA NY-23-0034-CHIP and NY-23-0034A-CHIP PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/ny/ny-23-0034-chip-and-ny-23-0034a-chip/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/NY-23-0034-CHIP%20and%20NY-23-0034A-CHIP.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/ny/ny-25-0041-chip/summary
+    name: CMS CHIP SPA NY-25-0041-CHIP Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ny/ny-25-0041-chip/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=192526
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3263,11 +3462,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/ok/ok-cspa-05/summary
+    name: CMS CHIP SPA OK-CSPA-05 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ok/ok-cspa-05/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1801
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/ok/ok-cspa-05/pdf
     name: CMS CHIP SPA OK-CSPA-05 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/ok/ok-cspa-05/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-CSPA-5-FINAL.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/or/or-cspa-7/summary
+    name: CMS CHIP SPA OR-CSPA-7 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/or/or-cspa-7/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1401
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3293,11 +3512,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/or/or-24-0141-and-or-24-0140/summary
+    name: CMS CHIP SPA OR-24-0141 and OR-24-0140 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/or/or-24-0141-and-or-24-0140/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=186976
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/or/or-24-0141-and-or-24-0140/pdf
     name: CMS CHIP SPA OR-24-0141 and OR-24-0140 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/or/or-24-0141-and-or-24-0140/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/OR-24-0141andOR-24-0140.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/or/or-cspa-16/summary
+    name: CMS CHIP SPA OR-CSPA-16 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/or/or-cspa-16/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1591
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3323,11 +3562,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/or/or-23-0136/summary
+    name: CMS CHIP SPA OR-23-0136 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/or/or-23-0136/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=148841
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/or/or-23-0136/pdf
     name: CMS CHIP SPA OR-23-0136 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/or/or-23-0136/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/OR-23-0136.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/or/or-cspa-14/summary
+    name: CMS CHIP SPA OR-CSPA-14 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/or/or-cspa-14/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1641
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3353,6 +3612,16 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/or/or-cspa-11/summary
+    name: CMS CHIP SPA OR-CSPA-11 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/or/or-cspa-11/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1451
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/or/or-cspa-11/pdf-1
     name: CMS CHIP SPA OR-CSPA-11 PDF 1
     layer: federal
@@ -3373,11 +3642,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/ri/ri-22-0026/summary
+    name: CMS CHIP SPA RI-22-0026 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/ri/ri-22-0026/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=170526
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/ri/ri-22-0026/pdf
     name: CMS CHIP SPA RI-22-0026 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/ri/ri-22-0026/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/RI-22-0026.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/sd/sd-16-0006/summary
+    name: CMS CHIP SPA SD-16-0006 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/sd/sd-16-0006/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3686
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3393,11 +3682,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/tn/tn-24-0023/summary
+    name: CMS CHIP SPA TN-24-0023 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/tn/tn-24-0023/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=167536
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/tn/tn-24-0023/pdf
     name: CMS CHIP SPA TN-24-0023 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/tn/tn-24-0023/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/TN-24-0023.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/va/va-21-0027/summary
+    name: CMS CHIP SPA VA-21-0027 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/va/va-21-0027/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=110751
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -3413,11 +3722,31 @@ layers:
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
     scope: in
     part: Other
+  - key: us/policy/cms/chip-spa/wa/wa-24-3000-and-wa-24-5000/summary
+    name: CMS CHIP SPA WA-24-3000 and WA-24-5000 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/wa/wa-24-3000-and-wa-24-5000/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=184011
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
   - key: us/policy/cms/chip-spa/wa/wa-24-3000-and-wa-24-5000/pdf
     name: CMS CHIP SPA WA-24-3000 and WA-24-5000 PDF
     layer: federal
     citation_path: us/policy/cms/chip-spa/wa/wa-24-3000-and-wa-24-5000/pdf
     source_url: https://www.medicaid.gov/CHIP/Downloads/WA-24-3000-and-WA-24-5000.pdf
+    sources:
+    - manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
+    scope: in
+    part: Other
+  - key: us/policy/cms/chip-spa/wi/wi-13-0028-mc1/summary
+    name: CMS CHIP SPA WI-13-0028-MC1 Summary
+    layer: federal
+    citation_path: us/policy/cms/chip-spa/wi/wi-13-0028-mc1/summary
+    source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3246
     sources:
     - manifests/us-cms-chip-fcep-spa-official-documents.yaml
     manifest: manifests/us-cms-chip-fcep-spa-official-documents.yaml
@@ -5124,25 +5453,79 @@ layers:
     - path: us-ca/policy/cms/chip-state-plan/spa/ca-24-0012/approval-package
       references: 2
       part: Income
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
-    layer: state
-    citation_path: us-ca/statute/rtc/17054.1
-    source_url: null
-    sources:
-    - policyengine-references
-    - plan
-    references: 4
-    scope: in
-    part: Household and eligibility
-    cited:
-    - path: us-ca/statute/rtc/17054.1
-      references: 4
-      part: Household and eligibility
   - key: us-ca/statute/wic/14007.8
     name: us-ca/statute/wic/14007.8
     layer: state
     citation_path: us-ca/statute/wic/14007.8
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/wic/15833
+    name: us-ca/statute/wic/15833
+    layer: state
+    citation_path: us-ca/statute/wic/15833
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/statute/wic/15833
+      references: 1
+      part: Household and eligibility
+  - key: us-ca/statute/wic/15834
+    name: us-ca/statute/wic/15834
+    layer: state
+    citation_path: us-ca/statute/wic/15834
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/statute/wic/15834
+      references: 1
+      part: Household and eligibility
+  - key: us-ca/statute/wic/15850.1
+    name: us-ca/statute/wic/15850.1
+    layer: state
+    citation_path: us-ca/statute/wic/15850.1
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-ca/statute/wic/15850.1
+      references: 1
+      part: Household and eligibility
+  - key: us-ca/statute/wic/15850.5
+    name: us-ca/statute/wic/15850.5
+    layer: state
+    citation_path: us-ca/statute/wic/15850.5
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us-ca/statute/wic/15850.5
+      references: 1
+      part: Other
+  - key: us-ca/statute/wic/node-16.7.2
+    name: us-ca/statute/wic/node-16.7.2
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.2
     source_url: null
     sources:
     - plan
@@ -5297,19 +5680,55 @@ layers:
     - screener
     - manifests/us-ca-chip-state-plan.yaml
     scope: in
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/wic/14007.8
+    name: us-ca/statute/wic/14007.8
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/wic/14007.8
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15833
+    name: us-ca/statute/wic/15833
+    layer: state
+    citation_path: us-ca/statute/wic/15833
     source_url: null
     part: Household and eligibility
     sources:
     - screener
     scope: in
-  - key: us-ca/statute/wic/14007.8
-    name: us-ca/statute/wic/14007.8
+  - key: us-ca/statute/wic/15834
+    name: us-ca/statute/wic/15834
     layer: state
-    citation_path: us-ca/statute/wic/14007.8
+    citation_path: us-ca/statute/wic/15834
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15850.1
+    name: us-ca/statute/wic/15850.1
+    layer: state
+    citation_path: us-ca/statute/wic/15850.1
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15850.5
+    name: us-ca/statute/wic/15850.5
+    layer: state
+    citation_path: us-ca/statute/wic/15850.5
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/node-16.7.2
+    name: us-ca/statute/wic/node-16.7.2
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.2
     source_url: null
     part: Other
     sources:
@@ -5508,13 +5927,15 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
-    name: Colorado OmniSalud Guide 2024 | Colorado OmniSalud Guide 2024, p. 3
+  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
+    name: sos.state.co.us/CCR/GenerateRulePdf.do
     layer: state
     citation_path: null
-    source_url: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     sources:
+    - policyengine-references
     - plan
+    references: 1
     scope: in
     part: Benefit amount
   - key: us-co/guidance/connect-for-health-colorado/omnisalud
@@ -5580,20 +6001,20 @@ layers:
     - plan
     scope: in
     part: Benefit amount
-  - key: us-co/regulation/10-ccr-2505-3
-    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
+  - key: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+    name: 'Colorado Medical Assistance Rules: 10 CCR 2505-10 Section 8.100 Eligibility, Provider Screening, NPI'
     layer: state
-    citation_path: us-co/regulation/10-ccr-2505-3
+    citation_path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
     source_url: null
     sources:
     - policyengine-references
     - plan
-    references: 2
+    references: 1
     scope: in
-    part: Benefit amount
+    part: Income
     cited:
-    - path: us-co/regulation/10-ccr-2505-3
-      references: 2
+    - path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+      references: 1
       part: Income
   - key: us-co/statute/10/10-16-1203
     name: us-co/statute/10/10-16-1203
@@ -5604,12 +6025,24 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  full:
   - key: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
     name: Colorado OmniSalud Guide 2024 | Colorado OmniSalud Guide 2024, p. 3
     layer: state
     citation_path: null
     source_url: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: Advocacy guide by the Colorado Immigrant Rights Coalition (third party); the
+      official OmniSalud texts are Connect for Health Colorado''s page (row 26, PRESENT) and C.R.S. 10-16-1203 (row
+      28, PRESENT)'
+    part: Benefit amount
+  full:
+  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
+    name: sos.state.co.us/CCR/GenerateRulePdf.do
+    layer: state
+    citation_path: null
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     part: Benefit amount
     sources:
     - screener
@@ -5659,15 +6092,14 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-co/regulation/10-ccr-2505-3
-    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
+  - key: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+    name: 'Colorado Medical Assistance Rules: 10 CCR 2505-10 Section 8.100 Eligibility, Provider Screening, NPI'
     layer: state
-    citation_path: us-co/regulation/10-ccr-2505-3
+    citation_path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
     source_url: null
-    part: Benefit amount
+    part: Income
     sources:
     - screener
-    - manifests/us-co-chip-state-eligibility-manual.yaml
     scope: in
   - key: us-co/statute/10/10-16-1203
     name: us-co/statute/10/10-16-1203
@@ -5678,6 +6110,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-co/regulation/10-ccr-2505-3
+    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
+    layer: state
+    citation_path: us-co/regulation/10-ccr-2505-3
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12479&fileName=10%20CCR%202505-3
+    sources:
+    - manifests/us-co-chip-state-eligibility-manual.yaml
+    manifest: manifests/us-co-chip-state-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-co/policy/cms/chip-state-plan/spa-index/p01
     name: 'Colorado CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
     layer: state
@@ -6574,6 +7016,15 @@ layers:
     part: Other
 - jurisdiction: us-fl
   screener:
+  - key: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    name: Fla. Admin. Code R. 65A-1.703(2)(e) - child under age 18, no student extension
+    layer: state
+    citation_path: null
+    source_url: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
     name: Florida KidCare 2025 General Annual Income Guidelines
     layer: state
@@ -6607,16 +7058,16 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  - key: us-fl/regulation/fac/65a-2/022
-    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
-    layer: state
-    citation_path: us-fl/regulation/fac/65a-2/022
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   full:
+  - key: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    name: Fla. Admin. Code R. 65A-1.703(2)(e) - child under age 18, no student extension
+    layer: state
+    citation_path: null
+    source_url: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
   - key: us-fl/guidance/florida-healthy-kids/kidcare-income-guidelines/2025
     name: Florida KidCare 2025 General Annual Income Guidelines
     layer: state
@@ -6642,15 +7093,6 @@ layers:
     citation_path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
     source_url: null
     part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: us-fl/regulation/fac/65a-2/022
-    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
-    layer: state
-    citation_path: us-fl/regulation/fac/65a-2/022
-    source_url: null
-    part: Benefit amount
     sources:
     - screener
     scope: in
@@ -7695,6 +8137,15 @@ layers:
     part: Other
 - jurisdiction: us-il
   screener:
+  - key: https://www.dhs.state.il.us/page.aspx?item=161600
+    name: Illinois DHS - HBIA and HBIS Policy
+    layer: state
+    citation_path: null
+    source_url: https://www.dhs.state.il.us/page.aspx?item=161600
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   - key: us-il/guidance/hfs/all-kids/about
     name: 'Illinois HFS: About All Kids'
     layer: state
@@ -7781,10 +8232,28 @@ layers:
     - plan
     scope: in
     part: Benefit amount
-  - key: us-il/policy/acf/ccdf-plan/fy2025-2027
-    name: Illinois CCDF Plan, FFY 2025-2027
+  - key: us-il/manual/dhs/csmm/33527
+    name: 'PM 06-20-00: Health Benefits for Persons with Breast or Cervical Cancer (BCC)'
     layer: state
-    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    citation_path: us-il/manual/dhs/csmm/33527
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-il/manual/dhs/csmm/33528
+    name: 'PM 06-20-02:  BCC Eligibility Criteria'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/33528
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-il/manual/dhs/csmm/61206
+    name: PM 06-25-01 Determining Nonfinancial Eligibility
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/61206
     source_url: null
     sources:
     - plan
@@ -7876,6 +8345,15 @@ layers:
       references: 3
       part: Household and eligibility
   full:
+  - key: https://www.dhs.state.il.us/page.aspx?item=161600
+    name: Illinois DHS - HBIA and HBIS Policy
+    layer: state
+    citation_path: null
+    source_url: https://www.dhs.state.il.us/page.aspx?item=161600
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us-il/guidance/hfs/all-kids/about
     name: 'Illinois HFS: About All Kids'
     layer: state
@@ -7957,10 +8435,28 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-il/policy/acf/ccdf-plan/fy2025-2027
-    name: Illinois CCDF Plan, FFY 2025-2027
+  - key: us-il/manual/dhs/csmm/33527
+    name: 'PM 06-20-00: Health Benefits for Persons with Breast or Cervical Cancer (BCC)'
     layer: state
-    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    citation_path: us-il/manual/dhs/csmm/33527
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/33528
+    name: 'PM 06-20-02:  BCC Eligibility Criteria'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/33528
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/61206
+    name: PM 06-25-01 Determining Nonfinancial Eligibility
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/61206
     source_url: null
     part: Household and eligibility
     sources:
@@ -9591,6 +10087,16 @@ layers:
 - jurisdiction: us-me
   screener: []
   full:
+  - key: us-me/policy/dhhs/mainecare/eligibility-guidelines-2026
+    name: 'Maine DHHS: 2026 MaineCare Eligibility Guidelines chart (6.23.26)'
+    layer: state
+    citation_path: us-me/policy/dhhs/mainecare/eligibility-guidelines-2026
+    source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/2026%20MaineCare%20Eligibility%20Guidelines%206.23..26_1.pdf
+    sources:
+    - manifests/us-me-chip-income-table.yaml
+    manifest: manifests/us-me-chip-income-table.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-me/regulation/dhhs/ofi/chapter-332/part-5
     name: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 5: Children''s Health Insurance Program
       (CHIP)'
@@ -11327,10 +11833,10 @@ layers:
     - plan
     scope: in
     part: Assets
-  - key: us-mo/statute/208.010
-    name: RSMo 208.010
+  - key: us-mo/statute/208.640
+    name: 'RSMo 208.640: Co-payments required, when, amount, limitations'
     layer: state
-    citation_path: us-mo/statute/208.010
+    citation_path: us-mo/statute/208.640
     source_url: null
     sources:
     - policyengine-references
@@ -11338,7 +11844,7 @@ layers:
     scope: in
     part: Other
     cited:
-    - path: us-mo/statute/208.010
+    - path: us-mo/statute/208.640
       references: 1
       part: Other
   full:
@@ -11489,10 +11995,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-mo/statute/208.010
-    name: RSMo 208.010
+  - key: us-mo/statute/208.640
+    name: 'RSMo 208.640: Co-payments required, when, amount, limitations'
     layer: state
-    citation_path: us-mo/statute/208.010
+    citation_path: us-mo/statute/208.640
     source_url: null
     part: Other
     sources:
@@ -15975,6 +16481,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-sc/policy/scdhhs/medicaid/program-eligibility-and-income-limits
+    name: 'South Carolina Healthy Connections Medicaid: Program Eligibility and Income Limits (effective 2026-03-01)'
+    layer: state
+    citation_path: us-sc/policy/scdhhs/medicaid/program-eligibility-and-income-limits
+    source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    sources:
+    - manifests/us-sc-chip-income-table.yaml
+    manifest: manifests/us-sc-chip-income-table.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-sc/policy/cms/chip-state-plan/spa-index/p01
     name: 'South Carolina CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
     layer: state
@@ -19567,10 +20083,19 @@ layers:
     - plan
     scope: in
     part: Deductions
-  - key: us-wa/regulation/388/388-414/388-414-0001
-    name: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  - key: us-wa/regulation/182/182-505/182-505-0100
+    name: us-wa/regulation/182/182-505/182-505-0100
     layer: state
-    citation_path: us-wa/regulation/388/388-414/388-414-0001
+    citation_path: us-wa/regulation/182/182-505/182-505-0100
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wa/regulation/182/182-505/182-505-0210
+    name: us-wa/regulation/182/182-505/182-505-0210
+    layer: state
+    citation_path: us-wa/regulation/182/182-505/182-505-0210
     source_url: null
     sources:
     - plan
@@ -19608,10 +20133,19 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-wa/regulation/388/388-414/388-414-0001
-    name: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  - key: us-wa/regulation/182/182-505/182-505-0100
+    name: us-wa/regulation/182/182-505/182-505-0100
     layer: state
-    citation_path: us-wa/regulation/388/388-414/388-414-0001
+    citation_path: us-wa/regulation/182/182-505/182-505-0100
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/182/182-505/182-505-0210
+    name: us-wa/regulation/182/182-505/182-505-0210
+    layer: state
+    citation_path: us-wa/regulation/182/182-505/182-505-0210
     source_url: null
     part: Household and eligibility
     sources:
@@ -20284,19 +20818,19 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-wy
   screener:
-  - key: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    name: Wyoming Eligibility Operations Manual POL M1204A - caretaker relative of "a child under the age of 18"
-    layer: state
-    citation_path: null
-    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us-wy/guidance/wdh/medicaid-income-requirements
     name: 'Wyoming Department of Health: Medicaid Income Requirements'
     layer: state
     citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
     source_url: null
     sources:
     - plan
@@ -20313,19 +20847,19 @@ layers:
     scope: in
     part: Assets
   full:
-  - key: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    name: Wyoming Eligibility Operations Manual POL M1204A - caretaker relative of "a child under the age of 18"
-    layer: state
-    citation_path: null
-    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: us-wy/guidance/wdh/medicaid-income-requirements
     name: 'Wyoming Department of Health: Medicaid Income Requirements'
     layer: state
     citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
     source_url: null
     part: Benefit amount
     sources:
