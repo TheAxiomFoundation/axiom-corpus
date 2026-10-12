@@ -2842,16 +2842,6 @@ layers:
     scope: in
 - jurisdiction: us-md
   screener:
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us-md/form/comptroller/ty2021/resident-booklet
     name: 2021 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
     layer: state
@@ -2922,16 +2912,21 @@ layers:
     - path: us-md/guidance/dls/fiscal-notes/2023/hb0547
       references: 1
       part: Credits
-  full:
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
     layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    part: Credits
+    citation_path: us-md/statute/gtg/10-704
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-704
+      references: 1
+      part: Credits
+  full:
   - key: us-md/form/comptroller/ty2021/resident-booklet
     name: 2021 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
     layer: state
@@ -2972,6 +2967,15 @@ layers:
     name: Fiscal and Policy Note, House Bill 547 (2023 Session), Department of Legislative Services
     layer: state
     citation_path: us-md/guidance/dls/fiscal-notes/2023/hb0547
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
+    layer: state
+    citation_path: us-md/statute/gtg/10-704
     source_url: null
     part: Credits
     sources:
@@ -3070,16 +3074,6 @@ layers:
     scope: in
 - jurisdiction: us-mi
   screener:
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us-mi/form/treasury/ty2022/form-mi-1040
     name: MI-1040
     layer: state
@@ -3136,16 +3130,21 @@ layers:
     - path: us-mi/form/treasury/ty2025/mi-1040-book
       references: 1
       part: Credits
-  full:
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    name: legislature.mi.gov/Laws/MCL
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
     layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    part: Credits
+    citation_path: us-mi/statute/206.272
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.272
+      references: 1
+      part: Credits
+  full:
   - key: us-mi/form/treasury/ty2022/form-mi-1040
     name: MI-1040
     layer: state
@@ -3177,6 +3176,15 @@ layers:
     name: 2025 Michigan Individual Income Tax Forms and Instructions (MI-1040 Book)
     layer: state
     citation_path: us-mi/form/treasury/ty2025/mi-1040-book
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
+    layer: state
+    citation_path: us-mi/statute/206.272
     source_url: null
     part: Credits
     sources:

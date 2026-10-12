@@ -40,7 +40,7 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 216
-      state: 1626
+      state: 1621
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -56,7 +56,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 312
-      state: 3279
+      state: 3273
 layers:
 - jurisdiction: us
   screener:
@@ -15794,26 +15794,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-104/
     name: law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/se
     layer: state
@@ -15834,36 +15814,6 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-5/section-39-22-544/
     name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-5/section
     layer: state
@@ -15904,16 +15854,6 @@ layers:
     references: 1
     scope: in
     part: Credits
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
   - key: us-co/form/cdor/ty2021/dr-0104-book
     name: 2021 Colorado Individual Income Tax Filing Guide (104 Book)
     layer: state
@@ -16306,6 +16246,20 @@ layers:
     - path: us-co/guidance/state-auditor/tax-expenditure-evaluations/te19-colorado-eitc
       references: 1
       part: Credits
+  - key: us-co/regulation/1-ccr-201-2
+    name: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
+    layer: state
+    citation_path: us-co/regulation/1-ccr-201-2
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-co/regulation/1-ccr-201-2
+      references: 1
+      part: Income
   - key: us-co/statute/39/39-22-104
     name: us-co/statute/39/39-22-104
     layer: state
@@ -16327,12 +16281,26 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Credits
     cited:
     - path: us-co/statute/39/39-22-119
-      references: 1
+      references: 2
+      part: Credits
+  - key: us-co/statute/39/39-22-119.5
+    name: us-co/statute/39/39-22-119.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-119.5
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-119.5
+      references: 2
       part: Credits
   - key: us-co/statute/39/39-22-123.5
     name: us-co/statute/39/39-22-123.5
@@ -16355,11 +16323,25 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Credits
     cited:
     - path: us-co/statute/39/39-22-129
+      references: 2
+      part: Credits
+  - key: us-co/statute/39/39-22-2003
+    name: us-co/statute/39/39-22-2003
+    layer: state
+    citation_path: us-co/statute/39/39-22-2003
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-2003
       references: 1
       part: Credits
   - key: us-co/statute/39/39-22-544
@@ -16511,24 +16493,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: https://law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-104/
     name: law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/se
     layer: state
@@ -16544,33 +16508,6 @@ layers:
     citation_path: null
     source_url: https://law.justia.com/codes/colorado/title-39/property-tax/exemptions/article-3/part-2/section-39-3-203/
     part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    part: Credits
     sources:
     - screener
     scope: in
@@ -16607,15 +16544,6 @@ layers:
     citation_path: null
     source_url: https://leg.colorado.gov/bills/hb24-1311
     part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    part: Income
     sources:
     - screener
     scope: in
@@ -16899,6 +16827,16 @@ layers:
     - screener
     - manifests/us-co-income-tax-w6-guidance.yaml
     scope: in
+  - key: us-co/regulation/1-ccr-201-2
+    name: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
+    layer: state
+    citation_path: us-co/regulation/1-ccr-201-2
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-co-income-tax-regulations.yaml
+    scope: in
   - key: us-co/statute/39/39-22-104
     name: us-co/statute/39/39-22-104
     layer: state
@@ -16917,6 +16855,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-co/statute/39/39-22-119.5
+    name: us-co/statute/39/39-22-119.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-119.5
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-co/statute/39/39-22-123.5
     name: us-co/statute/39/39-22-123.5
     layer: state
@@ -16930,6 +16877,15 @@ layers:
     name: us-co/statute/39/39-22-129
     layer: state
     citation_path: us-co/statute/39/39-22-129
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-co/statute/39/39-22-2003
+    name: us-co/statute/39/39-22-2003
+    layer: state
+    citation_path: us-co/statute/39/39-22-2003
     source_url: null
     part: Credits
     sources:
@@ -17020,16 +16976,6 @@ layers:
     manifest: manifests/us-co-ccap-8-ccr-1403-1.yaml
     scope: in
     part: Other
-  - key: us-co/regulation/1-ccr-201-2
-    name: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
-    layer: state
-    citation_path: us-co/regulation/1-ccr-201-2
-    source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleVersionId=12424
-    sources:
-    - manifests/us-co-income-tax-regulations.yaml
-    manifest: manifests/us-co-income-tax-regulations.yaml
-    scope: in
-    part: Income
   - key: us-co/statute/session-laws/2023/hb23-1112
     name: House Bill 23-1112 (signed act), earned income and child tax credits
     layer: state
@@ -30788,116 +30734,6 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://services.marylandcomptroller.gov/taxes/en/maryland-pension-exclusion?id=kb_article_view&sysparm_article=KB0010012
     name: services.marylandcomptroller.gov/taxes/en/maryland-pension-exclusion
     layer: state
@@ -31102,6 +30938,20 @@ layers:
     - path: us-md/guidance/dls/fiscal-notes/2023/hb0547
       references: 1
       part: Credits
+  - key: us-md/statute/gtg/10-107
+    name: us-md/statute/gtg/10-107
+    layer: state
+    citation_path: us-md/statute/gtg/10-107
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-107
+      references: 1
+      part: Credits
   - key: us-md/statute/gtg/10-204
     name: us-md/statute/gtg/10-204
     layer: state
@@ -31114,6 +30964,48 @@ layers:
     part: Income
     cited:
     - path: us-md/statute/gtg/10-204
+      references: 1
+      part: Income
+  - key: us-md/statute/gtg/10-207
+    name: us-md/statute/gtg/10-207
+    layer: state
+    citation_path: us-md/statute/gtg/10-207
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Income
+    cited:
+    - path: us-md/statute/gtg/10-207
+      references: 2
+      part: Income
+  - key: us-md/statute/gtg/10-208
+    name: us-md/statute/gtg/10-208
+    layer: state
+    citation_path: us-md/statute/gtg/10-208
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Income
+    cited:
+    - path: us-md/statute/gtg/10-208
+      references: 2
+      part: Income
+  - key: us-md/statute/gtg/10-209
+    name: us-md/statute/gtg/10-209
+    layer: state
+    citation_path: us-md/statute/gtg/10-209
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-md/statute/gtg/10-209
       references: 1
       part: Income
   - key: us-md/statute/gtg/10-211
@@ -31130,6 +31022,76 @@ layers:
     - path: us-md/statute/gtg/10-211
       references: 1
       part: Deductions
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
+    layer: state
+    citation_path: us-md/statute/gtg/10-704
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-704
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-709
+    name: us-md/statute/gtg/10-709
+    layer: state
+    citation_path: us-md/statute/gtg/10-709
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-709
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-716
+    name: us-md/statute/gtg/10-716
+    layer: state
+    citation_path: us-md/statute/gtg/10-716
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-716
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-751
+    name: us-md/statute/gtg/10-751
+    layer: state
+    citation_path: us-md/statute/gtg/10-751
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-751
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-754
+    name: us-md/statute/gtg/10-754
+    layer: state
+    citation_path: us-md/statute/gtg/10-754
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-754
+      references: 1
+      part: Credits
   - key: us-md/statute/session-laws/2022
     name: us-md/statute/session-laws/2022
     layer: state
@@ -31253,105 +31215,6 @@ layers:
     citation_path: null
     source_url: https://mgaleg.maryland.gov/2024RS/Statute_Web/gtg/10-217.pdf
     part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    part: Credits
     sources:
     - screener
     scope: in
@@ -31510,10 +31373,46 @@ layers:
     - screener
     - manifests/us-md-w6-income-tax-guidance.yaml
     scope: in
+  - key: us-md/statute/gtg/10-107
+    name: us-md/statute/gtg/10-107
+    layer: state
+    citation_path: us-md/statute/gtg/10-107
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-md/statute/gtg/10-204
     name: us-md/statute/gtg/10-204
     layer: state
     citation_path: us-md/statute/gtg/10-204
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-207
+    name: us-md/statute/gtg/10-207
+    layer: state
+    citation_path: us-md/statute/gtg/10-207
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-208
+    name: us-md/statute/gtg/10-208
+    layer: state
+    citation_path: us-md/statute/gtg/10-208
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-209
+    name: us-md/statute/gtg/10-209
+    layer: state
+    citation_path: us-md/statute/gtg/10-209
     source_url: null
     part: Income
     sources:
@@ -31528,6 +31427,51 @@ layers:
     sources:
     - screener
     - manifests/us-md-tax-statutes-2026-repair.yaml
+    scope: in
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
+    layer: state
+    citation_path: us-md/statute/gtg/10-704
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-709
+    name: us-md/statute/gtg/10-709
+    layer: state
+    citation_path: us-md/statute/gtg/10-709
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-716
+    name: us-md/statute/gtg/10-716
+    layer: state
+    citation_path: us-md/statute/gtg/10-716
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-751
+    name: us-md/statute/gtg/10-751
+    layer: state
+    citation_path: us-md/statute/gtg/10-751
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-754
+    name: us-md/statute/gtg/10-754
+    layer: state
+    citation_path: us-md/statute/gtg/10-754
+    source_url: null
+    part: Credits
+    sources:
+    - screener
     scope: in
   - key: us-md/statute/session-laws/2022
     name: us-md/statute/session-laws/2022
@@ -32728,76 +32672,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://www.michigan.gov/-/media/Project/Websites/taxes/2022RM/IIT/BOOK_MI-1040CR-7.pdf?rev=d7990c15e0034d768a43c47b6d3ba0ac
     name: michigan.gov/-/media/Project/Websites/taxes/2022RM/IIT/BOOK_MI-1040CR-7.pdf
     layer: state
@@ -33331,6 +33205,104 @@ layers:
     - path: us-mi/guidance/treasury/withholding-faqs/personal-exemption-amount
       references: 1
       part: Deductions
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
+    layer: state
+    citation_path: us-mi/statute/206.272
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.272
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.30
+    name: us-mi/statute/206.30
+    layer: state
+    citation_path: us-mi/statute/206.30
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-mi/statute/206.30
+      references: 1
+      part: Deductions
+  - key: us-mi/statute/206.508
+    name: us-mi/statute/206.508
+    layer: state
+    citation_path: us-mi/statute/206.508
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.508
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.514
+    name: us-mi/statute/206.514
+    layer: state
+    citation_path: us-mi/statute/206.514
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-mi/statute/206.514
+      references: 1
+      part: Income
+  - key: us-mi/statute/206.520
+    name: us-mi/statute/206.520
+    layer: state
+    citation_path: us-mi/statute/206.520
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.520
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.522
+    name: us-mi/statute/206.522
+    layer: state
+    citation_path: us-mi/statute/206.522
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.522
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.527a
+    name: us-mi/statute/206.527a
+    layer: state
+    citation_path: us-mi/statute/206.527a
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.527a
+      references: 1
+      part: Credits
   - key: us-mi/statute/chapter-206
     name: us-mi/statute/chapter-206
     layer: state
@@ -33386,69 +33358,6 @@ layers:
     citation_path: null
     source_url: https://law.justia.com/codes/michigan/2022/chapter-206/statute-act-281-of-1967/division-281-1967-1/division-281-1967-1-9/section-206-508/
     part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    part: Credits
     sources:
     - screener
     scope: in
@@ -33859,6 +33768,69 @@ layers:
     sources:
     - screener
     - manifests/us-mi-w6-income-tax-guidance.yaml
+    scope: in
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
+    layer: state
+    citation_path: us-mi/statute/206.272
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.30
+    name: us-mi/statute/206.30
+    layer: state
+    citation_path: us-mi/statute/206.30
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.508
+    name: us-mi/statute/206.508
+    layer: state
+    citation_path: us-mi/statute/206.508
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.514
+    name: us-mi/statute/206.514
+    layer: state
+    citation_path: us-mi/statute/206.514
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.520
+    name: us-mi/statute/206.520
+    layer: state
+    citation_path: us-mi/statute/206.520
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.522
+    name: us-mi/statute/206.522
+    layer: state
+    citation_path: us-mi/statute/206.522
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.527a
+    name: us-mi/statute/206.527a
+    layer: state
+    citation_path: us-mi/statute/206.527a
+    source_url: null
+    part: Credits
+    sources:
+    - screener
     scope: in
   - key: us-mi/statute/chapter-206
     name: us-mi/statute/chapter-206

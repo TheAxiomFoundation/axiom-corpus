@@ -44,7 +44,7 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 91
-      state: 149
+      state: 148
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -60,7 +60,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 402
-      state: 10534
+      state: 10533
 layers:
 - jurisdiction: us
   screener:
@@ -17317,15 +17317,6 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    name: MEDICAL ASSISTANCE - SECTION 8.100 Eligibility, Provider Screening, NPI - 8.100.4.D.
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     name: Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
     layer: state
@@ -17387,6 +17378,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
     part: Income
@@ -17416,15 +17408,6 @@ layers:
       28, PRESENT)'
     part: Benefit amount
   full:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    name: MEDICAL ASSISTANCE - SECTION 8.100 Eligibility, Provider Screening, NPI - 8.100.4.D.
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     name: Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
     layer: state
