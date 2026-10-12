@@ -61,7 +61,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 1754
-      state: 1173
+      state: 1175
 layers:
 - jurisdiction: us
   screener:
@@ -2081,6 +2081,17 @@ layers:
     manifest: manifests/us-ssa-cola-2026-official-documents.yaml
     scope: in
     part: Benefit amount
+  - key: us/manual/ssa/poms/si/r00529.020/redacted-pdf
+    name: 'POMS SI R00529.020: No Social Security Benefits for Prisoners (NSSBP) Title XVI Field Office (FO) Processing
+      Instructions (Redacted) (redacted PDF)'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/r00529.020/redacted-pdf
+    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500529020R
+    sources:
+    - manifests/us-ssa-poms-si-00529-2026-09-15.yaml
+    manifest: manifests/us-ssa-poms-si-00529-2026-09-15.yaml
+    scope: in
+    part: Definitions from other programs
   - key: us/manual/ssa/poms/si/00501.000
     name: 'POMS SI 00501.000: Eligibility Under the Supplemental Security Income (SSI) Provisions - Table of Contents'
     layer: federal
@@ -11234,17 +11245,6 @@ layers:
     layer: federal
     citation_path: us/manual/ssa/poms/si/00515.010
     source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500515010
-    sources:
-    - manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
-    manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
-    scope: in
-    part: Definitions from other programs
-  - key: us/manual/ssa/poms/si/r00529.020
-    name: 'POMS SI R00529.020: No Social Security Benefits for Prisoners (NSSBP) Title XVI Field Office (FO) Processing
-      Instructions (Redacted)'
-    layer: federal
-    citation_path: us/manual/ssa/poms/si/r00529.020
-    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500529020R
     sources:
     - manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
     manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
@@ -31791,6 +31791,16 @@ layers:
     manifest: manifests/us-ut-manuals.yaml
     scope: in
     part: Assets
+  - key: us-ut/regulation/admin-rules/r414/306/6
+    name: 'Utah Administrative Code R414-306-6: State Supplemental Payments for Institutionalized SSI Recipients'
+    layer: state
+    citation_path: us-ut/regulation/admin-rules/r414/306/6
+    source_url: https://adminrules.utah.gov/public/rule/R414-306/Current%20Rules
+    sources:
+    - manifests/us-ut-ssi-state-supplement-rules.yaml
+    manifest: manifests/us-ut-ssi-state-supplement-rules.yaml
+    scope: in
+    part: Benefit amount
 - jurisdiction: us-vt
   screener: []
   full: []
@@ -32444,6 +32454,17 @@ layers:
 - jurisdiction: us-wi
   screener: []
   full:
+  - key: us-wi/statute/49.77
+    name: Wis. Stat. 49.77 State supplemental payments (2023-24 Wisconsin Statutes updated through 2025 Wis. Act
+      247)
+    layer: state
+    citation_path: us-wi/statute/49.77
+    source_url: https://docs.legis.wisconsin.gov/statutes/statutes/49/v/77
+    sources:
+    - manifests/us-wi-ssi-state-supplement-rules.yaml
+    manifest: manifests/us-wi-ssi-state-supplement-rules.yaml
+    scope: in
+    part: Benefit amount
   - key: us-wi/manual/dhs/ssi/ssi-admin/1-1
     name: 'Wisconsin SSI Administration Handbook: 1.1 Introduction'
     layer: state

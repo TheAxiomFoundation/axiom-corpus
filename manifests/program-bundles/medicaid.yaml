@@ -59,8 +59,8 @@ tiers:
     state_manifests: medicaid|ahcccs|medi-cal|masshealth|medical-assistance|msp-income
     known_sources: 0
     in_scope_by_layer:
-      federal: 392
-      state: 10352
+      federal: 402
+      state: 10534
 layers:
 - jurisdiction: us
   screener:
@@ -4671,6 +4671,50 @@ layers:
     manifest: manifests/us-cms-iom-100-02.yaml
     scope: in
     part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-1
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 1 (Sections 10 - 80.12)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-1
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part1.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-2
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 2 (Sections 90 - 160.26)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-2
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part2.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-3
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 3 (Sections 170 - 190.34)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-3
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part3.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-03/chapter-1-part-4
+    name: CMS Pub 100-03 Medicare National Coverage Determinations (NCD) Manual, Chapter 1 - Coverage Determinations,
+      Part 4 (Sections 200 - 310.1)
+    layer: federal
+    citation_path: us/manual/cms/iom/100-03/chapter-1-part-4
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/ncd103c1_part4.pdf
+    sources:
+    - manifests/us-cms-iom-100-03.yaml
+    manifest: manifests/us-cms-iom-100-03.yaml
+    scope: in
+    part: Benefit amount
   - key: us/manual/cms/iom/100-04/chapter-1
     name: CMS Pub 100-04 Medicare Claims Processing Manual, Chapter 1 - General Billing Requirements
     layer: federal
@@ -5077,6 +5121,68 @@ layers:
     sources:
     - manifests/us-cms-iom-100-04.yaml
     manifest: manifests/us-cms-iom-100-04.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-1
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 1 - General MSP Overview
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-1
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c01.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-2
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 2 - MSP Provisions
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-2
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c02.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-3
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 3 - MSP Provider, Physician, and Other Supplier
+      Billing Requirements
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-3
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c03.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-5
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 5 - Contractor MSP Claims Prepayment Processing
+      Requirements
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-5
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c05.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Benefit amount
+  - key: us/manual/cms/iom/100-05/chapter-6
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 6 - Medicare Secondary Payer (MSP) CWF Process
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-6
+    source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c06.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
+    scope: in
+    part: Other
+  - key: us/manual/cms/iom/100-05/chapter-7
+    name: CMS Pub 100-05 Medicare Secondary Payer Manual, Chapter 7 - MSP Recovery
+    layer: federal
+    citation_path: us/manual/cms/iom/100-05/chapter-7
+    source_url: https://www.cms.gov/files/document/chapter-7-msp-recovery.pdf
+    sources:
+    - manifests/us-cms-iom-100-05.yaml
+    manifest: manifests/us-cms-iom-100-05.yaml
     scope: in
     part: Other
   - key: us/manual/cms/iom/100-16/chapter-1
@@ -5548,6 +5654,16 @@ layers:
     - screener
     - manifests/us-al-health-w6-regulation.yaml
     scope: in
+  - key: us-al/policy/cms/magi-verification-plan/alabama-verification-plan-template-final
+    name: Alabama MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-al/policy/cms/magi-verification-plan/alabama-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/alabama-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-al-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-al-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-al/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Alabama Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -7183,6 +7299,16 @@ layers:
     sources:
     - manifests/us-ak-medicaid-eligibility-manual.yaml
     manifest: manifests/us-ak-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ak/policy/cms/magi-verification-plan/alaska-verification-plan-template-final
+    name: Alaska MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ak/policy/cms/magi-verification-plan/alaska-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/alaska-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ak-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ak-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-ak/policy/cms/medicaid-state-plan/spa-index/p01
@@ -15009,6 +15135,16 @@ layers:
     manifest: manifests/us-az-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-az/policy/cms/magi-verification-plan/arizona-verification-plan-template-final
+    name: Arizona MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-az/policy/cms/magi-verification-plan/arizona-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/arizona-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-az-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-az-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-az/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
     layer: state
@@ -15538,6 +15674,16 @@ layers:
     manifest: manifests/us-ar-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ar/policy/cms/magi-verification-plan/arkansas-verification-plan-template-final
+    name: Arkansas MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ar/policy/cms/magi-verification-plan/arkansas-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/arkansas-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ar-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ar-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ar/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Arkansas Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -16301,6 +16447,16 @@ layers:
     manifest: manifests/us-ca-health-w6-manual.yaml
     scope: in
     part: Other
+  - key: us-ca/policy/cms/magi-verification-plan/california-verification-plan-final
+    name: California MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ca/policy/cms/magi-verification-plan/california-verification-plan-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/california-verification-plan-final.pdf
+    sources:
+    - manifests/us-ca-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ca-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ca/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
     layer: state
@@ -17342,6 +17498,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-co/policy/cms/magi-verification-plan/colorado-verification-plan-template-final
+    name: Colorado MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-co/policy/cms/magi-verification-plan/colorado-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/colorado-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-co-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-co-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-co/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
     layer: state
@@ -35616,6 +35782,16 @@ layers:
     manifest: manifests/us-ct-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ct/policy/cms/magi-verification-plan/connecticut-verification-plan
+    name: Connecticut MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ct/policy/cms/magi-verification-plan/connecticut-verification-plan
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/connecticut-verification-plan.pdf
+    sources:
+    - manifests/us-ct-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ct-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ct/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
     layer: state
@@ -36396,6 +36572,16 @@ layers:
     manifest: manifests/us-de-medicaid-eligibility-manual.yaml
     scope: in
     part: Benefit amount
+  - key: us-de/policy/cms/magi-verification-plan/delaware-verification-plan-template-final
+    name: Delaware MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-de/policy/cms/magi-verification-plan/delaware-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/delaware-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-de-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-de-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-de/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Delaware Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -37177,6 +37363,16 @@ layers:
     manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-dc/policy/cms/magi-verification-plan/dc-verification-plan-tempate-final
+    name: District of Columbia MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-dc/policy/cms/magi-verification-plan/dc-verification-plan-tempate-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/dc-verification-plan-tempate-final.pdf
+    sources:
+    - manifests/us-dc-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-dc-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-dc/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -37556,6 +37752,16 @@ layers:
     manifest: manifests/us-fl-ess-manual.yaml
     scope: in
     part: Other
+  - key: us-fl/policy/cms/magi-verification-plan/florida-verification-plan-template-final
+    name: Florida MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-fl/policy/cms/magi-verification-plan/florida-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/florida-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-fl-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-fl-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-fl/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Florida Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -40491,6 +40697,16 @@ layers:
     manifest: manifests/us-ga-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ga/policy/cms/magi-verification-plan/georgia-verification-plan-template-final
+    name: Georgia MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ga/policy/cms/magi-verification-plan/georgia-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/georgia-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ga-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ga-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ga/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Georgia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -41270,6 +41486,16 @@ layers:
     manifest: manifests/us-hi-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-hi/policy/cms/magi-verification-plan/hawaii-verification-plan-template-final
+    name: Hawaii MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-hi/policy/cms/magi-verification-plan/hawaii-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/hawaii-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-hi-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-hi-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-hi/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Hawaii Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -41631,6 +41857,26 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-id/policy/dhw/medicaid/program-income-limits
+    name: 'Idaho Department of Health and Welfare: Medicaid Program Income Limits (2026)'
+    layer: state
+    citation_path: us-id/policy/dhw/medicaid/program-income-limits
+    source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
+    sources:
+    - manifests/us-id-medicaid-income-table.yaml
+    manifest: manifests/us-id-medicaid-income-table.yaml
+    scope: in
+    part: Other
+  - key: us-id/policy/cms/magi-verification-plan/idaho-verification-plan-template-final
+    name: Idaho MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-id/policy/cms/magi-verification-plan/idaho-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/idaho-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-id-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-id-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-id/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Idaho Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -42003,16 +42249,6 @@ layers:
     sources:
     - manifests/us-id-medicaid-state-plan.yaml
     manifest: manifests/us-id-medicaid-state-plan.yaml
-    scope: in
-    part: Other
-  - key: us-id/guidance/dhw/medicaid-program-income-limits/2026
-    name: 'Medicaid Program Income Limits: Medicare Savings Program (Effective January 2026)'
-    layer: state
-    citation_path: us-id/guidance/dhw/medicaid-program-income-limits/2026
-    source_url: https://healthandwelfare.idaho.gov/medicaid-program-income-limits
-    sources:
-    - manifests/us-id-msp-income-standards-2026.yaml
-    manifest: manifests/us-id-msp-income-standards-2026.yaml
     scope: in
     part: Other
 - jurisdiction: us-il
@@ -42418,6 +42654,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-il/policy/cms/magi-verification-plan/illinois-magi-based-verification-plan
+    name: Illinois MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-il/policy/cms/magi-verification-plan/illinois-magi-based-verification-plan
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/illinois-magi-based-verification-plan.pdf
+    sources:
+    - manifests/us-il-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-il-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-il/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
     layer: state
@@ -43115,6 +43361,16 @@ layers:
     manifest: manifests/us-in-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-in/policy/cms/magi-verification-plan/indiana-verification-plan-template-final
+    name: Indiana MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-in/policy/cms/magi-verification-plan/indiana-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/indiana-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-in-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-in-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-in/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Indiana Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -43766,6 +44022,16 @@ layers:
     sources:
     - manifests/us-ia-medicaid-eligibility-manual.yaml
     manifest: manifests/us-ia-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ia/policy/cms/magi-verification-plan/iowa-verification-plan-template-final
+    name: Iowa MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ia/policy/cms/magi-verification-plan/iowa-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/iowa-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ia-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ia-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-ia/policy/cms/medicaid-state-plan/spa-index/p01
@@ -45655,6 +45921,16 @@ layers:
     manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
     scope: in
     part: Benefit amount
+  - key: us-ks/policy/cms/magi-verification-plan/kansas-magi-based-verification-plan
+    name: Kansas MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ks/policy/cms/magi-verification-plan/kansas-magi-based-verification-plan
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/kansas-magi-based-verification-plan.pdf
+    sources:
+    - manifests/us-ks-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ks-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ks/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Kansas Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -45972,6 +46248,17 @@ layers:
 - jurisdiction: us-ky
   screener: []
   full:
+  - key: us-ky/policy/cms/1115-stc/teamky
+    name: 'Kentucky section 1115 demonstration "TEAMKY (formerly KY HEALTH)": CMS approval document and special
+      terms and conditions (2025-03-20)'
+    layer: state
+    citation_path: us-ky/policy/cms/1115-stc/teamky
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/ky-teamky-appvl-03202025.pdf
+    sources:
+    - manifests/us-ky-medicaid-1115-stc.yaml
+    manifest: manifests/us-ky-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
   - key: us-ky/manual/dcbs/medicaid/volume-iva
     name: 'Kentucky DCBS Division of Family Support Operation Manual: Volume IVA Non-MAGI Medicaid (MA)'
     layer: state
@@ -45992,6 +46279,16 @@ layers:
     manifest: manifests/us-ky-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ky/policy/cms/magi-verification-plan/kentucky-verification-plan-template-final
+    name: Kentucky MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ky/policy/cms/magi-verification-plan/kentucky-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/kentucky-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ky-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ky-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ky/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Kentucky Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -47322,6 +47619,16 @@ layers:
     manifest: manifests/us-la-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-la/policy/cms/magi-verification-plan/louisiana-verification-plan-template-final
+    name: Louisiana MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-la/policy/cms/magi-verification-plan/louisiana-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/downloads/louisiana-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-la-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-la-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-la/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
     layer: state
@@ -47861,6 +48168,16 @@ layers:
     sources:
     - manifests/us-me-medicaid-eligibility-manual.yaml
     manifest: manifests/us-me-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-me/policy/cms/magi-verification-plan/maine-verification-plan-template-final
+    name: Maine MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-me/policy/cms/magi-verification-plan/maine-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/maine-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-me-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-me-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-me/policy/cms/medicaid-state-plan/spa-index/p01
@@ -48630,6 +48947,16 @@ layers:
     sources:
     - manifests/us-md-medicaid-eligibility-manual.yaml
     manifest: manifests/us-md-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-md/policy/cms/magi-verification-plan/maryland-verification-plan-template-final
+    name: Maryland MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-md/policy/cms/magi-verification-plan/maryland-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/maryland-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-md-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-md-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-md/policy/cms/medicaid-state-plan/spa-index/p01
@@ -49549,6 +49876,16 @@ layers:
     manifest: manifests/us-ma-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ma/policy/cms/magi-verification-plan/massachusetts-verification-plan-template-final
+    name: Massachusetts MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ma/policy/cms/magi-verification-plan/massachusetts-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/massachusetts-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ma-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ma-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ma/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
     layer: state
@@ -50166,6 +50503,16 @@ layers:
     sources:
     - manifests/us-mi-bridges-manual.yaml
     manifest: manifests/us-mi-bridges-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mi/policy/cms/magi-verification-plan/michigan-medicaid-and-chip-verification-plan
+    name: Michigan MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-mi/policy/cms/magi-verification-plan/michigan-medicaid-and-chip-verification-plan
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/michigan-medicaid-and-chip-verification-plan.pdf
+    sources:
+    - manifests/us-mi-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-mi-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-mi/policy/cms/medicaid-state-plan/spa-index/p01
@@ -54254,6 +54601,16 @@ layers:
     manifest: manifests/us-mn-medicaid-eligibility-manual.yaml
     scope: in
     part: Benefit amount
+  - key: us-mn/policy/cms/magi-verification-plan/minnesota-verification-plan-template-final
+    name: Minnesota MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-mn/policy/cms/magi-verification-plan/minnesota-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/minnesota-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-mn-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-mn-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Benefit amount
   - key: us-mn/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
     layer: state
@@ -55449,6 +55806,16 @@ layers:
     sources:
     - manifests/us-ms-medicaid-eligibility-manual.yaml
     manifest: manifests/us-ms-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ms/policy/cms/magi-verification-plan/mississippi-verification-plan-template-final
+    name: Mississippi MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ms/policy/cms/magi-verification-plan/mississippi-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/mississippi-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ms-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ms-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-ms/policy/cms/medicaid-state-plan/spa-index/p01
@@ -61654,6 +62021,16 @@ layers:
     manifest: manifests/us-mo-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-mo/policy/cms/magi-verification-plan/missouri-verification-plan-template-final
+    name: Missouri MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-mo/policy/cms/magi-verification-plan/missouri-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/medicaidchip-eligibility-verification-plans/downloads/missouri-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-mo-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-mo-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-mo/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Missouri Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -62096,6 +62473,28 @@ layers:
     - screener
     - manifests/us-mt-medicaid-eligibility-manual.yaml
     scope: in
+  - key: us-mt/policy/cms/1115-stc/plan-first
+    name: 'Montana section 1115 demonstration "Montana Plan First": CMS approval document and special terms and
+      conditions (2019-03-29)'
+    layer: state
+    citation_path: us-mt/policy/cms/1115-stc/plan-first
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/mt-plan-first-ext-appvl-03292019.pdf
+    sources:
+    - manifests/us-mt-medicaid-1115-stc.yaml
+    manifest: manifests/us-mt-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
+  - key: us-mt/policy/cms/1115-stc/plan-first-2025-amendment
+    name: 'Montana section 1115 demonstration "Montana Plan First": CMS approval document and special terms and
+      conditions (2025-04-30)'
+    layer: state
+    citation_path: us-mt/policy/cms/1115-stc/plan-first-2025-amendment
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/mt-plan-first-sti-std-adjtmnt-amndmnt-04302025.pdf
+    sources:
+    - manifests/us-mt-medicaid-1115-stc.yaml
+    manifest: manifests/us-mt-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
   - key: us-mt/manual/dphhs/medicaid/cmatoc
     name: 'Montana DPHHS Combined Medicaid Assistance (CMA) Policy Manual: 0-1 Table of Contents'
     layer: state
@@ -63354,6 +63753,16 @@ layers:
     manifest: manifests/us-mt-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-mt/policy/cms/magi-verification-plan/montana-verification-plan-template-final
+    name: Montana MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-mt/policy/cms/magi-verification-plan/montana-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/montana-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-mt-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-mt-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-mt/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
     layer: state
@@ -64757,6 +65166,16 @@ layers:
     manifest: manifests/us-ne-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ne/policy/cms/magi-verification-plan/nebraska-verification-plan-template-final
+    name: Nebraska MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ne/policy/cms/magi-verification-plan/nebraska-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/nebraska-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ne-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ne-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ne/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Nebraska Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -66269,6 +66688,16 @@ layers:
     sources:
     - manifests/us-nv-medicaid-eligibility-manual.yaml
     manifest: manifests/us-nv-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nv/policy/cms/magi-verification-plan/nevada-verification-plan-template-final
+    name: Nevada MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-nv/policy/cms/magi-verification-plan/nevada-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/nevada-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-nv-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-nv-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-nv/policy/cms/medicaid-state-plan/spa-index/p01
@@ -72845,6 +73274,16 @@ layers:
     manifest: manifests/us-nh-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-nh/policy/cms/magi-verification-plan/new-hampshire-verification-plan-template-final
+    name: New Hampshire MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-nh/policy/cms/magi-verification-plan/new-hampshire-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/new-hampshire-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-nh-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-nh-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-nh/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
     layer: state
@@ -73428,6 +73867,16 @@ layers:
     sources:
     - manifests/us-nj-medicaid-eligibility-manual.yaml
     manifest: manifests/us-nj-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nj/policy/cms/magi-verification-plan/new-jersey-verification-plan-template-final
+    name: New Jersey MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-nj/policy/cms/magi-verification-plan/new-jersey-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/new-jersey-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-nj-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-nj-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-nj/policy/cms/medicaid-state-plan/spa-index/p01
@@ -74845,6 +75294,16 @@ layers:
     manifest: manifests/us-nm-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-nm/policy/cms/magi-verification-plan/new-mexico-verification-plan-template-final
+    name: New Mexico MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-nm/policy/cms/magi-verification-plan/new-mexico-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/new-mexico-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-nm-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-nm-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-nm/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'New Mexico Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -75225,6 +75684,16 @@ layers:
     manifest: manifests/us-ny-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ny/policy/cms/magi-verification-plan/new-york-verification-plan-template-final
+    name: New York MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ny/policy/cms/magi-verification-plan/new-york-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/new-york-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ny-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ny-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 9'
     layer: state
@@ -77332,6 +77801,16 @@ layers:
     sources:
     - manifests/us-nc-medicaid-eligibility-manual.yaml
     manifest: manifests/us-nc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/policy/cms/magi-verification-plan/north-carolina-verification-plan-template-final
+    name: North Carolina MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-nc/policy/cms/magi-verification-plan/north-carolina-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/north-carolina-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-nc-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-nc-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-nc/policy/cms/medicaid-state-plan/spa-index/p01
@@ -79764,6 +80243,16 @@ layers:
     manifest: manifests/us-nd-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-nd/policy/cms/magi-verification-plan/north-dakota-verification-plan-template-final
+    name: North Dakota MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-nd/policy/cms/magi-verification-plan/north-dakota-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/north-dakota-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-nd-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-nd-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-nd/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
     layer: state
@@ -81161,6 +81650,16 @@ layers:
     sources:
     - manifests/us-oh-medicaid-eligibility-manual.yaml
     manifest: manifests/us-oh-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-oh/policy/cms/magi-verification-plan/ohio-verification-plan-template-final
+    name: Ohio MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-oh/policy/cms/magi-verification-plan/ohio-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/ohio-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-oh-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-oh-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-oh/policy/cms/medicaid-state-plan/spa-index/p01
@@ -85934,6 +86433,16 @@ layers:
     manifest: manifests/us-ok-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ok/policy/cms/magi-verification-plan/oklahoma-verification-plan-template-final
+    name: Oklahoma MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ok/policy/cms/magi-verification-plan/oklahoma-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/oklahoma-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ok-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ok-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ok/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Oklahoma Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
     layer: state
@@ -86489,6 +86998,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-or/policy/cms/magi-verification-plan/oregon-verification-plan-template-final
+    name: Oregon MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-or/policy/cms/magi-verification-plan/oregon-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/oregon-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-or-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-or-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-or/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Oregon Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -86755,6 +87274,28 @@ layers:
 - jurisdiction: us-pa
   screener: []
   full:
+  - key: us-pa/policy/cms/1115-stc/former-foster-care-youth-sud
+    name: 'Pennsylvania section 1115 demonstration "Pennsylvania Medicaid Coverage Former Foster Care Youth From
+      a Different State & SUD Demonstration": CMS approval document and special terms and conditions (2024-11-14)'
+    layer: state
+    citation_path: us-pa/policy/cms/1115-stc/former-foster-care-youth-sud
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/pa-former-foster-care-youth-diff-state-sud-dmnstrtn-appvl-11142024.pdf
+    sources:
+    - manifests/us-pa-medicaid-1115-stc.yaml
+    manifest: manifests/us-pa-medicaid-1115-stc.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/policy/cms/1115-stc/keystones-of-health
+    name: 'Pennsylvania section 1115 demonstration "Pennsylvania Keystones of Health": CMS approval document and
+      special terms and conditions (2024-12-26)'
+    layer: state
+    citation_path: us-pa/policy/cms/1115-stc/keystones-of-health
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/pa-keystones-of-health-ca-12262024.pdf
+    sources:
+    - manifests/us-pa-medicaid-1115-stc.yaml
+    manifest: manifests/us-pa-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
   - key: us-pa/manual/dhs/medicaid/303-general-information/303-title
     name: 'Pennsylvania Medical Assistance Eligibility Handbook: Chapter 303: General Information'
     layer: state
@@ -90607,6 +91148,16 @@ layers:
     manifest: manifests/us-pa-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-pa/policy/cms/magi-verification-plan/pennsylvania-verification-plan-template-final
+    name: Pennsylvania MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-pa/policy/cms/magi-verification-plan/pennsylvania-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/pennsylvania-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-pa-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-pa-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-pa/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 6'
     layer: state
@@ -91507,6 +92058,16 @@ layers:
     manifest: manifests/us-ri-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ri/policy/cms/magi-verification-plan/rhode-island-verification-plan-template-final
+    name: Rhode Island MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ri/policy/cms/magi-verification-plan/rhode-island-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/rhode-island-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-ri-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ri-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ri/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Rhode Island Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -92189,6 +92750,16 @@ layers:
     manifest: manifests/us-sc-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-sc/policy/cms/magi-verification-plan/south-carolina-verification-plan-template-final
+    name: South Carolina MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-sc/policy/cms/magi-verification-plan/south-carolina-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/south-carolina-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-sc-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-sc-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-sc/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'South Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -92549,6 +93120,17 @@ layers:
 - jurisdiction: us-sd
   screener: []
   full:
+  - key: us-sd/policy/cms/1115-stc/former-foster-care-youth
+    name: 'South Dakota section 1115 demonstration "South Dakota Former Foster Care Youth Demonstration": CMS approval
+      document and special terms and conditions (2023-10-30)'
+    layer: state
+    citation_path: us-sd/policy/cms/1115-stc/former-foster-care-youth
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/sd-ffcy-ext-appvl-10302023.pdf
+    sources:
+    - manifests/us-sd-medicaid-1115-stc.yaml
+    manifest: manifests/us-sd-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
   - key: us-sd/manual/dss/medicaid/67-46-01
     name: ARSD Chapter 67:46:01
     layer: state
@@ -92689,6 +93271,16 @@ layers:
     manifest: manifests/us-sd-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-sd/policy/cms/magi-verification-plan/south-dakota-verification-plan-template-final
+    name: South Dakota MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-sd/policy/cms/magi-verification-plan/south-dakota-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/south-dakota-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-sd-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-sd-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-sd/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'South Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -93987,6 +94579,16 @@ layers:
     manifest: manifests/us-tn-medicaid-eligibility-manual.yaml
     scope: in
     part: Benefit amount
+  - key: us-tn/policy/cms/magi-verification-plan/tennessee-verification-plan-template-final
+    name: Tennessee MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-tn/policy/cms/magi-verification-plan/tennessee-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/tennessee-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-tn-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-tn-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-tn/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Tennessee Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 1'
     layer: state
@@ -101541,6 +102143,16 @@ layers:
     manifest: manifests/us-tx-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-tx/policy/cms/magi-verification-plan/texas-verification-plan-template-final
+    name: Texas MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-tx/policy/cms/magi-verification-plan/texas-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/texas-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-tx-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-tx-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 7'
     layer: state
@@ -108340,6 +108952,16 @@ layers:
     manifest: manifests/us-ut-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-ut/policy/cms/magi-verification-plan/utah-updated-verification-plan-template
+    name: Utah MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-ut/policy/cms/magi-verification-plan/utah-updated-verification-plan-template
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/utah-updated-verification-plan-template.pdf
+    sources:
+    - manifests/us-ut-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-ut-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ut/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
     layer: state
@@ -108782,6 +109404,16 @@ layers:
     manifest: manifests/us-vt-medicaid-eligibility-manual.yaml
     scope: in
     part: Benefit amount
+  - key: us-vt/policy/cms/magi-verification-plan/vermont-verification-plan-template-final
+    name: Vermont MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-vt/policy/cms/magi-verification-plan/vermont-verification-plan-template-final
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/vermont-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-vt-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-vt-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-vt/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Vermont Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
@@ -109264,6 +109896,28 @@ layers:
     - screener
     - manifests/us-va-medicaid-eligibility-manual.yaml
     scope: in
+  - key: us-va/policy/cms/1115-stc/btcsshv
+    name: 'Virginia section 1115 demonstration "Building and Transforming Coverage, Services, and Supports for a
+      Healthier Virginia": CMS approval document and special terms and conditions (2026-07-31)'
+    layer: state
+    citation_path: us-va/policy/cms/1115-stc/btcsshv
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/va-btcsshv-1115-demo-rnwl-2026-apprvl-07312026.pdf
+    sources:
+    - manifests/us-va-medicaid-1115-stc.yaml
+    manifest: manifests/us-va-medicaid-1115-stc.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-va/policy/cms/1115-stc/famis-moms-famis-select
+    name: 'Virginia section 1115 demonstration "Virginia FAMIS MOMS and FAMIS Select": CMS approval document and
+      special terms and conditions (2021-11-18)'
+    layer: state
+    citation_path: us-va/policy/cms/1115-stc/famis-moms-famis-select
+    source_url: https://www.medicaid.gov/Medicaid-CHIP-Program-Information/By-Topics/Waivers/1115/downloads/va/va-famis-moms-famis-select-11182021-ca.pdf
+    sources:
+    - manifests/us-va-medicaid-1115-stc.yaml
+    manifest: manifests/us-va-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
   - key: us-va/manual/dmas/medicaid/m000-table-of-contents
     name: 'Virginia Medical Assistance Eligibility Manual: Table of Contents'
     layer: state
@@ -109463,6 +110117,16 @@ layers:
     sources:
     - manifests/us-va-medicaid-eligibility-manual.yaml
     manifest: manifests/us-va-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-va/policy/cms/magi-verification-plan/virginia-magi-verification-plan
+    name: Virginia MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-va/policy/cms/magi-verification-plan/virginia-magi-verification-plan
+    source_url: https://www.medicaid.gov/sites/default/files/2023-12/virginia-magi-verification-plan.pdf
+    sources:
+    - manifests/us-va-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-va-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-va/policy/cms/medicaid-state-plan/spa-index/p01
@@ -112169,6 +112833,16 @@ layers:
     manifest: manifests/us-wa-medicaid-eligibility-manual.yaml
     scope: in
     part: Household and eligibility
+  - key: us-wa/policy/cms/magi-verification-plan/washington-verification-plan-template-final
+    name: Washington MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-wa/policy/cms/magi-verification-plan/washington-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/washington-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-wa-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-wa-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-wa/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 5'
     layer: state
@@ -112673,6 +113347,16 @@ layers:
 - jurisdiction: us-wv
   screener: []
   full:
+  - key: us-wv/policy/cms/magi-verification-plan/west-virginia-verification-plan-final
+    name: West Virginia MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-wv/policy/cms/magi-verification-plan/west-virginia-verification-plan-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/west-virginia-verification-plan-final.pdf
+    sources:
+    - manifests/us-wv-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-wv-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-wv/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'West Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state
@@ -112973,6 +113657,28 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-wi/policy/cms/1115-stc/badgercare-reform
+    name: 'Wisconsin section 1115 demonstration "Wisconsin BadgerCare Reform": CMS approval document and special
+      terms and conditions (2025-05-12)'
+    layer: state
+    citation_path: us-wi/policy/cms/1115-stc/badgercare-reform
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/wi-badgercare-reform-demo-approval-05152025.pdf
+    sources:
+    - manifests/us-wi-medicaid-1115-stc.yaml
+    manifest: manifests/us-wi-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
+  - key: us-wi/policy/cms/1115-stc/seniorcare
+    name: 'Wisconsin section 1115 demonstration "Wisconsin SeniorCare": CMS approval document and special terms
+      and conditions (2022-06-07)'
+    layer: state
+    citation_path: us-wi/policy/cms/1115-stc/seniorcare
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/wi-senior-care-ca2.pdf
+    sources:
+    - manifests/us-wi-medicaid-1115-stc.yaml
+    manifest: manifests/us-wi-medicaid-1115-stc.yaml
+    scope: in
+    part: Other
   - key: us-wi/manual/dhs/medicaid/meh-release-26-03
     name: 'Wisconsin Medicaid Eligibility Handbook: Release 26-03'
     layer: state
@@ -112991,6 +113697,16 @@ layers:
     sources:
     - manifests/us-wi-medicaid-eligibility-manual.yaml
     manifest: manifests/us-wi-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wi/policy/cms/magi-verification-plan/wisconsin-updated-verification-plan-template
+    name: Wisconsin MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-wi/policy/cms/magi-verification-plan/wisconsin-updated-verification-plan-template
+    source_url: https://www.medicaid.gov/medicaid/eligibility/downloads/wisconsin-updated-verification-plan-template.pdf
+    sources:
+    - manifests/us-wi-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-wi-medicaid-magi-verification-plan.yaml
     scope: in
     part: Household and eligibility
   - key: us-wi/policy/cms/medicaid-state-plan/spa-index/p01
@@ -113674,17 +114390,6 @@ layers:
     part: Other
 - jurisdiction: us-wy
   screener:
-  - key: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    name: ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    layer: state
-    citation_path: null
-    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: us-wy/guidance/wdh/medicaid-income-requirements
     name: 'Wyoming Department of Health: Medicaid Income Requirements'
     layer: state
@@ -113700,6 +114405,21 @@ layers:
     - path: us-wy/guidance/wdh/medicaid-income-requirements
       references: 1
       part: Income
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+      references: 1
+      part: Household and eligibility
   - key: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
     name: 'Wyoming Medicaid SPA WY-13-0008-MM1: Approval Document (approved June 12, 2014, effective January 1,
       2014)'
@@ -113717,15 +114437,6 @@ layers:
       references: 1
       part: Household and eligibility
   full:
-  - key: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    name: ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    layer: state
-    citation_path: null
-    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us-wy/guidance/wdh/medicaid-income-requirements
     name: 'Wyoming Department of Health: Medicaid Income Requirements'
     layer: state
@@ -113735,6 +114446,16 @@ layers:
     sources:
     - screener
     - manifests/us-wy-health-w6-guidance.yaml
+    scope: in
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
     scope: in
   - key: us-wy/policy/cms/medicaid-state-plan/spa/wy-13-0008-mm1/approval-document
     name: 'Wyoming Medicaid SPA WY-13-0008-MM1: Approval Document (approved June 12, 2014, effective January 1,
@@ -113747,6 +114468,1245 @@ layers:
     - screener
     - manifests/us-wy-medicaid-state-plan.yaml
     scope: in
+  - key: us-wy/policy/cms/1115-stc/pregnant-by-choice
+    name: 'Wyoming section 1115 demonstration "Wyoming Pregnant By Choice (Family Planning) Demonstration": CMS
+      approval document and special terms and conditions (2025-04-30)'
+    layer: state
+    citation_path: us-wy/policy/cms/1115-stc/pregnant-by-choice
+    source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/downloads/wy-pregnant-by-choice-sti-std-adjtmnt-amndmnt-04302025.pdf
+    sources:
+    - manifests/us-wy-medicaid-1115-stc.yaml
+    manifest: manifests/us-wy-medicaid-1115-stc.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m100-purpose
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M100 Purpose'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m100-purpose
+    source_url: https://ecom.wyo.gov/m100-purpose
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m100-purpose-m101-purpose
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M101 Purpose'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m100-purpose-m101-purpose
+    source_url: https://ecom.wyo.gov/m100-purpose/m101-purpose
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m100-purpose-m102-administration
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M102 Administration'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m100-purpose-m102-administration
+    source_url: https://ecom.wyo.gov/m100-purpose/m102-administration
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m100-purpose-m103-eligible-persons
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M103 Eligible Persons'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m100-purpose-m103-eligible-persons
+    source_url: https://ecom.wyo.gov/m100-purpose/m103-eligible-persons
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m200-definition-of-terms
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M200 Definition of Terms'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m200-definition-of-terms
+    source_url: https://ecom.wyo.gov/m200-definition-of-terms
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m300-verification-factors
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M300 Verification Factors'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors
+    source_url: https://ecom.wyo.gov/m300-verification-factors
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M301 Verification'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification
+    source_url: https://ecom.wyo.gov/m300-verification-factors/m301-verification
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification-m301a-factors-requiring-verification
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M301A Factors Requiring Verification'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification-m301a-factors-requiring-verification
+    source_url: https://ecom.wyo.gov/m300-verification-factors/m301-verification/m301a-factors-requiring-verification
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification-m301b-verifying-eligibility-factors
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M301B Verifying Eligibility Factors'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m301-verification-m301b-verifying-eligibility-factors
+    source_url: https://ecom.wyo.gov/m300-verification-factors/m301-verification/m301b-verifying-eligibility-factors
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m300-verification-factors-m302-documentation
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M302 Documentation'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m300-verification-factors-m302-documentation
+    source_url: https://ecom.wyo.gov/m300-verification-factors/m302-documentation
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M400 Application Process'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process
+    source_url: https://ecom.wyo.gov/m400-application-process
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m401-applying-for-benefits
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M401 Applying For Benefits'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m401-applying-for-benefits
+    source_url: https://ecom.wyo.gov/m400-application-process/m401-applying-for-benefits
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m402-assistance-with-application-process
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M402 Assistance With Application Process'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m402-assistance-with-application-process
+    source_url: https://ecom.wyo.gov/m400-application-process/m402-assistance-with-application-process
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m403-processing-applications-for-medical-benefits
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M403 Processing Applications For Medical
+      Benefits'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m403-processing-applications-for-medical-benefits
+    source_url: https://ecom.wyo.gov/m400-application-process/m403-processing-applications-for-medical-benefits
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m404-distributing-medicaid-cards
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M404 Distributing Medicaid Cards'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m404-distributing-medicaid-cards
+    source_url: https://ecom.wyo.gov/m400-application-process/m404-distributing-medicaid-cards
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m406-defining-client-rights
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M406 Defining Client Rights'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m406-defining-client-rights
+    source_url: https://ecom.wyo.gov/m400-application-process/m406-defining-client-rights
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m407-defining-client-responsibilities
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M407 Defining Client Responsibilities'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m407-defining-client-responsibilities
+    source_url: https://ecom.wyo.gov/m400-application-process/m407-defining-client-responsibilities
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m408-case-file-maintenance
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M408 Case File Maintenance'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m408-case-file-maintenance
+    source_url: https://ecom.wyo.gov/m400-application-process/m408-case-file-maintenance
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m408-case-file-maintenance-m408a-creating-narratives
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M408A Creating Narratives'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m408-case-file-maintenance-m408a-creating-narratives
+    source_url: https://ecom.wyo.gov/m400-application-process/m408-case-file-maintenance/m408a-creating-narratives
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m409-maintaining-applicant-and-client-information-confidentiality
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M409 Maintaining Applicant and Client Information
+      Confidentiality'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m409-maintaining-applicant-and-client-information-confidentiality
+    source_url: https://ecom.wyo.gov/m400-application-process/m409-maintaining-applicant-and-client-information-confidentiality
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m400-application-process-m410-safeguarding-and-releasing-information
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M410 Safeguarding and Releasing Information'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m400-application-process-m410-safeguarding-and-releasing-information
+    source_url: https://ecom.wyo.gov/m400-application-process/m410-safeguarding-and-releasing-information
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M600 Basic Eligibility Factors'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors
+    source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m601-determinig-basic-eligibility-residence
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M601 Determinig Basic Eligibility - Residence'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m601-determinig-basic-eligibility-residence
+    source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m601-determinig-basic-eligibility-residence
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m602-determining-basic-eligibility-identity
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M602 Determining Basic Eligibility - Identity'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m602-determining-basic-eligibility-identity
+    source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m602-determining-basic-eligibility-identity
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m603-determining-basic-eligibility-social-security-number
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M603 Determining Basic Eligibility - Social
+      Security Number'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m603-determining-basic-eligibility-social-security-number
+    source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m603-determining-basic-eligibility-social-security-number
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m604-determining-basic-eligibility-citizenshipimmigration-status
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M604 Determining Basic Eligibility - Citizenship/Immigration
+      Status'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m604-determining-basic-eligibility-citizenshipimmigration-status
+    source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m604-determining-basic-eligibility-citizenshipimmigration-status
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m605-determinig-basic-eligibility-temporary-absence
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M605 Determinig Basic Eligibility - Temporary
+      Absence'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m600-basic-eligibility-factors-m605-determinig-basic-eligibility-temporary-absence
+    source_url: https://ecom.wyo.gov/m600-basic-eligibility-factors/m605-determinig-basic-eligibility-temporary-absence
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m800-resources
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M800 Resources'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources
+    source_url: https://ecom.wyo.gov/m800-resources
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m801-counting-resources
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M801 Counting Resources'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m801-counting-resources
+    source_url: https://ecom.wyo.gov/m800-resources/m801-counting-resources
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m802-determining-resource-ownership-and-availability
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M802 Determining Resource Ownership And
+      Availability'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m802-determining-resource-ownership-and-availability
+    source_url: https://ecom.wyo.gov/m800-resources/m802-determining-resource-ownership-and-availability
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m803-transferring-resources
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M803 Transferring Resources'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m803-transferring-resources
+    source_url: https://ecom.wyo.gov/m800-resources/m803-transferring-resources
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m804-determining-resource-transfer-penalties
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M804 Determining Resource Transfer Penalties'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m804-determining-resource-transfer-penalties
+    source_url: https://ecom.wyo.gov/m800-resources/m804-determining-resource-transfer-penalties
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m805-determining-treatment-of-resources-within-trusts
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M805 Determining Treatment of Resources
+      Within Trusts'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m805-determining-treatment-of-resources-within-trusts
+    source_url: https://ecom.wyo.gov/m800-resources/m805-determining-treatment-of-resources-within-trusts
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m806-assessing-spousal-resources
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M806 Assessing Spousal Resources'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m806-assessing-spousal-resources
+    source_url: https://ecom.wyo.gov/m800-resources/m806-assessing-spousal-resources
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m800-resources-m807-determining-treatment-of-resources
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M807 Determining Treatment of Resources'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m800-resources-m807-determining-treatment-of-resources
+    source_url: https://ecom.wyo.gov/m800-resources/m807-determining-treatment-of-resources
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m900-income
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M900 Income'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income
+    source_url: https://ecom.wyo.gov/m900-income
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m900-income-m901-counting-income
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M901 Counting Income'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income-m901-counting-income
+    source_url: https://ecom.wyo.gov/m900-income/m901-counting-income
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m900-income-m902-treatment-of-self-employment-income
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M902 Treatment of Self-Employment Income'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income-m902-treatment-of-self-employment-income
+    source_url: https://ecom.wyo.gov/m900-income/m902-treatment-of-self-employment-income
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m900-income-m903-determining-best-estimates
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M903 Determining Best Estimates'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income-m903-determining-best-estimates
+    source_url: https://ecom.wyo.gov/m900-income/m903-determining-best-estimates
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m900-income-m904-benefit-levels
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M904 Benefit Levels'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income-m904-benefit-levels
+    source_url: https://ecom.wyo.gov/m900-income/m904-benefit-levels
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m900-income-m905-income-disregardsdeductions
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M905 Income Disregards/Deductions'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income-m905-income-disregardsdeductions
+    source_url: https://ecom.wyo.gov/m900-income/m905-income-disregardsdeductions
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Deductions
+  - key: us-wy/manual/wdh/medicaid/m900-income-m906-completing-medical-assistance-computations
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M906 Completing Medical Assistance Computations'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m900-income-m906-completing-medical-assistance-computations
+    source_url: https://ecom.wyo.gov/m900-income/m906-completing-medical-assistance-computations
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1000 Aged, Blind or Disabled Program'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001 Institutional Related'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001a-nursing-homeswing-bed
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001A Nursing Home/Swing Bed'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001a-nursing-homeswing-bed
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001a-nursing-homeswing-bed
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001b-inpat-psych-geriatric-hall-at-the-state-hospital
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001B INPAT-PSYCH (Geriatric Hall at the
+      State Hospital in Evanston)'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001b-inpat-psych-geriatric-hall-at-the-state-hospital
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001b-inpat-psych-geriatric-hall-at-the-state-hospital-in-evanston
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001c-hospice-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001C Hospice Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001c-hospice-care
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001c-hospice-care
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001d-inpatient-hospital-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001D Inpatient Hospital Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001d-inpatient-hospital-care
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001d-inpatient-hospital-care
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001e-icf-id-wyoming-life-resource-center
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1001E ICF-ID (Wyoming Life Resource Center)'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1001-institutional-related-m1001e-icf-id-wyoming-life-resource-center
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1001-institutional-related/m1001e-icf-id-wyoming-life-resource-center
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002 HCBS Waivers'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002a-community-choices-home-community-based-waiver
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002A Community Choices Home & Community
+      Based Waiver'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002a-community-choices-home-community-based-waiver
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002a-community-choices-home-community-based-waiver
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002B Comprehensive and Support Waivers'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002b-comprehensive-and-support-waivers
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b1-comprehensive-a
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002B1 Comprehensive and Support Waivers'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b1-comprehensive-a
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002b-comprehensive-and-support-waivers/m1002b1-comprehensive-and-support-waivers
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b2-acquired-brain
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002B2 Acquired Brain Injury Waiver'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002b-comprehensive-and-support-waivers-m1002b2-acquired-brain
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002b-comprehensive-and-support-waivers/m1002b2-acquired-brain-injury-waiver
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002c-childrens-mental-health-waiver
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1002C Children''s Mental Health Waiver'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1002-hcbs-waivers-m1002c-childrens-mental-health-waiver
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1002-hcbs-waivers/m1002c-childrens-mental-health-waiver
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1003-employed-individuals-with-disabilities-eid
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1003 Employed Individuals With Disabilities
+      (EID)'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1003-employed-individuals-with-disabilities-eid
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1003-employed-individuals-with-disabilities-eid
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005 SSI and SSI Related'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005a-disabled-adult-child-dac
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005A Disabled Adult Child (DAC)'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005a-disabled-adult-child-dac
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005a-disabled-adult-child-dac
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005b-e01
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005B E01'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005b-e01
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005b-e01
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005c-goldberg-kelly
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005C Goldberg Kelly'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005c-goldberg-kelly
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005c-goldberg-kelly
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005d-pickle
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005D PICKLE'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005d-pickle
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005d-pickle
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005e-1619
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005E 1619'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005e-1619
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005e-1619
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005f-ssi-eligible
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005F SSI Eligible'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005f-ssi-eligible
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005f-ssi-eligible
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005g-widow-widowers
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005G Widow Widowers'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005g-widow-widowers
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005g-widow-widowers
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005h-widow-widowers-sdx
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005H Widow Widowers SDX'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005h-widow-widowers-sdx
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005h-widow-widowers-sdx
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005j-presumptive-disability
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1005J Presumptive Disability'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1000-aged-blind-or-disabled-program-m1005-ssi-and-ssi-related-m1005j-presumptive-disability
+    source_url: https://ecom.wyo.gov/m1000-aged-blind-or-disabled-program/m1005-ssi-and-ssi-related/m1005j-presumptive-disability
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1100 Medicare Savings Programs'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs
+    source_url: https://ecom.wyo.gov/m1100-medicare-savings-programs
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs-m1101-qmb
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1101 QMB'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs-m1101-qmb
+    source_url: https://ecom.wyo.gov/m1100-medicare-savings-programs/m1101-qmb
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs-m1102-slmb
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1102 SLMB'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1100-medicare-savings-programs-m1102-slmb
+    source_url: https://ecom.wyo.gov/m1100-medicare-savings-programs/m1102-slmb
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1200 Family and Children''s Programs'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201 Children''s Groups'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201a-newborn
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201A Newborn'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201a-newborn
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201a-newborn
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201b-child-magi
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201B Child MAGI'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201b-child-magi
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201b-child-magi
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201d-foster-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201D Foster Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201d-foster-care
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201d-foster-care
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201e-subsidized-adoption
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201E Subsidized Adoption'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201e-subsidized-adoption
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201e-subsidized-adoption
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201f-iv-e-guardianship
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1201F IV-E Guardianship'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1201-childrens-groups-m1201f-iv-e-guardianship
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1201-childrens-groups/m1201f-iv-e-guardianship
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202 Pregnant Women'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202a-pregnant-women
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202A Pregnant Women'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202a-pregnant-women
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women/m1202a-pregnant-women
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202b-qualified-pregnant-women
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202B Qualified Pregnant Women'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202b-qualified-pregnant-women
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women/m1202b-qualified-pregnant-women
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202c-pregnant-by-choice
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1202C Pregnant By Choice'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1202-pregnant-women-m1202c-pregnant-by-choice
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1202-pregnant-women/m1202c-pregnant-by-choice
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204 Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204b-12-month-extended-medicaid
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204B 12 Month Extended Medicaid'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204b-12-month-extended-medicaid
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204b-12-month-extended-medicaid
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1205-emergency-services
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1205 Emergency Services'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1205-emergency-services
+    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1205-emergency-services
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1300 Special Eligibility Groups'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups
+    source_url: https://ecom.wyo.gov/m1300-special-eligibility-groups
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups-m1301-breast-cervical
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1301 Breast & Cervical'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups-m1301-breast-cervical
+    source_url: https://ecom.wyo.gov/m1300-special-eligibility-groups/m1301-breast-cervical
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups-m1302-tuberculosis-program
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1302 Tuberculosis Program'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1300-special-eligibility-groups-m1302-tuberculosis-program
+    source_url: https://ecom.wyo.gov/m1300-special-eligibility-groups/m1302-tuberculosis-program
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1400 Processing/Issuing Benefits'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1401-processing
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1401 Processing'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1401-processing
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1401-processing
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1403-reviews
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1403 Reviews'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1403-reviews
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1403-reviews
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1404-closure
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1404 Closure'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1404-closure
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1404-closure
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1405-reinstatement
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1405 Reinstatement'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1405-reinstatement
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1405-reinstatement
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1406-national-public-health-emergency-related-to-the-covid-19-virus
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1406 National Public Health Emergency
+      Related to the COVID-19 Virus'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1406-national-public-health-emergency-related-to-the-covid-19-virus
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1406-national-public-health-emergency-related-to-the-covid-19-virus
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1407-unwinding-of-the-continuous-enrollment-in-medicaid-and-chip
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1407 Unwinding Of The Continuous Enrollment
+      in Medicaid and CHIP'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1400-processingissuing-benefits-m1407-unwinding-of-the-continuous-enrollment-in-medicaid-and-chip
+    source_url: https://ecom.wyo.gov/m1400-processingissuing-benefits/m1407-unwinding-of-the-continuous-enrollment-in-medicaid-and-chip
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1500-notices
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1500 Notices'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1500-notices
+    source_url: https://ecom.wyo.gov/m1500-notices
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1600-reporting
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1600 Reporting'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1600-reporting
+    source_url: https://ecom.wyo.gov/m1600-reporting
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1600-reporting-m1601-determining-changes-to-be-reported
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1601 Determining Changes to be Reported'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1600-reporting-m1601-determining-changes-to-be-reported
+    source_url: https://ecom.wyo.gov/m1600-reporting/m1601-determining-changes-to-be-reported
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1800 Other Programs'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs
+    source_url: https://ecom.wyo.gov/m1800-other-programs
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1803-kid-care-chip
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1803 Kid Care CHIP'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1803-kid-care-chip
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1803-kid-care-chip
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1804-state-supplemental-payments
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1804 State Supplemental Payments'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1804-state-supplemental-payments
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1804-state-supplemental-payments
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1805-give-one-day-eye-care-program
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1805 Give One Day Eye Care Program'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1805-give-one-day-eye-care-program
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1805-give-one-day-eye-care-program
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1806-link-up-america
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1806 Link Up America'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1806-link-up-america
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1806-link-up-america
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1807-telephone-assistance
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1807 Telephone Assistance'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1807-telephone-assistance
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1807-telephone-assistance
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1809-medicare-part-d-presciption-drug-assistance
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1809 Medicare Part D Presciption Drug
+      Assistance'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1809-medicare-part-d-presciption-drug-assistance
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1809-medicare-part-d-presciption-drug-assistance
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1810-medicare-buy-in
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1810 Medicare Buy-In'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1810-medicare-buy-in
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1810-medicare-buy-in
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1800-other-programs-m1811-presumptive-eligibility
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1811 Presumptive Eligibility'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1800-other-programs-m1811-presumptive-eligibility
+    source_url: https://ecom.wyo.gov/m1800-other-programs/m1811-presumptive-eligibility
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1900-informal-conferencesadministrative-hearings
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1900 Informal Conferences/Administrative
+      Hearings'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1900-informal-conferencesadministrative-hearings
+    source_url: https://ecom.wyo.gov/m1900-informal-conferencesadministrative-hearings
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table1a
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 1A Aged, Blind Or Disabled - Income
+      & Deduction Standards'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table1a
+    source_url: https://ecom.wyo.gov/tables/table1a
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Deductions
+  - key: us-wy/manual/wdh/medicaid/tables-table2
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 2 Countable/Available Income Non-MAGI'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table2
+    source_url: https://ecom.wyo.gov/tables/table2
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Income
+  - key: us-wy/manual/wdh/medicaid/tables-table2a
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 2A Countable Available Income MAGI'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table2a
+    source_url: https://ecom.wyo.gov/tables/table2a
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Income
+  - key: us-wy/manual/wdh/medicaid/tables-table5
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 5 Evidence of Citizenship & Identity'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table5
+    source_url: https://ecom.wyo.gov/tables/table5
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table5a
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 5A Evidence of Immigration Status'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table5a
+    source_url: https://ecom.wyo.gov/tables/table5a
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table5b
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 5B Evidence of Other Eligibility
+      Factors'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table5b
+    source_url: https://ecom.wyo.gov/tables/table5b
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table6
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 6 Immigration Status'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table6
+    source_url: https://ecom.wyo.gov/tables/table6
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table8
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 8 Countable/Available Resources'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table8
+    source_url: https://ecom.wyo.gov/tables/table8
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/tables-table11
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 11 Life Estate Interest'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table11
+    source_url: https://ecom.wyo.gov/tables/table11
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table13
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 13 Facility Codes'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table13
+    source_url: https://ecom.wyo.gov/tables/table13
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table18
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 18 Resource/Income Exemptions Per
+      Public Law (P.L.)'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table18
+    source_url: https://ecom.wyo.gov/tables/table18
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-wy/manual/wdh/medicaid/tables-table19
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 19 Beneficiary and Earnings Data
+      Exchange'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table19
+    source_url: https://ecom.wyo.gov/tables/table19
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table23
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 23 Contacts'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table23
+    source_url: https://ecom.wyo.gov/tables/table23
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/tables-table1
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): Table 1 - Federal Poverty Level (FPL) Standards'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/tables-table1
+    source_url: https://ecom.wyo.gov/tables/table1
+    sources:
+    - manifests/us-wy-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Income
+  - key: us-wy/policy/cms/magi-verification-plan/wyoming-verification-plan-template-final
+    name: Wyoming MAGI-based eligibility verification plan (42 CFR 435.945(j)) as posted by CMS
+    layer: state
+    citation_path: us-wy/policy/cms/magi-verification-plan/wyoming-verification-plan-template-final
+    source_url: https://www.medicaid.gov/sites/default/files/2019-12/wyoming-verification-plan-template-final.pdf
+    sources:
+    - manifests/us-wy-medicaid-magi-verification-plan.yaml
+    manifest: manifests/us-wy-medicaid-magi-verification-plan.yaml
+    scope: in
+    part: Benefit amount
   - key: us-wy/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'Wyoming Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
     layer: state

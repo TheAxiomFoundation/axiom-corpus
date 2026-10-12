@@ -60,7 +60,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 286
-      state: 1533
+      state: 1535
 layers:
 - jurisdiction: us
   screener:
@@ -10083,6 +10083,16 @@ layers:
 - jurisdiction: us-me
   screener: []
   full:
+  - key: us-me/policy/dhhs/mainecare/eligibility-guidelines-2026
+    name: 'Maine DHHS: 2026 MaineCare Eligibility Guidelines chart (6.23.26)'
+    layer: state
+    citation_path: us-me/policy/dhhs/mainecare/eligibility-guidelines-2026
+    source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/2026%20MaineCare%20Eligibility%20Guidelines%206.23..26_1.pdf
+    sources:
+    - manifests/us-me-chip-income-table.yaml
+    manifest: manifests/us-me-chip-income-table.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-me/regulation/dhhs/ofi/chapter-332/part-5
     name: 'Maine 10-144 C.M.R. Chapter 332 MaineCare Eligibility Manual, Part 5: Children''s Health Insurance Program
       (CHIP)'
@@ -16467,6 +16477,16 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-sc/policy/scdhhs/medicaid/program-eligibility-and-income-limits
+    name: 'South Carolina Healthy Connections Medicaid: Program Eligibility and Income Limits (effective 2026-03-01)'
+    layer: state
+    citation_path: us-sc/policy/scdhhs/medicaid/program-eligibility-and-income-limits
+    source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    sources:
+    - manifests/us-sc-chip-income-table.yaml
+    manifest: manifests/us-sc-chip-income-table.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-sc/policy/cms/chip-state-plan/spa-index/p01
     name: 'South Carolina CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
     layer: state
@@ -20794,19 +20814,19 @@ layers:
     part: Household and eligibility
 - jurisdiction: us-wy
   screener:
-  - key: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    name: Wyoming Eligibility Operations Manual POL M1204A - caretaker relative of "a child under the age of 18"
-    layer: state
-    citation_path: null
-    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us-wy/guidance/wdh/medicaid-income-requirements
     name: 'Wyoming Department of Health: Medicaid Income Requirements'
     layer: state
     citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
     source_url: null
     sources:
     - plan
@@ -20823,19 +20843,19 @@ layers:
     scope: in
     part: Assets
   full:
-  - key: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    name: Wyoming Eligibility Operations Manual POL M1204A - caretaker relative of "a child under the age of 18"
-    layer: state
-    citation_path: null
-    source_url: https://ecom.wyo.gov/m1200-family-and-childrens-programs/m1204-family-care/m1204a-family-care
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: us-wy/guidance/wdh/medicaid-income-requirements
     name: 'Wyoming Department of Health: Medicaid Income Requirements'
     layer: state
     citation_path: us-wy/guidance/wdh/medicaid-income-requirements
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
+    name: 'Wyoming Department of Health Eligibility Online Manual (EOM): M1204A Family Care'
+    layer: state
+    citation_path: us-wy/manual/wdh/medicaid/m1200-family-and-childrens-programs-m1204-family-care-m1204a-family-care
     source_url: null
     part: Benefit amount
     sources:
