@@ -180,10 +180,11 @@ class ReleaseCoverageFinding:
 class ReleaseCoverageReport:
     """Result of verifying the navigation → current_provisions join.
 
-    ``corpus.current_provisions`` follows the singleton production pointer to
-    one immutable named release and joins that release's exact version scopes.
-    A navigation scope without matching provision rows produces
-    ``current_provision_count == 0`` here.
+    ``corpus.current_provisions`` serves, for each (jurisdiction,
+    document_class) pair, the exact version scopes of the immutable named
+    release the active scope map names (base rows a primary row of the pair
+    shadows excepted). A navigation scope without matching provision rows
+    produces ``current_provision_count == 0`` here.
     """
 
     checked_at: str
@@ -576,9 +577,12 @@ def fetch_provision_counts(
 ) -> tuple[dict[str, object], ...]:
     """Fetch production provision-count rows.
 
-    By default this reads the current release boundary. Set
-    ``include_legacy=True`` for a full table snapshot that includes scopes not
-    present behind the active named-release pointer.
+    By default this reads the current release boundary: served rows, one per
+    citation path in a pair served with a base scope, so base rows a primary
+    row shadows are not counted. They are still staged and still in each
+    scope's signed row count, which ``fetch_release_provision_counts``
+    reports. Set ``include_legacy=True`` for a full table snapshot that
+    includes scopes not present behind the active named-release pointer.
     """
     table_name = "provision_counts" if include_legacy else "current_provision_counts"
     query = urllib.parse.urlencode(

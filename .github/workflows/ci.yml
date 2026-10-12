@@ -307,7 +307,7 @@ jobs:
           # corpus fetch (tests/conftest.py).
           AXIOM_CORPUS_PARTIAL_TESTS: "1"
         run: |
-          pytest -v tests/test_atomic_release_postgres.py
+          pytest -v tests/test_atomic_release_postgres.py tests/test_layered_serving_postgres.py
 
       - name: Test work queue claims in PostgreSQL
         env:

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -18,8 +18,14 @@ from axiom_corpus.corpus.io import (
     load_source_inventory_references,
 )
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
+from axiom_corpus.corpus.navigation import merge_layered_parent_paths, scope_parent_paths
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import (
+    LAYER_BASE,
+    LAYER_PRIMARY,
+    ReleaseManifest,
+    ReleaseScope,
+)
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.release.manifest import selector_sha256
 
@@ -159,12 +165,14 @@ def validate_release(
             "legacy_release_citation_uniqueness_grandfathered",
             "known historical release predates release-wide citation uniqueness enforcement",
         )
+    layered_parents = _LayeredScopeParents(release)
     release_citation_paths = _release_citation_paths(
         store,
         release,
         artifact_rows,
         collector,
         require_unique=require_unique_citations,
+        layered_parents=layered_parents,
     )
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
@@ -185,6 +193,8 @@ def validate_release(
             release_citation_paths,
             require_expression_dates=release.requires_complete_expression_dates,
         )
+    # After the scope checks, so a capped issue list shows their errors first.
+    layered_parents.report(collector)
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
@@ -208,15 +218,27 @@ def _release_citation_paths(
     collector: _IssueCollector,
     *,
     require_unique: bool,
+    layered_parents: _LayeredScopeParents | None = None,
 ) -> set[str]:
-    """Collect parents available anywhere in the local release cut.
+    """Check release-wide citation uniqueness and collect every citation path.
 
-    A release may deliberately split a legal hierarchy across source snapshots.
-    Parent integrity is therefore a release-wide invariant, not a scope-local one.
+    Citation uniqueness is per layer: a base scope may carry a path a primary
+    scope also carries (serving picks the primary row), but two scopes of the
+    same layer may not, and the overlap must stay inside one
+    (jurisdiction, document_class) pair because serving resolves precedence
+    per pair. The returned path set covers both layers.
+
+    Parent closure is not release-wide: ``_validate_provision_record`` requires
+    a declared parent in the record's own scope, because Supabase derives a
+    row's parent id from the parent's path and the row's own version. A primary
+    scope that leaves its parent title to the base declares no parent for that
+    section; serving hangs it under the base tree (20260927110000), and
+    ``layered_parents`` records each layered pair's parents on the way, so
+    the merged tree can be checked once every scope is read.
     Parsing errors remain owned by ``_validate_scope`` so they are reported once.
     """
     paths: set[str] = set()
-    owners: dict[str, ReleaseScope] = {}
+    owners = _LayeredCitationOwners()
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             if require_unique:
@@ -232,26 +254,137 @@ def _release_citation_paths(
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
         try:
-            citation_paths = [record.citation_path for record in iter_provisions(path)]
+            if layered_parents is None:
+                citation_paths = [record.citation_path for record in iter_provisions(path)]
+            else:
+                citation_paths = layered_parents.read(scope, iter_provisions(path))
         except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             continue
         for citation_path in citation_paths:
-            owner = owners.get(citation_path)
-            if require_unique and owner is not None and owner != scope:
-                collector.add(
-                    "error",
-                    "duplicate_release_citation",
-                    (
-                        f"citation_path {citation_path} is also present in "
-                        f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
-                    ),
-                    scope=scope,
-                    path=path,
-                )
-            else:
-                owners[citation_path] = scope
+            conflict = owners.claim(citation_path, scope)
+            if require_unique and conflict is not None:
+                code, message = conflict
+                collector.add("error", code, message, scope=scope, path=path)
             paths.add(citation_path)
     return paths
+
+
+class _LayeredCitationOwners:
+    """Track which release scope owns each citation path in each layer."""
+
+    def __init__(self) -> None:
+        # One map per layer, keyed by the path itself: a release's citation
+        # set is held once per layer, without a tuple per path.
+        self._owners: dict[str, dict[str, ReleaseScope]] = {
+            LAYER_BASE: {},
+            LAYER_PRIMARY: {},
+        }
+
+    def claim(self, citation_path: str, scope: ReleaseScope) -> tuple[str, str] | None:
+        """Record ``scope`` as an owner of ``citation_path``; return any conflict.
+
+        Duplicates inside one scope are reported by ``_validate_provisions``.
+        """
+        owners = self._owners[scope.layer]
+        owner = owners.get(citation_path)
+        if owner is not None and owner != scope:
+            return (
+                "duplicate_release_citation",
+                (
+                    f"citation_path {citation_path} is also present in "
+                    f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
+                ),
+            )
+        owners.setdefault(citation_path, scope)
+        other_layer = LAYER_PRIMARY if scope.is_base else LAYER_BASE
+        other = self._owners[other_layer].get(citation_path)
+        if other is not None and other.pair != scope.pair:
+            return (
+                "layered_citation_outside_pair",
+                (
+                    f"citation_path {citation_path} is carried by {scope.layer} scope "
+                    f"{scope.jurisdiction}/{scope.document_class}/{scope.version} and "
+                    f"{other.layer} scope "
+                    f"{other.jurisdiction}/{other.document_class}/{other.version}; "
+                    "a base row can only be shadowed by a primary row of its own "
+                    "jurisdiction and document class"
+                ),
+            )
+        return None
+
+
+class _LayeredScopeParents:
+    """Check how serving merges each pair that has a base scope.
+
+    Serving places a primary root under its base twin's parent, else under its
+    nearest ancestor path the pair serves (20260927110000), so a root whose
+    path is mistyped silently becomes a new top-level document, and two layers
+    that disagree about which of two paths is the ancestor form a parent cycle
+    that serving breaks. Neither is an error; both are warned about.
+    """
+
+    def __init__(self, release: ReleaseManifest) -> None:
+        self._release = release
+        self._pairs = {scope.pair for scope in release.scopes if scope.is_base}
+        # The navigation parent of each path, per scope of a layered pair.
+        self._parents: dict[ReleaseScope, dict[str, str | None]] = {}
+
+    def read(self, scope: ReleaseScope, records: Iterable[ProvisionRecord]) -> list[str]:
+        """Return the scope's citation paths, keeping its parents if it is layered."""
+        if scope.pair not in self._pairs:
+            return [record.citation_path for record in records]
+        entries = [(record.citation_path, record.parent_citation_path) for record in records]
+        self._parents[scope] = scope_parent_paths(entries)
+        return [path for path, _parent in entries]
+
+    def report(self, collector: _IssueCollector) -> None:
+        for base in self._release.scopes:
+            if not base.is_base:
+                continue
+            primaries = [
+                scope
+                for scope in self._release.scopes
+                if scope.pair == base.pair and not scope.is_base
+            ]
+            if any(scope not in self._parents for scope in (base, *primaries)):
+                # A scope was not read; its own checks report why.
+                continue
+            merged = merge_layered_parent_paths(
+                self._parents[base], [self._parents[scope] for scope in primaries]
+            )
+            pair = f"{base.jurisdiction}/{base.document_class}"
+            # One warning per scope: a class of flat documents (each one a
+            # root) would otherwise warn once per new document.
+            new_roots: dict[int, list[str]] = {}
+            for index, path in merged.new_roots:
+                new_roots.setdefault(index, []).append(path)
+            for index, paths in sorted(new_roots.items()):
+                shown = ", ".join(sorted(paths)[:5])
+                more = f" and {len(paths) - 5} more" if len(paths) > 5 else ""
+                collector.add(
+                    "warning",
+                    "layered_primary_root_unattached",
+                    (
+                        f"{pair} serves no ancestor path of {len(paths)} root(s) of this "
+                        "primary scope, so serving lists each as a new top-level document; "
+                        f"check their citation paths: {shown}{more}"
+                    ),
+                    scope=primaries[index],
+                )
+            owners = dict.fromkeys(self._parents[base], base)
+            for scope in reversed(primaries):
+                owners.update(dict.fromkeys(self._parents[scope], scope))
+            for cycle in merged.broken_cycles:
+                collector.add(
+                    "warning",
+                    "layered_parent_cycle_broken",
+                    (
+                        f"the scopes of {pair} disagree about parents, so its merged "
+                        f"navigation has the cycle {' -> '.join((*cycle, cycle[0]))}; "
+                        f"serving makes {cycle[0]} a top-level document"
+                    ),
+                    scope=owners[cycle[0]],
+                )
 
 
 class _ProvisionFacts(NamedTuple):

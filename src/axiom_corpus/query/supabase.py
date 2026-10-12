@@ -21,6 +21,7 @@ Usage:
 
 import os
 from dataclasses import dataclass
+from typing import Any
 
 import httpx
 
@@ -34,6 +35,13 @@ DEFAULT_AXIOM_SUPABASE_ANON_KEY = (
 )
 DEFAULT_DOC_TYPE = "statute"
 DOC_TYPE_SEGMENTS = {"statute", "regulation", "rulemaking"}
+# Provision ids per `id=in.(...)` request: each UUID adds about 37 characters
+# to the URL, and gateways reject long request lines.
+CHILD_ID_BATCH = 100
+# Rows asked for per paged request. PostgREST returns at most its db-max-rows
+# (1,000 on Supabase) whatever the limit, so paging advances by the rows
+# received rather than by this number.
+PAGE_ROWS = 1000
 QueryParams = dict[str, str] | list[tuple[str, str]]
 
 
@@ -122,6 +130,7 @@ class SupabaseQuery:
             raise ValueError("SUPABASE_ANON_KEY env var required")
         self.rest_url = f"{self.url}/rest/v1"
         self.provisions_table = "provisions" if include_legacy else "current_provisions"
+        self.navigation_table = "current_navigation_nodes"
         self.provision_counts_table = (
             "provision_counts" if include_legacy else "current_provision_counts"
         )
@@ -251,15 +260,120 @@ class SupabaseQuery:
             children_data = self._request(self.provisions_table, params) or []
             children = [self._to_rule(c) for c in children_data]
         else:
-            # Fetch only direct children
+            children = self._direct_children(rule)
+
+        return Section(rule=rule, children=children)
+
+    def _direct_children(self, rule: Rule) -> list[Rule]:
+        """Fetch the served direct children of ``rule``.
+
+        A pair served without a base scope keeps the lookup by ``parent_id``
+        exactly as it was before layered serving. Where a base scope is served
+        under primary scopes (20260927110000), a served section's children can
+        come from more than one scope: a primary title's sections may be base
+        rows whose ``parent_id`` names the base title's versioned id, not the
+        served title's. The served navigation tree links children by stable
+        parent path, so there the children are its nodes under the rule's
+        citation path, in navigation order, read back from the served
+        provisions by their winning ids.
+        """
+        if (
+            self.provisions_table != "current_provisions"
+            or not rule.citation_path
+            or not self._serves_base_layer(rule)
+        ):
             params = {
                 "parent_id": f"eq.{rule.id}",
                 "order": "ordinal",
             }
             children_data = self._request(self.provisions_table, params) or []
-            children = [self._to_rule(c) for c in children_data]
+            return [self._to_rule(c) for c in children_data]
 
-        return Section(rule=rule, children=children)
+        ids = [
+            str(node["provision_id"])
+            for node in self._navigation_children(rule)
+            if node.get("provision_id")
+        ]
+        rows: dict[str, dict[str, Any]] = {}
+        for start in range(0, len(ids), CHILD_ID_BATCH):
+            batch = ids[start : start + CHILD_ID_BATCH]
+            for row in self._all_rows(
+                self.provisions_table,
+                {"id": f"in.({','.join(batch)})", "order": "id"},
+                at_most=len(batch),
+            ):
+                rows[str(row["id"])] = row
+        children: dict[str, Rule] = {}
+        for provision_id in ids:
+            if provision_id not in rows:
+                continue
+            child = self._to_rule(rows[provision_id])
+            key = child.citation_path or child.id
+            kept = children.get(key)
+            # Activation rejects a layered pair whose layer carries a path
+            # twice, so each child is served once; should one be served twice,
+            # keep one child per path, the rule's own scope's where it has one.
+            if kept is None or (kept.parent_id != rule.id and child.parent_id == rule.id):
+                children[key] = child
+        return list(children.values())
+
+    def _serves_base_layer(self, rule: Rule) -> bool:
+        """Whether the release serving the rule's pair serves a base scope.
+
+        Reads every membership row of the pair, past the row cap: the base
+        scope's row can come anywhere among a release's scopes. Selects every
+        column and orders by columns the view has always had: until
+        20260927110000 is applied the view has no ``layer`` column, so a filter
+        or order on it would be an error, and no pair is served with a base
+        scope. One release serves a pair, so its versions order the rows
+        totally.
+        """
+        scopes = self._all_rows(
+            "current_release_scopes",
+            {
+                "select": "*",
+                "jurisdiction": f"eq.{rule.jurisdiction}",
+                "document_class": f"eq.{rule.doc_type or 'unknown'}",
+                "order": "release_name,version",
+            },
+        )
+        return any(scope.get("layer") == "base" for scope in scopes)
+
+    def _navigation_children(self, rule: Rule) -> list[dict[str, Any]]:
+        """Every served navigation node under ``rule``, in navigation order."""
+        params = {
+            "select": "provision_id",
+            "jurisdiction": f"eq.{rule.jurisdiction}",
+            "parent_path": f"eq.{rule.citation_path}",
+        }
+        if rule.doc_type:
+            params["doc_type"] = f"eq.{rule.doc_type}"
+        params["order"] = "sort_key,path,id"
+        return self._all_rows(self.navigation_table, params)
+
+    def _all_rows(
+        self,
+        table: str,
+        params: dict[str, str],
+        *,
+        at_most: int | None = None,
+    ) -> list[dict[str, Any]]:
+        """Every row a request selects, past PostgREST's row cap.
+
+        One response holds at most the server's row cap, so this pages by
+        offset, in the request's order (which must be total), until a page
+        comes back empty or ``at_most`` rows, all the request can select, are
+        in.
+        """
+        rows: list[dict[str, Any]] = []
+        while at_most is None or len(rows) < at_most:
+            page = self._request(
+                table, {**params, "limit": str(PAGE_ROWS), "offset": str(len(rows))}
+            )
+            if not isinstance(page, list) or not page:
+                break
+            rows.extend(page)
+        return rows
 
     def get_section_deep(
         self,
