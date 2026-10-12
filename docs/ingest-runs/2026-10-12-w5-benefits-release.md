@@ -43,6 +43,19 @@ is in a selected scope, and no two added scopes share a path.
   are their owner's cut.
 - The wave-7 ingests of 2026-10-12 (draft PRs, not on `main`).
 
+## Checks
+
+- No citation path in two selected scopes: the 68 added scopes hold 3,066 paths, none of them in a scope of the active
+  cut and none in two added scopes.
+- `validate-release --ignore-r2-missing`: ok, 1,537 scopes, 0 errors, 564 warnings (the same 564 as the active cut).
+- Citation-path ratchets over every locked provisions file plus the 68 scopes (2,398 files): `block_n` 84,985 → 85,421
+  (+436), `page_n` 176,322 → 177,867 (+1,545), all from the 68 scopes (the MAGI verification plans and the section 1115
+  terms are PDFs stored one row per page); the other families unchanged.
+- `guard-ingested`: every changed corpus artifact has a signed ingest manifest. `corpus verify --attest`: 2,398 lock
+  files, 63,214 entries, OK.
+- `corpus push --changed-since origin/main`: 411 objects uploaded (93.8 MB), 2 already in R2; `corpus verify --remote`:
+  0 missing.
+
 ## Activation
 
 The release carries every pair of the active cut, so its takeover displaces only
