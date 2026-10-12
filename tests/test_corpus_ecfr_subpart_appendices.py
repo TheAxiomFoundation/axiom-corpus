@@ -162,7 +162,9 @@ XML = f"""<ECFR><DIV5 N="404" TYPE="PART">
   {_div9("Appendix IV to Subpart C of Part 404", "Earnings Needed for a Year of Coverage After 1950",
          "<P>Year-of-coverage amounts.</P>")}
   {_div9("Appendix V to Subpart C of Part 404", "Computing the Special Minimum Primary Insurance Amount",
-         "<P>Special minimum amounts.</P>")}
+         "<P>Special minimum amounts.</P>"
+         '<TABLE><CAPTION><P class="title">Table IV-A</P><P class="headnote">[Applicable at test sites]</P></CAPTION>'
+         "<TR><TH>FEV<sub>1</sub> less than<br/>or equal to</TH></TR><TR><TD><P>65</P><P>(L, BTPS)</P></TD></TR></TABLE>")}
   </DIV7>
 </DIV6>
 <DIV6 N="P" TYPE="SUBPART"><HEAD>Subpart P—Determining Disability and Blindness</HEAD>
@@ -443,6 +445,13 @@ def test_appendix_rendering_keeps_captions_and_word_breaks_but_sections_do_not_c
     assert by_path["us/regulation/20/404/subpart-C/appendix-ii"].body.split("\n\n") == [
         "Benefit Formulas",
         "Year you reach age 62 1 | 90 percent of the first—\n1979 | $180\n1 Or become disabled.",
+    ]
+    # Adjacent caption paragraphs and cell paragraphs stay separate words; inline
+    # subscripts stay joined.
+    assert by_path["us/regulation/20/404/subpart-C/appendix-v"].body.split("\n\n") == [
+        "Special minimum amounts.",
+        "Table IV-A [Applicable at test sites]",
+        "FEV1 less than or equal to\n65 (L, BTPS)",
     ]
     listing = by_path["us/regulation/20/404/subpart-P/appendix-1"].body
     assert listing.split("\n\n") == [

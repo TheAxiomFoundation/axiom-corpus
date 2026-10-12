@@ -256,11 +256,16 @@ def _local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1].upper()
 
 
-def _element_text_with_breaks(elem: ET.Element) -> str:
-    """Like ``_element_text``, but a ``<br/>`` separates the words on either side.
+_WORD_BREAK_TAGS = frozenset({"BR", "P", "FP", "PSPACE", "HED", "HD1", "HD2", "HD3", "LI", "DIV"})
 
-    eCFR breaks table headings and captions with ``<br/>`` ("means<br/>less");
-    joining ``itertext()`` would glue them into one word ("meansless").
+
+def _element_text_with_breaks(elem: ET.Element) -> str:
+    """Like ``_element_text``, but line breaks and block children separate words.
+
+    eCFR breaks table headings with ``<br/>`` ("means<br/>less") and writes a
+    caption as adjacent paragraphs (``<P>Table IV-A</P><P>[Applicable ...]</P>``);
+    joining ``itertext()`` would glue the words on either side. Inline markup
+    (``<E>``, ``<sub>``, ``<sup>``) still joins: ``FEV<sub>1</sub>`` is ``FEV1``.
     """
     parts: list[str] = []
 
@@ -268,7 +273,10 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
         if node.text:
             parts.append(node.text)
         for child in node:
-            if _local_name(child.tag) == "BR":
+            name = _local_name(child.tag)
+            if name.startswith("FP-") or name in _WORD_BREAK_TAGS:
+                parts.append(" ")
+                visit(child)
                 parts.append(" ")
             else:
                 visit(child)
