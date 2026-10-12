@@ -374,7 +374,7 @@ def test_build_ecfr_inventory_from_structure_includes_appendices():
 
 
 @pytest.mark.parametrize("entrypoint", ["lower", "public", "iterator", "extract", "inventory-cli", "extract-cli"])
-def test_retained_416_default_scope_ignores_unsupported_appendix(
+def test_retained_416_takes_subpart_k_appendix_only_on_opt_in(
     tmp_path, monkeypatch, capsys, entrypoint
 ):
     import axiom_corpus.corpus.ecfr as ecfr
@@ -391,11 +391,12 @@ def test_retained_416_default_scope_ignores_unsupported_appendix(
     monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
     monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail("unexpected graphic fetch"))
     kwargs = {"only_title": 20, "only_part": "416", "as_of": "2026-07-23"}
-    store = CorpusArtifactStore(tmp_path / "corpus")
+    appendix_path = "us/regulation/20/416/subpart-K/appendix"
 
     def run(include_appendices=False):
         # Omit the keyword entirely on default calls to exercise public defaults.
         opt_in = {"include_appendices": True} if include_appendices else {}
+        store = CorpusArtifactStore(tmp_path / ("opt-in" if include_appendices else "default"))
         if entrypoint == "lower":
             return build_ecfr_inventory_from_structures((structure,), only_part="416", **opt_in)
         if entrypoint == "public":
@@ -414,32 +415,47 @@ def test_retained_416_default_scope_ignores_unsupported_appendix(
             *(["--include-appendices"] if include_appendices else []),
         ])
 
-    result = run()
-    if entrypoint in {"lower", "public"}:
-        assert len(result.items) == 622
-        assert not any(item.metadata["kind"] == "appendix" for item in result.items)
-    elif entrypoint == "iterator":
-        assert not any(record.kind == "appendix" for record in result)
-        inventory_paths = {item.citation_path for item in build_ecfr_inventory(**kwargs).items}
-        assert len(inventory_paths) == 622
-        assert inventory_paths <= {record.citation_path for record in result}
-    elif entrypoint == "extract":
-        assert result.coverage.source_count == result.provisions_written == 622
-        assert result.title_errors == ()
-    else:
-        assert result == 0
-        output = json.loads(capsys.readouterr().out)
-        key = "items_written" if entrypoint == "inventory-cli" else "provisions_written"
-        assert output[key] == 622
-    if entrypoint.endswith("-cli"):
-        assert run(include_appendices=True) == 2
-        error = capsys.readouterr()
-        assert error.out == ""
-        assert "unsupported nonreserved eCFR appendix" in error.err
-        assert "Appendix to Subpart K of Part 416" in error.err
-    else:
-        with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix.*Appendix to Subpart K of Part 416"):
-            run(include_appendices=True)
+    for include_appendices, expected in ((False, 622), (True, 623)):
+        result = run(include_appendices)
+        if entrypoint in {"lower", "public"}:
+            assert len(result.items) == expected
+            appendices = [item for item in result.items if item.metadata["kind"] == "appendix"]
+            assert [item.citation_path for item in appendices] == (
+                [appendix_path] if include_appendices else []
+            )
+            if include_appendices:
+                assert appendices[0].metadata["parent_citation_path"] == (
+                    "us/regulation/20/416/subpart-K"
+                )
+        elif entrypoint == "iterator":
+            appendices = [record for record in result if record.kind == "appendix"]
+            assert [record.citation_path for record in appendices] == (
+                [appendix_path] if include_appendices else []
+            )
+            inventory_paths = {
+                item.citation_path
+                for item in build_ecfr_inventory(
+                    **kwargs, include_appendices=include_appendices
+                ).items
+            }
+            assert len(inventory_paths) == expected
+            assert inventory_paths <= {record.citation_path for record in result}
+        elif entrypoint == "extract":
+            assert result.coverage.source_count == result.provisions_written == expected
+            assert result.coverage.complete
+            assert result.title_errors == ()
+        else:
+            assert result == 0
+            output = json.loads(capsys.readouterr().out)
+            key = "items_written" if entrypoint == "inventory-cli" else "provisions_written"
+            assert output[key] == expected
+    if entrypoint == "iterator":
+        appendix = appendices[0]
+        assert appendix.parent_citation_path == "us/regulation/20/416/subpart-K"
+        assert appendix.level == 2
+        assert appendix.legal_identifier == "20 CFR part 416, subpart K, appendix"
+        assert appendix.heading.startswith("List of Types of Income Excluded Under the SSI Program")
+        assert appendix.body and "Social Security Act" in appendix.body
 
 
 @pytest.mark.parametrize("container", ["title", "chapter", "subchapter"])
@@ -477,7 +493,7 @@ def test_part_scope_excludes_unrelated_uncontained_appendix(tmp_path, monkeypatc
         build_ecfr_inventory_from_structures((structure,), include_appendices=True)
 
 
-@pytest.mark.parametrize("identifier", ["Appendix II to Part 604", "Appendix A to Part 605"])
+@pytest.mark.parametrize("identifier", ["Appendix M1 to Part 604", "Appendix A to Part 605"])
 def test_extract_ecfr_validates_appendix_inventory_before_writing(tmp_path, monkeypatch, identifier):
     import axiom_corpus.corpus.ecfr as ecfr
 
@@ -503,7 +519,7 @@ def test_retained_source_inventory_failure_preserves_existing_run_bytes(tmp_path
     # excluded, but the requested foreign-part section fails inventory validation
     # after the local XML was read and the scoped structure was constructed.
     xml = SAMPLE_APPENDIX_XML.replace("§ 604.100", "§ 605.100").replace(
-        "Appendix A to Part 604", "Appendix II to Part 604"
+        "Appendix A to Part 604", "Appendix M1 to Part 604"
     )
     source = tmp_path / "official.xml"
     source.write_bytes(xml.encode())
@@ -527,7 +543,7 @@ def test_retained_source_inventory_failure_preserves_existing_run_bytes(tmp_path
 
 
 @pytest.mark.parametrize("command", ["inventory-ecfr", "extract-ecfr"])
-@pytest.mark.parametrize("identifier", ["Appendix II to Part 604", "Appendix A to Part 605"])
+@pytest.mark.parametrize("identifier", ["Appendix M1 to Part 604", "Appendix A to Part 605"])
 @pytest.mark.parametrize("existing_run", [False, True])
 def test_ecfr_cli_reports_invalid_appendix_without_writes(
     tmp_path, monkeypatch, capsys, command, identifier, existing_run
@@ -644,7 +660,10 @@ def test_iterator_rejects_selected_appendix_part_conflict(allowed_paths):
     assert [record.citation_path for record in scoped] == ["us/regulation/45/604/100"]
 
 
-@pytest.mark.parametrize("appendix_id,ordinal", [("A", 1_000_065), ("12", 1_000_012)])
+@pytest.mark.parametrize(
+    "appendix_id,ordinal",
+    [("A", 1_000_065), ("12", 1_000_012), ("II", 1_000_002), ("IX", 1_000_009)],
+)
 @pytest.mark.parametrize("include_appendices", [False, True])
 def test_ecfr_cli_opt_in_retains_direct_appendix_image(
     tmp_path, monkeypatch, capsys, appendix_id, ordinal, include_appendices
@@ -695,7 +714,10 @@ def test_ecfr_cli_opt_in_retains_direct_appendix_image(
         assert graphic_path.read_bytes() == png
 
 
-@pytest.mark.parametrize("appendix_id,ordinal", [("A", 1_000_065), ("12", 1_000_012)])
+@pytest.mark.parametrize(
+    "appendix_id,ordinal",
+    [("A", 1_000_065), ("12", 1_000_012), ("II", 1_000_002), ("IX", 1_000_009)],
+)
 def test_extract_ecfr_retains_missing_xml_appendix_source_identity(
     tmp_path, monkeypatch, appendix_id, ordinal
 ):
@@ -746,7 +768,20 @@ def test_extract_ecfr_retains_missing_xml_appendix_source_identity(
     assert not parsed.metadata.get("structure_only")
 
 
-def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape():
+@pytest.mark.parametrize(
+    "identifier,error",
+    [
+        # Shapes the adapter does not parse.
+        ("Appendix A-1 to Subpart A of Part 604", "unsupported nonreserved eCFR appendix identifier"),
+        ("Appendix C1 to Subpart A of Part 604", "unsupported nonreserved eCFR appendix identifier"),
+        ("Appendixes A to Subpart A of Part 604", "unsupported nonreserved eCFR appendix identifier"),
+        ("Appendix A to Subpart A", "unsupported nonreserved eCFR appendix identifier"),
+        ("Appendix B to Subpart A of 45 CFR Part 604", "unsupported nonreserved eCFR appendix identifier"),
+        # A supported subpart appendix that sits outside the subpart it names.
+        ("Appendix to Subpart A of Part 604", "appendix subpart 'A' conflicts with enclosing subpart None"),
+    ],
+)
+def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape(identifier, error):
     unsupported = {
         **SAMPLE_APPENDIX_STRUCTURE,
         "children": [
@@ -757,8 +792,8 @@ def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape():
                         **SAMPLE_APPENDIX_STRUCTURE["children"][0]["children"][0],
                         "children": [
                             {
-                                "identifier": "Appendix to Subpart A of Part 604",
-                                "label": "Appendix to Subpart A of Part 604",
+                                "identifier": identifier,
+                                "label": identifier,
                                 "type": "appendix",
                             }
                         ],
@@ -768,17 +803,14 @@ def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape():
         ],
     }
 
-    with pytest.raises(
-        ValueError,
-        match="unsupported nonreserved eCFR appendix identifier",
-    ):
+    with pytest.raises(ValueError, match=error):
         build_ecfr_inventory_from_structures((unsupported,), only_part="604", include_appendices=True)
 
 
 def test_iter_ecfr_title_provisions_fails_closed_for_unsupported_appendix_xml():
     unsupported_xml = SAMPLE_APPENDIX_XML.replace(
         "Appendix A to Part 604",
-        "Appendix II to Part 604",
+        "Appendix M1 to Part 604",
     )
 
     with pytest.raises(
@@ -797,10 +829,15 @@ def test_iter_ecfr_title_provisions_fails_closed_for_unsupported_appendix_xml():
 
 
 @pytest.mark.parametrize(
-    "identifier",
-    ["Appendix II to Part 604", "Appendix to Subpart A of Part 604", ""],
+    "identifier,error",
+    [
+        ("Appendix M1 to Part 604", "unsupported nonreserved eCFR appendix"),
+        ("Appendix A-1 to Subpart A of Part 604", "unsupported nonreserved eCFR appendix"),
+        ("Appendix to Subpart A of Part 604", "conflicts with enclosing subpart None"),
+        ("", "unsupported nonreserved eCFR appendix"),
+    ],
 )
-def test_build_ecfr_inventory_section_scope_excludes_unsupported_appendices(identifier):
+def test_build_ecfr_inventory_section_scope_excludes_unsupported_appendices(identifier, error):
     structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
     structure["children"][0]["children"][0]["children"][1]["identifier"] = identifier
 
@@ -813,7 +850,7 @@ def test_build_ecfr_inventory_section_scope_excludes_unsupported_appendices(iden
         "us/regulation/45/604",
         "us/regulation/45/604/100",
     ]
-    with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix"):
+    with pytest.raises(ValueError, match=error):
         build_ecfr_inventory_from_structures((structure,), only_part="604", include_appendices=True)
 
 
@@ -829,7 +866,7 @@ def test_build_ecfr_inventory_section_scope_excludes_unsupported_appendices(iden
 def test_iter_ecfr_title_provisions_scope_excludes_unsupported_appendix(
     with_subpart, allowed_paths
 ):
-    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix II to Part 604")
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix M1 to Part 604")
     if with_subpart:
         xml = xml.replace(
             '<DIV8 N="§ 604.100"',
@@ -860,9 +897,9 @@ def test_extract_ecfr_section_scope_excludes_unsupported_appendix_and_its_graphi
 
     structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
     structure["children"][0]["children"][0]["children"][2]["identifier"] = (
-        "Appendix II to Part 604"
+        "Appendix M1 to Part 604"
     )
-    xml = SAMPLE_APPENDIX_XML.replace("Appendix B to Part 604", "Appendix II to Part 604")
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix B to Part 604", "Appendix M1 to Part 604")
     monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
     monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
     monkeypatch.setattr(
@@ -903,7 +940,7 @@ def test_extract_ecfr_section_scope_excludes_unsupported_appendix_and_its_graphi
 
 
 def test_iter_ecfr_title_provisions_rejects_requested_unsupported_appendix():
-    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix II to Part 604")
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix M1 to Part 604")
 
     with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix XML identifier"):
         tuple(
@@ -912,7 +949,7 @@ def test_iter_ecfr_title_provisions_rejects_requested_unsupported_appendix():
                 (EcfrPartTarget(title=45, part="604", chapter="VI"),),
                 version="2026-08-30-title-45-part-604",
                 source_path="ecfr/title-45-part-604.xml",
-                allowed_citation_paths={"us/regulation/45/604/appendix-ii"},
+                allowed_citation_paths={"us/regulation/45/604/appendix-m1"},
                 include_appendices=True,
             )
         )
@@ -960,11 +997,11 @@ def test_iter_ecfr_nested_appendices_preserves_source_order_and_selection(wrappe
 
 
 @pytest.mark.parametrize("wrapper", ["part", "subpart"])
-@pytest.mark.parametrize("allowed_paths", [None, {"us/regulation/45/604/appendix-ii"}])
+@pytest.mark.parametrize("allowed_paths", [None, {"us/regulation/45/604/appendix-m1"}])
 def test_iter_ecfr_nested_appendices_rejects_requested_unsupported(wrapper, allowed_paths):
     with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix XML identifier"):
         tuple(iter_ecfr_title_provisions(
-            _nested_appendix_xml(wrapper, "II"),
+            _nested_appendix_xml(wrapper, "M1"),
             (EcfrPartTarget(title=45, part="604", chapter="VI"),),
             version="2026-08-30-title-45-part-604",
             source_path="ecfr/title-45-part-604.xml",
@@ -977,7 +1014,7 @@ def test_iter_ecfr_nested_appendices_rejects_requested_unsupported(wrapper, allo
 @pytest.mark.parametrize("allowed_paths", [set(), {"us/regulation/45/604/appendix-b"}])
 def test_iter_ecfr_nested_appendices_skips_excluded_unsupported(wrapper, allowed_paths):
     records = tuple(iter_ecfr_title_provisions(
-        _nested_appendix_xml(wrapper, "II"),
+        _nested_appendix_xml(wrapper, "M1"),
         (EcfrPartTarget(title=45, part="604", chapter="VI"),),
         version="2026-08-30-title-45-part-604",
         source_path="ecfr/title-45-part-604.xml",
@@ -993,9 +1030,9 @@ def test_extract_ecfr_nested_section_scope_does_not_fetch_excluded_graphics(
 ):
     import axiom_corpus.corpus.ecfr as ecfr
 
-    xml = _nested_appendix_xml("subpart", "II")
+    xml = _nested_appendix_xml("subpart", "M1")
     structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
-    structure["children"][0]["children"][0]["children"][1]["identifier"] = "Appendix II to Part 604"
+    structure["children"][0]["children"][0]["children"][1]["identifier"] = "Appendix M1 to Part 604"
     monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
     monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
     monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail("excluded graphic fetched"))
