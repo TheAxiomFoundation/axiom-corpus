@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "b2a914a050cfd74d721306e6b770b0c60a32d9d9466500cce8575d4bed5f4e29"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "93f06cd244f787bfc6d74348d9f1d4e498eda967d8a7e613e294991934582d08"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/regulation/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "579ca15e03ce0289be82b27ae5515f35347e72532d32c057d2475d303da228d2"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-vt-dcf-cdd-ccfap-regulations.pdf",
+      "sha256": "d39786a5251d92c256817523e73352988275c1ee83947f0585df581466404485"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-11T18:28:11.336454+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1eyTsbh5RuvQfNB+haTeSWfjhdTAH0/WUzTtYxzsyxz7vs6LR0AgBrEj7o7+BHferawQ8ieBtN0o7dsvqsHLAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}
