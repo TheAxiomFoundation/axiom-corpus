@@ -4,13 +4,13 @@ Tests cover Encoding dataclass, prompt construction, code extraction,
 and file saving logic with mocked Claude API calls.
 """
 
+import importlib
 import json
 from datetime import date, datetime
 from unittest.mock import MagicMock, patch
 
-import httpx
 import pytest
-from anthropic import Anthropic
+from anthropic import Anthropic, DefaultHttpxClient
 from click.testing import CliRunner
 
 from axiom_corpus.cli import main
@@ -22,6 +22,11 @@ from axiom_corpus.encoder import (
     encode_section,
 )
 from axiom_corpus.models import Citation, Section, Subsection
+
+# Mock the provider with the HTTP package the installed SDK uses: the locked
+# anthropic 0.x uses httpx, while anthropic 1.x (which CI installs unpinned with
+# `pip install -e .`) uses httpx2 and rejects httpx objects.
+http = importlib.import_module(DefaultHttpxClient.__mro__[-2].__module__.partition(".")[0])
 
 # =============================================================================
 # Helpers
@@ -236,7 +241,7 @@ def test_sonnet_request_and_thinking_response(model):
 
     def respond(request):
         requests.append(json.loads(request.content))
-        return httpx.Response(
+        return http.Response(
             200,
             json={
                 "id": "msg_test",
@@ -257,7 +262,7 @@ def test_sonnet_request_and_thinking_response(model):
     with (
         Anthropic(
             api_key="test-key",
-            http_client=httpx.Client(transport=httpx.MockTransport(respond)),
+            http_client=http.Client(transport=http.MockTransport(respond)),
         ) as client,
         patch("axiom_corpus.encoder.Anthropic", return_value=client),
     ):
