@@ -44,7 +44,7 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 9
-      state: 380
+      state: 378
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -60,20 +60,10 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 74
-      state: 993
+      state: 987
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    name: acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    layer: federal
-    citation_path: null
-    source_url: https://www.acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: https://www.congress.gov/bill/101st-congress/senate-bill/3209/text
     name: congress.gov/bill/101st-congress/senate-bill/3209/text
     layer: federal
@@ -84,6 +74,20 @@ layers:
     references: 1
     scope: in
     part: Assets
+  - key: us/guidance/acf/occ/approved-ccdf-plans-fy-2025-2027
+    name: FY 2025-2027 State/Territory CCDF Plans
+    layer: federal
+    citation_path: us/guidance/acf/occ/approved-ccdf-plans-fy-2025-2027
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us/guidance/acf/occ/approved-ccdf-plans-fy-2025-2027
+      references: 1
+      part: Household and eligibility
   - key: us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
     name: 'LIHEAP IM 2026-01 Attachment 4: State Median Income (SMI) by Household Size for Mandatory Use in FY 2027
       (optional use in FY 2026)'
@@ -378,21 +382,21 @@ layers:
     reason: 'Back-year table: not current law'
     part: Income
   full:
-  - key: https://www.acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    name: acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    layer: federal
-    citation_path: null
-    source_url: https://www.acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: https://www.congress.gov/bill/101st-congress/senate-bill/3209/text
     name: congress.gov/bill/101st-congress/senate-bill/3209/text
     layer: federal
     citation_path: null
     source_url: https://www.congress.gov/bill/101st-congress/senate-bill/3209/text
     part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/acf/occ/approved-ccdf-plans-fy-2025-2027
+    name: FY 2025-2027 State/Territory CCDF Plans
+    layer: federal
+    citation_path: us/guidance/acf/occ/approved-ccdf-plans-fy-2025-2027
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -2103,26 +2107,20 @@ layers:
     part: Benefit amount
 - jurisdiction: us-co
   screener:
-  - key: https://spl.cde.state.co.us/artemis/huserials/hu62510internet/hu62510202527internet.pdf
-    name: spl.cde.state.co.us/artemis/huserials/hu62510internet/hu62510202527internet.pdf
+  - key: us-co/policy/acf/ccdf-plan/fy2025-2027
+    name: Colorado CCDF Plan, FFY 2025-2027
     layer: state
-    citation_path: null
-    source_url: https://spl.cde.state.co.us/artemis/huserials/hu62510internet/hu62510202527internet.pdf
+    citation_path: us-co/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12658&fileName=8%20CCR%201403-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12658&fileName=8%20CCR%201403-1
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
+    cited:
+    - path: us-co/policy/acf/ccdf-plan/fy2025-2027
+      references: 1
+      part: Household and eligibility
   - key: us-co/regulation/8-ccr-1403-1
     name: Code of Colorado Regulations 8 CCR 1403-1 Colorado Child Care Assistance Program
     layer: state
@@ -2137,24 +2135,30 @@ layers:
     - path: us-co/regulation/8-ccr-1403-1
       references: 9
       part: Benefit amount
-  full:
-  - key: https://spl.cde.state.co.us/artemis/huserials/hu62510internet/hu62510202527internet.pdf
-    name: spl.cde.state.co.us/artemis/huserials/hu62510internet/hu62510202527internet.pdf
+  - key: us-co/regulation/8-ccr-1403-1-eff-2026-08-14
+    name: 8 CCR 1403-1 Colorado Child Care Assistance Program Rules and Regulations (ruleVersionId 12658, eff. 08/14/2026)
     layer: state
-    citation_path: null
-    source_url: https://spl.cde.state.co.us/artemis/huserials/hu62510internet/hu62510202527internet.pdf
-    part: Household and eligibility
+    citation_path: us-co/regulation/8-ccr-1403-1-eff-2026-08-14
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12658&fileName=8%20CCR%201403-1
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
+    part: Household and eligibility
+    cited:
+    - path: us-co/regulation/8-ccr-1403-1-eff-2026-08-14
+      references: 1
+      part: Household and eligibility
+  full:
+  - key: us-co/policy/acf/ccdf-plan/fy2025-2027
+    name: Colorado CCDF Plan, FFY 2025-2027
     layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=12658&fileName=8%20CCR%201403-1
+    citation_path: us-co/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-co-ccdf-state-plan-fy2025-2027.yaml
     scope: in
   - key: us-co/regulation/8-ccr-1403-1
     name: Code of Colorado Regulations 8 CCR 1403-1 Colorado Child Care Assistance Program
@@ -2166,6 +2170,16 @@ layers:
     - screener
     - manifests/us-co-ccap-8-ccr-1403-1.yaml
     scope: in
+  - key: us-co/regulation/8-ccr-1403-1-eff-2026-08-14
+    name: 8 CCR 1403-1 Colorado Child Care Assistance Program Rules and Regulations (ruleVersionId 12658, eff. 08/14/2026)
+    layer: state
+    citation_path: us-co/regulation/8-ccr-1403-1-eff-2026-08-14
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-co-state-benefits-w7-regulation.yaml
+    scope: in
   - key: us-co/policy/acf/ccdf-plan/fy2025-2027-appendix-1
     name: 'Colorado CCDF Plan FFY 2025-2027, Appendix 1: Lead Agency Implementation Plan'
     layer: state
@@ -2176,16 +2190,6 @@ layers:
     manifest: manifests/us-co-ccdf-state-plan-appendix-fy2025-2027.yaml
     scope: in
     part: Household and eligibility
-  - key: us-co/policy/acf/ccdf-plan/fy2025-2027
-    name: Colorado CCDF Plan, FFY 2025-2027
-    layer: state
-    citation_path: us-co/policy/acf/ccdf-plan/fy2025-2027
-    source_url: https://drive.google.com/file/d/1zaT-E7tSLFKir9ANtSBRxy0f3T5sm-li/view?usp=sharing
-    sources:
-    - manifests/us-co-ccdf-state-plan-fy2025-2027.yaml
-    manifest: manifests/us-co-ccdf-state-plan-fy2025-2027.yaml
-    scope: in
-    part: Other
 - jurisdiction: us-ct
   screener:
   - key: us-ct/policy/cga/ccdf/olr-2020-r-0274
@@ -3292,116 +3296,160 @@ layers:
     part: Other
 - jurisdiction: us-il
   screener:
-  - key: https://idec.illinois.gov/content/dam/soi/en/web/idec/documents/policies/ACF-118%20CCDF%20FFY%202025-2027%20For%20Illinois%20Amend%202.pdf
-    name: idec.illinois.gov/content/dam/soi/en/web/idec/documents/policies/ACF-118%20CCDF%20FFY%2020
+  - key: us-il/guidance/idec/child-care-assistance-program
+    name: 'Illinois Department of Early Childhood: Get Help Paying for Child Care (Child Care Assistance Program)'
     layer: state
-    citation_path: null
-    source_url: https://idec.illinois.gov/content/dam/soi/en/web/idec/documents/policies/ACF-118%20CCDF%20FFY%202025-2027%20For%20Illinois%20Amend%202.pdf
+    citation_path: us-il/guidance/idec/child-care-assistance-program
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
-  - key: https://www.dhs.state.il.us/page.aspx?item=10160
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/guidance/idec/child-care-assistance-program
+      references: 1
+      part: Household and eligibility
+  - key: us-il/manual/dhs/ccap/10160
+    name: 'IDHS: CCAP Policy Manual 01.02.03 - Exempt Income'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10160
+    citation_path: us-il/manual/dhs/ccap/10160
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Income
-  - key: https://www.dhs.state.il.us/page.aspx?item=10163
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/manual/dhs/ccap/10160
+      references: 1
+      part: Income
+  - key: us-il/manual/dhs/ccap/10163
+    name: 'IDHS: CCAP Policy Manual 01.02.02 - Non-Exempt Income'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10163
+    citation_path: us-il/manual/dhs/ccap/10163
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Income
-  - key: https://www.dhs.state.il.us/page.aspx?item=104995
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/manual/dhs/ccap/10163
+      references: 1
+      part: Income
+  - key: us-il/manual/dhs/ccap/10862
+    name: 'IDHS: CCAP Policy Manual 06.03.01 - 70% Attendance Rule'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=104995
+    citation_path: us-il/manual/dhs/ccap/10862
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/ccap/10862
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/ccap/10864
+    name: 'IDHS: CCAP Policy Manual 06.05.01 - Payment Rates'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/10864
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/ccap/10864
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/ccap/118832
+    name: 'IDHS: CCAP Policy Manual 01.02.01 - Income Guidelines, 2022-07-01'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/118832
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-il/manual/dhs/ccap/118832
+      references: 1
+      part: Income
+  - key: us-il/manual/dhs/ccap/173323
+    name: 'IDHS: CCAP Policy Manual 06.05.01 Payment Rates Effective 7/1/2025'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/173323
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/ccap/173323
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/ccap/178315
+    name: 'IDHS: CCAP Policy Manual 01.02.01 Income Guidelines, 2026-07-01'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/178315
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-il/manual/dhs/ccap/178315
+      references: 1
+      part: Income
+  - key: us-il/manual/dhs/ccap/46885
+    name: 'IDHS: CCAP Policy Manual 01.01.03 - Citizenship Status of the Child'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/46885
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
-  - key: https://www.dhs.state.il.us/page.aspx?item=10862
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/manual/dhs/ccap/46885
+      references: 1
+      part: Household and eligibility
+  - key: us-il/manual/dhs/ccap/54862
+    name: 'IDHS: CCAP Policy Manual 04.02.01 - Copayments'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10862
+    citation_path: us-il/manual/dhs/ccap/54862
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Benefit amount
-  - key: https://www.dhs.state.il.us/page.aspx?item=10864
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/manual/dhs/ccap/54862
+      references: 1
+      part: Benefit amount
+  - key: us-il/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+    name: Illinois CCDF Plan FFY 2025-2027, Amendment 2 (approved 2026-07-01)
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10864
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.dhs.state.il.us/page.aspx?item=118832
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=118832
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.dhs.state.il.us/page.aspx?item=173323
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=173323
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.dhs.state.il.us/page.aspx?item=178315
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=178315
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.dhs.state.il.us/page.aspx?item=46885
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=46885
+    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
-  - key: https://www.dhs.state.il.us/page.aspx?item=54862
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=54862
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
+    cited:
+    - path: us-il/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+      references: 1
+      part: Household and eligibility
   - key: us-il/policy/dhs/ccdf/443455b-ccap-income-and-copay-chart-2025-07-01
     name: 'Illinois Department of Human Services: Important Parent Copayment Information'
     layer: state
@@ -3487,104 +3535,115 @@ layers:
       references: 1
       part: Household and eligibility
   full:
-  - key: https://idec.illinois.gov/content/dam/soi/en/web/idec/documents/policies/ACF-118%20CCDF%20FFY%202025-2027%20For%20Illinois%20Amend%202.pdf
-    name: idec.illinois.gov/content/dam/soi/en/web/idec/documents/policies/ACF-118%20CCDF%20FFY%2020
+  - key: us-il/guidance/idec/child-care-assistance-program
+    name: 'Illinois Department of Early Childhood: Get Help Paying for Child Care (Child Care Assistance Program)'
     layer: state
-    citation_path: null
-    source_url: https://idec.illinois.gov/content/dam/soi/en/web/idec/documents/policies/ACF-118%20CCDF%20FFY%202025-2027%20For%20Illinois%20Amend%202.pdf
+    citation_path: us-il/guidance/idec/child-care-assistance-program
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-guidance.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=10160
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/manual/dhs/ccap/10160
+    name: 'IDHS: CCAP Policy Manual 01.02.03 - Exempt Income'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10160
+    citation_path: us-il/manual/dhs/ccap/10160
+    source_url: null
     part: Income
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=10163
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/manual/dhs/ccap/10163
+    name: 'IDHS: CCAP Policy Manual 01.02.02 - Non-Exempt Income'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10163
+    citation_path: us-il/manual/dhs/ccap/10163
+    source_url: null
     part: Income
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=104995
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/manual/dhs/ccap/10862
+    name: 'IDHS: CCAP Policy Manual 06.03.01 - 70% Attendance Rule'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=104995
+    citation_path: us-il/manual/dhs/ccap/10862
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/ccap/10864
+    name: 'IDHS: CCAP Policy Manual 06.05.01 - Payment Rates'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/10864
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/ccap/118832
+    name: 'IDHS: CCAP Policy Manual 01.02.01 - Income Guidelines, 2022-07-01'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/118832
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/ccap/173323
+    name: 'IDHS: CCAP Policy Manual 06.05.01 Payment Rates Effective 7/1/2025'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/173323
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/ccap/178315
+    name: 'IDHS: CCAP Policy Manual 01.02.01 Income Guidelines, 2026-07-01'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/178315
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/ccap/46885
+    name: 'IDHS: CCAP Policy Manual 01.01.03 - Citizenship Status of the Child'
+    layer: state
+    citation_path: us-il/manual/dhs/ccap/46885
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=10862
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/manual/dhs/ccap/54862
+    name: 'IDHS: CCAP Policy Manual 04.02.01 - Copayments'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10862
+    citation_path: us-il/manual/dhs/ccap/54862
+    source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=10864
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+    name: Illinois CCDF Plan FFY 2025-2027, Amendment 2 (approved 2026-07-01)
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=10864
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=118832
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=118832
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=173323
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=173323
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=178315
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=178315
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=46885
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=46885
+    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027-amendment-2
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=54862
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=54862
-    part: Benefit amount
-    sources:
-    - screener
+    - manifests/us-il-state-benefits-w7-policy.yaml
     scope: in
   - key: us-il/policy/dhs/ccdf/443455b-ccap-income-and-copay-chart-2025-07-01
     name: 'Illinois Department of Human Services: Important Parent Copayment Information'
@@ -5541,16 +5600,20 @@ layers:
     part: Benefit amount
 - jurisdiction: us-la
   screener:
-  - key: https://doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.pdf
-    name: doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.p
+  - key: us-la/policy/acf/ccdf-plan/fy2025-2027
+    name: Louisiana CCDF Plan, FFY 2025-2027
     layer: state
-    citation_path: null
-    source_url: https://doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.pdf
+    citation_path: us-la/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
     sources:
     - policyengine-references
     references: 2
     scope: in
     part: Household and eligibility
+    cited:
+    - path: us-la/policy/acf/ccdf-plan/fy2025-2027
+      references: 2
+      part: Household and eligibility
   - key: us-la/policy/ldoe/ccdf/bulletin-139
     name: 'Louisiana Department of Education: Bulletin 139, Louisiana Child Care and Development Fund Programs'
     layer: state
@@ -5676,14 +5739,15 @@ layers:
     reason: 'Back-year table: not current law'
     part: Benefit amount
   full:
-  - key: https://doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.pdf
-    name: doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.p
+  - key: us-la/policy/acf/ccdf-plan/fy2025-2027
+    name: Louisiana CCDF Plan, FFY 2025-2027
     layer: state
-    citation_path: null
-    source_url: https://doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.pdf
+    citation_path: us-la/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-la-ccdf-state-plan-fy2025-2027.yaml
     scope: in
   - key: us-la/policy/ldoe/ccdf/bulletin-139
     name: 'Louisiana Department of Education: Bulletin 139, Louisiana Child Care and Development Fund Programs'
@@ -5776,16 +5840,6 @@ layers:
     manifest: manifests/us-la-ccdf-state-plan-appendix-fy2025-2027.yaml
     scope: in
     part: Household and eligibility
-  - key: us-la/policy/acf/ccdf-plan/fy2025-2027
-    name: Louisiana CCDF Plan, FFY 2025-2027
-    layer: state
-    citation_path: us-la/policy/acf/ccdf-plan/fy2025-2027
-    source_url: https://doe.louisiana.gov/docs/default-source/early-childhood/approved-2025-2027-ccdf-state-plan.pdf?sfvrsn=3316f8f1_12
-    sources:
-    - manifests/us-la-ccdf-state-plan-fy2025-2027.yaml
-    manifest: manifests/us-la-ccdf-state-plan-fy2025-2027.yaml
-    scope: in
-    part: Other
   - key: us-la/policy/dcfs/tanf/louisiana-to-increase-tanf-cash-assistance-benefits-2022
     name: 'Louisiana Department of Children and Family Services: Louisiana to Increase TANF Cash Assistance Benefits
       Beginning January 2022 - Louisiana Department of Children & Family Services'
@@ -6036,26 +6090,6 @@ layers:
     references: 2
     scope: in
     part: Benefit amount
-  - key: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_for_maryland_acf_approved_11.9.2024.pdf
-    name: earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2
-    layer: state
-    citation_path: null
-    source_url: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_for_maryland_acf_approved_11.9.2024.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_plan_approved_updated_6.25.25_amendment_request_1.pdf
-    name: earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2
-    layer: state
-    citation_path: null
-    source_url: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_plan_approved_updated_6.25.25_amendment_request_1.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/2/scholarship-brochure-4.pdf
     name: earlychildhood.marylandpublicschools.org/system/files/filedepot/2/scholarship-brochure-4.p
     layer: state
@@ -6076,6 +6110,20 @@ layers:
     references: 1
     scope: in
     part: Income
+  - key: us-md/policy/acf/ccdf-plan/fy2025-2027
+    name: Maryland CCDF Plan FFY 2025-2027, Amendment 1 (approved 2025-06-24)
+    layer: state
+    citation_path: us-md/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-md/policy/acf/ccdf-plan/fy2025-2027
+      references: 2
+      part: Household and eligibility
   - key: us-md/policy/mga/ccdf/ways-and-means-2026-child-care-scholarship-briefing
     name: 'Maryland General Assembly: Presented By | Child Care Scholarship Program Ways and Means Committee, Child
       Care Scholarship Briefing Maryland'
@@ -6233,24 +6281,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_for_maryland_acf_approved_11.9.2024.pdf
-    name: earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2
-    layer: state
-    citation_path: null
-    source_url: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_for_maryland_acf_approved_11.9.2024.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_plan_approved_updated_6.25.25_amendment_request_1.pdf
-    name: earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2
-    layer: state
-    citation_path: null
-    source_url: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/12/acf-118_ccdf_ffy_2025-2027_plan_approved_updated_6.25.25_amendment_request_1.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: https://earlychildhood.marylandpublicschools.org/system/files/filedepot/2/scholarship-brochure-4.pdf
     name: earlychildhood.marylandpublicschools.org/system/files/filedepot/2/scholarship-brochure-4.p
     layer: state
@@ -6268,6 +6298,16 @@ layers:
     part: Income
     sources:
     - screener
+    scope: in
+  - key: us-md/policy/acf/ccdf-plan/fy2025-2027
+    name: Maryland CCDF Plan FFY 2025-2027, Amendment 1 (approved 2025-06-24)
+    layer: state
+    citation_path: us-md/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-md-state-benefits-w7-policy.yaml
     scope: in
   - key: us-md/policy/mga/ccdf/ways-and-means-2026-child-care-scholarship-briefing
     name: 'Maryland General Assembly: Presented By | Child Care Scholarship Program Ways and Means Committee, Child
@@ -7715,16 +7755,6 @@ layers:
     part: Other
 - jurisdiction: us-mo
   screener:
-  - key: https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-2027%20For%20Missouri%20-%20Approved%203.26.2026.pdf
-    name: dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-20
-    layer: state
-    citation_path: null
-    source_url: https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-2027%20For%20Missouri%20-%20Approved%203.26.2026.pdf
-    sources:
-    - policyengine-references
-    references: 4
-    scope: in
-    part: Household and eligibility
   - key: us-mo/manual/dese/child-care-manual/2010-045-00
     name: 'Missouri Department of Elementary and Secondary Education, Office of Childhood: 2010.045.00 INCOME ELIGIBILITY
       GUIDELINES'
@@ -7753,6 +7783,20 @@ layers:
     cited:
     - path: us-mo/manual/dese/child-care-subsidy-eligibility-policy-manual-2026-05
       references: 2
+      part: Household and eligibility
+  - key: us-mo/policy/acf/ccdf-plan/fy2025-2027
+    name: Missouri CCDF Plan FFY 2025-2027, Amendment 2 (approved 2026-03-26)
+    layer: state
+    citation_path: us-mo/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 4
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-mo/policy/acf/ccdf-plan/fy2025-2027
+      references: 4
       part: Household and eligibility
   - key: us-mo/policy/dese/ccdf/2025-rates-held-harmless
     name: 'Missouri DESE Office of Childhood: 2025 child care subsidy rates held harmless (spreadsheet)'
@@ -7817,15 +7861,6 @@ layers:
       references: 1
       part: Household and eligibility
   full:
-  - key: https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-2027%20For%20Missouri%20-%20Approved%203.26.2026.pdf
-    name: dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-20
-    layer: state
-    citation_path: null
-    source_url: https://dese.mo.gov/sites/g/files/zuston521/files/media/pdf/2026/04/ACF-118%20CCDF%20FFY%202025-2027%20For%20Missouri%20-%20Approved%203.26.2026.pdf
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us-mo/manual/dese/child-care-manual/2010-045-00
     name: 'Missouri Department of Elementary and Secondary Education, Office of Childhood: 2010.045.00 INCOME ELIGIBILITY
       GUIDELINES'
@@ -7846,6 +7881,16 @@ layers:
     sources:
     - screener
     - manifests/us-mo-tanf-ccdf-w6-manual.yaml
+    scope: in
+  - key: us-mo/policy/acf/ccdf-plan/fy2025-2027
+    name: Missouri CCDF Plan FFY 2025-2027, Amendment 2 (approved 2026-03-26)
+    layer: state
+    citation_path: us-mo/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-mo-state-benefits-w7-policy.yaml
     scope: in
   - key: us-mo/policy/dese/ccdf/2025-rates-held-harmless
     name: 'Missouri DESE Office of Childhood: 2025 child care subsidy rates held harmless (spreadsheet)'
@@ -8740,16 +8785,6 @@ layers:
     part: Other
 - jurisdiction: us-nv
   screener:
-  - key: https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/care/ACF-118_CCDF_FFY_2025-2027_For_Nevada__3.pdf
-    name: dss.nv.gov/siteassets/dwss.nv.gov/content/care/ACF-118_CCDF_FFY_2025-2027_For_Nevada__3.pd
-    layer: state
-    citation_path: null
-    source_url: https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/care/ACF-118_CCDF_FFY_2025-2027_For_Nevada__3.pdf
-    sources:
-    - policyengine-references
-    references: 4
-    scope: in
-    part: Income
   - key: us-nv/manual/dwss/child-care-policy-manual-2024-07
     name: DWSS Child Care Policy Manual (July 2024)
     layer: state
@@ -8764,6 +8799,20 @@ layers:
     - path: us-nv/manual/dwss/child-care-policy-manual-2024-07
       references: 6
       part: Household and eligibility
+  - key: us-nv/policy/acf/ccdf-plan/fy2025-2027
+    name: Nevada CCDF Plan, FFY 2025-2027
+    layer: state
+    citation_path: us-nv/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 4
+    scope: in
+    part: Income
+    cited:
+    - path: us-nv/policy/acf/ccdf-plan/fy2025-2027
+      references: 4
+      part: Income
   - key: us-nv/policy/ccdf/policy-transmittals/cc-pt-06-25-annual-income-changes
     name: 'Child Care and Development Program Policy Transmittal CC PT 06-25: Annual Income Changes (10.02.2025)'
     layer: state
@@ -8812,15 +8861,6 @@ layers:
     reason: 'Back-year table: not current law'
     part: Household and eligibility
   full:
-  - key: https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/care/ACF-118_CCDF_FFY_2025-2027_For_Nevada__3.pdf
-    name: dss.nv.gov/siteassets/dwss.nv.gov/content/care/ACF-118_CCDF_FFY_2025-2027_For_Nevada__3.pd
-    layer: state
-    citation_path: null
-    source_url: https://www.dss.nv.gov/siteassets/dwss.nv.gov/content/care/ACF-118_CCDF_FFY_2025-2027_For_Nevada__3.pdf
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: us-nv/manual/dwss/child-care-policy-manual-2024-07
     name: DWSS Child Care Policy Manual (July 2024)
     layer: state
@@ -8830,6 +8870,16 @@ layers:
     sources:
     - screener
     - manifests/us-nv-tanf-ccdf-w6-manual.yaml
+    scope: in
+  - key: us-nv/policy/acf/ccdf-plan/fy2025-2027
+    name: Nevada CCDF Plan, FFY 2025-2027
+    layer: state
+    citation_path: us-nv/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-nv-ccdf-state-plan-fy2025-2027.yaml
     scope: in
   - key: us-nv/policy/ccdf/policy-transmittals/cc-pt-06-25-annual-income-changes
     name: 'Child Care and Development Program Policy Transmittal CC PT 06-25: Annual Income Changes (10.02.2025)'
@@ -8851,16 +8901,6 @@ layers:
     manifest: manifests/us-nv-ccdf-state-plan-appendix-fy2025-2027.yaml
     scope: in
     part: Household and eligibility
-  - key: us-nv/policy/acf/ccdf-plan/fy2025-2027
-    name: Nevada CCDF Plan, FFY 2025-2027
-    layer: state
-    citation_path: us-nv/policy/acf/ccdf-plan/fy2025-2027
-    source_url: https://www.dss.nv.gov/uploadedFiles/dwssnvgov/content/Care/ACF-118%20CCDF%20FFY%202025-2027%20For%20Nevada_Final%20Submission.pdf
-    sources:
-    - manifests/us-nv-ccdf-state-plan-fy2025-2027.yaml
-    manifest: manifests/us-nv-ccdf-state-plan-fy2025-2027.yaml
-    scope: in
-    part: Other
   - key: us-nv/guidance/dss/tanf-faq/facts-and-faqs
     name: 'Nevada TANF FAQ: Facts & FAQs'
     layer: state
@@ -12763,16 +12803,6 @@ layers:
     part: Other
 - jurisdiction: us-sc
   screener:
-  - key: https://www.scchildcare.org/media/cr5dc51w/submitted-version-of-the-ccdf-ffy-2025-2027-for-south-carolina-as-of-7-1-24pdf.pdf
-    name: scchildcare.org/media/cr5dc51w/submitted-version-of-the-ccdf-ffy-2025-2027-for-south-carol
-    layer: state
-    citation_path: null
-    source_url: https://www.scchildcare.org/media/cr5dc51w/submitted-version-of-the-ccdf-ffy-2025-2027-for-south-carolina-as-of-7-1-24pdf.pdf
-    sources:
-    - policyengine-references
-    references: 3
-    scope: in
-    part: Income
   - key: us-sc/manual/dss/child-care-scholarship-policy-manual
     name: SC Child Care Scholarship Program Policy Manual Vol. 39
     layer: state
@@ -12794,13 +12824,13 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 3
+    references: 6
     scope: in
-    part: Benefit amount
+    part: Income
     cited:
     - path: us-sc/policy/acf/ccdf-plan/fy2025-2027
-      references: 3
-      part: Benefit amount
+      references: 6
+      part: Income
   - key: us-sc/policy/ccdf/rate-schedules/scholarship-fee-scale-2023-2024
     name: SC Child Care Scholarship Program Child Development Fee Scale (October 1, 2023 - September 30, 2024)
     layer: state
@@ -12841,15 +12871,6 @@ layers:
     reason: 'Back-year table: not current law'
     part: Benefit amount
   full:
-  - key: https://www.scchildcare.org/media/cr5dc51w/submitted-version-of-the-ccdf-ffy-2025-2027-for-south-carolina-as-of-7-1-24pdf.pdf
-    name: scchildcare.org/media/cr5dc51w/submitted-version-of-the-ccdf-ffy-2025-2027-for-south-carol
-    layer: state
-    citation_path: null
-    source_url: https://www.scchildcare.org/media/cr5dc51w/submitted-version-of-the-ccdf-ffy-2025-2027-for-south-carolina-as-of-7-1-24pdf.pdf
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: us-sc/manual/dss/child-care-scholarship-policy-manual
     name: SC Child Care Scholarship Program Policy Manual Vol. 39
     layer: state
@@ -12865,7 +12886,7 @@ layers:
     layer: state
     citation_path: us-sc/policy/acf/ccdf-plan/fy2025-2027
     source_url: null
-    part: Benefit amount
+    part: Income
     sources:
     - screener
     - manifests/us-sc-ccdf-state-plan-fy2025-2027.yaml
@@ -16674,26 +16695,20 @@ layers:
     part: Benefit amount
 - jurisdiction: us-wy
   screener:
-  - key: https://dfs.wyo.gov/services/family-services/child-care/
-    name: dfs.wyo.gov/services/family-services/child-care/
+  - key: us-wy/guidance/dfs/child-care-assistance
+    name: 'Wyoming Department of Family Services: Child Care Assistance'
     layer: state
-    citation_path: null
-    source_url: https://dfs.wyo.gov/services/family-services/child-care/
+    citation_path: us-wy/guidance/dfs/child-care-assistance
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Benefit amount
-  - key: https://drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view
-    name: drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view
-    layer: state
-    citation_path: null
-    source_url: https://drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view
-    sources:
-    - policyengine-references
-    references: 4
-    scope: in
-    part: Household and eligibility
+    cited:
+    - path: us-wy/guidance/dfs/child-care-assistance
+      references: 1
+      part: Benefit amount
   - key: us-wy/guidance/dfs/child-care-subsidy-policy-manual-page
     name: 'Wyoming DFS: Child Care Subsidy Policy Manual (policy manual page)'
     layer: state
@@ -16707,6 +16722,20 @@ layers:
     cited:
     - path: us-wy/guidance/dfs/child-care-subsidy-policy-manual-page
       references: 1
+      part: Household and eligibility
+  - key: us-wy/policy/acf/ccdf-plan/fy2025-2027
+    name: Wyoming CCDF Plan, FFY 2025-2027
+    layer: state
+    citation_path: us-wy/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 4
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-wy/policy/acf/ccdf-plan/fy2025-2027
+      references: 4
       part: Household and eligibility
   - key: us-wy/policy/ccdf/rate-schedules/child-care-sliding-fee-scale-tblicc-2024-04-01
     name: Child Care Sliding Fee Scale TBLICC 04-01-24
@@ -16780,23 +16809,15 @@ layers:
       references: 1
       part: Benefit amount
   full:
-  - key: https://dfs.wyo.gov/services/family-services/child-care/
-    name: dfs.wyo.gov/services/family-services/child-care/
+  - key: us-wy/guidance/dfs/child-care-assistance
+    name: 'Wyoming Department of Family Services: Child Care Assistance'
     layer: state
-    citation_path: null
-    source_url: https://dfs.wyo.gov/services/family-services/child-care/
+    citation_path: us-wy/guidance/dfs/child-care-assistance
+    source_url: null
     part: Benefit amount
     sources:
     - screener
-    scope: in
-  - key: https://drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view
-    name: drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view
-    layer: state
-    citation_path: null
-    source_url: https://drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view
-    part: Household and eligibility
-    sources:
-    - screener
+    - manifests/us-wy-state-benefits-w7-guidance.yaml
     scope: in
   - key: us-wy/guidance/dfs/child-care-subsidy-policy-manual-page
     name: 'Wyoming DFS: Child Care Subsidy Policy Manual (policy manual page)'
@@ -16807,6 +16828,16 @@ layers:
     sources:
     - screener
     - manifests/us-wy-tanf-ccdf-w6-guidance.yaml
+    scope: in
+  - key: us-wy/policy/acf/ccdf-plan/fy2025-2027
+    name: Wyoming CCDF Plan, FFY 2025-2027
+    layer: state
+    citation_path: us-wy/policy/acf/ccdf-plan/fy2025-2027
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-wy-ccdf-state-plan-fy2025-2027.yaml
     scope: in
   - key: us-wy/policy/ccdf/rate-schedules/child-care-sliding-fee-scale-tblicc-2024-04-01
     name: Child Care Sliding Fee Scale TBLICC 04-01-24
@@ -16867,15 +16898,5 @@ layers:
     sources:
     - manifests/us-wy-ccdf-state-plan-appendix-fy2025-2027.yaml
     manifest: manifests/us-wy-ccdf-state-plan-appendix-fy2025-2027.yaml
-    scope: in
-    part: Benefit amount
-  - key: us-wy/policy/acf/ccdf-plan/fy2025-2027
-    name: Wyoming CCDF Plan, FFY 2025-2027
-    layer: state
-    citation_path: us-wy/policy/acf/ccdf-plan/fy2025-2027
-    source_url: https://drive.google.com/file/d/10TJ3S8d_nwyNxdkkbyk2gzCfHTk7CTcA/view?usp=sharing
-    sources:
-    - manifests/us-wy-ccdf-state-plan-fy2025-2027.yaml
-    manifest: manifests/us-wy-ccdf-state-plan-fy2025-2027.yaml
     scope: in
     part: Benefit amount
