@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-manual-mo
+documents:
+- source_id: us-mo-manual-dss-december-1973-eligibility-requirements-1035-005-00
+  jurisdiction: us-mo
+  document_class: manual
+  title: DSS Manuals, December 1973 Eligibility Requirements, 1035.005.00 Real or Personal Property Limit
+  source_url: https://dssmanuals.mo.gov/december-1973-eligibility-requirements/1035-000-00/1035-005-00/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/manual/dss/december-1973-eligibility-requirements/1035-005-00
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services, Family Support Division
+    document_subtype: manual_section_html
+    program: SSI state supplement
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 147)
+    wave6_rows:
+    - 147
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

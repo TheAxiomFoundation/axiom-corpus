@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/regulation/2026-10-06-w6-tanf-ccdf-regulation-wi.json",
+      "sha256": "8e28a31d6efcbd5ce46eb6ed86b95846e1f94df56424b8c9dc93e494e650e6cd"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/regulation/2026-10-06-w6-tanf-ccdf-regulation-wi.json",
+      "sha256": "f39936293731a0075db45bc6a1704a07eaa48b74c202169f64d7d2e8b24aa7e3"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/regulation/2026-10-06-w6-tanf-ccdf-regulation-wi.jsonl",
+      "sha256": "9b4d83f76dcb2b94f65a03df6a739e51c3502ebb105a99f491642c0ac8dc84b6"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/regulation/2026-10-06-w6-tanf-ccdf-regulation-wi/official-documents/us-wi-w6-dcf-101--register-2021-10-no-790.pdf",
+      "sha256": "4b36f871755097db7a97b3a7a99c6923f899b7bac64b64b4f202a4108e36eb8b"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/regulation/2026-10-06-w6-tanf-ccdf-regulation-wi/official-documents/us-wi-w6-dcf-101.pdf",
+      "sha256": "8b25e6a202d7c269f44a564dd0ab3bd83f55b0ddfd0c67383dc7b96e24821c4c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T18:00:56.187096+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DaQlT59epo8e/DF0NCzb82YBudbJ0oDLKJt9lFPAKyBQbcS0Q4kcoLMRa4gQyuBJ20l6e+/ypx4DYNnJGNqjDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-wi"
+}

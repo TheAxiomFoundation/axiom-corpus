@@ -1,0 +1,90 @@
+version: 2026-10-06-w6-health-guidance-ca
+documents:
+- source_id: us-ca-w6-health-dhcs-magi-household-size-flowchart
+  jurisdiction: us-ca
+  document_class: guidance
+  title: DHCS Guide for Calculating MAGI Medi-Cal Individual Household Size (household size flow chart, 42 CFR 435.603(f))
+  source_url: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ca/guidance/dhcs/magi-household-size-flowchart
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: California Department of Health Care Services (DHCS)
+    program: MEDICAID
+    document_subtype: eligibility_job_aid_pdf
+    source_discovery_group: us-ca/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 5
+    bundle_url: https://www.dhcs.ca.gov/hy/wp-content/uploads/2025/10/MAGIHouseholdSizeFlowChartADA.pdf
+- source_id: us-ca-w6-health-dhcs-haccp-income-eligibility-comparison-chart-2025
+  jurisdiction: us-ca
+  document_class: guidance
+  title: 'DHCS Income Eligibility Comparison Chart: Medi-Cal, HACCP and CCS eligibility by household size (2025 FPL)'
+  source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/HACCP-FPL-Chart.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: California Department of Health Care Services (DHCS)
+    program: CHIP
+    document_subtype: income_standards_chart_pdf
+    source_discovery_group: us-ca/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 6
+    bundle_url: https://www.dhcs.ca.gov/services/HACCP/Documents/Program-Income-Eligibility-Comparison2025.pdf
+    note: The bundle's /services/HACCP/Documents/ address answers an Incapsula challenge; this is DHCS's wp-content copy of
+      the 2025-FPL HACCP comparison chart (138% FPL single = $20,783), address found by web search
+- source_id: us-ca-w6-health-dhcs-acwdl-25-01
+  jurisdiction: us-ca
+  document_class: guidance
+  title: 'DHCS All County Welfare Directors Letter 25-01: 2025 Federal Poverty Levels (January 21, 2025)'
+  source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/25-01.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-21'
+  citation_path: us-ca/guidance/dhcs/acwdl/25-01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: California Department of Health Care Services (DHCS)
+    program: CHIP
+    document_subtype: all_county_welfare_directors_letter_pdf
+    source_discovery_group: us-ca/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 11
+    bundle_url: https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf
+    note: The bundle's /letters/Documents/ address redirects to /file/25-01-pdf/ behind an Incapsula challenge; the same letter
+      is served from DHCS's wp-content uploads (address found by web search)
+- source_id: us-ca-w6-health-dhcs-acwdl-20-10
+  jurisdiction: us-ca
+  document_class: guidance
+  title: 'DHCS All County Welfare Directors Letter 20-10: Guidance on MAGI Medi-Cal Household Compositions (April 30, 2020)'
+  source_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-04-30'
+  citation_path: us-ca/guidance/dhcs/acwdl/20-10
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: California Department of Health Care Services (DHCS)
+    program: MEDICAID
+    document_subtype: all_county_welfare_directors_letter_pdf
+    source_discovery_group: us-ca/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 15
+    bundle_url: https://www.dhcs.ca.gov/wp-content/uploads/2025/10/c20-10.pdf

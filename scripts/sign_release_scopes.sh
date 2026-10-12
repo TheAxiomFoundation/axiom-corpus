@@ -20,12 +20,18 @@
 # the artifacts, (2) sign every unreleased scope against that commit, (3) commit the
 # manifests, (4) copy the draft to manifests/releases/<name>.json, deep-validate it
 # against the committed artifacts and commit it.
+#
+# Steps 1-3 skip what is already done: a run that stopped while signing can be re-run
+# as is, and a draft whose scopes were all committed and signed in their ingest PR goes
+# on to the self-check and step 4 without committing anything first.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 DRAFT="${1:?draft selector path}"
 PREDECESSOR="${2:?predecessor selector path}"
 : "${AXIOM_CORPUS_INGEST_PRIVATE_KEY:?export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell first}"
 [ -z "$(git status --porcelain --untracked-files=no)" ] || { echo "tracked tree is dirty; commit or stash first" >&2; exit 1; }
+# On main itself the guard-ingested self-check below would diff an empty main...HEAD range.
+[ "$(git symbolic-ref -q --short HEAD || true)" != main ] || { echo "on main; cut a release branch from main first" >&2; exit 1; }
 
 NAME=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["name"])' "$DRAFT")
 TARGET="manifests/releases/$NAME.json"
@@ -90,8 +96,9 @@ PY
 for line in "${SCOPES[@]}"; do
   read -r jur cls ver <<<"$line"
   if [ -f ".axiom/ingest-manifests/$jur/$cls/$ver.json" ]; then
-    # Already signed by an earlier run (its manifest may carry reasoning-log attestations
-    # this script cannot reproduce); guard-ingested still verifies it against the artifacts.
+    # Already signed, by an earlier run or in the scope's ingest PR (its manifest may carry
+    # reasoning-log attestations this script cannot reproduce). guard-ingested checks it
+    # against the artifacts in whichever PR commits them: this branch's, or the ingest PR's.
     echo "already signed, keeping existing manifest: $jur/$cls/$ver"
     continue
   fi
@@ -109,14 +116,31 @@ for line in "${SCOPES[@]}"; do
     --command "$cmd"
 done
 
-# 3. commit the signed manifests and self-check with the public key if available.
+# 3. commit the signed manifests and self-check with the public key if available. Nothing
+#    is staged when every scope kept a manifest that was committed before this run.
 git add .axiom/ingest-manifests
-git commit -q -m "$(printf 'Sign %s scopes\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>' "$NAME")"
-echo "sign commit: $(git rev-parse --short HEAD)"
-if [ -n "${AXIOM_CORPUS_INGEST_PUBLIC_KEY:-}" ]; then
-  uv run axiom-corpus-ingest guard-ingested --base-ref HEAD~2 --head-ref HEAD && echo "guard-ingested: ok"
+if git diff --cached --quiet; then
+  echo "signed manifests already committed; skipping sign commit"
 else
+  git commit -q -m "$(printf 'Sign %s scopes\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>' "$NAME")"
+  echo "sign commit: $(git rev-parse --short HEAD)"
+fi
+# guard-ingested diffs base...head from their merge base, so with origin/main (or main) as
+# the base it checks every commit this branch adds, as CI does for the PR: this run's zero,
+# one or two commits and any that an earlier, stopped run made.
+GUARD_BASE=""
+for ref in origin/main main; do
+  if git merge-base "$ref" HEAD >/dev/null 2>&1; then GUARD_BASE=$ref; break; fi
+done
+if [ -z "${AXIOM_CORPUS_INGEST_PUBLIC_KEY:-}" ]; then
   echo "AXIOM_CORPUS_INGEST_PUBLIC_KEY not set; CI will run guard-ingested on the PR"
+elif [ -z "$GUARD_BASE" ]; then
+  echo "neither origin/main nor main shares history with HEAD; CI will run guard-ingested on the PR"
+else
+  echo "guard-ingested: checking $GUARD_BASE...HEAD"
+  uv run axiom-corpus-ingest guard-ingested --base-ref "$GUARD_BASE" --head-ref HEAD \
+    || { echo "guard-ingested failed; not cutting $TARGET" >&2; exit 1; }
+  echo "guard-ingested: ok"
 fi
 
 # 4. track the immutable selector and deep-validate it against the committed artifacts.

@@ -1,0 +1,26 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-va",
+  "document_class": "form",
+  "version": "2026-10-06-w6-income-tax-forms-va",
+  "files": [
+    {"path": "data/corpus/coverage/us-va/form/2026-10-06-w6-income-tax-forms-va.json", "sha256": "757ce6d34b72f29050e4b795ef7feb31463e9f751e033fcfb5a51b0cb0613df9", "size": 332},
+    {"path": "data/corpus/inventory/us-va/form/2026-10-06-w6-income-tax-forms-va.json", "sha256": "284ef8443f94b64df048f278838e1e9b476c40162061d59c76aa965ba929f552", "size": 38524},
+    {"path": "data/corpus/provisions/us-va/form/2026-10-06-w6-income-tax-forms-va.jsonl", "sha256": "c5314c8f8dbc8b862734c22fa74973ef77f0046ebbba566217dcce16810b3ab5", "size": 1298548},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/sites-default-files-vatax-pdf-2019-schedule-a-instructions-6100463c89.pdf", "sha256": "195c13f05cf91126609b47f5c78f6dd030efba4f4b3765bc428301f0c3ec9b31", "size": 145224},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/sites-default-files-vatax-pdf-2021-760-instructions-c401d40925.pdf", "sha256": "60e50c20e9a8d7eac828eee178dfa688daa6b83cd7c41e81786c629be717173b", "size": 1107258},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/sites-default-files-vatax-pdf-2022-760-instructions-8467cdee98.pdf", "sha256": "97b725f1074e2d8a84006e1298851f6df4f598812e9c23919107c71adafa87ca", "size": 1124901},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/sites-default-files-vatax-pdf-2023-760-instructions-09da79ceb6.pdf", "sha256": "865b0b5fc072b40dbfda3ee8f721bd6b2a9105b727043a8f41cefc3375ddc882", "size": 1083585},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/sites-default-files-vatax-pdf-2024-760-instructions-cc308fd8c5.pdf", "sha256": "c71985e5d4c92f15cf4c51d5b734549bc7954084a18d7d429ff106d6729097a1", "size": 1154108},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2020-schedule-a-and-instructions.pdf", "sha256": "8f428af65df4064eeb2ad3d01c149ca17d7f61c064ffdc349082110829f805fc", "size": 281420},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2021-schedule-a.pdf", "sha256": "e8c8fd740fdc1fdb18b71ced49e1239d4250ab75e66b1f3fe903d478231b28f0", "size": 613520},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2021-schedule-adj.pdf", "sha256": "3973cac1fb5437441fac5d42794e978144ae73344c15c85c3dbabe65ad636550", "size": 604228},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2022-form-760.pdf", "sha256": "656d7767f4f0abc5f5790f48dbacd1de532ac6cd0ed5e88076a87b309752de86", "size": 744303},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2022-schedule-a.pdf", "sha256": "6d008ec75d45493b44acb47cd417d890b178e31e40e5fe46cc9c34d7c3f3a95d", "size": 584631},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2022-schedule-adj.pdf", "sha256": "bed4f8c8d397837bb21039c6bcdf141eecd7f9819306bc50471df76e4c9bb6d4", "size": 643972},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2023-schedule-a.pdf", "sha256": "51aa91a32edaaa34ec0cedb348b3752b9e602c30f65676f32344b2d488e1570e", "size": 199116},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2023-schedule-adj.pdf", "sha256": "ed45b51ca0a75c31cb8bd311b0ca83a45b421e6664d57105f0beae1197b405a8", "size": 253596},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2024-schedule-a.pdf", "sha256": "a902c465f13001e2c28bfb09bac8f78fa31b5ed3aa968f9c0d3c427d18091b7c", "size": 197962},
+    {"path": "data/corpus/sources/us-va/form/2026-10-06-w6-income-tax-forms-va/official-documents/us-va-form-tax-ty2025-schedule-a.pdf", "sha256": "32e1ae8f48bc4e606cce16fd25bf93457e70edd7a4b110dfb2893a45ed93eef8", "size": 215945}
+  ]
+}

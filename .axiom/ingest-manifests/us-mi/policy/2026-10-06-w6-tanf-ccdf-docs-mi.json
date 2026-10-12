@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi.json",
+      "sha256": "3d52d71a8c4ec69eb6009fc682dc104d8f9a01ea916cf2920f3e0dae13f2f8eb"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi.json",
+      "sha256": "c0904b075e284549d595862c50556bf3bc63b16aa6bbb045a07ec86b4e0cbb3b"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi.jsonl",
+      "sha256": "5da89c06ff45ed19b61c6700b262fc92008788dc7321874ae5dd048f2801cc0d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi/official-documents/us-mi-w6-mdhhs-tanf-state-plans-and-federal-regulations-a.pdf",
+      "sha256": "86d437774e7fe6b0fc353ff1430bcff1404209f74f66d448a767f6c49aad2986"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi/official-documents/us-mi-w6-mdhhs-tanf-state-plans-and-federal-regulations-b.pdf",
+      "sha256": "fe5168f04d063f7de04ac853a0f94a0fadf44e32ec29aac8cb1ff4058f70daf4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/policy/2026-10-06-w6-tanf-ccdf-docs-mi/official-documents/us-mi-w6-mdhhs-tanf-tanf-state-plan-2017.pdf",
+      "sha256": "cc5a92cdd4b9f983e6fc3772485063589884d426f17d7f90390fe6411dd97ac6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 85,
+    "missing_count": 0,
+    "provision_count": 85,
+    "source_count": 85
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:53:47.116396+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UJTQR3ihw7hRz3i5yjuUn7tNSAP+3kJtGB700ICmFJs8oZt01Haz3gHV+jPrdP6aMphKJH3iluH0V6gtTcWkBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-mi"
+}

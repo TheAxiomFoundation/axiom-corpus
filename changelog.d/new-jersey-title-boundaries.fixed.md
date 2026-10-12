@@ -1,0 +1,1 @@
+End each New Jersey statute section at the next TITLE or APPENDIX header, so the last section of a title no longer carries the following title's header line in its body; the Appendix A revision note printed before the appendix's first section is now the body of the appendix title row.

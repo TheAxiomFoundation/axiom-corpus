@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
+from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -9,6 +10,8 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_consolidated_laws,
     extract_new_york_openleg_api,
     extract_new_york_openleg_sections,
+    new_york_openleg_html_text,
+    normalize_new_york_openleg_text,
     parse_new_york_law_index,
     parse_new_york_law_page,
     parse_new_york_openleg_laws,
@@ -626,3 +629,211 @@ def test_extract_new_york_openleg_sections_rejects_non_section_node(tmp_path):
             source_as_of="2026-01-30",
             expression_date="2026-01-30",
         )
+
+
+# OpenLegislation fixed-width layout: paragraphs start on a two-space indent,
+# prose is hard-wrapped, tables use deeper indentation or 3+ space gaps.
+OPENLEG_LAYOUT = (
+    "  § 606. Credits against tax. (e) Real property tax circuit breaker\n"
+    "credit. (1) For purposes of this subsection:\n"
+    "  (A) (i) For taxable years beginning before January first, two thousand\n"
+    "twenty-five, a qualified taxpayer.\n"
+    "If federal adjusted gross income for the          Percentage\n"
+    "taxable year is:\n"
+    "$3,000 or less                                    3 1/2\n"
+    "Over $3,000 but not over $5,000                   4\n"
+    "  (7) No credit shall be granted under this subsection:\n"
+    "  (D) To a tenant if the adjusted rent for the residence exceeds four\n"
+    "hundred fifty dollars per month on average.\n"
+    "  (E) To an individual with respect to whom a deduction under subsection\n"
+    "(c) of section one hundred fifty-one of the internal  revenue  code is\n"
+    "allowable.\n"
+    "After December 31, 1986              four per cent, except that  in  the\n"
+    "                                     case  of  research  and development\n"
+    "Provided,  however,  that the credit\n"
+    "shall be the sum."
+)
+
+OPENLEG_NORMALIZED = "\n".join(
+    [
+        "§ 606. Credits against tax. (e) Real property tax circuit breaker credit. "
+        "(1) For purposes of this subsection:",
+        "(A) (i) For taxable years beginning before January first, two thousand "
+        "twenty-five, a qualified taxpayer.",
+        "If federal adjusted gross income for the          Percentage",
+        "taxable year is:",
+        "$3,000 or less                                    3 1/2",
+        "Over $3,000 but not over $5,000                   4",
+        "(7) No credit shall be granted under this subsection:",
+        "(D) To a tenant if the adjusted rent for the residence exceeds four "
+        "hundred fifty dollars per month on average.",
+        "(E) To an individual with respect to whom a deduction under subsection "
+        "(c) of section one hundred fifty-one of the internal revenue code is "
+        "allowable.",
+        "After December 31, 1986              four per cent, except that  in  the",
+        "                                     case  of  research  and development",
+        "Provided, however, that the credit shall be the sum.",
+    ]
+)
+
+
+def _senate_html_for(layout: str) -> str:
+    """Render OpenLegislation text the way www.nysenate.gov prints it."""
+    rendered = layout.replace("\n  ", "\n\n").replace("&", "&amp;")
+    return (
+        "<html><body>"
+        '<div class="nys-openleg-result-title">'
+        '<h2 class="nys-openleg-result-title-headline">SECTION 606</h2>'
+        '<h3 class="nys-openleg-result-title-short">Credits against tax</h3></div>'
+        '<div class="nys-openleg-content-container">'
+        '<div class="nys-openleg-result-text">'
+        + rendered.replace("§", "&sect;").replace("\n", "<br />")
+        + "</div></div></body></html>"
+    )
+
+
+def test_normalize_new_york_openleg_text_keeps_one_line_per_paragraph_and_table_row():
+    body = normalize_new_york_openleg_text(OPENLEG_LAYOUT)
+
+    assert body == OPENLEG_NORMALIZED
+    assert body is not None
+    assert body.split() == OPENLEG_LAYOUT.split()
+    # The wrapped cross-reference "(c) of section" no longer starts a line.
+    assert not any(line.startswith("(c)") for line in body.splitlines())
+    assert normalize_new_york_openleg_text(None) is None
+    assert normalize_new_york_openleg_text(" \n  \n") is None
+
+
+def test_normalize_new_york_openleg_text_treats_empty_lines_as_boundaries():
+    body = normalize_new_york_openleg_text("(a) First\nline.\n\nSecond\nparagraph.")
+
+    assert body == "(a) First line.\nSecond paragraph."
+
+
+def test_normalize_new_york_openleg_text_splits_table_headers_and_version_markers():
+    # Shapes from N.Y. Tax Law § 606(e)(3)(B)(ii) and the § 606(i) credit table.
+    layout = (
+        "  (ii) for all other taxpayers the amount of the credit allowable under\n"
+        "this subsection shall be:\n"
+        "If the taxpayer's federal adjusted gross\n"
+        "income for the taxable year is:      The credit amount is:\n"
+        "$5,000 or less                                      $75\n"
+        "  * NB There are 3 clause (xxxiii)'s\n"
+        "* (xxxiii) Credit for companies who  Amount of credit under\n"
+        "                                     subdivision fifty-two\n"
+        "  (A) the amount determined as follows:\n"
+        "the sum of the amounts.\n"
+        "  (B) the amount determined under this subparagraph:\n"
+        "(c) of section six hundred six\n"
+        "Column 1                             Column 2\n"
+    )
+
+    body = normalize_new_york_openleg_text(layout)
+
+    assert body == "\n".join(
+        [
+            "(ii) for all other taxpayers the amount of the credit allowable under "
+            "this subsection shall be:",
+            # The table's first header line starts its own line after the colon.
+            "If the taxpayer's federal adjusted gross",
+            "income for the taxable year is:      The credit amount is:",
+            "$5,000 or less                                      $75",
+            "* NB There are 3 clause (xxxiii)'s",
+            # A version-marked row never joins the editorial note above it.
+            "* (xxxiii) Credit for companies who Amount of credit under",
+            "                                     subdivision fifty-two",
+            # A colon alone does not split prose that no table follows.
+            "(A) the amount determined as follows: the sum of the amounts.",
+            # A wrapped cross-reference before a table is never split off as a head.
+            "(B) the amount determined under this subparagraph: (c) of section six "
+            "hundred six",
+            "Column 1                             Column 2",
+        ]
+    )
+    assert body is not None
+    assert body.split() == layout.split()
+
+
+def test_parse_new_york_law_page_rebuilds_openleg_layout_from_senate_line_breaks():
+    html = _senate_html_for(OPENLEG_LAYOUT)
+    soup = BeautifulSoup(html, "lxml")
+    node = soup.select_one(".nys-openleg-result-text")
+    assert node is not None
+    assert new_york_openleg_html_text(node) == OPENLEG_LAYOUT
+
+    section = parse_new_york_law_page(
+        html,
+        source_url="https://www.nysenate.gov/legislation/laws/TAX/606",
+    )
+
+    assert section.kind == "section"
+    assert section.body == OPENLEG_NORMALIZED
+
+
+def test_extract_new_york_openleg_sections_decodes_escaped_api_line_breaks(tmp_path):
+    source_dir = tmp_path / "source"
+    section_dir = source_dir / "new-york-openleg-json" / "TAX"
+    section_dir.mkdir(parents=True)
+    # The API's decoded JSON string carries the two characters "\n".
+    escaped = OPENLEG_LAYOUT.replace("\n", "\\n")
+    (section_dir / "606.json").write_text(
+        json.dumps(
+            _openleg_section_node("606", "606", "Credits against tax", escaped, "2026-06-05")
+        ),
+        encoding="utf-8",
+    )
+    store = CorpusArtifactStore(tmp_path / "artifacts")
+
+    report = extract_new_york_openleg_sections(
+        store,
+        version="2026-test",
+        sections=("TAX:606",),
+        source_dir=source_dir,
+        source_as_of="2026-07-06",
+        expression_date="2026-07-06",
+    )
+
+    provisions = load_provisions(report.provisions_path)
+    assert provisions[0].body == OPENLEG_NORMALIZED
+    assert "\\n" not in (provisions[0].body or "")
+
+
+RETAINED_JULY = Path(
+    "data/corpus/sources/us-ny/statute/"
+    "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/"
+    "new-york-openleg-json/TAX"
+)
+RETAINED_SEPTEMBER = Path(
+    "data/corpus/sources/us-ny/statute/2026-09-14-income-tax-chapter/official-documents"
+)
+
+
+@pytest.mark.parametrize("section", ["601", "614", "615", "616"])
+def test_retained_senate_page_layout_matches_retained_openleg_api_text(section):
+    """Same revision, two official renderings: the rebuilt layouts are identical."""
+    api = json.loads((RETAINED_JULY / f"{section}.json").read_text(encoding="utf-8"))
+    soup = BeautifulSoup(
+        (RETAINED_SEPTEMBER / f"us-ny-tax-{section}.html").read_bytes(), "lxml"
+    )
+    node = soup.select_one(".nys-openleg-result-text")
+    assert node is not None
+
+    assert new_york_openleg_html_text(node) == api["result"]["text"].replace("\\n", "\n")
+
+
+def test_retained_openleg_api_606_resolves_real_property_tax_credit_renter_cap():
+    api = json.loads((RETAINED_JULY / "606.json").read_text(encoding="utf-8"))
+    body = normalize_new_york_openleg_text(api["result"]["text"].replace("\\n", "\n"))
+    assert body is not None
+
+    lines = body.splitlines()
+    start = lines.index(
+        next(line for line in lines if line.startswith("(e) Real property tax circuit"))
+    )
+    seven = next(i for i in range(start, len(lines)) if lines[i].startswith("(7) "))
+    tenant = next(i for i in range(seven, len(lines)) if lines[i].startswith("(D) "))
+    assert lines[tenant] == (
+        "(D) To a tenant if the adjusted rent for the residence exceeds four hundred "
+        "fifty dollars per month on average."
+    )
+    assert lines[tenant + 1].startswith("(E) To an individual")

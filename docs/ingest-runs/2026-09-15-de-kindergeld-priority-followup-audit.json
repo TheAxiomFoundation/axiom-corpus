@@ -1,0 +1,80 @@
+{
+  "schema": "de-kindergeld-priority-followup-capture-audit.v1",
+  "version": "2026-09-15-de-kindergeld-priority-followup",
+  "scope": "Four official originals, including three BFH decisions and the CURIA Trapkowski judgment; capture fidelity only. No BStBl membership, current legal disposition or executable coverage asserted.",
+  "runtime_manifest_sha256": "01542bb66f371b5880b2308b5ff18f4c440494f9d0bea58d31b854040bfb20e4",
+  "public_manifest_sha256": "ab1b2d8ad48895458b3a3825e16904e1cde7e50d11b8a0d60373cadcc8b39ede",
+  "provisions_file": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-priority-followup.jsonl",
+  "provisions_sha256": "ede878d9909b89e1f0ae45b549d55129526d0158c32f3e3bca942d34dd99fbed",
+  "row_count": 8,
+  "source_file_count": 4,
+  "pdf_page_count": 13,
+  "independent_review": {
+    "reviewer": "review_de_matcher",
+    "result": "no actionable findings; identities, dates, hashes, all13 PDF pages and selected full HTML text independently conserved"
+  },
+  "visual_review": "All13 PDF pages rendered; representative first/final pages inspected. The2014 reference order remains distinct from the2016 judgment.",
+  "rows": [
+    {
+      "citation_path": "de/guidance/bfh-iii-r-68-13-2016-04-28/document-1",
+      "source_url": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201610174?type=1646225765",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/bfh-iii-r-68-13-2016-04-28.pdf",
+      "source_sha256": "a3f40b08424fcca3c53c12b57e7af7fd553f71d798b54f77b187fbfe5060ac6b",
+      "source_byte_count": 50213,
+      "body_sha256": "7e942894fd203bbcd0aa91f4d4345ccaa27c2c66c77ad21f429745b3a7759daa",
+      "body_character_count": 12963,
+      "source_body_matches": true,
+      "pdf_page_count": 4,
+      "expression_date": "2016-04-28",
+      "discovery_member_ids": [
+        "de-kg-suppl-151"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/bfh-iii-b-127-14-2015-04-27/document-1",
+      "source_url": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201510185?type=1646225765",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/bfh-iii-b-127-14-2015-04-27.pdf",
+      "source_sha256": "b8d9b25b33efc9010d2c859d1bb05e09c5f6b693b36f97481d362fc238e4ca6a",
+      "source_byte_count": 49619,
+      "body_sha256": "fa83f5fdb61ed5ff9984f780b4b9811724279c68d2b868713bc2336ef850dfca",
+      "body_character_count": 11299,
+      "source_body_matches": true,
+      "pdf_page_count": 3,
+      "expression_date": "2015-04-27",
+      "discovery_member_ids": [
+        "de-kg-suppl-152"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/bfh-iii-r-17-13-2014-05-08/document-1",
+      "source_url": "https://www.bundesfinanzhof.de/de/entscheidung/entscheidungen-online/detail/pdf/STRE201410183?type=1646225765",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/bfh-iii-r-17-13-2014-05-08.pdf",
+      "source_sha256": "f2db917e8c36ef40b64af6c5797da2e728da501dbb66457a17bbb2cced3b99cf",
+      "source_byte_count": 65855,
+      "body_sha256": "bb9553866d13229bdb72cba15c8175ddb2d6e8101cdadb6d016dc7e5983b8993",
+      "body_character_count": 26346,
+      "source_body_matches": true,
+      "pdf_page_count": 6,
+      "expression_date": "2014-05-08",
+      "discovery_member_ids": [
+        "de-kg-suppl-150"
+      ]
+    },
+    {
+      "citation_path": "de/guidance/cjeu-c-378-14-2015-10-22/document-1",
+      "source_url": "https://juris.curia.europa.eu/juris/document/document.jsf?docid=170306&doclang=DE",
+      "source_file": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-priority-followup/official-documents/cjeu-c-378-14-2015-10-22.html",
+      "source_sha256": "ee2955a404a1d0cc04600afb1121f860986400ac3c358bd16c0886941ffa2c37",
+      "source_byte_count": 42956,
+      "body_sha256": "299754b3f91461bf530791d7bfb0d5b48a6647d74625db2bd69693eafa0a9e16",
+      "body_character_count": 24771,
+      "source_body_matches": true,
+      "pdf_page_count": null,
+      "expression_date": "2015-10-22",
+      "discovery_member_ids": [
+        "de-kg-suppl-149"
+      ]
+    }
+  ],
+  "citation_note": "The HTML anchor-range capture assigns the complete judgment the stable document-1 suffix. No new irregular block-N path is added; the citation grammar ratchet is unchanged."
+}

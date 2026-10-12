@@ -54,6 +54,11 @@ uv run pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pypro
 
 - Generated `data/` and `sources/` files are local artifacts; do not commit them
   unless the PR explicitly adds a fixture or catalog source.
+- Corpus artifacts under `data/corpus/{sources,inventory,provisions,coverage}`
+  reach a commit through a lock file under `.axiom/corpus-locks/` once that
+  directory exists (`sign-ingest-manifest --lock`), never as tracked files.
+  `axiom-corpus-ingest corpus fetch` places the locked files a task needs;
+  see `docs/corpus-storage.md`.
 - Integration tests and live-source fetches should be isolated from the default
   offline test path.
 - Keep storage, fetcher, and API changes covered by focused tests because they

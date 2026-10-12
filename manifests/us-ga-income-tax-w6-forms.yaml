@@ -1,0 +1,123 @@
+version: 2026-10-06-w6-income-tax-forms-ga
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Georgia
+documents:
+- source_id: us-ga-w6-dor-ty2021-it-511
+  jurisdiction: us-ga
+  document_class: form
+  title: 2021 IT-511 Individual Income Tax Booklet (Form 500 instructions)
+  source_url: https://dor.georgia.gov/document/booklet/2021-it-511-individual-income-tax-booklet/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ga/form/dor/ty2021/it-511
+  extraction:
+    segmentation: single_block
+    force_ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Charitable Contributions/Donations ... Filing Requirements (2021 IT-511, 60 pages)
+    tax_year: '2021'
+    note: text layer uses fonts without a ToUnicode map (shifted glyph codes); body taken by OCR (tesseract, 200 dpi, force_ocr)
+    wave6_work_order_rows:
+    - 329
+    - 346
+- source_id: us-ga-w6-dor-ty2022-it-511
+  jurisdiction: us-ga
+  document_class: form
+  title: 2022 IT-511 Individual Income Tax Booklet (Rev. 02.15.23)
+  source_url: https://dor.georgia.gov/document/document/2022-it-511-individual-income-tax-booklet/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ga/form/dor/ty2022/it-511
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: IT 511 Rev. 02.15.23 ... Georgia Department of Revenue 2022 Individual Income Tax
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 331
+    - 330
+    - 344
+- source_id: us-ga-w6-dor-ty2023-it-511
+  jurisdiction: us-ga
+  document_class: form
+  title: 2023 IT-511 Individual Income Tax Booklet
+  source_url: https://dor.georgia.gov/document/document/2023-it-511-individual-income-tax-booklet/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ga/form/dor/ty2023/it-511
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Filing Requirements 9 Form 500 Instructions 11-13 ... Tax returns due April 15, 2024
+    tax_year: '2023'
+    wave6_work_order_rows:
+    - 332
+    - 345
+- source_id: us-ga-w6-dor-ty2024-it-511
+  jurisdiction: us-ga
+  document_class: form
+  title: 2024 IT-511 Individual Income Tax Booklet
+  source_url: https://dor.georgia.gov/document/document/2024-it-511-individual-income-tax-booklet/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ga/form/dor/ty2024/it-511
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2024 IT-511 Instructions Booklet 2024 Georgia Individual Income Tax Forms and Instructions
+    tax_year: '2024'
+    wave6_work_order_rows:
+    - 333
+- source_id: us-ga-w6-dor-ty2022-form-500
+  jurisdiction: us-ga
+  document_class: form
+  title: 2022 Georgia Form 500, Individual Income Tax Return (Rev. 06/22/22, approved web version)
+  source_url: https://apps.dor.ga.gov/FillableForms/webpdf/examples/2022GA500.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ga/form/dor/ty2022/form-500
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-forms
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Georgia Form 500 (Rev. 06/22/22) Individual Income Tax Return ... 2022
+    tax_year: '2022'
+    wave6_work_order_rows:
+    - 328

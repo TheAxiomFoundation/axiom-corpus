@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa.json",
+      "sha256": "36e8e513ba7908666462848a4a2a72e5c9a1da74da39d37d6ea08fad82dadca6"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa.json",
+      "sha256": "b3f976c70744a954f3930f553ca6b61cd66c72518ea011baf0635b5a28927e3c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa.jsonl",
+      "sha256": "5161cfcf20e7c927b71ebed67641be4b5bd6d934da9e86c86cd3d3e789e5011e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa/official-documents/us-wa-w6-wsr-16-01-093.html",
+      "sha256": "bf9e6e06a801aa32bac11b96bb8204320b5038928e557a8fc8ee9d93bf2525fe"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa/official-documents/us-wa-w6-wsr-18-09-088.html",
+      "sha256": "b7c5fc431a36c557db81123c88eaa6865ba827c4418b0d9bff29be7526de57f4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa/official-documents/us-wa-w6-wsr-21-21-054.html",
+      "sha256": "ce1fdae45683c707ee7907751aebd50e9754970a4a811cc6e4d41788d4195daa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa/official-documents/us-wa-w6-wsr-23-23-054.html",
+      "sha256": "33795d7e90b88f0a6c1cfae5c9bfb9c900a871198426580fdeba191c00a99e08"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wa/official-documents/us-wa-w6-wsr-24-11-019.html",
+      "sha256": "bbe3b0bb81ae3a7ba3150aa4082fd049731064cfadc2952093caff25312410a4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T18:00:32.870527+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dRcwl73KqYKCc4OyNzSIHuxJU/8E+QiNyCm4B2HERT4Enapwu8oEqLGr+VH7ZwLvYrts8RuBiFvryMKFTKkmDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rulemaking-wa"
+}

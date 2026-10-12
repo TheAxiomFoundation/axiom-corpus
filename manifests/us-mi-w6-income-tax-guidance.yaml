@@ -1,0 +1,195 @@
+version: 2026-10-06-w6-income-tax-guidance-mi
+documents:
+- source_id: us-mi-guidance-treasury-retirement-and-pension-benefits
+  jurisdiction: us-mi
+  document_class: guidance
+  title: Retirement and Pension Benefits (Michigan Treasury tax guidance)
+  source_url: https://www.michigan.gov/taxes/iit/tax-guidance/tax-situations/retirement-and-pension-benefits
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/retirement-and-pension-benefits
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-income-tax-rate-change-overview
+  jurisdiction: us-mi
+  document_class: guidance
+  title: 'Income Tax Rate Change: Overview (Michigan Treasury FAQ)'
+  source_url: https://www.michigan.gov/taxes/questions/tax-faqs/income-tax-rate-change/income-tax-rate-change-overview
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/income-tax-rate-change-overview
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: faq
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-rab-2026-1
+  jurisdiction: us-mi
+  document_class: guidance
+  title: Revenue Administrative Bulletin 2026-1
+  source_url: https://www.michigan.gov/taxes/rep-legal/rab/2026-revenue-administrative-bulletins/revenue-administrative-bulletin-2026-1
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/rab/2026-1
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: revenue_administrative_bulletin
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-withholding-faqs-personal-exemption-amount
+  jurisdiction: us-mi
+  document_class: guidance
+  title: What is Michigan's personal exemption amount? (withholding tax FAQ)
+  source_url: https://www.michigan.gov/taxes/business-taxes/withholding/withholding-tax-faqs/what-is-michigans-2023-personal-exemption-amount
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/withholding-faqs/personal-exemption-amount
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: faq
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-taxpayer-notices-2025-05-01-2025-income-tax-rate
+  jurisdiction: us-mi
+  document_class: guidance
+  title: 2025 Tax Year Income Tax Rate for Individuals and Fiduciaries (taxpayer notice, 2025-05-01)
+  source_url: https://www.michigan.gov/treasury/reference/taxpayer-notices/2025/05/01/2025-tax-year-income-tax-rate-for-individuals-and-fiduciaries
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/taxpayer-notices/2025-05-01-2025-income-tax-rate
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: notice
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-taxpayer-notices-2025-11-17-social-security-taxation-pub-5803a294
+  jurisdiction: us-mi
+  document_class: guidance
+  title: Social Security Taxation Changes in Public Act 24 of 2025 (taxpayer notice, 2025-11-17)
+  source_url: https://www.michigan.gov/treasury/reference/taxpayer-notices/2025/11/17/social-security-taxation-changes-in-public-act-24-of-2025
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/taxpayer-notices/2025-11-17-social-security-taxation-public-act-24-of-2025
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: notice
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-taxpayer-notices-2026-01-06-qualified-overtime-and-tips-deductions
+  jurisdiction: us-mi
+  document_class: guidance
+  title: New Deductions for Qualified Overtime Compensation and Qualified Tips (taxpayer notice, 2026-01-06)
+  source_url: https://www.michigan.gov/treasury/reference/taxpayer-notices/2026/01/06/new-deductions-for-qualified-overtime-compensation-and-qualified-tips
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/taxpayer-notices/2026-01-06-qualified-overtime-and-tips-deductions
+  extraction:
+    html_content_selector: section#pagebody
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: notice
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-treasury-reports-home-heating-expenses-2021-data
+  jurisdiction: us-mi
+  document_class: guidance
+  title: 2021 Home Heating Expenses Reported by Home Heating Credit Filers (Office of Revenue and Tax Analysis)
+  source_url: https://www.michigan.gov/treasury/-/media/Project/Websites/treasury/Uncategorized/2023/Economic-Reports-and-Notices-2023/Home-Heating-Expenses-Reported-by-Home-Heating-Credit-Filers/rpt-text_2021data.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/treasury/reports/home-heating-expenses-2021-data
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: report
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: michigan.gov answers HTTP 403 to the corpus client and serves the chrome120 fingerprint (browser fallback
+      documented for this host in the 2026-09-10 WIC, 2026-09-14 LIHEAP and 2026-09-15 wave-5 tax run notes).
+  request:
+    browser_user_agent: true
+    browser_impersonation: chrome120
+- source_id: us-mi-guidance-legislature-taxpayers-guide-2025
+  jurisdiction: us-mi
+  document_class: guidance
+  title: Michigan Taxpayer's Guide for the 2025 tax year (Michigan Legislature)
+  source_url: https://www.legislature.mi.gov/Publications/TaxpayerGuide.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-mi/guidance/legislature/taxpayers-guide-2025
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Treasury
+    document_subtype: publication
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

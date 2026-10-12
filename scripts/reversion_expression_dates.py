@@ -13,6 +13,7 @@ from typing import Any
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 
@@ -117,6 +118,11 @@ def reversion_expression_dates(
         store.root / "sources" / jurisdiction / document_class / target_version
     )
 
+    # Corpus bytes may live outside git: fetch the whole source scope before
+    # listing its sources (docs/corpus-storage.md).
+    require_materialized(
+        [source_inventory_path, source_provisions_path, source_directory], fetch=True
+    )
     for path in (source_inventory_path, source_provisions_path):
         if not path.is_file() or path.is_symlink():
             raise ValueError(f"source artifact is not a regular file: {path}")
