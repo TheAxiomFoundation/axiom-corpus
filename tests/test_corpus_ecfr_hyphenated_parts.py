@@ -407,11 +407,13 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
     )
     assert selected.part_count == 1
     assert _paths(selected.items) == whole[:3]
-    # Its part and section would spell "105-60.60.001", but its path is not under 105-60.
+    # Its path is not under 105-60, so no selector naming part 105-60 reaches it.
     with pytest.raises(ValueError, match="not found: 105-60.60.001"):
         build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.60.001",))
-    with pytest.raises(ValueError, match="not found: 105.60.001"):
-        build_ecfr_inventory_from_structures((structure,), only_sections=("105.60.001",))
+    # eCFR's own citation (41 CFR 105.60.001) selects it, under the part that holds it.
+    assert _paths(
+        build_ecfr_inventory_from_structures((structure,), only_sections=("105.60.001",)).items
+    ) == [*whole[:2], "us/regulation/41/105/60.001"]
 
 
 def test_selector_main_accepts_still_matches_a_dotted_part():
