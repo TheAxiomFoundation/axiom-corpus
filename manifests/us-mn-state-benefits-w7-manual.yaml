@@ -9,7 +9,7 @@ documents:
   source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=ESM_000309
   source_format: html
   source_as_of: '2026-10-12'
-  expression_date: '2026-10-12'
+  expression_date: '2026-03-01'
   citation_path: us-mn/manual/dhs/mfip-employment-services-manual/3.9
   request: &id001
     browser_impersonation: true
@@ -21,10 +21,13 @@ documents:
     source_authority: Minnesota Department of Human Services
     document_subtype: policy_manual_section
     program: TANF
-    expression_date_note: fetch date; the publisher serves the current text
+    expression_date_note: 'ISSUE DATE: 03/2026 printed on the page (first of the month)'
     discovered_via: axiom.org program-bundle gap list 2026-10-12 (wave 7, group state-benefits, row 44)
     manual: MFIP Employment Services Manual
     mn_ddocname: ESM_000309
+    retrieval_note: taken from the official address with the documented chrome120 profile at 15:24 EDT on 2026-10-12 (the
+      probe); the host then answered every request with a Radware challenge, so the extraction replays those retained bytes
+      through local_path (scripts/extract_w7_state_benefits_mn.py --retained)
     wave7_rows:
     - 44
     run_note: docs/ingest-runs/2026-10-12-w7-state-benefits.md
@@ -35,7 +38,7 @@ documents:
   source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001121
   source_format: html
   source_as_of: '2026-10-12'
-  expression_date: '2026-10-12'
+  expression_date: '2026-03-01'
   citation_path: us-mn/manual/dhs/combined-manual/0011.21
   request: *id001
   extraction: *id002
@@ -44,12 +47,15 @@ documents:
     source_authority: Minnesota Department of Human Services
     document_subtype: policy_manual_section
     program: TANF
-    expression_date_note: fetch date; the publisher serves the current text
+    expression_date_note: 'ISSUE DATE: 03/2026 printed on the page (first of the month)'
     discovered_via: axiom.org program-bundle gap list 2026-10-12 (wave 7, group state-benefits, row 45)
     manual: Minnesota DHS Combined Manual
     mn_ddocname: cm_001121
     held_pdf_note: the served Combined Manual PDF (us-mn/manual/dhs/combined-manual/current) prints older issue dates for
       this section; the eManual page is the current text
+    retrieval_note: taken from the official address with the documented chrome120 profile at 15:24 EDT on 2026-10-12 (the
+      probe); the host then answered every request with a Radware challenge, so the extraction replays those retained bytes
+      through local_path (scripts/extract_w7_state_benefits_mn.py --retained)
     wave7_rows:
     - 45
     run_note: docs/ingest-runs/2026-10-12-w7-state-benefits.md
@@ -60,7 +66,7 @@ documents:
   source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_00171203
   source_format: html
   source_as_of: '2026-10-12'
-  expression_date: '2026-10-12'
+  expression_date: '2026-03-01'
   citation_path: us-mn/manual/dhs/combined-manual/0017.12.03
   request: *id001
   extraction: *id002
@@ -69,12 +75,15 @@ documents:
     source_authority: Minnesota Department of Human Services
     document_subtype: policy_manual_section
     program: TANF
-    expression_date_note: fetch date; the publisher serves the current text
+    expression_date_note: 'ISSUE DATE: 03/2026 printed on the page (first of the month)'
     discovered_via: axiom.org program-bundle gap list 2026-10-12 (wave 7, group state-benefits, row 46)
     manual: Minnesota DHS Combined Manual
     mn_ddocname: cm_00171203
     held_pdf_note: the served Combined Manual PDF (us-mn/manual/dhs/combined-manual/current) prints older issue dates for
       this section; the eManual page is the current text
+    retrieval_note: taken from the official address with the documented chrome120 profile at 15:24 EDT on 2026-10-12 (the
+      probe); the host then answered every request with a Radware challenge, so the extraction replays those retained bytes
+      through local_path (scripts/extract_w7_state_benefits_mn.py --retained)
     wave7_rows:
     - 46
     run_note: docs/ingest-runs/2026-10-12-w7-state-benefits.md
@@ -85,7 +94,7 @@ documents:
   source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001809
   source_format: html
   source_as_of: '2026-10-12'
-  expression_date: '2026-10-12'
+  expression_date: '2026-03-01'
   citation_path: us-mn/manual/dhs/combined-manual/0018.09
   request: *id001
   extraction: *id002
@@ -94,62 +103,15 @@ documents:
     source_authority: Minnesota Department of Human Services
     document_subtype: policy_manual_section
     program: TANF
-    expression_date_note: fetch date; the publisher serves the current text
+    expression_date_note: 'ISSUE DATE: 03/2026 printed on the page (first of the month)'
     discovered_via: axiom.org program-bundle gap list 2026-10-12 (wave 7, group state-benefits, row 47)
     manual: Minnesota DHS Combined Manual
     mn_ddocname: cm_001809
     held_pdf_note: the served Combined Manual PDF (us-mn/manual/dhs/combined-manual/current) prints older issue dates for
       this section; the eManual page is the current text
+    retrieval_note: taken from the official address with the documented chrome120 profile at 15:24 EDT on 2026-10-12 (the
+      probe); the host then answered every request with a Radware challenge, so the extraction replays those retained bytes
+      through local_path (scripts/extract_w7_state_benefits_mn.py --retained)
     wave7_rows:
     - 47
-    run_note: docs/ingest-runs/2026-10-12-w7-state-benefits.md
-- source_id: us-mn-manual-dhs-combined-manual-0018.18
-  jurisdiction: us-mn
-  document_class: manual
-  title: Combined Manual 0018.18 Earned Income Disregards
-  source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001818
-  source_format: html
-  source_as_of: '2026-10-12'
-  expression_date: '2026-10-12'
-  citation_path: us-mn/manual/dhs/combined-manual/0018.18
-  request: *id001
-  extraction: *id002
-  metadata:
-    primary_source: true
-    source_authority: Minnesota Department of Human Services
-    document_subtype: policy_manual_section
-    program: TANF
-    expression_date_note: fetch date; the publisher serves the current text
-    discovered_via: axiom.org program-bundle gap list 2026-10-12 (wave 7, group state-benefits, row 48)
-    manual: Minnesota DHS Combined Manual
-    mn_ddocname: cm_001818
-    held_pdf_note: the served Combined Manual PDF (us-mn/manual/dhs/combined-manual/current) prints older issue dates for
-      this section; the eManual page is the current text
-    wave7_rows:
-    - 48
-    run_note: docs/ingest-runs/2026-10-12-w7-state-benefits.md
-- source_id: us-mn-manual-dhs-combined-manual-0020.09
-  jurisdiction: us-mn
-  document_class: manual
-  title: Combined Manual 0020.09 MFIP/DWP Assistance Standards
-  source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_002009
-  source_format: html
-  source_as_of: '2026-10-12'
-  expression_date: '2026-10-12'
-  citation_path: us-mn/manual/dhs/combined-manual/0020.09
-  request: *id001
-  extraction: *id002
-  metadata:
-    primary_source: true
-    source_authority: Minnesota Department of Human Services
-    document_subtype: policy_manual_section
-    program: TANF
-    expression_date_note: fetch date; the publisher serves the current text
-    discovered_via: axiom.org program-bundle gap list 2026-10-12 (wave 7, group state-benefits, row 49)
-    manual: Minnesota DHS Combined Manual
-    mn_ddocname: cm_002009
-    held_pdf_note: the served Combined Manual PDF (us-mn/manual/dhs/combined-manual/current) prints older issue dates for
-      this section; the eManual page is the current text
-    wave7_rows:
-    - 49
     run_note: docs/ingest-runs/2026-10-12-w7-state-benefits.md

@@ -16,7 +16,9 @@ decisions file). Minnesota extraction: `scripts/extract_w7_state_benefits_mn.py`
   uncommitted. Nothing was signed, locked, pushed to R2 or loaded to Supabase; `manifests/releases/` and
   `manifests/program-bundles/` are untouched.
 - Timing: started 15:19 EDT; held check and probes to 15:31; first extraction batch 15:33-15:35; Pennsylvania Code
-  adapter 15:36; Minnesota (paced, see below) MN_TIMING; note and draft PR END_TIMING.
+  adapter 15:36; Minnesota: four pages answered the probe at 15:24, every later request (15:24-16:11, after pauses of 7 and 34
+  minutes) got the Radware page; the four retained pages were replayed at 16:13; note and draft PR about 16:20. About
+  1 hour of the 3-hour box.
 - Disk: `df -h /` 3.2 TiB free before every batch and at the end (the 50 GB stop line was never near).
 - Impact analysis: not run (the GitNexus MCP tools are not available in this session). No library function under
   `src/` was changed.
@@ -46,7 +48,24 @@ decisions file). Minnesota extraction: `scripts/extract_w7_state_benefits_mn.py`
    characters of body text; no challenge page stored; `scripts/validate_citation_paths.py` over the new provisions:
    `RESULT: OK`. No new path collides with any provisions file of its jurisdiction on disk.
 
-RESULTS_TABLE
+## Results by status
+
+| action | PRESENT | ALREADY-HELD | OUTREACH | ABSENT | OUT-OF-SCOPE | SKIPPED | total |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| MEASURE-CHECK | 0 | 4 | 0 | 0 | 0 | 0 | 4 |
+| FETCH | 37 | 12 | 12 | 0 | 0 | 0 | 61 |
+| CHECK-PUBLISHER | 1 | 7 | 0 | 0 | 0 | 0 | 8 |
+| OFFICIAL-SOURCE | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| DEAD-LINK | 3 | 2 | 0 | 0 | 0 | 0 | 5 |
+| total | 42 | 25 | 12 | 0 | 0 | 0 | 79 |
+
+By program (a row counts once per program it names): CCDF 21 (16 PRESENT, 5 ALREADY-HELD); TANF 31 (14 PRESENT,
+5 ALREADY-HELD, 12 OUTREACH); SNAP 15 (7 PRESENT, 8 ALREADY-HELD); SSI 8 (3 PRESENT, 5 ALREADY-HELD); Medicaid and
+CHIP 3 each (1 PRESENT, 2 ALREADY-HELD); UI 1 (PRESENT). The work order has no WIC or LIHEAP row.
+
+DEAD-LINK rows: the four Pennsylvania Code addresses timed out once in the triage but answered the adapter (two
+PRESENT, two inside the held chapter 183 PDF); the Maryland 11.9.2024 plan file is 404 and joins to the Amendment 1
+plan that superseded it.
 
 ## Publisher access (2026-10-12)
 
@@ -66,12 +85,55 @@ Documented fallbacks used: `drxya2s1hkmtl.cloudfront.net` (Indiana General Assem
 docs/ingest-runs/2026-09-14-state-tax-regulations.md) for 455 IAC; `www.dhs.state.mn.us` (Radware; `chrome120`,
 docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md and 2026-09-14-liheap-matrix-ssi-standards.md).
 
-MN_ACCESS
+Blocked (OUTREACH, not worked around): `www.dhs.state.mn.us`. The documented `chrome120` profile answered the first
+four pages of the probe (15:24 EDT; ESM 3.9, CM 0011.21, 0017.12.03, 0018.09) and from then on returned the Radware
+challenge page (HTTP 200, `<title>Radware Page</title>`, 118,391 bytes) to every request: the rest of the probe
+(1.5 s apart), a paced extraction run after a 7-minute pause (first request challenged) and one request after a
+further 34 minutes. Twelve rows stay OUTREACH: CM 0018.18 and 0020.09 and the ten `dID=` addresses (stored
+revisions; not identified, since each request returned the challenge). The four pages that answered are extracted
+from the bytes the probe took from the official address with the documented profile, replayed through the
+supported `local_path` field on an untracked manifest copy (`scripts/extract_w7_state_benefits_mn.py --retained`,
+the de-kindergeld precedent); their inventory `download_url` therefore names the local replay file. SHA-256 of the
+retained pages: ESM 3.9 `3b873dc9...`, CM 0011.21 `fd19f074...`, 0017.12.03 `4d6ab1bf...`, 0018.09 `7a89283f...`.
+The served Combined Manual PDF (`us-mn/manual/dhs/combined-manual/current`, fetched 2026-05-27) carries older texts of
+these sections (issue dates 2014-2020, e.g. 0020.09 at page 900 with the 10/2020 MFIP standards), so it is not
+recorded as holding them.
 
 No CAPTCHA, mirror, repost, archived copy or proxy was used; TLS verification was never disabled; nothing was added to
 `data/certs/`. Cornell LII (row 37) was not fetched: the row names the rule, and the official text was taken.
 
-SCOPES_TABLE
+## Scopes
+
+21 new scopes, 741 provision rows, 3,139,902 characters, 13.3 MB of source snapshots. Every scope reports coverage
+`complete: true`, 0 missing, 0 extra, 0 duplicate citation paths. Seconds are the wall time of one extraction call,
+download included.
+
+| jurisdiction | class | version | documents | rows | chars | source MB | s |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| us-co | regulation | `2026-10-12-w7-state-benefits-regulation-co` | 1 | 140 | 259,528 | 0.72 | 3 |
+| us-dc | regulation | `2026-10-12-w7-state-benefits-regulation-dc` | 1 | 2 | 1,886 | 0.05 | 2 |
+| us-fl | statute | `2026-10-12-w7-state-benefits-statute-fl` | 1 | 2 | 22,794 | 0.06 | 3 |
+| us-il | guidance | `2026-10-12-w7-state-benefits-guidance-il` | 3 | 26 | 16,805 | 0.24 | 2 |
+| us-il | manual | `2026-10-12-w7-state-benefits-manual-il` | 13 | 98 | 74,156 | 0.22 | 3 |
+| us-il | policy | `2026-10-12-w7-state-benefits-policy-il` | 1 | 42 | 819,384 | 3.09 | 4 |
+| us-in | regulation | `2026-10-12-w7-state-benefits-regulation-in` | 1 | 116 | 164,655 | 0.52 | 2 |
+| us-ky | statute | `2026-10-12-w7-state-benefits-statute-ky` | 2 | 4 | 10,079 | 0.03 | 1 |
+| us-md | policy | `2026-10-12-w7-state-benefits-policy-md` | 1 | 42 | 728,021 | 3.05 | 5 |
+| us-mi | statute | `2026-10-12-w7-state-benefits-statute-mi` | 1 | 2 | 3,113 | 0.02 | 3 |
+| us-mn | manual | `2026-10-12-w7-state-benefits-manual-mn` | 4 | 10 | 20,347 | 0.64 | 1 (replay) |
+| us-mo | manual | `2026-10-12-w7-state-benefits-manual-mo` | 2 | 11 | 23,663 | 0.04 | 1 |
+| us-mo | policy | `2026-10-12-w7-state-benefits-policy-mo` | 1 | 42 | 540,031 | 2.69 | 4 |
+| us-nc | guidance | `2026-10-12-w7-state-benefits-guidance-nc` | 1 | 3 | 2,072 | 0.07 | 2 |
+| us-nj | rulemaking | `2026-10-12-w7-state-benefits-rulemaking-nj` | 1 | 21 | 30,967 | 0.07 | 1 |
+| us-nj | statute | `2026-10-12-w7-state-benefits-statute-nj` | 1 | 2 | 31,143 | 0.04 | 2 |
+| us-pa | regulation | `2026-10-12-w7-state-benefits-regulation-pa-title-34-chapter-65` | adapter | 81 | 126,584 | 0.54 | 2 |
+| us-pa | regulation | `2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177` | adapter | 17 | 52,174 | 0.45 | 2 |
+| us-pa | regulation | `2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-178` | adapter | 67 | 190,520 | 0.62 | 3 |
+| us-wa | rulemaking | `2026-10-12-w7-state-benefits-rulemaking-wa` | 2 | 4 | 7,654 | 0.01 | 2 |
+| us-wy | guidance | `2026-10-12-w7-state-benefits-guidance-wy` | 1 | 9 | 14,326 | 0.12 | 3 |
+
+The Illinois guidance and Kentucky statute scopes were re-extracted once under the same, unreleased version (a drop
+selector for the IDEC page footer and calculator; the printed effective date of KRS 205.200).
 
 ## Families and decisions
 
@@ -98,6 +160,12 @@ SCOPES_TABLE
 - **Superseded editions with the current text served** (ALREADY-HELD, the wave-6 precedent): the 2020 Arkansas
   Complete SNAP Manual compilation, the 2014 posting of HAR 17-676, the October 2014 Rhode Island SNAP rules
   (superseded by 218-RICR-20-00-1), and the Colorado rule versions above.
+- **Minnesota.** ESM 3.9 and Combined Manual 0011.21, 0017.12.03 and 0018.09 (issue date 03/2026) at
+  `us-mn/manual/dhs/mfip-employment-services-manual/3.9` and `us-mn/manual/dhs/combined-manual/<section>`, beside the
+  served whole-manual PDF; the rest of the Minnesota rows are OUTREACH (above).
+- **Minnesota.** ESM 3.9 and Combined Manual 0011.21, 0017.12.03 and 0018.09 (issue date 03/2026) at
+  `us-mn/manual/dhs/mfip-employment-services-manual/3.9` and `us-mn/manual/dhs/combined-manual/<section>`, beside the
+  served whole-manual PDF; the other twelve Minnesota rows are OUTREACH (publisher access, above).
 - **Statutes and session laws.** Fla. Stat. 414.095 (2025), KRS 205.200 (the bundle's id=54926 is an LRC "Invalid
   Statute" notice; the current version, id=57029, effective 2026-04-14, is taken) and 205.245, MCL 400.10, P.L. 2013
   c.45 (NJ), DCMR 29-7200 (the chapter page's one section, the `.doc` behind `DownloadFile`, effective 2026-05-22).
@@ -119,7 +187,13 @@ SCOPES_TABLE
   and plan rows. The joins already exist; the builder (or the manifest) needs to carry them to manifest-sourced
   entries. Recorded ALREADY-HELD with the served paths.
 
-OPEN_SECTION
+## OUTREACH (12), ABSENT (0), OUT-OF-SCOPE (0), SKIPPED (0)
+
+- OUTREACH: twelve Minnesota DHS addresses (CM 0018.18 and 0020.09; `dID=128565`, `128623`-`128629`, `139469`,
+  `160643`): Radware challenge to the documented profile throughout the run. A static or bulk export of the eManuals
+  (or an allowlisted fetch) from Minnesota DHS would close them; the served CM PDF holds older texts of 0018.18 and
+  0020.09.
+- Nothing was ABSENT, OUT-OF-SCOPE or SKIPPED.
 
 ## Controller
 
@@ -135,7 +209,20 @@ OPEN_SECTION
 
 ## Checks
 
-CHECKS_SECTION
+- Coverage of all 21 scopes: `complete: true`, no duplicate path, no missing or extra inventory entry; every manifest
+  entry's `source_url`, `expression_date` and title match the extracted inventory and provisions.
+- `uv run --extra dev python scripts/validate_citation_paths.py --provisions <tree of the 21 new files>`: 741 records,
+  738 unique paths (the three Pennsylvania Code containers repeat across the adapter scopes), `RESULT: OK`; new
+  irregular segments 137 `block-N`, 161 `page-N`, 1 collection root (`us-pa/regulation`).
+- Collisions: the new paths were intersected with every other provisions file of the same jurisdiction on disk; the
+  only shared path is the `us-pa/regulation` root (also in the income-tax title-61 scope).
+- `uv run --extra dev ruff check` on the two scripts: clean (`ruff format` applied).
+- `AXIOM_CORPUS_PARTIAL_TESTS=1 uv run --extra dev pytest -q -m "not integration and not slow" -k "manifest or
+  official_documents"`: 297 passed, 2 skipped, 18 failed; every failure is a `FileNotFoundError` on another scope's
+  `data/corpus` artifact the sparse worktree does not hold (Armenia ARLIS, BE promotion x2, NY TANF compatibility x2,
+  Wisconsin pit-west replay, Israel OpenLaw, SC act 110 successor, AK/CT/MI/MT/ND/NY SNAP manuals, SNAP child-support
+  CA/DE x4), the known set of the wave-6 notes.
+- `changelog.d/wave7-state-benefits.added.md` added.
 
 ## Rebuild
 

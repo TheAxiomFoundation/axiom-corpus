@@ -603,9 +603,12 @@ doc(
     plan_version="Amendment 1",
     **CCDF_PLAN_META,
     row_notes={
+        41: "publisher check: earlychildhood.marylandpublicschools.org is the Maryland State Department of "
+        "Education, Division of Early Childhood (the CCDF Lead Agency): official. Maryland CCDF Plan FFY 2025-2027, "
+        "Amendment 1 (approved 2025-06-24); no Maryland plan was held (blocked in the 2026-09-10 plan run)",
         42: "the bundle's 11.9.2024 approval file answers 404 and the MSDE CCDF state-plan page links no "
         "2025-2027 file; MSDE now posts the plan approved and updated 6.25.25 (Amendment 1, row 41), which "
-        "supersedes it"
+        "supersedes it",
     },
 )
 
@@ -632,6 +635,12 @@ doc(
 MN_DHS = "Minnesota Department of Human Services"
 MN_REQUEST = {"browser_impersonation": True, "browser_impersonation_direct": True}
 MN_PAGE = {"html_content_selector": "#mainContent"}
+MN_ISSUE_NOTE = "ISSUE DATE: 03/2026 printed on the page (first of the month)"
+MN_RETAINED_NOTE = (
+    "taken from the official address with the documented chrome120 profile at 15:24 EDT on 2026-10-12 (the probe); "
+    "the host then answered every request with a Radware challenge, so the extraction replays those retained bytes "
+    "through local_path (scripts/extract_w7_state_benefits_mn.py --retained)"
+)
 MN_CM = "https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName="
 doc(
     [44],
@@ -646,15 +655,16 @@ doc(
     subtype="policy_manual_section",
     request=MN_REQUEST,
     extraction=MN_PAGE,
+    expression_date="2026-03-01",
+    expression_note=MN_ISSUE_NOTE,
     manual="MFIP Employment Services Manual",
     mn_ddocname="ESM_000309",
+    retrieval_note=MN_RETAINED_NOTE,
 )
 for r, ddoc, sec, title in (
     (45, "cm_001121", "0011.21", "Receipt of Other Assistance"),
     (46, "cm_00171203", "0017.12.03", "Unearned Income"),
     (47, "cm_001809", "0018.09", "Dependent Care Deduction"),
-    (48, "cm_001818", "0018.18", "Earned Income Disregards"),
-    (49, "cm_002009", "0020.09", "MFIP/DWP Assistance Standards"),
 ):
     doc(
         [r],
@@ -669,10 +679,41 @@ for r, ddoc, sec, title in (
         subtype="policy_manual_section",
         request=MN_REQUEST,
         extraction=MN_PAGE,
+        expression_date="2026-03-01",
+        expression_note=MN_ISSUE_NOTE,
         manual="Minnesota DHS Combined Manual",
         mn_ddocname=ddoc,
         held_pdf_note="the served Combined Manual PDF (us-mn/manual/dhs/combined-manual/current) prints older issue "
         "dates for this section; the eManual page is the current text",
+        retrieval_note=MN_RETAINED_NOTE,
+    )
+MN_BLOCK = (
+    "www.dhs.state.mn.us answered the documented chrome120 profile with the Radware challenge page (HTTP 200, "
+    "<title>Radware Page</title>, 118,391 bytes) from 15:24 EDT on 2026-10-12, after four pages had answered, and "
+    "again after pauses of 7 and 34 minutes; not worked around"
+)
+for r, sec, page, issue in (
+    (48, "0018.18 Earned Income Disregards", 878, "01/2020"),
+    (49, "0020.09 MFIP/DWP Assistance Standards", 900, "10/2020"),
+):
+    decide(
+        r,
+        "OUTREACH",
+        "",
+        "",
+        MN_CM + ("cm_001818" if r == 48 else "cm_002009"),
+        f"{MN_BLOCK}. Combined Manual {sec}: the served Combined Manual PDF carries an older text of this section "
+        f"(us-mn/manual/dhs/combined-manual/current/page-{page}, issue date {issue}), not the current eManual page",
+    )
+for r in range(50, 60):
+    decide(
+        r,
+        "OUTREACH",
+        "",
+        "",
+        "",
+        f"{MN_BLOCK}. The dID address names one stored revision; the document was not identified, since every "
+        "request for it returned the challenge page",
     )
 
 # us-mo
@@ -907,6 +948,8 @@ def write_decisions(statuses: dict[int, tuple[str, str]] | None = None) -> None:
             status, scope, path, url, note = by_row.get(
                 i, ("SKIPPED", "", "", "", "not reached in the time box")
             )
+            if not url and status == "OUTREACH":
+                url = row["bundle_url"]  # the address found blocked
             w.writerow(
                 [
                     row["id"],
