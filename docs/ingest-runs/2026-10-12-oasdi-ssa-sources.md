@@ -186,6 +186,21 @@ exactly at the existing baselines) plus the three new files: `block_n` +2,584 (t
 `block-N` rows) and `uppercase_segments` +21 (eCFR `subpart-A` to `subpart-V`); the other
 families are unchanged.
 
+## Fit with the W6 successor release
+
+The three scopes are meant to join `us-rulespec-2026-10-12-w6-successor-union` (PR #819,
+selector at its head 4edda63e2, 1,446 scopes). A candidate selector of those 1,446 scopes
+plus these three (1,449, built in scratch, not committed) was audited against the locked
+provisions, inventories and coverage of every scope:
+
+- `scripts/audit_release_scope_self_containment.py`: 0 residuals (the W6 selector alone: 0).
+- `axiom-corpus-ingest validate-release --prefix provisions --prefix inventory --prefix
+  coverage`: 0 errors, the same 562 warnings as the W6 selector alone (541
+  `missing_parent_id`, 17 `unsectioned_document_body`, 4 `empty_provision_text`), none in
+  these scopes. Under the selector's `complete-expression-dates-v1` profile the check
+  requires release-wide citation uniqueness (`release_quality`, `duplicate_release_citation`),
+  so no citation of these scopes is in another W6 scope.
+
 ## Not done here
 
 Signing the ingest manifests and writing the scope locks are part of this PR. Cutting,
