@@ -43,8 +43,8 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 94
-      state: 138
+      federal: 91
+      state: 149
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -59,47 +59,21 @@ tiers:
     state_manifests: medicaid|ahcccs|medi-cal|masshealth|medical-assistance|msp-income
     known_sources: 0
     in_scope_by_layer:
-      federal: 395
-      state: 10175
+      federal: 392
+      state: 10352
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
+  - key: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    name: flrules.org/gateway/ruleno.asp
     layer: federal
     citation_path: null
-    source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
+    source_url: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
     sources:
-    - plan
+    - policyengine-references
+    references: 1
     scope: in
-    part: Other
-  - key: https://www.macpac.gov/publication/chip-spending-by-state/
-    name: EXHIBIT 33. CHIP Spending by State | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/chip-spending-by-state/
-    sources:
-    - plan
-    scope: in
-    part: Other
-  - key: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    name: MACStats Medicaid and CHIP Data Book, Exhibit 35 | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    sources:
-    - plan
-    scope: in
-    part: Income
-  - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    sources:
-    - plan
-    scope: in
-    part: Other
+    part: Household and eligibility
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -1680,6 +1654,49 @@ layers:
     scope: excluded
     reason: 'Secondary source: not law'
     part: Household and eligibility
+  - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
+    name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: MACStats Exhibit 32 (enrollment statistics) by MACPAC, a legislative-branch
+      advisory commission; data, not rules'
+    part: Other
+  - key: https://www.macpac.gov/publication/chip-spending-by-state/
+    name: EXHIBIT 33. CHIP Spending by State | MACPAC
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/publication/chip-spending-by-state/
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: MACStats Exhibit 33 (spending statistics); data, not rules'
+    part: Other
+  - key: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
+    name: MACStats Medicaid and CHIP Data Book, Exhibit 35 | MACPAC
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: MACStats Exhibit 35, a secondary compilation of state eligibility levels; the
+      rules are the state plans (CMS eligibility-levels page held at us/form/cms/medicaid-chip-bhp-eligibility-levels)'
+    part: Income
+  - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
+    name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
+    layer: federal
+    citation_path: null
+    source_url: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: MACStats: Medicaid and CHIP Data Book, December 2022 (172 pages of statistics);
+      data, not rules'
+    part: Other
   - key: https://www.macpac.gov/wp-content/uploads/2023/12/EXHIBIT-16.-Medicaid-Spending-by-State-Category-and-Source-of-Funds-FY-2022.pdf
     name: Medicaid Spending by State, Category, and Source of Funds, FY 2022 (millions) | MACPAC
     layer: federal
@@ -1715,39 +1732,12 @@ layers:
       (a calculator)'
     part: Income
   full:
-  - key: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    name: EXHIBIT 32. Child Enrollment in CHIP and Medicaid by State | MACPAC
+  - key: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    name: flrules.org/gateway/ruleno.asp
     layer: federal
     citation_path: null
-    source_url: https://www.macpac.gov/publication/child-enrollment-in-chip-and-medicaid-by-state/
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/publication/chip-spending-by-state/
-    name: EXHIBIT 33. CHIP Spending by State | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/chip-spending-by-state/
-    part: Other
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    name: MACStats Medicaid and CHIP Data Book, Exhibit 35 | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    name: Medicaid Spending by State, Category, and Source of Funds, FY 2021 (millions) | MACPAC
-    layer: federal
-    citation_path: null
-    source_url: https://www.macpac.gov/wp-content/uploads/2022/12/MACSTATS_Dec2022_WEB-508.pdf
-    part: Other
+    source_url: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -5568,6 +5558,16 @@ layers:
     manifest: manifests/us-al-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-al/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Alabama Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-al/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=871&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-al-medicaid-state-plan.yaml
+    manifest: manifests/us-al-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-al/policy/cms/medicaid-state-plan/spa/al-25-0008/approval-document
     name: 'Alabama Medicaid SPA AL-25-0008: Approval Document (approved November 19, 2025, effective October 1,
       2025)'
@@ -7190,6 +7190,16 @@ layers:
     layer: state
     citation_path: us-ak/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-ak-medicaid-state-plan.yaml
+    manifest: manifests/us-ak-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ak/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Alaska Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-ak/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&limit=100&sort=field_approval_date%3Adesc&page=1
     sources:
     - manifests/us-ak-medicaid-state-plan.yaml
     manifest: manifests/us-ak-medicaid-state-plan.yaml
@@ -15009,6 +15019,36 @@ layers:
     manifest: manifests/us-az-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-az/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-az-medicaid-state-plan.yaml
+    manifest: manifests/us-az-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-az/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-az-medicaid-state-plan.yaml
+    manifest: manifests/us-az-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-az/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Arizona Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-az/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-az-medicaid-state-plan.yaml
+    manifest: manifests/us-az-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-az/policy/cms/medicaid-state-plan/spa/az-24-0014/approval-document
     name: 'Arizona Medicaid SPA AZ-24-0014: Approval Document (approved October 16, 2024, effective September 14,
       2024)'
@@ -15508,6 +15548,26 @@ layers:
     manifest: manifests/us-ar-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ar/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Arkansas Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-ar/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ar-medicaid-state-plan.yaml
+    manifest: manifests/us-ar-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ar/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Arkansas Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-ar/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ar-medicaid-state-plan.yaml
+    manifest: manifests/us-ar-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ar/policy/cms/medicaid-state-plan/spa/ar-24-0008/approval-document
     name: 'Arkansas Medicaid SPA AR-24-0008: Approval Document (approved April 5, 2024, effective January 1, 2024)'
     layer: state
@@ -15972,15 +16032,6 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
-    layer: state
-    citation_path: us-ca/statute/rtc/17054.1
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Other
   - key: us-ca/statute/wic/14007.8
     name: us-ca/statute/wic/14007.8
     layer: state
@@ -15990,21 +16041,66 @@ layers:
     - plan
     scope: in
     part: Other
-  - key: us-ca/statute/wic/node-16.7.3
-    name: us-ca/statute/wic/node-16.7.3
+  - key: us-ca/statute/wic/15833
+    name: us-ca/statute/wic/15833
     layer: state
-    citation_path: us-ca/statute/wic/node-16.7.3
+    citation_path: us-ca/statute/wic/15833
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/wic/15834
+    name: us-ca/statute/wic/15834
+    layer: state
+    citation_path: us-ca/statute/wic/15834
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/wic/15850.1
+    name: us-ca/statute/wic/15850.1
+    layer: state
+    citation_path: us-ca/statute/wic/15850.1
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/wic/15850.5
+    name: us-ca/statute/wic/15850.5
+    layer: state
+    citation_path: us-ca/statute/wic/15850.5
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Other
+  - key: us-ca/statute/wic/node-16.7.2
+    name: us-ca/statute/wic/node-16.7.2
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.2
     source_url: null
     sources:
     - policyengine-references
     - plan
     references: 1
     scope: in
-    part: Income
+    part: Household and eligibility
     cited:
-    - path: us-ca/statute/wic/node-16.7.3
+    - path: us-ca/statute/wic/node-16.7.2
       references: 1
       part: Household and eligibility
+  - key: us-ca/statute/wic/node-16.7.3
+    name: us-ca/statute/wic/node-16.7.3
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.3
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Income
   full:
   - key: https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3/
     name: DHCS Medi-Cal Program Descriptions by Federal Poverty Level (CCHIP 266 to 322 percent FPL, Santa Clara,
@@ -16132,21 +16228,57 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
-    layer: state
-    citation_path: us-ca/statute/rtc/17054.1
-    source_url: null
-    part: Other
-    sources:
-    - screener
-    scope: in
   - key: us-ca/statute/wic/14007.8
     name: us-ca/statute/wic/14007.8
     layer: state
     citation_path: us-ca/statute/wic/14007.8
     source_url: null
     part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15833
+    name: us-ca/statute/wic/15833
+    layer: state
+    citation_path: us-ca/statute/wic/15833
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15834
+    name: us-ca/statute/wic/15834
+    layer: state
+    citation_path: us-ca/statute/wic/15834
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15850.1
+    name: us-ca/statute/wic/15850.1
+    layer: state
+    citation_path: us-ca/statute/wic/15850.1
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/15850.5
+    name: us-ca/statute/wic/15850.5
+    layer: state
+    citation_path: us-ca/statute/wic/15850.5
+    source_url: null
+    part: Other
+    sources:
+    - screener
+    scope: in
+  - key: us-ca/statute/wic/node-16.7.2
+    name: us-ca/statute/wic/node-16.7.2
+    layer: state
+    citation_path: us-ca/statute/wic/node-16.7.2
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
@@ -16174,6 +16306,56 @@ layers:
     layer: state
     citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-ca-medicaid-state-plan.yaml
+    manifest: manifests/us-ca-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+    layer: state
+    citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ca-medicaid-state-plan.yaml
+    manifest: manifests/us-ca-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+    layer: state
+    citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ca-medicaid-state-plan.yaml
+    manifest: manifests/us-ca-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+    layer: state
+    citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ca-medicaid-state-plan.yaml
+    manifest: manifests/us-ca-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+    layer: state
+    citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-ca-medicaid-state-plan.yaml
+    manifest: manifests/us-ca-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ca/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'California Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+    layer: state
+    citation_path: us-ca/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=5
     sources:
     - manifests/us-ca-medicaid-state-plan.yaml
     manifest: manifests/us-ca-medicaid-state-plan.yaml
@@ -16979,11 +17161,20 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
-    name: Colorado OmniSalud Guide 2024 | Colorado OmniSalud Guide 2024, p. 3
+  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
+    name: MEDICAL ASSISTANCE - SECTION 8.100 Eligibility, Provider Screening, NPI - 8.100.4.D.
     layer: state
     citation_path: null
-    source_url: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
+    name: Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
+    layer: state
+    citation_path: null
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     sources:
     - plan
     scope: in
@@ -17047,15 +17238,6 @@ layers:
     - path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
       references: 1
       part: Income
-  - key: us-co/regulation/10-ccr-2505-3
-    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
-    layer: state
-    citation_path: us-co/regulation/10-ccr-2505-3
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us-co/statute/10/10-16-1203
     name: us-co/statute/10/10-16-1203
     layer: state
@@ -17065,12 +17247,33 @@ layers:
     - plan
     scope: in
     part: Household and eligibility
-  full:
   - key: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
     name: Colorado OmniSalud Guide 2024 | Colorado OmniSalud Guide 2024, p. 3
     layer: state
     citation_path: null
     source_url: https://coloradoimmigrant.org/wp-content/uploads/2024/03/Eng.-OmniSalud-Guide-2024.pdf
+    sources:
+    - plan
+    scope: excluded
+    reason: 'Not a source of rules: Advocacy guide by the Colorado Immigrant Rights Coalition (third party); the
+      official OmniSalud texts are Connect for Health Colorado''s page (row 26, PRESENT) and C.R.S. 10-16-1203 (row
+      28, PRESENT)'
+    part: Benefit amount
+  full:
+  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
+    name: MEDICAL ASSISTANCE - SECTION 8.100 Eligibility, Provider Screening, NPI - 8.100.4.D.
+    layer: state
+    citation_path: null
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
+    name: Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
+    layer: state
+    citation_path: null
+    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     part: Benefit amount
     sources:
     - screener
@@ -17130,15 +17333,6 @@ layers:
     - screener
     - manifests/us-co-medicaid-eligibility-manual.yaml
     scope: in
-  - key: us-co/regulation/10-ccr-2505-3
-    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
-    layer: state
-    citation_path: us-co/regulation/10-ccr-2505-3
-    source_url: null
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: us-co/statute/10/10-16-1203
     name: us-co/statute/10/10-16-1203
     layer: state
@@ -17153,6 +17347,56 @@ layers:
     layer: state
     citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-co-medicaid-state-plan.yaml
+    manifest: manifests/us-co-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-co/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+    layer: state
+    citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-co-medicaid-state-plan.yaml
+    manifest: manifests/us-co-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-co/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+    layer: state
+    citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-co-medicaid-state-plan.yaml
+    manifest: manifests/us-co-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-co/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+    layer: state
+    citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-co-medicaid-state-plan.yaml
+    manifest: manifests/us-co-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-co/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+    layer: state
+    citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-co-medicaid-state-plan.yaml
+    manifest: manifests/us-co-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-co/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'Colorado Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+    layer: state
+    citation_path: us-co/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=5
     sources:
     - manifests/us-co-medicaid-state-plan.yaml
     manifest: manifests/us-co-medicaid-state-plan.yaml
@@ -35382,6 +35626,56 @@ layers:
     manifest: manifests/us-ct-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ct/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+    layer: state
+    citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ct-medicaid-state-plan.yaml
+    manifest: manifests/us-ct-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ct/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+    layer: state
+    citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ct-medicaid-state-plan.yaml
+    manifest: manifests/us-ct-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ct/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+    layer: state
+    citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ct-medicaid-state-plan.yaml
+    manifest: manifests/us-ct-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ct/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+    layer: state
+    citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-ct-medicaid-state-plan.yaml
+    manifest: manifests/us-ct-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ct/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'Connecticut Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+    layer: state
+    citation_path: us-ct/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=5
+    sources:
+    - manifests/us-ct-medicaid-state-plan.yaml
+    manifest: manifests/us-ct-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ct/policy/cms/medicaid-state-plan/spa/ct-26-0022/approval-document
     name: 'Connecticut Medicaid SPA CT-26-0022: Approval Document (approved August 14, 2026, effective August 15,
       2026)'
@@ -36112,6 +36406,16 @@ layers:
     manifest: manifests/us-de-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-de/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Delaware Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-de/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=796&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-de-medicaid-state-plan.yaml
+    manifest: manifests/us-de-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-de/policy/cms/medicaid-state-plan/spa/de-25-0009/approval-document
     name: 'Delaware Medicaid SPA DE-25-0009: Approval Document (approved December 8, 2025, effective July 1, 2025)'
     layer: state
@@ -36652,11 +36956,252 @@ layers:
     manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
     scope: in
     part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9501
+    name: DCMR 29-9501 APPLICATION, REDETERMINATION, AND RENEWAL
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9501
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={15DBD49B-E246-49B7-8CB7-A56616F09B31}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-dc/manual/dhcf/medicaid/29-9502
+    name: DCMR 29-9502 RESIDENCY
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9502
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=4013565F-0000-C169-9886-E9A4A49344A9
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9503
+    name: DCMR 29-9503 CITIZENSHIP OR SATISFACTORY IMMIGRATION STATUS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9503
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=4013565F-0000-C4A1-A8B3-61DAF767AE0A
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9504
+    name: DCMR 29-9504 SOCIAL SECURITY NUMBER
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9504
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=4013565F-0000-C7CE-BE76-1EE7574500F3
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9505
+    name: DCMR 29-9505 VERIFICATION OF NON-FINANCIAL ELIGIBILITY FACTORS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9505
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=5013565F-0000-C92D-B57E-6B0599C8708B
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9506
+    name: DCMR 29-9506 MODIFIED ADJUSTED GROSS INCOME (MAGI) ELIGIBILITY
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9506
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={8E3AA849-1885-4D2E-8C95-5B7B591D5D6E}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9507
+    name: 'DCMR 29-9507 NON-MAGI ELIGIBILITY GROUP: DEEMED NEWBORNS'
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9507
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=5013565F-0000-C862-B18B-71C33249C59A
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9508
+    name: DCMR 29-9508 NOTICE AND FAIR HEARING RIGHTS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9508
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={6B700A20-EA2C-4587-8E99-E429B2A56085}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9510
+    name: DCMR 29-9510 TRANSITIONAL MEDICAID
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9510
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=3014565F-0000-CCCA-BAE7-A3C7C14411D0
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9511
+    name: DCMR 29-9511 SUPPLEMENTAL SECURITY INCOME-BASED METHODOLOGY FOR CERTAIN NON-MAGI ELIGIBILITY GROUPS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9511
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={3FA85888-AC24-4CCE-8D52-0829360D41A4}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9512
+    name: 'DCMR 29-9512 NON-MAGI ELIGIBILITY GROUP: TEFRA/KATIE BECKETT'
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9512
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={C6DB08B6-C0ED-4801-938B-DEDB8BB67302}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9513
+    name: 'DCMR 29-9513 NON-MAGI ELIGIBILITY GROUP: OPTIONAL AGED AND DISABLED'
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9513
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={B96A807D-BF17-409D-941D-A68E5E0C22D8}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9514
+    name: 'DCMR 29-9514 NON-MAGI ELIGIBILITY GROUPS: SUPPLEMENTAL SECURITY INCOME AND OPTIONAL STATE SUPPLEMENTAL
+      PAYMENT'
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9514
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={4158FF99-BCC1-4BED-948B-5C57840CC971}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-dc/manual/dhcf/medicaid/29-9515
+    name: DCMR 29-9515 MEDICALLY NEEDY
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9515
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={69E7B500-DF17-4D34-966C-D1A0C50F2AE7}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9516
+    name: DCMR 29-9516 SPEND DOWN FOR MEDICALLY NEEDY COVERAGE
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9516
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={BF3012EB-F2AD-45A3-9584-16137985E660}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9599
+    name: DCMR 29-9599 DEFINITIONS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9599
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={0DCED006-AD46-4089-9DDC-923E2E5C1CC6}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9800
+    name: DCMR 29-9800 GENERAL PROVISIONS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9800
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=4015565F-0000-C39D-A8BD-26B8DB09993A
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9801
+    name: DCMR 29-9801 INCOME TEST
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9801
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=4015565F-0000-C7B9-9385-8CCF2AF7DF4A
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-dc/manual/dhcf/medicaid/29-9802
+    name: DCMR 29-9802 RESOURCE TEST
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9802
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=5015565F-0000-C01A-9181-BC4ADAFB6DFE
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-dc/manual/dhcf/medicaid/29-9803
+    name: DCMR 29-9803 IMPROPER RESOURCE TRANSFERS AND PENALTY PERIOD
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9803
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile=5015565F-0000-CC3D-93BD-1B78351E18E1
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Assets
+  - key: us-dc/manual/dhcf/medicaid/29-9804
+    name: DCMR 29-9804 POST-ELIGIBILITY TREATMENT OF INCOME
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9804
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={D14D9DDC-7A24-4038-932F-649851A58289}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/manual/dhcf/medicaid/29-9899
+    name: DCMR 29-9899 DEFINITIONS
+    layer: state
+    citation_path: us-dc/manual/dhcf/medicaid/29-9899
+    source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?DownloadFile={D68F6AEE-1E0E-4F74-B245-D9E341F6DC34}
+    sources:
+    - manifests/us-dc-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-dc-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
   - key: us-dc/policy/cms/medicaid-state-plan/spa-index/p01
     name: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
     layer: state
     citation_path: us-dc/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-dc-medicaid-state-plan.yaml
+    manifest: manifests/us-dc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-dc/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-dc-medicaid-state-plan.yaml
+    manifest: manifests/us-dc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-dc/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'District of Columbia Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-dc/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-dc-medicaid-state-plan.yaml
     manifest: manifests/us-dc-medicaid-state-plan.yaml
@@ -36969,21 +37514,6 @@ layers:
     - path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
       references: 1
       part: Household and eligibility
-  - key: us-fl/regulation/fac/65a-2/022
-    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
-    layer: state
-    citation_path: us-fl/regulation/fac/65a-2/022
-    source_url: null
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Household and eligibility
-    cited:
-    - path: us-fl/regulation/fac/65a-2/022
-      references: 1
-      part: Household and eligibility
   full:
   - key: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-7-family-related-medicaid-income-limit-chart
     name: 'Florida ESS Program Policy Manual: Appendix A-7 Family-Related Medicaid Income Limit Chart'
@@ -37005,15 +37535,6 @@ layers:
     sources:
     - screener
     - manifests/us-fl-medicaid-state-plan.yaml
-    scope: in
-  - key: us-fl/regulation/fac/65a-2/022
-    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
-    layer: state
-    citation_path: us-fl/regulation/fac/65a-2/022
-    source_url: null
-    part: Household and eligibility
-    sources:
-    - screener
     scope: in
   - key: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-13-active-medicaid-program-codes
     name: 'Florida ESS Program Policy Manual: Appendix A-13 Active Medicaid Program Codes'
@@ -37040,6 +37561,26 @@ layers:
     layer: state
     citation_path: us-fl/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-fl-medicaid-state-plan.yaml
+    manifest: manifests/us-fl-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-fl/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Florida Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-fl/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-fl-medicaid-state-plan.yaml
+    manifest: manifests/us-fl-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-fl/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Florida Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-fl/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-fl-medicaid-state-plan.yaml
     manifest: manifests/us-fl-medicaid-state-plan.yaml
@@ -39960,6 +40501,16 @@ layers:
     manifest: manifests/us-ga-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ga/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Georgia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-ga/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=776&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ga-medicaid-state-plan.yaml
+    manifest: manifests/us-ga-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ga/policy/cms/medicaid-state-plan/spa/ga-25-0001/approval-document
     name: 'Georgia Medicaid SPA GA-25-0001: Approval Document (approved March 6, 2026, effective January 1, 2025)'
     layer: state
@@ -40729,6 +41280,16 @@ layers:
     manifest: manifests/us-hi-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-hi/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Hawaii Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-hi/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1001&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-hi-medicaid-state-plan.yaml
+    manifest: manifests/us-hi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-hi/policy/cms/medicaid-state-plan/spa/hi-26-0005/approval-document
     name: 'Hawaii Medicaid SPA HI-26-0005: Approval Document (approved June 8, 2026, effective January 1, 2026)'
     layer: state
@@ -41075,6 +41636,26 @@ layers:
     layer: state
     citation_path: us-id/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-id-medicaid-state-plan.yaml
+    manifest: manifests/us-id-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-id/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Idaho Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-id/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-id-medicaid-state-plan.yaml
+    manifest: manifests/us-id-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-id/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Idaho Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-id/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-id-medicaid-state-plan.yaml
     manifest: manifests/us-id-medicaid-state-plan.yaml
@@ -41436,6 +42017,15 @@ layers:
     part: Other
 - jurisdiction: us-il
   screener:
+  - key: https://www.dhs.state.il.us/page.aspx?item=161600
+    name: Illinois DHS - HBIA and HBIS Policy
+    layer: state
+    citation_path: null
+    source_url: https://www.dhs.state.il.us/page.aspx?item=161600
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   - key: us-il/guidance/hfs/all-kids/about
     name: 'Illinois HFS: About All Kids'
     layer: state
@@ -41520,10 +42110,28 @@ layers:
     - plan
     scope: in
     part: Benefit amount
-  - key: us-il/policy/acf/ccdf-plan/fy2025-2027
-    name: Illinois CCDF Plan, FFY 2025-2027
+  - key: us-il/manual/dhs/csmm/33527
+    name: 'PM 06-20-00: Health Benefits for Persons with Breast or Cervical Cancer (BCC)'
     layer: state
-    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    citation_path: us-il/manual/dhs/csmm/33527
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-il/manual/dhs/csmm/33528
+    name: 'PM 06-20-02:  BCC Eligibility Criteria'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/33528
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
+  - key: us-il/manual/dhs/csmm/61206
+    name: PM 06-25-01 Determining Nonfinancial Eligibility
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/61206
     source_url: null
     sources:
     - policyengine-references
@@ -41532,7 +42140,7 @@ layers:
     scope: in
     part: Household and eligibility
     cited:
-    - path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    - path: us-il/manual/dhs/csmm/61206
       references: 1
       part: Household and eligibility
   - key: us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-330
@@ -41621,6 +42229,15 @@ layers:
       references: 3
       part: Household and eligibility
   full:
+  - key: https://www.dhs.state.il.us/page.aspx?item=161600
+    name: Illinois DHS - HBIA and HBIS Policy
+    layer: state
+    citation_path: null
+    source_url: https://www.dhs.state.il.us/page.aspx?item=161600
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us-il/guidance/hfs/all-kids/about
     name: 'Illinois HFS: About All Kids'
     layer: state
@@ -41693,10 +42310,28 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-il/policy/acf/ccdf-plan/fy2025-2027
-    name: Illinois CCDF Plan, FFY 2025-2027
+  - key: us-il/manual/dhs/csmm/33527
+    name: 'PM 06-20-00: Health Benefits for Persons with Breast or Cervical Cancer (BCC)'
     layer: state
-    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    citation_path: us-il/manual/dhs/csmm/33527
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/33528
+    name: 'PM 06-20-02:  BCC Eligibility Criteria'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/33528
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/61206
+    name: PM 06-25-01 Determining Nonfinancial Eligibility
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/61206
     source_url: null
     part: Household and eligibility
     sources:
@@ -41788,6 +42423,36 @@ layers:
     layer: state
     citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-il-medicaid-state-plan.yaml
+    manifest: manifests/us-il-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-il/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-il-medicaid-state-plan.yaml
+    manifest: manifests/us-il-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-il/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-il-medicaid-state-plan.yaml
+    manifest: manifests/us-il-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-il/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Illinois Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-il/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=3
     sources:
     - manifests/us-il-medicaid-state-plan.yaml
     manifest: manifests/us-il-medicaid-state-plan.yaml
@@ -42460,6 +43125,26 @@ layers:
     manifest: manifests/us-in-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-in/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Indiana Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-in/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-in-medicaid-state-plan.yaml
+    manifest: manifests/us-in-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-in/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Indiana Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-in/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-in-medicaid-state-plan.yaml
+    manifest: manifests/us-in-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-in/policy/cms/medicaid-state-plan/spa/in-25-0004/approval-document
     name: 'Indiana Medicaid SPA IN-25-0004: Approval Document (approved September 19, 2025, effective July 1, 2025)'
     layer: state
@@ -43093,6 +43778,36 @@ layers:
     manifest: manifests/us-ia-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ia/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ia-medicaid-state-plan.yaml
+    manifest: manifests/us-ia-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ia/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ia-medicaid-state-plan.yaml
+    manifest: manifests/us-ia-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ia/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ia-medicaid-state-plan.yaml
+    manifest: manifests/us-ia-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ia/policy/cms/medicaid-state-plan/spa/ia-25-0025/approval-document
     name: 'Iowa Medicaid SPA IA-25-0025: Approval Document (approved October 17, 2025, effective August 1, 2025)'
     layer: state
@@ -43654,6 +44369,7 @@ layers:
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
     scope: in
   - key: us-ks/guidance/klrd/briefing-book-2026/childrens-eligibility-chip-mchip-medicaid-hcbs
     name: 'KLRD Briefing Book 2026: Children''s Eligibility for CHIP, MCHIP, Medicaid, and HCBS, including information
@@ -43691,6 +44407,66 @@ layers:
     layer: state
     citation_path: us-ks/manual/kdhe/medicaid/kfmam-01000
     source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=01000
+    sources:
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ks/manual/kdhe/medicaid/kfmam-03000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 03000'
+    layer: state
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-03000
+    source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=03000
+    sources:
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ks/manual/kdhe/medicaid/kfmam-04000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 04000'
+    layer: state
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-04000
+    source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=04000
+    sources:
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ks/manual/kdhe/medicaid/kfmam-05000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 05000'
+    layer: state
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-05000
+    source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=05000
+    sources:
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ks/manual/kdhe/medicaid/kfmam-06000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 06000'
+    layer: state
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-06000
+    source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=06000
+    sources:
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ks/manual/kdhe/medicaid/kfmam-07000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 07000'
+    layer: state
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-07000
+    source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=07000
+    sources:
+    - manifests/us-ks-medicaid-eligibility-manual.yaml
+    manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
+    scope: in
+    part: Other
+  - key: us-ks/manual/kdhe/medicaid/kfmam-08000
+    name: 'Kansas Family Medical Assistance Manual (KFMAM): Chapter 08000'
+    layer: state
+    citation_path: us-ks/manual/kdhe/medicaid/kfmam-08000
+    source_url: https://khap2.kdhe.state.ks.us/kfmam/main.asp?tier1=08000
     sources:
     - manifests/us-ks-medicaid-eligibility-manual.yaml
     manifest: manifests/us-ks-medicaid-eligibility-manual.yaml
@@ -44889,6 +45665,26 @@ layers:
     manifest: manifests/us-ks-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ks/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Kansas Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-ks/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ks-medicaid-state-plan.yaml
+    manifest: manifests/us-ks-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ks/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Kansas Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-ks/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ks-medicaid-state-plan.yaml
+    manifest: manifests/us-ks-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ks/policy/cms/medicaid-state-plan/spa/ks-24-0002/approval-document
     name: 'Kansas Medicaid SPA KS-24-0002: Approval Document (approved April 4, 2024, effective January 1, 2024)'
     layer: state
@@ -45201,6 +45997,16 @@ layers:
     layer: state
     citation_path: us-ky/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-ky-medicaid-state-plan.yaml
+    manifest: manifests/us-ky-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ky/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Kentucky Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-ky/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=1
     sources:
     - manifests/us-ky-medicaid-state-plan.yaml
     manifest: manifests/us-ky-medicaid-state-plan.yaml
@@ -46526,6 +47332,56 @@ layers:
     manifest: manifests/us-la-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-la/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+    layer: state
+    citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-la-medicaid-state-plan.yaml
+    manifest: manifests/us-la-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-la/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+    layer: state
+    citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-la-medicaid-state-plan.yaml
+    manifest: manifests/us-la-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-la/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+    layer: state
+    citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-la-medicaid-state-plan.yaml
+    manifest: manifests/us-la-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-la/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+    layer: state
+    citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-la-medicaid-state-plan.yaml
+    manifest: manifests/us-la-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-la/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'Louisiana Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+    layer: state
+    citation_path: us-la/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=5
+    sources:
+    - manifests/us-la-medicaid-state-plan.yaml
+    manifest: manifests/us-la-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-la/policy/cms/medicaid-state-plan/spa/la-25-0013/approval-document
     name: 'Louisiana Medicaid SPA LA-25-0013: Approval Document (approved November 3, 2025, effective July 1, 2025)'
     layer: state
@@ -47012,6 +47868,36 @@ layers:
     layer: state
     citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-me-medicaid-state-plan.yaml
+    manifest: manifests/us-me-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-me/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-me-medicaid-state-plan.yaml
+    manifest: manifests/us-me-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-me/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-me-medicaid-state-plan.yaml
+    manifest: manifests/us-me-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-me/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Maine Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-me/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=3
     sources:
     - manifests/us-me-medicaid-state-plan.yaml
     manifest: manifests/us-me-medicaid-state-plan.yaml
@@ -47751,6 +48637,26 @@ layers:
     layer: state
     citation_path: us-md/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-md-medicaid-state-plan.yaml
+    manifest: manifests/us-md-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-md/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Maryland Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-md/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-md-medicaid-state-plan.yaml
+    manifest: manifests/us-md-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-md/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Maryland Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-md/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-md-medicaid-state-plan.yaml
     manifest: manifests/us-md-medicaid-state-plan.yaml
@@ -48653,6 +49559,46 @@ layers:
     manifest: manifests/us-ma-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ma/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+    layer: state
+    citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ma-medicaid-state-plan.yaml
+    manifest: manifests/us-ma-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ma/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+    layer: state
+    citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ma-medicaid-state-plan.yaml
+    manifest: manifests/us-ma-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ma/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+    layer: state
+    citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ma-medicaid-state-plan.yaml
+    manifest: manifests/us-ma-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ma/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Massachusetts Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+    layer: state
+    citation_path: us-ma/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-ma-medicaid-state-plan.yaml
+    manifest: manifests/us-ma-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ma/policy/cms/medicaid-state-plan/spa/ma-25-0023/approval-document
     name: 'Massachusetts Medicaid SPA MA-25-0023: Approval Document (approved July 24, 2026, effective September
       1, 2025)'
@@ -49227,6 +50173,36 @@ layers:
     layer: state
     citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-mi-medicaid-state-plan.yaml
+    manifest: manifests/us-mi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mi/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-mi-medicaid-state-plan.yaml
+    manifest: manifests/us-mi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mi/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-mi-medicaid-state-plan.yaml
+    manifest: manifests/us-mi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mi/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Michigan Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-mi/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=3
     sources:
     - manifests/us-mi-medicaid-state-plan.yaml
     manifest: manifests/us-mi-medicaid-state-plan.yaml
@@ -53288,6 +54264,46 @@ layers:
     manifest: manifests/us-mn-medicaid-state-plan.yaml
     scope: in
     part: Benefit amount
+  - key: us-mn/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+    layer: state
+    citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-mn-medicaid-state-plan.yaml
+    manifest: manifests/us-mn-medicaid-state-plan.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-mn/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+    layer: state
+    citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-mn-medicaid-state-plan.yaml
+    manifest: manifests/us-mn-medicaid-state-plan.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-mn/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+    layer: state
+    citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-mn-medicaid-state-plan.yaml
+    manifest: manifests/us-mn-medicaid-state-plan.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-mn/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Minnesota Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+    layer: state
+    citation_path: us-mn/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-mn-medicaid-state-plan.yaml
+    manifest: manifests/us-mn-medicaid-state-plan.yaml
+    scope: in
+    part: Benefit amount
   - key: us-mn/policy/cms/medicaid-state-plan/spa/mn-24-0036/approval-document
     name: 'Minnesota Medicaid SPA MN-24-0036: Approval Document (approved December 10, 2024, effective July 1, 2024)'
     layer: state
@@ -54440,6 +55456,26 @@ layers:
     layer: state
     citation_path: us-ms/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-ms-medicaid-state-plan.yaml
+    manifest: manifests/us-ms-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ms/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Mississippi Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-ms/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ms-medicaid-state-plan.yaml
+    manifest: manifests/us-ms-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ms/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Mississippi Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-ms/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-ms-medicaid-state-plan.yaml
     manifest: manifests/us-ms-medicaid-state-plan.yaml
@@ -60628,6 +61664,26 @@ layers:
     manifest: manifests/us-mo-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-mo/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Missouri Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-mo/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-mo-medicaid-state-plan.yaml
+    manifest: manifests/us-mo-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mo/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Missouri Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-mo/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-mo-medicaid-state-plan.yaml
+    manifest: manifests/us-mo-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-mo/policy/cms/medicaid-state-plan/spa/mo-24-0001/approval-document
     name: 'Missouri Medicaid SPA MO-24-0001: Approval Document (approved March 15, 2024, effective January 1, 2024)'
     layer: state
@@ -62308,6 +63364,46 @@ layers:
     manifest: manifests/us-mt-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-mt/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+    layer: state
+    citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-mt-medicaid-state-plan.yaml
+    manifest: manifests/us-mt-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mt/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+    layer: state
+    citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-mt-medicaid-state-plan.yaml
+    manifest: manifests/us-mt-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mt/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+    layer: state
+    citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-mt-medicaid-state-plan.yaml
+    manifest: manifests/us-mt-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-mt/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Montana Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+    layer: state
+    citation_path: us-mt/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-mt-medicaid-state-plan.yaml
+    manifest: manifests/us-mt-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-mt/policy/cms/medicaid-state-plan/spa/mt-23-0007/approval-document
     name: 'Montana Medicaid SPA MT-23-0007: Approval Document (approved April 4, 2024, effective May 12, 2024)'
     layer: state
@@ -63666,6 +64762,26 @@ layers:
     layer: state
     citation_path: us-ne/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-ne-medicaid-state-plan.yaml
+    manifest: manifests/us-ne-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ne/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Nebraska Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-ne/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ne-medicaid-state-plan.yaml
+    manifest: manifests/us-ne-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ne/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Nebraska Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-ne/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-ne-medicaid-state-plan.yaml
     manifest: manifests/us-ne-medicaid-state-plan.yaml
@@ -65160,6 +66276,26 @@ layers:
     layer: state
     citation_path: us-nv/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-nv-medicaid-state-plan.yaml
+    manifest: manifests/us-nv-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nv/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Nevada Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-nv/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-nv-medicaid-state-plan.yaml
+    manifest: manifests/us-nv-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nv/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Nevada Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-nv/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-nv-medicaid-state-plan.yaml
     manifest: manifests/us-nv-medicaid-state-plan.yaml
@@ -71719,6 +72855,36 @@ layers:
     manifest: manifests/us-nh-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-nh/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-nh-medicaid-state-plan.yaml
+    manifest: manifests/us-nh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nh/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-nh-medicaid-state-plan.yaml
+    manifest: manifests/us-nh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nh/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'New Hampshire Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-nh/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-nh-medicaid-state-plan.yaml
+    manifest: manifests/us-nh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-nh/policy/cms/medicaid-state-plan/spa/nh-26-0001/approval-document
     name: 'New Hampshire Medicaid SPA NH-26-0001: Approval Document (approved April 13, 2026, effective January
       1, 2026)'
@@ -72269,6 +73435,26 @@ layers:
     layer: state
     citation_path: us-nj/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-nj-medicaid-state-plan.yaml
+    manifest: manifests/us-nj-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nj/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'New Jersey Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-nj/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-nj-medicaid-state-plan.yaml
+    manifest: manifests/us-nj-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nj/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'New Jersey Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-nj/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-nj-medicaid-state-plan.yaml
     manifest: manifests/us-nj-medicaid-state-plan.yaml
@@ -73669,6 +74855,16 @@ layers:
     manifest: manifests/us-nm-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-nm/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'New Mexico Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-nm/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1006&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-nm-medicaid-state-plan.yaml
+    manifest: manifests/us-nm-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-nm/policy/cms/medicaid-state-plan/spa/nm-23-0005/approval-document
     name: 'New Mexico Medicaid SPA NM-23-0005: Approval Document (approved March 22, 2024, effective January 1,
       2023)'
@@ -74034,6 +75230,86 @@ layers:
     layer: state
     citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=5
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p07
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 7 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p07
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=6
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p08
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 8 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p08
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=7
+    sources:
+    - manifests/us-ny-medicaid-state-plan.yaml
+    manifest: manifests/us-ny-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ny/policy/cms/medicaid-state-plan/spa-index/p09
+    name: 'New York Medicaid state plan amendments on medicaid.gov: SPA index page 9 of 9'
+    layer: state
+    citation_path: us-ny/policy/cms/medicaid-state-plan/spa-index/p09
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=8
     sources:
     - manifests/us-ny-medicaid-state-plan.yaml
     manifest: manifests/us-ny-medicaid-state-plan.yaml
@@ -76063,6 +77339,46 @@ layers:
     layer: state
     citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-nc-medicaid-state-plan.yaml
+    manifest: manifests/us-nc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+    layer: state
+    citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-nc-medicaid-state-plan.yaml
+    manifest: manifests/us-nc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+    layer: state
+    citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-nc-medicaid-state-plan.yaml
+    manifest: manifests/us-nc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+    layer: state
+    citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-nc-medicaid-state-plan.yaml
+    manifest: manifests/us-nc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nc/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'North Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+    layer: state
+    citation_path: us-nc/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=4
     sources:
     - manifests/us-nc-medicaid-state-plan.yaml
     manifest: manifests/us-nc-medicaid-state-plan.yaml
@@ -78458,6 +79774,36 @@ layers:
     manifest: manifests/us-nd-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-nd/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-nd-medicaid-state-plan.yaml
+    manifest: manifests/us-nd-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nd/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-nd-medicaid-state-plan.yaml
+    manifest: manifests/us-nd-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-nd/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'North Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-nd/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-nd-medicaid-state-plan.yaml
+    manifest: manifests/us-nd-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-nd/policy/cms/medicaid-state-plan/spa/nd-25-0015/approval-document
     name: 'North Dakota Medicaid SPA ND-25-0015: Approval Document (approved September 15, 2025, effective July
       1, 2025)'
@@ -79822,6 +81168,56 @@ layers:
     layer: state
     citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-oh-medicaid-state-plan.yaml
+    manifest: manifests/us-oh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-oh/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+    layer: state
+    citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-oh-medicaid-state-plan.yaml
+    manifest: manifests/us-oh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-oh/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+    layer: state
+    citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-oh-medicaid-state-plan.yaml
+    manifest: manifests/us-oh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-oh/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+    layer: state
+    citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-oh-medicaid-state-plan.yaml
+    manifest: manifests/us-oh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-oh/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+    layer: state
+    citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-oh-medicaid-state-plan.yaml
+    manifest: manifests/us-oh-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-oh/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'Ohio Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+    layer: state
+    citation_path: us-oh/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=5
     sources:
     - manifests/us-oh-medicaid-state-plan.yaml
     manifest: manifests/us-oh-medicaid-state-plan.yaml
@@ -84548,6 +85944,36 @@ layers:
     manifest: manifests/us-ok-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ok/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Oklahoma Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-ok/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=971&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ok-medicaid-state-plan.yaml
+    manifest: manifests/us-ok-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ok/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Oklahoma Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-ok/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=971&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ok-medicaid-state-plan.yaml
+    manifest: manifests/us-ok-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ok/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Oklahoma Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-ok/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=971&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ok-medicaid-state-plan.yaml
+    manifest: manifests/us-ok-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ok/policy/cms/medicaid-state-plan/spa/ok-24-0011/approval-document
     name: 'Oklahoma Medicaid SPA OK-24-0011: Approval Document (approved August 22, 2024, effective June 14, 2024)'
     layer: state
@@ -85068,6 +86494,26 @@ layers:
     layer: state
     citation_path: us-or/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-or-medicaid-state-plan.yaml
+    manifest: manifests/us-or-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-or/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Oregon Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-or/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-or-medicaid-state-plan.yaml
+    manifest: manifests/us-or-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-or/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Oregon Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-or/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-or-medicaid-state-plan.yaml
     manifest: manifests/us-or-medicaid-state-plan.yaml
@@ -89171,6 +90617,56 @@ layers:
     manifest: manifests/us-pa-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-pa/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 6'
+    layer: state
+    citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-pa-medicaid-state-plan.yaml
+    manifest: manifests/us-pa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 6'
+    layer: state
+    citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-pa-medicaid-state-plan.yaml
+    manifest: manifests/us-pa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 6'
+    layer: state
+    citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-pa-medicaid-state-plan.yaml
+    manifest: manifests/us-pa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 6'
+    layer: state
+    citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-pa-medicaid-state-plan.yaml
+    manifest: manifests/us-pa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-pa/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'Pennsylvania Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 6'
+    layer: state
+    citation_path: us-pa/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=5
+    sources:
+    - manifests/us-pa-medicaid-state-plan.yaml
+    manifest: manifests/us-pa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-pa/policy/cms/medicaid-state-plan/spa/pa-26-0001/approval-document
     name: 'Pennsylvania Medicaid SPA PA-26-0001: Approval Document (approved April 8, 2026, effective January 1,
       2026)'
@@ -90021,6 +91517,26 @@ layers:
     manifest: manifests/us-ri-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ri/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Rhode Island Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-ri/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ri-medicaid-state-plan.yaml
+    manifest: manifests/us-ri-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ri/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Rhode Island Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-ri/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ri-medicaid-state-plan.yaml
+    manifest: manifests/us-ri-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ri/policy/cms/medicaid-state-plan/spa/ri-26-0003/approval-document
     name: 'Rhode Island Medicaid SPA RI-26-0003: Approval Document (approved April 13, 2026, effective February
       1, 2026)'
@@ -90683,6 +92199,26 @@ layers:
     manifest: manifests/us-sc-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-sc/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'South Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-sc/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-sc-medicaid-state-plan.yaml
+    manifest: manifests/us-sc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-sc/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'South Carolina Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-sc/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-sc-medicaid-state-plan.yaml
+    manifest: manifests/us-sc-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-sc/policy/cms/medicaid-state-plan/spa/sc-25-0011/approval-document
     name: 'South Carolina Medicaid SPA SC-25-0011: Approval Document (approved March 16, 2026, effective October
       1, 2025)'
@@ -91158,6 +92694,16 @@ layers:
     layer: state
     citation_path: us-sd/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-sd-medicaid-state-plan.yaml
+    manifest: manifests/us-sd-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-sd/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'South Dakota Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-sd/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&limit=100&sort=field_approval_date%3Adesc&page=1
     sources:
     - manifests/us-sd-medicaid-state-plan.yaml
     manifest: manifests/us-sd-medicaid-state-plan.yaml
@@ -100005,6 +101551,66 @@ layers:
     manifest: manifests/us-tx-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 7'
+    layer: state
+    citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-tx-medicaid-state-plan.yaml
+    manifest: manifests/us-tx-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 7'
+    layer: state
+    citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-tx-medicaid-state-plan.yaml
+    manifest: manifests/us-tx-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 7'
+    layer: state
+    citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-tx-medicaid-state-plan.yaml
+    manifest: manifests/us-tx-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 7'
+    layer: state
+    citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-tx-medicaid-state-plan.yaml
+    manifest: manifests/us-tx-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p06
+    name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 6 of 7'
+    layer: state
+    citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p06
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=5
+    sources:
+    - manifests/us-tx-medicaid-state-plan.yaml
+    manifest: manifests/us-tx-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-tx/policy/cms/medicaid-state-plan/spa-index/p07
+    name: 'Texas Medicaid state plan amendments on medicaid.gov: SPA index page 7 of 7'
+    layer: state
+    citation_path: us-tx/policy/cms/medicaid-state-plan/spa-index/p07
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=6
+    sources:
+    - manifests/us-tx-medicaid-state-plan.yaml
+    manifest: manifests/us-tx-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-tx/policy/cms/medicaid-state-plan/spa/tx-24-0001/approval-document
     name: 'Texas Medicaid SPA TX-24-0001: Approval Document (approved May 15, 2024, effective January 1, 2024)'
     layer: state
@@ -106744,6 +108350,36 @@ layers:
     manifest: manifests/us-ut-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-ut/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-ut-medicaid-state-plan.yaml
+    manifest: manifests/us-ut-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ut/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-ut-medicaid-state-plan.yaml
+    manifest: manifests/us-ut-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-ut/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Utah Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-ut/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-ut-medicaid-state-plan.yaml
+    manifest: manifests/us-ut-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-ut/policy/cms/medicaid-state-plan/spa/ut-25-0024/approval-document
     name: 'Utah Medicaid SPA UT-25-0024: Approval Document (approved February 11, 2026, effective January 1, 2026)'
     layer: state
@@ -107151,6 +108787,26 @@ layers:
     layer: state
     citation_path: us-vt/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-vt-medicaid-state-plan.yaml
+    manifest: manifests/us-vt-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-vt/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Vermont Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-vt/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-vt-medicaid-state-plan.yaml
+    manifest: manifests/us-vt-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-vt/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Vermont Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-vt/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=2
     sources:
     - manifests/us-vt-medicaid-state-plan.yaml
     manifest: manifests/us-vt-medicaid-state-plan.yaml
@@ -107819,6 +109475,26 @@ layers:
     manifest: manifests/us-va-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-va/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+    layer: state
+    citation_path: us-va/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-va-medicaid-state-plan.yaml
+    manifest: manifests/us-va-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-va/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+    layer: state
+    citation_path: us-va/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-va-medicaid-state-plan.yaml
+    manifest: manifests/us-va-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-va/policy/cms/medicaid-state-plan/spa/va-26-0005/approval-document
     name: 'Virginia Medicaid SPA VA-26-0005: Approval Document (approved August 11, 2026, effective April 1, 2026)'
     layer: state
@@ -108130,6 +109806,16 @@ layers:
     part: Other
 - jurisdiction: us-wa
   screener:
+  - key: https://app.leg.wa.gov/wac/default.aspx?cite=182-525-0300
+    name: app.leg.wa.gov/wac/default.aspx
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/wac/default.aspx?cite=182-525-0300
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
   - key: us-wa/guidance/hca/apple-health-expansion
     name: 'Washington HCA: Apple Health Expansion'
     layer: state
@@ -108174,20 +109860,77 @@ layers:
     - path: us-wa/guidance/hca/income-and-resource-standards/2026-07-01
       references: 1
       part: Income
-  - key: us-wa/regulation/388/388-414/388-414-0001
-    name: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  - key: us-wa/regulation/182/182-505/182-505-0100
+    name: us-wa/regulation/182/182-505/182-505-0100
     layer: state
-    citation_path: us-wa/regulation/388/388-414/388-414-0001
+    citation_path: us-wa/regulation/182/182-505/182-505-0100
     source_url: null
     sources:
     - policyengine-references
     - plan
-    references: 6
+    references: 1
     scope: in
     part: Income
     cited:
-    - path: us-wa/regulation/388/388-414/388-414-0001
-      references: 6
+    - path: us-wa/regulation/182/182-505/182-505-0100
+      references: 1
+      part: Income
+  - key: us-wa/regulation/182/182-505/182-505-0210
+    name: us-wa/regulation/182/182-505/182-505-0210
+    layer: state
+    citation_path: us-wa/regulation/182/182-505/182-505-0210
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-wa/regulation/182/182-505/182-505-0210
+      references: 1
+      part: Household and eligibility
+  - key: us-wa/regulation/182/182-505/182-505-0225
+    name: us-wa/regulation/182/182-505/182-505-0225
+    layer: state
+    citation_path: us-wa/regulation/182/182-505/182-505-0225
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-wa/regulation/182/182-505/182-505-0225
+      references: 1
+      part: Benefit amount
+  - key: us-wa/regulation/182/182-512/182-512-0010
+    name: us-wa/regulation/182/182-512/182-512-0010
+    layer: state
+    citation_path: us-wa/regulation/182/182-512/182-512-0010
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-wa/regulation/182/182-512/182-512-0010
+      references: 1
+      part: Income
+  - key: us-wa/regulation/182/182-512/182-512-0100
+    name: us-wa/regulation/182/182-512/182-512-0100
+    layer: state
+    citation_path: us-wa/regulation/182/182-512/182-512-0100
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-wa/regulation/182/182-512/182-512-0100
+      references: 1
       part: Income
   - key: us-wa/statute/74/74.09
     name: us-wa/statute/74/74.09
@@ -108219,6 +109962,15 @@ layers:
       references: 1
       part: Household and eligibility
   full:
+  - key: https://app.leg.wa.gov/wac/default.aspx?cite=182-525-0300
+    name: app.leg.wa.gov/wac/default.aspx
+    layer: state
+    citation_path: null
+    source_url: https://app.leg.wa.gov/wac/default.aspx?cite=182-525-0300
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
   - key: us-wa/guidance/hca/apple-health-expansion
     name: 'Washington HCA: Apple Health Expansion'
     layer: state
@@ -108246,10 +109998,46 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-wa/regulation/388/388-414/388-414-0001
-    name: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  - key: us-wa/regulation/182/182-505/182-505-0100
+    name: us-wa/regulation/182/182-505/182-505-0100
     layer: state
-    citation_path: us-wa/regulation/388/388-414/388-414-0001
+    citation_path: us-wa/regulation/182/182-505/182-505-0100
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/182/182-505/182-505-0210
+    name: us-wa/regulation/182/182-505/182-505-0210
+    layer: state
+    citation_path: us-wa/regulation/182/182-505/182-505-0210
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/182/182-505/182-505-0225
+    name: us-wa/regulation/182/182-505/182-505-0225
+    layer: state
+    citation_path: us-wa/regulation/182/182-505/182-505-0225
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/182/182-512/182-512-0010
+    name: us-wa/regulation/182/182-512/182-512-0010
+    layer: state
+    citation_path: us-wa/regulation/182/182-512/182-512-0010
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/182/182-512/182-512-0100
+    name: us-wa/regulation/182/182-512/182-512-0100
+    layer: state
+    citation_path: us-wa/regulation/182/182-512/182-512-0100
     source_url: null
     part: Income
     sources:
@@ -110391,6 +112179,46 @@ layers:
     manifest: manifests/us-wa-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-wa/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 5'
+    layer: state
+    citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-wa-medicaid-state-plan.yaml
+    manifest: manifests/us-wa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wa/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 5'
+    layer: state
+    citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-wa-medicaid-state-plan.yaml
+    manifest: manifests/us-wa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wa/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 5'
+    layer: state
+    citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=3
+    sources:
+    - manifests/us-wa-medicaid-state-plan.yaml
+    manifest: manifests/us-wa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wa/policy/cms/medicaid-state-plan/spa-index/p05
+    name: 'Washington Medicaid state plan amendments on medicaid.gov: SPA index page 5 of 5'
+    layer: state
+    citation_path: us-wa/policy/cms/medicaid-state-plan/spa-index/p05
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=4
+    sources:
+    - manifests/us-wa-medicaid-state-plan.yaml
+    manifest: manifests/us-wa-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-wa/policy/cms/medicaid-state-plan/spa/wa-26-0001/approval-document
     name: 'Washington Medicaid SPA WA-26-0001: Approval Document (approved June 23, 2026, effective July 1, 2026)'
     layer: state
@@ -110855,6 +112683,16 @@ layers:
     manifest: manifests/us-wv-medicaid-state-plan.yaml
     scope: in
     part: Household and eligibility
+  - key: us-wv/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'West Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-wv/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=731&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-wv-medicaid-state-plan.yaml
+    manifest: manifests/us-wv-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
   - key: us-wv/policy/cms/medicaid-state-plan/spa/wv-25-0001/approval-document
     name: 'West Virginia Medicaid SPA WV-25-0001: Approval Document (approved September 22, 2025, effective January
       1, 2025)'
@@ -111160,6 +112998,36 @@ layers:
     layer: state
     citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-wi-medicaid-state-plan.yaml
+    manifest: manifests/us-wi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wi/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+    layer: state
+    citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=1
+    sources:
+    - manifests/us-wi-medicaid-state-plan.yaml
+    manifest: manifests/us-wi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wi/policy/cms/medicaid-state-plan/spa-index/p03
+    name: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+    layer: state
+    citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p03
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=2
+    sources:
+    - manifests/us-wi-medicaid-state-plan.yaml
+    manifest: manifests/us-wi-medicaid-state-plan.yaml
+    scope: in
+    part: Household and eligibility
+  - key: us-wi/policy/cms/medicaid-state-plan/spa-index/p04
+    name: 'Wisconsin Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+    layer: state
+    citation_path: us-wi/policy/cms/medicaid-state-plan/spa-index/p04
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=3
     sources:
     - manifests/us-wi-medicaid-state-plan.yaml
     manifest: manifests/us-wi-medicaid-state-plan.yaml
@@ -111884,6 +113752,16 @@ layers:
     layer: state
     citation_path: us-wy/policy/cms/medicaid-state-plan/spa-index/p01
     source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&limit=100&sort=field_approval_date%3Adesc&page=0
+    sources:
+    - manifests/us-wy-medicaid-state-plan.yaml
+    manifest: manifests/us-wy-medicaid-state-plan.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-wy/policy/cms/medicaid-state-plan/spa-index/p02
+    name: 'Wyoming Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+    layer: state
+    citation_path: us-wy/policy/cms/medicaid-state-plan/spa-index/p02
+    source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&limit=100&sort=field_approval_date%3Adesc&page=1
     sources:
     - manifests/us-wy-medicaid-state-plan.yaml
     manifest: manifests/us-wy-medicaid-state-plan.yaml
