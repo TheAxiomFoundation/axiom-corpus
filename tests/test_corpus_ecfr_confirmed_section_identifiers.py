@@ -619,6 +619,91 @@ def test_whole_titles_with_every_family_keep_unique_valid_paths():
         assert all(record.body is not None for record in records.values() if record.kind == "section")
 
 
+# --- Evidence and headings ---------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    ("part", "identifiers", "named"),
+    [
+        ("241", PART_241_SECTIONS, frozenset()),
+        # The dotted spelling names the hyphenated part itself, not part 105.
+        ("105-60", ["105-60.000", "105.60.001", "105-60.100"], frozenset({"105-60"})),
+        # XML N values are read bare, as the reading reads them; a stray space is not evidence.
+        ("52", ["§ 52.35", " 52.34 ", "52. 36"], frozenset({"52"})),
+        ("3140", ["3140.1", "3141.3", "3141. 5"], frozenset({"3140", "3141"})),
+        ("956", ["956.1 (Rule 1)", "956.4"], frozenset({"956"})),
+    ],
+)
+def test_section_named_parts(part, identifiers, named):
+    assert ecfr._section_named_parts(part, identifiers) == named
+
+
+def _part_nodes(node):
+    if node["type"] == "part":
+        yield node
+    for child in node.get("children", []):
+        yield from _part_nodes(child)
+
+
+def test_evidence_is_the_same_from_structure_and_xml():
+    for structure, xml in (
+        (TITLE_14_STRUCTURE, TITLE_14_XML),
+        (TITLE_41_STRUCTURE, TITLE_41_XML),
+        (TITLE_36_STRUCTURE, TITLE_36_XML),
+        (TITLE_39_STRUCTURE, TITLE_39_XML),
+        (TITLE_43_STRUCTURE, TITLE_43_XML),
+    ):
+        div5 = {elem.get("N"): elem for elem in ET.fromstring(xml).iter("DIV5")}
+        for node in _part_nodes(structure):
+            assert ecfr._structure_named_parts(node) == ecfr._element_named_parts(
+                div5[node["identifier"]]
+            )
+
+
+def test_stray_space_naming_the_first_number_of_a_hyphenated_part_stays_unread():
+    # "105. 5" beside "105.60.001": part 105-60 names no part 105.
+    named = ecfr._section_named_parts("105-60", ["105-60.000", "105.60.001"])
+    assert ecfr._section_citation_from_identifier(
+        41, "105. 5", "105-60", named_parts=named
+    ) is None
+
+
+def test_stray_space_confirmed_by_a_sibling_whose_n_carries_a_section_sign():
+    xml = TITLE_36_XML.replace('<DIV8 N="52.35"', '<DIV8 N="§ 52.35"')
+    records = [record.citation_path for record in _records(xml, TITLE_36_STRUCTURE)]
+    assert records[-2:] == ["us/regulation/36/52/35", "us/regulation/36/52/36"]
+
+
+@pytest.mark.parametrize(
+    ("heading", "designation", "expected"),
+    [
+        ("Sec. 1-1 Applicability.", "1-1", "Applicability."),
+        ("Section 03 Definitions", "03", "Definitions"),
+        ("§ 52. 36 What access?", "52. 36", "What access?"),
+        ("§ 52.  36 What access?", "52. 36", "What access?"),
+        ("19-8.1 Purpose.", "19-8.1", "Purpose."),
+        # Only the whole designation goes, not the start of a longer number.
+        ("10 Things", "1", "10 Things"),
+        ("19-8.1 Purpose.", "19-8", "19-8.1 Purpose."),
+        ("Applicability.", "1-1", "Applicability."),
+        ("Sec. 1-1 Applicability.", None, "Sec. 1-1 Applicability."),
+    ],
+)
+def test_without_designation(heading, designation, expected):
+    assert ecfr._without_designation(heading, designation) == expected
+
+
+def test_local_source_xml_structure_carries_the_designated_heading():
+    structure = ecfr._scoped_structure_from_part_xml(
+        TITLE_14_XML, title=14, part="241", only_sections=("241.1-1", "241.03")
+    )
+    sections = structure["children"][0]["children"]
+    assert [(node["identifier"], node["label_description"]) for node in sections] == [
+        ("241.1-1", "Applicability of system of accounts and reports"),
+        ("241.03", "Definitions for Purposes of This System of Accounts and Reports"),
+    ]
+
+
 # --- Properties ---------------------------------------------------------------------
 
 

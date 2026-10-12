@@ -387,7 +387,7 @@ def test_section_selector_still_rejects_malformed_hyphenated_parts(selector):
 
 def test_hyphenated_selector_selects_only_a_section_under_that_part():
     # eCFR files 41 CFR 105-60.001 under part 105-60 with the identifier "105.60.001",
-    # which the alphanumeric grammar reads as part 105, as it did before this change.
+    # the dotted spelling of the part (test_corpus_ecfr_confirmed_section_identifiers.py).
     structure = {"identifier": "41", "type": "title", "children": [{
         "identifier": "105-60", "label": "Part 105-60—Public Availability", "type": "part",
         "children": [{"identifier": "A", "label": "Subpart A—General", "type": "subpart",
@@ -399,7 +399,7 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
         "us/regulation/41/105-60",
         "us/regulation/41/105-60/subpart-A",
         "us/regulation/41/105-60/000",
-        "us/regulation/41/105/60.001",
+        "us/regulation/41/105-60/001",
     ]
 
     selected = build_ecfr_inventory_from_structures(
@@ -407,7 +407,9 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
     )
     assert selected.part_count == 1
     assert _paths(selected.items) == whole[:3]
-    # Its part and section would spell "105-60.60.001", but its path is not under 105-60.
+    dotted = build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.001",))
+    assert _paths(dotted.items) == [*whole[:2], whole[3]]
+    # Neither the earlier reading's spelling nor eCFR's own selects it.
     with pytest.raises(ValueError, match="not found: 105-60.60.001"):
         build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.60.001",))
     with pytest.raises(ValueError, match="not found: 105.60.001"):
