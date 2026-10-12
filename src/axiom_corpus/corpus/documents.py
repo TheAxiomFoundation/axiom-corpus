@@ -3795,7 +3795,7 @@ def _normalize_preformatted_text(text: str) -> str:
     with line breaks, so ``_normalize_text`` of the result is ``_normalize_text``
     of the input.
     """
-    text = text.replace("​", "").replace("﻿", "")
+    text = text.replace("\u200b", "").replace("\ufeff", "")
     paragraphs: list[str] = []
     current: list[str] = []
     for raw_line in text.splitlines():

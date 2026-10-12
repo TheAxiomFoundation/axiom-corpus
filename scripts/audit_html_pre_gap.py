@@ -114,11 +114,11 @@ def _json_strings(value: Any) -> Iterator[str]:
 
 
 def words(text: str | None) -> int:
-    return len((text or "").replace("​", "").replace("﻿", "").split())
+    return len((text or "").replace("\u200b", "").replace("\ufeff", "").split())
 
 
 def _squeeze(text: str) -> str:
-    return "".join(text.replace("​", "").replace("﻿", "").split())
+    return "".join(text.replace("\u200b", "").replace("\ufeff", "").split())
 
 
 def _rows_text(rows: Iterable[Row]) -> str:

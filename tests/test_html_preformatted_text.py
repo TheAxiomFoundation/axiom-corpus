@@ -176,7 +176,9 @@ def test_recovery_audit_walks_pre_nodes_as_the_extractor_does() -> None:
 
 
 _TEXT = st.text(
-    alphabet=st.sampled_from(list("ab .,-$1\t\n\r") + [" ", " ", "\x0c", "​", "﻿", "　"]),
+    alphabet=st.sampled_from(
+        list("ab .,-$1\t\n\r") + ["\u00a0", "\u2028", "\x0c", "\u200b", "\ufeff", "\u3000"]
+    ),
     max_size=80,
 )
 
