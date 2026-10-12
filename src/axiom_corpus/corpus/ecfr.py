@@ -379,8 +379,11 @@ def _part_scoped_section(part: str | None, identifier: str) -> tuple[str, str] |
     """
     if part is None or not re.fullmatch(_PART_IDENTIFIER_PATTERN, part):
         return None
-    match = re.fullmatch(rf"{re.escape(part)}\.({_SECTION_NUMBER_PATTERN})", identifier)
-    return (part, match.group(1)) if match else None
+    prefix = f"{part}."
+    section = identifier[len(prefix):]
+    if not identifier.startswith(prefix) or not re.fullmatch(_SECTION_NUMBER_PATTERN, section):
+        return None
+    return part, section
 
 
 def _section_citation_from_identifier(
