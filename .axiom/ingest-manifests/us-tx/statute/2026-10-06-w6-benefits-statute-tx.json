@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/statute/2026-10-06-w6-benefits-statute-tx.json",
+      "sha256": "fd71d631e09c4f1672a41d7abe7ba481cd34911fc052140dad6c6fb97522534e"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/statute/2026-10-06-w6-benefits-statute-tx.json",
+      "sha256": "4ecbd29db5a2dbe6c849a0e6484c9e2d577f69c826095ebc11a719da79d222ff"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/statute/2026-10-06-w6-benefits-statute-tx.jsonl",
+      "sha256": "3cb9f3e5538ab94fc81e1f8f9f53320974414491bdfde15debe4c2e23247167c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/statute/2026-10-06-w6-benefits-statute-tx/official-documents/us-tx-statute-session-laws-88r-hb1287.html",
+      "sha256": "9bebc043fbef15c47d52258a73fa787a18ba88be898214a3aa0a320915f90e74"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:59:10.621076+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3CIlKbil1PLZV5nU927pI83mqNW91lLw8kjnne2JHvdT3NmcFhUDnWl4jV5p6F8dgTdmxxDwVnQSUrOtoNApCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-tx"
+}

@@ -1,0 +1,121 @@
+version: 2026-10-06-w6-health-guidance-co
+documents:
+- source_id: us-co-w6-health-connect-for-health-colorado-omnisalud
+  jurisdiction: us-co
+  document_class: guidance
+  title: 'Connect for Health Colorado: OmniSalud'
+  source_url: https://connectforhealthco.com/get-started/omnisalud/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/guidance/connect-for-health-colorado/omnisalud
+  extraction:
+    html_content_selector: article
+  metadata:
+    primary_source: true
+    source_authority: Connect for Health Colorado (Colorado's state-based health insurance marketplace, C.R.S. 10-22-104)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-co/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 26
+    bundle_url: https://connectforhealthco.com/get-started/omnisalud/
+    final_url: https://connectforhealthco.com/new-customers/omnisalud/
+- source_id: us-co-w6-health-hcpf-health-first-colorado-health-coverage-for-immigrants
+  jurisdiction: us-co
+  document_class: guidance
+  title: 'Health First Colorado: Health Coverage for Immigrants'
+  source_url: https://www.healthfirstcolorado.com/health-coverage-for-immigrants/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
+  extraction:
+    html_content_selector: article
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Health Care Policy and Financing (HCPF)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-co/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 27
+    bundle_url: https://www.healthfirstcolorado.com/health-coverage-for-immigrants/
+    final_url: https://www.healthfirstcolorado.gov/health-coverage-for-immigrants/
+- source_id: us-co-w6-health-hcpf-child-health-plan-plus
+  jurisdiction: us-co
+  document_class: guidance
+  title: 'HCPF: Child Health Plan Plus (CHP+)'
+  source_url: https://hcpf.colorado.gov/child-health-plan-plus
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-co/guidance/hcpf/child-health-plan-plus
+  extraction:
+    html_content_selector: main
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Health Care Policy and Financing (HCPF)
+    program: CHIP
+    document_subtype: agency_program_page
+    source_discovery_group: us-co/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 30
+    bundle_url: https://hcpf.colorado.gov/child-health-plan-plus
+    access_note: hcpf.colorado.gov answers CloudFront 403 to the corpus client; browser impersonation as documented in docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+- source_id: us-co-w6-health-hcpf-chp-plus-income-chart-2022-04
+  jurisdiction: us-co
+  document_class: guidance
+  title: HCPF Child Health Plan Plus Monthly Maximum Income Guidelines (April 2022)
+  source_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-04-01'
+  citation_path: us-co/guidance/hcpf/chp-plus-income-chart/2022-04
+  extraction:
+    ocr: true
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Health Care Policy and Financing (HCPF)
+    program: CHIP
+    document_subtype: income_standards_chart_pdf
+    source_discovery_group: us-co/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 31
+    bundle_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf
+    access_note: hcpf.colorado.gov answers CloudFront 403 to the corpus client; browser impersonation as documented in docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md
+- source_id: us-co-w6-health-hcpf-chp-plus-income-chart-2023-04
+  jurisdiction: us-co
+  document_class: guidance
+  title: HCPF Child Health Plan Plus Monthly Maximum Income Guidelines (April 2023)
+  source_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-04-01'
+  citation_path: us-co/guidance/hcpf/chp-plus-income-chart/2023-04
+  extraction:
+    ocr: true
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Colorado Department of Health Care Policy and Financing (HCPF)
+    program: CHIP
+    document_subtype: income_standards_chart_pdf
+    source_discovery_group: us-co/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 32
+    bundle_url: https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf
+    access_note: hcpf.colorado.gov answers CloudFront 403 to the corpus client; browser impersonation as documented in docs/ingest-runs/2026-09-14-msp-charts-snap-fy2026.md

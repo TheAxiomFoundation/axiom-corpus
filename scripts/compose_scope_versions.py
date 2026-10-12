@@ -22,6 +22,7 @@ from pathlib import Path
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 
@@ -90,6 +91,9 @@ def compose_scope_versions(
         directory = (
             store.root / "sources" / jurisdiction / document_class / source_version
         )
+        # Corpus bytes may live outside git: fetch the whole constituent scope
+        # before listing its sources (docs/corpus-storage.md).
+        require_materialized([inventory_path, provisions_path, directory], fetch=True)
         for path in (inventory_path, provisions_path):
             if not path.is_file() or path.is_symlink():
                 raise ValueError(f"source artifact is not a regular file: {path}")

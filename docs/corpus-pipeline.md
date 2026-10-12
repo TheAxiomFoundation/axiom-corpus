@@ -238,6 +238,26 @@ axiom-corpus-ingest extract-usc \
   --section 1786
 ```
 
+For a historical vintage, pass the prior release point's zip with
+`--prior-release-point`. Every inventory item and provision row then takes
+`--source-url` (the release point download, required with the flag) as its
+`source_url`; without the flag, rows link to the per-section reader page for
+the current preliminary edition, which displays the current text rather than
+the snapshot's. Give the vintage its own version and set `--source-as-of` and
+`--expression-date` to the release point's date, so it stays distinct from
+the current-text scope that carries the same citation paths:
+
+```bash
+axiom-corpus-ingest extract-usc \
+  --base data/corpus \
+  --version 2026-09-23-tax-statute-policybench-rp-118-209 \
+  --source-zip xml_usc26@118-209not159.zip --title 26 \
+  --source-as-of 2024-12-23 --expression-date 2024-12-23 \
+  --source-url https://uscode.house.gov/download/releasepoints/us/pl/118/209not159/xml_usc26@118-209not159.zip \
+  --prior-release-point \
+  --section 67 --section 170
+```
+
 For a complete local US Code source directory:
 
 ```bash
@@ -367,6 +387,35 @@ axiom-corpus-ingest extract-official-documents \
   --version 2026-04-30 \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
+
+### Amended rule text in PDFs
+
+Register orders and agency letters often print amended rule text with deleted
+words struck through and inserted words underlined. The strike and underline
+are drawn rules, not text, so default PDF text extraction reads both as ordinary
+text. Three opt-in `extraction` keys in an official-document manifest handle
+such PDFs (default per-page segmentation only; without them extraction is
+unchanged):
+
+- `amendment_markup: true`, or a mapping with `start_page`/`end_page` (inclusive)
+  and optional `typographic_underlines`, writes the text with GNU wdiff
+  delimiters: `[-deleted text-]` for struck-through text and `{+inserted text+}`
+  for underlined text. Each marked page row carries
+  `metadata.amendment_markup` (the notation and its counts of deleted and
+  inserted runs). Removing the four delimiters gives back exactly the page text
+  extracted without the option. Limit the page range to the amended text so
+  that ordinary emphasis underlines elsewhere are not marked, and list in
+  `typographic_underlines` any exact phrase whose underline is citation
+  typography (an underlined case name, say) rather than an insertion. Extraction
+  fails if a page's own text already contains one of the delimiters, or if a
+  character is both struck through and underlined.
+- `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
+  drawn last in the content stream is read where it is printed.
+- `ignore_actual_text: true` extracts the visible glyphs even where the PDF's tag
+  tree supplies a replacement `/ActualText` (an empty one hides the text).
+
+See `manifests/us-ca-cdss-acl-06-31.yaml` and
+`manifests/us-de-register-13-de-reg-1550.yaml`.
 
 ## Coverage
 

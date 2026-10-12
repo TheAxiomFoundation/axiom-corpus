@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6.json",
+      "sha256": "b88bc1f663a0c99b0e1066760ee5040a86c3f6e9bce7366b1a73cf05531c0845"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6.json",
+      "sha256": "ab3e1344ef7a3b7ba1ca3a312190dcc0cccb7de29c0184d1cf695020816c6015"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6.jsonl",
+      "sha256": "34a750a81c33b9f72d0d28d47e7d189a00c188984d6234c679f32adcf129aec5"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
+      "sha256": "9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6/south-carolina-code-html/statmast.html",
+      "sha256": "56769cb0e5f8a761e8d86a5cbdb9e510f765efbe6b2bd4751c856016531b8dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6/south-carolina-code-html/title-12/chapter-6.html",
+      "sha256": "ae31dbc10579d61076ca1b6a48a5a240eab85547ad42df8642e99affbf31909d"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6/south-carolina-code-html/title-12.html",
+      "sha256": "49f174cca902073591f2f1e16ed0fbd4336d5228d877fa800980793f5f053946"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca65405e54c094ade9a3080fbca532b46d28bf63",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/state-income-tax-recovery.yaml --only-source-id us-sc-code (run note: docs/ingest-runs/2026-09-27-us-sc-12-6-520-successor.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 159,
+    "missing_count": 0,
+    "provision_count": 159,
+    "source_count": 159
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-27T19:26:19.614293+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8kNyScZJEh59W9kg1vdwjSEt3Ms4gX7C4xeGsGXDIifOSSifm2FHGtyqBP9EgqESV/GwcRyHTIIsl2Jkw1vDAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6"
+}

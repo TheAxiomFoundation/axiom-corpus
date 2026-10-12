@@ -1,0 +1,116 @@
+version: 2026-10-06-w6-income-tax-forms-ma
+documents:
+- source_id: us-ma-form-dor-ty2022-form-1
+  jurisdiction: us-ma
+  document_class: form
+  title: 2022 Form 1 Massachusetts Resident Income Tax Return
+  source_url: https://www.mass.gov/doc/2022-form-1-massachusetts-resident-income-tax-return/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/form/dor/ty2022/form-1
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-ma-form-dor-ty2022-schedule-cb
+  jurisdiction: us-ma
+  document_class: form
+  title: 2022 Schedule CB Circuit Breaker Credit
+  source_url: https://www.mass.gov/doc/2022-schedule-cb-circuit-breaker-credit/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/form/dor/ty2022/schedule-cb
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-ma-form-dor-ty2023-schedule-cb
+  jurisdiction: us-ma
+  document_class: form
+  title: 2023 Schedule CB Circuit Breaker Credit
+  source_url: https://www.mass.gov/doc/2023-schedule-cb-circuit-breaker-credit/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/form/dor/ty2023/schedule-cb
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ma-form-dor-ty2025-schedule-cb
+  jurisdiction: us-ma
+  document_class: form
+  title: 2025 Schedule CB Circuit Breaker Credit
+  source_url: https://www.mass.gov/doc/2025-schedule-cb-circuit-breaker-credit/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/form/dor/ty2025/schedule-cb
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2025'
+- source_id: us-ma-form-dor-ty2023-form-1-instructions
+  jurisdiction: us-ma
+  document_class: form
+  title: 2023 Massachusetts Form 1 Resident Income Tax Return Instructions
+  source_url: https://www.mass.gov/doc/2023-form-1-instructions/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/form/dor/ty2023/form-1-instructions
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-ma-form-dor-ty2024-form-1-instructions
+  jurisdiction: us-ma
+  document_class: form
+  title: 2024 Massachusetts Form 1 Resident Income Tax Return Instructions
+  source_url: https://www.mass.gov/doc/2024-form-1-instructions/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-ma/form/dor/ty2024/form-1-instructions
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'

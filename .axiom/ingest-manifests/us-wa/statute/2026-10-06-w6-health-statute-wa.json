@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/statute/2026-10-06-w6-health-statute-wa.json",
+      "sha256": "bb4e4b8dfc6aa9f38c68a46313d00e2f60c2dd3c15b11b2cebb4e037164d8f21"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/statute/2026-10-06-w6-health-statute-wa.json",
+      "sha256": "24a5327cf4656bac79a24c7aaab6d91bf897c99418700368039febb0b7d27cf3"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/statute/2026-10-06-w6-health-statute-wa.jsonl",
+      "sha256": "bfb10f05928a233bd4ed67d5bf1a5bcff8871564949050386919050397b53404"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-health-statute-wa/official-documents/us-wa-w6-health-74-74-09-74-09-470.html",
+      "sha256": "ce450f5c8d015cff3c2655fc49302befb5435e99dad9c2dcc7fdf25c8fa80bd1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-10-06-w6-health-statute-wa/official-documents/us-wa-w6-health-session-laws-2023-chapter-475-essb-5187.pdf",
+      "sha256": "49ecc2494409abdecfc39dc9f0bff4ff5e41682dd6c64660baefa147062fdd13"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1412,
+    "missing_count": 0,
+    "provision_count": 1412,
+    "source_count": 1412
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:00:35.059949+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UK0Bt0vr8QP1Y61mt8DEYiVc5aYdRX3bOyfHgSDWdFN4HJTyAoIWRYyh8ws1zR2Cw7G8rUwCJyS/cswwhyXsCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-statute-wa"
+}

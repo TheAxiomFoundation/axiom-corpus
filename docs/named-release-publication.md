@@ -154,6 +154,28 @@ rewritten. A release name with different content, or a successor release that
 tries to change a previously released scope, is rejected. A successor may
 reuse a scope only when the prior signed scope identity is byte-for-byte equal.
 
+Publication memory grows with the release's row count, not its bytes. Every
+phase streams a provisions file one row at a time and keeps compact per-row
+metadata (identity, parent, source path, dates, row digests), not provision
+bodies: deep validation and the signed-source-reference check read rows as
+they parse; release content hashes the provisions artifact into a temporary
+snapshot, then parses and projects that verified copy in one pass; staging
+parks projected rows in a temporary file and reads each back only to compare
+it with a staged row or to insert it; and R2 objects are verified in 1 MB
+reads. Bodies are still held briefly in bounded batches: a page of up to 1,000
+staged rows while it is compared, a chunk of up to 500 rows (the default
+chunk size) while it is inserted, and a whole file only on an error path that
+reproduces the old reader's error. The cross-scope checks (the release's citation-path set and
+staging's key map) keep one compact entry per row across every scope they
+cover. The streaming readers return the same records and raise the same
+errors as the whole-file readers they replace, with one exception: JSON nested
+within a few levels of the parser's recursion limit (about 52,000 levels) can
+get a different outcome. A streaming reader may raise `RecursionError` on a
+file the old reader accepted, or accept a file the old reader rejected with
+`RecursionError`. No artifact nests that deep.
+`tests/test_streaming_*.py` hold the streaming code to the pre-streaming
+implementations, mostly on Hypothesis-generated inputs.
+
 ## Downstream resolution
 
 The canonical locator is

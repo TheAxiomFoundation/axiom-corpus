@@ -1,0 +1,26 @@
+documents:
+  - source_id: fr-cgi-ifi-2022-articles-964-983
+    jurisdiction: fr
+    document_class: statute
+    citation_path: fr/statute/cgi/2022/ifi
+    title: Code général des impôts, chapitre II bis, Impôt sur la fortune immobilière (version au 2 mars 2022)
+    source_url: 'https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006069577/LEGISCTA000036384995/2022-03-02/'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-03-02'
+    language: fr
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Article\s+(?P<number>\d+[A-Za-z]?)\s*(?P<heading>.*)$'
+      section_label_template: 'article-{number}'
+    metadata:
+      primary_source: true
+      source_authority: République française / Légifrance
+      legal_identifier: LEGITEXT000006069577
+      source_family: wealth-tax/ifi
+      source_note: >-
+        Archived 2022 primary text. Articles 964, 973, 977 and 979 govern the
+        EUR 1.3m trigger, principal-residence abatement, exact progressive
+        scale and decote, and 75 percent income plafonnement respectively.

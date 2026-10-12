@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550.json",
+      "sha256": "9f649276e2201acf3debd645c191d03cd7e915eb85d9bfcafa825741e1742a2b"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550.json",
+      "sha256": "e79b7ebda583354e768fbeb7c0e43df5ec19d3d6b612c24f014f221717b3fa4f"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550.jsonl",
+      "sha256": "902d98faac6c5a4e577f963b3abf7859909eecf24d73f8465bad410b9d634612"
+    },
+    {
+      "path": "data/corpus/sources/us-de/rulemaking/2026-09-23-de-register-13-de-reg-1550/official-documents/de-register-13-de-reg-1550.pdf",
+      "sha256": "d926537b3b6563fb0b518a13d7283e801a5f6058269cbbc81c2e44ee0d348af5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "95926d98572a0c897c5f9a776a69e1942676fb01",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-23-de-register-13-de-reg-1550 --manifest manifests/us-de-register-13-de-reg-1550.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-09-24T18:41:14.064483+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-23-snap-child-support-state-options.md",
+      "sha256": "c8c3131e1d8f243a028ab887f2016b3634e9074d32c384413867e09d2be31431"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lng/tpv4Ij9YkbN3Okfc67ndJca1n+qpXz24uu/MTepWJMOt3XoVEIIe+Bea01kkcVuNxHyvp6kHRxnJUwZpCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-23-de-register-13-de-reg-1550"
+}

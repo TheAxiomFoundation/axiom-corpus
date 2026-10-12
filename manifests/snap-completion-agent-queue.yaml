@@ -70,6 +70,20 @@ states:
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
   index_document_count: 10
   taken_count: 10
+  wave6_federal_scopes:
+  - scope: us/guidance/2026-10-06-w6-federal-agency-guidance
+    work_order_documents: 7
+    scope_provision_rows: 43
+    coverage_complete: true
+    citation_paths:
+    - us/guidance/hhs/aspe/prior-poverty-guidelines-federal-register-references
+    - us/guidance/usda/fns/snap-elderly-disabled-special-rules
+    - us/guidance/usda/fns/snap-farm-bill-2018-section-4004-memo
+    - us/guidance/usda/fns/snap-obbb-time-limit-waivers-reinstatement-memo
+    - us/guidance/usda/fns/snap-provisions-fiscal-responsibility-act-2023
+    - us/guidance/usda/fns/snap-time-limit-waivers-fy2025-2029
+    - us/guidance/usda/fns/snap-work-requirements
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
 - jurisdiction: us
   name: Federal
   queue_status: agent_ready

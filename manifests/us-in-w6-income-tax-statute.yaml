@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-income-tax-statute-in
+documents:
+- source_id: us-in-statute-session-laws-2026-sb0243
+  jurisdiction: us-in
+  document_class: statute
+  title: Senate Enrolled Act 243 (124th General Assembly, Second Regular Session, 2026), enrolled version
+  source_url: https://iga.in.gov/pdf-documents/124/2026/senate/bills/SB0243/SB0243.05.ENRH.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-in/statute/session-laws/2026/sb0243
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: state legislature
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-statute
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    source_note: iga.in.gov serves its JavaScript application shell to the corpus user agent and the PDF to the extractor's
+      built-in browser user agent fallback (not an access-denied page).

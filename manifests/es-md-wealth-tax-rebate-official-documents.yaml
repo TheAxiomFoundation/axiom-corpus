@@ -1,0 +1,27 @@
+documents:
+  - source_id: es-md-decreto-legislativo-1-2010-wealth-tax-rebate
+    jurisdiction: es-md
+    document_class: statute
+    citation_path: es-md/statute/decreto-legislativo-1-2010/impuesto-patrimonio
+    title: Decreto Legislativo 1/2010 de Madrid, artículo 20 (texto consolidado)
+    source_url: 'https://www.boe.es/buscar/act.php?id=BOCM-m-2010-90068&p=20221222&tn=1'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-12-22'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>20)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+      stop_text_pattern: '^Artículo\s+21\.'
+    metadata:
+      primary_source: true
+      source_authority: Comunidad de Madrid, reproduced in BOE autonomous legislation collection
+      legal_identifier: BOCM-m-2010-90068
+      source_family: wealth-tax/regional-rebate
+      source_note: >-
+        Extraction retains Article 20 and stops before Article 21. Article 20
+        grants a 100 percent autonomous rebate on the remaining positive
+        wealth-tax quota.

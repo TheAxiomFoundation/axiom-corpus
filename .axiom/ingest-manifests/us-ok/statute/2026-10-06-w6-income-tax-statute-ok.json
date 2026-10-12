@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/statute/2026-10-06-w6-income-tax-statute-ok.json",
+      "sha256": "6ceebfb0710fe630646e4fa8643ecbb6e0c837e7d590db6734d4c4a09b51547b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/statute/2026-10-06-w6-income-tax-statute-ok.json",
+      "sha256": "e2eb0ee182b13bd769038cacc39da436bcf33d87117e52038ea6a01f19c83a4a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/statute/2026-10-06-w6-income-tax-statute-ok.jsonl",
+      "sha256": "c09be845c4699badb27357a8b984aead1cb86172f0b3f73e4b73d4f28fa0fbad"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/statute/2026-10-06-w6-income-tax-statute-ok/official-documents/us-ok-statute-bills-2021-2022-hb2962-enrolled.pdf",
+      "sha256": "f175daf355ccff50c682e096614b1993c68eceed43caa9becc1f517470c157c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/statute/2026-10-06-w6-income-tax-statute-ok/official-documents/us-ok-statute-bills-2025-2026-hb2764-enrolled.pdf",
+      "sha256": "4614fc47b255f1a6fea7982785cf127c269103cdcf7040609fe87ef8784195d1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:57:22.524947+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4gEC1fSkyozd1H0pR5Ujwzlw7yN/xirLwndf6bUBzbhr82cGgJAVuQqS75PLzpG72DYL4vJQhidVhPjCSeAgAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ok"
+}

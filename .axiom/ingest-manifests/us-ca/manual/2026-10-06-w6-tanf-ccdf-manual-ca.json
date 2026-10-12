@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca.json",
+      "sha256": "adda92720ab76e9043bd87b53e931fa5ef02ca9a0918b453c5840d3366fbe1ad"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca.json",
+      "sha256": "0640c40edf06b42a01ae4bdaa7565deb217df8850a85b3e1ad773d6828e6f98b"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca.jsonl",
+      "sha256": "5c7ad851591fe1d6539b7de87bc3bca061d45a913fd90a4d828a8fe85228fbf1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-1210-8-regional-market-rate-ceilings.html",
+      "sha256": "64dfac032cfa55ce8f28b0f6e2641618633e31dc7f0395a7aebe5cefd334a7e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-1210-child-care-overview.html",
+      "sha256": "024e49aecc0ad13e10fcc2f121a0016b634667bf10ab2fbc6931031049771ca7"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-42-200-property.html",
+      "sha256": "9d03fcba633f4d4f0f1696d3de98dc0ff98d5e065ee3c153cc6f89d8662a9167"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-42-215-determining-value-of-property-vehicles.html",
+      "sha256": "dd5e35cd5a8e717b2c96a8a9813431825c52336acb93490799b85889e58ce7c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-44-111-23-earned-income-disregards.html",
+      "sha256": "2da6270c28eea06a02c05ac95324192a51e3aac5262a70ea724228ad3a3158a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-44-212-minimum-basic-standard-of-adequate-care.html",
+      "sha256": "bbe5c235bf1527a3ab22a3d65d73fb28f52cf0721cf86f0f1f3dc16d1d10c10a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-10-06-w6-tanf-ccdf-manual-ca/official-documents/us-ca-w6-la-county-dpss-epolicy-44-315-calworks-maximum-aid-payment-levels.html",
+      "sha256": "ef44b2d8c4d780bde1906db89d4fea1eb7db1d752bd749f7052222e2fcca5416"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 92,
+    "missing_count": 0,
+    "provision_count": 92,
+    "source_count": 92
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:49:22.827890+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Bt3/qlLWqA7uFren3aPLLUYGORbObccJvTPxOwySmTTdu9uK4rUfvGOSynKLNzZAGCpbNnm8n6ToMJWDLMUjCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-ca"
+}

@@ -30,6 +30,7 @@ from axiom_corpus.corpus.ingest_manifests import (
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 JURISDICTION = "us-ny"
@@ -308,6 +309,8 @@ def build_ny_tanf_compatibility_scope(
     current_source_dir = (
         base / "sources" / JURISDICTION / DOCUMENT_CLASS / CURRENT_VERSION
     )
+    # Corpus bytes may live outside git: fetch the input scope's sources first.
+    require_materialized([current_source_dir], fetch=True)
     if not current_source_dir.is_dir() or current_source_dir.is_symlink():
         raise ValueError(f"input source directory is not regular: {current_source_dir}")
     if any(path.is_symlink() for path in current_source_dir.rglob("*")):

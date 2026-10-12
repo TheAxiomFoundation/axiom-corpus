@@ -1,0 +1,182 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-ne-dhhs-392-nac-chapter-1
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 392 NAC Chapter 1: Background and General Information'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/392%20NAC%201%20%2809-15-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2020-09-15'
+  citation_path: us-ne/regulation/title-392/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: CCDF
+    state_program: Nebraska Child Care Subsidy Program
+    federal_program: CCDF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    source_discovery_group: us-ne/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/180
+    chapter_id: 1465
+    chapter_name: BACKGROUND AND GENERAL INFORMATION
+    pdf_blob_name: 392 NAC 1 (09-15-2020).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2020-09-15'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: labeled sections with the 468/475 NAC heading patterns
+- source_id: us-ne-dhhs-392-nac-chapter-2
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 392 NAC Chapter 2: Elements of Eligibility'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/392%20NAC%202%20%2809-15-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2020-09-15'
+  citation_path: us-ne/regulation/title-392/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: CCDF
+    state_program: Nebraska Child Care Subsidy Program
+    federal_program: CCDF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    source_discovery_group: us-ne/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/180
+    chapter_id: 1466
+    chapter_name: ELEMENTS OF ELIGIBILITY
+    pdf_blob_name: 392 NAC 2 (09-15-2020).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2020-09-15'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: labeled sections with the 468/475 NAC heading patterns
+- source_id: us-ne-dhhs-392-nac-chapter-3
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 392 NAC Chapter 3: Authorization and Notice'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/392%20NAC%203%20%2809-15-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2020-09-15'
+  citation_path: us-ne/regulation/title-392/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: CCDF
+    state_program: Nebraska Child Care Subsidy Program
+    federal_program: CCDF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    source_discovery_group: us-ne/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/180
+    chapter_id: 1467
+    chapter_name: AUTHORIZATION AND NOTICE
+    pdf_blob_name: 392 NAC 3 (09-15-2020).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2020-09-15'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: labeled sections with the 468/475 NAC heading patterns
+- source_id: us-ne-dhhs-392-nac-chapter-4
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 392 NAC Chapter 4: Provider Enrollment'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/392%20NAC%204%20%2809-15-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2020-09-15'
+  citation_path: us-ne/regulation/title-392/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: CCDF
+    state_program: Nebraska Child Care Subsidy Program
+    federal_program: CCDF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    source_discovery_group: us-ne/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/180
+    chapter_id: 1468
+    chapter_name: PROVIDER ENROLLMENT
+    pdf_blob_name: 392 NAC 4 (09-15-2020).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2020-09-15'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: labeled sections with the 468/475 NAC heading patterns
+- source_id: us-ne-dhhs-392-nac-chapter-5
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 392 NAC Chapter 5: Child Care Grants'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/392%20NAC%205%20%2809-15-2020%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2020-09-15'
+  citation_path: us-ne/regulation/title-392/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: filed_administrative_regulation_chapter
+    program: CCDF
+    state_program: Nebraska Child Care Subsidy Program
+    federal_program: CCDF
+    manual_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    source_discovery_group: us-ne/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Nebraska Secretary of State (rules.nebraska.gov)
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=180
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/180
+    chapter_id: 1469
+    chapter_name: CHILD CARE GRANTS
+    pdf_blob_name: 392 NAC 5 (09-15-2020).pdf
+    official_pdf_blob_available: false
+    chapter_effective_date: '2020-09-15'
+    tls_note: host serves its leaf certificate only; verified with the DigiCert public intermediate in data/certs (REQUESTS_CA_BUNDLE)
+    extraction_note: labeled sections with the 468/475 NAC heading patterns
