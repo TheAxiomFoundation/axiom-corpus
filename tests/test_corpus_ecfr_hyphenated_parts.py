@@ -840,10 +840,12 @@ def _title_structures(draw):
     """A title of distinct parts; each part's sections name it, optionally in subparts.
 
     Alphanumeric parts sometimes also carry a section numbered like a hyphenated part
-    ("19-8.1" in part 241), which no part may claim. It is left out when the title has a
-    part 8: the XML pass keeps the earlier reading of a section that does not name its part,
-    which takes "19-8.1" as part 8, section 1, and would repeat 8.1's path. No eCFR title
-    has that collision (all 49 titles, 2026-10-08).
+    ("19-8.1" in part 241), which no part may claim as a part. It is the part's own
+    section only when no section of the part names a part, as in 14 CFR part 241. It is
+    left out when the title has a part 8: where its part does not confirm it, the XML pass
+    keeps the earlier reading of a section that does not name its part, which takes
+    "19-8.1" as part 8, section 1, and would repeat 8.1's path. No eCFR title has that
+    collision (all 49 titles, 2026-10-08).
     """
     parts = draw(st.lists(_PART, min_size=1, max_size=5, unique=True))
     children = []
@@ -915,18 +917,31 @@ def test_property_inventory_partitions_by_part_and_matches_the_xml(structure):
         scoped = _paths(build_ecfr_inventory_from_structures((structure,), only_part=part).items)
         assert scoped == [p for p in paths if p == part_path or p.startswith(part_path + "/")]
 
-    # Structure order: live sections that name their part, in document order.
+    # Structure order: live sections that name their part, in document order, and
+    # "19-8.1" in a part none of whose sections (reserved ones too) names it.
     expected_sections = []
 
-    def walk(node, part=None):
+    def section_identifiers(node):
+        for child in node.get("children", []):
+            if child["type"] == "section":
+                yield child["identifier"]
+            else:
+                yield from section_identifiers(child)
+
+    def walk(node, part=None, part_less=False):
         if node["type"] == "part":
             part = node["identifier"]
+            part_less = not any(
+                identifier.startswith(f"{part}.") for identifier in section_identifiers(node)
+            )
         if node["type"] == "section" and not node.get("reserved"):
             identifier = node["identifier"]
             if identifier.startswith(f"{part}."):
                 expected_sections.append(f"us/regulation/41/{part}/{identifier[len(part) + 1:]}")
+            elif part_less:
+                expected_sections.append(f"us/regulation/41/{part}/{identifier}")
         for child in node.get("children", []):
-            walk(child, part)
+            walk(child, part, part_less)
 
     walk(structure)
     assert [
