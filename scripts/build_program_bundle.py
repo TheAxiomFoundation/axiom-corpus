@@ -840,6 +840,11 @@ def build_program(
                 meta = doc.get("metadata") or {}
                 toc = meta.get("toc_sequence")
                 cp = doc.get("citation_path")
+                if not cp and doc.get("source_url"):
+                    # An entry with no path of its own: the corpus path that holds
+                    # its address (another manifest's entry, or a wave's decision).
+                    k = url_key(normalize_url(doc["source_url"]), aliases)
+                    cp = url_lookup(by_url, k) or url_lookup(held, k)
                 entry = {
                     "key": cp or doc.get("source_url"),
                     "name": doc.get("title"),
@@ -891,12 +896,15 @@ def build_program(
                 place(entry)
 
         for doc in state_cfg.get("known_sources") or []:
+            # A known source a wave holds at another path (a title rooted at
+            # "title-46" where the config names "46"): the path it moved to.
+            path = moves.get(doc["citation_path"], doc["citation_path"])
             place(
                 {
-                    "key": doc["citation_path"],
+                    "key": path,
                     "name": doc["title"],
                     "layer": "state",
-                    "citation_path": doc["citation_path"],
+                    "citation_path": path,
                     "source_url": doc.get("source_url"),
                     "sources": ["known-source"],
                     "note": doc.get("note"),

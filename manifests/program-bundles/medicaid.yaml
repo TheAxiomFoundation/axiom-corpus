@@ -43,7 +43,7 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 185
+      federal: 184
       state: 148
 - id: full
   title: Full document bundle
@@ -59,21 +59,11 @@ tiers:
     state_manifests: medicaid|ahcccs|medi-cal|masshealth|medical-assistance|msp-income
     known_sources: 0
     in_scope_by_layer:
-      federal: 496
+      federal: 495
       state: 10533
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
-    name: flrules.org/gateway/ruleno.asp
-    layer: federal
-    citation_path: null
-    source_url: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -2579,15 +2569,6 @@ layers:
       (a calculator)'
     part: Income
   full:
-  - key: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
-    name: flrules.org/gateway/ruleno.asp
-    layer: federal
-    citation_path: null
-    source_url: https://www.flrules.org/gateway/ruleno.asp?id=65A-1.703
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us/form/cms/medicaid-chip-bhp-eligibility-levels
     name: Medicaid, CHIP, and BHP Eligibility Levels
     layer: federal
@@ -19010,15 +18991,6 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
-    name: Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
-    sources:
-    - plan
-    scope: in
-    part: Benefit amount
   - key: us-co/guidance/connect-for-health-colorado/omnisalud
     name: 'Connect for Health Colorado: OmniSalud'
     layer: state
@@ -19074,7 +19046,7 @@ layers:
     - plan
     references: 1
     scope: in
-    part: Income
+    part: Benefit amount
     cited:
     - path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
       references: 1
@@ -19101,15 +19073,6 @@ layers:
       28, PRESENT)'
     part: Benefit amount
   full:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
-    name: Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: us-co/guidance/connect-for-health-colorado/omnisalud
     name: 'Connect for Health Colorado: OmniSalud'
     layer: state
@@ -19160,7 +19123,7 @@ layers:
     layer: state
     citation_path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
     source_url: null
-    part: Income
+    part: Benefit amount
     sources:
     - screener
     - manifests/us-co-medicaid-eligibility-manual.yaml
@@ -39386,6 +39349,21 @@ layers:
     - path: us-fl/policy/cms/medicaid-state-plan/spa/fl-13-0015-mm1/approval-document
       references: 1
       part: Household and eligibility
+  - key: us-fl/regulation/fac/65a-1/703
+    name: Fla. Admin. Code R. 65A-1.703
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-1/703
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-fl/regulation/fac/65a-1/703
+      references: 1
+      part: Household and eligibility
   full:
   - key: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-7-family-related-medicaid-income-limit-chart
     name: 'Florida ESS Program Policy Manual: Appendix A-7 Family-Related Medicaid Income Limit Chart'
@@ -39407,6 +39385,15 @@ layers:
     sources:
     - screener
     - manifests/us-fl-medicaid-state-plan.yaml
+    scope: in
+  - key: us-fl/regulation/fac/65a-1/703
+    name: Fla. Admin. Code R. 65A-1.703
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-1/703
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
     scope: in
   - key: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-13-active-medicaid-program-codes
     name: 'Florida ESS Program Policy Manual: Appendix A-13 Active Medicaid Program Codes'
@@ -43929,15 +43916,6 @@ layers:
     part: Other
 - jurisdiction: us-il
   screener:
-  - key: https://www.dhs.state.il.us/page.aspx?item=161600
-    name: Illinois DHS - HBIA and HBIS Policy
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=161600
-    sources:
-    - plan
-    scope: in
-    part: Household and eligibility
   - key: us-il/guidance/hfs/all-kids/about
     name: 'Illinois HFS: About All Kids'
     layer: state
@@ -44022,6 +44000,16 @@ layers:
     - plan
     scope: in
     part: Benefit amount
+  - key: us-il/manual/dhs/csmm/161600
+    name: 'IDHS: MR #24.12 Health Benefits for Immigrant Adults (HBIA) and Health Benefits for Immigrant Seniors
+      (HBIS)'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/161600
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Household and eligibility
   - key: us-il/manual/dhs/csmm/33527
     name: 'PM 06-20-00: Health Benefits for Persons with Breast or Cervical Cancer (BCC)'
     layer: state
@@ -44141,15 +44129,6 @@ layers:
       references: 3
       part: Household and eligibility
   full:
-  - key: https://www.dhs.state.il.us/page.aspx?item=161600
-    name: Illinois DHS - HBIA and HBIS Policy
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=161600
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us-il/guidance/hfs/all-kids/about
     name: 'Illinois HFS: About All Kids'
     layer: state
@@ -44219,6 +44198,16 @@ layers:
     citation_path: us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
     source_url: null
     part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/161600
+    name: 'IDHS: MR #24.12 Health Benefits for Immigrant Adults (HBIA) and Health Benefits for Immigrant Seniors
+      (HBIS)'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/161600
+    source_url: null
+    part: Household and eligibility
     sources:
     - screener
     scope: in
