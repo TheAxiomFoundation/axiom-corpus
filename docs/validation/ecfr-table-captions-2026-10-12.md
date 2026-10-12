@@ -39,6 +39,7 @@ radius was traced with `git grep` at `origin/main` 56592c88b.
 | d=4 | `_extract_one_title` → `_extract_title_results` → `extract_ecfr` → `axiom-corpus-ingest extract-ecfr` | `ecfr.py:2037`, `1952`, `1629`; `cli.py:1290` | New eCFR ingests carry captions |
 | d=4 | `scripts/recover_ingest.py:268`, `scripts/recover_ingest_batch.py:990` | recovery replays of eCFR XML | Recovered eCFR sections carry captions (7 CFR 246 came this way) |
 | d=4 | `scripts/repro_us_cfr_416_deeming_slice.py:235` | pinned replay of the July part 416 slice | Unaffected; see the replay plan |
+| d=5 | `scripts/repro/us_1401_coordination_repair.py:155` | manual repro (no test runs it) of the 26 CFR 1.1401-1 repair through `extract-ecfr` | Unaffected: the scope's two records hold no captioned table |
 
 Not affected: the same-named `_table_text` in `illinois_admin_code.py` and
 `ohio_admin_code.py` (separate BeautifulSoup functions); `documents.py`,
@@ -87,24 +88,36 @@ This PR re-extracts nothing. Released scopes are immutable versions.
   (`_git_metadata`, `ingest_manifests.py:1377`), which can postdate extraction, so it
   is a starting point, not proof of the producer. For the 40 records below,
   `origin/main` 56592c88b is a producer: its adapter reproduces every stored body
-  from the retained XML. No test replays those scopes at `HEAD`; the full suite
-  passes on this branch.
+  from the retained XML. No test compares a replay of those scopes at `HEAD` with
+  stored bytes. The successor-list test below re-renders captioned provisions at
+  `HEAD`, but compares only how often each caption line appears, so later changes to
+  how other text is rendered do not affect it. The full suite passes on this branch.
 - **Why not an opt-in flag.** The California LegInfo fix shipped as
   `--preserve-tables`, off by default. A default-off caption flag would keep `HEAD`
-  replays of the nine scopes byte-identical, but no test replays them at `HEAD`, and
+  replays of the nine scopes byte-identical, but no test compares such a replay with
+  stored bytes, and
   it would leave every new eCFR ingest dropping captions unless the flag were
   remembered.
 
 ## Successor candidates
 
-`scripts/audit_ecfr_table_captions.py` re-extracts each stored `ecfr-xml` record that
-holds a captioned table from its retained bytes and compares it with the stored
-body. Its report is `ecfr-table-captions-2026-10-12.audit.json`. Nine released
-scopes, 40 records and 237 caption lines are missing; in every record the
-re-extraction differs from the stored body only by inserted caption lines. A second,
-independent method (the differential replay above, mapped onto stored records)
-finds the same 40 records and caption lines. No unreleased scope on `main` is
-affected, and no container body is.
+`scripts/audit_ecfr_table_captions.py` re-renders each stored `ecfr-xml` section or
+appendix that holds a captioned table from its retained bytes (`_section_body` on
+that element only) and counts, per caption line, how often it appears as a whole
+line in the stored body against the re-rendered one; a shortfall is a missing caption
+line. A part or subpart whose stored body was materialized from descendants inherits
+the missing lines of each captioned descendant whose stored body it contains, with
+descent read from the XML (DIV5 part, DIV6 subpart) and from the scope's
+`parent_citation_path` links (sections sit under `…/subpart-K`, which does not prefix
+their own paths). Its report is `ecfr-table-captions-2026-10-12.audit.json`.
+
+Nine released scopes, 40 records and 237 caption lines are missing. The report's
+`caption_only_change` is true for all 40: at this commit, each re-rendered body is
+the stored body plus exactly the missing caption lines. That is evidence for this
+commit, not a property later adapters keep, and the successor-list test does not
+check it. A second, independent method (the differential replay above, mapped onto
+stored records) finds the same 40 records and caption lines. No unreleased scope on
+`main` is affected, and no container body is.
 
 Selected by the newest US selector, `us-rulespec-2026-10-11-w5-remainder-union`:
 
@@ -129,9 +142,12 @@ Pending: axiom-corpus#826 adds `us/regulation/2026-10-12-title-20-part-404`, ext
 before this change. Its sections 404.1574, 404.1584 and 404.1592 hold four captions
 (the other 44 captions in that file are in appendices it does not take). Re-extracting
 it after this change merges, before release, avoids a tenth successor.
-`test_released_scopes_missing_captions_match_the_recorded_successor_candidates` fails
-if a release selector names another eCFR scope that lacks captions, and its message
-says what to do.
+`test_released_scopes_missing_captions_match_the_recorded_successor_candidates`
+compares the missing caption lines of released scopes with the report. It fails if a
+release selector names another eCFR scope that lacks captions, and its message says
+what to do. It ignores release names, which every new union selector re-lists, and a
+captioned successor is never reported. Its timeout follows `tests/corpus_scan.py`,
+scaled by the size of the provisions and XML the audit reads.
 
 ## Reproduce
 

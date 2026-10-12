@@ -23,6 +23,7 @@ from axiom_corpus.corpus.ecfr import (
     _table_text,
     iter_ecfr_title_provisions,
 )
+from tests.corpus_scan import corpus_scan_timeout
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -349,22 +350,38 @@ def test_caption_lines_lead_in_order_and_rows_are_unchanged(case):
 
 
 AUDIT_REPORT = REPO_ROOT / "docs/validation/ecfr-table-captions-2026-10-12.audit.json"
+CORPUS_ROOT = REPO_ROOT / "data/corpus"
 
 
-def _released_findings(report: dict) -> dict[tuple[str, str], tuple]:
-    # Release names are left out: every new union selector re-lists these
-    # scopes, and that must not invalidate the record.
-    return {
-        (scope["scope"], record["citation_path"]): (
-            tuple(record["caption_lines"]),
-            record["caption_only_change"],
+def _audit_input_bytes() -> int:
+    # The audit's cost tracks the us/regulation provisions it reads and the
+    # eCFR XML they name, so its budget follows tests/corpus_scan.py.
+    return sum(
+        path.stat().st_size
+        for root in (
+            CORPUS_ROOT / "provisions/us/regulation",
+            CORPUS_ROOT / "sources/us/regulation",
         )
+        if root.is_dir()
+        for path in root.rglob("*")
+        if path.suffix in {".jsonl", ".xml"} and path.is_file()
+    )
+
+
+def _released_findings(report: dict) -> dict[tuple[str, str], tuple[str, ...]]:
+    # Only what a stored body lacks is compared. Release names are left out
+    # (every new union selector re-lists these scopes), and so is
+    # caption_only_change, which holds for the adapter that wrote the report
+    # but would drift with any later change to how other text is rendered.
+    return {
+        (scope["scope"], record["citation_path"]): tuple(record["missing_caption_lines"])
         for scope in report["scopes"]
         if scope["released_in"]
         for record in scope["records"]
     }
 
 
+@pytest.mark.timeout(corpus_scan_timeout(_audit_input_bytes()))
 def test_released_scopes_missing_captions_match_the_recorded_successor_candidates():
     """The recorded successor list stays complete for released eCFR scopes.
 
@@ -376,14 +393,98 @@ def test_released_scopes_missing_captions_match_the_recorded_successor_candidate
     """
     from scripts.audit_ecfr_table_captions import audit
 
-    actual = _released_findings(audit(REPO_ROOT / "data/corpus", REPO_ROOT / "manifests/releases"))
+    actual = _released_findings(audit(CORPUS_ROOT, REPO_ROOT / "manifests/releases"))
     recorded = _released_findings(json.loads(AUDIT_REPORT.read_text()))
 
+    assert recorded
     assert actual == recorded
-    assert len(recorded) == 40
-    # Every candidate's re-extraction differs from its stored body only by
-    # inserted caption lines.
-    assert {only for _, only in recorded.values()} == {True}
+
+
+def test_missing_caption_lines_counts_caption_lines_only():
+    from scripts.audit_ecfr_table_captions import missing_caption_lines
+
+    rows = "Adjusted basis per books | Market value\nCash | 3,000"
+    without = f"(b) Partnership AB has these assets:\n\nAssets\n\n{rows}"
+    rendered = f"(b) Partnership AB has these assets:\n\nAssets\n\nAssets\n{rows}"
+
+    # 26 CFR 1.751-1 shape: the caption repeats a line already in the body.
+    assert missing_caption_lines(without, rendered, ["Assets"]) == ["Assets"]
+    assert missing_caption_lines(rendered, rendered, ["Assets"]) == []
+    # A body that carries its captions is not flagged when a later adapter
+    # renders some unrelated text differently.
+    drifted = rendered.replace("(b) Partnership AB", "(b) Partnership AB (as amended)")
+    assert missing_caption_lines(rendered, drifted + "\n\nNew note.", ["Assets"]) == []
+
+
+def _write_scope(base: Path, version: str, xml: str, records: list[dict]) -> None:
+    source_path = f"sources/us/regulation/{version}/ecfr/title-20-part-416.xml"
+    (base / source_path).parent.mkdir(parents=True, exist_ok=True)
+    (base / source_path).write_text(xml)
+    provisions = base / "provisions/us/regulation" / f"{version}.jsonl"
+    provisions.parent.mkdir(parents=True, exist_ok=True)
+    provisions.write_text(
+        "".join(
+            json.dumps({"source_format": "ecfr-xml", "source_path": source_path, **record}) + "\n"
+            for record in records
+        )
+    )
+
+
+def test_audit_follows_materialized_subparts_and_spares_captioned_successors(tmp_path):
+    """Sections sit under subpart paths that do not prefix their own paths.
+
+    us/regulation/20/416/1112 has parent us/regulation/20/416/subpart-K. A
+    subpart body materialized from that section inherits its missing caption;
+    a successor extracted with captions is not reported.
+    """
+    from scripts.audit_ecfr_table_captions import audit
+
+    xml = (
+        '<DIV5 N="416" TYPE="PART"><HEAD>PART 416</HEAD>'
+        '<DIV6 N="K" TYPE="SUBPART"><HEAD>Subpart K—Income</HEAD>'
+        '<DIV8 N="416.1112" TYPE="SECTION"><HEAD>§ 416.1112 Earned income we do not count.</HEAD>'
+        "<P>(c)(4) See Table 1.</P>"
+        '<DIV class="gpotbl_div"><TABLE><CAPTION><P class="title">Table 1</P></CAPTION>'
+        "<TR><TH>Age</TH><TH>Amount</TH></TR><TR><TD>Under 22</TD><TD>$2,350</TD></TR>"
+        "</TABLE></DIV></DIV8></DIV6></DIV5>"
+    )
+    section_path = "us/regulation/20/416/1112"
+    subpart_path = "us/regulation/20/416/subpart-K"
+    captioned = _last_body(f"<ECFR>{xml}</ECFR>", title=20, part="416")
+    uncaptioned = _last_body(
+        re.sub(r"<CAPTION>.*?</CAPTION>", "", f"<ECFR>{xml}</ECFR>"), title=20, part="416"
+    )
+    assert captioned != uncaptioned
+
+    def records(section_body: str) -> list[dict]:
+        return [
+            {"citation_path": subpart_path, "kind": "subpart",
+             "parent_citation_path": "us/regulation/20/416",
+             "body": f"Earned income we do not count\n\n{section_body}"},
+            {"citation_path": section_path, "kind": "section",
+             "parent_citation_path": subpart_path, "body": section_body},
+        ]
+
+    base = tmp_path / "corpus"
+    _write_scope(base, "old", xml, records(uncaptioned))
+    _write_scope(base, "successor", xml, records(captioned))
+    releases = tmp_path / "releases"
+    releases.mkdir()
+    (releases / "r.json").write_text(json.dumps({"name": "r", "scopes": [
+        {"jurisdiction": "us", "document_class": "regulation", "version": version}
+        for version in ("old", "successor")
+    ]}))
+
+    report = audit(base, releases)
+
+    assert [scope["scope"] for scope in report["scopes"]] == ["us/regulation/old"]
+    findings = {
+        record["citation_path"]: record for record in report["scopes"][0]["records"]
+    }
+    assert findings[section_path]["missing_caption_lines"] == ["Table 1"]
+    assert findings[section_path]["caption_only_change"] is True
+    assert findings[subpart_path]["missing_caption_lines"] == ["Table 1"]
+    assert findings[subpart_path]["materialized_from"] == [section_path]
 
 
 def test_deeming_slice_replay_holds_no_captioned_table():
@@ -395,14 +496,14 @@ def test_deeming_slice_replay_holds_no_captioned_table():
     bodies join only the slice's own children, so emitting captions leaves
     every replayed byte unchanged.
     """
-    from scripts.audit_ecfr_table_captions import _captioned_tables
+    from scripts.audit_ecfr_table_captions import captioned_provisions
     from scripts.repro_us_cfr_416_deeming_slice import (
         APPROVED_CITATION_PATHS,
         XML_RELATIVE_PATH,
     )
 
-    root = ET.fromstring((REPO_ROOT / "data/corpus" / XML_RELATIVE_PATH).read_bytes())
-    captioned = sorted(table["provision"] for table in _captioned_tables(root, 20))
+    root = ET.fromstring((CORPUS_ROOT / XML_RELATIVE_PATH).read_bytes())
+    captioned = sorted(captioned_provisions(root, 20))
 
     assert captioned == ["us/regulation/20/416/1112", "us/regulation/20/416/974"]
     assert not set(captioned) & set(APPROVED_CITATION_PATHS)
