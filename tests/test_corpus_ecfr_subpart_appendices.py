@@ -13,8 +13,12 @@ Invariants checked here:
   structure-only placeholder carries the same identity, parent, level, ordinal and
   labels as the XML record it stands in for.
 - Fail closed: an opted-in subpart appendix that sits outside the subpart or part it
-  names, or whose designator has no unambiguous order, raises before any write.
-- Part appendices and section rendering are unchanged.
+  names, or whose designator has no unambiguous order, raises EcfrAppendixError, and
+  extract_ecfr writes nothing, whether the structure or only the XML shows it.
+- Numbering evidence: only appendices that sit in the subpart they name classify its
+  designators; designator case does not matter.
+- Part appendices keep their identity and metadata; their bodies gain captions and
+  word breaks like subpart appendices. Section rendering is unchanged.
 """
 
 import json
@@ -758,3 +762,240 @@ def test_shuffled_designator_order_is_irrelevant():
         shuffled = list(designators)
         rng.shuffle(shuffled)
         assert ecfr._subpart_appendix_numbering(shuffled) == dict.fromkeys(designators, "roman")
+
+
+def _files(root):
+    return {path.relative_to(root): path.read_bytes() for path in root.rglob("*") if path.is_file()} if root.exists() else {}
+
+
+def _move_appendix_in_xml(xml, identifier, subpart):
+    """Cut ``identifier``'s DIV9 out of the XML and put it at the end of ``subpart``."""
+    start = xml.index(f'<DIV9 N="{identifier}"')
+    end = xml.index("</DIV9>", start) + len("</DIV9>")
+    div9, rest = xml[start:end], xml[:start] + xml[end:]
+    marker = rest.index(f'<DIV6 N="{subpart}" TYPE="SUBPART">')
+    close = rest.index("</DIV6>", marker)
+    return rest[:close] + div9 + rest[close:]
+
+
+@pytest.mark.parametrize("existing_run", [False, True])
+@pytest.mark.parametrize(
+    "mutate,error",
+    [
+        # The structure is valid; only the XML puts Appendix I under subpart B.
+        (lambda xml: _move_appendix_in_xml(xml, "Appendix I to Subpart C of Part 404", "B"),
+         "subpart 'C' conflicts with enclosing subpart 'B'"),
+        # The structure says part 404's appendix A; the XML's names part 405.
+        (lambda xml: xml.replace('N="Appendix A to Part 404"', 'N="Appendix A to Part 405"'),
+         "part '405' conflicts with enclosing part '404'"),
+    ],
+    ids=["subpart-placement", "part-name"],
+)
+def test_extract_ecfr_xml_only_appendix_contradiction_writes_nothing(
+    tmp_path, monkeypatch, existing_run, mutate, error
+):
+    xml = mutate(XML)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: STRUCTURE)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail("graphic fetched"))
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    if existing_run:
+        # A previous run's structure snapshot must survive: the structure is now
+        # written only after the XML's appendices pass validation.
+        previous = store.root / "sources/us/regulation/2026-10-12-title-20-part-404/ecfr/title-20.structure.json"
+        previous.parent.mkdir(parents=True)
+        previous.write_bytes(b"previous run bytes")
+    before = _files(store.root)
+
+    with pytest.raises(ecfr.EcfrAppendixError, match=error):
+        extract_ecfr(
+            store, version="2026-10-12", as_of="2026-10-08", only_title=20, only_part="404",
+            include_appendices=True,
+        )
+
+    assert _files(store.root) == before
+    # The same XML extracts normally without the opt-in.
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "default"), version="2026-10-12", as_of="2026-10-08",
+        only_title=20, only_part="404",
+    )
+    assert report.coverage.complete and report.title_errors == ()
+
+
+def test_ecfr_cli_xml_only_appendix_contradiction_exits_2_without_writes(tmp_path, monkeypatch, capsys):
+    from axiom_corpus.corpus.cli import main
+
+    xml = _move_appendix_in_xml(XML, "Appendix I to Subpart C of Part 404", "B")
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: STRUCTURE)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    output = tmp_path / "corpus"
+
+    result = main([
+        "extract-ecfr", "--base", str(output), "--version", "2026-10-12", "--as-of", "2026-10-08",
+        "--only-title", "20", "--only-part", "404", "--include-appendices",
+    ])
+
+    assert result == 2
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert "conflicts with enclosing subpart 'B'" in captured.err
+    assert not output.exists()
+
+
+@pytest.mark.parametrize(
+    "allowed,ordinal",
+    [
+        ({"us/regulation/20/404/subpart-C/appendix-i"}, 1_000_001),
+        ({"us/regulation/20/404/subpart-C/appendix-ii"}, 1_000_002),
+        ({"us/regulation/20/404/subpart-C/appendix-iv"}, 1_000_004),
+    ],
+)
+def test_excluded_misplaced_appendix_does_not_change_named_siblings(allowed, ordinal):
+    # "Appendix A to Subpart C" sits under subpart B. Its letter must not turn
+    # subpart C's numerals into letters, whether or not it is selected.
+    xml = _with_appendix(XML, "B", "Appendix A to Subpart C of Part 404")
+
+    records = _records(xml, include_appendices=True, allowed_citation_paths=allowed)
+
+    assert [(record.citation_path, record.ordinal, record.metadata["appendix_numbering"]) for record in records] == [
+        (next(iter(allowed)), ordinal, "roman")
+    ]
+    with pytest.raises(ecfr.EcfrAppendixError, match="conflicts with enclosing subpart 'B'"):
+        _records(xml, include_appendices=True)
+
+
+def test_misplaced_appendix_in_another_part_does_not_change_numbering():
+    structure = json.loads(json.dumps(STRUCTURE))
+    chapter = structure["children"][0]
+    chapter["children"].append({
+        "identifier": "405", "label": "Part 405-Other", "type": "part",
+        "children": [_appendix_node("Appendix A to Subpart C of Part 404", "Misplaced")],
+    })
+
+    inventory = build_ecfr_inventory_from_structures((structure,), only_part="404", include_appendices=True)
+
+    by_path = {item.citation_path: item for item in inventory.items}
+    assert [item.citation_path for item in inventory.items] == EXPECTED_PATHS
+    assert by_path["us/regulation/20/404/subpart-C/appendix-i"].metadata["appendix_numbering"] == "roman"
+    assert ecfr._structure_only_provision(
+        by_path["us/regulation/20/404/subpart-C/appendix-i"], "v", "2026-10-08", "2026-10-08"
+    ).ordinal == 1_000_001
+
+
+@settings(max_examples=150, deadline=None)
+@given(
+    st.lists(st.sampled_from(["I", "II", "III", "IV", "V", "A", "B", "C", "1", "2", ""]), max_size=8),
+    st.lists(st.tuples(st.sampled_from(["A", "CC", "II", "7", ""]), st.sampled_from(["B", None, "OTHER-PART"])), max_size=4),
+)
+def test_numbering_ignores_appendices_outside_the_subpart_they_name(designators, misplaced):
+    def identifier(designator):
+        return f"Appendix {designator} to Subpart C of Part 404" if designator else "Appendix to Subpart C of Part 404"
+
+    placed = [(identifier(d), "404", "C") for d in designators]
+    strays = [
+        (identifier(d), "405" if where == "OTHER-PART" else "404", None if where == "OTHER-PART" else where)
+        for d, where in misplaced
+    ]
+
+    assert ecfr._subpart_appendix_numbering_by_subpart(placed + strays) == (
+        ecfr._subpart_appendix_numbering_by_subpart(placed)
+    )
+
+
+def test_designator_case_variants_agree_between_structure_and_xml(tmp_path, monkeypatch, live_fetchers):
+    structure = json.loads(json.dumps(STRUCTURE))
+    subpart_p = structure["children"][0]["children"][0]["children"][2]
+    subpart_p["children"].insert(3, _appendix_node("Appendix A to Subpart P of Part 404", "Lettered"))
+    xml = _with_appendix(XML, "P", "Appendix a to Subpart P of Part 404")
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-10-12", as_of="2026-10-08",
+        only_title=20, only_part="404", include_appendices=True,
+    )
+
+    assert report.coverage.complete
+    record = {r.citation_path: r for r in load_provisions(report.provisions_path)}[
+        "us/regulation/20/404/subpart-P/appendix-a"
+    ]
+    assert (record.ordinal, record.body) == (1_000_065, "Moved appendix.")
+    assert ecfr._subpart_appendix_numbering(["a", "B"]) == {"A": "letter", "B": "letter"}
+
+
+def test_reserved_sibling_keeps_numeral_context(tmp_path, monkeypatch, live_fetchers):
+    # Only Appendix I of subpart C is active; II is reserved. I is still the numeral.
+    structure = json.loads(json.dumps(STRUCTURE))
+    group = structure["children"][0]["children"][0]["children"][1]["children"][1]
+    group["children"] = [
+        _appendix_node("Appendix I to Subpart C of Part 404", "Wages"),
+        {**_appendix_node("Appendix II to Subpart C of Part 404", "[Reserved]"), "reserved": True},
+    ]
+    xml = XML
+    for numeral in ("II", "IV", "V"):
+        start = xml.index(f'<DIV9 N="Appendix {numeral} to Subpart C')
+        xml = xml[:start] + xml[xml.index("</DIV9>", start) + len("</DIV9>"):]
+    start = xml.index('<DIV9 N="Appendixes to Subpart C')
+    xml = xml[:start] + xml[xml.index("</DIV9>", start) + len("</DIV9>"):]
+    xml = _with_appendix(xml, "C", "Appendix II to Subpart C of Part 404")
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-10-12", as_of="2026-10-08",
+        only_title=20, only_part="404", include_appendices=True,
+    )
+
+    assert report.coverage.complete
+    by_path = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert by_path["us/regulation/20/404/subpart-C/appendix-i"].ordinal == 1_000_001
+    assert "us/regulation/20/404/subpart-C/appendix-ii" not in by_path
+
+
+def test_xml_appendix_absent_from_structure_is_left_out(tmp_path, monkeypatch, live_fetchers):
+    # Appendix VI exists only in the XML. extract_ecfr takes what the structure lists.
+    monkeypatch.setattr(
+        ecfr, "fetch_ecfr_part_xml",
+        lambda title, part, as_of: _with_appendix(XML, "C", "Appendix VI to Subpart C of Part 404"),
+    )
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-10-12", as_of="2026-10-08",
+        only_title=20, only_part="404", include_appendices=True,
+    )
+
+    assert report.coverage.complete
+    assert [record.citation_path for record in load_provisions(report.provisions_path)] == EXPECTED_PATHS
+
+
+@pytest.mark.parametrize("tag", ["P", "FP", "FP-2", "PSPACE", "HED", "HD1", "HD2", "HD3", "LI", "DIV", "br"])
+def test_every_block_break_tag_separates_words_in_appendix_text(tag):
+    elem = ecfr.ET.fromstring(
+        f"<TD>left<{tag}>middle</{tag}>right<E>em</E>tail</TD>" if tag != "br" else "<TD>left<br/>right<E>em</E>tail</TD>"
+    )
+
+    # Inline markup (<E>) still joins: "right" + "em" + "tail".
+    expected = "left middle rightemtail" if tag != "br" else "left rightemtail"
+    assert ecfr._element_text_with_breaks(elem) == expected
+    # Section text keeps joining everything.
+    assert ecfr._element_text(elem) == expected.replace(" ", "")
+
+
+def test_part_appendix_body_gains_captions_and_word_breaks_identity_unchanged():
+    # Part appendices keep their path, parent, level, ordinal and metadata; their
+    # bodies now carry captions and break words like subpart appendices do. No
+    # locked part appendix has a caption or a <br/>.
+    xml = XML.replace(
+        "<P>Part-scoped text.</P>",
+        "<TABLE><CAPTION><P>Caption</P></CAPTION><TR><TD>A<br/>B</TD></TR></TABLE>",
+    )
+
+    record = {r.citation_path: r for r in _records(xml, include_appendices=True)}[
+        "us/regulation/20/404/appendix-a"
+    ]
+
+    assert record.body == "Caption\n\nA B"
+    assert (record.parent_citation_path, record.level, record.ordinal, record.legal_identifier) == (
+        "us/regulation/20/404", 1, 1_000_065, "20 CFR part 404, appendix A",
+    )
+    assert set(record.metadata) == {"title", "part", "appendix", "appendix_identifier", "chapter", "subchapter"}

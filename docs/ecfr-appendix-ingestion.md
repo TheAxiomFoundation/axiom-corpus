@@ -39,7 +39,8 @@ is the subpart row, at level 2:
 | `Appendixes to Subpart C of Part 404` (the note before a subpart's appendices) | `us/regulation/20/404/subpart-C/appendixes` |
 
 A designator is a number, a single letter, or an uppercase roman numeral, and the
-path segment lowercases it. The legal identifier reads
+path segment lowercases it (`Appendix a ...` and `Appendix A ...` are the same
+appendix, and classify the same way). The legal identifier reads
 `20 CFR part 404, subpart C, appendix II` (`..., appendix` and `..., appendixes` for
 the unnumbered and collective forms). Metadata carries `subpart`, `appendix` (the
 lowercased designator, or null), `appendix_identifier` and `appendix_numbering`.
@@ -50,9 +51,13 @@ other appendices of the same subpart: when every non-numeric designator is a rom
 numeral and one has more than one character (`I`, `II`, ... `VII`), they are
 numerals and sort by value; otherwise single letters keep the part-appendix ordinal
 (`ord` of the letter). A multi-character designator among letters (`CC` beside
-`A`) has no unambiguous order and fails validation. `extract-ecfr` classifies
-designators from the retained structure, so a structure-only placeholder and the
-XML record it stands in for get the same ordinal.
+`A`) has no unambiguous order and fails validation. Only appendices that sit in the
+subpart they name count toward its classification, so a misplaced appendix, selected
+or not, never changes how its named siblings sort; reserved appendices do count.
+`extract-ecfr` classifies designators from the retained structure, so a
+structure-only placeholder and the XML record it stands in for get the same
+ordinal; an appendix that only the XML has is outside the inventory and is not
+taken.
 
 A subpart appendix must sit inside the subpart and part it names. One that does
 not (for example `Appendix A to Subpart F of Part 2520`, which the eCFR places
@@ -69,9 +74,13 @@ validation. These errors do not imply full appendix coverage.
 Exact `--section` selectors exclude appendices before validation. The lower-level
 iterator likewise applies an explicit citation allowlist before converting an
 appendix; selected unsupported identifiers still fail closed.
-Appendix inventory/selection validation errors from either CLI command print a
-diagnostic to stderr and exit with status 2 before writing run artifacts; an
-existing run is preserved. Later parsing or I/O failures can occur after source capture.
+Appendix validation errors (`EcfrAppendixError`, a `ValueError`) from either CLI
+command print a diagnostic to stderr and exit with status 2 before writing run
+artifacts; an existing run is preserved. That holds for contradictions only the XML
+shows, too: `extract-ecfr` converts a title's selected appendices in memory before
+writing its XML or images, and writes the structure, inventory, provisions and
+coverage only after every title passes. Other parsing or I/O failures can still
+occur after source capture and surface as title errors.
 
 For included appendices, extraction archives official PNG bytes for source
 images, retains image references in the body, and keeps HD1–HD3 heading text.
@@ -82,10 +91,17 @@ references are source evidence, not OCR text or an executable formula.
 Appendix bodies also keep table captions, as a block before the table's rows
 (`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P of
 part 404), and read a `<br/>` as a word break, so `means<br/>less` is
-`means less`, not `meansless`. eCFR's editorial cross-references (`XREF`, such as
-"Link to an amendment published at 91 FR 40836, July 2, 2026.") and the bracketed
-source notes (`CITA`) are not regulation text and are not kept. Section rendering
-is unchanged: it still drops table captions and joins words across `<br/>`.
+`means less`, not `meansless`; adjacent block children (`P`, `FP`, `PSPACE`, `HED`,
+`HD1`–`HD3`, `LI`, `DIV`) separate words the same way, while inline markup still
+joins (`FEV<sub>1</sub>` is `FEV1`). An appendix's own bracketed source note
+(`CITA`) and an editorial cross-reference that stands as its own block (`XREF`, such
+as "Link to an amendment published at 91 FR 40836, July 2, 2026.") are not
+regulation text and are not kept; text nested inside a kept element (a caption, a
+paragraph or a table cell) is kept whatever its tag. These rendering changes apply
+to part appendices as well, whose path, parent, level, ordinal and metadata are
+unchanged; no locked part appendix has a caption, a `<br/>` or adjacent block
+children. Section rendering is unchanged: it still drops table captions and joins
+words across `<br/>`.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with

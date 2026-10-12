@@ -126,6 +126,8 @@ def test_batch_parser_refuses_appendix_replay(ecfr_recovery_case: tuple, declara
         "us/regulation/20/404/subpart-C/appendix-ii",
         "us/regulation/20/404/subpart-C/appendixes",
         "us/regulation/20/404/subpart-B/appendix",
+        "us/regulation/29/1910/subpart-L/appendices",
+        "us/regulation/29/1910/subpart-L/appendices/1",
     ],
 )
 def test_recovery_refuses_subpart_appendix_citations(
