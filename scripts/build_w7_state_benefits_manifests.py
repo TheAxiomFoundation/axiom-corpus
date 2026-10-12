@@ -138,6 +138,12 @@ decide(
     "roots the title at us-az/statute/title-46 (inventory source_url https://www.azleg.gov/arsDetail?title=46): "
     "path move us-az/statute/46 -> us-az/statute/title-46",
 )
+FNS = "https://www.fns.usda.gov/sites/default/files/resource-files/"
+FNS_URLS = {
+    3: FNS + "co-snap-foodRestrictionWaiverMod.pdf",
+    4: FNS + "co-snap-foodrestrictionwaiver-modification.pdf",
+    5: FNS + "snap-foodrestrictionWaiverApproval-colorado.pdf",
+}
 for r, path, when in (
     (3, "us-co/policy/co-fns-food-restriction-waiver-modification-2026-01-23", "January 23, 2026"),
     (4, "us-co/policy/co-fns-food-restriction-waiver-modification-2026-05-11", "May 11, 2026"),
@@ -148,7 +154,7 @@ for r, path, when in (
         HELD,
         "us-co/policy/2026-07-21-co-snap-policy",
         path,
-        "",
+        FNS_URLS[r],
         f"held and served (us-co/policy/2026-07-21-co-snap-policy is in us-rulespec-2026-10-07-w6-bundle-gaps-union; "
         f"inventory source_url equals the bundle address; FNS waiver {when}). Counted missing because the bundle's "
         "full-tier entry comes from manifests/us-co-snap-primary-policy.yaml, whose entry has no citation_path (the "
@@ -503,7 +509,10 @@ doc(
     program="CCDF",
     authority="Illinois Department of Early Childhood",
     subtype="agency_web_page",
-    extraction={"html_content_selector": "main"},
+    extraction={
+        "html_content_selector": "main",
+        "html_drop_selectors": ["div.cmp-agency-footer__links-icons", "div.guideContainerNode"],
+    },
     illinois_dhs_item_id="104995",
     final_url="https://idec.illinois.gov/forparents/child-care-assistance-program.html",
     redirect_note="the IDHS item redirects to the Department of Early Childhood page (CCAP lead agency since 2026-07-01)",

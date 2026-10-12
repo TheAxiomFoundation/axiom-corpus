@@ -56,6 +56,9 @@ documents:
   citation_path: us-il/guidance/idec/child-care-assistance-program
   extraction:
     html_content_selector: main
+    html_drop_selectors:
+    - div.cmp-agency-footer__links-icons
+    - div.guideContainerNode
   metadata:
     primary_source: true
     source_authority: Illinois Department of Early Childhood
