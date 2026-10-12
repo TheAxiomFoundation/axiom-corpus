@@ -265,7 +265,7 @@ def test_subpart_appendix_identifier_parses(identifier, segment, legal_identifie
     )
     assert appendix.legal_identifier(20) == legal_identifier
     # A part appendix identifier is not a subpart appendix, and vice versa.
-    assert ecfr._appendix_citation_from_identifier(20, identifier, require_supported=False) is None
+    assert ecfr._part_appendix_from_identifier(identifier, require_supported=False) is None
 
 
 @pytest.mark.parametrize(
@@ -312,24 +312,24 @@ def test_roman_numbered_appendices_sort_by_numeral_value(values, rng):
     shuffled = list(designators)
     rng.shuffle(shuffled)
 
-    numbering = ecfr._subpart_appendix_numbering(shuffled)
+    numbering = ecfr._appendix_designator_numbering(shuffled)
 
-    assert numbering == ecfr._subpart_appendix_numbering(designators)
+    assert numbering == ecfr._appendix_designator_numbering(designators)
     assert set(numbering.values()) == {"roman"}
-    ordinals = [ecfr._subpart_appendix_ordinal(d, numbering[d]) for d in designators]
+    ordinals = [ecfr._appendix_designator_ordinal(d, numbering[d]) for d in designators]
     assert ordinals == [1_000_000 + value for value in sorted(values)]
 
 
 @settings(max_examples=200, deadline=None)
 @given(st.sets(st.sampled_from("ABCDEFGHIJKLMNOPQRSTUVWXYZ"), min_size=1))
 def test_lettered_appendices_keep_the_part_appendix_ordinal(letters):
-    numbering = ecfr._subpart_appendix_numbering(letters)
+    numbering = ecfr._appendix_designator_numbering(letters)
 
     # Single letters (I, V, C... included) are letters unless a sibling is a
     # multi-character numeral, and order like the part appendices do.
     assert set(numbering.values()) == {"letter"}
     for letter in letters:
-        assert ecfr._subpart_appendix_ordinal(letter, numbering[letter]) == (
+        assert ecfr._appendix_designator_ordinal(letter, numbering[letter]) == (
             ecfr._appendix_ordinal(letter.lower())
         )
 
@@ -338,11 +338,11 @@ def test_lettered_appendices_keep_the_part_appendix_ordinal(letters):
 @given(st.sets(st.integers(min_value=0, max_value=999), min_size=1), st.sets(st.sampled_from("ABC")))
 def test_numbered_appendices_order_numerically_beside_letters(numbers, letters):
     designators = [str(number) for number in numbers] + sorted(letters)
-    numbering = ecfr._subpart_appendix_numbering(designators)
+    numbering = ecfr._appendix_designator_numbering(designators)
 
     for number in numbers:
         assert numbering[str(number)] == "digit"
-        assert ecfr._subpart_appendix_ordinal(str(number), "digit") == 1_000_000 + number
+        assert ecfr._appendix_designator_ordinal(str(number), "digit") == 1_000_000 + number
 
 
 @pytest.mark.parametrize(
@@ -350,15 +350,15 @@ def test_numbered_appendices_order_numerically_beside_letters(numbers, letters):
     [(["A", "CC"], "CC"), (["A", "II"], "II"), (["B", "IV", "V"], "IV")],
 )
 def test_multi_character_designator_among_letters_has_no_order(designators, ambiguous):
-    numbering = ecfr._subpart_appendix_numbering(designators)
+    numbering = ecfr._appendix_designator_numbering(designators)
 
     assert numbering[ambiguous] is None
-    assert ecfr._subpart_appendix_ordinal(ambiguous, None) is None
+    assert ecfr._appendix_designator_ordinal(ambiguous, None) is None
 
 
 def test_unnumbered_and_collective_appendices_lead_their_subpart():
-    assert ecfr._subpart_appendix_ordinal(None, None) == 1_000_000
-    assert ecfr._subpart_appendix_ordinal("", "roman") == 1_000_000
+    assert ecfr._appendix_designator_ordinal(None, None) == 1_000_000
+    assert ecfr._appendix_designator_ordinal("", "roman") == 1_000_000
 
 
 def test_inventory_takes_subpart_appendices_beside_part_appendices():
@@ -567,7 +567,7 @@ def test_ambiguous_designators_fail_closed_in_inventory_and_iterator():
     with pytest.raises(ValueError, match="designator order is ambiguous"):
         _records(xml, include_appendices=True)
     # "1" and "2" stay numbered, and "A" stays a letter, beside the ambiguous "CC".
-    numbering = ecfr._subpart_appendix_numbering(["1", "2", "A", "CC"])
+    numbering = ecfr._appendix_designator_numbering(["1", "2", "A", "CC"])
     assert numbering == {"1": "digit", "2": "digit", "A": "letter", "CC": None}
 
 
@@ -767,7 +767,7 @@ def test_shuffled_designator_order_is_irrelevant():
     for _ in range(20):
         shuffled = list(designators)
         rng.shuffle(shuffled)
-        assert ecfr._subpart_appendix_numbering(shuffled) == dict.fromkeys(designators, "roman")
+        assert ecfr._appendix_designator_numbering(shuffled) == dict.fromkeys(designators, "roman")
 
 
 def _files(root):
@@ -926,7 +926,7 @@ def test_designator_case_variants_agree_between_structure_and_xml(tmp_path, monk
         "us/regulation/20/404/subpart-P/appendix-a"
     ]
     assert (record.ordinal, record.body) == (1_000_065, "Moved appendix.")
-    assert ecfr._subpart_appendix_numbering(["a", "B"]) == {"A": "letter", "B": "letter"}
+    assert ecfr._appendix_designator_numbering(["a", "B"]) == {"A": "letter", "B": "letter"}
 
 
 def test_reserved_sibling_keeps_numeral_context(tmp_path, monkeypatch, live_fetchers):
