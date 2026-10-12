@@ -19,6 +19,7 @@ from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.state_adapters.idaho import (
+    _clean_text,
     _rendition_starts,
     _section_content_divs,
 )
@@ -127,7 +128,15 @@ def test_the_2026_07_31_successor_rows_are_carried_with_the_same_text() -> None:
     new = _rows()
     for path, row in _rows(SUCCESSOR_VERSION).items():
         mine = new[path]
-        for field in ("heading", "body", "citation_label", "legal_identifier", "kind", "level"):
+        for field in (
+            "heading",
+            "body",
+            "citation_label",
+            "legal_identifier",
+            "identifiers",
+            "kind",
+            "level",
+        ):
             assert mine[field] == row[field], (path, field)
         assert mine.get("parent_citation_path") == row.get("parent_citation_path")
         if row["kind"] == "section":
@@ -187,18 +196,44 @@ def test_the_two_versions_differ_only_in_the_marker_and_the_66_402_reference() -
 
 
 def test_only_these_two_retained_chapter_30_pages_print_more_than_one_rendition() -> None:
-    """All 162 section pages the chapter scope retained were read: only §§63-3022E
-    and 63-3025D print two renditions, and each prints exactly two."""
+    """All 162 section pages the chapter scope retained, read three ways:
+    rendition starts, bracketed effective-date markers anywhere in the statute
+    text, and 2026 session laws in the History notes. Only §§63-3022E and
+    63-3025D print two renditions, only they carry such markers, and only they
+    cite 2026 ch. 79."""
+    import re
+
+    marker = re.compile(
+        r"\[[^\]]*\b(?:effective|until|repeal|expire|operative|contingent|terminat|null)[^\]]*\]",
+        re.I,
+    )
     counts: dict[str, int] = {}
+    markers: dict[str, set[str]] = {}
+    session_laws: dict[str, set[str]] = {}
     for page in sorted((CHAPTER_SOURCES / SECTION_PAGES).glob("*.html")):
         divs = _section_content_divs(BeautifulSoup(page.read_bytes().decode("utf-8"), "lxml"))
         starts, _ = _rendition_starts(divs, section=page.stem)
         counts[page.stem] = len(starts)
+        text = " ".join(_clean_text(div) for div in divs)
+        if found := set(marker.findall(text)):
+            markers[page.stem] = found
+        for chapter in re.findall(r"am\. 2026, ch\. (\d+)", text):
+            session_laws.setdefault(chapter, set()).add(page.stem)
     assert len(counts) == 162
     assert {section: n for section, n in counts.items() if n != 1} == {
         "63-3022E": 2,
         "63-3025D": 2,
     }
+    two_markers = {"[effective until January 1, 2027]", "[effective January 1, 2027]"}
+    assert markers == {"63-3022E": two_markers, "63-3025D": two_markers}
+    assert sorted(session_laws, key=int) == ["1", "79", "81", "153", "184", "302"]
+    assert session_laws["79"] == {"63-3022E", "63-3025D"}
+    assert all(
+        counts[section] == 1
+        for chapter, pages in session_laws.items()
+        if chapter != "79"
+        for section in pages
+    )
 
 
 def test_no_other_us_id_scope_carries_a_variant_path() -> None:
