@@ -256,21 +256,43 @@ def _local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1].upper()
 
 
+def _table_caption_lines(caption: ET.Element) -> list[str]:
+    # eCFR captions hold one or more P blocks (class "title" and/or "headnote");
+    # each becomes its own line. Any other shape is kept whole as one line.
+    paragraphs = list(caption)
+    loose_text = _clean_text(caption.text) or any(
+        _clean_text(child.tail) for child in paragraphs
+    )
+    if (
+        paragraphs
+        and not loose_text
+        and all(_local_name(child.tag) == "P" for child in paragraphs)
+    ):
+        lines = [_element_text(child) for child in paragraphs]
+    else:
+        lines = [_element_text(caption)]
+    return [line for line in lines if line]
+
+
 def _table_text(elem: ET.Element) -> str:
-    rows: list[str] = []
-    for row in elem.iter():
-        if _local_name(row.tag) != "TR":
+    lines: list[str] = []
+    for node in elem.iter():
+        tag = _local_name(node.tag)
+        if tag == "CAPTION":
+            lines.extend(_table_caption_lines(node))
+            continue
+        if tag != "TR":
             continue
         cells = [
             cell_text
-            for cell in row
+            for cell in node
             if _local_name(cell.tag) in {"TH", "TD"}
             for cell_text in [_element_text(cell)]
             if cell_text
         ]
         if cells:
-            rows.append(" | ".join(cells))
-    return "\n".join(rows)
+            lines.append(" | ".join(cells))
+    return "\n".join(lines)
 
 
 def _ecfr_part_url(

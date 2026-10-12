@@ -1,0 +1,348 @@
+"""eCFR table captions reach provision bodies as each table's leading line(s).
+
+A ``<CAPTION>`` names the table it heads ("Table 1—For Employees"). Before
+this behaviour the adapter read only ``TR`` rows, so 20 CFR 404.1592 kept the
+rows of its two tables but lost which one applies to employees and which to the
+self-employed. docs/validation/ecfr-table-captions-2026-10-12.md records the
+impact analysis and the replay over every retained eCFR source.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+from xml.etree import ElementTree as ET
+
+import pytest
+from hypothesis import given
+from hypothesis import strategies as st
+
+from axiom_corpus.corpus.ecfr import (
+    EcfrPartTarget,
+    _table_text,
+    iter_ecfr_title_provisions,
+)
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+# 20 CFR 404.1592(d)(2)-(3) as eCFR served it on 2026-10-12, with the
+# paragraph prose shortened. Each table keeps its real markup shape:
+# DIV/DIV/TABLE, a CAPTION holding one P class="title", then THEAD and TBODY.
+SECTION_404_1592_XML = """
+<ECFR>
+  <DIV5 N="404" TYPE="PART">
+    <HEAD>PART 404—FEDERAL OLD-AGE, SURVIVORS AND DISABILITY INSURANCE (1950- )</HEAD>
+    <DIV8 N="404.1592" TYPE="SECTION">
+      <HEAD>§ 404.1592 The trial work period.</HEAD>
+      <P>(i) Before January 1, 2002, your earnings in a month were more than the amount(s) indicated in Table 1 for the year(s) in which you worked.</P>
+      <DIV width="100%"><DIV class="gpotbl_div">
+        <TABLE border="1" class="gpo_table" frame="void" width="100%">
+          <CAPTION><P class="title">Table 1&#x2014;For Employees</P></CAPTION>
+          <THEAD>
+            <TR><TH>For months</TH><TH>You earn more than</TH></TR>
+          </THEAD>
+          <TBODY>
+            <TR><TD>In calendar years before 1979</TD><TD>$50</TD></TR>
+            <TR><TD>In calendar year 2001</TD><TD>530</TD></TR>
+          </TBODY>
+        </TABLE>
+      </DIV></DIV>
+      <DIV width="100%"><DIV class="gpotbl_div">
+        <TABLE border="1" class="gpo_table" frame="void" width="100%">
+          <CAPTION><P class="title">Table 2&#x2014;For the Self-Employed</P></CAPTION>
+          <THEAD>
+            <TR>
+              <TH>For months</TH>
+              <TH>Your net earnings are more than</TH>
+              <TH>Or you work in the business more than</TH>
+            </TR>
+          </THEAD>
+          <TBODY>
+            <TR><TD>In calendar years before 1979</TD><TD>$50</TD><TD>15 hours.</TD></TR>
+            <TR><TD>In calendar year 2001</TD><TD>530</TD><TD>80 hours.</TD></TR>
+          </TBODY>
+        </TABLE>
+      </DIV></DIV>
+      <P>(e) Limitations on the number of trial work periods.</P>
+    </DIV8>
+  </DIV5>
+</ECFR>
+"""
+
+EMPLOYEES = "Table 1—For Employees"
+SELF_EMPLOYED = "Table 2—For the Self-Employed"
+
+
+def _last_body(xml: str, *, title: int, part: str, include_appendices: bool = False) -> str:
+    records = tuple(
+        iter_ecfr_title_provisions(
+            xml,
+            (EcfrPartTarget(title=title, part=part),),
+            version="2026-10-12-test",
+            source_path="sources/test/ecfr.xml",
+            include_appendices=include_appendices,
+        )
+    )
+    body = records[-1].body
+    assert body is not None
+    return body
+
+
+def _table(markup: str) -> ET.Element:
+    return ET.fromstring(f"<TABLE>{markup}</TABLE>")
+
+
+def test_section_tables_open_with_their_captions():
+    body = _last_body(SECTION_404_1592_XML, title=20, part="404")
+
+    assert body.split("\n\n") == [
+        "(i) Before January 1, 2002, your earnings in a month were more than the "
+        "amount(s) indicated in Table 1 for the year(s) in which you worked.",
+        "\n".join([
+            EMPLOYEES,
+            "For months | You earn more than",
+            "In calendar years before 1979 | $50",
+            "In calendar year 2001 | 530",
+        ]),
+        "\n".join([
+            SELF_EMPLOYED,
+            "For months | Your net earnings are more than | "
+            "Or you work in the business more than",
+            "In calendar years before 1979 | $50 | 15 hours.",
+            "In calendar year 2001 | 530 | 80 hours.",
+        ]),
+        "(e) Limitations on the number of trial work periods.",
+    ]
+
+
+def test_caption_text_reaches_the_body_only_through_the_caption():
+    """Anti-vacuous: the assertions above cannot pass without CAPTION handling.
+
+    Each caption string occurs once in the fixture, inside its CAPTION, so no
+    other element can supply it. Stripping the CAPTION elements must remove
+    exactly those lines and nothing else; under the old rows-only behaviour the
+    two bodies were identical and this test fails.
+    """
+    for caption in ("Table 1&#x2014;For Employees", "Table 2&#x2014;For the Self-Employed"):
+        assert SECTION_404_1592_XML.count(caption) == 1
+        assert f'<CAPTION><P class="title">{caption}</P></CAPTION>' in SECTION_404_1592_XML
+    stripped_xml = re.sub(r"<CAPTION>.*?</CAPTION>", "", SECTION_404_1592_XML)
+    assert stripped_xml.count("<CAPTION>") == 0
+
+    with_captions = _last_body(SECTION_404_1592_XML, title=20, part="404")
+    without_captions = _last_body(stripped_xml, title=20, part="404")
+
+    assert with_captions != without_captions
+    assert EMPLOYEES not in without_captions
+    assert SELF_EMPLOYED not in without_captions
+    lines = with_captions.split("\n")
+    for caption in (EMPLOYEES, SELF_EMPLOYED):
+        assert lines.count(caption) == 1
+        assert lines[lines.index(caption) + 1].startswith("For months | ")
+    assert [line for line in lines if line not in {EMPLOYEES, SELF_EMPLOYED}] == (
+        without_captions.split("\n")
+    )
+
+
+@pytest.mark.parametrize(
+    ("caption", "expected"),
+    [
+        pytest.param(
+            # 26 CFR 1.72-9 Table VIII: title, then two headnotes; <sup> joins inline.
+            '<CAPTION><P class="title">Table VIII&#x2014;Temporary Life Annuities; '
+            "<sup>1</sup> One Life&#x2014;Expected Return Multiples</P>"
+            '<P class="headnote">[See footnote at end of tables]</P>'
+            '<P class="headnote">Temporary Period&#x2014;Maximum Duration of Annuity</P>'
+            "</CAPTION>",
+            [
+                "Table VIII—Temporary Life Annuities; 1 One Life—Expected Return Multiples",
+                "[See footnote at end of tables]",
+                "Temporary Period—Maximum Duration of Annuity",
+            ],
+            id="title-and-headnotes",
+        ),
+        pytest.param(
+            '<CAPTION><P class="headnote">[In thousands of dollars]</P></CAPTION>',
+            ["[In thousands of dollars]"],
+            id="headnote-only",
+        ),
+        pytest.param(
+            # 47 CFR 54.621: inline emphasis stays inside one line.
+            '<CAPTION><P class="title">Table 1 to Paragraph (<E T="01">b</E>)(2)'
+            "&#x2014;Prioritization Schedule</P></CAPTION>",
+            ["Table 1 to Paragraph (b)(2)—Prioritization Schedule"],
+            id="inline-emphasis",
+        ),
+        pytest.param(
+            '<CAPTION><P class="title">Table E</P><P class="headnote"><strong>'
+            "Table E&#x2014;Single Life, Unisex</strong></P></CAPTION>",
+            ["Table E", "Table E—Single Life, Unisex"],
+            id="strong-headnote",
+        ),
+        pytest.param("<CAPTION>Table 9</CAPTION>", ["Table 9"], id="loose-text"),
+        pytest.param(
+            '<CAPTION>Table <E T="01">9</E> rates</CAPTION>',
+            ["Table 9 rates"],
+            id="loose-inline-markup-is-one-line",
+        ),
+        pytest.param(
+            "<CAPTION>Schedule <P>A</P> rates</CAPTION>",
+            ["Schedule A rates"],
+            id="mixed-text-and-paragraph-is-one-line",
+        ),
+        pytest.param("<CAPTION/>", [], id="empty"),
+        pytest.param(
+            '<CAPTION><P class="title">  </P></CAPTION>', [], id="blank-paragraph"
+        ),
+    ],
+)
+def test_caption_shapes(caption, expected):
+    rows = "<THEAD><TR><TH>Year</TH><TH>Amount</TH></TR></THEAD><TBODY><TR><TD>2001</TD><TD>530</TD></TR></TBODY>"
+
+    assert _table_text(_table(caption + rows)).split("\n") == [
+        *expected,
+        "Year | Amount",
+        "2001 | 530",
+    ]
+
+
+def test_caption_only_table_is_kept_as_its_own_block():
+    xml = (
+        '<ECFR><DIV5 N="999" TYPE="PART"><HEAD>Part 999</HEAD>'
+        '<DIV8 N="§ 999.1" TYPE="SECTION"><HEAD>§ 999.1 Rates.</HEAD>'
+        "<P>(a) The rates are:</P>"
+        '<DIV class="gpotbl_div"><TABLE><CAPTION><P class="title">Table 1 to Paragraph (a)'
+        "</P></CAPTION></TABLE></DIV>"
+        "<P>(b) Reserved.</P>"
+        "</DIV8></DIV5></ECFR>"
+    )
+
+    assert _last_body(xml, title=45, part="999").split("\n\n") == [
+        "(a) The rates are:",
+        "Table 1 to Paragraph (a)",
+        "(b) Reserved.",
+    ]
+
+
+def test_appendix_table_caption_precedes_rows_and_image_placeholders():
+    xml = (
+        '<ECFR><DIV5 N="604" TYPE="PART"><HEAD>Part 604</HEAD>'
+        '<DIV9 N="Appendix A to Part 604" TYPE="APPENDIX"><HEAD>Appendix A</HEAD>'
+        '<DIV class="gpotbl_div"><TABLE><CAPTION><P class="title">Table A&#x2014;Form'
+        "</P></CAPTION>"
+        '<TR><TD>Signature</TD><TD><IMG src="/graphics/EC01JA91.007.gif"/></TD></TR>'
+        "</TABLE></DIV>"
+        "</DIV9></DIV5></ECFR>"
+    )
+
+    assert _last_body(xml, title=45, part="604", include_appendices=True).split("\n\n") == [
+        "Table A—Form\nSignature",
+        "[Official source image: ecfr/graphics/EC01JA91.007.png]",
+    ]
+
+
+def test_retained_part_416_source_emits_the_captions_its_release_lacks():
+    """Real bytes: 20 CFR 416.974 and 416.1112 each open a table with "Table 1".
+
+    The released 2026-09-11 scope was extracted before captions were emitted,
+    so its stored bodies lack the line; re-extracting the retained XML adds it
+    directly above each table's first row and changes nothing else. Those two
+    records are successor candidates (see the validation note).
+    """
+    version = "2026-09-11-title-20-part-416"
+    xml = (
+        REPO_ROOT
+        / f"data/corpus/sources/us/regulation/{version}/ecfr/title-20-part-416.xml"
+    ).read_text()
+    stored = {
+        record["citation_path"]: record["body"]
+        for line in (
+            REPO_ROOT / f"data/corpus/provisions/us/regulation/{version}.jsonl"
+        ).read_text().splitlines()
+        for record in [json.loads(line)]
+    }
+    extracted = {
+        record.citation_path: record.body
+        for record in iter_ecfr_title_provisions(
+            xml,
+            (EcfrPartTarget(title=20, part="416"),),
+            version=version,
+            source_path="sources/test/ecfr.xml",
+        )
+    }
+
+    for section in ("974", "1112"):
+        path = f"us/regulation/20/416/{section}"
+        new_lines = extracted[path].split("\n")
+        old_lines = stored[path].split("\n")
+        caption_index = next(
+            index
+            for index, line in enumerate(new_lines)
+            if line == "Table 1" and " | " in new_lines[index + 1]
+        )
+        assert new_lines[: caption_index] + new_lines[caption_index + 1 :] == old_lines
+        assert old_lines[caption_index] == new_lines[caption_index + 1]
+
+
+_TEXT = st.text(
+    alphabet=st.characters(categories=("L", "N", "P", "S", "Zs")), max_size=24
+)
+
+
+@st.composite
+def _captioned_tables(draw):
+    paragraphs = []
+    for _ in range(draw(st.integers(min_value=0, max_value=3))):
+        text = draw(_TEXT)
+        cut_a = draw(st.integers(min_value=0, max_value=len(text)))
+        cut_b = draw(st.integers(min_value=cut_a, max_value=len(text)))
+        paragraphs.append((draw(st.sampled_from(["title", "headnote"])), text, cut_a, cut_b))
+    rows = draw(st.lists(st.lists(_TEXT, max_size=3), max_size=4))
+    return paragraphs, rows
+
+
+def _build_table(paragraphs, rows, *, with_caption: bool) -> ET.Element:
+    table = ET.Element("TABLE")
+    if with_caption:
+        caption = ET.SubElement(table, "CAPTION")
+        for css_class, text, cut_a, cut_b in paragraphs:
+            paragraph = ET.SubElement(caption, "P", {"class": css_class})
+            paragraph.text = text[:cut_a]
+            if cut_b > cut_a:
+                emphasis = ET.SubElement(paragraph, "E", {"T": "01"})
+                emphasis.text = text[cut_a:cut_b]
+                emphasis.tail = text[cut_b:]
+            else:
+                paragraph.text = text
+    body = ET.SubElement(table, "TBODY")
+    for cells in rows:
+        row = ET.SubElement(body, "TR")
+        for cell in cells:
+            ET.SubElement(row, "TD").text = cell
+    return table
+
+
+@given(_captioned_tables())
+def test_caption_lines_lead_in_order_and_rows_are_unchanged(case):
+    """Invariants for every caption of P paragraphs and every row set.
+
+    1. The output opens with one line per non-blank caption paragraph, in
+       source order, each the paragraph's whitespace-normalized text (inline
+       markup never splits a paragraph across lines).
+    2. Everything after those lines is byte-identical to the same table
+       without its caption: a caption never alters, drops, or reorders rows.
+    """
+    paragraphs, rows = case
+    expected = [
+        line
+        for _, text, _, _ in paragraphs
+        if (line := re.sub(r"\s+", " ", text).strip())
+    ]
+
+    with_caption = _table_text(_build_table(paragraphs, rows, with_caption=True))
+    without_caption = _table_text(_build_table(paragraphs, rows, with_caption=False))
+
+    lines = with_caption.split("\n") if with_caption else []
+    assert lines[: len(expected)] == expected
+    assert "\n".join(lines[len(expected) :]) == without_caption
