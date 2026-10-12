@@ -100,6 +100,10 @@ reading, one PATTERN row; 136 REVIEW cells not read (below).
   `expression_date` 2026-09-09 (the date the sibling `2026-09-11-title-20-part-416` rows carry; the appendix's own
   citation line ends `75 FR 1273, Jan. 11, 2010`). One block because the renderer emits the whole appendix under one `h4`.
   The parent path `us/regulation/20/416/subpart-K` is a container row of the 2026-09-11 scope; the two scopes share no path.
+  **Retired 2026-10-12:** this scope was never signed or locked, and its manifest and generator family are removed. The
+  appendix ships in the eCFR scope `us/regulation/2026-10-12-with-appendices-title-20-part-416`, which replaces
+  `2026-09-11-title-20-part-416` (`docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md`). Do not extract, lock or
+  select `2026-09-15-title-20-part-416-appendix-k`.
 - **POMS SI 00529.** The SI 005 subchapter list enumerates one section for SI 00529, `SI R00529.020 ... (Redacted)`, whose
   HTML body is `Manual Netting – Redacted Version / View In PDF` (the 46-character `block-1` the 2026-09-13 remainder scope
   holds under `us/manual/ssa/poms/si/r00529.020`; the 2026-09-10 note's judgment 1 had left the subchapter out). The
@@ -238,6 +242,11 @@ Run as one read-only sub-agent over the provision JSONL on disk; its rows are me
   the eight manifests or the three queues (no test imports the scripts).
 
 ## Controller
+
+**2026-10-12:** the first row below (`us/regulation/2026-09-15-title-20-part-416-appendix-k`) is retired and its
+manifest removed; select `us/regulation/2026-10-12-with-appendices-title-20-part-416` in place of
+`2026-09-11-title-20-part-416` instead (`docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md`). The rebuild
+commands below no longer produce that scope.
 
 Selector additions (artifacts unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`, not
 committed), as `jurisdiction / document_class / version`; no swap and no consolidation:
