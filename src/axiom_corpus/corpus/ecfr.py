@@ -303,14 +303,18 @@ def _ecfr_section_url(
     section: str,
     chapter: str | None,
     subchapter: str | None,
+    *,
+    enclosing_part: str | None = None,
 ) -> str:
+    """Link section ``part``.``section`` on the page of the eCFR part that holds it."""
     base = f"{ECFR_READER_BASE}/title-{title}"
     anchor = f"#p-{part}.{section}"
+    page_part = enclosing_part or part
     if chapter and subchapter:
-        return f"{base}/chapter-{chapter}/subchapter-{subchapter}/part-{part}{anchor}"
+        return f"{base}/chapter-{chapter}/subchapter-{subchapter}/part-{page_part}{anchor}"
     if chapter:
-        return f"{base}/chapter-{chapter}/part-{part}{anchor}"
-    return f"{base}/part-{part}{anchor}"
+        return f"{base}/chapter-{chapter}/part-{page_part}{anchor}"
+    return f"{base}/part-{page_part}{anchor}"
 
 
 def _ecfr_appendix_url(
@@ -354,6 +358,15 @@ def _ecfr_source_key(run_id: str, title: int, only_part: str | None) -> str:
 # 241 numbers its own sections 19-8.1 to 19-8.10. So a hyphenated PART is read only where
 # the enclosing part confirms it ("60-20.1" inside part 60-20); every other identifier
 # parses by the alphanumeric grammar, as before.
+#
+# The part an identifier names need not be the eCFR part that holds it. Title 43 groups
+# BLM rules in parts such as 3800, whose subparts carry their own numbers: subpart 3809
+# of part 3800 holds 43 CFR 3809.1, and eCFR has no part 3809. A few typeset errors do
+# the same (§ 1735.9 sits in 7 CFR part 1739). Such a section keeps the path of its
+# citation (us/regulation/43/3809/1, which is how a "43 CFR 3809.1" citation resolves),
+# but it belongs to the part that holds it: its parent is that part's subpart or the
+# part itself, a run scoped to that part includes it, and metadata["enclosing_part"]
+# names that part.
 _PART_IDENTIFIER_PATTERN = r"[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*"
 _SECTION_NUMBER_PATTERN = r"[0-9A-Za-z][0-9A-Za-z.()-]*"
 _SECTION_IDENTIFIER_PATTERN = rf"([0-9A-Za-z]+)\.({_SECTION_NUMBER_PATTERN})"
@@ -715,13 +728,31 @@ def _walk_inventory_items(
             if parsed is not None:
                 citation_path, section = parsed
                 actual_part = citation_path.split("/")[-2]
-                if only_part is not None and actual_part != only_part:
+                # The eCFR part that holds the section, which may differ from the part
+                # its identifier names (43 CFR 3809.1 in part 3800).
+                enclosing_part = part or actual_part
+                if only_part is not None and enclosing_part != only_part:
                     return
                 parent_citation_path = (
-                    f"us/regulation/{title}/{actual_part}/subpart-{subpart}"
+                    f"us/regulation/{title}/{enclosing_part}/subpart-{subpart}"
                     if subpart
-                    else f"us/regulation/{title}/{actual_part}"
+                    else f"us/regulation/{title}/{enclosing_part}"
                 )
+                metadata: dict[str, Any] = {
+                    "kind": "section",
+                    "title": title,
+                    "part": actual_part,
+                    "section": section,
+                    "subpart": subpart,
+                    "chapter": chapter,
+                    "subchapter": subchapter,
+                    "parent_citation_path": parent_citation_path,
+                    "label": node.get("label"),
+                    "label_description": node.get("label_description"),
+                    "received_on": node.get("received_on"),
+                }
+                if enclosing_part != actual_part:
+                    metadata["enclosing_part"] = enclosing_part
                 yield SourceInventoryItem(
                     citation_path=citation_path,
                     source_url=_ecfr_section_url(
@@ -730,23 +761,12 @@ def _walk_inventory_items(
                         section,
                         chapter,
                         subchapter,
+                        enclosing_part=enclosing_part,
                     ),
                     source_path=source_path,
                     source_format="ecfr-xml",
                     sha256=source_sha256,
-                    metadata={
-                        "kind": "section",
-                        "title": title,
-                        "part": part or actual_part,
-                        "section": section,
-                        "subpart": subpart,
-                        "chapter": chapter,
-                        "subchapter": subchapter,
-                        "parent_citation_path": parent_citation_path,
-                        "label": node.get("label"),
-                        "label_description": node.get("label_description"),
-                        "received_on": node.get("received_on"),
-                    },
+                    metadata=metadata,
                 )
         return
     elif node_type == "appendix":
@@ -827,6 +847,7 @@ def build_ecfr_inventory_from_structures(
     if only_sections and limit is not None:
         raise ValueError("eCFR section filtering cannot be combined with limit")
     items: list[SourceInventoryItem] = []
+    source_url_by_path: dict[str, str | None] = {}
     part_count = 0
     for structure in structures:
         part_targets = tuple(
@@ -845,6 +866,15 @@ def build_ecfr_inventory_from_structures(
             # validating identifiers that may be unsupported outside this scope.
             include_appendices=include_appendices and not only_sections,
         ):
+            # A section takes the path of the part its identifier names, so a section
+            # held by another part could claim the path of one that part already has.
+            # Two provisions under one identity would overwrite each other downstream.
+            if item.citation_path in source_url_by_path:
+                raise ValueError(
+                    f"eCFR citation path {item.citation_path!r} is claimed twice: "
+                    f"{source_url_by_path[item.citation_path]} and {item.source_url}"
+                )
+            source_url_by_path[item.citation_path] = item.source_url
             items.append(item)
             if limit is not None and len(items) >= limit:
                 return EcfrInventory(
@@ -1404,6 +1434,16 @@ def _section_provision(
         return None
     citation_path, part, section = parsed
     heading = _section_heading(elem, part, section)
+    metadata: dict[str, Any] = {
+        "title": title,
+        "part": part,
+        "section": section,
+        "subpart": subpart,
+        "chapter": target.chapter,
+        "subchapter": target.subchapter,
+    }
+    if part != target.part:
+        metadata["enclosing_part"] = target.part
     return ProvisionRecord(
         id=deterministic_provision_id(citation_path),
         jurisdiction="us",
@@ -1413,7 +1453,14 @@ def _section_provision(
         heading=heading,
         body=_section_body(elem, graphic_transcriptions),
         version=version,
-        source_url=_ecfr_section_url(title, part, section, target.chapter, target.subchapter),
+        source_url=_ecfr_section_url(
+            title,
+            part,
+            section,
+            target.chapter,
+            target.subchapter,
+            enclosing_part=target.part,
+        ),
         source_path=source_path,
         source_id=elem.get("NODE"),
         source_format="ecfr-xml",
@@ -1426,14 +1473,7 @@ def _section_provision(
         kind="section",
         legal_identifier=f"{title} CFR {part}.{section}",
         identifiers=_ecfr_identifiers(title, part, section=section, subpart=subpart),
-        metadata={
-            "title": title,
-            "part": part,
-            "section": section,
-            "subpart": subpart,
-            "chapter": target.chapter,
-            "subchapter": target.subchapter,
-        },
+        metadata=metadata,
     )
 
 
