@@ -5927,17 +5927,6 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    sources:
-    - policyengine-references
-    - plan
-    references: 1
-    scope: in
-    part: Income
   - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     name: sos.state.co.us/CCR/GenerateRulePdf.do
     layer: state
@@ -6012,6 +6001,21 @@ layers:
     - plan
     scope: in
     part: Benefit amount
+  - key: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+    name: 'Colorado Medical Assistance Rules: 10 CCR 2505-10 Section 8.100 Eligibility, Provider Screening, NPI'
+    layer: state
+    citation_path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+    source_url: null
+    sources:
+    - policyengine-references
+    - plan
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+      references: 1
+      part: Income
   - key: us-co/statute/10/10-16-1203
     name: us-co/statute/10/10-16-1203
     layer: state
@@ -6034,15 +6038,6 @@ layers:
       28, PRESENT)'
     part: Benefit amount
   full:
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779
     name: sos.state.co.us/CCR/GenerateRulePdf.do
     layer: state
@@ -6094,6 +6089,15 @@ layers:
     citation_path: us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
     source_url: null
     part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+    name: 'Colorado Medical Assistance Rules: 10 CCR 2505-10 Section 8.100 Eligibility, Provider Screening, NPI'
+    layer: state
+    citation_path: us-co/manual/hcpf/medicaid/10-ccr-2505-10-8-100
+    source_url: null
+    part: Income
     sources:
     - screener
     scope: in
