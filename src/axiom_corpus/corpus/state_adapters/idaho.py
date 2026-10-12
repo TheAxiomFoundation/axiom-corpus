@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date, datetime
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.citation_segment import variant_segment
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -43,8 +44,8 @@ _SECTION_HREF_RE = re.compile(
 )
 _SECTION_NUMBER_RE = re.compile(r"\b(?P<section>\d{1,2}-\d{2,5}[A-Z]?)\b", re.I)
 _RENDITION_EFFECTIVE_RE = re.compile(
-    r"\[effective(?P<until>\s+until)?\s+"
-    r"(?P<date>[A-Z][a-z]+\s+\d{1,2},\s+\d{4})\]",
+    r"\[(?P<note>effective(?P<until>\s+until)?\s+"
+    r"(?P<date>[A-Z][a-z]+\s+\d{1,2},\s+\d{4}))\]",
     re.I,
 )
 
@@ -134,7 +135,15 @@ class IdahoSectionListing:
 
 @dataclass(frozen=True)
 class IdahoSection:
-    """One Idaho Code section parsed from official section HTML."""
+    """One Idaho Code section parsed from official section HTML.
+
+    A page can print several dated renditions of one section ("[effective until
+    January 1, 2027]" / "[effective January 1, 2027]"). The rendition in force
+    on the expression date has no ``variant`` and keeps the plain citation
+    path; every other rendition is a same-number variant at
+    ``<section>--<variant>`` (the NM/VT/DE ``citation_segment.variant_segment``
+    convention).
+    """
 
     listing: IdahoSectionListing
     heading: str
@@ -147,14 +156,20 @@ class IdahoSection:
     source_format: str
     sha256: str
     status: str | None = None
+    variant: str | None = None
+    effective_note: str | None = None
 
     @property
     def citation_path(self) -> str:
+        return f"us-id/statute/{self.source_id}"
+
+    @property
+    def canonical_citation_path(self) -> str:
         return self.listing.citation_path
 
     @property
     def source_id(self) -> str:
-        return self.listing.source_id
+        return variant_segment(self.listing.source_id, self.variant)
 
     @property
     def legal_identifier(self) -> str:
@@ -182,10 +197,23 @@ class _RecordedSource:
 
 
 @dataclass(frozen=True)
+class _IdahoRendition:
+    """One dated rendition of a section on a page that prints several."""
+
+    position: int
+    start: int
+    end: int
+    effective_date: date | None
+    until: bool
+    note: str | None
+    marker_leads: bool = True
+
+
+@dataclass(frozen=True)
 class _IdahoSectionFetchResult:
     listing: IdahoSectionListing
     source: _IdahoSource | None = None
-    section: IdahoSection | None = None
+    sections: tuple[IdahoSection, ...] = ()
     error: BaseException | None = None
 
 
@@ -457,9 +485,10 @@ def extract_idaho_statutes(
             ):
                 if result.error is not None:
                     errors.append(f"section {result.listing.section}: {result.error}")
-                    continue
+                    if not result.sections:
+                        continue
                 assert result.source is not None
-                assert result.section is not None
+                assert result.sections
                 section_recorded = _record_source(
                     store,
                     jurisdiction=jurisdiction,
@@ -474,22 +503,24 @@ def extract_idaho_statutes(
                         result.source.relative_path,
                     )
                 )
-                section = _replace_section_source(result.section, section_recorded)
-                if _append_unique(
-                    seen,
-                    items,
-                    records,
-                    _section_inventory_item(section),
-                    _section_record(
-                        section,
-                        version=run_id,
-                        source_as_of=source_as_of_text,
-                        expression_date=expression_date_text,
-                    ),
-                ):
-                    section_count += 1
-                    if remaining_sections is not None:
-                        remaining_sections -= 1
+                # The rendition in force first, then its same-number variants.
+                for parsed in result.sections:
+                    section = _replace_section_source(parsed, section_recorded)
+                    if _append_unique(
+                        seen,
+                        items,
+                        records,
+                        _section_inventory_item(section),
+                        _section_record(
+                            section,
+                            version=run_id,
+                            source_as_of=source_as_of_text,
+                            expression_date=expression_date_text,
+                        ),
+                    ):
+                        section_count += 1
+                        if section.variant is None and remaining_sections is not None:
+                            remaining_sections -= 1
 
     if not records:
         raise ValueError("no Idaho Statutes provisions extracted")
@@ -661,17 +692,146 @@ def parse_idaho_section_page(
     source: _RecordedSource,
     expression_date: date | str | None = None,
 ) -> IdahoSection:
-    """Parse one official Idaho Statutes section HTML page."""
-    soup = BeautifulSoup(_decode(html), "lxml")
-    content_divs = _section_content_divs(soup)
-    if not content_divs:
-        raise ValueError("Idaho section page has no statute content divs")
-    content_divs = _select_section_rendition(
-        content_divs,
-        section=listing.section,
-        expression_date=expression_date,
+    """Parse one official Idaho Statutes section HTML page.
+
+    When the page prints several renditions this is the one in force on
+    ``expression_date``; :func:`parse_idaho_section_versions` returns them all.
+    """
+    divs, renditions, history_start, primary = _page_renditions(
+        html, section=listing.section, expression_date=expression_date
+    )
+    if primary is None:
+        return _parse_section_divs(divs, listing=listing, source=source)
+    return _parse_section_divs(
+        _rendition_divs(divs, renditions, primary, suffix_start=history_start),
+        listing=listing,
+        source=source,
     )
 
+
+class IdahoRenditionError(ValueError):
+    """A page's rendition in force parsed, but another rendition cannot be a row.
+
+    ``primary`` is that rendition in force, exactly as
+    :func:`parse_idaho_section_page` returns it, so an extractor can keep the
+    plain row and report the page.
+    """
+
+    def __init__(self, message: str, *, primary: IdahoSection) -> None:
+        super().__init__(message)
+        self.primary = primary
+
+
+def parse_idaho_section_versions(
+    html: str | bytes,
+    *,
+    listing: IdahoSectionListing,
+    source: _RecordedSource,
+    expression_date: date | str | None = None,
+) -> tuple[IdahoSection, ...]:
+    """Parse every rendition one official Idaho Statutes section page prints.
+
+    The first section is :func:`parse_idaho_section_page`'s, at the plain
+    citation path. Each other rendition follows in printed order as a
+    same-number variant named by its bracketed marker:
+    ``effective-YYYY-MM-DD`` for "[effective <date>]",
+    ``effective-until-YYYY-MM-DD`` for "[effective until <date>]", and
+    ``variant-<n>`` (its 1-based printed position) when it has none. The shared
+    page prefix and the History and notes after the last rendition belong to
+    every rendition.
+
+    It raises :class:`IdahoRenditionError`, carrying the plain section, when a
+    rendition opens after the page's History or notes begin (a heading quoted
+    in a note), when a rendition's marker is not the first thing after its
+    heading (a quoted marker), or when two variants would share a name.
+    """
+    plain = parse_idaho_section_page(
+        html, listing=listing, source=source, expression_date=expression_date
+    )
+    divs, renditions, history_start, primary = _page_renditions(
+        html, section=listing.section, expression_date=expression_date
+    )
+    if primary is None:
+        return (plain,)
+
+    def refuse(problem: str) -> IdahoRenditionError:
+        return IdahoRenditionError(
+            f"Idaho section {listing.section} {problem}; only the rendition in force is kept",
+            primary=plain,
+        )
+
+    # The page's first History or notes marker, wherever it is: no rendition
+    # may open after it, and everything from it on is shared by every variant.
+    apparatus_start = _apparatus_start(divs)
+    for rendition in renditions:
+        if rendition.start > apparatus_start:
+            raise refuse(f"prints rendition {rendition.position} after its History or notes begin")
+        if not rendition.marker_leads:
+            raise refuse(f"rendition {rendition.position} has a marker inside its text")
+
+    sections = [plain]
+    names: set[str] = set()
+    for rendition in renditions:
+        if rendition is primary:
+            continue
+        variant = _rendition_variant(rendition)
+        if variant in names:
+            raise refuse(f"prints two renditions named {variant!r}")
+        names.add(variant)
+        parsed = _parse_section_divs(
+            _rendition_divs(divs, renditions, rendition, suffix_start=apparatus_start),
+            listing=listing,
+            source=source,
+        )
+        sections.append(
+            replace(
+                parsed,
+                variant=variant,
+                effective_note=rendition.note,
+                status=parsed.status or _rendition_status(rendition),
+            )
+        )
+    return tuple(sections)
+
+
+def _page_renditions(
+    html: str | bytes,
+    *,
+    section: str,
+    expression_date: date | str | None,
+) -> tuple[tuple[Tag, ...], tuple[_IdahoRendition, ...], int, _IdahoRendition | None]:
+    """A page's content divs, its renditions, its History index and the one in force.
+
+    A page with one rendition (or none) has no renditions here and no primary:
+    it is read whole, and its markers are never parsed. Otherwise the checks
+    run in the pre-variant adapter's order: the expression date must be given
+    and valid, then every marker must parse, then exactly one rendition must be
+    in force.
+    """
+    soup = BeautifulSoup(_decode(html), "lxml")
+    divs = _section_content_divs(soup)
+    if not divs:
+        raise ValueError("Idaho section page has no statute content divs")
+    starts, history_start = _rendition_starts(divs, section=section)
+    if len(starts) <= 1:
+        return divs, (), history_start, None
+    if expression_date is None:
+        raise ValueError(
+            f"Idaho section {section} publishes {len(starts)} renditions; "
+            "expression_date is required"
+        )
+    as_of = _coerce_expression_date(expression_date)
+    renditions = _section_renditions(divs, starts, history_start=history_start, section=section)
+    primary = _primary_rendition(renditions, section=section, as_of=as_of)
+    return divs, renditions, history_start, primary
+
+
+def _parse_section_divs(
+    content_divs: tuple[Tag, ...],
+    *,
+    listing: IdahoSectionListing,
+    source: _RecordedSource,
+) -> IdahoSection:
     heading = _clean_heading(listing.heading) or f"Section {listing.section}"
     body_parts: list[str] = []
     history_parts: list[str] = []
@@ -792,7 +952,7 @@ def _fetch_one_idaho_section(
             source_format=section_source.source_format,
             sha256=source.sha256,
         )
-        section = parse_idaho_section_page(
+        sections = parse_idaho_section_versions(
             section_source.data,
             listing=listing,
             source=transient_source,
@@ -801,25 +961,27 @@ def _fetch_one_idaho_section(
         return _IdahoSectionFetchResult(
             listing=listing,
             source=section_source,
-            section=section,
+            sections=sections,
+        )
+    except IdahoRenditionError as exc:
+        # The plain row is still the rendition in force; the page is reported.
+        return _IdahoSectionFetchResult(
+            listing=listing,
+            source=section_source,
+            sections=(exc.primary,),
+            error=exc,
         )
     except (requests.RequestException, OSError, ValueError) as exc:
         return _IdahoSectionFetchResult(listing=listing, error=exc)
 
 
 def _replace_section_source(section: IdahoSection, source: _RecordedSource) -> IdahoSection:
-    return IdahoSection(
-        listing=section.listing,
-        heading=section.heading,
-        body=section.body,
-        source_history=section.source_history,
-        source_notes=section.source_notes,
-        references_to=section.references_to,
+    return replace(
+        section,
         source_url=source.source_url,
         source_path=source.source_path,
         source_format=source.source_format,
         sha256=source.sha256,
-        status=section.status,
     )
 
 
@@ -880,6 +1042,7 @@ def _section_inventory_item(section: IdahoSection) -> SourceInventoryItem:
         metadata["source_notes"] = list(section.source_notes)
     if section.status:
         metadata["status"] = section.status
+    metadata.update(_section_variant_metadata(section))
     return SourceInventoryItem(
         citation_path=section.citation_path,
         source_url=section.source_url,
@@ -984,6 +1147,7 @@ def _section_record(
         metadata["source_notes"] = list(section.source_notes)
     if section.status:
         metadata["status"] = section.status
+    metadata.update(_section_variant_metadata(section))
     return ProvisionRecord(
         id=deterministic_provision_id(section.citation_path),
         jurisdiction="us-id",
@@ -1012,6 +1176,18 @@ def _section_record(
         },
         metadata=metadata,
     )
+
+
+def _section_variant_metadata(section: IdahoSection) -> dict[str, Any]:
+    if section.variant is None:
+        return {}
+    metadata: dict[str, Any] = {
+        "variant": section.variant,
+        "canonical_citation_path": section.canonical_citation_path,
+    }
+    if section.effective_note:
+        metadata["effective_note"] = section.effective_note
+    return metadata
 
 
 def _append_unique(
@@ -1094,44 +1270,20 @@ def _section_content_divs(soup: BeautifulSoup) -> tuple[Tag, ...]:
     return tuple(divs)
 
 
-def _select_section_rendition(
-    divs: tuple[Tag, ...],
-    *,
-    section: str,
-    expression_date: date | str | None,
-) -> tuple[Tag, ...]:
-    """Select one effective rendition when an Idaho page publishes several."""
-    starts = [
+def _rendition_starts(divs: tuple[Tag, ...], *, section: str) -> tuple[tuple[int, ...], int]:
+    """Where each rendition of ``section`` starts, and where its History starts.
+
+    A rendition starts at each div that opens with the section number and a
+    heading. The History marker is the first one after the last start
+    (``len(divs)`` when there is none).
+    """
+    starts = tuple(
         index
         for index, div in enumerate(divs)
         if _strip_section_heading(_clean_text(div), section)[1] is not None
-    ]
-    if len(starts) <= 1:
-        return divs
-    if expression_date is None:
-        raise ValueError(
-            f"Idaho section {section} publishes {len(starts)} renditions; "
-            "expression_date is required"
-        )
-
-    as_of = _coerce_expression_date(expression_date)
-    matching: list[int] = []
-    unmarked: list[int] = []
-    for start in starts:
-        marker = _rendition_effective_marker(_clean_text(divs[start]))
-        if marker is None:
-            unmarked.append(start)
-            continue
-        effective_date, is_until = marker
-        if (is_until and as_of < effective_date) or (not is_until and as_of >= effective_date):
-            matching.append(start)
-    if len(matching) == 1:
-        selected_start = matching[0]
-    elif not matching and len(unmarked) == 1:
-        selected_start = unmarked[0]
-    else:
-        raise ValueError(f"Idaho section {section} has no unique rendition for {as_of.isoformat()}")
-
+    )
+    if not starts:
+        return (), len(divs)
     history_start = next(
         (
             index
@@ -1140,17 +1292,128 @@ def _select_section_rendition(
         ),
         len(divs),
     )
-    next_start = next((start for start in starts if start > selected_start), history_start)
-    selected_end = min(next_start, history_start)
-    return (*divs[: starts[0]], *divs[selected_start:selected_end], *divs[history_start:])
+    return starts, history_start
 
 
-def _rendition_effective_marker(text: str) -> tuple[date, bool] | None:
+def _section_renditions(
+    divs: tuple[Tag, ...],
+    starts: tuple[int, ...],
+    *,
+    history_start: int,
+    section: str,
+) -> tuple[_IdahoRendition, ...]:
+    """The renditions a page prints, in printed order, with their markers.
+
+    Each runs from its start to the next start or to the History marker,
+    whichever comes first. An impossible marker date raises. ``marker_leads``
+    is false when the marker is not the first thing after the heading.
+    """
+    renditions: list[_IdahoRendition] = []
+    for position, start in enumerate(starts, 1):
+        next_start = starts[position] if position < len(starts) else history_start
+        text = _clean_text(divs[start])
+        marker = _rendition_effective_marker(text)
+        body, _ = _strip_section_heading(text, section)
+        renditions.append(
+            _IdahoRendition(
+                position=position,
+                start=start,
+                end=min(next_start, history_start),
+                effective_date=marker[0] if marker is not None else None,
+                until=marker[1] if marker is not None else False,
+                note=marker[2] if marker is not None else None,
+                marker_leads=marker is None or (body or "").startswith(f"[{marker[3]}]"),
+            )
+        )
+    return tuple(renditions)
+
+
+def _apparatus_start(divs: tuple[Tag, ...]) -> int:
+    """The page's first History or notes marker (``len(divs)`` if none)."""
+    return next(
+        (
+            index
+            for index, div in enumerate(divs)
+            if _is_history_marker(_clean_text(div)) or _is_note_marker(_clean_text(div))
+        ),
+        len(divs),
+    )
+
+
+def _primary_rendition(
+    renditions: tuple[_IdahoRendition, ...],
+    *,
+    section: str,
+    as_of: date,
+) -> _IdahoRendition:
+    """Return the one rendition in force on ``as_of``, or fail closed."""
+    matching = [
+        rendition
+        for rendition in renditions
+        if rendition.effective_date is not None and _rendition_in_force(rendition, as_of)
+    ]
+    unmarked = [rendition for rendition in renditions if rendition.effective_date is None]
+    if len(matching) == 1:
+        return matching[0]
+    if not matching and len(unmarked) == 1:
+        return unmarked[0]
+    raise ValueError(f"Idaho section {section} has no unique rendition for {as_of.isoformat()}")
+
+
+def _rendition_in_force(rendition: _IdahoRendition, as_of: date) -> bool:
+    assert rendition.effective_date is not None
+    if rendition.until:
+        return as_of < rendition.effective_date
+    return as_of >= rendition.effective_date
+
+
+def _rendition_divs(
+    divs: tuple[Tag, ...],
+    renditions: tuple[_IdahoRendition, ...],
+    rendition: _IdahoRendition,
+    *,
+    suffix_start: int,
+) -> tuple[Tag, ...]:
+    """The shared page prefix, one rendition, then the shared suffix.
+
+    The rendition in force uses the pre-variant suffix, the History marker
+    after the last rendition; variants use the first History or notes marker
+    on the page, so notes printed without a History are shared too.
+    """
+    return (
+        *divs[: renditions[0].start],
+        *divs[rendition.start : min(rendition.end, suffix_start)],
+        *divs[suffix_start:],
+    )
+
+
+def _rendition_variant(rendition: _IdahoRendition) -> str:
+    if rendition.effective_date is None:
+        return f"variant-{rendition.position}"
+    prefix = "effective-until" if rendition.until else "effective"
+    return f"{prefix}-{rendition.effective_date.isoformat()}"
+
+
+def _rendition_status(rendition: _IdahoRendition) -> str | None:
+    # A variant is never the rendition in force, so a dated one either ended
+    # ("until") or has not begun; the vocabulary is the NM/DE/NV/RI adapters'.
+    if rendition.effective_date is None:
+        return None
+    return "effective_until" if rendition.until else "future_or_conditional"
+
+
+def _rendition_effective_marker(text: str) -> tuple[date, bool, str, str] | None:
+    """The first "[effective (until) <date>]" in ``text``: date, until, note, raw text."""
     match = _RENDITION_EFFECTIVE_RE.search(text)
     if match is None:
         return None
     effective_date = datetime.strptime(match.group("date"), "%B %d, %Y").date()
-    return effective_date, match.group("until") is not None
+    return (
+        effective_date,
+        match.group("until") is not None,
+        _clean_text(match.group("note")),
+        match.group("note"),
+    )
 
 
 def _coerce_expression_date(value: date | str) -> date:
