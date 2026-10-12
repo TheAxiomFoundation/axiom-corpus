@@ -12,6 +12,7 @@ import tempfile
 import time
 import warnings
 import zipfile
+from copy import copy
 from dataclasses import dataclass
 from datetime import date
 from io import BytesIO, StringIO
@@ -56,7 +57,8 @@ _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
-_TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
+_PREFORMATTED_TAGS = {"pre"}
+_TEXT_TAGS = _HEADING_TAGS | _PREFORMATTED_TAGS | {"p", "li", "table", "blockquote"}
 _NON_HEADING_UPPERCASE_LINES = {
     "HANDBOOK BEGINS HERE",
     "HANDBOOK CONTINUES",
@@ -2930,7 +2932,7 @@ def _extract_html_blocks(
 
     def flush() -> None:
         nonlocal parts
-        body = _normalize_text("\n\n".join(parts))
+        body = _join_html_text_parts(parts)
         if body:
             blocks.append(
                 _DocumentBlock(
@@ -2944,7 +2946,7 @@ def _extract_html_blocks(
         parts = []
 
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
+        text = _html_node_text(node)
         if not text:
             continue
         if node.name in _HEADING_TAGS:
@@ -3295,7 +3297,7 @@ def _extract_labeled_html_section_blocks(
                 kind="section",
                 ordinal=len(sections) + 1,
                 heading=heading,
-                body=_normalize_text("\n\n".join(current_body)),
+                body=_join_html_text_parts(current_body),
                 metadata={
                     "citation_suffix": current_label,
                     "section_label": current_label,
@@ -3308,9 +3310,12 @@ def _extract_labeled_html_section_blocks(
         current_body = []
 
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
-        if not text:
+        node_text = _html_node_text(node)
+        if not node_text:
             continue
+        # Label and stop patterns match the text with a ``pre`` node's line breaks read
+        # as spaces, as every other node reads; the section body keeps them.
+        text = _normalize_text(node_text)
         if stop_re is not None and stop_re.match(text):
             flush()
             break
@@ -3329,10 +3334,11 @@ def _extract_labeled_html_section_blocks(
             flush()
             current_label = label
             current_heading = heading or label
+            body = _normalize_text(body)
             current_body = [body] if body else []
             continue
         if current_label is not None:
-            current_body.append(text)
+            current_body.append(node_text)
     flush()
     return tuple(sections)
 
@@ -3731,8 +3737,9 @@ def _document_title(soup: BeautifulSoup) -> str | None:
 def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[Tag, ...]:
     """Return the block-level text nodes of ``root`` in document order.
 
-    By default these are the heading, paragraph, list-item, table and blockquote tags
-    (nested ones are read through their outermost ancestor). ``html_text_selector``
+    By default these are the heading, paragraph, list-item, table, blockquote and
+    ``pre`` tags (nested ones are read through their outermost ancestor; read each
+    one's text with ``_html_node_text``). ``html_text_selector``
     names the nodes explicitly for publishers that print provision text inside ``div``
     or ``span`` containers; a selected node inside another selected node is skipped so
     the text is read once.
@@ -3761,6 +3768,57 @@ def _inside_text_tag(node: Tag) -> bool:
         if parent.name in _TEXT_TAGS:
             return True
     return False
+
+
+def _html_node_text(node: Tag) -> str:
+    """Return the normalized text of one ``_html_text_nodes`` node.
+
+    A ``pre`` node keeps its line breaks (``_normalize_preformatted_text``): its
+    strings are read as printed, with no separator added between them, and each
+    ``br`` inside it is a line break. Every other node reads as ``_normalize_text``
+    of its strings, each stripped and joined by single spaces.
+    """
+    if node.name in _PREFORMATTED_TAGS:
+        printed = copy(node)
+        for line_break in printed.find_all("br"):
+            line_break.replace_with("\n")
+        return _normalize_preformatted_text(printed.get_text())
+    return _normalize_text(node.get_text(" ", strip=True))
+
+
+def _normalize_preformatted_text(text: str) -> str:
+    """Normalize preformatted text the way ``_normalize_text`` does, keeping line breaks.
+
+    Whitespace within a line collapses to one space, blank lines separate
+    paragraphs (a run of them reads as one) and leading and trailing blank lines
+    go. ``_normalize_text`` joins a paragraph's lines with spaces; this joins them
+    with line breaks, so ``_normalize_text`` of the result is ``_normalize_text``
+    of the input.
+    """
+    text = text.replace("​", "").replace("﻿", "")
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for raw_line in text.splitlines():
+        line = " ".join(raw_line.split())
+        if not line:
+            if current:
+                paragraphs.append("\n".join(current))
+                current = []
+            continue
+        current.append(line)
+    if current:
+        paragraphs.append("\n".join(current))
+    return "\n\n".join(paragraphs)
+
+
+def _join_html_text_parts(parts: list[str]) -> str:
+    """Join one block's node texts, each already normalized and non-empty, as paragraphs.
+
+    The parts are not normalized again, so a ``pre`` part keeps its line breaks; for
+    parts that ``_normalize_text`` made, the result is ``_normalize_text`` of the
+    same join.
+    """
+    return "\n\n".join(parts)
 
 
 def _inventory_items(
