@@ -851,6 +851,8 @@ def _extract_blocks(
 ) -> tuple[_DocumentBlock, ...]:
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
+    if (extraction or {}).get("section_citation_suffix_replacements") is not None:
+        raise ValueError(_CITATION_SUFFIX_REPLACEMENTS_SCOPE)
     if source_format == "html":
         return _extract_html_blocks(
             content, source_url=source_url, fallback_title=title, extraction=extraction
@@ -1031,6 +1033,11 @@ def _extract_pdf_blocks(
             "amendment_markup and sort_blocks support only the default per-page "
             f"PDF segmentation, not segmentation={segmentation!r}"
         )
+    if (
+        segmentation != "labeled_sections"
+        and extraction_config.get("section_citation_suffix_replacements") is not None
+    ):
+        raise ValueError(_CITATION_SUFFIX_REPLACEMENTS_SCOPE)
     if segmentation == "numbered_sections":
         return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "labeled_sections":
@@ -1480,6 +1487,7 @@ _SINGLE_BLOCK_PDF_FILTER_KEYS = (
     "start_after_pattern",
     "drop_lines",
     "drop_line_patterns",
+    "page_header_patterns",
 )
 
 
@@ -1496,7 +1504,8 @@ def _extract_single_block_pdf(
     readers without emitting page suffixes.
 
     Page filters (``page_windows`` or the legacy ``start_page``/``end_page``/
-    ``start_after_pattern``/``drop_lines``/``drop_line_patterns``) are honored
+    ``start_after_pattern``/``drop_lines``/``drop_line_patterns``, and
+    ``page_header_patterns``) are honored
     when present, so one instrument can be sliced out of a larger scan (e.g.
     a single law inside a multi-law gazette issue) while remaining a single
     root provision.
@@ -1611,6 +1620,7 @@ def _extract_labeled_pdf_section_blocks(
     )
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
+    citation_suffix_replacements = _section_citation_suffix_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     label_heading_continuation = bool(
         extraction.get("label_only_heading_continuation", True)
@@ -1632,6 +1642,7 @@ def _extract_labeled_pdf_section_blocks(
         line_styles = ()
 
     sections: list[_DocumentBlock] = []
+    matched_suffix_keys: set[str] = set()
     current_label: str | None = None
     current_citation_label: str | None = None
     current_heading: str | None = None
@@ -1727,6 +1738,9 @@ def _extract_labeled_pdf_section_blocks(
                 if normalize_parentheticals
                 else label
             )
+            suffix_key = citation_label if citation_label in citation_suffix_replacements else None
+            if suffix_key is not None:
+                citation_label = citation_suffix_replacements[suffix_key]
             inline_body = ""
             if section_heading_re is not None:
                 heading_match = section_heading_re.match(line)
@@ -1762,6 +1776,10 @@ def _extract_labeled_pdf_section_blocks(
                     index += 1
                     continue
             flush()
+            # Count a replacement as used only once its label opens a section:
+            # a label folded into body text above has not used it.
+            if suffix_key is not None:
+                matched_suffix_keys.add(suffix_key)
             heading_lines = [heading_text] if heading_text else []
             continuation_bodies: list[tuple[str, int]] = []
             index += 1
@@ -1812,6 +1830,12 @@ def _extract_labeled_pdf_section_blocks(
             current_body_pages.append(page)
         index += 1
     flush()
+    unmatched = sorted(set(citation_suffix_replacements) - matched_suffix_keys)
+    if unmatched:
+        raise ValueError(
+            "section_citation_suffix_replacements keys matched no section label: "
+            + ", ".join(repr(key) for key in unmatched)
+        )
     return tuple(sections)
 
 
@@ -2542,6 +2566,7 @@ def _filtered_pdf_styled_lines(
     start_after_re = (
         re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
     )
+    page_header_patterns = _page_header_patterns(extraction)
     started = start_after_re is None
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
@@ -2550,7 +2575,9 @@ def _filtered_pdf_styled_lines(
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
+            for line, style in _without_page_header(
+                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
+            ):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started:
@@ -2633,6 +2660,7 @@ def _windowed_pdf_styled_lines(
     drop_line_patterns = tuple(
         re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
     )
+    page_header_patterns = _page_header_patterns(extraction)
     window_by_page: dict[int, _PdfPageWindow] = {}
     for window in windows:
         for page_number in range(window.start_page, window.end_page + 1):
@@ -2648,7 +2676,9 @@ def _windowed_pdf_styled_lines(
             page_window = window_by_page.get(page_index)
             if page_window is None or stopped[id(page_window)]:
                 continue
-            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
+            for line, style in _without_page_header(
+                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
+            ):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started[id(page_window)]:
@@ -2770,6 +2800,46 @@ def _positive_int(value: Any, *, default: int) -> int:
     if parsed < 1:
         raise ValueError("page numbers must be positive")
     return parsed
+
+
+def _page_header_patterns(extraction: dict[str, Any]) -> tuple[re.Pattern[str], ...]:
+    raw = extraction.get("page_header_patterns")
+    if raw is None:
+        return ()
+    if (
+        not isinstance(raw, (list, tuple))
+        or not raw
+        or not all(isinstance(pattern, str) and pattern for pattern in raw)
+    ):
+        raise ValueError("page_header_patterns must be a non-empty list of non-empty regex strings")
+    return tuple(re.compile(pattern) for pattern in raw)
+
+
+def _without_page_header(
+    page_lines: tuple[tuple[str, int], ...], patterns: tuple[re.Pattern[str], ...]
+) -> tuple[tuple[str, int], ...]:
+    """Drop one page's running header, by position rather than by content.
+
+    ``page_header_patterns`` lists the header's lines in order: the page's
+    k-th line is dropped when it fully matches the k-th pattern and every
+    line above it was dropped. The first mismatch ends the header, so a page
+    whose top does not look like the header loses nothing. Unlike
+    ``drop_line_patterns``, which drops a matching line anywhere, this can
+    remove a bare page number without removing the same number printed as a
+    table cell further down the page.
+
+    The header is matched on the page's lines as extracted, before
+    ``drop_lines`` and ``drop_line_patterns`` run: a line those filters would
+    remove still counts as a line, so list it here if it sits inside the
+    header. Each pattern must match its whole line (``fullmatch``), where
+    ``drop_line_patterns`` uses ``search``.
+    """
+    header_length = 0
+    for (line, _style), pattern in zip(page_lines, patterns, strict=False):
+        if pattern.fullmatch(line) is None:
+            break
+        header_length += 1
+    return page_lines[header_length:]
 
 
 def _drop_pdf_line(
@@ -3430,6 +3500,43 @@ def _section_label_replacements(extraction: dict[str, Any]) -> dict[str, str] | 
     if not isinstance(raw, dict):
         raise ValueError("section_label_replacements must be a mapping")
     return {str(key): str(value).strip() for key, value in raw.items()}
+
+
+_CITATION_SUFFIX_REPLACEMENTS_SCOPE = (
+    "section_citation_suffix_replacements supports only PDF labeled_sections"
+)
+
+
+def _section_citation_suffix_replacements(extraction: dict[str, Any]) -> dict[str, str]:
+    """Map a section label to the citation-path suffix its section takes.
+
+    Unlike ``section_label_replacements``, which rewrites the label everywhere,
+    this changes only the path: the heading and ``metadata.section_label`` keep
+    the publisher's words (``Editor’s Notes`` under ``.../editors-notes``).
+
+    A key is the label as the segmenter holds it when it builds the path: after
+    ``section_label_template``, ``section_label_replacements`` and
+    ``normalize_parenthetical_label_components`` (``3.1.a``, not ``3.1(a)``).
+    A key that matches no section label is an error, and so are two keys with
+    one suffix, which would merge two sections. PDF ``labeled_sections`` only;
+    every other extractor rejects the key.
+    """
+    raw = extraction.get("section_citation_suffix_replacements")
+    if raw is None:
+        return {}
+    if not isinstance(raw, dict) or not all(
+        isinstance(key, str) and isinstance(value, str) and key and value.strip()
+        for key, value in raw.items()
+    ):
+        raise ValueError(
+            "section_citation_suffix_replacements must map labels to non-empty suffixes"
+        )
+    replacements = {key: value.strip() for key, value in raw.items()}
+    if len(set(replacements.values())) != len(replacements):
+        raise ValueError(
+            "section_citation_suffix_replacements must map labels to distinct suffixes"
+        )
+    return replacements
 
 
 def _text_replacements(extraction: dict[str, Any]) -> dict[str, str] | None:
