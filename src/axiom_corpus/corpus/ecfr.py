@@ -346,7 +346,19 @@ def _ecfr_source_key(run_id: str, title: int, only_part: str | None) -> str:
 # citation-path segment (schema/citation-path.v1.json), so the path segment folds each
 # group into hyphens ("401-k-1", "3121-a-1-1") while labels, identifiers, metadata and
 # the eCFR URL keep the official form.
-_SECTION_IDENTIFIER_PATTERN = r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.()-]*)"
+#
+# PART is alphanumeric, except in title 41, which numbers each part within its chapter:
+# part 60-20 is part 20 of chapter 60, and its sections are 60-20.1, 60-20.2, and so on.
+# A hyphenated part never contains a dot, so the first dot still ends PART. The
+# identifier alone cannot say whether a hyphenated prefix is a part, though: 14 CFR part
+# 241 numbers its own sections 19-8.1 to 19-8.10. So a hyphenated PART is read only where
+# the enclosing part confirms it ("60-20.1" inside part 60-20); every other identifier
+# parses by the alphanumeric grammar, as before.
+_PART_IDENTIFIER_PATTERN = r"[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*"
+_SECTION_NUMBER_PATTERN = r"[0-9A-Za-z][0-9A-Za-z.()-]*"
+_SECTION_IDENTIFIER_PATTERN = rf"([0-9A-Za-z]+)\.({_SECTION_NUMBER_PATTERN})"
+# A section selector names its part, so it may use a hyphenated one.
+_SECTION_SELECTOR_PATTERN = rf"{_PART_IDENTIFIER_PATTERN}\.{_SECTION_NUMBER_PATTERN}"
 
 
 def _section_path_segment(section: str) -> str:
@@ -359,12 +371,30 @@ def _section_citation_path(title: int, part: str, section: str) -> str:
     return f"us/regulation/{title}/{part}/{_section_path_segment(section)}"
 
 
-def _section_citation_from_identifier(title: int, identifier: str) -> tuple[str, str] | None:
+def _part_scoped_section(part: str | None, identifier: str) -> tuple[str, str] | None:
+    """Split ``identifier`` as ``part``.SECTION when it names the enclosing part.
+
+    For an alphanumeric part this gives what the alphanumeric grammar gives; it adds
+    only identifiers under a hyphenated part.
+    """
+    if part is None or not re.fullmatch(_PART_IDENTIFIER_PATTERN, part):
+        return None
+    match = re.fullmatch(rf"{re.escape(part)}\.({_SECTION_NUMBER_PATTERN})", identifier)
+    return (part, match.group(1)) if match else None
+
+
+def _section_citation_from_identifier(
+    title: int, identifier: str, part: str | None = None
+) -> tuple[str, str] | None:
+    """Parse a structure section identifier; ``part`` is the enclosing part."""
+    scoped = _part_scoped_section(part, identifier)
+    if scoped is not None:
+        return _section_citation_path(title, *scoped), scoped[1]
     match = re.fullmatch(_SECTION_IDENTIFIER_PATTERN, identifier)
     if not match:
         return None
-    part, section = match.groups()
-    return _section_citation_path(title, part, section), section
+    named_part, section = match.groups()
+    return _section_citation_path(title, named_part, section), section
 
 
 def _title_from_citation_path(citation_path: str) -> int:
@@ -374,20 +404,26 @@ def _title_from_citation_path(citation_path: str) -> int:
     return int(parts[2])
 
 
-def _section_citation_from_element(title: int, elem: ET.Element) -> tuple[str, str, str] | None:
+def _section_citation_from_element(
+    title: int, elem: ET.Element, part: str | None = None
+) -> tuple[str, str, str] | None:
+    """Parse a section element's N; ``part`` is the N of its enclosing part element."""
     n_attr = elem.get("N", "")
+    scoped = _part_scoped_section(part, re.sub(r"^§\s*", "", n_attr.strip()))
+    if scoped is not None:
+        return _section_citation_path(title, *scoped), *scoped
     match = re.search(_SECTION_IDENTIFIER_PATTERN, n_attr)
     if not match:
         return None
-    part, section = match.groups()
-    return _section_citation_path(title, part, section), part, section
+    named_part, section = match.groups()
+    return _section_citation_path(title, named_part, section), named_part, section
 
 
 def _appendix_citation_from_identifier(
     title: int, identifier: str, *, require_supported: bool = True
 ) -> tuple[str, str, str] | None:
     match = re.fullmatch(
-        r"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+([0-9A-Za-z]+)",
+        rf"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+({_PART_IDENTIFIER_PATTERN})",
         identifier.strip(),
         flags=re.I,
     )
@@ -466,7 +502,7 @@ def _scoped_structure_from_part_xml(
     for elem in part_elem.iter("DIV8"):
         if elem.get("TYPE") != "SECTION":
             continue
-        parsed = _section_citation_from_element(title, elem)
+        parsed = _section_citation_from_element(title, elem, part)
         if parsed is None:
             continue
         _citation_path, actual_part, section = parsed
@@ -497,7 +533,7 @@ def _scoped_structure_from_part_xml(
     subpart_nodes: dict[ET.Element, dict[str, Any]] = {}
     for selector in requested:
         elem = sections_by_selector[selector]
-        parsed = _section_citation_from_element(title, elem)
+        parsed = _section_citation_from_element(title, elem, part)
         if parsed is None:
             continue
         _citation_path, actual_part, section = parsed
@@ -665,7 +701,7 @@ def _walk_inventory_items(
         )
     elif node_type == "section":
         if not node.get("reserved"):
-            parsed = _section_citation_from_identifier(title, identifier)
+            parsed = _section_citation_from_identifier(title, identifier, part)
             if parsed is not None:
                 citation_path, section = parsed
                 actual_part = citation_path.split("/")[-2]
@@ -820,7 +856,7 @@ def _filter_ecfr_inventory_sections(
 ) -> list[SourceInventoryItem]:
     requested = tuple(dict.fromkeys(only_sections))
     for selector in requested:
-        if not re.fullmatch(_SECTION_IDENTIFIER_PATTERN, selector):
+        if not re.fullmatch(_SECTION_SELECTOR_PATTERN, selector):
             raise ValueError(
                 f"invalid eCFR section selector {selector!r}; expected PART.SECTION"
             )
@@ -958,9 +994,11 @@ def _non_math_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
     return tuple(identifiers)
 
 
-def _element_citation_path(title: int, elem: ET.Element) -> str | None:
+def _element_citation_path(
+    title: int, elem: ET.Element, part: str | None = None
+) -> str | None:
     if elem.tag == "DIV8" and elem.get("TYPE") == "SECTION":
-        parsed = _section_citation_from_element(title, elem)
+        parsed = _section_citation_from_element(title, elem, part)
         return parsed[0] if parsed is not None else None
     if elem.tag == "DIV9" and elem.get("TYPE") == "APPENDIX":
         parsed = _appendix_citation_from_element(title, elem)
@@ -1343,7 +1381,7 @@ def _section_provision(
     subpart: str | None = None,
     graphic_transcriptions: Mapping[str, str] | None = None,
 ) -> ProvisionRecord | None:
-    parsed = _section_citation_from_element(title, elem)
+    parsed = _section_citation_from_element(title, elem, target.part)
     if parsed is None:
         return None
     citation_path, part, section = parsed
@@ -1841,6 +1879,16 @@ def extract_ecfr(
     )
 
 
+def _enclosing_part_by_section(root: ET.Element) -> dict[ET.Element, str]:
+    """Map each section element to the N of the part element that encloses it."""
+    return {
+        section: part
+        for part_elem in root.iter("DIV5")
+        if part_elem.get("TYPE") == "PART" and (part := part_elem.get("N"))
+        for section in part_elem.iter("DIV8")
+    }
+
+
 def _capture_ecfr_math_graphics(
     store: CorpusArtifactStore,
     run_id: str,
@@ -1864,11 +1912,17 @@ def _capture_ecfr_math_graphics(
     if allowed_citation_paths is None:
         graphic_roots = (root,)
     else:
+        part_by_section = _enclosing_part_by_section(root)
         graphic_roots = tuple(
             elem
             for elem in root.iter("DIV8")
             if elem.get("TYPE") == "SECTION"
-            and (citation_path := _element_citation_path(title, elem)) is not None
+            and (
+                citation_path := _element_citation_path(
+                    title, elem, part_by_section.get(elem)
+                )
+            )
+            is not None
             and citation_path in allowed_citation_paths
         )
     # Ordinary sections retain their established formula-only capture. All-IMG
