@@ -59,7 +59,7 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 49
-      state: 2089
+      state: 2090
 layers:
 - jurisdiction: us
   screener:
@@ -14772,7 +14772,18 @@ layers:
   full: []
 - jurisdiction: us-tn
   screener: []
-  full: []
+  full:
+  - key: us-tn/regulation/1200-15/02
+    name: Rules of the Tennessee Department of Health, Bureau of Health Services Administration, Nutrition Services
+      Section, Chapter 1200-15-02 Special Supplemental Nutrition Program for Women, Infants and Children
+    layer: state
+    citation_path: us-tn/regulation/1200-15/02
+    source_url: https://publications.tnsosfiles.com/rules/1200/1200-15/1200-15-02.pdf
+    sources:
+    - manifests/us-tn-wic-state-regulation.yaml
+    manifest: manifests/us-tn-wic-state-regulation.yaml
+    scope: in
+    part: Benefit amount
 - jurisdiction: us-tx
   screener: []
   full:
