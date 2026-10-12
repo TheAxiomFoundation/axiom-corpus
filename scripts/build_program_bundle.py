@@ -549,6 +549,7 @@ def build_program(
         url_key(normalize_url(a), aliases): b for a, b in (cfg.get("not_sources") or {}).items()
     }
     moves = cfg.get("path_moves") or {}
+    plan_sections = cfg.get("plan_sections") or {}
     rules = _rules(prog.get("part_rules"))
     overrides = prog.get("states") or {}
     layers = {j: Layer(j) for j in ["us", *jurisdictions]}
@@ -671,6 +672,15 @@ def build_program(
         jur = "us" if doc["jurisdiction"] == "US" else doc["jurisdiction"].lower()
         if jur not in layers:
             dropped[jur] += 1
+            continue
+        # A plan row that names whole parts of a code (subparts of 26 U.S.C.
+        # chapter 1, a subchapter of 42 U.S.C. chapter 7): one row per section.
+        sections = plan_sections.get(doc["id"])
+        if sections:
+            for path in sections:
+                path = moves.get(path, path)
+                part = rule_part(rules, path, None, doc.get("title")) or "Other"
+                add(layers[jur], "plan", None, path, None, part)
             continue
         crosswalk = (overrides.get(jur.removeprefix("us-")) or {}).get("crosswalk") or {}
         usc, cfr = PLAN_USC.match(doc["id"]), PLAN_CFR.match(doc["id"])

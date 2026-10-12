@@ -43,7 +43,7 @@ tiers:
     fiscal_year: 2027
     outside_the_states: {}
     in_scope_by_layer:
-      federal: 74
+      federal: 166
       state: 148
 - id: full
   title: Full document bundle
@@ -59,7 +59,7 @@ tiers:
     state_manifests: chip|child-health|kidscare
     known_sources: 0
     in_scope_by_layer:
-      federal: 286
+      federal: 370
       state: 1535
 layers:
 - jurisdiction: us
@@ -564,10 +564,424 @@ layers:
     - plan
     scope: in
     part: Other
+  - key: us/statute/26/101
+    name: 26 USC 101
+    layer: federal
+    citation_path: us/statute/26/101
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/102
+    name: 26 USC 102
+    layer: federal
+    citation_path: us/statute/26/102
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/103
+    name: 26 USC 103
+    layer: federal
+    citation_path: us/statute/26/103
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/104
+    name: 26 USC 104
+    layer: federal
+    citation_path: us/statute/26/104
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/105
+    name: 26 USC 105
+    layer: federal
+    citation_path: us/statute/26/105
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/106
+    name: 26 USC 106
+    layer: federal
+    citation_path: us/statute/26/106
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/107
+    name: 26 USC 107
+    layer: federal
+    citation_path: us/statute/26/107
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/108
+    name: 26 USC 108
+    layer: federal
+    citation_path: us/statute/26/108
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/109
+    name: 26 USC 109
+    layer: federal
+    citation_path: us/statute/26/109
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/110
+    name: 26 USC 110
+    layer: federal
+    citation_path: us/statute/26/110
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/111
+    name: 26 USC 111
+    layer: federal
+    citation_path: us/statute/26/111
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/112
+    name: 26 USC 112
+    layer: federal
+    citation_path: us/statute/26/112
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/115
+    name: 26 USC 115
+    layer: federal
+    citation_path: us/statute/26/115
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/117
+    name: 26 USC 117
+    layer: federal
+    citation_path: us/statute/26/117
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/118
+    name: 26 USC 118
+    layer: federal
+    citation_path: us/statute/26/118
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/119
+    name: 26 USC 119
+    layer: federal
+    citation_path: us/statute/26/119
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/121
+    name: 26 USC 121
+    layer: federal
+    citation_path: us/statute/26/121
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/122
+    name: 26 USC 122
+    layer: federal
+    citation_path: us/statute/26/122
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
   - key: us/statute/26/1222
     name: 26 USC 1222
     layer: federal
     citation_path: us/statute/26/1222
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/123
+    name: 26 USC 123
+    layer: federal
+    citation_path: us/statute/26/123
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/125
+    name: 26 USC 125
+    layer: federal
+    citation_path: us/statute/26/125
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/126
+    name: 26 USC 126
+    layer: federal
+    citation_path: us/statute/26/126
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/127
+    name: 26 USC 127
+    layer: federal
+    citation_path: us/statute/26/127
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/128
+    name: 26 USC 128
+    layer: federal
+    citation_path: us/statute/26/128
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/129
+    name: 26 USC 129
+    layer: federal
+    citation_path: us/statute/26/129
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/130
+    name: 26 USC 130
+    layer: federal
+    citation_path: us/statute/26/130
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/131
+    name: 26 USC 131
+    layer: federal
+    citation_path: us/statute/26/131
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/132
+    name: 26 USC 132
+    layer: federal
+    citation_path: us/statute/26/132
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/134
+    name: 26 USC 134
+    layer: federal
+    citation_path: us/statute/26/134
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/135
+    name: 26 USC 135
+    layer: federal
+    citation_path: us/statute/26/135
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/136
+    name: 26 USC 136
+    layer: federal
+    citation_path: us/statute/26/136
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/137
+    name: 26 USC 137
+    layer: federal
+    citation_path: us/statute/26/137
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/138
+    name: 26 USC 138
+    layer: federal
+    citation_path: us/statute/26/138
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139
+    name: 26 USC 139
+    layer: federal
+    citation_path: us/statute/26/139
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139A
+    name: 26 USC 139A
+    layer: federal
+    citation_path: us/statute/26/139A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139B
+    name: 26 USC 139B
+    layer: federal
+    citation_path: us/statute/26/139B
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139C
+    name: 26 USC 139C
+    layer: federal
+    citation_path: us/statute/26/139C
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139D
+    name: 26 USC 139D
+    layer: federal
+    citation_path: us/statute/26/139D
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139E
+    name: 26 USC 139E
+    layer: federal
+    citation_path: us/statute/26/139E
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139F
+    name: 26 USC 139F
+    layer: federal
+    citation_path: us/statute/26/139F
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139G
+    name: 26 USC 139G
+    layer: federal
+    citation_path: us/statute/26/139G
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139H
+    name: 26 USC 139H
+    layer: federal
+    citation_path: us/statute/26/139H
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139I
+    name: 26 USC 139I
+    layer: federal
+    citation_path: us/statute/26/139I
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139J
+    name: 26 USC 139J
+    layer: federal
+    citation_path: us/statute/26/139J
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139K
+    name: 26 USC 139K
+    layer: federal
+    citation_path: us/statute/26/139K
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/139L
+    name: 26 USC 139L
+    layer: federal
+    citation_path: us/statute/26/139L
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/140
+    name: 26 USC 140
+    layer: federal
+    citation_path: us/statute/26/140
     source_url: null
     sources:
     - plan
@@ -618,6 +1032,141 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
+  - key: us/statute/26/22
+    name: 26 USC 22
+    layer: federal
+    citation_path: us/statute/26/22
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/23
+    name: 26 USC 23
+    layer: federal
+    citation_path: us/statute/26/23
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/24
+    name: 26 USC 24
+    layer: federal
+    citation_path: us/statute/26/24
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25
+    name: 26 USC 25
+    layer: federal
+    citation_path: us/statute/26/25
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25A
+    name: 26 USC 25A
+    layer: federal
+    citation_path: us/statute/26/25A
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25B
+    name: 26 USC 25B
+    layer: federal
+    citation_path: us/statute/26/25B
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25C
+    name: 26 USC 25C
+    layer: federal
+    citation_path: us/statute/26/25C
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25D
+    name: 26 USC 25D
+    layer: federal
+    citation_path: us/statute/26/25D
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25E
+    name: 26 USC 25E
+    layer: federal
+    citation_path: us/statute/26/25E
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/25F
+    name: 26 USC 25F
+    layer: federal
+    citation_path: us/statute/26/25F
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/26
+    name: 26 USC 26
+    layer: federal
+    citation_path: us/statute/26/26
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/31
+    name: 26 USC 31
+    layer: federal
+    citation_path: us/statute/26/31
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/32
+    name: 26 USC 32
+    layer: federal
+    citation_path: us/statute/26/32
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/33
+    name: 26 USC 33
+    layer: federal
+    citation_path: us/statute/26/33
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/34
+    name: 26 USC 34
+    layer: federal
+    citation_path: us/statute/26/34
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
   - key: us/statute/26/3401
     name: 26 USC 3401
     layer: federal
@@ -627,10 +1176,37 @@ layers:
     - plan
     scope: in
     part: Definitions from other programs
+  - key: us/statute/26/35
+    name: 26 USC 35
+    layer: federal
+    citation_path: us/statute/26/35
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/36
+    name: 26 USC 36
+    layer: federal
+    citation_path: us/statute/26/36
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
   - key: us/statute/26/36B
     name: 26 USC 36B
     layer: federal
     citation_path: us/statute/26/36B
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Definitions from other programs
+  - key: us/statute/26/37
+    name: 26 USC 37
+    layer: federal
+    citation_path: us/statute/26/37
     source_url: null
     sources:
     - plan
@@ -658,15 +1234,6 @@ layers:
     name: 26 USC 7703
     layer: federal
     citation_path: us/statute/26/7703
-    source_url: null
-    sources:
-    - plan
-    scope: in
-    part: Definitions from other programs
-  - key: us/statute/26/subtitle-A
-    name: 26 USC subtitle-A
-    layer: federal
-    citation_path: us/statute/26/subtitle-A
     source_url: null
     sources:
     - plan
@@ -751,13 +1318,41 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
-    part: Other
+    part: Benefit amount
     cited:
     - path: us/statute/42/1397aa
       references: 1
       part: Other
+  - key: us/statute/42/1397bb
+    name: 42 USC 1397bb
+    layer: federal
+    citation_path: us/statute/42/1397bb
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/1397cc
+    name: 42 USC 1397cc
+    layer: federal
+    citation_path: us/statute/42/1397cc
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/1397dd
+    name: 42 USC 1397dd
+    layer: federal
+    citation_path: us/statute/42/1397dd
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us/statute/42/1397ee
     name: 42 USC 1397ee
     layer: federal
@@ -765,13 +1360,23 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 1
     scope: in
-    part: Other
+    part: Benefit amount
     cited:
     - path: us/statute/42/1397ee/b
       references: 1
       part: Other
+  - key: us/statute/42/1397ff
+    name: 42 USC 1397ff
+    layer: federal
+    citation_path: us/statute/42/1397ff
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us/statute/42/1397gg
     name: 42 USC 1397gg
     layer: federal
@@ -779,6 +1384,7 @@ layers:
     source_url: null
     sources:
     - policyengine-references
+    - plan
     references: 2
     scope: in
     part: Household and eligibility
@@ -789,6 +1395,24 @@ layers:
     - path: us/statute/42/1397gg/e/1/R
       references: 1
       part: Household and eligibility
+  - key: us/statute/42/1397hh
+    name: 42 USC 1397hh
+    layer: federal
+    citation_path: us/statute/42/1397hh
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/1397ii
+    name: 42 USC 1397ii
+    layer: federal
+    citation_path: us/statute/42/1397ii
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
   - key: us/statute/42/1397jj
     name: 42 USC 1397jj
     layer: federal
@@ -799,7 +1423,7 @@ layers:
     - plan
     references: 2
     scope: in
-    part: Household and eligibility
+    part: Benefit amount
     cited:
     - path: us/statute/42/1397jj
       references: 1
@@ -807,10 +1431,217 @@ layers:
     - path: us/statute/42/1397jj/c/1
       references: 1
       part: Benefit amount
-  - key: us/statute/42/chapter-7
-    name: 42 USC chapter-7
+  - key: us/statute/42/1397kk
+    name: 42 USC 1397kk
     layer: federal
-    citation_path: us/statute/42/chapter-7
+    citation_path: us/statute/42/1397kk
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/1397ll
+    name: 42 USC 1397ll
+    layer: federal
+    citation_path: us/statute/42/1397ll
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/1397mm
+    name: 42 USC 1397mm
+    layer: federal
+    citation_path: us/statute/42/1397mm
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/601
+    name: 42 USC 601
+    layer: federal
+    citation_path: us/statute/42/601
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/602
+    name: 42 USC 602
+    layer: federal
+    citation_path: us/statute/42/602
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/603
+    name: 42 USC 603
+    layer: federal
+    citation_path: us/statute/42/603
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/604
+    name: 42 USC 604
+    layer: federal
+    citation_path: us/statute/42/604
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/604a
+    name: 42 USC 604a
+    layer: federal
+    citation_path: us/statute/42/604a
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/605
+    name: 42 USC 605
+    layer: federal
+    citation_path: us/statute/42/605
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/606
+    name: 42 USC 606
+    layer: federal
+    citation_path: us/statute/42/606
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/607
+    name: 42 USC 607
+    layer: federal
+    citation_path: us/statute/42/607
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/608
+    name: 42 USC 608
+    layer: federal
+    citation_path: us/statute/42/608
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/608a
+    name: 42 USC 608a
+    layer: federal
+    citation_path: us/statute/42/608a
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/609
+    name: 42 USC 609
+    layer: federal
+    citation_path: us/statute/42/609
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/610
+    name: 42 USC 610
+    layer: federal
+    citation_path: us/statute/42/610
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/611
+    name: 42 USC 611
+    layer: federal
+    citation_path: us/statute/42/611
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/611a
+    name: 42 USC 611a
+    layer: federal
+    citation_path: us/statute/42/611a
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/612
+    name: 42 USC 612
+    layer: federal
+    citation_path: us/statute/42/612
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/613
+    name: 42 USC 613
+    layer: federal
+    citation_path: us/statute/42/613
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/615
+    name: 42 USC 615
+    layer: federal
+    citation_path: us/statute/42/615
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/616
+    name: 42 USC 616
+    layer: federal
+    citation_path: us/statute/42/616
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/617
+    name: 42 USC 617
+    layer: federal
+    citation_path: us/statute/42/617
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/618
+    name: 42 USC 618
+    layer: federal
+    citation_path: us/statute/42/618
+    source_url: null
+    sources:
+    - plan
+    scope: in
+    part: Benefit amount
+  - key: us/statute/42/619
+    name: 42 USC 619
+    layer: federal
+    citation_path: us/statute/42/619
     source_url: null
     sources:
     - plan
@@ -1474,10 +2305,424 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/statute/26/101
+    name: 26 USC 101
+    layer: federal
+    citation_path: us/statute/26/101
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/102
+    name: 26 USC 102
+    layer: federal
+    citation_path: us/statute/26/102
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/103
+    name: 26 USC 103
+    layer: federal
+    citation_path: us/statute/26/103
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/104
+    name: 26 USC 104
+    layer: federal
+    citation_path: us/statute/26/104
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/105
+    name: 26 USC 105
+    layer: federal
+    citation_path: us/statute/26/105
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/106
+    name: 26 USC 106
+    layer: federal
+    citation_path: us/statute/26/106
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/107
+    name: 26 USC 107
+    layer: federal
+    citation_path: us/statute/26/107
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/108
+    name: 26 USC 108
+    layer: federal
+    citation_path: us/statute/26/108
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/109
+    name: 26 USC 109
+    layer: federal
+    citation_path: us/statute/26/109
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/110
+    name: 26 USC 110
+    layer: federal
+    citation_path: us/statute/26/110
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/111
+    name: 26 USC 111
+    layer: federal
+    citation_path: us/statute/26/111
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/112
+    name: 26 USC 112
+    layer: federal
+    citation_path: us/statute/26/112
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/115
+    name: 26 USC 115
+    layer: federal
+    citation_path: us/statute/26/115
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/117
+    name: 26 USC 117
+    layer: federal
+    citation_path: us/statute/26/117
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/118
+    name: 26 USC 118
+    layer: federal
+    citation_path: us/statute/26/118
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/119
+    name: 26 USC 119
+    layer: federal
+    citation_path: us/statute/26/119
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/121
+    name: 26 USC 121
+    layer: federal
+    citation_path: us/statute/26/121
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/122
+    name: 26 USC 122
+    layer: federal
+    citation_path: us/statute/26/122
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
   - key: us/statute/26/1222
     name: 26 USC 1222
     layer: federal
     citation_path: us/statute/26/1222
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/123
+    name: 26 USC 123
+    layer: federal
+    citation_path: us/statute/26/123
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/125
+    name: 26 USC 125
+    layer: federal
+    citation_path: us/statute/26/125
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/126
+    name: 26 USC 126
+    layer: federal
+    citation_path: us/statute/26/126
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/127
+    name: 26 USC 127
+    layer: federal
+    citation_path: us/statute/26/127
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/128
+    name: 26 USC 128
+    layer: federal
+    citation_path: us/statute/26/128
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/129
+    name: 26 USC 129
+    layer: federal
+    citation_path: us/statute/26/129
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/130
+    name: 26 USC 130
+    layer: federal
+    citation_path: us/statute/26/130
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/131
+    name: 26 USC 131
+    layer: federal
+    citation_path: us/statute/26/131
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/132
+    name: 26 USC 132
+    layer: federal
+    citation_path: us/statute/26/132
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/134
+    name: 26 USC 134
+    layer: federal
+    citation_path: us/statute/26/134
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/135
+    name: 26 USC 135
+    layer: federal
+    citation_path: us/statute/26/135
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/136
+    name: 26 USC 136
+    layer: federal
+    citation_path: us/statute/26/136
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/137
+    name: 26 USC 137
+    layer: federal
+    citation_path: us/statute/26/137
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/138
+    name: 26 USC 138
+    layer: federal
+    citation_path: us/statute/26/138
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139
+    name: 26 USC 139
+    layer: federal
+    citation_path: us/statute/26/139
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139A
+    name: 26 USC 139A
+    layer: federal
+    citation_path: us/statute/26/139A
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139B
+    name: 26 USC 139B
+    layer: federal
+    citation_path: us/statute/26/139B
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139C
+    name: 26 USC 139C
+    layer: federal
+    citation_path: us/statute/26/139C
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139D
+    name: 26 USC 139D
+    layer: federal
+    citation_path: us/statute/26/139D
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139E
+    name: 26 USC 139E
+    layer: federal
+    citation_path: us/statute/26/139E
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139F
+    name: 26 USC 139F
+    layer: federal
+    citation_path: us/statute/26/139F
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139G
+    name: 26 USC 139G
+    layer: federal
+    citation_path: us/statute/26/139G
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139H
+    name: 26 USC 139H
+    layer: federal
+    citation_path: us/statute/26/139H
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139I
+    name: 26 USC 139I
+    layer: federal
+    citation_path: us/statute/26/139I
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139J
+    name: 26 USC 139J
+    layer: federal
+    citation_path: us/statute/26/139J
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139K
+    name: 26 USC 139K
+    layer: federal
+    citation_path: us/statute/26/139K
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/139L
+    name: 26 USC 139L
+    layer: federal
+    citation_path: us/statute/26/139L
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/140
+    name: 26 USC 140
+    layer: federal
+    citation_path: us/statute/26/140
     source_url: null
     part: Definitions from other programs
     sources:
@@ -1528,6 +2773,141 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/statute/26/22
+    name: 26 USC 22
+    layer: federal
+    citation_path: us/statute/26/22
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/23
+    name: 26 USC 23
+    layer: federal
+    citation_path: us/statute/26/23
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/24
+    name: 26 USC 24
+    layer: federal
+    citation_path: us/statute/26/24
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25
+    name: 26 USC 25
+    layer: federal
+    citation_path: us/statute/26/25
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25A
+    name: 26 USC 25A
+    layer: federal
+    citation_path: us/statute/26/25A
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25B
+    name: 26 USC 25B
+    layer: federal
+    citation_path: us/statute/26/25B
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25C
+    name: 26 USC 25C
+    layer: federal
+    citation_path: us/statute/26/25C
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25D
+    name: 26 USC 25D
+    layer: federal
+    citation_path: us/statute/26/25D
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25E
+    name: 26 USC 25E
+    layer: federal
+    citation_path: us/statute/26/25E
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/25F
+    name: 26 USC 25F
+    layer: federal
+    citation_path: us/statute/26/25F
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/26
+    name: 26 USC 26
+    layer: federal
+    citation_path: us/statute/26/26
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/31
+    name: 26 USC 31
+    layer: federal
+    citation_path: us/statute/26/31
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/32
+    name: 26 USC 32
+    layer: federal
+    citation_path: us/statute/26/32
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/33
+    name: 26 USC 33
+    layer: federal
+    citation_path: us/statute/26/33
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/34
+    name: 26 USC 34
+    layer: federal
+    citation_path: us/statute/26/34
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
   - key: us/statute/26/3401
     name: 26 USC 3401
     layer: federal
@@ -1537,10 +2917,37 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us/statute/26/35
+    name: 26 USC 35
+    layer: federal
+    citation_path: us/statute/26/35
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/36
+    name: 26 USC 36
+    layer: federal
+    citation_path: us/statute/26/36
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
   - key: us/statute/26/36B
     name: 26 USC 36B
     layer: federal
     citation_path: us/statute/26/36B
+    source_url: null
+    part: Definitions from other programs
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/26/37
+    name: 26 USC 37
+    layer: federal
+    citation_path: us/statute/26/37
     source_url: null
     part: Definitions from other programs
     sources:
@@ -1568,15 +2975,6 @@ layers:
     name: 26 USC 7703
     layer: federal
     citation_path: us/statute/26/7703
-    source_url: null
-    part: Definitions from other programs
-    sources:
-    - screener
-    scope: in
-  - key: us/statute/26/subtitle-A
-    name: 26 USC subtitle-A
-    layer: federal
-    citation_path: us/statute/26/subtitle-A
     source_url: null
     part: Definitions from other programs
     sources:
@@ -1659,20 +3057,60 @@ layers:
     layer: federal
     citation_path: us/statute/42/1397aa
     source_url: null
-    part: Other
+    part: Benefit amount
     sources:
     - screener
     - schema:C-ST-1397aa
+    scope: in
+  - key: us/statute/42/1397bb
+    name: 42 USC 1397bb
+    layer: federal
+    citation_path: us/statute/42/1397bb
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397bb
+    scope: in
+  - key: us/statute/42/1397cc
+    name: 42 USC 1397cc
+    layer: federal
+    citation_path: us/statute/42/1397cc
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397cc
+    scope: in
+  - key: us/statute/42/1397dd
+    name: 42 USC 1397dd
+    layer: federal
+    citation_path: us/statute/42/1397dd
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397dd
     scope: in
   - key: us/statute/42/1397ee
     name: 42 USC 1397ee
     layer: federal
     citation_path: us/statute/42/1397ee
     source_url: null
-    part: Other
+    part: Benefit amount
     sources:
     - screener
     - schema:C-ST-1397ee
+    scope: in
+  - key: us/statute/42/1397ff
+    name: 42 USC 1397ff
+    layer: federal
+    citation_path: us/statute/42/1397ff
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397ff
     scope: in
   - key: us/statute/42/1397gg
     name: 42 USC 1397gg
@@ -1684,20 +3122,249 @@ layers:
     - screener
     - schema:C-ST-1397gg
     scope: in
+  - key: us/statute/42/1397hh
+    name: 42 USC 1397hh
+    layer: federal
+    citation_path: us/statute/42/1397hh
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397hh
+    scope: in
+  - key: us/statute/42/1397ii
+    name: 42 USC 1397ii
+    layer: federal
+    citation_path: us/statute/42/1397ii
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397ii
+    scope: in
   - key: us/statute/42/1397jj
     name: 42 USC 1397jj
     layer: federal
     citation_path: us/statute/42/1397jj
     source_url: null
-    part: Household and eligibility
+    part: Benefit amount
     sources:
     - screener
     - schema:C-ST-1397jj-c
     scope: in
-  - key: us/statute/42/chapter-7
-    name: 42 USC chapter-7
+  - key: us/statute/42/1397kk
+    name: 42 USC 1397kk
     layer: federal
-    citation_path: us/statute/42/chapter-7
+    citation_path: us/statute/42/1397kk
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397kk
+    scope: in
+  - key: us/statute/42/1397ll
+    name: 42 USC 1397ll
+    layer: federal
+    citation_path: us/statute/42/1397ll
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/1397mm
+    name: 42 USC 1397mm
+    layer: federal
+    citation_path: us/statute/42/1397mm
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - schema:C-ST-1397mm
+    scope: in
+  - key: us/statute/42/601
+    name: 42 USC 601
+    layer: federal
+    citation_path: us/statute/42/601
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/602
+    name: 42 USC 602
+    layer: federal
+    citation_path: us/statute/42/602
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/603
+    name: 42 USC 603
+    layer: federal
+    citation_path: us/statute/42/603
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/604
+    name: 42 USC 604
+    layer: federal
+    citation_path: us/statute/42/604
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/604a
+    name: 42 USC 604a
+    layer: federal
+    citation_path: us/statute/42/604a
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/605
+    name: 42 USC 605
+    layer: federal
+    citation_path: us/statute/42/605
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/606
+    name: 42 USC 606
+    layer: federal
+    citation_path: us/statute/42/606
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/607
+    name: 42 USC 607
+    layer: federal
+    citation_path: us/statute/42/607
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/608
+    name: 42 USC 608
+    layer: federal
+    citation_path: us/statute/42/608
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/608a
+    name: 42 USC 608a
+    layer: federal
+    citation_path: us/statute/42/608a
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/609
+    name: 42 USC 609
+    layer: federal
+    citation_path: us/statute/42/609
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/610
+    name: 42 USC 610
+    layer: federal
+    citation_path: us/statute/42/610
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/611
+    name: 42 USC 611
+    layer: federal
+    citation_path: us/statute/42/611
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/611a
+    name: 42 USC 611a
+    layer: federal
+    citation_path: us/statute/42/611a
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/612
+    name: 42 USC 612
+    layer: federal
+    citation_path: us/statute/42/612
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/613
+    name: 42 USC 613
+    layer: federal
+    citation_path: us/statute/42/613
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/615
+    name: 42 USC 615
+    layer: federal
+    citation_path: us/statute/42/615
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/616
+    name: 42 USC 616
+    layer: federal
+    citation_path: us/statute/42/616
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/617
+    name: 42 USC 617
+    layer: federal
+    citation_path: us/statute/42/617
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/618
+    name: 42 USC 618
+    layer: federal
+    citation_path: us/statute/42/618
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us/statute/42/619
+    name: 42 USC 619
+    layer: federal
+    citation_path: us/statute/42/619
     source_url: null
     part: Benefit amount
     sources:
@@ -1739,78 +3406,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us/statute/42/1397bb
-    name: 42 USC 1397bb
-    layer: federal
-    citation_path: us/statute/42/1397bb
-    source_url: null
-    sources:
-    - schema:C-ST-1397bb
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397cc
-    name: 42 USC 1397cc
-    layer: federal
-    citation_path: us/statute/42/1397cc
-    source_url: null
-    sources:
-    - schema:C-ST-1397cc
-    scope: in
-    part: Household and eligibility
-  - key: us/statute/42/1397dd
-    name: 42 USC 1397dd
-    layer: federal
-    citation_path: us/statute/42/1397dd
-    source_url: null
-    sources:
-    - schema:C-ST-1397dd
-    scope: in
-    part: Benefit amount
-  - key: us/statute/42/1397ff
-    name: 42 USC 1397ff
-    layer: federal
-    citation_path: us/statute/42/1397ff
-    source_url: null
-    sources:
-    - schema:C-ST-1397ff
-    scope: in
-    part: Other
-  - key: us/statute/42/1397hh
-    name: 42 USC 1397hh
-    layer: federal
-    citation_path: us/statute/42/1397hh
-    source_url: null
-    sources:
-    - schema:C-ST-1397hh
-    scope: in
-    part: Other
-  - key: us/statute/42/1397ii
-    name: 42 USC 1397ii
-    layer: federal
-    citation_path: us/statute/42/1397ii
-    source_url: null
-    sources:
-    - schema:C-ST-1397ii
-    scope: in
-    part: Household and eligibility
-  - key: us/statute/42/1397kk
-    name: 42 USC 1397kk
-    layer: federal
-    citation_path: us/statute/42/1397kk
-    source_url: null
-    sources:
-    - schema:C-ST-1397kk
-    scope: in
-    part: Household and eligibility
-  - key: us/statute/42/1397mm
-    name: 42 USC 1397mm
-    layer: federal
-    citation_path: us/statute/42/1397mm
-    source_url: null
-    sources:
-    - schema:C-ST-1397mm
-    scope: in
-    part: Benefit amount
   - key: us/regulation/42/457/1
     name: 42 CFR 457.1
     layer: federal
