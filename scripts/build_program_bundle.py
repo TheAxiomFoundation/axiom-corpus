@@ -886,12 +886,15 @@ def build_program(
                 place(entry)
 
         for doc in state_cfg.get("known_sources") or []:
+            # A known source a wave holds at another path (a title rooted at
+            # "title-46" where the config names "46"): the path it moved to.
+            path = moves.get(doc["citation_path"], doc["citation_path"])
             place(
                 {
-                    "key": doc["citation_path"],
+                    "key": path,
                     "name": doc["title"],
                     "layer": "state",
-                    "citation_path": doc["citation_path"],
+                    "citation_path": path,
                     "source_url": doc.get("source_url"),
                     "sources": ["known-source"],
                     "note": doc.get("note"),

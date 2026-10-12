@@ -526,6 +526,17 @@ def test_build_program_joins_a_manifest_entry_without_a_path_to_the_path_that_ho
     assert waiver not in full
 
 
+def test_build_program_moves_a_known_source_to_the_path_a_wave_holds_it_at(tmp_path, monkeypatch):
+    cfg = config(tmp_path, monkeypatch)
+    cfg["path_moves"] = {"us-az/statute/46": "us-az/statute/title-46"}
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, None, {}, bundle.index_manifests({}, {})
+    )
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    keys = {d["key"] for d in layers["us-az"]["full"]}
+    assert "us-az/statute/title-46" in keys and "us-az/statute/46" not in keys
+
+
 def test_build_program_excludes_a_plan_document_the_decisions_rule_out(tmp_path, monkeypatch):
     # A plan row whose URL is a not_source is excluded with its reason, as the
     # same URL is when PolicyEngine cites it (wave-6 OUT-OF-SCOPE rows such as
