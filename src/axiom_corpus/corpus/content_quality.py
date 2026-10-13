@@ -324,6 +324,10 @@ def classify_body(
     return RowVerdict(navigation=is_navigation, prefixed=prefixed, substantive=substantive)
 
 
+def _text_or_none(value: object) -> str | None:
+    return value if isinstance(value, str) else None
+
+
 class ScopeContentScanner:
     """Stream one scope's provisions and report its content findings.
 
@@ -336,6 +340,11 @@ class ScopeContentScanner:
     text but never navigation; ``validate_release`` reports the missing file
     itself, and callers outside validation fetch a scope's locked sources
     before scanning it.
+
+    ``add`` never raises on a malformed row: ``validate_release`` feeds it each
+    record while it loads them, and must report what it reported without the
+    scan. A ``source_path``, ``heading`` or ``citation_label`` that is not a
+    string is read as absent; validation reports the field itself.
     """
 
     def __init__(self, corpus_root: str | Path):
@@ -367,7 +376,8 @@ class ScopeContentScanner:
                     page = page_navigation(raw)
                     if is_version_picker(raw):
                         self._pickers.add(source_path)
-        except OSError:
+        except (OSError, ValueError):
+            # ValueError: a path the platform cannot name, e.g. one with a NUL.
             page = None
         self._pages[source_path] = page
         if len(self._pages) > PAGE_CACHE_SIZE:
@@ -375,9 +385,13 @@ class ScopeContentScanner:
         return page
 
     def add(self, record: ProvisionRecord) -> None:
-        page = self._page(record.source_path)
+        source = _text_or_none(record.source_path)
+        page = self._page(source)
         verdict = classify_body(
-            record.body, page, heading=record.heading, label=record.citation_label
+            _text_or_none(record.body),
+            page,
+            heading=_text_or_none(record.heading),
+            label=_text_or_none(record.citation_label),
         )
         if verdict.navigation:
             self._findings.append(
@@ -392,8 +406,9 @@ class ScopeContentScanner:
                 )
             )
         if verdict.substantive:
-            self._text_rows.append((record.citation_path, record.source_path))
-        if record.kind == "document" and not (record.body and record.body.strip()):
+            self._text_rows.append((record.citation_path, source))
+        body = _text_or_none(record.body)
+        if record.kind == "document" and not (body and body.strip()):
             self._empty_roots.append(record.citation_path)
 
     def _text_row_paths(self) -> list[str]:

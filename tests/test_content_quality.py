@@ -347,6 +347,49 @@ def test_xml_with_a_body_element_is_not_html() -> None:
     assert looks_like_html(b"<body><p>fragment</p></body>")
 
 
+_JSON = st.recursive(
+    st.none() | st.booleans() | st.integers() | st.text(max_size=20),
+    lambda children: st.lists(children, max_size=3)
+    | st.dictionaries(st.text(max_size=5), children, max_size=3),
+    max_leaves=6,
+)
+
+
+@settings(max_examples=200, deadline=None)
+@given(
+    rows=st.lists(
+        st.fixed_dictionaries(
+            {"citation_path": st.text(min_size=1, max_size=30)},
+            optional={
+                "body": _JSON | st.just("\n\n".join(MENU)),
+                "heading": _JSON,
+                "citation_label": _JSON,
+                "source_path": _JSON
+                | st.sampled_from(
+                    ["page.html", "nul\x00.html", "../page.html", "/etc/passwd", "absent.html"]
+                ),
+                "kind": _JSON | st.just("document"),
+            },
+        ),
+        max_size=6,
+    )
+)
+def test_the_scanner_accepts_any_row_the_loader_yields(rows: list[dict]) -> None:
+    """``validate_release`` feeds the scanner every record it loads; no field may make it raise."""
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        (root / "page.html").write_text(PAGE, encoding="utf-8")
+        scanner = ScopeContentScanner(root)
+        for row in rows:
+            scanner.add(
+                ProvisionRecord.from_mapping(
+                    {"jurisdiction": "us-xx", "document_class": "statute", **row}
+                )
+            )
+        scanner.findings()
+        scanner.text_paths()
+
+
 def test_source_paths_outside_the_corpus_are_never_read(tmp_path: Path) -> None:
     outside = tmp_path / "outside.html"
     outside.write_text(PAGE, encoding="utf-8")
