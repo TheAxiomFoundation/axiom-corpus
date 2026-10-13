@@ -205,3 +205,5 @@ def test_the_content_check_command_reports_and_checks_a_scope(
         "version_picker_source": 1,
     }
     assert main(["content-check"]) == 2
+    assert main(["content-check", "us-ca/statute/2026-07-13-recovery", "us-ca/statut"]) == 2
+    assert "matches us-ca/statut" in capsys.readouterr().err

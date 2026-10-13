@@ -296,28 +296,64 @@ def test_a_failed_reparse_answers_the_same_in_every_run(
     """A REPROCESS document whose reparse fails stops vouching for itself at once.
 
     Its rows from the earlier parse are still in its own scope, but the first
-    failed run and every later one record the same unparsed, unresolved result.
+    failed run, a full rerun and a rerun limited to another document all record
+    the same unparsed, unresolved result with its provenance error.
     """
     report = _batch_run(monkeypatch, tmp_path)
-    monkeypatch.delenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", raising=False)
     answers = []
-    for _ in range(2):
+    for only in (None, None, "doc-a"):
+        if only is None:
+            monkeypatch.delenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", raising=False)
+        else:
+            monkeypatch.setenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", only)
         assert batch.main() == 0
-        result = json.loads(report.read_text())["doc-b"]
+        results = json.loads(report.read_text())
+        result = results["doc-b"]
+        summary = results["_summary"]
         answers.append(
             {
-                key: result.get(key)
-                for key in (
-                    "parsed",
-                    "citations_resolved",
-                    "resolved_citations",
-                    "unresolved_citations",
-                    "resolution_class",
-                )
+                **{
+                    key: result.get(key)
+                    for key in (
+                        "parsed",
+                        "issues",
+                        "citations_resolved",
+                        "resolved_citations",
+                        "unresolved_citations",
+                        "resolution_class",
+                        "exclusion_reason",
+                    )
+                },
+                "remaining": summary["remaining_classes"]["unrecoverable-parse"],
+                "provenance_ok": summary["signing_checklist"][
+                    "all_fetched_files_have_valid_provenance"
+                ],
             }
         )
-    assert answers[0] == answers[1]
+    assert answers[0] == answers[1] == answers[2]
     assert answers[0]["parsed"] is False
     assert answers[0]["resolved_citations"] == []
     assert answers[0]["unresolved_citations"] == ["us-xx/statute/200"]
     assert answers[0]["resolution_class"] == "unrecoverable-parse"
+    assert answers[0]["remaining"] == {"count": 1, "documents": ["doc-b"]}
+    assert answers[0]["provenance_ok"] is False
+
+
+def test_a_class_counts_only_its_unresolved_citations(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """A partly resolved document adds only its unresolved targets to its class's count."""
+    report = _batch_run(monkeypatch, tmp_path)
+    plan = json.loads(batch.PLAN.read_text())
+    for document in plan["documents"]:
+        if document["document_id"] == "doc-a":
+            document["covers_citation_paths"] = ["us-xx/statute/100", "us-xx/statute/310"]
+    batch.PLAN.write_text(json.dumps(plan))
+    _write(batch.BASE, OTHER, [("us-xx/statute/310", LAW, "section")])
+    monkeypatch.setenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", "doc-c")
+    assert batch.main() == 0
+    results = json.loads(report.read_text())
+    assert results["doc-a"]["citations_resolved"] == "1/2"
+    assert results["doc-a"]["resolution_class"] == "needs-fetch"
+    needs_fetch = results["_summary"]["remaining_classes"]["needs-fetch"]
+    assert needs_fetch == {"count": 2, "documents": ["doc-a", "doc-c"]}

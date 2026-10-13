@@ -218,8 +218,11 @@ uv run axiom-corpus-ingest content-check us-xx/statute/<version> --update-baseli
 uv run axiom-corpus-ingest content-check --all --update-baseline --workers 4
 ```
 
+A named scope that matches no locked scope with provisions and inventory is an
+error (exit 2), so a mistyped scope cannot pass as a clean check of nothing.
 A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions; it
-takes about 90 seconds on four workers. Raising `CONTENT_CHECK_VERSION` requires rebuilding
+takes about 90 seconds on four workers locally and about three minutes on the
+CI runner. Raising `CONTENT_CHECK_VERSION` requires rebuilding
 the baseline in the same change: validation ignores a baseline made by other
 rules, and CI's check fails on it.
 
@@ -236,12 +239,16 @@ targets. It now:
   citation path, the scopes in which the row at that path carries text by the
   rules above (`ScopeContentScanner.text_paths`);
 - counts a document's own planned scope only when the document's recorded
-  result is parsed, so leftover rows cannot vouch for themselves. A run limited
-  to one document (`AXIOM_RECOVERY_ONLY_DOCUMENT_ID`), or one whose snapshot has
-  left `recovered-fetched`, carries every earlier parse result forward
-  unchanged; a reparse that fails records an unparsed result, and its targets
-  then resolve only through other scopes, in this run and the next alike;
-- reads bodies in the per-document check as well.
+  result is parsed, so leftover rows cannot vouch for themselves. A run whose
+  snapshot for a document has left `recovered-fetched` carries that document's
+  earlier parse forward unchanged, and a run limited to one document
+  (`AXIOM_RECOVERY_ONLY_DOCUMENT_ID`) carries every other document's earlier
+  result forward, parse failures and their provenance errors included. A
+  reparse that fails records an unparsed result, and its targets then resolve
+  only through other scopes, in this run and every later one alike;
+- reads bodies in the per-document check as well;
+- counts, for each remaining class in the summary, the class's unresolved
+  citations, not every target of a partly resolved document.
 
 On the retained us-ca pages, the ten R&TC targets resolve, as
 `exact-cross-scope`, to the income tax chapter scope that carries their text,

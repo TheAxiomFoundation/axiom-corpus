@@ -1334,11 +1334,15 @@ def main() -> int:
         }
     for document_id, entry in entries.items():
         if document_id not in results:
-            if document_id in previously_parsed:
-                # A run limited to one document, or one whose snapshot has left
-                # recovered-fetched, keeps the earlier parse result: writing an
-                # unparsed stand-in would erase it from the report the next run
-                # reads its parsed documents from.
+            if document_id in previously_parsed or (
+                only_document_id and document_id in previous_results
+            ):
+                # A document this run did not parse keeps its earlier result when
+                # that result was a parse, or when the run was limited to another
+                # document: an unparsed stand-in would erase the parse from the
+                # report the next run reads its parsed documents from, or replace
+                # a recorded parse failure (and its provenance error) with a
+                # missing-snapshot result although the snapshot is still there.
                 results[document_id] = {**previous_results[document_id], "newly_ingested": False}
                 continue
             targets = list(entry.get("covers_citation_paths") or [])
@@ -1420,10 +1424,10 @@ def main() -> int:
             for key, value in results.items()
             if not key.startswith("_") and value.get("resolution_class") == class_name
         ]
+        # The class's remaining citations: its documents' unresolved targets,
+        # not every target of a document that is only partly resolved.
         remaining_classes[class_name] = {
-            "count": sum(
-                int(results[key]["citations_resolved"].split("/")[1]) for key in members
-            ),
+            "count": sum(len(results[key]["unresolved_citations"]) for key in members),
             "documents": members,
         }
         for key in members:

@@ -136,6 +136,19 @@ def cmd_content_check(args: argparse.Namespace) -> int:
     resolver.require_valid_locks()
     locked = sorted(resolver.locks.locks)
     selected = _scannable(repo, _selected_scopes(locked, args.scopes, args.all))
+    unmatched = [
+        text
+        for text in args.scopes
+        if not any(scope_matches(scope, parse_scope_selector(text)) for scope in selected)
+    ]
+    if unmatched:
+        # A mistyped scope must not pass as a clean check of nothing.
+        print(
+            "content-check: no locked scope with provisions and inventory matches "
+            + ", ".join(unmatched),
+            file=sys.stderr,
+        )
+        return 2
     try:
         ensure_corpus_scopes(selected, repo=repo)
     except CorpusNotMaterializedError as exc:
