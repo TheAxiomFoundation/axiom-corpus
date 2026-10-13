@@ -29,13 +29,22 @@ sources. Each finding names one row or one source file:
     The rest of the body must not itself be mostly navigation.
 ``hollow_document_root``
     A ``document`` row with no body whose descendants in the scope (rows whose
-    citation path extends it) carry no text: each is empty, has no word with a
-    letter in it, is a ``navigation_body``, or comes from a version picker. A
-    bodyless document with no rows below it at all is hollow too: it carries a
-    heading and nothing else. A bodyless root with text below it is the shared
-    document extractor's normal shape (the wave4 chapter scopes keep each
-    section's text in one child block), so emptiness alone is not a finding,
-    and neither is a short text: "Reserved." is a section's text.
+    citation path extends it) carry no text: each is empty, has neither a word
+    with a letter in it nor a table of figures, is a ``navigation_body``, or
+    comes from a version picker. A body with no word with a letter is a table
+    of figures when at least ``FIGURE_TEXT_MIN_TOKENS`` of its tokens are
+    figures (numbers, dates, amounts, rates) and they are at least
+    ``FIGURE_TEXT_MIN_SHARE`` of its tokens: a benefit table of dates and
+    amounts is text, while a page number, a date stamp on a scanned page or a
+    font's garbled glyph codes are not. A bodyless document with no rows below
+    it at all is hollow too: it carries a heading and nothing else. A bodyless
+    root with text below it is the shared document extractor's normal shape
+    (the wave4 chapter scopes keep each section's text in one child block), so
+    emptiness alone is not a finding, and neither is a short text: "Reserved."
+    is a section's text. A root that review found correctly empty (a table of
+    contents, an index of separate documents, a reserved or repealed item) is
+    listed in ``manifests/reviewed-empty-nodes.yaml`` and is not a finding
+    (``ScopeContentScanner``'s ``reviewed_empty``).
 ``version_picker_source``
     A retained HTML source is a LegInfo "select from multiples" page: it has
     the ``form#selectFromMultiples`` the California adapter resolves
@@ -61,7 +70,7 @@ from lxml import etree
 
 from axiom_corpus.corpus.models import ProvisionRecord
 
-CONTENT_CHECK_VERSION = "content-check-v1"
+CONTENT_CHECK_VERSION = "content-check-v2"
 
 NAVIGATION_BODY = "navigation_body"
 NAVIGATION_PREFIXED_BODY = "navigation_prefixed_body"
@@ -92,6 +101,12 @@ PREFIXED_MIN_TOKENS = 80
 REST_MAX_COVERAGE = 0.5
 # A navigation string must be at least this share letters (spaces aside).
 NAVIGATION_STRING_LETTER_SHARE = 0.75
+# A body with no word with a letter is text when at least this many of its
+# tokens are figures and they are at least this share of its tokens. Date
+# stamps and page numbers on scanned pages hold one to four figures; garbled
+# glyph codes hold at most 15% figures (docs/release-gate-policy.md).
+FIGURE_TEXT_MIN_TOKENS = 5
+FIGURE_TEXT_MIN_SHARE = 0.5
 # Bytes read to decide whether a source is HTML.
 HTML_SNIFF_BYTES = 4096
 
@@ -108,6 +123,10 @@ _SKIP_LINK = re.compile(
     re.IGNORECASE,
 )
 _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
+# A figure: a number, date, amount, rate or range, with an optional sign,
+# currency symbol, percent sign, enclosing parentheses or trailing punctuation
+# ("16", "$1,014.00", ".9666", "10/19--", "(450,000)", "2.5%").
+_FIGURE = re.compile(r"[(\[]?[-+\u2212]?[$\u00a3\u20ac\u00a5]?\.?\d[\d.,/:\u2013-]*%?[)\]]?[.,;:]?")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -134,6 +153,23 @@ def _tokens(text: str) -> list[str]:
 
 def _has_letters(token: str) -> bool:
     return any(char.isalpha() for char in token)
+
+
+def is_figure(token: str) -> bool:
+    """Whether a token is a number, date, amount, rate or range."""
+    return _FIGURE.fullmatch(token) is not None
+
+
+def is_figure_table(tokens: list[str]) -> bool:
+    """Whether tokens with no letter in them still read as text: a table of figures.
+
+    At least ``FIGURE_TEXT_MIN_TOKENS`` figures, making up at least
+    ``FIGURE_TEXT_MIN_SHARE`` of the tokens. A date stamp ("9/4/13"), a page
+    number or a pair of dates is too few; a scanned page's garbled glyph codes,
+    which hold a stray digit here and there, are too thin.
+    """
+    figures = sum(1 for token in tokens if is_figure(token))
+    return figures >= FIGURE_TEXT_MIN_TOKENS and figures >= FIGURE_TEXT_MIN_SHARE * len(tokens)
 
 
 def is_navigation_string(text: str) -> bool:
@@ -293,7 +329,13 @@ def classify_body(
     heading: str | None = None,
     label: str | None = None,
 ) -> RowVerdict:
-    """Apply the navigation, prefix and substance rules to one body."""
+    """Apply the navigation, prefix and substance rules to one body.
+
+    A body is text (``substantive``) when it is not navigation and has a word
+    with a letter in it, or, having none, is a table of figures
+    (``is_figure_table``). Navigation, the residual and the opening run count
+    words with letters only, so figures never change those verdicts.
+    """
     tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
     words = sum(1 for token in tokens if _has_letters(token))
     if not tokens:
@@ -321,7 +363,7 @@ def classify_body(
             and _opening_run(head, head_covered) >= PREFIX_RUN_TOKENS
         )
         prefixed = chrome_opening and rest_coverage.share < REST_MAX_COVERAGE
-    substantive = not is_navigation and words > 0
+    substantive = not is_navigation and (words > 0 or is_figure_table(tokens))
     return RowVerdict(navigation=is_navigation, prefixed=prefixed, substantive=substantive)
 
 
@@ -346,10 +388,18 @@ class ScopeContentScanner:
     record while it loads them, and must report what it reported without the
     scan. A ``source_path``, ``heading`` or ``citation_label`` that is not a
     string is read as absent; validation reports the field itself.
+
+    ``reviewed_empty`` names the citation paths of this scope's document rows
+    that review found correctly empty (``manifests/reviewed-empty-nodes.yaml``).
+    Such a row is not a ``hollow_document_root`` finding when it is hollow;
+    ``reviewed_empty_roots`` lists the ones the exemption applied to. Nothing
+    else depends on the list: a reviewed row is still hollow for
+    ``text_paths``, and its descendants are checked as any other rows.
     """
 
-    def __init__(self, corpus_root: str | Path):
+    def __init__(self, corpus_root: str | Path, *, reviewed_empty: Iterable[str] = ()):
         self.root = Path(corpus_root)
+        self._reviewed_empty = frozenset(reviewed_empty)
         self._pages: OrderedDict[str, PageNavigation | None] = OrderedDict()
         self._pickers: set[str] = set()
         self._findings: list[ContentFinding] = []
@@ -435,9 +485,15 @@ class ScopeContentScanner:
             root for root in self._empty_roots if root not in hollow
         )
 
+    def reviewed_empty_roots(self) -> tuple[str, ...]:
+        """Hollow roots that ``reviewed_empty`` exempts from the findings, sorted."""
+        return tuple(sorted(set(self._hollow_roots(self._text_row_paths())) & self._reviewed_empty))
+
     def findings(self) -> tuple[ContentFinding, ...]:
         found = list(self._findings)
         for root in self._hollow_roots(self._text_row_paths()):
+            if root in self._reviewed_empty:
+                continue
             found.append(
                 ContentFinding(
                     HOLLOW_DOCUMENT_ROOT,
@@ -457,10 +513,13 @@ class ScopeContentScanner:
 
 
 def scan_provisions(
-    corpus_root: str | Path, records: Iterable[ProvisionRecord]
+    corpus_root: str | Path,
+    records: Iterable[ProvisionRecord],
+    *,
+    reviewed_empty: Iterable[str] = (),
 ) -> tuple[ContentFinding, ...]:
     """Content findings for one scope's records (see ``ScopeContentScanner``)."""
-    scanner = ScopeContentScanner(corpus_root)
+    scanner = ScopeContentScanner(corpus_root, reviewed_empty=reviewed_empty)
     for record in records:
         scanner.add(record)
     return scanner.findings()

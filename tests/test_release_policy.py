@@ -11,6 +11,10 @@ Invariants, for every input:
 - Differential: validating a scope by fresh scan and validating it against a
   baseline entry made from that scan report the same findings, as errors in
   the first case and as one notice in the second.
+- A row on the reviewed-empty list is never a ``hollow_document_root`` finding,
+  by fresh scan or by baseline alike, and both paths report the same
+  reviewed-empty notice; a listed row that is not a hollow root fails the
+  baseline comparison.
 """
 
 from __future__ import annotations
@@ -34,15 +38,19 @@ from axiom_corpus.corpus.content_quality import (
 from axiom_corpus.corpus.corpus_locks import LOCK_ROOT
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.release_policy import (
+    REVIEWED_EMPTY_PATH,
     ContentBaseline,
     ContentBaselineEntry,
     ReleaseGatePolicy,
     ReleasePolicyError,
+    ReviewedEmptyNode,
+    ReviewedEmptyScope,
     SelectorAllowance,
     WithdrawnScope,
     compare_content_baseline,
     content_baseline_text,
     load_content_baseline,
+    load_reviewed_empty,
     load_withdrawn_scopes,
     scan_scope,
     write_content_baseline,
@@ -438,3 +446,208 @@ def test_a_checkout_with_corpus_locks_requires_its_policy(tmp_path: Path) -> Non
         ReleaseGatePolicy.for_checkout(repo)
     with pytest.raises(ReleasePolicyError, match="release policy files are missing"):
         ReleaseGatePolicy.for_corpus(repo / "data" / "corpus")
+
+
+def _reviewed(scope: ReleaseScope, *paths: str) -> dict:
+    return {
+        scope.key: ReviewedEmptyScope(
+            scope=scope,
+            run_note="docs/ingest-runs/x.md",
+            nodes=tuple(
+                ReviewedEmptyNode(path, "table_of_contents", "Contents.") for path in paths
+            ),
+        )
+    }
+
+
+def test_a_reviewed_empty_root_is_a_notice_by_scan_and_by_baseline(tmp_path: Path) -> None:
+    _write_scope(tmp_path, OTHER, HOLLOW_ROWS)
+    release = _release("cut", OTHER)
+    policy = ReleaseGatePolicy(reviewed_empty=_reviewed(OTHER, "us-xx/statute/17014"))
+    scanned = validate_release(tmp_path, release, policy=policy)
+    # The menu block is still navigation; the root it leaves hollow was reviewed.
+    assert [(issue.code, issue.message.split(":", 1)[0]) for issue in scanned.issues] == [
+        ("navigation_body", "us-xx/statute/17014/block-1")
+    ]
+    [scan_notice] = scanned.notices
+    assert scan_notice.code == "reviewed_empty_document_roots"
+    assert scan_notice.path == str(REVIEWED_EMPTY_PATH)
+    assert "has 1 document rows that review found correctly empty" in scan_notice.message
+    entry = scan_scope(tmp_path, OTHER, reviewed_empty=policy.reviewed_empty_paths(OTHER))
+    assert [(f.code, f.path) for f in entry.findings] == [
+        ("navigation_body", "us-xx/statute/17014/block-1")
+    ]
+    assert entry.reviewed_empty == ("us-xx/statute/17014",)
+    recorded = validate_release(
+        tmp_path,
+        release,
+        policy=ReleaseGatePolicy(
+            content_baseline=ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: entry}),
+            reviewed_empty=policy.reviewed_empty,
+        ),
+        strict_warnings=True,
+    )
+    assert (recorded.ok, recorded.error_count, recorded.warning_count) == (True, 0, 0)
+    assert [notice.code for notice in recorded.notices] == [
+        "baselined_content_findings",
+        "reviewed_empty_document_roots",
+    ]
+    assert recorded.notices[1].message == scan_notice.message
+    # Without the list the root is a finding again.
+    plain = validate_release(tmp_path, release, policy=ReleaseGatePolicy())
+    assert "hollow_document_root" in {issue.code for issue in plain.issues}
+
+
+def test_a_reviewed_row_with_text_below_it_exempts_nothing(tmp_path: Path) -> None:
+    _write_scope(tmp_path, OTHER, [*HOLLOW_ROWS, ("us-xx/statute/17014/block-2", LAW, "block")])
+    policy = ReleaseGatePolicy(reviewed_empty=_reviewed(OTHER, "us-xx/statute/17014"))
+    report = validate_release(tmp_path, _release("cut", OTHER), policy=policy)
+    assert [issue.code for issue in report.issues] == ["navigation_body"]
+    assert report.notices == ()
+
+
+def test_comparison_names_stale_and_unlocked_reviewed_rows(tmp_path: Path) -> None:
+    _write_scope(tmp_path, OTHER, HOLLOW_ROWS)
+    gone = ReleaseScope("us-xx", "statute", "gone")
+    reviewed = {
+        **_reviewed(OTHER, "us-xx/statute/17014", "us-xx/statute/17014/block-1"),
+        **_reviewed(gone, "us-xx/statute/1"),
+    }
+    fresh = scan_scope(tmp_path, OTHER, reviewed_empty=reviewed[OTHER.key].paths)
+    baseline = ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: fresh})
+    problems = {
+        difference.scope: difference.problem
+        for difference in compare_content_baseline(
+            baseline, {OTHER.key: fresh}, locked_scopes=[OTHER.key], reviewed_empty=reviewed
+        )
+    }
+    assert problems == {
+        "us-xx/statute/gone": f"listed in {REVIEWED_EMPTY_PATH} but not locked",
+        "us-xx/statute/2026-09-14-chapter": (
+            f"1 rows in {REVIEWED_EMPTY_PATH} are not hollow document roots: "
+            "us-xx/statute/17014/block-1"
+        ),
+    }
+    exact = _reviewed(OTHER, "us-xx/statute/17014")
+    fresh = scan_scope(tmp_path, OTHER, reviewed_empty=exact[OTHER.key].paths)
+    baseline = ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: fresh})
+    assert (
+        compare_content_baseline(
+            baseline, {OTHER.key: fresh}, locked_scopes=[OTHER.key], reviewed_empty=exact
+        )
+        == []
+    )
+    # A baseline made before the row was reviewed still records it: the list
+    # and the baseline must change together.
+    before = ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: scan_scope(tmp_path, OTHER)})
+    assert [
+        difference.problem
+        for difference in compare_content_baseline(
+            before, {OTHER.key: fresh}, locked_scopes=[OTHER.key], reviewed_empty=exact
+        )
+    ] == ["findings differ: 0 new, 1 no longer found"]
+
+
+def _reviewed_text(**overrides: object) -> str:
+    node = {
+        "path": "us-xx/statute/toc",
+        "reason": "table_of_contents",
+        "note": "The code's table of contents.",
+    }
+    node.update(overrides.pop("node", {}))  # type: ignore[arg-type]
+    entry: dict[str, object] = {
+        "scope": "us-xx/statute/2026-09-14-chapter",
+        "run_note": "docs/ingest-runs/x.md",
+        "nodes": [node],
+    }
+    entry.update(overrides)
+    return json.dumps({"schema_version": "axiom-corpus/reviewed-empty-nodes/v1", "scopes": [entry]})
+
+
+def test_the_reviewed_empty_list_parses(tmp_path: Path) -> None:
+    path = tmp_path / "reviewed.yaml"
+    path.write_text(_reviewed_text(node={"note": "The code's\n   table of contents."}))
+    loaded = load_reviewed_empty(path)
+    assert loaded == {
+        OTHER.key: ReviewedEmptyScope(
+            OTHER,
+            "docs/ingest-runs/x.md",
+            (
+                ReviewedEmptyNode(
+                    "us-xx/statute/toc", "table_of_contents", "The code's table of contents."
+                ),
+            ),
+        )
+    }
+    assert ReleaseGatePolicy(reviewed_empty=loaded).reviewed_empty_paths(OTHER) == {
+        "us-xx/statute/toc"
+    }
+    assert ReleaseGatePolicy(reviewed_empty=loaded).reviewed_empty_paths(SCOPE) == frozenset()
+
+
+@pytest.mark.parametrize(
+    ("text", "message"),
+    [
+        (_reviewed_text(node={"reason": "boring"}), "reason must be one of"),
+        (_reviewed_text(node={"path": "us-yy/statute/toc"}), "citation path under us-xx/statute/"),
+        (_reviewed_text(node={"note": " "}), "note must be a non-empty string"),
+        (_reviewed_text(node={"extra": 1}), "fields must be"),
+        (_reviewed_text(nodes=[]), "nodes must be a non-empty list"),
+        (_reviewed_text(run_note=None), "run_note must be a non-empty string"),
+        (_reviewed_text(scope="us-xx/statute"), "scope must be"),
+        (
+            _reviewed_text(
+                nodes=[
+                    {"path": "us-xx/statute/b", "reason": "index", "note": "x"},
+                    {"path": "us-xx/statute/a", "reason": "index", "note": "x"},
+                ]
+            ),
+            "sorted and free of duplicates",
+        ),
+        (
+            _reviewed_text(
+                nodes=[
+                    {"path": "us-xx/statute/a", "reason": "index", "note": "x"},
+                    {"path": "us-xx/statute/a", "reason": "reserved", "note": "y"},
+                ]
+            ),
+            "sorted and free of duplicates",
+        ),
+        (
+            _reviewed_text().replace("reviewed-empty-nodes/v1", "reviewed-empty-nodes/v0"),
+            "schema_version",
+        ),
+        (json.dumps({"schema_version": "axiom-corpus/reviewed-empty-nodes/v1"}), "fields must be"),
+    ],
+)
+def test_the_reviewed_empty_list_rejects_malformed_entries(
+    tmp_path: Path, text: str, message: str
+) -> None:
+    path = tmp_path / "reviewed.yaml"
+    path.write_text(text)
+    with pytest.raises(ReleasePolicyError, match=message):
+        load_reviewed_empty(path)
+
+
+def test_the_reviewed_empty_list_keeps_scopes_sorted_and_unique(tmp_path: Path) -> None:
+    document = json.loads(_reviewed_text())
+    entry = document["scopes"][0]
+    earlier = {**entry, "scope": "us-xx/statute/2026-07-13-recovery"}
+    path = tmp_path / "reviewed.yaml"
+    for scopes in ([entry, earlier], [entry, entry]):
+        path.write_text(json.dumps({**document, "scopes": scopes}))
+        with pytest.raises(ReleasePolicyError, match="sorted by jurisdiction"):
+            load_reviewed_empty(path)
+    path.write_text(json.dumps({**document, "scopes": [earlier, entry]}))
+    assert list(load_reviewed_empty(path)) == [SCOPE.key, OTHER.key]
+
+
+def test_the_reviewed_empty_list_is_read_but_never_required(tmp_path: Path) -> None:
+    (tmp_path / "manifests").mkdir()
+    write_content_baseline(tmp_path / "manifests/release-content-baseline.json", [])
+    (tmp_path / "manifests/withdrawn-scopes.yaml").write_text(_registry_text())
+    assert ReleaseGatePolicy.load(tmp_path, required=True).reviewed_empty == {}
+    (tmp_path / REVIEWED_EMPTY_PATH).write_text(_reviewed_text())
+    assert ReleaseGatePolicy.load(tmp_path, required=True).reviewed_empty_paths(OTHER) == {
+        "us-xx/statute/toc"
+    }

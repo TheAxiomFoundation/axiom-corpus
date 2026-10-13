@@ -27,6 +27,7 @@ from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.release_policy import (
     CONTENT_BASELINE_PATH,
+    REVIEWED_EMPTY_PATH,
     WITHDRAWN_SCOPES_PATH,
     ContentBaselineEntry,
     ReleaseGatePolicy,
@@ -565,11 +566,14 @@ class _ContentPlan:
       and each finding is an error: new chrome, a hollow root or a version
       picker fails the release until the extraction is fixed or the finding is
       recorded in the baseline.
+    - Either way, a hollow root listed in ``manifests/reviewed-empty-nodes.yaml``
+      is not a finding; the scope's reviewed rows become one notice.
     """
 
     scanner: ScopeContentScanner | None = None
     baseline: ContentBaselineEntry | None = None
     mismatched: bool = False
+    reviewed_empty: frozenset[str] = frozenset()
 
     @classmethod
     def for_scope(
@@ -582,6 +586,7 @@ class _ContentPlan:
     ) -> _ContentPlan:
         if scope.key in policy.withdrawn:
             return cls()
+        reviewed = policy.reviewed_empty_paths(scope)
         baseline = policy.content_baseline
         entry = (
             baseline.entry_for(scope) if baseline.check_version == CONTENT_CHECK_VERSION else None
@@ -591,13 +596,36 @@ class _ContentPlan:
                 digests = (_sha256_file(provisions_path), _sha256_file(inventory_path))
             except OSError:
                 # A missing or unreadable artifact is reported by its own check.
-                return cls(scanner=ScopeContentScanner(store.root))
+                return cls(scanner=_scanner(store, reviewed), reviewed_empty=reviewed)
             if entry.pins(*digests):
-                return cls(baseline=entry)
-            return cls(scanner=ScopeContentScanner(store.root), mismatched=True)
-        return cls(scanner=ScopeContentScanner(store.root))
+                return cls(baseline=entry, reviewed_empty=reviewed)
+            return cls(scanner=_scanner(store, reviewed), mismatched=True, reviewed_empty=reviewed)
+        return cls(scanner=_scanner(store, reviewed), reviewed_empty=reviewed)
 
     def report(
+        self, scope: ReleaseScope, provisions_path: Path, collector: _IssueCollector
+    ) -> None:
+        self._report_findings(scope, provisions_path, collector)
+        # A baselined scope's reviewed rows are all hollow roots: the CI check
+        # fails on a listed row that is not. A scanned scope counts its own.
+        reviewed = (
+            self.scanner.reviewed_empty_roots()
+            if self.scanner is not None
+            else tuple(sorted(self.reviewed_empty))
+        )
+        if reviewed and (self.scanner is not None or self.baseline is not None):
+            collector.add(
+                "notice",
+                "reviewed_empty_document_roots",
+                (
+                    f"{scope_label(scope)} has {len(reviewed)} document rows that review found "
+                    f"correctly empty, listed in {REVIEWED_EMPTY_PATH}"
+                ),
+                scope=scope,
+                path=REVIEWED_EMPTY_PATH,
+            )
+
+    def _report_findings(
         self, scope: ReleaseScope, provisions_path: Path, collector: _IssueCollector
     ) -> None:
         if self.baseline is not None:
@@ -638,6 +666,10 @@ class _ContentPlan:
                 scope=scope,
                 path=provisions_path if finding.code != "version_picker_source" else finding.path,
             )
+
+
+def _scanner(store: CorpusArtifactStore, reviewed_empty: frozenset[str]) -> ScopeContentScanner:
+    return ScopeContentScanner(store.root, reviewed_empty=reviewed_empty)
 
 
 def _finding_message(finding: ContentFinding) -> str:
