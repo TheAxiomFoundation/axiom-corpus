@@ -187,8 +187,8 @@ both runs, so no page was read by Tesseract anew.
 Medicaid state plans of AL, MA, MO, OR and WA (`us-xx/policy/2026-09-13-medicaid-state-plan`).
 All five are among #868's 52. #864's successors of them (`<scope>-r2026-10-13-hollow-roots`)
 must be built with this rule as well as #868's: in place while #864 is unmerged, or as a
-further successor revision after it merges. At #864's head `6b0d841b9` the AL, MA, MO
-and OR successors are built and WA's is not yet.
+further successor revision after it merges. At #864's head `8669292f6` all five
+successors are built and signed.
 
 ## Reproduce
 
