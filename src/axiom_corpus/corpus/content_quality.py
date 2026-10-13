@@ -116,6 +116,10 @@ _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
 # A token that ends a sentence: a final period or exclamation mark, before any
 # closing quotes or brackets, that is not the last of an ellipsis.
 _ENDS_SENTENCE = re.compile(r"(?<!\.)[.!][\"')\]’”]*$")
+# Characters that only separate links (breadcrumb and menu dividers). Any other
+# token outside the page's navigation strings is the block's own content: a word,
+# a figure, or a table mark such as a check, a cross or a dash for "none".
+_SEPARATOR_CHARS = frozenset("|/\\<>«»‹›•·-–")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -364,10 +368,11 @@ def is_navigation_block(
     conditions, so that a dropped block is a list of the page's link labels and
     nothing else:
 
-    - every token with a letter or a digit lies in one of the page's navigation
-      strings, so a status ("Repealed April 6, 2000. Return to Table of Contents"),
-      an instruction ("See Certification Periods.") or a figure beside a linked
-      label ("Gross monthly income limit $2,000") keeps its block;
+    - every token lies in one of the page's navigation strings or is made only of
+      link separators (``|``, ``>``, ``»``, ``•`` ...), so a status ("Repealed April
+      6, 2000. Return to Table of Contents"), an instruction ("See Certification
+      Periods."), a figure beside a linked label ("Gross monthly income limit
+      $2,000") or a table mark ("✓", "✗", "—") keeps its block;
     - the body is at least ``NAVIGATION_BLOCK_MIN_STRINGS`` navigation strings: a
       lone link can be a section's whole text ("See reciprocal agreement", an
       exhibit's title, a glossary term whose definition sits inside its link);
@@ -392,7 +397,7 @@ def is_navigation_block(
     spans = navigation.matches(tokens)
     covered = {position for start, end in spans for position in range(start, end)}
     if any(
-        any(char.isalnum() for char in token)
+        not set(token) <= _SEPARATOR_CHARS
         for position, token in enumerate(tokens)
         if position not in covered
     ):

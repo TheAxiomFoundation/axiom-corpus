@@ -3184,11 +3184,13 @@ def _extract_html_blocks(
     the blocks after it keep the paths an unfiltered extraction gives them. Nothing
     is dropped from a page whose manifest declares its sections
     (``segmentation: labeled_sections`` or ``anchor_range``), even when it is read
-    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block;
-    callers whose ``content`` is not the retained source (an HTML field inside a
-    JSON file, or bytes re-encoded before extraction) pass
-    ``drop_navigation=False``, so the extractor drops only rows the release content
-    check, which reads the retained source, would flag.
+    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block.
+    A caller whose ``content`` is not the retained source turns the filter off,
+    so the extractor drops only rows the release content check, which reads the
+    retained source, would flag: ``_extract_json_html_blocks`` passes
+    ``drop_navigation=False`` for an HTML field inside a JSON file, and
+    ``scripts/recover_ingest_batch.py`` passes ``html_keep_navigation_blocks`` when
+    it re-encodes the bytes before extracting.
     """
     config = extraction or {}
     navigation = (

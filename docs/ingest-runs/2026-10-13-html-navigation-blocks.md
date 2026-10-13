@@ -30,15 +30,15 @@ flagged rows:
   "See reciprocal agreement").
 
 So the extractor drops a positional block only when the check flags it **and**
-every token with a letter or a digit lies in a navigation string, the body is at
-least two such strings, none of them is longer than 12 words, and none ends a
-sentence. Nothing is dropped from a page whose manifest declares its sections
+every token lies in a navigation string or is only link separators (`|`, `>`,
+`»`, `•` ...), the body is at least two such strings, none of them is longer than
+12 words, and none ends a sentence. Nothing is dropped from a page whose manifest declares its sections
 (`labeled_sections`, `anchor_range`), from HTML read out of a JSON field, from a
 page the recovery batch re-encodes before extracting, or from a body longer than
 the 1,200 words the check reads. A dropped block's ordinal is used up, so later
 blocks keep their paths.
 
-The digit, sentence, declared-section and re-encoding conditions came from the
+The figure, sentence, declared-section and re-encoding conditions came from the
 independent review of the first version (GPT-6.1 Sol, round 1), which built
 pages it would still have emptied: a table whose linked column labels sit over
 unlinked amounts ("Gross monthly income limit" over "$2,000"), two short
@@ -48,7 +48,19 @@ page under `labeled_sections`, and a Windows-1252 page that
 would read other link text than the check reads in the retained bytes. Each is
 now a test. Among the flagged rows they keep no further content-labeled row, and
 12 more navigation rows: Nebraska breadcrumbs whose section number is not linked,
-and three menus whose labels end with a period.
+and three menus whose labels end with a period. Round 2 (Opus 5.5, Subfleet's
+fallback when no Codex lane was free) agreed and asked for table marks to count
+as content too: a ✓ or ✗ cell under linked column labels now keeps its block,
+and only `| / \ < > « » ‹ › • · - –` may stand outside the links. On the flagged
+rows the only such tokens in dropped blocks are three `|` and one `>`, so no
+verdict changed.
+
+One known loss remains by design. A list whose every item is a short linked
+sentence without a final period ("Report changes within 10 days" over "Report
+income over 130 percent of poverty") reads as a menu and is dropped, as are the
+link lists counted below; the text such a link names lives on the page it links
+to. A publisher drop selector or `html_keep_navigation_blocks: true` is the remedy
+for a manifest where that matters.
 
 ### How the conditions were chosen
 
@@ -66,7 +78,7 @@ bodies (1,066 rows) are navigation by both, 107 bodies (132 rows) content.
 | --- | ---: | ---: | ---: |
 | The check's rule | 1,198 | 1,066 | 132 |
 | Positional blocks only | 1,187 | 1,065 | 122 |
-| … with no token holding a letter or digit of its own | 863 | 835 | 28 |
+| … with no token of its own but link separators | 863 | 835 | 28 |
 | … and at least two navigation strings | 448 | 435 | 13 |
 | … and none longer than 12 words | 422 | 414 | 8 |
 | … and none ending a sentence (`is_navigation_block`) | 419 | 411 | 8 |

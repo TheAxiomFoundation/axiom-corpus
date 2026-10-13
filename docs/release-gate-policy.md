@@ -213,8 +213,9 @@ fallback. The helper is the `navigation_body` rule above, read against the same
 navigation strings of the same retained bytes, with four more conditions so
 that a dropped block is a list of the page's link labels and nothing else:
 
-- every token with a letter or a digit lies in a navigation string, so a status
-  line, a pointer or a figure beside a linked label keeps its block;
+- every token lies in a navigation string or is only link separators (`|`,
+  `>`, `»`, `•` ...), so a status line, a pointer, a figure beside a linked label
+  or a table mark (✓, ✗, —) keeps its block;
 - the body is at least two navigation strings
   (`NAVIGATION_BLOCK_MIN_STRINGS`): a lone link can be a section's whole text;
 - no matched string is longer than 12 words

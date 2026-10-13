@@ -239,6 +239,20 @@ def test_figures_beside_linked_labels_are_kept() -> None:
         assert not is_navigation_block(body, navigation)
 
 
+def test_table_marks_beside_linked_labels_are_kept() -> None:
+    page = _page(
+        "<h2>Who counts this income</h2><table>"
+        "<tr><th><a href='/snap'>SNAP</a></th><th><a href='/tanf'>TANF</a></th></tr>"
+        "<tr><td>✓</td><td>✗</td></tr></table>"
+        "<h2>Programs</h2><p><a href='/snap'>SNAP</a> | <a href='/tanf'>TANF</a></p>"
+    )
+    navigation = page_navigation(page)
+
+    assert classify_body("SNAP TANF ✓ ✗", navigation).navigation
+    assert [body for _, _, body in _blocks(page)] == ["SNAP TANF ✓ ✗"]
+    assert is_navigation_block("SNAP | TANF", navigation)
+
+
 def test_short_definitions_inside_links_are_kept() -> None:
     page = _page(
         "<h2>Definitions</h2><p><a href='/income'>Income means money received.</a></p>"
@@ -355,10 +369,12 @@ _LABELS = st.sampled_from(
         "Section 5",
         "1990 c 604",
         "Household income limits for the program year",
+        "Apply now.",
+        "Report changes on time!",
     ]
 )
 _WORDS = st.sampled_from(
-    ["The", "rate", "is", "3", "percent", "Income", "Forms", "Home", "of", "wages"]
+    ["The", "rate", "is", "3", "percent", "Income", "Forms", "Home", "of", "wages", "|", "✓", "—"]
 )
 _ITEM = st.one_of(
     st.tuples(st.just("link"), _LABELS),
@@ -418,10 +434,19 @@ def test_a_navigation_block_is_a_flagged_body_of_links_only(strings, tokens) -> 
     navigation = PageNavigation(strings)
     body = " ".join(tokens)
     if is_navigation_block(body, navigation):
-        verdict = classify_body(body, navigation)
-        assert verdict.navigation
-        assert verdict.residual_words == 0
-        assert len(navigation.matches(body.split())) >= 2
+        words = body.split()
+        spans = navigation.matches(words)
+        covered = {position for start, end in spans for position in range(start, end)}
+        assert classify_body(body, navigation).navigation
+        assert all(
+            set(word) <= set("|/\\<>«»‹›•·-–")
+            for position, word in enumerate(words)
+            if position not in covered
+        )
+        assert len(spans) >= 2
+        for start, end in spans:
+            assert sum(any(char.isalpha() for char in word) for word in words[start:end]) <= 12
+            assert not words[end - 1].endswith((".", "!"))
 
 
 @_SETTINGS
