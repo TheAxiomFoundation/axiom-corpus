@@ -121,7 +121,7 @@ SC, VT (two), WI and WY, built by `extract-official-documents` from manifests th
 - **The loss is much wider than the findings.** Across all 240 index pages in the 102
   CMS state-plan scopes there are 17,495 SPA cards: 4,037 summaries sit in `<p>` and
   survive, and 13,456 are bare text and lost. 218 pages lose some summaries without
-  being flagged (for example CT p01 keeps 66 and loses 34). Every page loses every
+  being flagged, 12,911 summaries in all (for example CT p01 keeps 66 and loses 34). Every page loses every
   transmittal number and date.
 - **4 `…/spa/<id>/attachment` rows** (IN-12-014, OH-12-004, OH-12-006, OH-13-001) are
   scanned page images ("Scan-to-email", CCITT) whose text layer is only a date stamp
@@ -235,7 +235,7 @@ For the #847 owner; none of these blocks the baseline, which pins findings per s
 - **The 70% navigation threshold.** ME §5219-SS lost all of its text and kept a menu
   that is 69.2% navigation, so it is neither `navigation_body` nor a hollow root.
 - **Partial loss.** The check sees only roots with nothing left. Unflagged losses found
-  in this audit: 13,456 CMS SPA summaries on 218 unflagged index pages (and every
+  in this audit: 12,911 CMS SPA summaries on 218 unflagged index pages (and every
   transmittal number and date on all 240 pages); state, dates and topics on 16 FCEP
   summaries; 1,024 scanned state-plan PDF pages read as their stamp; and, from the
   reviewers' censuses (not re-verified here), 40 MA TAFDC section bodies with spaces
