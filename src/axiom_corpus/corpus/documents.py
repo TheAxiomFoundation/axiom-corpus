@@ -1062,6 +1062,19 @@ def _extract_pdf_blocks(
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
+    # The default per-page path emits every page and reads none of the page
+    # filters, so refuse them rather than ignore them.
+    page_filters = [
+        key for key in _SINGLE_BLOCK_PDF_FILTER_KEYS if extraction_config.get(key) is not None
+    ]
+    if page_filters:
+        supported = ", ".join(_PDF_PAGE_FILTER_SEGMENTATIONS[:-1])
+        raise ValueError(
+            f"the default per-page PDF segmentation (used for segmentation={segmentation!r}) "
+            f"does not read page filters, so {', '.join(page_filters)} would be ignored; "
+            f"only the {supported} and {_PDF_PAGE_FILTER_SEGMENTATIONS[-1]} "
+            "segmentations read them"
+        )
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
@@ -1765,6 +1778,9 @@ _SINGLE_BLOCK_PDF_FILTER_KEYS = (
     "drop_line_patterns",
     "page_header_patterns",
 )
+# The PDF segmentations that read the page filters above, through
+# ``_filtered_pdf_styled_lines``. The default per-page segmentation rejects them.
+_PDF_PAGE_FILTER_SEGMENTATIONS = ("single_block", "numbered_sections", "labeled_sections")
 
 
 def _extract_single_block_pdf(
