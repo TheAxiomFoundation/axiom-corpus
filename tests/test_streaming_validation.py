@@ -233,7 +233,9 @@ def _release(draw: st.DrawFn) -> tuple[ReleaseManifest, dict]:
     return release, trees
 
 
-def _one_row_scope(**fields: object) -> tuple[ReleaseManifest, dict]:
+def _one_row_scope(
+    source: bytes = b"<title n='0'/>", **fields: object
+) -> tuple[ReleaseManifest, dict]:
     """One scope without an inventory whose single provision has ``fields``."""
     scope = ("us", "statute", "2026-05-01")
     record = {
@@ -257,7 +259,7 @@ def _one_row_scope(**fields: object) -> tuple[ReleaseManifest, dict]:
         "source_count": 1,
     }
     tree = {
-        "sources": {_source_name(0): b"<title n='0'/>"},
+        "sources": {_source_name(0): source},
         "inventory": None,
         "provisions": json.dumps(record, sort_keys=True) + "\n",
         "coverage": json.dumps(coverage, indent=2, sort_keys=True) + "\n",
@@ -277,6 +279,14 @@ def _one_row_scope(**fields: object) -> tuple[ReleaseManifest, dict]:
 @example(release_trees=_one_row_scope(source_path=7), max_issues=1, strict_warnings=False)
 @example(release_trees=_one_row_scope(source_path=7), max_issues=200, strict_warnings=False)
 @example(release_trees=_one_row_scope(heading=["list"]), max_issues=200, strict_warnings=False)
+# An HTML source is parsed by the content scan (the generator only writes XML).
+@example(
+    release_trees=_one_row_scope(
+        source=b"<html><body><nav><a href='/'>Home</a></nav><p>Text.</p></body></html>"
+    ),
+    max_issues=200,
+    strict_warnings=False,
+)
 def test_validate_release_matches_full_record_validation(
     release_trees: tuple[ReleaseManifest, dict],
     max_issues: int,

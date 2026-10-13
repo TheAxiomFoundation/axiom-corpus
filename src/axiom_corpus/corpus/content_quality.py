@@ -233,7 +233,8 @@ def _coverage(tokens: list[str], covered: list[bool]) -> Coverage:
 def _parse_html(raw: bytes) -> etree._Element | None:
     try:
         return lxml.html.document_fromstring(raw)
-    except (etree.ParserError, ValueError):
+    except (etree.LxmlError, ValueError):
+        # LxmlError is the base of every lxml error (ParserError, XMLSyntaxError, ...).
         return None
 
 
@@ -376,8 +377,9 @@ class ScopeContentScanner:
                     page = page_navigation(raw)
                     if is_version_picker(raw):
                         self._pickers.add(source_path)
-        except (OSError, ValueError):
-            # ValueError: a path the platform cannot name, e.g. one with a NUL.
+        except (OSError, ValueError, etree.LxmlError):
+            # ValueError: a path the platform cannot name, e.g. one with a NUL;
+            # LxmlError: a page lxml cannot read. Either way the row has no page.
             page = None
         self._pages[source_path] = page
         if len(self._pages) > PAGE_CACHE_SIZE:

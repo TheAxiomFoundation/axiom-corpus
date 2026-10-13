@@ -17,7 +17,7 @@ import subprocess
 import sys
 import tempfile
 from functools import cache
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 import pytest
 import yaml
@@ -137,7 +137,11 @@ def _main_ref() -> str:
     find, so both fail with what to fetch.
     """
     ref = os.environ.get(MAIN_REF_VARIABLE, "origin/main")
-    if _git("rev-parse", "--is-shallow-repository").strip() == "true":
+    try:
+        shallow = _git("rev-parse", "--is-shallow-repository").strip() == "true"
+    except (OSError, subprocess.CalledProcessError):
+        pytest.fail("this test needs git and a git checkout of axiom-corpus with main's history")
+    if shallow:
         pytest.fail(
             "this checkout is shallow; grandfathering is decided on main's whole history: "
             "run `git fetch --unshallow origin` (CI checks out with fetch-depth: 0)"
@@ -177,7 +181,7 @@ def _show(commit: str, path: str) -> str | None:
     (a missing or unreadable object) raises rather than passing for a deletion,
     which could move an entry's first listing later.
     """
-    if not _git("ls-tree", "--name-only", commit, "--", path).strip():
+    if not _git("ls-tree", "--name-only", commit, "--", PurePosixPath(path).as_posix()).strip():
         return None
     return _git("show", f"{commit}:{path}")
 
@@ -191,14 +195,20 @@ def _entries_listed() -> dict[str, int | None]:
     branch, or arriving with the pull request under test) is pending.
     """
     line = _main_line()
+    registry = WITHDRAWN_SCOPES_PATH.as_posix()  # git paths use "/" on every platform
     first: dict[str, int] = {}
-    for commit in _main_changes(str(WITHDRAWN_SCOPES_PATH)):
-        text = _show(commit, str(WITHDRAWN_SCOPES_PATH))
+    changes = _main_changes(registry)
+    read = 0
+    for commit in changes:
+        text = _show(commit, registry)
         if text is None:
             continue
+        read += 1
         document = yaml.safe_load(text) or {}
         for item in document.get("scopes") or []:
             first.setdefault(str(item["scope"]).strip(), line[commit])
+    if changes and not read:
+        pytest.fail(f"main changes {registry} in {len(changes)} commits but none could be read")
     return {
         scope_label(entry.scope): first.get(scope_label(entry.scope))
         for entry in _policy().withdrawn.values()

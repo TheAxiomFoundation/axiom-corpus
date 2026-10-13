@@ -75,9 +75,12 @@ spelled. While an entry is pending (on a branch, or in pull-request CI), any
 selector already on `main` at its pinned digest may be grandfathered, but not
 one the same branch adds or changes; a selector deleted and recreated with other
 contents has a digest that was never on `main` in time. The test needs main's
-whole history: it fails in a shallow clone, or without `origin/main` (set
-`AXIOM_CORPUS_MAIN_REF` where main's ref has another name), and a registry or
-selector version it cannot read fails it rather than counting as deleted.
+whole history: it fails in a shallow clone, or without `origin/main`, and a
+registry or selector version it cannot read fails it rather than counting as
+deleted. Where main's ref has another name, set `AXIOM_CORPUS_MAIN_REF` to it;
+it must name main, never a branch. A stale `origin/main` can read a recently
+merged entry as pending, so run `git fetch origin main` first (CI always
+fetches it).
 `test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
 current commit.
 

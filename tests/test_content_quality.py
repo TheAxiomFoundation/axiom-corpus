@@ -28,6 +28,7 @@ from hypothesis import strategies as st
 from axiom_corpus.corpus.content_quality import (
     _SKIP_LINK,
     HOLLOW_DOCUMENT_ROOT,
+    HTML_SNIFF_BYTES,
     NAVIGATION_BODY,
     NAVIGATION_PREFIXED_BODY,
     PREFIX_TOKENS,
@@ -38,6 +39,7 @@ from axiom_corpus.corpus.content_quality import (
     classify_body,
     is_navigation_string,
     is_version_picker,
+    looks_like_html,
     page_navigation,
     scan_provisions,
 )
@@ -388,6 +390,26 @@ def test_the_scanner_accepts_any_row_the_loader_yields(rows: list[dict]) -> None
             )
         scanner.findings()
         scanner.text_paths()
+
+
+@settings(max_examples=300, deadline=None)
+@given(
+    prefix=st.sampled_from(
+        [
+            b"<html>",
+            b"<!doctype html><html>",
+            b"<?xml version='1.0' encoding='latin-1'?><html>",
+            b"<html><head><meta charset='x-unknown'>",
+        ]
+    ),
+    rest=st.binary(max_size=400) | st.text(max_size=200).map(lambda text: text.encode()),
+)
+def test_reading_a_page_never_raises(prefix: bytes, rest: bytes) -> None:
+    """Any bytes behind an HTML start read as a page or as no page, never as an error."""
+    raw = prefix + rest
+    assert looks_like_html(raw[:HTML_SNIFF_BYTES])
+    page_navigation(raw)
+    is_version_picker(raw)
 
 
 def test_source_paths_outside_the_corpus_are_never_read(tmp_path: Path) -> None:
