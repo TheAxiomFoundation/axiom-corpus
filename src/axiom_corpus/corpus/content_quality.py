@@ -113,6 +113,9 @@ _SKIP_LINK = re.compile(
     re.IGNORECASE,
 )
 _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
+# A token that ends a sentence: a final period or exclamation mark, before any
+# closing quotes or brackets, that is not the last of an ellipsis.
+_ENDS_SENTENCE = re.compile(r"(?<!\.)[.!][\"')\]’”]*$")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -357,19 +360,22 @@ def is_navigation_block(
 
     The official-document HTML extractor asks this of every positional block it
     makes (``documents._extract_html_blocks``) and drops the block when it holds.
-    It is the ``navigation_body`` rule of ``classify_body`` with three more
-    conditions, so that a dropped block is a list of the page's links and nothing
-    else:
+    It is the ``navigation_body`` rule of ``classify_body`` with four more
+    conditions, so that a dropped block is a list of the page's link labels and
+    nothing else:
 
-    - every word with a letter lies in one of the page's navigation strings, so a
-      status ("Repealed April 6, 2000. Return to Table of Contents") or an
-      instruction ("See Certification Periods.") keeps its block;
+    - every token with a letter or a digit lies in one of the page's navigation
+      strings, so a status ("Repealed April 6, 2000. Return to Table of Contents"),
+      an instruction ("See Certification Periods.") or a figure beside a linked
+      label ("Gross monthly income limit $2,000") keeps its block;
     - the body is at least ``NAVIGATION_BLOCK_MIN_STRINGS`` navigation strings: a
       lone link can be a section's whole text ("See reciprocal agreement", an
       exhibit's title, a glossary term whose definition sits inside its link);
     - no matched string is longer than ``NAVIGATION_BLOCK_MAX_STRING_WORDS`` words,
       so a table of contents whose entries carry amendment notes, or prose inside
-      a link, is kept.
+      a link, is kept;
+    - no matched string ends a sentence (a final period or exclamation mark): a
+      label names a page, while "Income means money received." is a definition.
 
     A body longer than ``MAX_BODY_TOKENS`` words, which the check reads only in
     part, and a body that repeats the block's heading are never navigation. So
@@ -381,13 +387,20 @@ def is_navigation_block(
     tokens = _tokens(body)
     if len(tokens) > MAX_BODY_TOKENS:
         return False
-    verdict = classify_body(body, navigation, heading=heading, label=label)
-    if not verdict.navigation or verdict.residual_words:
+    if not classify_body(body, navigation, heading=heading, label=label).navigation:
         return False
     spans = navigation.matches(tokens)
+    covered = {position for start, end in spans for position in range(start, end)}
+    if any(
+        any(char.isalnum() for char in token)
+        for position, token in enumerate(tokens)
+        if position not in covered
+    ):
+        return False
     return len(spans) >= NAVIGATION_BLOCK_MIN_STRINGS and all(
         sum(1 for token in tokens[start:end] if _has_letters(token))
         <= NAVIGATION_BLOCK_MAX_STRING_WORDS
+        and not _ENDS_SENTENCE.search(tokens[end - 1])
         for start, end in spans
     )
 

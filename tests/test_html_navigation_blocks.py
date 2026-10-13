@@ -203,6 +203,58 @@ def test_labeled_sections_are_never_dropped() -> None:
     assert is_navigation_block("Household\n\nIncome limits", page_navigation(page))
 
 
+def test_a_webworks_page_with_declared_sections_is_never_filtered() -> None:
+    # WebWorks reading takes precedence over labeled_sections, as before the filter;
+    # the declared segmentation still turns the filter off.
+    page = _page(
+        _links("Household", "Income limits")
+        + "<div id='page_content'><p class='Heading_1'>Sec. 1. Definitions</p>"
+        + "<p class='Body_Text'><a href='/h'>Household</a></p>"
+        + "<p class='Body_Text'><a href='/i'>Income limits</a></p></div>"
+    )
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>Sec\. \d+)\.\s+(?P<heading>.+)$",
+    }
+
+    assert _blocks(page) == []
+    assert _blocks(page, extraction) == [(1, "Sec. 1. Definitions", "Household\n\nIncome limits")]
+
+
+def test_figures_beside_linked_labels_are_kept() -> None:
+    page = _page(
+        "<h2>Income limits</h2><table><tr>"
+        "<th><a href='/gross'>Gross monthly income limit</a></th>"
+        "<th><a href='/net'>Net monthly income limit</a></th></tr>"
+        "<tr><td>$2,000</td><td>$1,500</td></tr></table>"
+        "<h2>Status</h2><p><a href='/r'>Repealed by the General Assembly</a> 2000-04-06</p>"
+        "<p><a href='/e'>Effective date of repeal</a> 2001-01-01</p>"
+    )
+    navigation = page_navigation(page)
+    bodies = [body for _, _, body in _blocks(page)]
+
+    assert len(bodies) == 2
+    for body in bodies:
+        assert classify_body(body, navigation).navigation
+        assert not is_navigation_block(body, navigation)
+
+
+def test_short_definitions_inside_links_are_kept() -> None:
+    page = _page(
+        "<h2>Definitions</h2><p><a href='/income'>Income means money received.</a></p>"
+        "<p><a href='/resource'>Resource means property owned.</a></p>"
+    )
+    body = "Income means money received.\n\nResource means property owned."
+
+    assert classify_body(body, page_navigation(page)).navigation
+    assert [text for _, _, text in _blocks(page)] == [body]
+    # A label ending in an ellipsis or a question mark is still a label.
+    assert is_navigation_block(
+        "Continue reading... How current is this law?",
+        PageNavigation(["Continue reading...", "How current is this law?"]),
+    )
+
+
 def test_html_inside_json_is_never_filtered() -> None:
     # The release check reads the retained JSON, which has no HTML navigation, so
     # the extractor drops nothing it reads out of a JSON field.
@@ -414,3 +466,35 @@ def test_the_extractor_drops_only_rows_the_release_check_flags(page, tmp_path_fa
 
     assert dropped <= flagged(every)
     assert flagged(kept) == flagged(every) - dropped
+
+
+def test_recovery_keeps_every_block_of_a_page_it_re_encodes() -> None:
+    # recover_ingest_batch decodes HTML as UTF-8 and re-encodes it before
+    # extracting, so on a Windows-1252 page the extractor would read other link
+    # text than the release check reads in the retained bytes.
+    from scripts.recover_ingest_batch import _generic
+
+    law = (
+        "Every landlord shall return the deposit within thirty days of the end of the tenancy. " * 4
+    )
+    data = (
+        b"<html><head><meta charset='windows-1252'><title>Deposits</title></head><body>"
+        b"<ul><li><a href='/o'>Owner\x92s Guide</a></li><li><a href='/t'>Tenant\x92s Guide</a></li></ul>"
+        b"<h2>Deposits</h2><p>" + law.encode() + b"</p></body></html>"
+    )
+    entry = {
+        "document_id": "deposits",
+        "jurisdiction": "us-test",
+        "document_class": "manual",
+        "parser": "documents:html",
+        "proposed_version": "v1",
+        "covers_citation_paths": [],
+    }
+    provenance = {"url": URL, "fetched_at": "2026-10-13T00:00:00Z", "sha256": "0" * 64}
+
+    _, records = _generic(
+        entry, Path("deposits"), data, provenance, "sources/us-test/manual/v1/deposits.html"
+    )
+
+    assert [record.ordinal for record in records[1:]] == [1, 2]
+    assert "Guide" in (records[1].body or "")

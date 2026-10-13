@@ -3181,16 +3181,21 @@ def _extract_html_blocks(
     whole-root fallback) that is the page's navigation is dropped
     (``content_quality.is_navigation_block``, read against the navigation strings
     of ``content`` itself, the bytes the scope retains). Its ordinal is used up, so
-    the blocks after it keep the paths an unfiltered extraction gives them. Blocks
-    with a declared section label or anchor are never dropped.
-    ``html_keep_navigation_blocks: true`` keeps every block; callers whose
-    ``content`` is not the retained source (an HTML field inside a JSON file) pass
+    the blocks after it keep the paths an unfiltered extraction gives them. Nothing
+    is dropped from a page whose manifest declares its sections
+    (``segmentation: labeled_sections`` or ``anchor_range``), even when it is read
+    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block;
+    callers whose ``content`` is not the retained source (an HTML field inside a
+    JSON file, or bytes re-encoded before extraction) pass
     ``drop_navigation=False``, so the extractor drops only rows the release content
     check, which reads the retained source, would flag.
     """
+    config = extraction or {}
     navigation = (
         page_navigation(content)
-        if drop_navigation and not (extraction or {}).get("html_keep_navigation_blocks")
+        if drop_navigation
+        and not config.get("html_keep_navigation_blocks")
+        and config.get("segmentation") not in {"labeled_sections", "anchor_range"}
         else None
     )
     soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
