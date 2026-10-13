@@ -9,9 +9,8 @@ paths, LegInfo menus, a version picker in place of WIC 11450, and landing pages
 in place of manuals ([us-ca audit](ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md),
 [sibling audit](ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md)).
 
-The gate now also reads two tracked files, through
-`ReleaseGatePolicy.for_corpus` (`src/axiom_corpus/corpus/release_policy.py`),
-from the checkout that holds the corpus root:
+The gate now also reads two tracked files from the repository
+(`ReleaseGatePolicy`, `src/axiom_corpus/corpus/release_policy.py`):
 
 | File | Holds | A release fails when |
 | --- | --- | --- |
@@ -66,7 +65,10 @@ with `withdrawn_scope_selected`, naming the reason, the decision, the scopes to
 select instead and the run note.
 
 `test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions`
-checks each grandfathered selector's first commit date against `listed_on`.
+checks the date each grandfathered selector landed on the first-parent line
+(for a merged pull request, the merge commit's date) against `listed_on`, and
+`test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
+current commit.
 
 The 19 entries:
 
@@ -92,9 +94,10 @@ the scope before the gate listed it.
 
 1. Record the audit and decision in a run note.
 2. Add the entry, sorted by jurisdiction, document class and version, with
-   `listed_on` set to the day it lands. List under `grandfathered_selectors`
-   every tracked selector that selects the scope, and add each one's digest to
-   `selector_digests`. The failure message
+   `listed_on` set to the day you write it. List under `grandfathered_selectors`
+   every tracked selector that selects the scope and landed before that day,
+   and add each one's digest to `selector_digests`. A selector that lands on or
+   after `listed_on` goes under `exceptions`, with a reason. The failure message
    of `test_no_tracked_selector_selects_a_withdrawn_scope_without_an_allowance`
    prints the digest of every selector it finds.
 3. Run `uv run --extra dev python -m pytest -q tests/test_release_policy_repository.py`.
@@ -224,12 +227,16 @@ recovered. It used to match paths only, over every provisions file, the batch's
 own scope included, so the us-ca scope's empty roots resolved their own
 targets. It now:
 
-- fetches the locked sources as well as the provisions, then indexes, per
+- fetches the locked sources as well as the provisions (about 1.9 GB of
+  sources in a full checkout; clones from the shared cache on APFS), then
+  indexes, per
   citation path, the scopes in which the row at that path carries text by the
   rules above (`ScopeContentScanner.text_paths`);
 - counts a document's own planned scope only when the document was parsed, in
-  this run or in an earlier one the report carries forward, so leftover rows
-  cannot vouch for themselves;
+  this run or an earlier one, so leftover rows cannot vouch for themselves. A
+  run limited to one document (`AXIOM_RECOVERY_ONLY_DOCUMENT_ID`), or one whose
+  snapshot has left `recovered-fetched`, carries every earlier parse result
+  forward unchanged;
 - reads bodies in the per-document check as well.
 
 On the retained us-ca pages, the ten R&TC targets resolve, as

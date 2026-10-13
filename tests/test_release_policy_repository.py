@@ -113,39 +113,60 @@ def test_cuts_since_the_decisions_carry_only_the_scopes_they_already_had() -> No
         assert set(entry.allowances) == selecting, scope_label(entry.scope)
 
 
+def _git(*args: str) -> str:
+    return subprocess.run(
+        ["git", *args], cwd=REPO_ROOT, check=True, capture_output=True, text=True
+    ).stdout
+
+
 @cache
-def _added_on(name: str) -> str:
-    """The date the commit that first added a tracked selector was made (YYYY-MM-DD)."""
-    dates = subprocess.run(
-        [
-            "git",
-            "log",
-            "--diff-filter=A",
-            "--format=%cs",
-            "--reverse",
-            "--",
-            f"manifests/releases/{name}.json",
-        ],
-        cwd=REPO_ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.split()
-    assert dates, f"{name} has no commit that adds it"
-    return dates[0]
+def _landed_on() -> dict[str, str]:
+    """The date each tracked selector landed on this branch's first-parent line.
+
+    With ``--first-parent`` (which implies ``--diff-merges=first-parent``), a
+    selector merged by pull request shows as added on the merge commit, so its
+    date is when it reached ``main``, not when its branch commit was made.
+    """
+    landed: dict[str, str] = {}
+    date = ""
+    log = _git(
+        "log",
+        "--first-parent",
+        "--diff-filter=A",
+        "--reverse",
+        "--name-only",
+        "--format=%x00%cs",
+        "--",
+        "manifests/releases/",
+    )
+    for line in log.splitlines():
+        if line.startswith("\x00"):
+            date = line[1:]
+        elif line.startswith("manifests/releases/") and line.endswith(".json"):
+            landed.setdefault(Path(line).stem, date)
+    return landed
 
 
 def test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions() -> None:
-    """A selector added on or after an entry's listed_on keeps the scope only by exception."""
+    """A selector that landed on or after an entry's listed_on keeps the scope only by exception."""
+    landed = _landed_on()
     for entry in _policy().withdrawn.values():
         for name, allowance in entry.allowances.items():
             if allowance.is_exception:
                 continue
-            assert _added_on(name) < entry.listed_on, (
-                f"{name} was added on {_added_on(name)}, on or after "
-                f"{scope_label(entry.scope)} was listed ({entry.listed_on}); list it under "
-                "the entry's exceptions with a reason, or take the swap"
+            assert name in landed, f"{name} has no commit that adds it"
+            assert landed[name] < entry.listed_on, (
+                f"{name} landed on {landed[name]}, on or after {scope_label(entry.scope)} "
+                f"was listed ({entry.listed_on}); list it under the entry's exceptions with "
+                "a reason, or take the swap"
             )
+
+
+def test_no_entry_is_listed_in_the_future() -> None:
+    """listed_on is the day the entry was written, never later than this commit."""
+    head = _git("log", "-1", "--format=%cs").strip()
+    for entry in _policy().withdrawn.values():
+        assert entry.listed_on <= head, scope_label(entry.scope)
 
 
 def _entries() -> list[WithdrawnScope]:

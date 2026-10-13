@@ -210,3 +210,66 @@ def test_the_index_fetches_sources_as_well_as_provisions(
     (tmp_path / "provisions").mkdir()
     _index(monkeypatch, tmp_path)
     assert calls == [[tmp_path / "provisions", tmp_path / "sources"]]
+
+
+def test_single_document_reruns_keep_every_earlier_parse(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Two runs limited to other documents leave an earlier parse, and its own-scope rows, intact."""
+    base = tmp_path / "corpus"
+    _write(base, OWN, [("us-xx/statute/200", LAW, "section")])
+    fetched = tmp_path / "recovered-fetched"
+    fetched.mkdir()
+
+    def document(document_id: str, target: str) -> dict[str, object]:
+        return {
+            "document_id": document_id,
+            "jurisdiction": OWN[0],
+            "document_class": OWN[1],
+            "proposed_version": OWN[2],
+            "parser": "generic",
+            "official_url": f"https://example.gov/{document_id}",
+            "covers_citation_paths": [target],
+        }
+
+    plan = tmp_path / "plan.json"
+    plan.write_text(
+        json.dumps(
+            {
+                "documents": [
+                    document("doc-a", "us-xx/statute/100"),
+                    document("doc-b", "us-xx/statute/200"),
+                    document("doc-c", "us-xx/statute/300"),
+                ]
+            }
+        )
+    )
+    report = tmp_path / "report.json"
+    report.write_text(
+        json.dumps(
+            {"doc-b": {"parsed": True, "rows": 1, "citations_resolved": "1/1", "issues": []}}
+        )
+    )
+    for name, value in {
+        "PLAN": plan,
+        "REPORT": report,
+        "BASE": base,
+        "FETCHED": fetched,
+        "REPO": tmp_path,
+    }.items():
+        monkeypatch.setattr(batch, name, value)
+    for only in ("doc-a", "doc-c"):
+        monkeypatch.setenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", only)
+        assert batch.main() == 0
+        results = json.loads(report.read_text())
+        assert results["doc-b"]["parsed"] is True
+        assert results["doc-b"]["resolved_citations"] == [
+            {
+                "requested": "us-xx/statute/200",
+                "citation_path": "us-xx/statute/200",
+                "method": "exact-own-scope",
+            }
+        ]
+        assert results["doc-a"]["parsed"] is False
+        assert results["doc-a"]["resolution_class"] == "needs-fetch"
+        assert results["_summary"]["resolved"] == 1

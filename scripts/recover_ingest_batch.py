@@ -184,9 +184,9 @@ def _own_scope_vouches(
 ) -> bool:
     """Whether a document's own planned scope may resolve its targets.
 
-    Only when the document was parsed: in this run, or in an earlier one this
-    run's report carries forward (a run limited to one document, or one whose
-    snapshot has since left recovered-fetched, still keeps the earlier parse).
+    Only when the document was parsed: in this run, or in an earlier one whose
+    result this run carries forward (a run limited to one document, or one whose
+    snapshot has since left recovered-fetched, keeps the earlier result).
     """
     return bool(result.get("parsed")) or document_id in previously_parsed
 
@@ -1334,6 +1334,13 @@ def main() -> int:
         }
     for document_id, entry in entries.items():
         if document_id not in results:
+            if document_id in previously_parsed:
+                # A run limited to one document, or one whose snapshot has left
+                # recovered-fetched, keeps the earlier parse result: writing an
+                # unparsed stand-in would erase it from the report the next run
+                # reads its parsed documents from.
+                results[document_id] = {**previous_results[document_id], "newly_ingested": False}
+                continue
             targets = list(entry.get("covers_citation_paths") or [])
             results[document_id] = {
                 "parsed": False,

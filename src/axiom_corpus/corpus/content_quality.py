@@ -152,7 +152,10 @@ def is_navigation_string(text: str) -> bool:
 def looks_like_html(head: bytes) -> bool:
     """Whether a file's first bytes are an HTML page (XHTML included, other XML not)."""
     lowered = head[:HTML_SNIFF_BYTES].lower()
-    if lowered.lstrip().startswith(b"<?xml") and b"<html" not in lowered:
+    if (
+        lowered.removeprefix(b"\xef\xbb\xbf").lstrip().startswith(b"<?xml")
+        and b"<html" not in lowered
+    ):
         return False  # an XML format with a <body> element, such as Akoma Ntoso
     return any(marker in lowered for marker in _HTML_MARKERS)
 
