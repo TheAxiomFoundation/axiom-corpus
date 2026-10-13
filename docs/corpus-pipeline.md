@@ -436,14 +436,14 @@ no area. Glyphs drawn with no width, such as a combining mark or a zero-advance
 period, make such lines and spans. Where the `rawdict` reading differs from the
 page's default text, the page is read again: its text page is walked with the
 printer's test for each glyph, and the glyphs `rawdict` left out are added
-where the printer prints them. They never move a block `rawdict` read or change
-how its other glyphs are classified. A page whose `rawdict` reading already
-matches the default text reads exactly as before. Extraction stops with an
-error naming the page if the walk and `rawdict` do not line up, or if the
-result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
-`amendment_markup` also fails if a page's own text already contains one of the
-delimiters, if a character is both struck through and underlined, or if
-`start_page` is past the last page.
+where the printer prints them. They never move a block whose text `rawdict`
+read or change how its other glyphs are classified. A page whose `rawdict`
+reading already matches the default text reads exactly as before. Extraction
+stops with an error naming the page if the walk and `rawdict` do not line up,
+or if the result still differs from the default text. This needs PyMuPDF 1.26.6
+or later. `amendment_markup` also fails if a page's own text already contains
+one of the delimiters, if a character is both struck through and underlined, or
+if `start_page` is past the last page.
 
 The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a

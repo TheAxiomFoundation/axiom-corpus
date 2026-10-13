@@ -1487,11 +1487,13 @@ def _pdf_page_character_blocks(
     ``sort`` orders the blocks as ``get_text("rawdict", sort=True)`` does, by the
     bottom and then the left edge of each block's box, keeping their order on
     ties. A block keeps rawdict's box, so added characters never move a block
-    rawdict reads. Only a block without a valid rawdict box (rawdict read none
-    of its lines, or none of it) takes the box around its added characters that
-    print, so that it sorts where they appear; one whose added characters are
-    all spaces or characters ``_normalize_text`` drops keeps the empty box and
-    sorts first, as rawdict sorts such a block, adding no blank line.
+    whose text rawdict read. Only a block rawdict read no character of takes the
+    box around its added characters that print, so that it sorts where they
+    appear; one whose added characters are all spaces or characters
+    ``_normalize_text`` drops keeps rawdict's empty box and sorts first, as
+    rawdict sorts it, adding no blank line between other blocks. A space-only
+    line added inside a block keeps its place there, where the printer's own
+    text has the same line break.
     """
     textpage = page.get_textpage(flags=flags)
     raw_blocks = iter(textpage.extractRAWDICT()["blocks"])
@@ -1521,6 +1523,7 @@ def _pdf_page_character_blocks(
         raw_lines = iter(raw_block["lines"] if raw_block is not None else ())
         lines: list[dict[str, Any]] = []
         kept_box: _PdfRect = _PDF_EMPTY_RECT
+        kept_any = False
         added_box: _PdfRect = _PDF_EMPTY_RECT
         for stext_line in stext_block:
             printed: list[dict[str, Any]] = []
@@ -1572,6 +1575,7 @@ def _pdf_page_character_blocks(
                     if not _pdf_same_rect((float(span["size"]),), (sizes[position],)):
                         raise mismatch("a span's size is not its characters'")
                     kept_box = _pdf_union_rect(kept_box, walked["bbox"])
+                    kept_any = True
                     position += 1
             dropped = printed[position:]
             if dropped:
@@ -1595,7 +1599,7 @@ def _pdf_page_character_blocks(
         if not _pdf_same_rect(raw_block.get("bbox", ()), kept_box):
             raise mismatch("a block's box is not the box around its characters")
         block = {**raw_block, "lines": lines}
-        if added_box != _PDF_EMPTY_RECT and not _pdf_rect_is_valid(kept_box):
+        if added_box != _PDF_EMPTY_RECT and not kept_any:
             block["bbox"] = added_box
         blocks.append(block)
     if next(raw_blocks, None) is not None:

@@ -508,7 +508,7 @@ def test_a_rawdict_that_does_not_line_up_with_the_text_page_stops_extraction(
 # Baselines near and past the top and bottom edges, x near and past the left and
 # right edges, and line spacings that join lines into one block or not.
 _runs = st.lists(
-    st.tuples(st.text(alphabet="ab. ", min_size=1, max_size=4), st.sampled_from([8.0, 12.0])),
+    st.tuples(st.text(alphabet="ab. ~", min_size=1, max_size=4), st.sampled_from([8.0, 12.0])),
     min_size=1,
     max_size=4,
 )
@@ -521,7 +521,13 @@ _lines = st.lists(
     min_size=1,
     max_size=6,
 )
-_zero_width = st.sampled_from([".", ". ", ".a", ""])
+_zero_width = st.sampled_from([".", ". ", ".a", ".~", "~", ""])
+# "~" extracts as U+200B, which _normalize_text drops.
+_TO_UNICODE = {"~": "\u200b"}
+
+
+def _prints(char: str) -> bool:
+    return not char.isspace() and char not in {"\u200b", "\ufeff"}
 
 
 @settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
@@ -530,7 +536,7 @@ def test_property_the_reader_adds_only_what_rawdict_leaves_out(
     lines: list[Line], zero_width: str
 ) -> None:
     """Invariants 1-3 on generated pages, sorted and unsorted."""
-    content = _zero_width_pdf(lines, zero_width=zero_width)
+    content = _zero_width_pdf(lines, zero_width=zero_width, to_unicode=_TO_UNICODE)
     for sort in (False, True):
         blocks, raw, text = _read(content, sort=sort)
         kept = _without_added(blocks)
@@ -543,21 +549,24 @@ def test_property_the_reader_adds_only_what_rawdict_leaves_out(
         same_box = {block["number"] for block in kept if block["bbox"] == raw_box[block["number"]]}
         added = Counter(_characters(blocks)) - Counter(_characters(raw["blocks"]))
         assert all(_pdf_rect_is_empty(bbox) for _c, _origin, bbox in added)
-        # Only a block without a valid rawdict box changes box, and only for an
-        # added character that prints.
+        # A block's box is rawdict's (the empty box for a block rawdict skipped),
+        # unless rawdict read no character of it and it gained characters that
+        # print: then it is the box around those.
         assert valid_box <= same_box
         for block in blocks:
-            if block.get("added") or block["number"] not in same_box:
-                assert (
-                    any(
-                        not char["c"].isspace() and char["c"] not in {"\u200b", "\ufeff"}
-                        for line in block["lines"]
-                        for span in line["spans"]
-                        if span.get("added")
-                        for char in span["chars"]
-                    )
-                    or tuple(block["bbox"]) == _PDF_EMPTY_RECT
-                )
+            chars = [
+                (bool(span.get("added")), char)
+                for line in block["lines"]
+                for span in line["spans"]
+                for char in span["chars"]
+            ]
+            expected = _PDF_EMPTY_RECT if block.get("added") else raw_box[block["number"]]
+            printing = [char["bbox"] for added, char in chars if added and _prints(char["c"])]
+            if printing and all(added for added, _char in chars):
+                expected = _PDF_EMPTY_RECT
+                for box in printing:
+                    expected = _pdf_union_rect(expected, tuple(box))  # type: ignore[arg-type]
+            assert tuple(block["bbox"]) == expected
         if sort:
             assert Counter(_printed_text(blocks)) == Counter(text)
             assert [block["number"] for block in kept if block["number"] in same_box] == [
@@ -612,7 +621,10 @@ def test_property_the_layered_path_reads_again_only_where_rawdict_differs(
 ) -> None:
     """Invariant 4: every generated page extracts; rawdict-whole pages as before."""
     content = _zero_width_pdf(
-        lines, zero_width=zero_width, rules=_rules_under(lines, ruled, kind, zero_width)
+        lines,
+        zero_width=zero_width,
+        rules=_rules_under(lines, ruled, kind, zero_width),
+        to_unicode=_TO_UNICODE,
     )
     patch, calls = _counting_reader()
     with fitz.open(stream=content, filetype="pdf") as document, patch:
