@@ -405,6 +405,14 @@ def test_part_less_sections_need_a_part_whose_sections_name_no_part():
     assert _paths(build_ecfr_inventory_from_structures((alone,)).items) == ["us/regulation/7/273"]
 
 
+@pytest.mark.parametrize("part", ["S 660", "1-", "", "60--20"])
+def test_part_less_numbering_needs_a_well_formed_part(part):
+    evidence = ecfr._SectionEvidence(named_parts=frozenset())
+    assert ecfr._section_citation_from_identifier(14, "5", part, evidence=evidence) is None
+    elem = ET.Element("DIV8", {"N": "5", "TYPE": "SECTION"})
+    assert ecfr._section_citation_from_element(14, elem, part, evidence=evidence) is None
+
+
 def test_part_less_numbers_are_digits_so_no_two_fold_to_one_path():
     # "1(a)" and "1-a" would both fold to path segment "1-a"; part-less numbering
     # takes digits joined by hyphens and dots only, so neither is read.
@@ -634,8 +642,14 @@ def test_confirmed_readings_never_take_a_sibling_path(part, identifiers, earlier
 
 def test_xml_pass_confirms_on_the_inventory_evidence(tmp_path, monkeypatch):
     # The XML spells the sibling "52.35 Reserved", which alone confirms nothing; the
-    # structure's "52.35" does, and extract_ecfr hands that evidence to the XML pass.
-    xml = TITLE_36_XML.replace('<DIV8 N="52.35"', '<DIV8 N="52.35 Reserved"')
+    # structure's "52.35" does, and extract_ecfr hands that evidence to the XML pass and
+    # to graphic capture. The formula is not in the eCFR; it exercises the capture.
+    xml = TITLE_36_XML.replace('<DIV8 N="52.35"', '<DIV8 N="52.35 Reserved"').replace(
+        "<P>The Comptroller General of the United States has access.</P>",
+        "<P>The Comptroller General of the United States has access.</P>"
+        '<MATH><img src="/graphics/ec01ja26.003.gif"/></MATH>',
+    )
+    graphic = b"\x89PNG\r\n\x1a\ncomptroller"
     standalone = [record.citation_path for record in _records(xml, TITLE_36_STRUCTURE)]
     assert "us/regulation/36/52/36" not in standalone
     evidence = ecfr._structure_section_evidence_by_part(TITLE_36_STRUCTURE)
@@ -653,6 +667,7 @@ def test_xml_pass_confirms_on_the_inventory_evidence(tmp_path, monkeypatch):
 
     monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: TITLE_36_STRUCTURE)
     monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: graphic)
     store = CorpusArtifactStore(tmp_path / "corpus")
     report = extract_ecfr(
         store,
@@ -662,11 +677,15 @@ def test_xml_pass_confirms_on_the_inventory_evidence(tmp_path, monkeypatch):
         only_title=36,
         only_part="52",
         workers=1,
+        graphic_transcriptions={
+            "EC01JA26.003": EcfrGraphicTranscription(sha256=sha256_bytes(graphic), text="C = G")
+        },
     )
     records = {record.citation_path: record for record in load_provisions(report.provisions_path)}
     assert not any((record.metadata or {}).get("structure_only") for record in records.values())
     assert records["us/regulation/36/52/36"].body == (
-        "The Comptroller General of the United States has access."
+        "The Comptroller General of the United States has access.\n\n"
+        "Formula (EC01JA26.003, verified official image): C = G"
     )
 
 
