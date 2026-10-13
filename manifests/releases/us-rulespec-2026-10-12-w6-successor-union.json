@@ -1,5 +1,5 @@
 {
-  "description": "W6 successor incorporating both NSF scopes and the paired South Carolina recovery/Act 110 replacement.",
+  "description": "W6 successor incorporating both NSF scopes, the paired South Carolina recovery/Act 110 replacement, and the 20 CFR part 404 and SSA POMS RS/GN scopes for the OASDI source-conflict register.",
   "name": "us-rulespec-2026-10-12-w6-successor-union",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -212,6 +212,16 @@
       "jurisdiction": "us",
       "document_class": "manual",
       "version": "2026-09-13-ssi-poms-si-remainder"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-10-12-oasdi-poms-gn"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "manual",
+      "version": "2026-10-12-oasdi-poms-rs"
     },
     {
       "jurisdiction": "us",
@@ -442,6 +452,11 @@
       "jurisdiction": "us",
       "document_class": "regulation",
       "version": "2026-10-06-w6-federal-ecfr-closure-title-45-part-233"
+    },
+    {
+      "jurisdiction": "us",
+      "document_class": "regulation",
+      "version": "2026-10-12-title-20-part-404"
     },
     {
       "jurisdiction": "us",
