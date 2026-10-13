@@ -336,8 +336,10 @@ def _unmatched(part: list[Word], other: list[Word]) -> list[Word]:
 def _moved_text(one_sided_runs: list[OneSided]) -> list[dict[str, Any]]:
     """Words unmatched on both sides (here in the HTML, there in the PDF) with other labels.
 
-    Occurrences of one word are paired in reading order, so two moves that swap
-    their labels are caught; occurrences without a partner are not moves.
+    A word is flagged when its labels differ as multisets between the sides, or
+    when its occurrences, paired in reading order, differ: the first catches a
+    move hidden by an extra occurrence elsewhere, the second two moves that swap
+    their labels.
     """
     by_text: dict[str, dict[str, list[str]]] = {}
     for side, text, labels in one_sided_runs:
@@ -346,7 +348,12 @@ def _moved_text(one_sided_runs: list[OneSided]) -> list[dict[str, Any]]:
     return [
         {"text": text, "html": sides["html"], "pdf": sides["pdf"]}
         for text, sides in sorted(by_text.items())
-        if any(html != pdf for html, pdf in zip(sides["html"], sides["pdf"], strict=False))
+        if sides["html"]
+        and sides["pdf"]
+        and (
+            sorted(sides["html"]) != sorted(sides["pdf"])
+            or any(html != pdf for html, pdf in zip(sides["html"], sides["pdf"], strict=False))
+        )
     ]
 
 

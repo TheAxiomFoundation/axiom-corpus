@@ -216,7 +216,21 @@ def test_moved_text_pairs_occurrences_in_reading_order() -> None:
     assert _moved_text([*runs, ("pdf", "old", "DDD")]) == [
         {"text": "old", "html": ["DDD", "III"], "pdf": ["III", "DDD"]}
     ]
-    assert _moved_text([("html", "old", "DDD"), ("pdf", "old", "DDD"), ("pdf", "old", "III")]) == []
+    # An occurrence without a partner cannot show that a move kept its labels.
+    assert _moved_text([("html", "old", "DDD"), ("pdf", "old", "DDD"), ("pdf", "old", "III")]) == [
+        {"text": "old", "html": ["DDD"], "pdf": ["DDD", "III"]}
+    ]
+    assert _moved_text([("html", "old", "DDD"), ("pdf", "old", "DDD")]) == []
+
+
+def test_compare_flags_a_move_behind_an_extra_occurrence() -> None:
+    html = marked_text_words("b old rate [-percent-] z")
+    pdf = marked_text_words("old b rate [-old percent-] z")
+
+    result = compare(html, pdf)
+
+    assert result["ok"] is False
+    assert result["moved_text"] == [{"text": "old", "html": ["PPP"], "pdf": ["PPP", "DDD"]}]
 
 
 def test_compare_context_does_not_make_a_side_one_sided_at_the_start() -> None:
