@@ -1032,6 +1032,9 @@ def _extract_pdf_blocks(
         value = extraction_config.get(key)
         if value is not None and not isinstance(value, bool):
             raise ValueError(f"{key} must be true or false, not {value!r}")
+    # ocr_dpi is read only when OCR runs (force_ocr, or ocr on a page with no text
+    # layer); check it up front so a bad value fails every PDF extraction.
+    _pdf_ocr_dpi(extraction_config)
     markup = _pdf_amendment_markup_config(extraction_config)
     sort_blocks = extraction_config.get("sort_blocks") is True
     layered = markup is not None or sort_blocks
@@ -1234,11 +1237,7 @@ def _pdf_amendment_markup_page(config: dict[str, Any], key: str) -> int | None:
     value = config.get(key)
     if value is None:
         return None
-    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
-        raise ValueError(
-            f"amendment_markup {key} must be a positive integer page number, not {value!r}"
-        )
-    return int(value)
+    return _positive_int(value, key=f"amendment_markup {key}", default=0)
 
 
 def _pdf_text_flags(extraction: dict[str, Any], *, default: int) -> int:
@@ -3114,9 +3113,11 @@ def _filtered_pdf_styled_lines(
 ) -> tuple[tuple[str, int, int], ...]:
     if extraction.get("page_windows") is not None:
         return _windowed_pdf_styled_lines(content, extraction=extraction)
-    start_page = _positive_int(extraction.get("start_page"), default=1)
+    start_page = _positive_int(extraction.get("start_page"), key="start_page", default=1)
     end_page = extraction.get("end_page")
-    parsed_end_page = _positive_int(end_page, default=0) if end_page is not None else None
+    parsed_end_page = (
+        _positive_int(end_page, key="end_page", default=0) if end_page is not None else None
+    )
     if parsed_end_page is not None and parsed_end_page < start_page:
         raise ValueError("end_page must be greater than or equal to start_page")
     drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
@@ -3166,11 +3167,15 @@ def _parse_pdf_page_windows(extraction: dict[str, Any]) -> tuple[_PdfPageWindow,
         raise ValueError("page_windows must be a non-empty list of window mappings")
     windows: list[_PdfPageWindow] = []
     previous_end = 0
-    for raw in raw_windows:
+    for index, raw in enumerate(raw_windows):
         if not isinstance(raw, dict):
             raise ValueError("each page window must be a mapping")
-        start_page = _positive_int(raw.get("start_page"), default=0)
-        end_page = _positive_int(raw.get("end_page"), default=0)
+        start_page = _positive_int(
+            raw.get("start_page"), key=f"page_windows[{index}].start_page", default=0
+        )
+        end_page = _positive_int(
+            raw.get("end_page"), key=f"page_windows[{index}].end_page", default=0
+        )
         if not start_page or not end_page:
             raise ValueError("each page window requires start_page and end_page")
         if end_page < start_page:
@@ -3314,12 +3319,16 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     return _replace_text(text, text_replacements)
 
 
+def _pdf_ocr_dpi(extraction: dict[str, Any]) -> int:
+    return _positive_int(extraction.get("ocr_dpi"), key="ocr_dpi", default=200, noun="DPI")
+
+
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     """Extract text from an image-only PDF page using the local Tesseract CLI."""
     if not shutil.which("tesseract"):
         raise RuntimeError("PDF OCR extraction requires tesseract on PATH")
 
-    dpi = _positive_int(extraction.get("ocr_dpi"), default=200)
+    dpi = _pdf_ocr_dpi(extraction)
     language = str(extraction.get("ocr_language") or "eng")
     page_segmentation_mode = extraction.get("ocr_psm")
 
@@ -3354,13 +3363,18 @@ _NUMBERED_SECTION_START_RE = re.compile(
 )
 
 
-def _positive_int(value: Any, *, default: int) -> int:
+def _positive_int(value: Any, *, key: str, default: int, noun: str = "page number") -> int:
+    """Return an extraction value that must be a positive integer, or ``default`` if absent.
+
+    Only a true YAML integer is accepted: ``int()`` would read ``true`` as 1, cut
+    ``2.5`` to 2 and parse ``"3"``, so a mistyped manifest value would pick a page
+    silently instead of failing with the key named.
+    """
     if value is None:
         return default
-    parsed = int(value)
-    if parsed < 1:
-        raise ValueError("page numbers must be positive")
-    return parsed
+    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+        raise ValueError(f"{key} must be a positive integer {noun}, not {value!r}")
+    return int(value)
 
 
 def _page_header_patterns(extraction: dict[str, Any]) -> tuple[re.Pattern[str], ...]:
