@@ -10,6 +10,12 @@ from pathlib import Path
 from typing import Any, NamedTuple
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.content_quality import (
+    CONTENT_CHECK_VERSION,
+    ContentFinding,
+    ScopeContentScanner,
+    findings_by_code,
+)
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.io import (
@@ -19,6 +25,13 @@ from axiom_corpus.corpus.io import (
 )
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
+from axiom_corpus.corpus.release_policy import (
+    CONTENT_BASELINE_PATH,
+    WITHDRAWN_SCOPES_PATH,
+    ContentBaselineEntry,
+    ReleaseGatePolicy,
+    scope_label,
+)
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.release.manifest import selector_sha256
@@ -64,6 +77,13 @@ class ReleaseValidationReport:
     issues: tuple[ReleaseValidationIssue, ...]
     max_issues: int
     strict_warnings: bool = False
+    # Known, accepted conditions the release carries (a grandfathered withdrawn
+    # scope, recorded content findings). They never count as errors or
+    # warnings, so they leave ``ok`` and the counts a signed release object
+    # attests exactly as they were, and appear in ``to_mapping`` only when
+    # there are any.
+    notices: tuple[ReleaseValidationIssue, ...] = ()
+    notice_count: int = 0
 
     @property
     def ok(self) -> bool:
@@ -74,7 +94,7 @@ class ReleaseValidationReport:
         return self.error_count + self.warning_count > len(self.issues)
 
     def to_mapping(self) -> dict[str, Any]:
-        return {
+        payload: dict[str, Any] = {
             "release": self.release_name,
             "scope_count": self.scope_count,
             "ok": self.ok,
@@ -86,6 +106,10 @@ class ReleaseValidationReport:
             "issues_truncated": self.truncated,
             "issues": [issue.to_mapping() for issue in self.issues],
         }
+        if self.notice_count:
+            payload["notice_count"] = self.notice_count
+            payload["notices"] = [notice.to_mapping() for notice in self.notices]
+        return payload
 
 
 class _IssueCollector:
@@ -93,7 +117,9 @@ class _IssueCollector:
         self.max_issues = max_issues
         self.error_count = 0
         self.warning_count = 0
+        self.notice_count = 0
         self.issues: list[ReleaseValidationIssue] = []
+        self.notices: list[ReleaseValidationIssue] = []
 
     def add(
         self,
@@ -104,15 +130,19 @@ class _IssueCollector:
         scope: ReleaseScope | None = None,
         path: str | Path | None = None,
     ) -> None:
+        target = self.issues
         if severity == "error":
             self.error_count += 1
         elif severity == "warning":
             self.warning_count += 1
+        elif severity == "notice":
+            self.notice_count += 1
+            target = self.notices
         else:
             raise ValueError(f"invalid validation severity: {severity}")
-        if len(self.issues) >= self.max_issues:
+        if len(target) >= self.max_issues:
             return
-        self.issues.append(
+        target.append(
             ReleaseValidationIssue(
                 severity=severity,
                 code=code,
@@ -133,12 +163,20 @@ def validate_release(
     max_issues: int = 200,
     strict_warnings: bool = False,
     ignore_r2_missing: bool = False,
+    policy: ReleaseGatePolicy | None = None,
 ) -> ReleaseValidationReport:
-    """Validate release-scoped artifacts before promotion or publication."""
+    """Validate release-scoped artifacts before promotion or publication.
+
+    ``policy`` is the repository's release policy: withdrawn scopes and the
+    content baseline (``axiom_corpus.corpus.release_policy``). By default it is
+    read from the axiom-corpus checkout holding ``root``; a corpus outside any
+    checkout gets the empty policy.
+    """
     if max_issues <= 0:
         raise ValueError("max_issues must be positive")
     store = CorpusArtifactStore(root)
     collector = _IssueCollector(max_issues=max_issues)
+    gate_policy = policy if policy is not None else ReleaseGatePolicy.for_corpus(root)
     artifact_rows = {}
     if artifact_report is not None:
         _validate_artifact_report(
@@ -149,6 +187,7 @@ def validate_release(
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
+    _validate_withdrawn_scopes(release, gate_policy, collector)
     uniqueness_grandfathered = _citation_uniqueness_grandfathered(release)
     require_unique_citations = (
         release.requires_complete_expression_dates and not uniqueness_grandfathered
@@ -184,6 +223,7 @@ def validate_release(
             collector,
             release_citation_paths,
             require_expression_dates=release.requires_complete_expression_dates,
+            policy=gate_policy,
         )
     return ReleaseValidationReport(
         release_name=release.name,
@@ -193,7 +233,56 @@ def validate_release(
         issues=tuple(collector.issues),
         max_issues=max_issues,
         strict_warnings=strict_warnings,
+        notices=tuple(collector.notices),
+        notice_count=collector.notice_count,
     )
+
+
+def _validate_withdrawn_scopes(
+    release: ReleaseManifest,
+    policy: ReleaseGatePolicy,
+    collector: _IssueCollector,
+) -> None:
+    """Fail a release that selects a withdrawn scope, unless its selector is allowed to.
+
+    A tracked selector is immutable, so one that selected a scope before the
+    scope was withdrawn keeps it; ``manifests/withdrawn-scopes.yaml`` names it
+    and pins its selector digest. Any other selector fails here, with the
+    reason, the remedy, and the run note that records the decision.
+    """
+    for scope in release.scopes:
+        withdrawn = policy.withdrawn.get(scope.key)
+        if withdrawn is None:
+            continue
+        allowance = withdrawn.allowance_for(release)
+        if allowance is not None:
+            how = (
+                f"selected under a recorded exception: {allowance.reason}"
+                if allowance.is_exception
+                else "this selector predates the withdrawal and keeps the scope"
+            )
+            collector.add(
+                "notice",
+                "withdrawn_scope_grandfathered",
+                (
+                    f"{scope_label(scope)} was withdrawn on {withdrawn.withdrawn_on} "
+                    f"({withdrawn.decision}); {how}"
+                ),
+                scope=scope,
+                path=WITHDRAWN_SCOPES_PATH,
+            )
+            continue
+        collector.add(
+            "error",
+            "withdrawn_scope_selected",
+            (
+                f"{scope_label(scope)} was withdrawn on {withdrawn.withdrawn_on} "
+                f"({withdrawn.decision}): {withdrawn.reason} A new cut must not select it: "
+                f"{withdrawn.remedy()}. See {withdrawn.run_note} and {WITHDRAWN_SCOPES_PATH}."
+            ),
+            scope=scope,
+            path=WITHDRAWN_SCOPES_PATH,
+        )
 
 
 def _citation_uniqueness_grandfathered(release: ReleaseManifest) -> bool:
@@ -385,12 +474,18 @@ def _validate_scope(
     release_citation_paths: set[str],
     *,
     require_expression_dates: bool,
+    policy: ReleaseGatePolicy | None = None,
 ) -> None:
     inventory_path = store.inventory_path(scope.jurisdiction, scope.document_class, scope.version)
     provisions_path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
     coverage_path = store.coverage_path(scope.jurisdiction, scope.document_class, scope.version)
+    content = _ContentPlan.for_scope(
+        store, scope, policy or ReleaseGatePolicy.empty(), inventory_path, provisions_path
+    )
     inventory = _load_inventory_for_validation(inventory_path, scope, collector)
-    provisions = _load_provisions_for_validation(provisions_path, scope, collector)
+    provisions = _load_provisions_for_validation(
+        provisions_path, scope, collector, scanner=content.scanner
+    )
     coverage = _load_coverage_for_validation(coverage_path, scope, collector)
     if inventory is None or provisions is None:
         return
@@ -442,6 +537,100 @@ def _validate_scope(
                     scope=scope,
                     path=coverage_path,
                 )
+    content.report(scope, provisions_path, collector)
+
+
+@dataclass
+class _ContentPlan:
+    """How one scope's content findings are checked in this validation.
+
+    - A withdrawn scope is not checked: the withdrawal already decides it.
+    - A scope whose provisions and inventory bytes match its content baseline
+      entry is not read again; its recorded findings become one notice.
+    - Any other scope is scanned while its provisions stream for validation,
+      and each finding is an error: new chrome, a hollow root or a version
+      picker fails the release until the extraction is fixed or the finding is
+      recorded in the baseline.
+    """
+
+    scanner: ScopeContentScanner | None = None
+    baseline: ContentBaselineEntry | None = None
+    mismatched: bool = False
+
+    @classmethod
+    def for_scope(
+        cls,
+        store: CorpusArtifactStore,
+        scope: ReleaseScope,
+        policy: ReleaseGatePolicy,
+        inventory_path: Path,
+        provisions_path: Path,
+    ) -> _ContentPlan:
+        if scope.key in policy.withdrawn:
+            return cls()
+        baseline = policy.content_baseline
+        entry = (
+            baseline.entry_for(scope) if baseline.check_version == CONTENT_CHECK_VERSION else None
+        )
+        if entry is not None:
+            try:
+                digests = (_sha256_file(provisions_path), _sha256_file(inventory_path))
+            except OSError:
+                digests = None
+            if digests is not None and entry.pins(*digests):
+                return cls(baseline=entry)
+            return cls(scanner=ScopeContentScanner(store.root), mismatched=True)
+        return cls(scanner=ScopeContentScanner(store.root))
+
+    def report(
+        self, scope: ReleaseScope, provisions_path: Path, collector: _IssueCollector
+    ) -> None:
+        if self.baseline is not None:
+            if self.baseline.findings:
+                counts = ", ".join(
+                    f"{count} {code}"
+                    for code, count in findings_by_code(self.baseline.findings).items()
+                )
+                collector.add(
+                    "notice",
+                    "baselined_content_findings",
+                    (
+                        f"{scope_label(scope)} carries {len(self.baseline.findings)} content "
+                        f"findings recorded in {CONTENT_BASELINE_PATH}: {counts}"
+                    ),
+                    scope=scope,
+                    path=CONTENT_BASELINE_PATH,
+                )
+            return
+        if self.scanner is None:
+            return
+        if self.mismatched:
+            collector.add(
+                "warning",
+                "content_baseline_mismatch",
+                (
+                    f"{CONTENT_BASELINE_PATH} records {scope_label(scope)} with other provisions "
+                    "or inventory bytes, so its content was checked again"
+                ),
+                scope=scope,
+                path=CONTENT_BASELINE_PATH,
+            )
+        for finding in self.scanner.findings():
+            collector.add(
+                "error",
+                finding.code,
+                _finding_message(finding),
+                scope=scope,
+                path=provisions_path if finding.code != "version_picker_source" else finding.path,
+            )
+
+
+def _finding_message(finding: ContentFinding) -> str:
+    return (
+        f"{finding.path}: {finding.detail}. Fix the extraction, or record the finding with "
+        f"`axiom-corpus-ingest content-check --update-baseline <scope>` "
+        f"({CONTENT_BASELINE_PATH}; see docs/release-gate-policy.md)"
+    )
 
 
 def _load_inventory_for_validation(
@@ -465,6 +654,8 @@ def _load_provisions_for_validation(
     path: Path,
     scope: ReleaseScope,
     collector: _IssueCollector,
+    *,
+    scanner: ScopeContentScanner | None = None,
 ) -> tuple[_ProvisionFacts, ...] | None:
     if not path.exists():
         collector.add(
@@ -473,7 +664,12 @@ def _load_provisions_for_validation(
         return None
     try:
         shared: dict[object, object] = {}
-        return tuple(_provision_facts(record, shared) for record in iter_provisions(path))
+        facts = []
+        for record in iter_provisions(path):
+            if scanner is not None:
+                scanner.add(record)
+            facts.append(_provision_facts(record, shared))
+        return tuple(facts)
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         collector.add("error", "invalid_provisions", str(exc), scope=scope, path=path)
         return None

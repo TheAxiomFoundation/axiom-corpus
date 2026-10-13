@@ -1,0 +1,890 @@
+# Scopes no new release may select (docs/release-gate-policy.md).
+#
+# validate_release fails any release that selects a scope listed here, unless
+# the release is one of the scope's grandfathered selectors: tracked selectors
+# are immutable, so every selector that already selected the scope when it was
+# withdrawn keeps it. Each allowance is pinned to the selector's digest
+# (axiom_corpus.release.manifest.selector_sha256) in selector_digests, so it
+# cannot follow a selector that changes. A selector cut later may keep a
+# withdrawn scope only as an entry under the scope's exceptions, with a reason.
+#
+# Each entry records why the scope is withdrawn, the decision and run note that
+# withdrew it, and what a new cut does instead: replace_with lists the scopes to
+# select in its place; carried_by lists scopes that already carry its text, so
+# it is simply dropped. tests/test_release_policy_repository.py checks that every
+# named scope is locked, every run note exists, and every tracked selector that
+# selects a withdrawn scope is listed.
+
+schema_version: axiom-corpus/withdrawn-scopes/v1
+selector_digests:
+  us-rulespec-2026-07-13: 6c98bfd3939049d1231112f1ea91c0825cd1ef4d43d19bf31eadfce2a049507a
+  us-rulespec-2026-07-16: 9c7654f832aa4ee584b3c1f6b1a8a89b87e7a441a2d8ebc3e2d61e4881e12bcf
+  us-rulespec-2026-07-17: f0b56dc5945b32c324391f027e5f3a4e42f0a626710536002715277a86c97ed7
+  us-rulespec-2026-07-17-pit-recovery: a4fe7b185967413eb5fd947638aee40a1bd87a4baa91e2fdd298129c2eddddb8
+  us-rulespec-2026-07-18: 8e3919eacc86fe4c092f6a1a5d1c5d35cacd3bac461337590a63372c2e789311
+  us-rulespec-2026-07-19: 79c091b4501eecb2996936ba51c87955f89460d9e3690b0fde88c30742547e9d
+  us-rulespec-2026-07-19-dedup: 6b18a3e3842b5cfa0736fc0352fada4d07d2417912383e0847b84a1e121552d6
+  us-rulespec-2026-07-21-az-140es-current: b8f41849f54c056c7072f2ac929b76e41b93889a7efda1e45d542d8e2322fb0c
+  us-rulespec-2026-07-21-ga-pit-current: 8c169ebfa546c6aa83e49a1f4ce1146f4983a5f28dd2e9e4c48f185ebe7c6ba7
+  us-rulespec-2026-07-21-ks-k40es-current: f30c103c78522345e16c5c187d28eac77f68e74582b5ed56ec4acf158927a898
+  us-rulespec-2026-07-21-mi-pit-current: 2c029e37a1057128d23ea79d96c8598c21a4693fc2817b5ffa0941628a2653d1
+  us-rulespec-2026-07-21-oh-hb96-current: ada56e6bc50d5c96714a80b7f4bdab0bc68c5cfda2505709490f8a1271c195c5
+  us-rulespec-2026-07-21-pa-pit-current: c164a21c26efbe833502df407794775bdfee357a1b621617801490aeea57efa0
+  us-rulespec-2026-07-22-current: 2edc30670f498a7f56b74024023c032f0e834643d6483bbd48fb11830f946d67
+  us-rulespec-2026-07-22-current-la-status-fix: 18211b6f6b23fb698994abfa2726d7e483ba97c9315814bb87788996b891441e
+  us-rulespec-2026-07-22-hi-capital-gain-current: 0f7cf5d64b70e31717b4314fc2eaf337f8a75191a32e7e1df90206f3f722b57e
+  us-rulespec-2026-07-24-cms-435-correction: 4303778fbe9434951e5943336728eba5dd5aa09250a76ebdea4f54963eab6e05
+  us-rulespec-2026-07-24-cms-435-correction-immutable-scopes: 9a2ee8b142c4ab19b66386536971425ac72e59f4a46d168914dafb5918246d25
+  us-rulespec-2026-07-24-sc-act110-current: 0faa8c72b41c3824a5b6ff89247f1dcb4a8e3bf6bd7366d1f3274c6fa17286cf
+  us-rulespec-2026-07-24-snap-cms-pit-union: ff442cae483bca2fe0d94ec0724c02b5157fae0cb2339ebf955d4df1fdf4a3d9
+  us-rulespec-2026-07-31-idaho-statutes-current: 7ea1b61e956bb2e4ee8ac286fe7f534786f8b524dab3f5888a6c5180205853b2
+  us-rulespec-2026-08-03-ecps-pit-tariff-union: 700f831ff225df410c389e2edb075ff911c7711feccf0410ec32d3bfef45e238
+  us-rulespec-2026-08-08-obbb-alien-snap: 1b88863f0e6f09c3383e0572666da892d49125f34bda5088bd90a6706d8b37fd
+  us-rulespec-2026-08-09-cutover-surface-union: e8a66545095eff763e7e1dab473c9848e62a0407b83421bb0e879009e78a7fd9
+  us-rulespec-2026-08-23-canada-338-suspension-union: 56ec2f9b1996c2eae16a96e9b5254bb93ab5fa6329bc78be12d6ea24c8bdf9ed
+  us-rulespec-2026-09-11-program-ingestion-union: aea3024644ff8c10cd1f7fabf757ece448ad2913d4120ea52c89e9f0ca1432a3
+  us-rulespec-2026-09-13-cms-state-plans-union: 5e8e4953f0baf19a94b382d03a814d7b79607efe8c2643fe5c1fd4451b0125f8
+  us-rulespec-2026-09-13-federal-and-plans-union: eb691d4f9b9d7df880e9664a455afab1f633958ee8a73d38fb8e3d84472a0166
+  us-rulespec-2026-09-13-followup-union: 086bcb91fcbfac0331f8d40770807de8b0c0e92feed8292be42e0b806b57329d
+  us-rulespec-2026-09-14-wave4-r2-union: d99adb00743236d6c7f12d0fb6053802cdddaa84b217eff142638916be08bc00
+  us-rulespec-2026-09-14-wave4-union: 94662bac62375fda96c47e64b9ffe8e1782d01bb1630b679690e1be2a931c25b
+  us-rulespec-2026-09-24-irs-sales-tax-tables-union: 24af198531138cf3d8f0828a3fea221b7ed6e3afdc2f57a4b35a7e6ded30d639
+  us-rulespec-2026-09-24-snap-fy2027-cola: 89ea3de4e2312473bbf992195b3d995e375d6014e03f78c02b8b66e28c20c5f0
+  us-rulespec-2026-10-07-w6-bundle-gaps-union: 079fea859a426de8a85474a767fb6e7f3058939820d9d2fbf8908bdbad3a5af4
+  us-rulespec-2026-10-11-w5-remainder-union: b9fdf61c5c5c5ffdccd85fecdbf025e19d56b3ef3a9fb99c9a05f0773a771d5e
+  us-rulespec-2026-10-12-w5-benefits-union: 39ccd66c6803fb784a42c39d8f5e5a9d895e3993e61d9cf2fceafda31ab722b3
+  us-rulespec-ny-snap-2026-07-17: 7ff17ffafe5c61205dd9b8ee92d6580093d9fd30d1e4692eaab30893835ffb3c
+  us-rulespec-snap-2026-07-21: 1d2cae04d8b83694e13756fe3302cda386272013b72818342dc0ccfb826a744a
+scopes:
+  - scope: us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5
+    withdrawn_on: "2026-09-27"
+    decision: "release decision of 2026-09-27 on axiom-corpus#748"
+    run_note: docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md
+    reason: >-
+      Superseded together with us-ca/statute/2026-07-13-recovery. All six of its
+      sections are paths of the 2026-09-14 income tax chapter scope, which every
+      later cut selects in place of the recovery scope, so the two cannot share a
+      cut (six duplicate citations).
+    replace_with:
+      - us-ca/statute/2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-ca/statute/2026-07-13-recovery
+    withdrawn_on: "2026-09-27"
+    decision: "release decision of 2026-09-27 on axiom-corpus#748"
+    run_note: docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md
+    reason: >-
+      23 of its 33 rows hold no section text: 11 empty document roots at section
+      paths, 11 LegInfo navigation blocks, and the WIC 11450 version-picker
+      history lines. The ten R&TC sections it does carry are held with the same
+      text by the 2026-09-14 income tax chapter scope.
+    replace_with:
+      - us-ca/statute/2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-co/regulation/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its rows for 9 CCR 2503-6 3.606.1, 3.606.2 and 3.606.6 are copies of whole
+      PDF pages (3.606.1 is the rule's amendment history), and its Code of
+      Colorado Regulations welcome page and 8 CCR 1403-1 root carry no rule text.
+      Its consolidated successor keeps the other rows and replaces the copies with
+      the sections.
+    replace_with:
+      - us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-fl/regulation/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its one document is flrules.org's Div. 64V index page, fetched in place of
+      the source of us-fl/regulation/2026-05-29; it carries no rule text. That
+      scope's self-contained successor carries the document.
+    replace_with: []
+    carried_by:
+      - us-fl/regulation/2026-05-29-r2026-07-15-self-contained
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-id/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "axiom-corpus#757 audit: no successor, and no key release line selects it"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      None of its 15 rows holds legal text: five empty document roots, the Idaho
+      Legislature's menu, and "How current is this law?" blocks. The 2026-09-14
+      Title 63 chapter 30 scope carries the sections.
+    replace_with:
+      - us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-il/manual/2026-07-13-recovery-r2026-07-17-dedup
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its rows are the IDHS policy manual's table of contents and one block that
+      is byte for byte a block of the IL manual scope. Selected together, its
+      block sits under the manual scope's root, so us-il/manual/dhs/csmm/19812
+      fails to compose across scopes.
+    replace_with: []
+    carried_by:
+      - us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-in/manual/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its one document is the Indiana FSSA policy manual landing page, fetched in
+      place of the source of us-in/manual/2026-05-27-in-snap-manual; it carries no
+      manual text. That scope's self-contained successor carries the manual.
+    replace_with: []
+    carried_by:
+      - us-in/manual/2026-05-27-in-snap-manual-r2026-07-15-self-contained
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-me/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      12 of its 13 rows hold no legal text: six empty document roots and six
+      navigation lists; only the 5111 rate table is text. The 2026-09-14 Title 36
+      chapter scope carries the sections.
+    replace_with:
+      - us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-mi/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      206.272's row is the whole MCL page with its navigation, and its ten
+      subsection paths are copies of whole sections. The 2026-09-14 chapter 206
+      scope carries the sections, 206.30 and 206.51 in their later amended text.
+    replace_with:
+      - us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-mn/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      35 of its 125 rows hold no legal text: five empty document roots and 30
+      Revisor of Statutes navigation blocks. The three 2026-09-14 Minnesota
+      chapter scopes carry all 250 of its legal-text lines.
+    replace_with:
+      - us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-142g
+      - us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-256p
+      - us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Superseded together with us-ny/statute/2026-07-13-recovery. All five of its
+      sections are paths of the 2026-09-14 income tax chapter scope, which a cut
+      selects in place of the recovery scope, so the two cannot share a cut.
+    replace_with:
+      - us-ny/statute/2026-09-14-income-tax-chapter
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+    exceptions: []
+  - scope: us-ny/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Each of its 11 rows is a whole nysenate.gov page: the site's navigation and
+      JavaScript notice before the section text. The 2026-09-14 income tax chapter
+      scope holds the same text.
+    replace_with:
+      - us-ny/statute/2026-09-14-income-tax-chapter
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+    exceptions: []
+  - scope: us-sc/manual/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its one document is the SC DSS manuals page, fetched in place of the source
+      of us-sc/manual/2026-05-27-sc-snap-manual; it carries no manual text. That
+      scope carries the manual.
+    replace_with: []
+    carried_by:
+      - us-sc/manual/2026-05-27-sc-snap-manual
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-sc/regulation/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its one document is the South Carolina Code of Regulations master list,
+      fetched in place of the source of us-sc/regulation/2026-05-29; it carries no
+      regulation text. That scope's self-contained successor carries the document.
+    replace_with: []
+    carried_by:
+      - us-sc/regulation/2026-05-29-r2026-07-15-self-contained
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-sc/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-11"
+    decision: "release decision of 2026-10-11 on axiom-corpus#760"
+    run_note: docs/ingest-runs/2026-09-27-us-sc-12-6-520-successor.md
+    reason: >-
+      None of its three rows holds the text of 12-6-520: an empty document root,
+      the legislature's menu, and rate tables printed under other sections of
+      chapter 6. The 2026-09-27 successor of the Act 110 scope carries 12-6-520.
+    replace_with:
+      - us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-irs-sales-tax-tables-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6
+    withdrawn_on: "2026-10-11"
+    decision: "release decision of 2026-10-11 on axiom-corpus#760"
+    run_note: docs/ingest-runs/2026-09-27-us-sc-12-6-520-successor.md
+    reason: >-
+      Superseded by its 2026-09-27 successor, which carries all 158 of its paths
+      plus 12-6-520; the two cannot share a cut (158 duplicate citations).
+    replace_with:
+      - us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-irs-sales-tax-tables-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+    exceptions: []
+  - scope: us-tn/regulation/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its one document is the index of Tennessee rule chapter 1240, fetched in
+      place of the source of us-tn/regulation/2026-05-29; it carries no rule text.
+      That scope's self-contained successor carries the document.
+    replace_with: []
+    carried_by:
+      - us-tn/regulation/2026-05-29-r2026-07-15-self-contained
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-ut/manual/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Its one document is the Utah DWS manual welcome page, fetched in place of
+      the source of us-ut/manual/2026-05-27-ut-manuals; it carries no manual text.
+      That scope's self-contained successor carries the manuals.
+    replace_with: []
+    carried_by:
+      - us-ut/manual/2026-05-27-ut-manuals-r2026-07-15-self-contained
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-14-wave4-r2-union
+      - us-rulespec-2026-09-14-wave4-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-2026-10-07-w6-bundle-gaps-union
+      - us-rulespec-2026-10-11-w5-remainder-union
+      - us-rulespec-2026-10-12-w5-benefits-union
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []
+  - scope: us-ut/statute/2026-07-13-recovery
+    withdrawn_on: "2026-10-03"
+    decision: "release decision of 2026-10-03 on axiom-corpus#757"
+    run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
+    reason: >-
+      Each of its three rows is a whole le.utah.gov page: the site's navigation
+      before the section text. The 2026-09-14 Title 59 chapter scope holds the
+      same words.
+    replace_with:
+      - us-ut/statute/2026-09-14-income-tax-chapter-title-59
+    carried_by: []
+    grandfathered_selectors:
+      - us-rulespec-2026-07-13
+      - us-rulespec-2026-07-16
+      - us-rulespec-2026-07-17
+      - us-rulespec-2026-07-17-pit-recovery
+      - us-rulespec-2026-07-18
+      - us-rulespec-2026-07-19
+      - us-rulespec-2026-07-19-dedup
+      - us-rulespec-2026-07-21-az-140es-current
+      - us-rulespec-2026-07-21-ga-pit-current
+      - us-rulespec-2026-07-21-ks-k40es-current
+      - us-rulespec-2026-07-21-mi-pit-current
+      - us-rulespec-2026-07-21-oh-hb96-current
+      - us-rulespec-2026-07-21-pa-pit-current
+      - us-rulespec-2026-07-22-current
+      - us-rulespec-2026-07-22-current-la-status-fix
+      - us-rulespec-2026-07-22-hi-capital-gain-current
+      - us-rulespec-2026-07-24-cms-435-correction
+      - us-rulespec-2026-07-24-cms-435-correction-immutable-scopes
+      - us-rulespec-2026-07-24-sc-act110-current
+      - us-rulespec-2026-07-24-snap-cms-pit-union
+      - us-rulespec-2026-07-31-idaho-statutes-current
+      - us-rulespec-2026-08-03-ecps-pit-tariff-union
+      - us-rulespec-2026-08-08-obbb-alien-snap
+      - us-rulespec-2026-08-09-cutover-surface-union
+      - us-rulespec-2026-08-23-canada-338-suspension-union
+      - us-rulespec-2026-09-11-program-ingestion-union
+      - us-rulespec-2026-09-13-cms-state-plans-union
+      - us-rulespec-2026-09-13-federal-and-plans-union
+      - us-rulespec-2026-09-13-followup-union
+      - us-rulespec-2026-09-24-snap-fy2027-cola
+      - us-rulespec-ny-snap-2026-07-17
+      - us-rulespec-snap-2026-07-21
+    exceptions: []

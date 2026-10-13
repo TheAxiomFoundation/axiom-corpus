@@ -46,6 +46,7 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_check_cli import add_content_check_parser
 from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
 from axiom_corpus.corpus.corpus_locks import LockFormatError
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -7566,6 +7567,8 @@ def build_parser() -> argparse.ArgumentParser:
     validate_release_cmd.add_argument("--max-issues", type=int, default=200)
     validate_release_cmd.add_argument("--output", type=Path)
     validate_release_cmd.set_defaults(func=_cmd_validate_release)
+
+    add_content_check_parser(sub)
 
     state_statute_completion = sub.add_parser(
         "state-statute-completion",
