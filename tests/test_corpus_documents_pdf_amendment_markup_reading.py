@@ -24,6 +24,8 @@ Invariants (Hypothesis):
    text holds a token, and otherwise returns markup that reads back to the
    default page text and to the drawn states.
 
+Invariants 1 and 2 are also checked for every text of up to four characters.
+
 The reader is checked against an independent character-by-character oracle
 (``_oracle_runs``).
 """
@@ -31,6 +33,7 @@ The reader is checked against an independent character-by-character oracle
 from __future__ import annotations
 
 import dataclasses
+import itertools
 import re
 import warnings
 from pathlib import Path
@@ -191,6 +194,36 @@ def test_property_the_old_strip_fails_exactly_on_a_run_ending_in_its_opening_bra
 
     old_strip_holds = _naive_strip(rendered.text) == normalized
     assert old_strip_holds is not _ambiguous_run(_oracle_runs(rendered.text)), rendered.text
+
+
+_SHORT_ALPHABET = ("a", "[", "]", "-", "{", "}", "+", " ", "\u200b", "\n")
+
+
+def test_every_short_text_reads_back() -> None:
+    """Invariants 1 and 2 for every text of up to 4 characters and every state assignment.
+
+    A delimiter and the characters it can make a token with are at most four
+    characters apart, so this covers every local arrangement; Hypothesis covers
+    longer texts.
+    """
+    cases = misread_by_the_old_strip = 0
+    for size in range(5):
+        for characters in itertools.product(_SHORT_ALPHABET, repeat=size):
+            raw = "".join(characters)
+            normalized = _normalize_text(raw)
+            if any(token in normalized for token in TOKENS):
+                continue
+            for states in itertools.product(_STATES, repeat=size):
+                rendered = _render_amendment_markup(raw, list(states))
+                runs = _amendment_markup_runs(rendered.text)
+                assert runs == _oracle_runs(rendered.text), (raw, states)
+                assert _strip_amendment_markup(rendered.text) == normalized, (raw, states)
+                assert _read_back(runs) == _expected_marks(raw, list(states)), (raw, states)
+                ambiguous = _ambiguous_run(runs)
+                assert (_naive_strip(rendered.text) == normalized) is not ambiguous, (raw, states)
+                cases += 1
+                misread_by_the_old_strip += ambiguous
+    assert (cases, misread_by_the_old_strip) == (736537, 143454)
 
 
 def test_a_struck_bracket_reads_as_struck_text() -> None:
