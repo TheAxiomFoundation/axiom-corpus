@@ -56,6 +56,11 @@ MO_1040ES_PDF = (
     / "us-mo/statute/2026-07-16-pit-central-us-mo-143/missouri-department-of-revenue"
     / "2026-form-mo-1040es.pdf"
 )
+EG_LAW_2019_148_ANNEX_PDF = (
+    SOURCES
+    / "eg/statute/2026-07-24-eg-egymod-t1-statutes/official-documents"
+    / "eg-law-2019-148-annex-tables.pdf"
+)
 
 PAGE_HEIGHT = 792.0
 HELVETICA = fitz.Font("helv")
@@ -219,6 +224,37 @@ def test_the_layered_keys_extract_the_missouri_1040es_with_its_zero_width_period
         assert Counter(sorted_block.body.replace(" ", "").replace("\n", "")) == Counter(
             plain_block.body.replace(" ", "").replace("\n", "")
         )
+
+
+@pytest.mark.parametrize(
+    ("path", "page_number", "glyph"),
+    [
+        # A tanween fathatan (U+064B) drawn with no width in an Arabic statute.
+        (EG_LAW_2019_148_ANNEX_PDF, 11, "\u064b"),
+        (EG_LAW_2019_148_ANNEX_PDF, 17, "\u064b"),
+    ],
+)
+def test_cited_pages_keep_the_glyphs_rawdict_leaves_out(
+    path: Path, page_number: int, glyph: str
+) -> None:
+    extraction: dict[str, Any] = {"amendment_markup": True}
+    with fitz.open(path) as document:
+        page = document[page_number - 1]
+        default = documents_module._normalize_text(page.get_text("text", flags=FLAGS))
+        raw = page.get_text("rawdict", flags=FLAGS)
+        marked, _metadata = documents_module._pdf_page_layered_text(
+            page,
+            extraction=extraction,
+            markup=documents_module._pdf_amendment_markup_config(extraction),
+            page_number=page_number,
+        )
+        sorted_text, _ = documents_module._pdf_page_layered_text(
+            page, extraction={"sort_blocks": True}, markup=None, page_number=page_number
+        )
+
+    assert [char[0] for char in _characters(raw["blocks"])].count(glyph) < default.count(glyph)
+    assert _strip_amendment_markup(marked) == default
+    assert sorted_text.count(glyph) == default.count(glyph)
 
 
 def test_a_struck_zero_width_period_is_marked_with_its_line() -> None:
