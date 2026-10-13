@@ -538,9 +538,68 @@ def _worker_init(ocr_cache: str | None) -> None:
         install_ocr_cache(Path(ocr_cache).expanduser())
 
 
-def _worker(spec: SuccessorSpec, base: str, source_base: str) -> dict[str, Any]:
+def _free_gb(path: Path) -> float:
+    return shutil.disk_usage(path).free / 1e9
+
+
+def _existing_state(spec: SuccessorSpec, base: Path) -> str:
+    """``absent``, ``complete`` (coverage written and complete) or ``partial``."""
+    paths = _artifact_paths(base, spec.jurisdiction, spec.document_class, spec.version)
+    present = [name for name, path in paths.items() if path.exists()]
+    if not present:
+        return "absent"
+    if len(present) == len(paths):
+        try:
+            coverage = json.loads(paths["coverage"].read_text(encoding="utf-8"))
+        except ValueError:
+            return "partial"
+        if coverage.get("complete") is True:
+            return "complete"
+    return "partial"
+
+
+def _remove_successor(spec: SuccessorSpec, base: Path) -> None:
+    for path in _artifact_paths(
+        base, spec.jurisdiction, spec.document_class, spec.version
+    ).values():
+        if path.is_dir():
+            shutil.rmtree(path)
+        elif path.exists():
+            path.unlink()
+
+
+def _worker(
+    spec: SuccessorSpec,
+    base: str,
+    source_base: str,
+    resume: bool = False,
+    min_free_gb: float | None = None,
+) -> dict[str, Any]:
     _OCR_STATS.hits = _OCR_STATS.misses = 0
     try:
+        if resume:
+            state = _existing_state(spec, Path(base))
+            if state == "complete":
+                # Built by an earlier, interrupted run: keep it, but only if its
+                # sources are still exactly the retained bytes.
+                original = _artifact_paths(
+                    Path(source_base), spec.jurisdiction, spec.document_class, spec.original_version
+                )
+                successor = _artifact_paths(
+                    Path(base), spec.jurisdiction, spec.document_class, spec.version
+                )
+                expected = _expected_sources(spec, _scope_files(original["sources"]))
+                if _scope_files(successor["sources"]) != expected:
+                    raise ValueError(f"{spec.key}: existing successor sources differ")
+                return {"scope": spec.key, "original": spec.original_key, "skipped": "complete"}
+            if state == "partial":
+                _remove_successor(spec, Path(base))
+        if min_free_gb is not None and _free_gb(Path(base)) < min_free_gb:
+            return {
+                "scope": spec.key,
+                "original": spec.original_key,
+                "deferred": f"free disk under {min_free_gb} GB",
+            }
         result = build_one(spec, base=Path(base), source_base=Path(source_base))
     except Exception as error:  # reported per scope; the run fails at the end
         return {"scope": spec.key, "error": f"{type(error).__name__}: {error}"}
@@ -581,13 +640,20 @@ def cmd_build(args: argparse.Namespace) -> int:
     if args.workers <= 1:
         _worker_init(ocr_cache)
         for spec in specs:
-            results.append(_worker(spec, str(base), str(source_base)))
+            results.append(
+                _worker(spec, str(base), str(source_base), args.resume, args.min_free_gb)
+            )
             print(json.dumps(results[-1]), flush=True)
     else:
         with ProcessPoolExecutor(
             max_workers=args.workers, initializer=_worker_init, initargs=(ocr_cache,)
         ) as pool:
-            futures = [pool.submit(_worker, spec, str(base), str(source_base)) for spec in specs]
+            futures = [
+                pool.submit(
+                    _worker, spec, str(base), str(source_base), args.resume, args.min_free_gb
+                )
+                for spec in specs
+            ]
             for future in as_completed(futures):
                 results.append(future.result())
                 print(json.dumps(results[-1]), flush=True)
@@ -597,8 +663,15 @@ def cmd_build(args: argparse.Namespace) -> int:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(results, indent=1) + "\n", encoding="utf-8")
     errors = [row for row in results if "error" in row]
-    print(f"built {len(results) - len(errors)} of {len(results)} successor scopes", file=sys.stderr)
-    return 1 if errors else 0
+    deferred = [row for row in results if "deferred" in row]
+    skipped = [row for row in results if "skipped" in row]
+    built = len(results) - len(errors) - len(deferred) - len(skipped)
+    print(
+        f"built {built} of {len(results)} successor scopes "
+        f"({len(skipped)} already complete, {len(deferred)} deferred, {len(errors)} failed)",
+        file=sys.stderr,
+    )
+    return 1 if errors else 2 if deferred else 0
 
 
 # --------------------------------------------------------------------------- comparison
@@ -871,6 +944,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     build.add_argument("--workers", type=int, default=1)
     build.add_argument("--ocr-cache", type=Path)
     build.add_argument("--report", type=Path)
+    build.add_argument(
+        "--resume",
+        action="store_true",
+        help="Keep complete successors (sources re-checked); rebuild partial ones.",
+    )
+    build.add_argument(
+        "--min-free-gb",
+        type=float,
+        help="Start no scope while the base's volume has less free space (decimal GB).",
+    )
     build.set_defaults(func=cmd_build)
     compare = sub.add_parser(
         "compare", help="Compare successor scopes with originals or another build."
