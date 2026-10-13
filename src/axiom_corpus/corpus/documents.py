@@ -3292,11 +3292,11 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
 
 
 # A layer line's characters, each with its font's name when it is an unmapped character
-# (``_pdf_unmapped_characters``) of a span whose characters are all unmapped, MuPDF's own
-# spaces (U+0020) aside, and None otherwise. A span that mixes mapped and unmapped
-# characters is not decoded: for a simple or Type 3 font MuPDF prints a printable code
-# whose glyph name it does not know as itself, as if mapped, so only the span's control
-# codes would show as unmapped.
+# (``_pdf_unmapped_characters``) and none of that font's other characters in the line is
+# mapped, MuPDF's own spaces (U+0020) aside, and None otherwise. A font whose characters
+# in a line are mixed is not decoded there: for a simple or Type 3 font MuPDF prints a
+# printable code whose glyph name it does not know as itself, as if mapped, so only the
+# line's control codes show as unmapped, and MuPDF may put them in spans of their own.
 _LayerChars = list[tuple[str, str | None]]
 
 
@@ -3330,25 +3330,24 @@ def _pdf_layer_lines(
     seen: Counter[tuple[float, float]] = Counter()
     for block in data.get("blocks", ()):
         for line in block.get("lines", ()):
-            chars: _LayerChars = []
+            values: list[tuple[str, str, bool]] = []
             spans: list[tuple[int, int, dict[str, Any]]] = []
             for span in line.get("spans", ()):
-                start = len(chars)
-                values: list[tuple[str, bool]] = []
+                start = len(values)
+                font = str(span.get("font", ""))
                 for char in span.get("chars", ()):
                     origin = (float(char["origin"][0]), float(char["origin"][1]))
                     occurrence = seen[origin]
                     seen[origin] += 1
                     value = str(char["c"])
-                    values.append(
-                        (value, value != "\ufffd" and (*origin, occurrence) in unmapped)
-                    )
-                whole = any(code for _, code in values) and all(
-                    code or value == " " for value, code in values
-                )
-                font = str(span.get("font", "")) if whole else None
-                chars.extend((value, font if code else None) for value, code in values)
-                spans.append((start, len(chars), span))
+                    code = value != "\ufffd" and (*origin, occurrence) in unmapped
+                    values.append((value, font, code))
+                spans.append((start, len(values), span))
+            mixed = {font for value, font, code in values if not code and value != " "}
+            chars: _LayerChars = [
+                (value, font if code and font not in mixed else None)
+                for value, font, code in values
+            ]
             raw_lines.append((chars, spans))
     shifts: dict[str, int] = {}
     if unmapped and ocr_text is not None:
