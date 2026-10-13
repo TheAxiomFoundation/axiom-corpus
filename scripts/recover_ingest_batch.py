@@ -179,16 +179,16 @@ def _planned_scope(entry: dict[str, Any]) -> ScopeKey | None:
     return (str(values[0]), str(values[1]), str(values[2]))
 
 
-def _own_scope_vouches(
-    document_id: str, result: dict[str, Any], previously_parsed: set[str]
-) -> bool:
+def _own_scope_vouches(result: dict[str, Any]) -> bool:
     """Whether a document's own planned scope may resolve its targets.
 
-    Only when the document was parsed: in this run, or in an earlier one whose
-    result this run carries forward (a run limited to one document, or one whose
-    snapshot has since left recovered-fetched, keeps the earlier result).
+    Only when the document's recorded result is parsed: parsed in this run, or
+    an earlier parse this run reuses or carries forward unchanged (a run limited
+    to one document, or one whose snapshot has left recovered-fetched). A
+    reparse that fails records an unparsed result, so its own scope no longer
+    vouches, in this run and every later one alike.
     """
-    return bool(result.get("parsed")) or document_id in previously_parsed
+    return bool(result.get("parsed"))
 
 
 def _carrier_kind(
@@ -1367,7 +1367,7 @@ def main() -> int:
                 text_carriers,
                 normalized_paths,
                 own_scope=own_scope,
-                include_own=_own_scope_vouches(document_id, result, previously_parsed),
+                include_own=_own_scope_vouches(result),
             )
             if match is None:
                 unresolved_citations.append(target)

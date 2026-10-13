@@ -209,13 +209,27 @@ class ReleaseGatePolicy:
         return cls(withdrawn=withdrawn, content_baseline=baseline, source=str(root))
 
     @classmethod
+    def for_checkout(cls, repo_root: str | Path) -> ReleaseGatePolicy:
+        """The policy of a checkout, required wherever it keeps corpus locks.
+
+        A checkout whose corpus bytes are pinned by lock files is a real corpus
+        checkout: validating or publishing from one that lacks the
+        withdrawn-scope list or the content baseline must fail, not run
+        against an empty policy.
+        """
+        from axiom_corpus.corpus.corpus_locks import LOCK_ROOT
+
+        root = Path(repo_root)
+        return cls.load(root, required=(root / LOCK_ROOT).is_dir())
+
+    @classmethod
     def for_corpus(cls, corpus_root: str | Path) -> ReleaseGatePolicy:
         """The policy of the axiom-corpus checkout holding ``corpus_root``, if any."""
         from axiom_corpus.corpus.resolver import find_repo_root
 
         root = Path(corpus_root)
         repo = find_repo_root(root) if root.exists() else None
-        return cls.load(repo) if repo is not None else cls.empty()
+        return cls.for_checkout(repo) if repo is not None else cls.empty()
 
 
 def _require_mapping(value: object, where: str) -> Mapping[str, Any]:
@@ -233,12 +247,12 @@ def _require_string(value: object, where: str) -> str:
 
 
 def _iso_date(value: object, where: str) -> str:
+    """A date as YYYY-MM-DD, so dates compare correctly as text."""
     text = _require_string(value, where)
     try:
-        date.fromisoformat(text)
+        return date.fromisoformat(text).isoformat()
     except ValueError as exc:
         raise ReleasePolicyError(f"{where} must be an ISO date") from exc
-    return text
 
 
 def _string_list(value: object, where: str) -> list[str]:

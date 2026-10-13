@@ -133,7 +133,7 @@ from axiom_corpus.corpus.r2 import (
 from axiom_corpus.corpus.regulation_completion import (
     build_regulation_completion_report,
 )
-from axiom_corpus.corpus.release_policy import ReleaseGatePolicy
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, ReleasePolicyError
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.resolver import (
@@ -5232,7 +5232,11 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
             release_name=release.name,
             release_scopes=release.scope_keys,
         )
-    policy = ReleaseGatePolicy.for_corpus(args.base)
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
     if policy.source is None:
         print(
             f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "

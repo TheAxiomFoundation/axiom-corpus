@@ -189,13 +189,12 @@ def test_the_us_ca_recovery_targets_resolve_to_what_carries_their_text(
     )
 
 
-def test_a_document_parsed_by_an_earlier_run_keeps_its_own_scope() -> None:
-    """A run limited to one document, or one whose snapshot left recovered-fetched,
-    carries every other document forward unparsed; an earlier parse still counts."""
-    assert batch._own_scope_vouches("doc", {"parsed": True}, set())
-    assert batch._own_scope_vouches("doc", {"parsed": False}, {"doc"})
-    assert not batch._own_scope_vouches("doc", {"parsed": False}, {"other"})
-    assert not batch._own_scope_vouches("doc", {}, set())
+def test_only_a_parsed_result_lets_its_own_scope_vouch() -> None:
+    """The recorded result decides: an earlier parse that a run carries forward
+    is parsed, and a reparse that failed is not."""
+    assert batch._own_scope_vouches({"parsed": True})
+    assert not batch._own_scope_vouches({"parsed": False})
+    assert not batch._own_scope_vouches({})
 
 
 def test_the_index_fetches_sources_as_well_as_provisions(
@@ -212,14 +211,17 @@ def test_the_index_fetches_sources_as_well_as_provisions(
     assert calls == [[tmp_path / "provisions", tmp_path / "sources"]]
 
 
-def test_single_document_reruns_keep_every_earlier_parse(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
-) -> None:
-    """Two runs limited to other documents leave an earlier parse, and its own-scope rows, intact."""
+def _batch_run(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Path:
+    """A three-document plan whose doc-b an earlier run parsed into OWN; returns the report.
+
+    doc-b's snapshot sits in recovered-fetched without its provenance sidecar,
+    so any attempt to reparse it fails.
+    """
     base = tmp_path / "corpus"
     _write(base, OWN, [("us-xx/statute/200", LAW, "section")])
     fetched = tmp_path / "recovered-fetched"
     fetched.mkdir()
+    (fetched / "doc-b.xml").write_text("<law/>", encoding="utf-8")
 
     def document(document_id: str, target: str) -> dict[str, object]:
         return {
@@ -258,6 +260,19 @@ def test_single_document_reruns_keep_every_earlier_parse(
         "REPO": tmp_path,
     }.items():
         monkeypatch.setattr(batch, name, value)
+    monkeypatch.setattr(batch, "REPROCESS", {"doc-b"})
+    return report
+
+
+def test_single_document_reruns_keep_every_earlier_parse(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Two runs limited to other documents leave an earlier parse, and its own-scope rows, intact.
+
+    doc-b is in REPROCESS with a snapshot that cannot parse, so a run that did
+    not honour the one-document limit would record it unparsed.
+    """
+    report = _batch_run(monkeypatch, tmp_path)
     for only in ("doc-a", "doc-c"):
         monkeypatch.setenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", only)
         assert batch.main() == 0
@@ -273,3 +288,36 @@ def test_single_document_reruns_keep_every_earlier_parse(
         assert results["doc-a"]["parsed"] is False
         assert results["doc-a"]["resolution_class"] == "needs-fetch"
         assert results["_summary"]["resolved"] == 1
+
+
+def test_a_failed_reparse_answers_the_same_in_every_run(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """A REPROCESS document whose reparse fails stops vouching for itself at once.
+
+    Its rows from the earlier parse are still in its own scope, but the first
+    failed run and every later one record the same unparsed, unresolved result.
+    """
+    report = _batch_run(monkeypatch, tmp_path)
+    monkeypatch.delenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", raising=False)
+    answers = []
+    for _ in range(2):
+        assert batch.main() == 0
+        result = json.loads(report.read_text())["doc-b"]
+        answers.append(
+            {
+                key: result.get(key)
+                for key in (
+                    "parsed",
+                    "citations_resolved",
+                    "resolved_citations",
+                    "unresolved_citations",
+                    "resolution_class",
+                )
+            }
+        )
+    assert answers[0] == answers[1]
+    assert answers[0]["parsed"] is False
+    assert answers[0]["resolved_citations"] == []
+    assert answers[0]["unresolved_citations"] == ["us-xx/statute/200"]
+    assert answers[0]["resolution_class"] == "unrecoverable-parse"

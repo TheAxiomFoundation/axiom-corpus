@@ -371,9 +371,7 @@ def publish_named_release(
     with _phase(
         progress_stream, "post-readback-deep-validation", scopes=len(release.scopes)
     ) as done:
-        deep_report = validate_release(
-            corpus_root, release, max_issues=200, policy=gate_policy
-        )
+        deep_report = validate_release(corpus_root, release, max_issues=200, policy=gate_policy)
         _require_deep_validation(deep_report, phase="post-readback")
         done.update(errors=deep_report.error_count, warnings=deep_report.warning_count)
 
@@ -436,13 +434,8 @@ def publish_named_release(
 
 
 def _release_gate_policy(root: Path) -> ReleaseGatePolicy:
-    """The checkout's release policy; required wherever corpus locks exist.
-
-    A checkout that keeps corpus bytes in lock files is a production checkout:
-    publishing from one without the withdrawn-scope list or the content
-    baseline must fail rather than validate against an empty policy.
-    """
-    return ReleaseGatePolicy.load(root, required=(root / ".axiom" / "corpus-locks").is_dir())
+    """The checkout's release policy; required wherever corpus locks exist."""
+    return ReleaseGatePolicy.for_checkout(root)
 
 
 def _require_local_row_count(scope: ReleaseScope, expected: int, actual: int) -> None:

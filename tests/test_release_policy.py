@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -30,6 +31,7 @@ from axiom_corpus.corpus.content_quality import (
     FINDING_CODES,
     ContentFinding,
 )
+from axiom_corpus.corpus.corpus_locks import LOCK_ROOT
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.release_policy import (
     ContentBaseline,
@@ -305,12 +307,24 @@ def test_the_registry_parses(tmp_path: Path) -> None:
     assert entry.replace_with == (OTHER,)
 
 
+def test_registry_dates_are_read_as_dates(tmp_path: Path) -> None:
+    """Dates compare as dates: a basic-format date is normalized, not compared as text.
+
+    As text "20261012" sorts after "2026-10-13"; as a date it is the day before.
+    """
+    path = tmp_path / "w.yaml"
+    path.write_text(_registry_text(withdrawn_on="20261012"))
+    [entry] = load_withdrawn_scopes(path).values()
+    assert (entry.withdrawn_on, entry.listed_on) == ("2026-10-12", "2026-10-13")
+
+
 @pytest.mark.parametrize(
     ("overrides", "message"),
     [
         ({"grandfathered_selectors": ["b-cut"]}, "no selector_digests entry"),
         ({"grandfathered_selectors": ["a-cut", "a-cut"]}, "sorted and free of duplicates"),
         ({"withdrawn_on": "27 September"}, "ISO date"),
+        ({"withdrawn_on": "20261014"}, "listed_on precedes withdrawn_on"),
         ({"listed_on": "2026-09-01"}, "listed_on precedes withdrawn_on"),
         ({"replace_with": ["us-xx/statute/2026-07-13-recovery"]}, "itself withdrawn"),
         ({"surprise": 1}, "unsupported fields"),
@@ -409,3 +423,18 @@ def test_a_required_policy_must_have_both_files(tmp_path: Path) -> None:
     assert ReleaseGatePolicy.load(tmp_path) == ReleaseGatePolicy(source=str(tmp_path))
     with pytest.raises(ReleasePolicyError, match="release policy files are missing"):
         ReleaseGatePolicy.load(tmp_path, required=True)
+
+
+def test_a_checkout_with_corpus_locks_requires_its_policy(tmp_path: Path) -> None:
+    """Validation and publication fail closed in a locked checkout without the policy files."""
+    repo = tmp_path / "checkout"
+    (repo / "src" / "axiom_corpus").mkdir(parents=True)
+    (repo / "data" / "corpus").mkdir(parents=True)
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    assert ReleaseGatePolicy.for_checkout(repo) == ReleaseGatePolicy(source=str(repo))
+    assert ReleaseGatePolicy.for_corpus(repo / "data" / "corpus").source == str(repo.resolve())
+    (repo / LOCK_ROOT).mkdir(parents=True)
+    with pytest.raises(ReleasePolicyError, match="release policy files are missing"):
+        ReleaseGatePolicy.for_checkout(repo)
+    with pytest.raises(ReleasePolicyError, match="release policy files are missing"):
+        ReleaseGatePolicy.for_corpus(repo / "data" / "corpus")

@@ -23,7 +23,8 @@ Local validation (`axiom-corpus-ingest validate-release`), the
 enforce both files. `publish_corpus.py` reads the policy from the checkout it
 publishes; `validate-release` reads it from the checkout holding `--base`, and
 says on stderr when `--base` is in no checkout, in which case neither file
-applies. `tests/test_release_policy_repository.py`, in the required
+applies. In a checkout that keeps corpus locks, both files are required: a
+missing one fails validation and publication. `tests/test_release_policy_repository.py`, in the required
 `test (3.14)` job, fails any tracked selector that selects a withdrawn scope
 without an allowance, so a non-compliant cut cannot merge either.
 
@@ -68,7 +69,9 @@ select instead and the run note.
 checks the date each grandfathered selector landed on the first-parent line
 (for a merged pull request, the merge commit's date) against `listed_on`, and
 `test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
-current commit.
+current commit. On a local branch that has merged `main` in, selectors that
+arrived through that merge are dated by the merge, so the test can fail there
+spuriously; it is exact on `main` and in pull-request CI.
 
 The 19 entries:
 
@@ -232,11 +235,12 @@ targets. It now:
   indexes, per
   citation path, the scopes in which the row at that path carries text by the
   rules above (`ScopeContentScanner.text_paths`);
-- counts a document's own planned scope only when the document was parsed, in
-  this run or an earlier one, so leftover rows cannot vouch for themselves. A
-  run limited to one document (`AXIOM_RECOVERY_ONLY_DOCUMENT_ID`), or one whose
-  snapshot has left `recovered-fetched`, carries every earlier parse result
-  forward unchanged;
+- counts a document's own planned scope only when the document's recorded
+  result is parsed, so leftover rows cannot vouch for themselves. A run limited
+  to one document (`AXIOM_RECOVERY_ONLY_DOCUMENT_ID`), or one whose snapshot has
+  left `recovered-fetched`, carries every earlier parse result forward
+  unchanged; a reparse that fails records an unparsed result, and its targets
+  then resolve only through other scopes, in this run and the next alike;
 - reads bodies in the per-document check as well.
 
 On the retained us-ca pages, the ten R&TC targets resolve, as
