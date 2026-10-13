@@ -143,6 +143,26 @@ def test_the_amendment_markup_page_range_is_not_a_page_filter() -> None:
     assert [block.metadata["page_number"] for block in blocks] == [1, 2, 3]
 
 
+@pytest.mark.parametrize("value", [True, 2.5, "3", 0, -1], ids=repr)
+def test_a_malformed_filter_value_still_gets_the_scope_error(value: object) -> None:
+    """Nothing reads the value on this path, so fixing it would not make the filter work.
+
+    The strict integer check (``_positive_int``) belongs to the filtered path.
+    """
+    with pytest.raises(ValueError) as raised:
+        documents_module._extract_pdf_blocks(PDF, extraction={"start_page": value})
+
+    assert str(raised.value) == _expected_message(["start_page"], None)
+
+
+def test_a_bad_ocr_dpi_is_reported_before_the_scope_error() -> None:
+    """``ocr_dpi`` is checked for every PDF extraction, before the segmentation dispatch."""
+    with pytest.raises(ValueError) as raised:
+        documents_module._extract_pdf_blocks(PDF, extraction={"ocr_dpi": "x", "start_page": 2})
+
+    assert str(raised.value) == "ocr_dpi must be a positive integer DPI, not 'x'"
+
+
 # 2. The segmentations that read the filters --------------------------------------
 
 
