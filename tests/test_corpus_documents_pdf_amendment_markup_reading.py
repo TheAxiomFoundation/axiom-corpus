@@ -511,6 +511,32 @@ def test_a_struck_bracket_before_a_zero_width_character_extracts() -> None:
     assert _strip_amendment_markup(text) == "a[-b"
 
 
+def test_a_typographic_underline_that_joins_a_spelled_delimiter_is_refused() -> None:
+    # "A[" is underlined and the "-" after U+200B is plain, so the closer splits
+    # "[-". Listing "A[" as a typographic underline removes its delimiters, and
+    # the text then spells "[-" in one plain stretch.
+    raw = "A[" + ZWSP + "-x"
+    states: list[str | None] = [I, I, None, None, None]
+    page = _RuledPage(_line_case(raw, states))
+
+    assert _layered(page)[0] == "{+A[+}-x"
+    rendered = _render_amendment_markup(raw + "\n", [*states, None], typographic_underlines=("A[",))
+    assert rendered.text == "A[-x"
+    assert rendered.typographic_underlines == {"A[": 1}
+    assert rendered.delimiters_in_text == ("[-",)
+    extraction: dict[str, Any] = {"amendment_markup": {"typographic_underlines": ["A["]}}
+    with pytest.raises(
+        ValueError,
+        match=r"PDF page 7 text contains amendment markup delimiters \['\[-'\] once",
+    ):
+        documents_module._pdf_page_layered_text(
+            page,
+            extraction=extraction,
+            markup=documents_module._pdf_amendment_markup_config(extraction),
+            page_number=7,
+        )
+
+
 def test_a_delimiter_in_the_raw_text_is_refused_as_on_main() -> None:
     # Main refuses any token in the raw text, split by a run boundary or not.
     for states in ([None, None, None, None], [None, I, None, None]):
