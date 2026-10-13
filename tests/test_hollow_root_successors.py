@@ -146,12 +146,13 @@ def test_only_the_documented_rows_disappear() -> None:
     for spec in SPECS:
         before = [row["citation_path"] for row in _rows(spec, spec.original_version)]
         after = [row["citation_path"] for row in _rows(spec, spec.version)]
-        kept = [path for path in before if path in set(after)]
-        assert set(before) - set(after) == {
+        before_paths, after_paths = set(before), set(after)
+        kept = [path for path in before if path in after_paths]
+        assert before_paths - after_paths == {
             path for scope, path in documented if scope == spec.original_key
         }, spec.key
         # The surviving rows keep their order.
-        assert [path for path in after if path in set(before)] == kept, spec.key
+        assert [path for path in after if path in before_paths] == kept, spec.key
 
 
 def _has_text(row: dict[str, Any]) -> bool:
