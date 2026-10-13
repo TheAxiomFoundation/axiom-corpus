@@ -12,7 +12,9 @@ scopes and their replacements are re-scanned.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
+import sys
 import tempfile
 from functools import cache
 from pathlib import Path
@@ -121,17 +123,33 @@ def _git(*args: str) -> str:
     ).stdout
 
 
-MAIN = "origin/main"
+# The ref whose first-parent line is main's history; a checkout whose remote
+# for TheAxiomFoundation/axiom-corpus has another name sets this variable.
+MAIN_REF_VARIABLE = "AXIOM_CORPUS_MAIN_REF"
 
 
 @cache
 def _main_ref() -> str:
-    """``origin/main``, or, in a checkout without it, this branch's own line (strict)."""
+    """Main's ref, required: grandfathering is decided on main's own history.
+
+    A branch's line is no stand-in (a selector added on the branch before an
+    entry would look grandfathered), and a shallow clone has no first listing to
+    find, so both fail with what to fetch.
+    """
+    ref = os.environ.get(MAIN_REF_VARIABLE, "origin/main")
+    if _git("rev-parse", "--is-shallow-repository").strip() == "true":
+        pytest.fail(
+            "this checkout is shallow; grandfathering is decided on main's whole history: "
+            "run `git fetch --unshallow origin` (CI checks out with fetch-depth: 0)"
+        )
     try:
-        _git("rev-parse", "--verify", "--quiet", f"{MAIN}^{{commit}}")
+        _git("rev-parse", "--verify", "--quiet", f"{ref}^{{commit}}")
     except subprocess.CalledProcessError:
-        return "HEAD"
-    return MAIN
+        pytest.fail(
+            f"{ref} is not in this checkout; grandfathering is decided on main's history: "
+            f"run `git fetch origin main`, or set {MAIN_REF_VARIABLE} to main's ref"
+        )
+    return ref
 
 
 @cache
@@ -153,11 +171,15 @@ def _main_changes(path: str) -> list[str]:
 
 
 def _show(commit: str, path: str) -> str | None:
-    """``path`` as of ``commit``, or None where the commit deletes it."""
-    try:
-        return _git("show", f"{commit}:{path}")
-    except subprocess.CalledProcessError:
+    """``path`` as of ``commit``, or None where the commit deletes it.
+
+    Absence is read from the commit's tree; any other failure to read the file
+    (a missing or unreadable object) raises rather than passing for a deletion,
+    which could move an entry's first listing later.
+    """
+    if not _git("ls-tree", "--name-only", commit, "--", path).strip():
         return None
+    return _git("show", f"{commit}:{path}")
 
 
 @cache
@@ -227,6 +249,48 @@ def test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptio
                 f"before {label} was listed; list it under the entry's exceptions with a "
                 "reason, or take the swap"
             )
+
+
+def test_an_unreadable_version_is_an_error_not_a_deletion(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Only a path absent from the commit's tree reads as deleted; a failed read raises."""
+    module = sys.modules[__name__]
+
+    def listed_but_unreadable(*args: str) -> str:
+        if args[0] == "ls-tree":
+            return f"{WITHDRAWN_SCOPES_PATH}\n"
+        raise subprocess.CalledProcessError(128, ["git", *args])
+
+    monkeypatch.setattr(module, "_git", listed_but_unreadable)
+    with pytest.raises(subprocess.CalledProcessError):
+        _show("0" * 40, str(WITHDRAWN_SCOPES_PATH))
+
+    def absent(*args: str) -> str:
+        assert args[0] == "ls-tree", args
+        return ""
+
+    monkeypatch.setattr(module, "_git", absent)
+    assert _show("0" * 40, str(WITHDRAWN_SCOPES_PATH)) is None
+
+
+@pytest.mark.parametrize(
+    ("shallow", "ref_exists", "message"),
+    [("true", True, "shallow"), ("false", False, "is not in this checkout")],
+)
+def test_main_history_is_required(
+    monkeypatch: pytest.MonkeyPatch, shallow: str, ref_exists: bool, message: str
+) -> None:
+    """Without main's whole history the order cannot be decided, so the test fails."""
+
+    def git(*args: str) -> str:
+        if args[:1] == ("rev-parse",) and "--is-shallow-repository" in args:
+            return shallow + "\n"
+        if not ref_exists:
+            raise subprocess.CalledProcessError(1, ["git", *args])
+        return "0" * 40 + "\n"
+
+    monkeypatch.setattr(sys.modules[__name__], "_git", git)
+    with pytest.raises(pytest.fail.Exception, match=message):
+        _main_ref.__wrapped__()
 
 
 def test_no_entry_is_listed_in_the_future() -> None:

@@ -74,8 +74,10 @@ the registry on `main` is parsed as YAML, so an entry counts however it is
 spelled. While an entry is pending (on a branch, or in pull-request CI), any
 selector already on `main` at its pinned digest may be grandfathered, but not
 one the same branch adds or changes; a selector deleted and recreated with other
-contents has a digest that was never on `main` in time. Without an
-`origin/main` ref the test reads the branch's own line, which is stricter.
+contents has a digest that was never on `main` in time. The test needs main's
+whole history: it fails in a shallow clone, or without `origin/main` (set
+`AXIOM_CORPUS_MAIN_REF` where main's ref has another name), and a registry or
+selector version it cannot read fails it rather than counting as deleted.
 `test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
 current commit.
 
