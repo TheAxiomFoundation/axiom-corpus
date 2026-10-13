@@ -21,7 +21,10 @@ documents:
       discovered_via: active_policyengine_parity_review
     extraction:
       segmentation: labeled_sections
-      start_after_pattern: 'Page\s+\|\s+701\.000$'
+      # The chapter's text opens at 701.050 (the DOCX has no 701.000 page header, and no
+      # 701.000 text after its table of contents), so start after the first page header
+      # that names a section; the contents pages are headed 701.xxx.
+      start_after_pattern: 'Page\s+\|\s+701\s*\.\s*\d{3}$'
       section_heading_pattern: '^(?P<label>701\.\d{3}):?\s+(?P<heading>.+)$'
       drop_line_patterns:
         - '^106 CMR:\s*Department of Transitional Assistance'
@@ -51,7 +54,8 @@ documents:
       discovered_via: active_policyengine_parity_review
     extraction:
       segmentation: labeled_sections
-      start_after_pattern: 'Page\s+\|\s+702\.000$'
+      # The DOCX table cell joins its runs as "702 .000", so allow space around the dot.
+      start_after_pattern: 'Page\s+\|\s+702\s*\.\s*\d{3}$'
       section_heading_pattern: '^(?P<label>702\.\d{3}):?\s+(?P<heading>.+)$'
       drop_line_patterns:
         - '^106 CMR:\s*Department of Transitional Assistance'
