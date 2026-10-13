@@ -496,6 +496,16 @@ def test_a_reviewed_empty_root_is_a_notice_by_scan_and_by_baseline(tmp_path: Pat
     # Without the list the root is a finding again.
     plain = validate_release(tmp_path, release, policy=ReleaseGatePolicy())
     assert "hollow_document_root" in {issue.code for issue in plain.issues}
+    # A row listed after the baseline was built is still recorded there, so it
+    # is reported once, as a baselined finding (CI fails until both agree).
+    before = ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: scan_scope(tmp_path, OTHER)})
+    unsynced = validate_release(
+        tmp_path,
+        release,
+        policy=ReleaseGatePolicy(content_baseline=before, reviewed_empty=policy.reviewed_empty),
+    )
+    assert [notice.code for notice in unsynced.notices] == ["baselined_content_findings"]
+    assert "1 hollow_document_root, 1 navigation_body" in unsynced.notices[0].message
 
 
 def test_a_reviewed_row_with_text_below_it_exempts_nothing(tmp_path: Path) -> None:
@@ -522,7 +532,10 @@ def test_comparison_names_stale_and_unlocked_reviewed_rows(tmp_path: Path) -> No
         )
     }
     assert problems == {
-        "us-xx/statute/gone": f"listed in {REVIEWED_EMPTY_PATH} but not locked",
+        "us-xx/statute/gone": (
+            f"listed in {REVIEWED_EMPTY_PATH} but not a locked scope with provisions "
+            "and an inventory"
+        ),
         "us-xx/statute/2026-09-14-chapter": (
             f"1 rows in {REVIEWED_EMPTY_PATH} are not hollow document roots: "
             "us-xx/statute/17014/block-1"
@@ -590,6 +603,8 @@ def test_the_reviewed_empty_list_parses(tmp_path: Path) -> None:
     [
         (_reviewed_text(node={"reason": "boring"}), "reason must be one of"),
         (_reviewed_text(node={"path": "us-yy/statute/toc"}), "citation path under us-xx/statute/"),
+        (_reviewed_text(node={"path": "us-xx/statute/"}), "citation path under us-xx/statute/"),
+        (_reviewed_text(node={"path": "us-xx/statute/toc/"}), "citation path under us-xx/statute/"),
         (_reviewed_text(node={"note": " "}), "note must be a non-empty string"),
         (_reviewed_text(node={"extra": 1}), "fields must be"),
         (_reviewed_text(nodes=[]), "nodes must be a non-empty list"),

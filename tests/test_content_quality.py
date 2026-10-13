@@ -41,7 +41,9 @@ from axiom_corpus.corpus.content_quality import (
     HOLLOW_DOCUMENT_ROOT,
     HTML_SNIFF_BYTES,
     NAVIGATION_BODY,
+    NAVIGATION_COVERAGE,
     NAVIGATION_PREFIXED_BODY,
+    NAVIGATION_RESIDUAL_WORDS,
     PREFIX_TOKENS,
     PREFIXED_MIN_TOKENS,
     VERSION_PICKER_SOURCE,
@@ -204,6 +206,11 @@ def test_figures_are_numbers_dates_amounts_and_rates() -> None:
         assert is_figure(token), token
     for token in ("§", "-", "—", "1a", "Ch.", "\x05\x061", "$", "%"):
         assert not is_figure(token), token
+    # List markers are not figures; the same digits as an amount or a year are.
+    for token in ("(1)", "[12]", "3.", "4)", "(123)"):
+        assert not is_figure(token), token
+    for token in ("(1,200)", "(1234)", "2026.", "3.5", "(13.5)"):
+        assert is_figure(token), token
 
 
 def test_a_table_of_figures_is_text_and_a_stamp_is_not() -> None:
@@ -213,6 +220,26 @@ def test_a_table_of_figures_is_text_and_a_stamp_is_not() -> None:
     assert classify_body(projections, None).substantive
     for body in NOT_TEXT:
         assert not classify_body(body, None).substantive, body
+    # A section that kept only its paragraph numbers has lost its text.
+    assert not classify_body("(1) (2) (3) (4) (5) (6)", None).substantive
+    assert not classify_body("1. 2. 3. 4. 5. 6. 7.", None).substantive
+
+
+def test_figures_are_not_residual_words() -> None:
+    """Numbers beside a menu's links do not count toward the 25-word residual.
+
+    The 30 numbers here are over that residual, and the menu is still
+    navigation because its links still cover 70% of the characters: figures
+    count in the coverage share like any token, but not as left-over words.
+    Counting them would clear navigation blocks that carry dates or counts,
+    such as a CMS index page's "Approval Document" links
+    (docs/ingest-runs/2026-10-13-content-check-v2.md).
+    """
+    page = _page()
+    tokens = [*(" ".join(MENU).split() * 4), *(["12"] * 30)]
+    assert page.coverage(tokens).share >= NAVIGATION_COVERAGE
+    verdict = classify_body(" ".join(tokens), page)
+    assert (verdict.navigation, verdict.substantive) == (True, False)
 
 
 def test_a_root_over_a_figure_table_has_text_and_one_over_date_stamps_does_not(
@@ -239,29 +266,36 @@ def test_a_root_over_a_figure_table_has_text_and_one_over_date_stamps_does_not(
 def test_bodies_just_under_the_navigation_bar_keep_their_text() -> None:
     """Why ``NAVIGATION_COVERAGE`` stays 0.7 (docs/release-gate-policy.md).
 
-    Between 0.65 and 0.7 the locked scopes hold page chrome and law alike: a
-    repeal notice beside its "Return to Table of Contents" link (0.66), and
-    manual prose whose terms are links (0.656). The Maine menu that lost
-    §5219-SS's text sits at 0.692 among them.
+    Between 0.65 and 0.7 the locked scopes hold page chrome and law alike. Two
+    rows from them, with the navigation strings their pages match: a
+    Connecticut repeal notice (RCSA 12-722(a)-2, where "Repealed" is a link
+    text too) and Minnesota manual prose whose terms are one long link. Only
+    the bar keeps them from being navigation: each leaves a handful of words
+    over. The Maine menu that lost §5219-SS's text sits at 0.692 among them.
     """
-    toc = PageNavigation(["Return to Table of Contents"])
-    repealed = classify_body("Repealed February 10, 2004. Return to Table of Contents", toc)
-    assert (repealed.navigation, repealed.substantive) == (False, True)
-    linked_terms = PageNavigation(
-        [
-            "Medicare Savings Programs",
-            "Medical Assistance for People Who Are Age 65 or Older and People Who Are Blind "
-            "or Have a Disability",
-            "Household Composition",
-        ]
-    )
-    prose = classify_body(
-        "The Medicare Savings Programs (MSP) generally follow the standard Medical "
-        "Assistance for People Who Are Age 65 or Older and People Who Are Blind or Have a "
-        "Disability (MA-ABD) Household Composition and Family Size policy.",
-        linked_terms,
-    )
-    assert (prose.navigation, prose.substantive) == (False, True)
+    cases = [
+        (
+            PageNavigation(["Repealed", "Return to Table of Contents"]),
+            "Repealed February 10, 2004. Return to Table of Contents",
+        ),
+        (
+            PageNavigation(
+                [
+                    "Medical Assistance for People Who Are Age 65 or Older and People Who Are "
+                    "Blind or Have a Disability (MA-ABD) Household Composition and Family Size"
+                ]
+            ),
+            "The Medicare Savings Programs (MSP) generally follow the standard Medical "
+            "Assistance for People Who Are Age 65 or Older and People Who Are Blind or Have a "
+            "Disability (MA-ABD) Household Composition and Family Size policy.",
+        ),
+    ]
+    for page, body in cases:
+        coverage = page.coverage(body.split())
+        assert 0.65 <= coverage.share < NAVIGATION_COVERAGE, body
+        assert coverage.residual_words <= NAVIGATION_RESIDUAL_WORDS
+        verdict = classify_body(body, page)
+        assert (verdict.navigation, verdict.substantive) == (False, True)
 
 
 def _write(root: Path, relative: str, payload: str) -> str:

@@ -104,7 +104,7 @@ NAVIGATION_STRING_LETTER_SHARE = 0.75
 # A body with no word with a letter is text when at least this many of its
 # tokens are figures and they are at least this share of its tokens. Date
 # stamps and page numbers on scanned pages hold one to four figures; garbled
-# glyph codes hold at most 15% figures (docs/release-gate-policy.md).
+# glyph codes hold under 15% figures (docs/release-gate-policy.md).
 FIGURE_TEXT_MIN_TOKENS = 5
 FIGURE_TEXT_MIN_SHARE = 0.5
 # Bytes read to decide whether a source is HTML.
@@ -127,6 +127,9 @@ _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
 # currency symbol, percent sign, enclosing parentheses or trailing punctuation
 # ("16", "$1,014.00", ".9666", "10/19--", "(450,000)", "2.5%").
 _FIGURE = re.compile(r"[(\[]?[-+\u2212]?[$\u00a3\u20ac\u00a5]?\.?\d[\d.,/:\u2013-]*%?[)\]]?[.,;:]?")
+# A list marker, not a figure: up to three digits in brackets, or before a
+# period or a closing bracket ("(1)", "[12]", "3.", "4)").
+_ENUMERATOR = re.compile(r"[(\[]\d{1,3}[)\]]|\d{1,3}[.)\]]")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -156,8 +159,12 @@ def _has_letters(token: str) -> bool:
 
 
 def is_figure(token: str) -> bool:
-    """Whether a token is a number, date, amount, rate or range."""
-    return _FIGURE.fullmatch(token) is not None
+    """Whether a token is a number, date, amount, rate or range.
+
+    A list marker ("(1)", "2.") is not one: a body that kept only its
+    paragraph numbers has lost its text.
+    """
+    return _FIGURE.fullmatch(token) is not None and _ENUMERATOR.fullmatch(token) is None
 
 
 def is_figure_table(tokens: list[str]) -> bool:
@@ -166,7 +173,8 @@ def is_figure_table(tokens: list[str]) -> bool:
     At least ``FIGURE_TEXT_MIN_TOKENS`` figures, making up at least
     ``FIGURE_TEXT_MIN_SHARE`` of the tokens. A date stamp ("9/4/13"), a page
     number or a pair of dates is too few; a scanned page's garbled glyph codes,
-    which hold a stray digit here and there, are too thin.
+    which hold a stray digit here and there, are too thin; list markers are not
+    figures at all.
     """
     figures = sum(1 for token in tokens if is_figure(token))
     return figures >= FIGURE_TEXT_MIN_TOKENS and figures >= FIGURE_TEXT_MIN_SHARE * len(tokens)
@@ -333,8 +341,10 @@ def classify_body(
 
     A body is text (``substantive``) when it is not navigation and has a word
     with a letter in it, or, having none, is a table of figures
-    (``is_figure_table``). Navigation, the residual and the opening run count
-    words with letters only, so figures never change those verdicts.
+    (``is_figure_table``). That rule decides substance only: the navigation
+    and prefix verdicts are what they were without it. A figure is a token like
+    any other in the coverage share, and the residual and the opening run count
+    words with letters only.
     """
     tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
     words = sum(1 for token in tokens if _has_letters(token))

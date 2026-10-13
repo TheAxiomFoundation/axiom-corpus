@@ -149,8 +149,11 @@ a body as whole word runs, longest first. Findings:
 A body with no word with a letter is text when it is a table of figures: at
 least 5 of its tokens are figures (numbers, dates, amounts, rates and ranges,
 such as `$1,014.00`, `.9666`, `10/19--` or `($450,000)`), and figures are at
-least half of its tokens. Figures never count toward navigation, the residual
-or the opening run, so they change only whether a row carries text.
+least half of its tokens. A list marker (`(1)`, `[12]`, `3.`) is not a figure:
+a body that kept only its paragraph numbers has lost its text. The rule decides
+only whether a row carries text. In the navigation rules a figure is a token
+like any other: it counts in the coverage share, and, having no letter, not in
+the left-over words or the opening run.
 
 `CONTENT_CHECK_VERSION` (`content-check-v2`) names these rules. Version 1
 counted only words with a letter as text; see [Version 2](#version-2-2026-10-13).
@@ -226,7 +229,7 @@ against the v1 baseline before it was made
   such as `9/4/13`: real text losses. Of the 1,381 locked rows with a digit
   and no letter, date stamps, page numbers and stamps with SPA numbers hold one
   to four figures, and pages whose font maps glyphs to control characters hold
-  stray digits, at most 15% of their tokens. The rule makes 45 rows text, all
+  stray digits, under 15% of their tokens. The rule makes 45 rows text, all
   tables or lists of figures (benefit and rate tables, IRS code lists, tariff
   code annexes, ZIP code lists, revenue projections) and none of them garbled.
   Rows of up to four figures stay what they were in v1, a few real values among
@@ -272,7 +275,7 @@ row has a `reason`:
 | Reason | The official node |
 | --- | --- |
 | `table_of_contents` | is the source's table of contents |
-| `index` | only links to other documents, each its own row in the scope (or, for a link to an unretained document, see below) |
+| `index` | only lists links to separate documents: its sub-items, each its own row in the scope, or documents the scope leaves out on purpose (an archive of superseded memos, desk aids outside the manual) |
 | `cross_reference` | is a "see" or relocation stub whose target is elsewhere |
 | `reserved` | is a reserved item |
 | `deleted` | is a deleted item: only a deletion marker is left |
@@ -280,10 +283,20 @@ row has a `reason`:
 | `empty_in_source` | has an empty content area in the official source |
 
 and a `note` that says what the reviewer saw and where (the retained source, or
-for Illinois, whose scope retains no per-item page, the live page). A page that
-only points to a document the scope does not retain (a linked PDF hard card, a
-Glossary whose sub-pages are not ingested) is a missing source, not an empty
-node, and stays a finding.
+for Illinois, whose scope retains no per-item page, the live page). The test is
+whose text is missing. A node whose own content is a document the scope does
+not retain is a missing source, not an empty node, and stays a finding: a
+manual section whose text is a linked PDF hard card, a Glossary whose entries
+are sub-pages that were not ingested. A node that only indexes separate
+documents has no text of its own, whether the scope holds those documents or
+leaves them out on purpose; if they should be in the corpus, that is a coverage
+gap of the scope, recorded in its run note, not an empty row. The audit drew
+this line; two listed rows index documents outside their scope (North Dakota's
+archived memos, Washington's desk aids).
+
+A withdrawn scope may be listed. Validation never content-checks a withdrawn
+scope, so its entry only keeps the baseline and the CI check in step with the
+audit.
 
 The list never changes what a row is: it removes only `hollow_document_root`
 findings at the listed paths. A listed root's blocks are still checked (a menu

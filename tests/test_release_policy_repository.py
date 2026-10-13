@@ -87,6 +87,7 @@ def test_the_reviewed_rows_are_the_rows_the_hollow_root_audit_found_empty() -> N
     """Each row the audit classified ``expected_empty`` is listed, citing the audit, and no other."""
     assert _policy().reviewed_empty == load_reviewed_empty(REPO_ROOT / REVIEWED_EMPTY_PATH)
     table = (REPO_ROOT / HOLLOW_ROOT_AUDIT).with_suffix(".csv")
+    assert table.is_file(), f"{table.name} is missing: the audit run note (#853) must merge first"
     with table.open(encoding="utf-8", newline="") as handle:
         expected_empty = {
             (row["scope"], row["citation_path"])

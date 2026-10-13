@@ -53,17 +53,20 @@ The 1,381 locked rows with a digit and no letter, by the number of figure tokens
 
 | Figures | Rows | Garbled glyph pages | Tables under v2 | What they are |
 | ---: | ---: | ---: | ---: | --- |
-| 0 | 26 | 17 | 0 | garbled pages and other marks |
-| 1 | 1,135 | 14 | 0 | tariff item numbers, page numbers, date stamps |
-| 2 | 74 | 9 | 0 | pairs of stamp dates, a pair of incomes |
+| 0 | 28 | 19 | 0 | garbled pages, list markers and other marks |
+| 1 | 1,135 | 13 | 0 | tariff item numbers, page numbers, date stamps |
+| 2 | 73 | 9 | 0 | pairs of stamp dates, a pair of incomes |
 | 3 to 4 | 23 | 6 | 0 | stamps with SPA numbers, IRS code lists, a sample card number |
-| 5 to 12 | 99 | 78 | 21 | garbled pages (at most 15% figures); IRS code lists, year lists, revenue projections, a proration table |
-| 25 and more | 24 | 0 | 24 | benefit, rate, income and ZIP code tables; tariff code annexes |
+| 5 to 12 | 98 | 77 | 21 | garbled pages (under 15% figures); IRS code lists, year lists, revenue projections, a table row |
+| 25 and more | 24 | 0 | 24 | benefit, rate, income, proration and ZIP code tables; tariff code annexes |
 
 v2 counts a letterless body as text when at least 5 of its tokens are figures and
-figures are at least half its tokens. 45 rows qualify, all tables or lists of figures,
-none garbled. In the baseline it removes item 67224 and no other finding; the four
-attachments stay hollow.
+figures are at least half its tokens. A list marker (`(1)`, `[12]`, `3.`) is not a
+figure, so a body that kept only its paragraph numbers is not text; no locked row has
+that shape today. 45 rows qualify, all tables or lists of figures, none garbled. In
+the baseline the rule removes item 67224 and no other finding; the four attachments
+stay hollow. The census above is `out/figure-census.json`, made with the shipped
+`is_figure` and `is_figure_table`.
 
 ## Reviewed-empty rows
 

@@ -12,6 +12,7 @@ from typing import Any, NamedTuple
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.content_quality import (
     CONTENT_CHECK_VERSION,
+    HOLLOW_DOCUMENT_ROOT,
     ContentFinding,
     ScopeContentScanner,
     findings_by_code,
@@ -606,14 +607,23 @@ class _ContentPlan:
         self, scope: ReleaseScope, provisions_path: Path, collector: _IssueCollector
     ) -> None:
         self._report_findings(scope, provisions_path, collector)
-        # A baselined scope's reviewed rows are all hollow roots: the CI check
-        # fails on a listed row that is not. A scanned scope counts its own.
-        reviewed = (
-            self.scanner.reviewed_empty_roots()
-            if self.scanner is not None
-            else tuple(sorted(self.reviewed_empty))
-        )
-        if reviewed and (self.scanner is not None or self.baseline is not None):
+        # A scanned scope counts the rows its scan exempted. A baselined scope
+        # is not read again, so its listed rows are taken as hollow roots: the
+        # CI baseline check fails on a listed row that is not one. A row its
+        # entry still records as a finding (listed after the baseline was
+        # built) is reported there, not here.
+        if self.scanner is not None:
+            reviewed = self.scanner.reviewed_empty_roots()
+        elif self.baseline is not None:
+            recorded = {
+                finding.path
+                for finding in self.baseline.findings
+                if finding.code == HOLLOW_DOCUMENT_ROOT
+            }
+            reviewed = tuple(sorted(self.reviewed_empty - recorded))
+        else:
+            reviewed = ()
+        if reviewed:
             collector.add(
                 "notice",
                 "reviewed_empty_document_roots",

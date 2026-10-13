@@ -502,7 +502,11 @@ def load_reviewed_empty(path: str | Path) -> dict[ScopeKey, ReviewedEmptyScope]:
                     f"{node_where}: fields must be {sorted(_REVIEWED_NODE_FIELDS)}"
                 )
             node_path = _require_string(node["path"], f"{node_where}.path")
-            if not node_path.startswith(prefix) or node_path != node_path.strip():
+            if (
+                not node_path.startswith(prefix)
+                or node_path != node_path.strip()
+                or node_path.endswith("/")
+            ):
                 raise ReleasePolicyError(
                     f"{node_where}.path must be a citation path under {prefix}"
                 )
@@ -699,7 +703,11 @@ def compare_content_baseline(
         differences.append(BaselineDifference(scope_label(key), "listed but not locked"))
     for key in sorted(set(reviewed) - locked):
         differences.append(
-            BaselineDifference(scope_label(key), f"listed in {REVIEWED_EMPTY_PATH} but not locked")
+            BaselineDifference(
+                scope_label(key),
+                f"listed in {REVIEWED_EMPTY_PATH} but not a locked scope with provisions "
+                "and an inventory",
+            )
         )
     for key in sorted(set(reviewed) & locked):
         entry = scanned.get(key)
