@@ -1,0 +1,5424 @@
+{
+ "revision": "r2026-10-13-hollow-roots",
+ "code_commit": "0b1ae81b6",
+ "control_commit": "91d69e6d3",
+ "content_check": "content-check-v1 (PR #847 head 88c1435a5)",
+ "totals": {
+  "scopes": 108,
+  "provisions_before": 71845,
+  "provisions_after": 89170,
+  "provisions_added": 17328,
+  "provisions_removed": 3,
+  "provisions_changed": 1582,
+  "body_chars_before": 140951054,
+  "body_chars_after": 146261477,
+  "source_files": 3876,
+  "findings_before": {
+   "hollow_document_root": 96,
+   "navigation_body": 52,
+   "navigation_prefixed_body": 26
+  },
+  "findings_after": {
+   "navigation_body": 10,
+   "navigation_prefixed_body": 14,
+   "hollow_document_root": 3
+  },
+  "fixed_findings": {
+   "retired": 1,
+   "text": 92
+  },
+  "ocr_word_loss": {
+   "changed_pdf_pages": 1014,
+   "pages_gaining_words": 939,
+   "pages_losing_any_token": 273,
+   "pages_losing_any_token_clean_layer": 225,
+   "lost_digit_tokens": 1159,
+   "lost_digit_tokens_clean_layer": 22,
+   "lost_letter_tokens": 1961,
+   "lost_letter_tokens_clean_layer": 1269,
+   "layer_lines_lost_clean_layer": 11,
+   "pages_with_lost_lines_clean_layer": 11,
+   "pages_with_unread_words_clean_layer": 60,
+   "unread_words_clean_layer": 126,
+   "pages_with_legible_unread_words_clean_layer": 19,
+   "legible_unread_words_clean_layer": 32,
+   "scopes_with_legible_unread_words": 12,
+   "changed_pages_clean_layer": 961,
+   "scopes_measured": 68,
+   "old_words": 17267,
+   "new_words": 217393
+  },
+  "new_findings": {}
+ },
+ "scopes": [
+  {
+   "scope": "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "successor": "ca/policy/2026-07-21-ca-rulespec-source-complete-r2026-10-13-hollow-roots",
+   "kind": "ca-composite",
+   "source_files": 197,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": false,
+   "successor_vs_control_identical": true,
+   "provisions": {
+    "before": 461,
+    "after": 460,
+    "added": 0,
+    "removed": [
+     "ca/policy/cra/td1-2026/provincial-territorial-personal-credits/primary-document"
+    ],
+    "changed": 0,
+    "changed_fields": {},
+    "id_rules": {
+     "id:path+version->path+version": 460,
+     "parent_id:path+version->path+version": 195
+    },
+    "order_preserved": true,
+    "body_chars_before": 6094075,
+    "body_chars_after": 6094075
+   },
+   "inventory": {
+    "before": 461,
+    "after": 460
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 10,
+     "navigation_prefixed_body": 14
+    },
+    "after": {
+     "navigation_body": 10,
+     "navigation_prefixed_body": 14
+    },
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ak/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ak/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 8,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 124,
+    "after": 128,
+    "added": 4,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 124,
+     "parent_id:path->path": 116
+    },
+    "order_preserved": true,
+    "body_chars_before": 220090,
+    "body_chars_after": 220967
+   },
+   "inventory": {
+    "before": 124,
+    "after": 128
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 8
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ak/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ak/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 37,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 393,
+    "after": 555,
+    "added": 162,
+    "removed": [],
+    "changed": 6,
+    "changed_fields": {
+     "body": 4,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 393,
+     "parent_id:path->path": 356
+    },
+    "order_preserved": true,
+    "body_chars_before": 555951,
+    "body_chars_after": 596002
+   },
+   "inventory": {
+    "before": 393,
+    "after": 555
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 38
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-al/policy/2026-09-13-chip-state-plan",
+   "successor": "us-al/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 28,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1238,
+    "after": 1270,
+    "added": 32,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1238,
+     "parent_id:path->path": 1210
+    },
+    "order_preserved": true,
+    "body_chars_before": 2813981,
+    "body_chars_after": 2822768
+   },
+   "inventory": {
+    "before": 1238,
+    "after": 1270
+   },
+   "ocr": {
+    "tesseract_runs": 15,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-al/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-al/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 35,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 270,
+    "after": 455,
+    "added": 185,
+    "removed": [],
+    "changed": 7,
+    "changed_fields": {
+     "body": 5,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 270,
+     "parent_id:path->path": 235
+    },
+    "order_preserved": true,
+    "body_chars_before": 1064031,
+    "body_chars_after": 1111789
+   },
+   "inventory": {
+    "before": 270,
+    "after": 455
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 87
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ar/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ar/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 17,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 871,
+    "after": 891,
+    "added": 20,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 871,
+     "parent_id:path->path": 854
+    },
+    "order_preserved": true,
+    "body_chars_before": 1825417,
+    "body_chars_after": 1830387
+   },
+   "inventory": {
+    "before": 871,
+    "after": 891
+   },
+   "ocr": {
+    "tesseract_runs": 25,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ar/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ar/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 33,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 349,
+    "after": 572,
+    "added": 223,
+    "removed": [],
+    "changed": 8,
+    "changed_fields": {
+     "body": 5,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 349,
+     "parent_id:path->path": 316
+    },
+    "order_preserved": true,
+    "body_chars_before": 2645734,
+    "body_chars_after": 2704649
+   },
+   "inventory": {
+    "before": 349,
+    "after": 572
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 24
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-az/policy/2026-09-13-chip-state-plan",
+   "successor": "us-az/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 19,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 429,
+    "after": 450,
+    "added": 21,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 429,
+     "parent_id:path->path": 410
+    },
+    "order_preserved": true,
+    "body_chars_before": 773767,
+    "body_chars_after": 779039
+   },
+   "inventory": {
+    "before": 429,
+    "after": 450
+   },
+   "ocr": {
+    "tesseract_runs": 49,
+    "cache_hits": 3
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-az/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-az/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 45,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 386,
+    "after": 701,
+    "added": 315,
+    "removed": [],
+    "changed": 8,
+    "changed_fields": {
+     "body": 4,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 386,
+     "parent_id:path->path": 341
+    },
+    "order_preserved": true,
+    "body_chars_before": 636777,
+    "body_chars_after": 705683
+   },
+   "inventory": {
+    "before": 386,
+    "after": 701
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 118
+   },
+   "content_findings": {
+    "before": {
+     "navigation_prefixed_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ca/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ca/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 19,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 832,
+    "after": 851,
+    "added": 19,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 832,
+     "parent_id:path->path": 813
+    },
+    "order_preserved": true,
+    "body_chars_before": 1866335,
+    "body_chars_after": 1870413
+   },
+   "inventory": {
+    "before": 832,
+    "after": 851
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ca/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ca/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 82,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1480,
+    "after": 2049,
+    "added": 569,
+    "removed": [],
+    "changed": 35,
+    "changed_fields": {
+     "body": 29,
+     "heading": 6,
+     "metadata": 12
+    },
+    "id_rules": {
+     "id:path->path": 1480,
+     "parent_id:path->path": 1398
+    },
+    "order_preserved": true,
+    "body_chars_before": 2223979,
+    "body_chars_after": 2366728
+   },
+   "inventory": {
+    "before": 1480,
+    "after": 2049
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 237
+   },
+   "content_findings": {
+    "before": {
+     "navigation_prefixed_body": 2
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-co/policy/2026-09-13-chip-state-plan",
+   "successor": "us-co/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 23,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 427,
+    "after": 459,
+    "added": 32,
+    "removed": [],
+    "changed": 5,
+    "changed_fields": {
+     "body": 4,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 427,
+     "parent_id:path->path": 404
+    },
+    "order_preserved": true,
+    "body_chars_before": 830899,
+    "body_chars_after": 839208
+   },
+   "inventory": {
+    "before": 427,
+    "after": 459
+   },
+   "ocr": {
+    "tesseract_runs": 43,
+    "cache_hits": 4
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-co/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-co/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 46,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 387,
+    "after": 926,
+    "added": 539,
+    "removed": [],
+    "changed": 18,
+    "changed_fields": {
+     "body": 12,
+     "heading": 6,
+     "metadata": 12
+    },
+    "id_rules": {
+     "id:path->path": 387,
+     "parent_id:path->path": 341
+    },
+    "order_preserved": true,
+    "body_chars_before": 2621771,
+    "body_chars_after": 2736910
+   },
+   "inventory": {
+    "before": 387,
+    "after": 926
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 20
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ct/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ct/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 16,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 579,
+    "after": 595,
+    "added": 16,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 579,
+     "parent_id:path->path": 563
+    },
+    "order_preserved": true,
+    "body_chars_before": 1272591,
+    "body_chars_after": 1275896
+   },
+   "inventory": {
+    "before": 579,
+    "after": 595
+   },
+   "ocr": {
+    "tesseract_runs": 60,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ct/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ct/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 64,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 868,
+    "after": 1370,
+    "added": 502,
+    "removed": [],
+    "changed": 33,
+    "changed_fields": {
+     "body": 27,
+     "heading": 6,
+     "metadata": 12
+    },
+    "id_rules": {
+     "id:path->path": 868,
+     "parent_id:path->path": 804
+    },
+    "order_preserved": true,
+    "body_chars_before": 1094926,
+    "body_chars_after": 1262188
+   },
+   "inventory": {
+    "before": 868,
+    "after": 1370
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 188
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1,
+     "navigation_prefixed_body": 2
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-dc/policy/2026-09-13-chip-state-plan",
+   "successor": "us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 5,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 61,
+    "after": 63,
+    "added": 2,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 61,
+     "parent_id:path->path": 56
+    },
+    "order_preserved": true,
+    "body_chars_before": 101080,
+    "body_chars_after": 101793
+   },
+   "inventory": {
+    "before": 61,
+    "after": 63
+   },
+   "ocr": {
+    "tesseract_runs": 7,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-dc/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-dc/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 27,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 625,
+    "after": 829,
+    "added": 204,
+    "removed": [],
+    "changed": 14,
+    "changed_fields": {
+     "body": 11,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 625,
+     "parent_id:path->path": 598
+    },
+    "order_preserved": true,
+    "body_chars_before": 921138,
+    "body_chars_after": 982895
+   },
+   "inventory": {
+    "before": 625,
+    "after": 829
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 119
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-de/policy/2026-09-13-chip-state-plan",
+   "successor": "us-de/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 24,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 636,
+    "after": 656,
+    "added": 20,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 636,
+     "parent_id:path->path": 612
+    },
+    "order_preserved": true,
+    "body_chars_before": 1222822,
+    "body_chars_after": 1228043
+   },
+   "inventory": {
+    "before": 636,
+    "after": 656
+   },
+   "ocr": {
+    "tesseract_runs": 37,
+    "cache_hits": 11
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-de/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-de/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 49,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 422,
+    "after": 580,
+    "added": 158,
+    "removed": [],
+    "changed": 5,
+    "changed_fields": {
+     "body": 3,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 422,
+     "parent_id:path->path": 373
+    },
+    "order_preserved": true,
+    "body_chars_before": 563866,
+    "body_chars_after": 601774
+   },
+   "inventory": {
+    "before": 422,
+    "after": 580
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 45
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-fl/policy/2026-09-13-chip-state-plan",
+   "successor": "us-fl/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 18,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 818,
+    "after": 835,
+    "added": 17,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 818,
+     "parent_id:path->path": 800
+    },
+    "order_preserved": true,
+    "body_chars_before": 1795977,
+    "body_chars_after": 1801849
+   },
+   "inventory": {
+    "before": 818,
+    "after": 835
+   },
+   "ocr": {
+    "tesseract_runs": 24,
+    "cache_hits": 10
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-fl/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-fl/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 28,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 334,
+    "after": 557,
+    "added": 223,
+    "removed": [],
+    "changed": 7,
+    "changed_fields": {
+     "body": 4,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 334,
+     "parent_id:path->path": 306
+    },
+    "order_preserved": true,
+    "body_chars_before": 500908,
+    "body_chars_after": 554371
+   },
+   "inventory": {
+    "before": 334,
+    "after": 557
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 111
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ga/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ga/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 26,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 851,
+    "after": 879,
+    "added": 28,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 851,
+     "parent_id:path->path": 825
+    },
+    "order_preserved": true,
+    "body_chars_before": 1447761,
+    "body_chars_after": 1454688
+   },
+   "inventory": {
+    "before": 851,
+    "after": 879
+   },
+   "ocr": {
+    "tesseract_runs": 100,
+    "cache_hits": 5
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ga/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ga/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 31,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 346,
+    "after": 538,
+    "added": 192,
+    "removed": [],
+    "changed": 6,
+    "changed_fields": {
+     "body": 4,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 346,
+     "parent_id:path->path": 315
+    },
+    "order_preserved": true,
+    "body_chars_before": 528059,
+    "body_chars_after": 573217
+   },
+   "inventory": {
+    "before": 346,
+    "after": 538
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 112
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-hi/policy/2026-09-13-chip-state-plan",
+   "successor": "us-hi/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 9,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 150,
+    "after": 157,
+    "added": 7,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 150,
+     "parent_id:path->path": 141
+    },
+    "order_preserved": true,
+    "body_chars_before": 272719,
+    "body_chars_after": 274298
+   },
+   "inventory": {
+    "before": 150,
+    "after": 157
+   },
+   "ocr": {
+    "tesseract_runs": 11,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-hi/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-hi/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 32,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 433,
+    "after": 568,
+    "added": 135,
+    "removed": [],
+    "changed": 8,
+    "changed_fields": {
+     "body": 6,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 433,
+     "parent_id:path->path": 401
+    },
+    "order_preserved": true,
+    "body_chars_before": 527372,
+    "body_chars_after": 561803
+   },
+   "inventory": {
+    "before": 433,
+    "after": 568
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 140
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ia/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ia/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 27,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1196,
+    "after": 1224,
+    "added": 28,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1196,
+     "parent_id:path->path": 1169
+    },
+    "order_preserved": true,
+    "body_chars_before": 2468805,
+    "body_chars_after": 2475085
+   },
+   "inventory": {
+    "before": 1196,
+    "after": 1224
+   },
+   "ocr": {
+    "tesseract_runs": 50,
+    "cache_hits": 8
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ia/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ia/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 55,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 530,
+    "after": 855,
+    "added": 325,
+    "removed": [],
+    "changed": 13,
+    "changed_fields": {
+     "body": 9,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 530,
+     "parent_id:path->path": 475
+    },
+    "order_preserved": true,
+    "body_chars_before": 793880,
+    "body_chars_after": 876820
+   },
+   "inventory": {
+    "before": 530,
+    "after": 855
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 35
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-id/policy/2026-09-13-chip-state-plan",
+   "successor": "us-id/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 23,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1288,
+    "after": 1311,
+    "added": 23,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1288,
+     "parent_id:path->path": 1265
+    },
+    "order_preserved": true,
+    "body_chars_before": 2689194,
+    "body_chars_after": 2695705
+   },
+   "inventory": {
+    "before": 1288,
+    "after": 1311
+   },
+   "ocr": {
+    "tesseract_runs": 30,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-id/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-id/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 37,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 769,
+    "after": 972,
+    "added": 203,
+    "removed": [],
+    "changed": 21,
+    "changed_fields": {
+     "body": 18,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 769,
+     "parent_id:path->path": 732
+    },
+    "order_preserved": true,
+    "body_chars_before": 1357756,
+    "body_chars_after": 1423386
+   },
+   "inventory": {
+    "before": 769,
+    "after": 972
+   },
+   "ocr": {
+    "tesseract_runs": 41,
+    "cache_hits": 49
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-il/policy/2026-09-13-chip-state-plan",
+   "successor": "us-il/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 15,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 873,
+    "after": 890,
+    "added": 17,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 873,
+     "parent_id:path->path": 858
+    },
+    "order_preserved": true,
+    "body_chars_before": 1945193,
+    "body_chars_after": 1950933
+   },
+   "inventory": {
+    "before": 873,
+    "after": 890
+   },
+   "ocr": {
+    "tesseract_runs": 26,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-il/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-il/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 37,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 493,
+    "after": 801,
+    "added": 308,
+    "removed": [],
+    "changed": 30,
+    "changed_fields": {
+     "body": 26,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 493,
+     "parent_id:path->path": 456
+    },
+    "order_preserved": true,
+    "body_chars_before": 752670,
+    "body_chars_after": 852551
+   },
+   "inventory": {
+    "before": 493,
+    "after": 801
+   },
+   "ocr": {
+    "tesseract_runs": 35,
+    "cache_hits": 43
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 2,
+     "navigation_body": 2
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-in/policy/2026-09-13-chip-state-plan",
+   "successor": "us-in/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 22,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1052,
+    "after": 1075,
+    "added": 23,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1052,
+     "parent_id:path->path": 1030
+    },
+    "order_preserved": true,
+    "body_chars_before": 2339078,
+    "body_chars_after": 2344013
+   },
+   "inventory": {
+    "before": 1052,
+    "after": 1075
+   },
+   "ocr": {
+    "tesseract_runs": 27,
+    "cache_hits": 7
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-in/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-in/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 45,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 659,
+    "after": 891,
+    "added": 232,
+    "removed": [],
+    "changed": 60,
+    "changed_fields": {
+     "body": 57,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 659,
+     "parent_id:path->path": 614
+    },
+    "order_preserved": true,
+    "body_chars_before": 1012301,
+    "body_chars_after": 1177692
+   },
+   "inventory": {
+    "before": 659,
+    "after": 891
+   },
+   "ocr": {
+    "tesseract_runs": 62,
+    "cache_hits": 40
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_prefixed_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ks/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ks/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 26,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 526,
+    "after": 555,
+    "added": 29,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 526,
+     "parent_id:path->path": 500
+    },
+    "order_preserved": true,
+    "body_chars_before": 1035730,
+    "body_chars_after": 1042508
+   },
+   "inventory": {
+    "before": 526,
+    "after": 555
+   },
+   "ocr": {
+    "tesseract_runs": 58,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ks/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ks/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 30,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 443,
+    "after": 737,
+    "added": 294,
+    "removed": [],
+    "changed": 17,
+    "changed_fields": {
+     "body": 14,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 443,
+     "parent_id:path->path": 413
+    },
+    "order_preserved": true,
+    "body_chars_before": 580893,
+    "body_chars_after": 650629
+   },
+   "inventory": {
+    "before": 443,
+    "after": 737
+   },
+   "ocr": {
+    "tesseract_runs": 14,
+    "cache_hits": 8
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ky/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ky/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 22,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1101,
+    "after": 1122,
+    "added": 21,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1101,
+     "parent_id:path->path": 1079
+    },
+    "order_preserved": true,
+    "body_chars_before": 2239143,
+    "body_chars_after": 2243234
+   },
+   "inventory": {
+    "before": 1101,
+    "after": 1122
+   },
+   "ocr": {
+    "tesseract_runs": 29,
+    "cache_hits": 23
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ky/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ky/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 27,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 467,
+    "after": 656,
+    "added": 189,
+    "removed": [],
+    "changed": 7,
+    "changed_fields": {
+     "body": 5,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 467,
+     "parent_id:path->path": 440
+    },
+    "order_preserved": true,
+    "body_chars_before": 650716,
+    "body_chars_after": 693013
+   },
+   "inventory": {
+    "before": 467,
+    "after": 656
+   },
+   "ocr": {
+    "tesseract_runs": 103,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-la/policy/2026-09-13-chip-state-plan",
+   "successor": "us-la/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 22,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 411,
+    "after": 437,
+    "added": 26,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 411,
+     "parent_id:path->path": 389
+    },
+    "order_preserved": true,
+    "body_chars_before": 778156,
+    "body_chars_after": 784291
+   },
+   "inventory": {
+    "before": 411,
+    "after": 437
+   },
+   "ocr": {
+    "tesseract_runs": 31,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-la/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-la/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 51,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 570,
+    "after": 1125,
+    "added": 555,
+    "removed": [],
+    "changed": 15,
+    "changed_fields": {
+     "body": 9,
+     "heading": 6,
+     "metadata": 12
+    },
+    "id_rules": {
+     "id:path->path": 570,
+     "parent_id:path->path": 519
+    },
+    "order_preserved": true,
+    "body_chars_before": 698298,
+    "body_chars_after": 845505
+   },
+   "inventory": {
+    "before": 570,
+    "after": 1125
+   },
+   "ocr": {
+    "tesseract_runs": 27,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {
+     "navigation_prefixed_body": 3
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ma/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ma/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 20,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 457,
+    "after": 479,
+    "added": 22,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 457,
+     "parent_id:path->path": 437
+    },
+    "order_preserved": true,
+    "body_chars_before": 876117,
+    "body_chars_after": 881421
+   },
+   "inventory": {
+    "before": 457,
+    "after": 479
+   },
+   "ocr": {
+    "tesseract_runs": 69,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ma/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ma/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 42,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 869,
+    "after": 1343,
+    "added": 474,
+    "removed": [],
+    "changed": 22,
+    "changed_fields": {
+     "body": 17,
+     "heading": 5,
+     "metadata": 10
+    },
+    "id_rules": {
+     "id:path->path": 869,
+     "parent_id:path->path": 827
+    },
+    "order_preserved": true,
+    "body_chars_before": 1967672,
+    "body_chars_after": 2093999
+   },
+   "inventory": {
+    "before": 869,
+    "after": 1343
+   },
+   "ocr": {
+    "tesseract_runs": 467,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ma/regulation/2026-06-27-ma-tafdc-regulations",
+   "successor": "us-ma/regulation/2026-06-27-ma-tafdc-regulations-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 8,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 216,
+    "after": 289,
+    "added": 73,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 216,
+     "parent_id:path->path": 208
+    },
+    "order_preserved": true,
+    "body_chars_before": 431544,
+    "body_chars_after": 534088
+   },
+   "inventory": {
+    "before": 216,
+    "after": 289
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 2
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-md/policy/2026-09-13-chip-state-plan",
+   "successor": "us-md/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 11,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 541,
+    "after": 551,
+    "added": 10,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 541,
+     "parent_id:path->path": 530
+    },
+    "order_preserved": true,
+    "body_chars_before": 1204872,
+    "body_chars_after": 1206419
+   },
+   "inventory": {
+    "before": 541,
+    "after": 551
+   },
+   "ocr": {
+    "tesseract_runs": 6,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-md/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-md/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 74,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 769,
+    "after": 1042,
+    "added": 273,
+    "removed": [],
+    "changed": 45,
+    "changed_fields": {
+     "body": 42,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 769,
+     "parent_id:path->path": 695
+    },
+    "order_preserved": true,
+    "body_chars_before": 1158438,
+    "body_chars_after": 1235750
+   },
+   "inventory": {
+    "before": 769,
+    "after": 1042
+   },
+   "ocr": {
+    "tesseract_runs": 63,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "navigation_prefixed_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-md/statute/2026-07-03-md-tca-statutes",
+   "successor": "us-md/statute/2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 2,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 6,
+    "after": 4,
+    "added": 0,
+    "removed": [
+     "us-md/statute/human-services/5-312/temporary-cash-assistance/block-2",
+     "us-md/statute/human-services/5-316/fip-funding/block-2"
+    ],
+    "changed": 4,
+    "changed_fields": {
+     "body": 2,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 4,
+     "parent_id:path->path": 2
+    },
+    "order_preserved": true,
+    "body_chars_before": 2562,
+    "body_chars_after": 9258
+   },
+   "inventory": {
+    "before": 6,
+    "after": 4
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 2,
+     "navigation_body": 4
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-me/policy/2026-09-13-chip-state-plan",
+   "successor": "us-me/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 20,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 815,
+    "after": 834,
+    "added": 19,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 815,
+     "parent_id:path->path": 795
+    },
+    "order_preserved": true,
+    "body_chars_before": 1763720,
+    "body_chars_after": 1769396
+   },
+   "inventory": {
+    "before": 815,
+    "after": 834
+   },
+   "ocr": {
+    "tesseract_runs": 26,
+    "cache_hits": 18
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-me/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-me/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 56,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 699,
+    "after": 1015,
+    "added": 316,
+    "removed": [],
+    "changed": 22,
+    "changed_fields": {
+     "body": 18,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 699,
+     "parent_id:path->path": 643
+    },
+    "order_preserved": true,
+    "body_chars_before": 1280979,
+    "body_chars_after": 1373306
+   },
+   "inventory": {
+    "before": 699,
+    "after": 1015
+   },
+   "ocr": {
+    "tesseract_runs": 152,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mi/policy/2026-09-13-chip-state-plan",
+   "successor": "us-mi/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 17,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 488,
+    "after": 509,
+    "added": 21,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 488,
+     "parent_id:path->path": 471
+    },
+    "order_preserved": true,
+    "body_chars_before": 949565,
+    "body_chars_after": 955300
+   },
+   "inventory": {
+    "before": 488,
+    "after": 509
+   },
+   "ocr": {
+    "tesseract_runs": 20,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mi/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-mi/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 52,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1032,
+    "after": 1411,
+    "added": 379,
+    "removed": [],
+    "changed": 57,
+    "changed_fields": {
+     "body": 53,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 1032,
+     "parent_id:path->path": 980
+    },
+    "order_preserved": true,
+    "body_chars_before": 2217393,
+    "body_chars_after": 2404067
+   },
+   "inventory": {
+    "before": 1032,
+    "after": 1411
+   },
+   "ocr": {
+    "tesseract_runs": 153,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mn/policy/2026-09-13-chip-state-plan",
+   "successor": "us-mn/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 17,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 331,
+    "after": 346,
+    "added": 15,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 331,
+     "parent_id:path->path": 314
+    },
+    "order_preserved": true,
+    "body_chars_before": 590020,
+    "body_chars_after": 593683
+   },
+   "inventory": {
+    "before": 331,
+    "after": 346
+   },
+   "ocr": {
+    "tesseract_runs": 28,
+    "cache_hits": 39
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mn/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-mn/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 63,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 852,
+    "after": 1283,
+    "added": 431,
+    "removed": [],
+    "changed": 15,
+    "changed_fields": {
+     "body": 10,
+     "heading": 5,
+     "metadata": 10
+    },
+    "id_rules": {
+     "id:path->path": 852,
+     "parent_id:path->path": 789
+    },
+    "order_preserved": true,
+    "body_chars_before": 3788719,
+    "body_chars_after": 3883676
+   },
+   "inventory": {
+    "before": 852,
+    "after": 1283
+   },
+   "ocr": {
+    "tesseract_runs": 322,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mo/policy/2026-09-13-chip-state-plan",
+   "successor": "us-mo/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 20,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 774,
+    "after": 795,
+    "added": 21,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 774,
+     "parent_id:path->path": 754
+    },
+    "order_preserved": true,
+    "body_chars_before": 1545123,
+    "body_chars_after": 1549317
+   },
+   "inventory": {
+    "before": 774,
+    "after": 795
+   },
+   "ocr": {
+    "tesseract_runs": 33,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mo/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-mo/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 38,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 520,
+    "after": 793,
+    "added": 273,
+    "removed": [],
+    "changed": 11,
+    "changed_fields": {
+     "body": 8,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 520,
+     "parent_id:path->path": 482
+    },
+    "order_preserved": true,
+    "body_chars_before": 1452541,
+    "body_chars_after": 1529620
+   },
+   "inventory": {
+    "before": 520,
+    "after": 793
+   },
+   "ocr": {
+    "tesseract_runs": 56,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "navigation_prefixed_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ms/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ms/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 19,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 417,
+    "after": 435,
+    "added": 18,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 417,
+     "parent_id:path->path": 398
+    },
+    "order_preserved": true,
+    "body_chars_before": 834252,
+    "body_chars_after": 839089
+   },
+   "inventory": {
+    "before": 417,
+    "after": 435
+   },
+   "ocr": {
+    "tesseract_runs": 53,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ms/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ms/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 31,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 331,
+    "after": 590,
+    "added": 259,
+    "removed": [],
+    "changed": 6,
+    "changed_fields": {
+     "body": 3,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 331,
+     "parent_id:path->path": 300
+    },
+    "order_preserved": true,
+    "body_chars_before": 819974,
+    "body_chars_after": 890695
+   },
+   "inventory": {
+    "before": 331,
+    "after": 590
+   },
+   "ocr": {
+    "tesseract_runs": 134,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mt/policy/2026-09-13-chip-state-plan",
+   "successor": "us-mt/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 21,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 590,
+    "after": 610,
+    "added": 20,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 590,
+     "parent_id:path->path": 569
+    },
+    "order_preserved": true,
+    "body_chars_before": 1051430,
+    "body_chars_after": 1058708
+   },
+   "inventory": {
+    "before": 590,
+    "after": 610
+   },
+   "ocr": {
+    "tesseract_runs": 33,
+    "cache_hits": 31
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-mt/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-mt/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 71,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 638,
+    "after": 1118,
+    "added": 480,
+    "removed": [],
+    "changed": 18,
+    "changed_fields": {
+     "body": 13,
+     "heading": 5,
+     "metadata": 10
+    },
+    "id_rules": {
+     "id:path->path": 638,
+     "parent_id:path->path": 567
+    },
+    "order_preserved": true,
+    "body_chars_before": 829377,
+    "body_chars_after": 938052
+   },
+   "inventory": {
+    "before": 638,
+    "after": 1118
+   },
+   "ocr": {
+    "tesseract_runs": 41,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nc/policy/2026-09-13-chip-state-plan",
+   "successor": "us-nc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 16,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 979,
+    "after": 999,
+    "added": 20,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 979,
+     "parent_id:path->path": 963
+    },
+    "order_preserved": true,
+    "body_chars_before": 2249930,
+    "body_chars_after": 2255800
+   },
+   "inventory": {
+    "before": 979,
+    "after": 999
+   },
+   "ocr": {
+    "tesseract_runs": 34,
+    "cache_hits": 34
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nc/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-nc/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 44,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 795,
+    "after": 1213,
+    "added": 418,
+    "removed": [],
+    "changed": 116,
+    "changed_fields": {
+     "body": 111,
+     "heading": 5,
+     "metadata": 10
+    },
+    "id_rules": {
+     "id:path->path": 795,
+     "parent_id:path->path": 751
+    },
+    "order_preserved": true,
+    "body_chars_before": 1066694,
+    "body_chars_after": 1223261
+   },
+   "inventory": {
+    "before": 795,
+    "after": 1213
+   },
+   "ocr": {
+    "tesseract_runs": 206,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nd/policy/2026-09-13-chip-state-plan",
+   "successor": "us-nd/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 11,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 324,
+    "after": 334,
+    "added": 10,
+    "removed": [],
+    "changed": 4,
+    "changed_fields": {
+     "body": 3,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 324,
+     "parent_id:path->path": 313
+    },
+    "order_preserved": true,
+    "body_chars_before": 708332,
+    "body_chars_after": 712351
+   },
+   "inventory": {
+    "before": 324,
+    "after": 334
+   },
+   "ocr": {
+    "tesseract_runs": 3,
+    "cache_hits": 5
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nd/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-nd/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 37,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 670,
+    "after": 1029,
+    "added": 359,
+    "removed": [],
+    "changed": 74,
+    "changed_fields": {
+     "body": 70,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 670,
+     "parent_id:path->path": 633
+    },
+    "order_preserved": true,
+    "body_chars_before": 812742,
+    "body_chars_after": 983358
+   },
+   "inventory": {
+    "before": 670,
+    "after": 1029
+   },
+   "ocr": {
+    "tesseract_runs": 76,
+    "cache_hits": 3
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ne/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ne/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 18,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 836,
+    "after": 855,
+    "added": 19,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 836,
+     "parent_id:path->path": 818
+    },
+    "order_preserved": true,
+    "body_chars_before": 1741223,
+    "body_chars_after": 1747961
+   },
+   "inventory": {
+    "before": 836,
+    "after": 855
+   },
+   "ocr": {
+    "tesseract_runs": 22,
+    "cache_hits": 9
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ne/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ne/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 108,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 868,
+    "after": 1144,
+    "added": 276,
+    "removed": [],
+    "changed": 29,
+    "changed_fields": {
+     "body": 26,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 868,
+     "parent_id:path->path": 760
+    },
+    "order_preserved": true,
+    "body_chars_before": 1159090,
+    "body_chars_after": 1243625
+   },
+   "inventory": {
+    "before": 868,
+    "after": 1144
+   },
+   "ocr": {
+    "tesseract_runs": 153,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nh/policy/2026-09-13-chip-state-plan",
+   "successor": "us-nh/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 9,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 231,
+    "after": 236,
+    "added": 5,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 231,
+     "parent_id:path->path": 222
+    },
+    "order_preserved": true,
+    "body_chars_before": 453406,
+    "body_chars_after": 454849
+   },
+   "inventory": {
+    "before": 231,
+    "after": 236
+   },
+   "ocr": {
+    "tesseract_runs": 6,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nh/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-nh/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 48,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 898,
+    "after": 1257,
+    "added": 359,
+    "removed": [],
+    "changed": 28,
+    "changed_fields": {
+     "body": 24,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 898,
+     "parent_id:path->path": 850
+    },
+    "order_preserved": true,
+    "body_chars_before": 1581681,
+    "body_chars_after": 1670497
+   },
+   "inventory": {
+    "before": 898,
+    "after": 1257
+   },
+   "ocr": {
+    "tesseract_runs": 255,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nj/policy/2026-09-13-chip-state-plan",
+   "successor": "us-nj/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 22,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 784,
+    "after": 807,
+    "added": 23,
+    "removed": [],
+    "changed": 16,
+    "changed_fields": {
+     "body": 15,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 784,
+     "parent_id:path->path": 762
+    },
+    "order_preserved": true,
+    "body_chars_before": 1445566,
+    "body_chars_after": 1454650
+   },
+   "inventory": {
+    "before": 784,
+    "after": 807
+   },
+   "ocr": {
+    "tesseract_runs": 308,
+    "cache_hits": 21
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nj/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-nj/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 48,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 625,
+    "after": 902,
+    "added": 277,
+    "removed": [],
+    "changed": 16,
+    "changed_fields": {
+     "body": 13,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 625,
+     "parent_id:path->path": 577
+    },
+    "order_preserved": true,
+    "body_chars_before": 863898,
+    "body_chars_after": 929892
+   },
+   "inventory": {
+    "before": 625,
+    "after": 902
+   },
+   "ocr": {
+    "tesseract_runs": 194,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nm/policy/2026-09-13-chip-state-plan",
+   "successor": "us-nm/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 6,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 179,
+    "after": 182,
+    "added": 3,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 179,
+     "parent_id:path->path": 173
+    },
+    "order_preserved": true,
+    "body_chars_before": 349894,
+    "body_chars_after": 351135
+   },
+   "inventory": {
+    "before": 179,
+    "after": 182
+   },
+   "ocr": {
+    "tesseract_runs": 7,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nm/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-nm/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 28,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 453,
+    "after": 632,
+    "added": 179,
+    "removed": [],
+    "changed": 5,
+    "changed_fields": {
+     "body": 3,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 453,
+     "parent_id:path->path": 425
+    },
+    "order_preserved": true,
+    "body_chars_before": 613675,
+    "body_chars_after": 656185
+   },
+   "inventory": {
+    "before": 453,
+    "after": 632
+   },
+   "ocr": {
+    "tesseract_runs": 37,
+    "cache_hits": 3
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nv/policy/2026-09-13-chip-state-plan",
+   "successor": "us-nv/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 22,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 504,
+    "after": 525,
+    "added": 21,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 504,
+     "parent_id:path->path": 482
+    },
+    "order_preserved": true,
+    "body_chars_before": 1000569,
+    "body_chars_after": 1006034
+   },
+   "inventory": {
+    "before": 504,
+    "after": 525
+   },
+   "ocr": {
+    "tesseract_runs": 56,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-nv/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-nv/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 44,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 697,
+    "after": 989,
+    "added": 292,
+    "removed": [],
+    "changed": 21,
+    "changed_fields": {
+     "body": 18,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 697,
+     "parent_id:path->path": 653
+    },
+    "order_preserved": true,
+    "body_chars_before": 1234142,
+    "body_chars_after": 1316446
+   },
+   "inventory": {
+    "before": 697,
+    "after": 989
+   },
+   "ocr": {
+    "tesseract_runs": 90,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "navigation_prefixed_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ny/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ny/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 36,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1245,
+    "after": 1278,
+    "added": 33,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1245,
+     "parent_id:path->path": 1209
+    },
+    "order_preserved": true,
+    "body_chars_before": 2522522,
+    "body_chars_after": 2529669
+   },
+   "inventory": {
+    "before": 1245,
+    "after": 1278
+   },
+   "ocr": {
+    "tesseract_runs": 88,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ny/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ny/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 55,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 627,
+    "after": 1473,
+    "added": 846,
+    "removed": [],
+    "changed": 129,
+    "changed_fields": {
+     "body": 120,
+     "heading": 9,
+     "metadata": 18
+    },
+    "id_rules": {
+     "id:path->path": 627,
+     "parent_id:path->path": 572
+    },
+    "order_preserved": true,
+    "body_chars_before": 1092727,
+    "body_chars_after": 1486824
+   },
+   "inventory": {
+    "before": 627,
+    "after": 1473
+   },
+   "ocr": {
+    "tesseract_runs": 226,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 3,
+     "navigation_body": 3
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ny/regulation/2026-07-17-ny-snap-regulations",
+   "successor": "us-ny/regulation/2026-07-17-ny-snap-regulations-r2026-10-13-hollow-roots",
+   "kind": "nycrr",
+   "source_files": 46,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1678,
+    "after": 1678,
+    "added": 0,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 2
+    },
+    "id_rules": {
+     "id:path->path": 1678,
+     "parent_id:path->path": 1676
+    },
+    "order_preserved": true,
+    "body_chars_before": 1387850,
+    "body_chars_after": 1388353
+   },
+   "inventory": {
+    "before": 1678,
+    "after": 1678
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 3
+    },
+    "after": {
+     "hollow_document_root": 1
+    },
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "successor": "us-ny/regulation/2026-09-14-income-tax-regulations-r2026-10-13-hollow-roots",
+   "kind": "nycrr",
+   "source_files": 318,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 2015,
+    "after": 2015,
+    "added": 0,
+    "removed": [],
+    "changed": 44,
+    "changed_fields": {
+     "body": 44
+    },
+    "id_rules": {
+     "id:path->path": 2015,
+     "parent_id:path->path": 1971
+    },
+    "order_preserved": true,
+    "body_chars_before": 2216335,
+    "body_chars_after": 2223560
+   },
+   "inventory": {
+    "before": 2015,
+    "after": 2015
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 46
+    },
+    "after": {
+     "hollow_document_root": 2
+    },
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-oh/policy/2026-09-13-chip-state-plan",
+   "successor": "us-oh/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 9,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 414,
+    "after": 421,
+    "added": 7,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 414,
+     "parent_id:path->path": 405
+    },
+    "order_preserved": true,
+    "body_chars_before": 886300,
+    "body_chars_after": 887732
+   },
+   "inventory": {
+    "before": 414,
+    "after": 421
+   },
+   "ocr": {
+    "tesseract_runs": 5,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-oh/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-oh/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 121,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1512,
+    "after": 2018,
+    "added": 506,
+    "removed": [],
+    "changed": 109,
+    "changed_fields": {
+     "body": 103,
+     "heading": 6,
+     "metadata": 12
+    },
+    "id_rules": {
+     "id:path->path": 1512,
+     "parent_id:path->path": 1391
+    },
+    "order_preserved": true,
+    "body_chars_before": 2620755,
+    "body_chars_after": 2920817
+   },
+   "inventory": {
+    "before": 1512,
+    "after": 2018
+   },
+   "ocr": {
+    "tesseract_runs": 136,
+    "cache_hits": 366
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 3
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ok/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ok/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 15,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 484,
+    "after": 501,
+    "added": 17,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 484,
+     "parent_id:path->path": 469
+    },
+    "order_preserved": true,
+    "body_chars_before": 1003201,
+    "body_chars_after": 1007097
+   },
+   "inventory": {
+    "before": 484,
+    "after": 501
+   },
+   "ocr": {
+    "tesseract_runs": 39,
+    "cache_hits": 4
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ok/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ok/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 39,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 472,
+    "after": 806,
+    "added": 334,
+    "removed": [],
+    "changed": 13,
+    "changed_fields": {
+     "body": 9,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 472,
+     "parent_id:path->path": 433
+    },
+    "order_preserved": true,
+    "body_chars_before": 462072,
+    "body_chars_after": 554746
+   },
+   "inventory": {
+    "before": 472,
+    "after": 806
+   },
+   "ocr": {
+    "tesseract_runs": 29,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-or/policy/2026-09-13-chip-state-plan",
+   "successor": "us-or/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 30,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1367,
+    "after": 1394,
+    "added": 27,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1367,
+     "parent_id:path->path": 1337
+    },
+    "order_preserved": true,
+    "body_chars_before": 2849296,
+    "body_chars_after": 2855342
+   },
+   "inventory": {
+    "before": 1367,
+    "after": 1394
+   },
+   "ocr": {
+    "tesseract_runs": 32,
+    "cache_hits": 23
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-or/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-or/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 25,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 270,
+    "after": 554,
+    "added": 284,
+    "removed": [],
+    "changed": 10,
+    "changed_fields": {
+     "body": 7,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 270,
+     "parent_id:path->path": 245
+    },
+    "order_preserved": true,
+    "body_chars_before": 711249,
+    "body_chars_after": 784995
+   },
+   "inventory": {
+    "before": 270,
+    "after": 554
+   },
+   "ocr": {
+    "tesseract_runs": 13,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-pa/policy/2026-09-13-chip-state-plan",
+   "successor": "us-pa/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 15,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 912,
+    "after": 932,
+    "added": 20,
+    "removed": [],
+    "changed": 4,
+    "changed_fields": {
+     "body": 3,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 912,
+     "parent_id:path->path": 897
+    },
+    "order_preserved": true,
+    "body_chars_before": 1902804,
+    "body_chars_after": 1909585
+   },
+   "inventory": {
+    "before": 912,
+    "after": 932
+   },
+   "ocr": {
+    "tesseract_runs": 20,
+    "cache_hits": 28
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-pa/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-pa/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 52,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 535,
+    "after": 1039,
+    "added": 504,
+    "removed": [],
+    "changed": 27,
+    "changed_fields": {
+     "body": 21,
+     "heading": 6,
+     "metadata": 12
+    },
+    "id_rules": {
+     "id:path->path": 535,
+     "parent_id:path->path": 483
+    },
+    "order_preserved": true,
+    "body_chars_before": 843240,
+    "body_chars_after": 978460
+   },
+   "inventory": {
+    "before": 535,
+    "after": 1039
+   },
+   "ocr": {
+    "tesseract_runs": 244,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ri/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ri/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 19,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 573,
+    "after": 592,
+    "added": 19,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 573,
+     "parent_id:path->path": 554
+    },
+    "order_preserved": true,
+    "body_chars_before": 968962,
+    "body_chars_after": 973132
+   },
+   "inventory": {
+    "before": 573,
+    "after": 592
+   },
+   "ocr": {
+    "tesseract_runs": 34,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ri/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ri/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 38,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 588,
+    "after": 797,
+    "added": 209,
+    "removed": [],
+    "changed": 15,
+    "changed_fields": {
+     "body": 12,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 588,
+     "parent_id:path->path": 550
+    },
+    "order_preserved": true,
+    "body_chars_before": 692465,
+    "body_chars_after": 744598
+   },
+   "inventory": {
+    "before": 588,
+    "after": 797
+   },
+   "ocr": {
+    "tesseract_runs": 59,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-sc/policy/2026-09-13-chip-state-plan",
+   "successor": "us-sc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 8,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 130,
+    "after": 134,
+    "added": 4,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 130,
+     "parent_id:path->path": 122
+    },
+    "order_preserved": true,
+    "body_chars_before": 250359,
+    "body_chars_after": 251390
+   },
+   "inventory": {
+    "before": 130,
+    "after": 134
+   },
+   "ocr": {
+    "tesseract_runs": 6,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-sc/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-sc/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 33,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 278,
+    "after": 575,
+    "added": 297,
+    "removed": [],
+    "changed": 7,
+    "changed_fields": {
+     "body": 4,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 278,
+     "parent_id:path->path": 245
+    },
+    "order_preserved": true,
+    "body_chars_before": 429649,
+    "body_chars_after": 500495
+   },
+   "inventory": {
+    "before": 278,
+    "after": 575
+   },
+   "ocr": {
+    "tesseract_runs": 106,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-sd/policy/2026-09-13-chip-state-plan",
+   "successor": "us-sd/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 20,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 678,
+    "after": 695,
+    "added": 17,
+    "removed": [],
+    "changed": 7,
+    "changed_fields": {
+     "body": 6,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 678,
+     "parent_id:path->path": 658
+    },
+    "order_preserved": true,
+    "body_chars_before": 1414824,
+    "body_chars_after": 1422770
+   },
+   "inventory": {
+    "before": 678,
+    "after": 695
+   },
+   "ocr": {
+    "tesseract_runs": 23,
+    "cache_hits": 45
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-sd/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-sd/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 27,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 416,
+    "after": 590,
+    "added": 174,
+    "removed": [],
+    "changed": 7,
+    "changed_fields": {
+     "body": 5,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 416,
+     "parent_id:path->path": 389
+    },
+    "order_preserved": true,
+    "body_chars_before": 641823,
+    "body_chars_after": 681190
+   },
+   "inventory": {
+    "before": 416,
+    "after": 590
+   },
+   "ocr": {
+    "tesseract_runs": 8,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-tn/policy/2026-09-13-chip-state-plan",
+   "successor": "us-tn/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 19,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 839,
+    "after": 862,
+    "added": 23,
+    "removed": [],
+    "changed": 5,
+    "changed_fields": {
+     "body": 4,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 839,
+     "parent_id:path->path": 820
+    },
+    "order_preserved": true,
+    "body_chars_before": 1596056,
+    "body_chars_after": 1604144
+   },
+   "inventory": {
+    "before": 839,
+    "after": 862
+   },
+   "ocr": {
+    "tesseract_runs": 13,
+    "cache_hits": 20
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-tn/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-tn/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 23,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 467,
+    "after": 557,
+    "added": 90,
+    "removed": [],
+    "changed": 66,
+    "changed_fields": {
+     "body": 65,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 467,
+     "parent_id:path->path": 444
+    },
+    "order_preserved": true,
+    "body_chars_before": 467768,
+    "body_chars_after": 570725
+   },
+   "inventory": {
+    "before": 467,
+    "after": 557
+   },
+   "ocr": {
+    "tesseract_runs": 102,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-tx/policy/2026-09-13-chip-state-plan",
+   "successor": "us-tx/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 21,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 844,
+    "after": 866,
+    "added": 22,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 844,
+     "parent_id:path->path": 823
+    },
+    "order_preserved": true,
+    "body_chars_before": 1484344,
+    "body_chars_after": 1489773
+   },
+   "inventory": {
+    "before": 844,
+    "after": 866
+   },
+   "ocr": {
+    "tesseract_runs": 18,
+    "cache_hits": 4
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-tx/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-tx/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 35,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 351,
+    "after": 990,
+    "added": 639,
+    "removed": [],
+    "changed": 17,
+    "changed_fields": {
+     "body": 10,
+     "heading": 7,
+     "metadata": 14
+    },
+    "id_rules": {
+     "id:path->path": 351,
+     "parent_id:path->path": 316
+    },
+    "order_preserved": true,
+    "body_chars_before": 914356,
+    "body_chars_after": 1057847
+   },
+   "inventory": {
+    "before": 351,
+    "after": 990
+   },
+   "ocr": {
+    "tesseract_runs": 17,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ut/policy/2026-09-13-chip-state-plan",
+   "successor": "us-ut/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 23,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 340,
+    "after": 369,
+    "added": 29,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 340,
+     "parent_id:path->path": 317
+    },
+    "order_preserved": true,
+    "body_chars_before": 480647,
+    "body_chars_after": 487931
+   },
+   "inventory": {
+    "before": 340,
+    "after": 369
+   },
+   "ocr": {
+    "tesseract_runs": 25,
+    "cache_hits": 12
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-ut/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-ut/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 36,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 558,
+    "after": 883,
+    "added": 325,
+    "removed": [],
+    "changed": 47,
+    "changed_fields": {
+     "body": 43,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 558,
+     "parent_id:path->path": 522
+    },
+    "order_preserved": true,
+    "body_chars_before": 732063,
+    "body_chars_after": 799369
+   },
+   "inventory": {
+    "before": 558,
+    "after": 883
+   },
+   "ocr": {
+    "tesseract_runs": 57,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-va/policy/2026-09-13-chip-state-plan",
+   "successor": "us-va/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 23,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 919,
+    "after": 946,
+    "added": 27,
+    "removed": [],
+    "changed": 3,
+    "changed_fields": {
+     "body": 2,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 919,
+     "parent_id:path->path": 896
+    },
+    "order_preserved": true,
+    "body_chars_before": 1915233,
+    "body_chars_after": 1922286
+   },
+   "inventory": {
+    "before": 919,
+    "after": 946
+   },
+   "ocr": {
+    "tesseract_runs": 49,
+    "cache_hits": 8
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-va/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-va/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 33,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 652,
+    "after": 916,
+    "added": 264,
+    "removed": [],
+    "changed": 19,
+    "changed_fields": {
+     "body": 16,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 652,
+     "parent_id:path->path": 619
+    },
+    "order_preserved": true,
+    "body_chars_before": 803446,
+    "body_chars_after": 876586
+   },
+   "inventory": {
+    "before": 652,
+    "after": 916
+   },
+   "ocr": {
+    "tesseract_runs": 84,
+    "cache_hits": 25
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-vt/policy/2026-09-13-chip-state-plan",
+   "successor": "us-vt/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 13,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 361,
+    "after": 368,
+    "added": 7,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 361,
+     "parent_id:path->path": 348
+    },
+    "order_preserved": true,
+    "body_chars_before": 739839,
+    "body_chars_after": 741494
+   },
+   "inventory": {
+    "before": 361,
+    "after": 368
+   },
+   "ocr": {
+    "tesseract_runs": 7,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-vt/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-vt/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 40,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 756,
+    "after": 968,
+    "added": 212,
+    "removed": [],
+    "changed": 12,
+    "changed_fields": {
+     "body": 9,
+     "heading": 3,
+     "metadata": 6
+    },
+    "id_rules": {
+     "id:path->path": 756,
+     "parent_id:path->path": 716
+    },
+    "order_preserved": true,
+    "body_chars_before": 966866,
+    "body_chars_after": 1022899
+   },
+   "inventory": {
+    "before": 756,
+    "after": 968
+   },
+   "ocr": {
+    "tesseract_runs": 151,
+    "cache_hits": 22
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wa/policy/2026-09-13-chip-state-plan",
+   "successor": "us-wa/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 20,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 1318,
+    "after": 1336,
+    "added": 18,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 1318,
+     "parent_id:path->path": 1298
+    },
+    "order_preserved": true,
+    "body_chars_before": 2167470,
+    "body_chars_after": 2171446
+   },
+   "inventory": {
+    "before": 1318,
+    "after": 1336
+   },
+   "ocr": {
+    "tesseract_runs": 30,
+    "cache_hits": 6
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wa/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-wa/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 48,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 680,
+    "after": 1169,
+    "added": 489,
+    "removed": [],
+    "changed": 14,
+    "changed_fields": {
+     "body": 9,
+     "heading": 5,
+     "metadata": 10
+    },
+    "id_rules": {
+     "id:path->path": 680,
+     "parent_id:path->path": 632
+    },
+    "order_preserved": true,
+    "body_chars_before": 1039480,
+    "body_chars_after": 1156553
+   },
+   "inventory": {
+    "before": 680,
+    "after": 1169
+   },
+   "ocr": {
+    "tesseract_runs": 1,
+    "cache_hits": 17
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wi/policy/2026-09-13-chip-state-plan",
+   "successor": "us-wi/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 17,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 987,
+    "after": 1010,
+    "added": 23,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 987,
+     "parent_id:path->path": 970
+    },
+    "order_preserved": true,
+    "body_chars_before": 2059482,
+    "body_chars_after": 2064938
+   },
+   "inventory": {
+    "before": 987,
+    "after": 1010
+   },
+   "ocr": {
+    "tesseract_runs": 28,
+    "cache_hits": 1
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wi/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-wi/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 67,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 983,
+    "after": 1282,
+    "added": 299,
+    "removed": [],
+    "changed": 21,
+    "changed_fields": {
+     "body": 17,
+     "heading": 4,
+     "metadata": 8
+    },
+    "id_rules": {
+     "id:path->path": 983,
+     "parent_id:path->path": 916
+    },
+    "order_preserved": true,
+    "body_chars_before": 2939869,
+    "body_chars_after": 3014134
+   },
+   "inventory": {
+    "before": 983,
+    "after": 1282
+   },
+   "ocr": {
+    "tesseract_runs": 107,
+    "cache_hits": 2
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wv/policy/2026-09-13-chip-state-plan",
+   "successor": "us-wv/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 19,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 574,
+    "after": 594,
+    "added": 20,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 574,
+     "parent_id:path->path": 555
+    },
+    "order_preserved": true,
+    "body_chars_before": 1174710,
+    "body_chars_after": 1179372
+   },
+   "inventory": {
+    "before": 574,
+    "after": 594
+   },
+   "ocr": {
+    "tesseract_runs": 49,
+    "cache_hits": 24
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wv/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-wv/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 23,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 905,
+    "after": 1031,
+    "added": 126,
+    "removed": [],
+    "changed": 29,
+    "changed_fields": {
+     "body": 27,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 905,
+     "parent_id:path->path": 882
+    },
+    "order_preserved": true,
+    "body_chars_before": 1138328,
+    "body_chars_after": 1174567
+   },
+   "inventory": {
+    "before": 905,
+    "after": 1031
+   },
+   "ocr": {
+    "tesseract_runs": 88,
+    "cache_hits": 5
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wy/policy/2026-09-13-chip-state-plan",
+   "successor": "us-wy/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 10,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 173,
+    "after": 183,
+    "added": 10,
+    "removed": [],
+    "changed": 2,
+    "changed_fields": {
+     "body": 1,
+     "heading": 1,
+     "metadata": 2
+    },
+    "id_rules": {
+     "id:path->path": 173,
+     "parent_id:path->path": 163
+    },
+    "order_preserved": true,
+    "body_chars_before": 315274,
+    "body_chars_after": 319072
+   },
+   "inventory": {
+    "before": 173,
+    "after": 183
+   },
+   "ocr": {
+    "tesseract_runs": 8,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 1,
+     "navigation_body": 1
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us-wy/policy/2026-09-13-medicaid-state-plan",
+   "successor": "us-wy/policy/2026-09-13-medicaid-state-plan-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 24,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 261,
+    "after": 405,
+    "added": 144,
+    "removed": [],
+    "changed": 5,
+    "changed_fields": {
+     "body": 3,
+     "heading": 2,
+     "metadata": 4
+    },
+    "id_rules": {
+     "id:path->path": 261,
+     "parent_id:path->path": 237
+    },
+    "order_preserved": true,
+    "body_chars_before": 462702,
+    "body_chars_after": 492907
+   },
+   "inventory": {
+    "before": 261,
+    "after": 405
+   },
+   "ocr": {
+    "tesseract_runs": 26,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {},
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  },
+  {
+   "scope": "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "successor": "us/policy/2026-07-05-cms-chip-fcep-spa-r2026-10-13-hollow-roots",
+   "kind": "official-documents",
+   "source_files": 76,
+   "sources_identical": true,
+   "coverage_complete": true,
+   "control_reproduces_original": true,
+   "control_vs_original_identical": true,
+   "successor_vs_control_identical": false,
+   "provisions": {
+    "before": 2347,
+    "after": 2347,
+    "added": 0,
+    "removed": [],
+    "changed": 36,
+    "changed_fields": {
+     "body": 36
+    },
+    "id_rules": {
+     "id:path->path": 2347,
+     "parent_id:path->path": 2271
+    },
+    "order_preserved": true,
+    "body_chars_before": 4847709,
+    "body_chars_after": 4855993
+   },
+   "inventory": {
+    "before": 2347,
+    "after": 2347
+   },
+   "ocr": {
+    "tesseract_runs": 0,
+    "cache_hits": 0
+   },
+   "content_findings": {
+    "before": {
+     "hollow_document_root": 20,
+     "navigation_body": 20
+    },
+    "after": {},
+    "before_matches_847_baseline": true
+   }
+  }
+ ],
+ "expected_removed": [
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "ca/policy/cra/td1-2026/provincial-territorial-personal-credits/primary-document"
+  ],
+  [
+   "us-md/statute/2026-07-03-md-tca-statutes",
+   "us-md/statute/human-services/5-312/temporary-cash-assistance/block-2"
+  ],
+  [
+   "us-md/statute/2026-07-03-md-tca-statutes",
+   "us-md/statute/human-services/5-316/fip-funding/block-2"
+  ]
+ ],
+ "fixed_findings": [
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "ca/policy/cra/td1-2026/provincial-territorial-personal-credits/primary-document",
+   "retired"
+  ],
+  [
+   "us-ak/policy/2026-09-13-chip-state-plan",
+   "us-ak/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us-ct/policy/2026-09-13-medicaid-state-plan",
+   "us-ct/policy/cms/medicaid-state-plan/spa-index/p06",
+   "text"
+  ],
+  [
+   "us-dc/policy/2026-09-13-chip-state-plan",
+   "us-dc/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us-dc/policy/2026-09-13-medicaid-state-plan",
+   "us-dc/policy/cms/medicaid-state-plan/spa-index/p03",
+   "text"
+  ],
+  [
+   "us-il/policy/2026-09-13-medicaid-state-plan",
+   "us-il/policy/cms/medicaid-state-plan/spa-index/p02",
+   "text"
+  ],
+  [
+   "us-il/policy/2026-09-13-medicaid-state-plan",
+   "us-il/policy/cms/medicaid-state-plan/spa-index/p04",
+   "text"
+  ],
+  [
+   "us-in/policy/2026-09-13-medicaid-state-plan",
+   "us-in/policy/cms/medicaid-state-plan/spa/in-12-014/attachment",
+   "text"
+  ],
+  [
+   "us-ma/regulation/2026-06-27-ma-tafdc-regulations",
+   "us-ma/regulation/dta/106-cmr/701",
+   "text"
+  ],
+  [
+   "us-ma/regulation/2026-06-27-ma-tafdc-regulations",
+   "us-ma/regulation/dta/106-cmr/702",
+   "text"
+  ],
+  [
+   "us-md/statute/2026-07-03-md-tca-statutes",
+   "us-md/statute/human-services/5-312/temporary-cash-assistance",
+   "text"
+  ],
+  [
+   "us-md/statute/2026-07-03-md-tca-statutes",
+   "us-md/statute/human-services/5-316/fip-funding",
+   "text"
+  ],
+  [
+   "us-mt/policy/2026-09-13-medicaid-state-plan",
+   "us-mt/policy/cms/medicaid-state-plan/spa-index/p02",
+   "text"
+  ],
+  [
+   "us-nh/policy/2026-09-13-chip-state-plan",
+   "us-nh/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us-nm/policy/2026-09-13-chip-state-plan",
+   "us-nm/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us-ny/policy/2026-09-13-medicaid-state-plan",
+   "us-ny/policy/cms/medicaid-state-plan/spa-index/p05",
+   "text"
+  ],
+  [
+   "us-ny/policy/2026-09-13-medicaid-state-plan",
+   "us-ny/policy/cms/medicaid-state-plan/spa-index/p08",
+   "text"
+  ],
+  [
+   "us-ny/policy/2026-09-13-medicaid-state-plan",
+   "us-ny/policy/cms/medicaid-state-plan/spa-index/p09",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-07-17-ny-snap-regulations",
+   "us-ny/regulation/18-nycrr/385/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-07-17-ny-snap-regulations",
+   "us-ny/regulation/18-nycrr/387/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/101/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/105/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/106/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/107/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/111/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/112/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/113/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/114/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/115/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/116/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/117/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/118/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/119/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/120/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/121/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/122/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/124/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/132/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/137/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/138/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/139/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/140/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/141/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/142/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/151/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/152/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/153/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/154/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/157/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/158/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/159/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/161/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/163/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/171/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/172/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/173/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/174/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/175/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/176/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/177/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/178/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/185/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/200/notes",
+   "text"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "us-ny/regulation/20-nycrr/201/notes",
+   "text"
+  ],
+  [
+   "us-oh/policy/2026-09-13-medicaid-state-plan",
+   "us-oh/policy/cms/medicaid-state-plan/spa/oh-12-004/attachment",
+   "text"
+  ],
+  [
+   "us-oh/policy/2026-09-13-medicaid-state-plan",
+   "us-oh/policy/cms/medicaid-state-plan/spa/oh-12-006/attachment",
+   "text"
+  ],
+  [
+   "us-oh/policy/2026-09-13-medicaid-state-plan",
+   "us-oh/policy/cms/medicaid-state-plan/spa/oh-13-001/attachment",
+   "text"
+  ],
+  [
+   "us-ri/policy/2026-09-13-medicaid-state-plan",
+   "us-ri/policy/cms/medicaid-state-plan/spa-index/p03",
+   "text"
+  ],
+  [
+   "us-sc/policy/2026-09-13-chip-state-plan",
+   "us-sc/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us-vt/policy/2026-09-13-chip-state-plan",
+   "us-vt/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us-vt/policy/2026-09-13-medicaid-state-plan",
+   "us-vt/policy/cms/medicaid-state-plan/spa-index/p03",
+   "text"
+  ],
+  [
+   "us-wi/policy/2026-09-13-medicaid-state-plan",
+   "us-wi/policy/cms/medicaid-state-plan/spa-index/p04",
+   "text"
+  ],
+  [
+   "us-wy/policy/2026-09-13-chip-state-plan",
+   "us-wy/policy/cms/chip-state-plan/spa-index/p01",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/al/al-23-0026-rim2/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/ct/ct-22-0001-and-ct-22-0001-chip/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/il/il-21-0006-chip/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/il/il-21-0007-chip/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/ma/ma-chipspa-15/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/me/me-20-0021/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/me/me-22-0020/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/me/me-23-0006-me-23-0007/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/mi/mi-13-0001-mc1/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/mn/mn-22-0001/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/mo/mo-15-0009/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/ne/ne-cspa-07/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/ok/ok-cspa-05/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/or/or-23-0136/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/or/or-cspa-11/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/or/or-cspa-14/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/or/or-cspa-16/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/or/or-cspa-7/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/sd/sd-16-0006/summary",
+   "text"
+  ],
+  [
+   "us/policy/2026-07-05-cms-chip-fcep-spa",
+   "us/policy/cms/chip-spa/wi/wi-13-0028-mc1/summary",
+   "text"
+  ]
+ ],
+ "remaining_findings": [
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/benefits-2026/federal-family-and-climate-benefits/canada-child-benefit/block-2",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/federal-other-refundable-credits/eligible-educator-school-supply-credit/block-1",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/federal-other-refundable-credits/eligible-educator-school-supply-credit/block-3",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/federal-other-refundable-credits/eligible-educator-school-supply-credit/block-8",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/federal-other-refundable-credits/employee-partner-gst-hst-rebate/block-3",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/federal-other-refundable-credits/employee-partner-gst-hst-rebate/block-4",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/yt479-credits/yukon-tax-information/block-14",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/yt479-credits/yukon-tax-information/block-16",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t1-2025/yt479-credits/yukon-tax-information/block-3",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_body",
+   "ca/policy/cra/t4127-2026/federal-td1-personal-credits/federal-tax-rates/block-1",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/benefits-2026/federal-family-and-climate-benefits/primary-document",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/benefits-2026/provincial-territorial-cgeb-linked-credits/primary-document",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t1-2025/federal-donations-and-gifts/line-34900",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t1-2025/federal-donations-and-gifts/p113",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t1-2025/federal-other-refundable-credits/primary-document",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t1-2025/federal-worksheet-credits-and-repayments/repayment",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t1-2025/rrsp-prpp-spp-hbp-llp/hbp-repayments",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t1-2025/rrsp-prpp-spp-hbp-llp/llp-repayments",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/t4127-2026/federal-income-tax/rates",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/tax-rates-2026/provincial-territorial-income-tax/rates",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/cra/tax-rates-2026/provincial-territorial-income-tax/revenu-quebec",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/esdc/benefits-2026/canada-disability-benefit/primary-document",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/esdc/benefits-2026/canada-disability-benefit/sor-2025-35",
+   null
+  ],
+  [
+   "ca/policy/2026-07-21-ca-rulespec-source-complete",
+   "navigation_prefixed_body",
+   "ca/policy/revenu-quebec/tp1-2025/main-return/primary-document",
+   null
+  ],
+  [
+   "us-ny/regulation/2026-07-17-ny-snap-regulations",
+   "hollow_document_root",
+   "us-ny/regulation/18-nycrr/387/refs",
+   "expected_empty"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "hollow_document_root",
+   "us-ny/regulation/20-nycrr/151/refs",
+   "expected_empty"
+  ],
+  [
+   "us-ny/regulation/2026-09-14-income-tax-regulations",
+   "hollow_document_root",
+   "us-ny/regulation/20-nycrr/152/refs",
+   "expected_empty"
+  ]
+ ],
+ "new_findings": []
+}

@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.json",
+      "sha256": "baf2546c503e8c7958419e7e5e856996a280266293ffd171879bf23f1842dc8d"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.json",
+      "sha256": "3c63cc90c671278c4f567126492be6b6ef7f9b261d1703723d544fa0f838d584"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots.jsonl",
+      "sha256": "ddfbce6f429e678678c5ec3d6bc03bd47bcd54c6cc09c6d155b3bac722c6c9e2"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-dc-cms-chip-state-plan-compiled-current-state-plan.pdf",
+      "sha256": "69dca3cd2d62b736a287ee28ab1fd4d8e09ade2884a479731fb00c3bc250427a"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-dc-cms-chip-state-plan-compiled-factsheet.pdf",
+      "sha256": "dc12a8bd3e41e5997892badecd84101d4dcf9ce516bd20c9f36a5dc8397a44bb"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-dc-cms-chip-state-plan-spa-dc-13-0010-approval-package.pdf",
+      "sha256": "a5e6501926e97bbf5c791a83d6fd63c476d637f07cac4e96d86b13d71d39d968"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-dc-cms-chip-state-plan-spa-dc-13-12-mc2-approval-package.pdf",
+      "sha256": "22159bb2153b314e80557156f194c540536247c8d226dc3b1773bead3674ad9e"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-09-13-chip-state-plan-r2026-10-13-hollow-roots/official-documents/us-dc-cms-chip-state-plan-spa-index-p01.html",
+      "sha256": "d78ef18e89727455e1559fb1928b241fecb40b268ad688a67b093efe613e2126"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cb2218d1e24ee43c38703fb31cf65e0d5234caaa",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/hollow_root_successors.py build --base data/corpus --scope us-dc/policy/2026-09-13-chip-state-plan (run note: docs/ingest-runs/2026-10-13-hollow-root-successors.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 63,
+    "missing_count": 0,
+    "provision_count": 63,
+    "source_count": 63
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-13T19:36:06.296279+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7KoCOfMim4RR6RMAECP5CjnwZfUyEOZw0+74l8uaygS0JBIuiJkDkRM8xVnjsfo4jLDWZv3y4wXshk40M2X2Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-chip-state-plan-r2026-10-13-hollow-roots"
+}
