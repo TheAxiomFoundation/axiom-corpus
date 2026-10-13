@@ -202,14 +202,26 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
         run: axiom-corpus-ingest corpus fetch --all --no-cache --workers 32
 
-      - name: Check the release content baseline
+      - name: Start the release content baseline check
+        id: content_check
         # Every locked scope's content findings (page navigation, chrome-prefixed
         # bodies, hollow document roots, version pickers) must match
         # manifests/release-content-baseline.json, which pins each scope's
         # provisions and inventory digests. A new scope with no findings needs no
-        # entry; one with findings fails here until its extraction is fixed or the
+        # entry; one with findings fails until its extraction is fixed or the
         # findings are recorded on purpose (docs/release-gate-policy.md).
-        run: axiom-corpus-ingest content-check --all --check-baseline --workers 4
+        # The check takes about three minutes on three workers. It runs beside
+        # the single-process test run below, on cores that run leaves idle, so it
+        # adds no time to this job; "Check the release content baseline" after
+        # the tests reports it.
+        run: |
+          (
+            set +e
+            axiom-corpus-ingest content-check --all --check-baseline --workers 3 \
+              > "$RUNNER_TEMP/content-check.log" 2>&1
+            echo $? > "$RUNNER_TEMP/content-check.rc.tmp"
+            mv "$RUNNER_TEMP/content-check.rc.tmp" "$RUNNER_TEMP/content-check.rc"
+          ) > /dev/null 2>&1 &
 
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
@@ -226,6 +238,21 @@ jobs:
         run: |
           python -I -m pip install pytest-cov pytest-timeout
           pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
+
+      - name: Check the release content baseline
+        # Reports the check started before the tests, whether or not they passed.
+        if: ${{ !cancelled() && steps.content_check.outcome == 'success' }}
+        run: |
+          for _ in $(seq 180); do
+            [ -f "$RUNNER_TEMP/content-check.rc" ] && break
+            sleep 5
+          done
+          cat "$RUNNER_TEMP/content-check.log" 2>/dev/null || true
+          if [ ! -f "$RUNNER_TEMP/content-check.rc" ]; then
+            echo "::error title=Content baseline check unfinished::content-check --all --check-baseline did not finish within 15 minutes of the tests"
+            exit 1
+          fi
+          exit "$(cat "$RUNNER_TEMP/content-check.rc")"
 
   citation-path-grammar:
     name: Citation-path grammar (A6)

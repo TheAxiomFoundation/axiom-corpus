@@ -222,7 +222,8 @@ A named scope that matches no locked scope with provisions and inventory is an
 error (exit 2), so a mistyped scope cannot pass as a clean check of nothing.
 A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions; it
 takes about 90 seconds on four workers locally and about three minutes on the
-CI runner. Raising `CONTENT_CHECK_VERSION` requires rebuilding
+CI runner, where it runs on three workers beside the single-process test run
+and so adds no time to the `test` job. Raising `CONTENT_CHECK_VERSION` requires rebuilding
 the baseline in the same change: validation ignores a baseline made by other
 rules, and CI's check fails on it.
 
