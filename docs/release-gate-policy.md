@@ -210,23 +210,27 @@ The official-document HTML extractor (`documents._extract_html_blocks`) asks
 `content_quality.is_navigation_block` of every positional block it makes: the
 heading walk's `block-N` blocks, a WebWorks page's blocks, and the whole-root
 fallback. The helper is the `navigation_body` rule above, read against the same
-navigation strings of the same retained bytes, with three more conditions so
-that a dropped block is a list of the page's links and nothing else:
+navigation strings of the same retained bytes, with four more conditions so
+that a dropped block is a list of the page's link labels and nothing else:
 
-- every word with a letter lies in a navigation string (no words of its own);
+- every token with a letter or a digit lies in a navigation string, so a status
+  line, a pointer or a figure beside a linked label keeps its block;
 - the body is at least two navigation strings
   (`NAVIGATION_BLOCK_MIN_STRINGS`): a lone link can be a section's whole text;
 - no matched string is longer than 12 words
-  (`NAVIGATION_BLOCK_MAX_STRING_WORDS`): long link text can be prose.
+  (`NAVIGATION_BLOCK_MAX_STRING_WORDS`): long link text can be prose;
+- no matched string ends a sentence (a final period or exclamation mark): a
+  label names a page, a sentence inside a link can be a definition.
 
 A body longer than the 1,200 words the check reads, or one that repeats its
 heading, is never dropped. A dropped block's ordinal is used up, so the blocks
 after it keep the citation paths an unfiltered extraction gives them; encodings
-that cite `block-N` paths resolve the same way in a successor scope. Blocks with
-a declared section label or anchor (`labeled_sections`, `anchor_range`) are never
-dropped, nor is HTML read out of a JSON field, which the check cannot see.
-`html_keep_navigation_blocks: true` in a manifest's `extraction` keeps every
-block.
+that cite `block-N` paths resolve the same way in a successor scope. Nothing is
+dropped from a page whose manifest declares its sections (`labeled_sections`,
+`anchor_range`), from HTML read out of a JSON field, which the check cannot
+see, or from a page `scripts/recover_ingest_batch.py` re-encodes before
+extracting. `html_keep_navigation_blocks: true` in a manifest's `extraction`
+keeps every block.
 
 So every block the extractor drops is a row the check would flag, and the check
 still reports the flagged rows the extractor keeps. Existing scopes do not

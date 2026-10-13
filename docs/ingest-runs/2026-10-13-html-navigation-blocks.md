@@ -30,11 +30,25 @@ flagged rows:
   "See reciprocal agreement").
 
 So the extractor drops a positional block only when the check flags it **and**
-every word with a letter lies in a navigation string, the body is at least two
-such strings, and none of them is longer than 12 words. Declared sections
-(`labeled_sections`, `anchor_range`), HTML read out of a JSON field, and bodies
-longer than the 1,200 words the check reads are never dropped. A dropped block's
-ordinal is used up, so later blocks keep their paths.
+every token with a letter or a digit lies in a navigation string, the body is at
+least two such strings, none of them is longer than 12 words, and none ends a
+sentence. Nothing is dropped from a page whose manifest declares its sections
+(`labeled_sections`, `anchor_range`), from HTML read out of a JSON field, from a
+page the recovery batch re-encodes before extracting, or from a body longer than
+the 1,200 words the check reads. A dropped block's ordinal is used up, so later
+blocks keep their paths.
+
+The digit, sentence, declared-section and re-encoding conditions came from the
+independent review of the first version (GPT-6.1 Sol, round 1), which built
+pages it would still have emptied: a table whose linked column labels sit over
+unlinked amounts ("Gross monthly income limit" over "$2,000"), two short
+definitions written as link text ("Income means money received."), a WebWorks
+page under `labeled_sections`, and a Windows-1252 page that
+`recover_ingest_batch.py` decodes as UTF-8 before extracting, so the extractor
+would read other link text than the check reads in the retained bytes. Each is
+now a test. Among the flagged rows they keep no further content-labeled row, and
+12 more navigation rows: Nebraska breadcrumbs whose section number is not linked,
+and three menus whose labels end with a period.
 
 ### How the conditions were chosen
 
@@ -52,23 +66,24 @@ bodies (1,066 rows) are navigation by both, 107 bodies (132 rows) content.
 | --- | ---: | ---: | ---: |
 | The check's rule | 1,198 | 1,066 | 132 |
 | Positional blocks only | 1,187 | 1,065 | 122 |
-| … with no words of its own | 872 | 844 | 28 |
-| … and at least two navigation strings | 457 | 444 | 13 |
-| … and none longer than 12 words (`is_navigation_block`) | 431 | 423 | 8 |
+| … with no token holding a letter or digit of its own | 863 | 835 | 28 |
+| … and at least two navigation strings | 448 | 435 | 13 |
+| … and none longer than 12 words | 422 | 414 | 8 |
+| … and none ending a sentence (`is_navigation_block`) | 419 | 411 | 8 |
 
 The cap trades a little either way. Capping at 6 or 8 words drops 6 content
-rows instead of 8, but 93 or 50 fewer navigation rows: the strings of 9 to 12
+rows instead of 8, but 92 or 49 fewer navigation rows: the strings of 9 to 12
 words are mostly manual section and form titles in "Related Policy" and form
 lists ("Parents and Caretaker Relatives Enter or Already Live in the Home,
 A-846.1"), and the two extra content rows are link lists that the neutral review
-calls navigation. Capping at 15 drops the same 8; at 20, 12. Letting a lone
+calls navigation. Capping at 15 drops the same 8; at 20, 10. Letting a lone
 string through when it occurs twice on its page is no safer: three content
 singletons ("Appropriations", "Cash and Medical Decision Tree", an exhibit URL)
 repeat on their pages, and about half the navigation singletons do not.
 
 The eight content-labeled rows the extractor still drops are lists of links whose
-link text names something: five Colorado bill pages' "Prime Sponsors", "Senate"
-and "House" blocks (legislators and committees), and three Washington HCA lists
+link text names something: five "Prime Sponsors", "Senate" and "House" blocks
+across three Colorado bill pages (legislators and committees), and three Washington HCA lists
 (program application forms, two KDP manual editions with their effective dates,
 and an index of participation references). None is statute, regulation or
 manual text; each names other pages. Every row and both labels are in
@@ -88,23 +103,24 @@ names, as of the ingest commit) and extracts it twice from the locked bytes.
   manifest entry; 1,149 sources are PDFs or come from other adapters. 129 of the
   148 scopes reproduce in full.
 - **Successors.** With the filter, successors of the 130 scopes the extractor
-  made drop **377 rows**. Every one is a row `is_navigation_block` flags on the
+  made drop **370 rows**. Every one is a row `is_navigation_block` flags on the
   locked rows, and every one is a `navigation_body` finding; no successor gains a
   new finding of any kind. `navigation_body` findings in the 148 scopes fall from
-  1,198 to 821.
+  1,198 to 828.
 - **Paths.** Kept rows keep their citation path, ordinal, heading and body; only
   `block_count` changes. The 14 block rows of these scopes that `rulespec-us` and
   `rulespec-us-az` cite are unchanged in the successors.
 - **The check.** `content-check --all --check-baseline` still passes over all
   2,390 locked scopes: the check's findings are unchanged.
 
-### Why 821 flagged rows remain
+### Why 828 flagged rows remain
 
 | Kept because | Rows | Navigation by both reviews | Content by either |
 | --- | ---: | ---: | ---: |
 | One navigation string (a lone link, tab or control) | 391 | 376 | 15 |
-| Words of its own (a status, a pointer, a section code beside a link) | 283 | 193 | 90 |
+| Words or figures of its own (a status, a pointer, a section code beside a link) | 289 | 199 | 90 |
 | A string longer than 12 words | 24 | 19 | 5 |
+| A string that ends a sentence | 1 | 1 | 0 |
 | Declared section (Connecticut regulations) | 10 | 0 | 10 |
 | Scope not made by the official-document extractor | 60 | 58 | 2 |
 | Withdrawn July recovery scope | 53 | 51 | 2 |
@@ -112,25 +128,25 @@ names, as of the ingest commit) and extracts it twice from the locked bytes.
 The largest remainders are publisher-specific. Washington DSHS EA-Z pages carry
 "Clarifying Information" and "Worker Responsibilities" tab links (179 of the
 EA-Z manual's 187 remaining rows), and Texas handbooks list "Related Policy"
-links whose section codes (A-1431, C-920) sit outside the links (224 rows). A
+links whose section codes (A-1431, C-920) sit outside the links (225 rows). A
 manifest drop selector for each publisher removes them without a general rule.
 
 ## Which scope families would gain from successor ingests
 
 | Family | Scopes | `navigation_body` rows | A successor drops | Scopes that gain | Scopes left with none |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Wave 6 (2026-10-06) program-bundle scopes | 57 | 271 | 177 | 40 | 20 |
+| Wave 6 (2026-10-06) program-bundle scopes | 57 | 271 | 171 | 39 | 19 |
 | State SNAP manuals and transmittals | 14 | 432 | 76 | 6 | 0 |
 | State Medicaid and CHIP eligibility manuals (2026-09-10) | 9 | 230 | 72 | 2 | 0 |
 | SSA POMS (SI, HI) | 3 | 49 | 15 | 2 | 0 |
 | CMS state plans and SPAs | 18 | 41 | 13 | 10 | 8 |
-| Program standards and federal notices (2026-09) | 14 | 24 | 12 | 9 | 4 |
+| Program standards and federal notices (2026-09) | 14 | 24 | 11 | 8 | 4 |
 | State TANF manuals | 3 | 8 | 1 | 1 | 0 |
 | Other (BE, UK, NZ, NSF, MD, IL, AZ, CA) | 12 | 30 | 11 | 7 | 4 |
 | Recovery scopes not withdrawn | 7 | 28 | 0 | 0 | 0 |
 | Composed Canadian scopes | 3 | 32 | 0 | 0 | 0 |
 | Withdrawn July recovery scopes | 8 | 53 | 0 | 0 | 0 |
-| **Total** | **148** | **1,198** | **377** | **77** | **36** |
+| **Total** | **148** | **1,198** | **370** | **75** | **35** |
 
 The scopes that gain most:
 
@@ -146,12 +162,13 @@ The scopes that gain most:
 | `us-co/guidance/2026-10-06-w6-income-tax-guidance-co` | 21 | 14 |
 | `us-pa/manual/2026-07-21-pa-snap-handbook` | 19 | 11 |
 
-The wave 6 scopes gain most for least: 40 of 57 lose rows and 20 are left with
+The wave 6 scopes gain most for least: 39 of 57 lose rows and 19 are left with
 no `navigation_body` finding. The Texas and Washington manuals gain the most rows
 but keep most of theirs until a publisher drop selector lands. The composed
 Canadian scopes (14 rows the filter would drop) and the non-withdrawn recovery
-scopes (18) gain only through re-composition or a recovery rerun; the withdrawn
-scopes need no successor.
+scopes (up to 14; a recovery rerun keeps every block of a page it re-encodes)
+gain only through re-composition or a recovery rerun; the withdrawn scopes need
+no successor.
 
 A successor is a separate signed ingest with its own run note, and selecting it
 in place of a locked scope is a release decision. Re-fetching gives current
