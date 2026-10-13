@@ -403,3 +403,9 @@ def test_comparison_names_every_kind_of_difference(tmp_path: Path) -> None:
     ]
     exact = ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: fresh})
     assert compare_content_baseline(exact, {OTHER.key: fresh}, locked_scopes=[OTHER.key]) == []
+
+
+def test_a_required_policy_must_have_both_files(tmp_path: Path) -> None:
+    assert ReleaseGatePolicy.load(tmp_path) == ReleaseGatePolicy(source=str(tmp_path))
+    with pytest.raises(ReleasePolicyError, match="release policy files are missing"):
+        ReleaseGatePolicy.load(tmp_path, required=True)

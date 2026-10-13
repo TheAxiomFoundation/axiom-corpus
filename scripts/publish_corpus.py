@@ -178,7 +178,7 @@ def publish_named_release(
     corpus_root = base.resolve()
     # The repository's release policy, read from the checkout being published
     # rather than discovered from the corpus path (docs/release-gate-policy.md).
-    gate_policy = ReleaseGatePolicy.load(root)
+    gate_policy = _release_gate_policy(root)
     public_key, legacy_public_keys = _trusted_release_public_keys(
         public_key,
         legacy_public_keys,
@@ -435,6 +435,16 @@ def publish_named_release(
     )
 
 
+def _release_gate_policy(root: Path) -> ReleaseGatePolicy:
+    """The checkout's release policy; required wherever corpus locks exist.
+
+    A checkout that keeps corpus bytes in lock files is a production checkout:
+    publishing from one without the withdrawn-scope list or the content
+    baseline must fail rather than validate against an empty policy.
+    """
+    return ReleaseGatePolicy.load(root, required=(root / ".axiom" / "corpus-locks").is_dir())
+
+
 def _require_local_row_count(scope: ReleaseScope, expected: int, actual: int) -> None:
     if actual != expected:
         raise ReleaseManifestError(
@@ -475,7 +485,7 @@ def plan_named_release(
     # The repository's release policy, read from the checkout being published
     # rather than discovered from the corpus path (docs/release-gate-policy.md).
     report = validate_release(
-        base, release, max_issues=200, policy=ReleaseGatePolicy.load(repo_root.resolve())
+        base, release, max_issues=200, policy=_release_gate_policy(repo_root.resolve())
     )
     _require_deep_validation(report, phase="dry-run")
     base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()

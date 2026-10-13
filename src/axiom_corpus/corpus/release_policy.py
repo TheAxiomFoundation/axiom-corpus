@@ -187,11 +187,19 @@ class ReleaseGatePolicy:
         return cls()
 
     @classmethod
-    def load(cls, repo_root: str | Path) -> ReleaseGatePolicy:
-        """Read both policy files of a checkout; an absent file is an empty policy."""
+    def load(cls, repo_root: str | Path, *, required: bool = False) -> ReleaseGatePolicy:
+        """Read both policy files of a checkout; an absent file is an empty policy.
+
+        With ``required``, an absent file is an error instead: publication from a
+        checkout that holds corpus locks must not silently skip the policy.
+        """
         root = Path(repo_root)
         withdrawn_path = root / WITHDRAWN_SCOPES_PATH
         baseline_path = root / CONTENT_BASELINE_PATH
+        if required:
+            missing = [str(path) for path in (withdrawn_path, baseline_path) if not path.is_file()]
+            if missing:
+                raise ReleasePolicyError(f"release policy files are missing: {missing}")
         withdrawn = load_withdrawn_scopes(withdrawn_path) if withdrawn_path.exists() else {}
         baseline = (
             load_content_baseline(baseline_path)
