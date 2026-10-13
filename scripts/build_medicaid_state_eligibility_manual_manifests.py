@@ -71,9 +71,14 @@ BROWSER_UA = (
 DISCOVERED_VIA = "manual-review:medicaid-agent-queue batch 1; publisher index {index}"
 # Texas HHS handbook pages close a section with a "Related Policy" heading over a list of
 # cross-references (section titles and codes, some linked). The extractor drops the block that
-# heading starts (``html_navigation_heading_selectors``, documents._DeclaredNavigation); see
+# heading starts (``html_navigation_heading_selectors``, documents._DeclaredNavigation). The two
+# words are matched apart because some headings join them with a no-break space, and a heading
+# with a digit is never matched: every section heading carries its number (A-1323.2). See
 # docs/ingest-runs/2026-10-13-html-navigation-selectors.md.
-TX_RELATED_POLICY_HEADING = ':is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")'
+TX_RELATED_POLICY_HEADING = (
+    ':is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic")'
+    ':not(:-soup-contains("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"))'
+)
 
 _LINK_RE = re.compile(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', re.S | re.I)
 

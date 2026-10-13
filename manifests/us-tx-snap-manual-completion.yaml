@@ -14,7 +14,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -41,7 +42,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -68,7 +70,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -95,7 +98,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -122,7 +126,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -149,7 +154,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -176,7 +182,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -203,7 +210,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -230,7 +238,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -257,7 +266,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -284,7 +294,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -311,7 +322,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -338,7 +350,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -365,7 +378,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -392,7 +406,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -419,7 +434,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -446,7 +462,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -473,7 +490,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -500,7 +518,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -527,7 +546,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -554,7 +574,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -581,7 +602,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -608,7 +630,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -635,7 +658,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -662,7 +686,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -689,7 +714,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -716,7 +742,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -743,7 +770,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -770,7 +798,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -797,7 +826,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -824,7 +854,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -851,7 +882,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -878,7 +910,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -905,7 +938,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -932,7 +966,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -959,7 +994,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -986,7 +1022,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1013,7 +1050,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1040,7 +1078,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1067,7 +1106,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1094,7 +1134,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1121,7 +1162,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1148,7 +1190,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1175,7 +1218,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1202,7 +1246,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1229,7 +1274,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1256,7 +1302,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1283,7 +1330,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1310,7 +1358,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1338,7 +1387,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1365,7 +1415,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1392,7 +1443,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1419,7 +1471,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1446,7 +1499,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1473,7 +1527,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1500,7 +1555,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1527,7 +1583,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1554,7 +1611,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1581,7 +1639,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1608,7 +1667,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1635,7 +1695,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1662,7 +1723,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1689,7 +1751,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1716,7 +1779,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1743,7 +1807,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1770,7 +1835,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1797,7 +1863,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1824,7 +1891,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1851,7 +1919,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1878,7 +1947,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1905,7 +1975,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1932,7 +2003,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1959,7 +2031,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -1986,7 +2059,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2013,7 +2087,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2040,7 +2115,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2067,7 +2143,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2094,7 +2171,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2121,7 +2199,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2148,7 +2227,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2175,7 +2255,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2202,7 +2283,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2229,7 +2311,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2256,7 +2339,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2283,7 +2367,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2310,7 +2395,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2337,7 +2423,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2364,7 +2451,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2391,7 +2479,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2418,7 +2507,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2445,7 +2535,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2472,7 +2563,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2499,7 +2591,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2526,7 +2619,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2553,7 +2647,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2580,7 +2675,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2607,7 +2703,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2634,7 +2731,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2661,7 +2759,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2688,7 +2787,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2715,7 +2815,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2742,7 +2843,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2769,7 +2871,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2796,7 +2899,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2823,7 +2927,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2850,7 +2955,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2877,7 +2983,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2904,7 +3011,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2931,7 +3039,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2958,7 +3067,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -2985,7 +3095,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3012,7 +3123,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3039,7 +3151,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3066,7 +3179,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3093,7 +3207,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3120,7 +3235,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3147,7 +3263,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3174,7 +3291,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3201,7 +3319,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3228,7 +3347,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3255,7 +3375,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3282,7 +3403,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3309,7 +3431,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3336,7 +3459,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3363,7 +3487,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3390,7 +3515,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3417,7 +3543,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3444,7 +3571,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3471,7 +3599,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3498,7 +3627,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3525,7 +3655,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3552,7 +3683,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3579,7 +3711,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3606,7 +3739,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3633,7 +3767,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3660,7 +3795,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3687,7 +3823,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3714,7 +3851,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3741,7 +3879,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3768,7 +3907,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3795,7 +3935,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3822,7 +3963,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3849,7 +3991,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3876,7 +4019,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3903,7 +4047,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3930,7 +4075,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3957,7 +4103,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -3984,7 +4131,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4011,7 +4159,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4038,7 +4187,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4065,7 +4215,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4092,7 +4243,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4119,7 +4271,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4146,7 +4299,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4173,7 +4327,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4200,7 +4355,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4227,7 +4383,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4254,7 +4411,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4281,7 +4439,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4308,7 +4467,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4335,7 +4495,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4362,7 +4523,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4389,7 +4551,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4416,7 +4579,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4443,7 +4607,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4470,7 +4635,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4497,7 +4663,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4524,7 +4691,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4551,7 +4719,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4578,7 +4747,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4605,7 +4775,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4632,7 +4803,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4659,7 +4831,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4686,7 +4859,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4713,7 +4887,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4740,7 +4915,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4767,7 +4943,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4794,7 +4971,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4821,7 +4999,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4848,7 +5027,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4875,7 +5055,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4902,7 +5083,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4929,7 +5111,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4956,7 +5139,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -4983,7 +5167,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5010,7 +5195,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5037,7 +5223,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5064,7 +5251,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5091,7 +5279,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5118,7 +5307,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5145,7 +5335,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5172,7 +5363,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5199,7 +5391,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5226,7 +5419,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5253,7 +5447,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5280,7 +5475,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5307,7 +5503,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5334,7 +5531,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5361,7 +5559,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5388,7 +5587,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5415,7 +5615,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5442,7 +5643,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5469,7 +5671,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5496,7 +5699,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5523,7 +5727,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5550,7 +5755,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5577,7 +5783,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5604,7 +5811,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5631,7 +5839,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5658,7 +5867,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5685,7 +5895,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5712,7 +5923,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5739,7 +5951,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5766,7 +5979,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5793,7 +6007,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5820,7 +6035,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5847,7 +6063,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5874,7 +6091,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5901,7 +6119,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5928,7 +6147,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5955,7 +6175,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -5982,7 +6203,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6009,7 +6231,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6036,7 +6259,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6063,7 +6287,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6090,7 +6315,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6117,7 +6343,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6144,7 +6371,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6172,7 +6400,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6199,7 +6428,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6226,7 +6456,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6253,7 +6484,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6280,7 +6512,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6307,7 +6540,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6334,7 +6568,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6361,7 +6596,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6388,7 +6624,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6415,7 +6652,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6442,7 +6680,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6469,7 +6708,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6496,7 +6736,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6523,7 +6764,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6550,7 +6792,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6577,7 +6820,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6604,7 +6848,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6631,7 +6876,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6658,7 +6904,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6685,7 +6932,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6712,7 +6960,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6739,7 +6988,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6766,7 +7016,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6793,7 +7044,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6820,7 +7072,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6847,7 +7100,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6874,7 +7128,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6901,7 +7156,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6928,7 +7184,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6955,7 +7212,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -6982,7 +7240,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7009,7 +7268,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7036,7 +7296,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7063,7 +7324,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7090,7 +7352,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7117,7 +7380,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7145,7 +7409,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7172,7 +7437,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7199,7 +7465,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7226,7 +7493,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7253,7 +7521,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7280,7 +7549,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7307,7 +7577,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7334,7 +7605,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7361,7 +7633,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7388,7 +7661,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7415,7 +7689,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7442,7 +7717,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7469,7 +7745,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7496,7 +7773,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7523,7 +7801,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7550,7 +7829,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7577,7 +7857,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7604,7 +7885,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission
@@ -7631,7 +7913,8 @@ documents:
     html_drop_selectors:
     - .c-field__label
     html_navigation_heading_selectors:
-    - :is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")
+    - :is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4",
+      "5", "6", "7", "8", "9"))
   metadata:
     primary_source: true
     source_authority: Texas Health and Human Services Commission

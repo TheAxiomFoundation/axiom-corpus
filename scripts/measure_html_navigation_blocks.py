@@ -15,6 +15,16 @@ manifest describes, twice, from the bytes the scope's lock pins:
   filter;
 * with the source's own ``extraction``, the filter on.
 
+A manifest can also name a publisher's navigation (``html_navigation_selectors``,
+``html_navigation_heading_selectors``; ``documents._DeclaredNavigation``), which
+``html_keep_navigation_blocks`` turns off too, so the first extraction still
+reproduces the locked rows. For such a document a third extraction, the filter
+on and the declared navigation off, tells the rows the filter drops (``by:
+filter``) from the rows only the declaration drops (``by: declared``), and
+``kept_after_declared_drop`` counts the kept rows that follow a declared drop on
+their page: the rows a drop selector (``html_drop_selectors``), which removes
+elements before the blocks are numbered, would have renumbered.
+
 It writes the rows a successor ingest of each scope would hold (the locked rows,
 with every reproduced document's rows replaced by its filtered rows) to
 ``<out>/provisions/<scope>.jsonl``, scans them with the release content check,
@@ -57,6 +67,7 @@ from axiom_corpus.corpus.models import ProvisionRecord
 CORPUS = Path("data/corpus")
 INGEST_MANIFESTS = Path(".axiom/ingest-manifests")
 KEEP = {"html_keep_navigation_blocks": True}
+DECLARED = ("html_navigation_selectors", "html_navigation_heading_selectors")
 _OFFICIAL = re.compile(
     r"^sources/(?P<j>[^/]+)/(?P<dc>[^/]+)/(?P<run>[^/]+)/official-documents/(?P<file>[^/]+)$"
 )
@@ -150,10 +161,15 @@ def _canonical(rows: list[dict[str, Any]]) -> list[str]:
     return [json.dumps(row, sort_keys=True, ensure_ascii=False) for row in rows]
 
 
-def _extract(candidate: Candidate, content: bytes, *, keep: bool) -> tuple[Any, ...]:
+def _extract(
+    candidate: Candidate, content: bytes, *, keep: bool, declared: bool = True
+) -> tuple[Any, ...]:
     extraction = dict(candidate.source.extraction or {})
     if keep:
         extraction.update(KEEP)
+    if not declared:
+        for key in DECLARED:
+            extraction.pop(key, None)
     return tuple(
         documents._extract_blocks(
             content,
@@ -223,10 +239,26 @@ def measure_scope(
         after_rows = _records(reproduced, after, root, version=version)
         replaced[source_path] = after_rows
         kept_paths = {row["citation_path"] for row in after_rows}
+        filter_paths = kept_paths
+        if any((reproduced.source.extraction or {}).get(key) for key in DECLARED):
+            filter_ordinals = {
+                block.ordinal
+                for block in _extract(reproduced, content, keep=False, declared=False)
+            }
+            filter_paths = {
+                row["citation_path"]
+                for row in rows
+                if row.get("kind") != "block" or row.get("ordinal") in filter_ordinals
+            }
         page = page_navigation(content)
+        declared_ordinals: list[int] = []
         for row in rows:
             if row["citation_path"] in kept_paths:
                 continue
+            by = "filter" if row["citation_path"] not in filter_paths else "declared"
+            status[f"dropped_by_{by}"] += 1
+            if by == "declared":
+                declared_ordinals.append(int(row["ordinal"]))
             verdict = classify_body(
                 row.get("body"), page, heading=row.get("heading"), label=row.get("citation_label")
             )
@@ -237,11 +269,18 @@ def measure_scope(
                         "citation_path": row["citation_path"],
                         "heading": row.get("heading"),
                         "body": row.get("body"),
+                        "by": by,
                         "check_navigation": verdict.navigation,
                     },
                     ensure_ascii=False,
                 )
                 + "\n"
+            )
+        if declared_ordinals:
+            status["kept_after_declared_drop"] += sum(
+                1
+                for row in after_rows
+                if row.get("kind") == "block" and int(row["ordinal"]) > min(declared_ordinals)
             )
         # Kept rows keep their paths and text; only block_count may move.
         before_by_path = {row["citation_path"]: row for row in rows}

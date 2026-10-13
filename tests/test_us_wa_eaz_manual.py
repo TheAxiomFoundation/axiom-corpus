@@ -19,7 +19,10 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage" / "us-wa" / "manual" / f"{VERSION}.json
 
 EXPECTED_DOCUMENT_COUNT = 200
 EXPECTED_BLOCK_COUNT = 1_065
-EXPECTED_NAVIGATION_BLOCK_COUNT = 7
+# Seven link-list blocks the navigation-block filter drops, and 178 blocks that are
+# only the manifest's declared "Clarifying Information" / "Worker Responsibilities"
+# jump links (html_navigation_selectors).
+EXPECTED_NAVIGATION_BLOCK_COUNT = 7 + 178
 EXPECTED_ROW_COUNT = EXPECTED_DOCUMENT_COUNT + EXPECTED_BLOCK_COUNT
 EXPECTED_SOURCE_BYTES = 20_353_997
 EXPECTED_URL_AGGREGATE = "4b2eaaae9969afdca2d4aa2edb5984fca75f8bf26e9cf303a4f45aa3cc527a44"
@@ -96,9 +99,9 @@ def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
         unfiltered.append(documents_module._extract_blocks(content, "html", **kwargs))
 
     assert first_pass == second_pass
-    # The locked scope predates the navigation-block filter: the unfiltered
-    # extraction still makes exactly its blocks, and the filter drops seven
-    # link-list blocks without renumbering the rest.
+    # The locked scope predates the navigation-block filter and the declared tab
+    # links: the unfiltered extraction still makes exactly its blocks, and the
+    # filter and the declaration drop 185 blocks without renumbering the rest.
     assert sum(len(blocks) for blocks in unfiltered) == EXPECTED_BLOCK_COUNT
     assert (
         sum(len(blocks) for blocks in first_pass)
