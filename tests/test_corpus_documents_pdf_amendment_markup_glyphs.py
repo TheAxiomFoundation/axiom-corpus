@@ -579,6 +579,29 @@ def test_a_drawing_is_a_glyph_only_right_before_one_hidden_type3_character(
     assert all(rule.y != 101.5 for rule in thin) is glyph
 
 
+@pytest.mark.parametrize(
+    ("seqno", "width", "height", "glyph"),
+    [
+        # The command before a 12 pt hidden Type 3 character, up to 24 pt each way.
+        (4, 3.0, 0.8, True),
+        (4, 24.0, 24.0, True),
+        (4, 24.1, 0.8, False),
+        # Several short rules stacked in one tall path.
+        (4, 3.0, 24.1, False),
+        # Not before such a character, no command number, or no font size.
+        (5, 3.0, 0.8, False),
+        (None, 3.0, 0.8, False),
+        (6, 3.0, 0.8, False),
+    ],
+)
+def test_a_glyph_drawing_is_at_most_two_font_sizes_wide_and_high(
+    seqno: int | None, width: float, height: float, glyph: bool
+) -> None:
+    path = {"seqno": seqno, "rect": fitz.Rect(72.0, 100.0, 72.0 + width, 100.0 + height)}
+
+    assert documents_module._pdf_drawing_is_glyph(path, {4: 12.0, 6: 0.0}) is glyph
+
+
 # 4. The CMS approval package pages -------------------------------------------------
 
 AZ_22_0007 = (
