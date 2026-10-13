@@ -1335,7 +1335,9 @@ def main() -> int:
     for document_id, entry in entries.items():
         if document_id not in results:
             if document_id in previously_parsed or (
-                only_document_id and document_id in previous_results
+                only_document_id
+                and document_id != only_document_id
+                and document_id in previous_results
             ):
                 # A document this run did not parse keeps its earlier result when
                 # that result was a parse, or when the run was limited to another
@@ -1343,6 +1345,8 @@ def main() -> int:
                 # report the next run reads its parsed documents from, or replace
                 # a recorded parse failure (and its provenance error) with a
                 # missing-snapshot result although the snapshot is still there.
+                # The document a run is limited to is answered afresh, as a full
+                # run would answer it.
                 results[document_id] = {**previous_results[document_id], "newly_ingested": False}
                 continue
             targets = list(entry.get("covers_citation_paths") or [])

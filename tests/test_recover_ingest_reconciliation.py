@@ -357,3 +357,37 @@ def test_a_class_counts_only_its_unresolved_citations(
     assert results["doc-a"]["resolution_class"] == "needs-fetch"
     needs_fetch = results["_summary"]["remaining_classes"]["needs-fetch"]
     assert needs_fetch == {"count": 2, "documents": ["doc-a", "doc-c"]}
+
+
+def test_a_run_limited_to_a_document_answers_it_as_a_full_run_would(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Once a failed document's snapshot is gone, a run limited to it reports the
+    missing snapshot, exactly as a full run does, not the earlier failure."""
+    report = _batch_run(monkeypatch, tmp_path)
+    monkeypatch.delenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", raising=False)
+    assert batch.main() == 0
+    assert json.loads(report.read_text())["doc-b"]["resolution_class"] == "unrecoverable-parse"
+    (batch.FETCHED / "doc-b.xml").unlink()
+    after_failure = report.read_text()
+    answers = []
+    for only in (None, "doc-b"):
+        report.write_text(after_failure)
+        if only is None:
+            monkeypatch.delenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", raising=False)
+        else:
+            monkeypatch.setenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", only)
+        assert batch.main() == 0
+        results = json.loads(report.read_text())
+        answers.append(
+            (
+                results["doc-b"],
+                results["_summary"]["signing_checklist"]["all_fetched_files_have_valid_provenance"],
+            )
+        )
+    assert answers[0] == answers[1]
+    result, provenance_ok = answers[1]
+    assert result["parsed"] is False
+    assert result["issues"] == ["official source snapshot is not present in recovered-fetched"]
+    assert result["resolution_class"] == "needs-fetch"
+    assert provenance_ok is True
