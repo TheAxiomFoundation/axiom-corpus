@@ -9,6 +9,10 @@ documents:
     citation_path: us-md/statute/human-services/5-316/fip-funding
     extraction:
       html_content_selector: body
+      # The statute is bare text and <br> breaks inside #StatuteText, which the default
+      # paragraph and list-item text nodes skip, leaving only the site menus
+      # (2026-10-13 hollow-root audit).
+      html_text_selector: '#StatuteText'
       html_drop_selectors:
         - nav
         - header
@@ -30,6 +34,10 @@ documents:
     citation_path: us-md/statute/human-services/5-312/temporary-cash-assistance
     extraction:
       html_content_selector: body
+      # The statute is bare text and <br> breaks inside #StatuteText, which the default
+      # paragraph and list-item text nodes skip, leaving only the site menus
+      # (2026-10-13 hollow-root audit).
+      html_text_selector: '#StatuteText'
       html_drop_selectors:
         - nav
         - header

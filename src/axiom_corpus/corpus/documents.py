@@ -2480,6 +2480,18 @@ def _legacy_word_document_text(content: bytes) -> str:
         return _normalize_text(result.stdout)
 
 
+def _require_start_marker(started: bool, pattern: object, *, context: str) -> None:
+    """Fail when a configured ``start_after_pattern`` never matched.
+
+    Extraction skips everything before the marker, so a marker that never appears would
+    return no text at all and leave the document an empty row (106 CMR 701 and 702 in
+    ``2026-06-27-ma-tafdc-regulations`` lost every section this way). The HTML start and
+    content selectors already fail the same way.
+    """
+    if pattern is not None and not started:
+        raise ValueError(f"{context}: start_after_pattern did not match: {str(pattern)!r}")
+
+
 def _extract_labeled_docx_section_blocks(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[_DocumentBlock, ...]:
@@ -2558,6 +2570,7 @@ def _extract_labeled_docx_section_blocks(
             continue
         if current_label is not None:
             current_body.append(line)
+    _require_start_marker(started, start_after_pattern, context="labeled_sections DOCX")
     flush()
     return tuple(sections)
 
@@ -2690,6 +2703,7 @@ def _extract_styled_labeled_docx_section_blocks(
             rows = [row for row in table_text.splitlines() if row and keep_line(row)]
             if rows:
                 sections[current_label]["body"].append("\n".join(rows))
+    _require_start_marker(started, start_after_pattern, context="styled_labeled_sections DOCX")
 
     blocks: list[_DocumentBlock] = []
     for label in order:
@@ -2862,6 +2876,7 @@ def _filtered_pdf_styled_lines(
                         started = True
                     continue
                 lines.append((line, page_index, style))
+    _require_start_marker(started, start_after_pattern, context="PDF")
     return tuple(lines)
 
 
@@ -2969,6 +2984,12 @@ def _windowed_pdf_styled_lines(
                     stopped[id(page_window)] = True
                     break
                 lines.append((line, page_index, style))
+    for window in windows:
+        if window.start_at_re is not None and not started[id(window)]:
+            raise ValueError(
+                f"PDF page window {window.start_page}-{window.end_page}: start_at_pattern "
+                f"did not match: {window.start_at_re.pattern!r}"
+            )
     return tuple(lines)
 
 
@@ -3024,10 +3045,53 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
         sort=bool(extraction.get("sort_text")),
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
-    if _normalize_text(text) or not extraction.get("ocr"):
+    if not extraction.get("ocr") or not _pdf_page_needs_ocr(page, str(text)):
         return _replace_text(str(text), text_replacements)
-    text = _ocr_pdf_page_text(page, extraction=extraction)
-    return _replace_text(text, text_replacements)
+    ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
+    if not _normalize_text(ocr_text) and _normalize_text(str(text)):
+        return _replace_text(str(text), text_replacements)
+    return _replace_text(ocr_text, text_replacements)
+
+
+# A scanned page can carry a thin text layer over its page image: a filing stamp, or the
+# dates and signature typed onto a scanned form. That layer is not the page's text, so with
+# ``ocr`` a page is read by OCR when its layer has fewer than _OCR_OVERLAY_MAX_WORDS words
+# with a letter in them and one image covers at least _OCR_PAGE_IMAGE_COVERAGE of the page.
+# A text page holds hundreds of words, so it never qualifies.
+_OCR_OVERLAY_MAX_WORDS = 30
+_OCR_PAGE_IMAGE_COVERAGE = 0.9
+
+
+def _pdf_page_needs_ocr(page: Any, text: str) -> bool:
+    """Whether an ``ocr`` extraction should read ``page`` by OCR rather than its text layer."""
+    if not _normalize_text(text):
+        return True
+    words = sum(1 for token in text.split() if any(char.isalpha() for char in token))
+    if words >= _OCR_OVERLAY_MAX_WORDS:
+        return False
+    return _pdf_page_image_coverage(page) >= _OCR_PAGE_IMAGE_COVERAGE
+
+
+def _pdf_page_image_coverage(page: Any) -> float:
+    """The largest share of the page that one placed image covers (0 when none does).
+
+    Image rectangles come back in unrotated page space and ``page.rect`` is the rotated
+    page, so each rectangle is mapped through ``page.rotation_matrix`` first (scanned SPA
+    attachments are often stored landscape with ``/Rotate 270``).
+    """
+    page_rect = page.rect
+    area = page_rect.width * page_rect.height
+    if area <= 0:
+        return 0.0
+    rotation = page.rotation_matrix
+    largest = 0.0
+    for image in page.get_images(full=True):
+        for rect in page.get_image_rects(image[0]):
+            visible = (rect * rotation) & page_rect
+            if visible.is_empty:
+                continue
+            largest = max(largest, (visible.width * visible.height) / area)
+    return min(largest, 1.0)
 
 
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
