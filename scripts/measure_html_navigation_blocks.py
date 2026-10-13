@@ -7,23 +7,28 @@ immutable, so this script never writes under ``data/corpus``: for each named sco
 it re-extracts every retained HTML source that a tracked official-document
 manifest describes, twice, from the bytes the scope's lock pins:
 
-* with ``html_keep_navigation_blocks: true``, the extractor's behaviour before
-  the filter. Its provision rows must equal the locked rows byte for byte
-  (``reproduced``); a document whose rows differ (``drift``: the manifest or the
-  extractor changed since the ingest) is reported and left out of the
-  measurement, because its successor would differ for reasons other than the
-  filter;
+* with ``html_keep_navigation_blocks: true`` and no declared navigation, the
+  extractor's behaviour before the filter. Its provision rows must equal the
+  locked rows byte for byte (``reproduced``); a document whose rows differ
+  (``drift``: the manifest or the extractor changed since the ingest) is
+  reported and left out of the measurement, because its successor would differ
+  for reasons other than the filter;
 * with the source's own ``extraction``, the filter on.
 
 A manifest can also name a publisher's navigation (``html_navigation_selectors``,
-``html_navigation_heading_selectors``; ``documents._DeclaredNavigation``), which
-``html_keep_navigation_blocks`` turns off too, so the first extraction still
-reproduces the locked rows. For such a document a third extraction, the filter
-on and the declared navigation off, tells the rows the filter drops (``by:
-filter``) from the rows only the declaration drops (``by: declared``), and
+``html_navigation_heading_selectors``; ``documents._DeclaredNavigation``); the
+first extraction leaves it out. For such a document a third extraction, the
+filter on and the declared navigation off, tells the rows the filter drops
+(``by: filter``) from the rows only the declaration drops (``by: declared``), and
 ``kept_after_declared_drop`` counts the kept rows that follow a declared drop on
-their page: the rows a drop selector (``html_drop_selectors``), which removes
-elements before the blocks are numbered, would have renumbered.
+their page: rows whose ordinals hold only because the dropped block's ordinal is
+used up.
+
+Every kept row must equal its locked row in every field but
+``metadata.block_count`` (``kept_row_changed`` counts rows that do not;
+``block_count_changed`` counts rows whose count moved), and the kept rows of a
+document keep their order (``kept_rows_reordered`` counts documents where they do
+not).
 
 It writes the rows a successor ingest of each scope would hold (the locked rows,
 with every reproduced document's rows replaced by its filtered rows) to
@@ -223,7 +228,7 @@ def measure_scope(
         reproduced: Candidate | None = None
         for candidate in candidates:
             try:
-                before = _extract(candidate, content, keep=True)
+                before = _extract(candidate, content, keep=True, declared=False)
             except Exception:  # noqa: BLE001 - a manifest entry that no longer parses
                 continue
             if _canonical(_records(candidate, before, root, version=version)) == expected:
@@ -282,15 +287,18 @@ def measure_scope(
                 for row in after_rows
                 if row.get("kind") == "block" and int(row["ordinal"]) > min(declared_ordinals)
             )
-        # Kept rows keep their paths and text; only block_count may move.
+        # Kept rows equal their locked rows in every field but metadata.block_count,
+        # and keep their order.
         before_by_path = {row["citation_path"]: row for row in rows}
         for row in after_rows:
             old = before_by_path.get(row["citation_path"])
-            if old is None or (old.get("body"), old.get("heading")) != (
-                row.get("body"),
-                row.get("heading"),
-            ):
+            if old is None or _without_block_count(old) != _without_block_count(row):
                 status["kept_row_changed"] += 1
+            elif old != row:
+                status["block_count_changed"] += 1
+        locked_order = [row["citation_path"] for row in rows if row["citation_path"] in kept_paths]
+        if [row["citation_path"] for row in after_rows] != locked_order:
+            status["kept_rows_reordered"] += 1
     successor: list[dict[str, Any]] = []
     for source_path, rows in by_source.items():
         successor.extend(replaced.get(source_path, rows))
@@ -315,6 +323,13 @@ def measure_scope(
         ),
         "new_findings": sorted(f"{code} {path}" for code, path in after_findings - before_findings),
     }
+
+
+def _without_block_count(row: dict[str, Any]) -> dict[str, Any]:
+    metadata = {
+        key: value for key, value in (row.get("metadata") or {}).items() if key != "block_count"
+    }
+    return {**row, "metadata": metadata}
 
 
 def _scan(rows: list[dict[str, Any]]) -> set[tuple[str, str]]:

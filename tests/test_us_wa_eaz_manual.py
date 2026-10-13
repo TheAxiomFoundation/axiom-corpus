@@ -95,7 +95,14 @@ def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
         }
         first_pass.append(documents_module._extract_blocks(content, "html", **kwargs))
         second_pass.append(documents_module._extract_blocks(content, "html", **kwargs))
-        kwargs["extraction"] = {**(source.extraction or {}), "html_keep_navigation_blocks": True}
+        kwargs["extraction"] = {
+            **{
+                key: value
+                for key, value in (source.extraction or {}).items()
+                if key != "html_navigation_selectors"
+            },
+            "html_keep_navigation_blocks": True,
+        }
         unfiltered.append(documents_module._extract_blocks(content, "html", **kwargs))
 
     assert first_pass == second_pass

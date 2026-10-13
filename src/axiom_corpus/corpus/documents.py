@@ -3184,10 +3184,10 @@ def _extract_html_blocks(
     the blocks after it keep the paths an unfiltered extraction gives them. Nothing
     is dropped from a page whose manifest declares its sections
     (``segmentation: labeled_sections`` or ``anchor_range``), even when it is read
-    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block.
-    A caller whose ``content`` is not the retained source turns the filter off,
-    so the extractor drops only rows the release content check, which reads the
-    retained source, would flag: ``_extract_json_html_blocks`` passes
+    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block the
+    filter would drop. A caller whose ``content`` is not the retained source turns
+    the filter off, so the filter drops only rows the release content check, which
+    reads the retained source, would flag: ``_extract_json_html_blocks`` passes
     ``drop_navigation=False`` for an HTML field inside a JSON file, and
     ``scripts/recover_ingest_batch.py`` passes ``html_keep_navigation_blocks`` when
     it re-encodes the bytes before extracting.
@@ -3198,18 +3198,13 @@ def _extract_html_blocks(
     The positional blocks they make up are dropped the same way, ordinal used up,
     whether or not the check would flag them. Unlike ``html_drop_selectors``,
     which removes elements before the blocks are numbered (so a block they empty
-    renumbers every block after it), they drop only whole blocks.
-    ``html_keep_navigation_blocks: true`` keeps these blocks too.
+    renumbers every block after it), they drop only whole blocks. They are
+    independent of the filter: ``html_keep_navigation_blocks: true`` keeps the
+    blocks the filter would drop and still drops the declared ones.
     """
     config = extraction or {}
-    if config.get("segmentation") in {"labeled_sections", "anchor_range"} and (
-        config.get("html_navigation_selectors")
-        or config.get("html_navigation_heading_selectors")
-    ):
-        raise ValueError(
-            "html navigation selectors drop positional blocks; a manifest that declares "
-            "its sections (labeled_sections, anchor_range) has none"
-        )
+    if config.get("segmentation") in {"labeled_sections", "anchor_range"}:
+        _reject_declared_navigation(config, "declares its sections")
     navigation = (
         page_navigation(content)
         if drop_navigation
@@ -3239,9 +3234,7 @@ def _extract_html_blocks(
             source_url=source_url,
             extraction=extraction or {},
         )
-    declared = _DeclaredNavigation(
-        root, None if config.get("html_keep_navigation_blocks") else extraction
-    )
+    declared = _DeclaredNavigation(root, extraction)
     webworks_blocks = _extract_webworks_html_blocks(
         root,
         title=title,
@@ -3310,16 +3303,18 @@ class _DeclaredNavigation:
     list). Each takes a CSS selector or a list of them, read on the content root
     after the drop selectors ran. Matched elements stay in the tree, so the walk
     sees the headings and block boundaries an unfiltered extraction sees, and a
-    block with any other text keeps its whole body.
+    block with any other text keeps its whole body. Matched elements are known
+    by ``id``; the instance holds them, so no other object can take their ids
+    while it is in use.
     """
 
     def __init__(self, root: Tag, extraction: dict[str, Any] | None) -> None:
-        self._elements = _selected_ids(
-            root, _html_selectors(extraction, "html_navigation_selectors")
+        self._matched = (
+            _selected(root, _html_selectors(extraction, "html_navigation_selectors")),
+            _selected(root, _html_selectors(extraction, "html_navigation_heading_selectors")),
         )
-        self._headings = _selected_ids(
-            root, _html_selectors(extraction, "html_navigation_heading_selectors")
-        )
+        self._elements = frozenset(id(node) for node in self._matched[0])
+        self._headings = frozenset(id(node) for node in self._matched[1])
 
     def drops(self, heading: Tag | None, body: list[Tag]) -> bool:
         """Whether the block under ``heading`` (a node, or ``None`` for the page title)
@@ -3345,8 +3340,20 @@ def _html_selectors(extraction: dict[str, Any] | None, key: str) -> tuple[str, .
     return tuple(str(selector) for selector in selectors)
 
 
-def _selected_ids(root: Tag, selectors: tuple[str, ...]) -> frozenset[int]:
-    return frozenset(id(node) for selector in selectors for node in root.select(selector))
+def _selected(root: Tag, selectors: tuple[str, ...]) -> tuple[Tag, ...]:
+    return tuple(node for selector in selectors for node in root.select(selector))
+
+
+_DECLARED_NAVIGATION_KEYS = ("html_navigation_selectors", "html_navigation_heading_selectors")
+
+
+def _reject_declared_navigation(extraction: dict[str, Any], reason: str) -> None:
+    """Raise when a manifest declares navigation for a page that has no positional blocks."""
+    declared = [key for key in _DECLARED_NAVIGATION_KEYS if extraction.get(key)]
+    if declared:
+        raise ValueError(
+            f"{', '.join(declared)} drop positional blocks; a manifest that {reason} has none"
+        )
 
 
 def _within(element: Any, ids: frozenset[int]) -> bool:
@@ -3419,6 +3426,11 @@ def _extract_json_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    config = extraction or {}
+    if config.get("segmentation") in {"source_only", "records"}:
+        _reject_declared_navigation(config, f"reads JSON as {config['segmentation']}")
+    if config.get("json_html_as_single_block"):
+        _reject_declared_navigation(config, "reads its HTML as a single block")
     if (extraction or {}).get("segmentation") == "source_only":
         json_loads(content.decode("utf-8-sig"))
         return ()

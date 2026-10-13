@@ -11,7 +11,9 @@
 - A block is declared exactly when the heading that starts it is matched, or
   every string of its body lies inside a matched element; a block with any
   other text keeps its whole body.
-- ``html_keep_navigation_blocks: true`` keeps every block.
+- The declarations are independent of the navigation-block filter:
+  ``html_keep_navigation_blocks: true`` keeps the blocks the filter would drop
+  and still drops the declared ones.
 
 ``html_drop_selectors`` cannot do this: they remove elements before the blocks
 are numbered, so every block after one they empty is renumbered.
@@ -165,10 +167,45 @@ def test_matched_elements_stay_in_the_tree_so_headings_inside_them_still_split_b
     assert _blocks(page, CHROME) == [(2, "Worker Responsibilities", "Verify age.")]
 
 
-def test_keep_navigation_blocks_keeps_declared_blocks_too() -> None:
-    extraction = {"html_navigation_selectors": ["ul > li a[href^='#']"], **KEEP}
+def test_keep_navigation_blocks_turns_off_only_the_filter() -> None:
+    # A site menu the filter drops, beside a declared tab link.
+    page = _page(
+        "<ul><li><a href='/'>Home</a></li><li><a href='/forms'>Forms</a></li>"
+        "<li><a href='/contact'>Contact Us</a></li></ul>"
+        "<h3>WAC 388-404-0005</h3><ul><li><a href='#ci'>Clarifying Information</a></li></ul>"
+        "<h3 id='ci'>Clarifying Information</h3><p>When a child turns 18 they are an adult.</p>"
+    )
+    declared = {"html_navigation_selectors": ["ul > li a[href^='#']"]}
+    every = _blocks(page, KEEP)
 
-    assert _blocks(TAB_PAGE, extraction) == _blocks(TAB_PAGE)
+    assert [body for _, _, body in every] == [
+        "Home\n\nForms\n\nContact Us",
+        "Clarifying Information",
+        "When a child turns 18 they are an adult.",
+    ]
+    assert _blocks(page) == [every[1], every[2]]
+    assert _blocks(page, declared) == [every[2]]
+    assert _blocks(page, {**declared, **KEEP}) == [every[0], every[2]]
+
+
+def test_text_nodes_named_by_html_text_selector() -> None:
+    page = _page(
+        "<div class='hd'>WAC 388-404-0005</div>"
+        "<div class='tx'><span class='tab'><a href='#ci'>Clarifying Information</a></span></div>"
+        "<div class='tx'>A child is under 18.</div>"
+        "<h2>Worker Responsibilities</h2><div class='tx'>Verify age.</div>"
+    )
+    text = {"html_text_selector": "div.tx, h2"}
+
+    assert _blocks(page, text) == [
+        (1, "Rules", "Clarifying Information\n\nA child is under 18."),
+        (2, "Worker Responsibilities", "Verify age."),
+    ]
+    # The first block also holds its own text, so it is kept whole.
+    assert _blocks(page, {**text, "html_navigation_selectors": ["span.tab"]}) == _blocks(page, text)
+    assert _blocks(page, {**text, "html_navigation_heading_selectors": ["h2"]}) == [
+        (1, "Rules", "Clarifying Information\n\nA child is under 18.")
+    ]
 
 
 @pytest.mark.parametrize(
@@ -220,6 +257,26 @@ def test_a_declared_fallback_block_is_dropped() -> None:
 
     assert _blocks(page) == [(1, "Rules", "Clarifying Information")]
     assert _blocks(page, CHROME) == []
+
+
+@pytest.mark.parametrize(
+    "extraction",
+    [
+        {"segmentation": "records", "json_records_path": "items"},
+        {"segmentation": "source_only"},
+        {"json_html_field": "html", "json_html_as_single_block": True},
+    ],
+)
+def test_declared_navigation_on_json_read_without_blocks_is_an_error(extraction: dict) -> None:
+    content = json.dumps({"html": TAB_PAGE.decode(), "items": []}).encode()
+    for key in ("html_navigation_selectors", "html_navigation_heading_selectors"):
+        with pytest.raises(ValueError, match="positional blocks"):
+            _extract_json_html_blocks(
+                content,
+                source_url=URL,
+                fallback_title="Rules",
+                extraction={**extraction, key: ["a"]},
+            )
 
 
 def test_html_inside_json_drops_declared_blocks() -> None:
@@ -288,7 +345,8 @@ def test_kept_blocks_are_every_block_minus_the_declared_ones(opening, sections) 
         if not _declared(items, chrome)
     ]
     assert _blocks(content, {**CHROME, **CHROME_HEADING}) == expected
-    assert _blocks(content, {**CHROME, **CHROME_HEADING, **KEEP}) == every
+    # The pages hold no links, so the filter drops nothing either way.
+    assert _blocks(content, {**CHROME, **CHROME_HEADING, **KEEP}) == expected
     # Each key alone drops only what it declares.
     assert _blocks(content, CHROME) == [
         block for block, (_, items) in zip(every, model, strict=True) if not _declared(items, False)
@@ -358,7 +416,6 @@ def _retained(scope: str, source_id: str) -> tuple[list, list]:
             )
         )
 
-    assert blocks({**extraction, **KEEP}) == blocks({**plain, **KEEP})
     return blocks(plain), blocks(extraction)
 
 

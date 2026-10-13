@@ -21,11 +21,13 @@ into scratch output outside `data/corpus`.
 `block-N` blocks. Both kinds of navigation here are whole blocks in the middle of
 their pages (a tab link under a WAC heading, a "Related Policy" heading over its
 list), so a drop selector empties the block and every block after it on the page
-moves up one ordinal: 3,575 kept rows of the four scopes would change citation
-path. So the extractor gains two keys that drop whole positional blocks instead,
-with the ordinal used up as #852's filter does
-(`documents._DeclaredNavigation`, rule in
-[release-gate-policy.md](../release-gate-policy.md#the-extractor-drops-navigation-blocks)):
+moves up one ordinal: 3,575 kept rows of the four scopes follow a dropped block on
+their page. For Texas it is worse: a selector can remove the heading and the
+first paragraph after it but not every paragraph up to the next heading, so the
+rest of a list would join the block before it and change that block's body. So
+the extractor gains two keys that drop whole positional blocks instead, with the
+ordinal used up as #852's filter does (`documents._DeclaredNavigation`, rule in
+[release-gate-policy.md](../release-gate-policy.md#declared-navigation)):
 
 - `html_navigation_selectors` match navigation elements. A block whose every
   string lies inside a matched element is dropped; a block with any other text
@@ -34,11 +36,13 @@ with the ordinal used up as #852's filter does
   heading starts is dropped.
 
 Matched elements stay in the tree, so the walk sees the headings and block
-boundaries an unfiltered extraction sees. `html_keep_navigation_blocks: true`
-keeps declared blocks too (so the reproduction step below still reproduces the
-locked rows), and a manifest that declares its sections (`labeled_sections`,
-`anchor_range`) cannot declare navigation: the extractor raises instead of
-ignoring the key.
+boundaries an unfiltered extraction sees. The declarations are independent of
+#852's filter: `html_keep_navigation_blocks: true` keeps the blocks the filter
+would drop and still drops the declared ones, so a manifest can keep a link list
+the filter misjudges and still name its real chrome. A manifest whose pages have
+no positional blocks (declared sections, JSON records or source-only JSON, a JSON
+field read as one block) cannot declare navigation: the extractor raises instead
+of ignoring the key.
 
 ## The selectors
 
@@ -113,8 +117,8 @@ not matched.
 
 `scripts/measure_html_navigation_blocks.py` (#852's, extended here) matches each
 retained source to its manifest entry and extracts it from the locked bytes: with
-`html_keep_navigation_blocks: true` (which must reproduce the locked rows byte for
-byte), with the manifest's extraction, and, for a manifest that declares
+`html_keep_navigation_blocks: true` and the declarations left out (which must
+reproduce the locked rows byte for byte), with the manifest's extraction, and, for a manifest that declares
 navigation, once more without the declaration, which tells the rows the
 declaration drops (`by: declared`) from the rows #852's filter drops
 (`by: filter`).
@@ -133,11 +137,15 @@ The filter's 87 drops are #852's, unchanged; #852 alone leaves 417
 - **(a) The targeted rows go.** 178 of the 179 Washington tab-link rows (the
   unlinked label stays) and all 225 Texas "Related Policy" rows (117, 106 and 2).
   #852's two reviews labeled every one of the 403 navigation.
-- **(b) No other row changes.** Every kept row keeps its citation path, ordinal,
-  heading, body, label, id and parent; only `metadata.block_count` changes (on
-  5,900 rows of pages that lose a block). No successor row has a path the locked
-  scope lacks, and rows keep their order. Without used-up ordinals, 3,575 of the
-  kept rows would have been renumbered.
+- **(b) No other row changes.** The script compares every kept row with its
+  locked row field by field: none differs in anything but `metadata.block_count`,
+  which moves on 5,900 rows of pages that lose a block, and no document's kept
+  rows change order. 3,575 of the kept rows follow a dropped block on their
+  page; their paths hold because the dropped ordinals are used up.
+- **Nothing else moves.** The other 144 scopes of #852's measurement, whose
+  manifests declare nothing, re-extracted on this branch give successor rows byte
+  for byte equal to #852's final run. The full test suite passes (5,515 passed,
+  106 skipped).
 - **(c) No new findings.** The release content check's scanner finds no new
   finding of any kind in any successor, and `content-check --check-baseline` over
   the four locked scopes reports no baseline difference.
@@ -161,8 +169,9 @@ The cost: 37 sentences in 32 kept rows send the reader to "related policy"
 ("Follow related policy.", "See related policy for dates Medicaid eligibility
 begins.", "refer to related policy to disqualify ..."), and 23 of those rows are
 followed on their page by a list this change drops. In a successor those pointers
-no longer resolve within the scope's rows. The sections the lists name are
-themselves in the corpus, and the retained page keeps the list, but the link from
+no longer resolve within the scope's rows. Most of the sections the lists name
+are themselves in the corpus (some entries name a guide or form, such as "The
+Texas Works Documentation Guide (PDF)"), and the retained page keeps the list, but the link from
 the instruction to its target section is gone. Whether a cross-reference list
 that a section's text points to counts as the section's text is a judgment call,
 and it goes with the merge decision.
@@ -188,7 +197,7 @@ uv run python scripts/measure_html_navigation_blocks.py --out <scratch dir> <the
 uv run axiom-corpus-ingest content-check <the four scopes> --check-baseline
 ```
 
-The run takes about 100 seconds. `tests/test_html_navigation_selectors.py` pins
+The four scopes take about 100 seconds. `tests/test_html_navigation_selectors.py` pins
 the mechanism (examples, and a Hypothesis property: the kept blocks are every block
 minus the declared ones, ordinals unchanged), each selector on retained pages, and
 the manifests against the builders; `tests/test_us_wa_eaz_manual.py` re-extracts

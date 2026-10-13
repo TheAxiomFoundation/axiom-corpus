@@ -226,18 +226,25 @@ that a dropped block is a list of the page's link labels and nothing else:
 A body longer than the 1,200 words the check reads, or one that repeats its
 heading, is never dropped. A dropped block's ordinal is used up, so the blocks
 after it keep the citation paths an unfiltered extraction gives them; encodings
-that cite `block-N` paths resolve the same way in a successor scope. Nothing is
-dropped from a page whose manifest declares its sections (`labeled_sections`,
-`anchor_range`), from HTML read out of a JSON field, which the check cannot
-see, or from a page `scripts/recover_ingest_batch.py` re-encodes before
-extracting. `html_keep_navigation_blocks: true` in a manifest's `extraction`
-keeps every block.
+that cite `block-N` paths resolve the same way in a successor scope. The filter
+drops nothing from a page whose manifest declares its sections
+(`labeled_sections`, `anchor_range`), from HTML read out of a JSON field, which
+the check cannot see, or from a page `scripts/recover_ingest_batch.py`
+re-encodes before extracting. `html_keep_navigation_blocks: true` in a
+manifest's `extraction` keeps every block the filter would drop.
 
 So every block this filter drops is a row the check would flag, and the check
-still reports the flagged rows the extractor keeps.
+still reports the flagged rows the extractor keeps. Existing scopes do not
+change: a successor is a separate, signed ingest. The calibration, a measurement
+over the 148 scopes with `navigation_body` rows, and the scope families that
+would gain from successors are in
+[the run note](ingest-runs/2026-10-13-html-navigation-blocks.md);
+`scripts/measure_html_navigation_blocks.py` repeats the measurement.
 
-A manifest can also name a publisher's navigation, for chrome the general rule
-keeps on purpose (a lone tab link, a link list with unlinked section codes):
+#### Declared navigation
+
+A manifest can also name a publisher's navigation, for chrome the filter keeps
+on purpose (a lone tab link, a link list with unlinked section codes):
 
 - `html_navigation_selectors` match navigation elements; a positional block
   whose every string lies inside a matched element is dropped. A block with
@@ -249,18 +256,16 @@ Matched elements stay in the tree, so headings and block boundaries are those of
 an unfiltered extraction, and a dropped block's ordinal is used up as above.
 `html_drop_selectors` cannot stand in for them on positional pages: they remove
 elements before the blocks are numbered, so every block after one they empty is
-renumbered. A declared block is dropped whether or not the check would flag it,
-so a manifest that declares navigation is measured before its successor is
-ingested (`scripts/measure_html_navigation_blocks.py` reports declared drops
-apart from the filter's); `html_keep_navigation_blocks: true` keeps declared
-blocks too, and a manifest that declares its sections cannot declare navigation.
-The Washington DSHS EA-Z and Texas HHS handbook manifests declare theirs
-([run note](ingest-runs/2026-10-13-html-navigation-selectors.md)). Existing scopes do not
-change: a successor is a separate, signed ingest. The calibration, a measurement
-over the 148 scopes with `navigation_body` rows, and the scope families that
-would gain from successors are in
-[the run note](ingest-runs/2026-10-13-html-navigation-blocks.md);
-`scripts/measure_html_navigation_blocks.py` repeats the measurement.
+renumbered. The declarations are independent of the filter: they apply to HTML
+read out of a JSON field too, and `html_keep_navigation_blocks: true` keeps the
+filter's blocks while still dropping the declared ones. A manifest whose pages
+have no positional blocks (declared sections, JSON records or source-only JSON,
+a JSON field read as one block) cannot declare navigation; the extractor raises. A declared block is
+dropped whether or not the check would flag it, so a manifest that declares
+navigation is measured before its successor is ingested
+(`scripts/measure_html_navigation_blocks.py` reports declared drops apart from
+the filter's). The Washington DSHS EA-Z and Texas HHS handbook manifests declare
+theirs ([run note](ingest-runs/2026-10-13-html-navigation-selectors.md)).
 
 ### Commands
 
