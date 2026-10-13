@@ -140,13 +140,17 @@ def _main_ref() -> str:
     needs = "this test needs git and a git checkout of axiom-corpus with main's history"
     try:
         top = Path(_git("rev-parse", "--show-toplevel").strip())
-        shallow = _git("rev-parse", "--is-shallow-repository").strip() == "true"
+        shallow = _git("rev-parse", "--is-shallow-repository").strip()
+        # Same directory, however spelled (symlinks, worktrees, letter case).
+        same = top.samefile(REPO_ROOT)
     except (OSError, subprocess.CalledProcessError):
         pytest.fail(needs)
-    if top.resolve() != REPO_ROOT.resolve():
+    if not same:
         # e.g. an unpacked sdist inside another repository: its refs are not main's.
         pytest.fail(f"{needs}; git resolves {REPO_ROOT} to the repository at {top}")
-    if shallow:
+    if shallow not in {"true", "false"}:
+        pytest.fail(f"{needs}; this git (older than 2.15?) cannot say whether it is shallow")
+    if shallow == "true":
         pytest.fail(
             "this checkout is shallow; grandfathering is decided on main's whole history: "
             "run `git fetch --unshallow origin` (CI checks out with fetch-depth: 0)"
@@ -272,28 +276,29 @@ def test_an_unreadable_version_is_an_error_not_a_deletion(monkeypatch: pytest.Mo
 
     def listed_but_unreadable(*args: str) -> str:
         if args[0] == "ls-tree":
-            return f"{WITHDRAWN_SCOPES_PATH}\n"
+            return f"{WITHDRAWN_SCOPES_PATH.as_posix()}\n"
         raise subprocess.CalledProcessError(128, ["git", *args])
 
     monkeypatch.setattr(module, "_git", listed_but_unreadable)
     with pytest.raises(subprocess.CalledProcessError):
-        _show("0" * 40, str(WITHDRAWN_SCOPES_PATH))
+        _show("0" * 40, WITHDRAWN_SCOPES_PATH.as_posix())
 
     def absent(*args: str) -> str:
         assert args[0] == "ls-tree", args
         return ""
 
     monkeypatch.setattr(module, "_git", absent)
-    assert _show("0" * 40, str(WITHDRAWN_SCOPES_PATH)) is None
+    assert _show("0" * 40, WITHDRAWN_SCOPES_PATH.as_posix()) is None
 
 
 @pytest.mark.parametrize(
     ("git_present", "top", "shallow", "ref_exists", "message"),
     [
         (False, REPO_ROOT, "false", True, "needs git and a git checkout"),
-        (True, Path("/elsewhere"), "false", True, "resolves .* to the repository at"),
+        (True, REPO_ROOT.parent, "false", True, "resolves .* to the repository at"),
         (True, REPO_ROOT, "true", True, "shallow"),
         (True, REPO_ROOT, "false", False, "is not in this checkout"),
+        (True, REPO_ROOT, "--is-shallow-repository", True, "cannot say whether it is shallow"),
     ],
 )
 def test_main_history_is_required(
@@ -320,6 +325,27 @@ def test_main_history_is_required(
     monkeypatch.setattr(sys.modules[__name__], "_git", git)
     with pytest.raises(pytest.fail.Exception, match=message):
         _main_ref.__wrapped__()
+
+
+@pytest.mark.parametrize("override", [None, "refs/remotes/upstream/main"])
+def test_main_history_is_found_in_a_full_checkout(
+    monkeypatch: pytest.MonkeyPatch, override: str | None
+) -> None:
+    """With git, this checkout and a full history, main's ref is the default or the override."""
+    if override is None:
+        monkeypatch.delenv(MAIN_REF_VARIABLE, raising=False)
+    else:
+        monkeypatch.setenv(MAIN_REF_VARIABLE, override)
+
+    def git(*args: str) -> str:
+        if "--show-toplevel" in args:
+            return f"{REPO_ROOT}\n"
+        if "--is-shallow-repository" in args:
+            return "false\n"
+        return "0" * 40 + "\n"
+
+    monkeypatch.setattr(sys.modules[__name__], "_git", git)
+    assert _main_ref.__wrapped__() == (override or "origin/main")
 
 
 def test_no_entry_is_listed_in_the_future() -> None:
