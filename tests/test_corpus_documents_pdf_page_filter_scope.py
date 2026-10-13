@@ -64,7 +64,7 @@ PDF = _pdf()
 
 def _expected_message(keys: list[str], segmentation: object) -> str:
     return (
-        f"the default per-page PDF segmentation (segmentation={segmentation!r}) "
+        f"the default per-page PDF segmentation (used for segmentation={segmentation!r}) "
         f"does not read page filters, so {', '.join(keys)} would be ignored; "
         "only the single_block, numbered_sections and labeled_sections "
         "segmentations read them"
@@ -224,7 +224,8 @@ def test_no_tracked_pdf_manifest_sets_a_filter_its_segmentation_ignores() -> Non
     """
     filtered_pdf_sources = 0
     offenders = []
-    for path in sorted((REPO / "manifests").rglob("*.yaml")):
+    manifests = (REPO / "manifests").rglob("*")
+    for path in sorted(p for p in manifests if p.suffix in {".yaml", ".yml"}):
         text = path.read_text(encoding="utf-8")
         if not any(key in text for key in _SINGLE_BLOCK_PDF_FILTER_KEYS):
             continue

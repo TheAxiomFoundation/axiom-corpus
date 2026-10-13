@@ -1067,7 +1067,7 @@ def _extract_pdf_blocks(
     if page_filters:
         supported = ", ".join(_PDF_PAGE_FILTER_SEGMENTATIONS[:-1])
         raise ValueError(
-            f"the default per-page PDF segmentation (segmentation={segmentation!r}) "
+            f"the default per-page PDF segmentation (used for segmentation={segmentation!r}) "
             f"does not read page filters, so {', '.join(page_filters)} would be ignored; "
             f"only the {supported} and {_PDF_PAGE_FILTER_SEGMENTATIONS[-1]} "
             "segmentations read them"
