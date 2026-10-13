@@ -21,12 +21,12 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every provision the screener cites for the program in the state is encoded, or its document is excluded
+    with a recorded reason, and the comparison against the newest screener release has no unfixed Axiom errors.
+    Federal law the screener cites is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
-      documents, each in the layer of the law it names, grouped into documents
+    rule: The screener's references at the release it was built from (the newest, by default) and the plan's documents,
+      each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/chip-references.json
     policyengine_us_release: latest
     policyengine_us_version: 2.29.11
