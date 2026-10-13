@@ -3341,7 +3341,7 @@ def _without_garbled_spans(span_lines: list[list[tuple[str, bool]]]) -> list[tup
 
     A span holding a control character other than ordinary whitespace
     (``_has_control_character``) is a garbled font's and is left out whole, before
-    anything splits it; a space stands in its place, so the spans around it stay apart.
+    anything splits it; where it stood between kept spans a space keeps them apart.
     The line is painted when any remaining span with visible characters is. A line left
     with no visible character is dropped.
     """
@@ -3349,11 +3349,14 @@ def _without_garbled_spans(span_lines: list[list[tuple[str, bool]]]) -> list[tup
     for spans in span_lines:
         parts: list[str] = []
         painted = False
+        gap = False
         for text, span_painted in spans:
             if _has_control_character(text):
-                if parts:
-                    parts.append(" ")
+                gap = any(parts)
                 continue
+            if gap:
+                parts.append(" ")
+                gap = False
             parts.append(text)
             painted = painted or (span_painted and bool(text.strip()))
         line = "".join(parts)

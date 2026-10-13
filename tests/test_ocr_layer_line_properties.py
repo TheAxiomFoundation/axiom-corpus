@@ -202,7 +202,8 @@ def _reference_failed(invisible: list[str], ocr_text: str) -> bool:
 
 
 def _fragment(line: str) -> bool:
-    letters = sum(len(word) for word in _words(line, 1))
+    # Letters are counted on the runs before lower-casing ("\u0130" lower-cases to two).
+    letters = sum(char.isalpha() for char in unicodedata.normalize("NFKC", line))
     return letters < 3 and not any(char.isdigit() for char in unicodedata.normalize("NFKC", line))
 
 
@@ -698,10 +699,16 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
         pdf_page = document[page["page"] - 1]
         flags = documents_module._pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
         text = pdf_page.get_text("text", sort=bool(extraction.get("sort_text")), flags=flags)
+        needs_ocr = documents_module._pdf_page_needs_ocr(pdf_page, text)
         span_lines = _pdf_layer_lines(pdf_page, extraction=extraction)
         result = _pdf_page_text(pdf_page, extraction={"ocr": True, **extraction})
 
     assert _same_layer_characters(span_lines, text)
+    if not needs_ocr:
+        # Sorting can rebuild a garbled font's codes into 30 or more words (AL-20-0004
+        # page 4), and a page with that many is read from its layer, not by OCR.
+        assert result == text
+        return
     lines = _without_garbled_spans(span_lines)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     assert result == _with_unread_layer_lines(page["ocr_text"], layer)
