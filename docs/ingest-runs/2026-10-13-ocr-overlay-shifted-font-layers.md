@@ -126,7 +126,7 @@ of them, beside a mapped font of the same name) and on 11 retained pages:
 without a control character is in the page text" holds for lines decoding leaves alone.
 Decoded lines are checked whole instead, because a decoded value can arrive as fragments
 of one line: AL-20-0004's "0", "3", "/01/2020" in three fonts. A mutation check (19 broken
-variants of the decoding, `mutate_shifts.py`): @@MUTATION@@.
+variants of the decoding, `mutate_shifts.py`): round 1 killed 14 of 19; tests were added for the four survivors that a test could catch (a 3-letter evidence line, decoding into U+007F, an undecodable span kept raw, mapped letters counted as evidence), and round 2 kills 18 of 19. The one left, S13, counts a character printed as U+FFFD in both reads as unmapped. It is equivalent in practice: MuPDF prints a code under the flag even for a glyph named uniFFFD (checked on a built Type 3 font), so U+FFFD with the flag needs a character whose code is 0xFFFD.
 
 ## Before and after: every page the overlay rule reaches
 
