@@ -100,15 +100,16 @@ Scope `us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-cont
   `metadata.download_url` names its own IDHS page.
   `scripts/repair_us_release_source_references.py` (commit `de4c33abb`) rewrote every
   inventory item and provision to the single retained snapshot. That misattributes
-  12,448 rows (all but item 13473 and its block), flagged or not. The per-item pages are
-  not in the original ingest commit, and R2 has no `sources/us-il/manual/` keys (listing
-  kept with the review evidence).
+  12,448 rows (all but item 13473 and its block), flagged or not. Neither the scope's
+  lock nor its signed ingest manifest references any per-item page, and the original
+  ingest commit holds none.
 - So the retained bytes cannot show what the items say, and the classifications rest on
   the 54 live pages, fetched 2026-10-13, five months after the May capture. The May
   extraction found no text for these items either. On the live pages, 35 are headings
   whose only content is sidebar links to their sub-items (separate documents in the
-  scope), 10 are "Reserved", 4 hold a lone "Deleted Text" marker image, and 3 have an
-  empty content area: all expected empty. Item 13473 is the table of contents (10 words,
+  scope), 10 are "Reserved" (4 of them showing a deleted-text marker image), 4 hold a
+  lone "Deleted Text" marker image, and 3 have an empty content area: all expected
+  empty. Item 13473 is the table of contents (10 words,
   25 links): expected empty.
 - Item 67224 ("WAG 25-06-05-a (1) Minimum Monthly SNAP Benefit Amount for 1-2
   Persons") has one block holding the benefit table: date ranges and amounts from
@@ -146,16 +147,18 @@ SC, VT (two), WI and WY, built by `extract-official-documents` from manifests th
   stopped it. OCR recovers the pages (for example OH-12-004: Freestanding Birth Centers
   coverage, 170 to 238 words a page). The Ohio scans are stored with `/Rotate 270`.
 - **Pages the fixed OCR rule now sends to OCR.** The rule (below) reads a page by OCR when
-  its text layer has fewer than 30 words with a letter and placed images cover at least
-  90% of it. Across the 3,921 retained PDFs of every `ocr: true` manifest document, it
-  sends 1,057 pages in 336 PDFs to OCR despite a non-empty text layer: 1,031 in the CMS
-  state-plan scopes (the 4 flagged attachments among them) and 26 elsewhere (Ghana and
-  Uganda gazette scans, Georgia and South Carolina health guidance, a Hawaii manual, the
-  Alabama WIC plan, a CNMI NAP agreement). On 209 of those pages the layer has no word
-  with a letter. By image properties 949 pages look like scans. Of the other 108, four were
-  rendered and inspected (a scanned gazette page, an imaged table of contents, a
-  presentation slide, a CMS-179 form whose text layer is garbled glyph codes); each shows
-  its text as an image. Only the 4 flagged attachments were read in full by OCR.
+  its text layer has fewer than 30 words with a letter and images of at least 100 dpi
+  cover at least 90% of it. Across the 3,921 retained PDFs of every `ocr: true` manifest
+  document (one such document has no retained PDF to match), it sends 1,041 pages in 328
+  PDFs to OCR despite a non-empty text layer: 1,021 in the CMS state-plan scopes (the 4
+  flagged attachments among them) and 20 in 14 other PDFs (Ghana and Uganda gazette
+  scans, South Carolina health policy, a Hawaii manual, the Alabama WIC plan). On 208 of
+  those pages the layer has no word with a letter. 974 pages meet a simple scan rule (a
+  1-bit image, a CCITT or JBIG2 image, or one of at least 150 dpi). Of the rest, four were
+  rendered and inspected before the 100 dpi floor was added (a scanned gazette page, an
+  imaged table of contents, a presentation slide, a CMS-179 form whose text layer is
+  garbled glyph codes); each shows its text as an image, and the slide's 70 dpi background
+  no longer qualifies. Only the 4 flagged attachments were read in full by OCR.
 
 ### CMS CHIP FCEP SPA summaries: 20 extractor defects
 
@@ -193,16 +196,17 @@ retained.
 - **ID 63-3022D, 63-3022E, 63-3024, 63-3024A, 63-3025D and ME 36 §§5124-C, 5126-A,
   5213-A, 5219-S** (recovery scopes, withdrawn by #847). The retained pages hold the
   section text in `<div>`/`<span>` containers that the default HTML text nodes skip, so
-  only site menus became blocks. The rows have the shape of
-  `scripts/recover_ingest_batch.py::_generic` output (title made from the document id,
-  one block per text node), and `_generic` passes `extraction=None` (at `ed8464a37`, which
-  built these scopes, and today); the recovery plan that routed them there is not
-  retained. The same sections carry text in
+  only site menus became blocks. The rows are `scripts/recover_ingest_batch.py::_generic`
+  output, which passes `extraction=None`: the 2026-09-27 recovery sibling-scopes audit,
+  which covers these scopes, replays `_generic` on the retained bytes and reproduces the
+  rows exactly (`test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes`),
+  as the 2026-09-25 CA audit (#748) does for the CA scope. The scopes were added in
+  `ed8464a37`. The same sections carry text in
   `us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30` and
   `us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36`, which the newest union
-  selectors include, with caveats: the ID successor keeps only the "[effective until
-  January 1, 2027]" rendition of 63-3022E and 63-3025D, and a reviewer found some
-  lettered paragraphs missing from the ME successor (not re-verified here).
+  selectors include, with caveats: the ID successors keep only the "[effective until
+  January 1, 2027]" rendition of 63-3022E and 63-3025D, and the ME scope drops lettered
+  paragraphs, which open PR #754 restores (recorded in the 2026-09-27 audit).
 - ME §5219-SS lost its text the same way but escapes the check: its menu is 69.2%
   navigation, under the 70% threshold. rulespec-us cites it too; it has text (5,280
   characters) in the 2026-09-14 scope.
@@ -214,10 +218,13 @@ retained.
   versions, and the retained page is LegInfo's "select from multiples" picker between them,
   not the section. The only WIC 11450 text in the corpus is the section row
   `us-ca/statute/wic/11450` in `2026-06-25-ca-wic-calworks-…-r2026-09-24-preserve-tables`,
-  and it is the Stats. 2024, ch. 798, §1 version, which by its own subdivision (p) is
-  conditionally inoperative from July 1, 2024 ("See later operative version, as amended by
-  Sec. 2 of Stats. 2024, Ch. 798"). The operative §2 version is not ingested, and no scope
-  holds a row at `…/11450/a/1/A` with text.
+  and it is the Stats. 2024, ch. 798, §1 version. By its subdivision (p) that version
+  becomes inoperative on the later of July 1, 2024 and the date CDSS notifies the
+  Legislature that the Statewide Automated Welfare System can implement the change
+  (whether that notice has been given is not verified here); its history note points to a
+  "later operative version, as amended by Sec. 2 of Stats. 2024, Ch. 798". That later
+  version is not ingested, and no scope holds a row at `…/11450/a/1/A` with text. Open PR
+  #752 captures LegInfo's concurrent versions of WIC 11450 as same-number variant rows.
 
 ### Other regulations and policy: 4 extractor defects, 1 missing source, 2 expected empty
 
@@ -254,15 +261,16 @@ rulespec-us cites 12 of the 188 paths, all in the statutes family:
 
 | Path | rulespec-us files | Corpus text for the path |
 | --- | --- | --- |
-| `us-ca/statute/wic/11450/a/1/A` | `us-ca/policies/cdss/calworks/monthly-aid-payment.yaml` (module `source_verification.corpus_citation_path` and eight proof-atom citations) | None in any scope. The parent row `us-ca/statute/wic/11450` holds only the conditionally inoperative §1 version. |
+| `us-ca/statute/wic/11450/a/1/A` | `us-ca/policies/cdss/calworks/monthly-aid-payment.yaml` (module `source_verification.corpus_citation_path` and eight proof-atom citations) | None in any scope. The parent row `us-ca/statute/wic/11450` holds only the §1 version, conditionally inoperative; the later §2 version is not ingested (#752). |
 | `us-id/statute/63-3022D`, `-3022E`, `-3024`, `-3024A`, `-3025D` | `us-id/statutes/*.yaml`, encoding manifests, `us-id/policies/income_tax/2026_full_year_resident_source_hold.yaml`, `pilot_liability_pipeline.yaml` | In `2026-09-14-income-tax-chapter-us-id-title-63-chapter-30` (and `2026-07-31-id-title-63-chapter-30-successor`); 63-3022E and 63-3025D only in their pre-2027 rendition |
-| `us-me/statute/36/5124-C`, `5126-A`, `5213-A`, `5219-S` | `us-me/statutes/36/*.yaml`, encoding manifests, `us-me/policies/income_tax/2026_resident_liability_source_hold.yaml` | In `2026-09-14-income-tax-chapter-us-me-title-36` (see the caveat above) |
+| `us-me/statute/36/5124-C`, `5126-A`, `5213-A`, `5219-S` | `us-me/statutes/36/*.yaml`, encoding manifests, `us-me/policies/income_tax/2026_resident_liability_source_hold.yaml` | In `2026-09-14-income-tax-chapter-us-me-title-36`, without lettered paragraphs until #754 |
 | `us-md/statute/human-services/5-312/temporary-cash-assistance`, `…/5-316/fip-funding` | `us-md/policies/dhs/fia/im-26-13/2026-tca-tdap-benefit-increase/allowable-tca-monthly-payment.yaml` (`upstream_source_check.checked_paths`) | None until a successor of the TCA scope |
 
-The CalWORKs gap already exists: the newest selector that includes the CA recovery scope
-is dated 2026-09-24, and the four us-rulespec selectors dated after it leave it out, so in
-those releases the cited path has no row at all. #847's withdrawal only removes the hollow
-row from the older selectors.
+The CalWORKs gap already exists. The 2026-09-25 CA statute recovery audit (#748) found
+the version picker, and the 2026-09-24 selectors began replacing the recovery scope; the
+newest selector that includes it is dated 2026-09-24, and the four us-rulespec selectors
+dated after it leave it out, so in those releases the cited path has no row at all. #847's
+withdrawal only removes the hollow row from the older selectors.
 
 ## What the check misses and over-counts
 
@@ -276,7 +284,7 @@ For the #847 owner; none of these blocks the baseline, which pins findings per s
 - **Partial loss.** The check sees only roots with nothing left. Unflagged losses found
   in this audit: 12,911 CMS SPA summaries on 218 unflagged index pages and every date on
   all 240; the state, dates and topics of 16 FCEP summaries; scanned state-plan pages
-  read as their stamp or typed overlay (the 1,031 pages above are candidates; only the
+  read as their stamp or typed overlay (the 1,021 pages above are candidates; only the
   4 flagged attachments were confirmed). Reviewers' censuses, not re-verified
   here, add: 40 MA TAFDC section bodies with spaces inserted between Word runs; 30 WA EA-Z
   documents missing inline text; in the NH FAM, 2 inline-text omissions and 19 discarded
@@ -296,11 +304,12 @@ Extractor PR #854 (branch `fix/hollow-root-extractor-defects`), each change with
 - `nycrr.py::_document_body` reads `.co_refsAnnos` when a page has no `.co_body`.
   Recovers all 46 NY Notes bodies; Refs pages stay bodyless; section bodies unchanged.
 - `documents.py::_pdf_page_text`: with `ocr`, a page is read by OCR when its text layer is
-  empty (as before) or has fewer than 30 words with a letter while placed images cover at
-  least 90% of the visible page (measured in the crop box's frame, so rotation and crop
-  offsets do not matter, with all images counted together). The text-layer lines OCR did
-  not reproduce are kept after the OCR text, so typed values are never lost. Recovers the 4
-  attachments.
+  empty (as before) or has fewer than 30 words with a letter while images of at least 100
+  dpi cover at least 90% of the visible page (their exact union, measured in the crop
+  box's frame, so rotation and crop offsets do not matter). A text-layer line is kept
+  after the OCR text when one of its tokens with a digit is not among OCR's tokens, so
+  typed values OCR misreads are never lost; lines with control characters (garbled fonts)
+  are dropped. Recovers the 4 attachments.
 - `documents.py`: a `start_after_pattern` (labeled DOCX, styled DOCX, PDF lines) or page
   window `start_at_pattern` that never matches now raises, as the HTML selectors already
   do. Of the 385 manifest documents that set one, 381 have retained sources: 379 extract
@@ -322,10 +331,9 @@ corpus and re-running #847's check leaves none hollow and none with a navigation
    `us-md/statute/2026-07-03-md-tca-statutes`;
    `us-ma/regulation/2026-06-27-ma-tafdc-regulations`;
    `ca/policy/2026-07-21-ca-rulespec-source-complete` (the builder fix is on main).
-2. **CA WIC 11450 and rulespec-us CalWORKs**: ingest the operative version of WIC 11450
-   (Stats. 2024, ch. 798, §2), or both concurrent versions, then repoint
-   `monthly-aid-payment.yaml` at it. The citation has had no corpus row in the releases
-   selected since 2026-09-24.
+2. **CA WIC 11450 and rulespec-us CalWORKs**: land #752 (both concurrent versions of WIC
+   11450 as variant rows), then repoint `monthly-aid-payment.yaml` at the version it
+   encodes. The citation has had no corpus row in the releases selected since 2026-09-24.
 3. **Illinois manual attribution**: a successor that retains each item's page, or at
    least records in each row which page it came from. Guard
    `repair_us_release_source_references.py` so it cannot assign one snapshot to rows whose
@@ -333,8 +341,7 @@ corpus and re-running #847's check leaves none hollow and none with a navigation
 4. **Retain linked documents** where the HTML page is only a pointer: POMS exhibit and
    section PDFs, the ND hard card, the WA Apple Health flowchart.
 5. **Successor completeness** for the ID and ME sections rulespec-us cites: the post-2027
-   renditions of ID 63-3022E and 63-3025D, and the ME paragraphs the reviewer found
-   missing.
+   renditions of ID 63-3022E and 63-3025D, and the ME lettered paragraphs (#754).
 6. **Check refinements** listed above for #847: numeric tokens, a reviewed-empty
    exemption, and a source-coverage check for partial loss.
 7. **Wider extractor robustness**: bare text in `<div>` and `<span>` is dropped by default
@@ -348,9 +355,10 @@ corpus and re-running #847's check leaves none hollow and none with a navigation
 The evidence lives outside the repository, in `~/reviews/axiom-corpus-hollow-roots-2026-10-13/`
 (see its `README.md` for every file's schema). It holds the baseline copy;
 `build_dossier.py` (reproduces the 188 findings and builds per-finding evidence);
-`scripts/build_table.py` (writes the CSV); `scripts/cms_index_sweep.py`,
-`scripts/pdf_text_layer_sweep.py`, `scripts/cms_ocr_rule_impact.py`,
-`scripts/ocr_rule_sweep_all.py`, `scripts/start_marker_sweep.py` and
-`scripts/reextract_verify.py` (the sweeps and the end-to-end check behind the figures
-above); the live Illinois pages and their per-item states; the R2 listing; and the
-reviewer briefs and reports (`briefs/`, `out/`).
+`scripts/build_table.py` (writes the CSV); `scripts/cms_index_sweep.py` (the index-page
+counts); `scripts/pdf_text_layer_sweep.py` and `scripts/ocr_rule_sweep_all.py` (text
+layers, and the pages the OCR rule reaches, with the scan rule); `scripts/start_marker_sweep.py`;
+`scripts/il_item_states.py` (the Illinois page states, from the live pages kept there);
+`scripts/reextract_verify.py` (the end-to-end check); `scripts/ocr_before_after.py` (the
+OCR rule's before/after extraction); and the reviewer briefs and reports (`briefs/`,
+`out/`).
