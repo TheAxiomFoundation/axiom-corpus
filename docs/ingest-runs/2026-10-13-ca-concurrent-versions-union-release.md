@@ -37,7 +37,14 @@ rulespec-us toolchain pins carries this scope, the module can cite the version i
   class, so only us-ca statute scopes could collide with the new rows. No other us-ca scope carries a `--` path
   (`test_no_other_us_ca_scope_carries_a_variant_path`).
 - The selector differs from its predecessor only in `name`, `description` and the one added scope; it loads with
-  `ReleaseManifest.load` (1,568 scopes). CI's "Validate named release selectors" deep-validates every selector.
+  `ReleaseManifest.load` (1,568 scopes).
+- Deep validation, run locally because CI runs only on pull requests into `main` and this one is stacked: every
+  scope of both selectors fetched (52,376 locked files), then
+  `AXIOM_CORPUS_NO_FETCH=1 axiom-corpus-ingest validate-release --base data/corpus --max-issues 100 --workers 4`
+  with both `--release` paths, as CI's step does. Both are ok with 0 errors and 564 warnings each, the same codes
+  in the same numbers (`missing_parent_id` 94, `empty_provision_text` 4, `unsectioned_document_body` 2 among the
+  first 100), so the added scope brings no new warning. CI deep-validates every selector again once this targets
+  `main`.
 
 ## Merge order and publication
 
