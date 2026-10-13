@@ -325,6 +325,10 @@ on every push to `main` that changes `manifests/releases/*.json`
 (`.github/workflows/publish.yml:7-11`), so adding a selector is a release
 decision. This run adds none. It records the rule for the next cut in each line.
 
+Operational update (2026-10-13): this describes the workflow at the time of
+the audit. Publication now requires an explicit `publish.yml` dispatch; merging
+a selector alone does not start it.
+
 **Where the scope is selected.** 32 tracked selectors select it:
 
 - the 23 July cuts, from `us-rulespec-2026-07-13` through
