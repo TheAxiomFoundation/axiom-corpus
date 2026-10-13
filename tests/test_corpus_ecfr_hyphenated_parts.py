@@ -417,17 +417,24 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
 
 
 def test_selector_main_accepts_still_matches_a_dotted_part():
-    # Main reads "1.2-3.4" as part 1, section 2-3.4, and selects the section that the
-    # structure files as "1.4" under a part identified "1.2-3". That selector keeps working.
+    # Main selected the section that the structure files as "1.4" under a part identified
+    # "1.2-3" with "1.2-3.4": its metadata named the enclosing part, so part and section
+    # spelled that (and main reads it as part 1, section 2-3.4). A section's metadata now
+    # names the part its identifier names, with the part that holds it in enclosing_part
+    # (#841), so its own citation selects it, under that part. Main's spelling no longer
+    # does: in the 2026-10-08 title 43 it was ambiguous for 547 selectors, and for 1,338
+    # sections such as 43 CFR 3809.1 it returned another section.
     structure = {"identifier": "41", "type": "title", "children": [
         {"identifier": "1", "label": "Part 1", "type": "part", "children": []},
         {"identifier": "1.2-3", "label": "Part 1.2-3", "type": "part",
          "children": [_section("1.4", "§ 1.4 x.")]},
     ]}
 
-    selected = build_ecfr_inventory_from_structures((structure,), only_sections=("1.2-3.4",))
+    selected = build_ecfr_inventory_from_structures((structure,), only_sections=("1.4",))
 
-    assert _paths(selected.items) == ["us/regulation/41/1", "us/regulation/41/1/4"]
+    assert _paths(selected.items) == ["us/regulation/41/1.2-3", "us/regulation/41/1/4"]
+    with pytest.raises(ValueError, match="not found: 1.2-3.4"):
+        build_ecfr_inventory_from_structures((structure,), only_sections=("1.2-3.4",))
 
 
 def test_lettered_appendix_of_a_hyphenated_part():
@@ -789,6 +796,30 @@ def _old_filter(items, only_sections):
     return [item for item in items if item.citation_path in retained_paths]
 
 
+def _structure_paths(structure):
+    """Every part, subpart and readable live section path of a title, with repeats."""
+    title = int(structure["identifier"])
+    paths = []
+
+    def walk(node, part=None):
+        kind = node.get("type")
+        if kind == "part":
+            part = node["identifier"]
+            paths.append(f"us/regulation/{title}/{part}")
+        elif kind == "subpart":
+            paths.append(f"us/regulation/{title}/{part}/subpart-{node['identifier']}")
+        elif kind == "section" and not node.get("reserved"):
+            parsed = ecfr._section_citation_from_identifier(title, node["identifier"], part)
+            if parsed is not None:
+                paths.append(parsed[0])
+            return
+        for child in node.get("children", []):
+            walk(child, part)
+
+    walk(structure)
+    return paths
+
+
 def _filter_outcome(fn, items, selectors):
     try:
         return ("ok", [item.citation_path for item in fn(items, selectors)])
@@ -823,7 +854,15 @@ def _odd_titles(draw):
 @settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(structure=_odd_titles(), extra=st.lists(_chars("0123456789aZ.-", max_size=10), max_size=4))
 def test_property_selectors_main_accepts_filter_as_on_main(structure, extra):
-    items = list(build_ecfr_inventory_from_structures((structure,)).items)
+    try:
+        items = list(build_ecfr_inventory_from_structures((structure,)).items)
+    except ValueError as exc:
+        # Two items under one citation path fail closed (#841); main wrote both. Check
+        # that two items of the structure do claim the path the error names.
+        claimed = re.search(r"'([^']+)' is claimed twice", str(exc))
+        assert claimed is not None, exc
+        assert _structure_paths(structure).count(claimed.group(1)) >= 2
+        return
     candidates = {
         f"{item.metadata['part']}.{item.metadata['section']}"
         for item in items
