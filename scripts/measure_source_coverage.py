@@ -69,6 +69,8 @@ from axiom_corpus.corpus.corpus_locks import (
     scope_matches,
 )
 from axiom_corpus.corpus.io import iter_provisions
+from axiom_corpus.corpus.release_policy import WITHDRAWN_SCOPES_PATH, load_withdrawn_scopes
+from axiom_corpus.corpus.releases import ReleaseManifest
 from axiom_corpus.corpus.source_coverage import (
     REVIEW_COVERAGE,
     REVIEW_MIN_REGION_WORDS,
@@ -76,6 +78,7 @@ from axiom_corpus.corpus.source_coverage import (
     SourceCoverage,
     SourceRegion,
     needs_review,
+    words,
 )
 
 DEFAULT_WORKERS = 4
@@ -87,6 +90,7 @@ INGEST_MANIFEST_ROOT = Path(".axiom") / "ingest-manifests"
 # Missing runs kept per source in the JSON report.
 REPORT_RUNS = 5
 
+_SELECTOR_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 _MANIFEST_ARGUMENT = re.compile(r"--manifest[ =]+(\S+\.ya?ml)")
 _OFFICIAL_DOCUMENTS_DIR = "official-documents"
 _SOURCES_PREFIX = f"{CORPUS_BASE}/sources/"
@@ -247,6 +251,7 @@ def measure_scope(
         return {**result, "absent": [provisions.path]}
 
     texts: dict[str, list[str]] = defaultdict(list)
+    bodies: dict[str, list[str]] = defaultdict(list)
     first_row: dict[str, str] = {}
     row_counts: Counter[str] = Counter()
     rows = 0
@@ -260,6 +265,8 @@ def measure_scope(
         for text in (record.heading, record.body):
             if isinstance(text, str) and text:
                 texts[source].append(text)
+        if isinstance(record.body, str) and record.body:
+            bodies[source].append(record.body)
 
     absent: list[str] = []
     sources: list[dict[str, Any]] = []
@@ -287,6 +294,9 @@ def measure_scope(
         figures = region.measure(texts[source])
         row = _source_row(source, region.kind, matched_by, figures)
         row["rows"] = row_counts[source]
+        # Rows with headings and no body are containers (a part's list of sections, an
+        # index page): what they miss is not partial loss.
+        row["row_body_words"] = sum(len(words(text)) for text in bodies[source])
         row["first_row"] = first_row[source]
         if error:
             row["region_error"] = error
@@ -374,6 +384,7 @@ def summarize_scope(result: Mapping[str, Any]) -> dict[str, Any] | None:
         "minimum": coverages[0],
         "needs_review": len(review),
         "needs_review_share": round(len(review) / count, 4),
+        "needs_review_with_body": sum(1 for row in review if row.get("row_body_words", 0) > 0),
         "region_words": sum(row["region_words"] for row in measured),
         "missing_words": sum(row["region_words"] - row["kept_words"] for row in measured),
         "needs_review_missing_words": sum(
@@ -384,11 +395,44 @@ def summarize_scope(result: Mapping[str, Any]) -> dict[str, Any] | None:
 
 
 def rank(summaries: Iterable[Mapping[str, Any]]) -> list[dict[str, Any]]:
-    """Scopes with the most sources under the review bar first, lowest median breaking ties."""
+    """Scopes with the most sources under the review bar first, lowest median breaking ties.
+
+    ``needs_review_with_body`` counts the sources under the bar whose rows carry body
+    text: those lost part of a text, where a source with heading-only rows is a
+    container or an empty document.
+    """
     return sorted(
         (dict(row) for row in summaries),
         key=lambda row: (-row["needs_review"], row["median"], row["scope"]),
     )
+
+
+def release_context(repo: Path) -> dict[str, dict[str, Any]]:
+    """Per scope: whether it is withdrawn, and the release selectors that select it.
+
+    ``selectors`` counts the tracked selectors under ``manifests/releases``;
+    ``newest_selector`` is the one with the latest date in its name. A scope no
+    selector names and a withdrawn scope need no successor for a release's sake.
+    """
+    context: dict[str, dict[str, Any]] = defaultdict(
+        lambda: {"withdrawn": False, "selectors": 0, "newest_selector": ""}
+    )
+    withdrawn_path = repo / WITHDRAWN_SCOPES_PATH
+    if withdrawn_path.is_file():
+        for scope in load_withdrawn_scopes(withdrawn_path):
+            context["/".join(scope)]["withdrawn"] = True
+    newest: dict[str, tuple[str, str]] = {}
+    for path in sorted((repo / "manifests" / "releases").glob("*.json")):
+        release = ReleaseManifest.load(path)
+        dates = _SELECTOR_DATE.findall(release.name)
+        order = (max(dates) if dates else "", release.name)
+        for scope in release.scope_keys:
+            label = "/".join(scope)
+            context[label]["selectors"] += 1
+            if order > newest.get(label, ("", "")):
+                newest[label] = order
+                context[label]["newest_selector"] = release.name
+    return context
 
 
 _CSV_FIELDS = (
@@ -400,10 +444,14 @@ _CSV_FIELDS = (
     "minimum",
     "needs_review",
     "needs_review_share",
+    "needs_review_with_body",
     "region_words",
     "missing_words",
     "needs_review_missing_words",
     "errors",
+    "withdrawn",
+    "selectors",
+    "newest_selector",
     "manifest",
 )
 
@@ -527,7 +575,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
             results = list(pool.map(_job, jobs, chunksize=2))
 
-    summaries = [summary for summary in map(summarize_scope, results) if summary is not None]
+    context = release_context(repo)
+    summaries = [
+        {**summary, **context[summary["scope"]]}
+        for summary in map(summarize_scope, results)
+        if summary is not None
+    ]
     ranking = rank(summaries)
     report = {
         "measure": SOURCE_COVERAGE_VERSION,

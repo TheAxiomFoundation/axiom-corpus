@@ -2820,7 +2820,7 @@ def _extract_styled_labeled_docx_section_blocks(
             if current_label is not None and keep_line(text):
                 sections[current_label]["body"].append(text)
         elif child.tag == _word_tag("tbl"):
-            if not started:
+            if not started or (current_label is None and region is None):
                 continue
             table_lines = _docx_table_lines(child)
             for row, reader_row in table_lines:
