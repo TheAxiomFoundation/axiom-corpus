@@ -241,9 +241,10 @@ _SHORT_ALPHABET = ("a", "[", "]", "-", "{", "}", "+", " ", ZWSP, "\n")
 def test_every_short_text_reads_back() -> None:
     """Invariants 1 to 4 for every text of up to 4 characters and every state assignment.
 
-    A delimiter and the characters it can make a token with are at most four
-    characters apart, so this covers every local arrangement; Hypothesis covers
-    longer texts.
+    Four characters hold a token with a neighbour on each side, or two tokens
+    side by side, in every combination of states. This is not a proof for
+    longer texts, longer zero-width stretches or ``typographic_underlines``;
+    Hypothesis samples longer texts.
     """
     cases = unreadable = misread_by_the_old_strip = 0
     for size in range(5):
@@ -318,7 +319,7 @@ def test_delimiters_in_text_are_those_no_written_delimiter_splits(
         ("{+a [-b+}", r"\['\[-'\] inside a inserted run"),
     ],
 )
-def test_text_the_renderer_did_not_write_is_refused(text: str, message: str) -> None:
+def test_text_that_is_not_accepted_markup_is_refused(text: str, message: str) -> None:
     with pytest.raises(ValueError, match=message):
         _strip_amendment_markup(text)
 
