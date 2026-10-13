@@ -3294,8 +3294,11 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
 def _pdf_layer_lines(page: Any, *, extraction: dict[str, Any]) -> list[tuple[str, bool]]:
     """The page's text-layer lines, each with whether it is painted (``_pdf_span_painted``).
 
-    The lines are those of ``page.get_text("text")`` with the same flags and order, read
-    from the ``dict`` output so each carries its spans' paint. A line is painted when any
+    The lines come from the ``dict`` output, with the text flags and sort of
+    ``_pdf_page_text``, so each carries its spans' paint. Without ``sort_text`` they are
+    exactly the lines of ``page.get_text("text")``. With it, that output rebuilds lines
+    from words by position, while these stay whole, in the ``dict`` output's sorted order,
+    holding the same characters other than control characters. A line is painted when any
     of its spans with visible characters is.
     """
     data = page.get_text(
@@ -3323,7 +3326,7 @@ def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool
     """Whether an invisible recognition layer disagrees with the OCR text almost everywhere.
 
     True when the layer has at least _RECOGNITION_MIN_WORDS distinct words (letter runs of
-    _RECOGNITION_WORD_LETTERS or more, case-folded) and fewer than a third of them occur in
+    _RECOGNITION_WORD_LETTERS or more, lower-cased) and fewer than a third of them occur in
     the OCR text: as one of its letter runs, or, at _RECOGNITION_RUN_LETTERS or more
     letters, inside its letters run together. Lines with control characters do not count.
     """

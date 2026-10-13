@@ -558,6 +558,36 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
     assert result.startswith(page["ocr_text"].rstrip("\n"))
 
 
+@pytest.mark.parametrize("path", sorted(PAGES))
+@pytest.mark.parametrize(
+    "extraction",
+    [
+        {"sort_text": True},
+        {"ignore_actual_text": True},
+        {"sort_text": True, "ignore_actual_text": True},
+    ],
+)
+def test_layer_lines_hold_the_text_outputs_characters_under_every_text_option(path, extraction):
+    # With sort_text, get_text("text") rebuilds lines from words by position; the layer
+    # lines stay whole but hold the same characters, control characters aside. Otherwise
+    # the lines are the same.
+    page = PAGES[path]
+    with fitz.open(REPO_ROOT / page["pdf"]) as document:
+        pdf_page = document[page["page"] - 1]
+        flags = documents_module._pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
+        text = pdf_page.get_text("text", sort=bool(extraction.get("sort_text")), flags=flags)
+        lines = [line for line, _ in _pdf_layer_lines(pdf_page, extraction=extraction)]
+
+    if extraction.get("sort_text"):
+        # Control characters aside (a garbled font's U+0001 "spaces" split the sorted words).
+        def chars(value: str) -> list[str]:
+            return sorted(c for c in value if not c.isspace() and unicodedata.category(c) != "Cc")
+
+        assert chars(text) == chars("".join(lines))
+    else:
+        assert "\n".join(lines).splitlines() == text.splitlines()
+
+
 def test_a_typed_date_is_kept_when_its_day_and_year_occur_elsewhere():
     # CMS-179, HI-14-005: OCR read "March 19, 2014" (date received) and nothing of the
     # regional-office box, so "19" and "2014" were on the page and the old rule dropped the
