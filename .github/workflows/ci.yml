@@ -101,9 +101,17 @@ jobs:
             git -C "$VERIFIER_DIR" fetch --depth 1 origin "$BASE_REF"
             git -C "$VERIFIER_DIR" checkout --detach "$BASE_REF"
             if [ -f "$VERIFIER_DIR/src/axiom_corpus/corpus/ingest_manifests.py" ]; then
-              # The base commit's code on the versions the base commit's
-              # uv.lock pins: a pull request changes neither.
-              bash .github/scripts/install-locked.sh --project "$VERIFIER_DIR"
+              # The base commit's code, on the versions its uv.lock pins,
+              # installed by its own install-locked.sh. This workflow file
+              # still comes from the pull request, so review of
+              # .github/workflows and .github/scripts stays the trust root.
+              if [ -f "$VERIFIER_DIR/.github/scripts/install-locked.sh" ]; then
+                bash "$VERIFIER_DIR/.github/scripts/install-locked.sh" --project "$VERIFIER_DIR"
+              else
+                # The base predates install-locked.sh, and its lock may still
+                # pin a package that has only a source distribution.
+                bash .github/scripts/install-locked.sh --project "$VERIFIER_DIR" --allow-source-builds
+              fi
             else
               echo "Base commit has no ingest guard yet; using checked-out bootstrap guard."
               bash .github/scripts/install-locked.sh --editable

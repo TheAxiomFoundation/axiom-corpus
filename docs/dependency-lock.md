@@ -63,26 +63,40 @@ installs into the job's Python:
 1. `uv`, at the version and hashes in `.github/scripts/uv-requirements.txt`.
 2. Every dependency `DIR/uv.lock` pins for the project and the named extras.
    `uv export --frozen` writes them as pip requirements with hashes, and pip
-   installs them with `--require-hashes`.
+   installs them with `--require-hashes`, from wheels only
+   (`--only-binary :all:`): pip does not hash-check the tools it would fetch
+   to build a source distribution.
 3. The project in `DIR`, with `--no-deps`.
 
 Every install step in `ci.yml` calls the script. On a pull request the corpus
-guard still runs the base commit's code, now on the versions the base
-commit's `uv.lock` pins, so a pull request changes neither the guard's code
-nor its dependencies. (The workflow file and the script themselves run as the
-pull request has them; review of workflow changes remains the trust root, as
-`docs/corpus-storage.md` says of the guard.)
+guard still runs the base commit's code, on the versions the base commit's
+`uv.lock` pins, installed by the base commit's own copy of the script. The
+pull request changes none of these, but `ci.yml` itself runs as the pull
+request has it, so review of changes to `.github/workflows` and
+`.github/scripts` remains the trust root, as `docs/corpus-storage.md` says of
+the guard. A pull request whose base predates the script installs the guard
+with the pull request's copy and `--allow-source-builds`, since that base's
+lock may pin a package with no wheel: on this change's own pull request the
+guard step built pyiceberg 0.10.0 from source.
+
+The guard is installed into the same Python before the pull request's own
+install, so a package the base lock has and the pull request's lock drops
+stays installed for the pull request's tests.
 
 `tests/test_locked_install.py` holds this in place:
 
-- every locked package that is installed is at its locked version. In CI this
-  checks that the workflow installed the lock; it fails in an environment
-  built any other way, for example by `pip install -e .`;
-- `uv.lock` records the requirements `pyproject.toml` declares, so a
+- every locked package that is installed is at its locked version, and every
+  package the lock pins for the `dev` extra on the running platform is
+  installed. In CI this checks that the workflow installed the lock; it fails
+  in an environment built any other way, for example by `pip install -e .`;
+- `uv lock --check`: `uv.lock` is up to date with `pyproject.toml`, so a
   dependency change without `uv lock` fails;
-- every locked package has a wheel for CPython 3.14 on manylinux x86_64, so
-  CI builds nothing from source except this project;
-- no step in `ci.yml` runs `pip install` outside the script.
+- every locked package has a wheel for CPython 3.14 on manylinux x86_64,
+  which the wheels-only install needs;
+- every job in `ci.yml` that runs this project's code installs it through
+  the script, and no step there installs packages another way (pip, pipx or
+  uv in a `run:` block). This reads the commands; it catches mistakes, not a
+  workflow written to get around it.
 
 ## Changing a dependency
 
@@ -94,9 +108,13 @@ uv lock
 uv lock --upgrade-package <name>
 ```
 
-Commit `pyproject.toml` and `uv.lock` together. Both commands keep every other
-pin where it is. Do not run `uv lock --upgrade`: it moves every package at
-once, including the extraction libraries below.
+Commit `pyproject.toml` and `uv.lock` together. Both commands keep the other
+pins where they are as long as the new requirements allow them and PyPI still
+lists them (the `verify` extra moved when PyPI dropped its locked
+policyengine-us; see
+`changelog.d/verify-extra-policyengine-us-relock.changed.md`). Check the lock
+diff before committing. Do not run `uv lock --upgrade`: it moves every package
+at once, including the extraction libraries below.
 
 ## Extraction libraries
 

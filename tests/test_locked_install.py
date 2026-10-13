@@ -6,18 +6,30 @@ PyMuPDF 1.28.2 where the lock pins 1.26.7, and two extraction tests could only
 run locally. docs/dependency-lock.md has the measurements. These tests hold the
 agreement in place:
 
-- the environment running the tests has every locked package at its locked
-  version (in CI, this is the check that the workflow installed the lock);
-- uv.lock records the requirements pyproject.toml declares;
-- every locked package has a wheel for CI's platform, so CI builds nothing
-  but this project from source;
-- .github/workflows/ci.yml installs only through install-locked.sh.
+- every locked package that is installed is at its locked version, and every
+  package the lock pins for the ``dev`` extra on this platform is installed
+  (in CI, this is the check that the workflow installed the lock);
+- ``uv lock --check``: uv.lock is up to date with pyproject.toml;
+- every locked package has a wheel for CI's platform, which install-locked.sh
+  requires;
+- every job in .github/workflows/ci.yml that runs this project's code installs
+  it through install-locked.sh, and no step there installs packages any other
+  way. That check reads the commands in ``run:`` blocks; it guards against
+  mistakes, not against a workflow written to get around it.
+
+Installed packages the lock does not name are not flagged: on a pull request
+CI installs the base commit's lock first (for the corpus guard) into the same
+Python, so a package the pull request drops stays installed.
 """
 
 from __future__ import annotations
 
+import importlib.util
+import os
 import re
+import shutil
 import subprocess
+import sys
 import tomllib
 from collections import defaultdict
 from importlib import metadata
@@ -26,8 +38,7 @@ from pathlib import Path
 import pytest
 import yaml
 from packaging import tags
-from packaging.requirements import Requirement
-from packaging.specifiers import SpecifierSet
+from packaging.markers import Marker
 from packaging.utils import canonicalize_name, parse_wheel_filename
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +62,16 @@ WORKFLOWS_NOT_YET_LOCKED = {
     "register-release-object.yml",
 }
 
-_PIP_INSTALL = re.compile(r"\bpip3?\s+install\b")
+# A package install by pip (options may sit between `pip` and `install`), pipx
+# or uv.
+_INSTALL = re.compile(
+    r"\b(?:pip3?|pipx)\b[^\n;&|]*?\binstall\b|\buv\s+(?:pip\s+install|sync|add|tool\s+install)\b"
+)
+# A step that runs this project's code or its checks.
+_PROJECT_CODE = re.compile(
+    r"\baxiom-corpus(?:-ingest)?\b|\bpytest\b|\bruff\b|\bmypy\b|\btowncrier\b"
+    r"|python3?\s+(?:-I\s+)?scripts/|\baxiom_corpus\b"
+)
 
 
 def _lock() -> dict:
@@ -66,15 +86,43 @@ def _locked_versions() -> dict[str, set[str]]:
     return versions
 
 
-def test_environment_has_every_locked_package_at_its_locked_version() -> None:
-    locked = _locked_versions()
-    installed = {
+def _installed() -> dict[str, str]:
+    return {
         canonicalize_name(distribution.metadata["Name"]): distribution.version
         for distribution in metadata.distributions()
     }
+
+
+def _uv() -> list[str]:
+    """The uv command: the module install-locked.sh installs, or uv on PATH."""
+    if importlib.util.find_spec("uv") is not None:
+        return [sys.executable, "-m", "uv"]
+    if path := shutil.which("uv"):
+        return [path]
+    if os.environ.get("CI"):
+        pytest.fail("uv is not installed; .github/scripts/install-locked.sh installs it in CI")
+    pytest.skip("uv is not installed")
+
+
+def _run_uv(*arguments: str) -> str:
+    env = {**os.environ, "UV_PYTHON": sys.executable, "UV_PYTHON_DOWNLOADS": "never"}
+    result = subprocess.run(
+        [*_uv(), *arguments],
+        capture_output=True,
+        text=True,
+        check=False,
+        cwd=ROOT,
+        env=env,
+    )
+    assert result.returncode == 0, result.stderr
+    return result.stdout
+
+
+def test_installed_locked_packages_are_at_their_locked_versions() -> None:
+    locked = _locked_versions()
     differing = {
         name: (version, sorted(locked[name]))
-        for name, version in installed.items()
+        for name, version in _installed().items()
         if name in locked and version not in locked[name]
     }
     assert not differing, (
@@ -82,55 +130,34 @@ def test_environment_has_every_locked_package_at_its_locked_version() -> None:
         f"{differing}. Install with `uv sync --extra dev`; CI installs with "
         ".github/scripts/install-locked.sh."
     )
-    # The comparison above is empty for a package that is not installed at all.
-    project_requirements = {
-        canonicalize_name(entry["name"])
-        for entry in _project_lock_entry()["metadata"]["requires-dist"]
-        if "marker" not in entry
-    }
-    assert project_requirements - installed.keys() == set()
 
 
-def _project_lock_entry() -> dict:
-    return next(
-        package for package in _lock()["package"] if canonicalize_name(package["name"]) == PROJECT
-    )
-
-
-def _requirement_key(name: str, specifier: str, extra: str | None) -> tuple[str, str, str | None]:
-    return (canonicalize_name(name), str(SpecifierSet(specifier)), extra)
-
-
-def test_lock_records_the_requirements_pyproject_declares() -> None:
-    """A pyproject.toml dependency change without `uv lock` fails here."""
-    project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
-    declared = set()
-    for line in project["dependencies"]:
-        requirement = Requirement(line)
-        declared.add(_requirement_key(requirement.name, str(requirement.specifier), None))
-    for extra, lines in project["optional-dependencies"].items():
-        for line in lines:
-            requirement = Requirement(line)
-            declared.add(_requirement_key(requirement.name, str(requirement.specifier), extra))
-
-    lock_metadata = _project_lock_entry()["metadata"]
-    locked = set()
-    for entry in lock_metadata["requires-dist"]:
-        extra_match = re.search(r"extra == '([^']+)'", entry.get("marker", ""))
-        locked.add(
-            _requirement_key(
-                entry["name"],
-                entry.get("specifier", ""),
-                extra_match.group(1) if extra_match else None,
+def test_every_package_the_lock_pins_for_the_dev_extra_is_installed() -> None:
+    exported = _run_uv(
+        "export", "--frozen", "--offline", "--no-emit-project", "--no-hashes",
+        "--no-header", "--no-annotate", "--extra", "dev",
+    )  # fmt: skip
+    installed = _installed()
+    missing = []
+    for line in exported.splitlines():
+        if not line.strip() or line.lstrip().startswith(("#", "-")):
+            continue
+        requirement, _, marker = line.partition(";")
+        name, _, version = requirement.strip().partition("==")
+        if marker.strip() and not Marker(marker.strip()).evaluate():
+            continue
+        if installed.get(canonicalize_name(name)) != version:
+            missing.append(
+                f"{name}=={version} (installed: {installed.get(canonicalize_name(name))})"
             )
-        )
-
-    assert declared == locked, (
-        "uv.lock is out of date with pyproject.toml; run `uv lock`. "
-        f"Only in pyproject.toml: {sorted(declared - locked, key=str)}. "
-        f"Only in uv.lock: {sorted(locked - declared, key=str)}."
+    assert not missing, (
+        f"the lock pins these for the dev extra, but they are not installed: {missing}"
     )
-    assert set(lock_metadata["provides-extras"]) == set(project["optional-dependencies"])
+
+
+def test_lock_is_up_to_date_with_pyproject() -> None:
+    """A pyproject.toml change without `uv lock` fails here (`uv lock --check`)."""
+    _run_uv("lock", "--check", "--offline")
 
 
 def _ci_wheel_tags() -> set[tags.Tag]:
@@ -149,7 +176,7 @@ def _ci_wheel_tags() -> set[tags.Tag]:
 
 
 def test_every_locked_package_has_a_wheel_for_ci() -> None:
-    """A package with only an sdist would be built in CI with unpinned build tools."""
+    """install-locked.sh installs wheels only (pip does not hash-check build tools)."""
     supported = _ci_wheel_tags()
     without_wheel = []
     for package in _lock()["package"]:
@@ -164,44 +191,100 @@ def test_every_locked_package_has_a_wheel_for_ci() -> None:
     )
 
 
-def _run_blocks(workflow: Path) -> list[tuple[str, str]]:
+def _steps(workflow: Path) -> dict[str, list[tuple[str, str]]]:
+    """Job name -> its steps' (name, run block), in order; steps without run are ''."""
     document = yaml.safe_load(workflow.read_text(encoding="utf-8"))
-    blocks = []
-    for job_name, job in document["jobs"].items():
-        for index, step in enumerate(job.get("steps", [])):
-            if "run" in step:
-                blocks.append((f"{job_name}: {step.get('name', f'step {index + 1}')}", step["run"]))
-    return blocks
+    return {
+        job_name: [
+            (step.get("name", f"step {index + 1}"), str(step.get("run", "")))
+            for index, step in enumerate(job.get("steps", []))
+        ]
+        for job_name, job in document["jobs"].items()
+    }
+
+
+def _installs_outside_the_script(workflow: Path) -> list[str]:
+    return [
+        f"{job}: {name}"
+        for job, steps in _steps(workflow).items()
+        for name, run in steps
+        if _INSTALL.search(run)
+    ]
 
 
 def test_ci_workflow_installs_only_through_the_locked_script() -> None:
-    blocks = _run_blocks(WORKFLOWS / "ci.yml")
-    bare = [label for label, run in blocks if _PIP_INSTALL.search(run)]
+    bare = _installs_outside_the_script(WORKFLOWS / "ci.yml")
     assert not bare, f"ci.yml steps install outside install-locked.sh: {bare}"
-    assert sum(run.count("install-locked.sh") for _, run in blocks) >= 5
+
+
+def test_every_ci_job_that_runs_project_code_installs_it_from_the_lock() -> None:
+    uninstalled = []
+    for job, steps in _steps(WORKFLOWS / "ci.yml").items():
+        first = next(
+            (index for index, (_, run) in enumerate(steps) if _PROJECT_CODE.search(run)), None
+        )
+        if first is None:
+            continue
+        if not any("install-locked.sh" in run for _, run in steps[: first + 1]):
+            uninstalled.append(f"{job}: {steps[first][0]}")
+    assert not uninstalled, (
+        f"these ci.yml steps run project code before any install-locked.sh step: {uninstalled}"
+    )
 
 
 def test_only_the_listed_release_workflows_install_outside_the_lock() -> None:
     bare = {
         workflow.name
         for workflow in sorted(WORKFLOWS.glob("*.yml"))
-        if any(_PIP_INSTALL.search(run) for _, run in _run_blocks(workflow))
+        if _installs_outside_the_script(workflow)
     }
     assert bare == WORKFLOWS_NOT_YET_LOCKED
 
 
-def test_install_script_installs_dependencies_only_with_hashes() -> None:
+@pytest.mark.parametrize(
+    "command",
+    [
+        "pip install -e .",
+        "python -I -m pip install --upgrade pip",
+        "python -m pip --disable-pip-version-check install foo",
+        "pip3 -q install foo",
+        "uv pip install foo",
+        "uv sync --extra dev",
+        "pipx install ruff",
+    ],
+)
+def test_the_install_pattern_finds_install_commands(command: str) -> None:
+    assert _INSTALL.search(command)
+
+
+@pytest.mark.parametrize(
+    "command",
+    [
+        "bash .github/scripts/install-locked.sh --editable",
+        "pip --version; echo install",
+        "pip list",
+    ],
+)
+def test_the_install_pattern_ignores_other_commands(command: str) -> None:
+    assert not _INSTALL.search(command)
+
+
+def test_install_script_installs_dependencies_only_with_hashes_from_wheels() -> None:
     script = INSTALL_SCRIPT.read_text(encoding="utf-8")
     commands = re.sub(r"\\\n\s*", " ", script)
     installs = [
         line.strip()
         for line in commands.splitlines()
-        if _PIP_INSTALL.search(line) and not line.lstrip().startswith("#")
+        if _INSTALL.search(line) and not line.lstrip().startswith("#")
     ]
     assert len(installs) == 4
-    for line in installs:
-        # Only the project itself, already-resolved, installs without hashes.
-        assert "--require-hashes" in line or "--no-deps" in line, line
+    dependencies = [line for line in installs if "--no-deps" not in line]
+    assert len(dependencies) == 2  # uv, then the exported lock
+    for line in dependencies:
+        assert "--require-hashes" in line, line
+    assert "--only-binary :all:" in dependencies[0]
+    assert '${binary[@]+"${binary[@]}"}' in dependencies[1]
+    assert "binary=(--only-binary :all:)" in commands
     assert "export" in commands and "--frozen" in commands
 
 
@@ -209,6 +292,8 @@ def test_install_script_installs_dependencies_only_with_hashes() -> None:
     ("arguments", "returncode", "message"),
     [
         (["--no-such-option"], 2, "unknown argument"),
+        (["--project"], 2, "--project needs a directory"),
+        (["--extra"], 2, "--extra needs a name"),
         (["--project", "{empty}"], 1, "has no uv.lock"),
     ],
 )

@@ -28,16 +28,31 @@ The plan has two kinds of task:
   configuration the manifests at HEAD give its ``source_id``, and records a
   digest of every block. ``compare`` counts the documents whose blocks differ
   between the snapshots, and how many committed rows each snapshot reproduces.
+  Where a ``source_id`` has several configurations, ``compare`` compares one
+  (the one that extracts on both snapshots and reproduces the most committed
+  rows); a difference in another configuration is not counted. Configurations
+  are told apart by ``citation_path`` and ``extraction``; a manifest row's
+  ``title`` changes only block headings, and both snapshots use the same row.
 - ``pdf``: one distinct PDF file under ``data/corpus/sources``. A snapshot
   records per-page digests of ``get_text()``, ``get_text("text", sort=True)``
   and ``get_text("words")``, the calls the statute adapters make. ``compare``
   counts the pages that differ.
 
+Both kinds record the SHA-256 of the bytes they read, and ``compare`` sets
+aside any task whose snapshots read different bytes (or bytes other than the
+lock's), so a fetch or a branch switch between the two runs cannot pass for a
+PyMuPDF difference.
+
 The manifests and extractor at HEAD are not always the ones that wrote a
 committed row, so some committed rows are reproduced by neither snapshot. Those
 say nothing about the PyMuPDF version, and ``compare`` counts them apart.
 
-Snapshots are JSONL, written and flushed per task; a rerun skips finished tasks.
+Each task runs in a worker process that the parent kills after ``--timeout``
+seconds; a task whose worker dies or is killed gets a record saying so, and the
+run goes on with a new worker. Snapshots are JSONL, written and flushed per
+task by the parent. A rerun skips finished tasks; ``--retry-errors`` also reruns
+tasks recorded as timed out or as killing their worker. ``compare`` reads the
+last record of each task.
 """
 
 from __future__ import annotations
@@ -45,15 +60,17 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import signal
+import multiprocessing
 import subprocess
 import sys
 import time
 import warnings
-from collections import Counter, defaultdict
-from collections.abc import Iterator
-from concurrent.futures import ProcessPoolExecutor, as_completed
-from contextlib import contextmanager
+from collections import Counter, defaultdict, deque
+from collections.abc import Callable, Iterator
+from contextlib import suppress
+from dataclasses import dataclass
+from multiprocessing.connection import Connection, wait
+from multiprocessing.process import BaseProcess
 from pathlib import Path
 from typing import Any
 
@@ -67,6 +84,13 @@ PATH, HEADING, BODY, BODY_LENGTH, NONSPACE, NONSPACE_LENGTH, METADATA = range(7)
 # its non-space characters), get_text("text", sort=True) (digest, non-space
 # digest), get_text("words") (digest of the words joined by spaces).
 TEXT, TEXT_NONSPACE, TEXT_NONSPACE_LENGTH, SORTED, SORTED_NONSPACE, WORDS = range(6)
+# Errors a rerun with --retry-errors runs again: the task, not its extraction,
+# failed (the worker was killed at the time limit, or died).
+RETRYABLE_ERROR_PREFIXES = ("timeout after", "worker exited")
+# A worker process is replaced after this many tasks, to bound memory growth.
+TASKS_PER_WORKER = 100
+
+TaskFunction = Callable[[dict[str, Any], str], dict[str, Any]]
 
 
 def digest(text: str) -> str:
@@ -123,7 +147,7 @@ def _manifest_rows(root: Path) -> dict[tuple[str, str, str], list[dict[str, Any]
 
 
 def _config_identity(row: dict[str, Any]) -> str:
-    """Two manifest rows with these equal extract the same blocks from the same bytes."""
+    """Two manifest rows with these equal extract the same block bodies from the same bytes."""
     return json.dumps(
         [row.get("citation_path"), row.get("extraction")], sort_keys=True, default=str
     )
@@ -131,9 +155,11 @@ def _config_identity(row: dict[str, Any]) -> str:
 
 def build_plan(root: Path) -> list[dict[str, Any]]:
     manifest_rows = _manifest_rows(root)
+    locked = list(_locked_files(root))
+    locked_sha256 = {entry["path"]: entry["sha256"] for _, entry in locked}
     tasks: list[dict[str, Any]] = []
     pdfs: dict[str, str] = {}
-    for scope, entry in _locked_files(root):
+    for scope, entry in locked:
         path = entry["path"]
         if path.startswith("data/corpus/sources/") and path.lower().endswith(".pdf"):
             # One task per distinct file; of the paths holding it, the first by name.
@@ -164,6 +190,7 @@ def build_plan(root: Path) -> list[dict[str, Any]]:
                     "scope": scope,
                     "provisions_path": path,
                     "source_path": source_path,
+                    "source_sha256": locked_sha256.get(f"data/corpus/{source_path}"),
                     "source_id": source_id,
                     "rows": rows,
                     "ocr": any(
@@ -182,34 +209,27 @@ def build_plan(root: Path) -> list[dict[str, Any]]:
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
-    with path.open(encoding="utf-8") as handle:
-        return [json.loads(line) for line in handle if line.strip()]
+    """Records of a JSONL file; a torn last line (a run killed mid-write) is skipped."""
+    records = []
+    lines = path.read_text(encoding="utf-8").split("\n")
+    for number, line in enumerate(lines, start=1):
+        if not line.strip():
+            continue
+        try:
+            records.append(json.loads(line))
+        except json.JSONDecodeError:
+            if number == len(lines):
+                continue
+            raise
+    return records
+
+
+def _latest(records: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """The last record of each task (a retried task has more than one)."""
+    return {record["key"]: record for record in records}
 
 
 # ----------------------------------------------------------------------- snapshot
-
-
-class _TimeoutError(Exception):
-    pass
-
-
-def _raise_timeout(_signum: int, _frame: Any) -> None:
-    raise _TimeoutError
-
-
-@contextmanager
-def _time_limit(seconds: int) -> Iterator[None]:
-    """Raise _TimeoutError after ``seconds`` (0: no limit, as in a test's own process)."""
-    if seconds <= 0:
-        yield
-        return
-    previous = signal.signal(signal.SIGALRM, _raise_timeout)
-    signal.alarm(seconds)
-    try:
-        yield
-    finally:
-        signal.alarm(0)
-        signal.signal(signal.SIGALRM, previous)
 
 
 def _quiet_mupdf() -> None:
@@ -240,7 +260,7 @@ def _default_candidate(task: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def snapshot_document(task: dict[str, Any], root: str, timeout: int) -> dict[str, Any]:
+def snapshot_document(task: dict[str, Any], root: str) -> dict[str, Any]:
     from axiom_corpus.corpus import documents
 
     _quiet_mupdf()
@@ -258,7 +278,7 @@ def snapshot_document(task: dict[str, Any], root: str, timeout: int) -> dict[str
             "config": digest(_config_identity(candidate["row"])),
         }
         try:
-            with _time_limit(timeout), warnings.catch_warnings(record=True) as caught:
+            with warnings.catch_warnings(record=True) as caught:
                 warnings.simplefilter("always")
                 source = documents.OfficialDocumentSource.from_mapping(candidate["row"])
                 blocks = documents._extract_blocks(
@@ -283,8 +303,6 @@ def snapshot_document(task: dict[str, Any], root: str, timeout: int) -> dict[str
             entry["warnings"] = len(caught)
             if caught:
                 entry["warning_digest"] = digest("\n".join(str(item.message) for item in caught))
-        except _TimeoutError:
-            entry["error"] = f"timeout after {timeout}s"
         except Exception as exc:  # noqa: BLE001 - recorded and compared, not hidden
             entry["error"] = f"{type(exc).__name__}: {exc}"[:400]
         result["candidates"].append(entry)
@@ -292,14 +310,17 @@ def snapshot_document(task: dict[str, Any], root: str, timeout: int) -> dict[str
     return result
 
 
-def snapshot_pdf(task: dict[str, Any], root: str, timeout: int) -> dict[str, Any]:
+def snapshot_pdf(task: dict[str, Any], root: str) -> dict[str, Any]:
     import fitz
 
     _quiet_mupdf()
     started = time.monotonic()
+    path = Path(root) / task["path"]
     result: dict[str, Any] = {"key": task["key"], "path": task["path"]}
     try:
-        with _time_limit(timeout), fitz.open(str(Path(root) / task["path"])) as document:
+        with path.open("rb") as handle:
+            result["pdf_sha256"] = hashlib.file_digest(handle, "sha256").hexdigest()
+        with fitz.open(str(path)) as document:
             result["page_count"] = document.page_count
             pages = []
             for page in document:
@@ -317,17 +338,15 @@ def snapshot_pdf(task: dict[str, Any], root: str, timeout: int) -> dict[str, Any
                     ]
                 )
             result["pages"] = pages
-    except _TimeoutError:
-        result["error"] = f"timeout after {timeout}s"
     except Exception as exc:  # noqa: BLE001 - recorded and compared, not hidden
         result["error"] = f"{type(exc).__name__}: {exc}"[:400]
     result["seconds"] = round(time.monotonic() - started, 3)
     return result
 
 
-def snapshot_task(task: dict[str, Any], root: str, timeout: int) -> dict[str, Any]:
+def snapshot_task(task: dict[str, Any], root: str) -> dict[str, Any]:
     worker = snapshot_document if task["kind"] == "document" else snapshot_pdf
-    return worker(task, root, timeout)
+    return worker(task, root)
 
 
 def select_tasks(
@@ -348,6 +367,147 @@ def select_tasks(
     return selected
 
 
+def _finished_keys(records: list[dict[str, Any]], *, retry_errors: bool) -> set[str]:
+    latest = _latest(records)
+    if not retry_errors:
+        return set(latest)
+    return {
+        key
+        for key, record in latest.items()
+        if not str(record.get("error", "")).startswith(RETRYABLE_ERROR_PREFIXES)
+    }
+
+
+def _trim_torn_tail(path: Path) -> None:
+    """Drop a last line a killed run left half-written, so appending starts on a new line."""
+    if not path.exists():
+        return
+    content = path.read_bytes()
+    if content and not content.endswith(b"\n"):
+        with path.open("r+b") as handle:
+            handle.truncate(content.rfind(b"\n") + 1)
+
+
+def _worker_loop(connection: Connection, root: str, task_function: TaskFunction) -> None:
+    """Run tasks the parent sends until it sends None or goes away."""
+    while True:
+        try:
+            task = connection.recv()
+        except EOFError:
+            return
+        if task is None:
+            return
+        connection.send(task_function(task, root))
+
+
+@dataclass
+class _Worker:
+    process: BaseProcess
+    connection: Connection
+    tasks_run: int = 0
+    task: dict[str, Any] | None = None
+    deadline: float = 0.0
+
+
+def _run_in_workers(
+    tasks: list[dict[str, Any]],
+    *,
+    root: str,
+    workers: int,
+    timeout: float,
+    task_function: TaskFunction,
+    emit: Callable[[dict[str, Any]], None],
+) -> None:
+    """Run each task in a worker process and emit one record per task, in finishing order.
+
+    The parent knows which task each worker holds, so a worker that dies (a
+    MuPDF crash, the out-of-memory killer) or passes its deadline (a hang inside
+    MuPDF, where no Python signal handler runs) costs only that task: it is
+    recorded and the worker replaced.
+    """
+    context = multiprocessing.get_context("spawn")
+    pending = deque(tasks)
+    busy: dict[Connection, _Worker] = {}
+
+    def start() -> _Worker:
+        parent, child = context.Pipe()
+        process = context.Process(
+            target=_worker_loop, args=(child, root, task_function), daemon=True
+        )
+        process.start()
+        child.close()
+        return _Worker(process=process, connection=parent)
+
+    def stop(worker: _Worker, *, kill: bool) -> None:
+        if kill:
+            worker.process.kill()
+        else:
+            with suppress(OSError):
+                worker.connection.send(None)
+        worker.process.join(10)
+        if worker.process.is_alive():
+            worker.process.kill()
+            worker.process.join()
+        worker.connection.close()
+
+    def assign(worker: _Worker) -> None:
+        """Give ``worker`` the next task, or retire it when there is none."""
+        if not pending:
+            stop(worker, kill=False)
+            return
+        if worker.tasks_run >= TASKS_PER_WORKER:
+            stop(worker, kill=False)
+            worker = start()
+        task = pending.popleft()
+        try:
+            worker.connection.send(task)
+        except OSError:
+            # The idle worker died between tasks; the task was never sent.
+            stop(worker, kill=True)
+            pending.appendleft(task)
+            assign(start())
+            return
+        worker.task, worker.deadline = task, time.monotonic() + timeout
+        worker.tasks_run += 1
+        busy[worker.connection] = worker
+
+    try:
+        for _ in range(min(workers, len(pending))):
+            assign(start())
+        while busy:
+            next_deadline = min(worker.deadline for worker in busy.values())
+            ready = wait(list(busy), timeout=max(0.0, next_deadline - time.monotonic()))
+            for connection in ready:
+                worker = busy.pop(connection)  # type: ignore[arg-type]
+                assert worker.task is not None
+                try:
+                    record = worker.connection.recv()
+                except (EOFError, OSError):
+                    worker.process.join(10)
+                    emit(
+                        {
+                            "key": worker.task["key"],
+                            "error": f"worker exited with code {worker.process.exitcode}",
+                        }
+                    )
+                    stop(worker, kill=True)
+                    assign(start())
+                    continue
+                emit(record)
+                assign(worker)
+            now = time.monotonic()
+            for connection, worker in list(busy.items()):
+                if worker.deadline <= now:
+                    del busy[connection]
+                    assert worker.task is not None
+                    stop(worker, kill=True)
+                    emit({"key": worker.task["key"], "error": f"timeout after {timeout:g}s"})
+                    assign(start())
+    finally:
+        for worker in busy.values():
+            stop(worker, kill=True)
+
+
 def run_snapshot(
     plan: list[dict[str, Any]],
     out_path: Path,
@@ -355,43 +515,45 @@ def run_snapshot(
     root: Path,
     kinds: set[str],
     ocr: str = "all",
-    workers: int = 1,
-    timeout: int = 900,
+    workers: int = 2,
+    timeout: float = 900,
+    retry_errors: bool = False,
+    task_function: TaskFunction = snapshot_task,
 ) -> int:
     """Append a record for every unfinished task to ``out_path``; return how many ran.
 
-    With one worker the tasks run in this process and ``timeout`` is not
-    enforced; with more, each runs in a worker process under its own alarm.
+    ``workers`` worker processes run the tasks under ``timeout`` seconds each;
+    ``workers=0`` runs them in this process, with no time limit.
     """
     versions = pymupdf_versions()
-    done = {record["key"] for record in _read_jsonl(out_path)} if out_path.exists() else set()
+    _trim_torn_tail(out_path)
+    records = _read_jsonl(out_path) if out_path.exists() else []
+    done = _finished_keys(records, retry_errors=retry_errors)
     tasks = select_tasks(plan, done=done, kinds=kinds, ocr=ocr)
     print(f"{versions}: {len(tasks)} task(s) to run, {len(done)} done", file=sys.stderr)
+    written = 0
     with out_path.open("a", encoding="utf-8") as out:
 
-        def write(record: dict[str, Any], count: int) -> None:
+        def emit(record: dict[str, Any]) -> None:
+            nonlocal written
             out.write(json.dumps({**record, **versions}, sort_keys=True) + "\n")
             out.flush()
-            if count % 500 == 0:
-                print(f"{count}/{len(tasks)}", file=sys.stderr, flush=True)
+            written += 1
+            if written % 500 == 0:
+                print(f"{written}/{len(tasks)}", file=sys.stderr, flush=True)
 
-        if workers <= 1:
-            for count, task in enumerate(tasks, start=1):
-                write(snapshot_task(task, str(root), 0), count)
-            return len(tasks)
-        with ProcessPoolExecutor(max_workers=workers, max_tasks_per_child=100) as pool:
-            futures = {
-                pool.submit(snapshot_task, task, str(root), timeout): task["key"] for task in tasks
-            }
-            for count, future in enumerate(as_completed(futures), start=1):
-                try:
-                    record = future.result()
-                except Exception as exc:  # noqa: BLE001 - a dead worker is a result too
-                    record = {
-                        "key": futures[future],
-                        "error": f"worker: {type(exc).__name__}: {exc}"[:400],
-                    }
-                write(record, count)
+        if workers <= 0:
+            for task in tasks:
+                emit(task_function(task, str(root)))
+        else:
+            _run_in_workers(
+                tasks,
+                root=str(root),
+                workers=workers,
+                timeout=timeout,
+                task_function=task_function,
+                emit=emit,
+            )
     return len(tasks)
 
 
@@ -440,17 +602,20 @@ def _blocks(candidate: dict[str, Any]) -> dict[str, list[Any]]:
     return {block[PATH]: block for block in candidate.get("blocks", [])}
 
 
-def _configuration(a: dict[str, Any], b: dict[str, Any], committed: dict[str, str]) -> int:
+def choose_configuration(a: dict[str, Any], b: dict[str, Any], committed: dict[str, str]) -> int:
     """Index of the configuration to compare for a document.
 
-    A source_id can have several manifest rows; take the configuration that
-    reproduces the most committed rows on either snapshot, then the one with
-    the fewest blocks the committed rows do not have, then the first.
+    A source_id can have several manifest rows. Take the configuration that
+    extracts on more snapshots, then the one that reproduces the most committed
+    rows on either snapshot, then the one with the fewest blocks the committed
+    rows do not have, then the first.
     """
 
-    def score(index: int) -> tuple[int, int, int]:
-        blocks_a, blocks_b = _blocks(a["candidates"][index]), _blocks(b["candidates"][index])
+    def score(index: int) -> tuple[int, int, int, int]:
+        candidate_a, candidate_b = a["candidates"][index], b["candidates"][index]
+        blocks_a, blocks_b = _blocks(candidate_a), _blocks(candidate_b)
         return (
+            (not candidate_a.get("error")) + (not candidate_b.get("error")),
             max(
                 len(reproduced_rows(blocks_a, committed)), len(reproduced_rows(blocks_b, committed))
             ),
@@ -462,6 +627,26 @@ def _configuration(a: dict[str, Any], b: dict[str, Any], committed: dict[str, st
         )
 
     return max(range(len(a["candidates"])), key=score)
+
+
+def _error_kind(error: str) -> str:
+    if error.startswith("read:"):
+        return "source_file_unreadable"
+    if error.startswith("timeout after"):
+        return "timeout"
+    if error.startswith("worker exited"):
+        return "worker_died"
+    return error.split(":", 1)[0]
+
+
+def _bytes_check(a: dict[str, Any], b: dict[str, Any], expected: str | None) -> str:
+    """``same``, ``differ`` or ``unchecked`` (a snapshot did not record its hash)."""
+    sha_a, sha_b = a.get("pdf_sha256"), b.get("pdf_sha256")
+    if sha_a is None or sha_b is None:
+        return "unchecked"
+    if sha_a != sha_b or (expected is not None and sha_a != expected):
+        return "differ"
+    return "same"
 
 
 def compare_documents(
@@ -484,18 +669,34 @@ def compare_documents(
         if a is None or b is None:
             documents["not_in_both_snapshots"] += 1
             continue
-        if a.get("error") or b.get("error"):
-            documents["source_file_unreadable"] += 1
+        error_a, error_b = a.get("error"), b.get("error")
+        if error_a or error_b:
+            kinds = {_error_kind(error) if error else "none" for error in (error_a, error_b)}
+            if len(kinds) == 1:
+                documents[f"task_fails_on_both:{kinds.pop()}"] += 1
+            else:
+                # One snapshot failed where the other did not, or failed another way.
+                documents["task_fails_on_one_or_differently"] += 1
+                scopes.add(task["scope"])
+                differing_scopes.add(task["scope"])
+                details.append({"key": key, "locked_error": error_a, "candidate_error": error_b})
             continue
         if len(a["candidates"]) != len(b["candidates"]):
             raise ValueError(f"the snapshots ran different configurations for {key}")
+        bytes_check = _bytes_check(a, b, task.get("source_sha256"))
+        if bytes_check == "differ":
+            documents["source_bytes_differ"] += 1
+            details.append({"key": key, "source_bytes": [a["pdf_sha256"], b["pdf_sha256"]]})
+            continue
+        if bytes_check == "unchecked":
+            documents["source_bytes_unchecked"] += 1
         committed_document = committed.get(key, {})
-        choice = _configuration(a, b, committed_document)
+        choice = choose_configuration(a, b, committed_document)
         candidate_a, candidate_b = a["candidates"][choice], b["candidates"][choice]
         error_a, error_b = candidate_a.get("error"), candidate_b.get("error")
         if error_a and error_b:
             # The same failure on both (a source named .pdf that is not a PDF).
-            documents[f"extraction_fails_on_both:{error_a.split(':', 1)[0]}"] += 1
+            documents[f"extraction_fails_on_both:{_error_kind(error_a)}"] += 1
             continue
         scopes.add(task["scope"])
         if error_a or error_b:
@@ -597,12 +798,25 @@ def compare_pdfs(
         if a is None or b is None:
             counts["pdfs_not_in_both_snapshots"] += 1
             continue
-        if a.get("error") or b.get("error"):
-            both = a.get("error") and b.get("error")
-            counts["pdfs_failing_on_both" if both else "pdfs_failing_on_one"] += 1
-            if not both:
-                details.append({"key": task["key"], "path": task["path"], "status": "error_one"})
+        error_a, error_b = a.get("error"), b.get("error")
+        if error_a or error_b:
+            kinds = {_error_kind(error) if error else "none" for error in (error_a, error_b)}
+            if len(kinds) == 1:
+                counts["pdfs_failing_on_both"] += 1
+            else:
+                counts["pdfs_failing_on_one_or_differently"] += 1
+                details.append(
+                    {"key": task["key"], "path": task["path"], "errors": [error_a, error_b]}
+                )
             continue
+        # A pdf task's key is the sha256 the lock records for the file.
+        bytes_check = _bytes_check(a, b, task["key"])
+        if bytes_check == "differ":
+            counts["pdfs_bytes_differ"] += 1
+            details.append({"key": task["key"], "path": task["path"], "status": "bytes_differ"})
+            continue
+        if bytes_check == "unchecked":
+            counts["pdfs_bytes_unchecked"] += 1
         pages_a, pages_b = a["pages"], b["pages"]
         counts["pdfs_compared"] += 1
         if len(pages_a) != len(pages_b):
@@ -647,20 +861,19 @@ def compare(
     locked_records: list[dict[str, Any]],
     candidate_records: list[dict[str, Any]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-    locked = {record["key"]: record for record in locked_records}
-    candidate = {record["key"]: record for record in candidate_records}
+    locked, candidate = _latest(locked_records), _latest(candidate_records)
     summary, document_details = compare_documents(
         plan, locked, candidate, committed_rows(root, plan)
     )
     pdf_counts, pdf_details = compare_pdfs(plan, locked, candidate)
 
-    def versions(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        seen = {(record.get("pymupdf"), record.get("mupdf")) for record in records}
+    def versions(records: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+        seen = {(record.get("pymupdf"), record.get("mupdf")) for record in records.values()}
         return [{"pymupdf": pymupdf, "mupdf": mupdf} for pymupdf, mupdf in sorted(seen, key=str)]
 
     report = {
-        "locked": versions(locked_records),
-        "candidate": versions(candidate_records),
+        "locked": versions(locked),
+        "candidate": versions(candidate),
         **summary,
         "pdfs": pdf_counts,
     }
@@ -690,8 +903,20 @@ def main(argv: list[str] | None = None) -> int:
         default="all",
         help="documents whose manifest rows turn OCR on (they call Tesseract)",
     )
-    snapshot_parser.add_argument("--workers", type=int, default=2)
-    snapshot_parser.add_argument("--timeout", type=int, default=900, help="seconds per extraction")
+    snapshot_parser.add_argument(
+        "--workers", type=int, default=2, help="worker processes (0: run in this process)"
+    )
+    snapshot_parser.add_argument(
+        "--timeout",
+        type=float,
+        default=900,
+        help="seconds a task may take before its worker is killed",
+    )
+    snapshot_parser.add_argument(
+        "--retry-errors",
+        action="store_true",
+        help="rerun tasks recorded as timed out or as killing their worker",
+    )
 
     compare_parser = commands.add_parser("compare", help="compare two snapshots")
     compare_parser.add_argument("--plan", type=Path, required=True)
@@ -720,6 +945,7 @@ def main(argv: list[str] | None = None) -> int:
             ocr=args.ocr,
             workers=args.workers,
             timeout=args.timeout,
+            retry_errors=args.retry_errors,
         )
         print(f"{count} task(s) in {time.monotonic() - started:.0f}s", file=sys.stderr)
         return 0

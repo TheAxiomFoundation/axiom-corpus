@@ -11,16 +11,24 @@ Invariants:
   and on neither, with nothing left over; two equal snapshots differ nowhere
   and reproduce the same rows; exchanging the snapshots exchanges the two
   ``only`` counts and leaves every difference count as it was.
+* ``choose_configuration`` never takes a configuration that fails on a
+  snapshot over one that extracts on both.
 * ``select_tasks``: ``--ocr skip`` and ``--ocr only`` split ``--ocr all``.
+* ``run_snapshot`` writes one record per task even when a worker dies or
+  hangs, and only those records rerun under ``--retry-errors``.
 * End to end, two snapshots of the same environment compare equal, and a
   committed body the extractor does not produce counts as reproduced on neither.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
+import os
 import subprocess
+import time
 from pathlib import Path
+from typing import Any
 
 import fitz
 import pytest
@@ -31,6 +39,7 @@ from hypothesis import strategies as st
 from scripts.compare_pdf_extraction_versions import (
     BODY,
     build_plan,
+    choose_configuration,
     compare,
     compare_documents,
     compare_pdfs,
@@ -118,7 +127,11 @@ def _task(index: int) -> dict[str, object]:
 
 
 def _record(key: str, blocks: dict[str, list[object]]) -> dict[str, object]:
-    return {"key": key, "candidates": [{"blocks": list(blocks.values()), "warnings": 0}]}
+    return {
+        "key": key,
+        "pdf_sha256": "same bytes",
+        "candidates": [{"blocks": list(blocks.values()), "warnings": 0}],
+    }
 
 
 BLOCK_SETS = st.dictionaries(PATHS, st.tuples(BODIES, st.sampled_from(["h", "h2"])), max_size=5)
@@ -234,28 +247,96 @@ def test_compare_documents_classifies_each_kind_of_difference() -> None:
 
 
 def test_compare_documents_counts_errors_apart() -> None:
-    plan = [_task(0), _task(1), _task(2)]
-    failing = {"key": "doc-0", "candidates": [{"error": "FileDataError: Failed to open stream"}]}
+    plan = [_task(index) for index in range(5)]
+    failing = {
+        "key": "doc-0",
+        "pdf_sha256": "same bytes",
+        "candidates": [{"error": "FileDataError: Failed to open stream"}],
+    }
     locked = {
         "doc-0": failing,
         "doc-1": {"key": "doc-1", "error": "read: FileNotFoundError()"},
-        "doc-2": {"key": "doc-2", "candidates": [{"error": "ValueError: no section"}]},
+        "doc-2": {
+            "key": "doc-2",
+            "pdf_sha256": "same bytes",
+            "candidates": [{"error": "ValueError: no section"}],
+        },
+        "doc-3": {"key": "doc-3", "error": "worker exited with code -11"},
+        "doc-4": {"key": "doc-4", "error": "timeout after 900s"},
     }
     candidate = {
         "doc-0": failing,
         "doc-1": {"key": "doc-1", "error": "read: FileNotFoundError()"},
         "doc-2": _record("doc-2", _blocks({"p1": digest("one")})),
+        "doc-3": _record("doc-3", _blocks({"p1": digest("one")})),
+        "doc-4": {"key": "doc-4", "error": "timeout after 900s"},
     }
     summary, details = compare_documents(plan, locked, candidate, {})
     assert summary["documents"]["extraction_fails_on_both:FileDataError"] == 1
-    assert summary["documents"]["source_file_unreadable"] == 1
+    assert summary["documents"]["task_fails_on_both:source_file_unreadable"] == 1
+    assert summary["documents"]["task_fails_on_both:timeout"] == 1
     assert summary["documents"]["extraction_fails_on_one"] == 1
-    assert [item["key"] for item in details] == ["doc-2"]
-    assert summary["scopes_with_a_differing_document"] == 1
+    # A crash on one version is a difference, not an unreadable file.
+    assert summary["documents"]["task_fails_on_one_or_differently"] == 1
+    assert [item["key"] for item in details] == ["doc-2", "doc-3"]
+    assert summary["scopes_with_a_differing_document"] == 2
+
+
+def test_compare_documents_sets_aside_different_bytes() -> None:
+    plan = [{**_task(0), "source_sha256": "lock"}, {**_task(1), "source_sha256": "lock"}]
+    blocks = _blocks({"p1": digest("one")})
+    locked = {
+        "doc-0": {**_record("doc-0", blocks), "pdf_sha256": "lock"},
+        "doc-1": {**_record("doc-1", blocks), "pdf_sha256": "other"},
+    }
+    candidate = {
+        "doc-0": {**_record("doc-0", blocks), "pdf_sha256": "fetched later"},
+        "doc-1": {**_record("doc-1", blocks), "pdf_sha256": "other"},
+    }
+    summary, details = compare_documents(plan, locked, candidate, {})
+    # Different bytes on the two runs, and the same bytes but not the lock's.
+    assert summary["documents"]["source_bytes_differ"] == 2
+    assert "extracted_on_both" not in summary["documents"]
+    assert [item["key"] for item in details] == ["doc-0", "doc-1"]
+
+
+def _configurations(entries: list[dict[str, Any]]) -> dict[str, Any]:
+    return {"key": "doc", "pdf_sha256": "s", "candidates": entries}
+
+
+def test_choose_configuration_prefers_one_that_extracts() -> None:
+    failed = {"error": "ValueError: no section"}
+    extracted = {"blocks": [_block("p9", digest("unmatched"))]}
+    a = _configurations([failed, extracted])
+    assert choose_configuration(a, a, {"p1": digest("one")}) == 1
+    reproduces = {"blocks": [_block("p1", digest("one"))]}
+    b = _configurations([extracted, reproduces])
+    assert choose_configuration(b, b, {"p1": digest("one")}) == 1
+
+
+@settings(max_examples=150, deadline=None)
+@given(
+    entries=st.lists(
+        st.one_of(
+            st.just({"error": "ValueError: x"}),
+            BLOCK_SETS.map(lambda blocks: {"blocks": list(_rich_blocks(blocks).values())}),
+        ),
+        min_size=1,
+        max_size=4,
+    ),
+    committed=st.dictionaries(PATHS, BODIES, max_size=4),
+)
+def test_choose_configuration_never_prefers_a_failure(
+    entries: list[dict[str, Any]], committed: dict[str, str]
+) -> None:
+    record = _configurations(entries)
+    choice = choose_configuration(record, record, committed)
+    if any("error" not in entry for entry in entries):
+        assert "error" not in entries[choice]
 
 
 def _pdf_record(key: str, pages: list[list[object]]) -> dict[str, object]:
-    return {"key": key, "path": f"{key}.pdf", "pages": pages}
+    return {"key": key, "path": f"{key}.pdf", "pdf_sha256": key, "pages": pages}
 
 
 def test_compare_pdfs_counts_the_pages_that_differ() -> None:
@@ -282,6 +363,75 @@ def test_compare_pdfs_counts_the_pages_that_differ() -> None:
     assert by_key["chars"]["example_pages"] == [2]
     assert by_key["chars"]["nonspace_characters_candidate_minus_locked"] == 2
 
+    # A file whose bytes are not the ones the plan's key (the lock's sha256) names.
+    locked["same"] = {**locked["same"], "pdf_sha256": "changed on disk"}
+    counts, _ = compare_pdfs(plan, locked, candidate)
+    assert counts["pdfs_bytes_differ"] == 1
+    assert counts["pdfs_compared"] == 2
+
+
+# Task functions for run_snapshot's worker processes (module level, so a spawned
+# worker can import them).
+def _task_that_crashes_or_hangs(task: dict[str, Any], root: str) -> dict[str, Any]:
+    if task["key"] == "crash":
+        os._exit(3)
+    if task["key"] == "hang":
+        time.sleep(600)
+    return {"key": task["key"], "pid": os.getpid()}
+
+
+def _task_that_succeeds(task: dict[str, Any], root: str) -> dict[str, Any]:
+    return {"key": task["key"], "pid": os.getpid()}
+
+
+def test_a_dead_or_hung_worker_costs_only_its_own_task(tmp_path: Path) -> None:
+    keys = ["first", "crash", "middle", "hang", "last"]
+    plan = [{"kind": "pdf", "key": key, "path": f"{key}.pdf"} for key in keys]
+    out = tmp_path / "snapshot.jsonl"
+    started = time.monotonic()
+    ran = run_snapshot(
+        plan,
+        out,
+        root=tmp_path,
+        kinds={"pdf"},
+        workers=2,
+        timeout=5,
+        task_function=_task_that_crashes_or_hangs,
+    )
+    assert ran == len(keys)
+    assert time.monotonic() - started < 120
+    records = {record["key"]: record for record in map(json.loads, out.read_text().splitlines())}
+    assert set(records) == set(keys)
+    assert records["crash"]["error"] == "worker exited with code 3"
+    assert records["hang"]["error"] == "timeout after 5s"
+    assert all("error" not in records[key] for key in ("first", "middle", "last"))
+
+    # A rerun skips every finished task; --retry-errors reruns the two failures only.
+    assert run_snapshot(plan, out, root=tmp_path, kinds={"pdf"}, workers=0) == 0
+    rerun = run_snapshot(
+        plan,
+        out,
+        root=tmp_path,
+        kinds={"pdf"},
+        workers=1,
+        retry_errors=True,
+        task_function=_task_that_succeeds,
+    )
+    assert rerun == 2
+    last = {record["key"]: record for record in map(json.loads, out.read_text().splitlines())}
+    assert all("error" not in record for record in last.values())
+
+
+def test_a_torn_last_line_is_dropped_before_appending(tmp_path: Path) -> None:
+    plan = [{"kind": "pdf", "key": key, "path": f"{key}.pdf"} for key in ("done", "torn")]
+    out = tmp_path / "snapshot.jsonl"
+    out.write_text(json.dumps({"key": "done"}) + "\n" + '{"key": "torn", "pa')
+    ran = run_snapshot(
+        plan, out, root=tmp_path, kinds={"pdf"}, workers=0, task_function=_task_that_succeeds
+    )
+    assert ran == 1
+    assert [json.loads(line)["key"] for line in out.read_text().splitlines()] == ["done", "torn"]
+
 
 @settings(max_examples=100, deadline=None)
 @given(flags=st.lists(st.booleans(), max_size=8))
@@ -305,6 +455,10 @@ def test_ocr_skip_and_only_split_all(flags: list[bool]) -> None:
 
 SCOPE = ("xx", "policy", "2026-01-01-test")
 SOURCE_PATH = "sources/xx/policy/2026-01-01-test/official-documents/test-doc.pdf"
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _corpus(root: Path) -> Path:
@@ -367,8 +521,11 @@ def _corpus(root: Path) -> Path:
                 "document_class": document_class,
                 "version": version,
                 "files": [
-                    {"path": f"data/corpus/{SOURCE_PATH}", "sha256": "a" * 64},
-                    {"path": provisions_path.relative_to(root).as_posix(), "sha256": "b" * 64},
+                    {"path": f"data/corpus/{SOURCE_PATH}", "sha256": _sha256(pdf_path)},
+                    {
+                        "path": provisions_path.relative_to(root).as_posix(),
+                        "sha256": _sha256(provisions_path),
+                    },
                 ],
             }
         )
