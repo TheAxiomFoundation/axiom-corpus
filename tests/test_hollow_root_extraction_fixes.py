@@ -393,3 +393,54 @@ def test_pdf_page_window_fails_when_its_start_marker_never_appears(tmp_path):
             "          end_page: 1\n"
             "          start_at_pattern: '^49-999 '",
         )
+
+
+BR_PAGE = """<html><body><main><div id="StatuteText">
+<div><span>Article - Human Services</span></div><br><br>
+&sect;5&ndash;312.<br><br>
+(a) This section is not intended
+to create an incentive.<br><br>
+(b) A local department<br>shall provide assistance.
+</div></main></body></html>"""
+
+
+def test_br_breaks_split_paragraphs_only_at_double_breaks():
+    extraction = {"html_text_selector": "#StatuteText", "html_br_breaks": True}
+
+    blocks = _extract_html_blocks(
+        BR_PAGE.encode(), source_url="x", fallback_title="T", extraction=extraction
+    )
+
+    assert blocks[0].body.split("\n\n") == [
+        "Article - Human Services",
+        "§5–312.",
+        # The source's own line break inside (a) does not split the paragraph.
+        "(a) This section is not intended to create an incentive.",
+        # A single <br> joins its lines.
+        "(b) A local department shall provide assistance.",
+    ]
+
+
+def test_without_br_breaks_the_statute_is_one_paragraph():
+    blocks = _extract_html_blocks(
+        BR_PAGE.encode(),
+        source_url="x",
+        fallback_title="T",
+        extraction={"html_text_selector": "#StatuteText"},
+    )
+
+    assert "\n\n" not in blocks[0].body
+
+
+def test_pdf_start_page_beyond_the_document_names_its_page_count(tmp_path):
+    pdf = _pdf(tmp_path, ["49-001 First Section", "Body text."])
+
+    with pytest.raises(ValueError, match="start_page 5 is beyond its 1 pages"):
+        _extract_pdf(
+            tmp_path,
+            pdf,
+            "      segmentation: labeled_sections\n"
+            "      start_page: 5\n"
+            "      start_after_pattern: '^BEGIN$'\n"
+            "      section_heading_pattern: '^(?P<label>49-[0-9]{3})\\s+(?P<heading>.+)$'",
+        )

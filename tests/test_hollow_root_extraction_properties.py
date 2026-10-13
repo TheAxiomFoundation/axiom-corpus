@@ -19,6 +19,7 @@ import io
 import zipfile
 
 import fitz
+import pytest
 from bs4 import BeautifulSoup
 from hypothesis import given, settings
 from hypothesis import strategies as st
@@ -97,7 +98,8 @@ class _Page:
 
     def get_images(self, full: bool = False):
         del full
-        return [(1,)] if self._rects else []
+        # (xref, smask, width, height): a 600 x 800 pt page at 720 dpi.
+        return [(1, 0, 6000, 8000)] if self._rects else []
 
     def get_image_rects(self, xref):
         del xref
@@ -134,10 +136,14 @@ def test_ocr_rule_is_monotone(words_a, extra_words, rows_a, rows_b):
     assert _pdf_page_needs_ocr(_Page(low), fewer) <= _pdf_page_needs_ocr(_Page(high), fewer)
 
 
-def _png() -> bytes:
-    pixmap = fitz.Pixmap(fitz.csGRAY, fitz.IRect(0, 0, 8, 8), False)
+def _scan_png() -> bytes:
+    # Enough pixels that any rectangle the test places stays a scan (>= 100 dpi).
+    pixmap = fitz.Pixmap(fitz.csGRAY, fitz.IRect(0, 0, 1275, 1650), False)
     pixmap.clear_with(200)
     return pixmap.tobytes("png")
+
+
+SCAN_PNG = _scan_png()
 
 
 @settings(max_examples=80, deadline=None)
@@ -155,7 +161,7 @@ def test_image_coverage_matches_the_placed_rectangle(x0, y0, width, height, inse
     document = fitz.open()
     page = document.new_page(width=612, height=792)
     placed = fitz.Rect(x0, y0, x0 + width, y0 + height)
-    page.insert_image(placed, stream=_png(), keep_proportion=False)
+    page.insert_image(placed, stream=SCAN_PNG, keep_proportion=False)
     crop = fitz.Rect(0, 0, 612, 792)
     if inset is not None:
         crop = fitz.Rect(inset[0], inset[1], 612 - inset[0], 792 - inset[1])
@@ -166,7 +172,7 @@ def test_image_coverage_matches_the_placed_rectangle(x0, y0, width, height, inse
     expected = 0.0 if shown.is_empty else shown.get_area() / crop.get_area()
     reopened = fitz.open("pdf", document.tobytes())
 
-    assert abs(_pdf_page_image_coverage(reopened[0]) - expected) <= 0.045
+    assert _pdf_page_image_coverage(reopened[0]) == pytest.approx(expected, abs=1e-6)
 
 
 SAFE_TEXT = st.text(
