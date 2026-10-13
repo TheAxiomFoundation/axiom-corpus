@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma.json",
+      "sha256": "018046e13223199ef631240162a4ef9cc2db963226dd01921986ff1ba2bb6212"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma.json",
+      "sha256": "eeb9f56dba0113f776c16adea9a29d053be2dc2b4e1dc3e69ed457543f224360"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma.jsonl",
+      "sha256": "facce7cc2f7a2c5609a1c137936c91dc540f5efeb42c6a5fc0eeb2efdb15bb66"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma/official-documents/us-ma-guidance-dta-online-guide-transmittal-2025-31.pdf",
+      "sha256": "e87ec070bec933be74ecf9abb33c65a3c09055a75d4775a90a90bc4d583196ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma/official-documents/us-ma-guidance-dta-policy-online-helpful-charts-and-figures.pdf",
+      "sha256": "c5a8adba16176da8f1f4adba89796932285824e3b3dd7f18bd6201e21b39fc27"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma/official-documents/us-ma-guidance-dta-ssp-payment-levels-cy2022.pdf",
+      "sha256": "0197d37962e8ef9cc7016056721590f3d14c7aeb40696a2e641904c227ab88fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma/official-documents/us-ma-guidance-dta-ssp-payment-levels-cy2025.pdf",
+      "sha256": "4b6964055403f385af748f61d97ed0d590b5ef21086950ff9f7646cc037dcbf7"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/guidance/2026-10-06-w6-benefits-guidance-ma/official-documents/us-ma-guidance-eohlc-learn-about-home-energy-assistance-heap.html",
+      "sha256": "5e5753b2d86fe4faddbbbc08a5bdf5e3929efe8e355bd85d91df04b709341a16"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 30,
+    "missing_count": 0,
+    "provision_count": 30,
+    "source_count": 30
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:52:50.001751+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2l8RVi8HKVYAHtaXck8y43R0ZWhxV0cdGh95met0tewMJBkww/TNSyBU0h4WiALI7eqbLeMrPGNIfj/gWtgaBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-ma"
+}

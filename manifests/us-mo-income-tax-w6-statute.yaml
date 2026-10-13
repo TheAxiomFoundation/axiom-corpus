@@ -1,0 +1,184 @@
+version: 2026-10-06-w6-income-tax-statute-mo
+documents:
+- source_id: us-mo-statute-135-010
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.010, Definitions (property tax credit) (effective 28 Aug 2025)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.010&bid=57540
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.010
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.010&bid=57540
+- source_id: us-mo-statute-135-010--effective-2008-08-28
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.010, Definitions (property tax credit) (version effective 28 Aug 2008 to 28 Aug 2025)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.010&bid=6435
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.010--effective-2008-08-28
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section_historical_version
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.010&bid=6435
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.010&bid=6435&hl=property+tax+credit%u2044
+- source_id: us-mo-statute-135-020
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.020, Credit allowed (property tax credit) (effective 1 Oct 1973)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.020&bid=6437
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.020
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.020&bid=6437
+- source_id: us-mo-statute-135-025
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.025, Accrued taxes and rent constituting taxes to be totaled (effective 28 Aug 2025)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.025
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.025
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.025
+- source_id: us-mo-statute-135-025--effective-2008-08-28
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.025 (version effective 28 Aug 2008 to 28 Aug 2025)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.025&bid=6438
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.025--effective-2008-08-28
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section_historical_version
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.025&bid=6438
+- source_id: us-mo-statute-135-030
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.030, Amount of credit (effective 28 Aug 2025)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.030
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.030
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 2); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.030
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.030&bid=57542
+- source_id: us-mo-statute-135-030--effective-2008-08-28
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 135.030 (version effective 28 Aug 2008 to 28 Aug 2025)
+  source_url: https://revisor.mo.gov/main/OneSection.aspx?section=135.030&bid=6439
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/135.030--effective-2008-08-28
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section_historical_version
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://revisor.mo.gov/main/OneSection.aspx?section=135.030&bid=6439
+- source_id: us-mo-statute-143-121--effective-2007-08-28
+  jurisdiction: us-mo
+  document_class: statute
+  title: RSMo 143.121, Missouri adjusted gross income (version effective 28 Aug 2007, superseded)
+  source_url: https://www.revisor.mo.gov/main/OneSection.aspx?bid=50493&section=143.121
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/143.121--effective-2007-08-28
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Missouri Revisor of Statutes
+    document_subtype: statute_section_historical_version
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.revisor.mo.gov/main/OneSection.aspx?bid=50493&section=143.121
+- source_id: us-mo-statute-bills-2025-hb594-bill-information
+  jurisdiction: us-mo
+  document_class: statute
+  title: HB 594 (2025) Bill Information - Missouri Senate
+  source_url: https://www.senate.mo.gov/BillTracking/Bills/BillInformation?year=2025&billid=4957943
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/statute/bills/2025/hb594-bill-information
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Missouri Senate
+    document_subtype: bill_information_page
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.senate.mo.gov/BillTracking/Bills/BillInformation?year=2025&billid=4957943

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/form/2026-10-06-w6-income-tax-forms-wa.json",
+      "sha256": "b7374211aa1393feabf6e7b29dae2694035c134c3d6def61116765103c02c0cd"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/form/2026-10-06-w6-income-tax-forms-wa.json",
+      "sha256": "c3c1abb86ce40810ba0ff83a8c2cf2dad452d43fe4b05f00bc7c203258ad3e4a"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/form/2026-10-06-w6-income-tax-forms-wa.jsonl",
+      "sha256": "691757b880e383bad842e07a38e443cc0a6e0f765d246903102a41cb6a50b200"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/form/2026-10-06-w6-income-tax-forms-wa/official-documents/us-wa-form-dor-ty2023-wftc-application-instructions.pdf",
+      "sha256": "89037036c9559e47e8b726be18f24ec0d269b990724b5e7332e8dd71827486ad"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/form/2026-10-06-w6-income-tax-forms-wa/official-documents/us-wa-form-dor-ty2023-wftc-application.pdf",
+      "sha256": "4bc7269af4230f8891a1bacd7c3685ee122ab88b2dcee9ddead6047b4f6cf27e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T18:00:08.595369+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YbUkMbYYAE3s1Zp/Vqz4nZvnFJWJ88uRBMsULO/r8UEZApfPL6rUlwyp0ihVyAbk0MRlSVSBR8UUF3fq4WOcAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-wa"
+}

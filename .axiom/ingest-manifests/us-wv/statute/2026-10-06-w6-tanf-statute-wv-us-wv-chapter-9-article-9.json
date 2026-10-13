@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/statute/2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9.json",
+      "sha256": "00282349a4c42fd88108b7a862732aa01e7d80a2c67677cbab028a1aea61f7af"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/statute/2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9.json",
+      "sha256": "5b7f6d8306db136a3f0c97e58873f24b8bca744136c84f0cf38f866b6045a766"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/statute/2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9.jsonl",
+      "sha256": "152f0dda9655005cb52d94da226bd09ec12a366de98dcc538d9b085ecc6cdafa"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9/west-virginia-code-article-json/chapter-9/article-9.json",
+      "sha256": "217e23a8df129d1d88fe9160776600749fa2d80fccd46913b45bc0a8c30e3774"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9/west-virginia-code-html/wvcodeentire.html",
+      "sha256": "90035c0cbedccb265ebe9a07ef9f25bf3d0b9c9cfa46531631784bce7eb35de6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:01:18.431915+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5K5/SJNWkp3aQx/5M5kDYebu1dA1qmkAK1J/Eo8IeTf9EOxdUvtyZC4VzrPAqa5FHO+tStA/CJJpzo5ldSSQCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-statute-wv-us-wv-chapter-9-article-9"
+}

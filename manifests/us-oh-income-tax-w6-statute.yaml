@@ -1,0 +1,42 @@
+version: 2026-10-06-w6-income-tax-statute-oh
+documents:
+- source_id: us-oh-statute-session-laws-134th-ga-hb45
+  jurisdiction: us-oh
+  document_class: statute
+  title: Am. Sub. H.B. 45, 134th General Assembly (as enacted)
+  source_url: https://search-prod.lis.state.oh.us/api/v2/general_assembly_134/legislation/hb45/07_EN/pdf/
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-oh/statute/session-laws/134th-ga/hb45
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://search-prod.lis.state.oh.us/api/v2/general_assembly_134/legislation/hb45/07_EN/pdf/
+- source_id: us-oh-statute-session-laws-136th-ga-hb96
+  jurisdiction: us-oh
+  document_class: statute
+  title: Am. Sub. H.B. 96, 136th General Assembly (as enacted; FY2026-2027 operating budget)
+  source_url: https://search-prod.lis.state.oh.us/api/v2/general_assembly_136/legislation/hb96/07_EN/pdf/
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-oh/statute/session-laws/136th-ga/hb96
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Ohio General Assembly
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://search-prod.lis.state.oh.us/api/v2/general_assembly_136/legislation/hb96/07_EN/pdf/

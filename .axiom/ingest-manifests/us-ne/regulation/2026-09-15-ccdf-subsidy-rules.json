@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "ea2a1ff098cb1abe41d2d28d02b56e064ce4259bfe5cc3c267e9dc6208defb7c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "3a5f4705e9fb064c1e6c66b158d3e55bcd4075a4af52a6413e80de26befed60e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/regulation/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "3e62f49deef1489d6849a0f552ccf554e14d7a00183418ae8c6543fba435a2d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ne-dhhs-392-nac-chapter-1.pdf",
+      "sha256": "007c18566ef9076caba3d0bc1c462b48f8a649b514a85ea751f187c2efab7fea"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ne-dhhs-392-nac-chapter-2.pdf",
+      "sha256": "e63d9d9363afd05b0c0b5b477541e260214a11738fde4ceac49ef8140d49c843"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ne-dhhs-392-nac-chapter-3.pdf",
+      "sha256": "94d5746ee901d61fe25ebe415459ba5ff5f4d5f75c974d1161323c180be28988"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ne-dhhs-392-nac-chapter-4.pdf",
+      "sha256": "d5d33d486ee79743343c50bd84d7d943a1b222e41959d53f421870725134045b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ne-dhhs-392-nac-chapter-5.pdf",
+      "sha256": "9f24b1225bb7f3c2672b0ca9971b5493a3f7f9c7350446edf234b5512f4ebf48"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 192,
+    "missing_count": 0,
+    "provision_count": 192,
+    "source_count": 192
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-11T18:28:02.333645+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GjSSgzwsah7BKscL+A5Gxf/R/MMnBo+6nrb8IAfNj3IwQD8+RUQFgACzcvMQmhDqWL/4och5LAa4flxNe0u7Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}
