@@ -12,6 +12,7 @@ import tempfile
 import time
 import warnings
 import zipfile
+from collections import Counter
 from dataclasses import dataclass
 from datetime import date
 from io import BytesIO, StringIO
@@ -1027,12 +1028,26 @@ def _extract_pdf_blocks(
 ) -> tuple[_DocumentBlock, ...]:
     extraction_config = extraction or {}
     segmentation = extraction_config.get("segmentation")
-    layered = _pdf_layered_page_text_requested(extraction_config)
+    for key in ("sort_blocks", "ignore_actual_text"):
+        value = extraction_config.get(key)
+        if value is not None and not isinstance(value, bool):
+            raise ValueError(f"{key} must be true or false, not {value!r}")
+    markup = _pdf_amendment_markup_config(extraction_config)
+    sort_blocks = extraction_config.get("sort_blocks") is True
+    layered = markup is not None or sort_blocks
     if layered and segmentation is not None:
         raise ValueError(
             "amendment_markup and sort_blocks support only the default per-page "
             f"PDF segmentation, not segmentation={segmentation!r}"
         )
+    if layered:
+        unsupported = [
+            key for key in _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS if extraction_config.get(key)
+        ]
+        if unsupported:
+            raise ValueError(
+                f"amendment_markup and sort_blocks do not support {', '.join(unsupported)}"
+            )
     if (
         segmentation != "labeled_sections"
         and extraction_config.get("section_citation_suffix_replacements") is not None
@@ -1044,23 +1059,28 @@ def _extract_pdf_blocks(
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
-    markup = _pdf_amendment_markup_config(extraction_config) if layered else None
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
     with fitz.open(stream=content, filetype="pdf") as document:
+        if markup is not None and markup.start_page > document.page_count:
+            raise ValueError(
+                f"amendment_markup start_page {markup.start_page} is past the last page "
+                f"of the PDF ({document.page_count})"
+            )
         for index, page in enumerate(document, start=1):
             markup_metadata: dict[str, Any] | None = None
-            if layered:
+            page_markup = markup if markup is not None and markup.covers(index) else None
+            if page_markup is not None or sort_blocks:
                 text, markup_metadata = _pdf_page_layered_text(
                     page,
                     extraction=extraction_config,
-                    markup=markup if markup is not None and markup.covers(index) else None,
+                    markup=page_markup,
                     page_number=index,
                 )
-                for phrase, count in (markup_metadata or {}).get(
-                    "typographic_underlines", {}
-                ).items():
+                for phrase, count in (
+                    (markup_metadata or {}).get("typographic_underlines", {}).items()
+                ):
                     typographic_matches[phrase] += count
             else:
                 text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
@@ -1083,7 +1103,8 @@ def _extract_pdf_blocks(
     unmatched = [phrase for phrase, count in typographic_matches.items() if not count]
     if unmatched:
         raise ValueError(
-            f"amendment_markup typographic_underlines not found in the marked pages: {unmatched}"
+            "amendment_markup typographic_underlines not found as an underlined stretch "
+            f"in the marked pages: {unmatched}"
         )
     return tuple(blocks)
 
@@ -1095,7 +1116,14 @@ def _extract_pdf_blocks(
 # ordinary text. With ``amendment_markup`` each character is classified against
 # the page's thin horizontal rules and written with the GNU wdiff delimiters:
 # ``[-deleted text-]`` and ``{+inserted text+}``. Removing the delimiters gives
-# back exactly the page text that extraction without the markup would produce.
+# back exactly the page text that extraction without the markup would produce;
+# ``_pdf_check_layered_page_text`` checks that on every layered page.
+#
+# The classification is geometric: any thin horizontal rule at a strike or
+# underline offset from a text line marks it, so a table rule drawn just under a
+# row of text reads as an underline. Each new use must be checked against a
+# rendering of the pages or the publisher's HTML
+# (``scripts/compare_pdf_amendment_markup_with_html.py``).
 _AMENDMENT_DELETED = "deleted"
 _AMENDMENT_INSERTED = "inserted"
 _AMENDMENT_MARKUP_DELIMITERS = {
@@ -1110,8 +1138,13 @@ _AMENDMENT_MARKUP_NOTATION = {
     "deleted_source_markup": "strike-through",
     "inserted_source_markup": "underline",
 }
-# A rule is a filled or stroked horizontal line at most this thick (points).
+# A rule is a visible filled or stroked horizontal line at most this thick
+# (points): a rectangle's height plus any stroke width, or a line's stroke width.
 _PDF_RULE_MAX_THICKNESS = 1.5
+# Visible horizontal rules thicker than a rule but at most this thick are not
+# classified; a page where one sits at a strike or underline offset from text
+# gets a warning, since a heavy strike or underline would be missed.
+_PDF_RULE_WARNING_MAX_THICKNESS = 3.0
 # Vertical position of a rule's centre relative to a text line's baseline, in
 # multiples of the line's font size (positive is below the baseline). A strike
 # crosses the lower-case letters; an underline sits just below the baseline.
@@ -1122,8 +1155,17 @@ _PDF_RULE_MAX_THICKNESS = 1.5
 # (-0.53) is classified by the superscript's own baseline instead.
 _PDF_STRIKE_OFFSET_RANGE = (-0.40, -0.10)
 _PDF_UNDERLINE_OFFSET_RANGE = (0.05, 0.22)
+# A rule within this many font sizes of either end of a range is classified as
+# the ranges say, but its page gets a warning: a slightly different drawing
+# would flip it between marked and unmarked.
+_PDF_RULE_NEAR_THRESHOLD_MARGIN = 0.03
 _PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
-_PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements")
+_PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements", "sort_text")
+_PDF_WARNING_EXAMPLES = 8
+
+
+class PdfAmendmentMarkupWarning(UserWarning):
+    """A PDF page whose amendment markup should be checked against a rendering."""
 
 
 @dataclass(frozen=True)
@@ -1131,10 +1173,7 @@ class _PdfHorizontalRule:
     x0: float
     x1: float
     y: float
-
-
-def _pdf_layered_page_text_requested(extraction: dict[str, Any]) -> bool:
-    return bool(extraction.get("amendment_markup")) or bool(extraction.get("sort_blocks"))
+    thickness: float
 
 
 @dataclass(frozen=True)
@@ -1150,27 +1189,31 @@ class _PdfAmendmentMarkupConfig:
 def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMarkupConfig | None:
     """Parse the ``amendment_markup`` extraction key.
 
-    ``true`` marks every page. A mapping may limit marking to an inclusive
-    ``start_page``/``end_page`` range (for example the attached regulation text
-    of an agency letter, leaving the letter's own emphasis underlines alone) and
-    may list ``typographic_underlines``: exact phrases whose underline is
+    Absent, null or ``false`` leaves marking off; ``true`` marks every page. A
+    non-empty mapping may limit marking to an inclusive ``start_page``/``end_page``
+    range of positive integer page numbers (for example the attached regulation
+    text of an agency letter, leaving the letter's own emphasis underlines alone)
+    and may list ``typographic_underlines``: exact phrases whose underline is
     citation typography, such as an underlined case name, and not an insertion.
-    Those phrases are written without insertion delimiters, and every listed
-    phrase must occur in the marked pages.
+    An occurrence of a listed phrase loses its insertion delimiters only where it
+    is exactly an underlined stretch (``_typographic_underline_occurrence``), and
+    every listed phrase must occur so in the marked pages.
     """
     config = extraction.get("amendment_markup")
-    if not config:
+    if config is None or config is False:
         return None
     if config is True:
         return _PdfAmendmentMarkupConfig(start_page=1, end_page=sys.maxsize)
     if not isinstance(config, dict):
-        raise ValueError("amendment_markup must be true or a mapping")
+        raise ValueError(f"amendment_markup must be true, false or a mapping, not {config!r}")
+    if not config:
+        raise ValueError("amendment_markup must not be an empty mapping; use true for every page")
     unknown = set(config) - {"start_page", "end_page", "typographic_underlines"}
     if unknown:
         raise ValueError(f"unknown amendment_markup keys: {sorted(unknown)}")
-    start_page = _positive_int(config.get("start_page"), default=1)
-    end_value = config.get("end_page")
-    end_page = sys.maxsize if end_value is None else _positive_int(end_value, default=1)
+    start_page = _pdf_amendment_markup_page(config, "start_page") or 1
+    end_value = _pdf_amendment_markup_page(config, "end_page")
+    end_page = sys.maxsize if end_value is None else end_value
     if end_page < start_page:
         raise ValueError("amendment_markup end_page must not precede start_page")
     phrases = config.get("typographic_underlines") or ()
@@ -1178,14 +1221,24 @@ def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMar
         isinstance(phrase, str) and phrase.strip() == phrase and phrase for phrase in phrases
     ):
         raise ValueError(
-            "amendment_markup typographic_underlines must be a list of non-empty, "
-            "unpadded strings"
+            "amendment_markup typographic_underlines must be a list of non-empty, unpadded strings"
         )
     return _PdfAmendmentMarkupConfig(
         start_page=start_page,
         end_page=end_page,
         typographic_underlines=tuple(phrases),
     )
+
+
+def _pdf_amendment_markup_page(config: dict[str, Any], key: str) -> int | None:
+    value = config.get(key)
+    if value is None:
+        return None
+    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+        raise ValueError(
+            f"amendment_markup {key} must be a positive integer page number, not {value!r}"
+        )
+    return int(value)
 
 
 def _pdf_text_flags(extraction: dict[str, Any], *, default: int) -> int:
@@ -1203,55 +1256,87 @@ def _pdf_page_layered_text(
 ) -> tuple[str, dict[str, Any] | None]:
     """Build normalized page text from the character layer.
 
-    Used when ``sort_blocks`` or ``amendment_markup`` is set. The character
-    stream is the one ``page.get_text("text")`` returns (same flags), so without
-    either option the result equals the default page text. ``sort_blocks``
-    orders text blocks top to bottom (PyMuPDF block sort), which places a boxed
-    note drawn last in the content stream where it appears on the page.
+    Used for the pages ``amendment_markup`` marks and, with ``sort_blocks``, for
+    every page. The characters are the ones ``page.get_text("text")`` prints
+    (same text flags), and a line ends in a newline exactly where that printer
+    ends it with one: when the line printed a character and that character is
+    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters removed,
+    is the default page text. ``sort_blocks`` orders text blocks top to bottom
+    (PyMuPDF block sort), which places a boxed note drawn last in the content
+    stream where it appears on the page, and keeps the same characters.
+    ``_pdf_check_layered_page_text`` checks both on every page.
     """
-    unsupported = [key for key in _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS if extraction.get(key)]
-    if unsupported:
-        raise ValueError(
-            "amendment_markup and sort_blocks do not support "
-            f"{', '.join(unsupported)}"
-        )
+    sort_blocks = extraction.get("sort_blocks") is True
     raw = page.get_text(
         "rawdict",
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
-        sort=bool(extraction.get("sort_blocks")),
+        sort=sort_blocks,
     )
-    rules = _pdf_horizontal_rules(page) if markup is not None else ()
+    rules, thick_rules = _pdf_horizontal_rules(page) if markup is not None else ((), ())
     chars: list[str] = []
     states: list[str | None] = []
+    near_threshold: list[list[float]] = []
+    thick_rule_hits: list[list[float]] = []
     for block in raw.get("blocks", ()):
         if block.get("type") != 0:
             continue
         for line in block.get("lines", ()):
             spans = line.get("spans", ())
             reference = _pdf_line_reference(spans)
+            last_character = ""
             for span in spans:
                 span_size = float(span.get("size") or 0.0)
                 for char in span.get("chars", ()):
                     character = str(char.get("c", ""))
                     state = None
-                    if rules and reference is not None and not character.isspace():
+                    if reference is not None and not character.isspace():
                         references = [reference]
                         if span_size > 0:
                             references.append((float(char["origin"][1]), span_size))
-                        state = _pdf_char_amendment_state(
-                            char,
-                            references=tuple(references),
-                            rules=rules,
-                            page_number=page_number,
-                        )
+                        if rules:
+                            offsets = _pdf_rule_offsets(char, references=references, rules=rules)
+                            state = _pdf_char_amendment_state(
+                                char, offsets=offsets, page_number=page_number
+                            )
+                            near = [
+                                offset
+                                for _rule, offset in offsets
+                                if _pdf_offset_near_threshold(offset)
+                            ]
+                            if near:
+                                near_threshold.append(near)
+                        if thick_rules:
+                            thick = [
+                                rule.thickness
+                                for rule, offset in _pdf_rule_offsets(
+                                    char, references=references, rules=thick_rules
+                                )
+                                if _pdf_offset_amendment_state(offset) is not None
+                            ]
+                            if thick:
+                                thick_rule_hits.append(thick)
                     chars.append(character)
                     states.append(state)
-            chars.append("\n")
-            states.append(None)
+                    last_character = character
+            # PyMuPDF's plain-text printer ends a line with a newline only when the
+            # line printed a character that is neither a newline nor NUL.
+            if last_character not in ("", "\n", "\x00"):
+                chars.append("\n")
+                states.append(None)
     raw_text = "".join(chars)
     plain_text = _normalize_text(raw_text)
+    _pdf_check_layered_page_text(
+        page,
+        plain_text,
+        extraction=extraction,
+        sort_blocks=sort_blocks,
+        page_number=page_number,
+    )
     if markup is None:
         return plain_text, None
+    _pdf_warn_about_rules(
+        page_number, near_threshold=near_threshold, thick_rule_hits=thick_rule_hits
+    )
     present = [token for token in _AMENDMENT_MARKUP_TOKENS if token in raw_text]
     if present:
         raise ValueError(
@@ -1262,9 +1347,17 @@ def _pdf_page_layered_text(
         raw_text, states, typographic_underlines=markup.typographic_underlines
     )
     if _strip_amendment_markup(rendered.text) != plain_text:
-        raise RuntimeError(
-            f"amendment markup changed the text of PDF page {page_number}"
-        )
+        raise RuntimeError(f"amendment markup changed the text of PDF page {page_number}")
+    for phrase, count in rendered.typographic_underlines_kept.items():
+        if count:
+            warnings.warn(
+                f"PDF page {page_number}: amendment_markup typographic_underlines phrase "
+                f"{phrase!r} occurs {count} time(s) partly underlined, inside a longer "
+                "underlined stretch or inside a longer word; those occurrences keep their "
+                "insertion delimiters",
+                PdfAmendmentMarkupWarning,
+                stacklevel=2,
+            )
     metadata: dict[str, Any] = {
         **_AMENDMENT_MARKUP_NOTATION,
         "deleted_runs": rendered.deleted_runs,
@@ -1278,33 +1371,141 @@ def _pdf_page_layered_text(
     return rendered.text, metadata
 
 
-def _pdf_horizontal_rules(page: Any) -> tuple[_PdfHorizontalRule, ...]:
-    """Return the page's thin, visible, horizontal vector rules."""
+def _pdf_check_layered_page_text(
+    page: Any,
+    layered_text: str,
+    *,
+    extraction: dict[str, Any],
+    sort_blocks: bool,
+    page_number: int,
+) -> None:
+    """Check layered page text against the default page text.
+
+    Without ``sort_blocks`` the two must be equal; with it they must hold the
+    same non-space characters. They differ where PyMuPDF's character layer
+    (``rawdict``) leaves out a glyph its plain-text printer keeps: it drops a
+    glyph of zero width, such as a combining mark or a zero-advance period, so
+    no markup of that page could strip back to the default text.
+    """
+    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
+    if sort_blocks:
+        default_chars = Counter(char for char in default_text if not char.isspace())
+        layered_chars = Counter(char for char in layered_text if not char.isspace())
+        if default_chars == layered_chars:
+            return
+    elif layered_text == default_text:
+        return
+    else:
+        default_chars = Counter(default_text)
+        layered_chars = Counter(layered_text)
+    missing = default_chars - layered_chars
+    extra = layered_chars - default_chars
+    details = [
+        f"{label} {', '.join(f'U+{ord(char):04X}' for char in sorted(chars))}"
+        for label, chars in (("missing", missing), ("extra", extra))
+        if chars
+    ]
+    raise ValueError(
+        f"PDF page {page_number}: the character layer that amendment_markup and "
+        "sort_blocks read differs from the page's default text "
+        f"({'; '.join(details) or 'same characters, different text'}). PyMuPDF leaves "
+        "zero-width glyphs out of the character layer; keep the page out of the "
+        "amendment_markup page range, or extract this PDF without these keys"
+    )
+
+
+def _pdf_warn_about_rules(
+    page_number: int,
+    *,
+    near_threshold: list[list[float]],
+    thick_rule_hits: list[list[float]],
+) -> None:
+    """Warn about the characters of a marked page whose classification is fragile.
+
+    ``near_threshold`` holds, per character, the offsets of its rules that lie
+    within ``_PDF_RULE_NEAR_THRESHOLD_MARGIN`` of a range end; ``thick_rule_hits``
+    holds, per character, the thicknesses of the ignored thick rules at a strike
+    or underline offset from it.
+    """
+    if near_threshold:
+        offsets = sorted({round(offset, 2) for near in near_threshold for offset in near})
+        shown = ", ".join(f"{offset:+.2f}" for offset in offsets[:_PDF_WARNING_EXAMPLES])
+        warnings.warn(
+            f"PDF page {page_number}: {len(near_threshold)} characters have a rule within "
+            f"{_PDF_RULE_NEAR_THRESHOLD_MARGIN} font sizes of a strike or underline "
+            f"threshold (offsets {shown}); check the amendment markup against a rendering "
+            "of the page",
+            PdfAmendmentMarkupWarning,
+            stacklevel=3,
+        )
+    if thick_rule_hits:
+        thicknesses = sorted({round(value, 2) for hit in thick_rule_hits for value in hit})
+        shown = ", ".join(f"{value:.2f}" for value in thicknesses[:_PDF_WARNING_EXAMPLES])
+        warnings.warn(
+            f"PDF page {page_number}: {len(thick_rule_hits)} characters sit at a strike or "
+            f"underline position of a rule thicker than {_PDF_RULE_MAX_THICKNESS} pt "
+            f"({shown} pt), which amendment_markup ignores; check the page against a "
+            "rendering",
+            PdfAmendmentMarkupWarning,
+            stacklevel=3,
+        )
+
+
+def _pdf_horizontal_rules(
+    page: Any,
+) -> tuple[tuple[_PdfHorizontalRule, ...], tuple[_PdfHorizontalRule, ...]]:
+    """Return the page's visible horizontal vector rules.
+
+    The first tuple holds the rules amendment markup classifies, at most
+    ``_PDF_RULE_MAX_THICKNESS`` thick; the second holds thicker ones up to
+    ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. A rectangle's
+    thickness is its height plus, when it is stroked, the stroke width; a line's
+    is its stroke width. White paint and paint with zero opacity are invisible and
+    never make a rule.
+    """
     rules: list[_PdfHorizontalRule] = []
+    thick_rules: list[_PdfHorizontalRule] = []
     for path in page.get_drawings():
         path_type = str(path.get("type") or "")
-        filled = "f" in path_type and not _pdf_color_is_white(path.get("fill"))
-        stroked = "s" in path_type and not _pdf_color_is_white(path.get("color"))
+        filled = "f" in path_type and _pdf_paint_is_visible(
+            path.get("fill"), path.get("fill_opacity")
+        )
+        stroked = "s" in path_type and _pdf_paint_is_visible(
+            path.get("color"), path.get("stroke_opacity")
+        )
         stroke_width = float(path.get("width") or 0.0)
         for item in path.get("items", ()):
             operator = item[0]
             if operator == "re":
                 rect = item[1]
-                if rect.height > _PDF_RULE_MAX_THICKNESS or rect.width <= rect.height:
+                if rect.width <= rect.height or not (filled or stroked):
                     continue
-                if filled or (stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS):
-                    rules.append(
-                        _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2)
-                    )
-            elif operator == "l" and stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                # A stroke is centred on the outline, so it adds its width to the
+                # painted height of the rectangle.
+                thickness = rect.height + (stroke_width if stroked else 0.0)
+                rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
+                if thickness <= _PDF_RULE_MAX_THICKNESS:
+                    rules.append(rule)
+                elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                    thick_rules.append(rule)
+            elif operator == "l" and stroked:
                 start, end = item[1], item[2]
-                if abs(start.y - end.y) <= 0.5 and abs(start.x - end.x) > 0.5:
-                    rules.append(
-                        _PdfHorizontalRule(
-                            min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2
-                        )
-                    )
-    return tuple(rules)
+                if abs(start.y - end.y) > 0.5 or abs(start.x - end.x) <= 0.5:
+                    continue
+                rule = _PdfHorizontalRule(
+                    min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2, stroke_width
+                )
+                if stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                    rules.append(rule)
+                elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                    thick_rules.append(rule)
+    return tuple(rules), tuple(thick_rules)
+
+
+def _pdf_paint_is_visible(color: Any, opacity: Any) -> bool:
+    if _pdf_color_is_white(color):
+        return False
+    return opacity is None or float(opacity) > 0
 
 
 def _pdf_color_is_white(color: Any) -> bool:
@@ -1337,16 +1538,16 @@ def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
     return (best[2], best[0])
 
 
-def _pdf_char_amendment_state(
+def _pdf_rule_offsets(
     char: dict[str, Any],
     *,
-    references: tuple[tuple[float, float], ...],
+    references: list[tuple[float, float]],
     rules: tuple[_PdfHorizontalRule, ...],
-    page_number: int,
-) -> str | None:
+) -> list[tuple[_PdfHorizontalRule, float]]:
+    """Return each rule under or over the character with its offset from each reference."""
     x0, _y0, x1, _y1 = char["bbox"]
     center = (float(x0) + float(x1)) / 2
-    struck = underlined = False
+    offsets: list[tuple[_PdfHorizontalRule, float]] = []
     for rule in rules:
         if not (
             rule.x0 - _PDF_RULE_HORIZONTAL_TOLERANCE
@@ -1355,19 +1556,40 @@ def _pdf_char_amendment_state(
         ):
             continue
         for baseline, size in references:
-            offset = (rule.y - baseline) / size
-            if _PDF_STRIKE_OFFSET_RANGE[0] <= offset <= _PDF_STRIKE_OFFSET_RANGE[1]:
-                struck = True
-            elif _PDF_UNDERLINE_OFFSET_RANGE[0] <= offset <= _PDF_UNDERLINE_OFFSET_RANGE[1]:
-                underlined = True
-    if struck and underlined:
+            offsets.append((rule, (rule.y - baseline) / size))
+    return offsets
+
+
+def _pdf_offset_amendment_state(offset: float) -> str | None:
+    if _PDF_STRIKE_OFFSET_RANGE[0] <= offset <= _PDF_STRIKE_OFFSET_RANGE[1]:
+        return _AMENDMENT_DELETED
+    if _PDF_UNDERLINE_OFFSET_RANGE[0] <= offset <= _PDF_UNDERLINE_OFFSET_RANGE[1]:
+        return _AMENDMENT_INSERTED
+    return None
+
+
+def _pdf_offset_near_threshold(offset: float) -> bool:
+    return any(
+        abs(offset - bound) <= _PDF_RULE_NEAR_THRESHOLD_MARGIN
+        for bound in (*_PDF_STRIKE_OFFSET_RANGE, *_PDF_UNDERLINE_OFFSET_RANGE)
+    )
+
+
+def _pdf_char_amendment_state(
+    char: dict[str, Any],
+    *,
+    offsets: list[tuple[_PdfHorizontalRule, float]],
+    page_number: int,
+) -> str | None:
+    found = {_pdf_offset_amendment_state(offset) for _rule, offset in offsets}
+    if _AMENDMENT_DELETED in found and _AMENDMENT_INSERTED in found:
         raise ValueError(
             f"PDF page {page_number} character {char.get('c')!r} is both struck "
             "through and underlined; amendment_markup cannot classify it"
         )
-    if struck:
+    if _AMENDMENT_DELETED in found:
         return _AMENDMENT_DELETED
-    if underlined:
+    if _AMENDMENT_INSERTED in found:
         return _AMENDMENT_INSERTED
     return None
 
@@ -1378,6 +1600,7 @@ class _RenderedAmendmentMarkup:
     deleted_runs: int
     inserted_runs: int
     typographic_underlines: dict[str, int]
+    typographic_underlines_kept: dict[str, int]
 
 
 _WORD_SEPARATOR = "separator"
@@ -1393,13 +1616,20 @@ def _render_amendment_markup(
 
     Whitespace is neutral: a space between two words with the same state stays
     inside one run, so a struck clause reads ``[-a b c-]``, not ``[-a-] [-b-]``.
-    Each ``typographic_underlines`` phrase loses its insertion state wherever it
-    occurs within a paragraph.
+    A ``typographic_underlines`` phrase loses its insertion state wherever it is
+    exactly an underlined stretch within a paragraph; such occurrences are
+    counted in ``typographic_underlines``. Occurrences that are underlined only
+    in part, or that sit inside a longer underlined stretch, keep their state
+    and are counted in ``typographic_underlines_kept``, as are underlined matches
+    that begin or end inside a word (``_phrase_is_whole_words``), such as a case
+    name followed by a footnote digit. Every occurrence, overlapping ones
+    included, is judged on the states before any phrase is
+    applied, so the result does not depend on the order of the phrases.
     """
     kept = [
         (character, state)
         for character, state in zip(raw_text, states, strict=True)
-        if character not in {"\u200b", "\ufeff"}
+        if character not in {"​", "﻿"}
     ]
     text = "".join(character for character, _state in kept)
     paragraphs: list[list[tuple[str, str | None]]] = []
@@ -1432,19 +1662,28 @@ def _render_amendment_markup(
         paragraphs.append(current)
 
     typographic_counts = dict.fromkeys(typographic_underlines, 0)
+    typographic_kept = dict.fromkeys(typographic_underlines, 0)
     counts = {_AMENDMENT_DELETED: 0, _AMENDMENT_INSERTED: 0}
     rendered: list[str] = []
     for paragraph in paragraphs:
         paragraph_text = "".join(character for character, _state in paragraph)
+        cleared: set[int] = set()
         for phrase in typographic_underlines:
             start = paragraph_text.find(phrase)
             while start >= 0:
-                typographic_counts[phrase] += 1
-                for position in range(start, start + len(phrase)):
-                    character, state = paragraph[position]
-                    if state == _AMENDMENT_INSERTED:
-                        paragraph[position] = (character, None)
-                start = paragraph_text.find(phrase, start + len(phrase))
+                end = start + len(phrase)
+                if _phrase_is_whole_words(
+                    paragraph_text, start, end
+                ) and _typographic_underline_occurrence(paragraph, start, end):
+                    typographic_counts[phrase] += 1
+                    cleared.update(range(start, end))
+                elif any(state == _AMENDMENT_INSERTED for _c, state in paragraph[start:end]):
+                    typographic_kept[phrase] += 1
+                start = paragraph_text.find(phrase, start + 1)
+        for position in cleared:
+            character, state = paragraph[position]
+            if state == _AMENDMENT_INSERTED:
+                paragraph[position] = (character, None)
         out: list[str] = []
         open_state: str | None = None
         for position, (character, state) in enumerate(paragraph):
@@ -1471,7 +1710,45 @@ def _render_amendment_markup(
         deleted_runs=counts[_AMENDMENT_DELETED],
         inserted_runs=counts[_AMENDMENT_INSERTED],
         typographic_underlines=typographic_counts,
+        typographic_underlines_kept=typographic_kept,
     )
+
+
+def _phrase_is_whole_words(text: str, start: int, end: int) -> bool:
+    """Whether ``text[start:end]`` does not begin or end inside a word.
+
+    A phrase that begins (or ends) with a letter or digit must not continue a
+    letter or digit next to it, so "Jones" does not occur in "Jonesboro"; a
+    phrase ending in punctuation, like "Lyng;", may be followed by anything.
+    Unlike a regular expression's ``\\b``, "_" counts as punctuation here.
+    """
+    if text[start].isalnum() and start > 0 and text[start - 1].isalnum():
+        return False
+    return not (text[end - 1].isalnum() and end < len(text) and text[end].isalnum())
+
+
+def _typographic_underline_occurrence(
+    paragraph: list[tuple[str, str | None]], start: int, end: int
+) -> bool:
+    """Whether ``paragraph[start:end]`` is exactly an underlined stretch.
+
+    Its first and last characters are underlined and the nearest characters
+    outside it are not, so the phrase is all that the PDF underlines there.
+    Words inside it may be plain, like the "v." between the underlined party
+    names of a case name. An occurrence inside a longer underlined stretch is
+    read as part of that insertion.
+    """
+    if paragraph[start][1] != _AMENDMENT_INSERTED or paragraph[end - 1][1] != _AMENDMENT_INSERTED:
+        return False
+    before = next(
+        (state for _char, state in reversed(paragraph[:start]) if state != _WORD_SEPARATOR),
+        None,
+    )
+    after = next(
+        (state for _char, state in paragraph[end:] if state != _WORD_SEPARATOR),
+        None,
+    )
+    return _AMENDMENT_INSERTED not in (before, after)
 
 
 def _strip_amendment_markup(text: str) -> str:
