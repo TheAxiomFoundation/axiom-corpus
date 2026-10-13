@@ -256,6 +256,7 @@ LAYER_LINE = st.one_of(
             "date\tplan",
             "\u0130\u0130",
             "\u0130\u0130 date",
+            "plan\x1dstate",
         ]
     ),
     st.text(alphabet=st.sampled_from("abCD12 .:/"), max_size=12),
@@ -316,9 +317,21 @@ def test_every_painted_layer_line_is_in_the_page_text(lines, ocr_text):
 SPAN = st.tuples(
     st.one_of(
         st.sampled_from(
-            ["November 19, 2014", "2EQI\x1e", "\x01\x02", "ab\x1fcd", "Date", " ", "", "x\x85y"]
+            [
+                "November 19, 2014",
+                "2EQI\x1e",
+                "\x01\x02",
+                "ab\x1fcd",
+                "Date",
+                " ",
+                "",
+                "x\x85y",
+                "\x1cA",
+                "B\x1d",
+                "\u0130\u0130 x",
+            ]
         ),
-        st.text(alphabet=st.sampled_from("abC12 .:\x01\x1e\t"), max_size=8),
+        st.text(alphabet=st.sampled_from("abC12 .:\x01\x1c\x1d\x1e\t\u0130"), max_size=8),
     ),
     st.booleans(),
     st.sampled_from(["F1", "F2", "F3"]),
@@ -333,17 +346,16 @@ def test_garbled_spans_are_left_out_and_clean_spans_kept(span_lines):
 
     expected = []
     for spans in span_lines:
+        # Written another way: a NUL (never kept: it is a control character) marks each
+        # left-out span; the line is the non-empty pieces between marks, joined by spaces.
         garbled_fonts = {font for span, _, font in spans if _garbled(span)}
-        text, painted, dropped = "", False, False
-        for span, span_painted, font in spans:
-            if font in garbled_fonts:
-                dropped = bool(text)
-                continue
-            if dropped:
-                text += " "
-                dropped = False
-            text += span
-            painted = painted or (span_painted and bool(span.strip()))
+        marked = "".join("\0" if font in garbled_fonts else span for span, _, font in spans)
+        text = " ".join(piece for piece in marked.split("\0") if piece)
+        painted = any(
+            span_painted and span.strip()
+            for span, span_painted, font in spans
+            if font not in garbled_fonts
+        )
         if text.strip():
             expected.append((text, painted))
     # S1, S2, S3 at once, against this written-out version.
@@ -365,6 +377,19 @@ def test_garbled_span_cases():
         [[("Date", True, "A"), ("\x01\x02", True, "B"), ("Approved", True, "A")]]
     ) == [("Date Approved", True)]
     assert _without_garbled_spans([[("\x01x", True, "B")], [(" ", True, "A")]]) == []
+    # An empty kept span between left-out spans adds no space.
+    assert _without_garbled_spans(
+        [[("a", True, "A"), ("\x01", True, "B"), ("", True, "A"), ("\x01", True, "B")]]
+    ) == [("a", True)]
+    # Known limit (review r3): a clean span in the same font as a garbled span on its line
+    # goes with it. AL-20-0004 page 4's one ArialMT subset holds garbled spans and the
+    # signature's clean ones; there they sit on different lines.
+    assert (
+        _without_garbled_spans(
+            [[("\x19", True, "ArialMT"), ("Date: 2020.04.06 17:04:09 -04'00'", True, "ArialMT")]]
+        )
+        == []
+    )
     # Paint comes from the spans kept.
     assert _without_garbled_spans([[("\x01x", True, "B"), ("Ckm", False, "A")]]) == [("Ckm", False)]
 
@@ -886,9 +911,10 @@ def test_a_failed_recognition_layer_over_a_sideways_scan_is_not_appended():
     )
 
 
-def test_a_layer_in_a_shifted_font_is_not_appended():
-    # ID-20-0001: the digital signature's invisible text has every code one above ASCII
-    # ("Ejhjubmmz!tjhofe!cz" is "Digitally signed by"), beside run-together form labels.
+def test_a_shifted_signature_string_is_not_appended():
+    # ID-20-0001: the digital signature's invisible text is written one code above ASCII
+    # ("Ejhjubmmz!tjhofe!cz" is "Digitally signed by") in the same Helvetica as the
+    # run-together form labels, which map every code: a shifted string, not a font.
     # Two of its eight words occur in the OCR text: a failed layer.
     _, layer_text, kept = _page("us-id", "id-20-0001/approval-document/page-3")
 
