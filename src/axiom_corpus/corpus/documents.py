@@ -3110,7 +3110,7 @@ def _pdf_page_image_coverage(page: Any, *, min_dpi: float = _OCR_MIN_SCAN_DPI) -
             shown = placed & visible
             if not shown.is_empty:
                 rects.append(shown)
-    return _rect_union_area(rects) / (width * height)
+    return float(_rect_union_area(rects) / (width * height))
 
 
 def _rect_union_area(rects: list[Any]) -> float:
