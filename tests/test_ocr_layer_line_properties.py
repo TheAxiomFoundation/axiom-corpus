@@ -206,7 +206,22 @@ TOKEN = st.text(alphabet=st.sampled_from("abAB129.,/()$%-:'_’–é"), min_size
 VOCABULARY = ["date", "plan", "state", "approval", "regional", "ckm", "rml", "err", "urrr", "jhofe"]
 LAYER_LINE = st.one_of(
     st.lists(st.sampled_from(VOCABULARY), min_size=1, max_size=4).map(" ".join),
-    st.sampled_from(["cc:", "/s/", "L", "Al", "9", "4COW", "21 Jan", "··.", "", "x\x01y"]),
+    st.sampled_from(
+        [
+            "cc:",
+            "/s/",
+            "L",
+            "Al",
+            "9",
+            "4COW",
+            "21 Jan",
+            "··.",
+            "",
+            "x\x01y",
+            "Ckm\x01jhofe\x01urrr",
+            "date\x01plan",
+        ]
+    ),
     st.text(alphabet=st.sampled_from("abCD12 .:/"), max_size=12),
 )
 LAYER = st.lists(st.tuples(LAYER_LINE, st.booleans()), max_size=14)
@@ -285,6 +300,9 @@ def test_recognition_filter_cases():
     assert _without_failed_recognition_lines(mixed, agree) == ["approval date", "Ckm rML err"]
     # One of five is: removed.
     assert _without_failed_recognition_lines([("approval Ckm rML err urrr", False)], agree) == []
+    # Words on a line with a control character (a garbled font) do not count.
+    garbled = [("Ckm\x01rML\x01err\x01urrr\x01jhofe", False), ("approval date", False)]
+    assert _without_failed_recognition_lines(garbled, agree) == [text for text, _ in garbled]
     # Run-together words of six or more letters are found in OCR's letters run together.
     run_together = [("ApprovalDate StatePlan Regional ckm", False), ("21", False)]
     assert _without_failed_recognition_lines(run_together, agree) == [
