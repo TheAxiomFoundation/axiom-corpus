@@ -212,8 +212,8 @@ jobs:
         # findings are recorded on purpose (docs/release-gate-policy.md).
         # The check takes about three minutes on three workers. It runs beside
         # the single-process test run below, on cores that run leaves idle, so it
-        # adds no time to this job; "Check the release content baseline" after
-        # the tests reports it.
+        # overlaps the tests instead of adding its time to this job; "Check the
+        # release content baseline" after the tests reports it.
         run: |
           (
             set +e

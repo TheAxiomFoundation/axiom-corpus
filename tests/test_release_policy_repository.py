@@ -103,8 +103,8 @@ def test_cuts_since_the_decisions_carry_only_the_scopes_they_already_had() -> No
     """A withdrawal grandfathers exactly the selectors that selected the scope at the time.
 
     Its later cuts (the three October unions that still carry the landing and SC
-    statute scopes) are listed, so they validate as they did; the next cut in
-    each line must take the swap.
+    statute scopes, and the 2026-10-13 snap-fy2026 memo cut, #848) are listed, so
+    they validate as they did; the next cut in each line must take the swap.
     """
     for entry in _policy().withdrawn.values():
         selecting = {
@@ -120,45 +120,107 @@ def _git(*args: str) -> str:
 
 
 @cache
-def _landed_on() -> dict[str, str]:
-    """The date each tracked selector landed on this branch's first-parent line.
+def _first_parent_line() -> dict[str, int]:
+    """Each commit of this branch's first-parent line, numbered from the oldest."""
+    commits = _git("rev-list", "--first-parent", "--reverse", "HEAD").split()
+    return {commit: index for index, commit in enumerate(commits)}
+
+
+@cache
+def _selectors_landed() -> dict[str, tuple[int, str]]:
+    """Where each tracked selector landed on the first-parent line: (position, commit).
 
     With ``--first-parent`` (which implies ``--diff-merges=first-parent``), a
     selector merged by pull request shows as added on the merge commit, so its
-    date is when it reached ``main``, not when its branch commit was made.
+    position is where it reached ``main``, not where its branch commit was made.
     """
-    landed: dict[str, str] = {}
-    date = ""
+    line = _first_parent_line()
+    landed: dict[str, tuple[int, str]] = {}
+    commit = ""
     log = _git(
         "log",
         "--first-parent",
         "--diff-filter=A",
         "--reverse",
         "--name-only",
-        "--format=%x00%cs",
+        "--format=%x00%H",
         "--",
         "manifests/releases/",
     )
-    for line in log.splitlines():
-        if line.startswith("\x00"):
-            date = line[1:]
-        elif line.startswith("manifests/releases/") and line.endswith(".json"):
-            landed.setdefault(Path(line).stem, date)
+    for entry in log.splitlines():
+        if entry.startswith("\x00"):
+            commit = entry[1:]
+        elif entry.startswith("manifests/releases/") and entry.endswith(".json"):
+            landed.setdefault(Path(entry).stem, (line[commit], commit))
     return landed
 
 
+@cache
+def _main_line() -> frozenset[str] | None:
+    """The commits of ``origin/main``'s first-parent line, if this checkout has the ref."""
+    try:
+        return frozenset(_git("rev-list", "--first-parent", "origin/main").split())
+    except subprocess.CalledProcessError:
+        return None
+
+
+@cache
+def _entries_listed() -> dict[str, int]:
+    """Where each withdrawn scope's entry first reached ``main``, on this branch's line.
+
+    An entry no commit of ``main`` has added yet (one being written, one on a
+    branch that has merged ``main`` in, or one that arrives with the pull request
+    under test) is listed after every commit. Without an ``origin/main`` ref,
+    every commit on this branch's line counts as ``main``.
+    """
+    line = _first_parent_line()
+    main = _main_line()
+    listed: dict[str, int] = {}
+    commit = ""
+    log = _git(
+        "log",
+        "--first-parent",
+        "--reverse",
+        "--format=%x00%H",
+        "-p",
+        "--",
+        str(WITHDRAWN_SCOPES_PATH),
+    )
+    for entry in log.splitlines():
+        if entry.startswith("\x00"):
+            commit = entry[1:]
+        elif entry.startswith("+  - scope: "):
+            on_main = main is None or commit in main
+            listed.setdefault(
+                entry.removeprefix("+  - scope: ").strip(), line[commit] if on_main else len(line)
+            )
+    return {
+        scope_label(scope.scope): listed.get(scope_label(scope.scope), len(line))
+        for scope in _policy().withdrawn.values()
+    }
+
+
 def test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions() -> None:
-    """A selector that landed on or after an entry's listed_on keeps the scope only by exception."""
-    landed = _landed_on()
+    """A selector that reached main after an entry did keeps the scope only by exception.
+
+    Order on the first-parent line decides, not dates, so a selector cut on the
+    day an entry is written but merged before it is grandfathered, and one merged
+    after it is not. An entry not yet on ``main`` (in pull-request CI, or on a
+    branch) is listed after everything, so every selector on ``main`` may be
+    grandfathered until the entry merges.
+    """
+    landed = _selectors_landed()
+    listed = _entries_listed()
     for entry in _policy().withdrawn.values():
+        label = scope_label(entry.scope)
         for name, allowance in entry.allowances.items():
             if allowance.is_exception:
                 continue
             assert name in landed, f"{name} has no commit that adds it"
-            assert landed[name] < entry.listed_on, (
-                f"{name} landed on {landed[name]}, on or after {scope_label(entry.scope)} "
-                f"was listed ({entry.listed_on}); list it under the entry's exceptions with "
-                "a reason, or take the swap"
+            position, commit = landed[name]
+            assert position < listed[label], (
+                f"{name} reached main at {commit[:12]}, after {label} was listed; list it "
+                "under the entry's exceptions with a reason, or take the swap"
             )
 
 

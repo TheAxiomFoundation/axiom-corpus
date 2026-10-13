@@ -161,7 +161,7 @@ def test_the_grandfathered_selector_keeps_the_scope_with_a_notice(tmp_path: Path
     assert (report.ok, report.error_count, report.warning_count) == (True, 0, 0)
     [notice] = report.notices
     assert notice.code == "withdrawn_scope_grandfathered"
-    assert "before the gate listed it on 2026-10-13" in notice.message
+    assert "selected it before the gate listed it, and keeps it" in notice.message
     payload = report.to_mapping()
     assert payload["notice_count"] == 1 and payload["issue_count"] == 0
 

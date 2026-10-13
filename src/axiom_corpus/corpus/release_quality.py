@@ -273,10 +273,7 @@ def _validate_withdrawn_scopes(
             how = (
                 f"selected under a recorded exception: {allowance.reason}"
                 if allowance.is_exception
-                else (
-                    "this tracked selector selected it before the gate listed it on "
-                    f"{withdrawn.listed_on}, and keeps it"
-                )
+                else "this tracked selector selected it before the gate listed it, and keeps it"
             )
             collector.add(
                 "notice",

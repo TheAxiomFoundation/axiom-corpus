@@ -47,16 +47,16 @@ its notices.
 Each entry of `manifests/withdrawn-scopes.yaml` names a scope and records:
 
 - `withdrawn_on` and `decision`: when and by which release decision;
-- `listed_on`: when the gate began enforcing the withdrawal (2026-10-13 for
-  every current entry);
+- `listed_on`: the day the entry was written (2026-10-13 for every current
+  entry);
 - `reason` and `run_note`: why, and the audit that shows it;
 - `replace_with`: scopes a new cut selects in its place, or `carried_by`: scopes
   that already carry its text, so it is simply dropped;
-- `grandfathered_selectors`: every tracked selector added before `listed_on`
-  that selects the scope. Tracked selectors are immutable, so they keep it.
-  Some were cut after the decision but before the gate existed;
-- `exceptions`: a selector added on or after `listed_on` that keeps the scope on
-  purpose, with a `reason`.
+- `grandfathered_selectors`: every tracked selector that reached `main` before
+  the entry did and selects the scope. Tracked selectors are immutable, so they
+  keep it. Some were cut after the decision but before the gate existed;
+- `exceptions`: a selector that reaches `main` after the entry and keeps the
+  scope on purpose, with a `reason`.
 
 Every allowance is pinned to the selector's digest
 (`axiom_corpus.release.manifest.selector_sha256`) under `selector_digests`, so
@@ -66,12 +66,14 @@ with `withdrawn_scope_selected`, naming the reason, the decision, the scopes to
 select instead and the run note.
 
 `test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions`
-checks the date each grandfathered selector landed on the first-parent line
-(for a merged pull request, the merge commit's date) against `listed_on`, and
+checks, on the first-parent line, that each grandfathered selector reached
+`main` before its entry did: order, not dates, so a selector merged earlier on
+the day an entry is written is still grandfathered. An entry counts as listed
+where it first reached `origin/main`'s first-parent line (a merged pull
+request's merge commit); until then (on a branch, or in pull-request CI) it is
+listed after everything, so every selector on `main` may be grandfathered.
 `test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
-current commit. On a local branch that has merged `main` in, selectors that
-arrived through that merge are dated by the merge, so the test can fail there
-spuriously; it is exact on `main` and in pull-request CI.
+current commit.
 
 The 19 entries:
 
@@ -87,20 +89,25 @@ The 19 entries:
 The audits keep `us/guidance/2026-07-13-recovery` (the only selected carrier of
 five cited ED and IRS paths) and the CO consolidated scope, and
 `us-mt/regulation/2026-07-13-recovery` stays until its successor (#761) merges;
-none of the three is listed. Three cuts made after the 2026-10-03 decision (the
-2026-10-07, 2026-10-11 and 2026-10-12 unions) still select the landing scopes and
-the SC statute scope. They are grandfathered like every earlier selector; the
-next cut in each line must take the swap. Their notice says the selector chose
-the scope before the gate listed it.
+none of the three is listed. Four cuts made after the 2026-10-03 decision still
+select withdrawn scopes. The 2026-10-07, 2026-10-11 and 2026-10-12 unions keep
+the landing scopes and the SC statute scope. `us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected`
+(#848), an additive successor of the obbb-alien-snap pin, drops the CA scopes
+but keeps 16: the CO regulation, landing, ME, MI, MN, NY, UT and SC statute
+recovery scopes, NY article 22 core and SC Act 110. All four reached `main`
+before the gate, so they are grandfathered like every earlier selector; the next
+cut in each line must take the swap. Their notice says the selector chose the
+scope before the gate listed it.
 
 ### Withdrawing a scope
 
 1. Record the audit and decision in a run note.
 2. Add the entry, sorted by jurisdiction, document class and version, with
    `listed_on` set to the day you write it. List under `grandfathered_selectors`
-   every tracked selector that selects the scope and landed before that day,
-   and add each one's digest to `selector_digests`. A selector that lands on or
-   after `listed_on` goes under `exceptions`, with a reason. The failure message
+   every tracked selector on `main` that selects the scope, and add each one's
+   digest to `selector_digests`; if one lands before your entry merges, add it
+   too. A selector that reaches `main` after the entry goes under `exceptions`,
+   with a reason. The failure message
    of `test_no_tracked_selector_selects_a_withdrawn_scope_without_an_allowance`
    prints the digest of every selector it finds.
 3. Run `uv run --extra dev python -m pytest -q tests/test_release_policy_repository.py`.
@@ -222,8 +229,8 @@ A named scope that matches no locked scope with provisions and inventory is an
 error (exit 2), so a mistyped scope cannot pass as a clean check of nothing.
 A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions; it
 takes about 90 seconds on four workers locally and about three minutes on the
-CI runner, where it runs on three workers beside the single-process test run
-and so adds no time to the `test` job. Raising `CONTENT_CHECK_VERSION` requires rebuilding
+CI runner, where it runs on three workers beside the single-process test run,
+so it overlaps the tests instead of adding its time to the `test` job. Raising `CONTENT_CHECK_VERSION` requires rebuilding
 the baseline in the same change: validation ignores a baseline made by other
 rules, and CI's check fails on it.
 
