@@ -436,10 +436,12 @@ def test_the_maryland_medicaid_manual_bullets_read_as_the_printer_prints_them() 
     # in Arial with a /ToUnicode entry that gives a lone surrogate (U+DBC0).
     with fitz.open(MD_MEDICAID_500_PDF) as document:
         page = document[15]
+        page_rawdict = page.get_text("rawdict", flags=FLAGS)
         default = _normalize_text(page.get_text("text", flags=FLAGS))
         plain = _layered(page, {}, 16)
         sorted_text = _layered(page, {"sort_blocks": True}, 16)
 
+    assert any("\ud800" <= char[0] <= "\udfff" for char in _characters(page_rawdict["blocks"]))
     assert "\ufffd" in default
     assert plain == default
     assert Counter(sorted_text.replace(" ", "").replace("\n", "")) == Counter(
@@ -562,7 +564,7 @@ _lines = st.lists(
     min_size=1,
     max_size=6,
 )
-_zero_width = st.sampled_from([".", ". ", ".a", ".~", "~", ""])
+_zero_width = st.sampled_from([".", ". ", ".a", ".~", "~", ".^", ""])
 # "~" extracts as U+200B, which _normalize_text drops; "^" as a lone surrogate,
 # which the printer prints as U+FFFD.
 _TO_UNICODE = {"~": "\u200b", "^": "\ud800"}
@@ -781,7 +783,7 @@ def _same(a: Any, b: tuple[float, float, float, float]) -> bool:
 def test_property_rect_helpers_agree_with_mupdf(
     a: tuple[float, float, float, float], b: tuple[float, float, float, float]
 ) -> None:
-    """Invariant 5: each helper is the MuPDF function it names."""
+    """Invariant 6: each helper is the MuPDF function it names."""
     assert _same(fitz.mupdf.fz_union_rect(_mupdf(a), _mupdf(b)), _pdf_union_rect(a, b))
     assert _same(fitz.mupdf.fz_intersect_rect(_mupdf(a), _mupdf(b)), _pdf_intersect_rect(a, b))
     assert bool(fitz.mupdf.fz_is_empty_rect(_mupdf(a))) == _pdf_rect_is_empty(a)
