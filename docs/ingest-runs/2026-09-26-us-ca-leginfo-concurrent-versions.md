@@ -190,10 +190,10 @@ checks it over every us-ca statute scope, by `sectionuid`, op triple and text:
 
 | Plain path | Carrier | Same version as |
 | --- | --- | --- |
-| `us-ca/statute/wic/11450` | CalWORKs 2026-06-25 and its `-r2026-09-24-preserve-tables` successor | `--operative-2021-07-01` (the earlier version) |
-| `us-ca/statute/wic/11451.5` | CalWORKs 2026-06-25 and its `-r2026-09-24-preserve-tables` successor | `--operative-2024-10-01` (the latest version) |
-| `us-ca/statute/rtc/17552.3` | income tax chapter 2026-09-14 and its `-r2026-09-24-preserve-tables` successor | `--stats-2002-ch-34-sec-22` |
-| `us-ca/statute/rtc/17563.5` | income tax chapter 2026-09-14 and its `-r2026-09-24-preserve-tables` successor | `--stats-2002-ch-35-sec-24` |
+| `us-ca/statute/wic/11450` | CalWORKs 2026-06-25 | `--operative-2021-07-01` (the earlier version) |
+| `us-ca/statute/wic/11451.5` | CalWORKs 2026-06-25 | `--operative-2024-10-01` (the latest version) |
+| `us-ca/statute/rtc/17552.3` | income tax chapter 2026-09-14 | `--stats-2002-ch-34-sec-22` |
+| `us-ca/statute/rtc/17563.5` | income tax chapter 2026-09-14 | `--stats-2002-ch-35-sec-24` |
 
 The plain rows differ from their variants only in the history note. CalWORKs'
 WIC 11450 note still points to "Stats. 2024, Ch. 798", where LegInfo now prints
@@ -411,17 +411,12 @@ warnings and zero issues next to the us-ca statute scopes of each current line
 - `us-rulespec-2026-09-24-snap-fy2027-cola`: CalWORKs, SSI/SSP, PIT core, the
   July recovery scope and CalFresh BBCE;
 - `us-rulespec-2026-09-14-wave4-r2-union`: CalWORKs, SSI/SSP, CalFresh BBCE and
-  the chapter scope;
-- `us-rulespec-2026-10-13-w7-bundle-gaps-union` (added when this branch was
-  brought up to date with `main` on 2026-10-13): #742's table-preserving
-  successors of CalWORKs and the chapter scope, SSI/SSP, CalFresh BBCE and the
-  2026-10-06 WIC title scope.
+  the chapter scope.
 
 #742's successors carry the same plain paths as the scopes they succeed, so the
 scope works with either. A later cut adds it next to the scopes it already
-selects, and removes nothing. This run adds no selector. Merging a selector
-does not publish either: publication is a separate, manually dispatched
-workflow (`.github/workflows/publish.yml`).
+selects, and removes nothing. This run adds no selector: a new
+`manifests/releases/*.json` on `main` publishes.
 
 ## Downstream
 
@@ -430,13 +425,6 @@ workflow (`.github/workflows/publish.yml`).
   to `us-ca/statute/wic/11450`. Both keep resolving to version 1. The (a)(1)(A)
   text and table they quote read the same in both versions. A module that has
   to name a version can cite its variant path once a cut carries this scope.
-  The corpus records no status, but the department's own notice settles which
-  version governs today: CDSS All County Information Notice I-15-25 (April 17,
-  2025) says the automation is done, that CDSS "has notified the Legislature",
-  and that the automation-dependent SB 1083 changes are operational effective
-  March 5, 2025. By version 2's (n) and version 1's (p), version 2
-  (`--operative-2024-07-01`) is operative from that date, and version 1 became
-  inoperative then and was repealed on January 1, 2026.
 - **AB 2765.** It changed (e) only in the later version. Whether any rulespec-us
   CalWORKs encoding depends on the special needs amount is a rulespec-us
   question, recorded as a follow-up.
