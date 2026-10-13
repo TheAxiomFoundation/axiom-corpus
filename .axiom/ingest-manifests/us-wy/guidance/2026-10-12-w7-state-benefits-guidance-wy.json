@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/guidance/2026-10-12-w7-state-benefits-guidance-wy.json",
+      "sha256": "ed8acc37ab3eabac0fd63310f835404ca02c2bddd35f5dfb45651e6ddd4002d5"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/guidance/2026-10-12-w7-state-benefits-guidance-wy.json",
+      "sha256": "cabdceb19ff93217707e1232ddb0efcabb43b1675368481207ddbca1b0990357"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/guidance/2026-10-12-w7-state-benefits-guidance-wy.jsonl",
+      "sha256": "2e8011788e73c23a5c9c8733384711a1071f608bceaf66831057858274c9d739"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/guidance/2026-10-12-w7-state-benefits-guidance-wy/official-documents/us-wy-guidance-dfs-child-care-assistance.html",
+      "sha256": "6027da4e1b3563e610b2c0ef7e234b2d408667add71671efaf8614e6f83cc989"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-13T12:07:01.551125+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZfjTJjtE1Ev9TPZkEwb/VfHzO3gtvChJQ5nUa+k+HBQi/Yb2juLCERLwwVhnYeG3hxgo5Pa2qER7oQn+syBjCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-guidance-wy"
+}
