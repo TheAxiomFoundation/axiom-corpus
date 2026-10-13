@@ -166,8 +166,9 @@ SC, VT (two), WI and WY, built by `extract-official-documents` from manifests th
   image; on the
   standards table the merge keeps the layer's dollar amounts if OCR misreads them. A
   Georgia slide inspected earlier no longer qualifies (70 dpi background). Re-extracting
-  all 335 manifest documents behind those PDFs with the old and the new code (sharing
-  Tesseract output) gives no error on either side, so every start and stop marker still
+  the 335 manifest documents behind the 336 PDFs that the rule reached before the 100 dpi
+  floor (a superset of these 328) with the old and the new code (sharing Tesseract
+  output) gives no error on either side, so every start and stop marker still
   matches; no section label changes; 316 documents gain OCR text (11.2 to 12.4 million
   characters in all); and the only text-layer tokens with a digit that disappear sit in
   garbled-font lines or differ from what OCR read only in punctuation.
