@@ -111,7 +111,7 @@ def _layer_lines(path: Path) -> list[str]:
 def test_stamp_over_a_page_scan_is_read_by_ocr(tmp_path, ocr_calls):
     pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
 
-    assert _first_page_text(pdf, {"ocr": True}) == SCAN_TEXT + "\n9/4/13"
+    assert _first_page_text(pdf, {"ocr": True}) == SCAN_TEXT + "\n\n9/4/13"
     assert ocr_calls == ["ocr"]
 
 
@@ -149,7 +149,7 @@ def test_layer_values_ocr_misreads_are_kept(tmp_path, monkeypatch):
 
     text = _first_page_text(pdf, {"ocr": True})
 
-    assert text == "FEDERAL BUDGET IMPACT\nFFY 2013 $1.234.S67\nFFY 2013 $1,234,567"
+    assert text == "FEDERAL BUDGET IMPACT\nFFY 2013 $1.234.S67\n\nFFY 2013 $1,234,567"
 
 
 def test_layer_lines_ocr_reproduced_are_not_repeated(tmp_path, monkeypatch):
@@ -198,13 +198,15 @@ def test_with_unread_layer_lines_cases():
     assert _with_unread_layer_lines("", " 9/4/13 \n\n9/4/13") == " 9/4/13 \n\n9/4/13"
     assert _with_unread_layer_lines("A\n9/4/13", "9/4/13\n9/4/13") == "A\n9/4/13"
     # Kept once; a line with no digit adds nothing OCR lacks.
-    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n9/4/13"
+    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n\n9/4/13"
     # Tokens compare whole: "24" is not read by "2024".
-    assert _with_unread_layer_lines("Total 2024", "24") == "Total 2024\n24"
+    assert _with_unread_layer_lines("Total 2024", "24") == "Total 2024\n\n24"
     # Edge punctuation does not matter.
     assert _with_unread_layer_lines("Amount: ($1,234,567).", "$1,234,567") == (
         "Amount: ($1,234,567)."
     )
+    # A soft hyphen (format character) does not make a line garbage.
+    assert _with_unread_layer_lines("Total", "Amount\u00ad 1,000") == "Total\n\nAmount\u00ad 1,000"
     # A garbled-font layer (control characters) is never appended.
     assert _with_unread_layer_lines("March 1, 2021", ".BSDI\x01\x14\x12 0DUPCFS") == (
         "March 1, 2021"
@@ -290,6 +292,23 @@ def test_image_coverage_holds_across_rotation_cropbox_and_mediabox(
     )
     assert _coverage(scan) == 1.0
     assert _coverage(logo) < 0.02
+
+
+@pytest.mark.parametrize("rotation", [0, 90, 270])
+def test_partial_image_coverage_under_an_asymmetric_crop(tmp_path, rotation):
+    # A half-width, half-height image in the top-left corner, under a crop box that cuts
+    # 192 pt off the bottom: a flipped or shifted frame would measure it wrongly.
+    document = fitz.open()
+    page = document.new_page(width=612, height=792)
+    page.insert_image(fitz.Rect(0, 0, 306, 396), stream=SCAN_PNG, keep_proportion=False)
+    page.set_cropbox(fitz.Rect(0, 0, 612, 600))
+    if rotation:
+        page.set_rotation(rotation)
+    reopened = fitz.open("pdf", document.tobytes())
+
+    assert _pdf_page_image_coverage(reopened[0]) == pytest.approx(
+        (306 * 396) / (612 * 600), abs=1e-9
+    )
 
 
 def test_stamp_over_a_rotated_page_scan_is_read_by_ocr(tmp_path, ocr_calls):

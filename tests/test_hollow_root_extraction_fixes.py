@@ -421,6 +421,19 @@ def test_br_breaks_split_paragraphs_only_at_double_breaks():
     ]
 
 
+def test_br_breaks_ignore_crlf_source_line_breaks():
+    page = BR_PAGE.replace("\n", "\r\n").replace("intended\r\nto", "intended\r\n\r\nto")
+    extraction = {"html_text_selector": "#StatuteText", "html_br_breaks": True}
+
+    blocks = _extract_html_blocks(
+        page.encode(), source_url="x", fallback_title="T", extraction=extraction
+    )
+
+    assert "(a) This section is not intended to create an incentive." in blocks[0].body.split(
+        "\n\n"
+    )
+
+
 def test_without_br_breaks_the_statute_is_one_paragraph():
     blocks = _extract_html_blocks(
         BR_PAGE.encode(),

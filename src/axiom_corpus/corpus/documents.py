@@ -3114,19 +3114,29 @@ def _pdf_page_image_coverage(page: Any, *, min_dpi: float = _OCR_MIN_SCAN_DPI) -
 
 
 def _rect_union_area(rects: list[Any]) -> float:
-    """The area the rectangles cover together, by coordinate compression (exact)."""
+    """The area the rectangles cover together (exact).
+
+    A sweep over the x edges: in each vertical strip, the covered height is the merged
+    length of the y-intervals of the rectangles that span the strip.
+    """
     if not rects:
         return 0.0
     xs = sorted({edge for rect in rects for edge in (rect.x0, rect.x1)})
-    ys = sorted({edge for rect in rects for edge in (rect.y0, rect.y1)})
     area = 0.0
     for left, right in zip(xs, xs[1:], strict=False):
-        for top, bottom in zip(ys, ys[1:], strict=False):
-            if any(
-                rect.x0 <= left and right <= rect.x1 and rect.y0 <= top and bottom <= rect.y1
-                for rect in rects
-            ):
-                area += (right - left) * (bottom - top)
+        spans = sorted((rect.y0, rect.y1) for rect in rects if rect.x0 <= left and right <= rect.x1)
+        covered = 0.0
+        top = bottom = None
+        for y0, y1 in spans:
+            if bottom is None or y0 > bottom:
+                if bottom is not None and top is not None:
+                    covered += bottom - top
+                top, bottom = y0, y1
+            else:
+                bottom = max(bottom, y1)
+        if bottom is not None and top is not None:
+            covered += bottom - top
+        area += (right - left) * covered
     return area
 
 
@@ -3148,8 +3158,9 @@ def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
     amounts) that OCR may misread. A layer line is kept, after the OCR text, when one of
     its tokens with a digit is not among the OCR text's tokens (compared whole, so "24" is
     not read by "2024"). Lines without a digit add nothing OCR lacks, and lines holding
-    control characters are font-encoding garbage, so neither is kept. With no OCR text the
-    layer is returned as it is.
+    control characters (Unicode category Cc) are font-encoding garbage, so neither is kept.
+    The kept lines follow as a paragraph of their own. With no OCR text the layer is
+    returned as it is.
     """
     if not _normalize_text(ocr_text):
         return layer_text
@@ -3157,14 +3168,14 @@ def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
     kept: list[str] = []
     for raw in layer_text.splitlines():
         line = " ".join(raw.split())
-        if not line or line in kept or any(unicodedata.category(char)[0] == "C" for char in line):
+        if not line or line in kept or any(unicodedata.category(char) == "Cc" for char in line):
             continue
         values = [token for token in _value_tokens(line) if any(char.isdigit() for char in token)]
         if any(token not in read for token in values):
             kept.append(line)
     if not kept:
         return ocr_text
-    return ocr_text.rstrip("\n") + "\n" + "\n".join(kept)
+    return ocr_text.rstrip("\n") + "\n\n" + "\n".join(kept)
 
 
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
@@ -3364,8 +3375,8 @@ def _extract_html_blocks(
     br_breaks = bool((extraction or {}).get("html_br_breaks"))
     if br_breaks:
         for string in list(root.find_all(string=True)):
-            if type(string) is NavigableString and "\n" in string:
-                string.replace_with(" ".join(string.split("\n")))
+            if type(string) is NavigableString and ("\n" in string or "\r" in string):
+                string.replace_with(re.sub(r"[\r\n]+", " ", string))
         for br in root.find_all("br"):
             br.replace_with("\n")
     for node in _html_text_nodes(root, extraction=extraction):
