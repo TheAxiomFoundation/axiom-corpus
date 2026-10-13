@@ -11,6 +11,10 @@ published release. It must have an explicit immutable name and exact
 reserved and rejected. Names are at most 128 characters and contain only
 lowercase alphanumeric segments separated by single hyphens.
 
+Merging a selector does not authorize publication. After review and green CI,
+an operator must explicitly dispatch `publish.yml` with that selector's
+immutable name or path. The workflow does not run on pushes to `main`.
+
 Publication accepts only the canonical, non-symlink selector path
 `manifests/releases/<name>.json` from a clean Git checkout. The selector and
 every selected artifact must already be tracked and committed. The commit and
