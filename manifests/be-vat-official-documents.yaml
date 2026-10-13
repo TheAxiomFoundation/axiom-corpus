@@ -8,9 +8,13 @@ documents:
     source_format: pdf
     source_as_of: '1970-07-31'
     citation_path: be/regulation/moniteur/1970/07/31/1970072012
-    extraction:
-      start_page: 18
-      end_page: 20
+    # Royal Decree No. 20 runs from PDF page 18 to page 27 of this Moniteur
+    # issue, and page 27 also opens the next decree. This entry used to set
+    # start_page: 18 and end_page: 20. The default per-page segmentation never
+    # read page filters, and the PDF has no text layer, so extraction yields no
+    # page rows either way. Page filters under the default segmentation are
+    # now an error, so the keys are gone. An OCR extraction of the decree
+    # needs a segmentation that reads page filters, such as single_block.
     metadata:
       legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/moniteur
       source_authority: Moniteur belge / Belgisch Staatsblad
