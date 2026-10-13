@@ -10,7 +10,7 @@ from pathlib import Path
 from axiom_corpus.corpus import documents
 from axiom_corpus.corpus.content_store import ContentCache
 from axiom_corpus.corpus.corpus_locks import CorpusLock, LockEntry, write_lock
-from scripts.audit_html_pre_gap import has_pre, markdown_table, run
+from scripts.audit_html_pre_gap import _pre_gap, has_pre, markdown_table, run
 
 SCOPE = ("us", "manual", "2026-10-12-pre-audit")
 SOURCE_DIR = "data/corpus/sources/us/manual/2026-10-12-pre-audit/official-documents"
@@ -81,10 +81,11 @@ def _rows(source_id: str, title: str, blocks: list[tuple[str, str]]) -> list[dic
     return rows
 
 
-def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Path) -> None:
+def _scope_repo(tmp_path: Path, *manifests: str) -> tuple[Path, ContentCache]:
     repo = tmp_path / "repo"
     (repo / "manifests").mkdir(parents=True)
-    (repo / "manifests" / "pre-audit.yaml").write_text(MANIFEST, encoding="utf-8")
+    for index, manifest in enumerate(manifests):
+        (repo / "manifests" / f"pre-audit-{index}.yaml").write_text(manifest, encoding="utf-8")
     cache = ContentCache(tmp_path / "cache")
     # The locked rows are what the extractor made before: the printout is in none of them.
     rows = _rows("with-pre", "With pre", [("A. Printout", "Lead text.\n\nCode A1")]) + _rows(
@@ -104,6 +105,11 @@ def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Pa
             ],
         ),
     )
+    return repo, cache
+
+
+def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Path) -> None:
+    repo, cache = _scope_repo(tmp_path, MANIFEST)
 
     report = run(
         repo, baseline_path=_baseline_module(tmp_path), cache=cache, compare_all=True, workers=1
@@ -128,6 +134,7 @@ def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Pa
         "sources_gaining_text": 1,
         "sources_changed": 1,
         "sources_unverified": 0,
+        "sources_ambiguous": 0,
     }
     [source] = report["sources"]
     assert source["gap_samples"] == ["WAGE TOTAL 32750.00"]
@@ -137,10 +144,44 @@ def test_audit_measures_the_pre_gap_and_finds_other_pages_unchanged(tmp_path: Pa
     )
 
 
+def test_configs_that_agree_on_the_locked_rows_but_not_on_the_new_ones_are_ambiguous(
+    tmp_path: Path,
+) -> None:
+    """Reading only ``h2, p, table`` reproduces the locked rows too, but never reads the
+    printout; the audit reports the disagreement instead of taking the first match."""
+    selected = MANIFEST.replace(
+        "    html_content_selector: div.poms\n",
+        "    html_content_selector: div.poms\n    html_text_selector: h2, p, table\n",
+    )
+    repo, cache = _scope_repo(tmp_path, MANIFEST, selected)
+
+    report = run(
+        repo, baseline_path=_baseline_module(tmp_path), cache=cache, compare_all=True, workers=1
+    )
+
+    [source] = report["sources"]
+    assert (source["status"], source["verified_configs"]) == ("ambiguous", 2)
+    assert report["summary"]["counts"]["status_ambiguous"] == 1
+    assert report["summary"]["scopes"]["us/manual/2026-10-12-pre-audit"]["sources_ambiguous"] == 1
+
+
+def test_gap_reads_each_pre_as_the_extractor_does_and_matches_one_row_at_a_time() -> None:
+    page = b"<html><body><main><pre>ab cd</pre><pre>new<br>text</pre></main></body></html>"
+    rows = (("block", None, "ab"), ("block", None, "cd"))
+
+    gap = _pre_gap(documents, documents, page, "html", {"extraction": None}, rows)
+
+    # "ab cd" is in neither row, though the two rows read together hold "abcd"; the
+    # br makes "new" and "text" two words.
+    assert (gap["pre_elements"], gap["gap_pre_elements"], gap["gap_words"]) == (2, 2, 4)
+    assert gap["gap_samples"] == ["ab cd", "new text"]
+
+
 def test_has_pre_reads_html_bytes_json_strings_and_base64_html() -> None:
     assert has_pre(b"<PRE class='x'>a</PRE>", ".html")
     assert not has_pre(b"<p>preamble</p><prefix/>", ".html")
     assert has_pre(json.dumps({"content": {"html": "<div><pre>a</pre></div>"}}).encode(), ".json")
-    encoded = base64.b64encode(b"<div>" + b"x" * 200 + b"<pre>a</pre></div>").decode()
+    encoded = base64.b64encode(b"<p>kept</p><pre>a b</pre>").decode()
+    assert len(encoded) < 40
     assert has_pre(json.dumps({"html": encoded}).encode(), ".json")
     assert not has_pre(json.dumps({"html": "<p>none</p>"}).encode(), ".json")

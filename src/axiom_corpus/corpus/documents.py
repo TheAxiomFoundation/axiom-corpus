@@ -12,6 +12,7 @@ import tempfile
 import time
 import warnings
 import zipfile
+from collections.abc import Iterator
 from copy import copy
 from dataclasses import dataclass
 from datetime import date
@@ -27,7 +28,7 @@ import requests
 import xlrd
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
-from bs4.element import Comment, Tag
+from bs4.element import Comment, NavigableString, Tag
 from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -2945,6 +2946,10 @@ def _extract_html_blocks(
             )
         parts = []
 
+    # A page whose only body text is in ``pre`` nodes falls back to its whole content
+    # root, as it did before ``pre`` was a text node, so text outside every text tag
+    # stays in the row.
+    read_text_outside_pre = bool((extraction or {}).get("html_text_selector"))
     for node in _html_text_nodes(root, extraction=extraction):
         text = _html_node_text(node)
         if not text:
@@ -2953,11 +2958,13 @@ def _extract_html_blocks(
             flush()
             heading = text
             continue
+        if node.name not in _PREFORMATTED_TAGS:
+            read_text_outside_pre = True
         parts.append(text)
     flush()
-    if blocks:
+    if blocks and read_text_outside_pre:
         return tuple(blocks)
-    fallback = _normalize_text(root.get_text(" ", strip=True))
+    fallback = _html_root_text(root)
     if not fallback:
         return ()
     return (
@@ -3314,7 +3321,9 @@ def _extract_labeled_html_section_blocks(
         if not node_text:
             continue
         # Label and stop patterns match the text with a ``pre`` node's line breaks read
-        # as spaces, as every other node reads; the section body keeps them.
+        # as spaces, as every other node reads; the section body keeps them. The two
+        # strings differ only where a line break became a space, so a span in one is the
+        # same span in the other.
         text = _normalize_text(node_text)
         if stop_re is not None and stop_re.match(text):
             flush()
@@ -3327,14 +3336,16 @@ def _extract_labeled_html_section_blocks(
             label_replacements=label_replacements,
         )
         if match is not None:
-            label, heading, body = match
+            label, heading, body_span = match
             if normalize_label_internal_whitespace:
                 label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
                 label = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", label)
             flush()
             current_label = label
             current_heading = heading or label
-            body = _normalize_text(body)
+            body = ""
+            if body_span is not None:
+                body = _normalize_preformatted_text(node_text[body_span[0] : body_span[1]])
             current_body = [body] if body else []
             continue
         if current_label is not None:
@@ -3443,7 +3454,8 @@ def _match_labeled_html_section(
     *,
     label_template: str | None = None,
     label_replacements: dict[str, str] | None = None,
-) -> tuple[str, str, str] | None:
+) -> tuple[str, str, tuple[int, int] | None] | None:
+    """Return a section's label, heading and the span of its ``body`` group in ``text``."""
     if section_heading_re is not None:
         match = section_heading_re.match(text)
         if match:
@@ -3456,7 +3468,7 @@ def _match_labeled_html_section(
             return (
                 label,
                 (groups.get("heading") or "").strip(),
-                (groups.get("body") or "").strip(),
+                match.span("body") if groups.get("body") else None,
             )
     if section_label_re is not None:
         match = section_label_re.match(text)
@@ -3468,7 +3480,7 @@ def _match_labeled_html_section(
                     label_replacements=label_replacements,
                 ),
                 "",
-                "",
+                None,
             )
     return None
 
@@ -3750,7 +3762,7 @@ def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[T
         return tuple(
             node
             for node in root.find_all(_TEXT_TAGS)
-            if isinstance(node, Tag) and not _inside_text_tag(node)
+            if isinstance(node, Tag) and not _inside_text_tag(node, root)
         )
     selected = [node for node in root.select(str(selector)) if isinstance(node, Tag)]
     selected_ids = {id(node) for node in selected}
@@ -3761,12 +3773,21 @@ def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[T
     )
 
 
-def _inside_text_tag(node: Tag) -> bool:
+def _inside_text_tag(node: Tag, root: Tag) -> bool:
+    """True when a text tag encloses ``node``, so the node is read through it.
+
+    A ``pre`` encloses only within ``root`` (``root`` itself included): a content
+    root that is a ``pre`` is read whole, and one that sits inside a ``pre`` reads
+    its nodes as it did before ``pre`` was a text tag.
+    """
+    within_root = True
     for parent in node.parents:
         if not isinstance(parent, Tag):
             continue
-        if parent.name in _TEXT_TAGS:
+        if parent.name in _TEXT_TAGS and (within_root or parent.name not in _PREFORMATTED_TAGS):
             return True
+        if parent is root:
+            within_root = False
     return False
 
 
@@ -3781,9 +3802,70 @@ def _html_node_text(node: Tag) -> str:
     if node.name in _PREFORMATTED_TAGS:
         printed = copy(node)
         for line_break in printed.find_all("br"):
-            line_break.replace_with("\n")
+            # html.parser can nest the strings after a ``<br>`` inside it; unwrapping
+            # keeps them.
+            line_break.insert_before("\n")
+            line_break.unwrap()
         return _normalize_preformatted_text(printed.get_text())
     return _normalize_text(node.get_text(" ", strip=True))
+
+
+def _html_root_text(root: Tag) -> str:
+    """Return the text of the whole content root, for a page read by the root fallback.
+
+    Every string under ``root`` is read stripped and joined by spaces
+    (``_normalize_text``), except that each outermost ``pre`` is read by
+    ``_html_node_text`` and set off by a line break on each side. Without a ``pre``
+    this is the fallback's text as it always was. With one, ``_normalize_text`` of the
+    result is the old fallback text, except inside the ``pre``, where the printed
+    spacing at inline tags is kept instead of being stripped and replaced by one space.
+    """
+    if root.name in _PREFORMATTED_TAGS:
+        return _html_node_text(root)
+    preformatted = [
+        node
+        for node in root.find_all(_PREFORMATTED_TAGS)
+        if not any(
+            parent.name in _PREFORMATTED_TAGS
+            for parent in _parents_within(node, root)
+        )
+    ]
+    if not preformatted:
+        return _normalize_text(root.get_text(" ", strip=True))
+    starts = {id(node) for node in preformatted}
+    inside = {id(item) for node in preformatted for item in node.descendants}
+    string_types = root.interesting_string_types or root.MAIN_CONTENT_STRING_TYPES
+    pieces: list[str] = []
+    run: list[str] = []
+
+    def flush_run() -> None:
+        text = _normalize_text(" ".join(run))
+        if text:
+            pieces.append(text)
+        run.clear()
+
+    for item in root.descendants:
+        if id(item) in starts:
+            flush_run()
+            text = _html_node_text(cast(Tag, item))
+            if text:
+                pieces.append(text)
+        elif id(item) in inside or not isinstance(item, NavigableString):
+            continue
+        elif type(item) in string_types:
+            stripped = item.strip()
+            if stripped:
+                run.append(stripped)
+    flush_run()
+    return "\n".join(pieces)
+
+
+def _parents_within(node: Tag, root: Tag) -> Iterator[Tag]:
+    """Yield ``node``'s ancestors strictly inside ``root``."""
+    for parent in node.parents:
+        if parent is root or not isinstance(parent, Tag):
+            return
+        yield parent
 
 
 def _normalize_preformatted_text(text: str) -> str:

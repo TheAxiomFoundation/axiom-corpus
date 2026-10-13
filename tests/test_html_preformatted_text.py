@@ -10,11 +10,12 @@ is now a text node of its own and keeps its line breaks.
 from __future__ import annotations
 
 import html
+import re
 import string
 
 import pytest
 from bs4 import BeautifulSoup
-from hypothesis import given
+from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import documents
@@ -130,15 +131,85 @@ def test_a_page_that_is_one_pre_reads_like_the_old_fallback_with_line_breaks() -
     assert _normalize_text(block.body) == old_fallback_body
 
 
-def test_selected_pre_nodes_keep_line_breaks() -> None:
+def test_a_page_with_only_pre_text_nodes_keeps_its_other_text() -> None:
+    """A ``pre`` does not take the place of the root fallback that read every string.
+
+    The page has no other text node, so it reached a row through the fallback, which
+    kept the ``div`` text; it still does, and only the ``pre`` keeps its line breaks.
+    """
     page = (
-        b"<html><body><div id='legcontent'><pre>  1  Section 1. The tax law\n"
-        b"  2  is amended.</pre></div></body></html>"
+        b"<html><body><main><div>Prefix</div><pre>A\nB</pre><div>Suffix</div></main></body></html>"
+    )
+    soup = BeautifulSoup(page, "lxml")
+    old_fallback_body = _normalize_text(soup.main.get_text(" ", strip=True))
+
+    [block] = _blocks(page)
+
+    assert block.heading == "Fallback"
+    assert block.body == "Prefix\nA\nB\nSuffix"
+    assert _normalize_text(block.body) == old_fallback_body == "Prefix A B Suffix"
+
+
+def test_a_page_of_headings_and_pre_keeps_the_fallback_shape() -> None:
+    page = (
+        b"<html><body><main><h1>Exhibit I</h1><pre>Name   ____\nDate   ____</pre></main>"
+        b"</body></html>"
+    )
+
+    [block] = _blocks(page)
+
+    assert (block.heading, block.body) == ("Exhibit I", "Exhibit I\nName ____\nDate ____")
+
+
+@pytest.mark.parametrize("parser", ["lxml", "html.parser"])
+def test_pre_br_keeps_the_strings_a_parser_nests_inside_it(parser: str) -> None:
+    """html.parser reads ``<pre>X<br><br/>A</pre>`` as ``<pre>X<br/><br>A</br></pre>``."""
+    page = b"<html><body><main><p>Lead.</p><pre>X<br><br/>A</pre></main></body></html>"
+
+    [block] = _blocks(page, {"html_parser": parser})
+
+    assert block.body == "Lead.\n\nX\n\nA"
+
+
+def test_a_content_root_that_is_a_pre_is_read_whole_with_its_line_breaks() -> None:
+    page = b"<html><body><pre id='text'>L1\n  L2   x\n<p>L3</p></pre><p>Outside.</p></body></html>"
+
+    [block] = _blocks(page, {"html_content_selector": "pre#text"})
+
+    assert block.body == "L1\nL2 x\nL3"
+
+
+def test_a_content_root_inside_a_pre_reads_as_before(monkeypatch: pytest.MonkeyPatch) -> None:
+    page = b"<html><body><pre><div id='r'><p>one</p><p>two</p></div></pre></body></html>"
+    extraction = {"html_content_selector": "#r"}
+    current = [(block.heading, block.body) for block in _blocks(page, extraction)]
+
+    monkeypatch.setattr(documents, "_TEXT_TAGS", set(PRE_TAGS_BEFORE))
+    monkeypatch.setattr(documents, "_PREFORMATTED_TAGS", set())
+    before = [(block.heading, block.body) for block in _blocks(page, extraction)]
+
+    assert current == before == [("Fallback", "one\n\ntwo")]
+
+
+def test_selected_pre_nodes_keep_line_breaks() -> None:
+    """A manifest that names ``pre`` in ``html_text_selector`` reads only those nodes."""
+    page = (
+        b"<html><body><div id='legcontent'><div>Bill header</div>"
+        b"<pre>  1  Section 1. The tax law\n  2  is amended.</pre></div></body></html>"
     )
 
     [block] = _blocks(page, {"html_content_selector": "#legcontent", "html_text_selector": "pre"})
 
     assert block.body == "1 Section 1. The tax law\n2 is amended."
+
+
+def test_a_nested_pre_is_read_once() -> None:
+    """New York bill pages nest a ``pre`` in a ``pre`` at every page break."""
+    page = b"<html><body><main><pre>a\n<PRE WIDTH=136>b</PRE>\nc</pre></main></body></html>"
+
+    [block] = _blocks(page)
+
+    assert block.body == "a\nb\nc"
 
 
 def test_labeled_sections_keep_pre_line_breaks_in_the_section_body() -> None:
@@ -159,6 +230,26 @@ def test_labeled_sections_keep_pre_line_breaks_in_the_section_body() -> None:
         ("1", "Rates", "Bracket Rate\n0-10 1%"),
         ("2", "Credits", "None."),
     ]
+
+
+def test_a_labeled_section_body_captured_from_a_pre_keeps_its_line_breaks() -> None:
+    page = b"<html><body><main><pre>Section 1. Head\nA\n  B</pre></main></body></html>"
+
+    [section] = _blocks(
+        page,
+        {
+            "segmentation": "labeled_sections",
+            "section_heading_pattern": (
+                r"^Section (?P<label>\d+)\. (?P<heading>\w+) (?P<body>.+)$"
+            ),
+        },
+    )
+
+    assert (section.metadata["section_label"], section.heading, section.body) == (
+        "1",
+        "Head",
+        "A\nB",
+    )
 
 
 def test_recovery_audit_walks_pre_nodes_as_the_extractor_does() -> None:
@@ -200,6 +291,14 @@ def test_preformatted_text_is_normalized_once(text: str) -> None:
     assert all(line == " ".join(line.split()) for line in normalized.split("\n"))
 
 
+@given(_TEXT)
+def test_flattening_preformatted_text_only_turns_line_breaks_into_spaces(text: str) -> None:
+    """A span of the flattened text is the same span of the preformatted text."""
+    preformatted = _normalize_preformatted_text(text)
+
+    assert _normalize_text(preformatted) == re.sub(r"(?<!\n)\n(?!\n)", " ", preformatted)
+
+
 @given(st.lists(_TEXT, max_size=6))
 def test_joining_normalized_parts_is_the_normalized_join(raw_parts: list[str]) -> None:
     """Pages without ``pre`` get the bodies the extractor made before.
@@ -213,12 +312,11 @@ def test_joining_normalized_parts_is_the_normalized_join(raw_parts: list[str]) -
     assert _join_html_text_parts(parts) == _normalize_text("\n\n".join(parts))
 
 
-@given(
-    st.lists(
-        st.text(alphabet=string.ascii_letters + string.digits + " \t$.,-", max_size=20),
-        max_size=8,
-    )
-)
+_LINE = st.text(alphabet=string.ascii_letters + string.digits + " \t$.,-", max_size=20)
+
+
+@settings(deadline=None)
+@given(st.lists(_LINE, max_size=8))
 def test_extracted_pre_body_is_the_preformatted_text(lines: list[str]) -> None:
     printed = "\n".join(lines)
     page = f"<html><body><main><pre>{html.escape(printed)}</pre></main></body></html>".encode()
@@ -230,6 +328,27 @@ def test_extracted_pre_body_is_the_preformatted_text(lines: list[str]) -> None:
         assert [block.body for block in blocks] == [expected]
     else:
         assert all(not block.body for block in blocks)
+
+
+@settings(deadline=None)
+@given(
+    st.lists(
+        st.tuples(st.sampled_from(["div", "pre", "span"]), st.lists(_LINE, max_size=3)),
+        max_size=6,
+    )
+)
+def test_fallback_text_flattens_to_the_old_fallback_text(segments) -> None:
+    """With no other text node, the row is the old fallback text with ``pre`` line breaks."""
+    inner = "".join(f"<{tag}>{html.escape(chr(10).join(lines))}</{tag}>" for tag, lines in segments)
+    page = f"<html><body><main>{inner}</main></body></html>".encode()
+    soup = BeautifulSoup(page, "lxml")
+    old_fallback_body = _normalize_text(soup.main.get_text(" ", strip=True))
+
+    blocks = _blocks(page)
+
+    assert [_normalize_text(block.body) for block in blocks] == (
+        [old_fallback_body] if old_fallback_body else []
+    )
 
 
 def test_html_node_text_reads_non_pre_nodes_as_before() -> None:

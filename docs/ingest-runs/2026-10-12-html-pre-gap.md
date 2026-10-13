@@ -37,17 +37,21 @@ uv run python scripts/audit_html_pre_gap.py --baseline-ref 2b9ca4ba2 \
   were not in the cache. `corpus fetch --path` filled them before the run; every other
   object was already cached, so no publisher or family had to be sampled.
 - **Configs:** each source is replayed through the extractor at `2b9ca4ba2` under every
-  manifest entry that could have produced it (same jurisdiction, document class and
-  `safe_segment(source_id)`). The entry whose replay equals the locked rows (kind,
-  heading and body, in order) is the verified config. All 61 sources that hold a `pre`
-  element have one.
+  manifest entry that could have produced it: same jurisdiction, document class and
+  `safe_segment(source_id)`, in every version of every manifest here and at `--ref`.
+  An entry whose replay equals the locked rows (kind, heading and body, in order) is a
+  verified config. Every one of the 61 sources that hold a `pre` element has one. None
+  is ambiguous, meaning none has two verified configs that disagree on the patched
+  output.
 - **Gap:** the gap is the words in outermost `pre` elements under the content root
   (after the default and manifest drop selectors and `html_content_selector`) whose
-  text, ignoring whitespace, is in none of the source's locked rows.
-- **Change:** the current extractor is replayed under the same config and its blocks
-  are compared with the baseline replay. `--all` also compares every source without a
-  `pre`.
-- **Run:** 3 minutes 1 second at 4 workers.
+  text no single locked row holds in its heading or body. Each `pre` is read the way
+  the patched extractor reads it, so a `br` separates words. The test ignores
+  whitespace, so it reads `ab` and `a b` as the same text.
+- **Change:** the current extractor is replayed under the same config, and its blocks
+  (kind, heading, body, metadata) are compared with the baseline replay. `--all` also
+  compares every source without a `pre`.
+- **Run:** 2 minutes 50 seconds at 4 workers.
 
 ## Results
 
@@ -110,19 +114,19 @@ exhibits, so every later POMS ingest would inherit it. The extractor change is b
 
 - **Federal Register text notices, 7 sources.** These are the SSA 2026 COLA notice, the
   two WIC income-eligibility notices, the HHS 2026 poverty guidelines and the three CMS
-  2026 Medicare notices. Each page is one `pre` and reached a row through the root
-  fallback. Re-extracted, the body keeps its line breaks. Words differ by −2 to −4 per
-  notice, because the fallback's `get_text(" ", strip=True)` adds a space at every
-  inline tag (`[ www.gpo.gov ]`, `index.html .`), and the patched text reads as printed.
+  2026 Medicare notices. Each page is one `pre` and reaches its row through the root
+  fallback, as before. Re-extracted, the body keeps its line breaks. Words differ by −2
+  to −4 per notice, because the old fallback's `get_text(" ", strip=True)` added a
+  space at every inline tag (`[ www.gpo.gov ]`, `index.html .`); the patched text reads
+  as printed.
 - **New York bills, 3 sources.** S7148 (2021), S3006 and S3009 (2025) set
   `html_text_selector: pre`, so their text was always read. The patched text keeps line
   breaks and drops the inline-tag spaces (`[ for the` becomes `[for the`). That
   accounts for 52, 874 and 405 fewer tokens; no text is lost.
 - **POMS exhibit-only pages, 5 sources.** SI CHI00830.107, .117, .121, .123 and .129
-  hold only `pre` under the heading, so they reached rows through the fallback, whose
-  body began with the page's `h1`. Re-extracted, the `h1` stays the block heading only
-  and the body is the `pre` text with its line breaks: 10 or 11 fewer words, all of them
-  the repeated heading.
+  hold only an `h1` and `pre` blocks, so they reach rows through the root fallback, as
+  before. Re-extracted, the row gains line breaks; the heading and every word are the
+  same.
 
 Every changed source keeps its row count except the three Georgia pages. Each gains a
 block for "Codes and References", which shifts the `block-N` path of every later block
@@ -144,30 +148,48 @@ The patched extractor raised on no source that the baseline read.
 ## The change
 
 - `pre` is a text node (`_PREFORMATTED_TAGS`, part of `_TEXT_TAGS`). A `pre` inside a
-  `table`, `li` or `blockquote` is still read once, through that ancestor.
+  `table`, `li` or `blockquote` is still read once, through that ancestor, and a text
+  tag or `pre` inside a `pre` is read once, through the outer `pre`.
 - `_html_node_text` reads a `pre` as printed:
-  - no separator is added at inline tags, and each `br` is a line break;
+  - no separator is added at inline tags;
+  - each `br` is a line break. The newline is inserted and the `br` unwrapped, because
+    html.parser nests the strings after `<br>` inside it.
   - `_normalize_preformatted_text` collapses whitespace within each line, keeps one line
     break between lines and one blank line between paragraphs, and drops leading and
     trailing blank lines.
 
-  `_normalize_text` of the result equals `_normalize_text` of the input; the only
-  difference is the kept line breaks. Every other node reads as before.
+  `_normalize_text` of the result equals `_normalize_text` of the input, character for
+  character except where a line break became a space. Every other node reads as before.
+- **Root fallback.** A page whose only body text nodes are `pre` (Federal Register text
+  notices, exhibit-only POMS pages) still reaches its row through the root fallback, so
+  text outside every text tag stays in the row. `_html_root_text` reads the root as
+  the fallback always did, joining stripped strings with spaces, except that each
+  outermost `pre` keeps its line breaks and sits between line breaks. `_normalize_text`
+  of that text is the old fallback text. A manifest that sets `html_text_selector`
+  keeps its old rule: blocks whenever a selected node has text.
 - Block and labeled-section bodies join their node texts with a blank line and do not
   normalize them again (`_join_html_text_parts`). For parts that `_normalize_text`
-  made, that is the same string as before, a property the tests check. Label and stop
-  patterns still match the flattened text.
+  made, that is the same string as before, a property the tests check.
+- **Labeled sections.** Label and stop patterns still match the flattened text. A body
+  the section pattern captures from a `pre` is cut at the same span of the
+  line-preserving text, so it keeps its line breaks too.
+- **Content root.** A `pre` encloses other nodes only within the content root (the root
+  itself included). A root that is a `pre` is read whole, with its line breaks. A root
+  that sits inside a `pre` reads its nodes as before.
 - `scripts/audit_recovery_sibling_scopes.py` (`read_page`, `_matching_run`) uses the
   same helpers, so it keeps walking pages the way the extractor does. None of its July
   recovery scopes has a `pre` page, so its committed audit is unchanged.
-- The anchor-range, WebWorks and JSON single-block paths and the root fallback are
-  unchanged. Anchor ranges already read `pre` text, flattened.
+- The anchor-range, WebWorks and JSON single-block paths are unchanged. Anchor ranges
+  already read `pre` text, flattened.
 
 Line breaks and the encoder: axiom-encode's proof matcher
 (`harness.proof_validator.collapse_evidence_whitespace`, read at its `main` on
-2026-10-12) reads a single line break as a space and only a blank line as a paragraph
-gap. A line-preserved `pre` therefore matches the same excerpts as its flattened form,
-apart from the inline-tag spacing above. The one rulespec citation of a changed document
+2026-10-12) reads a single ordinary line break (`\n`, `\r\n` or `\r`) as a space. It
+reads a blank line, or any run holding U+2028, U+2029, a form feed, a vertical tab or
+NEL, as a paragraph gap. `_normalize_preformatted_text` splits lines with
+`str.splitlines`, so those separators become ordinary line boundaries and the patched
+text holds only `\n`. A line-preserved `pre` therefore matches the same excerpts as its
+flattened form, apart from the inline-tag spacing above. The one rulespec citation of a changed document
 found in the cloned rulespec repos still matches the patched body (checked against
 rulespec-us `4b35d0872`, rulespec-us-ga, rulespec-us-ny and rulespec-us-sc; rulespec-us-wa
 is not cloned here). That citation is rulespec-us `us/statutes/42/416/l.yaml` →
@@ -185,7 +207,8 @@ Successors that add missing text:
 1. `us/manual/2026-09-13-ssi-poms-si-remainder`: 4 sources, +2,915 words (SI 01210.300,
    02101.008, 02310.062, CHI01730.010). In 6 named releases.
 2. `us/manual/2026-09-10-ssi-poms-si`: 4 sources gain 314 words (CHI00830.111, .122,
-   SEA00830.403, SF02005.082); 5 exhibit-only pages reformat. In 8 named releases.
+   SEA00830.403, SF02005.082); 5 exhibit-only pages gain line breaks only. In 8 named
+   releases.
 3. `us/manual/2026-09-13-medicare-poms-hi`: 2 sources, +242 words (HI 00825.110,
    00825.907). In 6 named releases.
 4. `us-ga/manual/2026-09-11-ga-snap-manual-supersede`: 3 sources, +12 words (the
@@ -215,6 +238,6 @@ Reformat only (no text added, no successor needed):
 
 Not yet released:
 
-9. `us/manual/2026-10-12-oasdi-poms-rs` (#826): re-extract RS 02510.026's scope on that
-   branch once this lands, before it is released, so its first version carries the
-   248 words.
+9. `us/manual/2026-10-12-oasdi-poms-rs` (#826, handed to the eng hub, which folds it
+   into the #819 release): re-extract this scope once this lands, before it is
+   released, so its first version carries RS 02510.026's 248 words.

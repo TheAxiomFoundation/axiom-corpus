@@ -16,15 +16,19 @@ of every lock:
    string, base64-decoded where it is base64).
 2. Replay the extractor at ``--baseline-ref`` under every manifest entry that could
    have produced the source (same jurisdiction, document class and
-   ``safe_segment(source_id)``, in ``manifests/`` here and at each ``--ref``). The
-   entry whose replay equals the locked rows (kind, heading, body, in order) is the
-   verified config; a source with ``pre`` and no verified config is reported
-   ``unverified`` and measured no further.
+   ``safe_segment(source_id)``, in ``manifests/`` here and at each ``--ref``, every
+   version of a manifest kept). An entry whose replay equals the locked rows (kind,
+   heading, body, in order) is a verified config. A source with no verified config is
+   ``unverified``; one whose verified configs disagree on the current extractor's
+   output is ``ambiguous`` (measured under the first, and counted).
 3. Under the verified config, parse the page the way the extractor does and, for
-   every outermost ``pre`` under the content root, count its words and test whether
-   its text is in the locked rows (whitespace-insensitive): the gap.
-4. Replay the current extractor under the same config and compare blocks with the
-   baseline replay (``--all`` does this for sources without ``pre`` too).
+   every outermost ``pre`` under the content root, read its text as the current
+   extractor reads a ``pre`` and count its words. Its words are in the gap when no
+   single locked row (heading or body) holds that text. The test ignores whitespace,
+   so it reads ``ab`` and ``a b`` as the same text.
+4. Replay the current extractor under the same config and compare its blocks (kind,
+   heading, body, metadata) with the baseline replay (``--all`` does this for sources
+   without ``pre`` too).
 
     uv run python scripts/audit_html_pre_gap.py --baseline-ref 2b9ca4ba2 \\
         --ref origin/ingest/ssa-oasdi-source-conflict-texts --all --workers 4 \\
@@ -70,6 +74,7 @@ _PRE_TEXT = re.compile(r"<\s*pre[\s>/]", re.IGNORECASE)
 _BASE64 = re.compile(r"[A-Za-z0-9+/=\s]+")
 
 Row = tuple[str, str | None, str]
+FullRow = tuple[str, str | None, str, str]
 
 
 @dataclass(frozen=True)
@@ -92,7 +97,7 @@ def has_pre(content: bytes, suffix: str) -> bool:
     for text in _json_strings(data):
         if _PRE_TEXT.search(text):
             return True
-        if len(text) > 200 and _BASE64.fullmatch(text):
+        if _BASE64.fullmatch(text):
             try:
                 decoded = base64.b64decode(text).decode("utf-8", "replace")
             except ValueError:
@@ -121,12 +126,20 @@ def _squeeze(text: str) -> str:
     return "".join(text.replace("\u200b", "").replace("\ufeff", "").split())
 
 
-def _rows_text(rows: Iterable[Row]) -> str:
-    return " ".join(f"{heading or ''} {body or ''}" for _, heading, body in rows)
+def _rows_text(rows: Iterable[Row | FullRow]) -> str:
+    return " ".join(f"{row[1] or ''} {row[2] or ''}" for row in rows)
 
 
-def _block_rows(blocks: Iterable[Any]) -> tuple[Row, ...]:
-    return tuple((block.kind, block.heading, block.body) for block in blocks)
+def _block_rows(blocks: Iterable[Any]) -> tuple[FullRow, ...]:
+    return tuple(
+        (block.kind, block.heading, block.body, json.dumps(block.metadata, sort_keys=True))
+        for block in blocks
+    )
+
+
+def _locked_shape(rows: Iterable[FullRow]) -> tuple[Row, ...]:
+    """The fields a provision row keeps of a block, to compare with the locked rows."""
+    return tuple((kind, heading, body) for kind, heading, body, _ in rows)
 
 
 def load_module(name: str, path: Path) -> types.ModuleType:
@@ -151,12 +164,12 @@ def baseline_module_path(repo: Path, ref: str, directory: Path) -> Path:
 
 
 def manifest_configs(
-    payloads: Mapping[str, bytes],
+    payloads: Iterable[bytes],
 ) -> dict[tuple[str, str, str], list[dict[str, Any]]]:
     """Index every manifest document by (jurisdiction, document class, source file stem)."""
     loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
     index: dict[tuple[str, str, str], list[dict[str, Any]]] = collections.defaultdict(list)
-    for _, payload in sorted(payloads.items()):
+    for payload in payloads:
         try:
             data = yaml.load(payload, Loader=loader)  # noqa: S506 - a safe loader
         except yaml.YAMLError:
@@ -266,7 +279,7 @@ def audit_job(job: Job) -> dict[str, Any]:
     if job.source_format is None:
         result["status"] = "no_locked_rows"
         return result
-    verified: dict[str, Any] | None = None
+    verified: list[dict[str, Any]] = []
     errors = []
     replayed = False
     for config in job.configs or ({"title": None, "source_url": "", "extraction": None},):
@@ -282,8 +295,8 @@ def audit_job(job: Job) -> dict[str, Any]:
             result["current_error"] = f"{type(exc).__name__}: {exc}"[:200]
             after = ()
         replayed = True
-        if verified is None and before == job.locked:
-            verified = {"config": config, "before": before, "after": after}
+        if _locked_shape(before) == job.locked:
+            verified.append({"config": config, "before": before, "after": after})
         if before != after and not result["has_pre"]:
             result["changed_without_pre"] = True
     result["replayed"] = replayed
@@ -291,14 +304,25 @@ def audit_job(job: Job) -> dict[str, Any]:
         result["status"] = "not_replayable"
         result["error"] = errors[0] if errors else "no config"
         return result
-    if verified is None:
+    if not verified:
         result["status"] = "unverified"
         return result
-    result["status"] = "verified"
-    before, after = verified["before"], verified["after"]
+    result["verified_configs"] = len(verified)
+    outputs = {entry["after"] for entry in verified}
+    result["status"] = "verified" if len(outputs) == 1 else "ambiguous"
+    before, after = verified[0]["before"], verified[0]["after"]
     result["identical"] = before == after
     if result["has_pre"]:
-        result.update(_pre_gap(baseline, content, job.source_format, verified["config"], before))
+        result.update(
+            _pre_gap(
+                baseline,
+                current,
+                content,
+                job.source_format,
+                verified[0]["config"],
+                _locked_shape(before),
+            )
+        )
     if before != after:
         result.update(
             {
@@ -320,16 +344,20 @@ def audit_job(job: Job) -> dict[str, Any]:
 
 def _pre_gap(
     module: types.ModuleType,
+    current: types.ModuleType,
     content: bytes,
     source_format: str,
     config: dict[str, Any],
     rows: tuple[Row, ...],
 ) -> dict[str, Any]:
-    """Words in ``pre`` elements under the content root, and those no locked row holds."""
+    """Words in ``pre`` elements under the content root, and those no locked row holds.
+
+    ``module`` parses the page as the baseline did; ``current`` reads each ``pre``.
+    """
     extraction = config.get("extraction") or {}
     if source_format == "json":
         if extraction.get("segmentation") in {"records", "source_only"}:
-            return {"path": "json_records"}
+            return {"measurement_status": "json_records"}
         html_text = module._json_path(
             json.loads(content.decode("utf-8")), extraction["json_html_field"]
         )
@@ -346,16 +374,17 @@ def _pre_gap(
             node.decompose()
     root = module._html_content_root(soup, extraction=extraction)
     pres = [pre for pre in root.find_all("pre") if pre.find_parent("pre") is None]
-    held = _squeeze(_rows_text(rows))
+    texts = [current._html_node_text(pre) for pre in pres]
+    held = [_squeeze(part) for _, heading, body in rows for part in (heading or "", body or "")]
     missing = [
-        pre for pre in pres if words(pre.get_text()) and _squeeze(pre.get_text()) not in held
+        text for text in texts if words(text) and not any(_squeeze(text) in row for row in held)
     ]
     return {
         "pre_elements": len(pres),
-        "pre_words": sum(words(pre.get_text()) for pre in pres),
+        "pre_words": sum(words(text) for text in texts),
         "gap_pre_elements": len(missing),
-        "gap_words": sum(words(pre.get_text()) for pre in missing),
-        "gap_samples": [" ".join(pre.get_text().split())[:160] for pre in missing[:3]],
+        "gap_words": sum(words(text) for text in missing),
+        "gap_samples": [" ".join(text.split())[:160] for text in missing[:3]],
     }
 
 
@@ -387,7 +416,8 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
             scope[key] += int(result.get(key, 0) or 0)
         scope["sources_gaining_text"] += bool(result.get("gap_words"))
         scope["sources_changed"] += result.get("identical") is False
-        scope["sources_unverified"] += status != "verified"
+        scope["sources_unverified"] += status not in {"verified", "ambiguous"}
+        scope["sources_ambiguous"] += status == "ambiguous"
     return {
         "counts": dict(counts),
         "scopes": {key: dict(value) for key, value in sorted(scopes.items())},
@@ -433,16 +463,13 @@ def run(
     if lock_set.errors:
         raise SystemExit("\n".join(lock_set.errors))
     locks = dict(lock_set.locks)
-    manifests = {
-        str(path.relative_to(repo)): path.read_bytes()
-        for path in sorted((repo / "manifests").rglob("*.yaml"))
-    }
+    # Every version of a manifest is kept: a ref may hold the config that made a scope.
+    manifests = [path.read_bytes() for path in sorted((repo / "manifests").rglob("*.yaml"))]
     for ref in refs:
         for scope, lock in load_locks_at_ref(repo, ref).locks.items():
             locks.setdefault(scope, lock)
-        for path, payload in read_tree_blobs(repo, ref, "manifests").items():
-            if path.endswith(".yaml"):
-                manifests.setdefault(path, payload)
+        blobs = read_tree_blobs(repo, ref, "manifests")
+        manifests.extend(blobs[path] for path in sorted(blobs) if path.endswith(".yaml"))
     jobs = build_jobs((locks[scope] for scope in sorted(locks)), manifest_configs(manifests), cache)
     jobs.sort(key=lambda job: -job.entry.size)
     initargs = (str(baseline_path), str(cache.root), compare_all)
