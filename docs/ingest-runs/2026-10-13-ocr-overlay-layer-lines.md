@@ -123,9 +123,11 @@ The junk this change appends that #854 did not, 133 lines (276 words):
 
 The two layers named in the defect report append nothing: UT-14-0007-MM page 21 ("ac al
 ckm cl err", none of its words in the OCR text) and ID-20-0001 page 3 ("Ejhjubmmz", two
-of eight words in the OCR text). Of the 185 invisible layers with at least five words, 18
-share none of their words with OCR and 116 share 90% or more; the layers between are few,
-and the next above the threshold (a Uganda gazette page, 38%) holds legible lines.
+of eight words in the OCR text). Of the 185 invisible layers with at least five words, 15
+share none of their words with OCR and 3 more share under 10%; 6 share 20% to 50%; the
+other 161 share 50% or more, 116 of them 90% or more. The two layers just above the
+one-third threshold (a Uganda gazette page at 38%, MD-19-0008 page 14 at 39%) hold
+legible lines among their misreadings.
 
 ### Documents
 
