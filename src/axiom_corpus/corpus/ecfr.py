@@ -562,8 +562,17 @@ def _scoped_structure_from_part_xml(
         _citation_path, actual_part, section = parsed
         head = elem.find("HEAD")
         label = _element_text(head) if head is not None else f"§ {selector}"
+        # A section numbered for another part keeps the identifier the XML publishes,
+        # so the inventory reads it with the structure grammar, as it reads the eCFR
+        # structure. The XML search finds PART.SECTION anywhere in N: it reads 14 CFR
+        # part 241's own "19-8.1" as 8.1, which the inventory must not take as § 8.1.
+        identifier = (
+            f"{actual_part}.{section}"
+            if actual_part == part
+            else re.sub(r"^§\s*", "", elem.get("N", "").strip())
+        )
         section_node = {
-            "identifier": f"{actual_part}.{section}",
+            "identifier": identifier,
             "label": label,
             "label_description": _section_heading(elem, actual_part, section),
             "type": "section",
@@ -869,6 +878,8 @@ def build_ecfr_inventory_from_structures(
             # A section takes the path of the part its identifier names, so a section
             # held by another part could claim the path of one that part already has.
             # Two provisions under one identity would overwrite each other downstream.
+            # The check spans every structure of the call and runs before section
+            # selectors filter the inventory; with a limit, it covers the items returned.
             if item.citation_path in source_url_by_path:
                 raise ValueError(
                     f"eCFR citation path {item.citation_path!r} is claimed twice: "

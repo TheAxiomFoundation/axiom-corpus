@@ -17,6 +17,7 @@ which is not in the inventory.
 
 import json
 import re
+import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
 
@@ -548,13 +549,72 @@ def test_ecfr_cli_takes_a_group_part_and_its_section(tmp_path, monkeypatch, caps
     assert [record.citation_path for record in records] == WHOLE_TITLE_43_PATHS[:8]
 
 
+# 14 CFR part 241 numbers its own sections 19-8.1 to 19-8.10. The XML search finds
+# PART.SECTION anywhere in N, so it reads "19-8.1" as 8.1.
+TITLE_14_PART_241_XML = """<ECFR>
+  <DIV5 N="241" TYPE="PART">
+    <HEAD>PART 241—UNIFORM SYSTEM OF ACCOUNTS AND REPORTS</HEAD>
+    <DIV8 N="241.1" TYPE="SECTION"><HEAD>§ 241.1 Applicability.</HEAD><P>Text.</P></DIV8>
+    <DIV8 N="19-8.1" TYPE="SECTION"><HEAD>§ 19-8.1 Definitions.</HEAD><P>Body of 19-8.1.</P></DIV8>
+    <DIV8 N="§ 3809.1" TYPE="SECTION"><HEAD>§ 3809.1 Numbered for another part.</HEAD><P>Body.</P></DIV8>
+  </DIV5>
+</ECFR>
+"""
+
+
+def test_retained_xml_does_not_take_a_partial_match_as_another_parts_section(tmp_path):
+    source_xml = tmp_path / "official-title-14-part-241.xml"
+    source_xml.write_text(TITLE_14_PART_241_XML)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    common = {"version": "2026-10-12", "as_of": "2026-10-08", "source_xml": source_xml,
+              "only_title": 14, "only_part": "241", "workers": 1}
+
+    # "19-8.1" is not § 8.1 of part 241: the selector fails as it does on main, and
+    # nothing is written.
+    with pytest.raises(ValueError, match=r"eCFR section selector\(s\) not found: 8\.1"):
+        extract_ecfr(store, only_sections=("8.1",), **common)
+    assert not store.root.exists() or not any(path.is_file() for path in store.root.rglob("*"))
+
+    # A section that is numbered for another part, and published so, is read as such.
+    report = extract_ecfr(store, only_sections=("3809.1",), **common)
+    records = load_provisions(report.provisions_path)
+    assert [(record.citation_path, record.legal_identifier) for record in records] == [
+        ("us/regulation/14/241", "14 CFR part 241"),
+        ("us/regulation/14/3809/1", "14 CFR 3809.1"),
+    ]
+    assert records[1].parent_citation_path == "us/regulation/14/241"
+    assert records[1].metadata["enclosing_part"] == "241"
+
+
+def test_duplicate_guard_spans_every_structure_of_a_call():
+    def title_7(part, holder_subpart=None):
+        section = _section("1735.9", "§ 1735.9 Heading.")
+        children = [_subpart(holder_subpart, "Subpart A", [section])] if holder_subpart else [section]
+        return {"identifier": "7", "label": "Title 7", "type": "title", "children": [
+            {"identifier": part, "label": f"Part {part}", "type": "part", "children": children}
+        ]}
+
+    with pytest.raises(ValueError, match="'us/regulation/7/1735/9' is claimed twice"):
+        build_ecfr_inventory_from_structures((title_7("1735"), title_7("1739", "A")))
+    # The same numbers in another title are another path.
+    other = title_7("1739", "A")
+    other["identifier"] = "8"
+    assert "us/regulation/8/1735/9" in _paths(
+        build_ecfr_inventory_from_structures((title_7("1735"), other)).items
+    )
+
+
 # --- Properties --------------------------------------------------------------------
 #
 # Generated titles mix parts whose sections name them with BLM-style group parts, whose
 # subparts number their own sections, and sections that name another part outright.
 # A section identifier is PREFIX.NUMBER, where PREFIX is the enclosing part, a number from
 # a small pool that other parts of the title may also use, or a hyphenated number that no
-# grammar reads in an alphanumeric part ("19-8.1" in 14 CFR part 241).
+# grammar reads in an alphanumeric part ("19-8.1" in 14 CFR part 241). Parts and subparts
+# are sometimes reserved, with live sections inside, and some numbers carry parenthesised
+# groups that fold into the path segment ("401(k)-1" is 401-k-1), so two identifiers can
+# claim one path. Each structure is one title; limit and selectors are outside the
+# partition property (the selector property and the example tests cover selectors).
 
 
 def _chars(alphabet, **kwargs):
@@ -565,23 +625,31 @@ def _chars(alphabet, **kwargs):
 
 _POOL = ["3800", "3809", "3830", "1735", "1739", "206"]
 _PARTS = st.one_of(st.sampled_from(_POOL), st.sampled_from(["60-20", "105-60"]))
+# (section number, its path segment), the segment written out rather than computed.
 _NUMBERS = st.one_of(
-    st.integers(0, 600).map(str),
-    st.builds(lambda a, b: f"{a}-{b}", st.integers(0, 9), st.integers(1, 9)),
+    st.integers(0, 600).map(lambda n: (str(n), str(n))),
+    st.builds(lambda a, b: (f"{a}-{b}", f"{a}-{b}"), st.integers(0, 9), st.integers(1, 9)),
+    st.sampled_from([
+        ("1(a)", "1-a"), ("1-a", "1-a"), ("401(k)-1", "401-k-1"), ("3121(a)(1)-1", "3121-a-1-1"),
+    ]),
 )
+
+
+def _rarely(draw):
+    return draw(st.booleans()) and draw(st.booleans())
 
 
 @st.composite
 def _sections(draw, part):
-    """Live and reserved sections of one container, as (node, prefix, number)."""
+    """Live and reserved sections of one container."""
     nodes = []
     for _ in range(draw(st.integers(0, 4))):
         prefix = draw(st.one_of(st.just(part), st.sampled_from(_POOL), st.just("19-8")))
-        number = draw(_NUMBERS)
+        number, segment = draw(_NUMBERS)
         identifier = f"{prefix}.{number}"
-        nodes.append(
-            _section(identifier, f"§ {identifier} Heading.", reserved=draw(st.booleans()) and draw(st.booleans()))
-        )
+        node = _section(identifier, f"§ {identifier} Heading.", reserved=_rarely(draw))
+        node["_segment"] = segment  # for the reference model; the adapter ignores it
+        nodes.append(node)
     return nodes
 
 
@@ -601,17 +669,24 @@ def _group_titles(draw):
             if sections and draw(st.booleans()):
                 sections = [{"identifier": f"ECFR{subpart}", "label": "Group", "type": "subject_group",
                              "children": sections}]
-            part_children.append(_subpart(subpart, f"Subpart {subpart}—Heading", sections))
-        children.append({"identifier": part, "label": f"Part {part}—Heading", "type": "part",
-                         "children": part_children})
+            node = _subpart(subpart, f"Subpart {subpart}—Heading", sections)
+            if _rarely(draw):
+                node["reserved"] = True
+            part_children.append(node)
+        node = {"identifier": part, "label": f"Part {part}—Heading", "type": "part",
+                "children": part_children}
+        if _rarely(draw):
+            node["reserved"] = True
+        children.append(node)
     return {"identifier": "43", "label": "Title 43", "type": "title", "children": children}
 
 
 def _expected_sections(structure, *, reserved=False):
     """Reference model: each live section the inventory should hold, in structure order.
 
-    Tuples of (citation path, cited part, enclosing part, parent path, identifier).
-    With ``reserved``, reserved sections are included too: the XML pass cannot tell
+    Tuples of (citation path, cited part, enclosing part, parent path, identifier). A
+    reserved part or subpart holds no live section. With ``reserved``, every section
+    node is included, reserved or under a reserved container: the XML pass cannot tell
     them apart, so it emits one under any path the inventory allows.
     """
     title = structure["identifier"]
@@ -619,20 +694,20 @@ def _expected_sections(structure, *, reserved=False):
 
     def walk(node, part=None, subpart=None):
         kind = node["type"]
+        if node.get("reserved") and not reserved:
+            return
         if kind == "part":
             part = node["identifier"]
         if kind == "subpart":
             subpart = node["identifier"]
         if kind == "section":
-            if node.get("reserved") and not reserved:
-                return
-            prefix, number = node["identifier"].split(".", 1)
+            prefix = node["identifier"].split(".", 1)[0]
             if "-" in prefix and prefix != part:
                 return  # no grammar reads a foreign hyphenated part
             part_path = f"us/regulation/{title}/{part}"
             parent = f"{part_path}/subpart-{subpart}" if subpart else part_path
-            rows.append((f"us/regulation/{title}/{prefix}/{number}", prefix, part, parent,
-                         node["identifier"]))
+            rows.append((f"us/regulation/{title}/{prefix}/{node['_segment']}", prefix, part,
+                         parent, node["identifier"]))
             return
         for child in node.get("children", []):
             walk(child, part, subpart)
@@ -715,7 +790,8 @@ def test_property_part_scoped_inventories_partition_the_whole_inventory(structur
         assert [_without_source_path(item) for item in scoped.items] == [
             _without_source_path(item) for item in restricted
         ]
-        assert scoped.part_count == 1
+        reserved_part = next(n for n in structure["children"] if n["identifier"] == part).get("reserved")
+        assert scoped.part_count == (0 if reserved_part else 1)
         union.extend(scoped.items)
     assert [_without_source_path(item) for item in union] == [
         _without_source_path(item) for item in whole.items
@@ -752,3 +828,50 @@ def test_property_section_selector_returns_the_section_and_its_ancestors(structu
     part_path = f"us/regulation/43/{enclosing}"
     assert _paths(inventory.items) == list(dict.fromkeys([part_path, parent, path]))
     assert inventory.part_count == 1
+
+
+# The alphanumeric PART.SECTION grammar of main (89dc519fa), kept as the reference.
+ALNUM_SECTION_IDENTIFIER = r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.()-]*)"
+
+
+@settings(max_examples=500, deadline=None)
+@given(
+    title=st.integers(1, 50),
+    part=st.one_of(st.sampled_from(["241", "3800", "60-20", "105-60"]), _chars("0123456789", min_size=1, max_size=4)),
+    n_attr=st.one_of(
+        _chars("0123456789aZ.-() §", max_size=14),
+        st.builds(lambda a, b: f"{a}.{b}", st.sampled_from(["3809", "19-8", "241", "60-20", "8"]),
+                  _chars("0123456789a()-", min_size=1, max_size=6)),
+    ),
+)
+def test_property_retained_xml_reads_another_parts_section_only_as_its_identifier_reads(
+    title, part, n_attr
+):
+    """A retained part XML admits a section numbered for another part only when the
+    structure grammar reads its published identifier to the XML's reading; a section
+    that names its own part is admitted as before."""
+    xml = (f'<ECFR><DIV5 N="{part}" TYPE="PART"><HEAD>PART {part}</HEAD>'
+           f'<DIV8 N="{n_attr}" TYPE="SECTION"><HEAD>Heading</HEAD><P>Body.</P></DIV8></DIV5></ECFR>')
+    reading = ecfr._section_citation_from_element(
+        title, ET.fromstring(xml).find("DIV5/DIV8"), part
+    )
+    assume(reading is not None)
+    path, cited, section = reading
+    selector = f"{cited}.{section}"
+    assume(re.fullmatch(ecfr._SECTION_SELECTOR_PATTERN, selector))
+    structure = ecfr._scoped_structure_from_part_xml(
+        xml, title=title, part=part, only_sections=(selector,)
+    )
+    bare = re.sub(r"^§\s*", "", n_attr.strip())
+
+    if cited == part or re.fullmatch(ALNUM_SECTION_IDENTIFIER, bare):
+        items = build_ecfr_inventory_from_structures(
+            (structure,), only_part=part, only_sections=(selector,)
+        ).items
+        assert items[-1].citation_path == path
+        assert items[-1].metadata.get("enclosing_part") == (part if cited != part else None)
+    else:
+        with pytest.raises(ValueError, match="not found"):
+            build_ecfr_inventory_from_structures(
+                (structure,), only_part=part, only_sections=(selector,)
+            )
