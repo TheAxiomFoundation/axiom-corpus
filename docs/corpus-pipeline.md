@@ -410,9 +410,10 @@ such PDFs. Without them extraction is unchanged.
     `+}`) is, the first one ending the run. Do not remove every occurrence of
     the four tokens. A struck run that ends in a literal `[` is written
     `[-[-]`, and an underlined run that ends in `{` is written `{+{+}`.
-    Maryland's session laws strike the brackets of a stricken deletion, so
-    2025 ch. 604 reads `the budget bill [-[-]shall[-] MAY-] specify`: the
-    brackets and "MAY" are struck and "shall" is not.
+    Maryland prints a deletion in brackets and strikes the brackets where an
+    amendment struck it, so 2025 ch. 604 reads
+    `the budget bill [-[-]shall[-] MAY-] specify`: the brackets and "MAY" are
+    struck and "shall" is not.
   - Limit the page range to the amended text, so that ordinary emphasis
     underlines elsewhere are not marked.
   - List in `typographic_underlines` any exact phrase whose underline is

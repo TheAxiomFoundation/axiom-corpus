@@ -1774,9 +1774,9 @@ def _amendment_markup_runs(text: str) -> list[tuple[str, str | None]]:
     ``+}``, is, and the first one ends the run. Removing every occurrence of
     the four tokens instead misreads a run whose last character and its closer
     make a token: a struck run ending in "[" is written ``[-[-]``, and an
-    underlined run ending in "{" is written ``{+{+}``. Maryland's session laws
-    strike the brackets of a stricken deletion (2025 ch. 604, page 87:
-    ``the budget bill [-[-]shall[-] MAY-] specify``).
+    underlined run ending in "{" is written ``{+{+}``. Maryland prints a
+    deletion in brackets and strikes the brackets where an amendment struck it
+    (2025 ch. 604, page 87: ``the budget bill [-[-]shall[-] MAY-] specify``).
 
     Plain text between runs and the text of a run hold none of the four tokens,
     because ``_pdf_page_layered_text`` refuses page text that holds one. Text

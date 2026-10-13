@@ -432,10 +432,13 @@ def test_a_pdf_with_a_run_ending_in_its_opening_bracket_marks_and_strips_back(
     ]
 
 
-# The 22 pages the corpus-wide sweep found. Maryland's session laws and its bill
-# strike the brackets of a stricken deletion (checked against renderings of the
-# pages); the CMS approval packages carry a hidden text layer whose Type3 glyph
-# boxes, 135 to 240 pt tall, cross short vector rules such as a drawn hyphen.
+# The 22 pages the corpus-wide sweep found. Maryland prints a deletion in brackets
+# and strikes out what an amendment struck from the bill (legend on 2022 HB 456,
+# page 1), so its bill and session laws strike the brackets of a deletion that an
+# amendment struck; the marks on those 12 pages were checked against renderings.
+# The CMS approval packages set their text in Type3 fonts whose character boxes
+# are 135 to 240 pt tall, and rules 1.6 to 3 pt long fall at a strike or underline
+# offset from them: the classifier's marks there are not amendments.
 _SWEPT_PAGES = [
     (
         "us-az/policy/2026-09-13-chip-state-plan/official-documents/"
