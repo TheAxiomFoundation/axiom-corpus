@@ -80,10 +80,6 @@ jobs:
       - uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
-          # Every commit and tree, but file contents only on demand: the
-          # history holds the corpus bytes from before the 2026-09-29
-          # lock switch (5.7 GB), which no step reads.
-          filter: blob:none
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6.2.0
