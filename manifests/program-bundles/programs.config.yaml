@@ -67,15 +67,14 @@ tiers:
   screener:
     title: Screener-level parity
     definition: >-
-      Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is excluded
-      with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-      errors. Federal law PolicyEngine cites is shared by every state.
+      Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a recorded
+      reason, and the screener-level parity run against the newest reference release has no unfixed Axiom errors.
+      Federal law in Tier 1 is shared by every state.
   full:
     title: Full document bundle
     definition: >-
-      Every relevant document for the program in the state: every document of the screener tier, the federal law
-      of the program (statute, regulations and federal guidance), and every primary source of the state's own
-      rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.
+      Every relevant document for the program in the state: every document of Tier 1, the federal law of the
+      program (statute, regulations and federal guidance), and every primary source of the state's own rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.
 
 # References that are not current law, or not law at all.
 exclusions:
