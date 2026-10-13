@@ -1,6 +1,13 @@
 # Design note: a source-coverage check for partial text loss
 
-Status: proposal (2026-10-13). No code. It follows the
+Status (2026-10-13): the first step is built and reports only. The official-document
+extractor records the figures for each source it reads
+([Step 1: what is recorded](#step-1-what-is-recorded)), and an offline script has
+measured the locked HTML scopes
+([run note](ingest-runs/2026-10-13-source-coverage-ranking.md)). Nothing gates on the
+figures and there is no finding code; the rest of this note is still a proposal.
+
+It follows the
 [hollow-root audit](ingest-runs/2026-10-13-hollow-document-root-audit.md), which
 found losses that the release content check
 ([release gate policy](release-gate-policy.md#content-check)) cannot see, and the
@@ -99,6 +106,110 @@ Two lessons:
    once offline (whole pages for HTML where no selector applies, the manifest's
    selector where one does) to rank successor work. The prototype's numbers
    above already rank the Maine chapter scope near the top.
+
+## Step 1: what is recorded
+
+`extract-official-documents` writes a `source_coverage` block into the scope's
+coverage report (`data/corpus/coverage/<jurisdiction>/<class>/<version>.json`). The
+block is optional. No other field of the report changes, locked reports do not have
+it, and release validation does not read it. The code is
+`src/axiom_corpus/corpus/source_coverage.py` (the measure) and the `region` argument
+that `documents.py` threads through its extraction paths.
+
+```json
+"source_coverage": {
+  "measure": "source-coverage-v1",
+  "sources": [
+    {
+      "source_path": "sources/us-md/statute/<version>/official-documents/md-human-services-5-316-fip-funding-current.html",
+      "source_format": "html",
+      "region": "html_content_selector",
+      "region_words": 733,
+      "kept_words": 170,
+      "deliberately_dropped_words": 234,
+      "longest_missing_runs": [
+        {
+          "offset": 190,
+          "words": 537,
+          "text": "(a) (1) Except as provided in paragraph (2) of this subsection, the Governor shall provide sufficient funds in … ing: Success Click to return on the top page Alert",
+          "before": "Text Article - Human Services §5–316."
+        }
+      ]
+    }
+  ],
+  "unmeasured": [
+    {"source_path": "sources/…/official-documents/rates.csv", "source_format": "csv"}
+  ]
+}
+```
+
+The example is the retained Maryland Human Services §5-316 page read with the manifest
+its locked scope was built with (`html_content_selector: body`): the rows keep 170 of
+the 733 words in the region, and the longest missing run is the statute, with the
+page's closing chrome. With the manifest as #854 fixed it, the same page records
+`html_text_selector`, 534 of 534.
+
+- `region_words`: words in the region, without the words dropped on purpose.
+- `kept_words`: how many of them the source's rows hold, counted as a multiset over
+  the heading and body of every row made from the source (its `document` row, whose
+  heading is the manifest title, included). Coverage is `kept_words / region_words`.
+- `deliberately_dropped_words`: words the extraction removed on purpose inside the
+  region.
+- `longest_missing_runs`: up to ten, longest first. `words` is the number of missing
+  words in the run, `offset` the position of its first one among the region's words,
+  `text` the run as the source prints it (its opening and its close when it is long),
+  and `before` the text just ahead of it. Fewer than four kept words in a row do not
+  end a run, so a lost passage is one run even where a heading's words recur in it.
+  Every missing word is in exactly one run.
+- `unmeasured`: sources whose format or segmentation records no region yet.
+
+Words are runs of letters and digits, casefolded, after NFKC, with soft hyphens and
+zero-width characters removed and a word hyphenated at a line end joined. A change of
+case, whitespace or punctuation is never a loss.
+
+| Source | `region` | The region | Dropped on purpose |
+| --- | --- | --- | --- |
+| HTML | `html_main_content`, `html_content_selector` | The content root (`main`, `article`, …, `body`, or the manifest's `html_content_selector`) after the drop selectors | The visible text of nodes the drop selectors removed inside the root |
+| HTML with `html_text_selector` | `html_text_selector` | The selected nodes | The same, inside those nodes |
+| HTML `labeled_sections` | as above | As above, up to the node `stop_text_pattern` matches | As above |
+| HTML `anchor_range` | `html_anchor_range` | The ranges between the start and stop anchors | As above |
+| WebWorks page | `html_webworks_page` | `#page_content` | The mini table of contents, and what the drop selectors removed inside the page |
+| JSON with `json_html_field` | as HTML | The HTML field, read as a page | As HTML |
+| PDF by page, and `single_block` without filters | `pdf_pages` | Every page's text: the text layer, or the OCR text where OCR ran | Nothing |
+| PDF by line (`labeled_sections`, `numbered_sections`, `single_block` with filters) | `pdf_page_range`, `pdf_page_windows` | The lines of the page range or windows, after `start_after_pattern` or `start_at_pattern` and before `stop_at_pattern` | Page headers, drop lines, and section headings restated at a page top |
+| DOCX | `docx_body` | The body's paragraphs and table rows, after `start_after_pattern` and before `stop_text_pattern`, each paragraph's runs joined as Word shows them | Drop lines, and headings restated after a page break (`styled_labeled_sections`) |
+| CSV, XLS, XLSX, legacy DOC, plain text, JSON records | | Listed under `unmeasured` | |
+
+What reads as missing, by design of the extraction paths:
+
+- text before the first labeled or numbered section (front matter, a table of
+  contents);
+- a heading with no text below it before the next heading;
+- bare text outside the paragraph, list, table and heading tags of a default HTML
+  extraction (the CMS index-page loss);
+- a section number that an HTML `labeled_sections` row keeps only in its citation path
+  and `metadata.section_label`;
+- a table word that `_docx_table_text` splits where two Word runs meet;
+- a word hyphenated across two rows (a page break between per-page rows).
+
+Not built yet: the `low_source_coverage` finding and its list of deliberate gaps, the
+unread-page rule for scanned PDFs, a per-scope count for repeated boilerplate, and
+regions for JSON and XML sources.
+
+### Measuring existing scopes
+
+`scripts/measure_source_coverage.py` computes the same figures for the retained HTML
+sources of locked scopes, from their rows and their bytes (read from the checkout or
+the local corpus cache; nothing is fetched or written). It reads a page through the
+manifest its scope was built from when the scope's signed ingest manifest names one,
+through any manifest that lists the same source id when they all agree on its
+settings, and as a whole page otherwise. Manifests are read as they are today, so a
+scope whose manifest has since been fixed scores low until a successor is built.
+
+```bash
+uv run python scripts/measure_source_coverage.py --all \
+  --output out/source-coverage.json --csv out/source-coverage-scopes.csv
+```
 
 ## Open questions
 
