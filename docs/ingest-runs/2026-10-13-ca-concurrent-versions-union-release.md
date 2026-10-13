@@ -12,15 +12,18 @@ It removes nothing.
 ## Why
 
 The scope gives each current LegInfo version of four sections its own same-number variant row
-(`<section>--<slug>`). One of them is in no selected scope: WIC 11450's later version,
-`us-ca/statute/wic/11450--operative-2024-07-01` (Stats. 2024, ch. 798, sec. 2, as amended by Stats. 2026, ch. 310,
-sec. 2). The plain path `us-ca/statute/wic/11450`, carried by the CalWORKs scope and its table-preserving successor,
+(`<section>--<slug>`). Five of its nine versions are at no plain path a selected scope carries. Among them is WIC
+11450's later version, `us-ca/statute/wic/11450--operative-2024-07-01` (Stats. 2024, ch. 798, sec. 2, as amended
+by Stats. 2026, ch. 310, sec. 2). The plain path `us-ca/statute/wic/11450`, carried by the CalWORKs scope and its table-preserving successor,
 holds the earlier version.
 
 The later version governs today. CDSS All County Information Notice I-15-25 (April 17, 2025) says the automation
 is done, that CDSS "has notified the Legislature", and that the automation-dependent SB 1083 changes are operational
-effective March 5, 2025. By the later version's (n) and the earlier version's (p), the later version is operative
-from that date; the earlier one became inoperative then and was repealed on January 1, 2026.
+effective March 5, 2025. It does not give the date of the notice itself. Under the later version's (n) and the
+earlier version's (p), the later version becomes operative and the earlier one inoperative on the later of July 1,
+2024 and the notice date, and the earlier one is repealed on January 1 of the following year. The notice was given by
+April 17, 2025 at the latest. So the later version has governed since April 17, 2025 at the latest, and the earlier
+one was repealed by January 1, 2026 at the latest. CDSS's operational date, March 5, 2025, is the likely switch date.
 
 rulespec-us `us-ca/policies/cdss/calworks/monthly-aid-payment.yaml` cites `us-ca/statute/wic/11450/a/1/A`, a path
 whose only row is in the withdrawn July recovery scope, and which no release cut since 2026-09-24 carries
