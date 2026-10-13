@@ -50,14 +50,14 @@ Classifications:
 | Family | Findings | Extractor defect | Missing or placeholder source | Expected empty | Check false positive |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | New York NYCRR Part notes and refs (Westlaw) | 49 | 46 | 0 | 3 | 0 |
-| Illinois Cash, SNAP and Medical Manual | 55 | 0 | 0 | 54 | 1 |
+| Illinois Cash, SNAP and Medical Manual | 55 | 0 | 2 | 52 | 1 |
 | CMS Medicaid and CHIP state plans (2026-09-13) | 22 | 22 | 0 | 0 | 0 |
 | CMS CHIP FCEP SPA summaries | 20 | 20 | 0 | 0 | 0 |
 | SSA POMS exhibits, forms and a redacted section | 6 | 0 | 6 | 0 | 0 |
 | State HTML manuals (AK, CT, ND, NH, WA) | 17 | 0 | 2 | 15 | 0 |
 | Statutes (CA, ID, ME recovery; MD TCA) | 12 | 11 | 1 | 0 | 0 |
 | Other regulations and policy (BE, CA, MA, NM) | 7 | 4 | 1 | 2 | 0 |
-| **Total** | **188** | **103** | **10** | **74** | **1** |
+| **Total** | **188** | **103** | **12** | **72** | **1** |
 
 Of the 103 extractor defects, the fix PR repairs 92 (NY 46, CMS 22, FCEP 20, MD 2,
 MA 2); 2 (Canada) were fixed in the builder on main, one of them without a successor scope
@@ -87,7 +87,7 @@ page, and every Notes and Refs row in both scopes is flagged.
   (`2026-09-14-state-tax-regulations.md`) shows it was `extract-nycrr-parts` with
   `manifests/us-ny-income-tax-regulations.yaml`.
 
-### Illinois Cash, SNAP and Medical Manual: 54 expected empty, 1 check false positive
+### Illinois Cash, SNAP and Medical Manual: 52 expected empty, 2 missing sources, 1 check false positive
 
 Scope `us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained`
 (54) and the recovery row in `us-il/manual/2026-07-13-recovery-r2026-07-17-dedup` (1).
@@ -104,12 +104,14 @@ Scope `us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-cont
   lock nor its signed ingest manifest references any per-item page, and the original
   ingest commit holds none.
 - So the retained bytes cannot show what the items say, and the classifications rest on
-  the 54 live pages, fetched 2026-10-13, five months after the May capture. The May
-  extraction found no text for these items either. On the live pages, 35 are headings
-  whose only content is sidebar links to their sub-items (separate documents in the
-  scope), 10 are "Reserved" (4 of them showing a deleted-text marker image), 4 hold a
-  lone "Deleted Text" marker image, and 3 have an empty content area: all expected
-  empty. Item 13473 is the table of contents (10 words,
+  the 54 live pages, fetched 2026-10-13, four and a half months after the May capture.
+  The May extraction found no text for these items either. On the live pages, 35 are
+  headings whose only content is sidebar links: for 33 every linked sub-item is a
+  separate document in the scope (expected empty), but the Glossary (23 links) and
+  Abbreviations and Acronyms (17 links) link sub-pages none of which is in the scope, so
+  those two are missing sources. Of the rest, 10 are "Reserved" (4 of them showing a
+  deleted-text marker image), 4 hold a lone "Deleted Text" marker image, and 3 have an
+  empty content area: all expected empty. Item 13473 is the table of contents (10 words,
   25 links): expected empty.
 - Item 67224 ("WAG 25-06-05-a (1) Minimum Monthly SNAP Benefit Amount for 1-2
   Persons") has one block holding the benefit table: date ranges and amounts from
@@ -149,16 +151,21 @@ SC, VT (two), WI and WY, built by `extract-official-documents` from manifests th
 - **Pages the fixed OCR rule now sends to OCR.** The rule (below) reads a page by OCR when
   its text layer has fewer than 30 words with a letter and images of at least 100 dpi
   cover at least 90% of it. Across the 3,921 retained PDFs of every `ocr: true` manifest
-  document (one such document has no retained PDF to match), it sends 1,041 pages in 328
-  PDFs to OCR despite a non-empty text layer: 1,021 in the CMS state-plan scopes (the 4
+  document (counted as file paths, so a PDF kept by two scopes counts twice; one such
+  document has no retained PDF to match), it sends 1,041 pages in 328 PDFs to OCR despite
+  a non-empty text layer: 1,021 in the CMS state-plan scopes (the 4
   flagged attachments among them) and 20 in 14 other PDFs (Ghana and Uganda gazette
   scans, South Carolina health policy, a Hawaii manual, the Alabama WIC plan). On 208 of
-  those pages the layer has no word with a letter. 974 pages meet a simple scan rule (a
-  1-bit image, a CCITT or JBIG2 image, or one of at least 150 dpi). Of the rest, four were
-  rendered and inspected before the 100 dpi floor was added (a scanned gazette page, an
-  imaged table of contents, a presentation slide, a CMS-179 form whose text layer is
-  garbled glyph codes); each shows its text as an image, and the slide's 70 dpi background
-  no longer qualifies. Only the 4 flagged attachments were read in full by OCR.
+  those pages the layer has no word with a letter. 974 pages meet a simple scan rule (the
+  page's largest image is 1-bit, CCITT or JBIG2 encoded, or at least 150 dpi). Of the 67
+  outside it (mostly CMS pages imaged at 100 to 149 dpi), nine were rendered and
+  inspected: three gazette scans (one holding only show-through from the reverse side
+  beside its printer's line, which OCR may read as noise), two imaged tables of
+  contents, an imaged benefit-plan page, a print-view standards table, and two CMS-179
+  forms (one whose layer is garbled glyph codes). Each shows its text as an image; on the
+  standards table the merge keeps the layer's dollar amounts if OCR misreads them. A
+  Georgia slide inspected earlier no longer qualifies (70 dpi background). Only the 4
+  flagged attachments were read in full by OCR.
 
 ### CMS CHIP FCEP SPA summaries: 20 extractor defects
 
@@ -205,8 +212,9 @@ retained.
   `us-id/statute/2026-09-14-income-tax-chapter-us-id-title-63-chapter-30` and
   `us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36`, which the newest union
   selectors include, with caveats: the ID successors keep only the "[effective until
-  January 1, 2027]" rendition of 63-3022E and 63-3025D, and the ME scope drops lettered
-  paragraphs, which open PR #754 restores (recorded in the 2026-09-27 audit).
+  January 1, 2027]" rendition of 63-3022E and 63-3025D, which open PR #823 keeps both
+  of, and the ME scope drops lettered paragraphs, which open PR #754 restores (recorded
+  in the 2026-09-27 audit).
 - ME §5219-SS lost its text the same way but escapes the check: its menu is 69.2%
   navigation, under the 70% threshold. rulespec-us cites it too; it has text (5,280
   characters) in the 2026-09-14 scope.
@@ -217,8 +225,9 @@ retained.
 - **CA WIC 11450(a)(1)(A)** (recovery, withdrawn). WIC 11450 has two concurrent
   versions, and the retained page is LegInfo's "select from multiples" picker between them,
   not the section. The only WIC 11450 text in the corpus is the section row
-  `us-ca/statute/wic/11450` in `2026-06-25-ca-wic-calworks-…-r2026-09-24-preserve-tables`,
-  and it is the Stats. 2024, ch. 798, §1 version. By its subdivision (p) that version
+  `us-ca/statute/wic/11450` in `2026-06-25-ca-wic-calworks-…` and its
+  `-r2026-09-24-preserve-tables` revision, and it is the Stats. 2024, ch. 798, §1
+  version. By its subdivision (p) that version
   becomes inoperative on the later of July 1, 2024 and the date CDSS notifies the
   Legislature that the Statewide Automated Welfare System can implement the change
   (whether that notice has been given is not verified here); its history note points to a
@@ -292,7 +301,7 @@ For the #847 owner; none of these blocks the baseline, which pins findings per s
   attachments; ME §5111 (its table kept, its prose lost); 10 CA R&TC roots in the CA
   recovery scope whose blocks omit history notes beside menu children. A source-coverage
   check (visible source text against extracted text) would catch this class.
-- **Reviewed-empty nodes.** 74 findings are correct as empty (refs pages, tables of
+- **Reviewed-empty nodes.** 72 findings are correct as empty (refs pages, tables of
   contents, link indexes, cross-reference stubs, reserved items, repealed parts). A
   reviewed-empty list, or a reason recorded on the row, would let the check exempt them
   explicitly.
@@ -334,14 +343,15 @@ corpus and re-running #847's check leaves none hollow and none with a navigation
 2. **CA WIC 11450 and rulespec-us CalWORKs**: land #752 (both concurrent versions of WIC
    11450 as variant rows), then repoint `monthly-aid-payment.yaml` at the version it
    encodes. The citation has had no corpus row in the releases selected since 2026-09-24.
-3. **Illinois manual attribution**: a successor that retains each item's page, or at
-   least records in each row which page it came from. Guard
+3. **Illinois manual**: a successor that retains each item's page, or at least records in
+   each row which page it came from, and that takes the Glossary and Abbreviations
+   sub-pages. Guard
    `repair_us_release_source_references.py` so it cannot assign one snapshot to rows whose
    own `download_url` differs.
 4. **Retain linked documents** where the HTML page is only a pointer: POMS exhibit and
    section PDFs, the ND hard card, the WA Apple Health flowchart.
-5. **Successor completeness** for the ID and ME sections rulespec-us cites: the post-2027
-   renditions of ID 63-3022E and 63-3025D, and the ME lettered paragraphs (#754).
+5. **Successor completeness** for the ID and ME sections rulespec-us cites: both dated
+   renditions of ID 63-3022E and 63-3025D (#823), and the ME lettered paragraphs (#754).
 6. **Check refinements** listed above for #847: numeric tokens, a reviewed-empty
    exemption, and a source-coverage check for partial loss.
 7. **Wider extractor robustness**: bare text in `<div>` and `<span>` is dropped by default
