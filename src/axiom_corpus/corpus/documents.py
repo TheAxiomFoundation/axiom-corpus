@@ -1352,8 +1352,9 @@ def _pdf_page_layered_text(
         if count:
             warnings.warn(
                 f"PDF page {page_number}: amendment_markup typographic_underlines phrase "
-                f"{phrase!r} occurs {count} time(s) partly underlined or inside a longer "
-                "underlined stretch; those occurrences keep their insertion delimiters",
+                f"{phrase!r} occurs {count} time(s) partly underlined, inside a longer "
+                "underlined stretch or inside a longer word; those occurrences keep their "
+                "insertion delimiters",
                 PdfAmendmentMarkupWarning,
                 stacklevel=2,
             )

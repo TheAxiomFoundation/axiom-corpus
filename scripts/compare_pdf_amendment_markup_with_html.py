@@ -222,7 +222,7 @@ def _clusters(word: str, labels: str) -> list[tuple[str, str]]:
     """
     clusters: list[tuple[str, list[str]]] = []
     for character, label in zip(word, labels, strict=True):
-        if clusters and unicodedata.combining(character):
+        if clusters and unicodedata.category(character).startswith("M"):
             clusters[-1] = (clusters[-1][0] + character, [*clusters[-1][1], label])
         else:
             clusters.append((character, [label]))
@@ -240,15 +240,18 @@ def _labelled_characters(words: list[Word]) -> tuple[list[str], list[str]]:
     return characters, labels
 
 
-# A word at least this long (normalized characters) that one side has and the
-# other lacks in one differing stretch, while the other side has it unmatched in
-# another stretch, is read as moved text and must keep its labels.
+# A word at least this long (normalized characters), or any word with a digit,
+# that one side has and the other lacks in one differing stretch, while the
+# other side has it unmatched in another stretch, is read as moved text and must
+# keep its labels.
 _MOVED_TEXT_MIN_CHARACTERS = 3
 
 OneSided = tuple[str, str, str]  # (side, normalized word, labels)
 
 
-def _labels_agree(html_part: list[Word], pdf_part: list[Word]) -> bool:
+def _labels_agree(
+    html_part: list[Word], pdf_part: list[Word], *, at_start: bool, at_end: bool
+) -> bool:
     """Compare the labels of one differing stretch character by character.
 
     Each side's characters keep their own labels, are normalized
@@ -259,8 +262,9 @@ def _labels_agree(html_part: list[Word], pdf_part: list[Word]) -> bool:
     spelled or split. Characters that differ are accepted only where both sides
     share one label. Characters present on one side only (a footnote digit, a
     line-end hyphen) must share one label, and that label must be the label of a
-    character next to the gap on the other side; plain text at the very edge of
-    the alignment (context one side has and the other lacks) is also accepted.
+    character next to the gap on the other side; plain text at the very start or
+    end of the alignment (``at_start``, ``at_end``: context one side has and the
+    other lacks) is also accepted.
     """
     html_characters, html_labels = _labelled_characters(html_part)
     pdf_characters, pdf_labels = _labelled_characters(pdf_part)
@@ -278,7 +282,7 @@ def _labels_agree(html_part: list[Word], pdf_part: list[Word]) -> bool:
                 labels, other, gap = pdf_labels[b0:b1], html_labels, a0
             one_sided = set(labels)
             around = set(other[max(gap - 1, 0) : gap + 1])
-            at_edge = gap == 0 or gap == len(other)
+            at_edge = (gap == 0 and at_start) or (gap == len(other) and at_end)
             agree = (
                 agree
                 and len(one_sided) == 1
@@ -302,7 +306,12 @@ def _differing_stretches(
             continue
         # The words next to the stretch (equal on both sides) give the label
         # check the context of a word present on one side only.
-        agree = _labels_agree(first[max(a0 - 1, 0) : a1 + 1], second[max(b0 - 1, 0) : b1 + 1])
+        agree = _labels_agree(
+            first[max(a0 - 1, 0) : a1 + 1],
+            second[max(b0 - 1, 0) : b1 + 1],
+            at_start=a0 == 0 and b0 == 0,
+            at_end=a1 == len(first) and b1 == len(second),
+        )
         stretches.append((first[a0:a1], second[b0:b1], agree))
         for side, part, other in (
             ("html", first[a0:a1], second[b0:b1]),
@@ -313,28 +322,31 @@ def _differing_stretches(
 
 
 def _unmatched(part: list[Word], other: list[Word]) -> list[Word]:
-    """Words of ``part`` (normalized) that ``other`` lacks, counting repeats."""
-    remaining = Counter(_spelling(word) for word, _labels in other)
-    unmatched: list[Word] = []
-    for word, labels in part:
-        key = _spelling(word)
-        if remaining[key]:
-            remaining[key] -= 1
-        else:
-            unmatched.append((key, labels))
-    return unmatched
+    """Words of ``part`` (normalized) found nowhere in ``other``'s joined text.
+
+    A word counts as found when its normalized text occurs anywhere in the other
+    side's normalized words joined without spaces, so a word split at a line-end
+    hyphen (``part-`` ``time`` against ``part-time``) or carrying a footnote digit
+    (``time2`` against ``time``) is not read as missing.
+    """
+    joined = "".join(_spelling(word) for word, _labels in other)
+    return [(_spelling(word), labels) for word, labels in part if _spelling(word) not in joined]
 
 
 def _moved_text(one_sided_runs: list[OneSided]) -> list[dict[str, Any]]:
-    """Words unmatched on both sides (here in the HTML, there in the PDF) with other labels."""
+    """Words unmatched on both sides (here in the HTML, there in the PDF) with other labels.
+
+    Occurrences of one word are paired in reading order, so two moves that swap
+    their labels are caught; occurrences without a partner are not moves.
+    """
     by_text: dict[str, dict[str, list[str]]] = {}
     for side, text, labels in one_sided_runs:
-        if len(text) >= _MOVED_TEXT_MIN_CHARACTERS:
+        if len(text) >= _MOVED_TEXT_MIN_CHARACTERS or any(char.isdigit() for char in text):
             by_text.setdefault(text, {"html": [], "pdf": []})[side].append(labels)
     return [
-        {"text": text, "html": sorted(sides["html"]), "pdf": sorted(sides["pdf"])}
+        {"text": text, "html": sides["html"], "pdf": sides["pdf"]}
         for text, sides in sorted(by_text.items())
-        if sides["html"] and sides["pdf"] and sorted(sides["html"]) != sorted(sides["pdf"])
+        if any(html != pdf for html, pdf in zip(sides["html"], sides["pdf"], strict=False))
     ]
 
 

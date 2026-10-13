@@ -8,6 +8,7 @@ import pytest
 import yaml
 
 from scripts.compare_pdf_amendment_markup_with_html import (
+    _moved_text,
     compare,
     html_words,
     main,
@@ -193,6 +194,29 @@ def test_compare_fails_text_that_moves_and_changes_label() -> None:
     # Moved with the same label, it is a text difference, not a label conflict.
     same_label = marked_text_words("keep [-a b-] [-old-] {+c d+} end")
     assert compare(html, same_label)["moved_text"] == []
+
+
+@pytest.mark.parametrize(
+    ("html", "pdf", "ok"),
+    [
+        # A split word and a footnote digit are not moves.
+        ("a [-part-time-] b c d {+in time+} e", "a [-part- time-] b c d {+in time+}2 e", True),
+        # A short number that moves and changes label is.
+        ("a b 50 rate [-percent-] z", "a b rate [-50 percent-] z", False),
+    ],
+)
+def test_compare_moved_text_edges(html: str, pdf: str, ok: bool) -> None:
+    assert compare(marked_text_words(html), marked_text_words(pdf))["ok"] is ok
+
+
+def test_moved_text_pairs_occurrences_in_reading_order() -> None:
+    # Two moves of "old" whose labels swap: as multisets the labels would cancel.
+    runs = [("html", "old", "DDD"), ("html", "old", "III"), ("pdf", "old", "III")]
+
+    assert _moved_text([*runs, ("pdf", "old", "DDD")]) == [
+        {"text": "old", "html": ["DDD", "III"], "pdf": ["III", "DDD"]}
+    ]
+    assert _moved_text([("html", "old", "DDD"), ("pdf", "old", "DDD"), ("pdf", "old", "III")]) == []
 
 
 def test_compare_context_does_not_make_a_side_one_sided_at_the_start() -> None:
