@@ -423,7 +423,7 @@ def test_selector_main_accepts_still_matches_a_dotted_part():
     # names the part its identifier names, with the part that holds it in enclosing_part
     # (#841), so its own citation selects it, under that part. Main's spelling no longer
     # does: in the 2026-10-08 title 43 it was ambiguous for 547 selectors, and for 1,338
-    # sections such as 43 CFR 3809.1 it returned another section.
+    # sections it returned another section (for 43 CFR 1812.1, "1810.1" returned 1815.1).
     structure = {"identifier": "41", "type": "title", "children": [
         {"identifier": "1", "label": "Part 1", "type": "part", "children": []},
         {"identifier": "1.2-3", "label": "Part 1.2-3", "type": "part",

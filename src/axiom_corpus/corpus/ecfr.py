@@ -435,6 +435,30 @@ def _section_citation_from_element(
     return _section_citation_path(title, named_part, section), named_part, section
 
 
+def _bare_section_identifier(value: str) -> str:
+    return re.sub(r"^§\s*", "", value.strip())
+
+
+def _selectable_section_from_element(
+    title: int, elem: ET.Element, part: str | None
+) -> tuple[str, str, str] | None:
+    """Parse a section element's N as an inventory can select it.
+
+    As _section_citation_from_element, except that a section numbered for another part
+    must publish an identifier the structure grammar reads whole, as the inventory read
+    it. The XML search alone finds PART.SECTION anywhere in N: it reads "19-3809.1" as
+    3809.1, which would take that section's citation path.
+    """
+    parsed = _section_citation_from_element(title, elem, part)
+    if parsed is None or part is None or parsed[1] == part:
+        return parsed
+    citation_path, _named_part, section = parsed
+    bare = _bare_section_identifier(elem.get("N", ""))
+    if _section_citation_from_identifier(title, bare, part) != (citation_path, section):
+        return None
+    return parsed
+
+
 def _appendix_citation_from_identifier(
     title: int, identifier: str, *, require_supported: bool = True
 ) -> tuple[str, str, str] | None:
@@ -525,12 +549,17 @@ def _scoped_structure_from_part_xml(
     for elem in part_elem.iter("DIV8"):
         if elem.get("TYPE") != "SECTION":
             continue
-        parsed = _section_citation_from_element(title, elem, part)
+        parsed = _selectable_section_from_element(title, elem, part)
         if parsed is None:
             continue
         _citation_path, actual_part, section = parsed
         selector = f"{actual_part}.{section}"
         if selector in requested:
+            if selector in sections_by_selector:
+                raise ValueError(
+                    f"eCFR section selector {selector} names more than one section "
+                    "in retained XML"
+                )
             sections_by_selector[selector] = elem
     missing = [selector for selector in requested if selector not in sections_by_selector]
     if missing:
@@ -556,23 +585,14 @@ def _scoped_structure_from_part_xml(
     subpart_nodes: dict[ET.Element, dict[str, Any]] = {}
     for selector in requested:
         elem = sections_by_selector[selector]
-        parsed = _section_citation_from_element(title, elem, part)
+        parsed = _selectable_section_from_element(title, elem, part)
         if parsed is None:
             continue
         _citation_path, actual_part, section = parsed
         head = elem.find("HEAD")
         label = _element_text(head) if head is not None else f"§ {selector}"
-        # A section numbered for another part keeps the identifier the XML publishes,
-        # so the inventory reads it with the structure grammar, as it reads the eCFR
-        # structure. The XML search finds PART.SECTION anywhere in N: it reads 14 CFR
-        # part 241's own "19-8.1" as 8.1, which the inventory must not take as § 8.1.
-        identifier = (
-            f"{actual_part}.{section}"
-            if actual_part == part
-            else re.sub(r"^§\s*", "", elem.get("N", "").strip())
-        )
         section_node = {
-            "identifier": identifier,
+            "identifier": f"{actual_part}.{section}",
             "label": label,
             "label_description": _section_heading(elem, actual_part, section),
             "type": "section",
@@ -1658,9 +1678,9 @@ def iter_ecfr_title_provisions(
                 )
                 if record is None:
                     continue
-                if (
-                    allowed_citation_paths is not None
-                    and record.citation_path not in allowed_citation_paths
+                if allowed_citation_paths is not None and (
+                    record.citation_path not in allowed_citation_paths
+                    or _selectable_section_from_element(target.title, child, part) is None
                 ):
                     continue
                 yield record
@@ -1703,9 +1723,9 @@ def iter_ecfr_title_provisions(
                 )
                 if record is None:
                     continue
-                if (
-                    allowed_citation_paths is not None
-                    and record.citation_path not in allowed_citation_paths
+                if allowed_citation_paths is not None and (
+                    record.citation_path not in allowed_citation_paths
+                    or _selectable_section_from_element(target.title, nested, part) is None
                 ):
                     continue
                 yield record
@@ -1987,12 +2007,12 @@ def _capture_ecfr_math_graphics(
             for elem in root.iter("DIV8")
             if elem.get("TYPE") == "SECTION"
             and (
-                citation_path := _element_citation_path(
+                selected := _selectable_section_from_element(
                     title, elem, part_by_section.get(elem)
                 )
             )
             is not None
-            and citation_path in allowed_citation_paths
+            and selected[0] in allowed_citation_paths
         )
     # Ordinary sections retain their established formula-only capture. All-IMG
     # capture belongs only to explicitly included appendix records.
@@ -2087,6 +2107,21 @@ def _extract_title_results(
             yield future.result()
 
 
+def _reject_repeated_citation_paths(provisions: tuple[ProvisionRecord, ...]) -> None:
+    """Fail when two elements of one source claim a citation path.
+
+    The later record would replace the earlier under the same identity.
+    """
+    source_id_by_path: dict[str, str | None] = {}
+    for record in provisions:
+        if record.citation_path in source_id_by_path:
+            raise ValueError(
+                f"eCFR XML holds citation path {record.citation_path!r} twice: elements "
+                f"{source_id_by_path[record.citation_path]!r} and {record.source_id!r}"
+            )
+        source_id_by_path[record.citation_path] = record.source_id
+
+
 def _extract_one_title(
     store: CorpusArtifactStore,
     title: int,
@@ -2147,6 +2182,7 @@ def _extract_one_title(
                 include_appendices=include_appendices,
             )
         )
+        _reject_repeated_citation_paths(provisions)
     except (
         TimeoutError,
         ValueError,

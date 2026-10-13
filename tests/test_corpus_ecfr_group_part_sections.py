@@ -569,9 +569,9 @@ def test_retained_xml_does_not_take_a_partial_match_as_another_parts_section(tmp
     common = {"version": "2026-10-12", "as_of": "2026-10-08", "source_xml": source_xml,
               "only_title": 14, "only_part": "241", "workers": 1}
 
-    # "19-8.1" is not § 8.1 of part 241: the selector fails as it does on main, and
-    # nothing is written.
-    with pytest.raises(ValueError, match=r"eCFR section selector\(s\) not found: 8\.1"):
+    # "19-8.1" is not § 8.1 of part 241: the selector finds nothing, and nothing is
+    # written.
+    with pytest.raises(ValueError, match=r"not found in retained XML: 8\.1"):
         extract_ecfr(store, only_sections=("8.1",), **common)
     assert not store.root.exists() or not any(path.is_file() for path in store.root.rglob("*"))
 
@@ -584,6 +584,124 @@ def test_retained_xml_does_not_take_a_partial_match_as_another_parts_section(tmp
     ]
     assert records[1].parent_citation_path == "us/regulation/14/241"
     assert records[1].metadata["enclosing_part"] == "241"
+
+
+# A sibling the XML search misreads: "19-3809.401-k-1" holds "3809.401-k-1", which folds
+# to the path of § 3809.401(k)-1.
+PART_3800_SIBLING_XML = """<ECFR>
+  <DIV5 N="3800" TYPE="PART">
+    <HEAD>PART 3800—MINING CLAIMS UNDER THE GENERAL MINING LAWS</HEAD>
+    <DIV8 N="3809.401(k)-1" TYPE="SECTION" NODE="selected">
+      <HEAD>§ 3809.401(k)-1 Selected.</HEAD><P>Selected body.</P>
+    </DIV8>
+    <DIV8 N="19-3809.401-k-1" TYPE="SECTION" NODE="sibling">
+      <HEAD>19-3809.401-k-1 Another published section.</HEAD><P>Sibling body.</P>
+      <MATH><img src="/graphics/ec05no91.090.gif"/></MATH>
+    </DIV8>
+  </DIV5>
+</ECFR>
+"""
+
+
+def test_misread_sibling_cannot_take_a_selected_sections_path(tmp_path, monkeypatch):
+    # Retained XML: the selected section is written with its own body; the sibling is
+    # neither written nor captured for graphics.
+    monkeypatch.setattr(
+        ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail(f"captured {identifier}")
+    )
+    source_xml = tmp_path / "official-title-43-part-3800.xml"
+    source_xml.write_text(PART_3800_SIBLING_XML)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_ecfr(
+        store, version="2026-10-12", as_of="2026-10-08", source_xml=source_xml,
+        only_title=43, only_part="3800", only_sections=("3809.401(k)-1",), workers=1,
+    )
+
+    assert report.coverage.complete and not report.title_errors
+    section = load_provisions(report.provisions_path)[-1]
+    assert section.citation_path == "us/regulation/43/3809/401-k-1"
+    assert section.legal_identifier == "43 CFR 3809.401(k)-1"
+    assert section.body == "Selected body."
+    assert section.source_id == "selected"
+
+    # The same holds for the XML pass under an inventory from the eCFR structure.
+    structure = {"identifier": "43", "label": "Title 43", "type": "title", "children": [
+        {"identifier": "3800", "label": "Part 3800", "type": "part",
+         "children": [_section("3809.401(k)-1", "§ 3809.401(k)-1 Selected.")]},
+    ]}
+    inventory = build_ecfr_inventory_from_structures((structure,))
+    records = _records(PART_3800_SIBLING_XML, structure, allowed=set(_paths(inventory.items)))
+    assert [(record.citation_path, record.source_id) for record in records] == [
+        ("us/regulation/43/3800", None),
+        ("us/regulation/43/3809/401-k-1", "selected"),
+    ]
+
+
+@pytest.mark.parametrize("part", ["3800", "3809"])
+def test_retained_selector_naming_two_sections_fails_before_any_write(tmp_path, part):
+    # The same N in two subparts, in the part that holds § 3809.1 or the part it names.
+    xml = (
+        f'<ECFR><DIV5 N="{part}" TYPE="PART"><HEAD>PART {part}</HEAD>'
+        '<DIV6 N="A" TYPE="SUBPART"><HEAD>Subpart A</HEAD>'
+        '<DIV8 N="3809.1" TYPE="SECTION"><HEAD>§ 3809.1 A</HEAD><P>First body</P></DIV8></DIV6>'
+        '<DIV6 N="B" TYPE="SUBPART"><HEAD>Subpart B</HEAD>'
+        '<DIV8 N="3809.1" TYPE="SECTION"><HEAD>§ 3809.1 B</HEAD><P>Second body</P></DIV8></DIV6>'
+        "</DIV5></ECFR>"
+    )
+    source_xml = tmp_path / "official.xml"
+    source_xml.write_text(xml)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    with pytest.raises(ValueError, match="3809.1 names more than one section in retained XML"):
+        extract_ecfr(
+            store, version="2026-10-12", as_of="2026-10-08", source_xml=source_xml,
+            only_title=43, only_part=part, only_sections=("3809.1",), workers=1,
+        )
+    assert not store.root.exists() or not any(path.is_file() for path in store.root.rglob("*"))
+
+
+def test_two_xml_elements_under_one_citation_path_are_a_title_error(tmp_path, monkeypatch):
+    # The XML search reads "19-3800.5" as 3800.5, the path of the section before it. The
+    # later record would replace the earlier, so the title fails and writes no provision.
+    xml = TITLE_43_XML.replace(
+        '<DIV8 N="3802.0-1"',
+        '<DIV8 N="19-3800.5" TYPE="SECTION" NODE="misread"><HEAD>19-3800.5 Other.</HEAD>'
+        '<P>Other body.</P></DIV8>\n      <DIV8 N="3802.0-1"',
+    )
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: TITLE_43_STRUCTURE)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_ecfr(
+        store, version="2026-10-12", as_of="2026-10-08", only_title=43, only_part="3800",
+        workers=1,
+    )
+
+    assert report.title_error_count == 1
+    assert "'us/regulation/43/3800/5' twice" in report.title_errors[0]
+    assert "'43:2.1.1.3.38.1.1.1' and 'misread'" in report.title_errors[0]
+    assert not report.coverage.complete
+    assert load_provisions(report.provisions_path) == ()
+
+
+@pytest.mark.parametrize(
+    ("second", "path"),
+    [
+        ({"identifier": "3800", "label": "Part 3800 again", "type": "part", "children": []},
+         "us/regulation/43/3800"),
+        ({"identifier": "3801", "label": "Part 3801", "type": "part", "children": [
+            _subpart("A", "Subpart A", []), _subpart("A", "Subpart A again", [])]},
+         "us/regulation/43/3801/subpart-A"),
+    ],
+)
+def test_duplicate_guard_covers_parts_and_subparts(second, path):
+    structure = {"identifier": "43", "label": "Title 43", "type": "title", "children": [
+        {"identifier": "3800", "label": "Part 3800", "type": "part", "children": []}, second,
+    ]}
+
+    with pytest.raises(ValueError, match=f"'{path}' is claimed twice"):
+        build_ecfr_inventory_from_structures((structure,))
 
 
 def test_duplicate_guard_spans_every_structure_of_a_call():
@@ -859,19 +977,93 @@ def test_property_retained_xml_reads_another_parts_section_only_as_its_identifie
     path, cited, section = reading
     selector = f"{cited}.{section}"
     assume(re.fullmatch(ecfr._SECTION_SELECTOR_PATTERN, selector))
-    structure = ecfr._scoped_structure_from_part_xml(
-        xml, title=title, part=part, only_sections=(selector,)
-    )
     bare = re.sub(r"^§\s*", "", n_attr.strip())
 
-    if cited == part or re.fullmatch(ALNUM_SECTION_IDENTIFIER, bare):
-        items = build_ecfr_inventory_from_structures(
+    def select():
+        structure = ecfr._scoped_structure_from_part_xml(
+            xml, title=title, part=part, only_sections=(selector,)
+        )
+        return build_ecfr_inventory_from_structures(
             (structure,), only_part=part, only_sections=(selector,)
         ).items
+
+    if cited == part or re.fullmatch(ALNUM_SECTION_IDENTIFIER, bare):
+        items = select()
         assert items[-1].citation_path == path
         assert items[-1].metadata.get("enclosing_part") == (part if cited != part else None)
     else:
         with pytest.raises(ValueError, match="not found"):
-            build_ecfr_inventory_from_structures(
-                (structure,), only_part=part, only_sections=(selector,)
+            select()
+
+
+# N values of one retained part: sections of parts 3800 and 3809 as published, with a
+# leading section sign or spaces, forms that fold to one path, and identifiers that only
+# the XML search reads ("19-3809.1" holds "3809.1").
+_RETAINED_N = [
+    "3809.1", "§ 3809.1", " 3809.1 ", "3809.1(a)", "3809.1-a", "19-3809.1", "19-3809.1-a",
+    "3800.5", "19-3800.5", "3809. 1", "241.1",
+]
+
+
+@settings(max_examples=200, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(
+    part=st.sampled_from(["3800", "3809"]),
+    n_attrs=st.lists(st.sampled_from(_RETAINED_N), min_size=1, max_size=5),
+    data=st.data(),
+)
+def test_property_retained_extraction_writes_the_one_element_that_claims_the_path(
+    part, n_attrs, data
+):
+    """extract_ecfr on a retained part XML completes exactly when one element claims the
+    selected section's path, and then writes that element's body; a section numbered for
+    another part is claimed only by the element that publishes the selector."""
+    import tempfile
+
+    xml = (f'<ECFR><DIV5 N="{part}" TYPE="PART"><HEAD>PART {part}</HEAD>' + "".join(
+        f'<DIV8 N="{n_attr}" TYPE="SECTION" NODE="n{index}"><HEAD>Heading</HEAD>'
+        f"<P>Body {index}.</P></DIV8>"
+        for index, n_attr in enumerate(n_attrs)
+    ) + "</DIV5></ECFR>")
+    readings = [
+        ecfr._selectable_section_from_element(43, elem, part)
+        for elem in ET.fromstring(xml).iter("DIV8")
+    ]
+    selectors = sorted({f"{reading[1]}.{reading[2]}" for reading in readings if reading})
+    assume(selectors)
+    selector = data.draw(st.sampled_from(selectors))
+    path = next(r[0] for r in readings if r and f"{r[1]}.{r[2]}" == selector)
+    claimants = [index for index, reading in enumerate(readings) if reading and reading[0] == path]
+    if not selector.startswith(f"{part}."):
+        # Numbered for another part: only elements that publish the selector's path
+        # whole claim it, never one the XML search alone reads.
+        assert all(
+            re.fullmatch(ALNUM_SECTION_IDENTIFIER, re.sub(r"^§\s*", "", n_attrs[index].strip()))
+            for index in claimants
+        )
+
+    with tempfile.TemporaryDirectory() as tmp:
+        source_xml = Path(tmp) / "official.xml"
+        source_xml.write_text(xml)
+        store = CorpusArtifactStore(Path(tmp) / "corpus")
+        try:
+            report = extract_ecfr(
+                store, version="2026-10-12", as_of="2026-10-08", source_xml=source_xml,
+                only_title=43, only_part=part, only_sections=(selector,), workers=1,
             )
+        except ValueError as exc:
+            assert len(claimants) > 1
+            assert "names more than one section in retained XML" in str(exc)
+            assert not store.root.exists() or not any(p.is_file() for p in store.root.rglob("*"))
+            return
+        sections = [r for r in load_provisions(report.provisions_path) if r.kind == "section"]
+
+    if len(claimants) == 1:
+        assert report.coverage.complete and not report.title_errors
+        assert [(r.citation_path, r.body, r.source_id) for r in sections] == [
+            (path, f"Body {claimants[0]}.", f"n{claimants[0]}")
+        ]
+    else:
+        # Two elements under one path with different selectors: the title fails.
+        assert report.title_error_count == 1 and "twice" in report.title_errors[0]
+        assert not report.coverage.complete
+        assert sections == []
