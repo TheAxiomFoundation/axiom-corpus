@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import random
 from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
@@ -91,3 +92,70 @@ def test_main_checks_a_pdf_against_html(tmp_path: Path, capsys: pytest.CaptureFi
 
     assert status == 0
     assert '"label_conflicts": 0' in capsys.readouterr().out
+
+
+def test_compare_fails_labels_swapped_inside_one_stretch() -> None:
+    html = marked_text_words("keep [-old-] {+new+} end")
+    pdf = marked_text_words("keep {+old+} [-new-] end")
+
+    result = compare(html, pdf)
+
+    assert result["ok"] is False
+    assert result["label_conflicts"] == 1
+    assert result["differences"][0]["labels_agree"] is False
+
+
+def test_compare_passes_a_word_split_at_a_line_end_hyphen() -> None:
+    html = marked_text_words("keep [-non-household rule-] end")
+    pdf = marked_text_words("keep [-non- household rule-] end")
+
+    assert compare(html, pdf)["ok"] is True
+
+
+def test_compare_fails_a_split_word_whose_parts_change_label() -> None:
+    html = marked_text_words("keep [-non-household-] end")
+    pdf = marked_text_words("keep [-non--] {+household+} end")
+
+    assert compare(html, pdf)["ok"] is False
+
+
+_COMPARE_WORDS = ("old", "new", "rule", "text", "9059", "income")
+_COMPARE_LABELS = ("P", "D", "I")
+
+
+def _random_words(rng: random.Random) -> list[tuple[str, str]]:
+    return [
+        (rng.choice(_COMPARE_WORDS), rng.choice(_COMPARE_LABELS))
+        for _ in range(rng.randrange(1, 12))
+    ]
+
+
+def test_property_compare_is_reflexive_and_symmetric() -> None:
+    rng = random.Random(5741)
+    for _ in range(3000):
+        first = _random_words(rng)
+        second = _random_words(rng) if rng.random() < 0.5 else list(first)
+        assert compare(first, first)["ok"] is True
+        assert compare(first, first)["differences"] == []
+        assert compare(first, second)["ok"] is compare(second, first)["ok"], (first, second)
+
+
+def test_property_compare_fails_any_swap_of_two_marked_labels() -> None:
+    rng = random.Random(6741)
+    checked = 0
+    for _ in range(3000):
+        words = _random_words(rng)
+        pairs = [
+            index
+            for index in range(len(words) - 1)
+            if {words[index][1], words[index + 1][1]} == {"D", "I"}
+        ]
+        if not pairs:
+            continue
+        index = rng.choice(pairs)
+        swapped = list(words)
+        swapped[index] = (words[index][0], words[index + 1][1])
+        swapped[index + 1] = (words[index + 1][0], words[index][1])
+        assert compare(words, swapped)["ok"] is False, (words, swapped)
+        checked += 1
+    assert checked > 500

@@ -8,9 +8,10 @@ its manifest's ``extraction`` settings (``amendment_markup``, ``sort_blocks``),
 labels every word of both renderings deleted (D), inserted (I) or plain (P), and
 aligns the two word sequences from the first deleted or inserted word to the
 last. It reports every stretch where the sequences differ and exits 1 if the
-two sides of any such stretch carry different labels; stretches that differ
-only in spelling (a non-breaking hyphen, a word split at a line-end hyphen)
-keep the same labels and pass.
+two sides of any such stretch disagree on a label. Within a stretch, words with
+the same text must carry the same label, so labels swapped between two words
+fail; words spelled differently (a non-breaking hyphen, a word split at a
+line-end hyphen) must carry the same labels in the same order.
 
 Usage::
 
@@ -142,6 +143,37 @@ def _marked_span(words: list[Word]) -> list[Word]:
     return words[marked[0] : marked[-1] + 1]
 
 
+def _collapsed(labels: list[str]) -> list[str]:
+    """Drop consecutive repeats, so one word split in two keeps its label sequence."""
+    return [label for index, label in enumerate(labels) if not index or label != labels[index - 1]]
+
+
+def _labels_agree(html_part: list[Word], pdf_part: list[Word]) -> bool:
+    """Compare the labels of one differing stretch word by word.
+
+    The stretch's words are aligned by their text alone. Words that match must
+    carry the same label, so two words whose labels are swapped
+    (``keep [-old-] {+new+} end`` against ``keep {+old+} [-new-] end``) fail.
+    Words spelled differently on the two sides (a non-breaking hyphen, a word
+    split at a line-end hyphen) must carry the same sequence of labels, in
+    order.
+    """
+    matcher = difflib.SequenceMatcher(
+        a=[word for word, _label in html_part],
+        b=[word for word, _label in pdf_part],
+        autojunk=False,
+    )
+    for operation, a0, a1, b0, b1 in matcher.get_opcodes():
+        html_labels = [label for _word, label in html_part[a0:a1]]
+        pdf_labels = [label for _word, label in pdf_part[b0:b1]]
+        if operation == "equal":
+            if html_labels != pdf_labels:
+                return False
+        elif _collapsed(html_labels) != _collapsed(pdf_labels):
+            return False
+    return True
+
+
 def compare(html: list[Word], pdf: list[Word]) -> dict[str, Any]:
     html_span = _marked_span(html)
     pdf_span = _marked_span(pdf)
@@ -157,15 +189,14 @@ def compare(html: list[Word], pdf: list[Word]) -> dict[str, Any]:
             continue
         html_part = html_span[a0:a1]
         pdf_part = pdf_span[b0:b1]
-        html_labels = {label for _word, label in html_part}
-        pdf_labels = {label for _word, label in pdf_part}
-        if html_labels != pdf_labels:
+        labels_agree = _labels_agree(html_part, pdf_part)
+        if not labels_agree:
             label_conflicts += 1
         differences.append(
             {
                 "html": " ".join(f"{word}<{label}>" for word, label in html_part),
                 "pdf": " ".join(f"{word}<{label}>" for word, label in pdf_part),
-                "labels_agree": html_labels == pdf_labels,
+                "labels_agree": labels_agree,
             }
         )
     return {
