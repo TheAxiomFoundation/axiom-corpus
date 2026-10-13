@@ -156,6 +156,39 @@ the official form. `--section` selectors take the official form (`--section '1.4
 Before 2026-09-13 such identifiers were skipped by the inventory and truncated by the XML
 pass, so no earlier scope contains one.
 
+Title 41 numbers each part within its chapter: part 60-20 is part 20 of chapter 60, and
+its sections are 60-20.1, 60-20.2, and so on (`us/regulation/41/60-20/1`). The identifier
+alone cannot say whether a hyphenated prefix is a part, because 14 CFR part 241 numbers
+its own sections 19-8.1 to 19-8.10, so the adapter reads a hyphenated part only inside
+that part; every other identifier parses as before. `--only-part 60-20` and
+`--section 60-20.1` take the official form, and lettered or numbered part appendices take
+the same part grammar (`Appendix A to Part 60-300` is
+`us/regulation/41/60-300/appendix-a`). Before 2026-10-12 the inventory skipped these
+sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
+`manifests/releases/` carried title 41 then.
+
+A few live section identifiers break the PART.SECTION form (the eCFR's own reader files
+the stray-space and rule-numbered ones as appendices). The adapter reads each only where
+the enclosing part confirms it:
+
+| Published identifier | Citation path | Confirmed by |
+| --- | --- | --- |
+| `105.60.001` in part 105-60 | `us/regulation/41/105-60/001` | the dotted spelling of the enclosing hyphenated part |
+| `52. 36`, `1222. 27` | `us/regulation/36/52/36`, `us/regulation/12/1222/27` | another section of the part names part 52, 1222 |
+| `3141. 5` in 43 CFR part 3140 | `us/regulation/43/3141/5`, as its sibling `3141.3` | another section of part 3140 names 3141 |
+| `956.1 (Rule 1)` | `us/regulation/39/956/1` (heading keeps "(Rule 1)") | another section names part 956; the rule number is the section number |
+| `03`, `1-1`, `19-8.1` in 14 CFR part 241 | `us/regulation/14/241/03`, `.../1-1`, `.../19-8.1` | no section of part 241 names any part; the number is digits joined by `-` or `.` and does not begin with `241` |
+
+No confirmed reading takes a path that another section of the same part would take; a
+refused dotted spelling keeps the earlier reading. The inventory reads this evidence
+from the title structure, and `extract-ecfr` gives the same evidence to the XML pass, so
+the two passes confirm the same sections. Headings drop one designation (`Sec. 1-1`,
+`Section 03`, `§ 52. 36`). The inventory records that heading because the eCFR's
+`label_description` splits inside `52. 36`. `--section` selectors take the PART.SECTION
+form (`241.19-8.1`, `105-60.001`). Before 2026-10-12 the inventory skipped 61 of these 62
+sections and filed `105.60.001` under part 105 (`us/regulation/41/105/60.001`), and the
+XML pass read `19-8.1` as part 8, section 1. No locked eCFR source contains these parts.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
