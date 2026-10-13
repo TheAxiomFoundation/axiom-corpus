@@ -3653,6 +3653,20 @@ def _extract_html_blocks(
     )
 
 
+def html_source_region(content: bytes, *, extraction: dict[str, Any] | None) -> SourceRegion:
+    """The region an HTML extraction configured by ``extraction`` reads from ``content``.
+
+    Runs the extraction and keeps only what it read and dropped, for measuring the
+    source coverage of rows that already exist (``scripts/measure_source_coverage.py``).
+    Raises what the extraction raises, such as a content selector that does not match.
+    """
+    region = SourceRegion()
+    _extract_html_blocks(
+        content, source_url="", fallback_title=None, extraction=extraction, region=region
+    )
+    return region
+
+
 def _extract_json_html_blocks(
     content: bytes,
     *,

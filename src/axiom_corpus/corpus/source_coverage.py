@@ -48,6 +48,8 @@ MISSING_RUN_LIMIT = 10
 # A recorded run shows at most this much of its text: its opening and its close.
 MISSING_RUN_HEAD_CHARS = 110
 MISSING_RUN_TAIL_CHARS = 50
+# ... and this much of the region just before it, so a one-word run can be placed.
+MISSING_RUN_BEFORE_CHARS = 40
 # The bar the design note proposes for a later ``low_source_coverage`` finding: a
 # source whose rows keep under half of a region of at least 50 words. Reports rank
 # by it; no release check reads it.
@@ -56,15 +58,16 @@ REVIEW_MIN_REGION_WORDS = 50
 
 # Characters that never show and never separate words: the soft hyphen and the
 # zero-width space, non-joiner, joiner, word joiner and byte-order mark.
-_INVISIBLE = dict.fromkeys(map(ord, "­​‌‍⁠﻿"))
+_INVISIBLE = dict.fromkeys(map(ord, "\u00ad\u200b\u200c\u200d\u2060\ufeff"))
 # A word hyphenated at a line end. Extractors join a paragraph's lines with spaces
 # before a row is written, so the break is any whitespace after a hyphen that follows a
 # letter and precedes one: "appli-\ncant" in a page's text and "appli- cant" in the row
 # made from it are both "applicant".
-_LINE_END_HYPHEN = re.compile(r"(?<=[^\W\d_])[-‐‑]\s+(?=[^\W\d_])")
+_LINE_END_HYPHEN = re.compile(r"(?<=[^\W\d_])[-\u2010\u2011]\s+(?=[^\W\d_])")
 _WORD = re.compile(r"[^\W_]+")
-# Words in a row that anchor a region word to the extracted text (see _matched).
-_ANCHOR_WORDS = 3
+# How many consecutive words anchor a region word to the extracted text, longest
+# stretch first (see _matched).
+_ANCHOR_SIZES = (8, 4, 2)
 
 
 class _Row(Protocol):
@@ -101,14 +104,25 @@ def row_texts(rows: Iterable[_Row]) -> list[str]:
 
 @dataclass(frozen=True)
 class MissingRun:
-    """Consecutive region words with no counterpart in the extracted text."""
+    """Consecutive region words with no counterpart in the extracted text.
+
+    ``offset`` is the position of the run's first word among the region's words
+    (words the extractor dropped on purpose after reading them included), ``text``
+    the run as the source prints it, and ``before`` the end of the text ahead of it.
+    """
 
     offset: int
     words: int
     text: str
+    before: str = ""
 
     def to_mapping(self) -> dict[str, Any]:
-        return {"offset": self.offset, "words": self.words, "text": self.text}
+        return {
+            "offset": self.offset,
+            "words": self.words,
+            "text": self.text,
+            "before": self.before,
+        }
 
 
 @dataclass(frozen=True)
@@ -159,6 +173,7 @@ class SourceCoverage:
             if not isinstance(run, Mapping):
                 raise ValueError("each missing run must be a mapping")
             offset, count, text = run.get("offset"), run.get("words"), run.get("text")
+            before = run.get("before", "")
             if (
                 not isinstance(offset, int)
                 or isinstance(offset, bool)
@@ -167,13 +182,14 @@ class SourceCoverage:
                 or isinstance(count, bool)
                 or count < 1
                 or not isinstance(text, str)
+                or not isinstance(before, str)
             ):
                 raise ValueError(f"invalid missing run: {dict(run)!r}")
-            parsed.append(MissingRun(offset=offset, words=count, text=text))
+            parsed.append(MissingRun(offset=offset, words=count, text=text, before=before))
         return cls(
-            region_words=data.get("region_words"),  # type: ignore[arg-type]
-            kept_words=data.get("kept_words"),  # type: ignore[arg-type]
-            deliberately_dropped_words=data.get("deliberately_dropped_words", 0),
+            region_words=_required_count(data, "region_words"),
+            kept_words=_required_count(data, "kept_words"),
+            deliberately_dropped_words=_required_count(data, "deliberately_dropped_words"),
             longest_missing_runs=tuple(parsed),
         )
 
@@ -213,6 +229,7 @@ def measure_source_coverage(
             offset=start,
             words=end - start,
             text=_excerpt(region_text[spans[start][1] : spans[end - 1][2]]),
+            before=_tail(region_text[: spans[start][1]]),
         )
         for start, end in _unmatched_runs(matched)
     ]
@@ -254,22 +271,13 @@ def _matched(region_words: Sequence[str], sequences: Sequence[Sequence[str]]) ->
     A word that occurs ``r`` times in the region and ``s`` times in the sequences is
     matched ``min(r, s)`` times, so the unmatched words are exactly the multiset
     difference. Which occurrences are matched only decides where the missing runs
-    fall. A region word whose neighbours survive (it sits in a run of ``_ANCHOR_WORDS``
-    words that a sequence also holds) is matched first, so the copy of "the" inside a
-    lost paragraph does not use up the "the" of a kept one and split the lost
-    paragraph's run. What is left over then goes to the shortest gaps first, for the
-    same reason.
+    fall, and the aim is to leave a lost passage whole: the "the" inside a lost
+    paragraph must not use up the "the" of a kept one. So words are matched in order
+    of how much of their surroundings survives: first those inside a stretch of
+    ``_ANCHOR_SIZES[0]`` consecutive words that a sequence also holds, then shorter
+    stretches, and what is left over goes to the shortest gaps first.
     """
     available = _counts(sequences)
-    anchors: set[tuple[str, ...]] = set()
-    for sequence in sequences:
-        anchors.update(_shingles(sequence))
-    anchored = [False] * len(region_words)
-    for index, shingle in enumerate(_shingles(region_words)):
-        if shingle in anchors:
-            for position in range(index, index + _ANCHOR_WORDS):
-                anchored[position] = True
-
     matched = [False] * len(region_words)
 
     def take(index: int) -> None:
@@ -278,9 +286,10 @@ def _matched(region_words: Sequence[str], sequences: Sequence[Sequence[str]]) ->
             available[word] -= 1
             matched[index] = True
 
-    for index in range(len(region_words)):
-        if anchored[index]:
-            take(index)
+    for size in _ANCHOR_SIZES:
+        for index in _anchored(region_words, sequences, size):
+            if not matched[index]:
+                take(index)
     gaps = _unmatched_runs(matched)
     for start, end in sorted(gaps, key=lambda gap: (gap[1] - gap[0], gap[0])):
         for index in range(start, end):
@@ -288,8 +297,26 @@ def _matched(region_words: Sequence[str], sequences: Sequence[Sequence[str]]) ->
     return matched
 
 
-def _shingles(sequence: Sequence[str]) -> Iterable[tuple[str, ...]]:
-    return zip(*(sequence[offset:] for offset in range(_ANCHOR_WORDS)), strict=False)
+def _anchored(
+    region_words: Sequence[str], sequences: Sequence[Sequence[str]], size: int
+) -> list[int]:
+    """Positions of the region inside ``size`` consecutive words a sequence also holds."""
+    wanted = set(_shingles(region_words, size))
+    if not wanted:
+        return []
+    held: set[tuple[str, ...]] = set()
+    for sequence in sequences:
+        held.update(shingle for shingle in _shingles(sequence, size) if shingle in wanted)
+    covered = [False] * len(region_words)
+    for index, shingle in enumerate(_shingles(region_words, size)):
+        if shingle in held:
+            for position in range(index, index + size):
+                covered[position] = True
+    return [index for index, flag in enumerate(covered) if flag]
+
+
+def _shingles(sequence: Sequence[str], size: int) -> Iterable[tuple[str, ...]]:
+    return zip(*(sequence[offset:] for offset in range(size)), strict=False)
 
 
 def _unmatched_runs(matched: Sequence[bool]) -> list[tuple[int, int]]:
@@ -312,7 +339,18 @@ def _excerpt(text: str) -> str:
     text = " ".join(text.split())
     if len(text) <= MISSING_RUN_HEAD_CHARS + MISSING_RUN_TAIL_CHARS + 3:
         return text
-    return f"{text[:MISSING_RUN_HEAD_CHARS].rstrip()} … {text[-MISSING_RUN_TAIL_CHARS:].lstrip()}"
+    return (
+        f"{text[:MISSING_RUN_HEAD_CHARS].rstrip()} \u2026 {text[-MISSING_RUN_TAIL_CHARS:].lstrip()}"
+    )
+
+
+def _tail(text: str) -> str:
+    """The last ``MISSING_RUN_BEFORE_CHARS`` characters of ``text``, from a word start."""
+    text = " ".join(text[-4 * MISSING_RUN_BEFORE_CHARS :].split())
+    if len(text) <= MISSING_RUN_BEFORE_CHARS:
+        return text
+    cut = text[-MISSING_RUN_BEFORE_CHARS:]
+    return cut.split(" ", 1)[1] if " " in cut else cut
 
 
 class SourceRegion:
@@ -442,6 +480,13 @@ class SourceCoverageReport:
 def needs_review(figures: SourceCoverage) -> bool:
     """Whether a source is under the proposed review bar (see ``REVIEW_COVERAGE``)."""
     return figures.region_words >= REVIEW_MIN_REGION_WORDS and figures.coverage < REVIEW_COVERAGE
+
+
+def _required_count(data: Mapping[str, Any], key: str) -> int:
+    value = data.get(key)
+    if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+        raise ValueError(f"source_coverage {key} must be a non-negative integer, not {value!r}")
+    return value
 
 
 def _required_text(data: Mapping[str, Any], key: str) -> str:
