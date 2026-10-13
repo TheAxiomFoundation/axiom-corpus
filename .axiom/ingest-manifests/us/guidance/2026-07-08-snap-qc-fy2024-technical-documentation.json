@@ -2,25 +2,29 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation.json",
-      "sha256": "c6bec7a1d4806d8eced29c1585f67e837413f34f48c4d0729d8a5db040d365d6"
+      "sha256": "82b4a810e3a6fa07efeaba7dc3aa16a6f85dd8912723f5c589a252d3dfbd7b79"
     },
     {
       "path": "data/corpus/inventory/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation.json",
-      "sha256": "d8552725551d32376225d520a808a9e48255ec6b23f3de1cdf0b9a6db47c9199"
+      "sha256": "670f40e8b641767b0ee8f596b7bb679a2705b02e436c1366244f3f7eae4e05b7"
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation.jsonl",
-      "sha256": "d3312b709954ef5f231b4e0add2ef8cff441cea21192436e6e4eed4c54022ef3"
+      "sha256": "dc43d3315a07dadcc9b624c6c7e1ffd2ac8f695782e5dd1c0f55de2d973e6481"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf",
+      "sha256": "59b6999d1b9e51ebe920e00899d9aab066d69f1227ea83b0a3e9f16fd8137e33"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "commit": "c8e941fb04e3a2d4f36fa99bcce5923f6b26093f",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "extract-official-documents --base data/corpus --version 2026-07-08-snap-qc-fy2024-technical-documentation --manifest manifests/us-snap-guidance.yaml --only-source-id snap-qc-fy2024-technical-documentation"
+    "text": "Restore the PDF source the rows name and finish the run-id rename (axiom-corpus#873): uv run --extra dev python scripts/restore_unlocked_pdf_sources.py --from 59b6999d1b9e51ebe920e00899d9aab066d69f1227ea83b0a3e9f16fd8137e33=$HOME/TheAxiomFoundation/_worktrees/axiom-corpus-snap-fy2024/data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf (the sha256 the scope inventory records); version and source_path now name 2026-07-08-snap-qc-fy2024-technical-documentation instead of the extractor run id. Evidence: docs/ingest-runs/2026-10-13-restore-unlocked-pdf-sources.md"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +35,14 @@
     "source_count": 201
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-21T11:42:01.229171+00:00",
+  "generated_at": "2026-10-13T22:45:56.722315+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "1ybMaCWayoBEuLGDPpCklOqwWYHZEV33tVoBqA1xTehroAx1vGV/v3FQcZxhfYztxPqwDIZ/f1y+nB4yMv72BQ=="
+    "value": "HSgACc8HnZcQL0QXdfB6sucCIppdjaHjbOLYIVkAqaU4R5/niox9pfwJcLd1ugL+fQcWVSiynBMlOS39FheHDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-08-snap-qc-fy2024-technical-documentation"
