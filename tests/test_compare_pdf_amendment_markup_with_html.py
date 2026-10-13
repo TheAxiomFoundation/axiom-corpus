@@ -57,6 +57,18 @@ def test_marked_text_words_read_wdiff_delimiters() -> None:
     ]
 
 
+def test_marked_text_words_read_a_struck_bracket_as_deleted_text() -> None:
+    # Maryland 2025 ch. 604, page 87: the brackets and "MAY" are struck, "shall" is not.
+    assert marked_text_words("bill [-[-]shall[-] MAY-] specify {+new{+} x") == [
+        ("bill", "PPPP"),
+        ("[shall]", "DPPPPPD"),
+        ("MAY", "DDD"),
+        ("specify", "PPPPPPP"),
+        ("new{", "IIII"),
+        ("x", "P"),
+    ]
+
+
 def test_compare_passes_spelling_differences_and_fails_label_conflicts() -> None:
     html = html_words(HTML)
     agreeing = marked_text_words(

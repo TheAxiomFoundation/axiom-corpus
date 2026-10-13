@@ -1120,7 +1120,11 @@ def _extract_pdf_blocks(
 # the page's thin horizontal rules and written with the GNU wdiff delimiters:
 # ``[-deleted text-]`` and ``{+inserted text+}``. Removing the delimiters gives
 # back exactly the page text that extraction without the markup would produce;
-# ``_pdf_check_layered_page_text`` checks that on every layered page.
+# ``_pdf_page_layered_text`` checks that on every marked page. The delimiters
+# are read left to right (``_amendment_markup_runs``): outside a run only an
+# opener is a delimiter, and inside a run only that run's closer is. Replacing
+# every occurrence of the four tokens is not the same: a struck run that ends
+# in a literal "[" reads ``[-[-]``.
 #
 # The classification is geometric: any thin horizontal rule at a strike or
 # underline offset from a text line marks it, so a table rule drawn just under a
@@ -1134,6 +1138,10 @@ _AMENDMENT_MARKUP_DELIMITERS = {
     _AMENDMENT_INSERTED: ("{+", "+}"),
 }
 _AMENDMENT_MARKUP_TOKENS = ("[-", "-]", "{+", "+}")
+_AMENDMENT_MARKUP_OPENERS = {
+    opener: state for state, (opener, _closer) in _AMENDMENT_MARKUP_DELIMITERS.items()
+}
+_AMENDMENT_MARKUP_OPENER = re.compile("|".join(map(re.escape, _AMENDMENT_MARKUP_OPENERS)))
 _AMENDMENT_MARKUP_NOTATION = {
     "notation": "wdiff",
     "deleted": "[-text-]",
@@ -1336,7 +1344,9 @@ def _pdf_page_layered_text(
     _pdf_warn_about_rules(
         page_number, near_threshold=near_threshold, thick_rule_hits=thick_rule_hits
     )
-    present = [token for token in _AMENDMENT_MARKUP_TOKENS if token in raw_text]
+    # The normalized text, not the raw text: normalizing drops zero-width
+    # characters, so "[", U+200B, "-" becomes a literal "[-".
+    present = [token for token in _AMENDMENT_MARKUP_TOKENS if token in plain_text]
     if present:
         raise ValueError(
             f"PDF page {page_number} text already contains amendment markup "
@@ -1345,7 +1355,13 @@ def _pdf_page_layered_text(
     rendered = _render_amendment_markup(
         raw_text, states, typographic_underlines=markup.typographic_underlines
     )
-    if _strip_amendment_markup(rendered.text) != plain_text:
+    try:
+        stripped = _strip_amendment_markup(rendered.text)
+    except ValueError as error:
+        raise RuntimeError(
+            f"amendment markup of PDF page {page_number} cannot be read back: {error}"
+        ) from error
+    if stripped != plain_text:
         raise RuntimeError(f"amendment markup changed the text of PDF page {page_number}")
     for phrase, count in rendered.typographic_underlines_kept.items():
         if count:
@@ -1750,10 +1766,61 @@ def _typographic_underline_occurrence(
     return _AMENDMENT_INSERTED not in (before, after)
 
 
+def _amendment_markup_runs(text: str) -> list[tuple[str, str | None]]:
+    """Split text that ``_render_amendment_markup`` wrote into (text, state) runs.
+
+    The delimiters are read left to right. Outside a run only an opener, ``[-``
+    or ``{+``, is a delimiter; inside a run only that run's closer, ``-]`` or
+    ``+}``, is, and the first one ends the run. Removing every occurrence of
+    the four tokens instead misreads a run whose last character and its closer
+    make a token: a struck run ending in "[" is written ``[-[-]``, and an
+    underlined run ending in "{" is written ``{+{+}``. Maryland's session laws
+    strike the brackets of a stricken deletion (2025 ch. 604, page 87:
+    ``the budget bill [-[-]shall[-] MAY-] specify``).
+
+    Plain text between runs and the text of a run hold none of the four tokens,
+    because ``_pdf_page_layered_text`` refuses page text that holds one. Text
+    with a token there, a run left open or an empty run was not written by the
+    renderer and raises ``ValueError``.
+    """
+    runs: list[tuple[str, str | None]] = []
+    position = 0
+    while True:
+        opener = _AMENDMENT_MARKUP_OPENER.search(text, position)
+        plain_end = len(text) if opener is None else opener.start()
+        _check_amendment_markup_run(text, position, plain_end, state=None)
+        if plain_end > position:
+            runs.append((text[position:plain_end], None))
+        if opener is None:
+            return runs
+        state = _AMENDMENT_MARKUP_OPENERS[opener.group()]
+        closer = _AMENDMENT_MARKUP_DELIMITERS[state][1]
+        end = text.find(closer, opener.end())
+        if end < 0:
+            raise ValueError(
+                f"amendment markup run opened at offset {opener.start()} is never closed"
+            )
+        if end == opener.end():
+            raise ValueError(f"amendment markup run at offset {opener.start()} is empty")
+        _check_amendment_markup_run(text, opener.end(), end, state=state)
+        runs.append((text[opener.end() : end], state))
+        position = end + len(closer)
+
+
+def _check_amendment_markup_run(text: str, start: int, end: int, *, state: str | None) -> None:
+    run = text[start:end]
+    found = [token for token in _AMENDMENT_MARKUP_TOKENS if token in run]
+    if found:
+        where = "outside a run" if state is None else f"inside a {state} run"
+        raise ValueError(
+            f"amendment markup has {found} {where} (offsets {start} to {end}); "
+            "the renderer never writes a delimiter there"
+        )
+
+
 def _strip_amendment_markup(text: str) -> str:
-    for token in _AMENDMENT_MARKUP_TOKENS:
-        text = text.replace(token, "")
-    return text
+    """Remove the delimiters ``_render_amendment_markup`` wrote (``_amendment_markup_runs``)."""
+    return "".join(run for run, _state in _amendment_markup_runs(text))
 
 
 _SINGLE_BLOCK_PDF_FILTER_KEYS = (

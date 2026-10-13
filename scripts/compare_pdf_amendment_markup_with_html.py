@@ -49,7 +49,7 @@ from axiom_corpus.corpus import documents
 # (plain), so ``("20056", "PPPDI")`` is a number whose 5 is struck and 6 inserted.
 Word = tuple[str, str]
 
-_DELIMITER_STATES = {"[-": "D", "-]": None, "{+": "I", "+}": None}
+_RUN_LABELS = {documents._AMENDMENT_DELETED: "D", documents._AMENDMENT_INSERTED: "I"}
 _BLOCK_TAGS = {
     "article",
     "blockquote",
@@ -132,20 +132,17 @@ def html_words(html: bytes) -> list[Word]:
 
 
 def marked_text_words(text: str) -> list[Word]:
-    """Label each word of wdiff-marked text."""
+    """Label each word of wdiff-marked text.
+
+    The delimiters are read as the extraction writes them
+    (``documents._amendment_markup_runs``), so a struck "[" at the end of a run,
+    written ``[-[-]``, is a deleted "[".
+    """
     chars: list[str] = []
     states: list[str | None] = []
-    state: str | None = None
-    index = 0
-    while index < len(text):
-        token = text[index : index + 2]
-        if token in _DELIMITER_STATES:
-            state = _DELIMITER_STATES[token]
-            index += 2
-            continue
-        chars.append(text[index])
-        states.append(state)
-        index += 1
+    for run, state in documents._amendment_markup_runs(text):
+        chars.extend(run)
+        states.extend([None if state is None else _RUN_LABELS[state]] * len(run))
     return _words(chars, states)
 
 
