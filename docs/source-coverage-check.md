@@ -165,7 +165,9 @@ page's closing chrome. With the manifest as #854 fixed it, the same page records
 
 Words are runs of letters and digits, casefolded, after NFKC, with soft hyphens and
 zero-width characters removed and a word hyphenated at a line end joined. A change of
-case, whitespace or punctuation is never a loss.
+case, of the kind or amount of whitespace, or of one punctuation mark for another is
+never a loss. A hyphen between two letters joins them when whitespace follows it
+("appli-" at a line end) and separates them when none does ("self-employed").
 
 | Source | `region` | The region | Dropped on purpose |
 | --- | --- | --- | --- |

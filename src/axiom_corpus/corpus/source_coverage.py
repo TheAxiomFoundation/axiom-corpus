@@ -17,17 +17,22 @@ that loss for one source document from two texts:
 
 Both are read as words: maximal runs of letters and digits, casefolded, after Unicode
 NFKC (so ligatures and width variants compare equal), with soft hyphens and zero-width
-characters removed and a word hyphenated at a line end joined. A change of case,
-whitespace or punctuation therefore never reads as loss. Words are counted as a
+characters removed and a word hyphenated at a line end joined. A change of case, of
+the kind or amount of whitespace, or of one punctuation mark for another therefore
+never reads as loss. The line-end join is the one place punctuation and whitespace
+matter together: a hyphen between two letters joins them when whitespace follows it
+("appli-" at a line end, "cant" on the next) and separates them when none does
+("self-employed"). The region is one text, so a word hyphenated across two of its
+pieces is one word; each extracted text is read on its own. Words are counted as a
 multiset: a phrase the source prints twice must be kept twice.
 
 ``kept_words`` is the size of the multiset intersection of the region's and the
 extracted words, so ``0 <= kept_words <= region_words`` and ``coverage`` is their ratio
 (1.0 for a region with no words: nothing was there to lose). The ``longest_missing_runs``
 are what a reviewer reads: the stretches of the region with no counterpart in the
-extracted text. A run runs from one missing word to another and is not ended by fewer
-than ``RUN_BREAK_WORDS`` kept words in a row, so a lost passage stays one run although a
-heading's words recur inside it. Every missing word lies in exactly one run, so the
+extracted text. A run starts and ends at a missing word, and fewer than
+``RUN_BREAK_WORDS`` kept words in a row do not end it, so a lost passage stays one run
+although a heading's words recur inside it. Every missing word lies in exactly one run, so the
 runs' word counts sum to ``region_words - kept_words`` (only the ``MISSING_RUN_LIMIT``
 longest are recorded).
 

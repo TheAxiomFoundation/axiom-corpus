@@ -5,7 +5,8 @@ Invariants (for every region and every extracted text):
 - ``0 <= kept_words <= region_words`` and ``0 <= coverage <= 1``;
 - coverage is 1.0 when the extracted text is the region's text;
 - removing extracted text never raises ``kept_words`` or coverage;
-- a change of case, whitespace or punctuation in the extracted text changes nothing;
+- a change of case, of the kind or amount of whitespace, or of one punctuation mark
+  for another (line-end hyphens apart) changes no word;
 - the missing runs partition the missing words: their lengths sum to
   ``region_words - kept_words``;
 - the figures are a function of their inputs (two calls agree);
@@ -626,16 +627,53 @@ def test_the_figures_are_a_function_of_their_inputs(
     assert SourceCoverage.from_mapping(json.loads(json.dumps(first.to_mapping()))) == first
 
 
-@given(_PIECES, st.lists(_SENTENCE, max_size=5))
+_HYPHENS = "-\u2010\u2011"
+_NEVER_SHOWN = "\u00ad\u200b\u200c\u200d\u2060\ufeff"
+_OTHER_WHITESPACE = st.sampled_from([" ", "\n", "\t ", "  \n ", "\u00a0"])
+_OTHER_PUNCTUATION = st.sampled_from([",", ";", "(", ")", "\u2013", "'", "_", "/", "\u00a7"])
+
+
+def _respelled(text: str, data: st.DataObject) -> str:
+    """``text`` in upper case, every whitespace character replaced by other whitespace
+    and every punctuation mark by another. Hyphens, which the line-end join reads, and
+    the characters that never show are left as they are."""
+    respelled = []
+    for char in text:
+        if char.isspace():
+            respelled.append(data.draw(_OTHER_WHITESPACE))
+        elif char.isalnum() or char in _HYPHENS or char in _NEVER_SHOWN:
+            respelled.append(char.upper())
+        else:
+            respelled.append(data.draw(_OTHER_PUNCTUATION))
+    return "".join(respelled)
+
+
+@given(_TEXT, st.data())
+@settings(max_examples=400, deadline=None)
+def test_case_whitespace_and_punctuation_do_not_change_the_words(
+    text: str, data: st.DataObject
+) -> None:
+    assert words(_respelled(text, data)) == words(text)
+
+
+@given(_PIECES, _PIECES, st.data())
 @settings(max_examples=200, deadline=None)
-def test_case_whitespace_and_punctuation_of_the_extracted_text_do_not_matter(
-    region: list[str], extracted: list[str]
+def test_respelling_the_extracted_text_does_not_change_the_figures(
+    region: list[str], extracted: list[str], data: st.DataObject
 ) -> None:
     plain = measure_source_coverage(region, extracted)
-    changed = measure_source_coverage(
-        region, [text.upper().replace(" ", " ,\n\t(") + " ." for text in extracted]
-    )
+    changed = measure_source_coverage(region, [_respelled(text, data) for text in extracted])
     assert (changed.region_words, changed.kept_words) == (plain.region_words, plain.kept_words)
+    assert changed.longest_missing_runs == plain.longest_missing_runs
+
+
+def test_a_hyphen_joins_two_letters_only_when_whitespace_follows_it() -> None:
+    # The line-end join, by design: whitespace after a hyphen is a line break that the
+    # extractor turned into a space, so it is not a change of whitespace alone.
+    assert words("self-employed") == ["self", "employed"] == words("self employed")
+    assert words("self-\nemployed") == ["selfemployed"] == words("self- employed")
+    split = measure_source_coverage(["self-employed worker"], ["self- employed worker"])
+    assert (split.region_words, split.kept_words) == (3, 1)
 
 
 @given(st.lists(_VOCABULARY, min_size=1, max_size=40), st.data())
