@@ -60,26 +60,6 @@ tiers:
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us/guidance/irs/rev-proc-2016-55
     name: Rev. Proc. 2016-55 (2017 inflation-adjusted items)
     layer: federal
@@ -148,6 +128,34 @@ layers:
     part: Credits
     cited:
     - path: us/guidance/irs/rev-proc-2020-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2021-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2022-38
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2023-34
@@ -291,24 +299,6 @@ layers:
     reason: 'Secondary source: not law'
     part: Credits
   full:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us/guidance/irs/rev-proc-2016-55
     name: Rev. Proc. 2016-55 (2017 inflation-adjusted items)
     layer: federal
@@ -349,6 +339,24 @@ layers:
     name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
     source_url: null
     part: Credits
     sources:
@@ -1717,26 +1725,6 @@ layers:
     references: 3
     scope: in
     part: Credits
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Fina
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    sources:
-    - policyengine-references
-    references: 2
-    scope: in
-    part: Credits
   - key: us-dc/form/otr/ty2021/d-40-booklet
     name: 2021 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 07/2021)
     layer: state
@@ -1750,6 +1738,34 @@ layers:
     cited:
     - path: us-dc/form/otr/ty2021/d-40-booklet
       references: 1
+      part: Credits
+  - key: us-dc/form/otr/ty2022/d-40-booklet
+    name: us-dc/form/otr/ty2022/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2022/d-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-dc/form/otr/ty2022/d-40-booklet
+      references: 1
+      part: Credits
+  - key: us-dc/form/otr/ty2023/d-40-booklet
+    name: us-dc/form/otr/ty2023/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2023/d-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+    cited:
+    - path: us-dc/form/otr/ty2023/d-40-booklet
+      references: 2
       part: Credits
   - key: us-dc/form/otr/ty2024/d-40-booklet
     name: 2024 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 09/2024)
@@ -1817,28 +1833,28 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Fina
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-dc/form/otr/ty2021/d-40-booklet
     name: 2021 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 07/2021)
     layer: state
     citation_path: us-dc/form/otr/ty2021/d-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-dc/form/otr/ty2022/d-40-booklet
+    name: us-dc/form/otr/ty2022/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2022/d-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-dc/form/otr/ty2023/d-40-booklet
+    name: us-dc/form/otr/ty2023/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2023/d-40-booklet
     source_url: null
     part: Credits
     sources:
@@ -2215,26 +2231,6 @@ layers:
     scope: in
 - jurisdiction: us-in
   screener:
-  - key: https://forms.in.gov/Download.aspx?id=15784
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15784
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://forms.in.gov/Download.aspx?id=15792
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15792
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://iga.in.gov/legislative/2025/bills/senate/243
     name: iga.in.gov/legislative/2025/bills/senate/243
     layer: state
@@ -2245,6 +2241,34 @@ layers:
     references: 1
     scope: in
     part: Credits
+  - key: us-in/form/dor/ty2023/it-40-booklet
+    name: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/it-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-in/form/dor/ty2023/it-40-booklet
+      references: 1
+      part: Credits
+  - key: us-in/form/dor/ty2023/schedule-in-eic
+    name: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/schedule-in-eic
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-in/form/dor/ty2023/schedule-in-eic
+      references: 1
+      part: Credits
   - key: us-in/form/dor/ty2025/it-40-booklet
     name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
     layer: state
@@ -2274,29 +2298,29 @@ layers:
       references: 3
       part: Credits
   full:
-  - key: https://forms.in.gov/Download.aspx?id=15784
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15784
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://forms.in.gov/Download.aspx?id=15792
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15792
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: https://iga.in.gov/legislative/2025/bills/senate/243
     name: iga.in.gov/legislative/2025/bills/senate/243
     layer: state
     citation_path: null
     source_url: https://iga.in.gov/legislative/2025/bills/senate/243
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-in/form/dor/ty2023/it-40-booklet
+    name: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/it-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-in/form/dor/ty2023/schedule-in-eic
+    name: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/schedule-in-eic
+    source_url: null
     part: Credits
     sources:
     - screener
@@ -5114,16 +5138,6 @@ layers:
     scope: in
 - jurisdiction: us-va
   screener:
-  - key: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    name: legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    layer: state
-    citation_path: null
-    source_url: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us-va/form/tax-forms/tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions
     name: 2021 Virginia Form 760 Resident Individual Income Tax Booklet
     layer: state
@@ -5222,6 +5236,20 @@ layers:
     - path: us-va/statute/58.1/58.1-339.8
       references: 1
       part: Credits
+  - key: us-va/statute/budget/2025
+    name: us-va/statute/budget/2025
+    layer: state
+    citation_path: us-va/statute/budget/2025
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-va/statute/budget/2025/hb1600/chapter-725
+      references: 1
+      part: Credits
   - key: us-va/statute/budget/2026
     name: us-va/statute/budget/2026
     layer: state
@@ -5237,15 +5265,6 @@ layers:
       references: 1
       part: Credits
   full:
-  - key: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    name: legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    layer: state
-    citation_path: null
-    source_url: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-va/form/tax-forms/tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions
     name: 2021 Virginia Form 760 Resident Individual Income Tax Booklet
     layer: state
@@ -5304,6 +5323,15 @@ layers:
     name: Va. Code § 58.1-339.8.
     layer: state
     citation_path: us-va/statute/58.1/58.1-339.8
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-va/statute/budget/2025
+    name: us-va/statute/budget/2025
+    layer: state
+    citation_path: us-va/statute/budget/2025
     source_url: null
     part: Credits
     sources:

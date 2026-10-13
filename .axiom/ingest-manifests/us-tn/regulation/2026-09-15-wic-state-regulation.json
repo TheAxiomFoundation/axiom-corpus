@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/regulation/2026-09-15-wic-state-regulation.json",
+      "sha256": "b6f8c607b8111413ab45cbd716201f0337f0b47afd05a65f13495ccc81dc4077"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/regulation/2026-09-15-wic-state-regulation.json",
+      "sha256": "d5658c2e7f179e10729cfc0d0f7402a12ba0f0092771e1331fb0c3f677ec0e18"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/regulation/2026-09-15-wic-state-regulation.jsonl",
+      "sha256": "8b5477fc371c6fe22c431ac71a8c38bf63e87a4404da897898e4dca0681ea01c"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/regulation/2026-09-15-wic-state-regulation/official-documents/tn-doh-rules-1200-15-02-wic.pdf",
+      "sha256": "5b8428caa8b135f25aed8bcaaa45e13f865fcdd9778f8f0a738dd1bd5bfd5f2c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-snap-wic.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-12T19:46:35.921243+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "j7EDJ9ZOVHPFXTbmqxRdHSXuDPyXBwScyzavxFxe/UE99aN7w5/laXyt8CV1uzplcwjb+8ciECx14sVoyWlKCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-wic-state-regulation"
+}

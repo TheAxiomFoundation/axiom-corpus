@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-15-liheap-model-plan.json",
+      "sha256": "0a2daefbecc8e8b7bb15c4ef9a7d7bb6358e734a806a21e0cf1bdd6c8f13d928"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-15-liheap-model-plan.json",
+      "sha256": "23f72198412b14dddea667032648569b3ac064b47f870887900b62be3b7df8d9"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-15-liheap-model-plan.jsonl",
+      "sha256": "b1799d45f9b97e5acfe4b02857b00f3f8829e32f9b720d091ff1b503b9697f21"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2025-04-attachment-1-oldc-cloning-instructions.docx",
+      "sha256": "6b2bb48b8d89f09a6748585d66d1c6f4c5feeaba67750f383f6d4bd1b1575344"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2025-04-attachment-model-plan-reference-guide.pdf",
+      "sha256": "0eaaaa41f89d52e0401cfc46262aba74b1fe6c9ee4f208eb98b81e7121221532"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2025-04-attachment-model-plan-template.docx",
+      "sha256": "ae1a0dcb50f8ac5b2c951f3e5061f4e5e637709f8458a27d32bf137dd262856b"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2025-04-transmittal.pdf",
+      "sha256": "5a3d05ef81487ef5628d21d819b78a934068ec071b152ef78f31b0580e34dbf9"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2025-04.html",
+      "sha256": "8c22b050b67f3730d6d6510dfe1ca48460937b5e88794c919080b4aff069bbec"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2026-4-attachment-1-oldc-cloning-instructions.pdf",
+      "sha256": "0712eaa2c65f6687072ba05fbd1a32e203502caabc1d4a54104163f3a1b09d7a"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2026-4-attachment-2-model-plan-reference-guide.pdf",
+      "sha256": "0248258fb7db6cbf9ed118fb16d7096d4f44f377d3a3493c278a27a52b8fb70e"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2026-4-attachment-3-model-plan-template.pdf",
+      "sha256": "0d89148f4652559ab4246014605940f737e2907a75e7fe78eba108b9da0ef4c1"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2026-4-transmittal.pdf",
+      "sha256": "74f98e07db1a1491466b9222f831a7edac34d9cce2ada1e260f74b4debab5b2a"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-15-liheap-model-plan/official-documents/us-acf-ocs-liheap-at-2026-4.html",
+      "sha256": "a26df24d9369e37635b1ffa2fb8284854210fb6007d6342dd3d8ba1c1365d483"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 176,
+    "missing_count": 0,
+    "provision_count": 176,
+    "source_count": 176
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-12T19:43:35.012426+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZluB/Co3pNB9KXxwvtQ41qSUb93ZlOMqEaFsIdFuVZG6dhG5WtnDKVGI/prtn+zYqGeMYG2ZkHleBI0TCqrDDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-liheap-model-plan"
+}

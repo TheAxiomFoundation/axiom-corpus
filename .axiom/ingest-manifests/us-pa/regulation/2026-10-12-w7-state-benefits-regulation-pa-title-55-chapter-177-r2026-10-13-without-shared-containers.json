@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/regulation/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers.json",
+      "sha256": "5f3545c185bd441555884e5ca9d239f54040cb13105f4f5b88eddf64b530be0d"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/regulation/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers.json",
+      "sha256": "f90d8f39aeab2274e9af0b721c9df29f353cdf993c4cef512634aadba775fb47"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/regulation/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers.jsonl",
+      "sha256": "0b299d9e3bd99af63ff4aeea7d059db093455ab4ba42e6f5886a77acaa530ce8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/regulation/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177/pennsylvania-code/055/055toc.html",
+      "sha256": "022e5c0215466c7329794010f4104ce89bfcbde1348fff25be55f9f636b99eb8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/regulation/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177/pennsylvania-code/055/chapter177/chap177toc.html",
+      "sha256": "f77609cc8918d4dc58157bd06a4f24bad841adef33dba0f8d3adaab23e929643"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/regulation/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers/2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177/pennsylvania-code/index.html",
+      "sha256": "c657af8e97a60fdc1bac92c3670dad83578ab2cedd452d5cb17e1c4ff77f437f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-13-w7-bundle-gaps-release.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-13T12:06:49.181399+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2EvM49YZZ2U6UsV77PdxxYG065S1FJ9JK5Egs1kLfuGmdxQpFvsG4x4fy8TbwcsBR1A4UX+gPaGDI6UJDEs0BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-regulation-pa-title-55-chapter-177-r2026-10-13-without-shared-containers"
+}

@@ -1212,16 +1212,6 @@ layers:
   full: []
 - jurisdiction: us-pa
   screener:
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
   - key: us-pa/guidance/dli/uc-law
     name: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
     layer: state
@@ -1250,6 +1240,20 @@ layers:
     - path: us-pa/guidance/dli/ucp-1-claimant-handbook
       references: 1
       part: Benefit amount
+  - key: us-pa/regulation/title-34/chapter-65
+    name: us-pa/regulation/title-34/chapter-65
+    layer: state
+    citation_path: us-pa/regulation/title-34/chapter-65
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-pa/regulation/title-34/chapter-65
+      references: 1
+      part: Household and eligibility
   - key: us-pa/rulemaking/pa-bulletin/54/24-1863
     name: 54 Pa.B. 8560 (Doc. No. 24-1863), Unemployment Compensation; Table Specified for Determination of Rate
       and Amount of Benefits (December 28, 2024)
@@ -1266,15 +1270,6 @@ layers:
       references: 1
       part: Benefit amount
   full:
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/034/chapter65/chap65toc.html&d=
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
   - key: us-pa/guidance/dli/uc-law
     name: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
     layer: state
@@ -1294,6 +1289,15 @@ layers:
     sources:
     - screener
     - manifests/us-pa-benefits-w6-guidance.yaml
+    scope: in
+  - key: us-pa/regulation/title-34/chapter-65
+    name: us-pa/regulation/title-34/chapter-65
+    layer: state
+    citation_path: us-pa/regulation/title-34/chapter-65
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
     scope: in
   - key: us-pa/rulemaking/pa-bulletin/54/24-1863
     name: 54 Pa.B. 8560 (Doc. No. 24-1863), Unemployment Compensation; Table Specified for Determination of Rate

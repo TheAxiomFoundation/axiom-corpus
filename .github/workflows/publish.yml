@@ -1,14 +1,9 @@
 name: Publish named corpus release
 
-# Corpus data merges are inert. Production changes only from a clean committed
-# checkout when an explicit immutable selector cuts a source-complete,
-# content-addressed, projection-bound, Ed25519-signed release object and the
-# management plane activates it.
+# Merging a selector must not start publication. An operator explicitly
+# dispatches this workflow after reviewing the immutable selector and CI.
+# Activation is a separate workflow and does not happen here.
 on:
-  push:
-    branches: [main, master]
-    paths:
-      - "manifests/releases/*.json"
   workflow_dispatch:
     inputs:
       release:
@@ -81,18 +76,8 @@ jobs:
         id: selectors
         env:
           DISPATCH_RELEASE: ${{ github.event.inputs.release }}
-          BEFORE: ${{ github.event.before }}
-          HEAD: ${{ github.sha }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            printf '%s\n' "$DISPATCH_RELEASE" > "$RUNNER_TEMP/release-selectors.txt"
-          else
-            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
-              BEFORE="$HEAD^"
-            fi
-            git diff --name-only --diff-filter=AM "$BEFORE" "$HEAD" -- \
-              'manifests/releases/*.json' > "$RUNNER_TEMP/release-selectors.txt"
-          fi
+          printf '%s\n' "$DISPATCH_RELEASE" > "$RUNNER_TEMP/release-selectors.txt"
           if [ ! -s "$RUNNER_TEMP/release-selectors.txt" ]; then
             echo "No added or modified immutable release selector; no publication cut."
             echo "publish=false" >> "$GITHUB_OUTPUT"

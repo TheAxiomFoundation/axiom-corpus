@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn.json",
+      "sha256": "2399d501bb331150cc49653898efa7fd2f1c29890c439fb07c60272239aaa119"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn.json",
+      "sha256": "b3895387fc66909b2381d4728478b11690e3f1be6e3beff46cd70e063de25fef"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn.jsonl",
+      "sha256": "eb90a0206b29a1b3a0d265110de65ee62488214d125800d7f0b6e9bfa0f950e8"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn/official-documents/us-mn-manual-dhs-combined-manual-0011.21.html",
+      "sha256": "fd19f07449dcffb395c4cd881751e5d0a7eb06a72f155c4b0f644fe7072cd3c4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn/official-documents/us-mn-manual-dhs-combined-manual-0017.12.03.html",
+      "sha256": "4d6ab1bfbd18182dc04b8cf077662c0fe17db9f0d46de35bfa44b0f9eeb11161"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn/official-documents/us-mn-manual-dhs-combined-manual-0018.09.html",
+      "sha256": "7a89283f37d71551d9ed15e5327a8ace26374c83bdf5eab89d50567cae24f0e0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-10-12-w7-state-benefits-manual-mn/official-documents/us-mn-manual-dhs-mfip-employment-services-manual-3.9.html",
+      "sha256": "3b873dc97799031697737560684b64eb84f3e6e6822e0dcb5cb8adf6b9930b5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-13T12:06:27.464290+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/RSQEMy+X7dAoFT5CuHsZspzEqKhY/6u7V7HxLAUPXZJ1idx2rnh/ldBKpTGRkJoTEknrSNHPWqWfhp7mJsVBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-manual-mn"
+}
