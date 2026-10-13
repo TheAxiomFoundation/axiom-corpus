@@ -285,8 +285,8 @@ def test_layer_lines_report_whether_text_is_painted(tmp_path, render_mode, fill_
         span_lines = _pdf_layer_lines(document[0], extraction={})
         text = document[0].get_text("text")
 
-    assert ["".join(span for span, _ in spans) for spans in span_lines] == text.splitlines()
-    flags = [flag for spans in span_lines for span, flag in spans if span.strip()]
+    assert ["".join(span for span, _, _ in spans) for spans in span_lines] == text.splitlines()
+    flags = [flag for spans in span_lines for span, flag, _ in spans if span.strip()]
     assert flags and all(flag is painted for flag in flags)
 
 

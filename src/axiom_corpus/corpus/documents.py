@@ -3305,8 +3305,8 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
 
 def _pdf_layer_lines(
     page: Any, *, extraction: dict[str, Any]
-) -> list[list[tuple[str, bool]]]:
-    """The page's text-layer lines, each as its spans' (text, painted) pairs.
+) -> list[list[tuple[str, bool, str]]]:
+    """The page's text-layer lines, each as its spans' (text, painted, font name).
 
     The lines and spans of the ``dict`` output, with the text flags and sort of
     ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
@@ -3320,7 +3320,10 @@ def _pdf_layer_lines(
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
     return [
-        [(str(span.get("text", "")), _pdf_span_painted(span)) for span in line.get("spans", ())]
+        [
+            (str(span.get("text", "")), _pdf_span_painted(span), str(span.get("font", "")))
+            for span in line.get("spans", ())
+        ]
         for block in data.get("blocks", ())
         for line in block.get("lines", ())
     ]
@@ -3332,29 +3335,37 @@ def _layer_characters(text: str) -> Counter[str]:
     )
 
 
-def _same_layer_characters(span_lines: list[list[tuple[str, bool]]], layer_text: str) -> bool:
+def _same_layer_characters(
+    span_lines: list[list[tuple[str, bool, str]]], layer_text: str
+) -> bool:
     """Whether the spans hold the text output's characters, whitespace and control
     characters aside (the sorted text output drops a garbled font's control "spaces")."""
-    spans = "".join(text for spans in span_lines for text, _ in spans)
+    spans = "".join(span[0] for spans in span_lines for span in spans)
     return _layer_characters(spans) == _layer_characters(layer_text)
 
 
-def _without_garbled_spans(span_lines: list[list[tuple[str, bool]]]) -> list[tuple[str, bool]]:
-    """Each layer line's text without its garbled spans, with whether it is painted.
+def _without_garbled_spans(
+    span_lines: list[list[tuple[str, bool, str]]],
+) -> list[tuple[str, bool]]:
+    """Each layer line's text without its garbled font's spans, with whether it is painted.
 
     A span holding a control character other than ordinary whitespace
-    (``_has_control_character``) is a garbled font's and is left out whole, before
-    anything splits it; where it stood between kept spans a space keeps them apart.
-    The line is painted when any remaining span with visible characters is. A line left
-    with no visible character is dropped.
+    (``_has_control_character``) is a garbled font's, and so is every span on the same
+    line in a font that holds one there: the font maps some codes to control characters
+    and the rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those spans are
+    left out whole, before anything splits them; where they stood between kept spans a
+    space keeps them apart. Spans in other fonts, such as a date typed beside a garbled
+    label, are kept. The line is painted when any kept span with visible characters is.
+    A line left with no visible character is dropped.
     """
     lines: list[tuple[str, bool]] = []
     for spans in span_lines:
+        garbled = {font for text, _, font in spans if _has_control_character(text)}
         parts: list[str] = []
         painted = False
         gap = False
-        for text, span_painted in spans:
-            if _has_control_character(text):
+        for text, span_painted, font in spans:
+            if font in garbled or _has_control_character(text):
                 gap = any(parts)
                 continue
             if gap:
@@ -3387,20 +3398,21 @@ _LayerChars = list[tuple[str, str | None]]
 
 def _pdf_decoded_span_lines(
     page: Any,
-    span_lines: list[list[tuple[str, bool]]],
+    span_lines: list[list[tuple[str, bool, str]]],
     *,
     extraction: dict[str, Any],
     ocr_text: str,
-) -> list[list[tuple[str, bool]]]:
+) -> list[list[tuple[str, bool, str]]]:
     """``span_lines`` (``_pdf_layer_lines``) with the codes of shifted fonts decoded.
 
     The characters MuPDF has no Unicode for (``_pdf_unmapped_characters``) are decoded in
     each font whose codes the OCR text shows to be a constant shift from ASCII
-    (``_pdf_font_code_shifts``); a span of such a font that the shift does not decode is
-    left out like a garbled span, a space standing in its place. Every other span, and
-    every span's paint, is unchanged, and so is every span of a page with no such font.
-    The characters are read from the ``rawdict`` output, which has the ``dict`` output's
-    lines and spans; if it does not, nothing is decoded.
+    (``_pdf_font_code_shifts``), so the font's spans no longer hold control characters
+    and ``_without_garbled_spans`` keeps them. A span of such a font that the shift does
+    not decode becomes a space. Every other span, and every span's paint and font, is
+    unchanged, and so is every span of a page with no such font. The characters are read
+    from the ``rawdict`` output, which has the ``dict`` output's lines and spans; if it
+    does not, nothing is decoded.
     """
     sort = bool(extraction.get("sort_text"))
     flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
@@ -3413,20 +3425,15 @@ def _pdf_decoded_span_lines(
         for block in data.get("blocks", ())
         for line in block.get("lines", ())
     ]
-    fonts = [
-        [str(span.get("font", "")) for span in line.get("spans", ())]
-        for block in data.get("blocks", ())
-        for line in block.get("lines", ())
-    ]
     if [["".join(str(c["c"]) for c in chars) for chars in line] for line in raw_lines] != [
-        [text for text, _ in spans] for spans in span_lines
+        [span[0] for span in spans] for spans in span_lines
     ]:
         return span_lines
     seen: Counter[tuple[float, float]] = Counter()
     lines: list[list[_LayerChars]] = []
-    for line, line_fonts in zip(raw_lines, fonts, strict=True):
+    for line, spans in zip(raw_lines, span_lines, strict=True):
         values: list[list[tuple[str, str, bool]]] = []
-        for chars, font in zip(line, line_fonts, strict=True):
+        for chars, (_, _, font) in zip(line, spans, strict=True):
             span_values: list[tuple[str, str, bool]] = []
             for char in chars:
                 origin = (float(char["origin"][0]), float(char["origin"][1]))
@@ -3448,12 +3455,12 @@ def _pdf_decoded_span_lines(
     )
     if not shifts:
         return span_lines
-    decoded_lines: list[list[tuple[str, bool]]] = []
+    decoded_lines: list[list[tuple[str, bool, str]]] = []
     for line_spans, spans in zip(lines, span_lines, strict=True):
-        decoded: list[tuple[str, bool]] = []
-        for chars, (_, painted) in zip(line_spans, spans, strict=True):
+        decoded: list[tuple[str, bool, str]] = []
+        for chars, (_, painted, font) in zip(line_spans, spans, strict=True):
             decoded_text = _pdf_decoded_layer_line(chars, shifts)
-            decoded.append((" " if decoded_text is None else decoded_text, painted))
+            decoded.append((" " if decoded_text is None else decoded_text, painted, font))
         decoded_lines.append(decoded)
     return decoded_lines
 

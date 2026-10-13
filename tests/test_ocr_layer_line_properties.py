@@ -3,12 +3,13 @@
 With ``ocr: true``, a page whose text layer is only an overlay is read by OCR, and the
 layer's lines are merged after the OCR text in three steps.
 
-``_without_garbled_spans(span_lines)`` turns the PDF's lines, as (text, painted) spans,
-into (text, painted) lines. Its invariants, for every input:
+``_without_garbled_spans(span_lines)`` turns the PDF's lines, as (text, painted, font)
+spans, into (text, painted) lines. Its invariants, for every input:
 
 S1. A span holding a control character other than ordinary whitespace (``_garbled``) is
-    left out whole; every other span's text is in its line, in order, with one space where
-    a left-out span stood between kept spans.
+    left out whole, and so is every span on its line in the same font; every other span's
+    text is in its line, in order, with one space where left-out spans stood between kept
+    spans.
 S2. No line it returns holds such a control character, and each has a visible character.
 S3. A line is painted exactly when one of its kept spans with visible characters is.
 
@@ -45,8 +46,8 @@ M8. Against the rule this replaces (PR #854: keep a line when one of its tokens 
     is not among OCR's tokens): every line that rule kept is still held by the result,
     unless the first step removed it as an invisible recognition line.
 
-Together (S1, R2 and M2): the text of every painted span without a control character,
-line by line, is in the page text wherever it has a letter or digit. "Held" is ``_reference_reads``, a brute-force definition
+Together (S1, R2 and M2): the text of every painted span outside a garbled font, line by
+line, is in the page text wherever it has a letter or digit. "Held" is ``_reference_reads``, a brute-force definition
 over every run of tokens written without the implementation's offset bookkeeping, so M2,
 M4 and M8 are also differential tests; R3 is checked against ``_reference_failed``.
 
@@ -321,6 +322,7 @@ SPAN = st.tuples(
         st.text(alphabet=st.sampled_from("abC12 .:\x01\x1e\t"), max_size=8),
     ),
     st.booleans(),
+    st.sampled_from(["F1", "F2", "F3"]),
 )
 SPAN_LINES = st.lists(st.lists(SPAN, max_size=5), max_size=6)
 
@@ -332,9 +334,10 @@ def test_garbled_spans_are_left_out_and_clean_spans_kept(span_lines):
 
     expected = []
     for spans in span_lines:
+        garbled_fonts = {font for span, _, font in spans if _garbled(span)}
         text, painted, dropped = "", False, False
-        for span, span_painted in spans:
-            if _garbled(span):
+        for span, span_painted, font in spans:
+            if font in garbled_fonts:
                 dropped = bool(text)
                 continue
             if dropped:
@@ -350,17 +353,21 @@ def test_garbled_spans_are_left_out_and_clean_spans_kept(span_lines):
 
 
 def test_garbled_span_cases():
-    # Review r2's line: a garbled span beside a typed date leaves the date, painted.
-    assert _without_garbled_spans([[("2EQI\x1e", False), ("November 19, 2014", True)]]) == [
-        ("November 19, 2014", True)
-    ]
+    # Review r2's line: a garbled span beside a date typed in another font leaves the
+    # date, painted.
+    assert _without_garbled_spans(
+        [[("2EQI\x1e", False, "Shifted"), ("November 19, 2014", True, "Courier")]]
+    ) == [("November 19, 2014", True)]
+    # CA-25-0037: a garbled font's other spans on the line are its codes too, garbage
+    # without a control character ("5678"); they go with it.
+    assert _without_garbled_spans([[("\x05\x1c", False, "T23"), ("5678", False, "T23")]]) == []
     # A space keeps the spans around a left-out span apart; a line of garbage goes.
-    assert _without_garbled_spans([[("Date", True), ("\x01\x02", True), ("Approved", True)]]) == [
-        ("Date Approved", True)
-    ]
-    assert _without_garbled_spans([[("\x01x", True)], [(" ", True)]]) == []
+    assert _without_garbled_spans(
+        [[("Date", True, "A"), ("\x01\x02", True, "B"), ("Approved", True, "A")]]
+    ) == [("Date Approved", True)]
+    assert _without_garbled_spans([[("\x01x", True, "B")], [(" ", True, "A")]]) == []
     # Paint comes from the spans kept.
-    assert _without_garbled_spans([[("\x01x", True), ("Ckm", False)]]) == [("Ckm", False)]
+    assert _without_garbled_spans([[("\x01x", True, "B"), ("Ckm", False, "A")]]) == [("Ckm", False)]
 
 
 def test_recognition_filter_cases():
@@ -623,11 +630,11 @@ PAGES = FIXTURE["pages"]
 SPA = "{state}/policy/cms/medicaid-state-plan/spa/{rest}"
 
 
-def _spans(page: dict) -> list[list[tuple[str, bool]]]:
-    return [[(text, painted) for text, painted in spans] for spans in page["layer_spans"]]
+def _spans(page: dict) -> list[list[tuple[str, bool, str]]]:
+    return [[(t, p, f) for t, p, f in spans] for spans in page["layer_spans"]]
 
 
-def _merged(page: dict, span_lines: list[list[tuple[str, bool]]] | None = None) -> str:
+def _merged(page: dict, span_lines: list[list[tuple[str, bool, str]]] | None = None) -> str:
     """The page text merged from the fixture's spans, or from ``span_lines`` (the PDF's
     spans with shifted fonts decoded, ``_pdf_decoded_span_lines``)."""
     lines = _without_garbled_spans(_spans(page) if span_lines is None else span_lines)
@@ -635,12 +642,13 @@ def _merged(page: dict, span_lines: list[list[tuple[str, bool]]] | None = None) 
     return _with_unread_layer_lines(page["ocr_text"], layer)
 
 
-def _clean_painted_text(span_lines: list[list[tuple[str, bool]]]) -> list[str]:
-    """The lines of every painted span without a control character that have text."""
+def _clean_painted_text(span_lines: list[list[tuple[str, bool, str]]]) -> list[str]:
+    """The lines of every painted span outside a garbled font that have text."""
     out = []
     for spans in span_lines:
-        for text, painted in spans:
-            if painted and not _garbled(text):
+        garbled_fonts = {font for text, _, font in spans if _garbled(text)}
+        for text, painted, font in spans:
+            if painted and font not in garbled_fonts and not _garbled(text):
                 for part in text.splitlines():
                     line = " ".join(part.split())
                     if _is_text(line):
@@ -649,7 +657,7 @@ def _clean_painted_text(span_lines: list[list[tuple[str, bool]]]) -> list[str]:
 
 
 def _held_layer_text(
-    span_lines: list[list[tuple[str, bool]]], decoded: list[list[tuple[str, bool]]]
+    span_lines: list[list[tuple[str, bool, str]]], decoded: list[list[tuple[str, bool, str]]]
 ) -> list[str]:
     """The layer text the page text must hold: every painted span without a control
     character on a line decoding left alone, and every painted line of text decoding
@@ -691,9 +699,9 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
         result = _pdf_page_text(pdf_page, extraction={"ocr": True})
 
     assert layer_text == page["layer_text"]
-    assert [[[t, p] for t, p in spans] for spans in span_lines] == page["layer_spans"]
+    assert [[[t, p, f] for t, p, f in spans] for spans in span_lines] == page["layer_spans"]
     # Differential: the dict lines, joined, are the text output.
-    joined = "\n".join("".join(text for text, _ in spans) for spans in span_lines)
+    joined = "\n".join("".join(span[0] for span in spans) for spans in span_lines)
     assert joined.splitlines() == layer_text.splitlines()
     assert _same_layer_characters(span_lines, layer_text)
     assert result == _merged(page, decoded)
@@ -774,7 +782,7 @@ def test_without_the_text_outputs_characters_the_text_lines_are_used(monkeypatch
     ocr = "Applicant Household Size\n"
     monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda _page, *, extraction: ocr)
     monkeypatch.setattr(
-        documents_module, "_pdf_layer_lines", lambda _page, *, extraction: [[("Ckm", False)]]
+        documents_module, "_pdf_layer_lines", lambda _page, *, extraction: [[("Ckm", False, "F")]]
     )
     with fitz.open("pdf", _invisible_noise_pdf()) as document:
         result = _pdf_page_text(document[0], extraction={"ocr": True})
@@ -788,7 +796,7 @@ def test_a_garbled_span_drops_only_itself_on_a_real_page():
     # The digital signature's clean spans stay. "1(:" ("NEW" shifted) has no control
     # character and is painted, so it is kept: painted text is never judged by its letters.
     page = PAGES[SPA.format(state="us-al", rest="al-20-0004/approval-document/page-4")]
-    spans = [text for line in _spans(page) for text, _ in line]
+    spans = [text for line in _spans(page) for text, _, _ in line]
     _, _, kept = _page("us-al", "al-20-0004/approval-document/page-4")
 
     assert any("\x1e" in text and ")OH[LELOLWLHV" in text for text in spans)

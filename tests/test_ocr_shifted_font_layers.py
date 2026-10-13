@@ -483,9 +483,9 @@ def test_a_font_mixing_mapped_and_unmapped_characters_in_a_line_is_not_decoded_t
     # The date lines give the shift (9 digits) and decode. The title line mixes mapped
     # letters and unmapped spaces, so none of its spans is decoded (a decoded "\x01" span
     # beside the raw letters would read as '"DUJOH %FQVUZ'), nor the letter-only line.
-    assert [[text for text, _ in line] for line in decoded[:2]] == [["6/24/19"], ["4/1/19"]]
+    assert [[span[0] for span in line] for line in decoded[:2]] == [["6/24/19"], ["4/1/19"]]
     assert decoded[2:] == spans[2:]
-    assert "".join(text for text, _ in spans[2]) == '"DUJOH\x01%FQVUZ\x01%JSFDUPS'
+    assert "".join(span[0] for span in spans[2]) == '"DUJOH\x01%FQVUZ\x01%JSFDUPS'
 
 
 def test_a_page_without_unmapped_characters_is_not_decoded(tmp_path):
@@ -507,7 +507,7 @@ def test_decoding_needs_the_rawdict_spans_to_be_the_dict_spans(tmp_path):
         spans = _pdf_layer_lines(page, extraction={})
         assert _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr) != spans
         # Spans that are not the page's (another reading) are returned as they are.
-        other = [[(text + "x", painted) for text, painted in line] for line in spans]
+        other = [[(text + "x", painted, font) for text, painted, font in line] for line in spans]
         assert _pdf_decoded_span_lines(page, other, extraction={}, ocr_text=ocr) == other
 
 
@@ -670,8 +670,9 @@ def test_real_pages_change_only_spans_with_unmapped_characters(path, extraction,
         )
         raw = _raw_spans(pdf_page, extraction)
 
-    assert [[text for text, _ in line] for line in raw] == [[t for t, _ in line] for line in spans]
-    assert [[p for _, p in line] for line in decoded] == [[p for _, p in line] for line in spans]
+    assert [[text for text, _ in line] for line in raw] == [[s[0] for s in line] for line in spans]
+    # Paint and font are never changed.
+    assert [[s[1:] for s in line] for line in decoded] == [[s[1:] for s in line] for line in spans]
     for raw_line, line, decoded_line in zip(raw, spans, decoded, strict=True):
         for (_, has_unmapped), span, decoded_span in zip(raw_line, line, decoded_line, strict=True):
             if not has_unmapped:
