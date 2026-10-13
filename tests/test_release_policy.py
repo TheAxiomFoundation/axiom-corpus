@@ -127,6 +127,7 @@ def _withdrawn(*allowances: SelectorAllowance) -> dict:
     entry = WithdrawnScope(
         scope=SCOPE,
         withdrawn_on="2026-09-27",
+        listed_on="2026-10-13",
         decision="release decision of 2026-09-27 on axiom-corpus#748",
         reason="Its roots are empty and its blocks are menus.",
         run_note="docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md",
@@ -158,7 +159,7 @@ def test_the_grandfathered_selector_keeps_the_scope_with_a_notice(tmp_path: Path
     assert (report.ok, report.error_count, report.warning_count) == (True, 0, 0)
     [notice] = report.notices
     assert notice.code == "withdrawn_scope_grandfathered"
-    assert "predates the withdrawal" in notice.message
+    assert "before the gate listed it on 2026-10-13" in notice.message
     payload = report.to_mapping()
     assert payload["notice_count"] == 1 and payload["issue_count"] == 0
 
@@ -233,6 +234,23 @@ def test_a_baseline_from_other_check_rules_is_ignored(tmp_path: Path) -> None:
     )
     report = validate_release(tmp_path, _release("cut", OTHER), policy=policy)
     assert report.error_count == 2
+    # One warning says why every finding is new.
+    assert [issue.code for issue in report.issues if issue.severity == "warning"] == [
+        "content_baseline_stale"
+    ]
+
+
+def test_an_unreadable_artifact_is_not_called_a_baseline_mismatch(tmp_path: Path) -> None:
+    _write_scope(tmp_path, OTHER, HOLLOW_ROWS)
+    entry = scan_scope(tmp_path, OTHER)
+    (tmp_path / "inventory/us-xx/statute/2026-09-14-chapter.json").unlink()
+    policy = ReleaseGatePolicy(
+        content_baseline=ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: entry})
+    )
+    report = validate_release(tmp_path, _release("cut", OTHER), policy=policy)
+    codes = {issue.code for issue in report.issues}
+    assert "missing_inventory" in codes
+    assert "content_baseline_mismatch" not in codes
 
 
 def test_a_withdrawn_scope_is_not_content_checked(tmp_path: Path) -> None:
@@ -260,6 +278,7 @@ def _registry_text(**overrides: object) -> str:
     entry = {
         "scope": "us-xx/statute/2026-07-13-recovery",
         "withdrawn_on": "2026-09-27",
+        "listed_on": "2026-10-13",
         "decision": "release decision of 2026-09-27 on axiom-corpus#748",
         "run_note": "docs/ingest-runs/x.md",
         "reason": "Empty roots and menus.",
@@ -292,6 +311,7 @@ def test_the_registry_parses(tmp_path: Path) -> None:
         ({"grandfathered_selectors": ["b-cut"]}, "no selector_digests entry"),
         ({"grandfathered_selectors": ["a-cut", "a-cut"]}, "sorted and free of duplicates"),
         ({"withdrawn_on": "27 September"}, "ISO date"),
+        ({"listed_on": "2026-09-01"}, "listed_on precedes withdrawn_on"),
         ({"replace_with": ["us-xx/statute/2026-07-13-recovery"]}, "itself withdrawn"),
         ({"surprise": 1}, "unsupported fields"),
         ({"exceptions": [{"selector": "a-cut"}]}, "must have exactly"),

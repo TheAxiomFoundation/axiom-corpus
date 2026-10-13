@@ -188,6 +188,19 @@ def validate_release(
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
     _validate_withdrawn_scopes(release, gate_policy, collector)
+    baseline = gate_policy.content_baseline
+    if baseline.entries and baseline.check_version != CONTENT_CHECK_VERSION:
+        collector.add(
+            "warning",
+            "content_baseline_stale",
+            (
+                f"{CONTENT_BASELINE_PATH} was made by {baseline.check_version}, but the "
+                f"content checks are {CONTENT_CHECK_VERSION}, so every scope's findings "
+                "are reported as new; rebuild it with "
+                "`axiom-corpus-ingest content-check --all --update-baseline`"
+            ),
+            path=CONTENT_BASELINE_PATH,
+        )
     uniqueness_grandfathered = _citation_uniqueness_grandfathered(release)
     require_unique_citations = (
         release.requires_complete_expression_dates and not uniqueness_grandfathered
@@ -246,9 +259,10 @@ def _validate_withdrawn_scopes(
     """Fail a release that selects a withdrawn scope, unless its selector is allowed to.
 
     A tracked selector is immutable, so one that selected a scope before the
-    scope was withdrawn keeps it; ``manifests/withdrawn-scopes.yaml`` names it
-    and pins its selector digest. Any other selector fails here, with the
-    reason, the remedy, and the run note that records the decision.
+    gate listed it keeps it; ``manifests/withdrawn-scopes.yaml`` names it and
+    pins its selector digest. A later selector keeps it only under a recorded
+    exception. Any other selector fails here, with the reason, the remedy, and
+    the run note that records the decision.
     """
     for scope in release.scopes:
         withdrawn = policy.withdrawn.get(scope.key)
@@ -259,7 +273,10 @@ def _validate_withdrawn_scopes(
             how = (
                 f"selected under a recorded exception: {allowance.reason}"
                 if allowance.is_exception
-                else "this selector predates the withdrawal and keeps the scope"
+                else (
+                    "this tracked selector selected it before the gate listed it on "
+                    f"{withdrawn.listed_on}, and keeps it"
+                )
             )
             collector.add(
                 "notice",
@@ -576,8 +593,9 @@ class _ContentPlan:
             try:
                 digests = (_sha256_file(provisions_path), _sha256_file(inventory_path))
             except OSError:
-                digests = None
-            if digests is not None and entry.pins(*digests):
+                # A missing or unreadable artifact is reported by its own check.
+                return cls(scanner=ScopeContentScanner(store.root))
+            if entry.pins(*digests):
                 return cls(baseline=entry)
             return cls(scanner=ScopeContentScanner(store.root), mismatched=True)
         return cls(scanner=ScopeContentScanner(store.root))

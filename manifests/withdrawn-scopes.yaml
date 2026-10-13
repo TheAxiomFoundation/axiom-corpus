@@ -1,12 +1,15 @@
 # Scopes no new release may select (docs/release-gate-policy.md).
 #
 # validate_release fails any release that selects a scope listed here, unless
-# the release is one of the scope's grandfathered selectors: tracked selectors
-# are immutable, so every selector that already selected the scope when it was
-# withdrawn keeps it. Each allowance is pinned to the selector's digest
+# the release is one of the scope's grandfathered selectors or exceptions.
+# withdrawn_on is the decision; listed_on is the day this file began enforcing
+# it. Tracked selectors are immutable, so every selector added before listed_on
+# that selects the scope keeps it (some were cut after the decision, before the
+# gate existed). Each allowance is pinned to the selector's digest
 # (axiom_corpus.release.manifest.selector_sha256) in selector_digests, so it
-# cannot follow a selector that changes. A selector cut later may keep a
-# withdrawn scope only as an entry under the scope's exceptions, with a reason.
+# cannot follow a selector that changes. A selector added on or after listed_on
+# may keep a withdrawn scope only as an entry under the scope's exceptions, with
+# a reason; that is a release decision.
 #
 # Each entry records why the scope is withdrawn, the decision and run note that
 # withdrew it, and what a new cut does instead: replace_with lists the scopes to
@@ -58,6 +61,7 @@ selector_digests:
 scopes:
   - scope: us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5
     withdrawn_on: "2026-09-27"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-09-27 on axiom-corpus#748"
     run_note: docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md
     reason: >-
@@ -104,6 +108,7 @@ scopes:
     exceptions: []
   - scope: us-ca/statute/2026-07-13-recovery
     withdrawn_on: "2026-09-27"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-09-27 on axiom-corpus#748"
     run_note: docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md
     reason: >-
@@ -150,6 +155,7 @@ scopes:
     exceptions: []
   - scope: us-co/regulation/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -193,6 +199,7 @@ scopes:
     exceptions: []
   - scope: us-fl/regulation/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -243,6 +250,7 @@ scopes:
     exceptions: []
   - scope: us-id/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "axiom-corpus#757 audit: no successor, and no key release line selects it"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -278,6 +286,7 @@ scopes:
     exceptions: []
   - scope: us-il/manual/2026-07-13-recovery-r2026-07-17-dedup
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -329,6 +338,7 @@ scopes:
     exceptions: []
   - scope: us-in/manual/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -379,6 +389,7 @@ scopes:
     exceptions: []
   - scope: us-me/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -424,6 +435,7 @@ scopes:
     exceptions: []
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -469,6 +481,7 @@ scopes:
     exceptions: []
   - scope: us-mn/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -516,6 +529,7 @@ scopes:
     exceptions: []
   - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -540,6 +554,7 @@ scopes:
     exceptions: []
   - scope: us-ny/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -564,6 +579,7 @@ scopes:
     exceptions: []
   - scope: us-sc/manual/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -614,6 +630,7 @@ scopes:
     exceptions: []
   - scope: us-sc/regulation/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -664,6 +681,7 @@ scopes:
     exceptions: []
   - scope: us-sc/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-11"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-11 on axiom-corpus#760"
     run_note: docs/ingest-runs/2026-09-27-us-sc-12-6-520-successor.md
     reason: >-
@@ -715,6 +733,7 @@ scopes:
     exceptions: []
   - scope: us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6
     withdrawn_on: "2026-10-11"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-11 on axiom-corpus#760"
     run_note: docs/ingest-runs/2026-09-27-us-sc-12-6-520-successor.md
     reason: >-
@@ -745,6 +764,7 @@ scopes:
     exceptions: []
   - scope: us-tn/regulation/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -795,6 +815,7 @@ scopes:
     exceptions: []
   - scope: us-ut/manual/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-
@@ -845,6 +866,7 @@ scopes:
     exceptions: []
   - scope: us-ut/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
+    listed_on: "2026-10-13"
     decision: "release decision of 2026-10-03 on axiom-corpus#757"
     run_note: docs/ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md
     reason: >-

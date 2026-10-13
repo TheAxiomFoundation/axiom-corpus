@@ -133,6 +133,7 @@ from axiom_corpus.corpus.r2 import (
 from axiom_corpus.corpus.regulation_completion import (
     build_regulation_completion_report,
 )
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.resolver import (
@@ -5231,6 +5232,14 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
             release_name=release.name,
             release_scopes=release.scope_keys,
         )
+    policy = ReleaseGatePolicy.for_corpus(args.base)
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     report = validate_release(
         args.base,
         release,
@@ -5238,6 +5247,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         max_issues=args.max_issues,
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
+        policy=policy,
     )
     payload = report.to_mapping()
     payload["release_path"] = str(release_path)
@@ -5665,6 +5675,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
             "coverage",
             "verify-release-coverage",
             "validate-release",
+            "content-check",
             "snapshot-provision-counts",
             "analytics",
             "artifact-report",

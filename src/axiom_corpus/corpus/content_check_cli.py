@@ -79,6 +79,14 @@ def _selected_scopes(
     )
 
 
+def _corpus_base(base: Path, repo: Path) -> Path:
+    """``--base`` as given when it exists from here, else under the checkout fetched into."""
+    if base.is_absolute():
+        return base
+    here = Path.cwd() / base
+    return here if here.exists() else repo / base
+
+
 def _scan(arguments: tuple[str, ScopeKey]) -> ContentBaselineEntry:
     base, scope = arguments
     return scan_scope(base, scope)
@@ -133,7 +141,7 @@ def cmd_content_check(args: argparse.Namespace) -> int:
     except CorpusNotMaterializedError as exc:
         print(f"corpus: {exc}", file=sys.stderr)
         return 2
-    base = args.base if args.base.is_absolute() else Path.cwd() / args.base
+    base = _corpus_base(args.base, repo)
     scanned = scan_scopes(base, selected, workers=max(1, int(args.workers)))
     baseline_path = repo / CONTENT_BASELINE_PATH
     baseline = (

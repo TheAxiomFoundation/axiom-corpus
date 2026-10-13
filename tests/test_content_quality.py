@@ -317,3 +317,48 @@ def test_findings_serialize_by_code_and_path() -> None:
     finding = scan_provisions(Path("."), [_record("us-xx/statute/x", None, kind="document")])[0]
     assert (finding.code, finding.path) == (HOLLOW_DOCUMENT_ROOT, "us-xx/statute/x")
     assert json.dumps([finding.code, finding.path])
+
+
+def test_named_anchors_and_in_content_headers_are_not_navigation() -> None:
+    page = page_navigation(
+        b"<html><body><nav><a href='/'>Home</a></nav><article>"
+        b"<header><h1>Section 5 Earned income credit</h1></header>"
+        b"<p><a name='s5'>The credit equals 30 percent of the federal credit.</a></p>"
+        b"</article></body></html>"
+    )
+    assert classify_body("Home", page).navigation
+    assert not classify_body("Section 5 Earned income credit", page).navigation
+    assert not classify_body("The credit equals 30 percent of the federal credit.", page).navigation
+
+
+def test_a_body_that_is_its_label_and_heading_is_not_navigation() -> None:
+    page = PageNavigation(["Subpart A—General Provisions"])
+    body = "Subpart A—General Provisions"
+    assert classify_body(body, page).navigation
+    assert not classify_body(body, page, heading="General provisions", label="Subpart A").navigation
+    assert not classify_body(body, page, heading="SUBPART A - GENERAL PROVISIONS").navigation
+
+
+def test_xml_with_a_body_element_is_not_html() -> None:
+    from axiom_corpus.corpus.content_quality import looks_like_html
+
+    assert not looks_like_html(b"<?xml version='1.0'?><akomaNtoso><act><body>x</body></act>")
+    assert looks_like_html(b"<?xml version='1.0'?><!DOCTYPE html><html><body>x</body></html>")
+    assert looks_like_html(b"<body><p>fragment</p></body>")
+
+
+def test_source_paths_outside_the_corpus_are_never_read(tmp_path: Path) -> None:
+    outside = tmp_path / "outside.html"
+    outside.write_text(PAGE, encoding="utf-8")
+    corpus = tmp_path / "corpus"
+    corpus.mkdir()
+    findings = scan_provisions(
+        corpus,
+        [
+            _record(
+                "us-xx/statute/a", "\n\n".join(MENU), kind="block", source_path="../outside.html"
+            ),
+            _record("us-xx/statute/b", "\n\n".join(MENU), kind="block", source_path=str(outside)),
+        ],
+    )
+    assert findings == ()

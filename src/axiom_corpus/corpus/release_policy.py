@@ -5,11 +5,13 @@ artifacts (docs/release-gate-policy.md):
 
 ``manifests/withdrawn-scopes.yaml``
     Scopes no new release may select, each with its reason, the decision that
-    withdrew it, its run note, and what a cut puts in its place. Tracked
-    selectors are immutable, so every selector that already selects a scope
-    keeps it: it is listed under ``grandfathered_selectors`` and pinned by its
-    selector digest, so the allowance cannot follow a selector that is edited
-    later. A selector cut after a withdrawal may keep the scope only as a named
+    withdrew it (``withdrawn_on``), the date the gate began enforcing it
+    (``listed_on``), its run note, and what a cut puts in its place. Tracked
+    selectors are immutable, so every selector added before ``listed_on`` that
+    selects the scope keeps it: it is listed under ``grandfathered_selectors``
+    and pinned by its selector digest, so the allowance cannot follow a selector
+    that is edited later. Some of these were cut after the decision but before
+    the gate existed. A selector added later may keep the scope only as a named
     ``exception`` that gives a reason.
 ``manifests/release-content-baseline.json``
     The content findings (``axiom_corpus.corpus.content_quality``) of every
@@ -18,8 +20,8 @@ artifacts (docs/release-gate-policy.md):
     version. The inventory pins every source file's sha256, and validation
     checks the sources against it, so the two digests pin all the bytes the
     checks read. A release may carry a scope's recorded findings; a scope the
-    baseline does not list, or whose bytes differ from it, is checked again and
-    any finding fails the release. Listing clean scopes lets validation skip
+    baseline does not list, or whose bytes differ from its entry, is checked
+    again, and then every finding fails the release, recorded or not. Listing clean scopes lets validation skip
     re-reading them; a new scope with no findings needs no entry.
 
 Neither file lists a scope it does not need to. A checkout without them
@@ -55,6 +57,7 @@ _WITHDRAWN_FIELDS = {"schema_version", "selector_digests", "scopes"}
 _ENTRY_FIELDS = {
     "scope",
     "withdrawn_on",
+    "listed_on",
     "decision",
     "reason",
     "run_note",
@@ -63,7 +66,7 @@ _ENTRY_FIELDS = {
     "grandfathered_selectors",
     "exceptions",
 }
-_ENTRY_REQUIRED = {"scope", "withdrawn_on", "decision", "reason", "run_note"}
+_ENTRY_REQUIRED = {"scope", "withdrawn_on", "listed_on", "decision", "reason", "run_note"}
 _EXCEPTION_FIELDS = {"selector", "reason"}
 
 
@@ -106,6 +109,7 @@ class WithdrawnScope:
 
     scope: ReleaseScope
     withdrawn_on: str
+    listed_on: str
     decision: str
     reason: str
     run_note: str
@@ -220,6 +224,15 @@ def _require_string(value: object, where: str) -> str:
     return value
 
 
+def _iso_date(value: object, where: str) -> str:
+    text = _require_string(value, where)
+    try:
+        date.fromisoformat(text)
+    except ValueError as exc:
+        raise ReleasePolicyError(f"{where} must be an ISO date") from exc
+    return text
+
+
 def _string_list(value: object, where: str) -> list[str]:
     if value is None:
         return []
@@ -282,11 +295,10 @@ def load_withdrawn_scopes(path: str | Path) -> dict[ScopeKey, WithdrawnScope]:
             raise ReleasePolicyError(f"{entry_where}: missing {sorted(missing)}")
         scope = parse_scope(item["scope"], where=entry_where)
         labels.append(scope_label(scope))
-        withdrawn_on = _require_string(item["withdrawn_on"], f"{entry_where}.withdrawn_on")
-        try:
-            date.fromisoformat(withdrawn_on)
-        except ValueError as exc:
-            raise ReleasePolicyError(f"{entry_where}.withdrawn_on must be an ISO date") from exc
+        withdrawn_on = _iso_date(item["withdrawn_on"], f"{entry_where}.withdrawn_on")
+        listed_on = _iso_date(item["listed_on"], f"{entry_where}.listed_on")
+        if listed_on < withdrawn_on:
+            raise ReleasePolicyError(f"{entry_where}: listed_on precedes withdrawn_on")
         allowances: dict[str, SelectorAllowance] = {}
         grandfathered = _string_list(
             item.get("grandfathered_selectors"), f"{entry_where}.grandfathered_selectors"
@@ -325,6 +337,7 @@ def load_withdrawn_scopes(path: str | Path) -> dict[ScopeKey, WithdrawnScope]:
         entry = WithdrawnScope(
             scope=scope,
             withdrawn_on=withdrawn_on,
+            listed_on=listed_on,
             decision=_require_string(item["decision"], f"{entry_where}.decision"),
             reason=" ".join(_require_string(item["reason"], f"{entry_where}.reason").split()),
             run_note=_require_string(item["run_note"], f"{entry_where}.run_note"),

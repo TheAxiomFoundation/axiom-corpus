@@ -146,7 +146,9 @@ def _all_ingested_citation_paths() -> tuple[dict[str, frozenset[ScopeKey]], dict
     """
     carriers: dict[str, set[ScopeKey]] = defaultdict(set)
     normalized: dict[str, list[str]] = defaultdict(list)
-    require_materialized([BASE / "provisions"], fetch=True, repo=REPO)
+    # The text test reads each row's retained page: without the sources, every
+    # menu would read as text again.
+    require_materialized([BASE / "provisions", BASE / "sources"], fetch=True, repo=REPO)
     provisions_root = BASE / "provisions"
     for path in sorted(provisions_root.rglob("*.jsonl")):
         parts = path.relative_to(provisions_root).with_suffix("").parts
@@ -175,6 +177,18 @@ def _planned_scope(entry: dict[str, Any]) -> ScopeKey | None:
     if not all(isinstance(value, str) and value for value in values):
         return None
     return (str(values[0]), str(values[1]), str(values[2]))
+
+
+def _own_scope_vouches(
+    document_id: str, result: dict[str, Any], previously_parsed: set[str]
+) -> bool:
+    """Whether a document's own planned scope may resolve its targets.
+
+    Only when the document was parsed: in this run, or in an earlier one this
+    run's report carries forward (a run limited to one document, or one whose
+    snapshot has since left recovered-fetched, still keeps the earlier parse).
+    """
+    return bool(result.get("parsed")) or document_id in previously_parsed
 
 
 def _carrier_kind(
@@ -1346,7 +1360,7 @@ def main() -> int:
                 text_carriers,
                 normalized_paths,
                 own_scope=own_scope,
-                include_own=bool(result.get("parsed")),
+                include_own=_own_scope_vouches(document_id, result, previously_parsed),
             )
             if match is None:
                 unresolved_citations.append(target)

@@ -12,7 +12,6 @@ its document was parsed.
 from __future__ import annotations
 
 import json
-import shutil
 from pathlib import Path
 
 import pytest
@@ -151,13 +150,19 @@ CHAPTER = (
 def test_the_us_ca_recovery_targets_resolve_to_what_carries_their_text(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
-    """The ten R&TC sections resolve to the chapter scope; WIC 11450(a)(1)(A) does not resolve."""
+    """The ten R&TC sections resolve to the chapter scope; WIC 11450(a)(1)(A) does not resolve.
+
+    Both scopes are read with their retained pages (linked, not copied), so the
+    navigation test runs on the scope that resolves the targets as well.
+    """
     corpus = REPO_ROOT / "data/corpus"
     for scope in (RECOVERY, CHAPTER):
-        relative = Path("provisions", *scope[:2], f"{scope[2]}.jsonl")
-        (tmp_path / relative).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(corpus / relative, tmp_path / relative)
-    shutil.copytree(corpus / "sources" / Path(*RECOVERY), tmp_path / "sources" / Path(*RECOVERY))
+        provisions = Path("provisions", *scope[:2], f"{scope[2]}.jsonl")
+        (tmp_path / provisions).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / provisions).symlink_to(corpus / provisions)
+        sources = Path("sources", *scope)
+        (tmp_path / sources).parent.mkdir(parents=True, exist_ok=True)
+        (tmp_path / sources).symlink_to(corpus / sources, target_is_directory=True)
     carriers, normalized = _index(monkeypatch, tmp_path)
     for parsed in (False, True):
         rtc = batch._resolve_across_ingested_scopes(
@@ -177,3 +182,31 @@ def test_the_us_ca_recovery_targets_resolve_to_what_carries_their_text(
     recovery_text = sorted(path for path, scopes in carriers.items() if RECOVERY in scopes)
     assert all("/wic/" not in path and not path.endswith("/block-1") for path in recovery_text)
     assert len(recovery_text) == 20
+    # Every R&TC section the recovery scope names is carried by the chapter scope.
+    assert all(
+        CHAPTER in carriers[f"us-ca/statute/rtc/{section}"]
+        for section in ("17014", "17016", "17017", "17029", "17034", "17038", "17053.6")
+    )
+
+
+def test_a_document_parsed_by_an_earlier_run_keeps_its_own_scope() -> None:
+    """A run limited to one document, or one whose snapshot left recovered-fetched,
+    carries every other document forward unparsed; an earlier parse still counts."""
+    assert batch._own_scope_vouches("doc", {"parsed": True}, set())
+    assert batch._own_scope_vouches("doc", {"parsed": False}, {"doc"})
+    assert not batch._own_scope_vouches("doc", {"parsed": False}, {"other"})
+    assert not batch._own_scope_vouches("doc", {}, set())
+
+
+def test_the_index_fetches_sources_as_well_as_provisions(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    calls: list[list[Path]] = []
+
+    def record(paths, **kwargs):  # type: ignore[no-untyped-def]
+        calls.append([Path(path) for path in paths])
+
+    monkeypatch.setattr(batch, "require_materialized", record)
+    (tmp_path / "provisions").mkdir()
+    _index(monkeypatch, tmp_path)
+    assert calls == [[tmp_path / "provisions", tmp_path / "sources"]]

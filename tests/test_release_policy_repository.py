@@ -12,6 +12,7 @@ scopes and their replacements are re-scanned.
 from __future__ import annotations
 
 import json
+import subprocess
 from functools import cache
 from pathlib import Path
 
@@ -110,6 +111,41 @@ def test_cuts_since_the_decisions_carry_only_the_scopes_they_already_had() -> No
             name for name, release in _selectors().items() if entry.scope.key in release.scope_keys
         }
         assert set(entry.allowances) == selecting, scope_label(entry.scope)
+
+
+@cache
+def _added_on(name: str) -> str:
+    """The date the commit that first added a tracked selector was made (YYYY-MM-DD)."""
+    dates = subprocess.run(
+        [
+            "git",
+            "log",
+            "--diff-filter=A",
+            "--format=%cs",
+            "--reverse",
+            "--",
+            f"manifests/releases/{name}.json",
+        ],
+        cwd=REPO_ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.split()
+    assert dates, f"{name} has no commit that adds it"
+    return dates[0]
+
+
+def test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions() -> None:
+    """A selector added on or after an entry's listed_on keeps the scope only by exception."""
+    for entry in _policy().withdrawn.values():
+        for name, allowance in entry.allowances.items():
+            if allowance.is_exception:
+                continue
+            assert _added_on(name) < entry.listed_on, (
+                f"{name} was added on {_added_on(name)}, on or after "
+                f"{scope_label(entry.scope)} was listed ({entry.listed_on}); list it under "
+                "the entry's exceptions with a reason, or take the swap"
+            )
 
 
 def _entries() -> list[WithdrawnScope]:

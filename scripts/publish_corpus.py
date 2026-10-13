@@ -37,6 +37,7 @@ from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.navigation import build_navigation_nodes
 from axiom_corpus.corpus.navigation_supabase import write_navigation_nodes_to_supabase
 from axiom_corpus.corpus.r2 import DEFAULT_R2_BUCKET, R2Config, load_r2_config
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy
 from axiom_corpus.corpus.release_quality import ReleaseValidationReport, validate_release
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
@@ -175,6 +176,9 @@ def publish_named_release(
         raise ValueError("r2_workers must be positive")
     root = repo_root.resolve()
     corpus_root = base.resolve()
+    # The repository's release policy, read from the checkout being published
+    # rather than discovered from the corpus path (docs/release-gate-policy.md).
+    gate_policy = ReleaseGatePolicy.load(root)
     public_key, legacy_public_keys = _trusted_release_public_keys(
         public_key,
         legacy_public_keys,
@@ -197,7 +201,7 @@ def publish_named_release(
     # A cheap local gate runs before any external writes. The authoritative
     # validation attestation is generated again after remote readback/counting.
     with _phase(progress_stream, "preflight-deep-validation", scopes=len(release.scopes)) as done:
-        preflight = validate_release(corpus_root, release, max_issues=200)
+        preflight = validate_release(corpus_root, release, max_issues=200, policy=gate_policy)
         _require_deep_validation(preflight, phase="preflight")
         done.update(errors=preflight.error_count, warnings=preflight.warning_count)
 
@@ -367,7 +371,9 @@ def publish_named_release(
     with _phase(
         progress_stream, "post-readback-deep-validation", scopes=len(release.scopes)
     ) as done:
-        deep_report = validate_release(corpus_root, release, max_issues=200)
+        deep_report = validate_release(
+            corpus_root, release, max_issues=200, policy=gate_policy
+        )
         _require_deep_validation(deep_report, phase="post-readback")
         done.update(errors=deep_report.error_count, warnings=deep_report.warning_count)
 
@@ -466,7 +472,11 @@ def plan_named_release(
     _require_canonical_selector(repo_root.resolve(), selector_path, release)
     _require_publishable_quality_profile(release)
     ensure_corpus_scopes(release.scope_keys, repo=repo_root.resolve())
-    report = validate_release(base, release, max_issues=200)
+    # The repository's release policy, read from the checkout being published
+    # rather than discovered from the corpus path (docs/release-gate-policy.md).
+    report = validate_release(
+        base, release, max_issues=200, policy=ReleaseGatePolicy.load(repo_root.resolve())
+    )
     _require_deep_validation(report, phase="dry-run")
     base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()
     content = build_release_content(

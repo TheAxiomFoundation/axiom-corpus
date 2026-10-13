@@ -16,12 +16,15 @@ from the checkout that holds the corpus root:
 | File | Holds | A release fails when |
 | --- | --- | --- |
 | `manifests/withdrawn-scopes.yaml` | scopes no new cut may select | it selects one and is not a selector the scope's entry allows |
-| `manifests/release-content-baseline.json` | every locked scope's known content findings, pinned to its bytes | a selected scope has a finding the baseline does not record |
+| `manifests/release-content-baseline.json` | every locked scope's known content findings, pinned to its bytes | a selected scope has a content finding and the baseline has no entry for the scope's exact bytes |
 
 Local validation (`axiom-corpus-ingest validate-release`), the
 `Validate named release selectors` CI job and `scripts/publish_corpus.py`
-(preflight and post-readback) all call `validate_release`, so all three enforce
-both files. `tests/test_release_policy_repository.py`, in the required
+(dry run, preflight and post-readback) all call `validate_release`, so all three
+enforce both files. `publish_corpus.py` reads the policy from the checkout it
+publishes; `validate-release` reads it from the checkout holding `--base`, and
+says on stderr when `--base` is in no checkout, in which case neither file
+applies. `tests/test_release_policy_repository.py`, in the required
 `test (3.14)` job, fails any tracked selector that selects a withdrawn scope
 without an allowance, so a non-compliant cut cannot merge either.
 
@@ -44,13 +47,16 @@ its notices.
 Each entry of `manifests/withdrawn-scopes.yaml` names a scope and records:
 
 - `withdrawn_on` and `decision`: when and by which release decision;
+- `listed_on`: when the gate began enforcing the withdrawal (2026-10-13 for
+  every current entry);
 - `reason` and `run_note`: why, and the audit that shows it;
 - `replace_with`: scopes a new cut selects in its place, or `carried_by`: scopes
   that already carry its text, so it is simply dropped;
-- `grandfathered_selectors`: every tracked selector that selected the scope when
-  it was withdrawn. Tracked selectors are immutable, so they keep it;
-- `exceptions`: a selector cut later that keeps the scope on purpose, with a
-  `reason`.
+- `grandfathered_selectors`: every tracked selector added before `listed_on`
+  that selects the scope. Tracked selectors are immutable, so they keep it.
+  Some were cut after the decision but before the gate existed;
+- `exceptions`: a selector added on or after `listed_on` that keeps the scope on
+  purpose, with a `reason`.
 
 Every allowance is pinned to the selector's digest
 (`axiom_corpus.release.manifest.selector_sha256`) under `selector_digests`, so
@@ -58,6 +64,9 @@ it holds only for that exact selector: an edited selector with the same name
 loses it. A release that selects a withdrawn scope without an allowance fails
 with `withdrawn_scope_selected`, naming the reason, the decision, the scopes to
 select instead and the run note.
+
+`test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions`
+checks each grandfathered selector's first commit date against `listed_on`.
 
 The 19 entries:
 
@@ -76,14 +85,16 @@ five cited ED and IRS paths) and the CO consolidated scope, and
 none of the three is listed. Three cuts made after the 2026-10-03 decision (the
 2026-10-07, 2026-10-11 and 2026-10-12 unions) still select the landing scopes and
 the SC statute scope. They are grandfathered like every earlier selector; the
-next cut in each line must take the swap.
+next cut in each line must take the swap. Their notice says the selector chose
+the scope before the gate listed it.
 
 ### Withdrawing a scope
 
 1. Record the audit and decision in a run note.
-2. Add the entry, sorted by jurisdiction, document class and version. List
-   under `grandfathered_selectors` every tracked selector that selects the
-   scope, and add each one's digest to `selector_digests`. The failure message
+2. Add the entry, sorted by jurisdiction, document class and version, with
+   `listed_on` set to the day it lands. List under `grandfathered_selectors`
+   every tracked selector that selects the scope, and add each one's digest to
+   `selector_digests`. The failure message
    of `test_no_tracked_selector_selects_a_withdrawn_scope_without_an_allowance`
    prints the digest of every selector it finds.
 3. Run `uv run --extra dev python -m pytest -q tests/test_release_policy_repository.py`.
@@ -94,17 +105,19 @@ reason; that is a release decision and is reviewed as one.
 ## Content check
 
 `axiom_corpus.corpus.content_quality` reads a scope's provisions and its
-retained HTML sources. A page's navigation text is the text of its `a`,
-`option` and `button` elements, its `nav`, `header` and `footer`, and elements
-with a navigation, banner or contentinfo role, keeping only strings that are at
-least 75% letters, so a citation link such as `1990 c 604 art 2 s 21` is never
-navigation. Strings match a body as whole word runs, longest first. Findings:
+retained HTML sources (XHTML included; other XML, such as Akoma Ntoso, is not
+HTML). A page's navigation text is the text of its links (`a` with an `href`),
+`option` and `button` elements, its `nav`, any `header` or `footer` outside an
+`article`, `main` or `section`, and elements with a navigation, banner or
+contentinfo role, keeping only strings that are at least 75% letters, so a
+citation link such as `1990 c 604 art 2 s 21` is never navigation. Strings match
+a body as whole word runs, longest first. Findings:
 
 | Code | Rule |
 | --- | --- |
-| `navigation_body` | navigation strings cover at least 70% of the body's characters with at most 25 words left over, and the body is not just the row's own heading |
+| `navigation_body` | navigation strings cover at least 70% of the body's characters with at most 25 words left over, and the body is not just the row's heading, alone or after its citation label (compared without case or punctuation) |
 | `navigation_prefixed_body` | at least 80 words, with a skip link or JavaScript notice in the first 60, or a first 60 words that are at least 40% navigation and open with at least 8 navigation words; the rest is less than half navigation |
-| `hollow_document_root` | a bodyless `document` row with no row below it that carries text (a word with a letter, not navigation, not from a version picker) |
+| `hollow_document_root` | a bodyless `document` row with no row below it that carries text (a word with a letter, not navigation, not from a version picker); a bodyless document with nothing below it at all is hollow too |
 | `version_picker_source` | an HTML source with LegInfo's `form#selectFromMultiples` and no `#single_law_section`, the shape the California adapter resolves (`states._resolve_california_multiple_section_html`) |
 
 `CONTENT_CHECK_VERSION` (`content-check-v1`) names these rules.
@@ -143,12 +156,12 @@ Two rules were measured and dropped:
   page is caught when its blocks are navigation, or its root has none with text.
 
 Over every locked scope (2,390 with provisions and an inventory), the check
-finds 1,497 findings in 182 scopes:
+finds 1,489 findings in 182 scopes:
 
 | Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | manual | 43 | 734 | 4 | 78 | |
-| guidance | 57 | 215 | 9 | | |
+| guidance | 57 | 207 | 9 | | |
 | policy | 47 | 94 | 69 | 44 | |
 | statute | 22 | 119 | 19 | 12 | 1 |
 | regulation | 11 | 41 | 1 | 54 | |
@@ -175,8 +188,11 @@ every byte the check reads. In `validate_release`:
   findings become one `baselined_content_findings` notice;
 - any other scope is scanned as its provisions stream for validation, and each
   finding is an error (`navigation_body`, `navigation_prefixed_body`,
-  `hollow_document_root`, `version_picker_source`). An entry for other bytes
-  also gives a `content_baseline_mismatch` warning.
+  `hollow_document_root`, `version_picker_source`), recorded or not: a scope
+  whose provisions or inventory are rewritten must have its entry updated
+  (`--update-baseline <scope>`). An entry for other bytes also gives a
+  `content_baseline_mismatch` warning, and a baseline made by other check rules
+  a single `content_baseline_stale` warning.
 
 So existing scopes stay selectable, and a new scope with chrome, a hollow root
 or a picker fails the release that selects it until its extraction is fixed or
@@ -208,10 +224,12 @@ recovered. It used to match paths only, over every provisions file, the batch's
 own scope included, so the us-ca scope's empty roots resolved their own
 targets. It now:
 
-- indexes, per citation path, the scopes in which the row at that path carries
-  text by the rules above (`ScopeContentScanner.text_paths`);
-- counts a document's own planned scope only when the document was parsed, so
-  leftover rows cannot vouch for themselves;
+- fetches the locked sources as well as the provisions, then indexes, per
+  citation path, the scopes in which the row at that path carries text by the
+  rules above (`ScopeContentScanner.text_paths`);
+- counts a document's own planned scope only when the document was parsed, in
+  this run or in an earlier one the report carries forward, so leftover rows
+  cannot vouch for themselves;
 - reads bodies in the per-document check as well.
 
 On the retained us-ca pages, the ten R&TC targets resolve, as

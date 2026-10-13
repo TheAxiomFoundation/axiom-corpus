@@ -10,14 +10,16 @@ sources. Each finding names one row or one source file:
 
 ``navigation_body``
     The row's body is made of its source page's navigation text. A page's
-    navigation text is the text of every ``a``, ``option`` and ``button``
-    element, of ``nav``, ``header`` and ``footer``, and of elements with a
-    navigation, banner or contentinfo role, keeping only strings that are
-    mostly letters, so citation links ("1990 c 604 art 2 s 21", "17041") are
-    not navigation. A body is navigation when those strings cover at least
+    navigation text is the text of every link (``a`` with an ``href``),
+    ``option`` and ``button``, of ``nav``, of a ``header`` or ``footer`` that
+    is not inside an ``article``, ``main`` or ``section`` (where it holds a
+    section's own heading), and of elements with a navigation, banner or
+    contentinfo role. Only strings that are mostly letters count, so citation
+    links ("1990 c 604 art 2 s 21", "17041") are not navigation. A body is navigation when those strings cover at least
     ``NAVIGATION_COVERAGE`` of its characters, matched as whole word runs, and
     at most ``NAVIGATION_RESIDUAL_WORDS`` words are left over. A body that only
-    repeats the row's own heading is a heading row, not navigation, even when
+    repeats the row's own heading, alone or after its citation label (compared
+    without case or punctuation), is a heading row, not navigation, even when
     the page's table of contents links that heading.
 ``navigation_prefixed_body``
     The row holds text, but it opens with page chrome: a skip link or a
@@ -29,10 +31,11 @@ sources. Each finding names one row or one source file:
     A ``document`` row with no body whose descendants in the scope (rows whose
     citation path extends it) carry no text: each is empty, has no word with a
     letter in it, is a ``navigation_body``, or comes from a version picker. A
-    bodyless root with text below it is the shared document extractor's normal
-    shape (the wave4 chapter scopes keep each section's text in one child
-    block), so emptiness alone is not a finding, and neither is a short text:
-    "Reserved." is a section's text.
+    bodyless document with no rows below it at all is hollow too: it carries a
+    heading and nothing else. A bodyless root with text below it is the shared
+    document extractor's normal shape (the wave4 chapter scopes keep each
+    section's text in one child block), so emptiness alone is not a finding,
+    and neither is a short text: "Reserved." is a section's text.
 ``version_picker_source``
     A retained HTML source is a LegInfo "select from multiples" page: it has
     the ``form#selectFromMultiples`` the California adapter resolves
@@ -48,6 +51,7 @@ from __future__ import annotations
 
 import bisect
 import re
+from collections import OrderedDict
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -91,8 +95,10 @@ NAVIGATION_STRING_LETTER_SHARE = 0.75
 # Bytes read to decide whether a source is HTML.
 HTML_SNIFF_BYTES = 4096
 
+_OUTSIDE_CONTENT = "not(ancestor::article or ancestor::main or ancestor::section)"
 _NAVIGATION_XPATH = (
-    "//a|//option|//button|//nav|//header|//footer"
+    "//a[@href]|//option|//button|//nav"
+    f"|//header[{_OUTSIDE_CONTENT}]|//footer[{_OUTSIDE_CONTENT}]"
     "|//*[@role='navigation']|//*[@role='banner']|//*[@role='contentinfo']"
 )
 _INVISIBLE_XPATH = "//script|//style|//noscript|//template"
@@ -102,6 +108,8 @@ _SKIP_LINK = re.compile(
     re.IGNORECASE,
 )
 _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
+# Rows arrive grouped by source, so a scope needs only its recent pages.
+PAGE_CACHE_SIZE = 256
 
 
 @dataclass(frozen=True, order=True)
@@ -142,8 +150,16 @@ def is_navigation_string(text: str) -> bool:
 
 
 def looks_like_html(head: bytes) -> bool:
+    """Whether a file's first bytes are an HTML page (XHTML included, other XML not)."""
     lowered = head[:HTML_SNIFF_BYTES].lower()
+    if lowered.lstrip().startswith(b"<?xml") and b"<html" not in lowered:
+        return False  # an XML format with a <body> element, such as Akoma Ntoso
     return any(marker in lowered for marker in _HTML_MARKERS)
+
+
+def _normalized_words(text: str | None) -> list[str]:
+    """Words of a text without case or punctuation, for comparing a body to its heading."""
+    return re.sub(r"[^\w]+", " ", (text or "").casefold()).split()
 
 
 @dataclass(frozen=True)
@@ -181,7 +197,11 @@ class PageNavigation:
             matched = 0
             for sequence in self._by_first.get(tokens[index], ()):
                 end = index + len(sequence)
-                if end <= len(tokens) and tuple(tokens[index:end]) == sequence:
+                if (
+                    end <= len(tokens)
+                    and tokens[end - 1] == sequence[-1]
+                    and tuple(tokens[index:end]) == sequence
+                ):
                     matched = len(sequence)
                     break
             if matched:
@@ -267,6 +287,7 @@ def classify_body(
     navigation: PageNavigation | None,
     *,
     heading: str | None = None,
+    label: str | None = None,
 ) -> RowVerdict:
     """Apply the navigation, prefix and substance rules to one body."""
     tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
@@ -275,7 +296,12 @@ def classify_body(
         return RowVerdict(navigation=False, prefixed=False, substantive=False)
     covered = navigation.cover(tokens) if navigation else [False] * len(tokens)
     whole = _coverage(tokens, covered)
-    repeats_heading = heading is not None and tokens == _tokens(heading)
+    words_of_body = _normalized_words(body)
+    heading_words = _normalized_words(heading)
+    repeats_heading = bool(heading_words) and words_of_body in (
+        heading_words,
+        _normalized_words(label) + heading_words,
+    )
     is_navigation = (
         not repeats_heading
         and whole.share >= NAVIGATION_COVERAGE
@@ -299,13 +325,19 @@ class ScopeContentScanner:
     """Stream one scope's provisions and report its content findings.
 
     ``add`` reads one record at a time, so a scope is checked in the same pass
-    that validates it, holding only each row's path, source and verdict. Each
-    source file is read once, however many rows cite it.
+    that validates it, holding only each row's path, source and verdict. Rows
+    arrive grouped by source, so each source file is read once for its run of
+    rows; the last ``PAGE_CACHE_SIZE`` pages are kept.
+
+    A row whose source file is absent is read as having no page, so it can be
+    text but never navigation; ``validate_release`` reports the missing file
+    itself, and callers outside validation fetch a scope's locked sources
+    before scanning it.
     """
 
     def __init__(self, corpus_root: str | Path):
         self.root = Path(corpus_root)
-        self._pages: dict[str, PageNavigation | None] = {}
+        self._pages: OrderedDict[str, PageNavigation | None] = OrderedDict()
         self._pickers: set[str] = set()
         self._findings: list[ContentFinding] = []
         self._empty_roots: list[str] = []
@@ -316,9 +348,13 @@ class ScopeContentScanner:
         if not source_path:
             return None
         if source_path in self._pages:
+            self._pages.move_to_end(source_path)
             return self._pages[source_path]
+        relative = Path(source_path)
+        if relative.is_absolute() or ".." in relative.parts:
+            return None  # never read outside the corpus; validation rejects the path
         page: PageNavigation | None = None
-        path = self.root / source_path
+        path = self.root / relative
         try:
             if path.is_file():
                 with path.open("rb") as handle:
@@ -331,11 +367,15 @@ class ScopeContentScanner:
         except OSError:
             page = None
         self._pages[source_path] = page
+        if len(self._pages) > PAGE_CACHE_SIZE:
+            self._pages.popitem(last=False)
         return page
 
     def add(self, record: ProvisionRecord) -> None:
         page = self._page(record.source_path)
-        verdict = classify_body(record.body, page, heading=record.heading)
+        verdict = classify_body(
+            record.body, page, heading=record.heading, label=record.citation_label
+        )
         if verdict.navigation:
             self._findings.append(
                 ContentFinding(NAVIGATION_BODY, record.citation_path, "body is page navigation")
