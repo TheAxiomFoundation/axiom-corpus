@@ -2,7 +2,9 @@
 
 The 2026-09-13 CMS state-plan attachments (for example OH-12-004-Att.pdf) are page scans
 whose only text is a date stamp ("9/4/13"). Their manifests set ``ocr: true``, but the stamp
-made the text layer non-empty, so OCR never ran and each page's body was the stamp.
+made the text layer non-empty, so OCR never ran and each page's body was the stamp. Such a
+page is now read by OCR, and the text-layer lines OCR did not reproduce are kept after it,
+so exact typed values (dates, transmittal numbers, amounts) are never lost.
 """
 
 from __future__ import annotations
@@ -19,6 +21,7 @@ from axiom_corpus.corpus.documents import (
     _pdf_page_image_coverage,
     _pdf_page_needs_ocr,
     _pdf_page_text,
+    _with_unread_layer_lines,
     extract_official_documents,
 )
 from axiom_corpus.corpus.io import load_provisions
@@ -33,15 +36,34 @@ def _gray_png() -> bytes:
     return pixmap.tobytes("png")
 
 
-def _pdf(path: Path, *, image_rect: str | None, overlay: str | None, rotation: int = 0) -> Path:
+def _pdf(
+    path: Path,
+    *,
+    image_rect: str | None,
+    overlay: str | None,
+    rotation: int = 0,
+    cropbox: tuple[float, float, float, float] | None = None,
+    mediabox: tuple[float, float, float, float] | None = None,
+) -> Path:
     document = fitz.open()
     page = document.new_page(width=612, height=792)
+    if mediabox:
+        page.set_mediabox(fitz.Rect(*mediabox))
     if image_rect == "page":
         page.insert_image(page.rect, stream=_gray_png())
     elif image_rect == "logo":
         page.insert_image(fitz.Rect(36, 36, 136, 86), stream=_gray_png())
+    elif image_rect == "strips":
+        # A scan stored as two half-page strips.
+        page.insert_image(fitz.Rect(0, 0, 612, 396), stream=_gray_png())
+        page.insert_image(fitz.Rect(0, 396, 612, 792), stream=_gray_png())
+    elif image_rect == "overhang":
+        # A scan placed partly off the page: 60% of the page is covered.
+        page.insert_image(fitz.Rect(-200, 0, 367.2, 792), stream=_gray_png())
     if overlay:
         page.insert_textbox(fitz.Rect(72, 72, 540, 720), overlay, fontsize=9)
+    if cropbox:
+        page.set_cropbox(fitz.Rect(*cropbox))
     if rotation:
         # Like a scanner storing a landscape scan: content laid out, then /Rotate set.
         page.set_rotation(rotation)
@@ -68,19 +90,51 @@ def _first_page_text(path: Path, extraction: dict) -> str:
         return _pdf_page_text(document[0], extraction=extraction)
 
 
+def _layer_lines(path: Path) -> list[str]:
+    with fitz.open(path) as document:
+        text = document[0].get_text("text")
+    return [" ".join(line.split()) for line in text.splitlines() if line.strip()]
+
+
 def test_stamp_over_a_page_scan_is_read_by_ocr(tmp_path, ocr_calls):
     pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
 
-    assert _first_page_text(pdf, {"ocr": True}) == SCAN_TEXT
+    assert _first_page_text(pdf, {"ocr": True}) == SCAN_TEXT + "\n9/4/13"
     assert ocr_calls == ["ocr"]
 
 
-def test_typed_form_fields_over_a_page_scan_are_read_by_ocr(tmp_path, ocr_calls):
+def test_typed_form_fields_over_a_page_scan_are_read_by_ocr_and_kept_exactly(tmp_path, ocr_calls):
     overlay = "January 26, 2016 April 12, 2016 /s/ Ruth A. Hughes Associate Regional Administrator"
     pdf = _pdf(tmp_path / "form.pdf", image_rect="page", overlay=overlay)
 
-    assert _first_page_text(pdf, {"ocr": True}) == SCAN_TEXT
+    text = _first_page_text(pdf, {"ocr": True})
+
+    assert text.startswith(SCAN_TEXT)
+    assert all(line in text for line in _layer_lines(pdf))
     assert ocr_calls == ["ocr"]
+
+
+def test_layer_values_ocr_misreads_are_kept(tmp_path, monkeypatch):
+    # OCR of a CMS-179 form box can turn "$1,234,567" into "$1.234.S67"; the typed value stays.
+    pdf = _pdf(tmp_path / "form.pdf", image_rect="page", overlay="FFY 2013 $1,234,567")
+    monkeypatch.setattr(
+        documents_module,
+        "_ocr_pdf_page_text",
+        lambda page, *, extraction: "FEDERAL BUDGET IMPACT\nFFY 2013 $1.234.S67\n",
+    )
+
+    text = _first_page_text(pdf, {"ocr": True})
+
+    assert text == "FEDERAL BUDGET IMPACT\nFFY 2013 $1.234.S67\nFFY 2013 $1,234,567"
+
+
+def test_layer_lines_ocr_reproduced_are_not_repeated(tmp_path, monkeypatch):
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: "Page 12\n9/4/13\n"
+    )
+
+    assert _first_page_text(pdf, {"ocr": True}) == "Page 12\n9/4/13\n"
 
 
 def test_text_page_over_a_full_page_image_keeps_its_text_layer(tmp_path, ocr_calls):
@@ -113,6 +167,14 @@ def test_empty_ocr_result_keeps_the_overlay(tmp_path, monkeypatch):
     assert _first_page_text(pdf, {"ocr": True}).strip() == "9/4/13"
 
 
+def test_with_unread_layer_lines_cases():
+    assert _with_unread_layer_lines("", "") == ""
+    assert _with_unread_layer_lines("OCR text\n", "") == "OCR text\n"
+    assert _with_unread_layer_lines("", " 9/4/13 \n\n") == "9/4/13"
+    assert _with_unread_layer_lines("A\n9/4/13", "9/4/13\n9/4/13") == "A\n9/4/13"
+    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n9/4/13\nB"
+
+
 def test_page_needs_ocr_rules(tmp_path):
     cases = {
         "blank": (_pdf(tmp_path / "blank.pdf", image_rect=None, overlay=None), True),
@@ -120,6 +182,8 @@ def test_page_needs_ocr_rules(tmp_path):
         "stamp-no-image": (_pdf(tmp_path / "b.pdf", image_rect=None, overlay="9/4/13"), False),
         "text-on-scan": (_pdf(tmp_path / "c.pdf", image_rect="page", overlay=LONG_TEXT), False),
         "logo": (_pdf(tmp_path / "d.pdf", image_rect="logo", overlay="Approval letter"), False),
+        "strips": (_pdf(tmp_path / "e.pdf", image_rect="strips", overlay="9/4/13"), True),
+        "overhang": (_pdf(tmp_path / "f.pdf", image_rect="overhang", overlay="9/4/13"), False),
     }
     for name, (path, expected) in cases.items():
         with fitz.open(path) as document:
@@ -128,30 +192,58 @@ def test_page_needs_ocr_rules(tmp_path):
             assert _pdf_page_needs_ocr(page, text) is expected, name
 
 
+def _coverage(path: Path) -> float:
+    with fitz.open(path) as document:
+        return _pdf_page_image_coverage(document[0])
+
+
 def test_image_coverage_is_the_share_of_the_page(tmp_path):
-    with fitz.open(_pdf(tmp_path / "scan.pdf", image_rect="page", overlay=None)) as document:
-        assert _pdf_page_image_coverage(document[0]) == pytest.approx(1.0)
-    with fitz.open(_pdf(tmp_path / "logo.pdf", image_rect="logo", overlay=None)) as document:
-        assert _pdf_page_image_coverage(document[0]) < 0.02
-    with fitz.open(_pdf(tmp_path / "none.pdf", image_rect=None, overlay="text")) as document:
-        assert _pdf_page_image_coverage(document[0]) == 0.0
+    assert _coverage(_pdf(tmp_path / "scan.pdf", image_rect="page", overlay=None)) == 1.0
+    assert _coverage(_pdf(tmp_path / "logo.pdf", image_rect="logo", overlay=None)) < 0.02
+    assert _coverage(_pdf(tmp_path / "none.pdf", image_rect=None, overlay="text")) == 0.0
+    assert _coverage(_pdf(tmp_path / "strips.pdf", image_rect="strips", overlay=None)) == 1.0
+    overhang = _coverage(_pdf(tmp_path / "over.pdf", image_rect="overhang", overlay=None))
+    assert overhang == pytest.approx(0.6, abs=0.02)
 
 
-@pytest.mark.parametrize("rotation", [90, 180, 270])
-def test_image_coverage_holds_on_rotated_pages(tmp_path, rotation):
+@pytest.mark.parametrize("rotation", [0, 90, 180, 270])
+@pytest.mark.parametrize(
+    ("cropbox", "mediabox"),
+    [
+        (None, None),
+        ((50, 50, 562, 742), None),
+        (None, (100, 100, 712, 892)),
+    ],
+    ids=["plain", "inset-cropbox", "offset-mediabox"],
+)
+def test_image_coverage_holds_across_rotation_cropbox_and_mediabox(
+    tmp_path, rotation, cropbox, mediabox
+):
     # OH-12-004-Att.pdf stores each landscape scan with /Rotate 270.
-    scan = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay=None, rotation=rotation)
-    logo = _pdf(tmp_path / "logo.pdf", image_rect="logo", overlay=None, rotation=rotation)
-    with fitz.open(scan) as document:
-        assert _pdf_page_image_coverage(document[0]) == pytest.approx(1.0)
-    with fitz.open(logo) as document:
-        assert _pdf_page_image_coverage(document[0]) < 0.02
+    scan = _pdf(
+        tmp_path / "scan.pdf",
+        image_rect="page",
+        overlay=None,
+        rotation=rotation,
+        cropbox=cropbox,
+        mediabox=mediabox,
+    )
+    logo = _pdf(
+        tmp_path / "logo.pdf",
+        image_rect="logo",
+        overlay=None,
+        rotation=rotation,
+        cropbox=cropbox,
+        mediabox=mediabox,
+    )
+    assert _coverage(scan) == 1.0
+    assert _coverage(logo) < 0.02
 
 
 def test_stamp_over_a_rotated_page_scan_is_read_by_ocr(tmp_path, ocr_calls):
     pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13", rotation=270)
 
-    assert _first_page_text(pdf, {"ocr": True}) == SCAN_TEXT
+    assert _first_page_text(pdf, {"ocr": True}).startswith(SCAN_TEXT)
     assert ocr_calls == ["ocr"]
 
 
@@ -182,6 +274,6 @@ documents:
 
     records = load_provisions(report.provisions_path)
     bodies = [record.body or "" for record in records]
-    assert any(SCAN_TEXT in body for body in bodies)
+    assert any(SCAN_TEXT in body and "9/4/13" in body for body in bodies)
     assert not any(body.strip() == "9/4/13" for body in bodies)
     assert ocr_calls == ["ocr"]

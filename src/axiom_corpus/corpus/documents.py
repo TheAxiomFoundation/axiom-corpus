@@ -2861,6 +2861,7 @@ def _filtered_pdf_styled_lines(
     started = start_after_re is None
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
+        page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
@@ -2876,7 +2877,12 @@ def _filtered_pdf_styled_lines(
                         started = True
                     continue
                 lines.append((line, page_index, style))
-    _require_start_marker(started, start_after_pattern, context="PDF")
+    last_page = min(parsed_end_page or page_count, page_count)
+    _require_start_marker(
+        started,
+        start_after_pattern,
+        context=f"PDF pages {start_page}-{last_page} of {page_count}",
+    )
     return tuple(lines)
 
 
@@ -2962,6 +2968,7 @@ def _windowed_pdf_styled_lines(
     stopped: dict[int, bool] = {id(window): False for window in windows}
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
+        page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
                 break
@@ -2987,8 +2994,8 @@ def _windowed_pdf_styled_lines(
     for window in windows:
         if window.start_at_re is not None and not started[id(window)]:
             raise ValueError(
-                f"PDF page window {window.start_page}-{window.end_page}: start_at_pattern "
-                f"did not match: {window.start_at_re.pattern!r}"
+                f"PDF page window {window.start_page}-{window.end_page} of {page_count} "
+                f"pages: start_at_pattern did not match: {window.start_at_re.pattern!r}"
             )
     return tuple(lines)
 
@@ -3048,18 +3055,18 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     if not extraction.get("ocr") or not _pdf_page_needs_ocr(page, str(text)):
         return _replace_text(str(text), text_replacements)
     ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
-    if not _normalize_text(ocr_text) and _normalize_text(str(text)):
-        return _replace_text(str(text), text_replacements)
-    return _replace_text(ocr_text, text_replacements)
+    return _replace_text(_with_unread_layer_lines(ocr_text, str(text)), text_replacements)
 
 
 # A scanned page can carry a thin text layer over its page image: a filing stamp, or the
 # dates and signature typed onto a scanned form. That layer is not the page's text, so with
 # ``ocr`` a page is read by OCR when its layer has fewer than _OCR_OVERLAY_MAX_WORDS words
-# with a letter in them and one image covers at least _OCR_PAGE_IMAGE_COVERAGE of the page.
-# A text page holds hundreds of words, so it never qualifies.
+# with a letter in them and placed images cover at least _OCR_PAGE_IMAGE_COVERAGE of the
+# page. A text page holds hundreds of words, so it never qualifies.
 _OCR_OVERLAY_MAX_WORDS = 30
 _OCR_PAGE_IMAGE_COVERAGE = 0.9
+# Cells per side of the grid that measures how much of a page the images cover together.
+_IMAGE_COVERAGE_GRID = 50
 
 
 def _pdf_page_needs_ocr(page: Any, text: str) -> bool:
@@ -3073,25 +3080,55 @@ def _pdf_page_needs_ocr(page: Any, text: str) -> bool:
 
 
 def _pdf_page_image_coverage(page: Any) -> float:
-    """The largest share of the page that one placed image covers (0 when none does).
+    """The share of the visible page that placed images cover (0 when none does).
 
-    Image rectangles come back in unrotated page space and ``page.rect`` is the rotated
-    page, so each rectangle is mapped through ``page.rotation_matrix`` first (scanned SPA
-    attachments are often stored landscape with ``/Rotate 270``).
+    PyMuPDF gives image rectangles in unrotated space measured from the crop box's
+    top-left corner, so the visible page there is ``(0, 0, crop width, crop height)``
+    whatever the rotation, crop box or media-box origin. Images are counted together,
+    sampled on a grid, so a scan stored as strips covers the page as one image would.
     """
-    page_rect = page.rect
-    area = page_rect.width * page_rect.height
-    if area <= 0:
+    cropbox = page.cropbox
+    width, height = cropbox.width, cropbox.height
+    if width <= 0 or height <= 0:
         return 0.0
-    rotation = page.rotation_matrix
-    largest = 0.0
+    visible = fitz.Rect(0, 0, width, height)
+    rects = []
     for image in page.get_images(full=True):
         for rect in page.get_image_rects(image[0]):
-            visible = (rect * rotation) & page_rect
-            if visible.is_empty:
-                continue
-            largest = max(largest, (visible.width * visible.height) / area)
-    return min(largest, 1.0)
+            shown = fitz.Rect(rect) & visible
+            if not shown.is_empty:
+                rects.append(shown)
+    if not rects:
+        return 0.0
+    cells = _IMAGE_COVERAGE_GRID
+    covered = 0
+    for row in range(cells):
+        y = (row + 0.5) * height / cells
+        for column in range(cells):
+            x = (column + 0.5) * width / cells
+            if any(rect.x0 <= x <= rect.x1 and rect.y0 <= y <= rect.y1 for rect in rects):
+                covered += 1
+    return covered / (cells * cells)
+
+
+def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
+    """OCR text, followed by the text-layer lines OCR did not reproduce.
+
+    A scanned form's text layer holds exact typed values (transmittal numbers, dates,
+    amounts) that OCR may misread, so every layer line missing from the OCR output is kept.
+    With no OCR text this is the text layer itself.
+    """
+    ocr_flat = " ".join(ocr_text.split())
+    missing: list[str] = []
+    for raw in layer_text.splitlines():
+        line = " ".join(raw.split())
+        if line and line not in ocr_flat and line not in missing:
+            missing.append(line)
+    if not missing:
+        return ocr_text
+    if not ocr_flat:
+        return "\n".join(missing)
+    return ocr_text.rstrip("\n") + "\n" + "\n".join(missing)
 
 
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
@@ -3284,8 +3321,17 @@ def _extract_html_blocks(
             )
         parts = []
 
+    # ``html_br_breaks`` keeps a page's <br> line breaks: one starts a new line and two in a
+    # row start a new paragraph (the Maryland StatuteText page separates its subsections
+    # with <br><br> and has no paragraph tags).
+    br_breaks = bool((extraction or {}).get("html_br_breaks"))
+    if br_breaks:
+        for br in root.find_all("br"):
+            br.replace_with("\n")
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
+        text = _normalize_text(
+            node.get_text(" ") if br_breaks else node.get_text(" ", strip=True)
+        )
         if not text:
             continue
         if node.name in _HEADING_TAGS:

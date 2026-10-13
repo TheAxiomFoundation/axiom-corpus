@@ -11,8 +11,9 @@ documents:
       html_content_selector: body
       # The statute is bare text and <br> breaks inside #StatuteText, which the default
       # paragraph and list-item text nodes skip, leaving only the site menus
-      # (2026-10-13 hollow-root audit).
+      # (2026-10-13 hollow-root audit). Keep the <br><br> breaks between subsections.
       html_text_selector: '#StatuteText'
+      html_br_breaks: true
       html_drop_selectors:
         - nav
         - header
@@ -36,8 +37,9 @@ documents:
       html_content_selector: body
       # The statute is bare text and <br> breaks inside #StatuteText, which the default
       # paragraph and list-item text nodes skip, leaving only the site menus
-      # (2026-10-13 hollow-root audit).
+      # (2026-10-13 hollow-root audit). Keep the <br><br> breaks between subsections.
       html_text_selector: '#StatuteText'
+      html_br_breaks: true
       html_drop_selectors:
         - nav
         - header

@@ -254,6 +254,11 @@ def test_maryland_statute_text_is_extracted(source_id, opening):
     assert opening in body
     assert "Sign In" not in body
     assert "Find My Representatives" not in body
+    # html_br_breaks keeps each <br><br>-separated subsection a paragraph of its own.
+    paragraphs = blocks[0].body.split("\n\n")
+    assert paragraphs[:2] == ["Article - Human Services", opening.split(" ")[0]]
+    assert paragraphs[2].startswith("(a)")
+    assert sum(paragraph.startswith("(b)") for paragraph in paragraphs) == 1
 
 
 @pytest.mark.parametrize(("chapter", "sections"), [("701", 31), ("702", 42)])

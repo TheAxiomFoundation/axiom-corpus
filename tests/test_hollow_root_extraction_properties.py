@@ -27,6 +27,7 @@ from axiom_corpus.corpus.documents import (
     _OCR_OVERLAY_MAX_WORDS,
     _OCR_PAGE_IMAGE_COVERAGE,
     _extract_docx_blocks,
+    _pdf_page_image_coverage,
     _pdf_page_needs_ocr,
 )
 from axiom_corpus.corpus.nycrr import _document_body
@@ -89,8 +90,7 @@ class _Page:
     """The slice of a PyMuPDF page that ``_pdf_page_needs_ocr`` reads."""
 
     def __init__(self, coverage: float | None):
-        self.rect = fitz.Rect(0, 0, 600, 800)
-        self.rotation_matrix = fitz.Matrix(1, 0, 0, 1, 0, 0)
+        self.cropbox = fitz.Rect(0, 0, 600, 800)
         self._rects = []
         if coverage is not None:
             self._rects = [fitz.Rect(0, 0, 600, 800 * coverage)]
@@ -108,7 +108,8 @@ def _text(letter_words: int, numeric_tokens: int) -> str:
     return " ".join(["word"] * letter_words + ["9/4/13"] * numeric_tokens)
 
 
-COVERAGE = st.one_of(st.none(), st.floats(min_value=0.01, max_value=1.0))
+# Whole grid rows, so the fake page's coverage is exact under the coverage grid.
+COVERAGE = st.one_of(st.none(), st.integers(1, 50).map(lambda rows: rows / 50))
 
 
 @given(st.integers(0, 80), st.integers(0, 5), COVERAGE)
@@ -124,18 +125,48 @@ def test_ocr_rule_matches_its_definition(letter_words, numeric_tokens, coverage)
         assert needs == covered
 
 
-@given(
-    st.integers(1, 80),
-    st.integers(0, 80),
-    st.floats(min_value=0.01, max_value=1.0),
-    st.floats(min_value=0.01, max_value=1.0),
-)
-def test_ocr_rule_is_monotone(words_a, extra_words, coverage_a, coverage_b):
-    low, high = sorted((coverage_a, coverage_b))
+@given(st.integers(1, 80), st.integers(0, 80), st.integers(1, 50), st.integers(1, 50))
+def test_ocr_rule_is_monotone(words_a, extra_words, rows_a, rows_b):
+    low, high = sorted((rows_a / 50, rows_b / 50))
     fewer, more = _text(words_a, 0), _text(words_a + extra_words, 0)
     # More words never turns OCR on; more coverage never turns it off.
     assert _pdf_page_needs_ocr(_Page(low), more) <= _pdf_page_needs_ocr(_Page(low), fewer)
     assert _pdf_page_needs_ocr(_Page(low), fewer) <= _pdf_page_needs_ocr(_Page(high), fewer)
+
+
+def _png() -> bytes:
+    pixmap = fitz.Pixmap(fitz.csGRAY, fitz.IRect(0, 0, 8, 8), False)
+    pixmap.clear_with(200)
+    return pixmap.tobytes("png")
+
+
+@settings(max_examples=80, deadline=None)
+@given(
+    st.floats(-300, 550),
+    st.floats(-300, 730),
+    st.floats(20, 900),
+    st.floats(20, 1100),
+    st.one_of(st.none(), st.tuples(st.floats(0, 150), st.floats(0, 150))),
+    st.sampled_from([0, 90, 180, 270]),
+)
+def test_image_coverage_matches_the_placed_rectangle(x0, y0, width, height, inset, rotation):
+    # Differential: the coverage PyMuPDF's frames give must equal the share of the crop box
+    # that the rectangle we placed covers, whatever the rotation.
+    document = fitz.open()
+    page = document.new_page(width=612, height=792)
+    placed = fitz.Rect(x0, y0, x0 + width, y0 + height)
+    page.insert_image(placed, stream=_png(), keep_proportion=False)
+    crop = fitz.Rect(0, 0, 612, 792)
+    if inset is not None:
+        crop = fitz.Rect(inset[0], inset[1], 612 - inset[0], 792 - inset[1])
+        page.set_cropbox(crop)
+    if rotation:
+        page.set_rotation(rotation)
+    shown = placed & crop
+    expected = 0.0 if shown.is_empty else shown.get_area() / crop.get_area()
+    reopened = fitz.open("pdf", document.tobytes())
+
+    assert abs(_pdf_page_image_coverage(reopened[0]) - expected) <= 0.045
 
 
 SAFE_TEXT = st.text(
@@ -169,6 +200,8 @@ def test_document_body_prefers_section_text_then_annotations(body, annotations):
         return text or None
 
     if body is not None:
+        # A page with a .co_body is a section page, even when the body is empty (a repealed
+        # section): its annotations are history notes, not the section's text.
         assert result == clean(body)
     elif annotations is not None:
         assert result == clean(annotations)
