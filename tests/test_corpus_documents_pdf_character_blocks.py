@@ -304,56 +304,47 @@ def test_the_layered_keys_extract_the_missouri_1040es_with_its_zero_width_period
         )
 
 
-@pytest.mark.parametrize(
-    ("path", "page_number", "glyph"),
-    [
-        # A tanween fathatan (U+064B) drawn with no width in an Arabic statute.
-        (EG_LAW_2019_148_ANNEX_PDF, 11, "\u064b"),
-        (EG_LAW_2019_148_ANNEX_PDF, 17, "\u064b"),
-    ],
-)
-def test_cited_pages_keep_the_glyphs_rawdict_leaves_out(
-    path: Path, page_number: int, glyph: str
-) -> None:
+@pytest.mark.parametrize("page_number", [11, 17])
+def test_the_cited_arabic_pages_keep_every_tanween(page_number: int) -> None:
+    # Law 148/2019's annex tables (Egypt) draw tanween fathatan (U+064B) with no
+    # width. On macOS arm64 (PyMuPDF 1.26.7) rawdict leaves out one on page 11
+    # and three on page 17, each a text-page line of its own; on CI's Linux
+    # x86_64 build rawdict keeps them. Either way the layered keys keep them all.
+    glyph = "\u064b"
     extraction: dict[str, Any] = {"amendment_markup": True}
-    with fitz.open(path) as document:
+    with fitz.open(EG_LAW_2019_148_ANNEX_PDF) as document:
         page = document[page_number - 1]
-        default = documents_module._normalize_text(page.get_text("text", flags=FLAGS))
-        raw = page.get_text("rawdict", flags=FLAGS)
-        marked, _metadata = documents_module._pdf_page_layered_text(
-            page,
-            extraction=extraction,
-            markup=documents_module._pdf_amendment_markup_config(extraction),
-            page_number=page_number,
-        )
-        sorted_text, _ = documents_module._pdf_page_layered_text(
-            page, extraction={"sort_blocks": True}, markup=None, page_number=page_number
-        )
+        default = _normalize_text(page.get_text("text", flags=FLAGS))
+        marked = _layered(page, extraction, page_number)
+        sorted_text = _layered(page, {"sort_blocks": True}, page_number)
 
-    assert [char[0] for char in _characters(raw["blocks"])].count(glyph) < default.count(glyph)
+    assert default.count(glyph) > 0
     assert _strip_amendment_markup(marked) == default
     assert sorted_text.count(glyph) == default.count(glyph)
 
 
 def test_a_page_that_reads_whole_from_rawdict_is_not_read_again() -> None:
     # Gloucester's 2026-27 council tax reduction scheme, page 1, draws 30
-    # zero-advance spaces that rawdict leaves out. Without them the unsorted text
-    # loses line breaks, so it is read again; sorted, the rawdict reading already
-    # holds the default characters, and it stays as it was.
+    # zero-advance spaces. On macOS arm64 rawdict leaves them out: unsorted, the
+    # text then loses line breaks and is read again; sorted, rawdict's reading
+    # already holds the default characters and stays as it was. The expectations
+    # follow from this platform's rawdict.
     patch, calls = _counting_reader()
     with fitz.open(GLOUCESTER_CTR_PDF) as document, patch:
         page = document[0]
         default = _normalize_text(page.get_text("text", flags=FLAGS))
-        rawdict_sorted = _normalize_text(
-            _printed_text(page.get_text("rawdict", flags=FLAGS, sort=True)["blocks"])
-        )
-        unsorted = _layered(page, {"amendment_markup": True})
-        assert calls == [1]
-        sorted_text = _layered(page, {"sort_blocks": True})
-        assert calls == [1]
-
-    assert _strip_amendment_markup(unsorted) == default
-    assert sorted_text == rawdict_sorted
+        for sort in (False, True):
+            rawdict_text = _normalize_text(
+                _printed_text(page.get_text("rawdict", flags=FLAGS, sort=sort)["blocks"])
+            )
+            reread = _pdf_layered_text_difference(rawdict_text, default, sort_blocks=sort)
+            calls.clear()
+            marked = _layered(page, {"amendment_markup": True, "sort_blocks": sort})
+            assert calls == ([1] if reread else [])
+            if not reread:
+                assert _strip_amendment_markup(marked) == rawdict_text
+            if not sort:
+                assert _strip_amendment_markup(marked) == default
 
 
 def test_a_zero_advance_space_does_not_reorder_sorted_blocks() -> None:
