@@ -368,6 +368,7 @@ def read_page(
     """
     from axiom_corpus.corpus.documents import (
         _HEADING_TAGS,
+        _html_node_text,
         _html_soup,
         _html_text_nodes,
         _main_content,
@@ -390,7 +391,7 @@ def read_page(
     root = _main_content(soup)
     nodes = []
     for element in _html_text_nodes(root, extraction=None):
-        text = _normalize_text(element.get_text(" ", strip=True))
+        text = _html_node_text(element)
         if not text:
             continue
         if _is_in(element, histories):
@@ -418,13 +419,13 @@ def read_page(
 def _matching_run(body: str, page: Page) -> list[Node] | None:
     """The extractor block whose body is exactly ``body``.
 
-    ``_extract_html_blocks`` stores ``_normalize_text("\n\n".join(parts))`` for each
-    run of non-heading nodes; a row matches a run only when it is that string.
+    ``_extract_html_blocks`` stores ``_join_html_text_parts(parts)`` for each run of
+    non-heading nodes; a row matches a run only when it is that string.
     """
-    from axiom_corpus.corpus.documents import _normalize_text
+    from axiom_corpus.corpus.documents import _join_html_text_parts
 
     for run in page.runs():
-        if _normalize_text("\n\n".join(node.text for node in run)) == body:
+        if _join_html_text_parts([node.text for node in run]) == body:
             return run
     return None
 
