@@ -149,11 +149,12 @@ a body as whole word runs, longest first. Findings:
 A body with no word with a letter is text when it is a table of figures: at
 least 5 of its tokens are figures (numbers, dates, amounts, rates and ranges,
 such as `$1,014.00`, `.9666`, `10/19--` or `($450,000)`), and figures are at
-least half of its tokens. A list marker (`(1)`, `[12]`, `3.`) is not a figure:
+least half of its tokens. A list marker (`(1)`, `[12]`, `3.`, `(4).`) is not a figure:
 a body that kept only its paragraph numbers has lost its text. The rule decides
 only whether a row carries text. In the navigation rules a figure is a token
-like any other: it counts in the coverage share, and, having no letter, not in
-the left-over words or the opening run.
+like any other: it counts in the coverage share, a navigation string that holds
+one ("Appendix 1") covers it, and outside any navigation string it has no
+letter, so it is neither a left-over word nor the end of an opening run.
 
 `CONTENT_CHECK_VERSION` (`content-check-v2`) names these rules. Version 1
 counted only words with a letter as text; see [Version 2](#version-2-2026-10-13).

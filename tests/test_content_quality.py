@@ -207,9 +207,9 @@ def test_figures_are_numbers_dates_amounts_and_rates() -> None:
     for token in ("§", "-", "—", "1a", "Ch.", "\x05\x061", "$", "%"):
         assert not is_figure(token), token
     # List markers are not figures; the same digits as an amount or a year are.
-    for token in ("(1)", "[12]", "3.", "4)", "(123)"):
+    for token in ("(1)", "[12]", "3.", "4)", "(123)", "(5).", "6.)", "(7):", "8.,", "[9];"):
         assert not is_figure(token), token
-    for token in ("(1,200)", "(1234)", "2026.", "3.5", "(13.5)"):
+    for token in ("(1,200)", "(1234)", "2026.", "3.5", "(13.5)", "12,", "15;", "(450,000)."):
         assert is_figure(token), token
 
 
@@ -223,6 +223,7 @@ def test_a_table_of_figures_is_text_and_a_stamp_is_not() -> None:
     # A section that kept only its paragraph numbers has lost its text.
     assert not classify_body("(1) (2) (3) (4) (5) (6)", None).substantive
     assert not classify_body("1. 2. 3. 4. 5. 6. 7.", None).substantive
+    assert not classify_body("(1). (2). (3). (4). (5).", None).substantive
 
 
 def test_figures_are_not_residual_words() -> None:

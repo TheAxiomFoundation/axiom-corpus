@@ -128,8 +128,9 @@ _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
 # ("16", "$1,014.00", ".9666", "10/19--", "(450,000)", "2.5%").
 _FIGURE = re.compile(r"[(\[]?[-+\u2212]?[$\u00a3\u20ac\u00a5]?\.?\d[\d.,/:\u2013-]*%?[)\]]?[.,;:]?")
 # A list marker, not a figure: up to three digits in brackets, or before a
-# period or a closing bracket ("(1)", "[12]", "3.", "4)").
-_ENUMERATOR = re.compile(r"[(\[]\d{1,3}[)\]]|\d{1,3}[.)\]]")
+# period or a closing bracket, with or without punctuation after it
+# ("(1)", "[12]", "3.", "4)", "(5).", "6.)", "(7):").
+_ENUMERATOR = re.compile(r"(?:[(\[]\d{1,3}[)\]]|\d{1,3}(?:\.\)?|[)\]]))[.,;:]?")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -342,9 +343,11 @@ def classify_body(
     A body is text (``substantive``) when it is not navigation and has a word
     with a letter in it, or, having none, is a table of figures
     (``is_figure_table``). That rule decides substance only: the navigation
-    and prefix verdicts are what they were without it. A figure is a token like
-    any other in the coverage share, and the residual and the opening run count
-    words with letters only.
+    and prefix verdicts are what they were without it. In those verdicts a
+    figure is a token like any other: it counts in the coverage share, a
+    navigation string that holds one ("Appendix 1") covers it, and outside any
+    navigation string it has no letter, so it is neither a left-over word nor
+    the end of an opening run.
     """
     tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
     words = sum(1 for token in tokens if _has_letters(token))
