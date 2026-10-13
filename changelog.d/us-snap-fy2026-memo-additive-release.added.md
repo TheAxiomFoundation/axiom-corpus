@@ -1,1 +1,1 @@
-Add an immutable RuleSpec corpus release selector that preserves the current 272 scopes and adds only the already signed USDA FY2026 SNAP COLA memorandum scope.
+Add an immutable RuleSpec corpus release selector that preserves the current 272 scopes and adds one already signed, multi-document FNS guidance scope. That scope contains the USDA FY2026 SNAP COLA memorandum and 14 other FNS source documents; this selector adds no other scopes.
