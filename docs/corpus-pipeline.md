@@ -169,7 +169,7 @@ sections and the XML pass read `60-20.1` as part 20, section 1; no release selec
 
 A few live section identifiers break the PART.SECTION form (the eCFR's own reader files
 the stray-space and rule-numbered ones as appendices). The adapter reads each only where
-the enclosing part confirms it, and only when no PART.SECTION reading applies:
+the enclosing part confirms it:
 
 | Published identifier | Citation path | Confirmed by |
 | --- | --- | --- |
@@ -177,14 +177,17 @@ the enclosing part confirms it, and only when no PART.SECTION reading applies:
 | `52. 36`, `1222. 27` | `us/regulation/36/52/36`, `us/regulation/12/1222/27` | another section of the part names part 52, 1222 |
 | `3141. 5` in 43 CFR part 3140 | `us/regulation/43/3141/5`, as its sibling `3141.3` | another section of part 3140 names 3141 |
 | `956.1 (Rule 1)` | `us/regulation/39/956/1` (heading keeps "(Rule 1)") | another section names part 956; the rule number is the section number |
-| `03`, `1-1`, `19-8.1` in 14 CFR part 241 | `us/regulation/14/241/03`, `.../1-1`, `.../19-8.1` | no section of part 241 names any part |
+| `03`, `1-1`, `19-8.1` in 14 CFR part 241 | `us/regulation/14/241/03`, `.../1-1`, `.../19-8.1` | no section of part 241 names any part; the number is digits joined by `-` or `.` and does not begin with `241` |
 
-Headings drop the published designation (`Sec. 1-1`, `Section 03`, `§ 52. 36`), and the
-inventory records that heading because the eCFR's `label_description` splits inside
-`52. 36`. `--section` selectors take the PART.SECTION form (`241.19-8.1`, `105-60.001`).
-Before 2026-10-12 the inventory skipped these 62 sections, and the XML pass read
-`19-8.1` as part 8, section 1 and `105.60.001` as part 105, section 60.001; no locked
-eCFR source contains these parts.
+No confirmed reading takes a path that another section of the same part would take; a
+refused dotted spelling keeps the earlier reading. The inventory reads this evidence
+from the title structure, and `extract-ecfr` gives the same evidence to the XML pass, so
+the two passes confirm the same sections. Headings drop one designation (`Sec. 1-1`,
+`Section 03`, `§ 52. 36`). The inventory records that heading because the eCFR's
+`label_description` splits inside `52. 36`. `--section` selectors take the PART.SECTION
+form (`241.19-8.1`, `105-60.001`). Before 2026-10-12 the inventory skipped 61 of these 62
+sections and filed `105.60.001` under part 105 (`us/regulation/41/105/60.001`), and the
+XML pass read `19-8.1` as part 8, section 1. No locked eCFR source contains these parts.
 
 Targeted rebuilds are scoped and do not certify the whole source:
 
