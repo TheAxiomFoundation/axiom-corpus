@@ -94,7 +94,10 @@ jobs:
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_REF="${{ github.event.pull_request.base.sha }}"
             VERIFIER_DIR="$RUNNER_TEMP/axiom-corpus-verifier"
-            git clone --no-checkout "$GITHUB_SERVER_URL/${{ github.repository }}.git" "$VERIFIER_DIR"
+            # Only the base commit: a full clone downloaded the 5.7 GB history
+            # to check out this one commit.
+            git init -q "$VERIFIER_DIR"
+            git -C "$VERIFIER_DIR" remote add origin "$GITHUB_SERVER_URL/${{ github.repository }}.git"
             git -C "$VERIFIER_DIR" fetch --depth 1 origin "$BASE_REF"
             git -C "$VERIFIER_DIR" checkout --detach "$BASE_REF"
             if [ -f "$VERIFIER_DIR/src/axiom_corpus/corpus/ingest_manifests.py" ]; then
@@ -215,8 +218,10 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          python -I -m pip install pytest-cov pytest-timeout
-          pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
+          python -I -m pip install pytest-cov pytest-timeout pytest-xdist
+          # Four processes (the runner's cores); a test file's tests stay in
+          # one process, with its module-level fixtures.
+          pytest -v -n 4 --dist loadfile --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 
   citation-path-grammar:
     name: Citation-path grammar (A6)
