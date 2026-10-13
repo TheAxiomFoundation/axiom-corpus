@@ -233,8 +233,29 @@ see, or from a page `scripts/recover_ingest_batch.py` re-encodes before
 extracting. `html_keep_navigation_blocks: true` in a manifest's `extraction`
 keeps every block.
 
-So every block the extractor drops is a row the check would flag, and the check
-still reports the flagged rows the extractor keeps. Existing scopes do not
+So every block this filter drops is a row the check would flag, and the check
+still reports the flagged rows the extractor keeps.
+
+A manifest can also name a publisher's navigation, for chrome the general rule
+keeps on purpose (a lone tab link, a link list with unlinked section codes):
+
+- `html_navigation_selectors` match navigation elements; a positional block
+  whose every string lies inside a matched element is dropped. A block with
+  any other text keeps its whole body.
+- `html_navigation_heading_selectors` match headings; the positional block a
+  matched heading starts is dropped.
+
+Matched elements stay in the tree, so headings and block boundaries are those of
+an unfiltered extraction, and a dropped block's ordinal is used up as above.
+`html_drop_selectors` cannot stand in for them on positional pages: they remove
+elements before the blocks are numbered, so every block after one they empty is
+renumbered. A declared block is dropped whether or not the check would flag it,
+so a manifest that declares navigation is measured before its successor is
+ingested (`scripts/measure_html_navigation_blocks.py` reports declared drops
+apart from the filter's); `html_keep_navigation_blocks: true` keeps declared
+blocks too, and a manifest that declares its sections cannot declare navigation.
+The Washington DSHS EA-Z and Texas HHS handbook manifests declare theirs
+([run note](ingest-runs/2026-10-13-html-navigation-selectors.md)). Existing scopes do not
 change: a successor is a separate, signed ingest. The calibration, a measurement
 over the 148 scopes with `navigation_body` rows, and the scope families that
 would gain from successors are in

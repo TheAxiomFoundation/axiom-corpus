@@ -3361,9 +3361,11 @@ def _within(element: Any, ids: frozenset[int]) -> bool:
 class _PositionalBlocks:
     """Number a page's ``block-N`` blocks and drop the ones that are its navigation.
 
-    Every non-empty body takes the next ordinal, kept or not, so dropping a
-    navigation block never renumbers the blocks after it: their citation paths
-    are those an unfiltered extraction of the same page gives. A block's
+    A block is navigation when the manifest declares it (``_DeclaredNavigation``)
+    or ``is_navigation_block`` holds. Every non-empty body takes the next
+    ordinal, kept or not, so dropping a navigation block never renumbers the
+    blocks after it: their citation paths are those an unfiltered extraction of
+    the same page gives. A block's
     ``citation_label`` will be ``"<title> <ordinal>"`` (``_provision_records``),
     so the navigation test sees the label the release content check sees.
     """

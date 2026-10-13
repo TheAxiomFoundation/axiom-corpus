@@ -204,7 +204,8 @@ dropped rows to `<out>/dropped.jsonl` and per-scope counts to `<out>/summary.jso
 ## Follow-ups
 
 - Publisher drop selectors for the Washington DSHS EA-Z tab links and the Texas
-  "Related Policy" lists (about 400 rows), in their manifests.
+  "Related Policy" lists (about 400 rows), in their manifests: declared as
+  navigation in [2026-10-13-html-navigation-selectors.md](2026-10-13-html-navigation-selectors.md).
 - `navigation_prefixed_body` (102 rows): bodies that open with chrome before
   their text. The filter does not trim prefixes.
 - Successor ingests for the families above, beginning with the wave 6 scopes.
