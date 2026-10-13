@@ -140,7 +140,7 @@ def test_html_region_is_the_content_root_and_bare_text_is_missing() -> None:
         (
             6,
             9,
-            "Bare summary text that the default text tags skip",
+            "Bare summary text that the default text tags skip.",
             # The 40 characters before the run, from a word start.
             "5 Eligibility First paragraph kept.",
         )
@@ -159,7 +159,7 @@ def test_html_content_selector_names_the_region() -> None:
     assert [block.body for block in blocks] == ["Section text."]
     assert region.kind == "html_content_selector"
     assert (figures.region_words, figures.kept_words) == (5, 2)
-    assert [run.text for run in figures.longest_missing_runs] == ["Loose history note"]
+    assert [run.text for run in figures.longest_missing_runs] == ["Loose history note."]
     assert figures.deliberately_dropped_words == _count("Title 36 Part 8")
 
 
@@ -277,7 +277,7 @@ def test_html_webworks_page_is_the_region_and_its_mini_toc_is_dropped() -> None:
     assert [(block.heading, block.body) for block in blocks] == [("100 Purpose", "Body text kept.")]
     assert region.kind == "html_webworks_page"
     assert (figures.region_words, figures.kept_words) == (10, 5)
-    assert [run.text for run in figures.longest_missing_runs] == ["A caption the walk skips"]
+    assert [run.text for run in figures.longest_missing_runs] == ["A caption the walk skips."]
     assert figures.deliberately_dropped_words == _count("On this page Purpose Scope")
 
 
@@ -315,7 +315,7 @@ def test_html_default_tags_beside_bare_statute_text_lose_the_statute() -> None:
     assert [block.body for block in blocks] == ["Statutes\n\nCounties"]
     assert (figures.region_words, figures.kept_words) == (14, 2)
     assert figures.longest_missing_runs[0].words == 12
-    assert figures.longest_missing_runs[0].text.endswith("not intended to create an incentive")
+    assert figures.longest_missing_runs[0].text.endswith("not intended to create an incentive.")
 
 
 def test_html_text_before_matches_get_text_until_the_stop() -> None:
@@ -456,7 +456,7 @@ def test_pdf_labeled_sections_region_starts_after_the_marker() -> None:
     assert figures.region_words == 7 + 2 + 4 + 4 + 4 + 2 + 3
     assert figures.kept_words == figures.region_words - 7
     assert [(run.offset, run.text) for run in figures.longest_missing_runs] == [
-        (0, "Front matter that follows the start marker")
+        (0, "Front matter that follows the start marker.")
     ]
 
 
@@ -509,7 +509,7 @@ def test_pdf_numbered_sections_leave_the_text_before_the_first_section_missing()
     assert [block.heading for block in blocks] == ["100. DEFINITIONS", "200. RATES"]
     assert region.kind == "pdf_page_range"
     assert figures.missing_words == 5
-    assert [run.text for run in figures.longest_missing_runs] == ["Short title and preamble text"]
+    assert [run.text for run in figures.longest_missing_runs] == ["Short title and preamble text."]
 
 
 # --------------------------------------------------------------------------- DOCX
@@ -543,7 +543,7 @@ def test_docx_region_reads_words_whole_where_table_runs_split_them() -> None:
     assert figures.region_words == 18
     assert figures.kept_words == 11
     assert sorted(run.text for run in figures.longest_missing_runs) == [
-        "Control text the body walk skips",
+        "Control text the body walk skips.",
         "Eligibility",
     ]
 
@@ -587,7 +587,7 @@ def test_docx_labeled_sections_region_lies_between_the_markers() -> None:
     )
     assert figures.deliberately_dropped_words == _count("Page 12")
     assert (figures.region_words, figures.kept_words) == (15, 12)
-    assert [run.text for run in figures.longest_missing_runs] == ["Unlabeled lead-in"]
+    assert [run.text for run in figures.longest_missing_runs] == ["Unlabeled lead-in."]
 
 
 def test_docx_styled_sections_merge_restated_headings_on_purpose() -> None:

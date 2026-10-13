@@ -24,9 +24,11 @@ multiset: a phrase the source prints twice must be kept twice.
 ``kept_words`` is the size of the multiset intersection of the region's and the
 extracted words, so ``0 <= kept_words <= region_words`` and ``coverage`` is their ratio
 (1.0 for a region with no words: nothing was there to lose). The ``longest_missing_runs``
-are what a reviewer reads: the longest stretches of consecutive region words with no
-counterpart in the extracted text. Every missing word lies in exactly one run, so the
-runs' lengths sum to ``region_words - kept_words`` (only the ``MISSING_RUN_LIMIT``
+are what a reviewer reads: the stretches of the region with no counterpart in the
+extracted text. A run runs from one missing word to another and is not ended by fewer
+than ``RUN_BREAK_WORDS`` kept words in a row, so a lost passage stays one run although a
+heading's words recur inside it. Every missing word lies in exactly one run, so the
+runs' word counts sum to ``region_words - kept_words`` (only the ``MISSING_RUN_LIMIT``
 longest are recorded).
 
 The figures are recorded, per source, in a scope's coverage report under
@@ -45,6 +47,8 @@ from typing import Any, Protocol
 SOURCE_COVERAGE_VERSION = "source-coverage-v1"
 # How many missing runs a source records, longest first.
 MISSING_RUN_LIMIT = 10
+# This many kept words in a row end a missing run; fewer stay inside it.
+RUN_BREAK_WORDS = 4
 # A recorded run shows at most this much of its text: its opening and its close.
 MISSING_RUN_HEAD_CHARS = 110
 MISSING_RUN_TAIL_CHARS = 50
@@ -104,11 +108,13 @@ def row_texts(rows: Iterable[_Row]) -> list[str]:
 
 @dataclass(frozen=True)
 class MissingRun:
-    """Consecutive region words with no counterpart in the extracted text.
+    """A stretch of the region with no counterpart in the extracted text.
 
-    ``offset`` is the position of the run's first word among the region's words
-    (words the extractor dropped on purpose after reading them included), ``text``
-    the run as the source prints it, and ``before`` the end of the text ahead of it.
+    ``words`` is the number of missing words in the stretch and ``offset`` the
+    position of its first one among the region's words (words the extractor dropped on
+    purpose after reading them included). ``text`` is the stretch as the source prints
+    it, from its first missing word to its last, with any short run of kept words
+    inside it; ``before`` is the end of the text ahead of it.
     """
 
     offset: int
@@ -224,15 +230,30 @@ def measure_source_coverage(
     kept = (region_counts - set_aside) & _counts(extracted_words)
 
     matched = _matched(region_words, [*extracted_words, *set_aside_words])
-    runs = [
-        MissingRun(
-            offset=start,
-            words=end - start,
-            text=_excerpt(region_text[spans[start][1] : spans[end - 1][2]]),
-            before=_tail(region_text[: spans[start][1]]),
+    runs = []
+    for start, end, count in _missing_runs(matched):
+        # Take the punctuation that touches the run with it: "(a) ... income."
+        opens, closes = spans[start][1], spans[end - 1][2]
+        while (
+            opens > 0
+            and not region_text[opens - 1].isspace()
+            and (start == 0 or opens > spans[start - 1][2])
+        ):
+            opens -= 1
+        while (
+            closes < len(region_text)
+            and not region_text[closes].isspace()
+            and (end == len(spans) or closes < spans[end][1])
+        ):
+            closes += 1
+        runs.append(
+            MissingRun(
+                offset=start,
+                words=count,
+                text=_excerpt(region_text[opens:closes]),
+                before=_tail(region_text[:opens]),
+            )
         )
-        for start, end in _unmatched_runs(matched)
-    ]
     runs.sort(key=lambda run: (-run.words, run.offset))
     return SourceCoverage(
         region_words=len(region_words) - sum(set_aside.values()),
@@ -249,13 +270,13 @@ def missing_run_lengths(
     *,
     dropped_from_region: Iterable[str] = (),
 ) -> list[int]:
-    """The length of every missing run, in reading order (not only the longest)."""
+    """The missing words of every missing run, in reading order (not only the longest)."""
     region_words = words("\n".join(region))
     matched = _matched(
         region_words,
         [*(words(text) for text in extracted), *(words(text) for text in dropped_from_region)],
     )
-    return [end - start for start, end in _unmatched_runs(matched)]
+    return [count for _start, _end, count in _missing_runs(matched)]
 
 
 def _counts(sequences: Iterable[Sequence[str]]) -> Counter[str]:
@@ -317,6 +338,32 @@ def _anchored(
 
 def _shingles(sequence: Sequence[str], size: int) -> Iterable[tuple[str, ...]]:
     return zip(*(sequence[offset:] for offset in range(size)), strict=False)
+
+
+def _missing_runs(matched: Sequence[bool]) -> list[tuple[int, int, int]]:
+    """The missing runs as (first missing position, end, missing words).
+
+    A run starts at an unmatched position and ends after the last unmatched position
+    that fewer than ``RUN_BREAK_WORDS`` matched positions in a row separate from the
+    one before it.
+    """
+    runs: list[tuple[int, int, int]] = []
+    start: int | None = None
+    last = count = kept = 0
+    for index, flag in enumerate(matched):
+        if not flag:
+            if start is None:
+                start, count = index, 0
+            count += 1
+            last, kept = index, 0
+        elif start is not None:
+            kept += 1
+            if kept >= RUN_BREAK_WORDS:
+                runs.append((start, last + 1, count))
+                start = None
+    if start is not None:
+        runs.append((start, last + 1, count))
+    return runs
 
 
 def _unmatched_runs(matched: Sequence[bool]) -> list[tuple[int, int]]:

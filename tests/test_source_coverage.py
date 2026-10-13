@@ -130,21 +130,25 @@ def test_a_page_that_kept_only_its_numbered_heads_is_mostly_missing() -> None:
     assert figures.kept_words == 9
     assert figures.missing_words == 53
     assert figures.coverage == pytest.approx(9 / 62)
-    longest, second = figures.longest_missing_runs
-    assert (longest.offset, longest.words) == (6, 38)
-    assert longest.text.startswith(
+    # One run: the kept head "2. Personal property." is three words, too few to end it.
+    (run,) = figures.longest_missing_runs
+    assert (run.offset, run.words) == (6, 53)
+    assert run.text.startswith(
         "The following real estate is exempt from taxation: A. The aqueducts"
     )
-    assert (second.offset, second.words) == (47, 15)
-    assert second.text == (
-        "The following personal property is exempt: A. Household furniture, including "
-        "television sets and musical instruments"
-    )
-    assert longest.before == "\u00a7656. Real estate 1. Real estate."
-    assert [run.words for run in figures.longest_missing_runs] == sorted(
-        (run.words for run in figures.longest_missing_runs), reverse=True
-    )
-    assert sum(run.words for run in figures.longest_missing_runs) == figures.missing_words
+    assert run.text.endswith("television sets and musical instruments;")
+    assert run.before == "\u00a7656. Real estate 1. Real estate."
+
+
+def test_a_few_kept_words_do_not_end_a_run_and_four_do() -> None:
+    region = ["lost1 lost2 kept1 kept2 kept3 lost3", "kept4 kept5 kept6 kept7", "lost4"]
+    figures = measure_source_coverage(region, ["kept1 kept2 kept3", "kept4 kept5 kept6 kept7"])
+
+    assert [(run.offset, run.words, run.text) for run in figures.longest_missing_runs] == [
+        (0, 3, "lost1 lost2 kept1 kept2 kept3 lost3"),
+        (10, 1, "lost4"),
+    ]
+    assert figures.missing_words == 4 == sum(run.words for run in figures.longest_missing_runs)
 
 
 def test_words_are_counted_as_a_multiset() -> None:
@@ -156,7 +160,7 @@ def test_words_are_counted_as_a_multiset() -> None:
     assert twice.kept_words == 6
     # A phrase kept once covers one of its two printings, not both.
     assert [run.text for run in once.longest_missing_runs] == [
-        "Benefits end in June. This notice applies"
+        "Benefits end in June. This notice applies."
     ]
 
 
@@ -177,7 +181,7 @@ def test_a_lost_paragraph_is_one_run_though_its_common_words_survive_elsewhere()
     assert [(run.offset, run.words) for run in figures.longest_missing_runs] == [
         (len(words(region[0])), len(words(region[1])))
     ]
-    assert figures.longest_missing_runs[0].text == region[1].rstrip(".")
+    assert figures.longest_missing_runs[0].text == region[1]
 
 
 def test_a_region_with_no_words_has_nothing_to_lose() -> None:
@@ -191,7 +195,7 @@ def test_a_region_with_nothing_extracted_is_one_missing_run() -> None:
     assert (figures.region_words, figures.kept_words, figures.coverage) == (4, 0, 0.0)
     assert [
         (run.offset, run.words, run.text, run.before) for run in figures.longest_missing_runs
-    ] == [(0, 4, "Section one. Section two", "")]
+    ] == [(0, 4, "Section one. Section two.", "")]
 
 
 def test_text_dropped_on_purpose_is_counted_apart() -> None:
@@ -243,21 +247,24 @@ def test_a_long_run_is_recorded_by_its_opening_and_its_close() -> None:
 
 
 def test_only_the_longest_runs_are_recorded() -> None:
-    region = [f"kept{index} lost{index} " + "gone " * index for index in range(1, 16)]
-    extracted = [f"kept{index}" for index in range(1, 16)]
-    figures = measure_source_coverage(region, extracted)
+    kept = [" ".join(f"kept{index}{letter}" for letter in "abcd") for index in range(1, 16)]
+    region = [f"{kept[index - 1]} lost{index} " + "gone " * index for index in range(1, 16)]
+    figures = measure_source_coverage(region, kept)
 
     assert len(figures.longest_missing_runs) == MISSING_RUN_LIMIT == 10
     assert [run.words for run in figures.longest_missing_runs] == list(range(16, 6, -1))
-    assert sum(missing_run_lengths(region, extracted)) == figures.missing_words
+    assert missing_run_lengths(region, kept) == list(range(2, 17))
+    assert sum(missing_run_lengths(region, kept)) == figures.missing_words
 
 
 def test_runs_of_equal_length_are_ordered_by_position() -> None:
-    figures = measure_source_coverage(["a x1 b x2 c x3"], ["a b c"])
+    figures = measure_source_coverage(
+        ["a1 a2 a3 a4 x1 b1 b2 b3 b4 x2 c1 c2 c3 c4 x3"], ["a1 a2 a3 a4 b1 b2 b3 b4 c1 c2 c3 c4"]
+    )
     assert [(run.offset, run.text) for run in figures.longest_missing_runs] == [
-        (1, "x1"),
-        (3, "x2"),
-        (5, "x3"),
+        (4, "x1"),
+        (9, "x2"),
+        (14, "x3"),
     ]
 
 
@@ -572,14 +579,17 @@ def test_the_missing_runs_partition_the_missing_words(
     recorded = figures.longest_missing_runs
     assert len(recorded) == min(len(lengths), MISSING_RUN_LIMIT)
     assert [run.words for run in recorded] == sorted(lengths, reverse=True)[:MISSING_RUN_LIMIT]
-    # Recorded runs are distinct stretches of the region, each inside it.
-    spans = sorted((run.offset, run.offset + run.words) for run in recorded)
+    # Recorded runs are distinct stretches of the region: each starts at a word of the
+    # region, and a later one starts after the missing words of the one before it.
     total = len(_independent_words("\n".join(region)))
-    assert all(0 <= start < end <= total for start, end in spans)
-    assert all(first[1] <= second[0] for first, second in zip(spans, spans[1:], strict=False))
+    in_order = sorted(recorded, key=lambda run: run.offset)
+    assert all(0 <= run.offset < total for run in in_order)
+    assert all(
+        first.offset + first.words <= second.offset
+        for first, second in zip(in_order, in_order[1:], strict=False)
+    )
     for run in recorded:
-        assert len(_independent_words(run.text)) <= run.words
-        assert run.text == " ".join(run.text.split())
+        assert run.text and run.text == " ".join(run.text.split())
 
 
 @given(_PIECES, _PIECES, _PIECES, _PIECES)
