@@ -637,6 +637,21 @@ def test_misread_sibling_cannot_take_a_selected_sections_path(tmp_path, monkeypa
         ("us/regulation/43/3809/401-k-1", "selected"),
     ]
 
+    # And for sections inside a subpart.
+    structure["children"][0]["children"] = [
+        _subpart("3809", "Subpart 3809", structure["children"][0]["children"])
+    ]
+    xml = PART_3800_SIBLING_XML.replace(
+        '<DIV8 N="3809.401(k)-1"', '<DIV6 N="3809" TYPE="SUBPART"><DIV8 N="3809.401(k)-1"'
+    ).replace("</DIV8>\n  </DIV5>", "</DIV8></DIV6>\n  </DIV5>")
+    inventory = build_ecfr_inventory_from_structures((structure,))
+    records = _records(xml, structure, allowed=set(_paths(inventory.items)))
+    assert [(record.citation_path, record.source_id) for record in records] == [
+        ("us/regulation/43/3800", None),
+        ("us/regulation/43/3800/subpart-3809", None),
+        ("us/regulation/43/3809/401-k-1", "selected"),
+    ]
+
 
 @pytest.mark.parametrize("part", ["3800", "3809"])
 def test_retained_selector_naming_two_sections_fails_before_any_write(tmp_path, part):
