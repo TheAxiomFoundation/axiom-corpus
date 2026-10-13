@@ -1131,6 +1131,10 @@ def _extract_pdf_blocks(
 # row of text reads as an underline. Each new use must be checked against a
 # rendering of the pages or the publisher's HTML
 # (``scripts/compare_pdf_amendment_markup_with_html.py``).
+#
+# A drawing that is a glyph is not a rule (``_pdf_drawn_glyph_sizes``). MuPDF
+# draws some Type 3 glyphs as vector paths, and the bar of such a hyphen lies at
+# a strike offset from its own line, an underscore at an underline offset.
 _AMENDMENT_DELETED = "deleted"
 _AMENDMENT_INSERTED = "inserted"
 _AMENDMENT_MARKUP_DELIMITERS = {
@@ -1171,6 +1175,17 @@ _PDF_UNDERLINE_OFFSET_RANGE = (0.05, 0.22)
 # would flip it between marked and unmarked.
 _PDF_RULE_NEAR_THRESHOLD_MARGIN = 0.03
 _PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
+# ``Page.get_texttrace`` span type of text the page does not paint (PyMuPDF:
+# "ignored text", PDF text rendering mode 3).
+_PDF_TEXTTRACE_HIDDEN = 3
+# MuPDF's names for a Type 3 font whose dictionary has no /Name: "Unnamed-T3"
+# in MuPDF 1.26, "Type3 (N 0 R)" with the font's object number in MuPDF 1.28.
+_PDF_UNNAMED_TYPE3_FONT_NAMES = ("Unnamed-T3", "Type3 ({xref} 0 R)")
+# A drawing is a glyph only if it is at most this many font sizes wide and high.
+# In the retained PDFs (PyMuPDF 1.26.7) the 2.5 million drawings that directly
+# precede a one-character hidden Type 3 span are at most 1.25 font sizes, except
+# three rules 55 to 69 font sizes long on one page, which are not glyphs.
+_PDF_GLYPH_MAX_EXTENT = 2.0
 _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements", "sort_text")
 _PDF_WARNING_EXAMPLES = 8
 
@@ -1476,11 +1491,15 @@ def _pdf_horizontal_rules(
     ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. A rectangle's
     thickness is its height plus, when it is stroked, the stroke width; a line's
     is its stroke width. White paint and paint with zero opacity are invisible and
-    never make a rule.
+    never make a rule, and neither does a drawing that is a glyph
+    (``_pdf_drawing_is_glyph``).
     """
     rules: list[_PdfHorizontalRule] = []
     thick_rules: list[_PdfHorizontalRule] = []
+    glyph_sizes = _pdf_drawn_glyph_sizes(page)
     for path in page.get_drawings():
+        if _pdf_drawing_is_glyph(path, glyph_sizes):
+            continue
         path_type = str(path.get("type") or "")
         filled = "f" in path_type and _pdf_paint_is_visible(
             path.get("fill"), path.get("fill_opacity")
@@ -1515,6 +1534,71 @@ def _pdf_horizontal_rules(
                 elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
                     thick_rules.append(rule)
     return tuple(rules), tuple(thick_rules)
+
+
+def _pdf_drawn_glyph_sizes(page: Any) -> dict[int, float]:
+    """Map the page commands that may be drawn Type 3 glyphs to their font size.
+
+    MuPDF draws a Type 3 glyph that it cannot cache by running the glyph's
+    procedure on the page, and then reports the character as hidden text so that
+    it can still be extracted (``pdf_show_char`` in MuPDF's ``pdf-op-run.c``,
+    which flushes pending text before each such glyph, so the hidden span holds
+    that one character). PyMuPDF therefore lists the glyph among the page's
+    drawings, and the page command right after it (``seqno`` + 1) is a hidden
+    text span of one character in a Type 3 font. Such a drawing is text the page
+    shows, not a rule: the bar of a hyphen lies at a strike offset from its own
+    line and an underscore at an underline offset.
+
+    The keys are the command numbers right before such a span. A glyph drawn as
+    several paths is recognised only by its last one.
+    """
+    type3_fonts = _pdf_type3_font_names(page)
+    if not type3_fonts:
+        return {}
+    return {
+        int(span["seqno"]) - 1: float(span["size"])
+        for span in page.get_texttrace()
+        if span["type"] == _PDF_TEXTTRACE_HIDDEN
+        and span["font"] in type3_fonts
+        and len(span["chars"]) == 1
+    }
+
+
+def _pdf_type3_font_names(page: Any) -> frozenset[str]:
+    """Return the names a text trace gives the page's Type 3 fonts.
+
+    MuPDF names a Type 3 font by its /Name entry, which is also the base name
+    ``Page.get_fonts`` reports for a font without a /BaseFont (the PDF standard
+    gives a Type 3 font none; one that has both is not recognised). A font with
+    neither gets one of ``_PDF_UNNAMED_TYPE3_FONT_NAMES``.
+    """
+    names: set[str] = set()
+    for font in page.get_fonts(full=True):
+        if font[2] != "Type3":
+            continue
+        if font[3]:
+            names.add(str(font[3]))
+        else:
+            names.update(name.format(xref=font[0]) for name in _PDF_UNNAMED_TYPE3_FONT_NAMES)
+    return frozenset(names)
+
+
+def _pdf_drawing_is_glyph(path: dict[str, Any], glyph_sizes: dict[int, float]) -> bool:
+    """Return whether a drawing is a Type 3 glyph that MuPDF drew as a path.
+
+    It is when the next page command is a one-character hidden Type 3 span
+    (``_pdf_drawn_glyph_sizes``) and the drawing is no larger than a glyph of
+    that font size. A hidden character is not always preceded by its own glyph:
+    text the PDF itself hides is not drawn. A rule drawn before such a character
+    is then the previous command, so a drawing larger than
+    ``_PDF_GLYPH_MAX_EXTENT`` font sizes stays a rule.
+    """
+    seqno = path.get("seqno")
+    size = glyph_sizes.get(seqno) if isinstance(seqno, int) else None
+    if size is None or size <= 0:
+        return False
+    rect = path["rect"]
+    return bool(max(rect.width, rect.height) <= _PDF_GLYPH_MAX_EXTENT * size)
 
 
 def _pdf_paint_is_visible(color: Any, opacity: Any) -> bool:

@@ -135,6 +135,9 @@ class _FakePage:
             raw_blocks.append({"type": 0, "lines": lines})
         return {"blocks": raw_blocks}
 
+    def get_fonts(self, full: bool = False) -> list[Any]:
+        return []
+
     def get_drawings(self) -> list[Any]:
         return []
 

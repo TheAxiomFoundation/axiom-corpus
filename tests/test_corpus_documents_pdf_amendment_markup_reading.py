@@ -7,9 +7,11 @@ tokens: a struck run ending in "[" is written ``[-[-]`` and an underlined run
 ending in "{" is written ``{+{+}``, and the old ``str.replace`` strip took the
 run's own "[" with the closer's "-", turning "[" into "]". A sweep of every
 retained PDF found 22 such pages, which ``_pdf_page_layered_text`` stopped with
-"amendment markup changed the text": Maryland session laws and a bill, which
-strike the brackets of a stricken deletion, and CMS state plan approval
-packages. ``_amendment_markup_runs`` reads the delimiters left to right instead.
+"amendment markup changed the text": 12 pages of Maryland session laws and a
+bill, which strike the brackets of a stricken deletion, and 10 pages of CMS
+state plan approval packages, whose Type 3 glyphs marked themselves and no
+longer do (``test_corpus_documents_pdf_amendment_markup_glyphs``).
+``_amendment_markup_runs`` reads the delimiters left to right instead.
 
 Invariants (Hypothesis):
 
@@ -320,6 +322,9 @@ class _RuledPage:
             lines.append({"spans": spans})
         return {"blocks": [{"type": 0, "lines": lines}]}
 
+    def get_fonts(self, full: bool = False) -> list[Any]:
+        return []
+
     def get_drawings(self) -> list[dict[str, Any]]:
         drawings = []
         for number, line in enumerate(self.lines):
@@ -465,29 +470,12 @@ def test_a_pdf_with_a_run_ending_in_its_opening_bracket_marks_and_strips_back(
     ]
 
 
-# The 22 pages the corpus-wide sweep found. Maryland prints a deletion in brackets
-# and strikes out what an amendment struck from the bill (legend on 2022 HB 456,
-# page 1), so its bill and session laws strike the brackets of a deletion that an
-# amendment struck; the marks on those 12 pages were checked against renderings.
-# The CMS approval packages set their text in Type3 fonts whose character boxes
-# are 135 to 240 pt tall, and rules 1.6 to 3 pt long fall at a strike or underline
-# offset from them: the classifier's marks there are not amendments.
+# The 12 Maryland pages the corpus-wide sweep found. Maryland prints a deletion
+# in brackets and strikes out what an amendment struck from the bill (legend on
+# 2022 HB 456, page 1), so its bill and session laws strike the brackets of a
+# deletion that an amendment struck; the marks on these pages were checked
+# against renderings.
 _SWEPT_PAGES = [
-    (
-        "us-az/policy/2026-09-13-chip-state-plan/official-documents/"
-        "us-az-cms-chip-state-plan-spa-az-22-0007-approval-package.pdf",
-        (94, 96),
-    ),
-    (
-        "us-ca/policy/2026-09-13-medicaid-state-plan/official-documents/"
-        "us-ca-cms-medicaid-state-plan-spa-ca-22-0036-approval-document.pdf",
-        (11,),
-    ),
-    (
-        "us-ca/policy/2026-09-13-medicaid-state-plan/official-documents/"
-        "us-ca-cms-medicaid-state-plan-spa-ca-25-0037-approval-document.pdf",
-        (26,),
-    ),
     (
         "us-md/statute/2026-10-06-w6-benefits-statute-md/official-documents/"
         "us-md-statute-bills-2022-hb0456.pdf",
@@ -507,26 +495,6 @@ _SWEPT_PAGES = [
         "us-md/statute/2026-10-06-w6-income-tax-statute-md/official-documents/"
         "us-md-statute-session-laws-2025-chapter-604.pdf",
         (87, 150, 162, 165, 166, 167, 168),
-    ),
-    (
-        "us-mi/policy/2026-09-13-medicaid-state-plan/official-documents/"
-        "us-mi-cms-medicaid-state-plan-spa-mi-25-0101-approval-document.pdf",
-        (5,),
-    ),
-    (
-        "us-mo/policy/2026-09-13-medicaid-state-plan/official-documents/"
-        "us-mo-cms-medicaid-state-plan-spa-mo-21-0032-approval-document.pdf",
-        (17, 27),
-    ),
-    (
-        "us-ms/policy/2026-09-13-medicaid-state-plan/official-documents/"
-        "us-ms-cms-medicaid-state-plan-spa-ms-19-0018-approval-document.pdf",
-        (37, 39),
-    ),
-    (
-        "us-wi/policy/2026-09-13-medicaid-state-plan/official-documents/"
-        "us-wi-cms-medicaid-state-plan-spa-wi-25-0006-a-approval-document.pdf",
-        (2,),
     ),
 ]
 # Marked phrases read off renderings of the Maryland pages.

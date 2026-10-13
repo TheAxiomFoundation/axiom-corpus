@@ -450,8 +450,15 @@ The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
 line's stroke width) marks a character when its offset from the text baseline,
 in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
-0.22 (underline). White rules and rules with zero opacity are ignored. So a thin
-table rule drawn 1-2 pt under 10 pt text reads as an underline. Extraction
+0.22 (underline). White rules and rules with zero opacity are ignored. So is a
+drawing that is a glyph: MuPDF draws some Type 3 glyphs as vector paths and
+reports their characters as hidden text, and the bar of such a hyphen would
+strike the text around it, an underscore underline it. A drawing is a glyph when
+the next page command is a hidden text span of one character in a Type 3 font
+and the drawing is at most two of that span's font sizes wide and high. Which
+glyphs MuPDF draws this way depends on its version. Hidden text is still
+classified: a rule under the text of an OCR layer reads as an underline. A thin
+table rule drawn 1-2 pt under 10 pt text reads as an underline too. Extraction
 warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font
 sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
 underline position, which is not classified. Check every new use against a
