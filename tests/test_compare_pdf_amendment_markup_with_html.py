@@ -223,6 +223,13 @@ def test_moved_text_pairs_occurrences_in_reading_order() -> None:
     assert _moved_text([("html", "old", "DDD"), ("pdf", "old", "DDD")]) == []
 
 
+def test_compare_does_not_flag_a_plain_word_repeated_on_one_side() -> None:
+    html = marked_text_words("rate a b c [-old-] z")
+    pdf = marked_text_words("a b c rate rate [-old-] z")
+
+    assert compare(html, pdf)["moved_text"] == []
+
+
 def test_compare_flags_a_move_behind_an_extra_occurrence() -> None:
     html = marked_text_words("b old rate [-percent-] z")
     pdf = marked_text_words("old b rate [-old percent-] z")
