@@ -99,7 +99,7 @@ def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
             **{
                 key: value
                 for key, value in (source.extraction or {}).items()
-                if key != "html_navigation_selectors"
+                if key not in {"html_navigation_selectors", "html_navigation_heading_selectors"}
             },
             "html_keep_navigation_blocks": True,
         }

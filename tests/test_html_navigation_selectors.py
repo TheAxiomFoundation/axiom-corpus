@@ -34,6 +34,7 @@ from hypothesis import strategies as st
 
 from axiom_corpus.corpus.documents import (
     OfficialDocumentManifest,
+    _extract_blocks,
     _extract_html_blocks,
     _extract_json_html_blocks,
 )
@@ -276,6 +277,17 @@ def test_declared_navigation_on_json_read_without_blocks_is_an_error(extraction:
                 source_url=URL,
                 fallback_title="Rules",
                 extraction={**extraction, key: ["a"]},
+            )
+
+
+@pytest.mark.parametrize(
+    "source_format", ["pdf", "docx", "doc", "csv", "xlsx", "xls", "javascript"]
+)
+def test_declared_navigation_on_a_non_html_source_is_an_error(source_format: str) -> None:
+    for key in ("html_navigation_selectors", "html_navigation_heading_selectors"):
+        with pytest.raises(ValueError, match="positional blocks"):
+            _extract_blocks(
+                b"", source_format, source_url=URL, title="Rules", extraction={key: ["a"]}
             )
 
 

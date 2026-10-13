@@ -855,6 +855,8 @@ def _extract_blocks(
     title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    if source_format not in {"html", "json"}:
+        _reject_declared_navigation(extraction or {}, f"reads {source_format}")
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
     if (extraction or {}).get("section_citation_suffix_replacements") is not None:

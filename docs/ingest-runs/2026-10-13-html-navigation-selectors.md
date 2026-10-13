@@ -41,8 +41,8 @@ boundaries an unfiltered extraction sees. The declarations are independent of
 would drop and still drops the declared ones, so a manifest can keep a link list
 the filter misjudges and still name its real chrome. A manifest whose pages have
 no positional blocks (declared sections, JSON records or source-only JSON, a JSON
-field read as one block) cannot declare navigation: the extractor raises instead
-of ignoring the key.
+field read as one block, a PDF or other non-HTML source) cannot declare
+navigation: the extractor raises instead of ignoring the key.
 
 ## The selectors
 
@@ -140,7 +140,7 @@ The filter's 87 drops are #852's, unchanged; #852 alone leaves 417
 - **(b) No other row changes.** The script compares every kept row with its
   locked row field by field: none differs in anything but `metadata.block_count`,
   which moves on 5,900 rows of pages that lose a block, and no document's kept
-  rows change order. 3,575 of the kept rows follow a dropped block on their
+  rows change order. 3,575 of the kept rows follow a declared drop on their
   page; their paths hold because the dropped ordinals are used up.
 - **Nothing else moves.** The other 144 scopes of #852's measurement, whose
   manifests declare nothing, re-extracted on this branch give successor rows byte

@@ -260,7 +260,8 @@ renumbered. The declarations are independent of the filter: they apply to HTML
 read out of a JSON field too, and `html_keep_navigation_blocks: true` keeps the
 filter's blocks while still dropping the declared ones. A manifest whose pages
 have no positional blocks (declared sections, JSON records or source-only JSON,
-a JSON field read as one block) cannot declare navigation; the extractor raises. A declared block is
+a JSON field read as one block, a source that is not HTML or JSON) cannot
+declare navigation; the extractor raises. A declared block is
 dropped whether or not the check would flag it, so a manifest that declares
 navigation is measured before its successor is ingested
 (`scripts/measure_html_navigation_blocks.py` reports declared drops apart from
