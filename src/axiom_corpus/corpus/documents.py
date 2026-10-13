@@ -3191,8 +3191,25 @@ def _extract_html_blocks(
     ``drop_navigation=False`` for an HTML field inside a JSON file, and
     ``scripts/recover_ingest_batch.py`` passes ``html_keep_navigation_blocks`` when
     it re-encodes the bytes before extracting.
+
+    A manifest can also name a publisher's navigation (``_DeclaredNavigation``):
+    ``html_navigation_selectors`` for elements such as tab or jump links, and
+    ``html_navigation_heading_selectors`` for headings that start a link list.
+    The positional blocks they make up are dropped the same way, ordinal used up,
+    whether or not the check would flag them. Unlike ``html_drop_selectors``,
+    which removes elements before the blocks are numbered (so a block they empty
+    renumbers every block after it), they drop only whole blocks.
+    ``html_keep_navigation_blocks: true`` keeps these blocks too.
     """
     config = extraction or {}
+    if config.get("segmentation") in {"labeled_sections", "anchor_range"} and (
+        config.get("html_navigation_selectors")
+        or config.get("html_navigation_heading_selectors")
+    ):
+        raise ValueError(
+            "html navigation selectors drop positional blocks; a manifest that declares "
+            "its sections (labeled_sections, anchor_range) has none"
+        )
     navigation = (
         page_navigation(content)
         if drop_navigation
@@ -3222,12 +3239,16 @@ def _extract_html_blocks(
             source_url=source_url,
             extraction=extraction or {},
         )
+    declared = _DeclaredNavigation(
+        root, None if config.get("html_keep_navigation_blocks") else extraction
+    )
     webworks_blocks = _extract_webworks_html_blocks(
         root,
         title=title,
         source_url=source_url,
         navigation=navigation,
         label_title=fallback_title,
+        declared=declared,
     )
     if webworks_blocks is not None:
         return webworks_blocks
@@ -3242,12 +3263,19 @@ def _extract_html_blocks(
         source_url=source_url, navigation=navigation, label_title=fallback_title
     )
     heading = title
+    heading_node: Tag | None = None
     parts: list[str] = []
+    nodes: list[Tag] = []
 
     def flush() -> None:
-        nonlocal parts
-        blocks.add(heading, _normalize_text("\n\n".join(parts)))
+        nonlocal parts, nodes
+        blocks.add(
+            heading,
+            _normalize_text("\n\n".join(parts)),
+            declared=declared.drops(heading_node, nodes),
+        )
         parts = []
+        nodes = []
 
     for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
@@ -3256,13 +3284,78 @@ def _extract_html_blocks(
         if node.name in _HEADING_TAGS:
             flush()
             heading = text
+            heading_node = node
             continue
         parts.append(text)
+        nodes.append(node)
     flush()
     if blocks.position:
         return blocks.kept()
-    blocks.add(title, _normalize_text(root.get_text(" ", strip=True)))
+    blocks.add(
+        title,
+        _normalize_text(root.get_text(" ", strip=True)),
+        declared=declared.drops(None, [root]),
+    )
     return blocks.kept()
+
+
+class _DeclaredNavigation:
+    """The navigation a manifest names on a publisher's pages.
+
+    ``html_navigation_selectors`` match navigation elements: a positional block
+    whose every string lies inside one is dropped (a tab or jump link, alone or
+    joined to another by "and", in an element the selector matches whole).
+    ``html_navigation_heading_selectors`` match headings: the positional block a
+    matched heading starts is dropped (a "Related Policy" heading over its link
+    list). Each takes a CSS selector or a list of them, read on the content root
+    after the drop selectors ran. Matched elements stay in the tree, so the walk
+    sees the headings and block boundaries an unfiltered extraction sees, and a
+    block with any other text keeps its whole body.
+    """
+
+    def __init__(self, root: Tag, extraction: dict[str, Any] | None) -> None:
+        self._elements = _selected_ids(
+            root, _html_selectors(extraction, "html_navigation_selectors")
+        )
+        self._headings = _selected_ids(
+            root, _html_selectors(extraction, "html_navigation_heading_selectors")
+        )
+
+    def drops(self, heading: Tag | None, body: list[Tag]) -> bool:
+        """Whether the block under ``heading`` (a node, or ``None`` for the page title)
+        whose body text nodes are ``body`` is declared navigation."""
+        if heading is not None and _within(heading, self._headings):
+            return True
+        return bool(self._elements) and bool(body) and all(self._holds(node) for node in body)
+
+    def _holds(self, node: Tag) -> bool:
+        if _within(node, self._elements):
+            return True
+        return all(
+            _within(string, self._elements) for string in node.strings if string.strip()
+        )
+
+
+def _html_selectors(extraction: dict[str, Any] | None, key: str) -> tuple[str, ...]:
+    selectors = (extraction or {}).get(key)
+    if not selectors:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
+
+
+def _selected_ids(root: Tag, selectors: tuple[str, ...]) -> frozenset[int]:
+    return frozenset(id(node) for selector in selectors for node in root.select(selector))
+
+
+def _within(element: Any, ids: frozenset[int]) -> bool:
+    """Whether ``element`` (a tag or a string) is, or lies inside, an element in ``ids``."""
+    if not ids:
+        return False
+    if id(element) in ids:
+        return True
+    return any(id(parent) in ids for parent in element.parents)
 
 
 class _PositionalBlocks:
@@ -3288,10 +3381,14 @@ class _PositionalBlocks:
         self.position = 0
         self._kept: list[_DocumentBlock] = []
 
-    def add(self, heading: str | None, body: str) -> None:
+    def add(self, heading: str | None, body: str, *, declared: bool = False) -> None:
+        """Number a non-empty block; drop it when ``declared`` (the manifest names it
+        navigation, ``_DeclaredNavigation``) or when it is the page's navigation."""
         if not body:
             return
         self.position += 1
+        if declared:
+            return
         if self.navigation and is_navigation_block(
             body,
             self.navigation,
@@ -3995,6 +4092,7 @@ def _extract_webworks_html_blocks(
     source_url: str,
     navigation: PageNavigation | None = None,
     label_title: str | None = None,
+    declared: _DeclaredNavigation | None = None,
 ) -> tuple[_DocumentBlock, ...] | None:
     """Blocks of a WebWorks page, or ``None`` when ``root`` is not one or has no text.
 
@@ -4011,12 +4109,19 @@ def _extract_webworks_html_blocks(
         source_url=source_url, navigation=navigation, label_title=label_title
     )
     heading = title
+    heading_node: Tag | None = None
     parts: list[str] = []
+    nodes: list[Tag] = []
 
     def flush() -> None:
-        nonlocal parts
-        blocks.add(heading, _normalize_text("\n\n".join(parts)))
+        nonlocal parts, nodes
+        blocks.add(
+            heading,
+            _normalize_text("\n\n".join(parts)),
+            declared=declared is not None and declared.drops(heading_node, nodes),
+        )
         parts = []
+        nodes = []
 
     for node in page.find_all(_is_webworks_content_node):
         text = _normalize_text(node.get_text(" ", strip=True))
@@ -4025,8 +4130,10 @@ def _extract_webworks_html_blocks(
         if _has_webworks_heading_class(node):
             flush()
             heading = text
+            heading_node = node
             continue
         parts.append(text)
+        nodes.append(node)
     flush()
     return blocks.kept() if blocks.position else None
 

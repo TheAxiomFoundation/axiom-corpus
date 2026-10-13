@@ -69,6 +69,11 @@ BROWSER_UA = (
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 DISCOVERED_VIA = "manual-review:medicaid-agent-queue batch 1; publisher index {index}"
+# Texas HHS handbook pages close a section with a "Related Policy" heading over a list of
+# cross-references (section titles and codes, some linked). The extractor drops the block that
+# heading starts (``html_navigation_heading_selectors``, documents._DeclaredNavigation); see
+# docs/ingest-runs/2026-10-13-html-navigation-selectors.md.
+TX_RELATED_POLICY_HEADING = ':is(h2, h3, h4, h5, h6):-soup-contains("Related Policy", "Related Policies")'
 
 _LINK_RE = re.compile(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', re.S | re.I)
 
@@ -366,7 +371,8 @@ def build_tx() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                                  authority="Texas Health and Human Services Commission", manual=manual,
                                  index_url=mepd if prefix == "mepd" else twh, subtype="eligibility_handbook_section",
                                  extraction={"html_content_selector": "article.c-article div.c-field--name-body",
-                                             "html_drop_selectors": [".c-field__label"]},
+                                             "html_drop_selectors": [".c-field__label"],
+                                             "html_navigation_heading_selectors": [TX_RELATED_POLICY_HEADING]},
                                  extra={"agency": "hhsc"}))
 
     mepd_manual = "Medicaid for the Elderly and People with Disabilities Handbook"
@@ -383,7 +389,9 @@ def build_tx() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                          authority="Texas Health and Human Services Commission", manual=mepd_manual, index_url=mepd,
                          subtype="eligibility_handbook_section",
                          extraction={"html_content_selector": "article.c-article div.c-field--name-body",
-                                     "html_drop_selectors": [".c-field__label"]}, extra={"agency": "hhsc"}))
+                                     "html_drop_selectors": [".c-field__label"],
+                                     "html_navigation_heading_selectors": [TX_RELATED_POLICY_HEADING]},
+                         extra={"agency": "hhsc"}))
     other = [t for h, t in links(index_page, mepd) if h.startswith(mepd + "/mepd-") and "glossary" not in h and "appendices" not in h]
     families["mepd_forms_notices_revisions_bulletins_pages"] = {"found": len(other), "taken": 0}
 
