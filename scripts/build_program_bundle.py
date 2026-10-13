@@ -944,7 +944,7 @@ def build_program(
                 "title": tiers_cfg["screener"]["title"],
                 "definition": tiers_cfg["screener"]["definition"],
                 "membership": {
-                    "rule": "The screener's references at the release it was built from (the newest, by "
+                    "rule": "The reference model's citations at the release it was built from (the newest, by "
                     "default) and the plan's documents, each in the layer of the law it names, grouped into "
                     "documents",
                     "references": cfg["policyengine_us"]["references"].format(program=pid),

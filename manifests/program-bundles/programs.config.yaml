@@ -67,9 +67,9 @@ tiers:
   screener:
     title: Screener-level parity
     definition: >-
-      Every provision the screener cites for the program in the state is encoded, or its document is excluded
-      with a recorded reason, and the comparison against the newest screener release has no unfixed Axiom
-      errors. Federal law the screener cites is shared by every state.
+      Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a recorded
+      reason, and the screener-level parity run against the newest reference release has no unfixed Axiom errors.
+      Federal law in Tier 1 is shared by every state.
   full:
     title: Full document bundle
     definition: >-
