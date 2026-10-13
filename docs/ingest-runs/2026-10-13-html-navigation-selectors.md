@@ -143,9 +143,13 @@ The filter's 87 drops are #852's, unchanged; #852 alone leaves 417
   rows change order. 3,575 of the kept rows follow a declared drop on their
   page; their paths hold because the dropped ordinals are used up.
 - **Nothing else moves.** The other 144 scopes of #852's measurement, whose
-  manifests declare nothing, re-extracted on this branch give successor rows byte
-  for byte equal to #852's final run. The full test suite passes (5,515 passed,
-  106 skipped).
+  manifests declare nothing, re-extracted at 2b0088980 give successor rows byte
+  for byte equal to #852's final run. At 2b0088980 the full test suite has
+  5,525 passed, 106 skipped and 1 failed:
+  `test_streaming_validation.py::test_validate_release_matches_full_record_validation`,
+  a Hypothesis example (a provision whose `source_path` is the integer 7) that
+  fails the same way on #852's head 57cd05e01. It is #847's, fixed on #847 at
+  e934e4d6c, which #852 has not merged yet.
 - **(c) No new findings.** The release content check's scanner finds no new
   finding of any kind in any successor, and `content-check --check-baseline` over
   the four locked scopes reports no baseline difference.
