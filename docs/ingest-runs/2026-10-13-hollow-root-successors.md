@@ -129,6 +129,12 @@ Per-scope figures, including every removed path, are in
 
 The three removed rows are those two Maryland `block-2` rows and the Canadian leaf.
 
+The 17,255 new index blocks are positional `block-N` paths (`…/spa-index/pNN/block-K`),
+the shared extractor's path for an unlabeled HTML block. They raise the citation-path
+grammar's `block_n` ratchet (`schema/citation-path.v1.json`) from 88,143 to 105,398;
+CI's `scripts/validate_citation_paths.py` count at this branch's head is exactly that,
+and no other family changes.
+
 ### Content check
 
 PR #847's content check (`content-check-v1`, `src/axiom_corpus/corpus/content_quality.py`
