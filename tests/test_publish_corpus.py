@@ -1066,3 +1066,62 @@ def test_cli_r2_workers_defaults_to_ci_pool_and_rejects_zero(capsys) -> None:
         publish.main(["--release", "nz-rulespec-2026-07-10", "--r2-workers", "0"])
     assert exc.value.code == 2
     assert "--r2-workers must be at least 1" in capsys.readouterr().err
+
+
+def _identity_content(*keys: tuple[str, str, str]) -> dict:
+    scopes, artifacts = [], []
+    for jurisdiction, document_class, version in keys:
+        scopes.append(
+            {"jurisdiction": jurisdiction, "document_class": document_class, "version": version}
+        )
+        base = f"{jurisdiction}/{document_class}/{version}"
+        for path in (
+            f"data/corpus/inventory/{base}.json",
+            f"data/corpus/provisions/{base}.jsonl",
+            f"data/corpus/coverage/{base}.json",
+            f"data/corpus/sources/{base}/official/a.pdf",
+            f"data/corpus/sources/{base}/official/b.pdf",
+        ):
+            artifacts.append({"path": path, "sha256": path[::-1]})
+    return {"scopes": scopes, "artifacts": artifacts}
+
+
+def test_scope_identities_in_one_pass_match_the_scope_by_scope_identity() -> None:
+    keys = [("us", "statute", "v1"), ("us-co", "regulation", "v2"), ("us", "statute", "v10")]
+    content = _identity_content(*keys)
+    content["artifacts"].append({"path": "data/corpus/provisions/us/statute/v1.jsonl.bak"})
+    assert publish._scope_publication_identities(content, keys) == {
+        key: publish._scope_publication_identity(content, key) for key in keys
+    }
+    with pytest.raises(ReleaseManifestError, match="does not contain scope us/form/v9"):
+        publish._scope_publication_identities(content, [("us", "form", "v9")])
+    content["artifacts"] = [
+        a for a in content["artifacts"] if a["path"] != "data/corpus/coverage/us/statute/v1.json"
+    ]
+    with pytest.raises(ReleaseManifestError, match="lacks artifacts for scope us/statute/v1"):
+        publish._scope_publication_identities(content, keys)
+
+
+def test_released_scope_reuse_verifies_each_prior_object_once(monkeypatch) -> None:
+    keys = [("us", "statute", f"v{i}") for i in range(5)]
+    content = _identity_content(*keys)
+    prior = {"release": "r1", "content_sha256": "a" * 64, "content": content}
+    released = {
+        key: (
+            ReleasedScopeObject(
+                scope_key=key, release_name="r1", content_sha256="a" * 64, release_object=prior
+            ),
+        )
+        for key in keys
+    }
+    calls = []
+    monkeypatch.setattr(
+        publish, "_verifies_with_any_key", lambda obj, keys: calls.append(obj) or True
+    )
+    monkeypatch.setattr(publish, "_expected_scope_evidence", lambda c: dict.fromkeys(keys))
+    publish._require_safe_released_scope_reuse(content, released, public_keys=("k",))
+    assert len(calls) == 1
+    changed = _identity_content(*keys)
+    changed["artifacts"][0]["sha256"] = "different"
+    with pytest.raises(ReleaseManifestError, match="immutable released scope differs"):
+        publish._require_safe_released_scope_reuse(changed, released, public_keys=("k",))

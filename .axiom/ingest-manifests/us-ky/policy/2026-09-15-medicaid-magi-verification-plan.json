@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "778735671392c8594aa33cc5e22d4c184bfdfe9e2ce9108328165502065c0544"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "25b82aa52c5f56ea5990abef29abe5fd7de3921c6ef77eac4574b253fc2b677a"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "d489a24de9076131bf406f93e6789b8026a081f52f2f7a18333bebf60b3ad9ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-ky-cms-magi-verification-plan-kentucky-verification-plan-template-final.pdf",
+      "sha256": "d6a551d9ad6a78f2852f6b9fa7566e7e6785ba29b500e48a94f9b7b033aeda4b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:51.309029+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n8ph87I7DcX14t0VFUKxCrOBnq8YjJoL3tyOBKm+S1t+9hMm6lsB9GLGQxCi3KssiEx5YKdbAqhfUumF0mvQCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

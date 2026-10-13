@@ -1,0 +1,69 @@
+version: 2026-10-12-w7-federal-guidance
+documents:
+- source_id: irs-rev-proc-2021-45
+  jurisdiction: us
+  document_class: guidance
+  title: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+  source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  expression_date: '2022-01-01'
+  citation_path: us/guidance/irs/rev-proc-2021-45
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2021-45
+    source_family: w7-federal-guidance
+    printed_edition: 'page 1: "Rev. Proc. 2021-45 ... SECTION 3. 2022 ADJUSTED ITEMS" (29 pages)'
+    discovered_via: wave7 program-bundle gaps 2026-10-12 (group federal, docs/coverage/program-bundle-gaps-2026-10-12/wave7/federal.csv)
+    run_note: docs/ingest-runs/2026-10-12-w7-federal.md
+- source_id: irs-rev-proc-2022-38
+  jurisdiction: us
+  document_class: guidance
+  title: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+  source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  expression_date: '2023-01-01'
+  citation_path: us/guidance/irs/rev-proc-2022-38
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2022-38
+    source_family: w7-federal-guidance
+    printed_edition: 'page 1: "Rev. Proc. 2022-38 ... SECTION 3. 2023 ADJUSTED ITEMS" (28 pages)'
+    discovered_via: wave7 program-bundle gaps 2026-10-12 (group federal, docs/coverage/program-bundle-gaps-2026-10-12/wave7/federal.csv)
+    run_note: docs/ingest-runs/2026-10-12-w7-federal.md
+- source_id: acf-occ-approved-ccdf-plans-fy-2025-2027
+  jurisdiction: us
+  document_class: guidance
+  title: FY 2025-2027 State/Territory CCDF Plans
+  source_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
+  source_format: html
+  source_as_of: '2026-10-12'
+  expression_date: '2026-09-01'
+  citation_path: us/guidance/acf/occ/approved-ccdf-plans-fy-2025-2027
+  request:
+    browser_user_agent: true
+  extraction:
+    html_content_selector: article.acf-data-node
+  metadata:
+    primary_source: true
+    source_authority: Administration for Children and Families, Office of Child Care
+    document_subtype: program_page
+    source_family: w7-federal-guidance
+    printed_edition: 'PUBLISHED December 19, 2024; UPDATED September 1, 2026'
+    bundle_addresses:
+    - https://www.acf.hhs.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    access_note: 'the bundle address 301-redirects to acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027, which now answers
+      HTTP 404 (Page not found) to a browser User-Agent and HTTP 202 (AWS WAF, empty body) to the corpus User-Agent;
+      ACF''s own search names this page (same title, published 2024-12-19) at acf.gov/occ/data/. Fetched with the
+      browser_user_agent request option that docs/ingest-runs/2026-09-13-acf-state-plans.md documents for acf.gov.'
+    discovered_via: wave7 program-bundle gaps 2026-10-12 (group federal, docs/coverage/program-bundle-gaps-2026-10-12/wave7/federal.csv)
+    run_note: docs/ingest-runs/2026-10-12-w7-federal.md

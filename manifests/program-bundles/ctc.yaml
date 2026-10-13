@@ -61,26 +61,6 @@ tiers:
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us/form/irs/ty2013/p972
     name: Publication 972 (2013), Child Tax Credit
     layer: federal
@@ -205,6 +185,34 @@ layers:
     part: Credits
     cited:
     - path: us/guidance/irs/rev-proc-2020-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2021-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2022-38
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2023-34
@@ -426,24 +434,6 @@ layers:
     reason: 'Enacting text: the citing file also cites the codified section, which is the document'
     part: Credits
   full:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us/form/irs/ty2013/p972
     name: Publication 972 (2013), Child Tax Credit
     layer: federal
@@ -521,6 +511,24 @@ layers:
     name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
     source_url: null
     part: Credits
     sources:

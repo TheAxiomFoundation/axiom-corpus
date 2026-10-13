@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "b846734467bca3de2463b78ce940a012a1f4ce65e18859279ddade978bb04f3d"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "f93679b1985d260b266bbcfeb4f94c77739f0f4437a30642ac491129e93801fd"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "2607454a1842778d74e4bfe4f2f31468eeb92089a52ebf36f3917828fa872a70"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-mi-cms-magi-verification-plan-michigan-medicaid-and-chip-verification-plan.pdf",
+      "sha256": "a151d9c594902a0fe7c064bb436c0261a6b06d18756e7bc3d29fe24322465499"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:11.954721+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fqFeI/PqH+vhC8QitAY4QRlJdbCfRz7iryAs75dTNNINiFVbIEZIG1XqezoMlrx6i11ExRoC7PEoZ+aW5JlcDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}
