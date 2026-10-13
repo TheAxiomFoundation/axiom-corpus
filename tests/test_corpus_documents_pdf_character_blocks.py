@@ -365,6 +365,27 @@ def test_a_zero_advance_space_does_not_reorder_sorted_blocks() -> None:
     assert [page.body for page in _pages(content, {"sort_blocks": True})] == ["A B"]
 
 
+def test_a_space_only_block_adds_no_blank_line_to_a_re_read_sorted_page() -> None:
+    # A line of zero-advance spaces between "A" and "B" is a block rawdict reads
+    # no line of; the zero-advance period after "$" makes the page read again.
+    content = _zero_width_pdf(
+        [
+            (72, 100, [("A", 12)]),
+            (72, 200, [("   ", 12)]),
+            (72, 300, [("B", 12)]),
+            (72, 400, [("$", 12), (".", 8)]),
+        ],
+        zero_width=" .",
+    )
+
+    # Unsorted, the text is the printer's, line break included.
+    assert [page.body for page in _pages(content, {})] == ["A\n\nB $."]
+    assert [page.body for page in _pages(content, {"sort_blocks": True})] == ["A B $."]
+    assert [
+        page.body for page in _pages(content, {"sort_blocks": True, "amendment_markup": True})
+    ] == ["A B $."]
+
+
 @pytest.mark.parametrize("force_reread", [False, True])
 def test_a_left_out_zero_width_glyph_does_not_reclassify_its_line(force_reread: bool) -> None:
     # "Old rule" at 12 pt, then a zero-advance 24 pt "~" that extracts as U+200B.
@@ -513,17 +534,34 @@ def test_property_the_reader_adds_only_what_rawdict_leaves_out(
     for sort in (False, True):
         blocks, raw, text = _read(content, sort=sort)
         kept = _without_added(blocks)
+        raw_box = {block["number"]: tuple(block["bbox"]) for block in raw["blocks"]}
         valid_box = {
-            block["number"]
-            for block in raw["blocks"]
-            if _pdf_rect_is_valid(tuple(block["bbox"]))  # type: ignore[arg-type]
+            number
+            for number, box in raw_box.items()
+            if _pdf_rect_is_valid(box)  # type: ignore[arg-type]
         }
+        same_box = {block["number"] for block in kept if block["bbox"] == raw_box[block["number"]]}
         added = Counter(_characters(blocks)) - Counter(_characters(raw["blocks"]))
         assert all(_pdf_rect_is_empty(bbox) for _c, _origin, bbox in added)
+        # Only a block without a valid rawdict box changes box, and only for an
+        # added character that prints.
+        assert valid_box <= same_box
+        for block in blocks:
+            if block.get("added") or block["number"] not in same_box:
+                assert (
+                    any(
+                        not char["c"].isspace() and char["c"] not in {"\u200b", "\ufeff"}
+                        for line in block["lines"]
+                        for span in line["spans"]
+                        if span.get("added")
+                        for char in span["chars"]
+                    )
+                    or tuple(block["bbox"]) == _PDF_EMPTY_RECT
+                )
         if sort:
             assert Counter(_printed_text(blocks)) == Counter(text)
-            assert [block["number"] for block in kept if block["number"] in valid_box] == [
-                block["number"] for block in raw["blocks"] if block["number"] in valid_box
+            assert [block["number"] for block in kept if block["number"] in same_box] == [
+                block["number"] for block in raw["blocks"] if block["number"] in same_box
             ]
         else:
             assert _printed_text(blocks) == text
@@ -540,13 +578,42 @@ def test_property_the_reader_adds_only_what_rawdict_leaves_out(
             assert blocks == raw["blocks"]
 
 
+def _rules_under(
+    lines: list[Line], ruled: list[bool], kind: str | None, zero_width: str
+) -> tuple[tuple[float, float, float, float], ...]:
+    """A strike or underline under each ruled line, measured from its first run."""
+    if kind is None:
+        return ()
+    rules = []
+    for (x, baseline, runs), rule in zip(lines, ruled, strict=False):
+        width = sum(
+            fitz.get_text_length(
+                "".join(char for char in text if char not in zero_width),
+                fontname="helv",
+                fontsize=size,
+            )
+            for text, size in runs
+        )
+        if rule and width:
+            offset = -0.23 if kind == "strike" else 0.12
+            rules.append((x, x + width, baseline + offset * runs[0][1], 0.6))
+    return tuple(rules)
+
+
 @settings(max_examples=150, deadline=None, suppress_health_check=[HealthCheck.too_slow])
-@given(lines=_lines, zero_width=_zero_width)
+@given(
+    lines=_lines,
+    zero_width=_zero_width,
+    kind=st.sampled_from([None, "strike", "underline"]),
+    ruled=st.lists(st.booleans(), min_size=6, max_size=6),
+)
 def test_property_the_layered_path_reads_again_only_where_rawdict_differs(
-    lines: list[Line], zero_width: str
+    lines: list[Line], zero_width: str, kind: str | None, ruled: list[bool]
 ) -> None:
     """Invariant 4: every generated page extracts; rawdict-whole pages as before."""
-    content = _zero_width_pdf(lines, zero_width=zero_width)
+    content = _zero_width_pdf(
+        lines, zero_width=zero_width, rules=_rules_under(lines, ruled, kind, zero_width)
+    )
     patch, calls = _counting_reader()
     with fitz.open(stream=content, filetype="pdf") as document, patch:
         page = document[0]

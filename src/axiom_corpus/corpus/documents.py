@@ -1487,8 +1487,11 @@ def _pdf_page_character_blocks(
     ``sort`` orders the blocks as ``get_text("rawdict", sort=True)`` does, by the
     bottom and then the left edge of each block's box, keeping their order on
     ties. A block keeps rawdict's box, so added characters never move a block
-    rawdict reads; only a block without a valid rawdict box takes the box around
-    its added characters.
+    rawdict reads. Only a block without a valid rawdict box (rawdict read none
+    of its lines, or none of it) takes the box around its added characters that
+    print, so that it sorts where they appear; one whose added characters are
+    all spaces or characters ``_normalize_text`` drops keeps the empty box and
+    sorts first, as rawdict sorts such a block, adding no blank line.
     """
     textpage = page.get_textpage(flags=flags)
     raw_blocks = iter(textpage.extractRAWDICT()["blocks"])
@@ -1499,7 +1502,8 @@ def _pdf_page_character_blocks(
     def mismatch(detail: str) -> RuntimeError:
         return RuntimeError(
             f"PDF page {page_number}: PyMuPDF's rawdict does not line up with its text page "
-            f"({detail}); amendment_markup and sort_blocks cannot read this page"
+            f"({detail}); keep the page out of the amendment_markup page range, or extract "
+            "this PDF without amendment_markup and sort_blocks"
         )
 
     blocks: list[dict[str, Any]] = []
@@ -1543,8 +1547,7 @@ def _pdf_page_character_blocks(
             if raw_line is None:
                 if printed:
                     lines.append({"spans": _pdf_added_spans(printed, sizes), "added": True})
-                    for char in printed:
-                        added_box = _pdf_union_rect(added_box, char["bbox"])
+                    added_box = _pdf_printing_box(added_box, printed)
                 continue
             spans = list(raw_line.get("spans", ()))
             position = 0
@@ -1581,8 +1584,7 @@ def _pdf_page_character_blocks(
                     **raw_line,
                     "spans": [*spans, *_pdf_added_spans(dropped, sizes[position:])],
                 }
-                for char in dropped:
-                    added_box = _pdf_union_rect(added_box, char["bbox"])
+                added_box = _pdf_printing_box(added_box, dropped)
             lines.append(raw_line)
         if next(raw_lines, None) is not None:
             raise mismatch("rawdict holds a line the text page does not")
@@ -1601,6 +1603,14 @@ def _pdf_page_character_blocks(
     if sort:
         blocks.sort(key=lambda block: (block["bbox"][3], block["bbox"][0]))
     return blocks
+
+
+def _pdf_printing_box(box: _PdfRect, chars: list[dict[str, Any]]) -> _PdfRect:
+    """Add to ``box`` the boxes of the characters that print in normalized text."""
+    for char in chars:
+        if not char["c"].isspace() and char["c"] not in {"\u200b", "\ufeff"}:
+            box = _pdf_union_rect(box, char["bbox"])
+    return box
 
 
 def _pdf_added_spans(chars: list[dict[str, Any]], sizes: list[float]) -> list[dict[str, Any]]:
