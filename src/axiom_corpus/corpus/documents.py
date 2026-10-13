@@ -3520,15 +3520,14 @@ def _pdf_shift_letters(chars: _LayerChars, shift: int) -> int:
 def _pdf_font_code_shifts(lines: list[_LayerChars], ocr_text: str) -> dict[str, int]:
     """Each font's code shift, for the fonts whose unmapped characters the OCR text decodes.
 
-    ``lines`` holds each layer line's characters (``_LayerChars``). A shift k reads code c as
-    chr(c + k). Evidence
-    for font f and shift k is a line whose unmapped characters are all f's and all decode
-    by k into printable ASCII, which so decoded is a line the OCR text reads
-    (``_ocr_read_line``), with at least _PDF_SHIFT_LINE_LETTERS letters or digits among
-    the decoded characters. Font f's shift is k when no other shift has evidence for f, and
-    k's distinct evidence lines hold at least _PDF_SHIFT_LETTERS decoded letters or
-    digits. A shift of 0 (the codes are the text) counts as a shift, so it makes any other
-    ambiguous, but it is not returned: such a font is left as it is.
+    ``lines`` holds each layer line's characters (``_LayerChars``). A shift k reads code c
+    as chr(c + k). Evidence for font f and shift k is a line whose unmapped characters are
+    all f's and all decode by k into printable ASCII, which so decoded is a line the OCR
+    text reads (``_ocr_read_line``), with at least _PDF_SHIFT_LINE_LETTERS letters or
+    digits among the decoded characters. Font f's shift is k when no other shift has
+    evidence for f, and k's distinct evidence lines hold at least _PDF_SHIFT_LETTERS
+    decoded letters or digits. A shift of 0 (the codes are the text) counts as a shift, so
+    it makes any other ambiguous, but it is not returned: such a font is left as it is.
     """
     reading = _ocr_reading(ocr_text)
     evidence: dict[str, dict[int, dict[str, int]]] = {}
@@ -3557,13 +3556,10 @@ def _pdf_font_code_shifts(lines: list[_LayerChars], ocr_text: str) -> dict[str, 
 
 
 def _pdf_decoded_layer_line(chars: _LayerChars, shifts: dict[str, int]) -> str | None:
-    """The line's text with each unmapped character of a font in ``shifts`` decoded.
-
-    ``chars`` holds the line's characters (``_LayerChars``). Every other character is kept as
-    it is, one for one.
-    None when the line holds an unmapped character of a font in ``shifts`` that its shift
-    does not take into printable ASCII: that font's codes are known not to be text, so the
-    line is garbled.
+    """The text of a line's or span's characters (``_LayerChars``) with each unmapped
+    character of a font in ``shifts`` decoded, one for one; every other character is kept
+    as it is. None when one of those characters does not decode into printable ASCII: its
+    font's codes are known not to be text, so the text is garbled.
     """
     text: list[str] = []
     for char, font in chars:
