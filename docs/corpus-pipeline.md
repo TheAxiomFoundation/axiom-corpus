@@ -442,9 +442,11 @@ error naming the page where that layer differs from the page's default text.
 PyMuPDF leaves zero-width glyphs (a combining mark, a zero-advance period) out of
 the character layer, so keep such a page out of the `amendment_markup` range.
 `amendment_markup` also fails if a page's own text already contains one of the
-delimiters (in the text as extracted, after zero-width characters are dropped),
-if a character is both struck through and underlined, or if `start_page` is
-past the last page.
+delimiters, if a character is both struck through and underlined, or if
+`start_page` is past the last page. It fails too if the text spells a delimiter
+once its zero-width characters are dropped (`[`, U+200B, `-`) and both
+characters sit in the same run or the same plain text, so that no written
+delimiter separates them.
 
 The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
