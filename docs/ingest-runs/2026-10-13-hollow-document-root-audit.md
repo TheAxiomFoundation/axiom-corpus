@@ -170,8 +170,9 @@ SC, VT (two), WI and WY, built by `extract-official-documents` from manifests th
   floor (a superset of these 328) with the old and the new code (sharing Tesseract
   output) gives no error on either side, so every start and stop marker still
   matches; no section label changes; 316 documents gain OCR text (11.2 to 12.4 million
-  characters in all); and the only text-layer tokens with a digit that disappear sit in
-  garbled-font lines or differ from what OCR read only in punctuation.
+  characters in all); and of the 539 text-layer tokens with a digit that disappear, 526
+  sit in garbled-font lines (control characters) and 13 differ from what OCR read only in
+  punctuation.
 
 ### CMS CHIP FCEP SPA summaries: 20 extractor defects
 
