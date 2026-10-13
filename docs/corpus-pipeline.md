@@ -409,7 +409,8 @@ such PDFs. Without them extraction is unchanged.
     underlines elsewhere are not marked.
   - List in `typographic_underlines` any exact phrase whose underline is
     citation typography (an underlined case name, say) rather than an
-    insertion. An occurrence counts, and loses its insertion delimiters, only
+    insertion. A phrase occurs only as whole words ("Jones" does not occur in
+    "Jonesboro"). An occurrence counts, and loses its insertion delimiters, only
     where it is exactly an underlined stretch: its first and last characters
     are underlined and the text next to it is not. Words inside it may be plain,
     like the "v." of a case name. An occurrence inside a longer underlined
@@ -446,9 +447,10 @@ sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
 underline position, which is not classified. Check every new use against a
 rendering of the pages or the publisher's HTML before ingesting it.
 `scripts/compare_pdf_amendment_markup_with_html.py` compares the marked text
-with HTML whose inline styles carry the markup. Within each differing stretch it
-compares labels character by character, after normalizing typographic spelling
-(hyphen and quote variants), in both directions.
+with HTML whose inline styles carry the markup. It labels every character,
+normalizes typographic spelling (hyphen, dash and quote variants), and compares
+the labels character by character in both directions, so labels swapped between
+words or inside a word (a struck and an inserted digit) fail.
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.

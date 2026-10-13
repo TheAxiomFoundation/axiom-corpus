@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import itertools
 import random
+import re
 import warnings
 from pathlib import Path
 from typing import Any
@@ -471,6 +472,17 @@ def test_the_phrase_must_reach_the_end_of_the_underlined_stretch() -> None:
     assert "{+Hamilton+}" in rendered.text
 
 
+def test_a_phrase_does_not_occur_inside_a_longer_word() -> None:
+    raw, states = _states([("Jonesboro", None), ("and", None), ("Jones", I), ("v.", None)])
+    states[0:5] = [I] * 5  # only "Jones" of "Jonesboro" underlined
+
+    rendered = _render_amendment_markup(raw, states, typographic_underlines=("Jones",))
+
+    assert rendered.text == "{+Jones+}boro and Jones v."
+    assert rendered.typographic_underlines == {"Jones": 1}
+    assert rendered.typographic_underlines_kept == {"Jones": 0}
+
+
 def test_overlapping_occurrences_of_a_phrase_are_each_judged() -> None:
     raw, states = _states(
         [("Jones", I), ("v.", None), ("Jones", I), ("v.", None), ("Jones", I), ("ends", None)]
@@ -577,7 +589,7 @@ def test_property_markup_is_faithful_and_strips_to_the_normalized_text() -> None
         assert rendered.inserted_runs == rendered.text.count("{+")
 
 
-_WORDS = ("Jones", "v.", "Yeutter", "x", "y")
+_WORDS = ("Jones", "v.", "Yeutter", "x", "y", "Jonesboro", "xx")
 _PHRASES = ("Jones v. Yeutter", "Jones", "v.", "x y", "Yeutter x", "Jones v. Jones", "x x")
 
 
@@ -596,12 +608,21 @@ def _is_exact_underlined_stretch(raw: str, states: list[str | None], start: int,
     )
 
 
+def _whole_word_starts(raw: str, phrase: str) -> list[int]:
+    """Oracle: every (overlapping) start of ``phrase`` as whole words, by regex."""
+    pattern = (
+        (r"\b" if phrase[0].isalnum() else "")
+        + re.escape(phrase)
+        + (r"\b" if phrase[-1].isalnum() else "")
+    )
+    return [match.start() for match in re.finditer(f"(?=({pattern}))", raw)]
+
+
 def _qualifying_starts(raw: str, states: list[str | None], phrase: str) -> list[int]:
     return [
         start
-        for start in range(len(raw) - len(phrase) + 1)
-        if raw.startswith(phrase, start)
-        and _is_exact_underlined_stretch(raw, states, start, start + len(phrase))
+        for start in _whole_word_starts(raw, phrase)
+        if _is_exact_underlined_stretch(raw, states, start, start + len(phrase))
     ]
 
 
@@ -640,11 +661,7 @@ def test_property_typographic_underlines_only_clear_exact_underlined_stretches()
             expected = None if old[1] == I and position in covered else old[1]
             assert new == (old[0], expected), (raw, states, phrases, position)
         for phrase in phrases:
-            starts = [
-                start
-                for start in range(len(raw) - len(phrase) + 1)
-                if raw.startswith(phrase, start)
-            ]
+            starts = _whole_word_starts(raw, phrase)
             qualifying = _qualifying_starts(raw, states, phrase)
             kept = [
                 start

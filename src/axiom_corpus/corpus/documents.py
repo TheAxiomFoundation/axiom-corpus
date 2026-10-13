@@ -1619,8 +1619,9 @@ def _render_amendment_markup(
     exactly an underlined stretch within a paragraph; such occurrences are
     counted in ``typographic_underlines``. Occurrences that are underlined only
     in part, or that sit inside a longer underlined stretch, keep their state
-    and are counted in ``typographic_underlines_kept``. Every occurrence,
-    overlapping ones included, is judged on the states before any phrase is
+    and are counted in ``typographic_underlines_kept``. A phrase occurs only as
+    whole words (``_phrase_is_whole_words``). Every occurrence, overlapping ones
+    included, is judged on the states before any phrase is
     applied, so the result does not depend on the order of the phrases.
     """
     kept = [
@@ -1669,11 +1670,12 @@ def _render_amendment_markup(
             start = paragraph_text.find(phrase)
             while start >= 0:
                 end = start + len(phrase)
-                if _typographic_underline_occurrence(paragraph, start, end):
-                    typographic_counts[phrase] += 1
-                    cleared.update(range(start, end))
-                elif any(state == _AMENDMENT_INSERTED for _char, state in paragraph[start:end]):
-                    typographic_kept[phrase] += 1
+                if _phrase_is_whole_words(paragraph_text, start, end):
+                    if _typographic_underline_occurrence(paragraph, start, end):
+                        typographic_counts[phrase] += 1
+                        cleared.update(range(start, end))
+                    elif any(state == _AMENDMENT_INSERTED for _c, state in paragraph[start:end]):
+                        typographic_kept[phrase] += 1
                 start = paragraph_text.find(phrase, start + 1)
         for position in cleared:
             character, state = paragraph[position]
@@ -1707,6 +1709,19 @@ def _render_amendment_markup(
         typographic_underlines=typographic_counts,
         typographic_underlines_kept=typographic_kept,
     )
+
+
+def _phrase_is_whole_words(text: str, start: int, end: int) -> bool:
+    """Whether ``text[start:end]`` does not begin or end inside a word.
+
+    As with a regular expression's ``\\b``, a phrase that begins (or ends) with a
+    letter or digit must not continue a letter or digit next to it, so "Jones"
+    does not occur in "Jonesboro"; a phrase ending in punctuation, like "Lyng;",
+    may be followed by anything.
+    """
+    if text[start].isalnum() and start > 0 and text[start - 1].isalnum():
+        return False
+    return not (text[end - 1].isalnum() and end < len(text) and text[end].isalnum())
 
 
 def _typographic_underline_occurrence(

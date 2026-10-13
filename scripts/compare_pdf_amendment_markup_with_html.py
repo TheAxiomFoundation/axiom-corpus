@@ -5,14 +5,15 @@ Some registers publish the same order as an authenticated PDF and as HTML whose
 inline styles carry the amendment markup (``text-decoration: line-through`` for
 deleted text, ``underline`` for inserted text). This check extracts the PDF with
 its manifest's ``extraction`` settings (``amendment_markup``, ``sort_blocks``),
-labels every word of both renderings deleted (D), inserted (I) or plain (P), and
-aligns the two word sequences from the first deleted or inserted word to the
+labels every character of both renderings deleted (D), inserted (I) or plain
+(P), and aligns the two word sequences from the first deleted or inserted word to the
 last. It reports every stretch where the sequences differ and exits 1 if the
 two sides of any such stretch disagree on a label. Within a stretch the
 characters are compared one by one, after typographic spelling differences (a
 non-breaking hyphen, curly quotes) are normalized and the words joined, so a
-word split at a line-end hyphen still lines up and labels swapped between two
-words fail. The check runs in both directions and passes only if both agree.
+word split at a line-end hyphen still lines up, and labels swapped between two
+words or two characters fail. Text on one side only passes only inside a run of
+one label. The check runs in both directions and passes only if both agree.
 
 Usage::
 
@@ -41,6 +42,8 @@ from bs4.element import Comment, NavigableString
 
 from axiom_corpus.corpus import documents
 
+# A word and its labels, one per character: D (deleted), I (inserted) or P
+# (plain), so ``("20056", "PPPDI")`` is a number whose 5 is struck and 6 inserted.
 Word = tuple[str, str]
 
 _DELIMITER_STATES = {"[-": "D", "-]": None, "{+": "I", "+}": None}
@@ -69,18 +72,28 @@ _BLOCK_TAGS = {
 def _words(chars: list[str], states: list[str | None]) -> list[Word]:
     words: list[Word] = []
     text: list[str] = []
-    labels: set[str] = set()
+    labels: list[str] = []
     for char, state in zip(chars, states, strict=True):
         if char.isspace():
             if text:
-                words.append(("".join(text), "".join(sorted(labels))))
-                text, labels = [], set()
+                words.append(("".join(text), "".join(labels)))
+                text, labels = [], []
             continue
         text.append(char)
-        labels.add(state or "P")
+        labels.append(state or "P")
     if text:
-        words.append(("".join(text), "".join(sorted(labels))))
+        words.append(("".join(text), "".join(labels)))
     return words
+
+
+def _word_label(labels: str) -> str:
+    """A word's labels as a set: ``D``, ``I``, ``P`` or a mix such as ``DIP``."""
+    return "".join(sorted(set(labels)))
+
+
+def _shown(word: Word) -> str:
+    text, labels = word
+    return f"{text}<{labels if len(set(labels)) > 1 else labels[0]}>"
 
 
 def html_words(html: bytes) -> list[Word]:
@@ -138,11 +151,24 @@ def pdf_words(pdf: bytes, extraction: dict[str, Any]) -> list[Word]:
     return marked_text_words("\n\n".join(block.body for block in blocks))
 
 
-def _marked_span(words: list[Word]) -> list[Word]:
-    marked = [index for index, (_word, label) in enumerate(words) if label != "P"]
+# Plain words kept on each side of the marked span for the alignment, so a
+# marked word split at a hyphen on one side (a plain "part-" before a marked
+# "time") still lines up with its unsplit form.
+_SPAN_CONTEXT_WORDS = 3
+
+
+def _marked_bounds(words: list[Word]) -> tuple[int, int] | None:
+    marked = [index for index, (_word, labels) in enumerate(words) if set(labels) != {"P"}]
     if not marked:
+        return None
+    return marked[0], marked[-1] + 1
+
+
+def _marked_span(words: list[Word], *, context: int = 0) -> list[Word]:
+    bounds = _marked_bounds(words)
+    if bounds is None:
         return []
-    return words[marked[0] : marked[-1] + 1]
+    return words[max(bounds[0] - context, 0) : bounds[1] + context]
 
 
 # Spellings that differ only in typography: hyphen and quote variants are
@@ -153,6 +179,8 @@ _SPELLING = str.maketrans(
         "\u2011": "-",
         "\u2012": "-",
         "\u2013": "-",
+        "\u2014": "-",
+        "\u2015": "-",
         "\u2212": "-",
         "\u00ad": None,
         "\u2018": "'",
@@ -174,25 +202,26 @@ def _spelling(word: str) -> str:
 def _labelled_characters(words: list[Word]) -> tuple[list[str], list[str]]:
     characters: list[str] = []
     labels: list[str] = []
-    for word, label in words:
-        for character in _spelling(word):
-            characters.append(character)
-            labels.append(label)
+    for word, word_labels in words:
+        for character, label in zip(word, word_labels, strict=True):
+            for normalized in _spelling(character):
+                characters.append(normalized)
+                labels.append(label)
     return characters, labels
 
 
 def _labels_agree(html_part: list[Word], pdf_part: list[Word]) -> bool:
     """Compare the labels of one differing stretch character by character.
 
-    Both sides' words are normalized (``_spelling``), joined without spaces and
-    aligned character by character, each character carrying its word's label.
-    Characters that match must carry the same label, so labels swapped between
-    two words fail however the words are spelled or split
-    (``keep [-old-] {+new+} end`` against ``keep {+old+} [-new-] end``;
-    ``non-`` ``household`` against ``non-household``). Characters that differ
-    are accepted only inside a stretch whose labels are one and the same on
-    both sides, and characters present on one side only only if they are
-    hyphens (a word hyphenated at a line end).
+    Each side's characters keep their own labels, are normalized
+    (``_spelling``), joined without spaces and aligned. Characters that match
+    must carry the same label, so labels swapped between two words, or between
+    two characters of one word (``200[-5-]{+6+}`` against ``200{+5+}[-6-]``),
+    fail however the words are spelled or split. Characters that differ are
+    accepted only where both sides share one label. Characters present on one
+    side only (a footnote digit, a line-end hyphen) must share one label, and
+    that label must be the label of a character next to the gap on the other
+    side (plain, when the other side has none).
     """
     html_characters, html_labels = _labelled_characters(html_part)
     pdf_characters, pdf_labels = _labelled_characters(pdf_part)
@@ -204,8 +233,15 @@ def _labels_agree(html_part: list[Word], pdf_part: list[Word]) -> bool:
         elif operation == "replace":
             if len(set(html_labels[a0:a1]) | set(pdf_labels[b0:b1])) != 1:
                 return False
-        elif any(character != "-" for character in html_characters[a0:a1] + pdf_characters[b0:b1]):
-            return False
+        else:
+            if operation == "delete":
+                one_sided = set(html_labels[a0:a1])
+                around = set(pdf_labels[max(b0 - 1, 0) : b0 + 1])
+            else:
+                one_sided = set(pdf_labels[b0:b1])
+                around = set(html_labels[max(a0 - 1, 0) : a0 + 1])
+            if len(one_sided) != 1 or not (one_sided & around if around else one_sided == {"P"}):
+                return False
     return True
 
 
@@ -213,16 +249,18 @@ def _differing_stretches(
     first: list[Word], second: list[Word]
 ) -> tuple[difflib.SequenceMatcher[str], list[tuple[list[Word], list[Word], bool]]]:
     matcher = difflib.SequenceMatcher(
-        a=[f"{label}|{word}" for word, label in first],
-        b=[f"{label}|{word}" for word, label in second],
+        a=[f"{labels}|{word}" for word, labels in first],
+        b=[f"{labels}|{word}" for word, labels in second],
         autojunk=False,
     )
     stretches = []
     for operation, a0, a1, b0, b1 in matcher.get_opcodes():
         if operation == "equal":
             continue
-        first_part, second_part = first[a0:a1], second[b0:b1]
-        stretches.append((first_part, second_part, _labels_agree(first_part, second_part)))
+        # The words next to the stretch (equal on both sides) give the label
+        # check the context of a word present on one side only.
+        agree = _labels_agree(first[max(a0 - 1, 0) : a1 + 1], second[max(b0 - 1, 0) : b1 + 1])
+        stretches.append((first[a0:a1], second[b0:b1], agree))
     return matcher, stretches
 
 
@@ -232,18 +270,21 @@ def compare(html: list[Word], pdf: list[Word]) -> dict[str, Any]:
     The alignment is run in both directions (HTML against PDF and PDF against
     HTML) and ``ok`` requires both to be free of label conflicts, so the verdict
     does not depend on which side is which. ``differences`` lists the HTML-to-PDF
-    stretches.
+    stretches. Word and label counts cover the marked spans (first to last
+    marked word); the alignment adds ``_SPAN_CONTEXT_WORDS`` words on each side.
     """
     html_span = _marked_span(html)
     pdf_span = _marked_span(pdf)
-    matcher, stretches = _differing_stretches(html_span, pdf_span)
-    _reverse_matcher, reverse_stretches = _differing_stretches(pdf_span, html_span)
+    html_aligned = _marked_span(html, context=_SPAN_CONTEXT_WORDS)
+    pdf_aligned = _marked_span(pdf, context=_SPAN_CONTEXT_WORDS)
+    matcher, stretches = _differing_stretches(html_aligned, pdf_aligned)
+    _reverse_matcher, reverse_stretches = _differing_stretches(pdf_aligned, html_aligned)
     label_conflicts = sum(not agree for _html, _pdf, agree in stretches)
     reverse_label_conflicts = sum(not agree for _pdf, _html, agree in reverse_stretches)
     differences = [
         {
-            "html": " ".join(f"{word}<{label}>" for word, label in html_part),
-            "pdf": " ".join(f"{word}<{label}>" for word, label in pdf_part),
+            "html": " ".join(_shown(word) for word in html_part),
+            "pdf": " ".join(_shown(word) for word in pdf_part),
             "labels_agree": agree,
         }
         for html_part, pdf_part, agree in stretches
@@ -251,8 +292,8 @@ def compare(html: list[Word], pdf: list[Word]) -> dict[str, Any]:
     return {
         "html_words": len(html_span),
         "pdf_words": len(pdf_span),
-        "html_label_counts": dict(Counter(label for _word, label in html_span)),
-        "pdf_label_counts": dict(Counter(label for _word, label in pdf_span)),
+        "html_label_counts": dict(Counter(_word_label(labels) for _word, labels in html_span)),
+        "pdf_label_counts": dict(Counter(_word_label(labels) for _word, labels in pdf_span)),
         "equal_word_ratio": round(matcher.ratio(), 6),
         "differences": differences,
         "label_conflicts": label_conflicts,
