@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/guidance/2026-10-06-w6-benefits-guidance-in.json",
+      "sha256": "48c66d2184c155a0369146969ba391e3dec4461a20dbdaeb9040e5d9d911eb17"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/guidance/2026-10-06-w6-benefits-guidance-in.json",
+      "sha256": "e5606d13b5032ec6c40dbc9a08a26cf872e33f497c84d79182e68b17c8a41d43"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/guidance/2026-10-06-w6-benefits-guidance-in.jsonl",
+      "sha256": "80d87cc22221e24dd6109369290601f4966aca4a87e2697d26210421f83740b7"
+    },
+    {
+      "path": "data/corpus/sources/us-in/guidance/2026-10-06-w6-benefits-guidance-in/official-documents/us-in-guidance-fssa-rcap-provider-guide.pdf",
+      "sha256": "3f49fb97e1b74c94c8cb91a9540a67915aa2b48253ee71d2f16144adfdfa8422"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:51:46.724485+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DSlXQ9/FzHGEXx04lljYRl9y73xGfYvo2+eZ6TKYP8WLb9mjvzi9Ka1onD1+KfrOD7TYC2wk12vloExwgFl8BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-in"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/guidance/2026-10-06-w6-benefits-guidance-md.json",
+      "sha256": "653d0c97383db1058a6ce1e28ecafffe4172112882157a2be6ecfe156ea12770"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/guidance/2026-10-06-w6-benefits-guidance-md.json",
+      "sha256": "4d6c24d0e41b909824f441089feb9d3f49c45cfa57ec297bb0197c1dc4c121bc"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/guidance/2026-10-06-w6-benefits-guidance-md.jsonl",
+      "sha256": "5bba5c297cd397cb89d94d29ad834b9990ee7ee056d69a00f5335ae5dfbb57ee"
+    },
+    {
+      "path": "data/corpus/sources/us-md/guidance/2026-10-06-w6-benefits-guidance-md/official-documents/us-md-guidance-dhs-fia-at-26-08.pdf",
+      "sha256": "08980b1d348ae715d07a5276d93d5b9a696ee8af0f811df6599e72d239a38226"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:03.174314+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RLVk5+OLq8M3D2nvZmXyI9uNH6eKaR+AJdV8oGwdwUP3tl3XtYqdA46rJ0yFWo91Whi1W9LNO6XvU6HF/SIqBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-md"
+}

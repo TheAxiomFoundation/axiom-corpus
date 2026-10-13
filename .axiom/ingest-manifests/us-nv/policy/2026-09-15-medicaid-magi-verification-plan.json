@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "972e06e59c949c617cd0575d76243407ef7d9a192214f49fa0b7f64efc644891"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "b929d3e5eeebec1b6c11ac2bd1f343b3363513890efc3918c13a9a0d5ee4740e"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "0ead48069e86eefdcab18dff321f35e466fb6772a28e1be47ca85c745fc67292"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-nv-cms-magi-verification-plan-nevada-verification-plan-template-final.pdf",
+      "sha256": "429015c9ed3d4f83f3b755238aee28ab42ce556642cf46778c1a3134ea7a96ae"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:51.758521+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UraiS6e6gTv4AaK/tCbb1hdZID9u1nxmJqY7MINXHh/PiPAawPEsPBrVW4IjrQTkjb76b5rqdSRTuOpnSWTKCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

@@ -44,6 +44,8 @@ CALWORKS_VERSION = (
     "-wic-11452.018"
 )
 CHAPTER_VERSION = "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
+# #742's table-preserving successors carry the same plain paths as the scopes they succeed.
+PRESERVE_TABLES = "-r2026-09-24-preserve-tables"
 # citation path -> (op_statues, op_chapter, op_section, dated clauses), in picker order.
 EXPECTED = {
     "us-ca/statute/wic/11450--operative-2021-07-01": (
@@ -262,11 +264,13 @@ def test_every_us_ca_plain_row_of_these_sections_is_one_of_these_versions() -> N
             old, new = _table_body(plain_html).splitlines(), rows[variant]["body"].splitlines()
             assert old[:-1] == new[:-1], (plain, provisions.stem)
             seen.setdefault(plain, set()).add(provisions.stem)
+    calworks = {CALWORKS_VERSION, CALWORKS_VERSION + PRESERVE_TABLES}
+    chapter = {CHAPTER_VERSION, CHAPTER_VERSION + PRESERVE_TABLES}
     assert seen == {
-        "us-ca/statute/wic/11450": {CALWORKS_VERSION},
-        "us-ca/statute/wic/11451.5": {CALWORKS_VERSION},
-        "us-ca/statute/rtc/17552.3": {CHAPTER_VERSION},
-        "us-ca/statute/rtc/17563.5": {CHAPTER_VERSION},
+        "us-ca/statute/wic/11450": calworks,
+        "us-ca/statute/wic/11451.5": calworks,
+        "us-ca/statute/rtc/17552.3": chapter,
+        "us-ca/statute/rtc/17563.5": chapter,
     }
     wic_old = _table_body(
         _source(
@@ -344,11 +348,16 @@ def test_no_other_us_ca_scope_carries_a_variant_path() -> None:
 
 @pytest.mark.parametrize(
     "cut",
-    ["us-rulespec-2026-09-24-snap-fy2027-cola", "us-rulespec-2026-09-14-wave4-r2-union"],
+    [
+        "us-rulespec-2026-09-24-snap-fy2027-cola",
+        "us-rulespec-2026-09-14-wave4-r2-union",
+        "us-rulespec-2026-10-13-w7-bundle-gaps-union",
+    ],
 )
 def test_the_scope_joins_the_newest_cuts_us_ca_statute_scopes_cleanly(cut: str) -> None:
     """Additive: next to each line's us-ca statute scopes (CalWORKs plus the recovery scope,
-    or CalWORKs plus the chapter scope) it shares no citation path and validates clean."""
+    CalWORKs plus the chapter scope, or their table-preserving successors plus the WIC title
+    scope) it shares no citation path and validates clean."""
     manifest = ReleaseManifest.load(REPO_ROOT / f"manifests/releases/{cut}.json")
     scopes = tuple(
         scope

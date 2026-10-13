@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-health-policy-sc
+documents:
+- source_id: us-sc-w6-health-scdhhs-1115-palmetto-pathways-to-independence-2025-06-23
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Palmetto Pathways to Independence: Community Engagement Section 1115 Demonstration Waiver Application
+    (June 23, 2025)'
+  source_url: https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-06-23'
+  citation_path: us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Health and Human Services (SCDHHS)
+    program: MEDICAID
+    document_subtype: section_1115_application_pdf
+    source_discovery_group: us-sc/policy/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 111
+    bundle_url: https://www.scdhhs.gov/sites/dhhs/files/waivers/2025-06-23%20Palmetto%20Pathways%20to%20Independence%20Submission%20(1).pdf

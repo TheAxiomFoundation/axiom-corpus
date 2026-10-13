@@ -1,0 +1,192 @@
+version: 2026-10-06-w6-income-tax-forms-md
+documents:
+- source_id: us-md-form-comptroller-ty2023-502cr
+  jurisdiction: us-md
+  document_class: form
+  title: 2023 Maryland Form 502CR Income Tax Credits for Individuals
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/forms/2023/502CR.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2023/502cr
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-md-form-comptroller-ty2024-502cr
+  jurisdiction: us-md
+  document_class: form
+  title: 2024 Maryland Form 502CR Income Tax Credits for Individuals
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/forms/2024/502CR.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2024/502cr
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-md-form-comptroller-ty2025-502cr
+  jurisdiction: us-md
+  document_class: form
+  title: 2025 Maryland Form 502CR Income Tax Credits for Individuals
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/forms/2025/502cr.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2025/502cr
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2025'
+- source_id: us-md-form-comptroller-ty2023-resident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2023 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2023/Resident-Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2023/resident-booklet
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-md-form-comptroller-ty2024-resident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2024 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2024/Resident-Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2024/resident-booklet
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-md-form-comptroller-ty2024-nonresident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2024 Maryland Nonresident Tax Forms and Instructions (Nonresident Booklet)
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2024/Nonresident-Booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2024/nonresident-booklet
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-md-form-comptroller-ty2025-resident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2025 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
+  source_url: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2025/resident-booklet
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2025'
+- source_id: us-md-form-comptroller-ty2020-resident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2020 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
+  source_url: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2020.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2020/resident-booklet
+  expression_date: '2020-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2020'
+- source_id: us-md-form-comptroller-ty2021-resident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2021 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
+  source_url: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2021/resident-booklet
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-md-form-comptroller-ty2022-resident-booklet
+  jurisdiction: us-md
+  document_class: form
+  title: 2022 Maryland State and Local Tax Forms and Instructions (Resident Booklet)
+  source_url: https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-md/form/comptroller/ty2022/resident-booklet
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Comptroller of Maryland
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'

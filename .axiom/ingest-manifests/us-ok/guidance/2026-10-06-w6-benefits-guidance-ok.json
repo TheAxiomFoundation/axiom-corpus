@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok.json",
+      "sha256": "02ea8176330f85bd80b6eee7b99734f5255e673d3ad6a8b8428453eadfa4b7cc"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok.json",
+      "sha256": "e16c84a604f8846dc8f47acd3b8296416bb3825a5e085724f8caa5be7c19cf34"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok.jsonl",
+      "sha256": "52fe0cd0ecaf5eebea544d6e786ad98187a7595936e2f3d9d592d3c90bb0e5ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok/official-documents/us-ok-guidance-oesc-employer-important-numbers-2023.pdf",
+      "sha256": "db39f5acf6c0fb26f39298f453ef2f551037d0b78668fd8400884a60cb44e78d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok/official-documents/us-ok-guidance-oesc-employer-important-numbers-2024.pdf",
+      "sha256": "bd7212a43c13d756edc2e2cadc370608d284593204a1153087d9b3b4b2355267"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok/official-documents/us-ok-guidance-oesc-employer-important-numbers-2025.pdf",
+      "sha256": "91526eeb93cf1acfecb946f125bc077b8219cbcddf449687fe071d4b47c4efdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok/official-documents/us-ok-guidance-oesc-employer-important-numbers-2026.pdf",
+      "sha256": "59c3b9993b32d0c81c5a8210601f8596b6fd06c58e7f3e76aecff7b3ff2fdad3"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/guidance/2026-10-06-w6-benefits-guidance-ok/official-documents/us-ok-guidance-oesc-oes-339-claimant-handbook.pdf",
+      "sha256": "6a1c43f8e4e4efd6d7be824f7eb99b99caa7bff093691ca78eac481388bd7893"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:12.479053+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sSzVGMOgPW6WSwCvXkTu4IzMs8kvOKRWDbRjnOOMSv6oZwp9GT00XX3Ob5sHczCeilnbxFDxc29lq84soJeQBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-ok"
+}

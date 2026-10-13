@@ -610,8 +610,9 @@ class _TexasSection:
 
     @property
     def citation_path(self) -> str:
-        suffix = f"@{self.variant}" if self.variant else ""
-        return f"us-tx/statute/{_texas_code_token(self.code)}/{self.section}{suffix}"
+        return variant_segment(
+            f"us-tx/statute/{_texas_code_token(self.code)}/{self.section}", self.variant
+        )
 
 
 @dataclass(frozen=True)
@@ -6559,7 +6560,7 @@ def _parse_texas_html_document(
             occurrence = section_counts.get(base_citation_path, 0) + 1
             section_counts[base_citation_path] = occurrence
             variant = _texas_section_variant(heading, occurrence)
-            citation_path = f"{base_citation_path}@{variant}" if variant else base_citation_path
+            citation_path = variant_segment(base_citation_path, variant)
             source_url = str(section_anchor.get("href") or f"{document.source_url}#{section}")
             first_body = _texas_section_first_body(text, anchor_text)
             current_section = {

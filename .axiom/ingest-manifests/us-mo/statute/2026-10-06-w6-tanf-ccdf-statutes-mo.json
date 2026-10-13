@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/statute/2026-10-06-w6-tanf-ccdf-statutes-mo.json",
+      "sha256": "ad4e279fe5f1c7163f85272e21083fd5117aacd2a93306a5b56b48fbe1332830"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/statute/2026-10-06-w6-tanf-ccdf-statutes-mo.json",
+      "sha256": "cdcc567faa3bd8dace2487754ad0d39160eea8ecc9596a91c5303483e220ac07"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/statute/2026-10-06-w6-tanf-ccdf-statutes-mo.jsonl",
+      "sha256": "ce83b4cd9e697ffc903fcd7ff6338970d1898a84e31b5c66877682f74ab8b1c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/statute/2026-10-06-w6-tanf-ccdf-statutes-mo/official-documents/us-mo-w6-208-040.html",
+      "sha256": "86d681c80806e43ad58411bdf48fb55d7ed3dcf6d047497575524931b0c7783a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:28.361367+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jmPgg+QYaluBvr799eeTKsFqAppm0JQOvTGPCAoNdN+46X6uckCTW8gehR3L5boH8x037foGyIUBWHdyG/6tDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-mo"
+}

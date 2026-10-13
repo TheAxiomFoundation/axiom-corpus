@@ -1,0 +1,32 @@
+# Wave 7 state-tax (2026-10-12): the 2025 Virginia Appropriation Act as chaptered (HB 1600, Chapter 725 of the
+# 2025 Acts of Assembly), named by the program bundles through a LegiScan copy. Taken from the General Assembly's own
+# State Budget Portal (Legislative Information System): the bill page
+# https://budget.lis.virginia.gov/bill/2025/1/HB1600/Chapter/ links this file as "Full PDF".
+# The official file has the same 800-page layout as the LegiScan copy the bundle names
+# (legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf; PolicyEngine cites its pages 335, 780
+# and 783); the bundle joins to this document through the decisions row, not through this manifest.
+# Run note docs/ingest-runs/2026-10-12-w7-state-tax.md.
+version: 2026-10-12-w7-income-tax-statute-va
+documents:
+- source_id: us-va-statute-budget-2025-hb1600-chapter-725
+  jurisdiction: us-va
+  document_class: statute
+  title: 2025 Acts of Assembly, Chapter 725 (HB 1600), the 2025 Appropriation Act amending Chapter 2 of the 2024 Special Session I (approved May 2, 2025)
+  source_url: https://budget.lis.virginia.gov/get/budget/5130/HB1600/
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  citation_path: us-va/statute/budget/2025/hb1600/chapter-725
+  expression_date: '2025-05-02'
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Virginia General Assembly (Legislative Information System, State Budget Portal)
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w7-state-tax-income-tax-legislation
+    discovered_via: wave-7 program-bundle gaps 2026-10-12 (state-tax.csv); LegiScan row resolved to the State Budget Portal's Full PDF, fetched and read 2026-10-12
+    index_url: https://budget.lis.virginia.gov/bill/2025/1/HB1600/Chapter/
+    publisher_filename: 2025 Session HB1600 Chapter 725.pdf
+    first_page_first_line: 2025 RECONVENED SESSION CHAPTER 725 [H 1600] Approved May 2, 2025 (800 pages)
+    tax_year: '2025'

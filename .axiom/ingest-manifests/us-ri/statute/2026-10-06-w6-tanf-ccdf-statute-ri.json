@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/statute/2026-10-06-w6-tanf-ccdf-statute-ri.json",
+      "sha256": "748c313726ba49c53be4e8bfdac8fe77aca40d2026791288a82675956791eb1e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/statute/2026-10-06-w6-tanf-ccdf-statute-ri.json",
+      "sha256": "bd317aa2d1d845190a0e2fdc1a0f14d704b5d17ec079b8405f3c8ff7a8f912ed"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/statute/2026-10-06-w6-tanf-ccdf-statute-ri.jsonl",
+      "sha256": "d3cffbd68711b74d8897fba73f9fc17ff1cab3a5640a43cf125a1644f5290f8e"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/statute/2026-10-06-w6-tanf-ccdf-statute-ri/official-documents/us-ri-w6-session-laws-2025-278-article-10.html",
+      "sha256": "9d4dc3c5acb4b243f07f90b5c57f1f5813fe51a47aa8304368f33d3cdde2ced0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:58:19.029557+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UtVQkScxf27QKZua80lxBXNeKdrOwo+8nvnCmbAUPcudUKaJiDxGXMRlzd4W3Frd4/6uE3r7iFHWBZ7UVAM1Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statute-ri"
+}

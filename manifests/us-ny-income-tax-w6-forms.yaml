@@ -1,0 +1,424 @@
+version: 2026-10-06-w6-income-tax-forms-ny-r2
+documents:
+- source_id: us-ny-form-tax-ty2021-it-196-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2021 Instructions for Form IT-196, New York Itemized Deductions
+  source_url: https://www.tax.ny.gov/pdf/2021/inc/it196i_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ny/form/tax/ty2021/it-196-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2021/inc/it196i_2021.pdf
+    tax_year: '2021'
+- source_id: us-ny-form-tax-ty2021-it-201-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2021 Instructions for Form IT-201, Full-Year Resident Income Tax Return
+  source_url: https://www.tax.ny.gov/pdf/2021/inc/it201i_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ny/form/tax/ty2021/it-201-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2021/inc/it201i_2021.pdf
+    tax_year: '2021'
+- source_id: us-ny-form-tax-ty2021-it-215-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2021 Instructions for Form IT-215, Claim for Earned Income Credit
+  source_url: https://www.tax.ny.gov/pdf/2021/inc/it215i_2021.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us-ny/form/tax/ty2021/it-215-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2021/inc/it215i_2021.pdf
+    tax_year: '2021'
+- source_id: us-ny-form-tax-ty2022-it-196-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2022 Instructions for Form IT-196, New York Itemized Deductions
+  source_url: https://www.tax.ny.gov/pdf/2022/inc/it196i_2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ny/form/tax/ty2022/it-196-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2022/inc/it196i_2022.pdf
+    tax_year: '2022'
+- source_id: us-ny-form-tax-ty2022-it-201-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2022 Instructions for Form IT-201, Full-Year Resident Income Tax Return
+  source_url: https://www.tax.ny.gov/pdf/2022/printable-pdfs/inc/it201i-2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us-ny/form/tax/ty2022/it-201-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2022/printable-pdfs/inc/it201i-2022.pdf
+    tax_year: '2022'
+- source_id: us-ny-form-tax-ty2024-it-196-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2024 Instructions for Form IT-196, New York Itemized Deductions
+  source_url: https://www.tax.ny.gov/pdf/2024/inc/it196i_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/form/tax/ty2024/it-196-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2024/inc/it196i_2024.pdf
+    tax_year: '2024'
+- source_id: us-ny-form-tax-ty2024-it-201
+  jurisdiction: us-ny
+  document_class: form
+  title: 2024 Form IT-201, Resident Income Tax Return
+  source_url: https://www.tax.ny.gov/pdf/2024/inc/it201_2024_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/form/tax/ty2024/it-201
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2024/inc/it201_2024_fill_in.pdf
+    tax_year: '2024'
+- source_id: us-ny-form-tax-ty2024-it-201-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2024 Instructions for Form IT-201, Full-Year Resident Income Tax Return
+  source_url: https://www.tax.ny.gov/pdf/2024/inc/it201i_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/form/tax/ty2024/it-201-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2024/inc/it201i_2024.pdf
+    tax_year: '2024'
+- source_id: us-ny-form-tax-ty2024-it-214-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2024 Instructions for Form IT-214, Claim for Real Property Tax Credit
+  source_url: https://www.tax.ny.gov/pdf/2024/inc/it214i_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/form/tax/ty2024/it-214-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2024/inc/it214i_2024.pdf
+    tax_year: '2024'
+- source_id: us-ny-form-tax-ty2024-it-267-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2024 Instructions for Form IT-267, Geothermal Energy System Credit
+  source_url: https://www.tax.ny.gov/pdf/2024/inc/it267i_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us-ny/form/tax/ty2024/it-267-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2024/inc/it267i_2024.pdf
+    tax_year: '2024'
+- source_id: us-ny-form-tax-ty2025-it-196-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Instructions for Form IT-196, New York Itemized Deductions
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it196i.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-196-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it196i.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2025-it-213
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Form IT-213, Claim for Empire State Child Credit
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-213
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2025-it-213-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Instructions for Form IT-213, Claim for Empire State Child Credit
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-213-i
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2025-it-215
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Form IT-215, Claim for Earned Income Credit
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it215_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-215
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it215_fill_in.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2025-it-216
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Form IT-216, Claim for Child and Dependent Care Credit
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it216_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-216
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it216_fill_in.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2025-it-255
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Form IT-255, Claim for Solar Energy System Equipment Credit
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it255_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-255
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it255_fill_in.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2025-it-272
+  jurisdiction: us-ny
+  document_class: form
+  title: 2025 Form IT-272, Claim for College Tuition Credit or Itemized Deduction
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it272_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-272
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: form
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/current_forms/it/it272_fill_in.pdf
+    tax_year: '2025'
+- source_id: us-ny-form-tax-ty2023-it-201-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2023 Instructions for Form IT-201, Full-Year Resident Income Tax Return (HTML edition)
+  source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ny/form/tax/ty2023/it-201-i
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm
+    tax_year: '2023'
+- source_id: us-ny-form-tax-ty2023-it-213-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2023 Instructions for Form IT-213, Claim for Empire State Child Credit (HTML edition)
+  source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ny/form/tax/ty2023/it-213-i
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm
+    tax_year: '2023'
+- source_id: us-ny-form-tax-ty2023-it-196-i
+  jurisdiction: us-ny
+  document_class: form
+  title: 2023 Form IT-196-I, Instructions for Form IT-196 (HTML edition)
+  source_url: https://www.tax.ny.gov/forms/html-instructions/2023/it/it196i-2023.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us-ny/form/tax/ty2023/it-196-i
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-mn-oh-2026-10-06
+    discovered_via: 'program-bundle-gaps-2026-10-06/wave6/tax-mn-oh.csv (bundle rows: 1); fetched and read 2026-10-06'
+    bundle_rows:
+    - https://www.tax.ny.gov/pdf/2023/printable-pdfs/inc/it196i-2023.pdf
+    tax_year: '2023'
+    index_url: https://www.tax.ny.gov/forms/prvforms/income_tax_2023.htm
+    source_note: The bundle's printable PDF address is 404; the department's 2023 income tax forms index links this HTML edition.

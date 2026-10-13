@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/statute/2026-10-12-w7-state-benefits-statute-nj.json",
+      "sha256": "b41fb3323c589f7971182a487bf1b9a8f403045f0ad9bb7482339dbe54cc9995"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/statute/2026-10-12-w7-state-benefits-statute-nj.json",
+      "sha256": "ce6c9664ec3b7a0b973e99c58eda233746e03acb6e9bc1a50daae59bb78ccf8f"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/statute/2026-10-12-w7-state-benefits-statute-nj.jsonl",
+      "sha256": "4674d0bf04291e45231371d460515a935c262d248e221a79a9f883a013a618b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-10-12-w7-state-benefits-statute-nj/official-documents/us-nj-statute-session-laws-2013-chapter-45.html",
+      "sha256": "7446947a23370100dc106ba8b948222b2e7479ff3d2518f6d282344de24aa360"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-13T12:06:43.050681+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IG+1lYZMs+YcAdAayLPH5+CEr5T455Vf1A8B5UZzf+zyzpEZ9U9UCE7qN0N/Y5++OvnykwFV9oE8cisBVjScAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-statute-nj"
+}

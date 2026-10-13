@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-hi",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-hi/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "80d4b14e6493def698ac02281bbdd0780a2c54526b11d9b495c14438ec60d105", "size": 330},
+    {"path": "data/corpus/inventory/us-hi/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "4222aabbeb9771fb325e7827f5bdf166b0698ad7b0505b29226e9d9692158dfe", "size": 8310},
+    {"path": "data/corpus/provisions/us-hi/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "2c34b0a26efa5c953bb96ea8b08f7e163184699dabf47addb5794092620fb94e", "size": 461107},
+    {"path": "data/corpus/sources/us-hi/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-hi-dotax-form-n-11-instructions-ty2025.pdf", "sha256": "7160595e466b376ba9c14da1540d21532be9e05d48d01d877f5d953c85e4e4d4", "size": 2128938},
+    {"path": "data/corpus/sources/us-hi/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-hi-dotax-form-n-11-ty2025.pdf", "sha256": "b8ea0d539a3f75d92f66aff6425b66b3277027dde47a367593aa71bf2e52f01a", "size": 380587},
+    {"path": "data/corpus/sources/us-hi/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-hi-dotax-tax-tables-ty2025.pdf", "sha256": "adb738536f92b42154d984f2f1c1fde1c14201e8b46db61e2c53eb175c346d8a", "size": 656244}
+  ]
+}

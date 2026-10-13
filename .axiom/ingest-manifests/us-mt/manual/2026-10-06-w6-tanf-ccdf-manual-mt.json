@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt.json",
+      "sha256": "4a8d65f83b010555b3e98a351f1a0d59781748dfc778b22e2add6deb7ab4d9e6"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt.json",
+      "sha256": "1ef40453bc93bd3780d8508d2ae0f6364bcfe9f2058e243144221f89c8898572"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt.jsonl",
+      "sha256": "b557d4945fc1116fb1130807d9c31a33525636af8484b618119680e9f81bde09"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt/official-documents/us-mt-w6-dphhs-ccdf-cc-21-eligibility-2018-07-07.pdf",
+      "sha256": "9ad2b5d34e666066339f2929fec1a7c7bca14c3751323d63aff256d9668e9ebc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt/official-documents/us-mt-w6-dphhs-ccdf-cc-23-non-tanf-activity-2018-07-07.pdf",
+      "sha256": "54ce1ebeb7b9b1422045ff43cf6e9822d3199042e847db53a77e9ffd26a24690"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt/official-documents/us-mt-w6-dphhs-ccdf-cc-26-income-table-2018-07-07.pdf",
+      "sha256": "9bdb9bab6c725c67ff78f21cc4ce2e001d8cccefec2eb54fe08b740884788722"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/manual/2026-10-06-w6-tanf-ccdf-manual-mt/official-documents/us-mt-w6-dphhs-tanf-501-1-2018-01-01.pdf",
+      "sha256": "804086c60c3881cf4e8253073a809fc4c0813926afd84b89d61c6e7b1518abd9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 36,
+    "missing_count": 0,
+    "provision_count": 36,
+    "source_count": 36
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:54:54.706103+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MJIsQ8SHvWoc9nRETfHrA7rBOar9yGi/lAbBRCaQjAcET+8dNvI+jRt5I4nRXeIb9SgtvHLywrBlsB1fulaFAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-mt"
+}
