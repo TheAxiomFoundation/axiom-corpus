@@ -3064,7 +3064,16 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
     layer_text = str(text)
     if _normalize_text(ocr_text):
-        layer_lines = _pdf_layer_lines(page, extraction=extraction, ocr_text=ocr_text)
+        span_lines = _pdf_layer_lines(page, extraction=extraction)
+        if _same_layer_characters(span_lines, layer_text):
+            span_lines = _pdf_decoded_span_lines(
+                page, span_lines, extraction=extraction, ocr_text=ocr_text
+            )
+            layer_lines = _without_garbled_spans(span_lines)
+        else:
+            # The dict output does not hold the text output's characters: use the text
+            # output's lines, all counted as painted, so no typed text can go missing.
+            layer_lines = [(line, True) for line in layer_text.splitlines()]
         layer_text = "\n".join(_without_failed_recognition_lines(layer_lines, ocr_text))
     return _replace_text(_with_unread_layer_lines(ocr_text, layer_text), text_replacements)
 
@@ -3235,9 +3244,8 @@ def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
     already holds the whole line (``_ocr_read_line``): the same characters in the same
     order, as whole tokens. Only spacing next to a letter, and quote and dash variants, are
     not compared, because layers and OCR break words differently. Two kinds of line are
-    never kept: a line holding a
-    control character (Unicode category Cc) is font-encoding garbage, and a line with no
-    letter or digit is not text. Each kept line appears once, in layer order, and the kept
+    never kept: a line holding a control character (Unicode category Cc) is font-encoding
+    garbage, and a line with no letter or digit is not text. Each kept line appears once, in layer order, and the kept
     lines follow as a paragraph of their own. With no OCR text the layer is returned as it
     is.
 
@@ -3277,6 +3285,10 @@ _RECOGNITION_WORD_LETTERS = 3
 _RECOGNITION_MIN_WORDS = 5
 _RECOGNITION_RUN_LETTERS = 6
 _LETTER_RUN = re.compile(r"[^\W\d_]+")
+# Control characters a text layer uses as ordinary whitespace. Any other (Unicode category
+# Cc) marks a garbled font. Python's split() and splitlines() treat some of those as
+# separators (U+001C to U+001F, U+0085), so a line is judged before it is split.
+_ORDINARY_CONTROL_CHARACTERS = frozenset("\t\n\r\x0b\x0c")
 
 
 def _pdf_span_painted(span: dict[str, Any]) -> bool:
@@ -3291,6 +3303,79 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
     return bool(int(flags) & _PDF_TEXT_PAINTED) and int(span.get("alpha", 255)) > 0
 
 
+def _pdf_layer_lines(
+    page: Any, *, extraction: dict[str, Any]
+) -> list[list[tuple[str, bool]]]:
+    """The page's text-layer lines, each as its spans' (text, painted) pairs.
+
+    The lines and spans of the ``dict`` output, with the text flags and sort of
+    ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
+    spans (``_pdf_span_painted`` gives the paint). Without ``sort_text`` the lines' text
+    joined with newlines is the text output; with it, that output rebuilds lines from
+    words by position, but the characters are the same (``_same_layer_characters``).
+    """
+    data = page.get_text(
+        "dict",
+        sort=bool(extraction.get("sort_text")),
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+    )
+    return [
+        [(str(span.get("text", "")), _pdf_span_painted(span)) for span in line.get("spans", ())]
+        for block in data.get("blocks", ())
+        for line in block.get("lines", ())
+    ]
+
+
+def _layer_characters(text: str) -> Counter[str]:
+    return Counter(
+        char for char in text if not char.isspace() and unicodedata.category(char) != "Cc"
+    )
+
+
+def _same_layer_characters(span_lines: list[list[tuple[str, bool]]], layer_text: str) -> bool:
+    """Whether the spans hold the text output's characters, whitespace and control
+    characters aside (the sorted text output drops a garbled font's control "spaces")."""
+    spans = "".join(text for spans in span_lines for text, _ in spans)
+    return _layer_characters(spans) == _layer_characters(layer_text)
+
+
+def _without_garbled_spans(span_lines: list[list[tuple[str, bool]]]) -> list[tuple[str, bool]]:
+    """Each layer line's text without its garbled spans, with whether it is painted.
+
+    A span holding a control character other than ordinary whitespace
+    (``_has_control_character``) is a garbled font's and is left out whole, before
+    anything splits it; where it stood between kept spans a space keeps them apart.
+    The line is painted when any remaining span with visible characters is. A line left
+    with no visible character is dropped.
+    """
+    lines: list[tuple[str, bool]] = []
+    for spans in span_lines:
+        parts: list[str] = []
+        painted = False
+        gap = False
+        for text, span_painted in spans:
+            if _has_control_character(text):
+                gap = any(parts)
+                continue
+            if gap:
+                parts.append(" ")
+                gap = False
+            parts.append(text)
+            painted = painted or (span_painted and bool(text.strip()))
+        line = "".join(parts)
+        if line.strip():
+            lines.append((line, painted))
+    return lines
+
+
+def _has_control_character(text: str) -> bool:
+    """Whether ``text`` holds a control character other than ordinary whitespace."""
+    return any(
+        unicodedata.category(char) == "Cc" and char not in _ORDINARY_CONTROL_CHARACTERS
+        for char in text
+    )
+
+
 # A layer line's characters, each with its font's name when it is an unmapped character
 # (``_pdf_unmapped_characters``) and none of that font's other characters in the line is
 # mapped, MuPDF's own spaces (U+0020) aside, and None otherwise. A font whose characters
@@ -3300,68 +3385,77 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
 _LayerChars = list[tuple[str, str | None]]
 
 
-def _pdf_layer_lines(
-    page: Any, *, extraction: dict[str, Any], ocr_text: str | None = None
-) -> list[tuple[str, bool]]:
-    """The page's text-layer lines, each with whether it is painted (``_pdf_span_painted``).
+def _pdf_decoded_span_lines(
+    page: Any,
+    span_lines: list[list[tuple[str, bool]]],
+    *,
+    extraction: dict[str, Any],
+    ocr_text: str,
+) -> list[list[tuple[str, bool]]]:
+    """``span_lines`` (``_pdf_layer_lines``) with the codes of shifted fonts decoded.
 
-    The lines come from the ``rawdict`` output, with the text flags and sort of
-    ``_pdf_page_text``, so each carries its spans' paint. Without ``sort_text`` they are
-    exactly the lines of ``page.get_text("text")``. With it, that output rebuilds lines
-    from words by position, while these stay whole, in the ``rawdict`` output's sorted
-    order, holding the same characters other than control characters. A line is painted
-    when any of its spans with visible characters is.
-
-    With non-blank ``ocr_text``, the characters MuPDF has no Unicode for
-    (``_pdf_unmapped_characters``) are decoded in each font whose codes the OCR text shows
-    to be a constant shift from ASCII (``_pdf_font_code_shifts``), and a line holding such
-    a character that its font's shift does not decode is left out
-    (``_pdf_decoded_layer_line``). Every other character, and every line of a page with no
-    such font, is as it is without ``ocr_text``.
+    The characters MuPDF has no Unicode for (``_pdf_unmapped_characters``) are decoded in
+    each font whose codes the OCR text shows to be a constant shift from ASCII
+    (``_pdf_font_code_shifts``); a span of such a font that the shift does not decode is
+    left out like a garbled span, a space standing in its place. Every other span, and
+    every span's paint, is unchanged, and so is every span of a page with no such font.
+    The characters are read from the ``rawdict`` output, which has the ``dict`` output's
+    lines and spans; if it does not, nothing is decoded.
     """
     sort = bool(extraction.get("sort_text"))
     flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
+    unmapped = _pdf_unmapped_characters(page, sort=sort, flags=flags)
+    if not unmapped:
+        return span_lines
     data = page.get_text("rawdict", sort=sort, flags=flags)
-    unmapped: frozenset[tuple[float, float, int]] = frozenset()
-    if ocr_text is not None and _normalize_text(ocr_text):
-        unmapped = _pdf_unmapped_characters(page, sort=sort, flags=flags)
-    # Each line's characters (``_LayerChars``) and each span's place in the line.
-    raw_lines: list[tuple[_LayerChars, list[tuple[int, int, dict[str, Any]]]]] = []
+    raw_lines = [
+        [list(span.get("chars", ())) for span in line.get("spans", ())]
+        for block in data.get("blocks", ())
+        for line in block.get("lines", ())
+    ]
+    fonts = [
+        [str(span.get("font", "")) for span in line.get("spans", ())]
+        for block in data.get("blocks", ())
+        for line in block.get("lines", ())
+    ]
+    if [["".join(str(c["c"]) for c in chars) for chars in line] for line in raw_lines] != [
+        [text for text, _ in spans] for spans in span_lines
+    ]:
+        return span_lines
     seen: Counter[tuple[float, float]] = Counter()
-    for block in data.get("blocks", ()):
-        for line in block.get("lines", ()):
-            values: list[tuple[str, str, bool]] = []
-            spans: list[tuple[int, int, dict[str, Any]]] = []
-            for span in line.get("spans", ()):
-                start = len(values)
-                font = str(span.get("font", ""))
-                for char in span.get("chars", ()):
-                    origin = (float(char["origin"][0]), float(char["origin"][1]))
-                    occurrence = seen[origin]
-                    seen[origin] += 1
-                    value = str(char["c"])
-                    code = value != "\ufffd" and (*origin, occurrence) in unmapped
-                    values.append((value, font, code))
-                spans.append((start, len(values), span))
-            mixed = {font for value, font, code in values if not code and value != " "}
-            chars: _LayerChars = [
-                (value, font if code and font not in mixed else None)
-                for value, font, code in values
+    lines: list[list[_LayerChars]] = []
+    for line, line_fonts in zip(raw_lines, fonts, strict=True):
+        values: list[list[tuple[str, str, bool]]] = []
+        for chars, font in zip(line, line_fonts, strict=True):
+            span_values: list[tuple[str, str, bool]] = []
+            for char in chars:
+                origin = (float(char["origin"][0]), float(char["origin"][1]))
+                occurrence = seen[origin]
+                seen[origin] += 1
+                value = str(char["c"])
+                code = value != "\ufffd" and (*origin, occurrence) in unmapped
+                span_values.append((value, font, code))
+            values.append(span_values)
+        mixed = {font for span in values for value, font, code in span if not code and value != " "}
+        lines.append(
+            [
+                [(value, None if not code or font in mixed else font) for value, font, code in span]
+                for span in values
             ]
-            raw_lines.append((chars, spans))
-    shifts: dict[str, int] = {}
-    if unmapped and ocr_text is not None:
-        shifts = _pdf_font_code_shifts([chars for chars, _ in raw_lines], ocr_text)
-    lines: list[tuple[str, bool]] = []
-    for chars, spans in raw_lines:
-        text = _pdf_decoded_layer_line(chars, shifts)
-        if text is None:
-            continue
-        painted = any(
-            _pdf_span_painted(span) for start, end, span in spans if text[start:end].strip()
         )
-        lines.extend((part, painted) for part in text.splitlines())
-    return lines
+    shifts = _pdf_font_code_shifts(
+        [[char for span in line for char in span] for line in lines], ocr_text
+    )
+    if not shifts:
+        return span_lines
+    decoded_lines: list[list[tuple[str, bool]]] = []
+    for line_spans, spans in zip(lines, span_lines, strict=True):
+        decoded: list[tuple[str, bool]] = []
+        for chars, (_, painted) in zip(line_spans, spans, strict=True):
+            decoded_text = _pdf_decoded_layer_line(chars, shifts)
+            decoded.append((" " if decoded_text is None else decoded_text, painted))
+        decoded_lines.append(decoded)
+    return decoded_lines
 
 
 def _pdf_unmapped_characters(
@@ -3477,27 +3571,30 @@ def _pdf_decoded_layer_line(chars: _LayerChars, shifts: dict[str, int]) -> str |
 
 
 def _letter_runs(text: str) -> list[str]:
-    return [run.lower() for run in _LETTER_RUN.findall(unicodedata.normalize("NFKC", text))]
+    """Maximal runs of letters after NFKC, not yet lower-cased (lower-casing can lengthen
+    a run: "\u0130" becomes two characters), so lengths are counted on these."""
+    return list(_LETTER_RUN.findall(unicodedata.normalize("NFKC", text)))
 
 
 def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool:
     """Whether an invisible recognition layer disagrees with the OCR text almost everywhere.
 
     True when the layer has at least _RECOGNITION_MIN_WORDS distinct words (letter runs of
-    _RECOGNITION_WORD_LETTERS or more, lower-cased) and fewer than a third of them occur in
+    _RECOGNITION_WORD_LETTERS or more, then lower-cased) and fewer than a third of them occur in
     the OCR text: as one of its letter runs, or, at _RECOGNITION_RUN_LETTERS or more
-    letters, inside its letters run together. Lines with control characters do not count.
+    letters, inside its letters run together. Lines with a control character
+    (``_has_control_character``) do not count.
     """
     words = {
-        word
+        run.lower()
         for line in invisible_lines
-        if not any(unicodedata.category(char) == "Cc" and not char.isspace() for char in line)
-        for word in _letter_runs(line)
-        if len(word) >= _RECOGNITION_WORD_LETTERS
+        if not _has_control_character(line)
+        for run in _letter_runs(line)
+        if len(run) >= _RECOGNITION_WORD_LETTERS
     }
     if len(words) < _RECOGNITION_MIN_WORDS:
         return False
-    ocr_runs = _letter_runs(ocr_text)
+    ocr_runs = [run.lower() for run in _letter_runs(ocr_text)]
     ocr_words = set(ocr_runs)
     ocr_letters = "".join(ocr_runs)
     found = sum(
@@ -3513,22 +3610,26 @@ def _without_failed_recognition_lines(
 ) -> list[str]:
     """The text-layer lines worth merging into ``ocr_text``, from (text, painted) pairs.
 
-    Painted lines were typed onto the scan, and every one is kept. Invisible lines are a
-    recognition layer, an earlier OCR of the same image, and two kinds are dropped: a
-    fragment (fewer than _RECOGNITION_FRAGMENT_LETTERS letters and no digit, such as
-    "cc:" or a stray "L"), and every invisible line of a failed layer
-    (``_recognition_layer_failed``), such as a sideways slide read as "Ckm" and "rML", or a
-    signature in a font whose codes are shifted ("Ejhjubmmz!tjhofe!cz" for "Digitally
+    A line holding a control character (``_has_control_character``) is a garbled font's
+    and is dropped (``_pdf_page_text`` has already left garbled spans out of the PDF's
+    lines). Other painted lines were typed onto the scan, and every one is kept. Invisible lines are a recognition
+    layer, an earlier OCR of the same image, and two more kinds are dropped: a fragment
+    (fewer than _RECOGNITION_FRAGMENT_LETTERS letters and no digit, counted after NFKC
+    normalization, such as "cc:" or a stray "L"), and every invisible line of a failed
+    layer (``_recognition_layer_failed``), such as a sideways slide read as "Ckm" and "rML",
+    or a signature in a font whose codes are shifted ("Ejhjubmmz!tjhofe!cz" for "Digitally
     signed by"). The lines kept stay in order.
     """
     invisible = [text for text, painted in lines if not painted]
     failed = _recognition_layer_failed(invisible, ocr_text)
     kept: list[str] = []
     for text, painted in lines:
+        if _has_control_character(text):
+            continue
         if not painted:
-            letters = sum(1 for char in text if char.isalpha())
+            letters = sum(len(run) for run in _letter_runs(text))
             fragment = letters < _RECOGNITION_FRAGMENT_LETTERS and not any(
-                char.isdigit() for char in text
+                char.isdigit() for char in unicodedata.normalize("NFKC", text)
             )
             if failed or fragment:
                 continue

@@ -282,11 +282,12 @@ def test_layer_lines_report_whether_text_is_painted(tmp_path, render_mode, fill_
         fill_opacity=fill_opacity,
     )
     with fitz.open(pdf) as document:
-        lines = _pdf_layer_lines(document[0], extraction={})
+        span_lines = _pdf_layer_lines(document[0], extraction={})
         text = document[0].get_text("text")
 
-    assert [line for line, _ in lines] == text.splitlines()
-    assert lines and all(flag is painted for _, flag in lines)
+    assert ["".join(span for span, _ in spans) for spans in span_lines] == text.splitlines()
+    flags = [flag for spans in span_lines for span, flag in spans if span.strip()]
+    assert flags and all(flag is painted for flag in flags)
 
 
 # A recognition layer that agrees with none of OCR's words: five words of 3+ letters.

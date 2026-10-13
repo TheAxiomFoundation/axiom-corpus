@@ -5,9 +5,9 @@ the layer lines OCR did not read are kept after it (tests/test_ocr_layer_line_pr
 On CMS state-plan forms the dates, names and notes typed onto the scan are often in a
 Type0 Identity-H font with no ToUnicode map: MuPDF has no Unicode for those characters and
 prints their codes, which there are a constant shift from ASCII (Minion Pro's 31 below,
-Arial's and Times New Roman's 29). With OCR text, ``_pdf_layer_lines`` finds those
+Arial's and Times New Roman's 29). With OCR text, ``_pdf_decoded_span_lines`` finds those
 characters, learns each font's shift from the font's lines OCR read, and decodes the
-font's other lines.
+font's spans before ``_without_garbled_spans`` would leave them out.
 
 Decoding a line, ``_pdf_decoded_layer_line(chars, shifts)``, for every input:
 
@@ -28,13 +28,14 @@ S5. Round trip: ASCII lines written in a font by a shift k, read by OCR, give k 
 S6. Lines without unmapped characters, the order of the lines and repeated lines change
     nothing, and shift 0 is never returned.
 
-Reading a page, ``_pdf_layer_lines`` and ``_pdf_page_text`` (built PDFs, and retained CMS
-pages with Tesseract's stored output):
+Reading a page, ``_pdf_decoded_span_lines`` and ``_pdf_page_text`` (built PDFs, and
+retained CMS pages with Tesseract's stored output):
 
-S7. A page without unmapped characters gives the same lines with and without OCR text, and
-    the lines of the ``dict`` reader this replaced.
-S8. A span that mixes mapped and unmapped characters is never decoded, and a mapped span
-    is never changed, even when it shares its font's name with a shifted one.
+S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an unmapped
+    character, and every span's paint unchanged on every page.
+S8. A span without an unmapped character is never changed, even when it shares its font's
+    name with a shifted one, and a font whose characters in a line are partly mapped is not
+    decoded in that line.
 """
 
 from __future__ import annotations
@@ -57,11 +58,12 @@ from axiom_corpus.corpus.documents import (
     _PDF_SHIFT_LETTERS,
     _PDF_SHIFT_LINE_LETTERS,
     _pdf_decoded_layer_line,
+    _pdf_decoded_span_lines,
     _pdf_font_code_shifts,
     _pdf_layer_lines,
     _pdf_page_text,
-    _pdf_span_painted,
     _pdf_text_flags,
+    _without_garbled_spans,
 )
 from tests.test_ocr_layer_line_properties import _reference_reads
 
@@ -149,7 +151,9 @@ def page_lines(draw):
     if draw(st.booleans()):
         lines.append(draw(CHARS))
     read = draw(st.lists(st.sampled_from(typed), max_size=len(typed)))
-    noise = draw(st.lists(st.sampled_from(["Date", "12/10/15", "Acting", "of", "2020"]), max_size=4))
+    noise = draw(
+        st.lists(st.sampled_from(["Date", "12/10/15", "Acting", "of", "2020"]), max_size=4)
+    )
     return lines, "\n".join(read + noise)
 
 
@@ -412,8 +416,7 @@ def test_without_evidence_nothing_is_decoded(tmp_path, monkeypatch):
     expected = [
         line
         for line in expected
-        if not any(unicodedata.category(c) == "Cc" for c in line)
-        and any(c.isalnum() for c in line)
+        if not any(unicodedata.category(c) == "Cc" for c in line) and any(c.isalnum() for c in line)
     ]
     assert _appended(ocr, result) == expected
     assert "Acting Deputy Director" not in result
@@ -427,18 +430,31 @@ def test_without_ocr_text_the_layer_is_returned_as_it_is(tmp_path, monkeypatch):
     assert _page_text(pdf, "  \n", monkeypatch) == raw
 
 
+def _layer(page, ocr_text: str, extraction: dict | None = None) -> list[str]:
+    """The layer lines ``_pdf_page_text`` merges, after decoding and garbled spans."""
+    extraction = extraction or {}
+    spans = _pdf_layer_lines(page, extraction=extraction)
+    spans = _pdf_decoded_span_lines(page, spans, extraction=extraction, ocr_text=ocr_text)
+    return [text for text, _ in _without_garbled_spans(spans)]
+
+
 def test_a_mapped_span_sharing_the_shifted_fonts_name_is_never_changed(tmp_path, monkeypatch):
     # AL-20-0004 page 4 in small: a signature appearance in a mapped "ArialMT", and typed
     # lines in an unmapped font of the same name.
     pdf = _form_pdf(
         tmp_path / "form.pdf",
-        [("4/6/2020", HIGH), ("Anne Marie Costello", HIGH), ("NEW", HIGH), ("Anne M. Costello", None)],
+        [
+            ("4/6/2020", HIGH),
+            ("Anne Marie Costello", HIGH),
+            ("NEW", HIGH),
+            ("Anne M. Costello", None),
+        ],
         name="ArialMT",
     )
     ocr = "Date: 4/6/2020\nAnne Marie Costello\nNEW\n"
 
     with fitz.open(pdf) as document:
-        lines = [text for text, _ in _pdf_layer_lines(document[0], extraction={}, ocr_text=ocr)]
+        lines = _layer(document[0], ocr)
     result = _page_text(pdf, ocr, monkeypatch)
 
     # S8: the mapped line is read as it is; the shifted lines decode, and OCR read them.
@@ -460,43 +476,39 @@ def test_a_font_mixing_mapped_and_unmapped_characters_in_a_line_is_not_decoded_t
     ocr = "DATE APPROVED: 6/24/19\nEFFECTIVE: 4/1/19\n"
 
     with fitz.open(pdf) as document:
-        lines = [text for text, _ in _pdf_layer_lines(document[0], extraction={}, ocr_text=ocr)]
+        page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
+        decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
 
     # The date lines give the shift (9 digits) and decode. The title line mixes mapped
-    # letters and unmapped spaces, so it keeps its control codes, and the letter-only line
-    # its raw letters: neither becomes text that reads as something it is not.
-    assert lines[:2] == ["6/24/19", "4/1/19"]
-    assert lines[2] == '"DUJOH\x01%FQVUZ\x01%JSFDUPS'
-    assert lines[3] == "8FOEZ"
-    assert _appended(ocr, _page_text(pdf, ocr, monkeypatch)) == ["8FOEZ"]
+    # letters and unmapped spaces, so none of its spans is decoded (a decoded "\x01" span
+    # beside the raw letters would read as '"DUJOH %FQVUZ'), nor the letter-only line.
+    assert [[text for text, _ in line] for line in decoded[:2]] == [["6/24/19"], ["4/1/19"]]
+    assert decoded[2:] == spans[2:]
+    assert "".join(text for text, _ in spans[2]) == '"DUJOH\x01%FQVUZ\x01%JSFDUPS'
 
 
-def test_a_page_without_unmapped_characters_reads_the_same_with_ocr_text(tmp_path):
-    pdf = _form_pdf(tmp_path / "form.pdf", [("Associate Regional Administrator", None), ("3/31/14", None)])
+def test_a_page_without_unmapped_characters_is_not_decoded(tmp_path):
+    pdf = _form_pdf(
+        tmp_path / "form.pdf", [("Associate Regional Administrator", None), ("3/31/14", None)]
+    )
     with fitz.open(pdf) as document:
         page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
         # S7.
-        assert _pdf_layer_lines(page, extraction={}, ocr_text="Associate Regional") == (
-            _pdf_layer_lines(page, extraction={})
-        )
-        assert _pdf_layer_lines(page, extraction={}) == _dict_layer_lines(page, {})
+        assert _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text="3/31/14") == spans
 
 
-def _dict_layer_lines(page, extraction: dict) -> list[tuple[str, bool]]:
-    """#868's reader (``dict`` spans), for S7."""
-    data = page.get_text(
-        "dict",
-        sort=bool(extraction.get("sort_text")),
-        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
-    )
-    lines = []
-    for block in data.get("blocks", ()):
-        for line in block.get("lines", ()):
-            spans = line.get("spans", ())
-            painted = any(_pdf_span_painted(s) for s in spans if str(s.get("text", "")).strip())
-            text = "".join(str(s.get("text", "")) for s in spans)
-            lines.extend((part, painted) for part in text.splitlines())
-    return lines
+def test_decoding_needs_the_rawdict_spans_to_be_the_dict_spans(tmp_path):
+    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", HIGH), ("Wendy Hill Petras", HIGH)])
+    ocr = "6/24/19 Wendy Hill Petras"
+    with fitz.open(pdf) as document:
+        page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
+        assert _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr) != spans
+        # Spans that are not the page's (another reading) are returned as they are.
+        other = [[(text + "x", painted) for text, painted in line] for line in spans]
+        assert _pdf_decoded_span_lines(page, other, extraction={}, ocr_text=ocr) == other
 
 
 # ---------------------------------------------------------------------------- real pages
@@ -512,9 +524,11 @@ LAYER_FIXTURE = json.loads(
         Path(__file__).parent / "fixtures" / "ocr_overlay" / "cms_state_plan_layer_pages.json"
     ).read_text(encoding="utf-8")
 )["pages"]
+ALL_PAGES = {**PAGES, **LAYER_FIXTURE}
+SPA = "{state}/policy/cms/medicaid-state-plan/spa/{rest}/approval-document/page-{page}"
 
 
-def _real_page(page: dict, monkeypatch, extraction: dict | None = None):
+def _real_page(page: dict, monkeypatch):
     content = (REPO_ROOT / page["pdf"]).read_bytes()
     assert hashlib.sha256(content).hexdigest() == page["pdf_sha256"]
     monkeypatch.setattr(
@@ -524,15 +538,12 @@ def _real_page(page: dict, monkeypatch, extraction: dict | None = None):
     return document, document[page["page"] - 1]
 
 
-SPA = "{state}/policy/cms/medicaid-state-plan/spa/{rest}/approval-document/page-{page}"
-
-
 @pytest.mark.parametrize(
-    ("state", "rest", "page", "appended", "appended_by_868"),
+    ("state", "rest", "page", "added", "removed"),
     [
         # Minion Pro (+31). OCR read "6/24/19", "Wendy Hill Petras" and "Acting Deputy
-        # Director"; "4/1/19" is typed where OCR read "4 /1/19", and two clipped copies of
-        # the title. #868 kept the one garbled line without a control character.
+        # Director"; "4/1/19" is typed where OCR read "4 /1/19", and the title has two
+        # clipped copies. #868 kept the one garbled span without a control character.
         ("us-wa", "wa-19-0012", 3, ["4/1/19", "Acting Deputy D", "Deputy D"], ["%FQVUZ %"]),
         ("us-ma", "ma-20-0024", 3, ["09/30/20"], ["%JSFDUPS"]),
         (
@@ -556,82 +567,49 @@ SPA = "{state}/policy/cms/medicaid-state-plan/spa/{rest}/approval-document/page-
                 "9/28/15",
                 "David L. Meacham",
                 "Associate Regional Administrator",
-                "3/31/14",
-                "Digitally signed by David L.",
-                "Meacham -S",
-                "Date: 2015.09.29 10:25:30",
-                "-07'00'",
             ],
-            ["3/31/14", "Digitally signed by David L.", "Meacham -S", "Date: 2015.09.29 10:25:30", "-07'00'"],
+            [],
         ),
-        # Times New Roman (+29): the typed dates, with the digital signature #868 kept.
-        (
-            "us-or", "or-15-0006", 3,
-            [
-                "11/30/15",
-                "12/10/15",
-                "12/01/15",
-                "Digitally signed by David L. Meacham -S",
-                "DN: c=US, o=U.S. Government, ou=HHS, ou=CMS,",
-                "ou=People,",
-                "0.9.2342.19200300.100.1.1=2000041858,",
-                "cn=David L. Meacham -S",
-                "Date: 2015.12.11 08:04:03 -08'00'",
-            ],
-            [
-                "Digitally signed by David L. Meacham -S",
-                "DN: c=US, o=U.S. Government, ou=HHS, ou=CMS,",
-                "ou=People,",
-                "0.9.2342.19200300.100.1.1=2000041858,",
-                "cn=David L. Meacham -S",
-                "Date: 2015.12.11 08:04:03 -08'00'",
-            ],
-        ),
-        # Arial (+29), with a mapped ArialMT signature sharing a shifted font's name: OCR
-        # read every decoded line ("NEW", "Flexibilities among other", ...), so only the
-        # signature is appended, and the garbled lines #868 kept are gone.
-        (
-            "us-al", "al-20-0004", 4,
-            ["Digitally signed by Anne M. Costello -S", "Date: 2020.04.06 17:04:09 -04'00'"],
-            [
-                ")OH[LELOLWLHV",
-                "1(:",
-                "E",
-                "Digitally signed by Anne M. Costello -S",
-                "Date: 2020.04.06 17:04:09 -04'00'",
-            ],
-        ),
+        # Times New Roman (+29): the typed dates.
+        ("us-or", "or-15-0006", 3, ["11/30/15", "12/10/15", "12/01/15"], []),
+        # Arial (+29), beside a mapped ArialMT signature of a shifted font's name: OCR read
+        # every decoded line ("NEW", "Flexibilities among other", ...), and the garbled
+        # "1(:" #868 kept is "NEW".
+        ("us-al", "al-20-0004", 4, [], ["1(:"]),
         # "March 13, 2020": the "3" is a mapped Minion Pro of the same name, so the line is
-        # not decoded; OCR read it.
+        # not decoded (OCR read it).
         ("us-nv", "nv-20-0002", 3, [], []),
+        # Every decoded line was read by OCR.
         ("us-md", "md-19-0003", 4, [], []),
         # The one-code-too-high signature strings are in a WinAnsi Helvetica that maps every
         # code, and on ID-20-0001 the same font object holds correct text: not decoded.
         ("us-id", "id-20-0001", 3, [], []),
         ("us-mo", "mo-20-0016", 3, [], []),
         # A Type 3 font whose codes are its glyphs in order of use: no shift reads it.
-        ("us-ca", "ca-25-0037", 16, ["J"], ["J"]),
+        ("us-ca", "ca-25-0037", 16, [], []),
     ],
 )  # fmt: skip
 def test_real_pages_append_exactly_the_reviewed_lines(
-    state, rest, page, appended, appended_by_868, monkeypatch
+    state, rest, page, added, removed, monkeypatch
 ):
     fixture = PAGES[SPA.format(state=state, rest=rest, page=page)]
+    ocr = fixture["ocr_text"]
     document, pdf_page = _real_page(fixture, monkeypatch)
     with document:
         result = _pdf_page_text(pdf_page, extraction={"ocr": True})
-        # #868's merge: the same layer lines, nothing decoded.
-        by_868 = documents_module._with_unread_layer_lines(
-            fixture["ocr_text"],
-            "\n".join(
-                documents_module._without_failed_recognition_lines(
-                    _pdf_layer_lines(pdf_page, extraction={}), fixture["ocr_text"]
-                )
-            ),
+        # #868's page text: the same, with nothing decoded.
+        monkeypatch.setattr(
+            documents_module,
+            "_pdf_decoded_span_lines",
+            lambda page, span_lines, *, extraction, ocr_text: span_lines,
         )
+        by_868 = _pdf_page_text(pdf_page, extraction={"ocr": True})
 
-    assert _appended(fixture["ocr_text"], result) == appended
-    assert _appended(fixture["ocr_text"], by_868) == appended_by_868
+    lines, lines_868 = _appended(ocr, result), _appended(ocr, by_868)
+    assert [line for line in lines if line not in lines_868] == added
+    assert [line for line in lines_868 if line not in lines] == removed
+    if not added and not removed:
+        assert result == by_868
 
 
 def test_the_mapped_signature_sharing_a_shifted_fonts_name_is_read_as_it_is(monkeypatch):
@@ -639,16 +617,23 @@ def test_the_mapped_signature_sharing_a_shifted_fonts_name_is_read_as_it_is(monk
     fixture = PAGES[SPA.format(state="us-al", rest="al-20-0004", page=4)]
     document, pdf_page = _real_page(fixture, monkeypatch)
     with document:
-        lines = [t for t, _ in _pdf_layer_lines(pdf_page, extraction={}, ocr_text=fixture["ocr_text"])]
+        lines = _layer(pdf_page, fixture["ocr_text"])
 
     for line in ["Anne M. Costello -S", "Digitally signed by Anne M. Costello -S "]:
         assert line in lines
-    assert "Modification of Telehealth and Copayment " in " ".join(lines)
     assert "Section 1135(b) of the Social Security Act" in lines
+    # The garbled-font codes, decoded: "COVID-19" and "89a" hold U+001C, a line break to
+    # Python's splitlines().
+    assert (
+        "Medicaid Disaster Relief for the COVID-19 National Emergency: Modification of "
+        "Telehealth and Copayment "
+    ) in lines
+    assert "COVID-19 National Emergency. Pages 89a - 89i" in lines
+    assert "Deputy Director, Center for Medicaid & CHIP Services" in lines
 
 
-def _raw_lines(pdf_page, extraction: dict) -> list[tuple[str, bool]]:
-    """Each rawdict line's characters and whether one of them is unmapped, walked here."""
+def _raw_spans(pdf_page, extraction: dict) -> list[list[tuple[str, bool]]]:
+    """Each rawdict span's characters and whether one is unmapped, walked here."""
     flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
     sort = bool(extraction.get("sort_text"))
     unmapped = documents_module._pdf_unmapped_characters(pdf_page, sort=sort, flags=flags)
@@ -656,38 +641,40 @@ def _raw_lines(pdf_page, extraction: dict) -> list[tuple[str, bool]]:
     out = []
     for block in pdf_page.get_text("rawdict", sort=sort, flags=flags).get("blocks", ()):
         for line in block.get("lines", ()):
-            text, has_unmapped = "", False
+            spans = []
             for span in line["spans"]:
+                text, has_unmapped = "", False
                 for char in span["chars"]:
                     origin = tuple(char["origin"])
                     k = seen.get(origin, 0)
                     seen[origin] = k + 1
                     text += char["c"]
-                    has_unmapped |= (*origin, k) in unmapped and char["c"] != "\ufffd"
-            out.append((text, has_unmapped))
+                    has_unmapped |= (*origin, k) in unmapped and char["c"] != "�"
+                spans.append((text, has_unmapped))
+            out.append(spans)
     return out
-
-
-ALL_PAGES = {**PAGES, **LAYER_FIXTURE}
 
 
 @pytest.mark.parametrize("path", sorted(ALL_PAGES))
 @pytest.mark.parametrize("extraction", [{}, {"sort_text": True}, {"ignore_actual_text": True}])
-def test_real_pages_keep_every_line_without_unmapped_characters(path, extraction, monkeypatch):
-    # S7 and S8 on every retained page: the lines without an unmapped character come
-    # through with OCR text unchanged and in order, and a page without one reads exactly
-    # as without OCR text, which is the dict reader's reading.
+def test_real_pages_change_only_spans_with_unmapped_characters(path, extraction, monkeypatch):
+    # S7 and S8 on every retained page, under every text option: the rawdict spans are the
+    # dict spans (so decoding is not skipped), a span without an unmapped character and
+    # every span's paint come through unchanged, and a page without one is unchanged.
     page = ALL_PAGES[path]
     document, pdf_page = _real_page(page, monkeypatch)
     with document:
-        plain = _pdf_layer_lines(pdf_page, extraction=extraction)
-        decoded = _pdf_layer_lines(pdf_page, extraction=extraction, ocr_text=page["ocr_text"])
-        raw = _raw_lines(pdf_page, extraction)
-        assert plain == _dict_layer_lines(pdf_page, extraction)
+        spans = _pdf_layer_lines(pdf_page, extraction=extraction)
+        decoded = _pdf_decoded_span_lines(
+            pdf_page, spans, extraction=extraction, ocr_text=page["ocr_text"]
+        )
+        raw = _raw_spans(pdf_page, extraction)
 
-    untouched = [part for text, has in raw if not has for part in text.splitlines()]
-    remaining = iter(text for text, _ in decoded)
-    assert all(any(line == other for other in remaining) for line in untouched)
-    if not any(has for _, has in raw):
-        assert decoded == plain
-    assert (path in LAYER_FIXTURE) <= (decoded == plain)
+    assert [[text for text, _ in line] for line in raw] == [[t for t, _ in line] for line in spans]
+    assert [[p for _, p in line] for line in decoded] == [[p for _, p in line] for line in spans]
+    for raw_line, line, decoded_line in zip(raw, spans, decoded, strict=True):
+        for (_, has_unmapped), span, decoded_span in zip(raw_line, line, decoded_line, strict=True):
+            if not has_unmapped:
+                assert decoded_span == span
+    if not any(has for line in raw for _, has in line):
+        assert decoded == spans

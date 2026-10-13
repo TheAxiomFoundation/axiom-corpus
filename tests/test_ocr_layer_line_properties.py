@@ -1,16 +1,28 @@
 """Properties of the rules that merge a scanned page's text layer into its OCR text.
 
 With ``ocr: true``, a page whose text layer is only an overlay is read by OCR, and the
-layer's lines are merged after the OCR text in two steps.
+layer's lines are merged after the OCR text in three steps.
+
+``_without_garbled_spans(span_lines)`` turns the PDF's lines, as (text, painted) spans,
+into (text, painted) lines. Its invariants, for every input:
+
+S1. A span holding a control character other than ordinary whitespace (``_garbled``) is
+    left out whole; every other span's text is in its line, in order, with one space where
+    a left-out span stood between kept spans.
+S2. No line it returns holds such a control character, and each has a visible character.
+S3. A line is painted exactly when one of its kept spans with visible characters is.
 
 ``_without_failed_recognition_lines(lines, ocr_text)`` chooses the layer lines worth
 merging from (text, painted) pairs. Its invariants, for every input:
 
 R1. The result is the input's texts in order with some removed (a subsequence).
-R2. Every painted line is kept: typed text is never removed.
-R3. An invisible line is removed only when it is a fragment (fewer than three letters and
-    no digit) or the invisible layer has failed: at least five distinct words of three or
-    more letters, fewer than a third of them in the OCR text (``_reference_failed``).
+R2. A line with a control character other than ordinary whitespace (``_garbled``) is
+    removed whole, painted or not, before anything splits it. Every other painted line is
+    kept: typed text is never removed.
+R3. Any other invisible line is removed only when it is a fragment (fewer than three
+    letters and no digit, after NFKC) or the invisible layer has failed: at least five
+    distinct words of three or more letters, fewer than a third of them in the OCR text
+    (``_reference_failed``).
 R4. More OCR text never removes a kept line.
 R5. Applying it to its own result changes nothing.
 
@@ -33,8 +45,8 @@ M8. Against the rule this replaces (PR #854: keep a line when one of its tokens 
     is not among OCR's tokens): every line that rule kept is still held by the result,
     unless the first step removed it as an invisible recognition line.
 
-Together (R2 and M2): every painted layer line with a letter or digit and no control
-character is in the page text. "Held" is ``_reference_reads``, a brute-force definition
+Together (S1, R2 and M2): the text of every painted span without a control character,
+line by line, is in the page text wherever it has a letter or digit. "Held" is ``_reference_reads``, a brute-force definition
 over every run of tokens written without the implementation's offset bookkeeping, so M2,
 M4 and M8 are also differential tests; R3 is checked against ``_reference_failed``.
 
@@ -57,10 +69,13 @@ from hypothesis import strategies as st
 
 import axiom_corpus.corpus.documents as documents_module
 from axiom_corpus.corpus.documents import (
+    _pdf_decoded_span_lines,
     _pdf_layer_lines,
     _pdf_page_text,
+    _same_layer_characters,
     _with_unread_layer_lines,
     _without_failed_recognition_lines,
+    _without_garbled_spans,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -174,28 +189,40 @@ def _words(text: str, shortest: int) -> list[str]:
     return out
 
 
+def _garbled(line: str) -> bool:
+    """R2: a control character other than tab, newline, carriage return, VT or FF."""
+    return any(unicodedata.category(c) == "Cc" and c not in "\t\n\r\x0b\x0c" for c in line)
+
+
 def _reference_failed(invisible: list[str], ocr_text: str) -> bool:
     """R3's failed layer, written out: >= 5 distinct words of 3+ letters, < 1/3 in OCR."""
-    words = {
-        word
-        for line in invisible
-        if not any(unicodedata.category(c) == "Cc" and not c.isspace() for c in line)
-        for word in _words(line, 3)
-    }
+    words = {word for line in invisible if not _garbled(line) for word in _words(line, 3)}
     ocr_words = _words(ocr_text, 1)
     found = [w for w in words if w in ocr_words or (len(w) >= 6 and w in "".join(ocr_words))]
     return len(words) >= 5 and 3 * len(found) < len(words)
 
 
 def _fragment(line: str) -> bool:
-    return sum(char.isalpha() for char in line) < 3 and not any(char.isdigit() for char in line)
+    # Letters are counted on the runs before lower-casing ("\u0130" lower-cases to two).
+    letters = sum(char.isalpha() for char in unicodedata.normalize("NFKC", line))
+    return letters < 3 and not any(char.isdigit() for char in unicodedata.normalize("NFKC", line))
+
+
+def _spared(lines: list[tuple[str, bool]], ocr_text: str) -> list[tuple[str, bool]]:
+    """R1 to R3 written out: the (text, painted) pairs the filter keeps."""
+    failed = _reference_failed([text for text, painted in lines if not painted], ocr_text)
+    return [
+        (text, painted)
+        for text, painted in lines
+        if not _garbled(text) and (painted or not (failed or _fragment(text)))
+    ]
 
 
 # A small alphabet, so layer lines often occur in the OCR text, in part or whole: letters,
 # digits, punctuation the edge rules treat differently, quote and dash variants, a
-# non-ASCII letter, a soft hyphen (format character), a control character, and several
-# kinds of whitespace.
-CHARS = "abAB129.,/()$%-:'_’–é­\x01 \t\n "
+# non-ASCII letter, a soft hyphen (format character), control characters (two that Python
+# splits lines at), and several kinds of whitespace.
+CHARS = "abAB129.,/()$%-:'_’–é­\x01\x1e\x85 \t\n "
 TEXT = st.text(alphabet=st.sampled_from(CHARS), max_size=48)
 OCR = TEXT.filter(lambda text: bool(text.split()))
 TOKEN = st.text(alphabet=st.sampled_from("abAB129.,/()$%-:'_’–é"), min_size=1, max_size=6)
@@ -220,6 +247,15 @@ LAYER_LINE = st.one_of(
             "x\x01y",
             "Ckm\x01jhofe\x01urrr",
             "date\x01plan",
+            "2EQI\x1e",
+            "Approval\x1cdate plan",
+            "ab\x1fcd state",
+            "x\x85y",
+            "\ufb01x",
+            "\ufb01x approval",
+            "date\tplan",
+            "\u0130\u0130",
+            "\u0130\u0130 date",
         ]
     ),
     st.text(alphabet=st.sampled_from("abCD12 .:/"), max_size=12),
@@ -237,10 +273,8 @@ def test_recognition_filter_keeps_typed_lines_and_drops_only_fragments_or_failed
 ):
     kept = _without_failed_recognition_lines(lines, ocr_text)
 
-    failed = _reference_failed([text for text, painted in lines if not painted], ocr_text)
-    expected = [text for text, painted in lines if painted or not (failed or _fragment(text))]
-    # R1, R2, R3 at once: exactly the painted lines and the invisible lines R3 spares.
-    assert kept == expected
+    # R1, R2, R3 at once: exactly the lines the written-out definition spares.
+    assert kept == [text for text, _ in _spared(lines, ocr_text)]
 
 
 @settings(max_examples=500, deadline=None)
@@ -257,10 +291,7 @@ def test_more_ocr_text_never_removes_a_recognition_line(lines, ocr_text, more_oc
 @settings(max_examples=500, deadline=None)
 @given(LAYER, OCR_WORDS)
 def test_recognition_filter_is_idempotent(lines, ocr_text):
-    failed = _reference_failed([text for text, painted in lines if not painted], ocr_text)
-    kept_pairs = [
-        (text, painted) for text, painted in lines if painted or not (failed or _fragment(text))
-    ]
+    kept_pairs = _spared(lines, ocr_text)
 
     # R5: the lines it keeps, with their paint, pass through unchanged.
     assert _without_failed_recognition_lines(kept_pairs, ocr_text) == [
@@ -275,9 +306,61 @@ def test_every_painted_layer_line_is_in_the_page_text(lines, ocr_text):
     result = _with_unread_layer_lines(ocr_text, layer)
 
     for text, painted in lines:
-        line = " ".join(text.split())
-        if painted and _is_text(line):
-            assert _reference_reads(result, line), line
+        if painted and not _garbled(text):
+            for part in text.splitlines():
+                line = " ".join(part.split())
+                if _is_text(line):
+                    assert _reference_reads(result, line), line
+
+
+SPAN = st.tuples(
+    st.one_of(
+        st.sampled_from(
+            ["November 19, 2014", "2EQI\x1e", "\x01\x02", "ab\x1fcd", "Date", " ", "", "x\x85y"]
+        ),
+        st.text(alphabet=st.sampled_from("abC12 .:\x01\x1e\t"), max_size=8),
+    ),
+    st.booleans(),
+)
+SPAN_LINES = st.lists(st.lists(SPAN, max_size=5), max_size=6)
+
+
+@settings(max_examples=800, deadline=None)
+@given(SPAN_LINES)
+def test_garbled_spans_are_left_out_and_clean_spans_kept(span_lines):
+    lines = _without_garbled_spans(span_lines)
+
+    expected = []
+    for spans in span_lines:
+        text, painted, dropped = "", False, False
+        for span, span_painted in spans:
+            if _garbled(span):
+                dropped = bool(text)
+                continue
+            if dropped:
+                text += " "
+                dropped = False
+            text += span
+            painted = painted or (span_painted and bool(span.strip()))
+        if text.strip():
+            expected.append((text, painted))
+    # S1, S2, S3 at once, against this written-out version.
+    assert lines == expected
+    assert not any(_garbled(text) for text, _ in lines)
+
+
+def test_garbled_span_cases():
+    # Review r2's line: a garbled span beside a typed date leaves the date, painted.
+    assert _without_garbled_spans([[("2EQI\x1e", False), ("November 19, 2014", True)]]) == [
+        ("November 19, 2014", True)
+    ]
+    # A space keeps the spans around a left-out span apart; a line of garbage goes.
+    assert _without_garbled_spans([[("Date", True), ("\x01\x02", True), ("Approved", True)]]) == [
+        ("Date Approved", True)
+    ]
+    assert _without_garbled_spans([[("\x01x", True)], [(" ", True)]]) == []
+    # Paint comes from the spans kept.
+    assert _without_garbled_spans([[("\x01x", True), ("Ckm", False)]]) == [("Ckm", False)]
 
 
 def test_recognition_filter_cases():
@@ -300,9 +383,31 @@ def test_recognition_filter_cases():
     assert _without_failed_recognition_lines(mixed, agree) == ["approval date", "Ckm rML err"]
     # One of five is: removed.
     assert _without_failed_recognition_lines([("approval Ckm rML err urrr", False)], agree) == []
-    # Words on a line with a control character (a garbled font) do not count.
+    # A line with a control character (a garbled font) is dropped whole, painted or not,
+    # and its words do not count toward judging the layer.
     garbled = [("Ckm\x01rML\x01err\x01urrr\x01jhofe", False), ("approval date", False)]
-    assert _without_failed_recognition_lines(garbled, agree) == [text for text, _ in garbled]
+    assert _without_failed_recognition_lines(garbled, agree) == ["approval date"]
+    # Python splits lines at U+001E, so the line is judged whole: a shift-28 font's "Name:"
+    # is "2EQI\x1e", and must not reach the merge as "2EQI".
+    assert _without_failed_recognition_lines([("2EQI\x1e", True), ("ab\x1fcd", True)], agree) == []
+    assert _without_failed_recognition_lines([("date\tplan", True)], agree) == ["date\tplan"]
+    # Letters are counted after NFKC, as words are: "\ufb01x" is "fix", not a fragment, and
+    # dropping fragments never changes the words the layer is judged by.
+    assert _without_failed_recognition_lines([("\ufb01x", False)], agree) == ["\ufb01x"]
+    pages = [("\ufb01x", False)] + [
+        (word, False) for word in ("alpha", "bravo", "charlie", "delta", "echo", "foxtrot", "golf")
+    ]
+    once = _without_failed_recognition_lines(pages, "fix alpha bravo")
+    again = _without_failed_recognition_lines([(text, False) for text in once], "fix alpha bravo")
+    assert once == again == [text for text, _ in pages]
+    # Review r2: lower-casing "\u0130" gives two characters, so lengths are counted first:
+    # "\u0130\u0130" is a two-letter fragment and no word, on both passes.
+    dotted = [("\u0130\u0130", False)] + pages[1:]
+    once = _without_failed_recognition_lines(dotted, "\u0130\u0130 alpha bravo")
+    again = _without_failed_recognition_lines(
+        [(text, False) for text in once], "\u0130\u0130 alpha bravo"
+    )
+    assert once == again
     # Run-together words of six or more letters are found in OCR's letters run together.
     run_together = [("ApprovalDate StatePlan Regional ckm", False), ("21", False)]
     assert _without_failed_recognition_lines(run_together, agree) == [
@@ -518,10 +623,47 @@ PAGES = FIXTURE["pages"]
 SPA = "{state}/policy/cms/medicaid-state-plan/spa/{rest}"
 
 
-def _merged(page: dict) -> str:
-    lines = [(text, painted) for text, painted in page["layer_lines"]]
+def _spans(page: dict) -> list[list[tuple[str, bool]]]:
+    return [[(text, painted) for text, painted in spans] for spans in page["layer_spans"]]
+
+
+def _merged(page: dict, span_lines: list[list[tuple[str, bool]]] | None = None) -> str:
+    """The page text merged from the fixture's spans, or from ``span_lines`` (the PDF's
+    spans with shifted fonts decoded, ``_pdf_decoded_span_lines``)."""
+    lines = _without_garbled_spans(_spans(page) if span_lines is None else span_lines)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     return _with_unread_layer_lines(page["ocr_text"], layer)
+
+
+def _clean_painted_text(span_lines: list[list[tuple[str, bool]]]) -> list[str]:
+    """The lines of every painted span without a control character that have text."""
+    out = []
+    for spans in span_lines:
+        for text, painted in spans:
+            if painted and not _garbled(text):
+                for part in text.splitlines():
+                    line = " ".join(part.split())
+                    if _is_text(line):
+                        out.append(line)
+    return out
+
+
+def _held_layer_text(
+    span_lines: list[list[tuple[str, bool]]], decoded: list[list[tuple[str, bool]]]
+) -> list[str]:
+    """The layer text the page text must hold: every painted span without a control
+    character on a line decoding left alone, and every painted line of text decoding
+    changed (its spans can be fragments of one value, "0", "3", "/01/2020")."""
+    unchanged = [spans for spans, other in zip(span_lines, decoded, strict=True) if spans == other]
+    changed = [other for spans, other in zip(span_lines, decoded, strict=True) if spans != other]
+    lines = [
+        line
+        for text, painted in _without_garbled_spans(changed)
+        if painted
+        for line in (" ".join(part.split()) for part in text.splitlines())
+        if _is_text(line)
+    ]
+    return _clean_painted_text(unchanged) + lines
 
 
 def _page(state: str, rest: str) -> tuple[str, str, list[str]]:
@@ -542,19 +684,23 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
     with fitz.open(stream=content, filetype="pdf") as document:
         pdf_page = document[page["page"] - 1]
         layer_text = pdf_page.get_text("text", flags=fitz.TEXTFLAGS_TEXT)
-        layer_lines = _pdf_layer_lines(pdf_page, extraction={})
+        span_lines = _pdf_layer_lines(pdf_page, extraction={})
+        decoded = _pdf_decoded_span_lines(
+            pdf_page, span_lines, extraction={}, ocr_text=page["ocr_text"]
+        )
         result = _pdf_page_text(pdf_page, extraction={"ocr": True})
 
     assert layer_text == page["layer_text"]
-    assert [[text, painted] for text, painted in layer_lines] == page["layer_lines"]
-    # Differential: the dict lines are the text output's lines.
-    assert "\n".join(text for text, _ in layer_lines).splitlines() == layer_text.splitlines()
-    assert result == _merged(page)
-    # Every painted line of text is in the page text; the result is a fixed point.
-    for text, painted in layer_lines:
-        line = " ".join(text.split())
-        if painted and _is_text(line):
-            assert _reference_reads(result, line), line
+    assert [[[t, p] for t, p in spans] for spans in span_lines] == page["layer_spans"]
+    # Differential: the dict lines, joined, are the text output.
+    joined = "\n".join("".join(text for text, _ in spans) for spans in span_lines)
+    assert joined.splitlines() == layer_text.splitlines()
+    assert _same_layer_characters(span_lines, layer_text)
+    assert result == _merged(page, decoded)
+    # The text of every painted span without a control character is in the page text, and
+    # of every painted line once shifted fonts are decoded.
+    for line in _held_layer_text(span_lines, decoded):
+        assert _reference_reads(result, line), line
     assert result.startswith(page["ocr_text"].rstrip("\n"))
 
 
@@ -567,25 +713,89 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
         {"sort_text": True, "ignore_actual_text": True},
     ],
 )
-def test_layer_lines_hold_the_text_outputs_characters_under_every_text_option(path, extraction):
-    # With sort_text, get_text("text") rebuilds lines from words by position; the layer
-    # lines stay whole but hold the same characters, control characters aside. Otherwise
-    # the lines are the same.
+def test_page_text_under_every_text_option(path, extraction, monkeypatch):
+    # sort_text rebuilds the text output's lines from words by position, but the spans hold
+    # the same characters, so the spans' paint and garbling are used under every option.
     page = PAGES[path]
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda _page, *, extraction: page["ocr_text"]
+    )
     with fitz.open(REPO_ROOT / page["pdf"]) as document:
         pdf_page = document[page["page"] - 1]
         flags = documents_module._pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
         text = pdf_page.get_text("text", sort=bool(extraction.get("sort_text")), flags=flags)
-        lines = [line for line, _ in _pdf_layer_lines(pdf_page, extraction=extraction)]
+        needs_ocr = documents_module._pdf_page_needs_ocr(pdf_page, text)
+        span_lines = _pdf_layer_lines(pdf_page, extraction=extraction)
+        decoded = _pdf_decoded_span_lines(
+            pdf_page, span_lines, extraction=extraction, ocr_text=page["ocr_text"]
+        )
+        result = _pdf_page_text(pdf_page, extraction={"ocr": True, **extraction})
 
-    if extraction.get("sort_text"):
-        # Control characters aside (a garbled font's U+0001 "spaces" split the sorted words).
-        def chars(value: str) -> list[str]:
-            return sorted(c for c in value if not c.isspace() and unicodedata.category(c) != "Cc")
+    assert _same_layer_characters(span_lines, text)
+    if not needs_ocr:
+        # Sorting can rebuild a garbled font's codes into 30 or more words (AL-20-0004
+        # page 4), and a page with that many is read from its layer, not by OCR.
+        assert result == text
+        return
+    lines = _without_garbled_spans(decoded)
+    layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
+    assert result == _with_unread_layer_lines(page["ocr_text"], layer)
+    for line in _held_layer_text(span_lines, decoded):
+        assert _reference_reads(result, line), line
 
-        assert chars(text) == chars("".join(lines))
-    else:
-        assert "\n".join(lines).splitlines() == text.splitlines()
+
+def _invisible_noise_pdf() -> bytes:
+    # A failed recognition layer (five words, none in the OCR text) on a scanned page.
+    document = fitz.open()
+    pdf_page = document.new_page(width=612, height=792)
+    pixmap = fitz.Pixmap(fitz.csGRAY, fitz.IRect(0, 0, 1275, 1650), False)
+    pixmap.clear_with(200)
+    pdf_page.insert_image(pdf_page.rect, stream=pixmap.tobytes("png"), keep_proportion=False)
+    pdf_page.insert_text((72, 72), "Ckm rML err", fontsize=11, render_mode=3)
+    pdf_page.insert_text((144, 90), "urrr jhofe", fontsize=11, render_mode=3)
+    pdf_page.insert_text((72, 120), "January 1, 2018", fontsize=11)
+    return document.tobytes()
+
+
+@pytest.mark.parametrize("extraction", [{}, {"sort_text": True}])
+def test_a_failed_layer_is_dropped_under_sort_text_too(extraction, monkeypatch):
+    # Sorting indents the text output's lines; the filter still sees the spans' paint.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda _page, *, extraction: ocr)
+    with fitz.open("pdf", _invisible_noise_pdf()) as document:
+        result = _pdf_page_text(document[0], extraction={"ocr": True, **extraction})
+
+    assert result == "Applicant Household Size\n\nJanuary 1, 2018"
+
+
+def test_without_the_text_outputs_characters_the_text_lines_are_used(monkeypatch):
+    # If the spans ever lack characters the text output has, the text output's lines are
+    # used, all counted as painted, so no typed text can go missing.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda _page, *, extraction: ocr)
+    monkeypatch.setattr(
+        documents_module, "_pdf_layer_lines", lambda _page, *, extraction: [[("Ckm", False)]]
+    )
+    with fitz.open("pdf", _invisible_noise_pdf()) as document:
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    assert result == ("Applicant Household Size\n\nCkm rML err\nurrr jhofe\nJanuary 1, 2018")
+
+
+def test_a_garbled_span_drops_only_itself_on_a_real_page():
+    # AL-20-0004 page 4: a shifted font's span ")OH[LELOLWLHV\x1e\x03DPRQJ\x03RWKHU" splits
+    # at U+001E into a clean-looking ")OH[LELOLWLHV"; judged as a span it is left out whole.
+    # The digital signature's clean spans stay. "1(:" ("NEW" shifted) has no control
+    # character and is painted, so it is kept: painted text is never judged by its letters.
+    page = PAGES[SPA.format(state="us-al", rest="al-20-0004/approval-document/page-4")]
+    spans = [text for line in _spans(page) for text, _ in line]
+    _, _, kept = _page("us-al", "al-20-0004/approval-document/page-4")
+
+    assert any("\x1e" in text and ")OH[LELOLWLHV" in text for text in spans)
+    assert ")OH[LELOLWLHV" not in kept
+    assert not any(_garbled(line) for line in kept)
+    assert "1(:" in kept
+    assert "Digitally signed by Anne M. Costello -S" in _merged(page)
 
 
 def test_a_typed_date_is_kept_when_its_day_and_year_occur_elsewhere():
