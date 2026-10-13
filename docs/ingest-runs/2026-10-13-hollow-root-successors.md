@@ -1,12 +1,16 @@
 # Successor scopes for the fixed hollow-document-root findings
 
 Date: 2026-10-13.
-Branch `ingest/hollow-root-successors`, cut from `origin/main` at `c3a8e1d0c`, which
-includes #854 (merged as f98fa2bbd). The successors were built from #854's head merged
-with `origin/main` (`acf071fe1`); that tree is identical to #854's merged head, and
-`c3a8e1d0c` adds no extraction code to it.
+Branch `ingest/hollow-root-successors`, on `origin/main` at `c3a8e1d0c`, which includes
+#854 (merged as f98fa2bbd). 46 successors were built at `acf071fe1` (#854's head with
+`origin/main` `91d69e6d3` merged in, a tree identical to #854's merged head), and the
+other 62 at this branch's `0b1ae81b6`. Between the two, `main` changed no extraction
+code, composer or manifest these scopes use; it added only the SSA POMS manifests.
 Builder: `scripts/repro/hollow_root_successors.py`.
 Per-scope figures: `docs/ingest-runs/2026-10-13-hollow-root-successors.json`.
+Evidence (comparisons, content-check and validation output, logs and the scripts that
+made them), on the machine that built the scopes:
+`~/reviews/axiom-corpus-hollow-root-successors-2026-10-13/`.
 
 The hollow-document-root audit
 ([#853](https://github.com/TheAxiomFoundation/axiom-corpus/pull/853),
@@ -156,7 +160,7 @@ findings equal its entry in #847's `manifests/release-content-baseline.json`.
 ### OCR overlay rule: words lost
 
 #854's audit counted only digit-bearing text-layer tokens that disappear. Over all
-1,014 PDF pages that change, `ocr_word_loss.py` in the evidence folder compares the
+1,014 PDF pages that change, `scripts/ocr_word_loss.py` in the evidence folder compares the
 original body (the page's text layer) with the successor's, word by word:
 
 - 939 pages gain words: the 1,014 pages go from 17,267 words to 217,393.
@@ -198,7 +202,26 @@ uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
 - **R2.** R2 already held every source object, since each is byte-identical to the
   original's. `--push` uploaded only the new inventory, provisions and coverage objects.
 
-@@SIGNING@@
+The 108 manifests were signed over three commits of this branch: 48 over `0b1ae81b6`,
+15 over `cb2218d1e` and 45 over `bf6bbe17f`. Each commit holds the same builder; the
+later commits add only manifests, locks, this note and its JSON.
+
+Checked on the head:
+
+- `axiom-corpus-ingest guard-ingested --base-ref origin/main --head-ref HEAD`: every
+  changed artifact has a signed manifest.
+- `corpus verify --attest --ref HEAD`: all 68,047 lock entries attested.
+- `corpus verify --remote --changed-since origin/main`: all 4,200 entries of the 108
+  successor locks are in R2. The only new objects are the 324 inventory, provisions and
+  coverage files (591 MB).
+- `tests/test_hollow_root_successors.py` (17 tests) checks, for every successor:
+  - its manifest and lock agree, and its sources are its original's locked bytes;
+  - coverage is complete, and it lacks only the three documented paths;
+  - each audited root has text at or below it, or is retired.
+  
+  It also rebuilds the Maryland, Massachusetts, NY SNAP and Canadian successors
+  offline, byte for byte, and checks `swap_successors` and `compare_rows` with
+  Hypothesis.
 
 
 ## Successor selectors
@@ -234,14 +257,58 @@ uv run --extra dev python scripts/repro/hollow_root_successors.py selector \
   not resolve that with `scripts/deduplicate_release_selector.py`, which would delete
   the successor's colliding rows. `swap_successors` refuses a selector that already
   selects a successor.
-- **The union line also owes #847's swaps.** Once #847 merges, a new union cut must
-  also drop or replace the scopes `manifests/withdrawn-scopes.yaml` lists. The w7
-  union is grandfathered at its own digest only, so the union draft above, like any
-  new cut of that line, fails `withdrawn_scope_selected` under #847's gate until it
-  takes those swaps too.
+- **Both US lines also owe #847's swaps.** Once #847 merges, a new cut must also drop
+  or replace the scopes `manifests/withdrawn-scopes.yaml` lists. Each base selector is
+  grandfathered at its own digest only, so under #847's gate the US drafts fail
+  `withdrawn_scope_selected`: 9 errors for the union, 16 for SNAP. Any new cut of those
+  lines fails the same way until it takes those swaps too (below).
 - **Canada.** `ca-rulespec-2026-07-21-oracle-complete-v2` already carries the same
   normalization, composed with the executable-oracle sources. The source-complete
   successor serves a cut of the source-complete line only.
 
-@@CHECK847@@
+## Release checks
+
+`axiom-corpus-ingest validate-release --base data/corpus --release <selector>
+--ignore-r2-missing`, on each draft and on its base selector:
+
+| Line | Gate | Base | Draft |
+| --- | --- | --- | --- |
+| Union (1,567 scopes) | `main` | ok; 0 errors, 564 warnings | the same 564 warnings |
+| SNAP (272) | `main` | ok; 0 errors, 541 warnings | the same 541 warnings |
+| Canada (1) | `main` | ok; 1 warning | the same warning |
+| Union | #847 (`88c1435a5`) | 129 errors, 564 warnings | the same 129 errors and 564 warnings |
+| SNAP | #847 | not run | 16 errors (`withdrawn_scope_selected`), 541 warnings |
+| Canada | #847 | not run | ok; 1 warning |
+
+- **The swap adds no issue.** Under each gate, draft and base give the same issues,
+  compared after mapping each successor version to its original.
+- **Under #847's gate:**
+  - The union's 129 errors are 9 `withdrawn_scope_selected`, plus 120 errors from the
+    30 wave-7 scopes that `main` added after #847's branch point and that the #847
+    checkout has no locks for (30 each of `missing_inventory`, `missing_provisions`,
+    `missing_coverage` and `artifact_report_mismatch`).
+  - The SNAP draft's 16 errors are all `withdrawn_scope_selected`, inherited from its
+    base.
+  - The `baselined_content_findings` notices drop from 28 originals to 2 successors,
+    the two NYCRR scopes with their expected-empty Refs roots.
+
+### PR #847's content baseline
+
+Once #847 merges, CI runs `content-check --all --check-baseline`. That check fails on
+any locked scope whose findings the baseline does not record, which would include the
+three successors that keep findings: the two NYCRR scopes and Canada. In a checkout of
+#847 with this branch's 108 locks:
+
+- `content-check <the 108 successors>` gives the 27 findings above, the same as the
+  module-level scan: 3
+  `hollow_document_root`, 10 `navigation_body` and 14 `navigation_prefixed_body`, in
+  3 scopes.
+- `--update-baseline` records an entry for each of the 108 successors (108 added lines
+  in `manifests/release-content-baseline.json`), after which `--check-baseline` on them
+  reports no difference.
+
+Whichever of #847 and this PR merges second must add those entries. The patch, made
+against #847's head `88c1435a5`, is `evidence/release-content-baseline-successors.patch`
+in the evidence folder. On `main` without #847 there is no
+baseline, and nothing is needed.
 
