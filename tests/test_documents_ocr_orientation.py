@@ -320,10 +320,22 @@ def _tesseract_has(*models: str) -> bool:
     return set(models) <= set((listed.stdout + listed.stderr).split())
 
 
-real_tesseract = pytest.mark.skipif(
-    os.environ.get("AXIOM_CORPUS_REQUIRE_TESSERACT") != "1" and not _tesseract_has("eng", "osd"),
-    reason="needs the tesseract CLI with the eng and osd models",
-)
+def real_tesseract(test):
+    """Run ``test`` against the real tesseract CLI, on one thread so it does not starve the
+    other test processes, with room for a slow CI runner."""
+    marks = (
+        pytest.mark.skipif(
+            os.environ.get("AXIOM_CORPUS_REQUIRE_TESSERACT") != "1"
+            and not _tesseract_has("eng", "osd"),
+            reason="needs the tesseract CLI with the eng and osd models",
+        ),
+        pytest.mark.timeout(180),
+        pytest.mark.usefixtures("one_tesseract_thread"),
+    )
+    for mark in marks:
+        test = mark(test)
+    return test
+
 
 PARAGRAPH = (
     "Each applicant must report household income for the month of application. "
@@ -333,36 +345,44 @@ PARAGRAPH = (
 )
 
 
-def _upright_text_page() -> fitz.Pixmap:
-    """A letter page of plain typed text, rendered as OCR renders it (200 dpi, no alpha)."""
+@pytest.fixture(scope="module")
+def one_tesseract_thread():
+    with pytest.MonkeyPatch.context() as patch:
+        patch.setenv("OMP_THREAD_LIMIT", "1")
+        yield
+
+
+@pytest.fixture(scope="module")
+def upright_page(one_tesseract_thread):
+    """A 6x4 inch page of typed text rendered as OCR renders it (200 dpi, no alpha), and its
+    read without ``ocr_orientation``."""
     document = fitz.open()
-    page = document.new_page(width=612, height=792)
-    page.insert_textbox(fitz.Rect(72, 72, 540, 720), PARAGRAPH * 6, fontsize=12, fontname="tiro")
-    return page.get_pixmap(dpi=200, alpha=False)
+    page = document.new_page(width=432, height=288)
+    page.insert_textbox(fitz.Rect(36, 36, 396, 252), PARAGRAPH * 2, fontsize=11, fontname="tiro")
+    pixmap = page.get_pixmap(dpi=200, alpha=False)
+    return pixmap, _ocr_pixmap_text(pixmap, extraction={"ocr": True, "ocr_orientation": False})
 
 
-@real_tesseract
-def test_an_upright_page_reads_exactly_as_without_the_setting():
-    upright = _upright_text_page()
-    assert _tesseract_page_turn_of(upright) == 0
-    on = _ocr_pixmap_text(upright, extraction={"ocr": True})
-    off = _ocr_pixmap_text(upright, extraction={"ocr": True, "ocr_orientation": False})
-    assert on == off
-    assert "legally responsible relative" in " ".join(on.split())
-
-
-@real_tesseract
-@pytest.mark.parametrize("degrees", [90, 180, 270])
-def test_a_turned_page_reads_as_the_upright_page(degrees):
-    upright = _upright_text_page()
-    turned = _rotate_pixmap_clockwise(upright, degrees)
-    expected = _ocr_pixmap_text(upright, extraction={"ocr": True, "ocr_orientation": False})
-    assert _tesseract_page_turn_of(turned) == 360 - degrees
-    assert _ocr_pixmap_text(turned, extraction={"ocr": True}) == expected
-
-
-def _tesseract_page_turn_of(pixmap) -> int:
+def _turn_of(pixmap) -> int:
     with tempfile.TemporaryDirectory() as temp:
         path = Path(temp) / "page.png"
         pixmap.save(str(path))
         return _tesseract_page_turn(path)
+
+
+@real_tesseract
+def test_an_upright_page_reads_exactly_as_without_the_setting(upright_page):
+    pixmap, without = upright_page
+    assert _turn_of(pixmap) == 0
+    assert _ocr_pixmap_text(pixmap, extraction={"ocr": True}) == without
+    assert "legally responsible relative" in " ".join(without.split())
+
+
+@real_tesseract
+@pytest.mark.parametrize("degrees", [90, 180, 270])
+def test_a_turned_page_reads_as_the_upright_page(upright_page, degrees):
+    pixmap, without = upright_page
+    turned = _rotate_pixmap_clockwise(pixmap, degrees)
+    assert _turn_of(turned) == 360 - degrees
+    assert _ocr_pixmap_text(turned, extraction={"ocr": True}) == without
+
