@@ -3302,8 +3302,8 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
 
 def _pdf_layer_lines(
     page: Any, *, extraction: dict[str, Any]
-) -> list[list[tuple[str, bool]]]:
-    """The page's text-layer lines, each as its spans' (text, painted) pairs.
+) -> list[list[tuple[str, bool, str]]]:
+    """The page's text-layer lines, each as its spans' (text, painted, font name).
 
     The lines and spans of the ``dict`` output, with the text flags and sort of
     ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
@@ -3317,7 +3317,10 @@ def _pdf_layer_lines(
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
     return [
-        [(str(span.get("text", "")), _pdf_span_painted(span)) for span in line.get("spans", ())]
+        [
+            (str(span.get("text", "")), _pdf_span_painted(span), str(span.get("font", "")))
+            for span in line.get("spans", ())
+        ]
         for block in data.get("blocks", ())
         for line in block.get("lines", ())
     ]
@@ -3329,29 +3332,37 @@ def _layer_characters(text: str) -> Counter[str]:
     )
 
 
-def _same_layer_characters(span_lines: list[list[tuple[str, bool]]], layer_text: str) -> bool:
+def _same_layer_characters(
+    span_lines: list[list[tuple[str, bool, str]]], layer_text: str
+) -> bool:
     """Whether the spans hold the text output's characters, whitespace and control
     characters aside (the sorted text output drops a garbled font's control "spaces")."""
-    spans = "".join(text for spans in span_lines for text, _ in spans)
+    spans = "".join(span[0] for spans in span_lines for span in spans)
     return _layer_characters(spans) == _layer_characters(layer_text)
 
 
-def _without_garbled_spans(span_lines: list[list[tuple[str, bool]]]) -> list[tuple[str, bool]]:
-    """Each layer line's text without its garbled spans, with whether it is painted.
+def _without_garbled_spans(
+    span_lines: list[list[tuple[str, bool, str]]],
+) -> list[tuple[str, bool]]:
+    """Each layer line's text without its garbled font's spans, with whether it is painted.
 
     A span holding a control character other than ordinary whitespace
-    (``_has_control_character``) is a garbled font's and is left out whole, before
-    anything splits it; where it stood between kept spans a space keeps them apart.
-    The line is painted when any remaining span with visible characters is. A line left
-    with no visible character is dropped.
+    (``_has_control_character``) is a garbled font's, and so is every span on the same
+    line in a font that holds one there: the font maps some codes to control characters
+    and the rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those spans are
+    left out whole, before anything splits them; where they stood between kept spans a
+    space keeps them apart. Spans in other fonts, such as a date typed beside a garbled
+    label, are kept. The line is painted when any kept span with visible characters is.
+    A line left with no visible character is dropped.
     """
     lines: list[tuple[str, bool]] = []
     for spans in span_lines:
+        garbled = {font for text, _, font in spans if _has_control_character(text)}
         parts: list[str] = []
         painted = False
         gap = False
-        for text, span_painted in spans:
-            if _has_control_character(text):
+        for text, span_painted, font in spans:
+            if font in garbled or _has_control_character(text):
                 gap = any(parts)
                 continue
             if gap:
