@@ -216,7 +216,20 @@ jobs:
         run: |
           mypy src/axiom_corpus/corpus --ignore-missing-imports
 
+      - name: Install Tesseract for the OCR tests
+        # tests/test_documents_ocr_orientation.py runs the tesseract CLI with its eng and
+        # osd models; AXIOM_CORPUS_REQUIRE_TESSERACT below makes a missing install fail
+        # those tests instead of skipping them.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            tesseract-ocr tesseract-ocr-eng tesseract-ocr-osd
+          tesseract --version
+          tesseract --list-langs
+
       - name: Run tests with coverage
+        env:
+          AXIOM_CORPUS_REQUIRE_TESSERACT: "1"
         run: |
           python -I -m pip install pytest-cov pytest-timeout pytest-xdist
           # Four processes (the runner's cores); a test file's tests stay in
