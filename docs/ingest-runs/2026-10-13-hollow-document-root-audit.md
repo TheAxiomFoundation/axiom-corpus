@@ -169,8 +169,9 @@ SC, VT (two), WI and WY, built by `extract-official-documents` from manifests th
   the 335 manifest documents behind the 336 PDFs that the rule reached before the 100 dpi
   floor (a superset of these 328) with the old and the new code (sharing Tesseract
   output) gives no error on either side, so every start and stop marker still
-  matches; no section label changes; 316 documents gain OCR text (11.2 to 12.4 million
-  characters in all); and of the 539 text-layer tokens with a digit that disappear, 526
+  matches; no section label changes; 316 documents change (11.2 to 12.4 million
+  characters in all), 304 gaining text and 12 swapping a stamp or garbled layer for OCR
+  text of about the same length (at most 338 characters shorter); and of the 539 text-layer tokens with a digit that disappear, 526
   sit in garbled-font lines (control characters) and 13 differ from what OCR read only in
   punctuation.
 
