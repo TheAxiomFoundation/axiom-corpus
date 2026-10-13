@@ -14,6 +14,7 @@ import unicodedata
 import warnings
 import zipfile
 from collections import Counter
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from datetime import date
 from io import BytesIO, StringIO
@@ -36,6 +37,13 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.citation_segment import citation_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.source_coverage import (
+    SourceCoverageEntry,
+    SourceCoverageReport,
+    SourceRegion,
+    UnmeasuredSource,
+    row_texts,
+)
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 OFFICIAL_DOCUMENT_USER_AGENT = (
@@ -165,6 +173,9 @@ class OfficialDocumentExtractReport:
     coverage_path: Path
     coverage: ProvisionCoverageReport
     source_paths: tuple[Path, ...]
+    # What each source's rows keep of the text read from it (report only; see
+    # ``source_coverage``). Written to the coverage report as ``source_coverage``.
+    source_coverage: SourceCoverageReport | None = None
 
 
 @dataclass(frozen=True)
@@ -182,6 +193,23 @@ class _DocumentBlock:
     heading: str | None
     body: str
     metadata: dict[str, Any]
+
+
+# The region of a source an extraction reads, as its coverage entry names it
+# (``source_coverage``). HTML: the nodes ``html_text_selector`` names, else the content
+# root (``html_content_selector``, or the default main/article/body), a WebWorks page's
+# ``#page_content``, or the anchor ranges. PDF: every page's text, or the lines of the
+# page range or page windows after the start marker. DOCX: the body's paragraphs,
+# after ``start_after_pattern`` and before ``stop_text_pattern`` when those are set.
+_REGION_HTML_TEXT_SELECTOR = "html_text_selector"
+_REGION_HTML_CONTENT_SELECTOR = "html_content_selector"
+_REGION_HTML_MAIN_CONTENT = "html_main_content"
+_REGION_HTML_WEBWORKS_PAGE = "html_webworks_page"
+_REGION_HTML_ANCHOR_RANGE = "html_anchor_range"
+_REGION_PDF_PAGES = "pdf_pages"
+_REGION_PDF_PAGE_RANGE = "pdf_page_range"
+_REGION_PDF_PAGE_WINDOWS = "pdf_page_windows"
+_REGION_DOCX_BODY = "docx_body"
 
 
 def official_documents_run_id(
@@ -234,6 +262,8 @@ def extract_official_documents(
     inventory: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
     block_count = 0
+    measured_sources: list[SourceCoverageEntry] = []
+    unmeasured_sources: list[UnmeasuredSource] = []
 
     for source in documents:
         _progress(progress_stream, f"extracting {source.source_id}")
@@ -250,6 +280,7 @@ def extract_official_documents(
         source_as_of_text = source.source_as_of or default_source_as_of
         expression_date_text = source.expression_date or default_expression_date
 
+        region = SourceRegion()
         blocks = tuple(
             _extract_blocks(
                 content,
@@ -257,6 +288,7 @@ def extract_official_documents(
                 source_url=source.source_url,
                 title=source.title,
                 extraction=source.extraction,
+                region=region,
             )
         )
         block_count += len(blocks)
@@ -271,19 +303,31 @@ def extract_official_documents(
                 final_url=downloaded.final_url,
             )
         )
-        records.extend(
-            _provision_records(
-                source,
-                blocks=blocks,
-                version=run_id,
-                source_key=source_key,
-                source_format=source_format,
-                source_as_of=source_as_of_text,
-                expression_date=expression_date_text,
-                content_type=downloaded.content_type,
-                final_url=downloaded.final_url,
-            )
+        source_records = _provision_records(
+            source,
+            blocks=blocks,
+            version=run_id,
+            source_key=source_key,
+            source_format=source_format,
+            source_as_of=source_as_of_text,
+            expression_date=expression_date_text,
+            content_type=downloaded.content_type,
+            final_url=downloaded.final_url,
         )
+        records.extend(source_records)
+        if region.kind is None:
+            unmeasured_sources.append(
+                UnmeasuredSource(source_path=source_key, source_format=source_format)
+            )
+        else:
+            measured_sources.append(
+                SourceCoverageEntry(
+                    source_path=source_key,
+                    source_format=source_format,
+                    region=region.kind,
+                    figures=region.measure(row_texts(source_records)),
+                )
+            )
 
     inventory_path = store.inventory_path(jurisdiction, document_class, run_id)
     provisions_path = store.provisions_path(jurisdiction, document_class, run_id)
@@ -297,7 +341,13 @@ def extract_official_documents(
         document_class=document_class,
         version=run_id,
     )
-    store.write_json(coverage_path, coverage.to_mapping())
+    source_coverage = SourceCoverageReport(
+        sources=tuple(measured_sources), unmeasured=tuple(unmeasured_sources)
+    )
+    store.write_json(
+        coverage_path,
+        {**coverage.to_mapping(), "source_coverage": source_coverage.to_mapping()},
+    )
 
     return OfficialDocumentExtractReport(
         jurisdiction=jurisdiction,
@@ -310,6 +360,7 @@ def extract_official_documents(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        source_coverage=source_coverage,
     )
 
 
@@ -850,14 +901,26 @@ def _extract_blocks(
     source_url: str,
     title: str | None,
     extraction: dict[str, Any] | None,
+    region: SourceRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
+    """Segment one source into blocks.
+
+    ``region``, when given, is told what the extraction read from the source and what
+    it dropped on purpose (``source_coverage``). HTML, PDF and DOCX sources, and an
+    HTML field inside a JSON source, record a region; the other formats leave it
+    unset, so their sources are reported as unmeasured.
+    """
     if source_format == "pdf":
-        return _extract_pdf_blocks(content, extraction=extraction)
+        return _extract_pdf_blocks(content, extraction=extraction, region=region)
     if (extraction or {}).get("section_citation_suffix_replacements") is not None:
         raise ValueError(_CITATION_SUFFIX_REPLACEMENTS_SCOPE)
     if source_format == "html":
         return _extract_html_blocks(
-            content, source_url=source_url, fallback_title=title, extraction=extraction
+            content,
+            source_url=source_url,
+            fallback_title=title,
+            extraction=extraction,
+            region=region,
         )
     if source_format == "json":
         return _extract_json_html_blocks(
@@ -865,13 +928,14 @@ def _extract_blocks(
             source_url=source_url,
             fallback_title=title,
             extraction=extraction,
+            region=region,
         )
     if source_format == "javascript":
         return _extract_plain_text_blocks(content, title=title)
     if source_format == "csv":
         return _extract_csv_blocks(content, title=title, extraction=extraction)
     if source_format == "docx":
-        return _extract_docx_blocks(content, extraction=extraction)
+        return _extract_docx_blocks(content, extraction=extraction, region=region)
     if source_format == "doc":
         return _extract_doc_blocks(content, title=title, extraction=extraction)
     if source_format == "xlsx":
@@ -1025,7 +1089,10 @@ def _extract_csv_blocks(
 
 
 def _extract_pdf_blocks(
-    content: bytes, *, extraction: dict[str, Any] | None
+    content: bytes,
+    *,
+    extraction: dict[str, Any] | None,
+    region: SourceRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     extraction_config = extraction or {}
     segmentation = extraction_config.get("segmentation")
@@ -1058,11 +1125,17 @@ def _extract_pdf_blocks(
     ):
         raise ValueError(_CITATION_SUFFIX_REPLACEMENTS_SCOPE)
     if segmentation == "numbered_sections":
-        return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
+        return _extract_numbered_pdf_section_blocks(
+            content, extraction=extraction_config, region=region
+        )
     if segmentation == "labeled_sections":
-        return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
+        return _extract_labeled_pdf_section_blocks(
+            content, extraction=extraction_config, region=region
+        )
     if segmentation == "single_block":
-        return _extract_single_block_pdf(content, extraction=extraction_config)
+        return _extract_single_block_pdf(content, extraction=extraction_config, region=region)
+    if region is not None:
+        region.start(_REGION_PDF_PAGES)
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
@@ -1090,6 +1163,8 @@ def _extract_pdf_blocks(
                 text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
             if not text:
                 continue
+            if region is not None:
+                region.read(text)
             metadata: dict[str, Any] = {"page_number": index}
             if page_citation_prefix:
                 metadata["citation_suffix"] = f"{safe_segment(str(page_citation_prefix))}-{index}"
@@ -1769,7 +1844,7 @@ _SINGLE_BLOCK_PDF_FILTER_KEYS = (
 
 
 def _extract_single_block_pdf(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[_DocumentBlock, ...]:
     """Extract a whole PDF as one root provision (no per-page fragments).
 
@@ -1792,18 +1867,24 @@ def _extract_single_block_pdf(
         extraction.get(key) is not None for key in _SINGLE_BLOCK_PDF_FILTER_KEYS
     ):
         current_page: int | None = None
-        for line, page_index in _filtered_pdf_lines(content, extraction=extraction):
+        for line, page_index in _filtered_pdf_lines(
+            content, extraction=extraction, region=region
+        ):
             if page_index != current_page:
                 page_texts.append(line)
                 current_page = page_index
             else:
                 page_texts[-1] = f"{page_texts[-1]}\n{line}"
     else:
+        if region is not None:
+            region.start(_REGION_PDF_PAGES)
         with fitz.open(stream=content, filetype="pdf") as document:
             for page in document:
                 text = _normalize_text(_pdf_page_text(page, extraction=extraction))
                 if text:
                     page_texts.append(text)
+                    if region is not None:
+                        region.read(text)
     body = "\n\n".join(page_texts)
     if not body:
         return ()
@@ -1819,10 +1900,10 @@ def _extract_single_block_pdf(
 
 
 def _extract_numbered_pdf_section_blocks(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[_DocumentBlock, ...]:
     """Extract legal PDFs whose top-level sections begin with numbered headings."""
-    lines = _filtered_pdf_lines(content, extraction=extraction)
+    lines = _filtered_pdf_lines(content, extraction=extraction, region=region)
     sections: list[_DocumentBlock] = []
     index = 0
     while index < len(lines):
@@ -1874,7 +1955,7 @@ def _extract_numbered_pdf_section_blocks(
 
 
 def _extract_labeled_pdf_section_blocks(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[_DocumentBlock, ...]:
     """Extract PDFs whose top-level sections begin with stable labels."""
     heading_pattern = extraction.get("section_heading_pattern")
@@ -1911,11 +1992,11 @@ def _extract_labeled_pdf_section_blocks(
         extraction.get("normalize_parenthetical_label_components", False)
     )
     if heading_requires_bold:
-        styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
+        styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction, region=region)
         lines = tuple((line, page) for line, page, _style in styled_lines)
         line_styles = tuple(style for _line, _page, style in styled_lines)
     else:
-        lines = _filtered_pdf_lines(content, extraction=extraction)
+        lines = _filtered_pdf_lines(content, extraction=extraction, region=region)
         line_styles = ()
 
     sections: list[_DocumentBlock] = []
@@ -2026,6 +2107,9 @@ def _extract_labeled_pdf_section_blocks(
             heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
             if drop_repeated and citation_label == current_citation_label:
+                # A section heading restated at a page top is dropped on purpose.
+                if region is not None:
+                    region.drop(line, read=True)
                 index += 1
                 full_heading = (current_heading or "").removeprefix(f"{label} ")
                 remaining_heading = (
@@ -2040,6 +2124,8 @@ def _extract_labeled_pdf_section_blocks(
                     remaining_heading = remaining_heading.removeprefix(
                         continuation_line
                     ).strip()
+                    if region is not None:
+                        region.drop(continuation_line, read=True)
                     index += 1
                 continue
             if not heading_text and label_heading_re is not None:
@@ -2117,17 +2203,22 @@ def _extract_labeled_pdf_section_blocks(
 
 
 def _extract_docx_blocks(
-    content: bytes, *, extraction: dict[str, Any] | None
+    content: bytes,
+    *,
+    extraction: dict[str, Any] | None,
+    region: SourceRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     if (extraction or {}).get("segmentation") == "styled_labeled_sections":
         return _extract_styled_labeled_docx_section_blocks(
             content,
             extraction=extraction or {},
+            region=region,
         )
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_docx_section_blocks(
             content,
             extraction=extraction or {},
+            region=region,
         )
     with zipfile.ZipFile(BytesIO(content)) as document:
         xml = document.read("word/document.xml")
@@ -2135,6 +2226,10 @@ def _extract_docx_blocks(
     body = root.find("w:body", _WORD_NS)
     if body is None:
         return ()
+    if region is not None:
+        region.start(_REGION_DOCX_BODY)
+        for _line, reader_text in _docx_body_lines(body):
+            region.read(reader_text)
 
     blocks: list[_DocumentBlock] = []
     heading: str | None = None
@@ -2493,7 +2588,7 @@ def _require_start_marker(started: bool, pattern: object, *, context: str) -> No
 
 
 def _extract_labeled_docx_section_blocks(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[_DocumentBlock, ...]:
     """Extract DOCX documents whose provisions begin with stable labels."""
     heading_pattern = extraction.get("section_heading_pattern")
@@ -2544,16 +2639,27 @@ def _extract_labeled_docx_section_blocks(
         current_heading = None
         current_body = []
 
-    for line in _docx_lines(content):
+    if region is not None:
+        region.start(_REGION_DOCX_BODY)
+    for line, reader_text in _docx_content_lines(content):
+        if line is None:
+            # A body element this extraction does not read (a content control, say).
+            if started and region is not None:
+                region.read(reader_text)
+            continue
         if not started:
             if start_after_re is not None and start_after_re.search(line):
                 started = True
             continue
         if _drop_pdf_line(line, drop_lines, drop_line_patterns):
+            if region is not None:
+                region.drop(reader_text)
             continue
         if stop_re is not None and stop_re.search(line):
             flush()
             break
+        if region is not None:
+            region.read(reader_text)
         match = _match_labeled_pdf_section(
             line,
             section_heading_re,
@@ -2579,7 +2685,7 @@ _STYLED_LABELED_CONTINUATION_SUFFIX = r"\s*\((?:Continued|Cont\.)\)\s*$"
 
 
 def _extract_styled_labeled_docx_section_blocks(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[_DocumentBlock, ...]:
     """Extract DOCX sections that start at Word heading-styled paragraphs.
 
@@ -2644,9 +2750,20 @@ def _extract_styled_labeled_docx_section_blocks(
     current_label: str | None = None
     started = start_after_re is None
     stopped = False
+    if region is not None:
+        region.start(_REGION_DOCX_BODY)
 
     def keep_line(line: str) -> bool:
         return not _drop_pdf_line(line, drop_lines, drop_line_patterns)
+
+    def note(line: str, reader_text: str) -> None:
+        """Tell the region a body line: read, or dropped by a drop-line filter."""
+        if region is None:
+            return
+        if keep_line(line):
+            region.read(reader_text)
+        else:
+            region.drop(reader_text)
 
     for child in body:
         if stopped:
@@ -2685,6 +2802,9 @@ def _extract_styled_labeled_docx_section_blocks(
                                 f"styled_labeled_sections: repeated section label {label!r}"
                             )
                         sections[label]["occurrences"] += 1
+                        # A heading restated after a page break is merged on purpose.
+                        if region is not None:
+                            region.drop(text)
                     else:
                         sections[label] = {
                             "heading": f"{label} {heading_text}".strip(),
@@ -2692,17 +2812,28 @@ def _extract_styled_labeled_docx_section_blocks(
                             "occurrences": 1,
                         }
                         order.append(label)
+                        if region is not None:
+                            region.read(text)
                     current_label = label
                     continue
+            note(text, text)
             if current_label is not None and keep_line(text):
                 sections[current_label]["body"].append(text)
         elif child.tag == _word_tag("tbl"):
-            if not started or current_label is None:
+            if not started:
                 continue
-            table_text = _docx_table_text(child)
-            rows = [row for row in table_text.splitlines() if row and keep_line(row)]
+            table_lines = _docx_table_lines(child)
+            for row, reader_row in table_lines:
+                note(row, reader_row)
+            if current_label is None:
+                continue
+            rows = [row for row, _reader_row in table_lines if keep_line(row)]
             if rows:
                 sections[current_label]["body"].append("\n".join(rows))
+        elif started and region is not None:
+            # A body element this extraction does not read (a content control, say).
+            for reader_text in _docx_reader_paragraphs(child):
+                region.read(reader_text)
     _require_start_marker(started, start_after_pattern, context="styled_labeled_sections DOCX")
 
     blocks: list[_DocumentBlock] = []
@@ -2725,23 +2856,61 @@ def _extract_styled_labeled_docx_section_blocks(
 
 
 def _docx_lines(content: bytes) -> tuple[str, ...]:
+    return tuple(line for line, _reader_text in _docx_content_lines(content) if line is not None)
+
+
+def _docx_content_lines(content: bytes) -> tuple[tuple[str | None, str], ...]:
     with zipfile.ZipFile(BytesIO(content)) as document:
         xml = document.read("word/document.xml")
     root = ElementTree.fromstring(xml)
     body = root.find("w:body", _WORD_NS)
     if body is None:
         return ()
-    lines: list[str] = []
+    return _docx_body_lines(body)
+
+
+def _docx_body_lines(body: ElementTree.Element) -> tuple[tuple[str | None, str], ...]:
+    """Each line of a DOCX body as the extractors read it, with the text a reader sees.
+
+    A paragraph is one line and a table one line per row (``_docx_table_text``). The
+    second item is the same line as Word shows it (``_docx_table_reader_text``): it is
+    what the source-coverage region is made of, so a word that ``_docx_table_text``
+    splits where its runs meet reads as lost. A body element the extractors skip, such
+    as a content control, has no line (``None``) and one entry per paragraph inside it.
+    """
+    lines: list[tuple[str | None, str]] = []
     for child in body:
         if child.tag == _word_tag("p"):
             text = _docx_paragraph_text(child)
             if text:
-                lines.append(text)
+                lines.append((text, text))
         elif child.tag == _word_tag("tbl"):
-            table_text = _docx_table_text(child)
-            if table_text:
-                lines.extend(line for line in table_text.splitlines() if line)
+            lines.extend(_docx_table_lines(child))
+        else:
+            lines.extend((None, text) for text in _docx_reader_paragraphs(child))
     return tuple(lines)
+
+
+def _docx_table_lines(table: ElementTree.Element) -> list[tuple[str, str]]:
+    """A table's lines as ``_docx_table_text`` writes them, each with its reader's text."""
+    lines = [line for line in _docx_table_text(table).splitlines() if line]
+    reader_lines = [line for line in _docx_table_reader_text(table).splitlines() if line]
+    if len(reader_lines) != len(lines):
+        # The two readings break the table into lines differently, so they cannot be
+        # paired: fall back to the extractor's own lines for this table.
+        reader_lines = lines
+    return list(zip(lines, reader_lines, strict=True))
+
+
+def _docx_reader_paragraphs(node: ElementTree.Element) -> Iterator[str]:
+    """The text of each paragraph at or under ``node``, outermost paragraphs only."""
+    if node.tag == _word_tag("p"):
+        text = _docx_paragraph_text(node)
+        if text:
+            yield text
+        return
+    for child in node:
+        yield from _docx_reader_paragraphs(child)
 
 
 def _zip_contains(content: bytes, name: str) -> bool:
@@ -2780,6 +2949,34 @@ def _docx_table_text(table: ElementTree.Element) -> str:
         if cells:
             rows.append(" | ".join(cells))
     return "\n".join(rows)
+
+
+def _docx_table_reader_text(table: ElementTree.Element) -> str:
+    """``_docx_table_text`` with each paragraph's runs joined as Word shows them.
+
+    ``_docx_table_text`` puts a space between every two runs of a cell, so a word that
+    Word stores in two runs ("eligi" and "bility", or "702" and ".000") comes out split.
+    Here a paragraph's runs are joined with nothing between them, and a cell's
+    paragraphs with a space, which gives the same lines.
+    """
+    rows: list[str] = []
+    for row in table.findall("w:tr", _WORD_NS):
+        cells = [
+            _normalize_text(" ".join(_docx_raw_paragraphs(cell)))
+            for cell in row.findall("w:tc", _WORD_NS)
+        ]
+        cells = [cell for cell in cells if cell]
+        if cells:
+            rows.append(" | ".join(cells))
+    return "\n".join(rows)
+
+
+def _docx_raw_paragraphs(node: ElementTree.Element) -> Iterator[str]:
+    if node.tag == _word_tag("p"):
+        yield "".join(_docx_text_chunks(node))
+        return
+    for child in node:
+        yield from _docx_raw_paragraphs(child)
 
 
 def _docx_text_chunks(node: ElementTree.Element) -> tuple[str, ...]:
@@ -2829,21 +3026,30 @@ def _match_labeled_pdf_section(
 
 
 def _filtered_pdf_lines(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[tuple[str, int], ...]:
     return tuple(
         (line, page)
         for line, page, _style in _filtered_pdf_styled_lines(
-            content, extraction=extraction
+            content, extraction=extraction, region=region
         )
     )
 
 
 def _filtered_pdf_styled_lines(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[tuple[str, int, int], ...]:
+    """The lines of a PDF's page range, after its start marker and line filters.
+
+    These lines are the region a line-based PDF extraction reads: ``region`` is told
+    each one, and each line a page-header pattern or a drop-line filter removes after
+    the start marker as dropped on purpose. Lines before the start marker and pages
+    outside the range are outside the region.
+    """
     if extraction.get("page_windows") is not None:
-        return _windowed_pdf_styled_lines(content, extraction=extraction)
+        return _windowed_pdf_styled_lines(content, extraction=extraction, region=region)
+    if region is not None:
+        region.start(_REGION_PDF_PAGE_RANGE)
     start_page = _positive_int(extraction.get("start_page"), key="start_page", default=1)
     end_page = extraction.get("end_page")
     parsed_end_page = (
@@ -2869,16 +3075,23 @@ def _filtered_pdf_styled_lines(
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for line, style in _without_page_header(
-                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
-            ):
+            page_lines = _pdf_page_styled_lines(page, extraction=extraction)
+            body_lines = _without_page_header(page_lines, page_header_patterns)
+            if region is not None and started:
+                for line, _style in page_lines[: len(page_lines) - len(body_lines)]:
+                    region.drop(line)
+            for line, style in body_lines:
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
+                    if region is not None and started:
+                        region.drop(line)
                     continue
                 if not started:
                     if start_after_re is not None and start_after_re.search(line):
                         started = True
                     continue
                 lines.append((line, page_index, style))
+                if region is not None:
+                    region.read(line)
     last_page = min(parsed_end_page or page_count, page_count)
     context = (
         f"PDF start_page {start_page} is beyond its {page_count} pages"
@@ -2936,18 +3149,18 @@ def _parse_pdf_page_windows(extraction: dict[str, Any]) -> tuple[_PdfPageWindow,
 
 
 def _windowed_pdf_lines(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[tuple[str, int], ...]:
     return tuple(
         (line, page)
         for line, page, _style in _windowed_pdf_styled_lines(
-            content, extraction=extraction
+            content, extraction=extraction, region=region
         )
     )
 
 
 def _windowed_pdf_styled_lines(
-    content: bytes, *, extraction: dict[str, Any]
+    content: bytes, *, extraction: dict[str, Any], region: SourceRegion | None = None
 ) -> tuple[tuple[str, int, int], ...]:
     """Collect PDF text lines from discontiguous page windows.
 
@@ -2961,6 +3174,8 @@ def _windowed_pdf_styled_lines(
     neighbour-section fragments out of the extracted bodies.
     """
     windows = _parse_pdf_page_windows(extraction)
+    if region is not None:
+        region.start(_REGION_PDF_PAGE_WINDOWS)
     drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
     drop_line_patterns = tuple(
         re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
@@ -2982,10 +3197,15 @@ def _windowed_pdf_styled_lines(
             page_window = window_by_page.get(page_index)
             if page_window is None or stopped[id(page_window)]:
                 continue
-            for line, style in _without_page_header(
-                _pdf_page_styled_lines(page, extraction=extraction), page_header_patterns
-            ):
+            page_lines = _pdf_page_styled_lines(page, extraction=extraction)
+            body_lines = _without_page_header(page_lines, page_header_patterns)
+            if region is not None and started[id(page_window)]:
+                for line, _style in page_lines[: len(page_lines) - len(body_lines)]:
+                    region.drop(line)
+            for line, style in body_lines:
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
+                    if region is not None and started[id(page_window)]:
+                        region.drop(line)
                     continue
                 if not started[id(page_window)]:
                     if page_window.start_at_re is not None and page_window.start_at_re.search(
@@ -2993,11 +3213,15 @@ def _windowed_pdf_styled_lines(
                     ):
                         started[id(page_window)] = True
                         lines.append((line, page_index, style))
+                        if region is not None:
+                            region.read(line)
                     continue
                 if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
                     stopped[id(page_window)] = True
                     break
                 lines.append((line, page_index, style))
+                if region is not None:
+                    region.read(line)
     for window in windows:
         if window.start_at_re is not None and not started[id(window)]:
             raise ValueError(
@@ -3330,8 +3554,10 @@ def _extract_html_blocks(
     source_url: str,
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
+    region: SourceRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
+    page_region = _HtmlRegion(region)
     kept_default_drops = set(_html_keep_default_drop_selectors(extraction))
     drop_selectors = [
         *(
@@ -3343,6 +3569,7 @@ def _extract_html_blocks(
     ]
     for selector in drop_selectors:
         for node in soup.select(selector):
+            page_region.dropping(node)
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
     title = _document_title(soup) or fallback_title
@@ -3352,8 +3579,11 @@ def _extract_html_blocks(
             title=title,
             source_url=source_url,
             extraction=extraction or {},
+            page_region=page_region,
         )
-    webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
+    webworks_blocks = _extract_webworks_html_blocks(
+        root, title=title, source_url=source_url, page_region=page_region
+    )
     if webworks_blocks:
         return webworks_blocks
     if (extraction or {}).get("segmentation") == "labeled_sections":
@@ -3362,7 +3592,9 @@ def _extract_html_blocks(
             title=title,
             source_url=source_url,
             extraction=extraction or {},
+            page_region=page_region,
         )
+    page_region.read_root(root, extraction=extraction)
     blocks: list[_DocumentBlock] = []
     heading = title
     parts: list[str] = []
@@ -3427,6 +3659,7 @@ def _extract_json_html_blocks(
     source_url: str,
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
+    region: SourceRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     if (extraction or {}).get("segmentation") == "source_only":
         json_loads(content.decode("utf-8-sig"))
@@ -3468,6 +3701,7 @@ def _extract_json_html_blocks(
         source_url=source_url,
         fallback_title=fallback_title,
         extraction=extraction,
+        region=region,
     )
 
 
@@ -3713,6 +3947,7 @@ def _extract_labeled_html_section_blocks(
     title: str | None,
     source_url: str,
     extraction: dict[str, Any],
+    page_region: _HtmlRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     """Extract HTML documents whose provisions begin with stable text labels."""
     heading_pattern = extraction.get("section_heading_pattern")
@@ -3759,11 +3994,13 @@ def _extract_labeled_html_section_blocks(
         current_heading = None
         current_body = []
 
+    stop_node: Tag | None = None
     for node in _html_text_nodes(root, extraction=extraction):
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
         if stop_re is not None and stop_re.match(text):
+            stop_node = node
             flush()
             break
         match = _match_labeled_html_section(
@@ -3786,6 +4023,9 @@ def _extract_labeled_html_section_blocks(
         if current_label is not None:
             current_body.append(text)
     flush()
+    if page_region is not None:
+        # The region ends where ``stop_text_pattern`` stopped the walk.
+        page_region.read_root(root, extraction=extraction, stop=stop_node)
     return tuple(sections)
 
 
@@ -3795,6 +4035,7 @@ def _extract_anchor_range_html_blocks(
     title: str | None,
     source_url: str,
     extraction: dict[str, Any],
+    page_region: _HtmlRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     """Extract one HTML section from a start node through the next configured node."""
     ranges = extraction.get("anchor_ranges")
@@ -3812,6 +4053,7 @@ def _extract_anchor_range_html_blocks(
                 source_url=source_url,
                 extraction={**shared_config, **range_config},
                 ordinal=len(blocks) + 1,
+                page_region=page_region,
             )
             if block is not None:
                 blocks.append(block)
@@ -3822,6 +4064,7 @@ def _extract_anchor_range_html_blocks(
         source_url=source_url,
         extraction=extraction,
         ordinal=1,
+        page_region=page_region,
     )
     return (block,) if block is not None else ()
 
@@ -3833,6 +4076,7 @@ def _extract_anchor_range_html_block(
     source_url: str,
     extraction: dict[str, Any],
     ordinal: int,
+    page_region: _HtmlRegion | None = None,
 ) -> _DocumentBlock | None:
     start_selector = extraction.get("html_start_selector") or extraction.get("start_selector")
     if not isinstance(start_selector, str) or not start_selector:
@@ -3851,14 +4095,19 @@ def _extract_anchor_range_html_block(
             raise ValueError(f"html stop selector did not match: {stop_selector!r}")
 
     html_parts: list[str] = []
+    range_nodes: list[Any] = []
     for node in (start, *start.next_siblings):
         if isinstance(node, Comment):
             continue
         if stop is not None and _html_node_contains(node, stop):
             break
         html_parts.append(str(node))
+        range_nodes.append(node)
 
     text = _html_fragment_text("".join(html_parts))
+    if page_region is not None:
+        # The range is the region: what the anchors select is read whole.
+        page_region.read_range(text, range_nodes)
     if not text:
         return None
     label = extraction.get("section_label") or extraction.get("citation_suffix")
@@ -4028,6 +4277,117 @@ def _replace_section_label(label: str, replacements: dict[str, str] | None) -> s
     return replacements.get(label, label).strip()
 
 
+# Elements whose text a reader never sees: dropping one drops no words.
+_HTML_INVISIBLE_TAGS = frozenset({"script", "style", "noscript", "template"})
+
+
+class _HtmlRegion:
+    """Tells a ``SourceRegion`` what an HTML extraction reads and what it drops.
+
+    The drop selectors run before the content root is chosen, so the text of each node
+    they remove is held with the node's ancestors until the region's nodes are known.
+    It counts as dropped on purpose only when it sat inside one of them: a site banner
+    outside the content root was never in the region. (With ``stop_text_pattern`` a
+    dropped node that sat after the stop still counts: its position is gone once it is
+    removed.) Without a ``SourceRegion`` every method does nothing.
+    """
+
+    def __init__(self, region: SourceRegion | None) -> None:
+        self.region = region
+        self._dropped: list[tuple[str, tuple[Any, ...]]] = []
+
+    def dropping(self, node: Tag) -> None:
+        """Note a node about to be removed on purpose. Call before ``decompose``."""
+        if self.region is None or node.name in _HTML_INVISIBLE_TAGS:
+            return
+        text = node.get_text(" ", strip=True)
+        if text:
+            self._dropped.append((text, tuple(node.parents)))
+
+    def read_root(
+        self, root: Tag, *, extraction: dict[str, Any] | None, stop: Tag | None = None
+    ) -> None:
+        """Read the nodes ``html_text_selector`` names, else the content root.
+
+        ``stop`` is the node at which ``stop_text_pattern`` ended the walk: the region
+        ends where it begins.
+        """
+        if self.region is None:
+            return
+        config = extraction or {}
+        if config.get("html_text_selector"):
+            self.read_nodes(
+                _REGION_HTML_TEXT_SELECTOR,
+                _html_text_nodes(root, extraction=extraction),
+                stop=stop,
+            )
+        elif (config.get("html_content_selector") or config.get("content_selector")) is not None:
+            self.read_nodes(_REGION_HTML_CONTENT_SELECTOR, (root,), stop=stop)
+        else:
+            self.read_nodes(_REGION_HTML_MAIN_CONTENT, (root,), stop=stop)
+
+    def read_nodes(self, kind: str, nodes: Iterable[Tag], *, stop: Tag | None = None) -> None:
+        if self.region is None:
+            return
+        self.region.start(kind)
+        read: list[Tag] = []
+        for node in nodes:
+            text, stopped = _html_text_before(node, stop)
+            self.region.read(text)
+            read.append(node)
+            if stopped:
+                break
+        self._drop_inside(read)
+
+    def read_range(self, text: str, nodes: Iterable[Any]) -> None:
+        """Read one anchor range: its text, and the nodes it spans."""
+        if self.region is None:
+            return
+        self.region.start(_REGION_HTML_ANCHOR_RANGE)
+        self.region.read(text)
+        self._drop_inside([node for node in nodes if isinstance(node, Tag)])
+
+    def _drop_inside(self, nodes: list[Tag]) -> None:
+        if self.region is None:
+            return
+        outside: list[tuple[str, tuple[Any, ...]]] = []
+        for text, parents in self._dropped:
+            if any(parent is node for parent in parents for node in nodes):
+                self.region.drop(text)
+            else:
+                outside.append((text, parents))
+        self._dropped = outside
+
+
+def _html_text_before(node: Tag, stop: Tag | None) -> tuple[str, bool]:
+    """``node.get_text(" ", strip=True)``, ending where ``stop`` begins.
+
+    Returns the text and whether ``stop`` was reached (it is ``node`` or inside it).
+    Strings are chosen as ``get_text`` chooses them: comments and the contents of
+    ``script``, ``style`` and ``template`` are not text.
+    """
+    if stop is None:
+        return node.get_text(" ", strip=True), False
+    if node is stop:
+        return "", True
+    kinds = node.interesting_string_types
+    if kinds is None:
+        kinds = Tag.MAIN_CONTENT_STRING_TYPES
+    parts: list[str] = []
+    for element in node.descendants:
+        if element is stop:
+            return " ".join(parts), True
+        if not isinstance(element, NavigableString):
+            continue
+        kind = type(element)
+        if (kind is not kinds) if isinstance(kinds, type) else (kind not in kinds):
+            continue
+        text = element.strip()
+        if text:
+            parts.append(text)
+    return " ".join(parts), False
+
+
 def _html_content_root(soup: BeautifulSoup, *, extraction: dict[str, Any] | None) -> Tag:
     selector = (extraction or {}).get("html_content_selector") or (extraction or {}).get(
         "content_selector"
@@ -4100,12 +4460,15 @@ def _extract_webworks_html_blocks(
     *,
     title: str | None,
     source_url: str,
+    page_region: _HtmlRegion | None = None,
 ) -> tuple[_DocumentBlock, ...]:
     page = root.select_one("#page_content")
     if not isinstance(page, Tag):
         return ()
     for selector in (".WebWorks_MiniTOC", ".ww_skin_page_globalization"):
         for node in page.select(selector):
+            if page_region is not None:
+                page_region.dropping(node)
             node.decompose()
 
     blocks: list[_DocumentBlock] = []
@@ -4137,6 +4500,8 @@ def _extract_webworks_html_blocks(
             continue
         parts.append(text)
     flush()
+    if blocks and page_region is not None:
+        page_region.read_nodes(_REGION_HTML_WEBWORKS_PAGE, (page,))
     return tuple(blocks)
 
 
