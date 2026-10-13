@@ -22,6 +22,7 @@ import re
 import warnings
 from pathlib import Path
 from typing import Any
+from unittest import mock
 
 import fitz  # type: ignore[import-untyped]
 import pytest
@@ -105,7 +106,8 @@ class _FakePage:
     """A page whose character layer and plain text are given directly.
 
     ``blocks`` is a list of text blocks, each a list of lines, each a string of
-    characters. The plain text is PyMuPDF's printer applied to the same
+    characters; rawdict and ``_pdf_page_character_blocks`` (in ``_layered``) both
+    read them. The plain text is PyMuPDF's printer applied to the same
     characters (``_printer_text``), unless ``text`` overrides it.
     """
 
@@ -117,6 +119,9 @@ class _FakePage:
         if option == "text":
             return self.text
         assert option == "rawdict"
+        return {"blocks": self.character_blocks()}
+
+    def character_blocks(self) -> list[dict[str, Any]]:
         raw_blocks = []
         for block in self.blocks:
             lines = []
@@ -132,7 +137,7 @@ class _FakePage:
                 spans = [{"size": SIZE, "origin": (72, BASELINE), "chars": chars}] if chars else []
                 lines.append({"spans": spans})
             raw_blocks.append({"type": 0, "lines": lines})
-        return {"blocks": raw_blocks}
+        return raw_blocks
 
     def get_drawings(self) -> list[Any]:
         return []
@@ -160,12 +165,17 @@ def _layered(page: _FakePage, *, sort_blocks: bool = False) -> str:
     extraction: dict[str, Any] = {"amendment_markup": True}
     if sort_blocks:
         extraction["sort_blocks"] = True
-    text, _metadata = documents_module._pdf_page_layered_text(
-        page,
-        extraction=extraction,
-        markup=documents_module._pdf_amendment_markup_config(extraction),
-        page_number=1,
-    )
+    with mock.patch.object(
+        documents_module,
+        "_pdf_page_character_blocks",
+        lambda page, **_kwargs: page.character_blocks(),
+    ):
+        text, _metadata = documents_module._pdf_page_layered_text(
+            page,
+            extraction=extraction,
+            markup=documents_module._pdf_amendment_markup_config(extraction),
+            page_number=1,
+        )
     return text
 
 
@@ -184,8 +194,7 @@ def test_empty_lines_add_no_newline() -> None:
 
 
 def test_the_layered_text_must_equal_the_default_page_text() -> None:
-    # A glyph the plain-text printer keeps but the character layer leaves out
-    # (PyMuPDF drops zero-width glyphs from rawdict).
+    # A glyph the plain-text printer keeps but the character layer leaves out.
     page = _FakePage([["$", "Your Name"]], text="$.\nYour Name\n")
 
     with pytest.raises(
@@ -260,20 +269,10 @@ def test_marked_pages_strip_back_to_the_default_text_in_the_cited_pdfs(
         assert phrase in _strip_amendment_markup(marked[page_number - 1].body)
 
 
-def test_a_zero_width_glyph_stops_marked_extraction_with_the_page_named() -> None:
-    content = MO_1040ES_PDF.read_bytes()
-
-    with pytest.raises(ValueError, match=r"PDF page 1: the character layer .* \(missing U\+002E\)"):
-        _pages(content, {"amendment_markup": True})
-    # The default extraction keeps the zero-width period.
-    assert "$." in _pages(content, {})[0].body
-
-
 def test_pages_outside_the_marked_range_use_the_default_text() -> None:
     content = MO_1040ES_PDF.read_bytes()
     plain = _pages(content, {})
 
-    # Pages 1 and 3 hold zero-width glyphs; marking only page 2 keeps them.
     marked = _pages(content, {"amendment_markup": {"start_page": 2, "end_page": 2}})
 
     assert [_strip_amendment_markup(block.body) for block in marked] == [

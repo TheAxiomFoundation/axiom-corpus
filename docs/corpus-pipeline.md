@@ -428,10 +428,21 @@ such PDFs. Without them extraction is unchanged.
 
 `amendment_markup` and `sort_blocks` work only with the default per-page
 segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
-`sort_text`. They read the page's character layer, and extraction stops with an
-error naming the page where that layer differs from the page's default text.
-PyMuPDF leaves zero-width glyphs (a combining mark, a zero-advance period) out of
-the character layer, so keep such a page out of the `amendment_markup` range.
+`sort_text`. They read the page's character layer, PyMuPDF's `rawdict`: the
+characters with their positions. `rawdict` leaves out some glyphs that
+PyMuPDF's plain-text printer prints: a line whose box has no area, and the last
+span of a line (a run in its own font, size or colour) when that span's box has
+no area. Glyphs drawn with no width, such as a combining mark or a zero-advance
+period, make such lines and spans. Where the `rawdict` reading differs from the
+page's default text, the page is read again: its text page is walked with the
+printer's test for each glyph, and the glyphs `rawdict` left out are added
+where the printer prints them; every character of a re-read page is given as
+the printer prints it, so a lone surrogate code point, which `rawdict` passes
+through, reads as U+FFFD. They never move a block whose text `rawdict` read or
+change how its other glyphs are classified. A page whose `rawdict` reading
+already matches the default text reads exactly as before. Extraction stops with
+an error naming the page if the walk and `rawdict` do not line up, or if the
+result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
 `amendment_markup` also fails if a page's own text already contains one of the
 delimiters, if a character is both struck through and underlined, or if
 `start_page` is past the last page.
