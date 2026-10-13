@@ -19,6 +19,7 @@ import pytest
 import axiom_corpus.corpus.documents as documents_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.documents import (
+    _pdf_layer_lines,
     _pdf_page_image_coverage,
     _pdf_page_needs_ocr,
     _pdf_page_text,
@@ -55,6 +56,8 @@ def _pdf(
     rotation: int = 0,
     cropbox: tuple[float, float, float, float] | None = None,
     mediabox: tuple[float, float, float, float] | None = None,
+    render_mode: int = 0,
+    fill_opacity: float = 1,
 ) -> Path:
     document = fitz.open()
     page = document.new_page(width=612, height=792)
@@ -74,7 +77,13 @@ def _pdf(
         # A scan placed partly off the page: 60% of the page is covered.
         page.insert_image(fitz.Rect(-200, 0, 367.2, 792), stream=_gray_png(), keep_proportion=False)
     if overlay:
-        page.insert_textbox(fitz.Rect(72, 72, 540, 720), overlay, fontsize=9)
+        page.insert_textbox(
+            fitz.Rect(72, 72, 540, 720),
+            overlay,
+            fontsize=9,
+            render_mode=render_mode,
+            fill_opacity=fill_opacity,
+        )
     if cropbox:
         page.set_cropbox(fitz.Rect(*cropbox))
     if rotation:
@@ -257,6 +266,70 @@ def test_with_unread_layer_lines_cases():
     )
     # A line with no letter or digit is not text.
     assert _with_unread_layer_lines("Total", "\u00b7 \u00b7\u00b7.\n\u25a1\n~") == "Total"
+
+
+@pytest.mark.parametrize(
+    ("render_mode", "fill_opacity", "painted"),
+    [(0, 1, True), (3, 1, False), (0, 0, False), (1, 1, True)],
+    ids=["filled", "invisible-mode-3", "transparent", "stroked"],
+)
+def test_layer_lines_report_whether_text_is_painted(tmp_path, render_mode, fill_opacity, painted):
+    pdf = _pdf(
+        tmp_path / "scan.pdf",
+        image_rect="page",
+        overlay="Associate Regional Administrator\nJanuary 1, 2018",
+        render_mode=render_mode,
+        fill_opacity=fill_opacity,
+    )
+    with fitz.open(pdf) as document:
+        lines = _pdf_layer_lines(document[0], extraction={})
+        text = document[0].get_text("text")
+
+    assert [line for line, _ in lines] == text.splitlines()
+    assert lines and all(flag is painted for _, flag in lines)
+
+
+# A recognition layer that agrees with none of OCR's words: five words of 3+ letters.
+NOISE_LAYER = "Ckm rML err\nurrr jhofe\nAl"
+
+
+def test_a_failed_invisible_recognition_layer_is_not_appended(tmp_path, monkeypatch):
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    hidden = _pdf(tmp_path / "hidden.pdf", image_rect="page", overlay=NOISE_LAYER, render_mode=3)
+    painted = _pdf(tmp_path / "painted.pdf", image_rect="page", overlay=NOISE_LAYER)
+
+    assert _first_page_text(hidden, {"ocr": True}) == ocr
+    # The same lines painted are typed onto the scan, and every one is kept.
+    assert _first_page_text(painted, {"ocr": True}) == (
+        "Applicant Household Size\n\nCkm rML err\nurrr jhofe\nAl"
+    )
+
+
+def test_an_agreeing_recognition_layer_keeps_what_ocr_missed_but_not_fragments(
+    tmp_path, monkeypatch
+):
+    # The layer's words mostly occur in the OCR text, so the layer is trusted; OCR missed
+    # the title, and "cc:" is a fragment of a recognition layer.
+    overlay = "Sincerely,\nAssociate Regional Administrator\nDivision of Medicaid Operations\ncc:"
+    ocr = "Sincerely,\nDivision of Medicaid Operations\nce:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    hidden = _pdf(tmp_path / "hidden.pdf", image_rect="page", overlay=overlay, render_mode=3)
+    painted = _pdf(tmp_path / "painted.pdf", image_rect="page", overlay=overlay)
+
+    assert _first_page_text(hidden, {"ocr": True}) == (
+        ocr.rstrip("\n") + "\n\nAssociate Regional Administrator"
+    )
+    assert _first_page_text(painted, {"ocr": True}) == (
+        ocr.rstrip("\n") + "\n\nAssociate Regional Administrator\ncc:"
+    )
+
+
+def test_blank_ocr_keeps_an_invisible_layer_as_it_is(tmp_path, monkeypatch):
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: "")
+    hidden = _pdf(tmp_path / "hidden.pdf", image_rect="page", overlay=NOISE_LAYER, render_mode=3)
+
+    assert _first_page_text(hidden, {"ocr": True}).split() == NOISE_LAYER.split()
 
 
 def test_page_needs_ocr_rules(tmp_path):

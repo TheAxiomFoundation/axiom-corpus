@@ -3062,7 +3062,11 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     if not extraction.get("ocr") or not _pdf_page_needs_ocr(page, str(text)):
         return _replace_text(str(text), text_replacements)
     ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
-    return _replace_text(_with_unread_layer_lines(ocr_text, str(text)), text_replacements)
+    layer_text = str(text)
+    if _normalize_text(ocr_text):
+        layer_lines = _pdf_layer_lines(page, extraction=extraction)
+        layer_text = "\n".join(_without_failed_recognition_lines(layer_lines, ocr_text))
+    return _replace_text(_with_unread_layer_lines(ocr_text, layer_text), text_replacements)
 
 
 # A scanned page can carry a thin text layer over its page image: a filing stamp, or the
@@ -3150,6 +3154,15 @@ def _rect_union_area(rects: list[Any]) -> float:
 # minus and a trailing percent sign belong to the value and are never skipped.
 _OCR_TOKEN_LEAD = re.compile(r"^[^\w$\u20ac\u00a3%-]+")
 _OCR_TOKEN_TRAIL = re.compile(r"[^\w%]+$")
+# Quote and dash variants compared as one character: OCR prints "Children’s" where a
+# layer has "Children's". One character for one, so offsets are unchanged.
+_OCR_TYPOGRAPHIC_FOLD = str.maketrans(
+    {
+        **dict.fromkeys("\u2018\u2019\u201a\u201b\u2032", "'"),
+        **dict.fromkeys("\u201c\u201d\u201e\u201f\u2033", '"'),
+        **dict.fromkeys("\u2010\u2011\u2012\u2013\u2014\u2015\u2212", "-"),
+    }
+)
 
 
 def _spacing_folded(tokens: list[str]) -> tuple[str, list[int]]:
@@ -3183,7 +3196,7 @@ def _ocr_reading(ocr_text: str) -> tuple[str, frozenset[int], frozenset[int]]:
     of the punctuation that trails it (``_OCR_TOKEN_TRAIL``). It can never start or end
     among a token's letters and digits, so "24" is not read by "2024".
     """
-    tokens = ocr_text.split()
+    tokens = ocr_text.translate(_OCR_TYPOGRAPHIC_FOLD).split()
     folded, offsets = _spacing_folded(tokens)
     starts: set[int] = set()
     ends: set[int] = set()
@@ -3202,9 +3215,9 @@ def _ocr_reading(ocr_text: str) -> tuple[str, frozenset[int], frozenset[int]]:
 
 def _ocr_read_line(line: str, reading: tuple[str, frozenset[int], frozenset[int]]) -> bool:
     """Whether the OCR text holds ``line``: the same characters in the same order, as whole
-    tokens, whatever the spacing next to a letter."""
+    tokens, whatever the spacing next to a letter (quote and dash variants compare equal)."""
     folded, starts, ends = reading
-    needle, _ = _spacing_folded(line.split())
+    needle, _ = _spacing_folded(line.translate(_OCR_TYPOGRAPHIC_FOLD).split())
     index = folded.find(needle)
     while index != -1:
         if index in starts and index + len(needle) in ends:
@@ -3220,16 +3233,17 @@ def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
     numbers, amounts, and the name and title of the signing official. OCR can misread any
     of it, or skip it. A layer line is kept, after the OCR text, unless the OCR text
     already holds the whole line (``_ocr_read_line``): the same characters in the same
-    order, as whole tokens. Only spacing next to a letter is not compared, because layers
-    and OCR break words differently. Two kinds of line are never kept: a line holding a
+    order, as whole tokens. Only spacing next to a letter, and quote and dash variants, are
+    not compared, because layers and OCR break words differently. Two kinds of line are
+    never kept: a line holding a
     control character (Unicode category Cc) is font-encoding garbage, and a line with no
     letter or digit is not text. Each kept line appears once, in layer order, and the kept
     lines follow as a paragraph of their own. With no OCR text the layer is returned as it
     is.
 
-    A layer line that is not garbage by those two tests is always in the result, so a
-    hidden recognition layer's misreadings are kept too when OCR did not read the same
-    thing.
+    A layer line that is not garbage by those two tests is always in the result. The
+    caller removes the lines of an invisible recognition layer that are not worth keeping
+    first (``_without_failed_recognition_lines``).
     """
     if not _normalize_text(ocr_text):
         return layer_text
@@ -3246,6 +3260,119 @@ def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
     if not kept:
         return ocr_text
     return ocr_text.rstrip("\n") + "\n\n" + "\n".join(kept)
+
+
+# A span's characters are painted when they are filled or stroked (MuPDF's FZ_STEXT_FILLED
+# and FZ_STEXT_STROKED in its ``char_flags``). Text render mode 3 does neither: that is how
+# a scanner or OCR program lays an invisible recognition layer over a page image.
+_PDF_TEXT_PAINTED = 16 | 32
+# An invisible line with fewer letters than this and no digit is a fragment.
+_RECOGNITION_FRAGMENT_LETTERS = 3
+# A recognition layer is judged by its distinct words of _RECOGNITION_WORD_LETTERS or more
+# letters, and only when it has at least _RECOGNITION_MIN_WORDS of them. It has failed when
+# fewer than a third of them occur in the OCR text. A word of _RECOGNITION_RUN_LETTERS or
+# more letters also occurs when it is in OCR's letters run together, since recognition
+# layers often run words together ("EffectiveDate").
+_RECOGNITION_WORD_LETTERS = 3
+_RECOGNITION_MIN_WORDS = 5
+_RECOGNITION_RUN_LETTERS = 6
+_LETTER_RUN = re.compile(r"[^\W\d_]+")
+
+
+def _pdf_span_painted(span: dict[str, Any]) -> bool:
+    """Whether a text span is drawn visibly: filled or stroked, and not fully transparent.
+
+    A PyMuPDF too old to report ``char_flags`` gives no answer, and the span counts as
+    painted, so nothing is filtered.
+    """
+    flags = span.get("char_flags")
+    if flags is None:
+        return True
+    return bool(int(flags) & _PDF_TEXT_PAINTED) and int(span.get("alpha", 255)) > 0
+
+
+def _pdf_layer_lines(page: Any, *, extraction: dict[str, Any]) -> list[tuple[str, bool]]:
+    """The page's text-layer lines, each with whether it is painted (``_pdf_span_painted``).
+
+    The lines are those of ``page.get_text("text")`` with the same flags and order, read
+    from the ``dict`` output so each carries its spans' paint. A line is painted when any
+    of its spans with visible characters is.
+    """
+    data = page.get_text(
+        "dict",
+        sort=bool(extraction.get("sort_text")),
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+    )
+    lines: list[tuple[str, bool]] = []
+    for block in data.get("blocks", ()):
+        for line in block.get("lines", ()):
+            spans = line.get("spans", ())
+            painted = any(
+                _pdf_span_painted(span) for span in spans if str(span.get("text", "")).strip()
+            )
+            text = "".join(str(span.get("text", "")) for span in spans)
+            lines.extend((part, painted) for part in text.splitlines())
+    return lines
+
+
+def _letter_runs(text: str) -> list[str]:
+    return [run.lower() for run in _LETTER_RUN.findall(unicodedata.normalize("NFKC", text))]
+
+
+def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool:
+    """Whether an invisible recognition layer disagrees with the OCR text almost everywhere.
+
+    True when the layer has at least _RECOGNITION_MIN_WORDS distinct words (letter runs of
+    _RECOGNITION_WORD_LETTERS or more, case-folded) and fewer than a third of them occur in
+    the OCR text: as one of its letter runs, or, at _RECOGNITION_RUN_LETTERS or more
+    letters, inside its letters run together. Lines with control characters do not count.
+    """
+    words = {
+        word
+        for line in invisible_lines
+        if not any(unicodedata.category(char) == "Cc" and not char.isspace() for char in line)
+        for word in _letter_runs(line)
+        if len(word) >= _RECOGNITION_WORD_LETTERS
+    }
+    if len(words) < _RECOGNITION_MIN_WORDS:
+        return False
+    ocr_runs = _letter_runs(ocr_text)
+    ocr_words = set(ocr_runs)
+    ocr_letters = "".join(ocr_runs)
+    found = sum(
+        1
+        for word in words
+        if word in ocr_words or (len(word) >= _RECOGNITION_RUN_LETTERS and word in ocr_letters)
+    )
+    return found * 3 < len(words)
+
+
+def _without_failed_recognition_lines(
+    lines: list[tuple[str, bool]], ocr_text: str
+) -> list[str]:
+    """The text-layer lines worth merging into ``ocr_text``, from (text, painted) pairs.
+
+    Painted lines were typed onto the scan, and every one is kept. Invisible lines are a
+    recognition layer, an earlier OCR of the same image, and two kinds are dropped: a
+    fragment (fewer than _RECOGNITION_FRAGMENT_LETTERS letters and no digit, such as
+    "cc:" or a stray "L"), and every invisible line of a failed layer
+    (``_recognition_layer_failed``), such as a sideways slide read as "Ckm" and "rML", or a
+    signature in a font whose codes are shifted ("Ejhjubmmz!tjhofe!cz" for "Digitally
+    signed by"). The lines kept stay in order.
+    """
+    invisible = [text for text, painted in lines if not painted]
+    failed = _recognition_layer_failed(invisible, ocr_text)
+    kept: list[str] = []
+    for text, painted in lines:
+        if not painted:
+            letters = sum(1 for char in text if char.isalpha())
+            fragment = letters < _RECOGNITION_FRAGMENT_LETTERS and not any(
+                char.isdigit() for char in text
+            )
+            if failed or fragment:
+                continue
+        kept.append(text)
+    return kept
 
 
 def _pdf_ocr_dpi(extraction: dict[str, Any]) -> int:
