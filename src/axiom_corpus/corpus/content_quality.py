@@ -92,6 +92,11 @@ PREFIXED_MIN_TOKENS = 80
 REST_MAX_COVERAGE = 0.5
 # A navigation string must be at least this share letters (spaces aside).
 NAVIGATION_STRING_LETTER_SHARE = 0.75
+# An extractor drops a block as navigation only when it is at least this many of
+# its page's navigation strings, none longer than this many words
+# (``is_navigation_block``).
+NAVIGATION_BLOCK_MIN_STRINGS = 2
+NAVIGATION_BLOCK_MAX_STRING_WORDS = 12
 # Bytes read to decide whether a source is HTML.
 HTML_SNIFF_BYTES = 4096
 
@@ -192,9 +197,9 @@ class PageNavigation:
     def __bool__(self) -> bool:
         return bool(self._by_first)
 
-    def cover(self, tokens: list[str]) -> list[bool]:
-        """Mark each token that lies in a longest-first match of a navigation string."""
-        covered = [False] * len(tokens)
+    def matches(self, tokens: list[str]) -> list[tuple[int, int]]:
+        """The ``(start, end)`` token spans of the longest-first navigation string matches."""
+        spans = []
         index = 0
         while index < len(tokens):
             matched = 0
@@ -208,11 +213,18 @@ class PageNavigation:
                     matched = len(sequence)
                     break
             if matched:
-                for position in range(index, index + matched):
-                    covered[position] = True
+                spans.append((index, index + matched))
                 index += matched
             else:
                 index += 1
+        return spans
+
+    def cover(self, tokens: list[str]) -> list[bool]:
+        """Mark each token that lies in a longest-first match of a navigation string."""
+        covered = [False] * len(tokens)
+        for start, end in self.matches(tokens):
+            for position in range(start, end):
+                covered[position] = True
         return covered
 
     def coverage(self, tokens: list[str]) -> Coverage:
@@ -268,11 +280,16 @@ def is_version_picker(raw: bytes) -> bool:
 
 @dataclass(frozen=True)
 class RowVerdict:
-    """What the row checks conclude about one body."""
+    """What the row checks conclude about one body.
+
+    ``residual_words`` counts the body's words with a letter that no navigation
+    string covers (read to ``MAX_BODY_TOKENS``).
+    """
 
     navigation: bool
     prefixed: bool
     substantive: bool
+    residual_words: int = 0
 
 
 def _opening_run(tokens: list[str], covered: list[bool]) -> int:
@@ -321,7 +338,58 @@ def classify_body(
         )
         prefixed = chrome_opening and rest_coverage.share < REST_MAX_COVERAGE
     substantive = not is_navigation and words > 0
-    return RowVerdict(navigation=is_navigation, prefixed=prefixed, substantive=substantive)
+    return RowVerdict(
+        navigation=is_navigation,
+        prefixed=prefixed,
+        substantive=substantive,
+        residual_words=whole.residual_words,
+    )
+
+
+def is_navigation_block(
+    body: str | None,
+    navigation: PageNavigation | None,
+    *,
+    heading: str | None = None,
+    label: str | None = None,
+) -> bool:
+    """Whether an extractor may drop a block of a page as that page's navigation.
+
+    The official-document HTML extractor asks this of every positional block it
+    makes (``documents._extract_html_blocks``) and drops the block when it holds.
+    It is the ``navigation_body`` rule of ``classify_body`` with three more
+    conditions, so that a dropped block is a list of the page's links and nothing
+    else:
+
+    - every word with a letter lies in one of the page's navigation strings, so a
+      status ("Repealed April 6, 2000. Return to Table of Contents") or an
+      instruction ("See Certification Periods.") keeps its block;
+    - the body is at least ``NAVIGATION_BLOCK_MIN_STRINGS`` navigation strings: a
+      lone link can be a section's whole text ("See reciprocal agreement", an
+      exhibit's title, a glossary term whose definition sits inside its link);
+    - no matched string is longer than ``NAVIGATION_BLOCK_MAX_STRING_WORDS`` words,
+      so a table of contents whose entries carry amendment notes, or prose inside
+      a link, is kept.
+
+    A body longer than ``MAX_BODY_TOKENS`` words, which the check reads only in
+    part, and a body that repeats the block's heading are never navigation. So
+    every block the extractor drops is a row this check would flag; a flagged row
+    that fails one of these conditions is kept, for the check to report.
+    """
+    if not navigation or not body:
+        return False
+    tokens = _tokens(body)
+    if len(tokens) > MAX_BODY_TOKENS:
+        return False
+    verdict = classify_body(body, navigation, heading=heading, label=label)
+    if not verdict.navigation or verdict.residual_words:
+        return False
+    spans = navigation.matches(tokens)
+    return len(spans) >= NAVIGATION_BLOCK_MIN_STRINGS and all(
+        sum(1 for token in tokens[start:end] if _has_letters(token))
+        <= NAVIGATION_BLOCK_MAX_STRING_WORDS
+        for start, end in spans
+    )
 
 
 class ScopeContentScanner:

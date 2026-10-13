@@ -19,6 +19,7 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage" / "us-wa" / "manual" / f"{VERSION}.json
 
 EXPECTED_DOCUMENT_COUNT = 200
 EXPECTED_BLOCK_COUNT = 1_065
+EXPECTED_NAVIGATION_BLOCK_COUNT = 7
 EXPECTED_ROW_COUNT = EXPECTED_DOCUMENT_COUNT + EXPECTED_BLOCK_COUNT
 EXPECTED_SOURCE_BYTES = 20_353_997
 EXPECTED_URL_AGGREGATE = "4b2eaaae9969afdca2d4aa2edb5984fca75f8bf26e9cf303a4f45aa3cc527a44"
@@ -79,6 +80,7 @@ def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
     inventory_by_citation = {item["citation_path"]: item for item in _inventory()}
     first_pass = []
     second_pass = []
+    unfiltered = []
 
     for source in manifest.documents:
         item = inventory_by_citation[source.citation_path]
@@ -90,9 +92,20 @@ def test_washington_html_extraction_is_deterministic_for_all_sources() -> None:
         }
         first_pass.append(documents_module._extract_blocks(content, "html", **kwargs))
         second_pass.append(documents_module._extract_blocks(content, "html", **kwargs))
+        kwargs["extraction"] = {**(source.extraction or {}), "html_keep_navigation_blocks": True}
+        unfiltered.append(documents_module._extract_blocks(content, "html", **kwargs))
 
     assert first_pass == second_pass
-    assert sum(len(blocks) for blocks in first_pass) == EXPECTED_BLOCK_COUNT
+    # The locked scope predates the navigation-block filter: the unfiltered
+    # extraction still makes exactly its blocks, and the filter drops seven
+    # link-list blocks without renumbering the rest.
+    assert sum(len(blocks) for blocks in unfiltered) == EXPECTED_BLOCK_COUNT
+    assert (
+        sum(len(blocks) for blocks in first_pass)
+        == EXPECTED_BLOCK_COUNT - EXPECTED_NAVIGATION_BLOCK_COUNT
+    )
+    for kept, every in zip(first_pass, unfiltered, strict=True):
+        assert all(block in every for block in kept)
 
 
 def test_washington_generated_scope_has_complete_coverage() -> None:

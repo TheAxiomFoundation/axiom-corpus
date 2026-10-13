@@ -204,6 +204,38 @@ So existing scopes stay selectable, and a new scope with chrome, a hollow root
 or a picker fails the release that selects it until its extraction is fixed or
 its findings are recorded on purpose. A clean new scope needs no entry.
 
+### The extractor drops navigation blocks
+
+The official-document HTML extractor (`documents._extract_html_blocks`) asks
+`content_quality.is_navigation_block` of every positional block it makes: the
+heading walk's `block-N` blocks, a WebWorks page's blocks, and the whole-root
+fallback. The helper is the `navigation_body` rule above, read against the same
+navigation strings of the same retained bytes, with three more conditions so
+that a dropped block is a list of the page's links and nothing else:
+
+- every word with a letter lies in a navigation string (no words of its own);
+- the body is at least two navigation strings
+  (`NAVIGATION_BLOCK_MIN_STRINGS`): a lone link can be a section's whole text;
+- no matched string is longer than 12 words
+  (`NAVIGATION_BLOCK_MAX_STRING_WORDS`): long link text can be prose.
+
+A body longer than the 1,200 words the check reads, or one that repeats its
+heading, is never dropped. A dropped block's ordinal is used up, so the blocks
+after it keep the citation paths an unfiltered extraction gives them; encodings
+that cite `block-N` paths resolve the same way in a successor scope. Blocks with
+a declared section label or anchor (`labeled_sections`, `anchor_range`) are never
+dropped, nor is HTML read out of a JSON field, which the check cannot see.
+`html_keep_navigation_blocks: true` in a manifest's `extraction` keeps every
+block.
+
+So every block the extractor drops is a row the check would flag, and the check
+still reports the flagged rows the extractor keeps. Existing scopes do not
+change: a successor is a separate, signed ingest. The calibration, a measurement
+over the 148 scopes with `navigation_body` rows, and the scope families that
+would gain from successors are in
+[the run note](ingest-runs/2026-10-13-html-navigation-blocks.md);
+`scripts/measure_html_navigation_blocks.py` repeats the measurement.
+
 ### Commands
 
 ```bash
