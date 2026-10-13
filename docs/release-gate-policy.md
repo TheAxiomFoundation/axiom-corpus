@@ -66,12 +66,16 @@ with `withdrawn_scope_selected`, naming the reason, the decision, the scopes to
 select instead and the run note.
 
 `test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions`
-checks, on the first-parent line, that each grandfathered selector reached
-`main` before its entry did: order, not dates, so a selector merged earlier on
-the day an entry is written is still grandfathered. An entry counts as listed
-where it first reached `origin/main`'s first-parent line (a merged pull
-request's merge commit); until then (on a branch, or in pull-request CI) it is
-listed after everything, so every selector on `main` may be grandfathered.
+reads `origin/main`'s first-parent history: a grandfathered selector must have
+been on `main`, at its pinned digest, before its entry reached `main` (a merged
+pull request's merge commit). Order decides, not dates, so a selector merged
+earlier on the day an entry is written is still grandfathered. Every version of
+the registry on `main` is parsed as YAML, so an entry counts however it is
+spelled. While an entry is pending (on a branch, or in pull-request CI), any
+selector already on `main` at its pinned digest may be grandfathered, but not
+one the same branch adds or changes; a selector deleted and recreated with other
+contents has a digest that was never on `main` in time. Without an
+`origin/main` ref the test reads the branch's own line, which is stricter.
 `test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
 current commit.
 

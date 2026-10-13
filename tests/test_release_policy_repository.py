@@ -13,10 +13,12 @@ from __future__ import annotations
 
 import json
 import subprocess
+import tempfile
 from functools import cache
 from pathlib import Path
 
 import pytest
+import yaml
 
 from axiom_corpus.corpus.content_quality import CONTENT_CHECK_VERSION
 from axiom_corpus.corpus.release_policy import (
@@ -119,108 +121,111 @@ def _git(*args: str) -> str:
     ).stdout
 
 
+MAIN = "origin/main"
+
+
 @cache
-def _first_parent_line() -> dict[str, int]:
-    """Each commit of this branch's first-parent line, numbered from the oldest."""
-    commits = _git("rev-list", "--first-parent", "--reverse", "HEAD").split()
+def _main_ref() -> str:
+    """``origin/main``, or, in a checkout without it, this branch's own line (strict)."""
+    try:
+        _git("rev-parse", "--verify", "--quiet", f"{MAIN}^{{commit}}")
+    except subprocess.CalledProcessError:
+        return "HEAD"
+    return MAIN
+
+
+@cache
+def _main_line() -> dict[str, int]:
+    """Each commit of main's first-parent line, numbered from the oldest."""
+    commits = _git("rev-list", "--first-parent", "--reverse", _main_ref()).split()
     return {commit: index for index, commit in enumerate(commits)}
 
 
-@cache
-def _selectors_landed() -> dict[str, tuple[int, str]]:
-    """Where each tracked selector landed on the first-parent line: (position, commit).
+def _main_changes(path: str) -> list[str]:
+    """The commits of main's first-parent line that change ``path``, oldest first.
 
-    With ``--first-parent`` (which implies ``--diff-merges=first-parent``), a
-    selector merged by pull request shows as added on the merge commit, so its
-    position is where it reached ``main``, not where its branch commit was made.
+    ``--first-parent`` implies ``--diff-merges=first-parent``, so a file merged
+    by pull request changes on the merge commit: where it reached ``main``.
     """
-    line = _first_parent_line()
-    landed: dict[str, tuple[int, str]] = {}
-    commit = ""
-    log = _git(
-        "log",
-        "--first-parent",
-        "--diff-filter=A",
-        "--reverse",
-        "--name-only",
-        "--format=%x00%H",
-        "--",
-        "manifests/releases/",
-    )
-    for entry in log.splitlines():
-        if entry.startswith("\x00"):
-            commit = entry[1:]
-        elif entry.startswith("manifests/releases/") and entry.endswith(".json"):
-            landed.setdefault(Path(entry).stem, (line[commit], commit))
-    return landed
+    return _git(
+        "log", "--first-parent", "--reverse", "--format=%H", _main_ref(), "--", path
+    ).split()
 
 
-@cache
-def _main_line() -> frozenset[str] | None:
-    """The commits of ``origin/main``'s first-parent line, if this checkout has the ref."""
+def _show(commit: str, path: str) -> str | None:
+    """``path`` as of ``commit``, or None where the commit deletes it."""
     try:
-        return frozenset(_git("rev-list", "--first-parent", "origin/main").split())
+        return _git("show", f"{commit}:{path}")
     except subprocess.CalledProcessError:
         return None
 
 
 @cache
-def _entries_listed() -> dict[str, int]:
-    """Where each withdrawn scope's entry first reached ``main``, on this branch's line.
+def _entries_listed() -> dict[str, int | None]:
+    """Where each withdrawn scope's entry first reached main; None while it is pending.
 
-    An entry no commit of ``main`` has added yet (one being written, one on a
-    branch that has merged ``main`` in, or one that arrives with the pull request
-    under test) is listed after every commit. Without an ``origin/main`` ref,
-    every commit on this branch's line counts as ``main``.
+    Every version of the registry on main's first-parent line is parsed as
+    YAML, so any spelling of an entry counts. An entry not on main yet (on a
+    branch, or arriving with the pull request under test) is pending.
     """
-    line = _first_parent_line()
-    main = _main_line()
-    listed: dict[str, int] = {}
-    commit = ""
-    log = _git(
-        "log",
-        "--first-parent",
-        "--reverse",
-        "--format=%x00%H",
-        "-p",
-        "--",
-        str(WITHDRAWN_SCOPES_PATH),
-    )
-    for entry in log.splitlines():
-        if entry.startswith("\x00"):
-            commit = entry[1:]
-        elif entry.startswith("+  - scope: "):
-            on_main = main is None or commit in main
-            listed.setdefault(
-                entry.removeprefix("+  - scope: ").strip(), line[commit] if on_main else len(line)
-            )
+    line = _main_line()
+    first: dict[str, int] = {}
+    for commit in _main_changes(str(WITHDRAWN_SCOPES_PATH)):
+        text = _show(commit, str(WITHDRAWN_SCOPES_PATH))
+        if text is None:
+            continue
+        document = yaml.safe_load(text) or {}
+        for item in document.get("scopes") or []:
+            first.setdefault(str(item["scope"]).strip(), line[commit])
     return {
-        scope_label(scope.scope): listed.get(scope_label(scope.scope), len(line))
-        for scope in _policy().withdrawn.values()
+        scope_label(entry.scope): first.get(scope_label(entry.scope))
+        for entry in _policy().withdrawn.values()
     }
 
 
-def test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions() -> None:
-    """A selector that reached main after an entry did keeps the scope only by exception.
+@cache
+def _selector_versions(name: str) -> tuple[tuple[int, str], ...]:
+    """(position, selector digest) of each version of a selector on main's first-parent line."""
+    line = _main_line()
+    path = f"manifests/releases/{name}.json"
+    versions = []
+    for commit in _main_changes(path):
+        text = _show(commit, path)
+        if text is None:
+            continue
+        with tempfile.TemporaryDirectory() as directory:
+            copy = Path(directory) / f"{name}.json"
+            copy.write_text(text, encoding="utf-8")
+            versions.append((line[commit], selector_sha256(ReleaseManifest.load(copy))))
+    return tuple(versions)
 
-    Order on the first-parent line decides, not dates, so a selector cut on the
-    day an entry is written but merged before it is grandfathered, and one merged
-    after it is not. An entry not yet on ``main`` (in pull-request CI, or on a
-    branch) is listed after everything, so every selector on ``main`` may be
-    grandfathered until the entry merges.
+
+def test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions() -> None:
+    """A grandfathered selector was on main, at its pinned digest, before its entry was.
+
+    Order on main's first-parent line decides, not dates: a selector merged
+    earlier on the day an entry is written is grandfathered, one merged after
+    it is not. While an entry is pending (on a branch, or in pull-request CI)
+    any selector already on main at that digest may be grandfathered, but not
+    one the same branch adds or changes. A selector deleted and recreated with
+    other contents has a new digest, which was never on main before the entry.
     """
-    landed = _selectors_landed()
     listed = _entries_listed()
     for entry in _policy().withdrawn.values():
         label = scope_label(entry.scope)
+        cutoff = listed[label]
         for name, allowance in entry.allowances.items():
             if allowance.is_exception:
                 continue
-            assert name in landed, f"{name} has no commit that adds it"
-            position, commit = landed[name]
-            assert position < listed[label], (
-                f"{name} reached main at {commit[:12]}, after {label} was listed; list it "
-                "under the entry's exceptions with a reason, or take the swap"
+            eligible = [
+                position
+                for position, digest in _selector_versions(name)
+                if digest == allowance.selector_sha256 and (cutoff is None or position < cutoff)
+            ]
+            assert eligible, (
+                f"{name} at digest {allowance.selector_sha256[:12]} was not on {_main_ref()} "
+                f"before {label} was listed; list it under the entry's exceptions with a "
+                "reason, or take the swap"
             )
 
 
