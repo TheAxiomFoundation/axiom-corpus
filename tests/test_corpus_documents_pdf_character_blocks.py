@@ -73,6 +73,11 @@ EG_LAW_2019_148_ANNEX_PDF = (
     / "eg/statute/2026-07-24-eg-egymod-t1-statutes/official-documents"
     / "eg-law-2019-148-annex-tables.pdf"
 )
+MD_MEDICAID_500_PDF = (
+    SOURCES
+    / "us-md/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents"
+    / "us-md-medicaid-section-500.pdf"
+)
 GLOUCESTER_CTR_PDF = (
     SOURCES
     / "uk-gloucester/manual/2026-08-02-gloucester-council-tax-reduction-2026-2027"
@@ -200,11 +205,23 @@ def _without_added(blocks: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return kept
 
 
+def _rawdict(page: Any, *, sort: bool) -> dict[str, Any]:
+    """``get_text("rawdict")`` with lone surrogates as the printer prints them (U+FFFD)."""
+    raw = page.get_text("rawdict", flags=FLAGS, sort=sort)
+    for block in raw["blocks"]:
+        for line in block.get("lines", ()):
+            for span in line["spans"]:
+                for char in span["chars"]:
+                    if "\ud800" <= char["c"] <= "\udfff":
+                        char["c"] = "\ufffd"
+    return raw
+
+
 def _read(content: bytes, *, sort: bool) -> tuple[list[dict[str, Any]], dict[str, Any], str]:
     with fitz.open(stream=content, filetype="pdf") as document:
         page = document[0]
         blocks = _pdf_page_character_blocks(page, flags=FLAGS, sort=sort, page_number=1)
-        raw = page.get_text("rawdict", flags=FLAGS, sort=sort)
+        raw = _rawdict(page, sort=sort)
         text = page.get_text("text", flags=FLAGS)
     return blocks, raw, text
 
@@ -397,6 +414,39 @@ def test_a_left_out_zero_width_glyph_does_not_reclassify_its_line(force_reread: 
         assert page.metadata["amendment_markup"]["inserted_runs"] == 0
 
 
+def test_a_lone_surrogate_reads_as_the_printer_prints_it() -> None:
+    # A /ToUnicode entry maps "^" to a lone high surrogate. rawdict passes it
+    # through; the printer prints U+FFFD, and so does the re-read page.
+    content = _zero_width_pdf([(72, 100, [("a^b", 12)])], zero_width="", to_unicode={"^": "\ud800"})
+    with fitz.open(stream=content, filetype="pdf") as document:
+        page = document[0]
+        assert [char[0] for char in _characters(page.get_text("rawdict")["blocks"])] == [
+            "a",
+            "\ud800",
+            "b",
+        ]
+        assert page.get_text("text") == "a\ufffdb\n"
+
+    for extraction in ({}, {"sort_blocks": True}, {"amendment_markup": True}):
+        assert [page.body for page in _pages(content, extraction)] == ["a\ufffdb"]
+
+
+def test_the_maryland_medicaid_manual_bullets_read_as_the_printer_prints_them() -> None:
+    # Section 500 of Maryland's Medicaid eligibility manual draws its bullets
+    # in Arial with a /ToUnicode entry that gives a lone surrogate (U+DBC0).
+    with fitz.open(MD_MEDICAID_500_PDF) as document:
+        page = document[15]
+        default = _normalize_text(page.get_text("text", flags=FLAGS))
+        plain = _layered(page, {}, 16)
+        sorted_text = _layered(page, {"sort_blocks": True}, 16)
+
+    assert "\ufffd" in default
+    assert plain == default
+    assert Counter(sorted_text.replace(" ", "").replace("\n", "")) == Counter(
+        default.replace(" ", "").replace("\n", "")
+    )
+
+
 def test_a_struck_zero_width_period_is_marked_with_its_line() -> None:
     width = fitz.get_text_length("Old rule", fontname="helv", fontsize=12)
     content = _zero_width_pdf(
@@ -499,7 +549,7 @@ def test_a_rawdict_that_does_not_line_up_with_the_text_page_stops_extraction(
 # Baselines near and past the top and bottom edges, x near and past the left and
 # right edges, and line spacings that join lines into one block or not.
 _runs = st.lists(
-    st.tuples(st.text(alphabet="ab. ~", min_size=1, max_size=4), st.sampled_from([8.0, 12.0])),
+    st.tuples(st.text(alphabet="ab. ~^", min_size=1, max_size=4), st.sampled_from([8.0, 12.0])),
     min_size=1,
     max_size=4,
 )
@@ -513,8 +563,9 @@ _lines = st.lists(
     max_size=6,
 )
 _zero_width = st.sampled_from([".", ". ", ".a", ".~", "~", ""])
-# "~" extracts as U+200B, which _normalize_text drops.
-_TO_UNICODE = {"~": "\u200b"}
+# "~" extracts as U+200B, which _normalize_text drops; "^" as a lone surrogate,
+# which the printer prints as U+FFFD.
+_TO_UNICODE = {"~": "\u200b", "^": "\ud800"}
 
 
 def _prints(char: str) -> bool:
@@ -693,7 +744,7 @@ def test_every_cited_page_without_left_out_glyphs_gets_rawdicts_blocks() -> None
                     blocks = _pdf_page_character_blocks(
                         page, flags=FLAGS, sort=sort, page_number=page.number + 1
                     )
-                    raw = page.get_text("rawdict", flags=FLAGS, sort=sort)
+                    raw = _rawdict(page, sort=sort)
                     if not sort:
                         assert _printed_text(blocks) == page.get_text("text", flags=FLAGS)
                     if len(_characters(blocks)) == len(_characters(raw["blocks"])):

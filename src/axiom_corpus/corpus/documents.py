@@ -1482,7 +1482,9 @@ def _pdf_page_character_blocks(
     size and origin, a block's box), or extraction stops. The characters rawdict
     leaves out are added where the printer prints them, marked ``added``: a
     skipped last span as one span, a skipped line as one span per run of one font
-    size, both with only ``size``, ``origin`` and ``chars``.
+    size, both with only ``size``, ``origin`` and ``chars``. Each character is
+    given as the printer prints it, so a lone surrogate code point, which
+    rawdict passes through, reads as U+FFFD.
 
     ``sort`` orders the blocks as ``get_text("rawdict", sort=True)`` does, by the
     bottom and then the left edge of each block's box, keeping their order on
@@ -1604,6 +1606,14 @@ def _pdf_page_character_blocks(
         blocks.append(block)
     if next(raw_blocks, None) is not None:
         raise mismatch("rawdict holds a block the text page does not")
+    # The printer (JM_append_rune) prints a lone surrogate code point, which
+    # rawdict passes through, as U+FFFD.
+    for block in blocks:
+        for line in block["lines"]:
+            for span in line.get("spans", ()):
+                for char in span.get("chars", ()):
+                    if "\ud800" <= char["c"] <= "\udfff":
+                        char["c"] = "\ufffd"
     if sort:
         blocks.sort(key=lambda block: (block["bbox"][3], block["bbox"][0]))
     return blocks
