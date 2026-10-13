@@ -830,6 +830,72 @@ def _resolved_part_appendix(
     return appendix, numbering
 
 
+# An appendix to a subchapter sits in that subchapter's last part on the eCFR: 41 CFR
+# chapter 101's "Appendix to Subchapter D" is in part 101-21, at reader path
+# .../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D. It is read only
+# inside the subchapter it names. The part that holds it is its parent, and its path
+# segment names the subchapter, so it is never taken for the part's own appendix.
+# Only the unnumbered form is live (2026-10-08, all 49 titles); a designated one stays
+# unsupported. Matching is ASCII-only, as for part appendices.
+_SUBCHAPTER_APPENDIX_IDENTIFIER_PATTERN = re.compile(
+    r"Appendix\s+to\s+Subchapter\s+(?P<subchapter>[0-9A-Za-z]+)",
+    flags=re.I | re.ASCII,
+)
+
+
+@dataclass(frozen=True)
+class _SubchapterAppendix:
+    identifier: str
+    # As published ("D").
+    subchapter: str
+    # The part that holds it.
+    part: str
+
+    @property
+    def segment(self) -> str:
+        return f"appendix-to-subchapter-{self.subchapter.lower()}"
+
+    def part_citation_path(self, title: int) -> str:
+        return f"us/regulation/{title}/{self.part}"
+
+    def citation_path(self, title: int) -> str:
+        return f"{self.part_citation_path(title)}/{self.segment}"
+
+    def legal_identifier(self, title: int, chapter: str | None) -> str:
+        scope = f"chapter {chapter}, " if chapter else ""
+        return f"{title} CFR {scope}subchapter {self.subchapter}, appendix"
+
+
+def _subchapter_appendix_from_identifier(
+    identifier: str, *, part: str | None
+) -> _SubchapterAppendix | None:
+    match = _SUBCHAPTER_APPENDIX_IDENTIFIER_PATTERN.fullmatch(identifier.strip())
+    if not match or not part:
+        return None
+    return _SubchapterAppendix(
+        identifier=identifier, subchapter=match.group("subchapter"), part=part
+    )
+
+
+def _resolved_subchapter_appendix(
+    identifier: str, *, part: str | None, subchapter: str | None
+) -> _SubchapterAppendix | None:
+    """Validate a subchapter appendix against the subchapter that encloses it.
+
+    Returns None when ``identifier`` is not a subchapter appendix; raises when it names
+    another subchapter than the one it sits in.
+    """
+    appendix = _subchapter_appendix_from_identifier(identifier, part=part)
+    if appendix is None:
+        return None
+    if appendix.subchapter != subchapter:
+        raise EcfrAppendixError(
+            f"eCFR appendix subchapter {appendix.subchapter!r} conflicts with enclosing "
+            f"subchapter {subchapter!r}: {identifier!r}"
+        )
+    return appendix
+
+
 def _part_appendix_numbering_metadata(
     appendix: _PartAppendix, numbering: str | None
 ) -> dict[str, str | None]:
@@ -1173,9 +1239,22 @@ def _walk_inventory_items(
             label="identifier",
         )
         if subpart_appendix is None:
-            raise EcfrAppendixError(
-                f"unsupported nonreserved eCFR appendix identifier: {identifier!r}"
+            subchapter_appendix = _resolved_subchapter_appendix(
+                identifier, part=part, subchapter=subchapter
             )
+            if subchapter_appendix is None:
+                raise EcfrAppendixError(
+                    f"unsupported nonreserved eCFR appendix identifier: {identifier!r}"
+                )
+            yield _subchapter_appendix_inventory_item(
+                subchapter_appendix,
+                node=node,
+                title=title,
+                chapter=chapter,
+                source_path=source_path,
+                source_sha256=source_sha256,
+            )
+            return
         yield _subpart_appendix_inventory_item(
             *subpart_appendix,
             node=node,
@@ -1278,6 +1357,46 @@ def _subpart_appendix_inventory_item(
             "chapter": chapter,
             "subchapter": subchapter,
             "parent_citation_path": appendix.subpart_citation_path(title),
+            "label": node.get("label"),
+            "label_description": node.get("label_description"),
+            "heading": _clean_appendix_heading(node.get("label"), appendix.identifier),
+            "received_on": node.get("received_on"),
+        },
+    )
+
+
+def _subchapter_appendix_inventory_item(
+    appendix: _SubchapterAppendix,
+    *,
+    node: Mapping[str, Any],
+    title: int,
+    chapter: str | None,
+    source_path: str,
+    source_sha256: str | None,
+) -> SourceInventoryItem:
+    return SourceInventoryItem(
+        citation_path=appendix.citation_path(title),
+        source_url=_ecfr_appendix_url(
+            title,
+            appendix.part,
+            appendix.identifier,
+            chapter,
+            appendix.subchapter,
+        ),
+        source_path=source_path,
+        source_format="ecfr-xml",
+        sha256=source_sha256,
+        metadata={
+            "kind": "appendix",
+            "title": title,
+            "part": appendix.part,
+            "appendix": None,
+            "appendix_identifier": appendix.identifier,
+            "appendix_numbering": None,
+            "appendix_subchapter": appendix.subchapter,
+            "chapter": chapter,
+            "subchapter": appendix.subchapter,
+            "parent_citation_path": appendix.part_citation_path(title),
             "label": node.get("label"),
             "label_description": node.get("label_description"),
             "heading": _clean_appendix_heading(node.get("label"), appendix.identifier),
@@ -1479,7 +1598,11 @@ def _non_math_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
     return tuple(identifiers)
 
 
-def _element_citation_path(title: int, elem: ET.Element) -> str | None:
+def _element_citation_path(
+    title: int, elem: ET.Element, part: str | None = None
+) -> str | None:
+    """``part`` is the N of the enclosing part element, which only a subchapter
+    appendix's path depends on."""
     if elem.tag == "DIV8" and elem.get("TYPE") == "SECTION":
         parsed = _section_citation_from_element(title, elem)
         return parsed[0] if parsed is not None else None
@@ -1488,8 +1611,21 @@ def _element_citation_path(title: int, elem: ET.Element) -> str | None:
         if part_appendix is not None:
             return part_appendix.citation_path(title)
         subpart_appendix = _subpart_appendix_from_identifier(elem.get("N", ""))
-        return subpart_appendix.citation_path(title) if subpart_appendix else None
+        if subpart_appendix is not None:
+            return subpart_appendix.citation_path(title)
+        subchapter_appendix = _subchapter_appendix_from_identifier(elem.get("N", ""), part=part)
+        return subchapter_appendix.citation_path(title) if subchapter_appendix else None
     return None
+
+
+def _enclosing_part_by_appendix(root: ET.Element) -> dict[ET.Element, str]:
+    """Map each appendix element to the N of the part element that encloses it."""
+    return {
+        appendix: part
+        for part_elem in root.iter("DIV5")
+        if part_elem.get("TYPE") == "PART" and (part := part_elem.get("N"))
+        for appendix in part_elem.iter("DIV9")
+    }
 
 
 def _section_body(
@@ -1573,6 +1709,7 @@ def _ecfr_identifiers(
     section: str | None = None,
     subpart: str | None = None,
     appendix: str | None = None,
+    subchapter: str | None = None,
 ) -> dict[str, str]:
     identifiers = {"ecfr:title": str(title), "ecfr:part": part}
     if subpart:
@@ -1581,6 +1718,9 @@ def _ecfr_identifiers(
         identifiers["ecfr:section"] = section
     if appendix:
         identifiers["ecfr:appendix"] = appendix
+    # Only a subchapter appendix names its subchapter.
+    if subchapter:
+        identifiers["ecfr:subchapter"] = subchapter
     return identifiers
 
 
@@ -1646,6 +1786,15 @@ def _inventory_legal_identifier(metadata: Mapping[str, Any]) -> str | None:
         subpart = _metadata_text(metadata, "subpart")
         if subpart:
             return f"{title} CFR part {part}, subpart {subpart}"
+    if kind == "appendix" and _metadata_text(metadata, "appendix_subchapter"):
+        subchapter_appendix = _subchapter_appendix_from_identifier(
+            _metadata_text(metadata, "appendix_identifier") or "", part=part
+        )
+        return (
+            subchapter_appendix.legal_identifier(title, _metadata_text(metadata, "chapter"))
+            if subchapter_appendix
+            else None
+        )
     if kind == "appendix" and _metadata_text(metadata, "subpart"):
         subpart_appendix = _subpart_appendix_from_identifier(
             _metadata_text(metadata, "appendix_identifier") or ""
@@ -1675,6 +1824,7 @@ def _inventory_identifiers(metadata: Mapping[str, Any]) -> dict[str, str] | None
         section=_metadata_text(metadata, "section"),
         subpart=_metadata_text(metadata, "subpart"),
         appendix=_metadata_text(metadata, "appendix"),
+        subchapter=_metadata_text(metadata, "appendix_subchapter"),
     )
 
 
@@ -2054,6 +2204,66 @@ def _subpart_appendix_provision(
     )
 
 
+def _subchapter_appendix_provision(
+    elem: ET.Element,
+    appendix: _SubchapterAppendix,
+    target: EcfrPartTarget,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    graphic_transcriptions: Mapping[str, str] | None = None,
+) -> ProvisionRecord:
+    title = target.title
+    citation_path = appendix.citation_path(title)
+    parent_citation_path = appendix.part_citation_path(title)
+    head = elem.find("HEAD")
+    heading = _clean_appendix_heading(
+        _element_text(head) if head is not None else appendix.identifier,
+        appendix.identifier,
+    )
+    legal_identifier = appendix.legal_identifier(title, target.chapter)
+    return ProvisionRecord(
+        id=deterministic_provision_id(citation_path),
+        jurisdiction="us",
+        document_class=DocumentClass.REGULATION.value,
+        citation_path=citation_path,
+        citation_label=legal_identifier,
+        heading=heading,
+        body=_section_body(elem, graphic_transcriptions, appendix=True),
+        version=version,
+        source_url=_ecfr_appendix_url(
+            title,
+            appendix.part,
+            appendix.identifier,
+            target.chapter,
+            appendix.subchapter,
+        ),
+        source_path=source_path,
+        source_id=elem.get("NODE"),
+        source_format="ecfr-xml",
+        source_as_of=source_as_of,
+        expression_date=expression_date,
+        parent_citation_path=parent_citation_path,
+        parent_id=deterministic_provision_id(parent_citation_path),
+        level=1,
+        ordinal=_appendix_designator_ordinal(None, None),
+        kind="appendix",
+        legal_identifier=legal_identifier,
+        identifiers=_ecfr_identifiers(title, appendix.part, subchapter=appendix.subchapter),
+        metadata={
+            "title": title,
+            "part": appendix.part,
+            "appendix": None,
+            "appendix_identifier": appendix.identifier,
+            "appendix_numbering": None,
+            "appendix_subchapter": appendix.subchapter,
+            "chapter": target.chapter,
+            "subchapter": target.subchapter,
+        },
+    )
+
+
 def _ecfr_provision_children(elem: ET.Element) -> Iterator[ET.Element]:
     """Walk transparent groups in source order, stopping at provision nodes."""
     for child in elem:
@@ -2129,6 +2339,30 @@ def iter_ecfr_title_provisions(
             graphic_transcriptions=graphic_transcriptions,
         )
 
+    def selected_subchapter_appendix(
+        elem: ET.Element, appendix: _SubchapterAppendix, target: EcfrPartTarget
+    ) -> ProvisionRecord | None:
+        # Selected by its citation, it is validated against the subchapter it sits in.
+        if (
+            allowed_citation_paths is not None
+            and appendix.citation_path(target.title) not in allowed_citation_paths
+        ):
+            return None
+        resolved = _resolved_subchapter_appendix(
+            appendix.identifier, part=target.part, subchapter=target.subchapter
+        )
+        assert resolved is not None
+        return _subchapter_appendix_provision(
+            elem,
+            resolved,
+            target,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of or version,
+            expression_date=expression_date or source_as_of or version,
+            graphic_transcriptions=graphic_transcriptions,
+        )
+
     def selected_appendix(
         elem: ET.Element,
         target: EcfrPartTarget,
@@ -2148,6 +2382,11 @@ def iter_ecfr_title_provisions(
                 return selected_subpart_appendix(
                     elem, subpart_appendix, target, subpart, numbering_by_container
                 )
+            subchapter_appendix = _subchapter_appendix_from_identifier(
+                identifier, part=target.part
+            )
+            if subchapter_appendix is not None:
+                return selected_subchapter_appendix(elem, subchapter_appendix, target)
         # A selected appendix with a contradictory part must be validated,
         # whether selected by its parsed citation or its enclosing part.
         if allowed_citation_paths is not None and (
@@ -2603,11 +2842,13 @@ def _capture_ecfr_math_graphics(
         for identifier in _math_graphic_identifiers(graphic_root)
     ]
     if include_appendices:
+        part_by_appendix = _enclosing_part_by_appendix(root)
         for elem in root.iter("DIV9"):
             if elem.get("TYPE") != "APPENDIX":
                 continue
             if allowed_citation_paths is not None and (
-                _element_citation_path(title, elem) not in allowed_citation_paths
+                _element_citation_path(title, elem, part_by_appendix.get(elem))
+                not in allowed_citation_paths
             ):
                 continue
             identifiers.extend(_source_graphic_identifiers(elem))
