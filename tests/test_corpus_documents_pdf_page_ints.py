@@ -104,12 +104,19 @@ def test_a_page_window_missing_a_bound_still_says_so() -> None:
 
 
 @pytest.mark.parametrize("value", NOT_POSITIVE_INTS, ids=repr)
+@pytest.mark.parametrize("ocr", [{}, {"ocr": False}, {"ocr": True}], ids=repr)
 @pytest.mark.parametrize(
     "segmentation", [None, "single_block", "numbered_sections", "labeled_sections"]
 )
-def test_ocr_dpi_is_checked_with_every_segmentation(segmentation: str | None, value: Any) -> None:
-    """The pages have text, so OCR never runs: the check must not wait for a scan."""
-    extraction: dict[str, Any] = {"ocr": True, "ocr_dpi": value}
+def test_ocr_dpi_is_checked_with_every_segmentation(
+    segmentation: str | None, ocr: dict[str, bool], value: Any
+) -> None:
+    """The pages have text, so OCR never runs: the check must not wait for a scan.
+
+    It must not depend on the ``ocr`` switch either: with OCR absent or off,
+    ``ocr_dpi`` is still a PDF extraction key and a bad value still fails.
+    """
+    extraction: dict[str, Any] = {**ocr, "ocr_dpi": value}
     if segmentation is not None:
         extraction["segmentation"] = segmentation
     if segmentation == "labeled_sections":

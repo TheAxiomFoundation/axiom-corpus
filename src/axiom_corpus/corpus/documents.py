@@ -1032,8 +1032,8 @@ def _extract_pdf_blocks(
         value = extraction_config.get(key)
         if value is not None and not isinstance(value, bool):
             raise ValueError(f"{key} must be true or false, not {value!r}")
-    # OCR reads ocr_dpi only for a page without a text layer; check it up front so
-    # a bad value fails every extraction, not just the ones that reach a scan.
+    # ocr_dpi is read only when OCR runs (force_ocr, or ocr on a page with no text
+    # layer); check it up front so a bad value fails every PDF extraction.
     _pdf_ocr_dpi(extraction_config)
     markup = _pdf_amendment_markup_config(extraction_config)
     sort_blocks = extraction_config.get("sort_blocks") is True
