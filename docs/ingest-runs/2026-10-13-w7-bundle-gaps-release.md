@@ -96,6 +96,20 @@ The three original scopes are not selected.
   duplicate), the changes of the draft #819 and the Colorado sections of #813, and the D.C. and Maine scopes of the open
   #753 and #754.
 
+## Checks
+
+- No citation path in two selected scopes: 408,541 paths over 1,567 scopes, 0 duplicates.
+- `validate-release --ignore-r2-missing`: ok, 1,567 scopes, 0 errors, 564 warnings (the same count as the
+  `us-rulespec-2026-10-12-w5-benefits-union` cut).
+- Citation-path ratchets over every locked provisions file plus the 30 scopes (2,428 files): `block_n` 85,421 → 85,559
+  (+138), `page_n` 177,867 → 178,885 (+1,018, mostly the Virginia act stored one row per page), `uppercase_segments`
+  18,796 → 19,332 (+536, U.S. Code subparagraph and section designations such as `(A)` and `25F`); the other families
+  unchanged.
+- `guard-ingested`: every changed corpus artifact has a signed ingest manifest. `corpus verify --attest`: 2,428 lock
+  files, 63,366 entries, OK.
+- `corpus push --changed-since origin/main`: 144 objects uploaded (57.9 MB), 5 already in R2; `corpus verify --remote`:
+  0 missing.
+
 ## Activation
 
 The release carries every pair of `us-rulespec-2026-10-12-w5-benefits-union`. Activate it after that cut; if it is
