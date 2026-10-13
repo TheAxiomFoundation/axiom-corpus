@@ -141,10 +141,13 @@ def _main_ref() -> str:
     try:
         top = Path(_git("rev-parse", "--show-toplevel").strip())
         shallow = _git("rev-parse", "--is-shallow-repository").strip()
-        # Same directory, however spelled (symlinks, worktrees, letter case).
-        same = top.samefile(REPO_ROOT)
     except (OSError, subprocess.CalledProcessError):
         pytest.fail(needs)
+    try:
+        # Same directory, however spelled (symlinks, worktrees, letter case).
+        same = top.samefile(REPO_ROOT)
+    except OSError:
+        pytest.fail(f"{needs}; git names {top} as the top level, which cannot be read")
     if not same:
         # e.g. an unpacked sdist inside another repository: its refs are not main's.
         pytest.fail(f"{needs}; git resolves {REPO_ROOT} to the repository at {top}")
@@ -294,9 +297,10 @@ def test_an_unreadable_version_is_an_error_not_a_deletion(monkeypatch: pytest.Mo
 @pytest.mark.parametrize(
     ("git_present", "top", "shallow", "ref_exists", "message"),
     [
-        (False, REPO_ROOT, "false", True, "needs git and a git checkout"),
+        (False, REPO_ROOT, "false", True, "with main's history$"),
         (True, REPO_ROOT.parent, "false", True, "resolves .* to the repository at"),
-        (True, REPO_ROOT, "true", True, "shallow"),
+        (True, REPO_ROOT / "no-such-dir", "false", True, "which cannot be read$"),
+        (True, REPO_ROOT, "true", True, "fetch --unshallow"),
         (True, REPO_ROOT, "false", False, "is not in this checkout"),
         (True, REPO_ROOT, "--is-shallow-repository", True, "cannot say whether it is shallow"),
     ],
@@ -337,15 +341,21 @@ def test_main_history_is_found_in_a_full_checkout(
     else:
         monkeypatch.setenv(MAIN_REF_VARIABLE, override)
 
+    verified: list[str] = []
+
     def git(*args: str) -> str:
         if "--show-toplevel" in args:
             return f"{REPO_ROOT}\n"
         if "--is-shallow-repository" in args:
             return "false\n"
+        if "--verify" in args:
+            verified.append(args[-1])
         return "0" * 40 + "\n"
 
     monkeypatch.setattr(sys.modules[__name__], "_git", git)
-    assert _main_ref.__wrapped__() == (override or "origin/main")
+    expected = override or "origin/main"
+    assert _main_ref.__wrapped__() == expected
+    assert verified == [f"{expected}^{{commit}}"]
 
 
 def test_no_entry_is_listed_in_the_future() -> None:
