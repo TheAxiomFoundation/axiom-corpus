@@ -418,6 +418,14 @@ follow-up 3 is the durable one. #740 and #746, as drafted, would fail it
 once they are updated from a `main` that has this test. Each needs the swap
 above before it is cut.
 
+Since #847 the rule lives in `manifests/withdrawn-scopes.yaml`, which withdraws
+this scope and PIT core and grandfathers exactly these 32 selectors.
+`tests/test_release_policy_repository.py` enforces it for every withdrawn scope,
+and `validate_release` refuses the scope in any other release, so local
+validation, the selector CI and `publish_corpus.py` enforce it too. This audit's
+test now checks the registry entry
+(`test_the_withdrawn_scope_registry_carries_this_audits_rule`).
+
 **Rules for every cut:**
 
 - **Never select the recovery scope with the chapter scope or its successor.**
@@ -449,6 +457,12 @@ above before it is cut.
   (`src/axiom_corpus/corpus/release_quality.py:759-765`). Every empty root here
   has a heading. Only this audit and its tests record the defects.
 
+  Since #847 the gate does catch them: the scope is withdrawn
+  (`test_the_release_gate_refuses_the_scope_and_names_the_swap`), and the
+  content check flags the 11 menu blocks, the WIC root and the WIC picker
+  (`test_the_content_check_finds_the_defective_rows`;
+  `docs/release-gate-policy.md`).
+
 ## Follow-ups
 
 These are recorded, not done here:
@@ -475,9 +489,20 @@ These are recorded, not done here:
      `publish_corpus.py` would then all enforce the rule, for this scope and for
      the sibling recovery scopes below. That list would replace this note's
      single-scope test.
+
+   Done in #847 (2026-10-13): `manifests/withdrawn-scopes.yaml` and
+   `axiom_corpus.corpus.content_quality`, with the content baseline
+   `manifests/release-content-baseline.json`. See
+   `docs/release-gate-policy.md`.
 4. **Recovery accounting.** Make the recovery reconciliation read bodies, and
    stop it from counting a scope's own rows, before the recovery script is used
    again.
+
+   Done in #847 (2026-10-13): the reconciliation counts a path only where its
+   row carries text by the content check's rules, and a document's own planned
+   scope only when the document was parsed. On the retained pages, the ten
+   R&TC targets resolve to the chapter scope and WIC 11450(a)(1)(A) to nothing
+   (`tests/test_recover_ingest_reconciliation.py`).
 5. **Sibling recovery scopes.** A read-only sweep, run during this audit and not
    committed, covered all 70 `2026-07-13-recovery*` provisions files (8,741
    rows). It matched chrome by whole-line menu terms, and each hit was then

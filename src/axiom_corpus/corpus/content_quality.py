@@ -28,11 +28,11 @@ sources. Each finding names one row or one source file:
 ``hollow_document_root``
     A ``document`` row with no body whose descendants in the scope (rows whose
     citation path extends it) carry no text: each is empty, has no word with a
-    letter in it, is a ``navigation_body``, or comes from a version picker. A bodyless root with text below
-    it is the shared document extractor's normal shape (the wave4 chapter
-    scopes keep each section's text in one child block), so emptiness alone is
-    not a finding, and neither is a short text: "Reserved." is a section's
-    text.
+    letter in it, is a ``navigation_body``, or comes from a version picker. A
+    bodyless root with text below it is the shared document extractor's normal
+    shape (the wave4 chapter scopes keep each section's text in one child
+    block), so emptiness alone is not a finding, and neither is a short text:
+    "Reserved." is a section's text.
 ``version_picker_source``
     A retained HTML source is a LegInfo "select from multiples" page: it has
     the ``form#selectFromMultiples`` the California adapter resolves

@@ -156,8 +156,17 @@ def cmd_content_check(args: argparse.Namespace) -> int:
             for key, entry in sorted(scanned.items())
         }
     if args.check_baseline:
+        if args.all:
+            compared = baseline
+        else:
+            # A partial check compares only the selected scopes' entries.
+            chosen = set(selected)
+            compared = ContentBaseline(
+                baseline.check_version,
+                {key: entry for key, entry in baseline.entries.items() if key in chosen},
+            )
         differences = compare_content_baseline(
-            baseline,
+            compared,
             scanned,
             locked_scopes=_scannable(repo, locked) if args.all else selected,
         )
@@ -169,10 +178,15 @@ def cmd_content_check(args: argparse.Namespace) -> int:
     if args.update_baseline:
         if args.all:
             entries = dict(scanned)
-        else:
-            entries = (
-                dict(baseline.entries) if baseline.check_version == CONTENT_CHECK_VERSION else {}
+        elif baseline.check_version != CONTENT_CHECK_VERSION:
+            print(
+                f"content-check: {CONTENT_BASELINE_PATH} was made by {baseline.check_version}; "
+                f"rebuild it for {CONTENT_CHECK_VERSION} with --all --update-baseline",
+                file=sys.stderr,
             )
+            return 2
+        else:
+            entries = dict(baseline.entries)
             entries.update(scanned)
         write_content_baseline(baseline_path, entries.values())
         payload["baseline_written"] = str(CONTENT_BASELINE_PATH)

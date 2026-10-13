@@ -202,6 +202,15 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
         run: axiom-corpus-ingest corpus fetch --all --no-cache --workers 32
 
+      - name: Check the release content baseline
+        # Every locked scope's content findings (page navigation, chrome-prefixed
+        # bodies, hollow document roots, version pickers) must match
+        # manifests/release-content-baseline.json, which pins each scope's
+        # provisions and inventory digests. A new scope with no findings needs no
+        # entry; one with findings fails here until its extraction is fixed or the
+        # findings are recorded on purpose (docs/release-gate-policy.md).
+        run: axiom-corpus-ingest content-check --all --check-baseline --workers 4
+
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
 
