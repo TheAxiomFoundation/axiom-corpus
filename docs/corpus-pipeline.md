@@ -394,25 +394,64 @@ Register orders and agency letters often print amended rule text with deleted
 words struck through and inserted words underlined. The strike and underline
 are drawn rules, not text, so default PDF text extraction reads both as ordinary
 text. Three opt-in `extraction` keys in an official-document manifest handle
-such PDFs (default per-page segmentation only; without them extraction is
-unchanged):
+such PDFs. Without them extraction is unchanged.
 
-- `amendment_markup: true`, or a mapping with `start_page`/`end_page` (inclusive)
-  and optional `typographic_underlines`, writes the text with GNU wdiff
-  delimiters: `[-deleted text-]` for struck-through text and `{+inserted text+}`
-  for underlined text. Each marked page row carries
-  `metadata.amendment_markup` (the notation and its counts of deleted and
-  inserted runs). Removing the four delimiters gives back exactly the page text
-  extracted without the option. Limit the page range to the amended text so
-  that ordinary emphasis underlines elsewhere are not marked, and list in
-  `typographic_underlines` any exact phrase whose underline is citation
-  typography (an underlined case name, say) rather than an insertion. Extraction
-  fails if a page's own text already contains one of the delimiters, or if a
-  character is both struck through and underlined.
+- `amendment_markup` writes the text with GNU wdiff delimiters:
+  `[-deleted text-]` for struck-through text and `{+inserted text+}` for
+  underlined text. Its value is `true` (every page) or a non-empty mapping with
+  `start_page` and `end_page` (inclusive, positive integers) and an optional
+  `typographic_underlines` list. Each marked page row carries
+  `metadata.amendment_markup`: the notation and its counts of deleted and
+  inserted runs.
+  - Removing the four delimiters gives back exactly the page text extracted
+    without the option. Every marked page is checked against that text.
+  - Limit the page range to the amended text, so that ordinary emphasis
+    underlines elsewhere are not marked.
+  - List in `typographic_underlines` any exact phrase whose underline is
+    citation typography (an underlined case name, say) rather than an
+    insertion. A phrase occurs only as whole words ("Jones" does not occur in
+    "Jonesboro"). An occurrence counts, and loses its insertion delimiters, only
+    where it is exactly an underlined stretch: its first and last characters
+    are underlined and the text next to it is not. Words inside it may be plain,
+    like the "v." of a case name. An occurrence inside a longer underlined
+    stretch reads as part of that insertion, keeps its delimiters and draws a
+    warning. Extraction fails if a listed phrase never occurs as an underlined
+    stretch in the marked pages.
 - `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
-  drawn last in the content stream is read where it is printed.
-- `ignore_actual_text: true` extracts the visible glyphs even where the PDF's tag
-  tree supplies a replacement `/ActualText` (an empty one hides the text).
+  drawn last in the content stream is read where it is printed. This is
+  PyMuPDF's block sort, not the order `sort_text: true` gives. Each page is
+  checked to hold the same characters as the default text.
+- `ignore_actual_text: true` extracts the glyphs drawn inside marked content
+  that carries an `/ActualText` replacement (an empty one hides the text)
+  instead of the replacement. Those glyphs are not necessarily visible on the page. Check
+  the result against a rendering. This key works with every PDF segmentation.
+
+`amendment_markup` and `sort_blocks` work only with the default per-page
+segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
+`sort_text`. They read the page's character layer, and extraction stops with an
+error naming the page where that layer differs from the page's default text.
+PyMuPDF leaves zero-width glyphs (a combining mark, a zero-advance period) out of
+the character layer, so keep such a page out of the `amendment_markup` range.
+`amendment_markup` also fails if a page's own text already contains one of the
+delimiters, if a character is both struck through and underlined, or if
+`start_page` is past the last page.
+
+The strike and underline classifier is geometric. A visible horizontal rule at
+most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
+line's stroke width) marks a character when its offset from the text baseline,
+in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
+0.22 (underline). White rules and rules with zero opacity are ignored. So a thin
+table rule drawn 1-2 pt under 10 pt text reads as an underline. Extraction
+warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font
+sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
+underline position, which is not classified. Check every new use against a
+rendering of the pages or the publisher's HTML before ingesting it.
+`scripts/compare_pdf_amendment_markup_with_html.py` compares the marked text
+with HTML whose inline styles carry the markup. It labels every character,
+normalizes typographic spelling (hyphen, dash and quote variants), and compares
+the labels character by character in both directions, so labels swapped between
+words or inside a word (a struck and an inserted digit) fail, and so does a word
+that moves and changes label.
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.
