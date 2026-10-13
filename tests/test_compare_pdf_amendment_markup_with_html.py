@@ -119,7 +119,31 @@ def test_compare_fails_a_split_word_whose_parts_change_label() -> None:
     assert compare(html, pdf)["ok"] is False
 
 
-_COMPARE_WORDS = ("old", "new", "rule", "text", "9059", "income")
+def test_compare_fails_labels_swapped_between_words_spelled_differently() -> None:
+    words = ["non-household", "full-time", "part-time", "self-employed", "low-income"]
+    html = [
+        (word.replace("-", "\u2011"), label) for word, label in zip(words, "DDIDI", strict=True)
+    ]
+    pdf = [(word, label) for word, label in zip(words, "DIDDI", strict=True)]
+
+    assert compare(html, pdf)["ok"] is False
+
+
+def test_compare_passes_a_repeated_phrase_split_differently_on_each_side() -> None:
+    html = [("non-household", "D"), ("non-", "I"), ("household", "I")]
+    pdf = [("non-", "D"), ("household", "D"), ("non-household", "I")]
+
+    assert compare(html, pdf)["ok"] is True
+
+
+def test_compare_verdict_does_not_depend_on_the_side() -> None:
+    first = [("b", "I"), ("c", "D"), ("a", "P"), ("b", "I")]
+    second = [("c", "I"), ("c", "D"), ("b", "P"), ("b", "I")]
+
+    assert compare(first, second)["ok"] is compare(second, first)["ok"] is False
+
+
+_COMPARE_WORDS = ("old", "new", "rule", "text", "9059", "income", "non-household", "part-time")
 _COMPARE_LABELS = ("P", "D", "I")
 
 
@@ -157,5 +181,22 @@ def test_property_compare_fails_any_swap_of_two_marked_labels() -> None:
         swapped[index] = (words[index][0], words[index + 1][1])
         swapped[index + 1] = (words[index + 1][0], words[index][1])
         assert compare(words, swapped)["ok"] is False, (words, swapped)
+        # The same swap behind typographic spelling and line-end splits.
+        html = [(word.replace("-", "\u2011"), label) for word, label in words]
+        pdf = _split_hyphenated(swapped, rng)
+        assert compare(html, pdf)["ok"] is False, (html, pdf)
+        assert compare(html, _split_hyphenated(words, rng))["ok"] is True, (html, words)
         checked += 1
     assert checked > 500
+
+
+def _split_hyphenated(words: list[tuple[str, str]], rng: random.Random) -> list[tuple[str, str]]:
+    """Split some hyphenated words after the hyphen, as a line-end break does."""
+    out: list[tuple[str, str]] = []
+    for word, label in words:
+        head, hyphen, tail = word.partition("-")
+        if hyphen and tail and rng.random() < 0.5:
+            out.extend([(head + hyphen, label), (tail, label)])
+        else:
+            out.append((word, label))
+    return out

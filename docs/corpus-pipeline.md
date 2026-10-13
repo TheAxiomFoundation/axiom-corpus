@@ -420,9 +420,9 @@ such PDFs. Without them extraction is unchanged.
   drawn last in the content stream is read where it is printed. This is
   PyMuPDF's block sort, not the order `sort_text: true` gives. Each page is
   checked to hold the same characters as the default text.
-- `ignore_actual_text: true` extracts the glyphs drawn under an `/ActualText`
-  replacement in the PDF's tag tree (an empty one hides the text) instead of
-  the replacement. Those glyphs are not necessarily visible on the page. Check
+- `ignore_actual_text: true` extracts the glyphs drawn inside marked content
+  that carries an `/ActualText` replacement (an empty one hides the text)
+  instead of the replacement. Those glyphs are not necessarily visible on the page. Check
   the result against a rendering. This key works with every PDF segmentation.
 
 `amendment_markup` and `sort_blocks` work only with the default per-page
@@ -436,7 +436,8 @@ delimiters, if a character is both struck through and underlined, or if
 `start_page` is past the last page.
 
 The strike and underline classifier is geometric. A visible horizontal rule at
-most 1.5 pt thick marks a character when its offset from the text baseline,
+most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
+line's stroke width) marks a character when its offset from the text baseline,
 in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
 0.22 (underline). White rules and rules with zero opacity are ignored. So a thin
 table rule drawn 1-2 pt under 10 pt text reads as an underline. Extraction
@@ -445,7 +446,9 @@ sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
 underline position, which is not classified. Check every new use against a
 rendering of the pages or the publisher's HTML before ingesting it.
 `scripts/compare_pdf_amendment_markup_with_html.py` compares the marked text
-with HTML whose inline styles carry the markup, word by word.
+with HTML whose inline styles carry the markup. Within each differing stretch it
+compares labels character by character, after normalizing typographic spelling
+(hyphen and quote variants), in both directions.
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.

@@ -371,6 +371,23 @@ def test_a_thick_rule_at_an_underline_position_warns_and_is_ignored() -> None:
     assert page.body == "heavy"
 
 
+def test_a_stroked_rectangle_counts_its_stroke_in_its_thickness() -> None:
+    # 1 pt high and stroked 1 pt wide: 2 pt of paint, though each number alone
+    # is under the 1.5 pt limit.
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, BASELINE), "boxed", fontname=FONT, fontsize=SIZE)
+    width = fitz.get_text_length("boxed", fontname=FONT, fontsize=SIZE)
+    page.draw_rect(
+        fitz.Rect(72, BASELINE + 0.9, 72 + width, BASELINE + 1.9), color=(0, 0, 0), width=1.0
+    )
+
+    with pytest.warns(PdfAmendmentMarkupWarning, match=r"thicker than 1.5 pt \(2.00 pt\)"):
+        (block,) = _pages(document.tobytes(), {"amendment_markup": True})
+
+    assert block.body == "boxed"
+
+
 def test_rules_thicker_than_the_warning_limit_are_ignored_quietly() -> None:
     content = _pdf_with_rule("boxed", offset=0.12, thickness=4.0, filled=True)
 
@@ -452,6 +469,17 @@ def test_the_phrase_must_reach_the_end_of_the_underlined_stretch() -> None:
 
     assert rendered.typographic_underlines == {"Hamilton v. Lyng": 0}
     assert "{+Hamilton+}" in rendered.text
+
+
+def test_overlapping_occurrences_of_a_phrase_are_each_judged() -> None:
+    raw, states = _states(
+        [("Jones", I), ("v.", None), ("Jones", I), ("v.", None), ("Jones", I), ("ends", None)]
+    )
+
+    rendered = _render_amendment_markup(raw, states, typographic_underlines=("Jones v. Jones",))
+
+    assert rendered.text == "Jones v. Jones v. Jones ends"
+    assert rendered.typographic_underlines == {"Jones v. Jones": 2}
 
 
 def test_a_phrase_found_only_inside_an_insertion_fails_extraction() -> None:
@@ -550,7 +578,7 @@ def test_property_markup_is_faithful_and_strips_to_the_normalized_text() -> None
 
 
 _WORDS = ("Jones", "v.", "Yeutter", "x", "y")
-_PHRASES = ("Jones v. Yeutter", "Jones", "v.", "x y", "Yeutter x")
+_PHRASES = ("Jones v. Yeutter", "Jones", "v.", "x y", "Yeutter x", "Jones v. Jones", "x x")
 
 
 def _is_exact_underlined_stretch(raw: str, states: list[str | None], start: int, end: int) -> bool:
@@ -608,11 +636,20 @@ def test_property_typographic_underlines_only_clear_exact_underlined_stretches()
         }
         visible = [position for position, character in enumerate(raw) if character != " "]
         for position, (old, new) in zip(visible, zip(before, after, strict=True), strict=True):
-            assert old[0] == new[0]
-            if old[1] != new[1]:
-                assert (old[1], new[1]) == (I, None), (raw, states, phrases)
-                assert position in covered, (raw, states, phrases)
+            # Exactly the inserted characters inside a qualifying occurrence turn plain.
+            expected = None if old[1] == I and position in covered else old[1]
+            assert new == (old[0], expected), (raw, states, phrases, position)
         for phrase in phrases:
-            assert (typographic.typographic_underlines[phrase] > 0) is bool(
-                _qualifying_starts(raw, states, phrase)
-            ), (raw, states, phrase)
+            starts = [
+                start
+                for start in range(len(raw) - len(phrase) + 1)
+                if raw.startswith(phrase, start)
+            ]
+            qualifying = _qualifying_starts(raw, states, phrase)
+            kept = [
+                start
+                for start in starts
+                if start not in qualifying and I in states[start : start + len(phrase)]
+            ]
+            assert typographic.typographic_underlines[phrase] == len(qualifying), (raw, phrase)
+            assert typographic.typographic_underlines_kept[phrase] == len(kept), (raw, phrase)

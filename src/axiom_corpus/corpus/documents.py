@@ -1139,7 +1139,7 @@ _AMENDMENT_MARKUP_NOTATION = {
     "inserted_source_markup": "underline",
 }
 # A rule is a visible filled or stroked horizontal line at most this thick
-# (points).
+# (points): a rectangle's height plus any stroke width, or a line's stroke width.
 _PDF_RULE_MAX_THICKNESS = 1.5
 # Visible horizontal rules thicker than a rule but at most this thick are not
 # classified; a page where one sits at a strike or underline offset from text
@@ -1260,7 +1260,7 @@ def _pdf_page_layered_text(
     every page. The characters are the ones ``page.get_text("text")`` prints
     (same text flags), and a line ends in a newline exactly where that printer
     ends it with one: when the line printed a character and that character is
-    not itself a newline. Without ``sort_blocks`` the text, delimiters removed,
+    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters removed,
     is the default page text. ``sort_blocks`` orders text blocks top to bottom
     (PyMuPDF block sort), which places a boxed note drawn last in the content
     stream where it appears on the page, and keeps the same characters.
@@ -1457,8 +1457,10 @@ def _pdf_horizontal_rules(
 
     The first tuple holds the rules amendment markup classifies, at most
     ``_PDF_RULE_MAX_THICKNESS`` thick; the second holds thicker ones up to
-    ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. White paint and
-    paint with zero opacity are invisible and never make a rule.
+    ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. A rectangle's
+    thickness is its height plus, when it is stroked, the stroke width; a line's
+    is its stroke width. White paint and paint with zero opacity are invisible and
+    never make a rule.
     """
     rules: list[_PdfHorizontalRule] = []
     thick_rules: list[_PdfHorizontalRule] = []
@@ -1475,17 +1477,15 @@ def _pdf_horizontal_rules(
             operator = item[0]
             if operator == "re":
                 rect = item[1]
-                if rect.width <= rect.height:
+                if rect.width <= rect.height or not (filled or stroked):
                     continue
-                thickness = rect.height if filled else rect.height + stroke_width
+                # A stroke is centred on the outline, so it adds its width to the
+                # painted height of the rectangle.
+                thickness = rect.height + (stroke_width if stroked else 0.0)
                 rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
-                if rect.height <= _PDF_RULE_MAX_THICKNESS and (
-                    filled or (stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS)
-                ):
+                if thickness <= _PDF_RULE_MAX_THICKNESS:
                     rules.append(rule)
-                elif rect.height <= _PDF_RULE_WARNING_MAX_THICKNESS and (
-                    filled or (stroked and stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS)
-                ):
+                elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
                     thick_rules.append(rule)
             elif operator == "l" and stroked:
                 start, end = item[1], item[2]
@@ -1619,9 +1619,9 @@ def _render_amendment_markup(
     exactly an underlined stretch within a paragraph; such occurrences are
     counted in ``typographic_underlines``. Occurrences that are underlined only
     in part, or that sit inside a longer underlined stretch, keep their state
-    and are counted in ``typographic_underlines_kept``. Every occurrence is
-    judged on the states before any phrase is applied, so the result does not
-    depend on the order of the phrases.
+    and are counted in ``typographic_underlines_kept``. Every occurrence,
+    overlapping ones included, is judged on the states before any phrase is
+    applied, so the result does not depend on the order of the phrases.
     """
     kept = [
         (character, state)
@@ -1672,9 +1672,7 @@ def _render_amendment_markup(
                 if _typographic_underline_occurrence(paragraph, start, end):
                     typographic_counts[phrase] += 1
                     cleared.update(range(start, end))
-                    start = paragraph_text.find(phrase, end)
-                    continue
-                if any(state == _AMENDMENT_INSERTED for _char, state in paragraph[start:end]):
+                elif any(state == _AMENDMENT_INSERTED for _char, state in paragraph[start:end]):
                     typographic_kept[phrase] += 1
                 start = paragraph_text.find(phrase, start + 1)
         for position in cleared:
