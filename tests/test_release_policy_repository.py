@@ -17,7 +17,7 @@ import subprocess
 import sys
 import tempfile
 from functools import cache
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 
 import pytest
 import yaml
@@ -137,10 +137,15 @@ def _main_ref() -> str:
     find, so both fail with what to fetch.
     """
     ref = os.environ.get(MAIN_REF_VARIABLE, "origin/main")
+    needs = "this test needs git and a git checkout of axiom-corpus with main's history"
     try:
+        top = Path(_git("rev-parse", "--show-toplevel").strip())
         shallow = _git("rev-parse", "--is-shallow-repository").strip() == "true"
     except (OSError, subprocess.CalledProcessError):
-        pytest.fail("this test needs git and a git checkout of axiom-corpus with main's history")
+        pytest.fail(needs)
+    if top.resolve() != REPO_ROOT.resolve():
+        # e.g. an unpacked sdist inside another repository: its refs are not main's.
+        pytest.fail(f"{needs}; git resolves {REPO_ROOT} to the repository at {top}")
     if shallow:
         pytest.fail(
             "this checkout is shallow; grandfathering is decided on main's whole history: "
@@ -175,13 +180,13 @@ def _main_changes(path: str) -> list[str]:
 
 
 def _show(commit: str, path: str) -> str | None:
-    """``path`` as of ``commit``, or None where the commit deletes it.
+    """``path`` (in git's form, with "/") as of ``commit``, or None where the commit deletes it.
 
     Absence is read from the commit's tree; any other failure to read the file
     (a missing or unreadable object) raises rather than passing for a deletion,
     which could move an entry's first listing later.
     """
-    if not _git("ls-tree", "--name-only", commit, "--", PurePosixPath(path).as_posix()).strip():
+    if not _git("ls-tree", "--name-only", commit, "--", path).strip():
         return None
     return _git("show", f"{commit}:{path}")
 
@@ -283,16 +288,30 @@ def test_an_unreadable_version_is_an_error_not_a_deletion(monkeypatch: pytest.Mo
 
 
 @pytest.mark.parametrize(
-    ("shallow", "ref_exists", "message"),
-    [("true", True, "shallow"), ("false", False, "is not in this checkout")],
+    ("git_present", "top", "shallow", "ref_exists", "message"),
+    [
+        (False, REPO_ROOT, "false", True, "needs git and a git checkout"),
+        (True, Path("/elsewhere"), "false", True, "resolves .* to the repository at"),
+        (True, REPO_ROOT, "true", True, "shallow"),
+        (True, REPO_ROOT, "false", False, "is not in this checkout"),
+    ],
 )
 def test_main_history_is_required(
-    monkeypatch: pytest.MonkeyPatch, shallow: str, ref_exists: bool, message: str
+    monkeypatch: pytest.MonkeyPatch,
+    git_present: bool,
+    top: Path,
+    shallow: str,
+    ref_exists: bool,
+    message: str,
 ) -> None:
-    """Without main's whole history the order cannot be decided, so the test fails."""
+    """Without git, this checkout, or main's whole history the order cannot be decided."""
 
     def git(*args: str) -> str:
-        if args[:1] == ("rev-parse",) and "--is-shallow-repository" in args:
+        if not git_present:
+            raise FileNotFoundError("git")
+        if "--show-toplevel" in args:
+            return f"{top}\n"
+        if "--is-shallow-repository" in args:
             return shallow + "\n"
         if not ref_exists:
             raise subprocess.CalledProcessError(1, ["git", *args])
