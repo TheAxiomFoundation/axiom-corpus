@@ -210,7 +210,7 @@ def validate_releases(
     keys = list(needed)
     args = ([str(store.root)] * len(keys), [needed[key] for key in keys], [key[1] for key in keys])
     if workers == 1 or len(keys) < 2:
-        results = list(map(_check_scope, *args))
+        results = list(map(_check_scope, *args, strict=True))
     else:
         with ProcessPoolExecutor(max_workers=workers) as pool:
             results = list(pool.map(_check_scope, *args, chunksize=4))
