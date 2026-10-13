@@ -1,6 +1,6 @@
 {
-  "description": "Additive successor to us-rulespec-2026-08-08-obbb-alien-snap. Preserves all 272 pinned scopes and adds one signed, multi-document FNS guidance scope containing 15 source documents, including the USDA/FNS FY 2026 SNAP COLA memorandum with complete income, allotment, deduction, and resource tables. This selector does not activate or publish the release.",
-  "name": "us-rulespec-2026-10-13-snap-fy2026-memo-additive",
+  "description": "Source-corrected successor to us-rulespec-2026-08-08-obbb-alien-snap. Replaces the defective California statute recovery and PIT-core scopes with the signed income-tax chapter scope as required by the 2026-09-25 recovery audit; all other 270 pinned scopes remain. Adds one signed, multi-document FNS guidance scope containing 15 source documents, including the USDA/FNS FY 2026 SNAP COLA memorandum with complete income, allotment, deduction, and resource tables. This selector does not activate or publish the release.",
+  "name": "us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
     {
@@ -406,12 +406,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
     },
     {
       "document_class": "statute",
