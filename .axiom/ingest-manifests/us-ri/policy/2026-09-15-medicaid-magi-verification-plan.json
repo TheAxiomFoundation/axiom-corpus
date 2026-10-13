@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "fa8a21224b8ffa6686da7325901fdd341971dfc76f51a18106cc10d55f95c920"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "809252217e1c1472e74eb089ae66f361a7e5a5762e99aa4c12a2a9fe3c2cd784"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "a52978e8e0c6f00a7c5741205ed2a520f271cd4d54733787500c99363f7490cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-ri-cms-magi-verification-plan-rhode-island-verification-plan-template-final.pdf",
+      "sha256": "089cd97d225ac15380638d7175587d47e8dca950db0c19345a86aff566de8ebc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:15.572139+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iZcP0gbkjih8flTiPKeFhv6gRqtPV+AvmnZ1FJEqoWhmStJy3rvMOCm0AgNGk2kKHxrCiQ+NBaD2CAFOxbjFAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

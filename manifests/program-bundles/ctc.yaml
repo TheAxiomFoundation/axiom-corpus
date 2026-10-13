@@ -41,7 +41,7 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 19
-      state: 83
+      state: 85
 - id: full
   title: Full document bundle
   definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
@@ -57,30 +57,10 @@ tiers:
     known_sources: 0
     in_scope_by_layer:
       federal: 67
-      state: 83
+      state: 85
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us/form/irs/ty2013/p972
     name: Publication 972 (2013), Child Tax Credit
     layer: federal
@@ -205,6 +185,34 @@ layers:
     part: Credits
     cited:
     - path: us/guidance/irs/rev-proc-2020-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2021-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2022-38
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2023-34
@@ -426,24 +434,6 @@ layers:
     reason: 'Enacting text: the citing file also cites the codified section, which is the document'
     part: Credits
   full:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us/form/irs/ty2013/p972
     name: Publication 972 (2013), Child Tax Credit
     layer: federal
@@ -521,6 +511,24 @@ layers:
     name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
     source_url: null
     part: Credits
     sources:
@@ -1209,10 +1217,10 @@ layers:
     - path: us-ca/form/official-forms/ftb.ca.gov/forms/2025/2025-3514-booklet
       references: 1
       part: Credits
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/rtc/17052.1
+    name: us-ca/statute/rtc/17052.1
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/rtc/17052.1
     source_url: null
     sources:
     - policyengine-references
@@ -1220,7 +1228,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-ca/statute/rtc/17054.1
+    - path: us-ca/statute/rtc/17052.1
       references: 1
       part: Credits
   full:
@@ -1296,10 +1304,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/rtc/17052.1
+    name: us-ca/statute/rtc/17052.1
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/rtc/17052.1
     source_url: null
     part: Credits
     sources:
@@ -1307,16 +1315,6 @@ layers:
     scope: in
 - jurisdiction: us-co
   screener:
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us-co/form/cdor/ty2021/dr-0104-book-v3
     name: 2021 Colorado Individual Income Tax Filing Guide (104 Book), version 3
     layer: state
@@ -1415,6 +1413,20 @@ layers:
     - path: us-co/form/cdor/ty2025/dr-0104-book
       references: 1
       part: Credits
+  - key: us-co/statute/39/39-22-129
+    name: us-co/statute/39/39-22-129
+    layer: state
+    citation_path: us-co/statute/39/39-22-129
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-129
+      references: 2
+      part: Credits
   - key: us-co/statute/session-laws/2023
     name: us-co/statute/session-laws/2023
     layer: state
@@ -1430,15 +1442,6 @@ layers:
       references: 4
       part: Credits
   full:
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-co/form/cdor/ty2021/dr-0104-book-v3
     name: 2021 Colorado Individual Income Tax Filing Guide (104 Book), version 3
     layer: state
@@ -1502,6 +1505,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-co/statute/39/39-22-129
+    name: us-co/statute/39/39-22-129
+    layer: state
+    citation_path: us-co/statute/39/39-22-129
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-co/statute/session-laws/2023
     name: us-co/statute/session-laws/2023
     layer: state
@@ -1548,20 +1560,6 @@ layers:
   full: []
 - jurisdiction: us-ga
   screener:
-  - key: us-ga/statute/48/48-7-27
-    name: us-ga/statute/48/48-7-27
-    layer: state
-    citation_path: us-ga/statute/48/48-7-27
-    source_url: null
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-    cited:
-    - path: us-ga/statute/48/48-7-27
-      references: 1
-      part: Credits
   - key: us-ga/statute/session-laws/2025
     name: us-ga/statute/session-laws/2025
     layer: state
@@ -1577,15 +1575,6 @@ layers:
       references: 1
       part: Credits
   full:
-  - key: us-ga/statute/48/48-7-27
-    name: us-ga/statute/48/48-7-27
-    layer: state
-    citation_path: us-ga/statute/48/48-7-27
-    source_url: null
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-ga/statute/session-laws/2025
     name: us-ga/statute/session-laws/2025
     layer: state
@@ -1864,10 +1853,10 @@ layers:
     - path: us-md/form/comptroller/ty2025/resident-booklet
       references: 1
       part: Credits
-  - key: us-md/statute/human-services/5-501
-    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
+  - key: us-md/statute/gtg/10-751
+    name: us-md/statute/gtg/10-751
     layer: state
-    citation_path: us-md/statute/human-services/5-501
+    citation_path: us-md/statute/gtg/10-751
     source_url: null
     sources:
     - policyengine-references
@@ -1875,7 +1864,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-md/statute/human-services/5-501
+    - path: us-md/statute/gtg/10-751
       references: 1
       part: Credits
   - key: us-md/statute/session-laws/2025
@@ -1929,10 +1918,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-md/statute/human-services/5-501
-    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
+  - key: us-md/statute/gtg/10-751
+    name: us-md/statute/gtg/10-751
     layer: state
-    citation_path: us-md/statute/human-services/5-501
+    citation_path: us-md/statute/gtg/10-751
     source_url: null
     part: Credits
     sources:
@@ -2009,19 +1998,33 @@ layers:
     - path: us-ne/guidance/dor/child-care-tax-credit-act
       references: 1
       part: Credits
-  - key: us-ne/statute/43/43-512
-    name: Nebraska Revised Statutes section 43-512
+  - key: us-ne/statute/77/77-7202
+    name: us-ne/statute/77/77-7202
     layer: state
-    citation_path: us-ne/statute/43/43-512
+    citation_path: us-ne/statute/77/77-7202
     source_url: null
     sources:
     - policyengine-references
-    references: 2
+    references: 1
     scope: in
     part: Credits
     cited:
-    - path: us-ne/statute/43/43-512
-      references: 2
+    - path: us-ne/statute/77/77-7202
+      references: 1
+      part: Credits
+  - key: us-ne/statute/77/77-7203
+    name: us-ne/statute/77/77-7203
+    layer: state
+    citation_path: us-ne/statute/77/77-7203
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ne/statute/77/77-7203
+      references: 1
       part: Credits
   full:
   - key: us-ne/form/dor/ty2024/individual-income-tax-booklet
@@ -2051,10 +2054,19 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ne/statute/43/43-512
-    name: Nebraska Revised Statutes section 43-512
+  - key: us-ne/statute/77/77-7202
+    name: us-ne/statute/77/77-7202
     layer: state
-    citation_path: us-ne/statute/43/43-512
+    citation_path: us-ne/statute/77/77-7202
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ne/statute/77/77-7203
+    name: us-ne/statute/77/77-7203
+    layer: state
+    citation_path: us-ne/statute/77/77-7203
     source_url: null
     part: Credits
     sources:
@@ -2468,10 +2480,10 @@ layers:
     - path: us-ny/statute/TAX/606
       references: 1
       part: Credits
-  - key: us-ny/statute/bills/2021
-    name: us-ny/statute/bills/2021
+  - key: us-ny/statute/bills/2025
+    name: us-ny/statute/bills/2025
     layer: state
-    citation_path: us-ny/statute/bills/2021
+    citation_path: us-ny/statute/bills/2025
     source_url: null
     sources:
     - policyengine-references
@@ -2479,7 +2491,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-ny/statute/bills/2021/s7148
+    - path: us-ny/statute/bills/2025/s3009
       references: 1
       part: Credits
   full:
@@ -2564,10 +2576,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ny/statute/bills/2021
-    name: us-ny/statute/bills/2021
+  - key: us-ny/statute/bills/2025
+    name: us-ny/statute/bills/2025
     layer: state
-    citation_path: us-ny/statute/bills/2021
+    citation_path: us-ny/statute/bills/2025
     source_url: null
     part: Credits
     sources:
@@ -2866,6 +2878,20 @@ layers:
     - path: us-ut/form/ustc/ty2025/tc-40-instructions
       references: 1
       part: Credits
+  - key: us-ut/statute/59-10-1047
+    name: us-ut/statute/59-10-1047
+    layer: state
+    citation_path: us-ut/statute/59-10-1047
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ut/statute/59-10-1047
+      references: 1
+      part: Credits
   - key: us-ut/statute/59-10-1047--version-2023050320240101
     name: Utah Code 59-10-1047, prior version (effective 1/1/2024, superseded 1/1/2025; le.utah.gov version file
       C59-10-S1047_2023050320240101)
@@ -2874,12 +2900,27 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 3
+    references: 1
     scope: in
     part: Credits
     cited:
     - path: us-ut/statute/59-10-1047--version-2023050320240101
-      references: 3
+      references: 1
+      part: Credits
+  - key: us-ut/statute/59-10-1047--version-2025010120240501
+    name: Utah Code 59-10-1047, prior version (effective 1/1/2025, superseded 5/7/2025; le.utah.gov version file
+      C59-10-S1047_2025010120240501)
+    layer: state
+    citation_path: us-ut/statute/59-10-1047--version-2025010120240501
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ut/statute/59-10-1047--version-2025010120240501
+      references: 1
       part: Credits
   - key: us-ut/statute/bills/2025
     name: us-ut/statute/bills/2025
@@ -2928,11 +2969,30 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-ut/statute/59-10-1047
+    name: us-ut/statute/59-10-1047
+    layer: state
+    citation_path: us-ut/statute/59-10-1047
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-ut/statute/59-10-1047--version-2023050320240101
     name: Utah Code 59-10-1047, prior version (effective 1/1/2024, superseded 1/1/2025; le.utah.gov version file
       C59-10-S1047_2023050320240101)
     layer: state
     citation_path: us-ut/statute/59-10-1047--version-2023050320240101
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-ut/statute/59-10-1047--version-2025010120240501
+    name: Utah Code 59-10-1047, prior version (effective 1/1/2025, superseded 5/7/2025; le.utah.gov version file
+      C59-10-S1047_2025010120240501)
+    layer: state
+    citation_path: us-ut/statute/59-10-1047--version-2025010120240501
     source_url: null
     part: Credits
     sources:
