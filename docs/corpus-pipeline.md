@@ -450,7 +450,8 @@ rendering of the pages or the publisher's HTML before ingesting it.
 with HTML whose inline styles carry the markup. It labels every character,
 normalizes typographic spelling (hyphen, dash and quote variants), and compares
 the labels character by character in both directions, so labels swapped between
-words or inside a word (a struck and an inserted digit) fail.
+words or inside a word (a struck and an inserted digit) fail, and so does a word
+that moves and changes label.
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.

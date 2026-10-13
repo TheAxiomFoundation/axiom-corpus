@@ -182,6 +182,33 @@ def test_compare_judges_text_present_on_one_side_by_its_neighbours(
     assert compare(marked_text_words(html), marked_text_words(pdf))["ok"] is ok
 
 
+def test_compare_fails_text_that_moves_and_changes_label() -> None:
+    html = marked_text_words("keep [-a old b-] {+c d+} end")
+    pdf = marked_text_words("keep [-a b-] {+c old d+} end")
+
+    result = compare(html, pdf)
+
+    assert result["ok"] is False
+    assert result["moved_text"] == [{"text": "old", "html": ["DDD"], "pdf": ["III"]}]
+    # Moved with the same label, it is a text difference, not a label conflict.
+    same_label = marked_text_words("keep [-a b-] [-old-] {+c d+} end")
+    assert compare(html, same_label)["moved_text"] == []
+
+
+def test_compare_context_does_not_make_a_side_one_sided_at_the_start() -> None:
+    html = marked_text_words("Intro text here [-old-] end")
+
+    assert compare(html, marked_text_words("[-old-] end"))["ok"] is True
+
+
+def test_compare_treats_a_decomposed_accent_as_its_composed_letter() -> None:
+    html = [("caf\u00e9", "PPPD"), ("x", "D")]
+    pdf = [("cafe\u0301", "PPPDD"), ("x", "D")]
+
+    assert compare(html, pdf)["ok"] is True
+    assert compare(html, [("cafe\u0301", "PPPPD"), ("x", "D")])["ok"] is False
+
+
 _COMPARE_WORDS = ("old", "new", "rule", "text", "9059", "income", "non-household", "part-time")
 _COMPARE_LABELS = ("P", "D", "I")
 

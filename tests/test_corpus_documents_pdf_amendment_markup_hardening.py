@@ -480,7 +480,18 @@ def test_a_phrase_does_not_occur_inside_a_longer_word() -> None:
 
     assert rendered.text == "{+Jones+}boro and Jones v."
     assert rendered.typographic_underlines == {"Jones": 1}
-    assert rendered.typographic_underlines_kept == {"Jones": 0}
+    # The underlined "Jones" inside "Jonesboro" keeps its marks and is reported.
+    assert rendered.typographic_underlines_kept == {"Jones": 1}
+
+
+def test_a_case_name_followed_by_a_footnote_digit_keeps_its_marks_and_is_reported() -> None:
+    raw, states = _states([("Jones", I), ("v.", None), ("Yeutter1", None)])
+    states[9:16] = [I] * 7  # "Yeutter" underlined, the footnote digit plain
+
+    rendered = _render_amendment_markup(raw, states, typographic_underlines=("Jones v. Yeutter",))
+
+    assert rendered.text == "{+Jones+} v. {+Yeutter+}1"
+    assert rendered.typographic_underlines_kept == {"Jones v. Yeutter": 1}
 
 
 def test_overlapping_occurrences_of_a_phrase_are_each_judged() -> None:
@@ -661,7 +672,7 @@ def test_property_typographic_underlines_only_clear_exact_underlined_stretches()
             expected = None if old[1] == I and position in covered else old[1]
             assert new == (old[0], expected), (raw, states, phrases, position)
         for phrase in phrases:
-            starts = _whole_word_starts(raw, phrase)
+            starts = [match.start() for match in re.finditer(f"(?=({re.escape(phrase)}))", raw)]
             qualifying = _qualifying_starts(raw, states, phrase)
             kept = [
                 start
