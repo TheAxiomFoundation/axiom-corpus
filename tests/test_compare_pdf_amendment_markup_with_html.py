@@ -13,6 +13,7 @@ from scripts.compare_pdf_amendment_markup_with_html import (
     html_words,
     main,
     marked_text_words,
+    pdf_words,
 )
 
 HTML = b"""
@@ -67,6 +68,49 @@ def test_marked_text_words_read_a_struck_bracket_as_deleted_text() -> None:
         ("new{", "IIII"),
         ("x", "P"),
     ]
+
+
+def _two_page_pdf() -> bytes:
+    """Page 1: the plain line "Intro -] token [-x". Page 2: "Old" struck, then "{y"."""
+    document = fitz.open()
+    document.new_page().insert_text((72, 100), "Intro -] token [-x", fontname="helv", fontsize=12)
+    page = document.new_page()
+    page.insert_text((72, 100), "Old {y", fontname="helv", fontsize=12)
+    width = fitz.get_text_length("Old", fontname="helv", fontsize=12)
+    page.draw_line((72, 97), (72 + width, 97), width=0.6)
+    content = document.tobytes()
+    document.close()
+    return content
+
+
+def test_pdf_words_read_only_marked_pages_as_markup() -> None:
+    # Page 1 is outside the marked range, so its "-]" and "[-" are text. The
+    # extraction does not refuse them there, and neither may the comparison.
+    assert pdf_words(_two_page_pdf(), {"amendment_markup": {"start_page": 2}}) == [
+        ("Intro", "PPPPP"),
+        ("-]", "PP"),
+        ("token", "PPPPP"),
+        ("[-x", "PPP"),
+        ("Old", "DDD"),
+        ("{y", "PP"),
+    ]
+
+
+def test_pdf_words_without_markup_are_all_plain() -> None:
+    assert pdf_words(_two_page_pdf(), {}) == [
+        ("Intro", "PPPPP"),
+        ("-]", "PP"),
+        ("token", "PPPPP"),
+        ("[-x", "PPP"),
+        ("Old", "PPP"),
+        ("{y", "PP"),
+    ]
+
+
+def test_pdf_words_of_a_marked_page_with_a_delimiter_in_its_text_are_refused() -> None:
+    # Marking page 1 as well makes the extraction itself refuse it.
+    with pytest.raises(ValueError, match="PDF page 1 text already contains amendment markup"):
+        pdf_words(_two_page_pdf(), {"amendment_markup": True})
 
 
 def test_compare_passes_spelling_differences_and_fails_label_conflicts() -> None:

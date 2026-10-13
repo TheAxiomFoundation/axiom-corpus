@@ -1892,10 +1892,12 @@ def _amendment_markup_runs(text: str) -> list[tuple[str, str | None]]:
     deletion in brackets and strikes the brackets where an amendment struck it
     (2025 ch. 604, page 87: ``the budget bill [-[-]shall[-] MAY-] specify``).
 
-    Plain text between runs and the text of a run hold none of the four tokens:
-    ``_pdf_page_layered_text`` refuses a page whose markup has one there
-    (``_RenderedAmendmentMarkup.delimiters_in_text``). Text with a token there,
-    a run left open or an empty run raises ``ValueError``.
+    In the markup of a page ``_pdf_page_layered_text`` accepts, plain text
+    between runs and the text of a run hold none of the four tokens: it refuses
+    a page whose markup has one there
+    (``_RenderedAmendmentMarkup.delimiters_in_text``). So this reads only such
+    text, and raises ``ValueError`` for a token there, a run left open or an
+    empty run. A page outside the marked range is plain text, not markup.
     """
     runs: list[tuple[str, str | None]] = []
     position = 0
@@ -1928,7 +1930,7 @@ def _check_amendment_markup_run(text: str, start: int, end: int, *, state: str |
         where = "outside a run" if state is None else f"inside a {state} run"
         raise ValueError(
             f"amendment markup has {found} {where} (offsets {start} to {end}); "
-            "the renderer never writes a delimiter there"
+            "markup that amendment_markup accepts has no delimiter there"
         )
 
 
