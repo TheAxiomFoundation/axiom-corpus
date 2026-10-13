@@ -215,7 +215,7 @@ that a dropped block is a list of the page's link labels and nothing else:
 
 - every token lies in a navigation string or is only link separators (`|`,
   `>`, `»`, `•` ...), so a status line, a pointer, a figure beside a linked label
-  or a table mark (✓, ✗, —) keeps its block;
+  or a table mark (✓, ✗, a dash) keeps its block;
 - the body is at least two navigation strings
   (`NAVIGATION_BLOCK_MIN_STRINGS`): a lone link can be a section's whole text;
 - no matched string is longer than 12 words

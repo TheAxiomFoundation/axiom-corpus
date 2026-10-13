@@ -51,7 +51,8 @@ now a test. Among the flagged rows they keep no further content-labeled row, and
 and three menus whose labels end with a period. Round 2 (Opus 5.5, Subfleet's
 fallback when no Codex lane was free) agreed and asked for table marks to count
 as content too: a ✓ or ✗ cell under linked column labels now keeps its block,
-and only `| / \ < > « » ‹ › • · - –` may stand outside the links. On the flagged
+and only `| / \ < > « » ‹ › • ·` may stand outside the links (round 3, also Opus
+5.5, agreed and had hyphen and en-dash cells count as content too). On the flagged
 rows the only such tokens in dropped blocks are three `|` and one `>`, so no
 verdict changed.
 
@@ -59,8 +60,9 @@ One known loss remains by design. A list whose every item is a short linked
 sentence without a final period ("Report changes within 10 days" over "Report
 income over 130 percent of poverty") reads as a menu and is dropped, as are the
 link lists counted below; the text such a link names lives on the page it links
-to. A publisher drop selector or `html_keep_navigation_blocks: true` is the remedy
-for a manifest where that matters.
+to. Where that matters, `html_keep_navigation_blocks: true` keeps the list (a drop
+selector cannot: it removes chrome, not the list), ideally with a drop selector for
+the page's real chrome.
 
 ### How the conditions were chosen
 

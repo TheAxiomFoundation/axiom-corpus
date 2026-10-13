@@ -119,7 +119,7 @@ _ENDS_SENTENCE = re.compile(r"(?<!\.)[.!][\"')\]’”]*$")
 # Characters that only separate links (breadcrumb and menu dividers). Any other
 # token outside the page's navigation strings is the block's own content: a word,
 # a figure, or a table mark such as a check, a cross or a dash for "none".
-_SEPARATOR_CHARS = frozenset("|/\\<>«»‹›•·-–")
+_SEPARATOR_CHARS = frozenset("|/\\<>«»‹›•·")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -372,7 +372,7 @@ def is_navigation_block(
       link separators (``|``, ``>``, ``»``, ``•`` ...), so a status ("Repealed April
       6, 2000. Return to Table of Contents"), an instruction ("See Certification
       Periods."), a figure beside a linked label ("Gross monthly income limit
-      $2,000") or a table mark ("✓", "✗", "—") keeps its block;
+      $2,000") or a table mark ("✓", "✗", "-", "—") keeps its block;
     - the body is at least ``NAVIGATION_BLOCK_MIN_STRINGS`` navigation strings: a
       lone link can be a section's whole text ("See reciprocal agreement", an
       exhibit's title, a glossary term whose definition sits inside its link);

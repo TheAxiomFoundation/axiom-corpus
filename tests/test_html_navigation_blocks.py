@@ -26,6 +26,7 @@ from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.content_quality import (
+    _ENDS_SENTENCE,
     MAX_BODY_TOKENS,
     NAVIGATION_BLOCK_MAX_STRING_WORDS,
     NAVIGATION_BODY,
@@ -251,6 +252,13 @@ def test_table_marks_beside_linked_labels_are_kept() -> None:
     assert classify_body("SNAP TANF ✓ ✗", navigation).navigation
     assert [body for _, _, body in _blocks(page)] == ["SNAP TANF ✓ ✗"]
     assert is_navigation_block("SNAP | TANF", navigation)
+    dashes = _page(
+        "<h2>Who counts this income</h2><table>"
+        "<tr><th><a href='/f'>Food assistance</a></th><th><a href='/c'>Cash assistance</a></th></tr>"
+        "<tr><td>–</td><td>-</td></tr></table>"
+    )
+    assert classify_body("Food assistance Cash assistance – -", page_navigation(dashes)).navigation
+    assert [body for _, _, body in _blocks(dashes)] == ["Food assistance Cash assistance – -"]
 
 
 def test_short_definitions_inside_links_are_kept() -> None:
@@ -439,14 +447,14 @@ def test_a_navigation_block_is_a_flagged_body_of_links_only(strings, tokens) -> 
         covered = {position for start, end in spans for position in range(start, end)}
         assert classify_body(body, navigation).navigation
         assert all(
-            set(word) <= set("|/\\<>«»‹›•·-–")
+            set(word) <= set("|/\\<>«»‹›•·")
             for position, word in enumerate(words)
             if position not in covered
         )
         assert len(spans) >= 2
         for start, end in spans:
             assert sum(any(char.isalpha() for char in word) for word in words[start:end]) <= 12
-            assert not words[end - 1].endswith((".", "!"))
+            assert not _ENDS_SENTENCE.search(words[end - 1])
 
 
 @_SETTINGS
