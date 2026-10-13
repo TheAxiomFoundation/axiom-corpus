@@ -4,7 +4,8 @@ The 2026-09-13 CMS state-plan attachments (for example OH-12-004-Att.pdf) are pa
 whose only text is a date stamp ("9/4/13"). Their manifests set ``ocr: true``, but the stamp
 made the text layer non-empty, so OCR never ran and each page's body was the stamp. Such a
 page is now read by OCR, and the text-layer lines OCR did not reproduce are kept after it,
-so exact typed values (dates, transmittal numbers, amounts) are never lost.
+so nothing typed onto the scan (dates, transmittal numbers, amounts, the signing official's
+name and title) is lost. The rule's invariants are in tests/test_ocr_layer_line_properties.py.
 """
 
 from __future__ import annotations
@@ -121,10 +122,11 @@ def test_typed_form_fields_over_a_page_scan_are_read_by_ocr_and_kept_exactly(tmp
 
     text = _first_page_text(pdf, {"ocr": True})
 
-    assert text.startswith(SCAN_TEXT)
-    # The fake OCR read none of the typed values, so every layer line with a digit is kept.
-    dated = [line for line in _layer_lines(pdf) if any(char.isdigit() for char in line)]
-    assert dated and all(line in text for line in dated)
+    # The fake OCR read none of the typed fields, so every layer line is kept, in order:
+    # the dates, and the name and title that have no digit.
+    lines = _layer_lines(pdf)
+    assert "Hughes" in " ".join(lines) and "Administrator" in " ".join(lines)
+    assert text == SCAN_TEXT + "\n\n" + "\n".join(lines)
     assert ocr_calls == ["ocr"]
 
 
@@ -150,6 +152,24 @@ def test_layer_values_ocr_misreads_are_kept(tmp_path, monkeypatch):
     text = _first_page_text(pdf, {"ocr": True})
 
     assert text == "FEDERAL BUDGET IMPACT\nFFY 2013 $1.234.S67\n\nFFY 2013 $1,234,567"
+
+
+def test_a_typed_date_whose_day_and_year_ocr_read_elsewhere_is_kept(tmp_path, monkeypatch):
+    # CMS-179 forms carry several dates. OCR reading "19" and "2014" in one of them must
+    # not count as reading another (HI-14-005: DATE APPROVED was lost this way).
+    pdf = _pdf(tmp_path / "form.pdf", image_rect="page", overlay="November 19, 2014")
+    ocr = "17. DATE RECEIVED: March 19, 2014\n18. DATE APPROVED:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+
+    assert _first_page_text(pdf, {"ocr": True}) == ocr.rstrip("\n") + "\n\nNovember 19, 2014"
+
+
+def test_a_typed_name_and_title_ocr_did_not_read_are_kept(tmp_path, monkeypatch):
+    pdf = _pdf(tmp_path / "form.pdf", image_rect="page", overlay="Hye Sun Lee")
+    ocr = "21. TYPED NAME: Hye Sun Lec\n22. TITLE:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+
+    assert _first_page_text(pdf, {"ocr": True}) == ocr.rstrip("\n") + "\n\nHye Sun Lee"
 
 
 def test_layer_lines_ocr_reproduced_are_not_repeated(tmp_path, monkeypatch):
@@ -197,20 +217,46 @@ def test_with_unread_layer_lines_cases():
     # No OCR text: the layer exactly as it was.
     assert _with_unread_layer_lines("", " 9/4/13 \n\n9/4/13") == " 9/4/13 \n\n9/4/13"
     assert _with_unread_layer_lines("A\n9/4/13", "9/4/13\n9/4/13") == "A\n9/4/13"
-    # Kept once; a line with no digit adds nothing OCR lacks.
-    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n\n9/4/13"
-    # Tokens compare whole: "24" is not read by "2024".
+    # Each unread line is kept once, with or without a digit.
+    assert _with_unread_layer_lines("A", "9/4/13\n9/4/13\nB") == "A\n\n9/4/13\nB"
+    # Tokens compare whole: "24" is not read by "2024", nor "Lee" by "Leeward".
     assert _with_unread_layer_lines("Total 2024", "24") == "Total 2024\n\n24"
-    # Edge punctuation does not matter.
+    assert _with_unread_layer_lines("Leeward", "Lee") == "Leeward\n\nLee"
+    # A line is read as a run: its words scattered over the page do not count.
+    assert _with_unread_layer_lines("March 19, 2014 November", "November 19, 2014") == (
+        "March 19, 2014 November\n\nNovember 19, 2014"
+    )
+    # OCR's line breaks do not matter, and neither does punctuation around the run.
+    assert _with_unread_layer_lines("Hye\nSun\nLee", "Hye Sun Lee") == "Hye\nSun\nLee"
     assert _with_unread_layer_lines("Amount: ($1,234,567).", "$1,234,567") == (
         "Amount: ($1,234,567)."
     )
+    assert _with_unread_layer_lines("(Check One):", "Check One)") == "(Check One):"
+    # A currency sign, a minus and a percent sign are part of a value.
+    assert _with_unread_layer_lines("$5 -5 5%", "5") == "$5 -5 5%\n\n5"
+    # A line starts at the start of a token and ends at the end of one: not in the
+    # punctuation trailing the token before it, nor inside a run of punctuation.
+    assert _with_unread_layer_lines("2024. 5 items", ".5") == "2024. 5 items\n\n.5"
+    assert _with_unread_layer_lines("a .. b", ". b") == "a .. b\n\n. b"
+    # Spacing next to a letter is not compared: layers and OCR break words differently.
+    assert _with_unread_layer_lines("Page 12 of 36", "Page12of36") == "Page 12 of 36"
+    assert _with_unread_layer_lines("EffectiveDate", "Effective Date") == "EffectiveDate"
+    # Spacing between digits and punctuation is: OCR's "1" and "2" are not a typed "12".
+    assert _with_unread_layer_lines("1\n2", "12") == "1\n2\n\n12"
+    assert _with_unread_layer_lines("3.1", "3. 1") == "3.1\n\n3. 1"
+    # Letter case and every character count.
+    assert _with_unread_layer_lines("january 1, 2018", "January 1, 2018") == (
+        "january 1, 2018\n\nJanuary 1, 2018"
+    )
+    assert _with_unread_layer_lines("Isl", "/s/") == "Isl\n\n/s/"
     # A soft hyphen (format character) does not make a line garbage.
     assert _with_unread_layer_lines("Total", "Amount\u00ad 1,000") == "Total\n\nAmount\u00ad 1,000"
     # A garbled-font layer (control characters) is never appended.
     assert _with_unread_layer_lines("March 1, 2021", ".BSDI\x01\x14\x12 0DUPCFS") == (
         "March 1, 2021"
     )
+    # A line with no letter or digit is not text.
+    assert _with_unread_layer_lines("Total", "\u00b7 \u00b7\u00b7.\n\u25a1\n~") == "Total"
 
 
 def test_page_needs_ocr_rules(tmp_path):

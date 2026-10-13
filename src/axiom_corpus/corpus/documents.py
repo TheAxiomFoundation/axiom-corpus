@@ -3145,39 +3145,104 @@ def _rect_union_area(rects: list[Any]) -> float:
     return area
 
 
-# Punctuation stripped from the ends of a token before OCR and text-layer tokens are
-# compared, so "$1,234," and "($1,234)." both compare as "$1,234". A leading currency
-# sign or minus and a trailing percent sign are kept.
-_VALUE_TOKEN_EDGES = re.compile(r"^[^\w$\u20ac\u00a3%-]+|[^\w%]+$")
+# Punctuation at the ends of an OCR token that a text-layer line may begin after or end
+# before, so the layer's "$1,234" is read by OCR's "($1,234)." A leading currency sign or
+# minus and a trailing percent sign belong to the value and are never skipped.
+_OCR_TOKEN_LEAD = re.compile(r"^[^\w$\u20ac\u00a3%-]+")
+_OCR_TOKEN_TRAIL = re.compile(r"[^\w%]+$")
 
 
-def _value_tokens(text: str) -> list[str]:
-    tokens = (_VALUE_TOKEN_EDGES.sub("", token) for token in text.split())
-    return [token for token in tokens if token]
+def _spacing_folded(tokens: list[str]) -> tuple[str, list[int]]:
+    """``tokens`` joined for comparison, and each token's offset in the joined text.
+
+    A text layer and OCR break words differently ("EffectiveDate" for "Effective Date",
+    "of39" for "of 39"), so a gap with a letter on either side is dropped. Any other gap
+    is kept as one space: between digits and punctuation the spacing is part of the value
+    ("1 2" is not "12", and "3. 1" is not "3.1").
+    """
+    parts: list[str] = []
+    offsets: list[int] = []
+    length = 0
+    previous = ""
+    for token in tokens:
+        if previous and not (previous[-1].isalpha() or token[0].isalpha()):
+            parts.append(" ")
+            length += 1
+        offsets.append(length)
+        parts.append(token)
+        length += len(token)
+        previous = token
+    return "".join(parts), offsets
+
+
+def _ocr_reading(ocr_text: str) -> tuple[str, frozenset[int], frozenset[int]]:
+    """The OCR text folded for comparison, and where a text-layer line may start and end.
+
+    A line may start where an OCR token starts, or after any of the punctuation that
+    leads the token (``_OCR_TOKEN_LEAD``); it may end where the token ends, or before any
+    of the punctuation that trails it (``_OCR_TOKEN_TRAIL``). It can never start or end
+    among a token's letters and digits, so "24" is not read by "2024".
+    """
+    tokens = ocr_text.split()
+    folded, offsets = _spacing_folded(tokens)
+    starts: set[int] = set()
+    ends: set[int] = set()
+    for token, offset in zip(tokens, offsets, strict=True):
+        lead = _OCR_TOKEN_LEAD.match(token)
+        trail = _OCR_TOKEN_TRAIL.search(token)
+        core_start = lead.end() if lead else 0
+        core_end = trail.start() if trail else len(token)
+        if core_start >= core_end:
+            # Punctuation only: the token is taken whole or not at all.
+            core_start, core_end = 0, len(token)
+        starts.update(range(offset, offset + core_start + 1))
+        ends.update(range(offset + core_end, offset + len(token) + 1))
+    return folded, frozenset(starts), frozenset(ends)
+
+
+def _ocr_read_line(line: str, reading: tuple[str, frozenset[int], frozenset[int]]) -> bool:
+    """Whether the OCR text holds ``line``: the same characters in the same order, as whole
+    tokens, whatever the spacing next to a letter."""
+    folded, starts, ends = reading
+    needle, _ = _spacing_folded(line.split())
+    index = folded.find(needle)
+    while index != -1:
+        if index in starts and index + len(needle) in ends:
+            return True
+        index = folded.find(needle, index + 1)
+    return False
 
 
 def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
-    """OCR text, followed by the text-layer lines whose typed values OCR did not read.
+    """OCR text, followed by the text-layer lines OCR did not read.
 
-    A scanned form's text layer holds exact typed values (transmittal numbers, dates,
-    amounts) that OCR may misread. A layer line is kept, after the OCR text, when one of
-    its tokens with a digit is not among the OCR text's tokens (compared whole, so "24" is
-    not read by "2024"). Lines without a digit add nothing OCR lacks, and lines holding
-    control characters (Unicode category Cc) are font-encoding garbage, so neither is kept.
-    The kept lines follow as a paragraph of their own. With no OCR text the layer is
-    returned as it is.
+    A scanned page's text layer holds what was typed onto the scan: dates, transmittal
+    numbers, amounts, and the name and title of the signing official. OCR can misread any
+    of it, or skip it. A layer line is kept, after the OCR text, unless the OCR text
+    already holds the whole line (``_ocr_read_line``): the same characters in the same
+    order, as whole tokens. Only spacing next to a letter is not compared, because layers
+    and OCR break words differently. Two kinds of line are never kept: a line holding a
+    control character (Unicode category Cc) is font-encoding garbage, and a line with no
+    letter or digit is not text. Each kept line appears once, in layer order, and the kept
+    lines follow as a paragraph of their own. With no OCR text the layer is returned as it
+    is.
+
+    A layer line that is not garbage by those two tests is always in the result, so a
+    hidden recognition layer's misreadings are kept too when OCR did not read the same
+    thing.
     """
     if not _normalize_text(ocr_text):
         return layer_text
-    read = set(_value_tokens(ocr_text))
-    kept: list[str] = []
+    reading = _ocr_reading(ocr_text)
+    kept: dict[str, None] = {}
     for raw in layer_text.splitlines():
         line = " ".join(raw.split())
-        if not line or line in kept or any(unicodedata.category(char) == "Cc" for char in line):
+        if line in kept or not any(char.isalnum() for char in line):
             continue
-        values = [token for token in _value_tokens(line) if any(char.isdigit() for char in token)]
-        if any(token not in read for token in values):
-            kept.append(line)
+        if any(unicodedata.category(char) == "Cc" for char in line):
+            continue
+        if not _ocr_read_line(line, reading):
+            kept[line] = None
     if not kept:
         return ocr_text
     return ocr_text.rstrip("\n") + "\n\n" + "\n".join(kept)
