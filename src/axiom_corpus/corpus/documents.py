@@ -3639,6 +3639,9 @@ def _extract_html_blocks(
     flush()
     if blocks:
         return tuple(blocks)
+    # No text node held any text (or ``html_text_selector`` matched none), so the whole
+    # content root is read: it is the region.
+    page_region.read_whole_root(root, extraction=extraction)
     fallback = _normalize_text(root.get_text(" ", strip=True))
     if not fallback:
         return ()
@@ -4328,17 +4331,21 @@ class _HtmlRegion:
         """
         if self.region is None:
             return
-        config = extraction or {}
-        if config.get("html_text_selector"):
+        if (extraction or {}).get("html_text_selector"):
             self.read_nodes(
                 _REGION_HTML_TEXT_SELECTOR,
                 _html_text_nodes(root, extraction=extraction),
                 stop=stop,
             )
-        elif (config.get("html_content_selector") or config.get("content_selector")) is not None:
-            self.read_nodes(_REGION_HTML_CONTENT_SELECTOR, (root,), stop=stop)
         else:
-            self.read_nodes(_REGION_HTML_MAIN_CONTENT, (root,), stop=stop)
+            self.read_nodes(_html_root_region(extraction), (root,), stop=stop)
+
+    def read_whole_root(self, root: Tag, *, extraction: dict[str, Any] | None) -> None:
+        """Read the content root in place of whatever was read before."""
+        if self.region is None:
+            return
+        self.region.restart(_html_root_region(extraction))
+        self.read_nodes(_html_root_region(extraction), (root,))
 
     def read_nodes(self, kind: str, nodes: Iterable[Tag], *, stop: Tag | None = None) -> None:
         if self.region is None:
@@ -4371,6 +4378,13 @@ class _HtmlRegion:
             else:
                 outside.append((text, parents))
         self._dropped = outside
+
+
+def _html_root_region(extraction: dict[str, Any] | None) -> str:
+    config = extraction or {}
+    if (config.get("html_content_selector") or config.get("content_selector")) is not None:
+        return _REGION_HTML_CONTENT_SELECTOR
+    return _REGION_HTML_MAIN_CONTENT
 
 
 def _html_text_before(node: Tag, stop: Tag | None) -> tuple[str, bool]:

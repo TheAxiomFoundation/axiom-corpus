@@ -191,6 +191,29 @@ def test_html_headings_with_no_text_below_them_are_missing() -> None:
     assert [run.text for run in figures.longest_missing_runs] == ["Part A General"]
 
 
+def test_html_nested_dropped_nodes_are_counted_once() -> None:
+    page = b"""<html><body><main><p>Kept text.</p>
+    <aside>Outer aside <aside>inner aside</aside> <button>Print</button> tail</aside>
+    <nav>Menu <nav>Submenu</nav></nav></main></body></html>"""
+    _blocks, _region, figures = _measure(page, "html")
+
+    assert (figures.region_words, figures.kept_words) == (2, 2)
+    assert figures.deliberately_dropped_words == _count(
+        "Outer aside inner aside Print tail Menu Submenu"
+    )
+
+
+def test_html_text_selector_that_matches_nothing_reads_the_whole_root() -> None:
+    page = b"<html><body><main><p>First paragraph.</p><div>Bare text.</div></main></body></html>"
+    blocks, region, figures = _measure(page, "html", {"html_text_selector": "div.absent"})
+
+    # The walk found no text node, so the extractor fell back to the whole content root.
+    assert [block.body for block in blocks] == ["First paragraph. Bare text."]
+    assert region.kind == "html_main_content"
+    assert region.texts == ("First paragraph. Bare text.",)
+    assert (figures.region_words, figures.kept_words, figures.coverage) == (4, 4, 1.0)
+
+
 def test_html_page_with_no_text_tags_is_read_whole() -> None:
     page = b"<html><body><div>Only bare text here.</div></body></html>"
     blocks, region, figures = _measure(page, "html")
@@ -657,7 +680,7 @@ def _write_scope(
                         **({"extraction": extraction} if extraction else {}),
                     }
                     for name, title, filename, extraction in (
-                        ("page", "Eligibility chapter", "page.html", None),
+                        ("page", "Eligibility chapter summary", "page.html", None),
                         ("labeled", "Labeled part", "labeled.html", LABELED_EXTRACTION),
                         ("manual", "State manual", "manual.pdf", LABELED_PDF_EXTRACTION),
                         ("pages", "Notice", "pages.pdf", None),
@@ -718,17 +741,19 @@ def test_the_coverage_report_gains_one_optional_field(tmp_path: Path) -> None:
 
 
 def test_the_document_rows_heading_counts_as_extracted_text(tmp_path: Path) -> None:
-    # Each source's root row carries the manifest title: "Eligibility chapter" lets the
-    # row text cover one more "Eligibility" than the blocks alone would.
+    # Each source's document row carries the manifest title. "Eligibility chapter
+    # summary" repeats two words the blocks already keep and adds "summary", which the
+    # page prints only in its lost div: one more word is kept, inside the same run.
     _store, report = _write_scope(tmp_path)
     assert report.source_coverage is not None
     page = report.source_coverage.sources[0].figures
     blocks_only = _measure(PAGE, "html")[2]
-    assert (page.region_words, page.kept_words) == (
-        blocks_only.region_words,
-        blocks_only.kept_words,
-    )
-    assert page.longest_missing_runs == blocks_only.longest_missing_runs
+
+    assert page.region_words == blocks_only.region_words == 17
+    assert (blocks_only.kept_words, page.kept_words) == (8, 9)
+    (run,) = page.longest_missing_runs
+    assert (run.offset, run.words) == (6, 8)
+    assert run.text == "Bare summary text that the default text tags skip."
 
 
 def test_a_scope_with_source_coverage_passes_release_validation(tmp_path: Path) -> None:

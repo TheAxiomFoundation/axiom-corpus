@@ -423,6 +423,11 @@ class SourceRegion:
     def start(self, kind: str) -> None:
         self.kind = kind
 
+    def restart(self, kind: str) -> None:
+        """Begin the region again as ``kind``: forget what was read, keep what was dropped."""
+        self.kind = kind
+        self._read.clear()
+
     def read(self, text: str) -> None:
         if text:
             self._read.append(text)

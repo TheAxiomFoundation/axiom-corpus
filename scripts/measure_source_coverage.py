@@ -341,9 +341,10 @@ def _region(
                 warnings.simplefilter("ignore", XMLParsedAsHTMLWarning)
                 region = documents.html_source_region(raw, extraction=settings[stem])
             return region, matched_by, None
-        except (ValueError, KeyError, TypeError, re.error) as exc:
+        except Exception as exc:
             # Today's manifest does not fit the retained page (a selector that no
-            # longer matches, say): measure the whole page and say why.
+            # longer matches, say): measure the whole page and say why. Whatever the
+            # extraction raises, one page must not end a corpus-wide run.
             error = f"{matched_by} region failed: {type(exc).__name__}: {exc}"[:300]
             break
     return whole_page_region(raw), MATCH_WHOLE_PAGE, error

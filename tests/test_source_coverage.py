@@ -400,6 +400,24 @@ def test_the_review_bar_needs_a_region_of_fifty_words_under_half_kept() -> None:
     assert not needs_review(SourceCoverage(region_words=0, kept_words=0))
 
 
+def test_restarting_a_region_forgets_what_was_read_and_keeps_what_was_dropped() -> None:
+    region = SourceRegion()
+    region.start("html_text_selector")
+    region.drop("Print")
+    region.read("first reading")
+    region.restart("html_main_content")
+    region.read("the whole root")
+
+    assert region.kind == "html_main_content"
+    assert region.texts == ("the whole root",)
+    figures = region.measure(["the whole root"])
+    assert (figures.region_words, figures.kept_words, figures.deliberately_dropped_words) == (
+        3,
+        3,
+        1,
+    )
+
+
 @dataclass
 class _Row:
     heading: str | None
