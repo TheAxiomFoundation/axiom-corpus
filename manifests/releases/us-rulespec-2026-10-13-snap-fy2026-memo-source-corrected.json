@@ -1,5 +1,5 @@
 {
-  "description": "Source-corrected successor to us-rulespec-2026-08-08-obbb-alien-snap. Replaces the defective California statute recovery and PIT-core scopes with the signed income-tax chapter scope as required by the 2026-09-25 recovery audit; all other 270 pinned scopes remain. Adds one signed, multi-document FNS guidance scope containing 15 source documents, including the USDA/FNS FY 2026 SNAP COLA memorandum with complete income, allotment, deduction, and resource tables. This selector does not activate or publish the release.",
+  "description": "Source-corrected successor to us-rulespec-2026-08-08-obbb-alien-snap. Per the 2026-09-25 recovery audit and merged California preserve-tables repair, replaces the defective California statute recovery and PIT-core scopes with the signed, table-preserving income-tax chapter scope, and replaces the original CalWORKs scope with its signed table-preserving successor; all other 269 pinned scopes remain. Adds one signed, multi-document FNS guidance scope containing 15 source documents, including the USDA/FNS FY 2026 SNAP COLA memorandum with complete income, allotment, deduction, and resource tables. This selector does not activate or publish the release.",
   "name": "us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -396,7 +396,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018"
+      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables"
     },
     {
       "document_class": "statute",
@@ -406,7 +406,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7"
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables"
     },
     {
       "document_class": "statute",

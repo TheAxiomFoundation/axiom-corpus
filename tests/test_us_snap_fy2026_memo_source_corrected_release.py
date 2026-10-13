@@ -18,7 +18,17 @@ PIT_CORE = (
 CHAPTER = (
     "us-ca",
     "statute",
-    "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7",
+    "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables",
+)
+CALWORKS = (
+    "us-ca",
+    "statute",
+    "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018",
+)
+CALWORKS_TABLES = (
+    "us-ca",
+    "statute",
+    "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables",
 )
 
 
@@ -29,8 +39,8 @@ def test_fy2026_memo_release_makes_only_the_audited_source_swap() -> None:
     assert len(base.scope_keys) == 272
     assert len(successor.scope_keys) == 272
     assert set(successor.scope_keys) == (
-        set(base.scope_keys) - {DEFECTIVE_RECOVERY, PIT_CORE}
-    ) | {CHAPTER, MEMO_SCOPE}
+        set(base.scope_keys) - {DEFECTIVE_RECOVERY, PIT_CORE, CALWORKS}
+    ) | {CHAPTER, CALWORKS_TABLES, MEMO_SCOPE}
     assert successor.quality_profile == base.quality_profile
 
 
