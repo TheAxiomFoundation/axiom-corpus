@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import unicodedata
 import warnings
 import zipfile
 from collections import Counter
@@ -27,7 +28,7 @@ import requests
 import xlrd
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
-from bs4.element import Comment, Tag
+from bs4.element import Comment, NavigableString, Tag
 from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -2479,6 +2480,18 @@ def _legacy_word_document_text(content: bytes) -> str:
         return _normalize_text(result.stdout)
 
 
+def _require_start_marker(started: bool, pattern: object, *, context: str) -> None:
+    """Fail when a configured ``start_after_pattern`` never matched.
+
+    Extraction skips everything before the marker, so a marker that never appears would
+    return no text at all and leave the document an empty row (106 CMR 701 and 702 in
+    ``2026-06-27-ma-tafdc-regulations`` lost every section this way). The HTML start and
+    content selectors already fail the same way.
+    """
+    if pattern is not None and not started:
+        raise ValueError(f"{context}: start_after_pattern did not match: {str(pattern)!r}")
+
+
 def _extract_labeled_docx_section_blocks(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[_DocumentBlock, ...]:
@@ -2557,6 +2570,7 @@ def _extract_labeled_docx_section_blocks(
             continue
         if current_label is not None:
             current_body.append(line)
+    _require_start_marker(started, start_after_pattern, context="labeled_sections DOCX")
     flush()
     return tuple(sections)
 
@@ -2689,6 +2703,7 @@ def _extract_styled_labeled_docx_section_blocks(
             rows = [row for row in table_text.splitlines() if row and keep_line(row)]
             if rows:
                 sections[current_label]["body"].append("\n".join(rows))
+    _require_start_marker(started, start_after_pattern, context="styled_labeled_sections DOCX")
 
     blocks: list[_DocumentBlock] = []
     for label in order:
@@ -2848,6 +2863,7 @@ def _filtered_pdf_styled_lines(
     started = start_after_re is None
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
+        page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
@@ -2863,6 +2879,13 @@ def _filtered_pdf_styled_lines(
                         started = True
                     continue
                 lines.append((line, page_index, style))
+    last_page = min(parsed_end_page or page_count, page_count)
+    context = (
+        f"PDF start_page {start_page} is beyond its {page_count} pages"
+        if start_page > page_count
+        else f"PDF pages {start_page}-{last_page} of {page_count}"
+    )
+    _require_start_marker(started, start_after_pattern, context=context)
     return tuple(lines)
 
 
@@ -2952,6 +2975,7 @@ def _windowed_pdf_styled_lines(
     stopped: dict[int, bool] = {id(window): False for window in windows}
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
+        page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
                 break
@@ -2974,6 +2998,12 @@ def _windowed_pdf_styled_lines(
                     stopped[id(page_window)] = True
                     break
                 lines.append((line, page_index, style))
+    for window in windows:
+        if window.start_at_re is not None and not started[id(window)]:
+            raise ValueError(
+                f"PDF page window {window.start_page}-{window.end_page} of {page_count} "
+                f"pages: start_at_pattern did not match: {window.start_at_re.pattern!r}"
+            )
     return tuple(lines)
 
 
@@ -3029,10 +3059,128 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
         sort=bool(extraction.get("sort_text")),
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
-    if _normalize_text(text) or not extraction.get("ocr"):
+    if not extraction.get("ocr") or not _pdf_page_needs_ocr(page, str(text)):
         return _replace_text(str(text), text_replacements)
-    text = _ocr_pdf_page_text(page, extraction=extraction)
-    return _replace_text(text, text_replacements)
+    ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
+    return _replace_text(_with_unread_layer_lines(ocr_text, str(text)), text_replacements)
+
+
+# A scanned page can carry a thin text layer over its page image: a filing stamp, or the
+# dates and signature typed onto a scanned form. That layer is not the page's text, so with
+# ``ocr`` a page is read by OCR when its layer has fewer than _OCR_OVERLAY_MAX_WORDS words
+# with a letter in them and scanned images cover at least _OCR_PAGE_IMAGE_COVERAGE of the
+# page. A text page holds hundreds of words, so it never qualifies. An image counts as a
+# scan only at _OCR_MIN_SCAN_DPI or more: a born-digital slide's full-bleed background
+# photo (about 70 dpi in the Georgia Medicaid Fair deck) does not.
+_OCR_OVERLAY_MAX_WORDS = 30
+_OCR_PAGE_IMAGE_COVERAGE = 0.9
+_OCR_MIN_SCAN_DPI = 100
+
+
+def _pdf_page_needs_ocr(page: Any, text: str) -> bool:
+    """Whether an ``ocr`` extraction should read ``page`` by OCR rather than its text layer."""
+    if not _normalize_text(text):
+        return True
+    words = sum(1 for token in text.split() if any(char.isalpha() for char in token))
+    if words >= _OCR_OVERLAY_MAX_WORDS:
+        return False
+    return _pdf_page_image_coverage(page) >= _OCR_PAGE_IMAGE_COVERAGE
+
+
+def _pdf_page_image_coverage(page: Any, *, min_dpi: float = _OCR_MIN_SCAN_DPI) -> float:
+    """The exact share of the visible page that placed scan images cover (0 when none does).
+
+    PyMuPDF gives image rectangles in unrotated space measured from the crop box's
+    top-left corner, so the visible page there is ``(0, 0, crop width, crop height)``
+    whatever the rotation, crop box or media-box origin. Images count together (their
+    union), so a scan stored as strips covers the page as one image would. An image whose
+    effective resolution, on its sharper axis, is below ``min_dpi`` is not a scan and is
+    left out.
+    """
+    cropbox = page.cropbox
+    width, height = cropbox.width, cropbox.height
+    if width <= 0 or height <= 0:
+        return 0.0
+    visible = fitz.Rect(0, 0, width, height)
+    rects: list[Any] = []
+    for image in page.get_images(full=True):
+        pixels_wide, pixels_high = image[2], image[3]
+        for rect in page.get_image_rects(image[0]):
+            placed = fitz.Rect(rect)
+            if placed.width <= 0 or placed.height <= 0:
+                continue
+            dpi = 72 * max(pixels_wide / placed.width, pixels_high / placed.height)
+            if dpi < min_dpi:
+                continue
+            shown = placed & visible
+            if not shown.is_empty:
+                rects.append(shown)
+    return float(_rect_union_area(rects) / (width * height))
+
+
+def _rect_union_area(rects: list[Any]) -> float:
+    """The area the rectangles cover together (exact).
+
+    A sweep over the x edges: in each vertical strip, the covered height is the merged
+    length of the y-intervals of the rectangles that span the strip.
+    """
+    if not rects:
+        return 0.0
+    xs = sorted({edge for rect in rects for edge in (rect.x0, rect.x1)})
+    area = 0.0
+    for left, right in zip(xs, xs[1:], strict=False):
+        spans = sorted((rect.y0, rect.y1) for rect in rects if rect.x0 <= left and right <= rect.x1)
+        covered = 0.0
+        top = bottom = None
+        for y0, y1 in spans:
+            if bottom is None or y0 > bottom:
+                if bottom is not None and top is not None:
+                    covered += bottom - top
+                top, bottom = y0, y1
+            else:
+                bottom = max(bottom, y1)
+        if bottom is not None and top is not None:
+            covered += bottom - top
+        area += (right - left) * covered
+    return area
+
+
+# Punctuation stripped from the ends of a token before OCR and text-layer tokens are
+# compared, so "$1,234," and "($1,234)." both compare as "$1,234". A leading currency
+# sign or minus and a trailing percent sign are kept.
+_VALUE_TOKEN_EDGES = re.compile(r"^[^\w$\u20ac\u00a3%-]+|[^\w%]+$")
+
+
+def _value_tokens(text: str) -> list[str]:
+    tokens = (_VALUE_TOKEN_EDGES.sub("", token) for token in text.split())
+    return [token for token in tokens if token]
+
+
+def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
+    """OCR text, followed by the text-layer lines whose typed values OCR did not read.
+
+    A scanned form's text layer holds exact typed values (transmittal numbers, dates,
+    amounts) that OCR may misread. A layer line is kept, after the OCR text, when one of
+    its tokens with a digit is not among the OCR text's tokens (compared whole, so "24" is
+    not read by "2024"). Lines without a digit add nothing OCR lacks, and lines holding
+    control characters (Unicode category Cc) are font-encoding garbage, so neither is kept.
+    The kept lines follow as a paragraph of their own. With no OCR text the layer is
+    returned as it is.
+    """
+    if not _normalize_text(ocr_text):
+        return layer_text
+    read = set(_value_tokens(ocr_text))
+    kept: list[str] = []
+    for raw in layer_text.splitlines():
+        line = " ".join(raw.split())
+        if not line or line in kept or any(unicodedata.category(char) == "Cc" for char in line):
+            continue
+        values = [token for token in _value_tokens(line) if any(char.isdigit() for char in token)]
+        if any(token not in read for token in values):
+            kept.append(line)
+    if not kept:
+        return ocr_text
+    return ocr_text.rstrip("\n") + "\n\n" + "\n".join(kept)
 
 
 def _pdf_ocr_dpi(extraction: dict[str, Any]) -> int:
@@ -3234,13 +3382,26 @@ def _extract_html_blocks(
             )
         parts = []
 
+    # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
+    # lines with a space). The Maryland StatuteText page separates its subsections with
+    # <br><br> and has no paragraph tags. The source's own line breaks are collapsed first,
+    # so only <br> elements break the text.
+    br_breaks = bool((extraction or {}).get("html_br_breaks"))
+    if br_breaks:
+        for string in list(root.find_all(string=True)):
+            if type(string) is NavigableString and ("\n" in string or "\r" in string):
+                string.replace_with(re.sub(r"[\r\n]+", " ", string))
+        for br in root.find_all("br"):
+            br.replace_with("\n")
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
+        text = _normalize_text(
+            node.get_text(" ") if br_breaks else node.get_text(" ", strip=True)
+        )
         if not text:
             continue
         if node.name in _HEADING_TAGS:
             flush()
-            heading = text
+            heading = " ".join(text.split())
             continue
         parts.append(text)
     flush()
