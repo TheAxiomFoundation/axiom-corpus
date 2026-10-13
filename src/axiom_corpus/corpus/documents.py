@@ -3390,9 +3390,9 @@ def _has_control_character(text: str) -> bool:
 # A layer line's characters, each with its font's name when it is an unmapped character
 # (``_pdf_unmapped_characters``) and none of that font's other characters in the line is
 # mapped, MuPDF's own spaces (U+0020) aside, and None otherwise. A font whose characters
-# in a line are mixed is not decoded there: for a simple or Type 3 font MuPDF prints a
-# printable code whose glyph name it does not know as itself, as if mapped, so only the
-# line's control codes show as unmapped, and MuPDF may put them in spans of their own.
+# in a line are mixed is not decoded there: for a Type 3 font MuPDF prints a printable
+# code whose glyph name it does not know as itself, as if mapped, so only the line's
+# control codes show as unmapped, and MuPDF may put them in spans of their own.
 _LayerChars = list[tuple[str, str | None]]
 
 
@@ -3503,8 +3503,9 @@ def _pdf_unmapped_characters(
 # printable ASCII, _PDF_SHIFT_FIRST to _PDF_SHIFT_LAST. A font's shift needs evidence that
 # chance does not give: decoded lines the OCR text reads, each with at least
 # _PDF_SHIFT_LINE_LETTERS decoded letters or digits, together at least _PDF_SHIFT_LETTERS.
-# (On the 1,041 overlay pages of the retained CMS and Ghana and Uganda PDFs, no wrong shift
-# of any font decodes a line OCR reads with more than two.)
+# On the 1,041 overlay pages of the 2026-10-13 OCR sweep (328 retained PDFs), no wrong
+# shift of any font decodes a line OCR reads with more than two, and the weakest right one
+# has two lines of four (WA-14-0003's "10 P & I" and "12 P & I").
 _PDF_SHIFT_FIRST = 0x20
 _PDF_SHIFT_LAST = 0x7E
 _PDF_SHIFT_LINE_LETTERS = 4

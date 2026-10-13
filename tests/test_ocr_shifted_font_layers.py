@@ -186,6 +186,16 @@ def test_decoding_changes_only_unmapped_characters_of_shifted_fonts(chars, shift
     assert decoded == _reference_decode(chars, shifts)
 
 
+def test_decoding_stays_in_printable_ascii():
+    # S2 at its edges: U+0020 and U+007E are printable ASCII, U+001F and U+007F (DEL) not.
+    font = "MinionPro-Regular"
+    assert _pdf_decoded_layer_line([("\x01", font), ("_", font)], {font: 31}) == " ~"
+    assert _pdf_decoded_layer_line([("\x00", font)], {font: 31}) is None
+    assert _pdf_decoded_layer_line([("`", font)], {font: 31}) is None
+    # A mapped character outside printable ASCII is not decoded, so it never counts.
+    assert _pdf_decoded_layer_line([("é", None), ("\x01", font)], {font: 31}) == "é "
+
+
 @given(CHARS)
 def test_decoding_without_shifts_is_the_identity(chars):
     # S3.
@@ -267,8 +277,14 @@ def test_evidence_thresholds():
     four = _encode("10 P & I", font, shift)  # 4
     four_more = _encode("12 P & I", font, shift)
     eight = _encode("James Scott", font, shift)  # 10
-    # A line with fewer than four decoded letters or digits is no evidence.
+    # A line with fewer than four decoded letters or digits is no evidence, however many
+    # such lines OCR reads.
     assert _pdf_font_code_shifts([three], "6/2/1") == {}
+    threes = [_encode(text, font, shift) for text in ("6/2/1", "7/3/1", "8/4/1")]
+    assert _pdf_font_code_shifts(threes, "6/2/1 7/3/1 8/4/1") == {}
+    # Only decoded characters count: mapped letters beside them are no evidence.
+    labelled = [[(c, None) for c in f"Approved{n} "] + _encode("6/2/1", font, shift) for n in "AB"]
+    assert _pdf_font_code_shifts(labelled, "ApprovedA 6/2/1 ApprovedB 6/2/1") == {}
     # Four are a line's worth, but one such line is not enough.
     assert _pdf_font_code_shifts([four], "10 P & I") == {}
     assert _pdf_font_code_shifts([four, four], "10 P & I") == {}  # the same line twice
@@ -403,6 +419,23 @@ def test_a_shifted_fonts_typed_lines_ocr_missed_are_decoded(tmp_path, monkeypatc
     assert _appended(ocr, result) == ["Acting Deputy Director"]
 
 
+def test_a_span_its_fonts_shift_cannot_decode_is_left_out(tmp_path, monkeypatch):
+    # U+007F in the title has code 0xDF, which the shift takes to U+007F, outside printable
+    # ASCII. Raw, the span reads as Latin-1 letters ("¡ÃÔÉÎÇß¤..."), with no control
+    # character to mark it, so it becomes a space and its line is dropped.
+    pdf = _form_pdf(
+        tmp_path / "form.pdf",
+        [("6/24/19", HIGH), ("Wendy Hill Petras", HIGH), ("Acting\x7fDirector", HIGH)],
+    )
+    ocr = "18. DATE APPROVED: 6/24/19\n21. TYPED NAME: Wendy Hill Petras\n"
+
+    with fitz.open(pdf) as document:
+        lines = _layer(document[0], ocr)
+
+    assert lines == ["6/24/19", "Wendy Hill Petras"]
+    assert _appended(ocr, _page_text(pdf, ocr, monkeypatch)) == []
+
+
 def test_without_evidence_nothing_is_decoded(tmp_path, monkeypatch):
     pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", HIGH), ("Acting Deputy Director", HIGH)])
     with fitz.open(pdf) as document:
@@ -428,6 +461,36 @@ def test_without_ocr_text_the_layer_is_returned_as_it_is(tmp_path, monkeypatch):
         raw = document[0].get_text("text")
 
     assert _page_text(pdf, "  \n", monkeypatch) == raw
+
+
+def test_unmapped_characters_are_exactly_the_unmapped_fonts_characters(tmp_path):
+    pdf = _form_pdf(
+        tmp_path / "form.pdf",
+        [("6/24/19", HIGH), ("Wendy Hill", HIGH), ("Anne M. Costello", None)],
+        name="ArialMT",
+    )
+    with fitz.open(pdf) as document:
+        page = document[0]
+        flags = fitz.TEXTFLAGS_TEXT
+        unmapped = documents_module._pdf_unmapped_characters(page, sort=False, flags=flags)
+        chars = [
+            (span["font"], char)
+            for block in page.get_text("rawdict", flags=flags)["blocks"]
+            for line in block.get("lines", ())
+            for span in line["spans"]
+            for char in span["chars"]
+        ]
+        without_flag = documents_module._pdf_unmapped_characters(
+            page, sort=False, flags=flags & ~fitz.TEXT_CID_FOR_UNKNOWN_UNICODE
+        )
+
+    # Every character of the two shifted lines (spaces included: code 0x80) and none of
+    # the mapped line, though all three are in fonts named ArialMT.
+    shifted = [(*char["origin"], 0) for _, char in chars if ord(char["c"]) >= 0x80]
+    assert len(shifted) == len("6/24/19") + len("Wendy Hill")
+    assert unmapped == frozenset(shifted)
+    # Without TEXT_CID_FOR_UNKNOWN_UNICODE no code is printed, so nothing is unmapped.
+    assert without_flag == frozenset()
 
 
 def _layer(page, ocr_text: str, extraction: dict | None = None) -> list[str]:
@@ -613,7 +676,7 @@ def test_real_pages_append_exactly_the_reviewed_lines(
 
 
 def test_the_mapped_signature_sharing_a_shifted_fonts_name_is_read_as_it_is(monkeypatch):
-    # AL-20-0004 page 4: four ArialMT fonts, one (with a ToUnicode map) for the signature.
+    # AL-20-0004 page 4: three ArialMT fonts, one (with a ToUnicode map) for the signature.
     fixture = PAGES[SPA.format(state="us-al", rest="al-20-0004", page=4)]
     document, pdf_page = _real_page(fixture, monkeypatch)
     with document:
