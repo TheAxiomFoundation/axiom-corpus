@@ -3291,8 +3291,12 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
     return bool(int(flags) & _PDF_TEXT_PAINTED) and int(span.get("alpha", 255)) > 0
 
 
-# A layer line's characters, each with its font's name when MuPDF has no Unicode for it and
-# None otherwise.
+# A layer line's characters, each with its font's name when it is an unmapped character
+# (``_pdf_unmapped_characters``) of a span whose characters are all unmapped, MuPDF's own
+# spaces (U+0020) aside, and None otherwise. A span that mixes mapped and unmapped
+# characters is not decoded: for a simple or Type 3 font MuPDF prints a printable code
+# whose glyph name it does not know as itself, as if mapped, so only the span's control
+# codes would show as unmapped.
 _LayerChars = list[tuple[str, str | None]]
 
 
@@ -3330,14 +3334,20 @@ def _pdf_layer_lines(
             spans: list[tuple[int, int, dict[str, Any]]] = []
             for span in line.get("spans", ()):
                 start = len(chars)
-                font = str(span.get("font", ""))
+                values: list[tuple[str, bool]] = []
                 for char in span.get("chars", ()):
                     origin = (float(char["origin"][0]), float(char["origin"][1]))
                     occurrence = seen[origin]
                     seen[origin] += 1
                     value = str(char["c"])
-                    mapped = value == "�" or (*origin, occurrence) not in unmapped
-                    chars.append((value, None if mapped else font))
+                    values.append(
+                        (value, value != "\ufffd" and (*origin, occurrence) in unmapped)
+                    )
+                whole = any(code for _, code in values) and all(
+                    code or value == " " for value, code in values
+                )
+                font = str(span.get("font", "")) if whole else None
+                chars.extend((value, font if code else None) for value, code in values)
                 spans.append((start, len(chars), span))
             raw_lines.append((chars, spans))
     shifts: dict[str, int] = {}
@@ -3380,7 +3390,7 @@ def _pdf_unmapped_characters(
                     origin = (float(char["origin"][0]), float(char["origin"][1]))
                     occurrence = seen[origin]
                     seen[origin] += 1
-                    if char["c"] == "�":
+                    if char["c"] == "\ufffd":
                         unmapped.add((*origin, occurrence))
     return frozenset(unmapped)
 
