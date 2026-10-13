@@ -1968,6 +1968,21 @@ def extract_ecfr(
     )
 
 
+def _reject_repeated_citation_paths(provisions: tuple[ProvisionRecord, ...]) -> None:
+    """Fail when two elements of one source claim a citation path.
+
+    The later record would replace the earlier under the same identity.
+    """
+    source_id_by_path: dict[str, str | None] = {}
+    for record in provisions:
+        if record.citation_path in source_id_by_path:
+            raise ValueError(
+                f"eCFR XML holds citation path {record.citation_path!r} twice: elements "
+                f"{source_id_by_path[record.citation_path]!r} and {record.source_id!r}"
+            )
+        source_id_by_path[record.citation_path] = record.source_id
+
+
 def _enclosing_part_by_section(root: ET.Element) -> dict[ET.Element, str]:
     """Map each section element to the N of the part element that encloses it."""
     return {
@@ -2105,21 +2120,6 @@ def _extract_title_results(
         }
         for future in as_completed(futures):
             yield future.result()
-
-
-def _reject_repeated_citation_paths(provisions: tuple[ProvisionRecord, ...]) -> None:
-    """Fail when two elements of one source claim a citation path.
-
-    The later record would replace the earlier under the same identity.
-    """
-    source_id_by_path: dict[str, str | None] = {}
-    for record in provisions:
-        if record.citation_path in source_id_by_path:
-            raise ValueError(
-                f"eCFR XML holds citation path {record.citation_path!r} twice: elements "
-                f"{source_id_by_path[record.citation_path]!r} and {record.source_id!r}"
-            )
-        source_id_by_path[record.citation_path] = record.source_id
 
 
 def _extract_one_title(
