@@ -428,16 +428,18 @@ such PDFs. Without them extraction is unchanged.
 
 `amendment_markup` and `sort_blocks` work only with the default per-page
 segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
-`sort_text`. They read the page's character layer: the characters PyMuPDF's
-plain-text printer prints, with their positions. PyMuPDF's own character layer
-(`rawdict`) leaves out glyphs whose boxes have no area, such as a combining mark
-or a zero-advance period, when they make up a whole line or the last span of a
-line (a run in its own font, size or colour). So the page's text page is read
-twice, through `rawdict` and by a walk that applies the printer's test to each
-glyph, and the glyphs `rawdict` leaves out are added where the printer prints
-them. A page where `rawdict` leaves nothing out reads exactly as `rawdict` reads
-it. Extraction stops with an error naming the page if `rawdict` and the walk do
-not line up, or if the result differs from the page's default text. `amendment_markup` also fails if a page's own text
+`sort_text`. They read the page's character layer, PyMuPDF's `rawdict`: the
+characters with their positions. `rawdict` leaves out glyphs whose boxes have no
+area, such as a combining mark or a zero-advance period, when they make up a
+whole line or the last span of a line (a run in its own font, size or colour);
+PyMuPDF's plain-text printer prints them. Where the `rawdict` reading differs
+from the page's default text, the page is read again: its text page is walked
+with the printer's test for each glyph, and the glyphs `rawdict` left out are
+added where the printer prints them. They never move a block `rawdict` read or
+change how its other glyphs are classified. A page whose `rawdict` reading
+already matches the default text reads exactly as before. Extraction stops with
+an error naming the page if the walk and `rawdict` do not line up, or if the
+result still differs from the default text. This needs PyMuPDF 1.26.6 or later. `amendment_markup` also fails if a page's own text
 already contains one of the delimiters, if a character is both struck through
 and underlined, or if `start_page` is past the last page.
 

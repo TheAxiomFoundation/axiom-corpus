@@ -106,9 +106,9 @@ class _FakePage:
     """A page whose character layer and plain text are given directly.
 
     ``blocks`` is a list of text blocks, each a list of lines, each a string of
-    characters. ``_layered`` reads them in place of
-    ``_pdf_page_character_blocks``. The plain text is PyMuPDF's printer applied
-    to the same characters (``_printer_text``), unless ``text`` overrides it.
+    characters; rawdict and ``_pdf_page_character_blocks`` (in ``_layered``) both
+    read them. The plain text is PyMuPDF's printer applied to the same
+    characters (``_printer_text``), unless ``text`` overrides it.
     """
 
     def __init__(self, blocks: list[list[str]], *, text: str | None = None) -> None:
@@ -116,8 +116,10 @@ class _FakePage:
         self.text = _printer_text(blocks) if text is None else text
 
     def get_text(self, option: str, *, flags: int = 0, sort: bool = False) -> Any:
-        assert option == "text"
-        return self.text
+        if option == "text":
+            return self.text
+        assert option == "rawdict"
+        return {"blocks": self.character_blocks()}
 
     def character_blocks(self) -> list[dict[str, Any]]:
         raw_blocks = []

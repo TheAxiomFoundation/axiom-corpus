@@ -3,21 +3,28 @@
 PyMuPDF's rawdict leaves out glyphs its plain-text printer prints: the last span
 of a line when that span's box has no area (a zero-advance period in its own
 font size) and a line whose box has no area (a line holding only such a
-period). ``_pdf_page_character_blocks`` reads the text page with the printer's
-test and adds them back. The generated pages below draw Helvetica with chosen
-characters given zero advance in the font's ``/Widths``, which makes both kinds.
+period). The layered path reads rawdict, and only where that reading differs
+from the default page text does it read the page again with
+``_pdf_page_character_blocks``, which walks the text page with the printer's
+test and adds those glyphs back. The generated pages below draw Helvetica with
+chosen characters given zero advance in the font's ``/Widths`` (and, where
+asked, mapped to other code points through ``/ToUnicode``).
 
 Invariants, as property tests over generated pages (Hypothesis):
 
-1. Printer parity: the blocks' characters, line by line with the printer's
+1. Printer parity: the reader's characters, line by line with the printer's
    newline rule, are exactly ``page.get_text("text")``.
-2. rawdict identity: where nothing is added, the blocks are rawdict's blocks,
-   sorted or not (a differential test against ``get_text("rawdict")``).
-3. Additions only: rawdict's characters appear in the blocks in rawdict's order
-   with rawdict's values; every added character has a box with no area.
-4. ``sort_blocks`` and ``amendment_markup`` extract every generated page, the
-   first holding the default page characters and the second its text.
-5. The rectangle helpers agree with MuPDF's own functions on every input
+2. rawdict kept: removing what the reader adds gives rawdict's blocks, and
+   sorting keeps the order of rawdict's blocks; where nothing is added the
+   blocks are rawdict's (a differential test against ``get_text("rawdict")``).
+3. Every added character has a box with no area.
+4. The layered path reads the page again only when the rawdict reading differs
+   from the default text, so a page that reads whole from rawdict extracts as
+   before; every generated page extracts, unsorted equal to the default text
+   and sorted with its characters.
+5. Added spans never change a line's classification reference when the spans
+   rawdict read have one.
+6. The rectangle helpers agree with MuPDF's own functions on every input
    (a differential test against ``fitz.mupdf``).
 """
 
@@ -29,6 +36,7 @@ from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
+from unittest import mock
 
 import fitz  # type: ignore[import-untyped]
 import pytest
@@ -40,7 +48,11 @@ from axiom_corpus.corpus.documents import (
     _PDF_EMPTY_RECT,
     _PDF_INFINITE_RECT,
     PdfAmendmentMarkupWarning,
+    _normalize_text,
     _pdf_intersect_rect,
+    _pdf_layered_line_reference,
+    _pdf_layered_text_difference,
+    _pdf_line_reference,
     _pdf_page_character_blocks,
     _pdf_rect_is_empty,
     _pdf_rect_is_valid,
@@ -61,6 +73,11 @@ EG_LAW_2019_148_ANNEX_PDF = (
     / "eg/statute/2026-07-24-eg-egymod-t1-statutes/official-documents"
     / "eg-law-2019-148-annex-tables.pdf"
 )
+GLOUCESTER_CTR_PDF = (
+    SOURCES
+    / "uk-gloucester/manual/2026-08-02-gloucester-council-tax-reduction-2026-2027"
+    / "official-documents/gloucester-council-tax-reduction-scheme-2026-2027.pdf"
+)
 
 PAGE_HEIGHT = 792.0
 HELVETICA = fitz.Font("helv")
@@ -75,12 +92,14 @@ def _zero_width_pdf(
     *,
     zero_width: str = ".",
     rules: tuple[tuple[float, float, float, float], ...] = (),
+    to_unicode: dict[str, str] | None = None,
 ) -> bytes:
     """A one-page PDF in Helvetica whose ``zero_width`` characters advance by 0.
 
     Each line is ``(x, baseline, runs)`` in page coordinates (y down) and each
     run ``(text, font size)``, drawn one after another from ``x``. Each rule is a
-    filled bar ``(x0, x1, y, thickness)``.
+    filled bar ``(x0, x1, y, thickness)``. ``to_unicode`` maps a drawn character
+    to the code point text extraction reports for it.
     """
     widths = " ".join(
         "0" if chr(code) in zero_width else str(round(HELVETICA.glyph_advance(code) * 1000))
@@ -89,10 +108,29 @@ def _zero_width_pdf(
     document = fitz.open()
     page = document.new_page(width=612, height=PAGE_HEIGHT)
     font = document.get_new_xref()
+    to_unicode_entry = ""
+    if to_unicode:
+        entries = "\n".join(
+            f"<{ord(drawn):02X}> <{ord(text):04X}>" for drawn, text in to_unicode.items()
+        )
+        cmap = document.get_new_xref()
+        document.update_object(cmap, "<< >>")
+        document.update_stream(
+            cmap,
+            (
+                "/CIDInit /ProcSet findresource begin 12 dict begin begincmap\n"
+                "/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n"
+                "/CMapName /Adobe-Identity-UCS def /CMapType 2 def\n"
+                "1 begincodespacerange <00> <FF> endcodespacerange\n"
+                f"{len(to_unicode)} beginbfchar\n{entries}\nendbfchar\n"
+                "endcmap CMapName currentdict /CMap defineresource pop end end\n"
+            ).encode(),
+        )
+        to_unicode_entry = f" /ToUnicode {cmap} 0 R"
     document.update_object(
         font,
         "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding "
-        f"/FirstChar 32 /LastChar 126 /Widths [{widths}] >>",
+        f"/FirstChar 32 /LastChar 126 /Widths [{widths}]{to_unicode_entry} >>",
     )
     operators = []
     for x, baseline, runs in lines:
@@ -147,6 +185,21 @@ def _is_subsequence(part: list[Any], whole: list[Any]) -> bool:
     return all(any(item == wanted for item in items) for wanted in part)
 
 
+def _without_added(blocks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The blocks with every block, line and span the reader added removed."""
+    kept = []
+    for block in blocks:
+        if block.get("added"):
+            continue
+        lines = [
+            {**line, "spans": [span for span in line["spans"] if not span.get("added")]}
+            for line in block["lines"]
+            if not line.get("added")
+        ]
+        kept.append({**block, "lines": lines})
+    return kept
+
+
 def _read(content: bytes, *, sort: bool) -> tuple[list[dict[str, Any]], dict[str, Any], str]:
     with fitz.open(stream=content, filetype="pdf") as document:
         page = document[0]
@@ -160,6 +213,30 @@ def _pages(content: bytes, extraction: dict[str, Any]) -> list[Any]:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", PdfAmendmentMarkupWarning)
         return list(documents_module._extract_pdf_blocks(content, extraction=extraction))
+
+
+def _counting_reader() -> tuple[Any, list[int]]:
+    """Patch ``_pdf_page_character_blocks`` to record the pages it reads."""
+    calls: list[int] = []
+    reader = documents_module._pdf_page_character_blocks
+
+    def counted(page: Any, **kwargs: Any) -> list[dict[str, Any]]:
+        calls.append(kwargs["page_number"])
+        return reader(page, **kwargs)
+
+    return mock.patch.object(documents_module, "_pdf_page_character_blocks", counted), calls
+
+
+def _layered(page: Any, extraction: dict[str, Any], page_number: int = 1) -> str:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", PdfAmendmentMarkupWarning)
+        text, _metadata = documents_module._pdf_page_layered_text(
+            page,
+            extraction=extraction,
+            markup=documents_module._pdf_amendment_markup_config(extraction),
+            page_number=page_number,
+        )
+    return text
 
 
 # 1. The glyphs rawdict leaves out -------------------------------------------------
@@ -190,10 +267,11 @@ def test_a_left_out_last_span_keeps_its_font_size() -> None:
 
     (line,) = blocks[0]["lines"]
     assert [
-        (span["size"], "".join(char["c"] for char in span["chars"])) for span in line["spans"]
+        (span["size"], "".join(char["c"] for char in span["chars"]), span.get("added"))
+        for span in line["spans"]
     ] == [
-        (12.0, "Total $"),
-        (8.0, "."),
+        (12.0, "Total $", None),
+        (8.0, ".", True),
     ]
 
 
@@ -255,6 +333,56 @@ def test_cited_pages_keep_the_glyphs_rawdict_leaves_out(
     assert [char[0] for char in _characters(raw["blocks"])].count(glyph) < default.count(glyph)
     assert _strip_amendment_markup(marked) == default
     assert sorted_text.count(glyph) == default.count(glyph)
+
+
+def test_a_page_that_reads_whole_from_rawdict_is_not_read_again() -> None:
+    # Gloucester's 2026-27 council tax reduction scheme, page 1, draws 30
+    # zero-advance spaces that rawdict leaves out. Without them the unsorted text
+    # loses line breaks, so it is read again; sorted, the rawdict reading already
+    # holds the default characters, and it stays as it was.
+    patch, calls = _counting_reader()
+    with fitz.open(GLOUCESTER_CTR_PDF) as document, patch:
+        page = document[0]
+        default = _normalize_text(page.get_text("text", flags=FLAGS))
+        rawdict_sorted = _normalize_text(
+            _printed_text(page.get_text("rawdict", flags=FLAGS, sort=True)["blocks"])
+        )
+        unsorted = _layered(page, {"amendment_markup": True})
+        assert calls == [1]
+        sorted_text = _layered(page, {"sort_blocks": True})
+        assert calls == [1]
+
+    assert _strip_amendment_markup(unsorted) == default
+    assert sorted_text == rawdict_sorted
+
+
+def test_a_zero_advance_space_does_not_reorder_sorted_blocks() -> None:
+    # A wide zero-advance space after "A" would stretch A's block below B's.
+    content = _zero_width_pdf(
+        [(72, 100, [("A", 12), (" ", 80)]), (300, 110, [("B", 12)])], zero_width=" "
+    )
+
+    assert [page.body for page in _pages(content, {"sort_blocks": True})] == ["A B"]
+
+
+@pytest.mark.parametrize("force_reread", [False, True])
+def test_a_left_out_zero_width_glyph_does_not_reclassify_its_line(force_reread: bool) -> None:
+    # "Old rule" at 12 pt, then a zero-advance 24 pt "~" that extracts as U+200B.
+    # The rule 4 pt below the baseline is no underline of 12 pt text (0.33 font
+    # sizes) but would be one of 24 pt text (0.17). A zero-advance period on a
+    # later line makes the page differ from rawdict's reading when asked.
+    lines: list[Line] = [(72, 100, [("Old rule", 12), ("~", 24)])]
+    if force_reread:
+        lines.append((72, 300, [("$", 12), (".", 8)]))
+    width = fitz.get_text_length("Old rule", fontname="helv", fontsize=12)
+    content = _zero_width_pdf(
+        lines, zero_width="~.", rules=((72, 72 + width, 104, 0.6),), to_unicode={"~": "\u200b"}
+    )
+
+    for extraction in ({"amendment_markup": True}, {"amendment_markup": True, "sort_blocks": True}):
+        (page,) = _pages(content, extraction)
+        assert page.body.startswith("Old rule")
+        assert page.metadata["amendment_markup"]["inserted_runs"] == 0
 
 
 def test_a_struck_zero_width_period_is_marked_with_its_line() -> None:
@@ -330,6 +458,18 @@ def _first_chars(raw: dict[str, Any]) -> list[dict[str, Any]]:
             "rawdict holds a line the text page does not",
         ),
         (lambda raw: raw["blocks"][0]["lines"].pop(0), "a line is missing from rawdict"),
+        (
+            lambda raw: raw["blocks"][0]["lines"][0]["spans"][0].update(size=80.0),
+            "a span's size is not its characters'",
+        ),
+        (
+            lambda raw: raw["blocks"][0]["lines"][0]["spans"][0].update(origin=(72.0, 200.0)),
+            "a span's origin is not its first character's",
+        ),
+        (
+            lambda raw: raw["blocks"][0].update(bbox=(72.0, 90.0, 100.0, 500.0)),
+            "a block's box is not the box around its characters",
+        ),
     ],
 )
 def test_a_rawdict_that_does_not_line_up_with_the_text_page_stops_extraction(
@@ -365,41 +505,104 @@ _zero_width = st.sampled_from([".", ". ", ".a", ""])
 
 @settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(lines=_lines, zero_width=_zero_width)
-def test_property_blocks_hold_exactly_what_the_printer_prints(
+def test_property_the_reader_adds_only_what_rawdict_leaves_out(
     lines: list[Line], zero_width: str
 ) -> None:
     """Invariants 1-3 on generated pages, sorted and unsorted."""
     content = _zero_width_pdf(lines, zero_width=zero_width)
     for sort in (False, True):
         blocks, raw, text = _read(content, sort=sort)
-        characters, raw_characters = _characters(blocks), _characters(raw["blocks"])
-        if not sort:
-            assert _printed_text(blocks) == text
-            assert _is_subsequence(raw_characters, characters)
-            added = Counter(characters) - Counter(raw_characters)
-            assert all(_pdf_rect_is_empty(bbox) for _c, _origin, bbox in added)
-        else:
+        kept = _without_added(blocks)
+        valid_box = {
+            block["number"]
+            for block in raw["blocks"]
+            if _pdf_rect_is_valid(tuple(block["bbox"]))  # type: ignore[arg-type]
+        }
+        added = Counter(_characters(blocks)) - Counter(_characters(raw["blocks"]))
+        assert all(_pdf_rect_is_empty(bbox) for _c, _origin, bbox in added)
+        if sort:
             assert Counter(_printed_text(blocks)) == Counter(text)
-        if len(characters) == len(raw_characters):
-            assert blocks == raw["blocks"]
-        if not sort:
+            assert [block["number"] for block in kept if block["number"] in valid_box] == [
+                block["number"] for block in raw["blocks"] if block["number"] in valid_box
+            ]
+        else:
+            assert _printed_text(blocks) == text
+            assert [{**block, "bbox": None} for block in kept] == [
+                {**block, "bbox": None} for block in raw["blocks"]
+            ]
+            assert all(
+                block["bbox"] == raw_block["bbox"]
+                for block, raw_block in zip(kept, raw["blocks"], strict=True)
+                if raw_block["number"] in valid_box
+            )
             event("rawdict left glyphs out" if added else "rawdict read every glyph")
+        if not added:
+            assert blocks == raw["blocks"]
 
 
-@settings(max_examples=100, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@settings(max_examples=150, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(lines=_lines, zero_width=_zero_width)
-def test_property_the_layered_keys_extract_every_generated_page(
+def test_property_the_layered_path_reads_again_only_where_rawdict_differs(
     lines: list[Line], zero_width: str
 ) -> None:
-    """Invariant 4: no generated page stops the layered keys."""
+    """Invariant 4: every generated page extracts; rawdict-whole pages as before."""
     content = _zero_width_pdf(lines, zero_width=zero_width)
-    plain = [block.body for block in _pages(content, {})]
+    patch, calls = _counting_reader()
+    with fitz.open(stream=content, filetype="pdf") as document, patch:
+        page = document[0]
+        default = _normalize_text(page.get_text("text", flags=FLAGS))
+        for sort in (False, True):
+            rawdict_text = _normalize_text(
+                _printed_text(page.get_text("rawdict", flags=FLAGS, sort=sort)["blocks"])
+            )
+            reread = _pdf_layered_text_difference(rawdict_text, default, sort_blocks=sort)
+            extraction: dict[str, Any] = {"sort_blocks": True} if sort else {}
+            calls.clear()
+            text = _layered(page, extraction)
+            assert bool(calls) == bool(reread)
+            if not reread:
+                assert text == rawdict_text
+            if sort:
+                assert Counter(text.replace(" ", "").replace("\n", "")) == Counter(
+                    default.replace(" ", "").replace("\n", "")
+                )
+            else:
+                assert text == default
+            marked = _layered(page, {**extraction, "amendment_markup": True})
+            assert _strip_amendment_markup(marked) == text
+            event("read again" if reread else "rawdict reading kept")
 
-    assert [block.body for block in _pages(content, {"amendment_markup": True})] == plain
-    sorted_bodies = [block.body for block in _pages(content, {"sort_blocks": True})]
-    assert [Counter(body.replace(" ", "").replace("\n", "")) for body in sorted_bodies] == [
-        Counter(body.replace(" ", "").replace("\n", "")) for body in plain
-    ]
+
+_spans = st.lists(
+    st.fixed_dictionaries(
+        {
+            "size": st.sampled_from([0.0, 8.0, 12.0, 24.0]),
+            "origin": st.tuples(st.just(72.0), st.sampled_from([100.0, 104.0])),
+            "chars": st.lists(
+                st.fixed_dictionaries({"c": st.sampled_from(["a", " ", "\u200b"])}),
+                max_size=3,
+            ),
+        }
+    ),
+    max_size=4,
+)
+
+
+@settings(max_examples=1000, deadline=None)
+@given(read=_spans, added=_spans, data=st.data())
+def test_property_added_spans_keep_the_line_reference(
+    read: list[dict[str, Any]], added: list[dict[str, Any]], data: st.DataObject
+) -> None:
+    """Invariant 5: added spans, wherever they sit, leave rawdict's reference alone."""
+    line = list(read)
+    for span in added:
+        line.insert(data.draw(st.integers(0, len(line))), {**span, "added": True})
+    reference = _pdf_line_reference(read)
+
+    if reference is not None:
+        assert _pdf_layered_line_reference(line) == reference
+    else:
+        assert _pdf_layered_line_reference(line) == _pdf_line_reference(line)
 
 
 def test_every_cited_page_without_left_out_glyphs_gets_rawdicts_blocks() -> None:
