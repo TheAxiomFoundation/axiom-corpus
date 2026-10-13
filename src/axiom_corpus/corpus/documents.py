@@ -3073,7 +3073,9 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
         else:
             # The dict output does not hold the text output's characters: use the text
             # output's lines, all counted as painted, so no typed text can go missing.
-            layer_lines = [(line, True) for line in layer_text.splitlines()]
+            # They are split at newlines only, so a garbled line keeps its control
+            # characters (splitlines() also breaks at U+001C to U+001E and U+0085).
+            layer_lines = [(line, True) for line in layer_text.split("\n")]
         layer_text = "\n".join(_without_failed_recognition_lines(layer_lines, ocr_text))
     return _replace_text(_with_unread_layer_lines(ocr_text, layer_text), text_replacements)
 
@@ -3284,7 +3286,6 @@ _RECOGNITION_FRAGMENT_LETTERS = 3
 _RECOGNITION_WORD_LETTERS = 3
 _RECOGNITION_MIN_WORDS = 5
 _RECOGNITION_RUN_LETTERS = 6
-_LETTER_RUN = re.compile(r"[^\W\d_]+")
 # Control characters a text layer uses as ordinary whitespace. Any other (Unicode category
 # Cc) marks a garbled font. Python's split() and splitlines() treat some of those as
 # separators (U+001C to U+001F, U+0085), so a line is judged before it is split.
@@ -3310,7 +3311,8 @@ def _pdf_layer_lines(
 
     The lines and spans of the ``dict`` output, with the text flags and sort of
     ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
-    spans (``_pdf_span_painted`` gives the paint). Without ``sort_text`` the lines' text
+    spans (``_pdf_span_painted`` gives the paint; a Type3 font's spans count as painted,
+    ``_pdf_type3_font_names``). Without ``sort_text`` the lines' text
     joined with newlines is the text output; with it, that output rebuilds lines from
     words by position, but the characters are the same (``_same_layer_characters``).
     """
@@ -3319,27 +3321,47 @@ def _pdf_layer_lines(
         sort=bool(extraction.get("sort_text")),
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
-    return [
-        [
-            (str(span.get("text", "")), _pdf_span_painted(span), str(span.get("font", "")))
-            for span in line.get("spans", ())
-        ]
-        for block in data.get("blocks", ())
-        for line in block.get("lines", ())
-    ]
+    type3 = _pdf_type3_font_names(page)
+    lines: list[list[tuple[str, bool, str]]] = []
+    for block in data.get("blocks", ()):
+        for line in block.get("lines", ()):
+            spans = []
+            for span in line.get("spans", ()):
+                font = str(span.get("font", ""))
+                painted = font in type3 or _pdf_span_painted(span)
+                spans.append((str(span.get("text", "")), painted, font))
+            lines.append(spans)
+    return lines
+
+
+def _pdf_type3_font_names(page: Any) -> frozenset[str]:
+    """The span font names of the page's Type3 fonts.
+
+    PyMuPDF 1.26 (the version this repository locks) reports filled Type3 glyphs as
+    neither filled nor stroked, as it does invisible text; 1.27 and later report them
+    filled. Every Type3 span on the 1,041 overlay pages measured is filled under 1.28.2,
+    so a span in a Type3 font counts as painted. A Type3 font without a name is
+    "Unnamed-T3" in the spans.
+    """
+    return frozenset(
+        str(font[3]) or "Unnamed-T3" for font in page.get_fonts(full=True) if font[2] == "Type3"
+    )
 
 
 def _layer_characters(text: str) -> Counter[str]:
     return Counter(
-        char for char in text if not char.isspace() and unicodedata.category(char) != "Cc"
+        char
+        for char in text
+        if not char.isspace() and unicodedata.category(char) not in ("Cc", "Mn")
     )
 
 
 def _same_layer_characters(
     span_lines: list[list[tuple[str, bool, str]]], layer_text: str
 ) -> bool:
-    """Whether the spans hold the text output's characters, whitespace and control
-    characters aside (the sorted text output drops a garbled font's control "spaces")."""
+    """Whether the spans hold the text output's characters, whitespace, control characters
+    and combining marks aside (the sorted text output drops a garbled font's control
+    "spaces"; PyMuPDF 1.28 prints combining marks on WV-23-0001 that its spans lack)."""
     spans = "".join(span[0] for spans in span_lines for span in spans)
     return _layer_characters(spans) == _layer_characters(layer_text)
 
@@ -3351,29 +3373,31 @@ def _without_garbled_spans(
 
     A span holding a control character other than ordinary whitespace
     (``_has_control_character``) is a garbled font's, and so is every span on the same
-    line in a font that holds one there: the font maps some codes to control characters
-    and the rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those spans are
-    left out whole, before anything splits them; where they stood between kept spans a
-    space keeps them apart. Spans in other fonts, such as a date typed beside a garbled
-    label, are kept. The line is painted when any kept span with visible characters is.
-    A line left with no visible character is dropped.
+    line in a font of that name: the font maps some codes to control characters and the
+    rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those spans are left
+    out whole, before anything splits them. The runs of kept spans between them are kept,
+    joined by one space; spans in other fonts, such as a date typed beside a garbled
+    label, stay. A clean span in the same font as a garbled span on its line is left out
+    too: on the overlay pages measured all 509 such spans are garbage, but a font can map
+    some codes right (AL-20-0004 page 4's signature, on lines of its own). The line is
+    painted when any kept span with visible characters is. A line left with no visible
+    character is dropped.
     """
     lines: list[tuple[str, bool]] = []
     for spans in span_lines:
         garbled = {font for text, _, font in spans if _has_control_character(text)}
-        parts: list[str] = []
+        runs: list[str] = []
+        run = ""
         painted = False
-        gap = False
         for text, span_painted, font in spans:
             if font in garbled or _has_control_character(text):
-                gap = any(parts)
+                runs.append(run)
+                run = ""
                 continue
-            if gap:
-                parts.append(" ")
-                gap = False
-            parts.append(text)
+            run += text
             painted = painted or (span_painted and bool(text.strip()))
-        line = "".join(parts)
+        runs.append(run)
+        line = " ".join(run for run in runs if run)
         if line.strip():
             lines.append((line, painted))
     return lines
@@ -3575,9 +3599,21 @@ def _pdf_decoded_layer_line(chars: _LayerChars, shifts: dict[str, int]) -> str |
 
 
 def _letter_runs(text: str) -> list[str]:
-    """Maximal runs of letters after NFKC, not yet lower-cased (lower-casing can lengthen
-    a run: "\u0130" becomes two characters), so lengths are counted on these."""
-    return list(_LETTER_RUN.findall(unicodedata.normalize("NFKC", text)))
+    """Maximal runs of letters (``str.isalpha``) after NFKC, not yet lower-cased
+    (lower-casing can lengthen a run: "\u0130" becomes two characters), so lengths are
+    counted on these."""
+    runs: list[str] = []
+    run = ""
+    for char in unicodedata.normalize("NFKC", text):
+        if char.isalpha():
+            run += char
+            continue
+        if run:
+            runs.append(run)
+        run = ""
+    if run:
+        runs.append(run)
+    return runs
 
 
 def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool:
@@ -3621,7 +3657,7 @@ def _without_failed_recognition_lines(
     (fewer than _RECOGNITION_FRAGMENT_LETTERS letters and no digit, counted after NFKC
     normalization, such as "cc:" or a stray "L"), and every invisible line of a failed
     layer (``_recognition_layer_failed``), such as a sideways slide read as "Ckm" and "rML",
-    or a signature in a font whose codes are shifted ("Ejhjubmmz!tjhofe!cz" for "Digitally
+    or a signature string written one code above ASCII ("Ejhjubmmz!tjhofe!cz" for "Digitally
     signed by"). The lines kept stay in order.
     """
     invisible = [text for text, painted in lines if not painted]

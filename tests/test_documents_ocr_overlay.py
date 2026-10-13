@@ -333,6 +333,98 @@ def test_blank_ocr_keeps_an_invisible_layer_as_it_is(tmp_path, monkeypatch):
     assert _first_page_text(hidden, {"ocr": True}).split() == NOISE_LAYER.split()
 
 
+def _type3_scan_pdf(lines: list[str]) -> bytes:
+    """A scanned page whose typed lines are set, filled, in an unnamed Type3 font."""
+    document = fitz.open()
+    page = document.new_page(width=612, height=792)
+    page.insert_image(page.rect, stream=SCAN_PNG, keep_proportion=False)
+    page.insert_text((0, 0), " ", fontsize=1)  # gives the page a /Font dictionary
+    names = {code: chr(code) for code in range(65, 91)} | {
+        code: chr(code) for code in range(97, 123)
+    }
+    names |= {32: "space", 46: "period", 47: "slash"}
+    proc = document.get_new_xref()
+    document.update_object(proc, "<< >>")
+    document.update_stream(proc, b"600 0 0 0 500 700 d1 0 0 500 700 re f")
+    differences = " ".join(f"{code} /{name}" for code, name in sorted(names.items()))
+    procs = " ".join(f"/{name} {proc} 0 R" for name in sorted(set(names.values())))
+    font = document.get_new_xref()
+    document.update_object(
+        font,
+        "<< /Type /Font /Subtype /Type3 /FontBBox [0 0 1000 1000] "
+        "/FontMatrix [0.001 0 0 0.001 0 0] "
+        f"/CharProcs << {procs} >> /Encoding << /Type /Encoding /Differences [{differences}] >> "
+        f"/FirstChar 32 /LastChar 126 /Widths [{' '.join(['600'] * 95)}] /Resources << >> >>",
+    )
+    resources = document.xref_get_key(page.xref, "Resources")
+    holder = int(resources[1].split()[0]) if resources[0] == "xref" else page.xref
+    prefix = "" if resources[0] == "xref" else "Resources/"
+    fonts = document.xref_get_key(holder, prefix + "Font")
+    if fonts[0] == "xref":
+        document.xref_set_key(int(fonts[1].split()[0]), "F3", f"{font} 0 R")
+    else:
+        document.xref_set_key(holder, prefix + "Font/F3", f"{font} 0 R")
+    body = b" ".join(
+        b"BT /F3 12 Tf 72 %d Td (%s) Tj ET" % (700 - 20 * index, line.encode())
+        for index, line in enumerate(lines)
+    )
+    content = document.get_new_xref()
+    document.update_object(content, "<< >>")
+    document.update_stream(content, body)
+    contents = document.xref_get_key(page.xref, "Contents")
+    if contents[0] == "array":
+        document.xref_set_key(page.xref, "Contents", contents[1][:-1] + f" {content} 0 R]")
+    else:
+        document.xref_set_key(page.xref, "Contents", f"[{contents[1]} {content} 0 R]")
+    return document.tobytes()
+
+
+def test_typed_lines_in_a_type3_font_are_painted(monkeypatch):
+    # Review r3: PyMuPDF 1.26 (locked here) reports filled Type3 glyphs as unpainted, so
+    # typed lines in a Type3 font looked like a failed recognition layer and were dropped.
+    lines = ["/s/", "Hye Sun Lee", "Acting Associate Regional Administrator"]
+    ocr = "DEPARTMENT OF HEALTH AND HUMAN SERVICES\n20. SIGNATURE OF REGIONAL OFFICIAL:\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    with fitz.open("pdf", _type3_scan_pdf(lines)) as document:
+        span_lines = _pdf_layer_lines(document[0], extraction={})
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    spans = [(text, painted, font) for line in span_lines for text, painted, font in line]
+    assert {text for text, _, _ in spans if text.strip()} >= set(lines)
+    assert all(painted for text, painted, font in spans if font == "Unnamed-T3")
+    assert result == ocr.rstrip("\n") + "\n\n" + "\n".join(lines)
+
+
+class _TextOutputPage:
+    """A real page whose text output is replaced (to give it a separator control)."""
+
+    def __init__(self, page, text: str):
+        self._page, self._text = page, text
+
+    def get_text(self, kind="text", **kwargs):
+        return self._text if kind == "text" else self._page.get_text(kind, **kwargs)
+
+    def __getattr__(self, name):
+        return getattr(self._page, name)
+
+
+def test_the_text_line_fallback_still_drops_garbled_lines(tmp_path, monkeypatch):
+    # Review r3: the fallback used splitlines(), which breaks "2EQI\x1e" at U+001E and
+    # leaves a clean-looking "2EQI". It splits at newlines only, so the line keeps its
+    # control character and is dropped; the typed line is kept.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    monkeypatch.setattr(
+        documents_module, "_pdf_layer_lines", lambda page, *, extraction: [[("x", True, "F")]]
+    )
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "2EQI\x1e\nJanuary 1, 2018\n")
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert result == "Applicant Household Size\n\nJanuary 1, 2018"
+
+
 def test_page_needs_ocr_rules(tmp_path):
     cases = {
         "blank": (_pdf(tmp_path / "blank.pdf", image_rect=None, overlay=None), True),

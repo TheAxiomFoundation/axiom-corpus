@@ -30,25 +30,36 @@ Reproduced from retained bytes at `origin/main` `c3a8e1d0c`:
 On a page `ocr: true` reads by OCR although it has a text layer (`_pdf_page_text`), the
 layer is read from the `dict` output (`_pdf_layer_lines`): each line as its spans' text,
 paint and font name, unsplit. A span is painted when its characters are filled or stroked
-(PyMuPDF `char_flags`) with non-zero opacity. If the spans do not hold the text output's
-characters (whitespace and control characters aside; `sort_text` changes only the lines
-the text output prints, not its characters), the text output's lines are used instead,
-all counted as painted, so no typed text can go missing.
+(PyMuPDF `char_flags`) with non-zero opacity, or when it is set in a Type3 font: PyMuPDF
+1.26, which this repository locks, reports filled Type3 glyphs as neither filled nor
+stroked, as it does invisible text, while 1.27 and later report them filled (every Type3
+span on the overlay pages measured is filled under 1.28.2). If the spans do not hold the
+text output's characters (whitespace, control characters and combining marks aside;
+`sort_text` changes only the lines the text output prints), the text output's lines,
+split at newlines only, are used instead, all counted as painted, so no typed text can go
+missing. On the overlay pages that happens on none of the 1,041 pages, with or without
+`sort_text`.
 
 1. **Garbled fonts** (`_without_garbled_spans`). A span holding a control character other
    than tab, newline, carriage return, VT or FF is a garbled font's, and so is every span
-   on its line in the same font: such a font maps some codes to control characters and
-   the rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those spans are left
-   out whole, before anything splits them (Python's `splitlines()` breaks lines at U+001C
-   to U+001E and U+0085, and `split()` strips U+001F, so judged after splitting a shifted
-   font's "2EQI\x1e" would pass as "2EQI"). Spans in other fonts on the line, such as a
-   date typed beside a garbled label, are kept. A line is painted when one of its kept
-   spans with visible characters is.
+   on its line in a font of the same name: such a font maps some codes to control
+   characters and the rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those
+   spans are left out whole, before anything splits them (Python's `splitlines()` breaks
+   lines at U+001C to U+001E and U+0085, and `split()` strips U+001F, so judged after
+   splitting a shifted font's "2EQI\x1e" would pass as "2EQI"). The runs of kept spans
+   between them are joined by one space. Spans in other fonts on the line, such as a date
+   typed beside a garbled label, are kept. A line is painted when one of its kept spans
+   with visible characters is. The rule leaves out 509 control-free spans on the overlay
+   pages (219 distinct texts, all symbol and digit strings such as "$#", ":;<=",
+   "5MN1"). Its limit: a font can map some codes right and others wrong, as on AL-20-0004
+   page 4, where one ArialMT subset holds both garbled spans and the digital signature's
+   clean ones. There they sit on different lines; a clean span on the same line as a
+   garbled one in the same font would be left out with it.
 2. **Recognition layers** (`_without_failed_recognition_lines`). Painted lines are all
    kept. An invisible line (text render mode 3, or fully transparent) belongs to a
    recognition layer, an earlier OCR of the same image, not typed text. Two kinds are
-   dropped: a fragment, fewer than three letters (counted before lower-casing, after NFKC)
-   and no digit ("cc:", a stray "L"); and every invisible line of a failed layer, one
+   dropped: a fragment, fewer than three letters (`str.isalpha`, counted before
+   lower-casing, after NFKC) and no digit ("cc:", a stray "L"); and every invisible line of a failed layer, one
    with at least five distinct words of three or more letters of which fewer than a third
    occur in the OCR text (as one of its words, or, for words of six or more letters,
    inside its letters run together, since recognition layers run words together).
@@ -71,10 +82,10 @@ Stated and tested in `tests/test_ocr_layer_line_properties.py` (Hypothesis, agai
 written-out references that do not share the implementation's code):
 
 - S1 to S3 for garbled fonts: a span with a control character other than ordinary
-  whitespace is left out, with every span on its line in the same font; every other
-  span's text is in its line, in order, with one space where left-out spans stood between
-  kept spans; no line returned holds such a control character; a line is painted exactly
-  when one of its kept spans with visible characters is.
+  whitespace is left out, with every span on its line in the same font; the line is the
+  non-empty runs of kept spans between them, in order, joined by one space; no line
+  returned holds such a control character; a line is painted exactly when one of its kept
+  spans with visible characters is.
 - R1 to R5 for recognition layers: the result is a subsequence of the input; every
   painted line is kept; an invisible line is dropped only as a fragment or in a failed
   layer; more OCR text never drops a kept line; applying it to its own result changes
@@ -92,17 +103,19 @@ written-out references that do not share the implementation's code):
   the page text wherever it has a letter or digit.
 
 `tests/test_documents_ocr_overlay.py` builds PDFs with filled, stroked, render-mode-3 and
-transparent text. The 20 pages in `tests/fixtures/ocr_overlay/` (19 named in the defect
+transparent text, and a scanned page whose typed lines are set in a Type3 font. The 20 pages in `tests/fixtures/ocr_overlay/` (19 named in the defect
 report or measured below, and AL-20-0004 page 4, whose shifted span splits at U+001E) are
 run through `_pdf_page_text` on the retained PDFs (checked by SHA-256) with Tesseract's
 stored output, with and without `sort_text` and `ignore_actual_text`. A mutation check runs
-35 broken variants of the rule against these tests; its result is recorded in the PR.
+38 broken variants of the rule against these tests; its result is recorded in the PR.
 
 ## Measurement
 
 Every page the overlay rule reaches: the 1,041 pages in 328 retained PDFs of `ocr: true`
 manifest documents listed by #853's sweep (`ocr-rule-sweep-final.json`), all of them
-read from retained bytes. Tesseract 5.5.3 (eng, 200 dpi) output was cached by the exact
+read from retained bytes, with PyMuPDF 1.26.7 (the lock; CI installs 1.28.2, which splits
+some lines into spans differently and gives the same page text except on 9 pages, all
+junk lines of IL-21-0006, WI-22-0009 and WV-23-0001). Tesseract 5.5.3 (eng, 200 dpi) output was cached by the exact
 rendered page image, so both rules read the same OCR text. Five pages have blank OCR text;
 both rules return their layer unchanged.
 
@@ -111,9 +124,9 @@ both rules return their layer unchanged.
 | | #854 | This change |
 | --- | ---: | ---: |
 | Layer lines appended | 671 | 910 |
-| Typed or legible lines appended (words) | 486 (1,684) | 673 (2,298) |
-| Junk lines appended (words) | 185 (482) | 237 (581) |
-| Pages with junk appended | 99 | 80 |
+| Typed or legible lines appended (words) | 477 (1,654) | 673 (2,298) |
+| Junk lines appended (words) | 194 (512) | 237 (581) |
+| Pages with junk appended | 101 | 80 |
 | Pages missing a legible layer word (words) | 20 (33) | 1 (1) |
 
 365 pages in 159 PDFs append different lines. Of the 207 lines #854 appended that are no
@@ -136,31 +149,33 @@ checkbox "X" (IA-20-0003) and "x" (NJ CHIP 22-0031), "T. N. #" twice (UT-13-021)
 layers (MT-13-0048-MM, NJ CHIP 22-0031) such as "0", "4" and "time iti .state):".
 
 "Junk" is a line that is not text a reader could use, by reviewed family: an invisible
-recognition layer's misreadings and fragments, recognition over sideways scans
+recognition layer's misreadings and fragments (every line of a layer that fails against
+the OCR text counts here, whatever its text, such as "0" and "4. 1.4. U"), recognition over sideways scans
 (UT-14-0007-MM, UT-14-0004-MM), text in a font whose codes are shifted ("%JSFDUPS" for
 "Director", and shards of garbled spans), and the visible OCR of screenshots in
 WV-23-0001. Each family was reviewed on rendered pages.
 
 Junk this change appends that #854 did not: 126 lines (278 words).
 
-- 47 painted lines, which the rule keeps by design because nothing separates them from
+- 51 painted lines, which the rule keeps by design because nothing separates them from
   typed text: 45 in WV-23-0001 (a visible OCR layer over screenshots of an eligibility
-  system) and 2 shifted-font lines with no control character on their line (MA-20-0024
-  "%JSFDUPS", WA-19-0012 "%FQVUZ %").
-- 79 invisible lines: 43 from UT sideways scans on pages whose layer has fewer than five
-  words (too few to judge), 32 misreadings from layers that agree with OCR elsewhere
-  (MD-19-0008, NJ CHIP 22-0031, a Uganda gazette page and others), and 4 in shifted fonts
-  (IL-21-0006, WI-22-0009).
+  system) and 6 shifted-font lines with no control character on their line (MA-20-0024
+  "%JSFDUPS", WA-19-0012 "%FQVUZ %", and IL-21-0006 and WI-22-0009 "OPQRPSTVTPWTX", set
+  in Type3 fonts).
+- 75 invisible lines: 43 from UT sideways scans on pages whose layer has fewer than five
+  words (too few to judge) and 32 misreadings from layers that agree with OCR elsewhere
+  (MD-19-0008, NJ CHIP 22-0031, a Uganda gazette page and others).
 
-Junk #854 appended that this change does not: 74 lines (179 words): 26 garbled-font
-shards, 29 misreadings and 19 sideways-scan lines from failed layers.
+Junk #854 appended that this change does not: 83 lines (209 words): 26 garbled-font
+shards, 38 misreadings and 19 sideways-scan lines from failed layers.
 
 The two layers named in the defect report append nothing: UT-14-0007-MM page 21 ("ac al
-ckm cl err", none of its words in the OCR text) and ID-20-0001 page 3 ("Ejhjubmmz", two
-of eight words in the OCR text). Of the 185 invisible layers with at least five words, 15
+ckm cl err", none of its words in the OCR text) and ID-20-0001 page 3 ("Ejhjubmmz", a
+signature string written one code above ASCII in the same Helvetica as the form labels,
+two of eight words in the OCR text). Of the 185 invisible layers with at least five words, 15
 share none of their words with OCR and 3 more share under 10%; 6 share 20% to 50%; the
 other 161 share 50% or more, 116 of them 90% or more. The cut-off sits in a flat range
-(`scripts/threshold_eval.py`, final code): 0.15, 0.25, one third and one half gate 18, 19,
+(`scripts/final_checks.py`, final code): 0.15, 0.25, one third and one half gate 18, 19,
 20 and 24 layers, holding 106, 109, 113 and 141 unread lines. One third gates one layer
 more than 0.25, ID-20-0001 page 3; one half would add a Uganda gazette page (38%),
 MD-19-0008 pages 14 and 5 (39%, 41%) and DC-16-0012 page 15 (48%), which hold legible
@@ -201,12 +216,14 @@ manual scope has no successor in #864.
 
 ## Follow-ups
 
-- **Shifted-font layers.** On 24 pages a constant code shift (28 to 31) turns some
-  control-character lines into text OCR read, so the font is offset from ASCII. Applied to
-  the same pages' other control-character lines, it gives 1,110 lines OCR did not read, on
-  17 pages: some typed values (OR-15-0006 "11/30/15", "12/10/15"; MA-20-0024 "09/30/20"),
-  some still noise (CA-25-0037). Both rules drop them as control-character lines. Decoding
-  such fonts would recover the typed values and the shifted lines above.
+- **Shifted-font layers** (draft PR #870, stacked on this one). On 24 pages a constant
+  code shift (28 to 31) turns some control-character lines into text OCR read, so the
+  font is offset from ASCII. Applied to the same pages' other control-character lines, it
+  gives 1,110 lines OCR did not read, on 17 pages: some typed values (OR-15-0006
+  "11/30/15", "12/10/15"; MA-20-0024 "09/30/20"), some still noise (CA-25-0037). Both
+  rules drop them as control-character lines. Decoding such fonts would recover the typed
+  values and the shifted lines above; #870 measures 21 lines added on 8 pages, 19 of them
+  typed values or names.
 - **Sideways scans.** On UT-14-0007-MM's sideways slides Tesseract's own text is noise
   ("(uas)pjiy usoqun sjuerddy" for "Applicant's Unborn Child(ren)"). Orientation
   detection before OCR would read them.
