@@ -228,13 +228,27 @@ def validate_releases(
                 collector,
                 strict_warnings=strict_warnings,
                 ignore_r2_missing=ignore_r2_missing,
-                deep_check=lambda scope, c=collector, p=profile: c.replay(
-                    checks[(scope.key, p)][0]
-                ),
+                deep_check=_replay_checks(collector, checks, profile),
                 citation_paths=lambda scope: citation_paths[scope.key],
             )
         )
     return out
+
+
+def _replay_checks(
+    collector: _IssueCollector,
+    checks: Mapping[
+        tuple[tuple[str, str, str], bool],
+        tuple[tuple[ReleaseValidationIssue, ...], list[str] | None],
+    ],
+    profile: bool,
+) -> Callable[[ReleaseScope], None]:
+    """A selector's ``deep_check``: replay a scope's recorded issues into its report."""
+
+    def deep_check(scope: ReleaseScope) -> None:
+        collector.replay(checks[(scope.key, profile)][0])
+
+    return deep_check
 
 
 def _check_scope(
