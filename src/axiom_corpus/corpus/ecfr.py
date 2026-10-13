@@ -877,13 +877,16 @@ def _filter_ecfr_inventory_sections(
         metadata = item.metadata or {}
         if metadata.get("kind") != "section":
             continue
-        part = str(metadata.get("part"))
-        selector = f"{part}.{metadata.get('section')}"
-        # A hyphenated part's selector must name the section's own part: eCFR files
-        # "105.60.001" under part 105-60, but its path is under part 105.
-        if "-" in part and item.citation_path.split("/")[3] != part:
-            continue
+        selector = f"{metadata.get('part')}.{metadata.get('section')}"
         if selector in requested:
+            # A selector only the hyphenated grammar accepts must name the section's own
+            # part: eCFR files "105.60.001" under part 105-60, but its path is under
+            # part 105. Selectors the alphanumeric grammar accepts match as before.
+            if (
+                not re.fullmatch(_SECTION_IDENTIFIER_PATTERN, selector)
+                and item.citation_path.split("/")[3] != str(metadata.get("part"))
+            ):
+                continue
             matches[selector] = item
     missing = [selector for selector in requested if selector not in matches]
     if missing:

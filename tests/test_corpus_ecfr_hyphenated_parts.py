@@ -414,6 +414,20 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
         build_ecfr_inventory_from_structures((structure,), only_sections=("105.60.001",))
 
 
+def test_selector_main_accepts_still_matches_a_dotted_part():
+    # Main reads "1.2-3.4" as part 1, section 2-3.4, and selects the section that the
+    # structure files as "1.4" under a part identified "1.2-3". That selector keeps working.
+    structure = {"identifier": "41", "type": "title", "children": [
+        {"identifier": "1", "label": "Part 1", "type": "part", "children": []},
+        {"identifier": "1.2-3", "label": "Part 1.2-3", "type": "part",
+         "children": [_section("1.4", "§ 1.4 x.")]},
+    ]}
+
+    selected = build_ecfr_inventory_from_structures((structure,), only_sections=("1.2-3.4",))
+
+    assert _paths(selected.items) == ["us/regulation/41/1", "us/regulation/41/1/4"]
+
+
 def test_lettered_appendix_of_a_hyphenated_part():
     inventory = build_ecfr_inventory_from_structures(
         (TITLE_41_STRUCTURE,), only_part="60-300", include_appendices=True
@@ -738,6 +752,87 @@ def test_property_appendix_part_grammar(title, designator, part, supported):
         assert _valid_citation_path(new[0])
     else:
         assert new is None
+
+
+def _old_filter(items, only_sections):
+    """origin/main's _filter_ecfr_inventory_sections (89dc519fa), with its grammar."""
+    requested = tuple(dict.fromkeys(only_sections))
+    for selector in requested:
+        if not re.fullmatch(OLD_SECTION_IDENTIFIER, selector):
+            raise ValueError(
+                f"invalid eCFR section selector {selector!r}; expected PART.SECTION"
+            )
+    by_path = {item.citation_path: item for item in items}
+    matches = {}
+    for item in items:
+        metadata = item.metadata or {}
+        if metadata.get("kind") != "section":
+            continue
+        selector = f"{metadata.get('part')}.{metadata.get('section')}"
+        if selector in requested:
+            matches[selector] = item
+    missing = [selector for selector in requested if selector not in matches]
+    if missing:
+        raise ValueError(f"eCFR section selector(s) not found: {', '.join(missing)}")
+    retained_paths = set()
+    for item in matches.values():
+        retained_paths.add(item.citation_path)
+        parent_path = str((item.metadata or {}).get("parent_citation_path") or "")
+        while parent_path:
+            retained_paths.add(parent_path)
+            parent = by_path.get(parent_path)
+            parent_path = str(
+                ((parent.metadata if parent else None) or {}).get("parent_citation_path") or ""
+            )
+    return [item for item in items if item.citation_path in retained_paths]
+
+
+def _filter_outcome(fn, items, selectors):
+    try:
+        return ("ok", [item.citation_path for item in fn(items, selectors)])
+    except ValueError as exc:
+        return ("raise", str(exc))
+
+
+@st.composite
+def _odd_titles(draw):
+    """Titles whose parts may be dotted or hyphenated and whose section identifiers may
+    or may not name their part."""
+    part = st.one_of(_PART, st.builds(lambda a, b: f"{a}.{b}", _ALNUM, _PART))
+    parts = draw(st.lists(part, min_size=1, max_size=4, unique=True))
+    children = []
+    for part_id in parts:
+        identifiers = draw(st.lists(
+            st.one_of(
+                st.integers(1, 9).map(lambda n, p=part_id: f"{p}.{n}"),
+                _chars("0123456789aZ.-", min_size=1, max_size=9),
+            ),
+            max_size=5, unique=True,
+        ))
+        sections = [_section(identifier, f"§ {identifier} x.") for identifier in identifiers]
+        if sections and draw(st.booleans()):
+            sections = [{"identifier": "A", "label": "Subpart A", "type": "subpart",
+                         "children": sections}]
+        children.append({"identifier": part_id, "label": f"Part {part_id}", "type": "part",
+                         "children": sections})
+    return {"identifier": "41", "label": "Title 41", "type": "title", "children": children}
+
+
+@settings(max_examples=300, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(structure=_odd_titles(), extra=st.lists(_chars("0123456789aZ.-", max_size=10), max_size=4))
+def test_property_selectors_main_accepts_filter_as_on_main(structure, extra):
+    items = list(build_ecfr_inventory_from_structures((structure,)).items)
+    candidates = {
+        f"{item.metadata['part']}.{item.metadata['section']}"
+        for item in items
+        if item.metadata["kind"] == "section"
+    } | set(extra)
+    for selector in sorted(candidates):
+        if re.fullmatch(OLD_SECTION_IDENTIFIER, selector) is None:
+            continue
+        assert _filter_outcome(ecfr._filter_ecfr_inventory_sections, items, (selector,)) == (
+            _filter_outcome(_old_filter, items, (selector,))
+        )
 
 
 @st.composite
