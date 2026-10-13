@@ -363,6 +363,17 @@ def test_garbled_spans_are_left_out_and_clean_spans_kept(span_lines):
     assert not any(_garbled(text) for text, _ in lines)
 
 
+def test_same_layer_characters_cases():
+    # The spans must hold the text output's characters; whitespace, control characters
+    # (the sorted text output drops a garbled font's U+0001 "spaces") and combining marks
+    # (PyMuPDF 1.28 prints Khmer marks on WV-23-0001 that its spans lack) aside.
+    assert _same_layer_characters([[("Ckm", True, "F"), (" rML", False, "F")]], "Ckm\n rML\n")
+    assert _same_layer_characters([[("2EQI\x01", True, "F")]], "2EQI\n")
+    assert _same_layer_characters([[("i:o..", True, "F")]], "i:o..\u17b7\n")
+    assert not _same_layer_characters([[("Ckm", True, "F")]], "Ckm rML\n")
+    assert not _same_layer_characters([[("Ckm", True, "F")]], "Ckn\n")
+
+
 def test_garbled_span_cases():
     # Review r2's line: a garbled span beside a date typed in another font leaves the
     # date, painted.
