@@ -639,6 +639,11 @@ def _merged(page: dict) -> str:
     return _with_unread_layer_lines(page["ocr_text"], layer)
 
 
+def _per_character(span_lines: list[list[tuple[str, bool, str]]]) -> list[list[tuple]]:
+    """Each line as its characters with their span's paint and font."""
+    return [[(c, p, f) for t, p, f in spans for c in t] for spans in span_lines]
+
+
 def _clean_painted_text(span_lines: list[list[tuple[str, bool, str]]]) -> list[str]:
     """The lines of every painted span outside a garbled font that have text."""
     out = []
@@ -675,7 +680,9 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
         result = _pdf_page_text(pdf_page, extraction={"ocr": True})
 
     assert layer_text == page["layer_text"]
-    assert [[[t, p, f] for t, p, f in spans] for spans in span_lines] == page["layer_spans"]
+    # Character by character (PyMuPDF versions split a line into spans differently: 1.28
+    # makes the spaces of MT-13-0048-MM page 19 spans of their own).
+    assert _per_character(span_lines) == _per_character(_spans(page))
     # Differential: the dict lines, joined, are the text output.
     joined = "\n".join("".join(span[0] for span in spans) for spans in span_lines)
     assert joined.splitlines() == layer_text.splitlines()
