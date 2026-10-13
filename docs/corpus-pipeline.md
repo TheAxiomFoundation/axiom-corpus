@@ -428,13 +428,18 @@ such PDFs. Without them extraction is unchanged.
 
 `amendment_markup` and `sort_blocks` work only with the default per-page
 segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
-`sort_text`. They read the page's character layer, and extraction stops with an
-error naming the page where that layer differs from the page's default text.
-PyMuPDF leaves zero-width glyphs (a combining mark, a zero-advance period) out of
-the character layer, so keep such a page out of the `amendment_markup` range.
-`amendment_markup` also fails if a page's own text already contains one of the
-delimiters, if a character is both struck through and underlined, or if
-`start_page` is past the last page.
+`sort_text`. They read the page's character layer: the characters PyMuPDF's
+plain-text printer prints, with their positions. PyMuPDF's own character layer
+(`rawdict`) leaves out glyphs whose boxes have no area, such as a combining mark
+or a zero-advance period, when they make up a whole line or the last span of a
+line (a run in its own font, size or colour). So the page's text page is read
+twice, through `rawdict` and by a walk that applies the printer's test to each
+glyph, and the glyphs `rawdict` leaves out are added where the printer prints
+them. A page where `rawdict` leaves nothing out reads exactly as `rawdict` reads
+it. Extraction stops with an error naming the page if `rawdict` and the walk do
+not line up, or if the result differs from the page's default text. `amendment_markup` also fails if a page's own text
+already contains one of the delimiters, if a character is both struck through
+and underlined, or if `start_page` is past the last page.
 
 The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
