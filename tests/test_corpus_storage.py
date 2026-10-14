@@ -9,11 +9,16 @@ Hypothesis alongside example tests:
 4. fetch fidelity (materialized bytes hash to the lock, or nothing changes);
 5. cache integrity (objects hash to their names);
 6. idempotence (a second fetch changes nothing);
-7. no links (materialized files are independent regular files).
+7. no links (materialized files are independent regular files);
+10. path naming (every spelling of a checkout names one entry; a symlinked
+    corpus file is named, and refused, as itself; a spelling of a locked path
+    names the locked file exactly where the filesystem stores both in one
+    place, fetched or not).
 """
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
 import os
@@ -25,10 +30,12 @@ from pathlib import Path
 
 import pytest
 from botocore.exceptions import ClientError
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, event, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import corpus_cli
+from axiom_corpus.corpus import corpus_locks as corpus_locks_module
+from axiom_corpus.corpus import resolver as resolver_module
 from axiom_corpus.corpus.cli import main as cli_main
 from axiom_corpus.corpus.content_store import (
     ContentCache,
@@ -42,6 +49,7 @@ from axiom_corpus.corpus.content_store import (
     read_entry_bytes,
 )
 from axiom_corpus.corpus.corpus_locks import (
+    CORPUS_BASE,
     LOCK_ROOT,
     CorpusLock,
     LockEntry,
@@ -49,13 +57,16 @@ from axiom_corpus.corpus.corpus_locks import (
     LockSet,
     diff_lock_sets,
     fold_collisions,
+    fold_path,
     hash_tree_blobs,
+    is_protected_corpus_path,
     list_tree_blobs,
     load_locks,
     load_locks_at_ref,
     lock_from_worktree,
     lock_path_for_scope,
     locks_from_hashed_blobs,
+    looks_up_case_insensitively,
     parse_lock,
     parse_scope_selector,
     protected_tree_blobs,
@@ -64,10 +75,15 @@ from axiom_corpus.corpus.corpus_locks import (
     serialize_lock,
     write_lock,
 )
+from axiom_corpus.corpus.io import load_provisions
 from axiom_corpus.corpus.resolver import (
     CorpusNotMaterializedError,
     CorpusResolver,
     corpus_inputs_from_args,
+    ensure_corpus_paths,
+    fetch_locked_file,
+    require_materialized,
+    resolve_corpus_path,
 )
 
 PROPERTY_SETTINGS = settings(
@@ -715,3 +731,619 @@ def test_a_lock_set_is_invalid_exactly_when_its_names_collide(tmp_path_factory, 
     write_lock(repo, CorpusLock.from_entries(("nz", "statute", "v1"), [LockEntry(p, "0" * 64, 1) for p in paths]))
     errors = load_locks(repo).errors
     assert bool(errors) == bool(_reference_collisions(paths))
+
+
+def _fold_the_long_way(path: str) -> str:
+    """``fold_path`` without its ASCII shortcut."""
+    text = unicodedata.normalize("NFKC", path)
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
+    return unicodedata.normalize("NFKC", text.upper().lower().casefold())
+
+
+@PROPERTY_SETTINGS
+@given(st.text(alphabet=st.characters(max_codepoint=0x7F), max_size=40))
+def test_fold_path_folds_ascii_as_the_full_fold_does(text: str) -> None:
+    """fold_path lowercases ASCII instead of normalizing it; the keys must not change."""
+    assert fold_path(text) == _fold_the_long_way(text)
+    assert all(fold_path(chr(code)) == _fold_the_long_way(chr(code)) for code in range(0x80))
+
+
+# --------------------------------------------------------------------------- path naming (invariant 10)
+
+PROV = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
+COVERAGE = "data/corpus/coverage/nz/statute/2026-07-10.json"
+INVENTORY = "data/corpus/inventory/nz/statute/2026-07-10.json"
+PROV_ROW = {"jurisdiction": "nz", "document_class": "statute", "citation_path": "nz/statute/a"}
+# SCOPE_FILES with a provisions row that load_provisions parses.
+READABLE_FILES = {**SCOPE_FILES, PROV: (json.dumps(PROV_ROW) + "\n").encode()}
+
+
+def _locked_checkout(path: Path, monkeypatch) -> Path:
+    """A checkout whose scope lock the module-level helpers fetch from an in-memory R2."""
+    repo = _init_repo(path)
+    write_lock(repo, _scope_lock(READABLE_FILES))
+    remote, _fake = _remote({content_key(_sha(d)): d for d in READABLE_FILES.values()})
+    monkeypatch.setattr(R2ObjectStore, "from_environment", classmethod(lambda cls, **_kwargs: remote))
+    monkeypatch.setenv("AXIOM_CORPUS_CACHE", str(path.parent / f"{path.name}-cache"))
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+    return repo
+
+
+def _checkout_spellings(repo: Path) -> dict[str, Path]:
+    """Other spellings of ``repo``: symlinks always, others where the platform has them."""
+    alias = repo.parent / f"{repo.name}-alias"
+    alias.symlink_to(repo, target_is_directory=True)
+    double = repo.parent / f"{repo.name}-alias-of-alias"
+    double.symlink_to(alias, target_is_directory=True)
+    spellings = {"alias": alias, "alias of an alias": double}
+    variant = repo.parent / repo.name.upper()
+    if variant.exists():  # case-insensitive filesystem (APFS, NTFS)
+        spellings["case variant"] = variant
+    text = str(repo)
+    if text.startswith("/private/") and Path("/" + text[len("/private/") :]).exists():
+        spellings["/private-less"] = Path("/" + text[len("/private/") :])  # macOS /var, /tmp
+    if Path("/System/Volumes/Data" + text).exists():
+        spellings["firmlink"] = Path("/System/Volumes/Data" + text)  # macOS data volume
+    return spellings
+
+
+def _placed_regular(repo: Path, rel: str) -> bool:
+    target = repo / rel
+    return target.is_file() and not target.is_symlink() and target.read_bytes() == READABLE_FILES[rel]
+
+
+def test_helpers_fetch_through_every_spelling_of_the_checkout(tmp_path: Path, monkeypatch) -> None:
+    """#770 finding: a checkout spelled through a symlink read as no checkout, so an
+    absent locked provisions file loaded as an empty scope."""
+    kinds = list(_checkout_spellings(_init_repo(tmp_path / "probe")))
+    assert {"alias", "alias of an alias"} <= set(kinds)
+    for index, name in enumerate(kinds):
+        repo = _locked_checkout(tmp_path / f"repo{index}", monkeypatch)
+        alias = _checkout_spellings(repo)[name]
+        assert str(alias) != str(repo) and os.path.samefile(alias, repo)
+
+        assert load_provisions(alias / PROV)[0].citation_path == "nz/statute/a", name
+        assert _placed_regular(repo, PROV), name
+        assert fetch_locked_file(alias / INVENTORY), name
+        assert _placed_regular(repo, INVENTORY), name
+        ensure_corpus_paths([alias / COVERAGE], repo=repo)
+        assert _placed_regular(repo, COVERAGE), name
+        require_materialized([alias / "data/corpus/sources"], repo=repo, fetch=True)
+        assert all(_placed_regular(repo, rel) for rel in READABLE_FILES), name
+        assert resolve_corpus_path(alias / COVERAGE, repo=repo).read_bytes() == READABLE_FILES[COVERAGE]
+
+
+def test_a_dangling_symlink_at_a_locked_path_does_not_read_as_empty(tmp_path: Path, monkeypatch) -> None:
+    """Following the link out of the checkout made the locked path no corpus path, so
+    load_provisions returned no rows for a scope whose file was never fetched."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    link = repo / PROV
+    link.parent.mkdir(parents=True)
+    nowhere = tmp_path / "nowhere" / "x.jsonl"
+    link.symlink_to(nowhere)
+    with pytest.raises(CorpusNotMaterializedError, match="is a symlink in this checkout"):
+        load_provisions(link)
+    with pytest.raises(CorpusNotMaterializedError, match="symlink"):
+        ensure_corpus_paths([link], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([link], repo=repo)
+    assert link.is_symlink() and not nowhere.exists() and not nowhere.parent.exists()
+
+
+@pytest.mark.parametrize("target_kind", ["cache object", "another corpus file", "nothing"])
+def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
+    tmp_path: Path, monkeypatch, target_kind: str
+) -> None:
+    """A symlink where a locked file belongs is never accepted as that file: not
+    followed to a cache object (an in-place write would corrupt it), not taken for
+    the corpus file it points at, and never written through."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    resolver.ensure_paths([COVERAGE])  # puts the coverage bytes in the cache too
+    if target_kind == "cache object":
+        resolver.ensure_paths([PROV])
+        (repo / PROV).unlink()
+        target = resolver.cache.object_path(_sha(READABLE_FILES[PROV]))
+    elif target_kind == "another corpus file":
+        target = repo / COVERAGE
+    else:
+        target = tmp_path / "missing.jsonl"
+    link = repo / PROV
+    link.parent.mkdir(parents=True, exist_ok=True)
+    link.symlink_to(target)
+    before = target.read_bytes() if target.exists() else None
+
+    assert resolver.relative(link) == PROV
+    assert resolver.relative(Path(os.path.realpath(repo)) / PROV) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="symlink"):
+        load_provisions(link)
+    with pytest.raises(CorpusNotMaterializedError, match="symlink"):
+        fetch_locked_file(link)
+    with pytest.raises(CorpusNotMaterializedError, match="symlink"):
+        resolve_corpus_path(link, repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="is a symlink in this checkout"):
+        resolver.resolve(PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks: remove the symlink"):
+        ensure_corpus_paths([link], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([repo / "data/corpus/provisions"], repo=repo)
+    assert link.is_symlink() and os.readlink(link) == str(target)
+    assert (target.read_bytes() if target.exists() else None) == before
+
+
+def test_an_unlocked_symlink_at_a_protected_path_is_not_resolved(tmp_path: Path, monkeypatch) -> None:
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    resolver.ensure_paths([PROV])
+    link = repo / "data/corpus/provisions/nz/statute/latest.jsonl"
+    link.symlink_to(repo / PROV)
+    assert resolver.relative(link) == "data/corpus/provisions/nz/statute/latest.jsonl"
+    with pytest.raises(CorpusNotMaterializedError, match="is a symlink, not a placed corpus file"):
+        resolve_corpus_path(link, repo=repo)
+    # Readers still read a path no lock names, as before.
+    assert load_provisions(link)[0].citation_path == "nz/statute/a"
+
+
+def test_a_link_outside_the_checkout_resolves_to_the_file_it_names(tmp_path: Path, monkeypatch) -> None:
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    link = tmp_path / "latest.jsonl"
+    link.symlink_to(repo / PROV)  # dangling until the locked file is fetched
+    monkeypatch.chdir(tmp_path)  # the link, not the working directory, finds the checkout
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None and resolver.relative(link) == PROV
+    assert load_provisions(link)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(repo, PROV)
+    # Review r1 finding 2: a live link to a placed file reads with fetching off.
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    assert load_provisions(link)[0].citation_path == "nz/statute/a"
+    assert fetch_locked_file(link)
+    assert resolve_corpus_path(link) == repo / PROV
+
+
+@pytest.mark.parametrize("a_under", ["", "data/corpus/provisions"])
+def test_an_unprotected_link_resolves_in_the_checkout_it_leads_to(
+    tmp_path: Path, monkeypatch, a_under: str
+) -> None:
+    """Review r1 finding 1: a link outside the protected paths of one checkout,
+    into another, belongs to the checkout it leads to, even where the first
+    checkout itself sits under a directory spelled like a protected path."""
+    a = _locked_checkout(tmp_path / a_under / "a", monkeypatch)
+    b = _locked_checkout(tmp_path / "b", monkeypatch)
+    (a / "docs").mkdir()
+    link = a / "docs/latest.jsonl"
+    link.symlink_to(b / PROV)  # dangling until b fetches it
+    monkeypatch.chdir(a)
+    assert load_provisions(link)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(b, PROV) and not (a / PROV).exists()
+    assert resolve_corpus_path(link) == b / PROV
+
+
+def test_reading_a_link_outside_the_protected_paths_consults_no_lock(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 4: any live symlink loaded every lock (and failed on an
+    invalid one); only a symlinked file at a protected path is checked."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    next((repo / LOCK_ROOT).rglob("*.json")).write_text("not a lock\n")
+    monkeypatch.chdir(repo)
+    rows = _write(tmp_path, "elsewhere/rows.jsonl", READABLE_FILES[PROV])
+    (repo / "docs").mkdir()
+    resolver_module._repo_root_for_dir.cache_clear()
+    git_calls: list[object] = []
+    real_run = subprocess.run
+    monkeypatch.setattr(
+        resolver_module.subprocess, "run", lambda *a, **k: git_calls.append(a) or real_run(*a, **k)
+    )
+    for link in (tmp_path / "rows.jsonl", repo / "docs/rows.jsonl"):
+        link.symlink_to(rows)
+        assert load_provisions(link)[0].citation_path == "nz/statute/a"
+        assert fetch_locked_file(link)
+    assert git_calls == []  # review r2 nit 3: no git process to read an unprotected link
+
+
+def test_a_bare_corpus_path_with_dotdot_resolves_through_the_checkout(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 3: ``data/corpus/provisions/../provisions/...`` named no
+    locked file, so require_materialized passed over an absent one."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    dotted = PROV.replace("provisions/", "provisions/../provisions/", 1)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None and resolver.relative(dotted) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([dotted], repo=repo)
+    require_materialized([dotted], repo=repo, fetch=True)
+    assert _placed_regular(repo, PROV)
+
+
+def test_a_symlinked_directory_still_resolves_into_the_checkout_holding_it(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Directory symlinks keep their physical meaning: a worktree whose
+    ``data/corpus/provisions`` links to another checkout reads, and fetches,
+    that checkout's files."""
+    other = _locked_checkout(tmp_path / "other", monkeypatch)
+    worktree = _init_repo(tmp_path / "worktree")
+    write_lock(worktree, _scope_lock(READABLE_FILES))
+    (worktree / "data/corpus").mkdir(parents=True)
+    (worktree / "data/corpus/provisions").symlink_to(other / "data/corpus/provisions", target_is_directory=True)
+    (other / "data/corpus/provisions").mkdir(parents=True)
+    monkeypatch.chdir(worktree)
+    assert CorpusResolver(worktree, sources=[]).relative(worktree / PROV) is None
+    assert CorpusResolver(other, sources=[]).relative(worktree / PROV) == PROV
+    assert load_provisions(worktree / PROV)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(other, PROV)
+    # Fetch never writes through the link, and says so rather than blame R2.
+    (other / PROV).unlink()
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks: remove the symlink"):
+        CorpusResolver(worktree, sources=[]).ensure_paths(["data/corpus/provisions"])
+
+
+
+def test_a_symlinked_source_sibling_is_not_counted_as_fetched(tmp_path: Path, monkeypatch) -> None:
+    """A source comes with its whole directory; a symlinked sibling is not a sibling."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    act = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    sibling = "data/corpus/sources/nz/statute/2026-07-10/official/sub dir/s 2.xml"
+    resolver.ensure_paths([act])
+    (repo / sibling).unlink()
+    (repo / sibling).symlink_to(resolver.cache.object_path(_sha(READABLE_FILES[sibling])))
+    with pytest.raises(CorpusNotMaterializedError, match="symlink"):
+        CorpusResolver(repo, cache=resolver.cache, sources=resolver.sources).resolve(act)
+    assert (repo / sibling).is_symlink()
+
+
+def test_fetch_off_and_cli_inputs_treat_a_symlinked_corpus_file_as_absent(
+    tmp_path: Path, monkeypatch
+) -> None:
+    import argparse
+
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    resolver.ensure_scopes([SCOPE])
+    (repo / PROV).unlink()
+    (repo / PROV).symlink_to(resolver.cache.object_path(_sha(READABLE_FILES[PROV])))
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="absent and fetching is off"):
+        resolver_module.ensure_corpus_scopes([SCOPE], repo=repo)
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    args = argparse.Namespace(base=repo / "data/corpus", provisions=repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="symlink"):
+        resolver_module.materialize_cli_inputs(args, repo=repo)
+    assert (repo / PROV).is_symlink()
+
+_TAIL_SEGMENT = st.sampled_from(["a", "B", "x.jsonl", "s 2.xml", "2026-07-10"])
+_LINK_KINDS = (None, "dangling", "file inside", "file outside", "directory inside")
+
+
+@st.composite
+def _named_paths(draw):
+    prefix = draw(
+        st.sampled_from(
+            [
+                "data/corpus/provisions/nz/statute",
+                "data/corpus/sources/nz/statute/v1/official",
+                "data/corpus/manifests",
+                "docs",
+            ]
+        )
+    )
+    tail = draw(st.lists(_TAIL_SEGMENT, min_size=1, max_size=3))
+    return "/".join([prefix, *tail]), draw(st.sampled_from(_LINK_KINDS)), draw(st.booleans())
+
+
+@PROPERTY_SETTINGS
+@given(_named_paths())
+def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, drawn) -> None:
+    """Invariant 10. ``relative`` answers the same for every spelling of the checkout,
+    names the directory entry a path reaches (the link itself for a symlinked file
+    at a protected corpus path, what it leads to otherwise), and agrees with the
+    path's realpath everywhere a symlinked corpus file is not involved."""
+    rel, link_kind, create = drawn
+    base = tmp_path_factory.mktemp("naming")
+    repo = base / "repo"
+    (repo / "docs").mkdir(parents=True)
+    path = repo / rel
+    if create or link_kind is not None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    if link_kind is None and create:
+        path.write_bytes(b"x")
+    elif link_kind == "dangling":
+        path.symlink_to(base / "nowhere")
+    elif link_kind == "file inside":
+        _write(repo, COVERAGE, b"{}")
+        path.symlink_to(repo / COVERAGE)
+    elif link_kind == "file outside":
+        _write(base, "outside.bin", b"x")
+        path.symlink_to(base / "outside.bin")
+    elif link_kind == "directory inside":
+        path.symlink_to(repo / "docs", target_is_directory=True)
+    resolver = CorpusResolver(repo, sources=[])
+    named = resolver.relative(path)
+
+    symlinked_file = link_kind in {"dangling", "file inside", "file outside"}
+    kept = symlinked_file and is_protected_corpus_path(rel)
+    expected = {
+        None: rel,
+        "directory inside": "docs",
+        "dangling": None,
+        "file inside": COVERAGE,
+        "file outside": None,
+    }[link_kind]
+    assert named == (rel if kept else expected)
+    spellings = [repo, *_checkout_spellings(repo).values()]
+    for spelling in spellings:
+        assert resolver.relative(spelling / rel) == named
+    with contextlib.chdir(base):
+        assert resolver.relative(Path("repo") / rel) == named
+    if rel.startswith(f"{CORPUS_BASE}/"):
+        parts = rel.split("/")
+        dotted = "/".join([*parts[:3], "..", *parts[2:]])
+        assert resolver.relative(repo / dotted) == named
+        assert resolver.relative(dotted) == named  # bare: `..` resolves through the checkout
+        if link_kind is None or kept:
+            assert resolver.relative(rel) == named  # bare: as written
+    if not kept:  # a path and its realpath name one file
+        assert resolver.relative(os.path.realpath(path)) == named
+    if named is not None and os.path.lexists(path):
+        probe = os.lstat if kept else os.stat
+        for spelling in spellings:
+            assert os.path.samestat(probe(spelling / rel), probe(repo / named))
+
+
+# Locked spellings: a spelling the filesystem stores where a locked file belongs.
+
+def _folds_case_on_disk(directory: Path) -> bool:
+    """Ground truth, by writing a file: does ``directory`` find it in another case?"""
+    probe = directory / "case-probe"
+    probe.write_bytes(b"")
+    try:
+        return (directory / "CASE-PROBE").exists()
+    finally:
+        probe.unlink()
+
+
+CASE_VARIANTS = [
+    PROV.replace("data/", "DATA/", 1),  # the #876 review's spelling
+    PROV.replace("/provisions/", "/PROVISIONS/", 1),
+    PROV.replace("/nz/", "/NZ/", 1),
+    PROV.replace(".jsonl", ".JSONL"),
+]
+
+
+@pytest.mark.parametrize("fetched_beside", [False, True])
+@pytest.mark.parametrize("variant", CASE_VARIANTS)
+def test_another_case_of_an_absent_locked_file_is_that_file_where_case_folds(
+    tmp_path: Path, monkeypatch, variant: str, fetched_beside: bool
+) -> None:
+    """#876 review (2026-10-14): on APFS ``DATA/corpus/provisions/...`` names the
+    locked file's place, but no lock named that spelling, so an unfetched scope
+    loaded as empty, require_materialized passed it, and fetch skipped it."""
+    if not _folds_case_on_disk(tmp_path):
+        pytest.skip("needs a case-insensitive filesystem")
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    if fetched_beside:  # data/corpus exists: some components are found, some probed
+        resolver.ensure_paths([COVERAGE])
+    spelled = repo / variant
+    assert resolver.locks.locked_spelling(repo, variant) == PROV
+    assert resolver.entries_for_paths([spelled]) == resolver.entries_for_paths([PROV])
+    directory = variant.rsplit("/", 1)[0]
+    assert resolver.locks.missing_under(repo, directory) == [resolver.locks.by_path[PROV]]
+
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match=f"{PROV} is locked but absent"):
+        load_provisions(spelled)
+    with pytest.raises(CorpusNotMaterializedError, match=f"fetch --path {PROV}"):
+        require_materialized([spelled], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([repo / directory], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="absent and fetching is off"):
+        resolve_corpus_path(spelled, repo=repo)
+    assert not (repo / PROV).exists()
+
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert load_provisions(spelled)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(repo, PROV)
+    (repo / PROV).unlink()
+    assert fetch_locked_file(spelled) and _placed_regular(repo, PROV)
+    (repo / PROV).unlink()
+    assert resolve_corpus_path(spelled, repo=repo).read_bytes() == READABLE_FILES[PROV]
+    (repo / PROV).unlink()
+    require_materialized([repo / directory], repo=repo, fetch=True)
+    assert _placed_regular(repo, PROV)
+
+
+@pytest.mark.parametrize("variant", CASE_VARIANTS)
+def test_another_case_names_another_unlocked_file_where_case_is_kept(
+    tmp_path: Path, monkeypatch, variant: str
+) -> None:
+    """On a case-sensitive filesystem the variant is a different path that no
+    lock names: it reads as before and fetches nothing."""
+    if _folds_case_on_disk(tmp_path):
+        pytest.skip("needs a case-sensitive filesystem")
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    spelled = repo / variant
+    assert resolver.locks.locked_spelling(repo, variant) == variant
+    assert resolver.entries_for_paths([spelled]) == []
+    assert not fetch_locked_file(spelled)
+    assert load_provisions(spelled) == ()
+    require_materialized([spelled], repo=repo)
+    if not PROV.startswith(f"{variant.rsplit('/', 1)[0]}/"):  # the directory is respelled too
+        require_materialized([spelled.parent], repo=repo)
+    assert not (repo / PROV).exists()
+    # Present side by side, each spelling names its own file.
+    resolver.ensure_paths([PROV])
+    other_row = {**PROV_ROW, "citation_path": "nz/statute/b"}
+    _write(repo, variant, (json.dumps(other_row) + "\n").encode())
+    assert resolver.locks.locked_spelling(repo, variant) == variant
+    assert load_provisions(spelled)[0].citation_path == "nz/statute/b"
+    assert _placed_regular(repo, PROV)
+
+
+def test_cli_inputs_take_another_case_of_corpus_paths_and_the_base(tmp_path: Path, monkeypatch) -> None:
+    """The CLI names inputs, and corpus-wide reports require whole trees, under
+    every spelling the filesystem stores in the corpus's place."""
+    import argparse
+    import importlib.util
+
+    from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
+
+    folds = _folds_case_on_disk(tmp_path)
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    monkeypatch.chdir(repo)
+    variant = PROV.replace("data/", "DATA/", 1)
+    args = argparse.Namespace(
+        base=Path("DATA/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version="2026-07-10",
+        provisions=Path(variant),
+    )
+    paths, scopes, _selectors = corpus_inputs_from_args(args, repo=repo)
+    assert paths == [variant]  # named as given; the locks decide what it names
+    assert scopes == ([SCOPE] if folds else [])
+    resolver_module.materialize_cli_inputs(args, repo=repo, include_scope=True)
+    assert all(_placed_regular(repo, rel) for rel in READABLE_FILES) is folds
+    assert (repo / PROV).exists() is folds
+
+    report = build_parser().parse_args(["artifact-report", "--base", "DATA/corpus", "--version", "v1"])
+    prefixes = {p.relative_to(repo).as_posix() for p in _corpus_wide_prefixes(report, "artifact-report")}
+    kinds = ("sources", "inventory", "provisions", "coverage")
+    assert prefixes == ({f"data/corpus/{kind}" for kind in kinds} if folds else set())
+
+    locks = load_locks(repo)
+    select = {"scopes": [], "select_all": False, "paths": ["DATA/corpus/provisions"]}
+    if folds:  # `corpus fetch --path DATA/corpus/provisions`
+        assert corpus_cli._selected_entries(repo, locks, **select) == [locks.by_path[PROV]]
+    else:
+        with pytest.raises(SystemExit):
+            corpus_cli._selected_entries(repo, locks, **select)
+    script = Path(__file__).resolve().parents[1] / "scripts" / "audit_us_release_publishability.py"
+    spec = importlib.util.spec_from_file_location("audit_us_release_publishability", script)
+    assert spec is not None and spec.loader is not None
+    audit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(audit)
+    assert audit._locked_under(repo, repo / variant) is folds
+
+
+def test_resolve_never_returns_a_spelling_the_filesystem_keeps_apart(tmp_path: Path, monkeypatch) -> None:
+    """Were a filesystem's comparison of names misjudged (one that compares them
+    differently from APFS), the spelling would be fetched as the locked file but
+    still not reach it; resolve refuses rather than return a path that does not
+    exist."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    monkeypatch.setattr(corpus_locks_module, "stored_together", lambda *_args: True)
+    variant = COVERAGE.replace(".json", "\u200c.json")  # a zero-width non-joiner: another name
+    with pytest.raises(CorpusNotMaterializedError, match="keeps it apart from the locked"):
+        resolve_corpus_path(repo / variant, repo=repo)
+    assert _placed_regular(repo, COVERAGE) and not (repo / variant).exists()
+    assert not fetch_locked_file(repo / variant)
+
+
+# One character's respellings beyond ASCII case. fold_path merges each with the
+# original; only some of them name the same place on a case-insensitive APFS.
+_RESPELLINGS = {
+    "s": ("S", "\u017f"),  # long s: APFS folds it to s
+    "k": ("K", "\u212a"),  # Kelvin sign: folds to k
+    "K": ("k", "\u212a"),  # Kelvin sign: also canonically equivalent to K
+    "i": ("I", "\u0131"),  # dotless i: APFS keeps it apart
+    "a": ("A", "\uff41"),  # fullwidth a: APFS keeps it apart
+    "\u00e9": ("\u00c9", "e\u0301"),  # e acute: capital, and decomposed
+}
+KISS = "data/corpus/sources/nz/statute/2026-07-10/official/Kiss caf\u00e9.html"
+SPELLING_FILES = {PROV: READABLE_FILES[PROV], KISS: b"<html/>"}
+
+
+def _respell(draw, name: str) -> str:
+    """One edit that fold_path ignores and a filesystem may or may not."""
+    kind = draw(st.sampled_from(["character", "character", "upper", "sharp s", "zero-width"]))
+    if kind == "upper":
+        return name.upper()
+    if kind == "sharp s" and "ss" in name:
+        return name.replace("ss", "\u00df", 1)  # sharp s: APFS folds it to ss
+    if kind == "zero-width":  # a zero-width non-joiner: APFS keeps it apart
+        cut = draw(st.integers(0, len(name)))
+        return name[:cut] + "\u200c" + name[cut:]
+    spots = [i for i, ch in enumerate(name) if ch in _RESPELLINGS or (ch.isascii() and ch.isalpha())]
+    if not spots:
+        return name
+    index = draw(st.sampled_from(spots))
+    options = _RESPELLINGS.get(name[index], (name[index].swapcase(),))
+    return name[:index] + draw(st.sampled_from(options)) + name[index + 1 :]
+
+
+@st.composite
+def _respelled_locked_names(draw):
+    full = draw(st.sampled_from(sorted(SPELLING_FILES)))
+    parts = full.split("/")
+    depth = draw(st.integers(1, len(parts)))  # the file, or a directory above it
+    spelled = parts[:depth]
+    # A few edits in one or two components, so single foldings get tested alone.
+    for index in draw(st.lists(st.integers(0, depth - 1), max_size=2, unique=True)):
+        for _ in range(draw(st.integers(1, 2))):
+            spelled[index] = _respell(draw, spelled[index])
+    present = draw(st.integers(0, len(parts)))  # how much of the locked path exists already
+    return full, "/".join(parts[:depth]), "/".join(spelled), present
+
+
+@settings(PROPERTY_SETTINGS, max_examples=200)
+@given(_respelled_locked_names())
+# The review's spelling, before anything is fetched and after.
+@example((PROV, PROV, PROV.replace("data/", "DATA/", 1), 0))
+@example((PROV, PROV, PROV.replace("data/", "DATA/", 1), 6))
+# Canonical equivalents (decomposed e acute, the Kelvin sign for K): one place
+# on APFS of either kind, two on ext4.
+@example((KISS, KISS, KISS.replace("\u00e9", "e\u0301"), 0))
+@example((KISS, KISS, KISS.replace("\u00e9", "e\u0301"), 8))
+@example((KISS, KISS, KISS.replace("Kiss", "\u212aiss"), 0))
+@example((KISS, KISS, KISS.replace("Kiss", "\u212aiss"), 8))
+# Merged by fold_path, never by APFS: a zero-width non-joiner, a dotless i.
+@example((KISS, KISS, KISS.replace("Kiss", "Ki\u200css"), 0))
+@example((KISS, KISS, KISS.replace("Kiss", "K\u0131ss"), 8))
+def test_a_spelling_names_a_locked_file_exactly_where_the_filesystem_puts_both(
+    tmp_path_factory, drawn
+) -> None:
+    """Invariant 10, locked spellings. Asked before the file exists (or with part of
+    its path in place), ``locked_spelling`` maps a respelled locked path or
+    directory onto it exactly when the filesystem, once the file is there,
+    reaches the same entry through both spellings; ``missing_under`` follows."""
+    full, canonical, spelled, present = drawn
+    repo = tmp_path_factory.mktemp("spelling")
+    (repo / "docs").mkdir()
+    locks = LockSet({SCOPE: _scope_lock(SPELLING_FILES)})
+    parts = full.split("/")
+    if present == len(parts):
+        _write(repo, full, SPELLING_FILES[full])
+    elif present:
+        (repo / "/".join(parts[:present])).mkdir(parents=True)
+
+    named = locks.locked_spelling(repo, spelled)
+    missing = locks.missing_under(repo, spelled)
+    expected_missing = locks.missing_under(repo, canonical)
+    folds_case = looks_up_case_insensitively(repo)
+
+    if not (repo / full).exists():
+        _write(repo, full, SPELLING_FILES[full])
+    try:
+        together = os.path.samestat(os.lstat(repo / spelled), os.lstat(repo / canonical))
+    except FileNotFoundError:
+        together = False
+    assert folds_case == _folds_case_on_disk(repo)
+    differs = [i for i, pair in enumerate(zip(spelled.split("/"), parts, strict=False)) if len(set(pair)) > 1]
+    decided_by = "entry" if differs and present > differs[0] else "probe" if differs else "none"
+    event(f"together={together} folds_case={folds_case} decided by {decided_by}")
+    if named == (canonical if together else spelled):
+        assert missing == (expected_missing if together else [])
+        return
+    event("intended: canonical equivalents on a case-sensitive filesystem")
+    # Intended: a case-sensitive filesystem that still merges canonically
+    # equivalent names (case-sensitive APFS) is taken to keep apart names
+    # neither of which exists yet. CI's ext4 and case-insensitive APFS do not
+    # reach this.
+    assert together and not folds_case and named == spelled
+    assert unicodedata.normalize("NFD", spelled) == unicodedata.normalize("NFD", canonical)

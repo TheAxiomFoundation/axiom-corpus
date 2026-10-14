@@ -29,6 +29,7 @@ from axiom_corpus.corpus.content_store import (
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
+    PROTECTED_CORPUS_PREFIXES,
     LockEntry,
     LockSet,
     ScopeKey,
@@ -36,6 +37,7 @@ from axiom_corpus.corpus.corpus_locks import (
     is_protected_corpus_path,
     load_locks,
     scope_for_path,
+    stored_together,
 )
 
 NO_FETCH_ENV = "AXIOM_CORPUS_NO_FETCH"
@@ -76,6 +78,71 @@ def find_repo_root(start: Path | None = None) -> Path | None:
     """The axiom-corpus checkout containing ``start`` (default: cwd), if any."""
     here = (start or Path.cwd()).resolve()
     return _repo_root_for_dir(here if here.is_dir() else here.parent)
+
+
+def _is_symlinked_file(path: Path) -> bool:
+    """A symlink that does not lead to a directory (a file, a cache object, nothing)."""
+    return path.is_symlink() and not path.is_dir()
+
+
+def _placed(path: Path) -> bool:
+    """A regular file at ``path`` itself, as fetch places one.
+
+    A symlink is never a placed corpus file, whatever it points to: fetch
+    refuses to write through one and release code rejects one.
+    """
+    return path.is_file() and not path.is_symlink()
+
+
+def _link_holder(probe: Path) -> Path | None:
+    """The checkout in which ``probe`` is a symlinked file at a protected path, if any."""
+    if not _is_symlinked_file(probe):
+        return None
+    # Only a link whose directory lies under a protected prefix can be one;
+    # anything else (``/etc/localtime``) is settled without a git process.
+    parent = fold_path(os.path.realpath(probe.parent) + "/")
+    if not any(f"/{prefix}" in parent for prefix in PROTECTED_CORPUS_PREFIXES):
+        return None
+    holder = find_repo_root(_existing_ancestor(probe.parent))
+    resolver = resolver_for(holder) if holder is not None else None
+    if resolver is None or resolver.link_name(probe) is None:
+        return None
+    return holder
+
+
+def _checkout_for(path: Path) -> Path | None:
+    """The checkout that names ``path`` (see ``CorpusResolver.relative``).
+
+    A symlinked file at a protected path belongs to the checkout holding the
+    link; anything else to the checkout it resolves into, a dangling link's
+    target included.
+    """
+    probe = path if path.is_absolute() else Path.cwd() / path
+    return _link_holder(probe) or find_repo_root(
+        _existing_ancestor(Path(os.path.realpath(probe)))
+    )
+
+
+def _symlink_on_path(repo: Path, rel: str) -> bool:
+    """True when any component of ``rel`` below ``repo`` is a symlink (fetch refuses them)."""
+    lexical = repo
+    for part in rel.split("/"):
+        lexical = lexical / part
+        if lexical.is_symlink():
+            return True
+    return False
+
+
+def _symlinked_error(rel: str, target: Path) -> CorpusNotMaterializedError:
+    try:
+        leads_to = os.readlink(target)
+    except OSError:  # removed or replaced meanwhile
+        leads_to = "?"
+    return CorpusNotMaterializedError(
+        f"{rel} is a symlink in this checkout ({target} -> {leads_to}); "
+        "corpus files are placed as regular files, never symlinks. Remove it and run "
+        f"`axiom-corpus-ingest corpus fetch --path {rel}`."
+    )
 
 
 class CorpusResolver:
@@ -132,7 +199,7 @@ class CorpusResolver:
             rel = self.relative(path)
             if rel is None:
                 continue
-            for entry in self.locks.entries_under(rel):
+            for entry in self.locks.entries_under(self.locks.locked_spelling(self.repo, rel)):
                 selected[entry.path] = entry
         return self.locks.with_whole_source_dirs(selected.values())
 
@@ -145,21 +212,63 @@ class CorpusResolver:
     def relative(self, path: str | Path) -> str | None:
         """Repository-relative posix path for ``path``, or None outside the repo.
 
-        A relative ``data/corpus/...`` spelling is taken as repository-relative;
-        any other relative path is relative to the working directory. Symlinked
-        spellings (``/tmp`` for ``/private/tmp``) resolve to the same answer.
+        A relative ``data/corpus/...`` spelling is taken as repository-relative,
+        as written unless it has a ``..`` component, which resolves through the
+        checkout; any other relative path is relative to the working directory.
+        Every spelling of the checkout gives the same answer: through a symlink,
+        ``/tmp`` for ``/private/tmp``, a case variant or a firmlink.
+
+        One symlink is not followed: a symlinked file at a protected corpus
+        path in this checkout names that path, not its target. Such a link
+        stands where a locked file belongs (fetch never makes one), so the
+        callers must see that path's lock and refuse the link, rather than
+        follow it to a cache object, another corpus file, or nothing at all.
         """
         candidate = Path(path)
         if not candidate.is_absolute():
             text = candidate.as_posix()
             if text == CORPUS_BASE or text.startswith(f"{CORPUS_BASE}/"):
-                return text
-            candidate = Path.cwd() / candidate
-        real = Path(os.path.realpath(candidate))
-        try:
-            return real.relative_to(self.repo).as_posix()
-        except ValueError:
+                if ".." not in candidate.parts:
+                    return text
+                candidate = self.repo / candidate
+            else:
+                candidate = Path.cwd() / candidate
+        return self.link_name(candidate) or self._inside(Path(os.path.realpath(candidate)))
+
+    def link_name(self, candidate: Path) -> str | None:
+        """The protected path that the symlinked file ``candidate`` stands at here, if any.
+
+        ``candidate`` is absolute. None for anything but a symlinked file at a
+        protected corpus path in this checkout.
+        """
+        if not _is_symlinked_file(candidate):
             return None
+        link = self._inside(Path(os.path.realpath(candidate.parent)) / candidate.name)
+        if link is not None and is_protected_corpus_path(fold_path(link)):
+            return link
+        return None
+
+    def _inside(self, physical: Path) -> str | None:
+        """``physical`` (symlink-free above its last component) relative to the checkout."""
+        try:
+            return physical.relative_to(self.repo).as_posix()
+        except ValueError:
+            pass
+        # realpath keeps some spellings of one directory apart: a case variant
+        # on a case-insensitive filesystem, a firmlink such as
+        # /System/Volumes/Data/Users. Match the checkout by identity instead.
+        try:
+            root = os.lstat(self.repo)
+        except OSError:
+            return None
+        for ancestor in (physical, *physical.parents):
+            try:
+                same = os.path.samestat(os.lstat(ancestor), root)
+            except OSError:
+                continue
+            if same:
+                return physical.relative_to(ancestor).as_posix()
+        return None
 
     def ensure(self, entries: Sequence[LockEntry], *, verify: bool = False) -> FetchReport:
         self.require_valid_locks()
@@ -179,11 +288,16 @@ class CorpusResolver:
             )
             if report.failed:
                 first, reason = next(iter(sorted(report.failed.items())))
+                hint = (
+                    "Corpus files are placed as regular files, never through symlinks: "
+                    "remove the symlink and fetch again."
+                    if _symlink_on_path(self.repo, first)
+                    else "Check R2 credentials (~/.config/axiom-foundation/r2-credentials.json) "
+                    "or run `axiom-corpus-ingest corpus fetch` with network access."
+                )
                 raise CorpusNotMaterializedError(
                     f"{len(report.failed)} locked corpus file(s) could not be fetched; "
-                    f"first: {first}: {reason}. Check R2 credentials "
-                    "(~/.config/axiom-foundation/r2-credentials.json) or run "
-                    "`axiom-corpus-ingest corpus fetch` with network access."
+                    f"first: {first}: {reason}. {hint}"
                 )
             pending = [entry for entry in entries if not (self.repo / entry.path).is_file()]
             if not pending:
@@ -209,43 +323,39 @@ class CorpusResolver:
         """A regular file for one corpus path, fetched if it is locked and absent.
 
         A source file comes with every locked source of its scope, even when it
-        is itself already present: callers list the directory next.
+        is itself already present: callers list the directory next. A spelling
+        the filesystem stores where a locked file belongs (``DATA/corpus/...``
+        on APFS) is that file, present or not.
         """
         rel = self.relative(path)
         if rel is None:
             raise ValueError(f"{path} is not inside {self.repo}")
         target = self.repo / rel
-        present = target.is_file() and not target.is_symlink()
+        present = _placed(target)
         if present and not fold_path(rel).startswith(f"{CORPUS_BASE}/sources/"):
             return target
         self.require_valid_locks()
-        # A case-variant spelling names the same locked file only where the
-        # filesystem merged them, i.e. when the variant exists on disk.
-        entry = self.locks.by_path.get(rel)
-        if entry is None and present:
-            folded = self.locks.find_folded(rel)
-            canonical = self.repo / folded.path if folded is not None else None
-            # Only a spelling the filesystem merged, i.e. the same file on disk.
-            try:
-                merged = canonical is not None and os.path.samefile(target, canonical)
-            except FileNotFoundError:  # one of them vanished meanwhile (a rollback)
-                merged = False
-            if merged:
-                entry = folded
+        entry = self.locks.by_path.get(self.locks.locked_spelling(self.repo, rel))
         if entry is None:
             if present:
                 return target
+            if target.is_symlink():
+                raise CorpusNotMaterializedError(
+                    f"{rel} is a symlink, not a placed corpus file, and no lock names it."
+                )
             raise CorpusNotMaterializedError(
                 f"{rel} is neither present nor locked. Run `axiom-corpus-ingest corpus "
                 "status` to see which scopes this checkout has."
             )
+        if target.is_symlink():
+            raise _symlinked_error(rel, target)
         scope = scope_for_path(entry.path)
         if present and scope in self._complete_source_scopes:
             return target
         missing = [
             item
             for item in self.locks.with_whole_source_dirs([entry])
-            if not (self.repo / item.path).is_file()
+            if not _placed(self.repo / item.path)
         ]
         if missing:
             if fetch_disabled():
@@ -254,6 +364,13 @@ class CorpusResolver:
                     f"fetching is off ({NO_FETCH_ENV}); first: {missing[0].path}"
                 )
             self.ensure(missing)
+        if entry.path != rel and not _placed(target):
+            # Taken for the locked file, the spelling must now reach it; a
+            # filesystem that keeps the two apart makes it another, absent file.
+            raise CorpusNotMaterializedError(
+                f"{rel} is neither present nor locked; this filesystem keeps it apart "
+                f"from the locked {entry.path}."
+            )
         if scope is not None and entry.path.startswith(f"{CORPUS_BASE}/sources/"):
             self._complete_source_scopes.add(scope)
         return target
@@ -307,7 +424,7 @@ def ensure_corpus_scopes(scopes: Iterable[ScopeKey], *, repo: Path | None = None
     entries = resolver.entries_for_scopes(scope_list)
     if fetch_disabled():
         resolver.require_valid_locks()
-        absent = [entry.path for entry in entries if not (resolver.repo / entry.path).is_file()]
+        absent = [entry.path for entry in entries if not _placed(resolver.repo / entry.path)]
         if absent:
             raise CorpusNotMaterializedError(
                 f"{len(absent)} locked corpus file(s) are absent and fetching is off "
@@ -331,13 +448,17 @@ def require_materialized(
     """
     path_list = [Path(path) for path in paths]
     if repo is None and path_list:
-        repo = find_repo_root(_existing_ancestor(path_list[0]))
+        repo = _checkout_for(path_list[0])
     resolver = resolver_for(repo)
     if resolver is None or not resolver.active:
         return
     resolver.require_valid_locks()
     missing: list[LockEntry] = []
-    rels = [rel for rel in (resolver.relative(path) for path in path_list) if rel is not None]
+    rels = [
+        resolver.locks.locked_spelling(resolver.repo, rel)
+        for rel in (resolver.relative(path) for path in path_list)
+        if rel is not None
+    ]
     for rel in rels:
         missing.extend(resolver.locks.missing_under(resolver.repo, rel))
     if not missing:
@@ -360,31 +481,44 @@ def require_materialized(
 
 
 def fetch_locked_file(path: str | Path) -> bool:
-    """Fetch ``path`` if a lock in its checkout names it; True when it now exists.
+    """Fetch ``path`` if a lock in its checkout names it; True when it is now in place.
 
-    Returns False (and does nothing) for paths no lock names, outside any
-    checkout, or with fetching disabled. Raises ``CorpusNotMaterializedError``
-    when a locked file cannot be fetched: silently reading nothing would be
+    A lock names ``path`` when it names the place the filesystem stores
+    ``path`` in: on a case-insensitive filesystem ``DATA/corpus/...`` is
+    ``data/corpus/...``, fetched or not. Returns False (and does nothing) for
+    paths no lock names, outside any checkout, or with fetching disabled.
+    Raises ``CorpusNotMaterializedError``
+    when a locked file cannot be fetched, or when a symlink stands where it
+    belongs: silently reading nothing, or bytes no lock checked, would be
     worse.
     """
     candidate = Path(path)
-    if candidate.exists():
-        return True
     anchor = candidate if candidate.is_absolute() else Path.cwd() / candidate
-    resolver = resolver_for(find_repo_root(_existing_ancestor(anchor)))
+    # A present path is read as it is, save a symlinked file at a protected
+    # path, which stands where a locked file belongs.
+    if candidate.exists() and _link_holder(anchor) is None:
+        return True
+    resolver = resolver_for(_checkout_for(anchor))
     if resolver is None or not resolver.active:
         return False
     resolver.require_valid_locks()
     rel = resolver.relative(anchor)
-    if rel is None or rel not in resolver.locks.by_path:
+    if rel is None:
         return False
+    # Another spelling the filesystem stores in the same place
+    # (``DATA/corpus/...`` on APFS) is the locked file, fetched or not.
+    rel = resolver.locks.locked_spelling(resolver.repo, rel)
+    if rel not in resolver.locks.by_path:
+        return False
+    if (resolver.repo / rel).is_symlink():
+        raise _symlinked_error(rel, resolver.repo / rel)
     if fetch_disabled():
         raise CorpusNotMaterializedError(
             f"{rel} is locked but absent, and fetching is off ({NO_FETCH_ENV}); reading it "
             "as empty would be wrong. Fetch it first."
         )
     resolver.ensure(resolver.entries_for_paths([rel]))
-    return True
+    return anchor.exists()
 
 
 def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
@@ -399,7 +533,7 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     ):
         return candidate  # present and not a source: nothing to widen, no git call
     if repo is None:
-        repo = find_repo_root(_existing_ancestor(candidate))
+        repo = _checkout_for(candidate)
     resolver = resolver_for(repo)
     if resolver is None or not resolver.active or resolver.relative(candidate) is None:
         if candidate.is_file() and not candidate.is_symlink():
@@ -430,7 +564,16 @@ def _is_corpus_base(repo: Path, base: object) -> bool:
     if not isinstance(base, str | Path) or not str(base):
         return False
     candidate = Path(base) if Path(base).is_absolute() else Path.cwd() / Path(base)
-    return Path(os.path.realpath(candidate)) == (repo / CORPUS_BASE).resolve()
+    if Path(os.path.realpath(candidate)) == (repo / CORPUS_BASE).resolve():
+        return True
+    # Another spelling of it: through a firmlink, or a case variant on APFS
+    # (fetched or not).
+    rel = CorpusResolver(repo, sources=[]).relative(candidate)
+    return (
+        rel is not None
+        and fold_path(rel) == CORPUS_BASE
+        and stored_together(repo, rel, CORPUS_BASE)
+    )
 
 
 def corpus_inputs_from_args(
@@ -456,9 +599,10 @@ def corpus_inputs_from_args(
             if not candidate.is_absolute():
                 candidate = Path.cwd() / candidate
             rel = resolver.relative(candidate)
-            # A path under a protected prefix names files to read; the bare
-            # base (``--base data/corpus``) names nothing by itself.
-            if rel is not None and is_protected_corpus_path(rel.rstrip("/") + "/"):
+            # A path under a protected prefix, in any spelling (the locks
+            # decide which spellings name locked files), names files to read;
+            # the bare base (``--base data/corpus``) names nothing by itself.
+            if rel is not None and is_protected_corpus_path(fold_path(rel).rstrip("/") + "/"):
                 paths.append(rel.rstrip("/"))
     scopes: list[ScopeKey] = []
     if _is_corpus_base(repo, getattr(args, "base", None)):
@@ -497,7 +641,7 @@ def materialize_cli_inputs(
     missing = [
         entry
         for entry in entries.values()
-        if not (resolver.repo / entry.path).is_file()
+        if not _placed(resolver.repo / entry.path)
     ]
     if not missing:
         return None
