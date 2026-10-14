@@ -121,6 +121,14 @@ if [ -n "${FAIL_RESET_ONCE:-}" ] && [ "$*" = "reset -q -- data/corpus .axiom/ing
   echo "fatal: simulated index.lock write error" >&2
   exit 128
 fi
+# While $FAIL_CHECKOUT_ONCE is set, fail on_exit's first put-back of committed manifests
+# the same way.
+if [ -n "${FAIL_CHECKOUT_ONCE:-}" ] && [ "$*" = "checkout -q -- .axiom/ingest-manifests" ] \\
+  && [ ! -e "$HOLD_DIR/checkout-failed" ]; then
+  : > "$HOLD_DIR/checkout-failed"
+  echo "fatal: simulated index.lock write error" >&2
+  exit 128
+fi
 exec "@GIT@" "$@"
 """
 
@@ -940,14 +948,16 @@ def test_resumes_after_a_fix_to_artifacts_this_branch_signed(repo: Path, fix: st
 
 # What stops a run that signs both scopes again, before its sign commit lands.
 RESIGN_FAILURES = {
-    "signing": ("FAIL_SIGN_VERSION", UNRELEASED[1]),  # the first went aside, the second fails
-    "sign-commit": ("FAIL_COMMIT", SIGN),  # both were moved over their committed copies
+    "signing": {"FAIL_SIGN_VERSION": UNRELEASED[1]},  # the first went aside, the second fails
+    "sign-commit": {"FAIL_COMMIT": SIGN},  # both were moved over their committed copies
+    # ... and a signal fails the first put-back, as one can fail the unstage.
+    "sign-commit-put-back-retried": {"FAIL_COMMIT": SIGN, "FAIL_CHECKOUT_ONCE": "1"},
 }
 
 
 @pytest.mark.parametrize("failure", RESIGN_FAILURES)
 def test_a_run_that_stops_after_signing_again_leaves_the_committed_manifests(
-    repo: Path, monkeypatch: pytest.MonkeyPatch, failure: str
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, failure: str
 ) -> None:
     # Both committed manifests go stale, so one run signs both again. Written over its
     # committed copy at once, the first would dirty the tracked tree and the signer would
@@ -961,10 +971,16 @@ def test_a_run_that_stops_after_signing_again_leaves_the_committed_manifests(
     head = _git(repo, "rev-parse", "HEAD")
     committed = {version: _manifest(repo, version).read_bytes() for version in UNRELEASED}
 
-    name, value = RESIGN_FAILURES[failure]
-    monkeypatch.setenv(name, value)
+    failures = RESIGN_FAILURES[failure]
+    if "FAIL_CHECKOUT_ONCE" in failures:
+        _install_git_shim(tmp_path)
+        (tmp_path / "hold").mkdir()
+        monkeypatch.setenv("HOLD_DIR", str(tmp_path / "hold"))
+    for name, value in failures.items():
+        monkeypatch.setenv(name, value)
     second = _run(repo)
-    monkeypatch.delenv(name)
+    for name in failures:
+        monkeypatch.delenv(name)
 
     assert second.returncode == 1, second.stdout + second.stderr
     assert _git(repo, "rev-parse", "HEAD") == head
@@ -972,7 +988,11 @@ def test_a_run_that_stops_after_signing_again_leaves_the_committed_manifests(
     for version in UNRELEASED:
         assert _manifest(repo, version).read_bytes() == committed[version]
     put_back = "put back the committed manifests this run had replaced but not committed"
-    assert (put_back in second.stderr) == (failure == "sign-commit")
+    assert (put_back in second.stderr) == ("FAIL_COMMIT" in failures)
+    assert "could not put back" not in second.stderr
+    if "FAIL_CHECKOUT_ONCE" in failures:
+        assert (tmp_path / "hold/checkout-failed").exists()
+        assert "simulated index.lock write error" in second.stderr
     for version in UNRELEASED:
         resigned = f"signing again: {_scope(version)} (its artifacts changed after it was signed)"
         assert resigned in second.stdout
