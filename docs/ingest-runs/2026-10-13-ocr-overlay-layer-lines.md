@@ -30,10 +30,15 @@ Reproduced from retained bytes at `origin/main` `c3a8e1d0c`:
 On a page `ocr: true` reads by OCR although it has a text layer (`_pdf_page_text`), the
 layer is read from the `dict` output (`_pdf_layer_lines`): each line as its spans' text,
 paint and font name, unsplit. A span is painted when its characters are filled or stroked
-(PyMuPDF `char_flags`) with non-zero opacity, or when it is set in a Type3 font: PyMuPDF
-1.26, which this repository locks, reports filled Type3 glyphs as neither filled nor
-stroked, as it does invisible text, while 1.27 and later report them filled (every Type3
-span on the overlay pages measured is filled under 1.28.2). If the spans do not hold the
+(PyMuPDF `char_flags`) with non-zero opacity. PyMuPDF 1.26, which this repository locks,
+reports filled Type3 glyphs as neither filled nor stroked, as it does invisible text, so
+under PyMuPDF before 1.27 a span in a Type3 font counts as painted. It is matched by the
+name MuPDF 1.26 gives the span: the font's /Name (an indirect one resolved, a font written
+inline read through the resources that hold it), its bytes read as Latin-1, less a
+six-character subset prefix, or "Unnamed-T3" without one. From 1.27 the span's paint is
+trusted: 1.27.2.3 and 1.28.2, the releases checked, report Type3 paint, and every Type3
+span on the overlay pages measured is filled under 1.28.2. The limit of the lock: there, an invisible Type3 layer, or invisible
+text in another font sharing a Type3 font's name, counts as painted. If the spans do not hold the
 text output's characters (whitespace, control characters and combining marks aside;
 `sort_text` changes only the lines the text output prints), the text output's lines,
 split at newlines only, are used instead, all counted as painted, so no typed text can go
