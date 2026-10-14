@@ -975,6 +975,14 @@ def test_a_symlinked_directory_still_resolves_into_the_checkout_holding_it(
     assert CorpusResolver(other, sources=[]).relative(worktree / PROV) == PROV
     assert load_provisions(worktree / PROV)[0].citation_path == "nz/statute/a"
     assert _placed_regular(other, PROV)
+    # A pointer outside both checkouts, through the sharing link, names the
+    # other checkout's file too (review r2c).
+    pointer = tmp_path / "latest.jsonl"
+    pointer.symlink_to(worktree / PROV)
+    assert CorpusResolver(worktree, sources=[]).relative(pointer) is None
+    assert CorpusResolver(other, sources=[]).relative(pointer) == PROV
+    holder = resolver_module._checkout_for(pointer)
+    assert holder is not None and os.path.samefile(holder, other)
     # A file in place beneath the link needs no fetch, so ensure passes.
     report = CorpusResolver(worktree, sources=[]).ensure_paths(["data/corpus/provisions"])
     assert report.present == [PROV] and report.failed == {}
@@ -1219,6 +1227,39 @@ def test_a_chain_that_returns_to_the_path_it_spells_is_followed(tmp_path: Path, 
     assert holder is not None and os.path.samefile(holder, c)
     assert load_provisions(a / PROV)[0].citation_path == "nz/statute/a"
     assert _placed_regular(c, PROV)
+
+
+@pytest.mark.parametrize("where", ["outside the checkout", "docs"])
+def test_a_pointer_through_a_directory_link_reads_like_the_path_it_names(
+    tmp_path: Path, monkeypatch, where: str
+) -> None:
+    """Review r2c finding 1: a ``latest.jsonl`` pointer at no protected path,
+    to a provisions file below a directory link to an empty directory, ended
+    the walk at itself, so it read as an empty scope. A pointer is followed
+    like any other link: it reads, and is refused, as the path it names."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    empty = tmp_path / "empty"
+    (empty / "statute").mkdir(parents=True)
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(empty, target_is_directory=True)
+    pointer = (tmp_path if where == "outside the checkout" else repo / "docs") / "latest.jsonl"
+    pointer.parent.mkdir(parents=True, exist_ok=True)
+    pointer.symlink_to(repo / PROV)
+    monkeypatch.chdir(tmp_path)
+    assert resolver_module._link_holder(pointer) is None  # the pointer stands at no protected path
+    assert CorpusResolver(repo, sources=[]).relative(pointer) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(pointer)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        require_materialized([pointer])
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off.*is a symlink"):
+        load_provisions(pointer)
+    # With the file in place beneath the link, the pointer reads it, fetching off too.
+    (empty / "statute/2026-07-10.jsonl").write_bytes(READABLE_FILES[PROV])
+    assert load_provisions(pointer)[0].citation_path == "nz/statute/a"
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert load_provisions(pointer)[0].citation_path == "nz/statute/a"
 
 
 def test_a_directory_link_to_a_regular_file_is_refused(tmp_path: Path, monkeypatch) -> None:

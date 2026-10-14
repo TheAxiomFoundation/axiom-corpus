@@ -178,14 +178,19 @@ def _spells(probe: Path, name: str) -> bool:
     return probe.parts[-len(tail) :] == tail
 
 
-def _standing_places(probe: Path, physical: Path, home: Path | None) -> list[tuple[Path, str]]:
+def _standing_places(
+    probe: Path, physical: Path, home: Path | None
+) -> tuple[list[tuple[Path, str]], bool]:
     """Each guarded place ``probe`` stands at below a symlink, in the order it resolves.
 
     The path is resolved as the operating system resolves it, links inside a
     link's target included. At each symlink the path stands at the link's own
     place plus the rest of the path. A ``..`` after the link is resolved from
     the link's target, so such a place counts only where it reaches the same
-    entry. A symlinked file ends the walk: it never stands anywhere else.
+    entry. A symlinked file that stands at a guarded place ends the walk, and
+    the second value is then True: it stands there and nowhere else. Any other
+    symlinked file (a pointer such as ``latest.jsonl``) is followed like a
+    directory link.
     """
     places: list[tuple[Path, str]] = []
     for _link in range(_MAX_LINKS):
@@ -196,20 +201,20 @@ def _standing_places(probe: Path, physical: Path, home: Path | None) -> list[tup
             if prefix.is_symlink():
                 break
         else:
-            return places
+            return places, False
         parent = Path(os.path.realpath(prefix.parent))
         rest = parts[index + 1 :]
         stands = _protected_at((*parent.parts, parts[index], *rest), home)
         if stands is not None and (".." not in rest or _same_place(stands[0] / stands[1], physical)):
             places.append(stands)
-        if not rest and not prefix.is_dir():
-            return places
+        if not rest and not prefix.is_dir() and places:
+            return places, True
         try:
             target = os.readlink(prefix)
         except OSError:
-            return places
+            return places, False
         probe = Path(parent, target, *rest)
-    return places
+    return places, False
 
 
 def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tuple[Path, str] | None:
@@ -219,7 +224,9 @@ def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tu
     above a guarded path (``_guarded``) stands where locked files belong, so
     a path through one names, in order:
 
-    1. a symlinked file: the last guarded place it stands at, its own path;
+    1. a symlinked file that stands at a guarded place: that place, its own
+       path. A symlinked file at no guarded place (a pointer) is followed
+       like any other link;
     2. a path that reaches a guarded path whose name it spells exactly: that
        path, through any links. A worktree whose ``data/corpus/provisions``
        links to another checkout's names that checkout's files;
@@ -230,10 +237,15 @@ def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tu
 
     A path that stands nowhere names the guarded path it reaches, if any.
     """
-    reached = None if _is_symlinked_file(probe) else _protected_at(physical.parts, home)
+    file_link = _is_symlinked_file(probe)
+    reached = None if file_link else _protected_at(physical.parts, home)
     if reached is not None and _spells(probe, reached[1]):
         return reached
-    places = _standing_places(probe, physical, home)
+    places, stands_as_file = _standing_places(probe, physical, home)
+    if stands_as_file:
+        return places[-1]
+    if file_link:  # a pointer at no guarded place: named like the path it leads to
+        reached = _protected_at(physical.parts, home)
     found = places[-1] if places else None
     if reached is not None and (found is None or found[1] == reached[1]):
         return reached
@@ -243,13 +255,14 @@ def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tu
 def _link_holder(probe: Path) -> Path | None:
     """The checkout in which ``probe`` is a symlinked file at a protected path, if any.
 
+    A pointer at no protected path is none, even when what it leads to is.
     A link outside the protected paths (``/etc/localtime``) is settled
     without a git process.
     """
     if not _is_symlinked_file(probe):
         return None
-    named = _protected_name(probe, Path(os.path.realpath(probe)))
-    return named[0] if named is not None else None
+    places, stands_as_file = _standing_places(probe, Path(os.path.realpath(probe)), None)
+    return places[-1][0] if stands_as_file else None
 
 
 def _checkout_for(path: Path) -> Path | None:

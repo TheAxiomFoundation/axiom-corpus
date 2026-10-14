@@ -235,7 +235,9 @@ like an absolute path, symlinks included.
 A symlink at or above a protected path of a checkout stands where locked
 files belong. Here `data`, `data/corpus` and the artifact-class directories
 (`data/corpus/provisions` and the like) count as protected paths, since a
-path naming one selects the locked files below it. A path that reaches
+path naming one selects the locked files below it. That is for naming
+paths: the CLI still takes only paths under the four protected prefixes as
+inputs, so `--base data/corpus` names no input by itself. A path that reaches
 exactly the protected path it spells, through any links, names that path.
 So a worktree whose `data/corpus/provisions` links to another checkout's
 `data/corpus/provisions` reads that checkout's files under that checkout's
@@ -247,7 +249,9 @@ operating system does, and that path's lock applies. That covers a symlinked
 file there, which always names its own path whatever it points to, and a
 directory link there that leads to another corpus path, outside every
 checkout, to nothing (a removed checkout it once shared), or to an
-unprotected directory. When a lock names the path, the `io` readers
+unprotected directory. A symlinked file at no protected path, such as a
+`latest.jsonl` pointer, is followed like any other link, so it reads, and is
+refused, as the path it names. When a lock names the path, the `io` readers
 (`load_provisions`, `load_source_inventory`), `resolve_corpus_path`,
 `require_materialized`, `ensure_corpus_paths` and fetch refuse a symlinked
 file, a dangling one included, and any absent file beneath a directory link,
