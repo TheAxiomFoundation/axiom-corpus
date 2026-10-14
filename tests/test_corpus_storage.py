@@ -707,6 +707,15 @@ def _reference_collisions(paths: list[str]) -> set[frozenset[str]]:
 
 
 @PROPERTY_SETTINGS
+@given(st.text(alphabet=st.characters(max_codepoint=127), max_size=40))
+def test_fold_path_lowercases_ascii_exactly_as_the_full_fold_does(text: str) -> None:
+    """``fold_path``'s ASCII shortcut agrees with the full Unicode fold."""
+    from axiom_corpus.corpus.corpus_locks import _fold_unicode, fold_path
+
+    assert fold_path(text) == _fold_unicode(text) == text.lower()
+
+
+@PROPERTY_SETTINGS
 @given(st.lists(st.lists(_name, min_size=1, max_size=3).map("/".join), unique=True, max_size=6))
 def test_fold_collisions_matches_a_brute_force_reference(paths: list[str]) -> None:
     found = {frozenset(pair) for pair in fold_collisions(paths)}
@@ -1711,6 +1720,20 @@ def test_an_invalid_lock_of_the_worktree_counts_through_a_sharing_link(tmp_path:
     with pytest.raises(InvalidCorpusLocksError):
         require_materialized([worktree / "data/corpus/provisions"])
     assert not (shared / PROV).exists()
+
+
+def test_an_invalid_lock_still_raises_for_a_path_no_checkout_names(tmp_path: Path, monkeypatch) -> None:
+    """As before, a path outside every checkout goes to the working directory's
+    checkout, so a lock that fails to parse there raises rather than read as no
+    lock."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    next((repo / LOCK_ROOT).rglob("*.json")).write_text("not a lock\n")
+    monkeypatch.chdir(repo)
+    outside = tmp_path / "elsewhere.jsonl"
+    with pytest.raises(InvalidCorpusLocksError):
+        require_materialized([outside])
+    with pytest.raises(InvalidCorpusLocksError):
+        ensure_corpus_paths([outside])
 
 
 def test_scopes_cli_inputs_and_sources_through_a_sharing_link_follow_every_lock(

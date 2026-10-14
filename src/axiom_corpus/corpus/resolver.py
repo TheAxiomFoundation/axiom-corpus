@@ -268,14 +268,15 @@ def _link_holder(probe: Path) -> Path | None:
     return places[-1][0] if stands_as_file else None
 
 
-def _checkout_for(path: Path) -> Path | None:
+def _checkout_for(path: Path, physical: Path | None = None) -> Path | None:
     """The checkout that names ``path`` (see ``CorpusResolver.relative``).
 
     The checkout whose protected path ``path`` names (``_protected_name``),
     else the one it resolves into, a dangling link's target included.
+    ``physical`` is the path's realpath, when the caller has it.
     """
     probe = path if path.is_absolute() else Path.cwd() / path
-    physical = Path(os.path.realpath(probe))
+    physical = physical or Path(os.path.realpath(probe))
     named = _protected_name(probe, physical)
     if named is not None:
         return named[0]
@@ -407,7 +408,10 @@ class CorpusResolver:
                 candidate = self.repo / candidate
             else:
                 candidate = Path.cwd() / candidate
-        physical = Path(os.path.realpath(candidate))
+        return self._name(candidate, Path(os.path.realpath(candidate)))
+
+    def _name(self, candidate: Path, physical: Path) -> str | None:
+        """``relative`` for the absolute ``candidate``, whose realpath is ``physical``."""
         inside = self._inside(physical)
         if (
             inside is not None
@@ -424,10 +428,11 @@ class CorpusResolver:
 
     def _inside(self, physical: Path) -> str | None:
         """``physical`` (symlink-free above its last component) relative to the checkout."""
-        try:
-            return physical.relative_to(self.repo).as_posix()
-        except ValueError:
-            pass
+        text, top = str(physical), str(self.repo)
+        if text.startswith(f"{top}/"):
+            return text[len(top) + 1 :]  # Path.relative_to, without its cost
+        if text == top:
+            return "."
         # realpath keeps some spellings of one directory apart: a case variant
         # on a case-insensitive filesystem, a firmlink such as
         # /System/Volumes/Data/Users. Match the checkout by identity instead.
@@ -685,20 +690,23 @@ def _spelled(path: str | Path, repo: Path | None) -> Path:
     return Path.cwd() / candidate
 
 
-def _owner_of(spelled: Path, hint: CorpusResolver | None) -> tuple[CorpusResolver, str] | None:
-    """The checkout that names ``spelled`` and the name, as ``relative`` gives it.
+def _owner_of(
+    spelled: Path, physical: Path, hint: CorpusResolver | None
+) -> tuple[CorpusResolver, str] | None:
+    """The checkout that names ``spelled`` (realpath ``physical``) and the name,
+    as ``relative`` gives it.
 
     ``hint`` (a caller's ``repo``) is asked first: it names its own paths
     without git. A path it does not name goes to the checkout that does.
     """
     if hint is not None:
-        name = hint.relative(spelled)
+        name = hint._name(spelled, physical)
         if name is not None:
             return hint, name
-    resolver = resolver_for(_checkout_for(spelled))
+    resolver = resolver_for(_checkout_for(spelled, physical))
     if resolver is None or resolver is hint:
         return None
-    name = resolver.relative(spelled)
+    name = resolver._name(spelled, physical)
     return (resolver, name) if name is not None else None
 
 
@@ -789,13 +797,15 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
     directory's target included, and a part takes the checkout that names
     the paths below it (``_part_owner``).
     """
-    top = _part_owner(spelled, _owner_of(spelled, hint)) if walk else _owner_of(spelled, hint)
+    physical = Path(os.path.realpath(spelled))
+    top = _owner_of(spelled, physical, hint)
+    if walk:
+        top = _part_owner(spelled, top)
     if top is None:
         return [], []
-    physical = Path(os.path.realpath(spelled))
     parts = [_View(top[0], top[1], "")]
     views = [*parts, *(_View(_resolver(root), name, "") for root, name in _places_above(spelled, physical))]
-    if not walk or not _guarded(top[1]) or top[1] in top[0].locks.by_path:
+    if not walk or top[1] in top[0].locks.by_path or not _guarded(top[1]):
         return parts, views  # a locked name is a file: nothing lies below it
     pending = [(physical, "", top[1])]
     seen: set[tuple[int, int]] = set()
@@ -811,10 +821,10 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
         for below in _links_below(directory, name):
             where = _join(sub, below)
             link = spelled / where
-            found = _part_owner(link, _owner_of(link, hint))
+            link_physical = Path(os.path.realpath(link))
+            found = _part_owner(link, _owner_of(link, link_physical, hint))
             if found is None:
                 continue
-            link_physical = Path(os.path.realpath(link))
             parts.append(_View(found[0], found[1], where))
             views.append(parts[-1])
             views.extend(_View(_resolver(root), place, where) for root, place in _places_above(link, link_physical))
@@ -867,11 +877,13 @@ def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False
                 entries = resolver.locks.entries_under(view.name)
             for entry in entries:
                 where = _join(view.sub, _below(entry.path, view.name) or "")
-                for part in deepest:
-                    rest = _below(where, part.sub)
-                    if rest is not None:
+                part, rest = deepest[-1], where  # the selection itself, below no link
+                for candidate in deepest[:-1]:
+                    below = _below(where, candidate.sub)
+                    if below is not None:
+                        part, rest = candidate, below
                         break
-                owner_name = _join(part.name, rest or "")
+                owner_name = _join(part.name, rest)
                 if spell:
                     plan.spelled.setdefault((resolver.repo, entry.path), selection / where if where else selection)
                 if resolver is part.resolver and entry.path == owner_name:
@@ -1193,11 +1205,14 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     # A bare data/corpus path lies in ``repo``; the checkout that names the
     # path, which ``repo`` may not be (a link to another checkout), decides.
     spelled = _spelled(candidate, repo)
+    physical = Path(os.path.realpath(spelled))
     resolver = resolver_for(repo) if repo is not None else None
-    if resolver is None or resolver.relative(spelled) is None:
-        resolver = resolver_for(_checkout_for(spelled))
-    witnesses = _read_witnesses(spelled, resolver)
-    if resolver is None or not resolver.active or resolver.relative(spelled) is None:
+    rel = resolver._name(spelled, physical) if resolver is not None else None
+    if rel is None:
+        resolver = resolver_for(_checkout_for(spelled, physical))
+        rel = resolver._name(spelled, physical) if resolver is not None else None
+    witnesses = _read_witnesses(spelled, physical, resolver, rel)
+    if resolver is None or not resolver.active or rel is None:
         found = candidate if candidate.is_file() and not candidate.is_symlink() else None
     else:
         found = resolver.resolve(spelled)
@@ -1217,16 +1232,17 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
 _WITNESSED_SOURCE_DIRS: set[str] = set()
 
 
-def _read_witnesses(candidate: Path, resolver: CorpusResolver | None) -> tuple[_Plan, str | None] | None:
-    """Refuse a read of ``candidate`` that a lock that applies says no fetch completes.
+def _read_witnesses(
+    anchor: Path, physical: Path, resolver: CorpusResolver | None, rel: str | None
+) -> tuple[_Plan, str | None] | None:
+    """Refuse a read of the absolute ``anchor`` (realpath ``physical``, ``rel`` in
+    ``resolver``'s checkout) that a lock that applies says no fetch completes.
 
     A source file counts with its scope's whole sources directory, as
     ``CorpusResolver.resolve`` fetches it. Returns the plan, and the directory
     to remember once the read succeeds, for a check after the read; None
     when there is nothing to check.
     """
-    anchor = candidate if candidate.is_absolute() else Path.cwd() / candidate
-    rel = resolver.relative(anchor) if resolver is not None else None
     if resolver is None or rel is None:
         return None  # no checkout names it, so it stands at no protected place
     selection, exact, remember = anchor, True, None
@@ -1236,6 +1252,8 @@ def _read_witnesses(candidate: Path, resolver: CorpusResolver | None) -> tuple[_
             selection, exact, remember = anchor.parents[depth - 1], False, str(anchor.parents[depth - 1])
             if remember in _WITNESSED_SOURCE_DIRS:
                 return None
+    if exact and str(physical) == os.path.normpath(anchor):
+        return None  # through no symlink: no lock but its checkout's applies
     plan = _plan([selection], repo=resolver.repo, exact=exact)
     unfetchable = _unfetchable(plan)
     if unfetchable:
