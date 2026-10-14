@@ -554,3 +554,15 @@ def test_detected_format_is_stable_under_its_own_media_type(tmp_path, source_for
     downloaded = _download_document(source, session=_NoNetwork())  # type: ignore[arg-type]
     assert downloaded.content_type == _SOURCE_FORMAT_CONTENT_TYPES[source_format]
     assert _infer_source_format(source, downloaded) == source_format
+
+
+def test_a_repeated_key_fails_closed() -> None:
+    """Review finding: parsing keeps the last of two download_url members, hiding the first."""
+    line = (
+        '{"citation_path": "de/guidance/d", "metadata": {"download_url": "file:///Users/x/a.pdf",'
+        ' "d\\u006fwnload_url": "https://ok.example/a.pdf"}}\n'
+    )
+    with pytest.raises(LocalFileUrlScanError, match="repeats the key 'download_url'"):
+        local_file_url_fields(PROVISIONS, line.encode())
+    (issue,) = _content_issues(PROVISIONS, line.encode())
+    assert "/Users/x" not in issue

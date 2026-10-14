@@ -45,6 +45,7 @@ import argparse
 import copy
 import hashlib
 import json
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -56,6 +57,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.corpus_locks import load_locks
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import _SOURCE_FORMAT_CONTENT_TYPES, extract_official_documents
+from axiom_corpus.corpus.ingest_manifests import LocalFileUrlScanError, local_file_url_fields
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -68,6 +70,14 @@ def _is_file_url(value: object) -> bool:
 
 def _is_web_url(value: object) -> bool:
     return isinstance(value, str) and value.startswith(("https://", "http://"))
+
+
+# RFC 9110 media type: type "/" subtype, then optional parameters.
+_MEDIA_TYPE = re.compile(r"[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*(;[ -~]*)?")
+
+
+def _is_media_type(value: object) -> bool:
+    return isinstance(value, str) and _MEDIA_TYPE.fullmatch(value) is not None
 
 
 def _parse_scope(text: str) -> tuple[str, str, str]:
@@ -114,8 +124,14 @@ class Scope:
             for path in (self.inventory_path, self.provisions_path, self.coverage_path)
         ) or (self.base / self.source_prefix).exists()
 
+    def inventory_document(self) -> dict[str, Any]:
+        document = json.loads(self.inventory_path.read_text())
+        if not isinstance(document, dict) or not isinstance(document.get("items"), list):
+            raise SystemExit(f"{self.label}: inventory is not a mapping with an items list")
+        return document
+
     def inventory(self) -> list[dict[str, Any]]:
-        return list(json.loads(self.inventory_path.read_text())["items"])
+        return list(self.inventory_document()["items"])
 
     def provisions(self) -> list[dict[str, Any]]:
         return [json.loads(line) for line in self.provisions_path.read_text().splitlines() if line]
@@ -262,7 +278,8 @@ def rewrite(old: Scope, new: Scope) -> None:
         store.write_bytes(
             new.base / new.source_prefix / relative, (source_root / relative).read_bytes()
         )
-    inventory = old.inventory()
+    envelope = old.inventory_document()  # keys besides "items" are written back as they are
+    inventory = list(envelope.pop("items"))
     provisions = old.provisions()
     inventory_by_path = {item["citation_path"]: item for item in inventory}
     provisions_by_path = {row["citation_path"]: row for row in provisions}
@@ -298,7 +315,7 @@ def rewrite(old: Scope, new: Scope) -> None:
                 where=f"{old.label} provision {row['citation_path']}",
             )
         new_provisions.append(moved)
-    store.write_json(new.inventory_path, {"items": new_inventory})
+    store.write_json(new.inventory_path, {**envelope, "items": new_inventory})
     store.write_text(
         new.provisions_path,
         "".join(json.dumps(row, sort_keys=True) + "\n" for row in new_provisions),
@@ -330,7 +347,14 @@ def _differences(expected: Any, actual: Any, path: str = "") -> list[str]:
             else:
                 found.extend(_differences(expected[key], actual[key], child))
         return found
-    if type(expected) is not type(actual) or expected != actual:
+    if isinstance(expected, list) and isinstance(actual, list):
+        if len(expected) != len(actual):
+            return [f"{path or '<row>'} length changed"]
+        found = []
+        for index, (want, have) in enumerate(zip(expected, actual, strict=True)):
+            found.extend(_differences(want, have, f"{path}[{index}]"))
+        return found
+    if type(expected) is not type(actual) or expected != actual:  # 1, 1.0 and True differ
         return [f"{path or '<row>'} changed"]
     return []
 
@@ -384,9 +408,12 @@ def verify(old: Scope, new: Scope) -> dict[str, Any]:
 
     Each successor row must equal the row ``_expected_row`` builds from the
     locked row at the same position, key for key; every repaired row must now
-    record a web URL and a media type; the coverage report must equal the
-    locked one with its version mapped; the source files must be the same
-    names and bytes. No ``file:`` value reaches the report.
+    record a web URL and a media type; the inventory's other top-level keys
+    must be unchanged; no URL field anywhere in the successor's bytes may hold
+    a ``file:`` URL; the coverage report must equal the locked one with its
+    version mapped; the source files must be the same names and bytes. Lists
+    compare element by element and types count (``1``, ``1.0`` and ``true``
+    differ). No ``file:`` value reaches the report.
     """
     problems: list[str] = []
     old_sources, new_sources = old.source_hashes(), new.source_hashes()
@@ -432,12 +459,27 @@ def verify(old: Scope, new: Scope) -> dict[str, Any]:
             download_url, content_type = metadata.get("download_url"), metadata.get("content_type")
             if not _is_web_url(download_url):
                 problems.append(f"{where}: download_url is not a web URL after repair")
-            if content_type is None:
-                problems.append(f"{where}: content_type is still null")
+            if not _is_media_type(content_type):
+                problems.append(f"{where}: content_type is not a media type after repair")
             urls[_redacted(new_row.get("source_url"))] = (
                 str(download_url) if _is_web_url(download_url) else "<not a web URL>"
             )
-            content_types[str(content_type)] = content_types.get(str(content_type), 0) + 1
+            shown = str(content_type) if _is_media_type(content_type) else "<not a media type>"
+            content_types[shown] = content_types.get(shown, 0) + 1
+    old_envelope, new_envelope = old.inventory_document(), new.inventory_document()
+    old_envelope.pop("items")
+    new_envelope.pop("items")
+    envelope_differences = _differences(old_envelope, new_envelope)
+    if envelope_differences:
+        problems.append(f"inventory envelope: {', '.join(envelope_differences)}")
+    for path in (new.inventory_path, new.provisions_path):
+        try:
+            leaks = local_file_url_fields(path.name, path.read_bytes())
+        except LocalFileUrlScanError as exc:
+            problems.append(f"{path.name}: {exc}")
+            continue
+        if leaks:
+            problems.append(f"{path.name}: {len(leaks)} URL field(s) still record a file: URL")
     old_coverage, new_coverage = old.coverage(), new.coverage()
     expected_coverage = copy.deepcopy(old_coverage)
     if old_coverage.get("version") == old.version:

@@ -132,7 +132,7 @@ def test_reextract_changes_only_the_leaked_fields(legacy_scope, tmp_path: Path) 
     assert report["content_types"] == {"application/pdf": 4}
     serialized = new.inventory_path.read_text() + new.provisions_path.read_text()
     assert "file:" not in serialized
-    assert "file:" not in json.dumps(report)
+    assert "file:///" not in json.dumps(report) and "/Users/someone" not in json.dumps(report)
     fetched = [row for row in new.provisions() if row["source_id"] == "fetched"]
     assert {row["metadata"]["download_url"] for row in fetched} == {
         "https://www.example.de/fetched"
@@ -172,9 +172,9 @@ def test_verify_rejects_a_repair_that_keeps_a_file_url(legacy_scope, tmp_path: P
     report = verify(old, new)
     problems = report["problems"]
     assert any("download_url is not a web URL" in problem for problem in problems)
-    assert any("content_type is still null" in problem for problem in problems)
+    assert any("content_type is not a media type" in problem for problem in problems)
     # Review finding: a failed repair repeated the leaked path in its report.
-    assert "file:" not in json.dumps(report)
+    assert "file:///" not in json.dumps(report) and "/Users/someone" not in json.dumps(report)
     assert report["download_urls_by_source_url"] == {
         "https://www.example.de/retained": "<not a web URL>"
     }
@@ -353,3 +353,76 @@ def test_repair_refuses_a_scope_that_differs_from_its_lock(tmp_path: Path) -> No
     assert f"{prefix}{old.source_prefix}official-documents/reg.pdf is absent" in problems
     assert f"{prefix}{old.source_prefix}official-documents/extra.pdf is not in the lock" in problems
     assert lock_mismatches(_successor(old), repo) == [f"{_successor(old).label} has no lock"]
+
+
+@pytest.mark.parametrize(
+    ("before", "after"),
+    [([1], [True]), ([1], [1.0]), ([{"rank": 1}], [{"rank": True}]), ([1, 2], [1])],
+)
+def test_lists_compare_element_by_element_with_types(tmp_path: Path, before, after) -> None:
+    """Review finding: list equality treated 1, 1.0 and True as equal."""
+    old = _recovery_scope(tmp_path / "corpus")
+    rows = old.provisions()
+    rows[1]["metadata"]["ranks"] = before
+    old.provisions_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows))
+    new = _successor(old)
+    rewrite(old, new)
+    assert verify(old, new)["problems"] == []
+
+    def change(row):
+        if "ranks" in row["metadata"]:
+            row["metadata"]["ranks"] = after
+
+    _rewrite_rows(new, change)
+    (problem,) = verify(old, new)["problems"]
+    assert "metadata.ranks" in problem
+
+
+@pytest.mark.parametrize("content_type", ["file:///Users/someone/private.pdf", False, "pdf", ""])
+def test_repaired_content_type_must_be_a_media_type(tmp_path: Path, content_type) -> None:
+    """Review finding: any non-null content_type passed, and reached the report verbatim."""
+    old = _recovery_scope(tmp_path / "corpus")
+    new = _successor(old)
+    rewrite(old, new)
+
+    def bad_type(row):
+        if row["citation_path"].endswith("/1"):
+            row["metadata"]["content_type"] = content_type
+
+    _rewrite_rows(new, bad_type)
+    report = verify(old, new)
+    assert any("content_type is not a media type" in p for p in report["problems"])
+    assert "file:///" not in json.dumps(report) and "/Users/someone" not in json.dumps(report)
+    assert "<not a media type>" in report["content_types"]
+
+
+def test_rewrite_keeps_the_inventory_envelope_and_verify_checks_it(tmp_path: Path) -> None:
+    """Review finding: rewrite wrote only "items" and verify did not notice."""
+    old = _recovery_scope(tmp_path / "corpus")
+    document = json.loads(old.inventory_path.read_text())
+    document["provenance"] = {"authority": "Official publisher", "ranks": [1]}
+    old.inventory_path.write_text(json.dumps(document))
+    new = _successor(old)
+    rewrite(old, new)
+    assert json.loads(new.inventory_path.read_text())["provenance"] == document["provenance"]
+    assert verify(old, new)["problems"] == []
+
+    document = json.loads(new.inventory_path.read_text())
+    document["provenance"]["ranks"] = [True]
+    document["added"] = "x"
+    new.inventory_path.write_text(json.dumps(document))
+    (problem,) = verify(old, new)["problems"]
+    assert problem == "inventory envelope: added added, provenance.ranks[0] changed"
+
+
+def test_verify_scans_the_successor_bytes_for_any_file_url(tmp_path: Path) -> None:
+    """A file: URL the locked scope also carried, outside download_url, is not a repair."""
+    old = _recovery_scope(tmp_path / "corpus")
+    rows = old.provisions()
+    rows[2]["metadata"]["legal_authority_url"] = "file:///Users/someone/authority.html"
+    old.provisions_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows))
+    new = _successor(old)
+    rewrite(old, new)
+    report = verify(old, new)
+    assert report["problems"] == [f"{new.version}.jsonl: 1 URL field(s) still record a file: URL"]
+    assert "file:///" not in json.dumps(report) and "/Users/someone" not in json.dumps(report)

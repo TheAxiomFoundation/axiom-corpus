@@ -1334,6 +1334,25 @@ class LocalFileUrlScanError(ValueError):
     """A row artifact whose URL fields cannot be read, so cannot be cleared."""
 
 
+def _unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """``object_pairs_hook`` refusing duplicate members, whose earlier values JSON parsing drops."""
+    members: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in members:
+            raise LocalFileUrlScanError(f"repeats the key {key!r}")
+        members[key] = value
+    return members
+
+
+def _scan_loads(text: str, where: str) -> Any:
+    try:
+        return json.loads(text, object_pairs_hook=_unique_keys)
+    except json.JSONDecodeError as exc:
+        raise LocalFileUrlScanError(f"{where} is not JSON") from exc
+    except LocalFileUrlScanError as exc:
+        raise LocalFileUrlScanError(f"{where} {exc}") from exc
+
+
 def _is_url_key(key: object) -> bool:
     return isinstance(key, str) and (
         key in {"url", "urls"} or key.endswith("_url") or key.endswith("_urls")
@@ -1372,7 +1391,9 @@ def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
 
     Fails closed: raises ``LocalFileUrlScanError`` for an artifact that is not
     UTF-8, or whose JSON (for provisions, any line that could hold such a URL)
-    does not parse, rather than reporting it clean.
+    does not parse or repeats a key in one object (parsing would keep only the
+    last value, so an earlier ``file:`` URL would go unseen), rather than
+    reporting it clean.
     """
     text = _decode_text(payload)
     if text is None:
@@ -1382,17 +1403,10 @@ def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
     rows: list[Any] = []
     if path.endswith(".jsonl"):
         for number, line in enumerate(text.splitlines(), start=1):
-            if not _FILE_URL_CANDIDATE_TEXT.search(line):
-                continue
-            try:
-                rows.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                raise LocalFileUrlScanError(f"`{path}` line {number} is not JSON") from exc
+            if _FILE_URL_CANDIDATE_TEXT.search(line):
+                rows.append(_scan_loads(line, f"`{path}` line {number}"))
     else:
-        try:
-            parsed = json.loads(text)
-        except json.JSONDecodeError as exc:
-            raise LocalFileUrlScanError(f"`{path}` is not JSON") from exc
+        parsed = _scan_loads(text, f"`{path}`")
         # As load_source_inventory reads it: a mapping's "items", absent meaning none.
         items = parsed.get("items", []) if isinstance(parsed, dict) else parsed
         if not isinstance(items, list):
