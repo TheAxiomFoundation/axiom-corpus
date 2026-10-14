@@ -3308,8 +3308,8 @@ def _pdf_layer_lines(
 
     The lines and spans of the ``dict`` output, with the text flags and sort of
     ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
-    spans (``_pdf_span_painted`` gives the paint; a Type3 font's spans count as painted,
-    ``_pdf_type3_font_names``). Without ``sort_text`` the lines' text
+    spans (``_pdf_span_painted`` gives the paint; under PyMuPDF before 1.27 a Type3 font's
+    spans count as painted, ``_pdf_type3_font_names``). Without ``sort_text`` the lines' text
     joined with newlines is the text output; with it, that output rebuilds lines from
     words by position, but the characters are the same (``_same_layer_characters``).
     """
@@ -3331,18 +3331,35 @@ def _pdf_layer_lines(
     return lines
 
 
-def _pdf_type3_font_names(page: Any) -> frozenset[str]:
-    """The span font names of the page's Type3 fonts.
+# PyMuPDF before 1.27 reports filled Type3 glyphs as neither filled nor stroked, the same
+# as invisible text; 1.27 and later report Type3 paint correctly.
+_PDF_TYPE3_PAINT_UNREPORTED = tuple(fitz.pymupdf_version_tuple[:2]) < (1, 27)
+_PDF_FONT_SUBSET_PREFIX = re.compile(r"^[A-Z]{6}\+")
+_PDF_NAME_ESCAPE = re.compile(r"#([0-9A-Fa-f]{2})")
 
-    PyMuPDF 1.26 (the version this repository locks) reports filled Type3 glyphs as
-    neither filled nor stroked, as it does invisible text; 1.27 and later report them
-    filled. Every Type3 span on the 1,041 overlay pages measured is filled under 1.28.2,
-    so a span in a Type3 font counts as painted. A Type3 font without a name is
-    "Unnamed-T3" in the spans.
+
+def _pdf_type3_font_names(page: Any) -> frozenset[str]:
+    """The span font names of the page's Type3 fonts, when PyMuPDF cannot report their paint.
+
+    Under PyMuPDF before 1.27 (this repository locks 1.26) a span in a Type3 font counts
+    as painted, since filled and invisible Type3 text look alike there; every Type3 span on
+    the 1,041 overlay pages measured is filled under 1.28.2. MuPDF names a Type3 span by the
+    font's /Name, without a six-letter subset prefix, or "Unnamed-T3" when it has none. Under
+    1.27 and later the paint is read from the span and this is empty.
     """
-    return frozenset(
-        str(font[3]) or "Unnamed-T3" for font in page.get_fonts(full=True) if font[2] == "Type3"
-    )
+    if not _PDF_TYPE3_PAINT_UNREPORTED:
+        return frozenset()
+    names: set[str] = set()
+    for font in page.get_fonts(full=True):
+        if font[2] != "Type3":
+            continue
+        kind, value = page.parent.xref_get_key(font[0], "Name")
+        if kind != "name":
+            names.add("Unnamed-T3")
+            continue
+        name = _PDF_NAME_ESCAPE.sub(lambda match: chr(int(match.group(1), 16)), value[1:])
+        names.add(_PDF_FONT_SUBSET_PREFIX.sub("", name))
+    return frozenset(names)
 
 
 def _layer_characters(text: str) -> Counter[str]:

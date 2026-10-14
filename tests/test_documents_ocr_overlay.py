@@ -333,8 +333,9 @@ def test_blank_ocr_keeps_an_invisible_layer_as_it_is(tmp_path, monkeypatch):
     assert _first_page_text(hidden, {"ocr": True}).split() == NOISE_LAYER.split()
 
 
-def _type3_scan_pdf(lines: list[str]) -> bytes:
-    """A scanned page whose typed lines are set, filled, in an unnamed Type3 font."""
+def _type3_scan_pdf(lines: list[str], *, font_keys: str = "", render_mode: int = 0) -> bytes:
+    """A scanned page whose lines are set in a Type3 font (``font_keys`` adds /Name or
+    /BaseFont; render mode 0 fills the glyphs, 3 makes them invisible)."""
     document = fitz.open()
     page = document.new_page(width=612, height=792)
     page.insert_image(page.rect, stream=SCAN_PNG, keep_proportion=False)
@@ -354,7 +355,8 @@ def _type3_scan_pdf(lines: list[str]) -> bytes:
         "<< /Type /Font /Subtype /Type3 /FontBBox [0 0 1000 1000] "
         "/FontMatrix [0.001 0 0 0.001 0 0] "
         f"/CharProcs << {procs} >> /Encoding << /Type /Encoding /Differences [{differences}] >> "
-        f"/FirstChar 32 /LastChar 126 /Widths [{' '.join(['600'] * 95)}] /Resources << >> >>",
+        f"/FirstChar 32 /LastChar 126 /Widths [{' '.join(['600'] * 95)}] /Resources << >> "
+        f"{font_keys} >>",
     )
     resources = document.xref_get_key(page.xref, "Resources")
     holder = int(resources[1].split()[0]) if resources[0] == "xref" else page.xref
@@ -365,7 +367,7 @@ def _type3_scan_pdf(lines: list[str]) -> bytes:
     else:
         document.xref_set_key(holder, prefix + "Font/F3", f"{font} 0 R")
     body = b" ".join(
-        b"BT /F3 12 Tf 72 %d Td (%s) Tj ET" % (700 - 20 * index, line.encode())
+        b"BT %d Tr /F3 12 Tf 72 %d Td (%s) Tj ET" % (render_mode, 700 - 20 * index, line.encode())
         for index, line in enumerate(lines)
     )
     content = document.get_new_xref()
@@ -379,20 +381,56 @@ def _type3_scan_pdf(lines: list[str]) -> bytes:
     return document.tobytes()
 
 
-def test_typed_lines_in_a_type3_font_are_painted(monkeypatch):
-    # Review r3: PyMuPDF 1.26 (locked here) reports filled Type3 glyphs as unpainted, so
-    # typed lines in a Type3 font looked like a failed recognition layer and were dropped.
-    lines = ["/s/", "Hye Sun Lee", "Acting Associate Regional Administrator"]
-    ocr = "DEPARTMENT OF HEALTH AND HUMAN SERVICES\n20. SIGNATURE OF REGIONAL OFFICIAL:\n"
-    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
-    with fitz.open("pdf", _type3_scan_pdf(lines)) as document:
+TYPE3_OCR = "DEPARTMENT OF HEALTH AND HUMAN SERVICES\n20. SIGNATURE OF REGIONAL OFFICIAL:\n"
+TYPE3_LINES = ["/s/", "Hye Sun Lee", "Acting Associate Regional Administrator"]
+
+
+@pytest.mark.parametrize(
+    ("font_keys", "span_name"),
+    [
+        ("", "Unnamed-T3"),
+        ("/Name /T3F", "T3F"),
+        ("/BaseFont /Foo /Name /Bar", "Bar"),
+        ("/BaseFont /Foo", "Unnamed-T3"),
+        ("/Name /ABCDEF+Foo", "Foo"),
+        ("/Name /Foo#20Bar", "Foo Bar"),
+    ],
+)
+def test_typed_lines_in_a_type3_font_are_kept(monkeypatch, font_keys, span_name):
+    # Review r3/r4: PyMuPDF before 1.27 (1.26 is locked here) reports filled Type3 glyphs as
+    # unpainted, so typed lines in a Type3 font looked like a failed recognition layer.
+    # There a Type3 font's spans count as painted, matched by the name MuPDF gives them
+    # (/Name without a subset prefix, else "Unnamed-T3"); 1.27 and later report the paint.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys=font_keys)) as document:
         span_lines = _pdf_layer_lines(document[0], extraction={})
         result = _pdf_page_text(document[0], extraction={"ocr": True})
 
     spans = [(text, painted, font) for line in span_lines for text, painted, font in line]
-    assert {text for text, _, _ in spans if text.strip()} >= set(lines)
-    assert all(painted for text, painted, font in spans if font == "Unnamed-T3")
-    assert result == ocr.rstrip("\n") + "\n\n" + "\n".join(lines)
+    assert all(painted for text, painted, _ in spans if text.strip())
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert any(font == span_name for _, _, font in spans)
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def test_an_invisible_type3_layer_is_judged_where_paint_is_reported(monkeypatch):
+    # A failed recognition layer set invisibly (render mode 3) in a Type3 font. PyMuPDF
+    # 1.27+ reports it unpainted and it is dropped. Before 1.27 invisible and filled Type3
+    # text look alike, so it counts as painted and is kept (a known limit of the lock).
+    noise = ["Ckm rML Qzvx Plort Wexd", "Brnq Tholv Gremz Fuxt", "Yolp Kranv Dext Mopr"]
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    pdf = _type3_scan_pdf(noise, font_keys="/Name /T3F", render_mode=3)
+    with fitz.open("pdf", pdf) as document:
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(noise)
+    else:
+        assert result == TYPE3_OCR
 
 
 class _TextOutputPage:
