@@ -296,7 +296,8 @@ def this_scripts(payload, commit, jur, cls, ver):
         and all(
             isinstance(entry, dict)
             and isinstance(entry.get("path"), str)
-            and isinstance(entry.get("sha256"), str)  # a deleted file's entry has none
+            # A deleted file's entry has no sha256, and matches_artifacts reads one.
+            and isinstance(entry.get("sha256"), str)
             for entry in entries
         )
     ):

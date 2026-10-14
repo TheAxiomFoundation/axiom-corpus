@@ -1228,6 +1228,7 @@ FOREIGN_MANIFESTS = {
         ),
     ),
     "unreadable": Foreign(on_main=False),  # truncated, then committed
+    "entry-without-sha256": Foreign(on_main=False),  # one entry's sha256 dropped, then committed
     # A hand-picked --file list (no coverage), not the scope as the signer infers it.
     "file-subset": Foreign(
         on_main=False,
@@ -1259,6 +1260,11 @@ def test_never_signs_again_a_manifest_it_did_not_sign(repo: Path, foreign: str) 
     if foreign == "unreadable":
         _manifest(repo, kept).write_text('{"schema_version": "axiom-corpus/ingest-man')
         _git(repo, "commit", "-qam", "Truncate the manifest")
+    elif foreign == "entry-without-sha256":
+        payload = json.loads(_manifest(repo, kept).read_text())
+        del payload["applied_files"][0]["sha256"]
+        _write_json(_manifest(repo, kept), payload)
+        _git(repo, "commit", "-qam", "Drop a sha256")
     _edit_provisions(repo, kept)
     _git(repo, "commit", "-qam", "Fix provisions")
     _write_scope(repo, unsigned)
