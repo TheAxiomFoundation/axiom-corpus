@@ -33,7 +33,7 @@ from pathlib import Path
 
 import pytest
 from botocore.exceptions import ClientError
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import corpus_cli
@@ -2003,8 +2003,16 @@ def _bare_checkout(path: Path) -> Path:
     return path
 
 
+_SHARED_SOURCE = "data/corpus/sources/nz/statute/v1/official/a"
+
+
 @PROPERTY_SETTINGS
 @given(_named_paths())
+# Only the worktree's lock names an absent file below a sharing link (and a
+# chain of them): the generator draws these rarely, and #881 read them as absent.
+@example(drawn=(_SHARED_SOURCE, None, False, "another checkout", 2, {"repo"}))
+@example(drawn=(_SHARED_SOURCE, None, False, "chain via another checkout", 2, {"repo"}))
+@example(drawn=(_SHARED_SOURCE, None, False, "another checkout", 2, {"other"}))
 def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, monkeypatch, drawn) -> None:
     """Invariant 10. ``relative`` answers the same for every spelling of the checkout,
     at most one checkout names a path at a protected path, a name reaches the
