@@ -159,3 +159,7 @@ data/corpus/sources/uk/regulation/2026-07-06-uk-healthy-start-reg8/
 data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/
 data/corpus/sources/uk/statute/2026-07-07-uk-devolved-reserved-benefits/
 .gitnexus
+
+# A write killed outright (src/axiom_corpus/corpus/atomic_write.py) can leave its
+# temporary file, `.<name>.<random>.tmp`, beside a lock or ingest manifest.
+.axiom/**/.*.tmp

@@ -2244,6 +2244,7 @@ class _ReleaseTables:
         self.page_cap = page_cap
         self.extra_scope_rows = list(extra_scope_rows)
         self.calls = []
+        self.timeouts = []
         # Call number (from 1) to what answers that call instead of the
         # tables: an exception to raise, or a response to return.
         self.faults = {}
@@ -2253,6 +2254,7 @@ class _ReleaseTables:
         table = parsed.path.rsplit("/", 1)[-1]
         params = dict(urllib.parse.parse_qsl(parsed.query))
         self.calls.append((table, params))
+        self.timeouts.append(kwargs.get("timeout"))
         assert req.get_method() == "GET"
         assert req.headers["Accept-profile"] == "corpus"
         fault = self.faults.pop(len(self.calls), None)
@@ -2464,6 +2466,36 @@ def test_fetch_released_scope_objects_retries_a_cut_off_signed_object(monkeypatc
     ]
     assert sleeps == [supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS]
     assert rows[scope.key][0].release_object == release_object
+
+
+def test_fetch_released_scope_objects_logs_each_read_with_its_time(monkeypatch, capsys):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, _public_key = _signed_release_object()
+    scope = ReleaseScope("nz", "statute", "v1")
+    tables = _ReleaseTables(
+        [_scope_row("nz-rulespec-v1", scope)],
+        {"nz-rulespec-v1": _object_row(release_object, "nz-rulespec-v1")},
+    )
+    tables.faults = {
+        2: urllib.error.HTTPError("https://example", 520, "origin error", {}, io.BytesIO())
+    }
+    monkeypatch.setattr(supabase.time, "sleep", lambda _seconds: None)
+
+    _fetch(tables, monkeypatch, (scope,))
+
+    lines = capsys.readouterr().err.splitlines()
+    assert [line.split(" attempt=")[0] for line in lines] == [
+        "released-scope read release_scopes versions=1 offset=0",
+        "released-scope read release_objects nz-rulespec-v1",
+        "released-scope read release_objects nz-rulespec-v1",
+    ]
+    assert lines[0].endswith(" rows=1 bytes=" + lines[0].rsplit("bytes=", 1)[1])
+    assert " attempt=1 " in lines[1] and lines[1].endswith("failed: HTTPError")
+    assert " attempt=2 " in lines[2] and " rows=1 " in lines[2]
+    # Every read stops waiting after the bounded timeout, not the old ten minutes.
+    assert set(tables.timeouts) == {supabase._RELEASED_SCOPE_FETCH_TIMEOUT_SECONDS}
+    assert supabase._RELEASED_SCOPE_FETCH_TIMEOUT_SECONDS == 120
 
 
 def test_fetch_released_scope_objects_exhausts_retries(monkeypatch):

@@ -325,6 +325,10 @@ on every push to `main` that changes `manifests/releases/*.json`
 (`.github/workflows/publish.yml:7-11`), so adding a selector is a release
 decision. This run adds none. It records the rule for the next cut in each line.
 
+Operational update (2026-10-13): this describes the workflow at the time of
+the audit. Publication now requires an explicit `publish.yml` dispatch; merging
+a selector alone does not start it.
+
 **Where the scope is selected.** 32 tracked selectors select it:
 
 - the 23 July cuts, from `us-rulespec-2026-07-13` through
@@ -336,14 +340,6 @@ decision. This run adds none. It records the rule for the next cut in each line.
 - the four September unions through `us-rulespec-2026-09-13-followup-union`;
 - `us-rulespec-2026-09-24-snap-fy2027-cola` (#747, merged 2026-09-25), the
   successor of `obbb-alien-snap` that adds the SNAP FY 2027 COLA memorandum.
-
-A 33rd, `us-rulespec-2026-10-09-az-des-ece-dated`, was cut after this audit as
-a recorded exception. It is `snap-fy2027-cola` plus one `us-az/manual` scope,
-kept a strict superset of rulespec-us's pin so the re-pin that consumes it does
-not also re-point the R&TC and CalWORKs modules. Its run note is
-[2026-10-09-us-rulespec-az-des-ece-dated.md](2026-10-09-us-rulespec-az-des-ece-dated.md).
-The swap below still applies to the next cut in the line that is not a
-strict-superset pin successor.
 
 `us-rulespec-2026-09-14-wave4-union` and `us-rulespec-2026-09-14-wave4-r2-union`
 do not select it.
@@ -417,7 +413,7 @@ get the chapter scope's rows; the CalWORKs module gets the ancestor slice of
 module's waiver.
 
 **Enforcement.** `test_no_new_tracked_selector_selects_the_recovery_scope`
-freezes the 32 selectors above, plus the recorded exception. It fails if any other tracked selector selects
+freezes the 32 selectors above. It fails if any other tracked selector selects
 this scope, and names the swap to make. `test (3.14)` is a required check on
 `main`, so the rule gates merges. It covers tracked selectors only: ten older
 draft selectors under `docs/ingest-runs/` still select the scope, and a cut

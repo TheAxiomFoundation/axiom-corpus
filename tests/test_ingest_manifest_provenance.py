@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import copy
+import errno
 import hashlib
 import json
+import os
 import subprocess
+import sys
 from base64 import b64encode
 from pathlib import Path
 
@@ -13,13 +16,16 @@ import pytest
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
+from axiom_corpus.corpus import atomic_write
 from axiom_corpus.corpus.ingest_manifests import (
     INGEST_MANIFEST_SIGNATURE_ALGORITHM,
     build_ingest_manifest,
     guard_ingested_artifacts,
     sign_ingest_manifest,
     verify_ingest_manifest,
+    write_signed_ingest_manifest,
 )
+from tests.test_atomic_write import _FaultyOs
 
 
 def _git(repo: Path, *args: str) -> str:
@@ -836,3 +842,124 @@ def test_guard_ignores_noncanonical_manifest_until_it_authorizes_change(
 
     assert result.passed
     assert result.issues == ()
+
+
+# A manifest at its final path is always a complete signed document. The
+# signing script keeps any manifest that already exists
+# (scripts/sign_release_scopes.sh), so a truncated one would be committed.
+
+_SIGNED_MANIFEST = Path(".axiom/ingest-manifests/nz/statute/2026-07-10.json")
+
+
+def _signed_manifest_setup(
+    tmp_path: Path, *, prior: bool
+) -> tuple[Path, dict[str, object], str, str, bytes | None]:
+    """A repo, a manifest to sign, the key pair, and the manifest already signed, if any."""
+    repo = _init_repo(tmp_path / "repo")
+    manifest = _manifest(repo, _artifact(repo))
+    _key, private, public = _keys()
+    previous = None
+    if prior:
+        earlier = copy.deepcopy(manifest)
+        earlier["command"] = {"text": "an earlier signing of the same scope"}
+        write_signed_ingest_manifest(repo=repo, manifest=earlier, private_key=private)
+        previous = (repo / _SIGNED_MANIFEST).read_bytes()
+    return repo, manifest, private, public, previous
+
+
+def _assert_manifest_untouched(repo: Path, previous: bytes | None) -> None:
+    manifest_path = repo / _SIGNED_MANIFEST
+    if previous is None:
+        assert not manifest_path.exists()
+        assert list(manifest_path.parent.iterdir()) == []
+    else:
+        assert manifest_path.read_bytes() == previous
+        assert list(manifest_path.parent.iterdir()) == [manifest_path]
+
+
+@pytest.mark.parametrize("prior", [False, True], ids=["first-signing", "re-signing"])
+@pytest.mark.parametrize(
+    "exc",
+    [OSError(errno.ENOSPC, "No space left on device"), KeyboardInterrupt()],
+    ids=["disk-full", "ctrl-c"],
+)
+def test_manifest_write_failing_partway_leaves_no_partial_manifest(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, prior: bool, exc: BaseException
+) -> None:
+    """Half the manifest's bytes are written, then the write raises."""
+    repo, manifest, private, _public, previous = _signed_manifest_setup(tmp_path, prior=prior)
+    monkeypatch.setattr(atomic_write, "os", _FaultyOs("fdopen", exc))
+
+    with pytest.raises(type(exc)):
+        write_signed_ingest_manifest(repo=repo, manifest=manifest, private_key=private)
+
+    _assert_manifest_untouched(repo, previous)
+
+
+# Signs under a file-size limit, so the OS itself cuts the write short: the
+# file stops at RLIMIT_FSIZE bytes and the rest fails with EFBIG (CPython
+# ignores SIGXFSZ, so the process gets the error instead of being killed).
+# A limit of 0 means no limit.
+_SIGN_UNDER_FILE_SIZE_LIMIT = """
+import errno
+import json
+import os
+import resource
+import sys
+from pathlib import Path
+
+from axiom_corpus.corpus.ingest_manifests import write_signed_ingest_manifest
+
+repo, limit = Path(sys.argv[1]), int(sys.argv[2])
+manifest = json.load(sys.stdin)
+if limit:
+    _soft, hard = resource.getrlimit(resource.RLIMIT_FSIZE)
+    resource.setrlimit(resource.RLIMIT_FSIZE, (limit, hard))
+try:
+    write_signed_ingest_manifest(
+        repo=repo, manifest=manifest, private_key=os.environ["TEST_INGEST_PRIVATE_KEY"]
+    )
+except OSError as exc:
+    print(errno.errorcode.get(exc.errno, exc.errno))
+    sys.exit(3)
+"""
+_FILE_SIZE_LIMIT = 256
+
+
+@pytest.mark.skipif(sys.platform == "win32", reason="RLIMIT_FSIZE is POSIX-only")
+@pytest.mark.parametrize("prior", [False, True], ids=["first-signing", "re-signing"])
+def test_manifest_write_cut_short_by_the_os_leaves_no_partial_manifest(
+    tmp_path: Path, prior: bool
+) -> None:
+    """A short write at the OS level, with no patching of the writer.
+
+    Writing in place at the final path left the first bytes of the manifest
+    there (a truncated JSON document) when the write failed.
+    """
+    repo, manifest, private, public, previous = _signed_manifest_setup(tmp_path, prior=prior)
+
+    def sign(limit: int) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            [sys.executable, "-c", _SIGN_UNDER_FILE_SIZE_LIMIT, str(repo), str(limit)],
+            input=json.dumps(manifest),
+            env={**os.environ, "TEST_INGEST_PRIVATE_KEY": private},
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+    cut_short = sign(_FILE_SIZE_LIMIT)
+
+    assert (cut_short.returncode, cut_short.stdout.strip()) == (3, "EFBIG"), cut_short.stderr
+    _assert_manifest_untouched(repo, previous)
+
+    retried = sign(0)
+
+    assert retried.returncode == 0, retried.stderr
+    manifest_path = repo / _SIGNED_MANIFEST
+    written = manifest_path.read_bytes()
+    assert len(written) > _FILE_SIZE_LIMIT
+    signed = json.loads(written)
+    assert signed["command"] == manifest["command"]
+    assert verify_ingest_manifest(signed, public_key=public, repo=repo, head_ref="HEAD") == []
+    assert list(manifest_path.parent.iterdir()) == [manifest_path]

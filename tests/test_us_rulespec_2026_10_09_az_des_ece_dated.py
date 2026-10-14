@@ -11,6 +11,7 @@ from hypothesis import strategies as st
 
 from scripts.repro.us_rulespec_2026_10_09_az_des_ece_dated import (
     ADDITION,
+    ADDITIONS,
     BASE_RELEASE,
     RELEASE,
     build_release,
@@ -19,9 +20,9 @@ from scripts.repro.us_rulespec_2026_10_09_az_des_ece_dated import (
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE_DIR = ROOT / "manifests/releases"
 PROVISIONS = ROOT / "data/corpus/provisions"
-# rulespec-us pins this release today (.axiom/toolchain.toml); the new release
-# must keep every scope it selects so a re-pin changes nothing else.
-RULESPEC_US_PIN = "us-rulespec-2026-08-08-obbb-alien-snap"
+# The selector must preserve the current RuleSpec source pin, not an older
+# ancestor whose California and federal scope identities have been replaced.
+RULESPEC_US_PIN = "us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected"
 FAA5_SCOPE = {
     "document_class": "manual",
     "jurisdiction": "us-az",
@@ -55,12 +56,13 @@ def test_reproducer_matches_committed_selector(tmp_path: Path) -> None:
     assert generated.read_bytes() == (RELEASE_DIR / f"{RELEASE}.json").read_bytes()
 
 
-def test_selector_preserves_base_and_adds_only_the_notice_scope() -> None:
+def test_selector_preserves_base_and_adds_only_the_intended_scopes() -> None:
     base = _identities(BASE_RELEASE)
     release = _identities(RELEASE)
 
-    assert release == base | {_identity(ADDITION)}
-    assert len(release) == len(base) + 1
+    assert BASE_RELEASE == RULESPEC_US_PIN
+    assert release == base | {_identity(addition) for addition in ADDITIONS}
+    assert len(release) == len(base) + len(ADDITIONS)
 
 
 def test_selector_is_a_strict_superset_of_the_rulespec_us_pin() -> None:
@@ -69,8 +71,7 @@ def test_selector_is_a_strict_superset_of_the_rulespec_us_pin() -> None:
 
     assert pin < release
     assert release - pin == {
-        ("us", "guidance", "2026-09-24-snap-fy2027-cola"),
-        _identity(ADDITION),
+        _identity(addition) for addition in ADDITIONS
     }
 
 
@@ -134,24 +135,24 @@ _SCOPE = st.fixed_dictionaries(
 @settings(max_examples=200, deadline=None)
 @given(
     scopes=st.lists(_SCOPE, max_size=25, unique_by=_identity),
-    with_addition=st.booleans(),
+    existing_addition=st.sampled_from([None, 0, 1]),
 )
-def test_build_release_adds_exactly_the_notice_scope_to_any_base(
+def test_build_release_adds_exactly_the_intended_scopes_to_any_base(
     tmp_path_factory: pytest.TempPathFactory,
     scopes: list[dict[str, str]],
-    with_addition: bool,
+    existing_addition: int | None,
 ) -> None:
-    """For every duplicate-free base: output = base + ADDITION, sorted, nothing dropped.
+    """For every duplicate-free base: output = base + additions, sorted.
 
-    A base that already holds the notice scope is refused rather than silently kept.
+    A base that already holds an addition is refused rather than silently kept.
     """
-    if with_addition:
-        scopes = [*scopes, dict(ADDITION)]
+    if existing_addition is not None:
+        scopes = [*scopes, dict(ADDITIONS[existing_addition])]
     release_dir = tmp_path_factory.mktemp("releases")
     base = {"description": "base", "name": BASE_RELEASE, "quality_profile": "q", "scopes": scopes}
     (release_dir / f"{BASE_RELEASE}.json").write_text(json.dumps(base), encoding="utf-8")
 
-    if ADDITION in scopes:
+    if any(addition in scopes for addition in ADDITIONS):
         with pytest.raises(ValueError):
             build_release(release_dir=release_dir)
         return
@@ -160,6 +161,8 @@ def test_build_release_adds_exactly_the_notice_scope_to_any_base(
     identities = [_identity(scope) for scope in output["scopes"]]
 
     assert identities == sorted(identities)
-    assert sorted(identities) == sorted([*map(_identity, scopes), _identity(ADDITION)])
+    assert sorted(identities) == sorted(
+        [*map(_identity, scopes), *map(_identity, ADDITIONS)]
+    )
     assert output["name"] == RELEASE
     assert output["quality_profile"] == "q"

@@ -1,0 +1,34 @@
+version: 2026-09-15-chip-income-premium-table-2026
+documents:
+- source_id: us-sc-income_table-program-eligibility-and-income-limits
+  jurisdiction: us-sc
+  document_class: policy
+  title: 'South Carolina Healthy Connections Medicaid: Program Eligibility and Income Limits (effective 2026-03-01)'
+  source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-sc/policy/scdhhs/medicaid/program-eligibility-and-income-limits
+  extraction:
+    html_content_selector: '#content'
+    html_drop_selectors:
+    - nav
+    - header
+    - footer
+    - script
+    - style
+    - p.Footer
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Health and Human Services
+    program: CHIP
+    state: South Carolina
+    document_subtype: annual_income_table_html
+    table_index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    carries: the agency's per-program income and resource limit tables (12 tables, monthly and annual by family size, effective
+      03/01/2026), including Partners for Healthy Children (CHIP); carries C-SS-INCOME-PREMIUM-TABLE (no CHIP premiums in
+      SC) and M-SS-INCOME-TABLE
+    source_discovery_group: us-sc/policy/income_table
+    discovered_via: manual-review:chip-agent-queue wave-5 closure (2026-09-15); publisher index https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    publisher_note: publisher answered the plain extractor client HTTP 200 on 2026-09-15; TLS verified, no mirror
+    carries_elements: M-SS-INCOME-TABLE C-SS-INCOME-PREMIUM-TABLE

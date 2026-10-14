@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/policy/2026-09-15-medicaid-income-table-2026.json",
+      "sha256": "bec07337136cfe7bad1bcfbb9e8fbefe047b9c99ee6acb3604ed8e4e80c4d4cd"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/policy/2026-09-15-medicaid-income-table-2026.json",
+      "sha256": "1f65137320111a07e8dd10c0a343e4603e859cb5d7b90a078dc2b3e01f607050"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/policy/2026-09-15-medicaid-income-table-2026.jsonl",
+      "sha256": "1ef25504bf392d6c82d8e988f95b3f7c92b4855d0a02863ab17bb44209c34428"
+    },
+    {
+      "path": "data/corpus/sources/us-id/policy/2026-09-15-medicaid-income-table-2026/official-documents/us-id-income_table-program-income-limits.html",
+      "sha256": "3ab45f61ca5495209b8fdea267bb42bbd7aa756a7aa8a4c116682e73c7478961"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:44:31.341133+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4Ry/8ULwkPi4/vDa/BlloqFCFZ73k8SQKOZ4K/cy8SKBfC7cBTIR10OVGiOU6L7chPQGUQbCtpdQJjvtdV6sCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-income-table-2026"
+}

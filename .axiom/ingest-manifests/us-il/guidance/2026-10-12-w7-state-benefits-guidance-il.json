@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/guidance/2026-10-12-w7-state-benefits-guidance-il.json",
+      "sha256": "a53b9959884cfe240f618597210923eecfe8647a3e356f282dc91356797b371f"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/guidance/2026-10-12-w7-state-benefits-guidance-il.json",
+      "sha256": "63d12455ea3c41e8b947bc2e49cca2351eb8b7fcf1c3ca530934a6914ba7d565"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/guidance/2026-10-12-w7-state-benefits-guidance-il.jsonl",
+      "sha256": "47643ffa8dcb8ffca5b557fca07227a12f2c6670b6b8f10a7f90051a74b217f1"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-12-w7-state-benefits-guidance-il/official-documents/us-il-guidance-dhs-brochure-586-tanf.html",
+      "sha256": "75a7cf2ab882beec86c9978f11943fbb189e746d02ea92e37e9ef8a8d4d5af0e"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-12-w7-state-benefits-guidance-il/official-documents/us-il-guidance-dhs-tanf.html",
+      "sha256": "2ed99fa77dbc2f270200dff0830396a68ab29edbe580e751c778ea4579cf7aa4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/guidance/2026-10-12-w7-state-benefits-guidance-il/official-documents/us-il-guidance-idec-child-care-assistance-program.html",
+      "sha256": "715eb90ab92212fe0e69cdc006240bc564f8cba13f8f740a737d889b517b7845"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 26,
+    "missing_count": 0,
+    "provision_count": 26,
+    "source_count": 26
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-13T12:06:03.516185+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "p8iNPzGxAluFhXs/QQpOJOoxiXCQLB+2nszmVFEyz7ocuPmhwGirIpnde72gPzcNx6KYgs1WBwyYdL0npo2DAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-guidance-il"
+}

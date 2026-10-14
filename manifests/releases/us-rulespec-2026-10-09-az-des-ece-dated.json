@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-09-24-snap-fy2027-cola. It preserves every prior scope and adds the Arizona DES Cash and Nutrition Assistance Policy Manual notice What's Changed on 03/23/2026, which moves the Nutrition Assistance expanded categorical eligibility gross income limit from 185% to 200% of the federal poverty level for benefit month 03/2026 onward, required to encode that limit with its effective dates. It is a publish-only pin release for rulespec-us; do not activate it.",
+  "description": "Successor to us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected. It preserves every prior scope and adds the FY 2027 SNAP COLA guidance and the Arizona DES Cash and Nutrition Assistance Policy Manual notice What's Changed on 03/23/2026, which moves the Nutrition Assistance expanded categorical eligibility gross income limit from 185% to 200% of the federal poverty level for benefit month 03/2026 onward, required to encode that limit with its effective dates. It is a publish-only pin release for rulespec-us; do not activate it.",
   "name": "us-rulespec-2026-10-09-az-des-ece-dated",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -72,6 +72,11 @@
       "document_class": "guidance",
       "jurisdiction": "us",
       "version": "2026-08-07-snap-obbb-alien-eligibility-implementation-memo"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-09-13-snap-fns-guidance"
     },
     {
       "document_class": "guidance",
@@ -401,7 +406,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018"
+      "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables"
     },
     {
       "document_class": "statute",
@@ -411,17 +416,12 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ca",
-      "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ca",
       "version": "2026-07-28-ca-cdss-calfresh-bbce-authority-us-ca-sections-wic-18901.3-wic-18901.5"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-ca",
+      "version": "2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7-r2026-09-24-preserve-tables"
     },
     {
       "document_class": "policy",

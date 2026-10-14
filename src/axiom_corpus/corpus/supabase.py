@@ -12,6 +12,7 @@ import pickle
 import re
 import secrets
 import subprocess
+import sys
 import tempfile
 import time
 import urllib.error
@@ -818,6 +819,10 @@ def fetch_staged_release_scope_evidence(
 # 1,445 scopes, then a reply cut off at 59.6 MB for 722).
 _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
 _RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+# Each read is small or one object of tens of megabytes (seconds either way), so a read
+# that stalls for two minutes is retried; with the earlier 600 s, stalls cost the
+# released-scope-lookup phase hours (run 38167395106: 10,494 s for 21 prior objects).
+_RELEASED_SCOPE_FETCH_TIMEOUT_SECONDS = 120
 _RELEASED_SCOPE_VERSION_BATCH = 100
 _RELEASED_SCOPE_PAGE_SIZE = 1_000
 _CONTENT_RANGE_TOTAL_RE = re.compile(r"/(\d+)$")
@@ -849,10 +854,18 @@ def _released_scope_get(
         headers=headers,
         method="GET",
     )
+    # One line per attempt, so a slow lookup shows which reads took the time.
+    if path == "release_objects":
+        what = params.get("release_name", "").removeprefix("eq.")
+    else:
+        versions = params.get("version", "")
+        what = f"versions={versions.count(',') + 1 if versions else 0} offset={params.get('offset', '0')}"
     for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
+        started = time.monotonic()
         try:
-            with urllib.request.urlopen(req, timeout=600) as resp:
-                rows = json.loads(resp.read())
+            with urllib.request.urlopen(req, timeout=_RELEASED_SCOPE_FETCH_TIMEOUT_SECONDS) as resp:
+                body = resp.read()
+                rows = json.loads(body)
                 content_range = resp.headers.get("Content-Range") if resp.headers else None
             if not isinstance(rows, list):
                 raise RuntimeError("unexpected released-scope response")
@@ -862,8 +875,15 @@ def _released_scope_get(
                 if match is None:
                     raise RuntimeError("released-scope response has no exact row count")
                 total = int(match.group(1))
+            print(
+                f"released-scope read {path} {what} attempt={attempt + 1} "
+                f"{time.monotonic() - started:.1f}s rows={len(rows)} bytes={len(body)}",
+                file=sys.stderr,
+                flush=True,
+            )
             return rows, total
         except urllib.error.HTTPError as exc:
+            _log_released_scope_failure(path, what, attempt, started, exc)
             if 400 <= exc.code < 500 and exc.code not in {408, 429}:
                 raise
             if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
@@ -874,12 +894,24 @@ def _released_scope_get(
             TimeoutError,
             http.client.IncompleteRead,
             json.JSONDecodeError,
-        ):
+        ) as exc:
+            _log_released_scope_failure(path, what, attempt, started, exc)
             if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
                 raise
         time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
 
     raise AssertionError("released-scope retry loop exhausted unexpectedly")
+
+
+def _log_released_scope_failure(
+    path: str, what: str, attempt: int, started: float, exc: BaseException
+) -> None:
+    print(
+        f"released-scope read {path} {what} attempt={attempt + 1} "
+        f"{time.monotonic() - started:.1f}s failed: {type(exc).__name__}",
+        file=sys.stderr,
+        flush=True,
+    )
 
 
 def _postgrest_in(values: Sequence[str]) -> str:
