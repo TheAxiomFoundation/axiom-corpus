@@ -270,11 +270,15 @@ def test_with_unread_layer_lines_cases():
 
 
 @pytest.mark.parametrize(
-    ("render_mode", "fill_opacity", "painted"),
-    [(0, 1, True), (3, 1, False), (0, 0, False), (1, 1, True)],
+    ("render_mode", "fill_opacity", "painted", "mapped"),
+    [(0, 1, True, True), (3, 1, False, None), (0, 0, False, True), (1, 1, True, True)],
     ids=["filled", "invisible-mode-3", "transparent", "stroked"],
 )
-def test_layer_lines_report_whether_text_is_painted(tmp_path, render_mode, fill_opacity, painted):
+def test_layer_lines_report_whether_text_is_painted(
+    tmp_path, render_mode, fill_opacity, painted, mapped
+):
+    # Helvetica's characters come from its encoding (mapped); invisible text reports no
+    # flags, so its provenance is unknown.
     pdf = _pdf(
         tmp_path / "scan.pdf",
         image_rect="page",
@@ -286,9 +290,9 @@ def test_layer_lines_report_whether_text_is_painted(tmp_path, render_mode, fill_
         span_lines = _pdf_layer_lines(document[0], extraction={})
         text = document[0].get_text("text")
 
-    assert ["".join(span for span, _, _ in spans) for spans in span_lines] == text.splitlines()
-    flags = [flag for spans in span_lines for span, flag, _ in spans if span.strip()]
-    assert flags and all(flag is painted for flag in flags)
+    assert ["".join(span[0] for span in spans) for spans in span_lines] == text.splitlines()
+    spans = [span for spans in span_lines for span in spans if span[0].strip()]
+    assert spans and all(span[1] is painted and span[3] is mapped for span in spans)
 
 
 # A recognition layer that agrees with none of OCR's words: five words of 3+ letters.
@@ -409,23 +413,28 @@ def test_typed_lines_in_a_type3_font_are_kept(monkeypatch, font_keys, span_name)
     # Review r3/r4: PyMuPDF before 1.27 (1.26 is locked here) reports filled Type3 glyphs as
     # unpainted, so typed lines in a Type3 font looked like a failed recognition layer.
     # There a Type3 font's spans count as painted, matched by the name MuPDF gives them
-    # (/Name without a subset prefix, else "Unnamed-T3"); 1.27 and later report the paint.
+    # (/Name without a subset prefix, else "Unnamed-T3"; 1.28 names an unnamed font
+    # "Type3 (<object> 0 R)"); 1.27 and later report the paint.
     monkeypatch.setattr(
         documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
     )
     with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys=font_keys)) as document:
         span_lines = _pdf_layer_lines(document[0], extraction={})
+        names = documents_module._pdf_type3_font_names(document[0])
         result = _pdf_page_text(document[0], extraction={"ocr": True})
 
-    spans = [(text, painted, font) for line in span_lines for text, painted, font in line]
-    assert all(painted for text, painted, _ in spans if text.strip())
+    typed = [span for line in span_lines for span in line if span[0].strip()]
+    assert typed and all(painted for _, painted, _, _ in typed)
+    # Every version: the Type3 spans are named as listed, and their glyph names are not
+    # taken as a Unicode map.
+    assert all(font in names and mapped is None for _, _, font, mapped in typed)
     if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
-        assert any(font == span_name for _, _, font in spans)
+        assert {font for _, _, font, _ in typed} == {span_name}
     assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
 
 
 def _type3_font_written_inline(document, page) -> None:
-    font = next(font[0] for font in page.get_fonts(full=True) if font[2] == "Type3")
+    font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
     _set_page_font(document, page, "F3", document.xref_object(font, compressed=True))
 
 
@@ -536,18 +545,58 @@ def test_type3_fonts_are_named_however_they_are_written(monkeypatch, font_keys, 
     with fitz.open("pdf", pdf) as document:
         page = document[0]
         fonts = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
-        span_fonts = {font for line in _pdf_layer_lines(page, extraction={}) for _, _, font in line}
+        span_fonts = {
+            span[2]
+            for line in _pdf_layer_lines(page, extraction={})
+            for span in line
+            if span[0].strip()
+        }
         names = documents_module._pdf_type3_font_names(page)
         result = _pdf_page_text(page, extraction={"ocr": True})
 
     assert len(fonts) == 1
     assert (fonts[0][0] == 0) == (_type3_font_written_inline in changes)
     assert (fonts[0][6] != 0) == (_page_drawn_by_a_form in changes)
+    unnamed = {f"Type3 ({fonts[0][0]} 0 R)"} if span_name == "Unnamed-T3" else set()
+    assert names == {span_name} | unnamed
+    assert span_fonts <= names
     if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
-        assert names == {span_name}
-        assert span_name in span_fonts
-    else:
-        assert names == frozenset()
+        assert span_fonts == {span_name}
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _decoy_type3_font_named_f(document, page) -> None:
+    """Adds a copy of the page's Type3 font, named /Decoy, as resource /F."""
+    font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
+    text = document.xref_object(font, compressed=True)
+    assert "/Name/Bar" in text
+    decoy = document.get_new_xref()
+    document.update_object(decoy, text.replace("/Name/Bar", "/Name/Decoy"))
+    _set_page_font(document, page, "F", f"{decoy} 0 R")
+
+
+def test_a_slash_in_an_inline_type3_resource_name_never_reaches_another_font(monkeypatch):
+    # Review r5: "/F#2FResources" is "F/Resources". Looked up as a path it reached font
+    # /F's resources, which exist, so the font was named "Unnamed-T3" and, under PyMuPDF
+    # before 1.27, its typed lines were judged as a recognition layer and dropped. A name
+    # with a "/" is now named as get_fonts lists it.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys="/Name /Bar")) as document:
+        page = document[0]
+        _decoy_type3_font_named_f(document, page)
+        _type3_font_written_inline(document, page)
+        _type3_resource_named("F#2FResources")(document, page)
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        page = document[0]
+        fonts = sorted(font[4] for font in page.get_fonts(full=True) if font[2] == "Type3")
+        names = documents_module._pdf_type3_font_names(page)
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert fonts == ["F", "F/Resources"]
+    assert names == {"Bar", "Decoy"}
     assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
 
 
@@ -571,11 +620,10 @@ def test_an_unaddressable_inline_type3_font_with_a_base_font_is_a_known_limit(
         names = documents_module._pdf_type3_font_names(document[0])
         result = _pdf_page_text(document[0], extraction={"ocr": True})
 
+    assert names == {"Foo"}
     if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
-        assert names == {"Foo"}
         assert result == TYPE3_OCR
     else:
-        assert names == frozenset()
         assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
 
 
@@ -634,7 +682,9 @@ def test_the_text_line_fallback_still_drops_garbled_lines(tmp_path, monkeypatch)
     ocr = "Applicant Household Size\n"
     monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
     monkeypatch.setattr(
-        documents_module, "_pdf_layer_lines", lambda page, *, extraction: [[("x", True, "F")]]
+        documents_module,
+        "_pdf_layer_lines",
+        lambda page, *, extraction: [[("x", True, "F", True)]],
     )
     pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
     with fitz.open(pdf) as document:
@@ -642,6 +692,50 @@ def test_the_text_line_fallback_still_drops_garbled_lines(tmp_path, monkeypatch)
         result = _pdf_page_text(page, extraction={"ocr": True})
 
     assert result == "Applicant Household Size\n\nJanuary 1, 2018"
+
+
+@pytest.mark.parametrize(
+    ("char_flags", "mapped"),
+    [
+        (None, None),  # no flags reported
+        (0, None),  # neither painted nor flagged: invisible text under PyMuPDF 1.26
+        (16, True),  # filled
+        (32, True),  # stroked
+        (16 | 128, False),  # MuPDF found no Unicode: the glyph's CID stands in
+        (16 | 256, False),  # ... or its glyph id
+        (128, False),
+        (0 | 256, False),
+    ],
+)
+def test_span_provenance_comes_from_mupdfs_flags(char_flags, mapped):
+    span = {} if char_flags is None else {"char_flags": char_flags}
+    assert documents_module._pdf_span_mapped(span) is mapped
+
+
+def test_marks_the_spans_lack_are_put_back_on_the_page(tmp_path, monkeypatch):
+    # Review r5: the text output prints "Jose\u0301" where the spans hold "Jose"; the page
+    # text keeps the accent.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="Jose")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "Jose\u0301\n")
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert result == "Applicant Household Size\n\nJose\u0301"
+
+
+def test_marks_with_no_line_to_go_on_use_the_text_outputs_lines(tmp_path, monkeypatch):
+    # The spans' lines "Jo" and "se" hold the text output's letters, but no line is "Jose"
+    # for its accent to go on, so the text output's lines are used and the accent stays.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="Jo\nse")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "Jose\u0301\n")
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert result == "Applicant Household Size\n\nJose\u0301"
 
 
 def test_page_needs_ocr_rules(tmp_path):

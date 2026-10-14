@@ -43,9 +43,9 @@ S8. A span without an unmapped character is never changed. A font is not decoded
     page has its name (two unmapped fonts of one name can number their glyphs differently),
     and a line is decoded whole or not at all.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
-    reports as U+FFFD (a differential test on every retained page), and a character is
-    paired with the other read's only where the reads agree at its origin
-    (``_pdf_unmapped_status``).
+    reports as U+FFFD (a differential test on every retained page); every span holding one
+    is one MuPDF marks UNICODE_IS_CID or _IS_GID; and a character is paired with the other
+    read's only where the reads agree at its origin (``_pdf_unmapped_status``).
 """
 
 from __future__ import annotations
@@ -647,7 +647,7 @@ def test_a_shifted_font_sharing_its_name_with_a_mapped_font_is_not_decoded(tmp_p
 
     assert counts["ArialMT"] == 2
     assert decoded == spans
-    assert ["Anne M. Costello"] in [[text for text, _, _ in line] for line in spans]
+    assert ["Anne M. Costello"] in [[text for text, *_ in line] for line in spans]
 
 
 def test_two_unmapped_fonts_of_one_name_are_not_decoded(tmp_path, monkeypatch):
@@ -685,9 +685,9 @@ def test_a_line_is_decoded_whole_or_not_at_all(tmp_path):
         page = document[0]
         spans = _pdf_layer_lines(page, extraction={})
         decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
-    texts = ["".join(text for text, _, _ in line) for line in decoded]
+    texts = ["".join(text for text, *_ in line) for line in decoded]
     assert "June 2020" in texts and "Scott 2021" in texts
-    mixed = [line for line in spans if len({font for _, _, font in line}) == 2]
+    mixed = [line for line in spans if len({font for _, _, font, *_ in line}) == 2]
     assert mixed and all(line in decoded for line in mixed)
 
 
@@ -712,7 +712,7 @@ def test_a_font_named_like_an_annotations_font_is_not_decoded(tmp_path):
         decoded = _pdf_decoded_span_lines(
             page, spans, extraction={}, ocr_text="June 2020\nSigned: Scott 2021\n"
         )
-    assert ["Note"] in [[text for text, _, _ in line] for line in spans]
+    assert ["Note"] in [[text for text, *_ in line] for line in spans]
     assert counts["Helvetica"] == 2
     assert decoded == spans
 
@@ -748,9 +748,9 @@ def test_characters_drawn_at_one_origin_by_mapped_and_unmapped_fonts_are_not_dec
         page = document[0]
         spans = _pdf_layer_lines(page, extraction={})
         decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
-    texts = ["".join(text for text, _, _ in line) for line in decoded]
+    texts = ["".join(text for text, *_ in line) for line in decoded]
     assert "June 2020" in texts and "Scott 2021" in texts
-    overprinted = [old for old in spans if any(text == "F" for text, _, _ in old)]
+    overprinted = [old for old in spans if any(text == "F" for text, *_ in old)]
     assert overprinted and all(line in decoded for line in overprinted)
 
 
@@ -791,7 +791,7 @@ def test_a_font_whose_characters_in_a_line_are_partly_mapped_is_not_decoded_ther
         spans = _pdf_layer_lines(page, extraction={})
         decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
 
-    assert [[text for text, _, _ in line] for line in decoded[:2]] == [["Scott2021"], ["June2020"]]
+    assert [[text for text, *_ in line] for line in decoded[:2]] == [["Scott2021"], ["June2020"]]
     assert decoded[2] == spans[2]
 
 
@@ -814,7 +814,7 @@ def test_decoding_needs_the_rawdict_spans_to_be_the_dict_spans(tmp_path):
         spans = _pdf_layer_lines(page, extraction={})
         assert _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr) != spans
         # Spans that are not the page's (another reading) are returned as they are.
-        other = [[(text + "x", painted, font) for text, painted, font in line] for line in spans]
+        other = [[(text + "x", *rest) for text, *rest in line] for line in spans]
         assert _pdf_decoded_span_lines(page, other, extraction={}, ocr_text=ocr) == other
 
 
@@ -937,11 +937,11 @@ def test_a_font_name_several_font_objects_carry_is_not_decoded(monkeypatch):
     changed = [line for line, old in zip(decoded, spans, strict=True) if line != old]
     # Only lines wholly in Arial decode; a line with any ArialMT span is as read, so
     # "03/01/2020" (Arial "0" and "/01/2020", ArialMT "3") leaves no "0 /01/2020" fragment.
-    assert all(font == "Arial" for line in changed for _, _, font in line)
+    assert all(font == "Arial" for line in changed for _, _, font, *_ in line)
     for line, old in zip(decoded, spans, strict=True):
-        if any(font == "ArialMT" for _, _, font in old):
+        if any(font == "ArialMT" for _, _, font, *_ in old):
             assert line == old
-    texts = ["".join(text for text, _, _ in line) for line in changed]
+    texts = ["".join(text for text, *_ in line) for line in changed]
     assert "Section 1135(b) of the Social Security Act" in texts
     assert "Deputy Director, Center for Medicaid & CHIP Services" in texts
     # The mapped signature is read as it is.
@@ -1001,10 +1001,12 @@ def test_unmapped_characters_are_those_the_text_trace_reports(path, monkeypatch)
 
 
 @pytest.mark.parametrize("path", sorted(ALL_PAGES))
-def test_spans_wholly_unmapped_are_those_mupdf_marks_as_codes(path, monkeypatch):
-    # A second differential test: MuPDF marks a span whose characters are codes with
-    # FZ_STEXT_UNICODE_IS_CID (char_flags 128). On every retained page that is exactly the
-    # spans whose characters, MuPDF's own spaces aside, are all unmapped by the two reads.
+def test_every_span_with_an_unmapped_character_is_one_mupdf_marks_as_codes(path, monkeypatch):
+    # A second differential test: MuPDF marks a span whose characters stand in for missing
+    # Unicode with FZ_STEXT_UNICODE_IS_CID or _IS_GID (char_flags 128, 256). Every span
+    # holding a character the two reads find unmapped carries one of them. The converse
+    # does not hold: on WV-23-0001 page 132 nine marked spans hold characters MuPDF maps
+    # ("."), so the mark alone does not say which characters to decode.
     page = ALL_PAGES[path]
     document, pdf_page = _real_page(page, monkeypatch)
     with document:
@@ -1016,16 +1018,16 @@ def test_spans_wholly_unmapped_are_those_mupdf_marks_as_codes(path, monkeypatch)
     for block in raw.get("blocks", ()):
         for line in block.get("lines", ()):
             for span in line["spans"]:
-                unmapped = []
+                unmapped = False
                 for char in span["chars"]:
                     origin = (float(char["origin"][0]), float(char["origin"][1]))
                     k = seen[origin]
                     seen[origin] += 1
-                    if char["c"] != " ":
-                        flags = found.get(origin, ())
-                        unmapped.append(k < len(flags) and flags[k])
+                    flags = found.get(origin, ())
+                    unmapped |= k < len(flags) and flags[k]
                 if unmapped and "char_flags" in span:
-                    assert bool(int(span["char_flags"]) & 128) == all(unmapped), span["text"]
+                    text = "".join(char["c"] for char in span["chars"])
+                    assert int(span["char_flags"]) & (128 | 256), text
 
 
 @pytest.mark.parametrize("path", sorted(ALL_PAGES))

@@ -3065,12 +3065,13 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     layer_text = str(text)
     if _normalize_text(ocr_text):
         span_lines = _pdf_layer_lines(page, extraction=extraction)
+        layer_lines = None
         if _same_layer_characters(span_lines, layer_text):
             span_lines = _pdf_decoded_span_lines(
                 page, span_lines, extraction=extraction, ocr_text=ocr_text
             )
-            layer_lines = _without_garbled_spans(span_lines)
-        else:
+            layer_lines = _with_layer_marks(_without_garbled_spans(span_lines), layer_text)
+        if layer_lines is None:
             # The dict output does not hold the text output's characters: use the text
             # output's lines, all counted as painted, so no typed text can go missing.
             # They are split at newlines only, so a garbled line keeps its control
@@ -3276,6 +3277,9 @@ def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
 # and FZ_STEXT_STROKED in its ``char_flags``). Text render mode 3 does neither: that is how
 # a scanner or OCR program lays an invisible recognition layer over a page image.
 _PDF_TEXT_PAINTED = 16 | 32
+# MuPDF's FZ_STEXT_UNICODE_IS_CID and FZ_STEXT_UNICODE_IS_GID: the font gave no Unicode
+# for the glyph, and its CID or glyph id stands in for one.
+_PDF_TEXT_UNICODE_GUESSED = 128 | 256
 # An invisible line with fewer letters than this and no digit is a fragment.
 _RECOGNITION_FRAGMENT_LETTERS = 3
 # A recognition layer is judged by its distinct words of _RECOGNITION_WORD_LETTERS or more
@@ -3306,13 +3310,14 @@ def _pdf_span_painted(span: dict[str, Any]) -> bool:
 
 def _pdf_layer_lines(
     page: Any, *, extraction: dict[str, Any]
-) -> list[list[tuple[str, bool, str]]]:
-    """The page's text-layer lines, each as its spans' (text, painted, font name).
+) -> list[list[tuple[str, bool, str, bool | None]]]:
+    """The page's text-layer lines, each as its spans' (text, painted, font name, mapped).
 
     The lines and spans of the ``dict`` output, with the text flags and sort of
     ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
     spans (``_pdf_span_painted`` gives the paint; under PyMuPDF before 1.27 a Type3 font's
-    spans count as painted, ``_pdf_type3_font_names``). Without ``sort_text`` the lines' text
+    spans count as painted, ``_pdf_type3_font_names``). ``mapped`` is where the span's
+    characters come from (``_pdf_span_mapped``). Without ``sort_text`` the lines' text
     joined with newlines is the text output; with it, that output rebuilds lines from
     words by position, but the characters are the same (``_same_layer_characters``).
     """
@@ -3322,16 +3327,35 @@ def _pdf_layer_lines(
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
     type3 = _pdf_type3_font_names(page)
-    lines: list[list[tuple[str, bool, str]]] = []
+    lines: list[list[tuple[str, bool, str, bool | None]]] = []
     for block in data.get("blocks", ()):
         for line in block.get("lines", ()):
             spans = []
             for span in line.get("spans", ()):
                 font = str(span.get("font", ""))
-                painted = font in type3 or _pdf_span_painted(span)
-                spans.append((str(span.get("text", "")), painted, font))
+                painted = (_PDF_TYPE3_PAINT_UNREPORTED and font in type3) or _pdf_span_painted(span)
+                mapped = None if font in type3 else _pdf_span_mapped(span)
+                spans.append((str(span.get("text", "")), painted, font, mapped))
             lines.append(spans)
     return lines
+
+
+def _pdf_span_mapped(span: dict[str, Any]) -> bool | None:
+    """Whether a span's characters come from its font's own Unicode map.
+
+    True when PyMuPDF reports the span's characters (a fill or stroke flag is set) and
+    neither of MuPDF's flags for a glyph without Unicode is; False when one of those is set;
+    None when PyMuPDF reports no flags for the span (an older PyMuPDF, or invisible text
+    under 1.26). A span splits where these flags change, so they hold for all its
+    characters. ``_pdf_layer_lines`` gives None for a Type3 font: its glyph names are its
+    map, and a shifted Type3 font's names are wrong ("OPQRPST" under PyMuPDF 1.28).
+    """
+    flags = span.get("char_flags")
+    if flags is None:
+        return None
+    if int(flags) & _PDF_TEXT_UNICODE_GUESSED:
+        return False
+    return True if int(flags) & _PDF_TEXT_PAINTED else None
 
 
 # PyMuPDF before 1.27 reports filled Type3 glyphs as neither filled nor stroked, the same
@@ -3341,18 +3365,24 @@ _PDF_NAME_ESCAPE = re.compile(rb"#([0-9A-Fa-f]{2})")
 
 
 def _pdf_type3_font_names(page: Any) -> frozenset[str]:
-    """The span font names of the page's Type3 fonts, when PyMuPDF cannot report their paint.
+    """The span font names of the page's Type3 fonts.
 
     Under PyMuPDF before 1.27 (this repository locks 1.26) a span in a Type3 font counts
     as painted, since filled and invisible Type3 text look alike there; every Type3 span on
     the 1,041 overlay pages measured is filled under 1.28.2. Under 1.27 and later the paint
-    is read from the span and this is empty.
+    is read from the span. On every version a Type3 span's characters are not taken as
+    mapped (``_pdf_span_mapped``). A font without a name has its spans named "Unnamed-T3"
+    before 1.27 and "Type3 (<object number> 0 R)" in 1.28; both are listed.
     """
-    if not _PDF_TYPE3_PAINT_UNREPORTED:
-        return frozenset()
-    return frozenset(
-        _pdf_type3_span_name(page, font) for font in page.get_fonts(full=True) if font[2] == "Type3"
-    )
+    names: set[str] = set()
+    for font in page.get_fonts(full=True):
+        if font[2] != "Type3":
+            continue
+        name = _pdf_type3_span_name(page, font)
+        names.add(name)
+        if name == "Unnamed-T3":
+            names.add(f"Type3 ({font[0]} 0 R)")
+    return frozenset(names)
 
 
 def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
@@ -3394,7 +3424,10 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
 def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
     """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
     of the page-tree nodes it inherits them from when it has none. Raises LookupError when
-    the font is not found under that name (the lookup path splits at a "/" in it)."""
+    the name has a "/" (the lookup path would split at it and could reach another
+    dictionary: "F/Resources" is font F's resources) or the font is not found under it."""
+    if "/" in resource:
+        raise LookupError(resource)  # the lookup path would split at it
     for _ in range(64):
         if document.xref_get_key(holder, "Resources")[0] != "null":
             path = f"Resources/Font/{resource}"
@@ -3418,40 +3451,97 @@ def _layer_characters(text: str) -> Counter[str]:
 
 
 def _same_layer_characters(
-    span_lines: list[list[tuple[str, bool, str]]], layer_text: str
+    span_lines: list[list[tuple[str, bool, str, bool | None]]], layer_text: str
 ) -> bool:
     """Whether the spans hold the text output's characters, whitespace, control characters
     and combining marks aside (the sorted text output drops a garbled font's control
-    "spaces"; PyMuPDF 1.28 prints combining marks on WV-23-0001 that its spans lack)."""
+    "spaces"; PyMuPDF 1.28 prints combining marks on WV-23-0001 that its spans lack: those
+    are restored by ``_with_layer_marks``)."""
     spans = "".join(span[0] for spans in span_lines for span in spans)
     return _layer_characters(spans) == _layer_characters(layer_text)
 
 
+def _with_layer_marks(
+    lines: list[tuple[str, bool]], layer_text: str
+) -> list[tuple[str, bool]] | None:
+    """``lines`` (``_without_garbled_spans``) with the combining marks the text output holds
+    and the spans lack, or None when they can't all be placed.
+
+    A text-output line holding a control character is a garbled font's, and its marks are
+    not needed. Each other text-output line holding a mark the spans lack takes a kept line
+    of its own: one that is already that line, or else one that is that line without its
+    marks, which it replaces, keeping the paint (spacing aside in both). If none is left,
+    the marks can't be placed.
+    """
+    span_marks = Counter(
+        char for text, _ in lines for char in text if unicodedata.category(char) == "Mn"
+    )
+    text_marks = Counter(char for char in layer_text if unicodedata.category(char) == "Mn")
+    missing = text_marks - span_marks
+    if not missing:
+        return lines
+    placed = list(lines)
+    used: set[int] = set()
+    for text_line in layer_text.split("\n"):
+        if _has_control_character(text_line) or not any(
+            char in missing for char in text_line
+        ):
+            continue
+        whole = " ".join(text_line.split())
+        bare = " ".join(
+            "".join(char for char in text_line if unicodedata.category(char) != "Mn").split()
+        )
+        # Each text-output line takes its own kept line: itself, or itself without marks.
+        for target, replace in ((whole, False), (bare, True)):
+            index = next(
+                (
+                    index
+                    for index, (text, _) in enumerate(placed)
+                    if index not in used and " ".join(text.split()) == target
+                ),
+                None,
+            )
+            if index is not None:
+                if replace:
+                    placed[index] = (whole, placed[index][1])
+                used.add(index)
+                break
+        else:
+            return None
+    return placed
+
+
 def _without_garbled_spans(
-    span_lines: list[list[tuple[str, bool, str]]],
+    span_lines: list[list[tuple[str, bool, str, bool | None]]],
 ) -> list[tuple[str, bool]]:
     """Each layer line's text without its garbled font's spans, with whether it is painted.
 
     A span holding a control character other than ordinary whitespace
-    (``_has_control_character``) is a garbled font's, and so is every span on the same
-    line in a font of that name: the font maps some codes to control characters and the
-    rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those spans are left
-    out whole, before anything splits them. The runs of kept spans between them are kept,
-    joined by one space; spans in other fonts, such as a date typed beside a garbled
-    label, stay. A clean span in the same font as a garbled span on its line is left out
-    too: on the overlay pages measured all 509 such spans are garbage, but a font can map
-    some codes right (AL-20-0004 page 4's signature, on lines of its own). The line is
-    painted when any kept span with visible characters is. A line left with no visible
-    character is dropped.
+    (``_has_control_character``) is a garbled font's, and so is every other span on the
+    same line in a font of that name (CA-25-0037's "5678", "9C<:"): the font gives that
+    line's codes wrong characters, some of them control characters. Those spans are left
+    out whole, before anything splits them. The exception is a span whose characters come
+    from the font's own Unicode map (mapped True) when every control-character span of its
+    font on the line had no Unicode (mapped False): the garbage is the codes the map
+    leaves out, and the mapped span is typed text (NV-20-0002 page 3's "3" in "March 13,
+    2020"). Spans in other fonts, such as a date typed beside a garbled label, stay. The
+    runs of kept spans between left-out ones are joined by one space. The line is painted
+    when any kept span with visible characters is. A line left with no visible character
+    is dropped.
     """
     lines: list[tuple[str, bool]] = []
     for spans in span_lines:
-        garbled = {font for text, _, font in spans if _has_control_character(text)}
+        unmapped: dict[str, bool] = {}
+        for text, _, font, mapped in spans:
+            if _has_control_character(text):
+                unmapped[font] = unmapped.get(font, True) and mapped is False
         runs: list[str] = []
         run = ""
         painted = False
-        for text, span_painted, font in spans:
-            if font in garbled or _has_control_character(text):
+        for text, span_painted, font, mapped in spans:
+            if _has_control_character(text) or (
+                font in unmapped and not (unmapped[font] and mapped is True)
+            ):
                 runs.append(run)
                 run = ""
                 continue
@@ -3863,13 +3953,14 @@ def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool
     letters, inside its letters run together. Lines with a control character
     (``_has_control_character``) do not count.
     """
-    words = {
-        run.lower()
-        for line in invisible_lines
-        if not _has_control_character(line)
-        for run in _letter_runs(line)
-        if len(run) >= _RECOGNITION_WORD_LETTERS
-    }
+    # Each word with its most letters before lower-casing ("\u0130" lower-cases to two).
+    words: dict[str, int] = {}
+    for line in invisible_lines:
+        if _has_control_character(line):
+            continue
+        for run in _letter_runs(line):
+            if len(run) >= _RECOGNITION_WORD_LETTERS:
+                words[run.lower()] = max(words.get(run.lower(), 0), len(run))
     if len(words) < _RECOGNITION_MIN_WORDS:
         return False
     ocr_runs = [run.lower() for run in _letter_runs(ocr_text)]
@@ -3877,8 +3968,8 @@ def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool
     ocr_letters = "".join(ocr_runs)
     found = sum(
         1
-        for word in words
-        if word in ocr_words or (len(word) >= _RECOGNITION_RUN_LETTERS and word in ocr_letters)
+        for word, letters in words.items()
+        if word in ocr_words or (letters >= _RECOGNITION_RUN_LETTERS and word in ocr_letters)
     )
     return found * 3 < len(words)
 

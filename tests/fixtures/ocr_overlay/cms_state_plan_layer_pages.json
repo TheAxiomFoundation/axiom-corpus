@@ -1,5 +1,5 @@
 {
- "description": "Retained CMS Medicaid state-plan PDF pages that `ocr: true` reads by OCR although they have a text layer. ocr_text is Tesseract 5.5.3 (eng, 200 dpi) on the page PyMuPDF 1.26.7 renders; layer_text is the page's text layer; layer_spans are its lines as their spans: text, whether it is painted (False: an invisible recognition layer) and font name.",
+ "description": "Retained CMS Medicaid state-plan PDF pages that `ocr: true` reads by OCR although they have a text layer. ocr_text is Tesseract 5.5.3 (eng, 200 dpi) on the page PyMuPDF 1.26.7 renders; layer_text is the page's text layer; layer_spans are its lines as their spans: text, whether it is painted (False: an invisible recognition layer), font name, and mapped (True: the characters come from the font's Unicode map; False: MuPDF found no Unicode and used the glyph's CID or id; null: not reported, or a Type3 font).",
  "pages": {
   "us-hi/policy/cms/medicaid-state-plan/spa/hi-14-005/approval-document/page-3": {
    "pdf": "data/corpus/sources/us-hi/policy/2026-09-13-medicaid-state-plan/official-documents/us-hi-cms-medicaid-state-plan-spa-hi-14-005-approval-document.pdf",
@@ -12,77 +12,88 @@
      [
       "XXXXXXXX",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "XXXXXXXXXXXXXXXX",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "Box 7:  Pen and Ink Changes per ",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "                               RAI response 9/10/14 (cb) ",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "                    /s/",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "March 19, 2014",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "November 19, 2014",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "January 1, 2014",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "Hye Sun Lee",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "A",
       true,
-      "Courier"
+      "Courier",
+      true
      ]
     ],
     [
      [
       "Acting Associate Regional Administrator",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ]
    ]
@@ -98,56 +109,64 @@
      [
       "March 28, 2018",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "April 30, 2018",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "January 1, 2018",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "Richard R. McGreal ",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "Associate Regional Administrator, Division of Medicaid and ",
       true,
-      "TimesNewRoman"
+      "TimesNewRoman",
+      true
      ]
     ],
     [
      [
       "Children's Health Operations, Boston Regional Office",
       true,
-      "TimesNewRoman"
+      "TimesNewRoman",
+      true
      ]
     ],
     [
      [
       "                                   /s/",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "/s/",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ]
    ]
@@ -163,76 +182,88 @@
      [
       "cc: ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "Sincerely, ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       " ",
       false,
-      "HiddenHorzOCR"
+      "HiddenHorzOCR",
+      null
      ]
     ],
     [
      [
       "Associate Regional Administrator ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "Division ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ],
      [
       "of ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ],
      [
       "Medicaid and Children's Health ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "Operations ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "Craig ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ],
      [
       "J. ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ],
      [
       "Christensen, DPM, CEM, Deputy Administrator ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "Gennifer Moreau-Johnson, State Plan Coordinator ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ]
    ]
@@ -248,70 +279,80 @@
      [
       "* Item 3, Page 2",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "* Item 3, Page 2",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "September 26, 2012",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "*  Pen and Ink change per e-mail from state dated 3.20.13.",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "April 25, 2013",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "July 1, 2012",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "James G. Scott",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "Associate Regional Administrator",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "for Medicaid and Children's Health Operations",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ],
     [
      [
       "/s/",
       true,
-      "Times-Roman"
+      "Times-Roman",
+      true
      ]
     ]
    ]
@@ -327,35 +368,40 @@
      [
       "November 26, 2012",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "October 1, 2012",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Verlon Johnson",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "1/4/13",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Associate Regional Administrator",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ]
    ]
@@ -371,154 +417,176 @@
      [
       "2/26/15  ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "5/5/15",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "2/1/15  ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "/s/",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Ruth A. Hughes  ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Associate Regional Administrator",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ]
    ]
@@ -534,42 +602,48 @@
      [
       "March 7, 2018 ",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      true
      ]
     ],
     [
      [
       "January 1, 2018 ",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      true
      ]
     ],
     [
      [
       "Ruth A. Hughes ",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      true
      ]
     ],
     [
      [
       "      April 23, 2018",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      true
      ]
     ],
     [
      [
       "         /s/",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      true
      ]
     ],
     [
      [
       "    Associate Regional Administrator",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      true
      ]
     ]
    ]
@@ -585,35 +659,40 @@
      [
       "DECEMBER 22, 2016",
       true,
-      "MinionPro-Bold"
+      "MinionPro-Bold",
+      true
      ]
     ],
     [
      [
       "DECEMBER 01, 2016",
       true,
-      "MinionPro-Bold"
+      "MinionPro-Bold",
+      true
      ]
     ],
     [
      [
       "MICHAEL MELENDEZ",
       true,
-      "MinionPro-Bold"
+      "MinionPro-Bold",
+      true
      ]
     ],
     [
      [
       "ASSOCIATE REGIONAL ADMINISTRATOR",
       true,
-      "MinionPro-Bold"
+      "MinionPro-Bold",
+      true
      ]
     ],
     [
      [
       "DIVISION OF MEDICAID & CHILDREN'S HEALTH",
       true,
-      "MinionPro-Bold"
+      "MinionPro-Bold",
+      true
      ]
     ]
    ]
@@ -629,35 +708,40 @@
      [
       "NOVEMBER 21, 2019",
       true,
-      "TimesNewRomanPS-BoldMT"
+      "TimesNewRomanPS-BoldMT",
+      true
      ]
     ],
     [
      [
       "ACTING DEPUTY DIRECTOR",
       true,
-      "TimesNewRomanPS-BoldMT"
+      "TimesNewRomanPS-BoldMT",
+      true
      ]
     ],
     [
      [
       "REGIONAL OPERATIONS GROUP",
       true,
-      "TimesNewRomanPS-BoldMT"
+      "TimesNewRomanPS-BoldMT",
+      true
      ]
     ],
     [
      [
       "NICOLE MCKNIGHT",
       true,
-      "TimesNewRomanPS-BoldMT"
+      "TimesNewRomanPS-BoldMT",
+      true
      ]
     ],
     [
      [
       "OCTOBER 01, 2017",
       true,
-      "TimesNewRomanPS-BoldMT"
+      "TimesNewRomanPS-BoldMT",
+      true
      ]
     ]
    ]
@@ -673,35 +757,40 @@
      [
       "DECEMBER 17, 2019",
       true,
-      "Leelawadee-Bold"
+      "Leelawadee-Bold",
+      true
      ]
     ],
     [
      [
       "OCTOBER 01, 2019",
       true,
-      "Leelawadee-Bold"
+      "Leelawadee-Bold",
+      true
      ]
     ],
     [
      [
       "RICARDO HOLLIGAN",
       true,
-      "Leelawadee-Bold"
+      "Leelawadee-Bold",
+      true
      ]
     ],
     [
      [
       "ACTING DEPUTY DIRECTOR",
       true,
-      "Leelawadee-Bold"
+      "Leelawadee-Bold",
+      true
      ]
     ],
     [
      [
       "REGIONAL OPERATIONS GROUP",
       true,
-      "Leelawadee-Bold"
+      "Leelawadee-Bold",
+      true
      ]
     ]
    ]
@@ -717,105 +806,120 @@
      [
       "9/30/13 ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "6/11/15",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "1/1/14",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       ".s.",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Alan Freund  ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "    Acting Associate Regional Administrator",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ]
    ]
@@ -831,91 +935,104 @@
      [
       "3/23/15",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "January 1, 2015",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "/s/",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Ruth A. Hughes ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       " ",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "Associate Regional Administrator",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ],
     [
      [
       "5/8/15",
       true,
-      "Helvetica"
+      "Helvetica",
+      true
      ]
     ]
    ]
@@ -931,57 +1048,68 @@
      [
       "TN:  ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "ND-",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "20-",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "0004Approval ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Date:  ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "6/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "16/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "2020Effective ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Date:  ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "1/1/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "2020 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ]
    ]
@@ -997,57 +1125,68 @@
      [
       "TN:  ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "ND-",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "20-",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "0004Approval ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Date:  ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "6/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "16/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "2020Effective ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Date:  ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "1/1/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "2020 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ]
    ]
@@ -1063,220 +1202,252 @@
      [
       "Al",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "r",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "9",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "z,",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "to",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "L",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "4",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "COW",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "OO",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Y. ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "1 ,",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "rML",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Ckm",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "CL",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "f;     ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "err             \u2022",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "N",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "0",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Q",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Is",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "m",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "M",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "V",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "V",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Lm",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "ac,      ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "r.",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "rr            \u2022",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "urrr",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "v",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "O",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "F,",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ]
    ]
@@ -1292,129 +1463,152 @@
      [
       "Check",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "One) ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Separate",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Transmittal",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "for",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "each",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "amendment) ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "If",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Applicable) ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Check",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "One) ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Svui!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "B/!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Ivhift",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Ejhjubmmz!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "tjhofe!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "cz!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Svui!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "B/!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "Ivhift! ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Ebuf;!",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "3131/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "17/41!27;58;53!.16(11( ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ]
    ]
@@ -1430,155 +1624,182 @@
      [
       "L",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "cbed'",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "lieLlo",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " 6jo",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "eueluoN",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "CL/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " LO/",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " OL :",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " 9jeo",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " @A1139J43",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "9120",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "le",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "oiddV",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "WW-",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " WO-\u00a3",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "L-",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " 1W :",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " Ni",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "0",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "EJ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "4",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "cr",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "CL",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ]
    ]
@@ -1594,56 +1815,64 @@
      [
       "\u0017\u0010\u0013\u0015\u0010\u0012\u001a",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "8FOEZ\u0001)JMM\u00011FUSBT\u0001",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "\"DUJOH\u0001%FQVUZ\u0001%JSFDUPS\u0001",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "\u0015\u0010\u0012\u0010\u0012\u001a",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "\u0017\u0010\u0014\u0010\u0012\u001a",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "\"DUJOH\u0001",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "\"DUJOH %FQVUZ\u0001%",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ],
     [
      [
       "%FQVUZ %",
       true,
-      "MinionPro-Regular"
+      "MinionPro-Regular",
+      false
      ]
     ]
    ]
@@ -1659,383 +1888,444 @@
      [
       "TN: ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "14-0002 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "New Jersey ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "Presumptive ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "Eligibility ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ]
     ],
     [
      [
       "train ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "ina ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "fc)r ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ]
     ],
     [
      [
       "-",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       ". ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "., ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "'} ",
       false,
-      "Times-Italic"
+      "Times-Italic",
+      null
      ]
     ],
     [
      [
       ". ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       ", ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "\u00b7\u00b7. ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "\u2022 ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "c ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "\u00b7\u2022\u00b7 ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ],
      [
       "\u00b7d\u00b7\u00b7\u00b7 ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 : , ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "..",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       " .. ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "\u00b7\u00b7\u00b7\u00b7o\u00b7 ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ]
     ],
     [
      [
       "\u00b7\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7\u00b7. ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "\u00b7\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u2022 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\" ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 \u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "... ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       ". ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "P\u00b7rc>Vt ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       ".. ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "ers ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       ".. ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "\u00b7.\u2022\u00b7 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       ". ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "eterrnt.ntnl ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ],
      [
       "Enttttes ",
       false,
-      "Helvetica-Bold"
+      "Helvetica-Bold",
+      null
      ]
     ],
     [
      [
       "Moving Forward ",
       false,
-      "Helvetica-BoldOblique"
+      "Helvetica-BoldOblique",
+      null
      ]
     ],
     [
      [
       "~ ",
       false,
-      "HiddenHorzOCR"
+      "HiddenHorzOCR",
+      null
      ]
     ],
     [
      [
       "Approval Date: ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "06/06/2014 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "521 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ],
     [
      [
       "1 ",
       false,
-      "Times-Roman"
+      "Times-Roman",
+      null
      ]
     ],
     [
      [
       "Effective Date: ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ],
      [
       "01/01/2014 ",
       false,
-      "Helvetica"
+      "Helvetica",
+      null
      ]
     ]
    ]
@@ -2051,139 +2341,474 @@
      [
       "\u0013",
       true,
-      "Arial"
+      "Arial",
+      false
      ],
      [
       "\u0016",
       true,
-      "ArialMT"
+      "ArialMT",
+      false
      ],
      [
       "\u0012\u0013\u0014\u0012\u0015\u0013\u0015\u0013",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "0HGLFDLG\u0003'LVDVWHU\u00035HOLHI\u0003IRU\u0003WKH\u0003&29,'\u0010\u0014\u001c\u00031DWLRQDO\u0003(PHUJHQF\\",
       true,
-      "Arial"
+      "Arial",
+      false
      ],
      [
       "\u001d\u00030RGLILFDWLRQ\u0003RI\u00037HOHKHDOWK\u0003DQG\u0003&RSD\\PHQW\u0003",
       true,
-      "ArialMT"
+      "ArialMT",
+      false
      ]
     ],
     [
      [
       ")OH[LELOLWLHV\u001e\u0003DPRQJ\u0003RWKHU",
       true,
-      "ArialMT"
+      "ArialMT",
+      false
      ]
     ],
     [
      [
       "6HFWLRQ\u0003\u001a\u0011\u0017\u00030HGLFDLG\u0003'LVDVWHU\u00035HOLHI\u0003IRU\u0003",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "&29,'\u0010\u0014\u001c\u00031DWLRQDO\u0003(PHUJHQF\\",
       true,
-      "Arial"
+      "Arial",
+      false
      ],
      [
       "\u0011\u00033DJHV\u0003\u001b\u001cD\u0003\u0010\u0003\u001b\u001cL",
       true,
-      "ArialMT"
+      "ArialMT",
+      false
      ]
     ],
     [
      [
       "1(:",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "6HFWLRQ\u0003\u0014\u0014\u0016\u0018\u000bE\f\u0003RI\u0003WKH\u00036RFLDO\u00036HFXULW\\\u0003$FW",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "\u0016\u0012\u0015\u001a\u0012\u0015\u0013\u0015\u0013",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "6)<\u0015\u0013\u001d\u0003\u0007\u0019PLOOLRQ",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "6)<\u0015\u0014\u001d\u0003\u0007\u0019PLOOLRQ",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "\u0016\u0012\u0014\u0012\u0015\u0013\u0015\u0013",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "$QQH\u00030DULH\u0003&RVWHOOR",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "'HSXW\\\u0003'LUHFWRU\u000f\u0003&HQWHU\u0003IRU\u00030HGLFDLG\u0003\t\u0003&+,3\u00036HUYLFHV",
       true,
-      "Arial"
+      "Arial",
+      false
      ]
     ],
     [
      [
       "\u0017\u0012\u0019\u0012\u0015\u0013\u0015\u0013",
       true,
-      "ArialMT"
+      "ArialMT",
+      false
      ]
     ],
     [
      [
       "Anne M. Costello -S",
       true,
-      "ArialMT"
+      "ArialMT",
+      true
      ]
     ],
     [
      [
       "Digitally signed by Anne M. Costello -S ",
       true,
-      "ArialMT"
+      "ArialMT",
+      true
      ]
     ],
     [
      [
       "Date: 2020.04.06 17:04:09 -04'00'",
       true,
-      "ArialMT"
+      "ArialMT",
+      true
+     ]
+    ]
+   ]
+  },
+  "us-nv/policy/cms/medicaid-state-plan/spa/nv-20-0002/approval-document/page-3": {
+   "pdf": "data/corpus/sources/us-nv/policy/2026-09-13-medicaid-state-plan/official-documents/us-nv-cms-medicaid-state-plan-spa-nv-20-0002-approval-document.pdf",
+   "pdf_sha256": "f99600ae898caade07a21a15c82ce1816fceb89d186b6358e8dfbe145f34796b",
+   "page": 3,
+   "ocr_text": "DEPARTMENT OF HEALTH AND HUMAN SERVICES FORM APPROVED\nCENTERS FOR MEDICARE & MEDICAID SERVICES OMB No. 0938-0193\n\n. \u2122 1. TRANSMITTAL NUMBER 2. STATE\nTRANSMITTAL AND NOTICE OF APPROVAL OF NEVADA\nSTATE PLAN MATERIAL 2-0 ~0 02\nFOR: CENTERS FOR MEDICARE & MEDICAID SERVICES \u2014_|3- PROGRAM IDENTIFICATION:\nTITLE XIX OF THE SSA (MEDICAID)\nTO: REGIONAL ADMINISTRATOR 4. PROPOSED EFFECTIVE DATE\nCENTERS FOR MEDICARE & MEDICAID SERVICES\nDEPARTMENT OF HEALTH AND HUMAN SERVICES February 1, 2020\n5. TYPE OF PLAN MATERIAL (Check One)\n(J NEW STATE PLAN (CO AMENDMENT TO BE CONSIDERED AS NEW PLAN [=] AMENDMENT\nCOMPLETE BLOCKS 6 THRU 10 IF THIS IS AN AMENDMENT (Separate transmittal for each amendment)\n6. FEDERAL STATUTE/REGULATION CITATION 7. FEDERAL BUDGET IMPACT\n\u2018 42. CFR 440,140 and 42 CFR a. FFY 2020 $0\nFile Xbcofthe-SSAM42-CFR447 440, 160 b, FFY.2021 $0\n8. PAGE NUMBER OF THE PLAN SECTION OR ATTACHMENT 9. PAGE NUMBER OF THE SUPERSEDED PLAN SECTION\nAttachment 3.1-A; Page 6d OR ATTACHMENT (If Applicable)\nAttachment 3.1-A; Page 7a Attachment 3.1-A; Page 6d\nAttachment 3.1-A; Page 7 Attachment 3.1-A; Page 7a\nAttachment 3.1-A; Page 7\n\n10, SUBJECT OF AMENDMENT 1, dates to Services for Individuals Age 65 or Older in IMDs and Inpatient Psychiatric Facility Services for Individuals\nUnder 22 Years of Age.\n\n411. GOVERNOR'S REVIEW (Check One)\n\nCIGOVERNOR'S OFFICE REPORTED NO COMMENT [RJOTHER, AS SPECIFIED\n[ICOMMENTS OF GOVERNOR'S OFFICE ENCLOSED\n[CNO REPLY RECEIVED WITHIN 45 DAYS OF SUBMITTAL\n\nCody Phinney, Deputy Administrator\n\nT-TYPED NAME DHCFP/Medicaid\nRICHARD WHITLEY 1100 East William Street, Suite 101\n14. TITLE Carson City, NV 89701\n\nDIRECTOR, DHHS\n15, DATE SUBMITTED\nJanuary 29, 2020\n\nFOR REGIONAL OFFICE USE ONLY\n\n17. DATE RECEIVED 18, DATE APPROVED\n1/29/20 March 13, 2020\n\nPLAN APPROVED ~ ONE COPY ATTACHED\n\n19. EFFECTIVE DATE OF APPROVED MATERIAL 20, i:\n2/1/20\n\n21. TYPED NAME 22. TITLE\nJames G. Scott Director, Division of Program Operations\n\n23. REMARKS\n\nPen and Ink Request: Box 6: Please update to \u201c42 CFR 440.140 and 42 CER 440.160\", Box 8: Please add \u201cAttachment 3.1-A; Page 7\u201d .\nBox9;Pleaseadd \u201cAttachment 3.1-A;Page7\u201d . Box 10; Please update to \u201cUpdates to Services for Individuals Age 65 or Older in IMDs\nand Inpatient Psychiatric Facility Services for Individuals Under 22 Years of Age\n\nFORM CMS-179 (07/92) Instructions on Back\n\n",
+   "layer_text": ".BSDI\u0001\u00123\r\u0001\u0013\u0011\u0013\u0011\n",
+   "layer_spans": [
+    [
+     [
+      ".BSDI\u0001\u0012",
+      true,
+      "MinionPro-Regular",
+      false
+     ],
+     [
+      "3",
+      true,
+      "MinionPro-Regular",
+      true
+     ],
+     [
+      "\r\u0001\u0013\u0011\u0013\u0011",
+      true,
+      "MinionPro-Regular",
+      false
+     ]
+    ]
+   ]
+  },
+  "us-wv/policy/cms/medicaid-state-plan/spa/wv-23-0001/approval-document/page-132": {
+   "pdf": "data/corpus/sources/us-wv/policy/2026-09-13-medicaid-state-plan/official-documents/us-wv-cms-medicaid-state-plan-spa-wv-23-0001-approval-document.pdf",
+   "pdf_sha256": "0c1780c263de11ea6a7d4f40b8157bea4a6a3f0cf3dd74679ceb86cca4690d4f",
+   "page": 132,
+   "ocr_text": "5.16 Medicaid Application\n\nSearching for Applications\n\nApplications\n\nsh acpesten\n\nNotes:\n\nClick the Edit Application button.\n\n\u00a310)\n",
+   "layer_text": "5.16 Medicaid Application \n,._,._._ .....,._ \ni:o..\u17b7 \n\u17b8-\n...... -., .. \n_.,,...., \n,._\u17b9 \n.... \n\"\"\"\"' \nii., \n.. \n\u00b0'\"' \n.._..,, .., \n-\u009e\u009f \u00a0 \u00a1 :!\"\"-- \u0160\nc.. \u0161 .._..., \nti.c,,,,,... \ne&\u2022a,,'J),t \u17ba \n;.$.IC;:,,tt \n\u17bb1\u17bc\u17bd\u2022\u2022 \nCI.JC.)011 \nlift \u00b7ilt\u00b7\u00b7M+i \nNotes: \nClick the Edit Application button. \nso \n",
+   "layer_spans": [
+    [
+     [
+      "5.16 Medicaid Application ",
+      true,
+      "*Calibri-BoldItalic-713419",
+      true
+     ]
+    ],
+    [
+     [
+      ",._,._._ .....,._ ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ]
+    ],
+    [
+     [
+      "i:o..",
+      true,
+      "*Times New Roman-376542",
+      true
+     ],
+     [
+      "\u17b7 ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      "\u17b8-",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      "...... -., .. ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      "_.,,...., ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      ",._\u17b9 ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      ".... ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ]
+    ],
+    [
+     [
+      "\"\"\"\"' ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ]
+    ],
+    [
+     [
+      "ii., ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ]
+    ],
+    [
+     [
+      ".. ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ]
+    ],
+    [
+     [
+      "\u00b0'\"' ",
+      true,
+      "*Times New Roman-376543",
+      true
+     ]
+    ],
+    [
+     [
+      ".._..,, .., ",
+      true,
+      "*Times New Roman-376543",
+      true
+     ]
+    ],
+    [
+     [
+      "-",
+      true,
+      "*Times New Roman-376543",
+      true
+     ],
+     [
+      "\u009e\u009f \u00a0 \u00a1 :!\"\"",
+      true,
+      "*Times New Roman-376543",
+      false
+     ],
+     [
+      "--",
+      true,
+      "*Times New Roman-302427",
+      true
+     ],
+     [
+      " ",
+      true,
+      "*Times New Roman-241790",
+      false
+     ],
+     [
+      "\u0160",
+      true,
+      "*Times New Roman-241790",
+      false
+     ]
+    ],
+    [
+     [
+      "c.. ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ],
+     [
+      "\u0161 .._..., ",
+      true,
+      "*Times New Roman-241790",
+      false
+     ]
+    ],
+    [
+     [
+      "ti.c,,,,,... ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ]
+    ],
+    [
+     [
+      "e&\u2022a,,'J),t ",
+      true,
+      "*Times New Roman-376542",
+      true
+     ],
+     [
+      "\u17ba ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      ";.$.IC;:,,tt ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      "\u17bb1\u17bc\u17bd\u2022\u2022 ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      "CI.JC.)011 ",
+      true,
+      "*Times New Roman-376542",
+      false
+     ]
+    ],
+    [
+     [
+      "lift ",
+      true,
+      "*Times New Roman-Bold-376543",
+      true
+     ],
+     [
+      "\u00b7",
+      true,
+      "*Times New Roman-Bold-376543",
+      true
+     ],
+     [
+      "ilt",
+      true,
+      "*Times New Roman-Bold-376543",
+      true
+     ],
+     [
+      "\u00b7",
+      true,
+      "*Times New Roman-Bold-376543",
+      true
+     ],
+     [
+      "\u00b7",
+      true,
+      "*Times New Roman-Bold-376543",
+      true
+     ],
+     [
+      "M+i ",
+      true,
+      "*Times New Roman-Bold-376543",
+      true
+     ]
+    ],
+    [
+     [
+      "Notes: ",
+      true,
+      "*Cambria-Bold-22890",
+      true
+     ]
+    ],
+    [
+     [
+      "Click the ",
+      true,
+      "*Arial-165221",
+      true
+     ],
+     [
+      "Edit Application ",
+      true,
+      "*Arial-Bold-165221",
+      true
+     ],
+     [
+      "button. ",
+      true,
+      "*Arial-165221",
+      true
+     ]
+    ],
+    [
+     [
+      "so ",
+      true,
+      "*Courier New-869547",
+      true
      ]
     ]
    ]

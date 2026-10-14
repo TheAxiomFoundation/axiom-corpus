@@ -150,9 +150,12 @@ and a mapped font or an annotation's font can share a name with them.
   is not decoded; a line is decoded whole or not at all; a font whose characters in a
   line are partly mapped is not decoded there.
 - S9: the unmapped characters are exactly those PyMuPDF's text trace, another device,
-  reports as U+FFFD, origin for origin, on all 30 retained pages of the two fixtures (a
-  differential test). And a character pairs with the other read's only where the reads
-  agree at its origin.
+  reports as U+FFFD, origin for origin, on all 29 retained pages of the two fixtures (a
+  differential test). Every span holding one carries MuPDF's UNICODE_IS_CID or
+  UNICODE_IS_GID mark (233 wholly unmapped spans among them). The converse fails: on
+  WV-23-0001 page 132, nine marked spans hold characters MuPDF maps, so the mark alone does
+  not say which characters to decode. And a character pairs with the other read's only
+  where the reads agree at its origin.
 
 #868's real-page tests now merge the decoded spans. Its invariant "every painted span
 without a control character is in the page text" holds for lines decoding leaves alone;
