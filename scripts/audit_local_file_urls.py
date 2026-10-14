@@ -13,7 +13,8 @@ a scanned document may print a ``file:`` link itself.
     uv run python scripts/audit_local_file_urls.py --release manifests/releases/<name>.json
     uv run python scripts/audit_local_file_urls.py --scope de/guidance --json report.json
 
-Exit status is 1 when any selected scope carries such a URL.
+Exit status is 1 when any selected scope carries such a URL, and 2 when an
+artifact cannot be read or parsed, so cannot be cleared.
 """
 
 from __future__ import annotations
@@ -27,7 +28,11 @@ from pathlib import Path
 from typing import Any
 
 from axiom_corpus.corpus.corpus_locks import LockEntry, LockSet, ScopeKey, load_locks
-from axiom_corpus.corpus.ingest_manifests import default_content_reader, local_file_url_fields
+from axiom_corpus.corpus.ingest_manifests import (
+    LocalFileUrlScanError,
+    default_content_reader,
+    local_file_url_fields,
+)
 
 REPO = Path(__file__).resolve().parents[1]
 ROW_PREFIXES = ("data/corpus/inventory/", "data/corpus/provisions/")
@@ -79,7 +84,12 @@ def audit(
     reader: Callable[[LockEntry], bytes | None] | None = None,
     workers: int = 4,
 ) -> dict[str, Any]:
-    """Return ``{"scanned": n, "unreadable": [...], "scopes": [...]}`` for locked row artifacts."""
+    """Return ``{"scanned", "unreadable", "unscannable", "scopes"}`` for locked row artifacts.
+
+    ``unreadable`` lists artifacts whose bytes no source holds; ``unscannable``
+    those that are not UTF-8 JSON where a ``file:`` URL could sit, which the
+    scan cannot clear.
+    """
     locks = load_locks(repo)
     if locks.errors:
         raise SystemExit("corpus lock files are invalid: " + "; ".join(locks.errors[:5]))
@@ -92,15 +102,22 @@ def audit(
         payload = read(entry)
         if payload is None:
             return scope, entry, None
-        return scope, entry, local_file_url_fields(entry.path, payload)
+        try:
+            return scope, entry, local_file_url_fields(entry.path, payload)
+        except LocalFileUrlScanError as exc:
+            return scope, entry, exc
 
     selectors = _selectors_by_scope(repo)
     by_scope: dict[ScopeKey, dict[str, Any]] = {}
     unreadable: list[str] = []
+    unscannable: list[str] = []
     with ThreadPoolExecutor(max_workers=workers) as pool:
         for scope, entry, found in pool.map(scan, entries):
             if found is None:
                 unreadable.append(entry.path)
+                continue
+            if isinstance(found, LocalFileUrlScanError):
+                unscannable.append(str(found))
                 continue
             if not found:
                 continue
@@ -119,6 +136,7 @@ def audit(
     return {
         "scanned": len(entries),
         "unreadable": unreadable,
+        "unscannable": unscannable,
         "scopes": [by_scope[scope] for scope in sorted(by_scope)],
     }
 
@@ -162,11 +180,13 @@ def main(argv: list[str] | None = None) -> int:
         )
     print(
         f"{len(report['scopes'])} scope(s) record a file: URL; "
-        f"{report['scanned']} row artifact(s) scanned, {len(report['unreadable'])} unreadable.",
+        f"{report['scanned']} row artifact(s) scanned, {len(report['unreadable'])} unreadable, "
+        f"{len(report['unscannable'])} unscannable.",
         file=sys.stderr,
     )
-    if report["unreadable"]:
-        print("unreadable: " + ", ".join(report["unreadable"][:5]), file=sys.stderr)
+    if report["unreadable"] or report["unscannable"]:
+        for problem in (report["unreadable"] + report["unscannable"])[:5]:
+            print(f"not cleared: {problem}", file=sys.stderr)
         return 2
     return 1 if report["scopes"] else 0
 

@@ -25,9 +25,13 @@ recovery batch) copies the source files byte for byte and replaces each
 citation, else the row's own ``source_url``; a null ``content_type`` becomes the
 other artifact's, else the source format's media type.
 
-Either way the check compares every inventory item, provision row, coverage
-field and source file of the two scopes and fails on any other difference.
-The report never repeats a ``file:`` path.
+Before writing anything it checks that the locked scope's files in this
+checkout match its lock exactly (fetch never replaces an edited file). Then
+``verify`` builds, from each locked row, the exact row the successor may hold
+(version, version-bearing ids and source paths mapped; on repaired rows a web
+``download_url`` and a media type), and fails on any other difference in any
+inventory item, provision row, coverage field or source file. The report never
+repeats a ``file:`` path.
 
     uv run python scripts/repair_local_file_download_urls.py reextract \\
         --scope de/guidance/2026-09-14-de-kindergeld-dakg2025-sections \\
@@ -38,6 +42,7 @@ The report never repeats a ``file:`` path.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import sys
@@ -48,13 +53,13 @@ from typing import Any
 import yaml
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.corpus_locks import load_locks
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import _SOURCE_FORMAT_CONTENT_TYPES, extract_official_documents
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 REPO = Path(__file__).resolve().parents[1]
-REPAIRED_FIELDS = ("download_url", "content_type")
 
 
 def _is_file_url(value: object) -> bool:
@@ -308,31 +313,81 @@ def rewrite(old: Scope, new: Scope) -> None:
     store.write_json(new.coverage_path, coverage.to_mapping())
 
 
-def _split(row: dict[str, Any], scope: Scope, *, provision: bool) -> tuple[Any, dict[str, Any]]:
-    """Return the row with repaired fields and version-bearing fields normalized."""
-    normalized = dict(row)
-    metadata = dict(normalized.get("metadata") or {})
-    repaired = {field: metadata.pop(field, None) for field in REPAIRED_FIELDS}
-    normalized["metadata"] = metadata
-    source_path = normalized.get("source_path")
-    if isinstance(source_path, str) and source_path.startswith(scope.source_prefix):
-        normalized["source_path"] = "sources/<scope>/" + source_path[len(scope.source_prefix) :]
-    if provision:
-        normalized["version"] = "<version>" if row.get("version") == scope.version else row.get(
-            "version"
-        )
-        for key, path_key in (("id", "citation_path"), ("parent_id", "parent_citation_path")):
-            if (
-                row.get(key) is not None
-                and row.get(path_key) is not None
-                and row[key] == deterministic_provision_id(str(row[path_key]), scope.version)
-            ):
-                normalized[key] = "<versioned id>"
-    return normalized, repaired
+def _redacted(value: object) -> str:
+    return "<file: URL>" if _is_file_url(value) else str(value)
+
+
+def _differences(expected: Any, actual: Any, path: str = "") -> list[str]:
+    """Dotted paths at which ``actual`` differs from ``expected``, keys and types included."""
+    if isinstance(expected, dict) and isinstance(actual, dict):
+        found = []
+        for key in sorted(set(expected) | set(actual), key=str):
+            child = f"{path}.{key}" if path else str(key)
+            if key not in expected:
+                found.append(f"{child} added")
+            elif key not in actual:
+                found.append(f"{child} removed")
+            else:
+                found.extend(_differences(expected[key], actual[key], child))
+        return found
+    if type(expected) is not type(actual) or expected != actual:
+        return [f"{path or '<row>'} changed"]
+    return []
+
+
+def _expected_row(
+    old_row: dict[str, Any],
+    new_row: dict[str, Any],
+    old: Scope,
+    new: Scope,
+    *,
+    provision: bool,
+) -> tuple[dict[str, Any], bool]:
+    """The successor row the repair may write for ``old_row``.
+
+    Fields that name the scope map to the successor: a provision's version,
+    a version-bearing id or parent_id, and a source path inside the scope. On
+    a row whose ``download_url`` was a ``file:`` URL, ``download_url`` and a
+    null ``content_type`` take the successor's values, which ``verify`` checks
+    on their own. Every other key and value must be the locked row's exactly.
+    """
+    expected = copy.deepcopy(old_row)
+    if provision and old_row.get("version") == old.version:
+        expected["version"] = new.version
+    for key, path_key in (("id", "citation_path"), ("parent_id", "parent_citation_path")):
+        citation = old_row.get(path_key)
+        if (
+            key in old_row
+            and citation is not None
+            and old_row[key] == deterministic_provision_id(str(citation), old.version)
+        ):
+            expected[key] = deterministic_provision_id(str(citation), new.version)
+    source_path = old_row.get("source_path")
+    if isinstance(source_path, str) and source_path.startswith(old.source_prefix):
+        expected["source_path"] = new.source_prefix + source_path[len(old.source_prefix) :]
+    old_metadata = old_row.get("metadata")
+    repaired = isinstance(old_metadata, dict) and _is_file_url(old_metadata.get("download_url"))
+    if repaired:
+        assert isinstance(old_metadata, dict)
+        new_metadata = new_row.get("metadata")
+        new_metadata = new_metadata if isinstance(new_metadata, dict) else {}
+        metadata = dict(old_metadata)
+        metadata["download_url"] = new_metadata.get("download_url")
+        if old_metadata.get("content_type") is None:
+            metadata["content_type"] = new_metadata.get("content_type")
+        expected["metadata"] = metadata
+    return expected, repaired
 
 
 def verify(old: Scope, new: Scope) -> dict[str, Any]:
-    """Compare two scopes; ``problems`` lists every difference outside the repair."""
+    """Compare two scopes; ``problems`` lists every difference outside the repair.
+
+    Each successor row must equal the row ``_expected_row`` builds from the
+    locked row at the same position, key for key; every repaired row must now
+    record a web URL and a media type; the coverage report must equal the
+    locked one with its version mapped; the source files must be the same
+    names and bytes. No ``file:`` value reaches the report.
+    """
     problems: list[str] = []
     old_sources, new_sources = old.source_hashes(), new.source_hashes()
     if old_sources != new_sources:
@@ -349,64 +404,89 @@ def verify(old: Scope, new: Scope) -> dict[str, Any]:
     repaired_rows = 0
     urls: dict[str, str] = {}
     content_types: dict[str, int] = {}
+    new_inventory, new_provisions = new.inventory(), new.provisions()
     for kind, old_rows, new_rows in (
-        ("inventory", old.inventory(), new.inventory()),
-        ("provisions", old.provisions(), new.provisions()),
+        ("inventory", old.inventory(), new_inventory),
+        ("provisions", old.provisions(), new_provisions),
     ):
         if len(old_rows) != len(new_rows):
             problems.append(f"{kind}: {len(old_rows)} rows became {len(new_rows)}")
             continue
-        provision = kind == "provisions"
         for index, (old_row, new_row) in enumerate(zip(old_rows, new_rows, strict=True)):
-            old_norm, old_fields = _split(old_row, old, provision=provision)
-            new_norm, new_fields = _split(new_row, new, provision=provision)
             where = f"{kind}[{index}] {old_row.get('citation_path')}"
-            if old_norm != new_norm:
-                keys = sorted(
-                    key
-                    for key in set(old_norm) | set(new_norm)
-                    if old_norm.get(key) != new_norm.get(key)
-                )
-                if keys == ["metadata"]:
-                    keys = sorted(
-                        f"metadata.{key}"
-                        for key in set(old_norm["metadata"]) | set(new_norm["metadata"])
-                        if old_norm["metadata"].get(key) != new_norm["metadata"].get(key)
-                    )
-                problems.append(f"{where}: {', '.join(keys)} changed")
-            if _is_file_url(old_fields["download_url"]):
-                repaired_rows += 1
-                if not _is_web_url(new_fields["download_url"]):
-                    problems.append(f"{where}: download_url is not a web URL after repair")
-                if old_fields["content_type"] not in (None, new_fields["content_type"]):
-                    problems.append(f"{where}: content_type changed from a recorded value")
-                if new_fields["content_type"] is None:
-                    problems.append(f"{where}: content_type is still null")
-                urls[str(new_row.get("source_url"))] = str(new_fields["download_url"])
-                content_types[str(new_fields["content_type"])] = (
-                    content_types.get(str(new_fields["content_type"]), 0) + 1
-                )
-            elif old_fields != new_fields:
-                problems.append(f"{where}: {', '.join(REPAIRED_FIELDS)} changed on a web-fetched row")
-            if any(_is_file_url(value) for value in new_fields.values()):
-                problems.append(f"{where}: still records a file: URL")
+            if not isinstance(old_row, dict) or not isinstance(new_row, dict):
+                if old_row != new_row:
+                    problems.append(f"{where}: row changed")
+                continue
+            expected, repaired = _expected_row(
+                old_row, new_row, old, new, provision=kind == "provisions"
+            )
+            differences = _differences(expected, new_row)
+            if differences:
+                problems.append(f"{where}: {', '.join(differences)}")
+            if not repaired:
+                continue
+            repaired_rows += 1
+            metadata = new_row.get("metadata")
+            metadata = metadata if isinstance(metadata, dict) else {}
+            download_url, content_type = metadata.get("download_url"), metadata.get("content_type")
+            if not _is_web_url(download_url):
+                problems.append(f"{where}: download_url is not a web URL after repair")
+            if content_type is None:
+                problems.append(f"{where}: content_type is still null")
+            urls[_redacted(new_row.get("source_url"))] = (
+                str(download_url) if _is_web_url(download_url) else "<not a web URL>"
+            )
+            content_types[str(content_type)] = content_types.get(str(content_type), 0) + 1
     old_coverage, new_coverage = old.coverage(), new.coverage()
-    for coverage in (old_coverage, new_coverage):
-        coverage.pop("version", None)
-    if old_coverage != new_coverage:
-        problems.append("coverage differs")
+    expected_coverage = copy.deepcopy(old_coverage)
+    if old_coverage.get("version") == old.version:
+        expected_coverage["version"] = new.version
+    coverage_differences = _differences(expected_coverage, new_coverage)
+    if coverage_differences:
+        problems.append(f"coverage: {', '.join(coverage_differences)}")
     return {
         "scope": old.label,
         "repaired_scope": new.label,
         "source_files": dict(sorted(new_sources.items())),
-        "inventory_rows": len(new.inventory()),
-        "provision_rows": len(new.provisions()),
+        "inventory_rows": len(new_inventory),
+        "provision_rows": len(new_provisions),
         "repaired_rows": repaired_rows,
         "download_urls_by_source_url": dict(sorted(urls.items())),
         "content_types": dict(sorted(content_types.items())),
         "coverage_complete": new_coverage.get("complete"),
         "problems": problems,
     }
+
+
+def lock_mismatches(scope: Scope, repo: Path) -> list[str]:
+    """Every way the scope's files differ from its lock: absent, changed or unlocked.
+
+    The repair reads the locked scope from the worktree, where fetch leaves a
+    present file in place even if it was edited; this anchors both the repair
+    and its comparison to the signed bytes.
+    """
+    lock = load_locks(repo).locks.get((scope.jurisdiction, scope.document_class, scope.version))
+    if lock is None:
+        return [f"{scope.label} has no lock"]
+    problems = []
+    locked = {entry.path: entry for entry in lock.files}
+    for rel, entry in sorted(locked.items()):
+        path = repo / rel
+        if not path.is_file():
+            problems.append(f"{rel} is absent")
+        elif hashlib.sha256(path.read_bytes()).hexdigest() != entry.sha256:
+            problems.append(f"{rel} differs from its lock")
+    on_disk = [scope.inventory_path, scope.provisions_path, scope.coverage_path]
+    source_root = scope.base / scope.source_prefix
+    if source_root.is_dir():
+        on_disk.extend(path for path in source_root.rglob("*") if path.is_file())
+    for path in on_disk:
+        if path.is_file():
+            rel = path.resolve().relative_to(repo.resolve()).as_posix()
+            if rel not in locked:
+                problems.append(f"{rel} is not in the lock")
+    return problems
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -421,9 +501,14 @@ def main(argv: list[str] | None = None) -> int:
 
     jurisdiction, document_class, version = _parse_scope(args.scope)
     base = args.base.resolve()
+    if base != (REPO / "data" / "corpus").resolve():
+        raise SystemExit(f"--base must be this checkout's data/corpus: {base}")
     old = Scope(base, jurisdiction, document_class, version)
     new = Scope(base, jurisdiction, document_class, f"{version}-{args.tag}")
     ensure_corpus_scopes([(jurisdiction, document_class, version)], repo=REPO)
+    unlocked = lock_mismatches(old, REPO)
+    if unlocked:
+        raise SystemExit(f"{old.label} does not match its lock: " + "; ".join(unlocked[:5]))
     if args.mode != "verify":
         if new.exists():
             raise SystemExit(f"{new.label} already exists under {base}")

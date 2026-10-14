@@ -9,8 +9,9 @@ Invariants (``scripts/repair_local_file_download_urls.py``):
    URL.
 2. After the repair no row records a ``file:`` URL, and every repaired row
    records a web URL and a media type.
-3. ``verify`` reports any other difference, and its report never repeats a
-   ``file:`` path.
+3. ``verify`` reports any other difference, compares exact values rather than
+   placeholders, and its report never repeats a ``file:`` path.
+4. The repair reads only a locked scope whose files match its lock.
 """
 
 from __future__ import annotations
@@ -26,7 +27,13 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
-from scripts.repair_local_file_download_urls import Scope, reextract, rewrite, verify
+from scripts.repair_local_file_download_urls import (
+    Scope,
+    lock_mismatches,
+    reextract,
+    rewrite,
+    verify,
+)
 
 TAG = "r2026-10-14-portable-download-url"
 LEAK = "file:///Users/someone/retained/"
@@ -152,7 +159,7 @@ def test_verify_reports_any_other_difference(legacy_scope, tmp_path: Path) -> No
 
     assert any(problem.startswith("source files differ") for problem in problems)
     assert any(problem.endswith(": body changed") for problem in problems)
-    assert any("metadata.source_authority changed" in problem for problem in problems)
+    assert any("metadata.source_authority added" in problem for problem in problems)
 
 
 def test_verify_rejects_a_repair_that_keeps_a_file_url(legacy_scope, tmp_path: Path) -> None:
@@ -162,10 +169,15 @@ def test_verify_rejects_a_repair_that_keeps_a_file_url(legacy_scope, tmp_path: P
     work.mkdir()
     reextract(old, new, committed, work)
     _legacy(new, {"retained"})
-    problems = verify(old, new)["problems"]
+    report = verify(old, new)
+    problems = report["problems"]
     assert any("download_url is not a web URL" in problem for problem in problems)
-    assert any("still records a file: URL" in problem for problem in problems)
-    assert all("/Users/someone" not in problem for problem in problems)
+    assert any("content_type is still null" in problem for problem in problems)
+    # Review finding: a failed repair repeated the leaked path in its report.
+    assert "file:" not in json.dumps(report)
+    assert report["download_urls_by_source_url"] == {
+        "https://www.example.de/retained": "<not a web URL>"
+    }
 
 
 def test_reextract_requires_a_manifest_entry_for_every_document(legacy_scope, tmp_path) -> None:
@@ -257,3 +269,87 @@ def test_rewrite_uses_the_sibling_url_then_the_source_url(tmp_path: Path) -> Non
     assert child["parent_id"] == deterministic_provision_id("us-ma/regulation/reg", new.version)
     assert child["source_path"].startswith(new.source_prefix)
     assert "file:" not in new.inventory_path.read_text() + new.provisions_path.read_text()
+
+
+def _rewrite_rows(scope: Scope, edit) -> None:
+    rows = scope.provisions()
+    for row in rows:
+        edit(row)
+    scope.provisions_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows))
+
+
+def test_placeholder_strings_do_not_stand_in_for_successor_values(tmp_path: Path) -> None:
+    """Review finding: verify normalized to placeholders, so literal ones passed."""
+    old = _recovery_scope(tmp_path / "corpus")
+    new = _successor(old)
+    rewrite(old, new)
+
+    def placeholders(row):
+        row["version"] = "<version>"
+        row["id"] = "<versioned id>"
+        row["source_path"] = "sources/<scope>/official-documents/reg.pdf"
+
+    _rewrite_rows(new, placeholders)
+    problems = verify(old, new)["problems"]
+    assert len([p for p in problems if p.startswith("provisions[")]) == 3
+    assert all("version changed" in p and "id changed" in p for p in problems)
+    assert all("source_path changed" in p for p in problems)
+
+
+@pytest.mark.parametrize("coverage_version", ["wrong-scope", None])
+def test_coverage_version_must_name_the_successor(tmp_path: Path, coverage_version) -> None:
+    """Review finding: the coverage version was dropped before comparison."""
+    old = _recovery_scope(tmp_path / "corpus")
+    new = _successor(old)
+    rewrite(old, new)
+    coverage = new.coverage()
+    if coverage_version is None:
+        del coverage["version"]
+    else:
+        coverage["version"] = coverage_version
+    new.coverage_path.write_text(json.dumps(coverage))
+    problems = verify(old, new)["problems"]
+    assert problems == [
+        "coverage: version " + ("removed" if coverage_version is None else "changed")
+    ]
+
+
+def test_null_repair_fields_cannot_be_added_to_an_unrepaired_row(tmp_path: Path) -> None:
+    """Review finding: metadata absent before and null-filled after passed."""
+    old = _recovery_scope(tmp_path / "corpus")
+    rows = old.provisions()
+    rows[0].pop("metadata")
+    old.provisions_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows))
+    new = _successor(old)
+    rewrite(old, new)
+    assert verify(old, new)["problems"] == []
+
+    def add_nulls(row):
+        if "metadata" not in row:
+            row["metadata"] = {"download_url": None, "content_type": None}
+
+    _rewrite_rows(new, add_nulls)
+    (problem,) = verify(old, new)["problems"]
+    assert problem.endswith("metadata added")
+
+
+def test_repair_refuses_a_scope_that_differs_from_its_lock(tmp_path: Path) -> None:
+    """Review finding: an edited worktree copy was compared as if it were the lock."""
+    from axiom_corpus.corpus.corpus_locks import lock_from_worktree, write_lock
+
+    repo = tmp_path / "repo"
+    old = _recovery_scope(repo / "data/corpus")
+    write_lock(repo, lock_from_worktree(repo, (old.jurisdiction, old.document_class, old.version)))
+    assert lock_mismatches(old, repo) == []
+
+    text = old.provisions_path.read_text()
+    old.provisions_path.write_text(text.replace("text of", "TEXT of", 1))
+    stray = repo / "data/corpus" / old.source_prefix / "official-documents/extra.pdf"
+    stray.write_bytes(b"%PDF stray")
+    (repo / "data/corpus" / old.source_prefix / "official-documents/reg.pdf").unlink()
+    problems = lock_mismatches(old, repo)
+    prefix = "data/corpus/"
+    assert f"{prefix}provisions/us-ma/regulation/2026-05-28.jsonl differs from its lock" in problems
+    assert f"{prefix}{old.source_prefix}official-documents/reg.pdf is absent" in problems
+    assert f"{prefix}{old.source_prefix}official-documents/extra.pdf is not in the lock" in problems
+    assert lock_mismatches(_successor(old), repo) == [f"{_successor(old).label} has no lock"]

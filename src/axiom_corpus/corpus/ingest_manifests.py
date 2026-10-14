@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -1326,60 +1326,92 @@ def _inventory_primary_source_issues(path: str, payload: bytes) -> list[str]:
 
 # Raw JSON that can decode to a string starting "file:" holds those characters
 # literally (any case) or spells some of them as \uXXXX escapes.
-_FILE_URL_CANDIDATE_BYTES = re.compile(rb"(?i:file:)|\\u")
 _FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\u")
 _LOCAL_FILE_URL_EXAMPLES = 3
+
+
+class LocalFileUrlScanError(ValueError):
+    """A row artifact whose URL fields cannot be read, so cannot be cleared."""
+
+
+def _is_url_key(key: object) -> bool:
+    return isinstance(key, str) and (
+        key in {"url", "urls"} or key.endswith("_url") or key.endswith("_urls")
+    )
+
+
+def _file_url_fields(value: Any, path: str) -> Iterator[str]:
+    """Yield the dotted path of each URL-keyed string under ``value`` that is a file: URL."""
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_path = f"{path}.{key}" if path else str(key)
+            if _is_url_key(key):
+                urls = child if isinstance(child, list) else [child]
+                if any(
+                    isinstance(url, str) and url.strip().lower().startswith("file:")
+                    for url in urls
+                ):
+                    yield child_path
+            if isinstance(child, dict | list):
+                yield from _file_url_fields(child, child_path)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _file_url_fields(child, path)
 
 
 def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
     """Return ``(citation_path, field)`` for each URL field holding a ``file:`` URL.
 
     Reads an inventory (``.json``) or provisions (``.jsonl``) artifact. A
-    ``file:`` URL in ``source_url`` or in a metadata ``url``/``*_url`` field
-    (``download_url`` above all) publishes a path on the extracting machine,
-    such as ``file:///Users/<name>/...``, and leads no reader to the source.
-    Only URL fields are read: a scanned document may print a ``file:`` link in
-    its body. Undecodable or malformed artifacts yield nothing here; other
-    checks reject them.
+    ``file:`` URL in any field named ``url``, ``urls``, ``*_url`` or ``*_urls``,
+    at any depth of a row (``source_url``, ``metadata.download_url`` above all),
+    publishes a path on the extracting machine, such as
+    ``file:///Users/<name>/...``, and leads no reader to the source. Other
+    fields are not read: a scanned document may print a ``file:`` link in its
+    body.
+
+    Fails closed: raises ``LocalFileUrlScanError`` for an artifact that is not
+    UTF-8, or whose JSON (for provisions, any line that could hold such a URL)
+    does not parse, rather than reporting it clean.
     """
-    if not _FILE_URL_CANDIDATE_BYTES.search(payload):
-        return []
     text = _decode_text(payload)
     if text is None:
+        raise LocalFileUrlScanError(f"`{path}` is not UTF-8 text")
+    if not _FILE_URL_CANDIDATE_TEXT.search(text):
         return []
     rows: list[Any] = []
-    try:
-        if path.endswith(".jsonl"):
-            rows = [
-                json.loads(line)
-                for line in text.splitlines()
-                if _FILE_URL_CANDIDATE_TEXT.search(line)
-            ]
-        else:
+    if path.endswith(".jsonl"):
+        for number, line in enumerate(text.splitlines(), start=1):
+            if not _FILE_URL_CANDIDATE_TEXT.search(line):
+                continue
+            try:
+                rows.append(json.loads(line))
+            except json.JSONDecodeError as exc:
+                raise LocalFileUrlScanError(f"`{path}` line {number} is not JSON") from exc
+    else:
+        try:
             parsed = json.loads(text)
-            rows = list(parsed.get("items") or []) if isinstance(parsed, dict) else []
-    except json.JSONDecodeError:
-        return []
+        except json.JSONDecodeError as exc:
+            raise LocalFileUrlScanError(f"`{path}` is not JSON") from exc
+        # As load_source_inventory reads it: a mapping's "items", absent meaning none.
+        items = parsed.get("items", []) if isinstance(parsed, dict) else parsed
+        if not isinstance(items, list):
+            raise LocalFileUrlScanError(f"`{path}` has no list of inventory items")
+        rows = items
     found: list[tuple[str, str]] = []
     for row in rows:
-        if not isinstance(row, dict):
-            continue
-        raw_metadata = row.get("metadata")
-        metadata = raw_metadata if isinstance(raw_metadata, dict) else {}
-        fields = [("source_url", row.get("source_url"))] + [
-            (f"metadata.{key}", value)
-            for key, value in metadata.items()
-            if key == "url" or key.endswith("_url")
-        ]
-        for field, value in fields:
-            if isinstance(value, str) and value.strip().lower().startswith("file:"):
-                found.append((str(row.get("citation_path") or "<unknown citation>"), field))
+        if isinstance(row, dict):
+            citation = str(row.get("citation_path") or "<unknown citation>")
+            found.extend((citation, field) for field in _file_url_fields(row, ""))
     return found
 
 
 def _local_file_url_issues(path: str, payload: bytes) -> list[str]:
     """Name the rows that record a ``file:`` URL; the message never repeats the path."""
-    found = local_file_url_fields(path, payload)
+    try:
+        found = local_file_url_fields(path, payload)
+    except LocalFileUrlScanError as exc:
+        return [f"{exc}, so its URL fields cannot be checked for file: URLs."]
     if not found:
         return []
     shown = ", ".join(f"`{citation}` {field}" for citation, field in found[:_LOCAL_FILE_URL_EXAMPLES])

@@ -9,10 +9,12 @@ Invariants:
    declared or detected source format.
 2. A relative ``local_path`` resolves against the manifest file, not the
    working directory.
-3. ``local_file_url_fields`` reports exactly the URL fields whose decoded value
-   starts with ``file:`` (any case, after surrounding whitespace), however the
-   JSON spells them; body text is never reported. Its byte prefilter agrees
-   with a brute-force reference that parses every row.
+3. ``local_file_url_fields`` reports exactly the URL fields (``url``, ``urls``,
+   ``*_url``, ``*_urls`` at any depth) whose decoded value starts with
+   ``file:`` (any case, after surrounding whitespace), however the JSON spells
+   them; body text is never reported. Its prefilter agrees with a brute-force
+   reference that parses every row, and it fails closed: an artifact it cannot
+   decode or parse where a ``file:`` URL could sit raises instead of passing.
 """
 
 from __future__ import annotations
@@ -33,7 +35,11 @@ from axiom_corpus.corpus.documents import (
     _download_document,
     extract_official_documents,
 )
-from axiom_corpus.corpus.ingest_manifests import _content_issues, local_file_url_fields
+from axiom_corpus.corpus.ingest_manifests import (
+    LocalFileUrlScanError,
+    _content_issues,
+    local_file_url_fields,
+)
 
 INVENTORY = "data/corpus/inventory/de/guidance/2026-10-14-example.json"
 PROVISIONS = "data/corpus/provisions/de/guidance/2026-10-14-example.jsonl"
@@ -279,23 +285,37 @@ def test_guard_reports_file_urls_in_url_fields_only() -> None:
 
 
 def _reference(path: str, payload: bytes) -> list[tuple[str, str]]:
-    """Parse every row with no prefilter."""
+    """Parse every row with no prefilter and visit every key, depth first."""
     text = payload.decode("utf-8-sig")
     if path.endswith(".jsonl"):
         rows = [json.loads(line) for line in text.splitlines() if line.strip()]
     else:
-        rows = json.loads(text).get("items") or []
+        rows = json.loads(text).get("items", [])
     found = []
+
+    def visit(value, dotted):
+        if isinstance(value, list):
+            for child in value:
+                visit(child, dotted)
+            return
+        if not isinstance(value, dict):
+            return
+        for key, child in value.items():
+            here = f"{dotted}.{key}" if dotted else key
+            url_key = key in ("url", "urls") or key.endswith(("_url", "_urls"))
+            values = child if isinstance(child, list) else [child]
+            if url_key and any(
+                isinstance(v, str) and v.strip().lower().startswith("file:") for v in values
+            ):
+                found.append(here)
+            visit(child, here)
+
+    result = []
     for row in rows:
-        metadata = row.get("metadata") or {}
-        for field, value in [("source_url", row.get("source_url"))] + [
-            (f"metadata.{key}", value)
-            for key, value in metadata.items()
-            if key == "url" or key.endswith("_url")
-        ]:
-            if isinstance(value, str) and value.strip().lower().startswith("file:"):
-                found.append((row["citation_path"], field))
-    return found
+        found.clear()
+        visit(row, "")
+        result.extend((row["citation_path"], field) for field in found)
+    return result
 
 
 def _escape_some(serialized: str, data: st.DataObject) -> str:
@@ -342,6 +362,13 @@ _URLISH = st.sampled_from(
                     _URLISH,
                     max_size=3,
                 ),
+                "extra": st.dictionaries(
+                    st.sampled_from(["provenance", "source_urls", "mirror_url"]),
+                    _URLISH
+                    | st.lists(_URLISH, max_size=2)
+                    | st.fixed_dictionaries({"download_url": _URLISH, "label": _URLISH}),
+                    max_size=2,
+                ),
             }
         ),
         max_size=6,
@@ -353,7 +380,10 @@ _URLISH = st.sampled_from(
 def test_prefiltered_scan_agrees_with_the_brute_force_reference(
     rows, jsonl, ensure_ascii, data
 ) -> None:
-    rows = [{"citation_path": f"de/guidance/r/{i}", **row} for i, row in enumerate(rows)]
+    rows = [
+        {"citation_path": f"de/guidance/r/{i}", **row, "metadata": {**row["metadata"], **row.pop("extra")}}
+        for i, row in enumerate(rows)
+    ]
     if jsonl:
         path = PROVISIONS
         text = "\n".join(
@@ -366,10 +396,50 @@ def test_prefiltered_scan_agrees_with_the_brute_force_reference(
     assert local_file_url_fields(path, payload) == _reference(path, payload)
 
 
-@pytest.mark.parametrize("payload", [b"\xff\xfe not utf-8 file:", b"{not json file:"])
-def test_undecodable_or_malformed_artifacts_are_left_to_other_checks(payload: bytes) -> None:
-    assert local_file_url_fields(INVENTORY, payload) == []
-    assert local_file_url_fields(PROVISIONS, payload) == []
+def test_an_unparseable_candidate_line_fails_closed() -> None:
+    """Review finding: one malformed line used to clear every leak in its artifact."""
+    leaky = json.dumps(_row("de/guidance/a", metadata={"download_url": "file:///Users/x/a.pdf"}))
+    payload = (leaky + "\n" + '{"citation_path": "de/guidance/b", "note": "file:' + "\n").encode()
+    with pytest.raises(LocalFileUrlScanError, match="line 2 is not JSON"):
+        local_file_url_fields(PROVISIONS, payload)
+    (issue,) = _content_issues(PROVISIONS, payload)
+    assert "cannot be checked for file: URLs" in issue
+    assert "/Users/x" not in issue
+    # A malformed line that could not hold a file: URL is left to other checks.
+    assert local_file_url_fields(PROVISIONS, (leaky + "\n{not json\n").encode()) == [
+        ("de/guidance/a", "metadata.download_url")
+    ]
+
+
+@pytest.mark.parametrize(
+    ("path", "payload", "message"),
+    [
+        (INVENTORY, b"\xff\xfe not utf-8", "is not UTF-8"),
+        (PROVISIONS, b"\xff\xfe not utf-8", "is not UTF-8"),
+        (INVENTORY, b'{"items": [ file:', "is not JSON"),
+        (INVENTORY, b'{"items": {"a": "file:///x"}}', "no list of inventory items"),
+    ],
+)
+def test_unreadable_artifacts_fail_closed(path: str, payload: bytes, message: str) -> None:
+    with pytest.raises(LocalFileUrlScanError, match=message):
+        local_file_url_fields(path, payload)
+    assert len(_content_issues(path, payload)) == 1
+
+
+def test_nested_and_listed_url_fields_are_checked() -> None:
+    row = _row(
+        "de/guidance/n",
+        metadata={
+            "provenance": {"retrieved": {"download_url": "file:///tmp/a"}},
+            "source_urls": ["https://ok.example/a", "file:///tmp/b"],
+            "notes": ["file:///not/a/url/field"],
+        },
+    )
+    payload = json.dumps({"items": [row]}).encode()
+    assert local_file_url_fields(INVENTORY, payload) == [
+        ("de/guidance/n", "metadata.provenance.retrieved.download_url"),
+        ("de/guidance/n", "metadata.source_urls"),
+    ]
 
 
 def _locked_scope(repo: Path, scope: tuple[str, str, str], rows: list[dict]) -> None:
