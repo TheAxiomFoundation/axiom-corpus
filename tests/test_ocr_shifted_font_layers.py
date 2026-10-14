@@ -1668,7 +1668,21 @@ def test_a_reference_met_twice_counts_once_against_the_limit(tmp_path, monkeypat
         assert documents_module._pdf_drawn_font_xrefs(page) is None
 
 
-def test_a_graphics_states_font_without_a_type_is_counted(tmp_path):
+def _graphics_state(document: fitz.Document, page, key: str, entries: str, content: bytes, inline: bool) -> None:
+    """A graphics state ``<< entries >>`` under ``key`` in the page's ExtGState, as an object
+    of its own or written inline there, and ``content`` added to the page."""
+    resources = int(document.xref_get_key(page.xref, "Resources")[1].split()[0])
+    if inline:
+        document.xref_set_key(resources, "ExtGState", f"<< /{key} << {entries} >> >>")
+        _draw(document, page, "XObject", "Nothing", _form(document, b"", ""), content)
+        return
+    state = document.get_new_xref()
+    document.update_object(state, f"<< {entries} >>")
+    _draw(document, page, "ExtGState", key, state, content)
+
+
+@pytest.mark.parametrize("inline", [False, True])
+def test_a_graphics_states_font_without_a_type_is_counted(tmp_path, inline):
     # Review round 5: /ExtGState << /GS2 << /Font [B 0 R 10] >> >> selects Type0 B, named
     # Shared like the page's unmapped A, and B and its descendant have no /Type. The
     # walk reads the /Font entry itself and knows a font by its /Subtype as well.
@@ -1684,10 +1698,15 @@ def test_a_graphics_states_font_without_a_type_is_counted(tmp_path):
         )
         document.xref_set_key(b, "Type", "null")
         document.xref_set_key(descendant, "Type", "null")
-        state = document.get_new_xref()
-        document.update_object(state, f"<< /Font [{b} 0 R 10] >>")
         hexed = "".join(f"{code:04x}" for code in (ord(c) - PUA + 1 for c in "Wendy6666"))
-        _draw(document, page, "ExtGState", "GS2", state, f"q /GS2 gs BT 72 450 Td <{hexed}> Tj ET Q".encode())
+        _graphics_state(
+            document,
+            page,
+            "GS2",
+            f"/Font [{b} 0 R 10]",
+            f"q /GS2 gs BT 72 450 Td <{hexed}> Tj ET Q".encode(),
+            inline,
+        )
         document.save(tmp_path / "gs.pdf")
     spans, decoded = _decoded(tmp_path / "gs.pdf", EVIDENCE_OCR)
     with fitz.open(tmp_path / "gs.pdf") as document:
@@ -1698,16 +1717,20 @@ def test_a_graphics_states_font_without_a_type_is_counted(tmp_path):
     assert "Xfoez7777" not in _texts(decoded)
 
 
-def test_a_graphics_state_font_written_inline_stops_decoding(tmp_path):
+@pytest.mark.parametrize("inline", [False, True])
+def test_a_graphics_state_font_written_inline_stops_decoding(tmp_path, inline):
     # Review round 5: an inline font in a graphics state's /Font entry can't be counted.
     pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)])
     with fitz.open(pdf) as document:
         page = document[0]
-        state = document.get_new_xref()
-        document.update_object(
-            state, "<< /Font [<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> 10] >>"
+        _graphics_state(
+            document,
+            page,
+            "GS3",
+            "/Font [<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> 10]",
+            b"q /GS3 gs BT 72 450 Td (Inline) Tj ET Q",
+            inline,
         )
-        _draw(document, page, "ExtGState", "GS3", state, b"q /GS3 gs BT 72 450 Td (Inline) Tj ET Q")
         document.save(tmp_path / "inline.pdf")
     spans, decoded = _decoded(tmp_path / "inline.pdf", EVIDENCE_OCR)
     with fitz.open(tmp_path / "inline.pdf") as document:
