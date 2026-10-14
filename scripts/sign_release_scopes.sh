@@ -10,9 +10,10 @@
 #     manifests/releases/us-rulespec-2026-08-23-canada-338-suspension-union.json
 #
 # Run from the repository root on a release branch cut from main AFTER the program
-# PRs are merged, with AXIOM_CORPUS_INGEST_PRIVATE_KEY exported in this shell only
-# (never written to a file). Tracked files must be clean; untracked data/corpus
-# artifacts are expected.
+# PRs are merged. Tracked files must be clean; untracked data/corpus artifacts are
+# expected. If any unreleased scope has no signed ingest manifest yet, export
+# AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell only (never written to a file); the
+# script checks for it before it stages anything.
 #
 # The unreleased scopes are the draft selector's scopes minus the predecessor's.
 # Order matters: the signer records HEAD and requires a clean tracked tree, and the
@@ -21,14 +22,19 @@
 # manifests, (4) copy the draft to manifests/releases/<name>.json, deep-validate it
 # against the committed artifacts and commit it.
 #
-# Steps 1-3 skip what is already done: a run that stopped while signing can be re-run
-# as is, and a draft whose scopes were all committed and signed in their ingest PR goes
-# on to the self-check and step 4 without committing anything first.
+# Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
+# committed and signed in their ingest PR goes on to the self-check and step 4 without
+# committing anything first. A run that stops before the selector commit, because a step
+# failed or the run was interrupted (Ctrl-C, SIGTERM or SIGHUP), unstages what it staged
+# and deletes its copy of manifests/releases/<name>.json. It keeps its commits and the
+# manifests it signed, which the next run reuses, and step 1 checks every scope's
+# coverage and artifacts before it stages any. So after any failure, fix the cause and
+# run the same command again, with nothing to clean up by hand. Only a run killed
+# outright (SIGKILL, a crash) can leave files staged or <name>.json behind.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 DRAFT="${1:?draft selector path}"
 PREDECESSOR="${2:?predecessor selector path}"
-: "${AXIOM_CORPUS_INGEST_PRIVATE_KEY:?export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell first}"
 [ -z "$(git status --porcelain --untracked-files=no)" ] || { echo "tracked tree is dirty; commit or stash first" >&2; exit 1; }
 # On main itself the guard-ingested self-check below would diff an empty main...HEAD range.
 [ "$(git symbolic-ref -q --short HEAD || true)" != main ] || { echo "on main; cut a release branch from main first" >&2; exit 1; }
@@ -40,7 +46,35 @@ TARGET="manifests/releases/$NAME.json"
 # Unreleased scopes: draft minus predecessor, as "jurisdiction document_class version" lines.
 # (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
 SCOPE_LIST=$(mktemp)
-trap 'rm -f "$SCOPE_LIST"' EXIT
+# From step 1 on, a run that stops before the selector commit undoes what it has not
+# committed (see the header). The tracked tree was clean at the start, so the index
+# differs from HEAD only by what this run staged. Bash 3.2 can show $? as 0 here after an
+# expansion error or a signal, so a run that did not finish never exits 0.
+STARTED="" COPIED="" CUT=""
+on_exit() {
+  status=$?
+  set +e
+  rm -f "$SCOPE_LIST"
+  [ -z "$CUT" ] || return 0
+  # HEAD is checked too: an interrupt can land between the selector commit and CUT=1.
+  if [ -n "$STARTED" ] && ! git cat-file -e "HEAD:$TARGET" 2>/dev/null; then
+    if ! git diff --cached --quiet; then
+      if git reset -q -- data/corpus .axiom/ingest-manifests "$TARGET"; then
+        echo "unstaged what this run staged but did not commit" >&2
+      else
+        echo "could not unstage this run's changes; unstage them before re-running" >&2
+      fi
+    fi
+    if [ -n "$COPIED" ]; then
+      rm -f "$TARGET"
+      echo "deleted $TARGET, this run's copy of the draft: the selector was not cut" >&2
+    fi
+    echo "stopped before cutting $TARGET; fix the cause and run the same command again" >&2
+  fi
+  [ "$status" -ne 0 ] || status=1
+  exit "$status"
+}
+trap on_exit EXIT
 python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
 import json, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
@@ -55,16 +89,51 @@ while IFS= read -r line; do SCOPES+=("$line"); done < "$SCOPE_LIST"
 echo "unreleased scopes: ${#SCOPES[@]} (draft $NAME)"
 [ "${#SCOPES[@]}" -gt 0 ] || { echo "nothing to sign" >&2; exit 1; }
 
-# 1. force-add artifacts (data/ is gitignored) and commit them.
+# Signing needs the private key. Check for it now, before step 1 stages anything, and
+# only when some scope has no manifest for step 2 to keep.
+signed() { [ -f ".axiom/ingest-manifests/$1/$2/$3.json" ]; }
+UNSIGNED=0
 for line in "${SCOPES[@]}"; do
   read -r jur cls ver <<<"$line"
-  cov="data/corpus/coverage/$jur/$cls/$ver.json"
-  python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert d["complete"] is True, sys.argv[1]' "$cov"
-  git add -f "$cov" \
-             "data/corpus/inventory/$jur/$cls/$ver.json" \
-             "data/corpus/provisions/$jur/$cls/$ver.jsonl" \
-             "data/corpus/sources/$jur/$cls/$ver"
+  signed "$jur" "$cls" "$ver" || UNSIGNED=$((UNSIGNED + 1))
 done
+if [ "$UNSIGNED" -gt 0 ] && [ -z "${AXIOM_CORPUS_INGEST_PRIVATE_KEY:-}" ]; then
+  echo "$UNSIGNED of ${#SCOPES[@]} unreleased scopes need signing; export AXIOM_CORPUS_INGEST_PRIVATE_KEY in this shell first" >&2
+  exit 1
+fi
+
+# 1. force-add artifacts (data/ is gitignored) and commit them. Every scope's artifacts
+#    are checked before any is staged, and one `git add` stages them all (git leaves the
+#    index untouched when a path is missing), so a failure here leaves nothing staged.
+STARTED=1
+ARTIFACTS=()
+for line in "${SCOPES[@]}"; do
+  read -r jur cls ver <<<"$line"
+  ARTIFACTS+=("data/corpus/coverage/$jur/$cls/$ver.json"
+              "data/corpus/inventory/$jur/$cls/$ver.json"
+              "data/corpus/provisions/$jur/$cls/$ver.jsonl"
+              "data/corpus/sources/$jur/$cls/$ver")
+done
+python3 - "${ARTIFACTS[@]}" <<'PY'
+import json, os, sys
+paths, problems = sys.argv[1:], []
+for coverage, *rest in (paths[i:i + 4] for i in range(0, len(paths), 4)):
+    problems += [f"missing {path}" for path in (coverage, *rest) if not os.path.exists(path)]
+    if not os.path.exists(coverage):
+        continue
+    try:
+        with open(coverage) as f:
+            complete = json.load(f)["complete"] is True
+    except (OSError, ValueError, LookupError, TypeError) as error:
+        problems.append(f"unreadable {coverage}: {error}")
+        continue
+    if not complete:
+        problems.append(f"coverage not complete: {coverage}")
+if problems:
+    print("nothing staged; fix these first:", *problems, sep="\n  ", file=sys.stderr)
+    sys.exit(1)
+PY
+git add -f -- "${ARTIFACTS[@]}"
 if git diff --cached --quiet; then
   echo "artifacts already committed; skipping data commit"
 else
@@ -95,7 +164,7 @@ PY
 }
 for line in "${SCOPES[@]}"; do
   read -r jur cls ver <<<"$line"
-  if [ -f ".axiom/ingest-manifests/$jur/$cls/$ver.json" ]; then
+  if signed "$jur" "$cls" "$ver"; then
     # Already signed, by an earlier run or in the scope's ingest PR (its manifest may carry
     # reasoning-log attestations this script cannot reproduce). guard-ingested checks it
     # against the artifacts in whichever PR commits them: this branch's, or the ingest PR's.
@@ -143,11 +212,16 @@ else
   echo "guard-ingested: ok"
 fi
 
-# 4. track the immutable selector and deep-validate it against the committed artifacts.
+# 4. track the immutable selector, deep-validate it against the committed artifacts and
+#    commit it. If any of that fails, on_exit deletes the copy, so the next run does not
+#    take it for a cut selector.
+COPIED=1
 cp "$DRAFT" "$TARGET"
-uv run axiom-corpus-ingest validate-release --base data/corpus --release "$TARGET" --ignore-r2-missing --max-issues 20
+uv run axiom-corpus-ingest validate-release --base data/corpus --release "$TARGET" --ignore-r2-missing --max-issues 20 \
+  || { echo "validate-release failed; not cutting $TARGET" >&2; exit 1; }
 git add "$TARGET"
 git commit -q -m "$(printf 'Cut %s\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>' "$NAME")"
+CUT=1
 echo "selector commit: $(git rev-parse --short HEAD)"
 echo "next: open a PR (CI runs guard-ingested and validates the selector), then"
 echo "      uv run --extra dev python scripts/publish_corpus.py --release $TARGET --dry-run"
