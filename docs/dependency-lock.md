@@ -182,21 +182,20 @@ differ, the committed rows are 1.26.7's.
 ### Every PDF page
 
 Each of the 10,746 distinct PDFs in the corpus was also read page by page
-with the calls the statute adapters make. 10,742 were read on both versions.
-The other 4 (two North Dakota and two Ohio tax booklets) hit the 900-second
-limit on one version after about 4,600 seconds of wall time, while the host
-had the run's processes stopped; the same files took 1.5 to 15 seconds on the
-other version.
+with the calls the statute adapters make, on both versions. (Four North
+Dakota and Ohio tax booklets first hit the 900-second limit on one version
+while the host had the run's processes stopped, and were rerun with
+`--retry-errors`.)
 
 | pages | count |
 |---|---|
-| compared | 288,493 |
-| `get_text()` differs | 28,558 |
-| `get_text()` differs in non-space characters | 2,078 |
-| `get_text("text", sort=True)` differs | 4,736 |
-| `get_text("words")` differs | 2,585 |
+| compared | 288,622 |
+| `get_text()` differs | 28,563 |
+| `get_text()` differs in non-space characters | 2,080 |
+| `get_text("text", sort=True)` differs | 4,738 |
+| `get_text("words")` differs | 2,587 |
 
-1,809 PDFs have a differing page, 377 a page that differs in non-space
+1,813 PDFs have a differing page, 379 a page that differs in non-space
 characters. Most `get_text()` differences are in whitespace, which the
 official-document extractor normalizes away.
 
