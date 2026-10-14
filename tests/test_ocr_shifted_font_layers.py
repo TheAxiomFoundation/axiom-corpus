@@ -45,9 +45,10 @@ S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an 
 S8. A span without an unmapped character is never changed. A font is not decoded in a line
     where some of its characters are mapped, nor anywhere when another font object the
     page's text can be drawn in has its name, as MuPDF names spans: a Type0 font by its
-    descendant, names cut to 31 bytes; fonts in forms, tiling patterns, soft-mask groups
-    and every annotation's appearance (two unmapped fonts of one name can number their
-    glyphs differently). A line is decoded whole or not at all: not when one of its
+    descendant, a Type 3 font by its /Name, every name cut to 31 bytes; fonts in forms,
+    tiling patterns, what a graphics state reaches (soft-mask groups, written as
+    dictionaries or streams, and fonts, an indirect /Type resolved) and every annotation's
+    appearance (two unmapped fonts of one name can number their glyphs differently). A line is decoded whole or not at all: not when one of its
     characters, in any of its spans, would decode outside printable ASCII, nor when a span
     of it would still hold a control character.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
@@ -59,10 +60,11 @@ S10. Only a Type0 font is decoded, and only when its /W gives a width for every 
     greatest of those (a font numbering its glyphs in order of use has a glyph for each),
     whatever the /W says elsewhere; it may be a font only an annotation draws. /W read back
     gives exactly the codes written, as merged ranges.
-S11. When the page's fonts can't be known for certain (a font or annotation written inline,
-    a /Subtype or /BaseFont not written in the font's dictionary, a reference printed with
-    another generation or to an object the file lacks, or more holders than the walk
-    takes), nothing on the page is decoded, and nothing raises.
+S11. When the page's fonts can't be known for certain (a font, a descendant or an annotation
+    written inline, a /Subtype or /BaseFont not written in the font's dictionary, a
+    reference printed with another generation or to an object the file lacks, a page tree
+    deeper than the walk follows, or more distinct holders than it takes), nothing on the
+    page is decoded, and nothing raises.
 """
 
 from __future__ import annotations
