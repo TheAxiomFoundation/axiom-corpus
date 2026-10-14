@@ -29,40 +29,62 @@ Reproduced from retained bytes at `origin/main` `c3a8e1d0c`:
 
 On a page `ocr: true` reads by OCR although it has a text layer (`_pdf_page_text`), the
 layer is read from the `dict` output (`_pdf_layer_lines`): each line as its spans' text,
-paint and font name, unsplit. A span is painted when its characters are filled or stroked
-(PyMuPDF `char_flags`) with non-zero opacity. PyMuPDF 1.26, which this repository locks,
-reports filled Type3 glyphs as neither filled nor stroked, as it does invisible text, so
-under PyMuPDF before 1.27 a span in a Type3 font counts as painted. It is matched by the
-name MuPDF 1.26 gives the span: the font's /Name (an indirect one resolved, a font written
-inline read through the resources that hold it), its bytes read as Latin-1, less a
-six-character subset prefix, or "Unnamed-T3" without one. An inline font whose resource
-name can't be addressed (it has a "/" or a byte that isn't UTF-8) is named by the name
-PyMuPDF lists for it, its /BaseFont ahead of its /Name; a Type3 font has no /BaseFont in a
-conforming file, but one that does is missed (pinned in a test). From 1.27 the span's paint is
-trusted: 1.27.2.3 and 1.28.2, the releases checked, report Type3 paint, and every Type3
-span on the overlay pages measured is filled under 1.28.2. The limit of the lock: there, an invisible Type3 layer, or invisible
-text in another font sharing a Type3 font's name, counts as painted. If the spans do not hold the
-text output's characters (whitespace, control characters and combining marks aside;
-`sort_text` changes only the lines the text output prints), the text output's lines,
-split at newlines only, are used instead, all counted as painted, so no typed text can go
-missing. On the overlay pages that happens on none of the 1,041 pages, with or without
-`sort_text`.
+paint, font name and Unicode provenance, unsplit. A span is painted when its characters
+are filled or stroked (PyMuPDF `char_flags`) with non-zero opacity. Its provenance
+(`_pdf_span_mapped`) is "mapped" when PyMuPDF reports its characters (a fill or stroke
+flag) and neither of MuPDF's flags for a glyph without Unicode (`FZ_STEXT_UNICODE_IS_CID`,
+`FZ_STEXT_UNICODE_IS_GID`) is set, "unmapped" when one of those is, and unknown otherwise.
+PyMuPDF starts a new span wherever these flags change (`extra.i`, `JM_make_spanlist`, in
+1.26.7 and 1.28.2), so they hold for every character of a span.
+
+PyMuPDF 1.26, which this repository locks, reports filled Type3 glyphs as neither filled
+nor stroked, as it does invisible text, so under PyMuPDF before 1.27 a span in a Type3
+font counts as painted. Type3 spans are found by the name MuPDF gives them: the font's
+/Name (an indirect one resolved, its #xx escapes undone; a font written inline read
+through the resources that hold it), its bytes read as Latin-1, less a six-character
+subset prefix, or, without a name, "Unnamed-T3" (1.26) or "Type3 (<object> 0 R)" (1.28).
+An inline font whose resource name has a "/" (a lookup path would split at it and could
+reach another font's dictionary) or a byte that isn't UTF-8 is named by the name PyMuPDF
+lists for it, its /BaseFont ahead of its /Name; a Type3 font has no /BaseFont in a
+conforming file, but one that does is missed (pinned in a test). From 1.27 the span's
+paint is trusted: 1.27.2.3 and 1.28.2, the releases checked, report Type3 paint, and
+every Type3 span on the overlay pages measured is filled under 1.28.2. The limit of the
+lock: there, an invisible Type3 layer, or invisible text in another font sharing a Type3
+font's name, counts as painted. On every version a Type3 span's provenance is unknown: its
+glyph names are its map, and a shifted Type3 font's names are wrong (IL-21-0006's
+"OPQRPST" carries neither flag under 1.28.2).
+
+If the spans do not hold the text output's characters (whitespace, control characters and
+combining marks aside; `sort_text` changes only the lines the text output prints), the
+text output's lines, split at newlines only, are used instead, all counted as painted, so
+no typed text can go missing. Combining marks the text output holds and the spans lack
+are put back (`_with_layer_marks`): a text-output line without a control character that
+holds one takes the kept line that is the same text without its marks; if no kept line
+is, the text output's lines are used. Under 1.26.7 neither happens on any overlay page,
+with or without `sort_text`. Under 1.28.2, WV-23-0001 pages 132, 237 and 358 lack Khmer
+marks in their spans that their text output prints: they are put back, and with
+`sort_text`, which rebuilds those lines, the text output's lines are used.
 
 1. **Garbled fonts** (`_without_garbled_spans`). A span holding a control character other
-   than tab, newline, carriage return, VT or FF is a garbled font's, and so is every span
-   on its line in a font of the same name: such a font maps some codes to control
-   characters and the rest to other wrong characters (CA-25-0037's "5678", "9C<:"). Those
-   spans are left out whole, before anything splits them (Python's `splitlines()` breaks
-   lines at U+001C to U+001E and U+0085, and `split()` strips U+001F, so judged after
-   splitting a shifted font's "2EQI\x1e" would pass as "2EQI"). The runs of kept spans
-   between them are joined by one space. Spans in other fonts on the line, such as a date
-   typed beside a garbled label, are kept. A line is painted when one of its kept spans
-   with visible characters is. The rule leaves out 509 control-free spans on the overlay
-   pages (219 distinct texts, all symbol and digit strings such as "$#", ":;<=",
-   "5MN1"). Its limit: a font can map some codes right and others wrong, as on AL-20-0004
-   page 4, where one ArialMT subset holds both garbled spans and the digital signature's
-   clean ones. There they sit on different lines; a clean span on the same line as a
-   garbled one in the same font would be left out with it.
+   than tab, newline, carriage return, VT or FF is a garbled font's, and so is every other
+   span on its line in a font of the same name: such a font gives the line's codes wrong
+   characters, some of them control characters (CA-25-0037's "5678", "9C<:"). Those spans
+   are left out whole, before anything splits them (Python's `splitlines()` breaks lines
+   at U+001C to U+001E and U+0085, and `split()` strips U+001F, so judged after splitting
+   a shifted font's "2EQI\x1e" would pass as "2EQI"). The exception is a mapped span when
+   every control-character span of its font on the line is unmapped: the garbage is the
+   codes the font's Unicode map leaves out, and the mapped span is typed text. On
+   NV-20-0002 page 3, "March 13, 2020" is set in a MinionPro subset whose map gives, on
+   that line, only the "3"; ".BSDI\x01\x12" and "\r\x01\x13\x11\x13\x11" are "March 1"
+   and ", 2020" given as CIDs, 31 codes below the characters. The runs of kept spans between left-out ones are joined by one
+   space. Spans in other fonts on the line, such as a date typed beside a garbled label,
+   are kept. A line is painted when one of its kept spans with visible characters is. The
+   rule leaves out 490 control-free spans on the overlay pages (213 distinct texts, all
+   symbol and digit strings such as "$#", ":;<=", "5MN1") and keeps 19 by provenance:
+   NV-20-0002's "3" and 18 punctuation shards of WV-23-0001's screenshot text. Its limit:
+   a clean span in the same font as a garbled span on its line is still left out when its
+   provenance is unknown (a Type3 font, invisible text under PyMuPDF 1.26) or when the
+   font's map itself gave the control character.
 2. **Recognition layers** (`_without_failed_recognition_lines`). Painted lines are all
    kept. An invisible line (text render mode 3, or fully transparent) belongs to a
    recognition layer, an earlier OCR of the same image, not typed text. Two kinds are
@@ -70,7 +92,8 @@ missing. On the overlay pages that happens on none of the 1,041 pages, with or w
    lower-casing, after NFKC) and no digit ("cc:", a stray "L"); and every invisible line of a failed layer, one
    with at least five distinct words of three or more letters of which fewer than a third
    occur in the OCR text (as one of its words, or, for words of six or more letters,
-   inside its letters run together, since recognition layers run words together).
+   inside its letters run together, since recognition layers run words together). Letters
+   are counted before lower-casing, which can lengthen a word (İ becomes two code points).
 3. **The merge** (`_with_unread_layer_lines`). A remaining line is appended after the OCR
    text unless the OCR text already holds the whole line: the same characters in the same
    order, starting and ending at token boundaries (a line may skip punctuation that leads
@@ -90,10 +113,16 @@ Stated and tested in `tests/test_ocr_layer_line_properties.py` (Hypothesis, agai
 written-out references that do not share the implementation's code):
 
 - S1 to S3 for garbled fonts: a span with a control character other than ordinary
-  whitespace is left out, with every span on its line in the same font; the line is the
-  non-empty runs of kept spans between them, in order, joined by one space; no line
+  whitespace is left out, with every other span on its line in the same font except a
+  mapped one when all the font's control-character spans there are unmapped; the line is
+  the non-empty runs of kept spans between them, in order, joined by one space; no line
   returned holds such a control character; a line is painted exactly when one of its kept
   spans with visible characters is.
+- K1 to K3 for combining marks: when the lines hold every mark of the text output they
+  come back unchanged; otherwise what comes back is the lines in order with their paint,
+  some replaced by a text-output line that is the same once marks are left out, and it
+  holds every mark of the text-output lines without a control character; it gives up
+  (and the text output's lines are used) only when such a line has nowhere to go.
 - R1 to R5 for recognition layers: the result is a subsequence of the input; every
   painted line is kept; an invisible line is dropped only as a fragment or in a failed
   layer; more OCR text never drops a kept line; applying it to its own result changes
@@ -107,37 +136,47 @@ written-out references that do not share the implementation's code):
   changes nothing; with blank OCR the layer is returned unchanged; more OCR text never
   appends more; every line #854's rule appended is held unless an earlier step dropped
   it.
-- Together: the text of every painted span outside a garbled font, line by line, is in
-  the page text wherever it has a letter or digit.
+- Together: every painted line S1 keeps is in the page text wherever it has a letter or
+  digit (on the text output's lines when those are used).
 
 `tests/test_documents_ocr_overlay.py` builds PDFs with filled, stroked, render-mode-3 and
-transparent text, and a scanned page whose typed lines are set in a Type3 font. The 20 pages in `tests/fixtures/ocr_overlay/` (19 named in the defect
-report or measured below, and AL-20-0004 page 4, whose shifted span splits at U+001E) are
-run through `_pdf_page_text` on the retained PDFs (checked by SHA-256) with Tesseract's
-stored output, with and without `sort_text` and `ignore_actual_text`. A mutation check runs
-38 broken variants of the rule against these tests; its result is recorded in the PR.
+transparent text, a scanned page whose typed lines are set in a Type3 font written 25
+ways (named, unnamed, subset-prefixed, #xx-escaped or indirect names; inline, inherited or
+in a form, under resource names with a space, a "/" or a byte that isn't UTF-8), and pages
+whose text output holds a combining mark the spans lack. The 22 pages in
+`tests/fixtures/ocr_overlay/` (19 named in the defect report or measured below,
+AL-20-0004 page 4, whose shifted span splits at U+001E, NV-20-0002 page 3, whose mapped
+"3" is kept beside unmapped codes, and WV-23-0001 page 132, whose marks PyMuPDF 1.28's
+spans lack) are run through `_pdf_page_text` on the retained PDFs (checked by SHA-256) with
+Tesseract's stored output, with and without `sort_text` and `ignore_actual_text`. A
+mutation check runs 67 broken variants of the rule against these tests; its result is
+recorded in the PR.
 
 ## Measurement
 
-Every page the overlay rule reaches: the 1,041 pages in 328 retained PDFs of `ocr: true`
-manifest documents listed by #853's sweep (`ocr-rule-sweep-final.json`), all of them
-read from retained bytes, with PyMuPDF 1.26.7 (the lock; CI installs 1.28.2, which splits
-some lines into spans differently and gives the same page text except on 9 pages, all
-junk lines of IL-21-0006, WI-22-0009 and WV-23-0001). Tesseract 5.5.3 (eng, 200 dpi) output was cached by the exact
-rendered page image, so both rules read the same OCR text. Five pages have blank OCR text;
-both rules return their layer unchanged.
+Every page the overlay rule reaches: the 1,041 page entries in 328 retained PDFs of
+`ocr: true` manifest documents listed by #853's sweep (`ocr-rule-sweep-final.json`; 1,040
+distinct pages, one Ghana page being listed under two manifests), all of them read from
+retained bytes, with PyMuPDF 1.26.7 (the lock). CI installs 1.28.2, which splits some lines
+into spans differently; it gives the same page text on 1,031 of the 1,040 pages, and the
+other 9 differ only in junk lines of IL-21-0006, WI-22-0009 and WV-23-0001 (shifted-font
+strings and screenshot noise, two of which a text-only test calls typed: WI-22-0009's
+"./01/2353/637" and WV-23-0001's "1" among Khmer vowel signs). Tesseract 5.5.3 (eng) output, at each
+manifest's `ocr_dpi` (the default 200, or 300 for the six Ghana documents), was cached by
+the exact rendered page image, so both rules read the same OCR text. Five pages have blank
+OCR text; both rules return their layer unchanged.
 
 ### Pages
 
 | | #854 | This change |
 | --- | ---: | ---: |
-| Layer lines appended | 671 | 910 |
-| Typed or legible lines appended (words) | 477 (1,654) | 673 (2,298) |
-| Junk lines appended (words) | 194 (512) | 237 (581) |
+| Layer lines appended | 671 | 914 |
+| Typed or legible lines appended (words) | 477 (1,654) | 674 (2,299) |
+| Junk lines appended (words) | 194 (512) | 240 (596) |
 | Pages with junk appended | 101 | 80 |
 | Pages missing a legible layer word (words) | 20 (33) | 1 (1) |
 
-365 pages in 159 PDFs append different lines. Of the 207 lines #854 appended that are no
+366 pages in 160 PDFs append different lines. Of the 207 lines #854 appended that are no
 longer appended, 138 are lines OCR read with other spacing or quote style (41 of them the
 ND-20-0004 footer), 26 are shards of garbled-font spans split at separator control
 characters (CA-25-0037 "9:;<=>", IL-21-0006 and WI-22-0009 "%@5"), and 43 are noise from
@@ -163,10 +202,10 @@ the OCR text counts here, whatever its text, such as "0" and "4. 1.4. U"), recog
 "Director", and shards of garbled spans), and the visible OCR of screenshots in
 WV-23-0001. Each family was reviewed on rendered pages.
 
-Junk this change appends that #854 did not: 126 lines (278 words).
+Junk this change appends that #854 did not: 129 lines (293 words).
 
-- 51 painted lines, which the rule keeps by design because nothing separates them from
-  typed text: 45 in WV-23-0001 (a visible OCR layer over screenshots of an eligibility
+- 54 painted lines, which the rule keeps by design because nothing separates them from
+  typed text: 48 in WV-23-0001 (a visible OCR layer over screenshots of an eligibility
   system) and 6 shifted-font lines with no control character on their line (MA-20-0024
   "%JSFDUPS", WA-19-0012 "%FQVUZ %", and IL-21-0006 and WI-22-0009 "OPQRPSTVTPWTX", set
   in Type3 fonts).
@@ -206,7 +245,7 @@ pages in
 the CMS Medicaid state plans of AK, AL, AR, CA, CO, CT, DC, GA, HI, IA, ID, IL, IN, KS,
 LA, MA, MD, ME, MI, MN, MO, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, TN,
 UT, VA, VT, WA, WI, WV and WY (`us-xx/policy/2026-09-13-medicaid-state-plan`); the CMS
-CHIP state plans of CO, CT, ME, MS, MT, NE, NJ, PA and SD
+CHIP state plans of CO, CT, ME, MT, NE, NJ, PA and SD
 (`us-xx/policy/2026-09-13-chip-state-plan`); and
 `us-hi/regulation/2026-09-10-medicaid-state-eligibility-manual`.
 
