@@ -87,10 +87,17 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
    - **Finding the fonts** (`_pdf_drawn_font_xrefs`). The walk starts from the page's
      resources (inherited from the page tree when it has none) and from every annotation
      in its /Annots, whatever the subtype. It goes through Resources/Font and on into
-     forms and tiling patterns. From Resources/ExtGState it follows every reference: a
-     font is counted (its /Type resolved when indirect), and a stream is walked as a
-     holder with its dictionary's references followed too, since a soft mask written as
-     a stream holds its group in /G (review round 4). MuPDF extracts text from all of
+     forms and tiling patterns. From Resources/ExtGState it reads each graphics state's
+     /Font entry, whose font is counted, and follows every reference. The entry's array
+     may be written in the state or as an object of its own, and its font is counted
+     whatever its /Type, since MuPDF draws in whatever a /Tf name or a /Font entry
+     selects (the author's round-6 check, under PyMuPDF 1.26.7 and 1.28.2: a font and
+     descendant of /Type /Foo, selected by an array object, print as their name). Of the
+     other objects a graphics state reaches, one is counted as a font when its /Type is
+     /Font, or when it has no /Type and its /Subtype is a font's, each resolved when
+     indirect (review round 5); counting a font that draws nothing only refuses. A stream is walked as a holder, with its
+     dictionary's references followed too, since a soft mask written as a stream holds
+     its group in /G (review round 4). MuPDF extracts text from all of
      those. `get_fonts` lists only the fonts of
      the page and its forms, and `annot_xrefs` skips annotations of a subtype it does not
      know (review round 3).
@@ -99,26 +106,37 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
      the Type0 font's own, which can end in -Identity-H; for a Type 3 font it is its
      /Name, direct or indirect. The name is cut to 31 bytes, read as Latin-1, and
      stripped of a six-letter subset prefix (review round 4: a Type 3 name is cut too).
-     A Type 3 font without a name is "Unnamed-T3" under 1.26 and "Type3 (<n> 0 R)" under
-     1.28; both are counted.
+     That can leave "" (`/ABCDEF+`, or `/`), and MuPDF then names the spans "". Only a
+     Type 3 font with no /Name at all is "Unnamed-T3" under 1.26 and "Type3 (<n> 0 R)"
+     under 1.28 (review round 5); both are counted.
+   - **Fonts MuPDF guesses at, and the name "".** MuPDF loads a font by its /Subtype only
+     when that is /Type0, /Type1, /MMType1, /TrueType or /Type3. Any other font it loads
+     as the type its /CharProcs (Type 3) or /DescendantFonts (Type0) suggest, and names
+     its spans as that type's, whatever its own /BaseFont says. Such a font is not named,
+     so the page's fonts are not known (below). MuPDF names "" the spans of a font it
+     can't load (a Type0 font whose descendant is of an unknown type, or which has none)
+     and of text drawn in a font the resources lack. Neither has a font object to count,
+     so a font named "" is never decoded. (The author's round-6 check; the same under
+     1.26.7 and 1.28.2.)
    - **How far the naming reaches.** It explains every span font name on 1,040 of the
      1,041 pages (`scripts/font_identity_probe.py`, `evidence/font-identity-probe-r3.json`).
      The other is a font MuPDF substitutes, OH-19-0025 page 3's "NimbusSans-Regular",
      which has no unmapped characters. A name that no object explains is not decoded.
    - **When the fonts can't be known for certain, nothing on the page is decoded.** That
      covers:
-     - a font, a Type0 font's descendant or an annotation written inline (a Type0 font's
-       /DescendantFonts must be exactly one reference);
+     - a font, a Type0 font's descendant, a graphics state's font or an annotation
+       written inline (a Type0 font's /DescendantFonts must be exactly one reference);
      - a /Subtype, /BaseFont or descendant that is not written as a name in the font's
        dictionary (MuPDF resolves `/BaseFont 70 0 R` to the name it refers to, while the
        bare key gives "70 0 R");
+     - a /Subtype other than the five MuPDF loads by;
      - a reference printed with a generation other than 0, or to an object the file does
        not have;
      - anything PyMuPDF can't read;
      - a page without resources more than 64 page-tree nodes below the node that has
        them;
      - more than 4,096 distinct holders and graphics-state objects to walk (an object
-       met twice counts once).
+       met twice, or both a holder and a graphics-state object, counts once).
 
      None of these is an error: the page is read as #868 reads it.
    - **The font object itself** must be a Type0 font, whose codes are CIDs. Its /W array
@@ -257,8 +275,14 @@ share a name, and a mapped font or an annotation's font can share a name with th
     unmapped; unmapped and mapped; a page's and an annotation's; a Type0 font named by
     its descendant; two names MuPDF cuts alike, a Type 3 font's among them, its /Name
     direct or indirect; one in a soft-mask group, written as a dictionary or as a stream;
-    one a graphics state selects, its /Type indirect; one in an annotation of an unknown
-    subtype. A long Type 3 name does not shadow a font named as it reads uncut.
+    one a graphics state selects, its /Type indirect or missing, the state written inline
+    or as its own object; one a graphics state selects by an array written as an object
+    of its own, the font and its descendant of /Type /Foo; one in an annotation of an
+    unknown subtype; a Type 3 font whose /Name cuts to nothing beside a Type0 font whose
+    descendant does. A long Type 3 name does not shadow a font named as it reads uncut.
+    Which objects a graphics state reaches count as fonts is tested case by case (/Type
+    and /Subtype direct, indirect and missing).
+  - A font named "" is not decoded, beside text in a font the resources lack or alone.
   - A line is decoded whole or not at all, including when one of its spans would decode
     outside printable ASCII or keep a control character.
 - S9: the unmapped characters are exactly those PyMuPDF's text trace, another device,
@@ -282,9 +306,12 @@ share a name, and a mapped font or an annotation's font can share a name with th
 - S11: when the page's fonts can't be known for certain, nothing on the page is decoded,
   and nothing raises. The cases tested: a font written inline in an appearance; a
   /BaseFont or /Subtype written as a reference (MuPDF resolves the name); an inline
-  annotation; an inline descendant; an appearance referred to with generation 1, or to
+  annotation; an inline descendant; an inline font in a graphics state's /Font entry; a
+  font of /Subtype /Foo that MuPDF loads as a Type0 or a Type 3 font and names as one; an
+  appearance referred to with generation 1, or to
   an object the file lacks; an unused font resource that does; a page tree too deep to
-  follow; a walk that reaches its limit, counting an object met twice once.
+  follow; a walk that reaches its limit, counting each object once (met twice, or as
+  both a holder and a graphics-state object).
 
 #868's real-page tests now merge the decoded spans. Its invariant "every painted span
 without a control character is in the page text" holds for lines decoding leaves alone;
@@ -333,15 +360,28 @@ are new, and each undoes a round-4 fix:
 - any single reference taken as the descendant;
 - the limit checked before a holder already walked is skipped.
 
-S30, S35 and S37 were rewritten for the new code. Logs: `evidence/mutation-r1.txt` to
-`mutation-r9.txt`.
+S30, S35 and S37 were rewritten for the new code.
+
+After review round 5, 54 variants at `dd61ee4c8`: 51 killed. Five are new, and each undoes
+a round-5 fix (a graphics-state object's /Font entry not read, an inline state's not read,
+a font known only by its /Type, an explicit Type 3 name the cut empties taken as unnamed,
+holders and graphics-state objects counted apart against the limit). Beside S12, two
+survived: S46 (an indirect /Type or /Subtype not resolved) and S52, the new "known only by
+its /Type". The round-5 tests reach their fonts through the /Font entry, which no longer
+asks `_pdf_is_font`. Following that up found round 6's three gaps: a /Font array written
+as an object of its own, fonts whose type MuPDF guesses, and the name "".
+
+After the round-6 check, 57 variants at `1479bd957`: 56 killed, S12 again the one left.
+Three are new, and each undoes a round-6 fix (a /Font array written as an object not read,
+a font whose type MuPDF guesses named, a font named "" decoded); S23 was rewritten for the
+new condition; and the direct `_pdf_is_font` cases kill S46 and S52. Logs: `evidence/mutation-r1.txt` to `mutation-r11.txt`.
 
 ## Before and after: every page the overlay rule reaches
 
 Both sides were run on the same 1,041 pages in 328 retained PDFs, with Tesseract 5.5.3
 cached by rendered page image: 3,123 hits for the two sides, 4,164 from round 3 on with
 the all-fonts chance pass, 0 misses in every run. These figures hold for the rule after
-review rounds 1 to 4. The rule before round 1 (no font-object or class test, lines decoded in part)
+review rounds 1 to 5 and the author's round-6 check. The rule before round 1 (no font-object or class test, lines decoded in part)
 also found AL-20-0004's ArialMT; it gave the same lines and one more, the clipped "Acting
 Deputy D". The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
@@ -356,8 +396,9 @@ So no figure here moves. After review round 2's fixes (`a77efdd49`), with #868 m
 `cd0f19c59` (decoding after `_with_layer_marks`, `dfe3833be`) and at `a14678efb`
 (`a5bc14776`), the page level gives the same lines on every page again
 (`evidence/r7-review-r2-fixes/`, `r8-dfe3833be/`, `r9-a5bc14776/`), and so does it after
-review round 3's (`d4f4b9c12`, `r10-d4f4b9c12/`) and round 4's (`ab9a4b6d3`,
-`r11-ab9a4b6d3/`).
+review round 3's (`d4f4b9c12`, `r10-d4f4b9c12/`), round 4's (`ab9a4b6d3`,
+`r11-ab9a4b6d3/`), round 5's (`044992b5c`, `r12-dd61ee4c8/`) and the round-6 check's
+(`1479bd957`, `r13-1479bd957/`, byte-identical to r12, probes included).
 
 | | |
 | --- | ---: |
@@ -413,7 +454,8 @@ without decoding and the same OCR cache, gives no error on either side. 8 docume
 change, one block each, and no block count, heading or section label changes. The words
 added and removed are the page lines above, 61 added and 4 removed. Re-run on #868 at
 `55bba979b`, after review round 2's fixes, at `dfe3833be` and `a5bc14776`, and after
-review rounds 3 and 4, it gives the same documents, blocks and words.
+review rounds 3, 4 and 5 and the round-6 check, it gives the same documents, blocks and
+words.
 
 ## Scopes whose pages change; #864
 
