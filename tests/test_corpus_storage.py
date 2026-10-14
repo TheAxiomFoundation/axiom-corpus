@@ -1108,6 +1108,30 @@ def test_a_link_chain_names_the_last_protected_place_it_stands(tmp_path: Path, m
     assert _tree(empty) == []
 
 
+def test_a_nested_checkout_names_its_own_corpus_files(tmp_path: Path) -> None:
+    """Worktrees live under the main checkout's ``.claude/worktrees/``: the
+    worktree names its corpus files and the checkout around it names none of
+    them. A checkout nested inside another's corpus tree belongs to itself for
+    the module helpers, as git's top level does; the outer checkout, which
+    names its own corpus paths without asking git, names them too (the one
+    exception docs/corpus-storage.md invariant 10 states)."""
+    outer = _init_repo(tmp_path / "main")
+    worktree = _init_repo(outer / ".claude/worktrees/w")
+    write_lock(worktree, _scope_lock(READABLE_FILES))
+    assert CorpusResolver(worktree, sources=[]).relative(worktree / PROV) == PROV
+    assert CorpusResolver(outer, sources=[]).relative(worktree / PROV) is None
+    holder = resolver_module._checkout_for(worktree / PROV)
+    assert holder is not None and os.path.samefile(holder, worktree)
+    vendored = _init_repo(outer / "data/corpus/sources/nz/statute/2026-07-10/vendored")
+    holder = resolver_module._checkout_for(vendored / PROV)
+    assert holder is not None and os.path.samefile(holder, vendored)
+    assert CorpusResolver(vendored, sources=[]).relative(vendored / PROV) == PROV
+    assert (
+        CorpusResolver(outer, sources=[]).relative(vendored / PROV)
+        == f"data/corpus/sources/nz/statute/2026-07-10/vendored/{PROV}"
+    )
+
+
 def test_a_dotdot_below_a_directory_link_names_only_the_place_it_reaches(tmp_path: Path, monkeypatch) -> None:
     """The operating system resolves a ``..`` below a link from the link's
     target, so a lexical reading of it would name a different file."""

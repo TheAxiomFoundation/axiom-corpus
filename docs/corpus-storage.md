@@ -500,7 +500,9 @@ exactly those 1,362 files.
    no such collision.
 10. **Path naming.** For absolute and working-directory-relative paths,
     `CorpusResolver.relative` gives one answer for every spelling of a
-    checkout, and at most one checkout names a path at a protected path. A
+    checkout, and at most one checkout names a path at a protected path (a
+    checkout nested inside another's corpus tree aside: both name its files
+    there, and the helpers use the nested one, as git does). A
     path that reaches a protected path of a checkout, through any directory
     links, names that path. A symlinked file at a protected path names
     itself, and so does a path at a protected path below a directory link
