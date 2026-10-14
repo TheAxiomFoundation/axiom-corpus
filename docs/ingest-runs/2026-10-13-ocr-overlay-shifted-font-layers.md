@@ -13,7 +13,7 @@ Nothing was published, loaded or activated, and no merged scope was edited.
 
 ## The defect
 
-Reproduced from retained bytes with #868's code at `8a2452fea` (its head `36435c5c3`):
+Reproduced from retained bytes with #868's code at `8a2452fea`:
 
 - Typed values OCR did not read are dropped as garbled.
   `us-or/policy/cms/medicaid-state-plan/spa/or-15-0006/approval-document/page-3` loses
@@ -134,7 +134,8 @@ Both sides were run on the same 1,041 pages in 328 retained PDFs, with Tesseract
 cached by rendered page image (3,123 hits, 0 misses). The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
 measurement first ran on #868 at `c64009789`, before it counted Type 3 spans as painted,
-and gives the same lines, pages and documents.
+and gives the same lines, pages and documents; the page level, re-run on #868 at
+`c4ccca4ee` (Type 3 font names read as MuPDF 1.26 does), gives the same lines again.
 
 | | |
 | --- | ---: |
