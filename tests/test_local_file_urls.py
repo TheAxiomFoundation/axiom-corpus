@@ -439,3 +439,48 @@ def test_audit_lists_locked_scopes_with_local_file_urls(tmp_path: Path) -> None:
     assert main(["--repo", str(repo), "--release", str(selectors / "de-rulespec-x.json")]) == 1
     unreadable = audit(repo, reader=lambda entry: None)
     assert len(unreadable["unreadable"]) == 4
+
+
+def _zip(member: str) -> bytes:
+    import io
+    import zipfile
+
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr(member, "<x/>")
+    return buffer.getvalue()
+
+
+# Content and file name from which each format is detected with no declared
+# source_format and no HTTP content type (json is never detected).
+_DETECTABLE = {
+    "pdf": (b"%PDF-1.7\n", "doc"),
+    "html": (b"<!doctype html><p>x</p>", "doc"),
+    "javascript": (b"const toc = [];", "toc.js"),
+    "csv": (b"a,b\n1,2\n", "table.csv"),
+    "xls": (b"not a workbook", "table.xls"),
+    "doc": (b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1rest", "doc"),
+    "docx": (_zip("word/document.xml"), "doc"),
+    "xlsx": (_zip("xl/workbook.xml"), "doc"),
+}
+
+
+@pytest.mark.parametrize("source_format", sorted(_DETECTABLE))
+def test_detected_format_is_stable_under_its_own_media_type(tmp_path, source_format) -> None:
+    """The extract loop infers the format again after the copy is given a media type."""
+    from axiom_corpus.corpus.documents import _infer_source_format
+
+    content, name = _DETECTABLE[source_format]
+    path = tmp_path / "copy.bin"
+    path.write_bytes(content)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="de",
+        document_class="guidance",
+        title="Doc",
+        source_url=f"https://www.example.de/{name}",
+        local_path=str(path),
+    )
+    downloaded = _download_document(source, session=_NoNetwork())  # type: ignore[arg-type]
+    assert downloaded.content_type == _SOURCE_FORMAT_CONTENT_TYPES[source_format]
+    assert _infer_source_format(source, downloaded) == source_format
