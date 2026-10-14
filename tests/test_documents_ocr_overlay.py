@@ -631,6 +631,19 @@ def _unreadable_xref(xref, key):
     raise ValueError("bad xref")
 
 
+def test_an_inline_type3_font_not_in_its_holders_resources_takes_the_listed_name():
+    # A font get_fonts lists that the lookup does not find where its referencer points is
+    # named as get_fonts lists it, not "Unnamed-T3" (the name of a font without a /Name).
+    keys = {"Resources": ("dict", "<< >>"), "Resources/Font/F3": ("null", "null")}
+    document = SimpleNamespace(xref_get_key=lambda xref, key: keys.get(key, ("null", "null")))
+    page = SimpleNamespace(xref=5, parent=document)
+    font = (0, "n/a", "Type3", "ABCDEF+Foo", "F3", "", 0)
+    assert documents_module._pdf_type3_span_name(page, font) == "Foo"
+    # Found, without a /Name: "Unnamed-T3", as MuPDF names it.
+    keys["Resources/Font/F3"] = ("dict", "<< /Subtype /Type3 >>")
+    assert documents_module._pdf_type3_span_name(page, font) == "Unnamed-T3"
+
+
 @pytest.mark.parametrize(
     ("font", "span_name"),
     [
