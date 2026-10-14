@@ -36,11 +36,15 @@
 # changes, adds or removes an artifact of a scope whose manifest this script signed on
 # this branch: step 2 signs that scope again (see "Plan step 2" below).
 #
-# A manifest this script did not sign is never replaced: one committed on main, or one
-# from the scope's ingest PR, which may carry reasoning-log attestations this script
-# cannot reproduce. If a fix touches an artifact of such a scope, guard-ingested rejects
-# the branch until the scope is signed again the way its ingest PR signed it. With the
-# public key set, the self-check stops every re-run; without it, CI fails the PR.
+# Two cases need a scope signed by hand, after which the same command keeps that
+# manifest. (1) A manifest this script cannot show it signed is never replaced: one
+# committed on main, or one that records reasoning logs, deleted files, a command of its
+# own or a hand-picked file list, as an ingest PR's may. If a fix touches an artifact of
+# such a scope, guard-ingested rejects the branch until the scope is signed again the
+# way it was first signed. With the public key set, the self-check stops every re-run;
+# without it, CI fails the PR. (2) This script cannot mark an artifact deleted. When the
+# branch removes an artifact that main has, from a scope the script would sign, the run
+# stops before step 1 and names the artifacts; sign that scope with --deleted-file.
 #
 # Only a crash, or a signal the script does not handle, can leave <name>.json behind or
 # leave files staged or a committed manifest replaced without saying so. Such signals
@@ -103,7 +107,7 @@ on_exit() {
       echo "deleted $TARGET, this run's copy of the draft: the selector was not cut" >&2
     fi
     echo "stopped before cutting $TARGET; fix the cause and run the same command again" >&2
-    echo "(if the fix touches an artifact of a scope whose manifest this script did not sign, see the header of $0 first)" >&2
+    echo "(if the fix touches an artifact of a scope whose manifest this script cannot show it signed, see the header of $0 first)" >&2
   fi
   [ "$status" -ne 0 ] || status=1
   exit "$status"
@@ -136,11 +140,14 @@ echo "unreleased scopes: ${#SCOPES[@]} (draft $NAME)"
 
 # guard-ingested diffs base...head from their merge base, so with origin/main (or main) as
 # the base it checks every commit this branch adds, as CI does for the PR: this run's zero,
-# one or two commits and any that an earlier, stopped run made. That merge base also
-# tells step 2 which manifests main already has.
-GUARD_BASE="" MERGE_BASE=""
+# one or two commits and any that an earlier, stopped run made. Step 2's plan reads
+# deletions against that merge base (MERGE_BASE), and it takes a manifest at the merge
+# base with either ref (MAIN_BASES) for main's, in case origin/main is behind main.
+GUARD_BASE="" MERGE_BASE="" MAIN_BASES=""
 for ref in origin/main main; do
-  if MERGE_BASE=$(git merge-base "$ref" HEAD 2>/dev/null); then GUARD_BASE=$ref; break; fi
+  base=$(git merge-base "$ref" HEAD 2>/dev/null) || continue
+  [ -n "$GUARD_BASE" ] || { GUARD_BASE=$ref; MERGE_BASE=$base; }
+  MAIN_BASES="$MAIN_BASES $base"
 done
 
 # The command text step 2 signs a scope with is the rebuild command: the manifest that
@@ -178,26 +185,33 @@ command_for() {  # jurisdiction document_class version; plan_signing recognises 
 # sign. A scope with no manifest is signed. A scope with a manifest keeps it, unless
 # this script signed that manifest on this branch and it no longer matches; then step 2
 # signs the scope again. Such a manifest must be:
-# - on this branch: untracked, or committed after the merge base with main. A manifest
-#   committed on main is never replaced. With no main to compare, every committed
-#   manifest counts as main's.
-# - this script's: it records the command command_for writes for its scope, and no
-#   reasoning logs or deleted files. The signer derives everything else in it from the
-#   repository, so signing it again loses nothing. An ingest PR's manifest may attest
-#   reasoning logs this script cannot reproduce, so it is never replaced; if a fix
-#   changes its scope's artifacts, sign that scope again the way the ingest PR did.
+# - on this branch: untracked, or absent at the merge base with origin/main and with
+#   main, whichever share history with HEAD. A manifest committed on main is never
+#   replaced. With no main to compare, every committed manifest counts as main's.
+# - this script's: it records the command command_for writes for its scope and no
+#   reasoning logs, every entry has a sha256 (a deleted file's has none), and its files
+#   are exactly the scope's artifacts in the commit it records: the whole scope, as the
+#   signer infers it, not a hand-picked --file list. The signer derives everything else
+#   in it from the repository, so signing it again loses nothing. Any other manifest,
+#   such as an ingest PR's, may attest what this script cannot reproduce (reasoning logs,
+#   say), so it is never replaced; if a fix changes its scope's artifacts, sign that
+#   scope again the way it was signed.
 # - stale: its files or their sha256s are not the scope's artifacts as the signer finds
 #   them now, or the commit it was signed against is not in HEAD's history (after a
 #   rebase, say). guard-ingested rejects either.
 # An untracked manifest that is not readable JSON, such as one a signer interrupted
 # mid-write leaves behind, is signed again too: it attests nothing.
+# This script signs only the files a scope has, so it cannot mark an artifact deleted,
+# which guard-ingested requires when the branch removes one that MERGE_BASE has. The
+# plan stops the run before step 1 when a scope it would sign does that, and says how
+# to sign the scope by hand. A manifest signed that way is kept.
 # The plan is one "<action>\t<reason>" line per scope; the action is sign, resign or keep.
-plan_signing() {  # merge-base-or-empty scope-list manifest...
+plan_signing() {  # guard-ref merge-base main-bases scope-list manifest...
   python3 - "$@" <<'PY'
-import hashlib, json, re, subprocess, sys
+import functools, hashlib, json, re, subprocess, sys
 from pathlib import Path
 
-merge_base, scope_list, *manifests = sys.argv[1:]
+guard_ref, merge_base, main_bases, scope_list, *manifests = sys.argv[1:]
 scopes = [line.split() for line in Path(scope_list).read_text().splitlines()]
 if len(scopes) != len(manifests):
     sys.exit("plan_signing: one manifest path per scope expected")
@@ -205,32 +219,61 @@ ROOT = ".axiom/ingest-manifests"
 
 
 def git(*args):
-    return subprocess.run(["git", *args], capture_output=True, check=False)
+    return subprocess.run(["git", "--literal-pathspecs", *args], capture_output=True, check=False)
+
+
+def names(result):
+    return {p for p in result.stdout.decode("utf-8", "surrogateescape").split("\0") if p}
 
 
 def listed(*args):
     result = git(*args)
     if result.returncode != 0:
         sys.exit(f"git {' '.join(args)}: {result.stderr.decode(errors='replace').strip()}")
-    return {p for p in result.stdout.decode("utf-8", "surrogateescape").split("\0") if p}
+    return names(result)
 
 
 tracked = listed("ls-files", "-z", "--", ROOT)
-on_main = listed("ls-tree", "-r", "-z", "--name-only", merge_base, "--", ROOT) if merge_base else tracked
-in_history = {}
+on_main = (
+    set().union(*(listed("ls-tree", "-r", "-z", "--name-only", b, "--", ROOT) for b in main_bases.split()))
+    if main_bases.split()
+    else tracked
+)
 
 
-def signed_in_history(payload):
+def scope_paths(jur, cls, ver):
+    return [
+        f"data/corpus/sources/{jur}/{cls}/{ver}",
+        f"data/corpus/inventory/{jur}/{cls}/{ver}.json",
+        f"data/corpus/provisions/{jur}/{cls}/{ver}.jsonl",
+        f"data/corpus/coverage/{jur}/{cls}/{ver}.json",
+    ]
+
+
+def committed(commit, jur, cls, ver):
+    """The scope's artifact files in a commit, or None when the commit cannot be read."""
+    result = git("ls-tree", "-r", "-z", "--name-only", commit, "--", *scope_paths(jur, cls, ver))
+    return names(result) if result.returncode == 0 else None
+
+
+def current(jur, cls, ver):
+    """The files sign-ingest-manifest signs for the scope now (_infer_scope_artifacts)."""
+    sources, *files = (Path(p) for p in scope_paths(jur, cls, ver))
+    return [p for p in sources.rglob("*") if p.is_file()] + [p for p in files if p.exists()]
+
+
+@functools.lru_cache(maxsize=None)
+def in_history(commit):
+    return git("merge-base", "--is-ancestor", commit, "HEAD").returncode == 0
+
+
+def signing_commit(payload):
     git_metadata = payload.get("axiom_corpus_git")
     commit = git_metadata.get("commit") if isinstance(git_metadata, dict) else None
-    if not isinstance(commit, str) or not re.fullmatch(r"[0-9a-f]{40}", commit):
-        return False
-    if commit not in in_history:
-        in_history[commit] = git("merge-base", "--is-ancestor", commit, "HEAD").returncode == 0
-    return in_history[commit]
+    return commit if isinstance(commit, str) and re.fullmatch(r"[0-9a-f]{40}", commit) else None
 
 
-def this_scripts(payload, jur, cls, ver):
+def this_scripts(payload, commit, jur, cls, ver):
     # The two forms command_for writes, whichever manifests/*.yaml it found.
     j, c, v = (re.escape(part) for part in (jur, cls, ver))
     script_command = re.compile(
@@ -243,7 +286,7 @@ def this_scripts(payload, jur, cls, ver):
     command = payload.get("command")
     text = command.get("text") if isinstance(command, dict) else None
     entries = payload.get("applied_files")
-    return (
+    if not (
         (payload.get("jurisdiction"), payload.get("document_class"), payload.get("version"))
         == (jur, cls, ver)
         and isinstance(text, str)
@@ -256,7 +299,10 @@ def this_scripts(payload, jur, cls, ver):
             and isinstance(entry.get("sha256"), str)  # a deleted file's entry has none
             for entry in entries
         )
-    )
+    ):
+        return False
+    paths = {entry["path"] for entry in entries}
+    return len(paths) == len(entries) and paths == committed(commit, jur, cls, ver)
 
 
 def sha256(path):
@@ -269,19 +315,9 @@ def sha256(path):
 
 def matches_artifacts(entries, jur, cls, ver):
     """Whether the entries are what sign-ingest-manifest would sign for the scope now."""
-    base = Path("data/corpus")
-    files = [p for p in (base / "sources" / jur / cls / ver).rglob("*") if p.is_file()]
-    files += [
-        p
-        for p in (
-            base / "inventory" / jur / cls / f"{ver}.json",
-            base / "provisions" / jur / cls / f"{ver}.jsonl",
-            base / "coverage" / jur / cls / f"{ver}.json",
-        )
-        if p.exists()
-    ]
+    files = current(jur, cls, ver)
     signed = {entry["path"]: entry["sha256"] for entry in entries}
-    if len(signed) != len(entries) or set(signed) != {p.as_posix() for p in files}:
+    if set(signed) != {p.as_posix() for p in files}:
         return False
     try:
         return all(sha256(p) == signed[p.as_posix()] for p in sorted(files))
@@ -289,30 +325,54 @@ def matches_artifacts(entries, jur, cls, ver):
         return False
 
 
-for (jur, cls, ver), path in zip(scopes, manifests):
+def classify(jur, cls, ver, path):
     if not Path(path).is_file():
-        print("sign\t")
-        continue
+        return "sign", ""
     if path in on_main:
-        print("keep\t")
-        continue
+        return "keep", ""
     try:
         payload = json.loads(Path(path).read_bytes())
     except (OSError, ValueError):
         payload = None
     if not isinstance(payload, dict):
-        print("keep\t" if path in tracked else "resign\tits untracked manifest is not readable JSON")
-    elif not this_scripts(payload, jur, cls, ver):
-        print("keep\t")
-    elif not signed_in_history(payload):
-        print("resign\tthe commit it was signed against is not in HEAD's history")
-    elif not matches_artifacts(payload["applied_files"], jur, cls, ver):
-        print("resign\tits artifacts changed after it was signed")
-    else:
-        print("keep\t")
+        if path in tracked:
+            return "keep", ""
+        return "resign", "its untracked manifest is not readable JSON"
+    commit = signing_commit(payload)
+    if commit is None or not this_scripts(payload, commit, jur, cls, ver):
+        return "keep", ""
+    if not in_history(commit):
+        return "resign", "the commit it was signed against is not in HEAD's history"
+    if not matches_artifacts(payload["applied_files"], jur, cls, ver):
+        return "resign", "its artifacts changed after it was signed"
+    return "keep", ""
+
+
+plan, removals = [], []
+for (jur, cls, ver), path in zip(scopes, manifests):
+    action, reason = classify(jur, cls, ver, path)
+    plan.append(f"{action}\t{reason}")
+    # Step 1 reports a missing artifact; only a scope that has all four can remove one.
+    if action != "keep" and merge_base and all(Path(p).exists() for p in scope_paths(jur, cls, ver)):
+        now = {p.as_posix() for p in current(jur, cls, ver)}
+        removed = sorted((committed(merge_base, jur, cls, ver) or set()) - now)
+        removals += [f"  {jur}/{cls}/{ver}: {p}" for p in removed]
+if removals:
+    print(
+        f"nothing staged; these scopes remove artifacts that {guard_ref} has:",
+        *removals,
+        "guard-ingested needs each such scope's manifest to mark them deleted, which this",
+        "script cannot sign. Sign each such scope by hand with axiom-corpus-ingest",
+        "sign-ingest-manifest, passing --file for each of its artifacts and --deleted-file for",
+        "each removed one, then run this command again: it keeps that manifest.",
+        sep="\n",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+print(*plan, sep="\n")
 PY
 }
-PLAN=$(plan_signing "$MERGE_BASE" "$SCOPE_LIST" "${MANIFESTS[@]}")
+PLAN=$(plan_signing "$GUARD_BASE" "$MERGE_BASE" "$MAIN_BASES" "$SCOPE_LIST" "${MANIFESTS[@]}")
 ACTIONS=() REASONS=()
 while IFS=$'\t' read -r action reason; do
   ACTIONS+=("$action")
@@ -350,10 +410,21 @@ import json, os, sys
 paths, problems = sys.argv[1:], []
 for coverage, *rest in (paths[i:i + 4] for i in range(0, len(paths), 4)):
     for path in (coverage, *rest):
-        if not os.path.exists(path):
+        # sign-ingest-manifest records the file a link points to, never the link's own
+        # path, which is what guard-ingested looks up.
+        if os.path.islink(path):
+            problems.append(f"symlink {path}")
+        elif not os.path.exists(path):
             problems.append(f"missing {path}")
-        elif os.path.isdir(path) and not any(files for _, _, files in os.walk(path)):
-            problems.append(f"empty {path}")  # git cannot commit an empty directory
+        elif os.path.isdir(path):
+            if not any(files for _, _, files in os.walk(path)):
+                problems.append(f"empty {path}")  # git cannot commit an empty directory
+            problems += [
+                f"symlink {os.path.join(root, name)}"
+                for root, dirs, files in os.walk(path)
+                for name in sorted(dirs + files)
+                if os.path.islink(os.path.join(root, name))
+            ]
     if not os.path.exists(coverage):
         continue
     try:

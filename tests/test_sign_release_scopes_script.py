@@ -533,6 +533,9 @@ STEP_1_DEFECTS = {
     "no-provisions": ("provisions/{scope}.jsonl", "missing {path}"),
     "no-sources": ("sources/{scope}", "missing {path}"),
     "empty-sources": ("sources/{scope}", "empty {path}"),  # git cannot commit it
+    # The signer records a link's target, so guard-ingested never finds the link's path.
+    "symlinked-source": ("sources/{scope}/source.html", "symlink {path}"),
+    "symlinked-provisions": ("provisions/{scope}.jsonl", "symlink {path}"),
 }
 
 
@@ -551,6 +554,11 @@ def test_resumes_after_step_1_finds_a_scope_not_ready(repo: Path, defect: str) -
         shutil.rmtree(repo / path)
         if defect == "empty-sources":
             (repo / path).mkdir()
+    elif defect.startswith("symlinked-"):
+        target = repo / "elsewhere" / Path(path).name
+        target.parent.mkdir()
+        (repo / path).rename(target)
+        (repo / path).symlink_to(target)
     else:
         (repo / path).unlink()
 
@@ -567,6 +575,8 @@ def test_resumes_after_step_1_finds_a_scope_not_ready(repo: Path, defect: str) -
     )
     assert "unstaged" not in first.stderr  # there was nothing to unstage
 
+    if (repo / path).is_symlink():  # else _write_scope would write through the link
+        (repo / path).unlink()
     _write_scope(repo, UNRELEASED[1])
     second = _run(repo)
 
@@ -1192,12 +1202,16 @@ class Foreign:
     on_main: bool
     command: str = SCRIPT_COMMAND
     extra_args: tuple[str, ...] = ()
+    origin_main_behind: bool = False  # origin/main is set before main gains the manifest
 
 
 # Each manifest of the first unreleased scope has the one property that rules it out.
+FILES = ("sources/{scope}/source.html", "inventory/{scope}.json", "provisions/{scope}.jsonl")
 FOREIGN_MANIFESTS = {
     # By the command this script writes, but on main: where it was committed protects it.
     "committed-on-main": Foreign(on_main=True),
+    # ... even when origin/main is behind the main the branch was cut from.
+    "committed-on-newer-local-main": Foreign(on_main=True, origin_main_behind=True),
     # The rest are on this branch.
     "ingest-command": Foreign(on_main=False, command="test ingest {version}"),
     "reasoning-log": Foreign(on_main=False, extra_args=("--reasoning-log", REASONING_LOG)),
@@ -1206,12 +1220,7 @@ FOREIGN_MANIFESTS = {
         extra_args=(
             *(
                 arg
-                for artifact in (
-                    "sources/{scope}/source.html",
-                    "inventory/{scope}.json",
-                    "provisions/{scope}.jsonl",
-                    "coverage/{scope}.json",
-                )
+                for artifact in (*FILES, "coverage/{scope}.json")
                 for arg in ("--file", f"data/corpus/{artifact}")
             ),
             "--deleted-file",
@@ -1219,6 +1228,11 @@ FOREIGN_MANIFESTS = {
         ),
     ),
     "unreadable": Foreign(on_main=False),  # truncated, then committed
+    # A hand-picked --file list (no coverage), not the scope as the signer infers it.
+    "file-subset": Foreign(
+        on_main=False,
+        extra_args=tuple(arg for f in FILES for arg in ("--file", f"data/corpus/{f}")),
+    ),
 }
 
 
@@ -1233,12 +1247,14 @@ def test_never_signs_again_a_manifest_it_did_not_sign(repo: Path, foreign: str) 
         (repo / REASONING_LOG).write_text("How the scope was ingested.\n")
         _git(repo, "add", REASONING_LOG)
         _git(repo, "commit", "-qm", "Add a reasoning log")
-    if not case.on_main:
+    if not case.on_main or case.origin_main_behind:
         _set_main_refs(repo, "origin-main")
+    if not case.on_main:
         _git(repo, "checkout", "-qb", "release")
     _ingest_pr(repo, (kept,), command=case.command, extra_args=extra_args)
     if case.on_main:
-        _set_main_refs(repo, "origin-main")
+        if not case.origin_main_behind:
+            _set_main_refs(repo, "origin-main")
         _git(repo, "checkout", "-qb", "release")
     if foreign == "unreadable":
         _manifest(repo, kept).write_text('{"schema_version": "axiom-corpus/ingest-man')
@@ -1259,6 +1275,71 @@ def test_never_signs_again_a_manifest_it_did_not_sign(repo: Path, foreign: str) 
     assert _signed_versions() == [unsigned]
     assert _branch_subjects(repo, head) == [SIGN, ADD]
     _assert_resumable(repo)
+
+
+def test_stops_when_a_scope_it_would_sign_removes_an_artifact_main_has(repo: Path) -> None:
+    """This script cannot mark an artifact deleted; it says how to sign such a scope by hand."""
+    kept, legacy = UNRELEASED
+    # Main tracks the second scope's artifacts without a manifest (as before signing was
+    # required), with one more source, which the release branch removes.
+    _write_scope(repo, legacy)
+    retired = f"data/corpus/sources/{_scope(legacy)}/retired.html"
+    (repo / retired).write_text("<p>Retired.</p>")
+    _git(repo, "add", "-f", "data/corpus")
+    _git(repo, "commit", "-qm", "Track a scope without a manifest")
+    _set_main_refs(repo, "origin-main")
+    _git(repo, "checkout", "-qb", "release")
+    start = _git(repo, "rev-parse", "HEAD")
+    _git(repo, "rm", "-q", retired)
+    _git(repo, "commit", "-qm", "Remove retired.html")
+    _write_scope(repo, kept)
+
+    first = _run(repo)
+
+    assert first.returncode == 1, first.stdout + first.stderr
+    assert (
+        "nothing staged; these scopes remove artifacts that origin/main has:\n"
+        f"  {_scope(legacy)}: {retired}\n"
+    ) in first.stderr
+    assert "--deleted-file for\neach removed one" in first.stderr
+    assert _branch_subjects(repo, start) == ["Remove retired.html"]
+    _assert_resumable(repo)
+    assert _uv_calls() == []
+
+    # The procedure it names: sign the scope by hand, marking the removal.
+    exit_code = main(
+        [
+            "sign-ingest-manifest",
+            "--repo",
+            str(repo),
+            "--jurisdiction",
+            JURISDICTION,
+            "--document-class",
+            DOCUMENT_CLASS,
+            "--version",
+            legacy,
+            "--command",
+            "test signed by hand",
+            *(
+                arg
+                for artifact in (*FILES, "coverage/{scope}.json")
+                for arg in ("--file", "data/corpus/" + artifact.format(scope=_scope(legacy)))
+            ),
+            "--deleted-file",
+            retired,
+        ]
+    )
+    assert exit_code == 0
+    _git(repo, "add", f"{MANIFEST_DIR}/{legacy}.json")
+    _git(repo, "commit", "-qm", "Sign the scope by hand")
+    second = _run(repo)
+
+    _assert_cut(
+        repo, second, start, (CUT, SIGN, ADD, "Sign the scope by hand", "Remove retired.html")
+    )
+    assert f"already signed, keeping existing manifest: {_scope(legacy)}" in second.stdout
+    assert "guard-ingested: ok" in second.stdout
+    assert _signed_versions() == [kept]
 
 
 # How the script names a scope's rebuild command, by the shape of its version.
@@ -1379,7 +1460,8 @@ def _plan(repo: Path) -> str:
     scope_list = repo / ".git/scope-list"
     scope_list.write_text(f"{JURISDICTION} {DOCUMENT_CLASS} {PLAN_VERSION}\n")
     result = subprocess.run(
-        [sys.executable, "-", "", str(scope_list), f"{MANIFEST_DIR}/{PLAN_VERSION}.json"],
+        # No guard ref, merge base or main bases: no main to compare.
+        [sys.executable, "-", "", "", "", str(scope_list), f"{MANIFEST_DIR}/{PLAN_VERSION}.json"],
         input=match.group(1),
         cwd=repo,
         capture_output=True,
@@ -1454,8 +1536,8 @@ def test_the_plan_finds_a_manifest_stale_exactly_when_the_signer_would_sign_othe
         changes = ["modify", "add"]
         changes += ["delete"] * (len(files) > 1) + ["rename"] * bool(source_files)
         change = data.draw(st.sampled_from(changes))
-        if change == "add":  # "F-" is outside NAME_PART, so the file is new
-            added = corpus / "sources" / PLAN_SCOPE / "F-added.html"
+        if change == "add":  # generated names start "f-" or "d-", so this one is new
+            added = corpus / "sources" / PLAN_SCOPE / "added.html"
             added.parent.mkdir(parents=True, exist_ok=True)
             added.write_bytes(b"added")
         else:
