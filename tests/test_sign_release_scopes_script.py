@@ -5,7 +5,7 @@ with this interpreter, so sign-ingest-manifest, guard-ingested and validate-rele
 the real commands; the ``uv`` shim also logs each subcommand line it runs, and on request
 fails a signing or a validation, or interrupts the run during validation as Ctrl-C does.
 A commit-msg hook can reject one of the script's commits, or hold it while a test sends
-the script a signal. The resumability tests use these to stop a run at each step, then
+the script a signal, and a ``git`` shim can hold the cleanup while a test sends another. The resumability tests use these to stop a run at each step, then
 check that the same command, re-run, cuts the selector.
 """
 
@@ -57,6 +57,11 @@ fi
 if [ "$1" = validate-release ] && [ -n "${FAIL_VALIDATE_RELEASE:-}" ]; then
   # Ctrl-C signals the whole foreground process group: the script and this shim.
   [ "$FAIL_VALIDATE_RELEASE" != interrupt ] || kill -INT 0
+  if [ "$FAIL_VALIDATE_RELEASE" = hold ]; then  # until a signal ends it (60 s at most)
+    : > "$HOLD_DIR/held"
+    i=0
+    while [ "$i" -lt 600 ]; do sleep 0.1; i=$((i + 1)); done
+  fi
   echo "simulated validation failure" >&2; exit 1
 fi
 exec "@PYTHON@" -m axiom_corpus.corpus.cli "$@"
@@ -74,6 +79,17 @@ fi
 [ -n "${FAIL_COMMIT:-}" ] && [ "$subject" = "$FAIL_COMMIT" ] || exit 0
 echo "simulated commit failure" >&2
 exit 1
+"""
+GIT_SHIM = """#!/bin/sh
+# While $HOLD_CLEANUP is set, hold on_exit's check that the selector is committed
+# (`git cat-file -e HEAD:<target>`): create $HOLD_DIR/cleanup, then wait (up to 60 s) for
+# $HOLD_DIR/release. Every git call runs the real git.
+if [ -n "${HOLD_CLEANUP:-}" ] && [ "$*" = "cat-file -e HEAD:@TARGET@" ]; then
+  : > "$HOLD_DIR/cleanup"
+  i=0
+  while [ ! -e "$HOLD_DIR/release" ] && [ "$i" -lt 600 ]; do sleep 0.1; i=$((i + 1)); done
+fi
+exec "@GIT@" "$@"
 """
 
 
@@ -671,10 +687,22 @@ def test_resumes_through_a_chain_of_failures(repo: Path, monkeypatch: pytest.Mon
     assert _signed_versions() == [UNRELEASED[0], UNRELEASED[1], UNRELEASED[1]]
 
 
+def _start(repo: Path) -> subprocess.Popen[str]:
+    """Start the script in a session of its own, so signals to its group miss pytest."""
+    return subprocess.Popen(
+        ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
+        cwd=repo,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        start_new_session=True,
+    )
+
+
 def _wait_for(path: Path, proc: subprocess.Popen[str]) -> None:
     deadline = time.monotonic() + 120
     while not path.exists():
-        assert proc.poll() is None, "the script exited before it reached the held commit"
+        assert proc.poll() is None, f"the script exited before {path.name} appeared"
         assert time.monotonic() < deadline, f"timed out waiting for {path}"
         time.sleep(0.05)
 
@@ -703,14 +731,7 @@ def test_a_signal_to_the_script_alone_waits_for_the_running_commit(
     hold.mkdir()
     monkeypatch.setenv("HOLD_COMMIT", subject)
     monkeypatch.setenv("HOLD_DIR", str(hold))
-    proc = subprocess.Popen(
-        ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
-        cwd=repo,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        start_new_session=True,
-    )
+    proc = _start(repo)
     try:
         _wait_for(hold / "held", proc)
         os.kill(proc.pid, signum)
@@ -779,3 +800,46 @@ def test_resumes_after_an_artifact_fix_once_its_stale_manifest_is_deleted(repo: 
         ADD,
     ]
     assert _signed_versions() == [*UNRELEASED, UNRELEASED[1]]
+
+
+@pytest.mark.parametrize(
+    "second", [signal.SIGINT, signal.SIGTERM, signal.SIGHUP], ids=["SIGINT", "SIGTERM", "SIGHUP"]
+)
+def test_a_second_signal_does_not_cut_the_cleanup_short(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, second: int
+) -> None:
+    # As when a closing terminal sends SIGHUP twice: the first ends validate-release, and
+    # the second lands while on_exit is cleaning up.
+    start = _cut_release_branch(repo)
+    git = shutil.which("git")
+    assert git is not None
+    shim = tmp_path / "bin/git"
+    shim.write_text(GIT_SHIM.replace("@GIT@", git).replace("@TARGET@", TARGET))
+    shim.chmod(0o755)
+    hold = tmp_path / "hold"
+    hold.mkdir()
+    monkeypatch.setenv("HOLD_DIR", str(hold))
+    monkeypatch.setenv("FAIL_VALIDATE_RELEASE", "hold")
+    monkeypatch.setenv("HOLD_CLEANUP", "1")
+    proc = _start(repo)
+    try:
+        _wait_for(hold / "held", proc)
+        os.killpg(proc.pid, signal.SIGHUP)
+        _wait_for(hold / "cleanup", proc)
+        os.killpg(proc.pid, second)
+        # Not ignored, the second signal would end the run now, mid-cleanup.
+        with contextlib.suppress(subprocess.TimeoutExpired):
+            proc.wait(timeout=2)
+    finally:
+        (hold / "release").touch()
+    out, err = proc.communicate(timeout=300)
+    _wait_for_group_to_exit(proc.pid)
+
+    assert proc.returncode == 128 + signal.SIGHUP, out + err
+    assert _branch_subjects(repo, start) == [SIGN, ADD]
+    _assert_resumable(repo)
+    assert f"deleted {TARGET}, this run's copy of the draft: the selector was not cut" in err
+
+    monkeypatch.delenv("FAIL_VALIDATE_RELEASE")
+    monkeypatch.delenv("HOLD_CLEANUP")
+    _assert_cut(repo, _run(repo), start)

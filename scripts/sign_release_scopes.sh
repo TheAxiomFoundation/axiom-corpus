@@ -25,20 +25,24 @@
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
 # committing anything first. A run can stop before the selector commit because a step
-# failed or because it was interrupted (Ctrl-C, SIGTERM or SIGHUP; it acts on a signal
-# once the running command has finished). Either way it unstages what it staged and
-# deletes its copy of manifests/releases/<name>.json. It keeps its commits and the
-# manifests it signed, which the next run reuses. Step 1 checks every scope's coverage
-# and artifacts before it stages any. So after a failure, fix the cause and run the same
-# command again, with nothing to clean up by hand.
+# failed or because it was interrupted. The interrupt can be Ctrl-C, which signals the
+# whole foreground process group, or a SIGTERM or SIGHUP. The run acts on it once the
+# running command has finished, and further signals cannot cut its cleanup short.
+# Either way it unstages what it staged and deletes its copy of
+# manifests/releases/<name>.json. It keeps its commits and the manifests it signed,
+# which the next run reuses. Step 1 checks every scope's coverage and artifacts before
+# it stages any. So after a failure, fix the cause and run the same command again, with
+# nothing to clean up by hand.
 #
-# There is one exception: a fix that changes artifacts this branch has already
-# committed. Their kept manifests no longer match, so guard-ingested rejects the branch.
-# With the public key set, the self-check stops every re-run; without it, CI fails the
-# PR. So commit the fix, and delete those scopes' manifests
+# There is one exception: a fix that changes, adds or removes any artifact of a scope
+# that already has a manifest. The manifest no longer matches, so guard-ingested
+# rejects the branch. With the public key set, the self-check stops every re-run;
+# without it, CI fails the PR. So commit the fix and delete the scope's manifest
 # (.axiom/ingest-manifests/<jurisdiction>/<class>/<version>.json), committing the
-# deletion of any that were committed; step 2 then signs them again. Only a run killed
-# outright (SIGKILL, a crash) can leave files staged or <name>.json behind.
+# deletion if the manifest was committed. Step 2 then signs the scope again. A manifest
+# from the scope's ingest PR may carry reasoning-log attestations this script cannot
+# reproduce, so re-sign such a scope the way its ingest PR did instead. Only a run
+# killed outright (SIGKILL, a crash) can leave files staged or <name>.json behind.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 DRAFT="${1:?draft selector path}"
@@ -62,6 +66,9 @@ STARTED="" COPIED="" CUT=""
 on_exit() {
   status=$?
   set +e
+  # A second signal must not cut the cleanup short (two SIGHUPs from a closing terminal,
+  # Ctrl-C after a failed step). Its git and rm children inherit the ignored signals too.
+  trap '' INT TERM HUP
   rm -f "$SCOPE_LIST"
   [ -z "$CUT" ] || return 0
   # HEAD is checked too: an interrupt can land between the selector commit and CUT=1.
@@ -78,7 +85,7 @@ on_exit() {
       echo "deleted $TARGET, this run's copy of the draft: the selector was not cut" >&2
     fi
     echo "stopped before cutting $TARGET; fix the cause and run the same command again" >&2
-    echo "(if the fix changes artifacts this branch committed, see the header of $0 first)" >&2
+    echo "(if the fix touches an artifact of a scope that has a manifest, see the header of $0 first)" >&2
   fi
   [ "$status" -ne 0 ] || status=1
   exit "$status"
