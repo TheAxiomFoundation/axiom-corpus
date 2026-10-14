@@ -3903,9 +3903,10 @@ def _pdf_undecodable_fonts(
     ``values`` holds each line's spans' characters, with font name and unmapped status
     (``_pdf_unmapped_status``). A font with unmapped characters is decoded only when:
 
-    - exactly one font object the page's text can be drawn in carries its name
-      (``_pdf_font_objects``): two unmapped fonts of one name can number their glyphs
-      differently;
+    - its name is not "", and exactly one font object the page's text can be drawn in
+      carries it (``_pdf_font_objects``): two unmapped fonts of one name can number their
+      glyphs differently, and MuPDF names "" the text of a font it can't load and text drawn
+      with no font, which have no font object to count;
     - that object is a Type0 font, whose codes are CIDs, and its /W array
       (``_pdf_cid_font_widths``) gives a width for every code it draws unmapped on the page,
       and leaves some code between the least and the greatest of those without one. A font
@@ -3926,7 +3927,7 @@ def _pdf_undecodable_fonts(
     refused: set[str] = set()
     for font, chars in unmapped.items():
         xrefs = (objects or {}).get(font, set())
-        if len(xrefs) != 1 or any(len(char) != 1 for char in chars):
+        if not font or len(xrefs) != 1 or any(len(char) != 1 for char in chars):
             refused.add(font)
             continue
         widths = _pdf_cid_font_widths(page.parent, next(iter(xrefs)))
@@ -4025,10 +4026,16 @@ def _pdf_font_span_name_counts(page: Any) -> Counter[str]:
     return Counter({name: len(xrefs) for name, xrefs in objects.items()})
 
 
+# The font types MuPDF loads by their /Subtype, rather than guessing.
+_PDF_NAMED_SUBTYPES = frozenset({"/Type0", "/Type1", "/MMType1", "/TrueType", "/Type3"})
+
+
 def _pdf_font_names(page: Any, xref: int) -> set[str] | None:
     """The names MuPDF can give the spans of font object ``xref``, or None when its
     dictionary does not say: a /Subtype or /BaseFont, or a Type0 font's descendant, that is
-    not written as a name in it.
+    not written as a name in it, or a /Subtype other than /Type0, /Type1, /MMType1,
+    /TrueType and /Type3. MuPDF guesses the type of any other font, from /CharProcs (Type3)
+    or /DescendantFonts (Type0), and names its spans as it names that type's.
 
     A font's span name is its /BaseFont, a Type0 font's that of its descendant (not the
     Type0 font's own, which can end in -Identity-H), and a Type3 font's its /Name (an
@@ -4040,7 +4047,7 @@ def _pdf_font_names(page: Any, xref: int) -> set[str] | None:
     """
     document = page.parent
     kind, subtype = document.xref_get_key(xref, "Subtype")
-    if kind != "name":
+    if kind != "name" or subtype not in _PDF_NAMED_SUBTYPES:
         return None
     if subtype == "/Type3":
         kind, value = document.xref_get_key(xref, "Name")
@@ -4114,7 +4121,13 @@ _PDF_FONT_SUBTYPES = frozenset(
 
 def _pdf_is_font(document: Any, xref: int) -> bool:
     """Whether object ``xref`` is a font dictionary: its /Type is /Font, or it has none and
-    its /Subtype is a font's (each resolved when indirect)."""
+    its /Subtype is a font's (each resolved when indirect).
+
+    MuPDF draws text in whatever a /Tf name or a graphics state's /Font entry selects,
+    whatever its /Type, and the walk takes those as fonts without asking this. It is asked
+    of the other objects a graphics state reaches, so that a font among them is counted
+    too: counting a font that draws nothing only refuses.
+    """
 
     def name_of(key: str) -> str | None:
         kind, value = document.xref_get_key(xref, key)
@@ -4128,8 +4141,11 @@ def _pdf_is_font(document: Any, xref: int) -> bool:
     return name_of("Subtype") in _PDF_FONT_SUBTYPES
 
 
-# A graphics state's /Font entry: [font size].
-_PDF_STATE_FONT = re.compile(r"/Font\s*\[\s*(<<|\d+\s+\d+\s+R)")
+# A graphics state's /Font entry: [font size], written in it (the font, group 1) or as an
+# object of its own (the array's reference, group 2).
+_PDF_STATE_FONT = re.compile(r"/Font\s*(?:\[\s*(<<|\d+\s+\d+\s+R)|(\d+\s+\d+\s+R))")
+# The font of such an array object.
+_PDF_STATE_FONT_ARRAY = re.compile(r"\[\s*(<<|\d+\s+\d+\s+R)")
 
 
 def _pdf_reference(document: Any, value: str) -> int:
@@ -4150,10 +4166,11 @@ def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
     whatever its subtype. From each resource holder it takes the fonts in Resources/Font
     and walks on into the forms in Resources/XObject and the tiling patterns in
     Resources/Pattern. From Resources/ExtGState it takes the font each graphics state's
-    /Font entry names, and follows every reference: a font dictionary (``_pdf_is_font``)
-    is taken, a stream (a soft-mask group, say) is walked as a holder, and any object's
-    own references are followed in turn (a soft-mask dictionary written as a stream holds
-    its group in /G). MuPDF extracts text drawn in
+    /Font entry names (the array written in the state or as an object of its own, and the
+    font taken whatever its /Type, as MuPDF draws in it), and follows every reference: a
+    font dictionary (``_pdf_is_font``) is taken, a stream (a soft-mask group, say) is
+    walked as a holder, and any object's own references are followed in turn (a soft-mask
+    dictionary written as a stream holds its group in /G). MuPDF extracts text drawn in
     all of those, and ``get_fonts`` lists fonts of the page and its forms only. None when
     a font or an annotation is written inline, without an object number; when a
     reference is not one of generation 0 to an object of the file; when something can't
@@ -4219,7 +4236,13 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
 
     def state_fonts(text: str) -> None:
         """Take the fonts a graphics state's /Font entries in ``text`` name."""
-        for entry in _PDF_STATE_FONT.findall(text):
+        for entry, array in _PDF_STATE_FONT.findall(text):
+            if array:
+                printed = str(document.xref_object(_pdf_reference(document, array))).strip()
+                match = _PDF_STATE_FONT_ARRAY.match(printed)
+                if match is None:
+                    continue  # not an array, by which MuPDF selects no font
+                entry = match.group(1)
             if entry == "<<":
                 raise LookupError(text)  # a font written inline
             fonts.update(references(entry))

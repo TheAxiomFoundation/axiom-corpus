@@ -43,15 +43,19 @@ S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an 
     ``_with_layer_marks``, so under PyMuPDF 1.26 a font whose codes print as combining
     marks is decoded and its lines kept (1.28 moves the marks, and nothing is decoded).
 S8. A span without an unmapped character is never changed. A font is not decoded in a line
-    where some of its characters are mapped, nor anywhere when another font object the
-    page's text can be drawn in has its name, as MuPDF names spans: a Type0 font by its
+    where some of its characters are mapped, nor anywhere when it is named "" (MuPDF's
+    name for text in a font it can't load or drawn with no font) or another font object
+    the page's text can be drawn in has its name, as MuPDF names spans: a Type0 font by its
     descendant, a Type 3 font by its /Name (one the cut leaves empty is "", only a missing
-    /Name is "Unnamed-T3"), every name cut to 31 bytes; fonts in forms, tiling patterns,
-    what a graphics state reaches (its /Font entry; soft-mask groups, written as
-    dictionaries or streams; fonts known by /Type or /Subtype, resolved when indirect)
-    and every annotation's appearance (two unmapped fonts of one name can number their glyphs differently). A line is decoded whole or not at all: not when one of its
-    characters, in any of its spans, would decode outside printable ASCII, nor when a span
-    of it would still hold a control character.
+    /Name is "Unnamed-T3"), every name cut to 31 bytes. Those fonts include the fonts of
+    forms, tiling patterns and every annotation's appearance, and what a graphics state
+    reaches: the font its /Font entry selects, the array written in it or as an object of
+    its own, whatever the font's /Type; soft-mask groups, written as dictionaries or
+    streams; and any object known as a font by its /Type or /Subtype, resolved when
+    indirect (two unmapped fonts of one name can number their glyphs differently). A line
+    is decoded whole or not at all: not when one of its characters, in any of its spans,
+    would decode outside printable ASCII, nor when a span of it would still hold a control
+    character.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
     reports as U+FFFD (a differential test on every retained page); every span holding one
     is one MuPDF marks UNICODE_IS_CID or _IS_GID; and a character is paired with the other
@@ -62,11 +66,12 @@ S10. Only a Type0 font is decoded, and only when its /W gives a width for every 
     whatever the /W says elsewhere; it may be a font only an annotation draws. /W read back
     gives exactly the codes written, as merged ranges.
 S11. When the page's fonts can't be known for certain (a font, a descendant, a graphics
-    state's font or an annotation written inline, a /Subtype or /BaseFont not written in the font's dictionary, a
-    reference printed with another generation or to an object the file lacks, a page tree
-    deeper than the walk follows, or more distinct objects than it takes, each counted
-    once), nothing on the
-    page is decoded, and nothing raises.
+    state's font or an annotation written inline; a /Subtype or /BaseFont not written in
+    the font's dictionary; a /Subtype other than /Type0, /Type1, /MMType1, /TrueType and
+    /Type3, whose type MuPDF guesses; a reference printed with another generation or to an
+    object the file lacks; a page tree deeper than the walk follows; or more distinct
+    objects than it takes, each counted once), nothing on the page is decoded, and nothing
+    raises.
 """
 
 from __future__ import annotations
@@ -1776,6 +1781,134 @@ def test_the_walk_limit_counts_each_object_once(tmp_path, monkeypatch):
         assert documents_module._pdf_drawn_font_xrefs(page) is not None
         monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 4)
         assert documents_module._pdf_drawn_font_xrefs(page) is None
+
+
+def _shared_rival(tmp_path: Path, name: str, build) -> tuple[list, list, set[int] | None, Counter]:
+    """The page with A, named Shared, drawing EVIDENCE and "Wendy Hill" unmapped, and with
+    /W widths for the codes "Wendy6666" takes one above them too, after ``build(document,
+    page)`` adds a rival; its spans, the decoded spans, its drawn fonts and its counts."""
+    lines = [*EVIDENCE, ("Wendy Hill", PUA)]
+    a_codes = {ord(char) - PUA for text, _ in lines for char in text}
+    widths = a_codes | {ord(char) - PUA + 1 for char in "Wendy6666"}
+    pdf = _form_pdf(tmp_path / "form.pdf", lines, name="Shared", widths={0: widths})
+    with fitz.open(pdf) as document:
+        build(document, document[0])
+        document.save(tmp_path / name)
+    spans, decoded = _decoded(tmp_path / name, EVIDENCE_OCR)
+    with fitz.open(tmp_path / name) as document:
+        drawn = documents_module._pdf_drawn_font_xrefs(document[0])
+        counts = documents_module._pdf_font_span_name_counts(document[0])
+    return spans, decoded, drawn, counts
+
+
+B_CODES = {ord(char) - PUA + 1 for char in "Wendy6666"}
+B_HEX = "".join(f"{ord(char) - PUA + 1:04x}" for char in "Wendy6666")
+B_LINE = "".join(chr(ord(char) - PUA + 1) for char in "Wendy6666")
+
+
+@pytest.mark.parametrize("inline", [False, True])
+def test_a_graphics_states_font_array_written_as_an_object_is_read(tmp_path, inline):
+    # Review round 6 (the author's check): /ExtGState << /GS2 << /Font F 0 R >> >>, F the
+    # array [B 0 R 10] as an object of its own. B is named Shared like A, and B and its
+    # descendant have /Type /Foo; MuPDF draws in B all the same (1.26.7 and 1.28.2). The
+    # walk reads the array and takes B whatever its /Type, so A is not decoded.
+    fonts = {}
+
+    def build(document, page):
+        b = fonts["B"] = _type0_font(document, B_CODES, "Shared")
+        (descendant,) = documents_module._pdf_object_references(
+            document.xref_get_key(b, "DescendantFonts")[1]
+        )
+        document.xref_set_key(b, "Type", "/Foo")
+        document.xref_set_key(descendant, "Type", "/Foo")
+        array = document.get_new_xref()
+        document.update_object(array, f"[{b} 0 R 10]")
+        content = f"q /GS2 gs BT 72 450 Td <{B_HEX}> Tj ET Q".encode()
+        _graphics_state(document, page, "GS2", f"/Font {array} 0 R", content, inline)
+
+    spans, decoded, drawn, counts = _shared_rival(tmp_path, "array.pdf", build)
+    assert B_LINE in _texts(spans)  # MuPDF draws B
+    assert drawn is not None and fonts["B"] in drawn and counts["Shared"] == 2
+    assert decoded == spans
+
+
+@pytest.mark.parametrize("guess", ["Type0", "Type3"])
+def test_a_font_whose_type_mupdf_guesses_is_not_named(tmp_path, guess):
+    # Review round 6 (the author's check): MuPDF loads a font of another /Subtype as the
+    # type its /DescendantFonts or /CharProcs suggest, and names its spans as that type's:
+    # by the descendant, or by the /Name (1.26.7 and 1.28.2). B, /Subtype /Foo, prints
+    # "Shared" so, though its own /BaseFont says otherwise. Such a font is not named, so
+    # the page's fonts are not known and A is not decoded.
+    fonts = {}
+
+    def build(document, page):
+        if guess == "Type0":
+            b = _type0_font(document, B_CODES, "Shared")
+            content = f"BT /B1 10 Tf 72 450 Td <{B_HEX}> Tj ET".encode()
+        else:
+            b = _type3_font(document, {65}, "Shared")
+            document.xref_set_key(b, "BaseFont", "/Other")
+            content = b"BT /B1 10 Tf 72 450 Td (A) Tj ET"
+        document.xref_set_key(b, "Subtype", "/Foo")
+        fonts["B"] = b
+        _draw(document, page, "Font", "B1", b, content)
+
+    spans, decoded, _, counts = _shared_rival(tmp_path, "guessed.pdf", build)
+    assert {span[2] for line in spans for span in line} == {"Shared"}
+    assert (B_LINE if guess == "Type0" else "A") in _texts(spans)  # MuPDF draws B as Shared
+    with fitz.open(tmp_path / "guessed.pdf") as document:
+        assert documents_module._pdf_font_names(document[0], fonts["B"]) is None
+    assert counts == Counter()
+    assert decoded == spans
+
+
+@pytest.mark.parametrize("missing", [False, True])
+def test_a_font_named_nothing_is_never_decoded(tmp_path, missing):
+    # Review round 6 (the author's check): MuPDF names "" the spans of a font it can't load
+    # and of text drawn in a font the resources lack (1.26.7 and 1.28.2), which have no
+    # font object to count. A, whose descendant is /ABCDEF+, is "" as well, so it is never
+    # decoded, with such text on the page or without.
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="ABCDEF+")
+    with fitz.open(pdf) as document:
+        page = document[0]
+        if missing:
+            content = b"BT /Nope 10 Tf 72 450 Td (Missing) Tj ET"
+            _draw(document, page, "XObject", "Nothing", _form(document, b"", ""), content)
+        document.save(tmp_path / "nothing.pdf")
+    spans, decoded = _decoded(tmp_path / "nothing.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "nothing.pdf") as document:
+        assert documents_module._pdf_font_span_name_counts(document[0]) == Counter({"": 1})
+    assert {span[2] for line in spans for span in line} == {""}
+    assert ("Missing" in _texts(spans)) is missing
+    assert decoded == spans
+
+
+@pytest.mark.parametrize(
+    ("entries", "font"),
+    [
+        ("/Type /Font /Subtype /Type1", True),
+        ("/Type {font} /Subtype /Type1", True),
+        ("/Type {font}", True),
+        ("/Subtype /Type0", True),
+        ("/Subtype {type0}", True),
+        ("/Type /XObject /Subtype /Type1", False),
+        ("/Type {xobject} /Subtype /Type1", False),
+        ("/Subtype /Form", False),
+        ("/Subtype {form}", False),
+        ("/BaseFont /Courier", False),
+    ],
+)
+def test_an_object_a_graphics_state_reaches_is_a_font_by_its_type_or_subtype(entries, font):
+    # S8: an object a graphics state reaches is counted as a font when its /Type is /Font,
+    # or it has no /Type and its /Subtype is a font's, each resolved when indirect.
+    with fitz.open() as document:
+        names = {}
+        for key, value in (("font", "/Font"), ("type0", "/Type0"), ("xobject", "/XObject"), ("form", "/Form")):
+            names[key] = f"{document.get_new_xref()} 0 R"
+            document.update_object(int(names[key].split()[0]), value)
+        xref = document.get_new_xref()
+        document.update_object(xref, "<< " + entries.format(**names) + " >>")
+        assert documents_module._pdf_is_font(document, xref) is font
 
 
 # ---------------------------------------------------------------------------- real pages
