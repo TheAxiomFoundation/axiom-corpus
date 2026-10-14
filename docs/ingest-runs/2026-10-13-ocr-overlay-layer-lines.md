@@ -50,6 +50,11 @@ font counts as painted. Type3 spans are found by the name MuPDF gives them: the 
 /Name (an indirect one resolved, its #xx escapes undone; a font written inline read
 through the resources that hold it), its bytes read as Latin-1, less a six-character
 subset prefix, or, without a name, "Unnamed-T3" (1.26) or "Type3 (<object> 0 R)" (1.28).
+They are looked for in the page's resources and forms (PyMuPDF `get_fonts`) and in the
+appearance streams of its annotations and widgets and the forms those draw, whose text is
+extracted too but whose fonts `get_fonts` does not list (`_pdf_appearance_type3_fonts`;
+on the overlay pages, 324 of which carry annotations, those streams hold 112 TrueType and
+226 Type1 fonts and no Type3 one, `scripts/annot_type3_scan.py`).
 An inline font whose resource name has a "/" (a lookup path would split at it and could
 reach another font's dictionary) or a byte that isn't UTF-8 is named by the name PyMuPDF
 lists for it, its /BaseFont ahead of its /Name; a Type3 font has no /BaseFont in a
@@ -65,12 +70,19 @@ If the spans do not hold the text output's characters (whitespace, control chara
 combining marks aside; `sort_text` changes only the lines the text output prints), the
 text output's lines, split at newlines only, are used instead, all counted as painted, so
 no typed text can go missing. Combining marks the text output holds and the spans lack
-are put back (`_with_layer_marks`): a text-output line without a control character that
-holds one takes the kept line that is the same text without its marks; if no kept line
-is, the text output's lines are used. Under 1.26.7 neither happens on any overlay page,
-with or without `sort_text`. Under 1.28.2, WV-23-0001 pages 132, 237 and 358 lack Khmer
-marks in their spans that their text output prints: they are put back, and with
-`sort_text`, which rebuilds those lines, the text output's lines are used.
+are put into the spans before anything else (`_with_layer_marks`). Without `sort_text` the
+text output is the dict lines joined by newlines, so each text-output line is lined up
+with its dict line, and a missing mark goes into the span of the character before it,
+taking that character's line, span, paint and font. A line whose spans' characters are not
+its text-output line's with only marks taken out is left as it is when it holds a control
+character (its marks are not needed); otherwise, or when the line counts differ, the text
+output's lines are used. Under 1.26.7 neither happens on any overlay page, with or
+without `sort_text`. Under 1.28.2, WV-23-0001 pages 132, 237 and 358 lack Khmer marks in
+their spans that their text output prints: they are put back, and with `sort_text`, which
+rebuilds those lines, the text output's lines are used. Those three pages then skip the
+garbled-font rule's span-level judgement (a line with a control character still goes
+whole) and the recognition filter (every line counts as painted); their text is the
+visible OCR of screenshots, junk either way.
 
 1. **Garbled fonts** (`_without_garbled_spans`). A span holding a control character other
    than tab, newline, carriage return, VT or FF is a garbled font's, and so is every other
@@ -80,22 +92,27 @@ marks in their spans that their text output prints: they are put back, and with
    at U+001C to U+001E and U+0085, and `split()` strips U+001F, so judged after splitting
    a shifted font's "2EQI\x1e" would pass as "2EQI"). The exception is a mapped span when
    every control-character span of its font on the line is unmapped: the garbage is the
-   codes the font's Unicode map leaves out, and the mapped span is typed text. On
+   codes the font's Unicode map leaves out, and the mapped span's characters are the
+   ones the font's own map gives. On
    NV-20-0002 page 3, "March 13, 2020" is set in a MinionPro subset whose map gives, on
    that line, only the "3"; ".BSDI\x01\x12" and "\r\x01\x13\x11\x13\x11" are "March 1"
    and ", 2020" given as CIDs, 31 codes below the characters. The runs of kept spans between left-out ones are joined by one
    space. Spans in other fonts on the line, such as a date typed beside a garbled label,
    are kept. A line is painted when one of its kept spans with visible characters is. The
-   rule leaves out 490 control-free spans on the overlay pages (213 distinct texts, all
-   symbol and digit strings such as "$#", ":;<=", "5MN1") and keeps 19 by provenance:
-   NV-20-0002's "3" and 18 punctuation shards of WV-23-0001's screenshot text. All 490 are
-   in Type3 fonts (`scripts/dropped_span_unicode.py`). Its limit: a clean span in the same
-   font as a garbled span on its line is still left out when its provenance is unknown (a
-   Type3 font, invisible text under PyMuPDF 1.26), when it is flagged as lacking Unicode
-   only because a glyph before it in the same text-showing operation lacked it, or when
-   the font's map itself gave the control character (a map that does so after such a
-   glyph is not caught, and its other spans are kept). None of these occurs on a non-Type3
-   font on the overlay pages.
+   rule leaves out 490 control-free spans on the overlay pages under 1.26.7 (213 distinct
+   texts, all symbol and digit strings such as "$#", ":;<=", "5MN1"; 35 under 1.28.2,
+   which builds fewer spans) and keeps 19 by provenance on both versions: NV-20-0002's "3"
+   and 18 punctuation shards of WV-23-0001's screenshot text. All 490 are in Type3 fonts
+   (`scripts/dropped_span_unicode.py`). Its limits: a clean span in the same font as a
+   garbled span on its line is still left out when its provenance is unknown (a Type3
+   font, invisible text under PyMuPDF 1.26), when it is flagged as lacking Unicode only
+   because a glyph before it in the same text-showing operation lacked it, or when the
+   font's map itself gave the control character (a map that does so after such a glyph
+   is not caught, and its other spans are kept). And "mapped" means the font's own map gave
+   the characters, not that they are right: a non-Type3 font whose map gives wrong
+   characters for some codes and none for others keeps its mapped garbage (pinned in a
+   test). On the overlay pages that is the 18 WV-23-0001 shards, so 1 of the 19 spans kept
+   by provenance is typed text.
 2. **Recognition layers** (`_without_failed_recognition_lines`). Painted lines are all
    kept. An invisible line (text render mode 3, or fully transparent) belongs to a
    recognition layer, an earlier OCR of the same image, not typed text. Two kinds are
@@ -129,11 +146,14 @@ written-out references that do not share the implementation's code):
   the non-empty runs of kept spans between them, in order, joined by one space; no line
   returned holds such a control character; a line is painted exactly when one of its kept
   spans with visible characters is.
-- K1 to K3 for combining marks: when the lines hold every mark of the text output they
-  come back unchanged; otherwise what comes back is the lines in order with their paint,
-  some replaced by a text-output line that is the same once marks are left out, and it
-  holds every mark of the text-output lines without a control character; it gives up
-  (and the text output's lines are used) only when such a line has nowhere to go.
+- K1 to K3 for combining marks: with no mark missing the spans come back unchanged;
+  otherwise only marks are added (each span's other characters, paint, font and
+  provenance kept), each line whose spans are its text-output line less some marks
+  becomes that line exactly, with each added mark in the span of the character before
+  it, and a garbled line that differs otherwise is left as it is; it gives up (and the
+  text output's lines are used) exactly when the lines do not line up (another count, or
+  a clean line whose spans are not its text-output line less some marks), checked
+  against a search written independently of the single pass it uses.
 - R1 to R5 for recognition layers: the result is a subsequence of the input; every
   painted line is kept; an invisible line is dropped only as a fragment or in a failed
   layer; more OCR text never drops a kept line; applying it to its own result changes
@@ -153,14 +173,15 @@ written-out references that do not share the implementation's code):
 `tests/test_documents_ocr_overlay.py` builds PDFs with filled, stroked, render-mode-3 and
 transparent text, a scanned page whose typed lines are set in a Type3 font written 25
 ways (named, unnamed, subset-prefixed, #xx-escaped or indirect names; inline, inherited or
-in a form, under resource names with a space, a "/" or a byte that isn't UTF-8), and pages
-whose text output holds a combining mark the spans lack. The 22 pages in
+in a form, under resource names with a space, a "/" or a byte that isn't UTF-8) or drawn
+by an annotation's appearance stream (the font referenced, inline, or in a form it
+draws), and pages whose text output holds a combining mark the spans lack. The 22 pages in
 `tests/fixtures/ocr_overlay/` (19 named in the defect report or measured below,
 AL-20-0004 page 4, whose shifted span splits at U+001E, NV-20-0002 page 3, whose mapped
 "3" is kept beside unmapped codes, and WV-23-0001 page 132, whose marks PyMuPDF 1.28's
 spans lack) are run through `_pdf_page_text` on the retained PDFs (checked by SHA-256) with
 Tesseract's stored output, with and without `sort_text` and `ignore_actual_text`. A
-mutation check runs 67 broken variants of the rule against these tests; its result is
+mutation check runs 73 broken variants of the rule against these tests; its result is
 recorded in the PR.
 
 ## Measurement
