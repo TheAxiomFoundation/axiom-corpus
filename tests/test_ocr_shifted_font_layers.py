@@ -45,10 +45,11 @@ S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an 
 S8. A span without an unmapped character is never changed. A font is not decoded in a line
     where some of its characters are mapped, nor anywhere when another font object the
     page's text can be drawn in has its name, as MuPDF names spans: a Type0 font by its
-    descendant, a Type 3 font by its /Name, every name cut to 31 bytes; fonts in forms,
-    tiling patterns, what a graphics state reaches (soft-mask groups, written as
-    dictionaries or streams, and fonts, an indirect /Type resolved) and every annotation's
-    appearance (two unmapped fonts of one name can number their glyphs differently). A line is decoded whole or not at all: not when one of its
+    descendant, a Type 3 font by its /Name (one the cut leaves empty is "", only a missing
+    /Name is "Unnamed-T3"), every name cut to 31 bytes; fonts in forms, tiling patterns,
+    what a graphics state reaches (its /Font entry; soft-mask groups, written as
+    dictionaries or streams; fonts known by /Type or /Subtype, resolved when indirect)
+    and every annotation's appearance (two unmapped fonts of one name can number their glyphs differently). A line is decoded whole or not at all: not when one of its
     characters, in any of its spans, would decode outside printable ASCII, nor when a span
     of it would still hold a control character.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
@@ -60,10 +61,11 @@ S10. Only a Type0 font is decoded, and only when its /W gives a width for every 
     greatest of those (a font numbering its glyphs in order of use has a glyph for each),
     whatever the /W says elsewhere; it may be a font only an annotation draws. /W read back
     gives exactly the codes written, as merged ranges.
-S11. When the page's fonts can't be known for certain (a font, a descendant or an annotation
-    written inline, a /Subtype or /BaseFont not written in the font's dictionary, a
+S11. When the page's fonts can't be known for certain (a font, a descendant, a graphics
+    state's font or an annotation written inline, a /Subtype or /BaseFont not written in the font's dictionary, a
     reference printed with another generation or to an object the file lacks, a page tree
-    deeper than the walk follows, or more distinct holders than it takes), nothing on the
+    deeper than the walk follows, or more distinct objects than it takes, each counted
+    once), nothing on the
     page is decoded, and nothing raises.
 """
 
@@ -1663,6 +1665,93 @@ def test_a_reference_met_twice_counts_once_against_the_limit(tmp_path, monkeypat
         monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 4)
         assert documents_module._pdf_drawn_font_xrefs(page) is not None
         monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 3)
+        assert documents_module._pdf_drawn_font_xrefs(page) is None
+
+
+def test_a_graphics_states_font_without_a_type_is_counted(tmp_path):
+    # Review round 5: /ExtGState << /GS2 << /Font [B 0 R 10] >> >> selects Type0 B, named
+    # Shared like the page's unmapped A, and B and its descendant have no /Type. The
+    # walk reads the /Font entry itself and knows a font by its /Subtype as well.
+    lines = [*EVIDENCE, ("Wendy Hill", PUA)]
+    a_codes = {ord(char) - PUA for text, _ in lines for char in text}
+    b_codes = {ord(char) - PUA + 1 for char in "Wendy6666"}
+    pdf = _form_pdf(tmp_path / "form.pdf", lines, name="Shared", widths={0: a_codes | b_codes})
+    with fitz.open(pdf) as document:
+        page = document[0]
+        b = _type0_font(document, b_codes, "Shared")
+        (descendant,) = documents_module._pdf_object_references(
+            document.xref_get_key(b, "DescendantFonts")[1]
+        )
+        document.xref_set_key(b, "Type", "null")
+        document.xref_set_key(descendant, "Type", "null")
+        state = document.get_new_xref()
+        document.update_object(state, f"<< /Font [{b} 0 R 10] >>")
+        hexed = "".join(f"{code:04x}" for code in (ord(c) - PUA + 1 for c in "Wendy6666"))
+        _draw(document, page, "ExtGState", "GS2", state, f"q /GS2 gs BT 72 450 Td <{hexed}> Tj ET Q".encode())
+        document.save(tmp_path / "gs.pdf")
+    spans, decoded = _decoded(tmp_path / "gs.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "gs.pdf") as document:
+        assert documents_module._pdf_font_span_name_counts(document[0])["Shared"] == 2
+    b_line = "".join(chr(ord(c) - PUA + 1) for c in "Wendy6666")
+    assert b_line in _texts(spans)  # MuPDF draws B
+    assert decoded == spans
+    assert "Xfoez7777" not in _texts(decoded)
+
+
+def test_a_graphics_state_font_written_inline_stops_decoding(tmp_path):
+    # Review round 5: an inline font in a graphics state's /Font entry can't be counted.
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)])
+    with fitz.open(pdf) as document:
+        page = document[0]
+        state = document.get_new_xref()
+        document.update_object(
+            state, "<< /Font [<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> 10] >>"
+        )
+        _draw(document, page, "ExtGState", "GS3", state, b"q /GS3 gs BT 72 450 Td (Inline) Tj ET Q")
+        document.save(tmp_path / "inline.pdf")
+    spans, decoded = _decoded(tmp_path / "inline.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "inline.pdf") as document:
+        assert documents_module._pdf_drawn_font_xrefs(document[0]) is None
+    assert decoded == spans
+
+
+@pytest.mark.parametrize("name", ["ABCDEF+", ""])
+def test_a_type3_name_that_cuts_to_nothing_names_its_spans_nothing(tmp_path, name):
+    # Review round 5: an explicit /Name that the cut leaves empty ("/ABCDEF+", or "/")
+    # names a Type 3 font's spans "", as MuPDF does under 1.26.7 and 1.28.2; only a font
+    # with no /Name at all is "Unnamed-T3". A Type0 font whose descendant is /ABCDEF+ is
+    # "" too, so the two share the name and neither is decoded.
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="ABCDEF+")
+    with fitz.open(pdf) as document:
+        page = document[0]
+        font = _type3_font(document, {65}, name)
+        _draw(document, page, "Font", "E3", font, b"BT /E3 10 Tf 72 400 Td (A) Tj ET")
+        document.save(tmp_path / "empty.pdf")
+    spans, decoded = _decoded(tmp_path / "empty.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "empty.pdf") as document:
+        counts = documents_module._pdf_font_span_name_counts(document[0])
+    assert {span[2] for line in spans for span in line} == {""}
+    assert counts[""] == 2 and "Unnamed-T3" not in counts
+    assert decoded == spans
+
+
+def test_the_walk_limit_counts_each_object_once(tmp_path, monkeypatch):
+    # Review round 5: a soft-mask group is reached as a graphics-state object and walked
+    # as a holder; it is one object against the limit. This page reaches four: itself,
+    # its scan image, the group and the group's font.
+    pdf = _form_pdf(tmp_path / "form.pdf", EVIDENCE, name="Courier")
+    with fitz.open(pdf) as document:
+        page = document[0]
+        font = _font_object(document, "Courier")
+        group = _form(
+            document, b"BT /M1 12 Tf 72 500 Td (MaskText) Tj ET", f"/Font << /M1 {font} 0 R >>"
+        )
+        state = document.get_new_xref()
+        document.update_object(state, f"<< /SMask << /S /Luminosity /G {group} 0 R >> >>")
+        _draw(document, page, "ExtGState", "GS1", state, b"q /GS1 gs 0 g 50 400 300 200 re f Q")
+        monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 5)
+        assert documents_module._pdf_drawn_font_xrefs(page) is not None
+        monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 4)
         assert documents_module._pdf_drawn_font_xrefs(page) is None
 
 
