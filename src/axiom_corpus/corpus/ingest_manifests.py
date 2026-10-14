@@ -1332,13 +1332,30 @@ def _inventory_primary_source_issues(path: str, payload: bytes) -> list[str]:
     return issues
 
 
-# Raw JSON that can decode to a string starting "file:" holds those characters
-# literally (any case) or spells some of them as \uXXXX escapes.
-_FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\u")
+# Raw JSON that can decode to a string a URL parser reads as "file:..." holds
+# "file:" literally (any case) or uses a backslash escape: for a letter
+# (\uXXXX), or for a control character the parser skips (a leading C0
+# control, or a tab or newline anywhere), which JSON cannot hold literally.
+_FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\")
 _LOCAL_FILE_URL_EXAMPLES = 3
 
+# What a WHATWG URL parser drops before reading the scheme: ASCII tab and
+# newline anywhere, then leading C0 controls and spaces.
+_URL_IGNORED_ANYWHERE = {0x09: None, 0x0A: None, 0x0D: None}
+_URL_IGNORED_LEADING = "".join(chr(code) for code in range(0x21))
 
-_FILE_URL_IN_TEXT = re.compile(r"(?i)file:[^\s\"'<>`]+")
+
+def is_file_url(value: object) -> bool:
+    """True when a URL parser, or a plain whitespace strip, reads ``value`` as ``file:``."""
+    if not isinstance(value, str):
+        return False
+    parsed = value.translate(_URL_IGNORED_ANYWHERE).lstrip(_URL_IGNORED_LEADING)
+    return parsed[:5].lower() == "file:" or value.strip()[:5].lower() == "file:"
+
+
+# From "file:" followed by a non-space through the end of the quoted or line
+# context, so an unencoded path with spaces or apostrophes goes as a whole.
+_FILE_URL_IN_TEXT = re.compile(r"(?i)file:(?=\S)[^\n\"`]*")
 
 
 def redact_file_urls(text: str) -> str:
@@ -1355,7 +1372,8 @@ def _unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     members: dict[str, Any] = {}
     for key, value in pairs:
         if key in members:
-            raise LocalFileUrlScanError(f"repeats the key {redact_file_urls(repr(key))}")
+            named = "a key" if "file:" in key.lower() or is_file_url(key) else f"the key {key!r}"
+            raise LocalFileUrlScanError(f"repeats {redact_file_urls(named)}")
         members[key] = value
     return members
 
@@ -1382,10 +1400,7 @@ def _file_url_fields(value: Any, path: str) -> Iterator[str]:
             child_path = f"{path}.{key}" if path else str(key)
             if _is_url_key(key):
                 urls = child if isinstance(child, list) else [child]
-                if any(
-                    isinstance(url, str) and url.strip().lower().startswith("file:")
-                    for url in urls
-                ):
+                if any(is_file_url(url) for url in urls):
                     yield child_path
             if isinstance(child, dict | list):
                 yield from _file_url_fields(child, child_path)

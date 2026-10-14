@@ -59,6 +59,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import _SOURCE_FORMAT_CONTENT_TYPES, extract_official_documents
 from axiom_corpus.corpus.ingest_manifests import (
     LocalFileUrlScanError,
+    is_file_url,
     local_file_url_fields,
     redact_file_urls,
 )
@@ -69,7 +70,7 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 def _is_file_url(value: object) -> bool:
-    return isinstance(value, str) and value.strip().lower().startswith("file:")
+    return is_file_url(value)
 
 
 def _is_web_url(value: object) -> bool:
@@ -88,7 +89,7 @@ def _is_media_type(value: object) -> bool:
     return (
         isinstance(value, str)
         and _MEDIA_TYPE.fullmatch(value) is not None
-        and "file:" not in value.lower()
+        and "file:" not in value.replace("\t", "").lower()
     )
 
 
