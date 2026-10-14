@@ -125,6 +125,18 @@ def test_creates_missing_parent_directories(tmp_path: Path) -> None:
     assert target.read_bytes() == b"{}\n"
 
 
+def test_writes_a_target_whose_name_is_as_long_as_the_filesystem_allows(
+    tmp_path: Path,
+) -> None:
+    """The temporary file's name must not be longer than the target's (NAME_MAX 255)."""
+    target = tmp_path / ("v" * 250 + ".json")
+
+    write_bytes_atomically(target, b"{}\n")
+
+    assert target.read_bytes() == b"{}\n"
+    assert os.listdir(tmp_path) == [target.name]
+
+
 def test_replaces_a_symlink_rather_than_writing_through_it(tmp_path: Path) -> None:
     outside = tmp_path / "outside.json"
     outside.write_bytes(b"outside\n")
@@ -183,7 +195,7 @@ def test_temp_file_of_a_killed_write_is_git_ignored(
     write_bytes_atomically(target, b"{}\n")
 
     temp_name = Path(seen["temp"]).name
-    assert temp_name.startswith(f".{target.name}.")
+    assert temp_name.startswith(f".{target.name[:40]}.")
     assert temp_name.endswith(atomic_write.ATOMIC_WRITE_TEMP_SUFFIX)
     assert seen["ignored"] == seen["temp"]
     assert seen["status"] == "?? .gitignore\n"

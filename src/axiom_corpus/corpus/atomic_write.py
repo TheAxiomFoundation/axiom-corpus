@@ -17,16 +17,18 @@ def write_bytes_atomically(target: Path, data: bytes) -> None:
 
     The bytes are written and fsynced to the temporary file, which is then
     renamed over ``target`` (mode 0644). Until the rename, ``target`` keeps
-    whatever it held before (or stays absent). An exception at any step,
-    KeyboardInterrupt included, removes the temporary file. A process killed
-    outright (SIGTERM, SIGKILL) can leave it behind as
-    ``.<name>.<random>.tmp``. The lock reader skips hidden files and the
-    manifest reader reads only ``*.json``, so neither takes it for a lock or a
-    manifest.
+    whatever it held before (or stays absent), so a process interrupted,
+    killed or crashing mid-write never leaves part of ``data`` there. An
+    exception from the write, fsync, chmod or rename, KeyboardInterrupt
+    included, removes the temporary file. A process killed outright (SIGTERM,
+    SIGKILL) can leave it behind as ``.<name>.<random>.tmp``, with ``<name>``
+    cut to 40 characters so that any target name that fits the filesystem also
+    fits the temporary one. The lock reader skips hidden files and the manifest
+    reader reads only ``*.json``, so neither takes it for a lock or a manifest.
     """
     target.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp_name = tempfile.mkstemp(
-        dir=target.parent, prefix=f".{target.name}.", suffix=ATOMIC_WRITE_TEMP_SUFFIX
+        dir=target.parent, prefix=f".{target.name[:40]}.", suffix=ATOMIC_WRITE_TEMP_SUFFIX
     )
     tmp = Path(tmp_name)
     try:
