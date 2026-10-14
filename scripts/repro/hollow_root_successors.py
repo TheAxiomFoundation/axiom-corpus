@@ -699,14 +699,19 @@ def source_prefix_map(
     return left, f"{scope}/{right_version}/"
 
 
-def _normalize(value: Any, old: str, new: str) -> Any:
-    """Rewrite every ``old`` source-path prefix to ``new``, at any depth of one field."""
+def _normalize(value: Any, old: str, new: str, *, key: str = "") -> Any:
+    """Rewrite the ``old`` source-path prefix to ``new`` in path fields, at any depth.
+
+    Only strings held under a key ending in ``path`` or ``paths`` (``source_path``,
+    the NYCRR amendment ``*_source_path`` fields in ``metadata``) are rewritten, so
+    a body or heading that happens to quote a source path is compared as it is.
+    """
     if isinstance(value, str):
-        return value.replace(old, new)
+        return value.replace(old, new) if key.endswith(("path", "paths")) else value
     if isinstance(value, list):
-        return [_normalize(item, old, new) for item in value]
+        return [_normalize(item, old, new, key=key) for item in value]
     if isinstance(value, dict):
-        return {key: _normalize(item, old, new) for key, item in value.items()}
+        return {name: _normalize(item, old, new, key=name) for name, item in value.items()}
     return value
 
 
@@ -739,7 +744,7 @@ def compare_rows(
 ) -> dict[str, Any]:
     """Summarize how ``right``'s rows differ from ``left``'s, versions normalized.
 
-    ``version`` must be each side's own version; source paths are compared after
+    ``version`` must be each side's own version; path fields are compared after
     ``prefixes`` maps the left prefix to the right one (at any depth, so the
     NYCRR amendment paths inside ``metadata`` are covered); ``id`` and
     ``parent_id`` must follow the same deterministic rule on both sides
@@ -762,8 +767,11 @@ def compare_rows(
                 continue
             av, bv = a.get(name), b.get(name)
             if name == "version":
-                av, bv = (av == left_version), (bv == right_version)
-            elif name in ("id", "parent_id") and "id" in a:
+                # Each side must carry its own version; two wrong versions never match.
+                if av != left_version or bv != right_version:
+                    differing.append(name)
+                continue
+            if name in ("id", "parent_id") and "id" in a:
                 target = path if name == "id" else a.get("parent_citation_path")
                 target_b = path if name == "id" else b.get("parent_citation_path")
                 av = _id_rule(a, name=name, path=target, version=left_version)
@@ -772,7 +780,7 @@ def compare_rows(
                 if av == "unknown" or bv == "unknown":
                     av, bv = a.get(name), b.get(name)
             else:
-                av = _normalize(av, old, new)
+                av = _normalize(av, old, new, key=name)
             if av != bv:
                 differing.append(name)
         if differing:

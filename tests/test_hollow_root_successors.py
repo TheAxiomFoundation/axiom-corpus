@@ -8,9 +8,11 @@ unchanged, and the draft selectors swap each selected original for its successor
 
 from __future__ import annotations
 
+import csv
 import json
 import re
-from collections.abc import Iterator
+from collections import Counter
+from collections.abc import Callable, Iterator
 from functools import cache
 from pathlib import Path
 from typing import Any
@@ -35,6 +37,7 @@ from scripts.repro.hollow_root_successors import (
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CORPUS_ROOT = REPO_ROOT / "data/corpus"
 RUN_NOTE = REPO_ROOT / "docs/ingest-runs/2026-10-13-hollow-root-successors.md"
+AUDIT_CSV = REPO_ROOT / "docs/ingest-runs/2026-10-13-hollow-document-root-audit.csv"
 SUMMARY = REPO_ROOT / "docs/ingest-runs/2026-10-13-hollow-root-successors.json"
 DRAFT_SELECTORS = {
     "us-rulespec-2026-10-13-w7-bundle-gaps-union": REPO_ROOT
@@ -159,9 +162,25 @@ def _has_text(row: dict[str, Any]) -> bool:
     return bool(LETTER.search(row.get("body") or ""))
 
 
+def test_the_summary_lists_every_audited_defect_in_these_scopes() -> None:
+    """The fixed findings are exactly #853's extractor defects in the 108 originals."""
+    originals = {spec.original_key for spec in SPECS}
+    with AUDIT_CSV.open(encoding="utf-8", newline="") as handle:
+        audited = {
+            (row["scope"], row["citation_path"])
+            for row in csv.DictReader(handle)
+            if row["classification"] == "extractor_defect" and row["scope"] in originals
+        }
+    fixed = _summary()["fixed_findings"]
+    assert len(audited) == len(fixed) == 93
+    assert {(scope, path) for scope, path, _ in fixed} == audited
+    assert Counter(outcome for _, _, outcome in fixed) == {"text": 92, "retired": 1}
+
+
 def test_audited_hollow_roots_now_carry_text() -> None:
     """Each fixed audit finding's root has text at or below it, or is retired."""
     by_scope = {spec.original_key: spec for spec in SPECS}
+    assert _summary()["fixed_findings"]
     for scope, path, outcome in _summary()["fixed_findings"]:
         rows = _rows(by_scope[scope], by_scope[scope].version)
         here = [
@@ -334,3 +353,51 @@ def test_compare_rows_finds_no_change_after_a_pure_reversion(rows: list[dict[str
     )
     assert result["changed"] == result["added"] == result["removed"] == []
     assert result["order_preserved"]
+    if not rows:
+        return
+    first = rows[0]["citation_path"]
+
+    # A wrong version on either side, a body change, or a source path that does not
+    # follow the version are each reported, never normalized away.
+    def wrong_version(row: dict[str, Any]) -> dict[str, Any]:
+        return {**row, "version": "2026-01-01-other"}
+
+    def changed_body(row: dict[str, Any]) -> dict[str, Any]:
+        return {**row, "body": (row["body"] or "") + " changed"}
+
+    def stray_source(row: dict[str, Any]) -> dict[str, Any]:
+        return {**row, "source_path": row["source_path"] + ".bak"}
+
+    mutations: list[tuple[Callable[[dict[str, Any]], dict[str, Any]], str]] = [
+        (wrong_version, "version"),
+        (changed_body, "body"),
+        (stray_source, "source_path"),
+    ]
+    for mutate, field in mutations:
+        mutated = [mutate(r) if r["citation_path"] == first else r for r in right]
+        result = compare_rows(
+            left,
+            mutated,
+            left_version=spec.original_version,
+            right_version=spec.version,
+            prefixes=(old, new),
+        )
+        assert result["changed"] == [first] and result["changed_fields"] == {field: 1}
+    # Two rows that both carry the wrong version still differ from the expected pair.
+    both_wrong = compare_rows(
+        [{**left[0], "version": "x"}],
+        [{**right[0], "version": "x"}],
+        left_version=spec.original_version,
+        right_version=spec.version,
+        prefixes=(old, new),
+    )
+    assert both_wrong["changed_fields"] == {"version": 1}
+    # A body quoting the old prefix is compared as written.
+    quoted = compare_rows(
+        [{**left[0], "body": f"see {old}a.pdf"}],
+        [{**right[0], "body": f"see {new}a.pdf"}],
+        left_version=spec.original_version,
+        right_version=spec.version,
+        prefixes=(old, new),
+    )
+    assert quoted["changed_fields"] == {"body": 1}
