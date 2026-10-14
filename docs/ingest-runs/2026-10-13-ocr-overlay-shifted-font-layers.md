@@ -173,7 +173,11 @@ Deputy D". The before side is this branch with
 measurement first ran on #868 at `c64009789`, before it counted Type 3 spans as painted,
 and gives the same lines, pages and documents; the page level, re-run on #868 at
 `c4ccca4ee`, at `97e3e935e` (Type 3 font names read as MuPDF 1.26 does) and at `55bba979b`
-(mapped spans of garbled fonts kept, layer marks), gives the same lines again.
+(mapped spans of garbled fonts kept, layer marks), gives the same lines again. #868's later
+code, to `c70a950a2`, changes docstrings and, in `_pdf_inline_font_key`, removes and then
+restores one check. That function is called only for an inline Type 3 font, and the 328
+PDFs have none: their 35,537 font entries, 600 of them Type 3, are all indirect objects.
+So no figure here moves.
 
 | | |
 | --- | ---: |
