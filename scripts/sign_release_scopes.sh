@@ -43,9 +43,10 @@
 # from the scope's ingest PR may carry reasoning-log attestations this script cannot
 # reproduce, so re-sign such a scope the way its ingest PR did instead.
 #
-# Only a run killed outright can leave <name>.json behind, or leave files staged
-# without saying so: SIGKILL, Ctrl-\ (SIGQUIT), or a crash. Ctrl-\ is therefore the way
-# to stop a run whose cleanup hangs.
+# Only a crash, or a signal the script does not handle, can leave <name>.json behind or
+# leave files staged without saying so. Such signals are SIGKILL, Ctrl-\ (SIGQUIT) and
+# the rarely sent USR1, USR2 and ALRM. Ctrl-\ is therefore the way to stop a run whose
+# cleanup hangs.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 DRAFT="${1:?draft selector path}"
@@ -70,10 +71,11 @@ on_exit() {
   status=$?
   set +e
   # A second signal must not cut the cleanup short (two SIGHUPs from a closing terminal,
-  # Ctrl-C after a failed step). The children inherit the ignored signals, except git
+  # Ctrl-C after a failed step), and nor may a closed output pipe (output piped through
+  # `head`) at its first message. The children inherit the ignored signals, except git
   # while it holds index.lock: it then handles them itself, drops the lock and fails. So
   # the unstage below is tried twice.
-  trap '' INT TERM HUP
+  trap '' INT TERM HUP PIPE
   rm -f "$SCOPE_LIST"
   [ -z "$CUT" ] || return 0
   # HEAD is checked too: an interrupt can land between the selector commit and CUT=1.

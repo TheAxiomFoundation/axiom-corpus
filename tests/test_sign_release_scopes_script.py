@@ -70,7 +70,7 @@ exec "@PYTHON@" -m axiom_corpus.corpus.cli "$@"
 COMMIT_MSG_HOOK = """#!/bin/sh
 # Hold the commit whose subject is $HOLD_COMMIT: create $HOLD_DIR/held, then wait (up to
 # 60 s) for $HOLD_DIR/release. Reject the one whose subject is $FAIL_COMMIT, as a failing
-# hook would.
+# hook would, after waiting $FAIL_COMMIT_DELAY seconds (default 0).
 subject=$(head -n 1 "$1")
 if [ -n "${HOLD_COMMIT:-}" ] && [ "$subject" = "$HOLD_COMMIT" ]; then
   : > "$HOLD_DIR/held"
@@ -79,6 +79,7 @@ if [ -n "${HOLD_COMMIT:-}" ] && [ "$subject" = "$HOLD_COMMIT" ]; then
 fi
 [ -n "${FAIL_COMMIT:-}" ] && [ "$subject" = "$FAIL_COMMIT" ] || exit 0
 echo "simulated commit failure" >&2
+sleep "${FAIL_COMMIT_DELAY:-0}"
 exit 1
 """
 GIT_SHIM = """#!/bin/sh
@@ -203,12 +204,14 @@ def _ingest_pr(repo: Path, versions: tuple[str, ...]) -> None:
     _git(repo, "commit", "-qm", "Sign artifacts")
 
 
-def _default_sigint() -> None:
-    # Bash cannot trap a signal that was ignored when it started.
-    signal.signal(signal.SIGINT, signal.SIG_DFL)
+def _default_signals() -> None:
+    # Bash cannot trap a signal that was ignored when it started, and a background or
+    # nohup launch of pytest leaves SIGINT or SIGHUP ignored.
+    for signum in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP):
+        signal.signal(signum, signal.SIG_DFL)
 
 
-def _run(repo: Path, *, interruptible: bool = False) -> subprocess.CompletedProcess[str]:
+def _run(repo: Path) -> subprocess.CompletedProcess[str]:
     # In a session of its own, a simulated Ctrl-C reaches the script, never pytest.
     return subprocess.run(
         ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
@@ -217,7 +220,7 @@ def _run(repo: Path, *, interruptible: bool = False) -> subprocess.CompletedProc
         text=True,
         check=False,
         start_new_session=True,
-        preexec_fn=_default_sigint if interruptible else None,
+        preexec_fn=_default_signals,
     )
 
 
@@ -598,7 +601,7 @@ def test_resumes_after_validate_release_fails(
     start = _cut_release_branch(repo)
     monkeypatch.setenv("FAIL_VALIDATE_RELEASE", failure)
 
-    first = _run(repo, interruptible=True)
+    first = _run(repo)
 
     # The script's INT trap exits 130 once the interrupted shim has exited.
     assert first.returncode == (1 if failure == "fail" else 130), first.stdout + first.stderr
@@ -680,7 +683,7 @@ def test_resumes_through_a_chain_of_failures(repo: Path, monkeypatch: pytest.Mon
     for index, (name, value) in enumerate(runs):
         if name:
             monkeypatch.setenv(name, value)
-        result = _run(repo, interruptible=True)
+        result = _run(repo)
         if name:
             monkeypatch.delenv(name)
         report = f"run {index}: {result.stdout}{result.stderr}"
@@ -716,15 +719,16 @@ def _install_git_shim(tmp_path: Path) -> None:
     shim.chmod(0o755)
 
 
-def _start(repo: Path) -> subprocess.Popen[str]:
+def _start(repo: Path, stdout: object = subprocess.PIPE) -> subprocess.Popen[str]:
     """Start the script in a session of its own, so signals to its group miss pytest."""
     return subprocess.Popen(
         ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
         cwd=repo,
-        stdout=subprocess.PIPE,
+        stdout=stdout,
         stderr=subprocess.PIPE,
         text=True,
         start_new_session=True,
+        preexec_fn=_default_signals,
     )
 
 
@@ -894,6 +898,33 @@ def test_the_cleanup_tries_a_failed_unstage_again(
     assert "unstaged what this run staged but did not commit" in first.stderr
     assert "could not unstage" not in first.stderr
     assert _branch_subjects(repo, start) == [ADD]
+    _assert_resumable(repo)
+
+    monkeypatch.delenv("FAIL_COMMIT")
+    _assert_cut(repo, _run(repo), start)
+
+
+def test_a_closed_output_pipe_does_not_stop_the_cleanup(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    # As when the output goes through `head`, which exits early: the reader of stderr goes
+    # away while the Cut commit fails, before on_exit writes its first message.
+    start = _cut_release_branch(repo)
+    _install_commit_msg_hook(repo)
+    monkeypatch.setenv("FAIL_COMMIT", CUT)
+    monkeypatch.setenv("FAIL_COMMIT_DELAY", "2")  # time for the reader to go away
+    with (tmp_path / "stdout").open("w") as stdout:
+        proc = _start(repo, stdout=stdout)
+        assert proc.stderr is not None
+        for line in proc.stderr:
+            if "simulated commit failure" in line:
+                break
+        proc.stderr.close()
+        proc.wait(timeout=300)
+    _wait_for_group_to_exit(proc.pid)
+
+    assert proc.returncode not in (0, -signal.SIGPIPE, 128 + signal.SIGPIPE)
+    assert _branch_subjects(repo, start) == [SIGN, ADD]
     _assert_resumable(repo)
 
     monkeypatch.delenv("FAIL_COMMIT")
