@@ -1482,6 +1482,188 @@ def test_a_line_left_with_a_control_character_is_not_decoded(tmp_path):
     assert [[text for text, *_ in line] for line in decoded[:2]] == [["June 2020"], ["Scott 2021"]]
 
 
+def _draw(document: fitz.Document, page, resource: str, key: str, xref: int, content: bytes) -> None:
+    """Add ``xref`` to the page's ``resource`` dictionary under ``key`` and ``content`` to its
+    page content."""
+    resources = int(document.xref_get_key(page.xref, "Resources")[1].split()[0])
+    kind, value = document.xref_get_key(resources, resource)
+    entries = value.strip()[2:-2] if kind == "dict" else ""
+    document.xref_set_key(resources, resource, f"<< {entries} /{key} {xref} 0 R >>")
+    contents = document.get_new_xref()
+    document.update_object(contents, "<< >>")
+    document.update_stream(contents, content)
+    document.xref_set_key(
+        page.xref,
+        "Contents",
+        "[" + " ".join(f"{x} 0 R" for x in [*page.get_contents(), contents]) + "]",
+    )
+
+
+@pytest.mark.parametrize("indirect", [False, True])
+def test_a_type3_fonts_name_is_cut_as_mupdf_cuts_it(tmp_path, indirect):
+    # Review round 4: MuPDF cuts a Type 3 font's /Name, direct or indirect, to 31 bytes, as
+    # it does every font's (checked under PyMuPDF 1.26.7 and 1.28.2). A Type 3 font named
+    # "ABCDEF+ABCDEFGHIJKLMNOPQRSTUVWXExtra" shares its spans' name with the Type0 font
+    # named "ABCDEFGHIJKLMNOPQRSTUVWX", which is therefore not decoded.
+    short, long = "ABCDEFGHIJKLMNOPQRSTUVWX", "ABCDEF+ABCDEFGHIJKLMNOPQRSTUVWXExtra"
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name=short)
+    with fitz.open(pdf) as document:
+        page = document[0]
+        font = _type3_font(document, {65}, long)
+        if indirect:
+            name = document.get_new_xref()
+            document.update_object(name, "/" + long)
+            document.xref_set_key(font, "Name", f"{name} 0 R")
+        _draw(document, page, "Font", "L3", font, b"BT /L3 10 Tf 72 400 Td (A) Tj ET")
+        document.save(tmp_path / "type3.pdf")
+    spans, decoded = _decoded(tmp_path / "type3.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "type3.pdf") as document:
+        counts = documents_module._pdf_font_span_name_counts(document[0])
+    assert {span[2] for line in spans for span in line} == {short}
+    assert counts[short] == 2 and long[7:] not in counts
+    assert decoded == spans
+
+
+def test_a_long_type3_name_does_not_shadow_a_font_named_as_it_reads_uncut(tmp_path):
+    # The converse: the Type 3 font is named only by its cut name, so a Type0 font named
+    # "ABCDEFGHIJKLMNOPQRSTUVWXExtra" (29 bytes, kept whole) stays unique and is decoded.
+    whole, long = "ABCDEFGHIJKLMNOPQRSTUVWXExtra", "ABCDEF+ABCDEFGHIJKLMNOPQRSTUVWXExtra"
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name=whole)
+    with fitz.open(pdf) as document:
+        page = document[0]
+        font = _type3_font(document, {65}, long)
+        _draw(document, page, "Font", "L3", font, b"BT /L3 10 Tf 72 400 Td (A) Tj ET")
+        document.save(tmp_path / "type3.pdf")
+    _, decoded = _decoded(tmp_path / "type3.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "type3.pdf") as document:
+        assert documents_module._pdf_font_span_name_counts(document[0])[whole] == 1
+    assert "Wendy Hill" in _texts(decoded)
+
+
+def test_a_soft_mask_written_as_a_stream_is_followed(tmp_path):
+    # Review round 4: /ExtGState << /GS1 << /SMask S 0 R >> >>, where S is a stream whose
+    # dictionary holds the group in /G. MuPDF extracts the group's text; the walk follows
+    # S's references as well as walking it as a holder.
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="Courier")
+    with fitz.open(pdf) as document:
+        page = document[0]
+        font = _font_object(document, "Courier")
+        group = _form(
+            document, b"BT /M1 12 Tf 72 500 Td (MaskText) Tj ET", f"/Font << /M1 {font} 0 R >>"
+        )
+        mask = document.get_new_xref()
+        document.update_object(mask, f"<< /S /Luminosity /G {group} 0 R >>")
+        document.update_stream(mask, b"")
+        state = document.get_new_xref()
+        document.update_object(state, f"<< /SMask {mask} 0 R >>")
+        _draw(document, page, "ExtGState", "GS1", state, b"q /GS1 gs 0 g 50 400 300 200 re f Q")
+        document.save(tmp_path / "masked.pdf")
+    spans, decoded = _decoded(tmp_path / "masked.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "masked.pdf") as document:
+        assert documents_module._pdf_font_span_name_counts(document[0])["Courier"] == 2
+    assert ["MaskText"] in [[t for t, *_ in line] for line in spans]
+    assert decoded == spans
+
+
+def test_a_graphics_states_font_with_an_indirect_type_is_counted(tmp_path):
+    # Review round 4: /ExtGState << /GS2 << /Font [B 0 R 12] >> >>, B's /Type an indirect
+    # /Font. MuPDF draws "GsText" in B; the walk resolves the /Type and counts B.
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="Courier")
+    with fitz.open(pdf) as document:
+        page = document[0]
+        kind = document.get_new_xref()
+        document.update_object(kind, "/Font")
+        font = document.get_new_xref()
+        document.update_object(font, f"<< /Type {kind} 0 R /Subtype /Type1 /BaseFont /Courier >>")
+        state = document.get_new_xref()
+        document.update_object(state, f"<< /Font [{font} 0 R 12] >>")
+        _draw(document, page, "ExtGState", "GS2", state, b"q /GS2 gs BT 72 450 Td (GsText) Tj ET Q")
+        document.save(tmp_path / "gs.pdf")
+    spans, decoded = _decoded(tmp_path / "gs.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "gs.pdf") as document:
+        assert documents_module._pdf_font_span_name_counts(document[0])["Courier"] == 2
+    assert ["GsText"] in [[t for t, *_ in line] for line in spans]
+    assert decoded == spans
+
+
+def test_resources_inherited_from_too_far_up_stop_decoding(tmp_path):
+    # Review round 4: a page whose resources sit more than 64 page-tree nodes above it. The
+    # walk does not follow that far, so the fonts are not known; three nodes up is fine.
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)])
+    with fitz.open(pdf) as document:
+        page = document[0]
+        resources = document.xref_get_key(page.xref, "Resources")[1]
+        own = documents_module._pdf_drawn_font_xrefs(page)
+
+        def chain(depth: int) -> int:
+            node = document.get_new_xref()
+            document.update_object(node, f"<< /Type /Pages /Kids [] /Count 0 /Resources {resources} >>")
+            for _ in range(depth):
+                below = document.get_new_xref()
+                document.update_object(below, f"<< /Type /Pages /Kids [] /Count 0 /Parent {node} 0 R >>")
+                node = below
+            return node
+
+        document.xref_set_key(page.xref, "Resources", "null")
+        document.xref_set_key(page.xref, "Parent", f"{chain(3)} 0 R")
+        assert documents_module._pdf_drawn_font_xrefs(page) == own
+        document.xref_set_key(page.xref, "Parent", f"{chain(70)} 0 R")
+        assert documents_module._pdf_drawn_font_xrefs(page) is None
+
+
+def test_a_type0_font_with_an_inline_descendant_stops_decoding(tmp_path):
+    # Review round 4: B's /DescendantFonts holds an inline CIDFont named /Shared whose one
+    # reference is its FontDescriptor, which has an extra /BaseFont /Other. Read as "the
+    # one reference", the descriptor would pass for the descendant and name B "Other";
+    # the array must be exactly one reference, so B can't be named and nothing is decoded.
+    lines = [*EVIDENCE, ("Wendy6666", PUA - 1, 1)]
+    pdf = _form_pdf(tmp_path / "form.pdf", lines, group_names={0: "Shared", 1: "Shared"})
+    with fitz.open(pdf) as document:
+        page = document[0]
+        resources = int(document.xref_get_key(page.xref, "Resources")[1].split()[0])
+        (b,) = documents_module._pdf_object_references(document.xref_get_key(resources, "Font/T1")[1])
+        (old,) = documents_module._pdf_object_references(document.xref_get_key(b, "DescendantFonts")[1])
+        descriptor = document.get_new_xref()
+        document.update_object(
+            descriptor,
+            "<< /Type /FontDescriptor /FontName /Shared /BaseFont /Other /Flags 32"
+            " /FontBBox [0 0 1000 1000] /ItalicAngle 0 /Ascent 800 /Descent -200"
+            " /CapHeight 700 /StemV 80 >>",
+        )
+        inline = document.xref_object(old).replace(
+            document.xref_get_key(old, "FontDescriptor")[1], f"{descriptor} 0 R"
+        )
+        document.xref_set_key(b, "DescendantFonts", f"[{inline}]")
+        assert documents_module._pdf_descendant(document, b) is None
+        assert documents_module._pdf_descendant(document, old) is None  # not a Type0 font
+        document.save(tmp_path / "inline.pdf")
+    spans, decoded = _decoded(tmp_path / "inline.pdf", EVIDENCE_OCR)
+    with fitz.open(tmp_path / "inline.pdf") as document:
+        assert documents_module._pdf_font_span_name_counts(document[0]) == Counter()
+    assert decoded == spans
+
+
+def test_a_reference_met_twice_counts_once_against_the_limit(tmp_path, monkeypatch):
+    # Review round 4: a form referred to twice (/Again and /F1) is one holder. This page
+    # has four: its own, its scan image and two forms. The walk takes the last reference
+    # first, so /Again, written first, is met last, after all four are walked.
+    pdf = _form_pdf(tmp_path / "form.pdf", EVIDENCE)
+    with fitz.open(pdf) as document:
+        page = document[0]
+        resources = int(document.xref_get_key(page.xref, "Resources")[1].split()[0])
+        (image,) = documents_module._pdf_object_references(document.xref_get_key(resources, "XObject")[1])
+        first, second = _form(document, b"", ""), _form(document, b"", "")
+        document.xref_set_key(
+            resources,
+            "XObject",
+            f"<< /Again {first} 0 R /Im0 {image} 0 R /F1 {first} 0 R /F2 {second} 0 R >>",
+        )
+        monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 4)
+        assert documents_module._pdf_drawn_font_xrefs(page) is not None
+        monkeypatch.setattr(documents_module, "_PDF_RESOURCE_WALK", 3)
+        assert documents_module._pdf_drawn_font_xrefs(page) is None
+
+
 # ---------------------------------------------------------------------------- real pages
 
 FIXTURE = json.loads(

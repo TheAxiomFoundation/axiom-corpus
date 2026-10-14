@@ -4031,32 +4031,35 @@ def _pdf_font_names(page: Any, xref: int) -> set[str] | None:
     not written as a name in it.
 
     A font's span name is its /BaseFont, a Type0 font's that of its descendant (not the
-    Type0 font's own, which can end in -Identity-H): MuPDF keeps its first 31 bytes and
-    PyMuPDF reads them as Latin-1, less a six-letter subset prefix
-    (``_pdf_mupdf_font_name``). A Type3 font is named by ``_pdf_type3_span_name`` and also
-    by its /Name cut to 31 bytes; one without a name also as PyMuPDF 1.28 names it,
-    "Type3 (<n> 0 R)".
+    Type0 font's own, which can end in -Identity-H), and a Type3 font's its /Name (an
+    indirect one resolved): MuPDF keeps the first 31 bytes and PyMuPDF reads them as
+    Latin-1, less a six-letter subset prefix (``_pdf_mupdf_font_name``). A Type3 font
+    without a name is "Unnamed-T3" under PyMuPDF 1.26 and "Type3 (<n> 0 R)" under 1.28;
+    both are given. (Checked on built PDFs under both versions.)
     """
     document = page.parent
     kind, subtype = document.xref_get_key(xref, "Subtype")
     if kind != "name":
         return None
     if subtype == "/Type3":
-        names = {_pdf_type3_span_name(page, (xref, "", "Type3", "", "", "", 0))}
         kind, value = document.xref_get_key(xref, "Name")
         if kind == "name":
-            names.add(_pdf_mupdf_font_name(value[1:].encode("utf-8", "surrogateescape")))
-        if "Unnamed-T3" in names or "" in names:
-            names |= {"Unnamed-T3", f"Type3 ({xref} 0 R)"}
-        return names
-    if subtype == "/Type0":
-        kind, value = document.xref_get_key(xref, "DescendantFonts")
-        if kind == "xref":
-            value = document.xref_object(_pdf_reference(document, value))
-        descendants = _pdf_object_references(value)
-        if descendants is None or len(descendants) != 1:
+            name = _pdf_mupdf_font_name(value[1:].encode("utf-8", "surrogateescape"))
+        elif kind == "xref":
+            printed = str(document.xref_object(_pdf_reference(document, value))).strip()
+            if not printed.startswith("/"):
+                return None
+            name = _pdf_mupdf_font_name(_pdf_printed_name(printed))
+        elif kind == "null":
+            name = ""
+        else:
             return None
-        xref = descendants[0]
+        return {name} if name else {"Unnamed-T3", f"Type3 ({xref} 0 R)"}
+    if subtype == "/Type0":
+        descendant = _pdf_descendant(document, xref)
+        if descendant is None:
+            return None
+        xref = descendant
     kind, base = document.xref_get_key(xref, "BaseFont")
     if kind != "name":
         return None
@@ -4086,6 +4089,34 @@ def _pdf_object_references(text: str) -> list[int] | None:
     return [int(number) for number, _ in references]
 
 
+_PDF_SOLE_REFERENCE = re.compile(r"\[\s*(\d+)\s+0\s+R\s*\]")
+
+
+def _pdf_descendant(document: Any, font: int) -> int | None:
+    """The object number of a Type0 font's descendant, or None when /DescendantFonts is not
+    an array of exactly one reference (a descendant written inline, say)."""
+    kind, value = document.xref_get_key(font, "DescendantFonts")
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value)))
+    elif kind != "array":
+        return None
+    match = _PDF_SOLE_REFERENCE.fullmatch(value.strip())
+    if match is None or not 0 < int(match.group(1)) < document.xref_length():
+        return None
+    return int(match.group(1))
+
+
+def _pdf_is_font(document: Any, xref: int) -> bool:
+    """Whether object ``xref`` is a font dictionary: its /Type, an indirect one resolved,
+    is /Font."""
+    kind, value = document.xref_get_key(xref, "Type")
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value))).strip()
+    elif kind != "name":
+        return False
+    return str(value) == "/Font"
+
+
 def _pdf_reference(document: Any, value: str) -> int:
     """The object number of the single reference ``value``; LookupError when it is not one
     reference of generation 0 to an object of the file."""
@@ -4102,13 +4133,17 @@ def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
     The walk starts from the page's resources (those of the nearest page-tree node that has
     them) and from the appearance streams of every annotation in the page's /Annots,
     whatever its subtype. From each resource holder it takes the fonts in Resources/Font
-    and walks on into the forms in Resources/XObject, the tiling patterns in
-    Resources/Pattern, and the soft-mask groups and fonts that Resources/ExtGState
-    reaches: MuPDF extracts text drawn in all of those, and ``get_fonts`` lists fonts of
-    the page and its forms only. None when a font or an annotation is written inline,
-    without an object number, when a reference is not one of generation 0 to an object of
-    the file, when something can't be read, or when there are more than
-    _PDF_RESOURCE_WALK holders and graphics-state objects to walk.
+    and walks on into the forms in Resources/XObject and the tiling patterns in
+    Resources/Pattern. From Resources/ExtGState it follows every reference: a font
+    dictionary (``_pdf_is_font``) is taken, a stream (a soft-mask group, say) is walked as
+    a holder, and any object's own references are followed in turn (a soft-mask
+    dictionary written as a stream holds its group in /G). MuPDF extracts text drawn in
+    all of those, and ``get_fonts`` lists fonts of the page and its forms only. None when
+    a font or an annotation is written inline, without an object number; when a
+    reference is not one of generation 0 to an object of the file; when something can't
+    be read; when the page tree is deeper than 64 nodes above the page without resources;
+    or when there are more than _PDF_RESOURCE_WALK holders and graphics-state objects to
+    walk.
     """
     try:
         return _pdf_walk_drawn_fonts(page)
@@ -4132,15 +4167,19 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
         return found
 
     holders: list[int] = []
-    holder = page.xref
+    holder: int | None = page.xref
     for _ in range(64):  # resources inherited from the page tree
         if document.xref_get_key(holder, "Resources")[0] != "null":
             break
         kind, parent = document.xref_get_key(holder, "Parent")
         if kind != "xref":
+            holder = None  # no resources on the page or above it
             break
         holder = _pdf_reference(document, parent)
-    holders.append(holder)
+    else:
+        return None  # a page tree deeper than the walk follows
+    if holder is not None:
+        holders.append(holder)
     annotations = text_of(*document.xref_get_key(page.xref, "Annots"))
     if "<<" in annotations:
         return None  # an annotation written inline
@@ -4151,27 +4190,29 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
             else:  # a dictionary of appearance states
                 holders.extend(references(str(document.xref_object(appearance))))
     fonts: set[int] = set()
-    walked: set[int] = set()
+    walked: set[int] = set()  # resource holders
+    followed: set[int] = set()  # objects a graphics state reaches
     states: list[int] = []
     while holders or states:
-        if len(walked) >= _PDF_RESOURCE_WALK:
-            return None
         if states:  # an object a graphics state refers to
             state = states.pop()
-            if document.xref_is_stream(state):
-                holders.append(state)  # a soft-mask group, say: walked as a holder
+            if state in followed:
                 continue
-            if state in walked:
-                continue
-            walked.add(state)
-            if document.xref_get_key(state, "Type") == ("name", "/Font"):
+            if len(walked) + len(followed) >= _PDF_RESOURCE_WALK:
+                return None
+            followed.add(state)
+            if _pdf_is_font(document, state):
                 fonts.add(state)  # a graphics state's /Font
-            else:
-                states.extend(references(str(document.xref_object(state))))
+                continue
+            if document.xref_is_stream(state):
+                holders.append(state)  # a soft-mask group, say: walked as a holder too
+            states.extend(references(str(document.xref_object(state))))
             continue
         holder = holders.pop()
         if holder in walked:
             continue
+        if len(walked) + len(followed) >= _PDF_RESOURCE_WALK:
+            return None
         walked.add(holder)
         kind, value = document.xref_get_key(holder, "Resources")
         if kind == "xref":
@@ -4199,13 +4240,10 @@ def _pdf_cid_font_widths(document: Any, font: int) -> list[tuple[int, int]] | No
     try:
         if document.xref_get_key(font, "Subtype") != ("name", "/Type0"):
             return None
-        kind, value = document.xref_get_key(font, "DescendantFonts")
-        if kind == "xref":
-            value = document.xref_object(_pdf_reference(document, value))
-        descendants = _pdf_object_references(value)
-        if descendants is None or len(descendants) != 1:
+        descendant = _pdf_descendant(document, font)
+        if descendant is None:
             return None
-        kind, value = document.xref_get_key(descendants[0], "W")
+        kind, value = document.xref_get_key(descendant, "W")
         if kind == "xref":
             value = document.xref_object(_pdf_reference(document, value))
         elif kind != "array":
