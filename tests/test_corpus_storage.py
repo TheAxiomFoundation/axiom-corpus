@@ -882,10 +882,14 @@ def test_a_link_outside_the_checkout_resolves_to_the_file_it_names(tmp_path: Pat
     assert resolve_corpus_path(link) == repo / PROV
 
 
-def test_an_unprotected_link_resolves_in_the_checkout_it_leads_to(tmp_path: Path, monkeypatch) -> None:
+@pytest.mark.parametrize("a_under", ["", "data/corpus/provisions"])
+def test_an_unprotected_link_resolves_in_the_checkout_it_leads_to(
+    tmp_path: Path, monkeypatch, a_under: str
+) -> None:
     """Review r1 finding 1: a link outside the protected paths of one checkout,
-    into another, belongs to the checkout it leads to."""
-    a = _locked_checkout(tmp_path / "a", monkeypatch)
+    into another, belongs to the checkout it leads to, even where the first
+    checkout itself sits under a directory spelled like a protected path."""
+    a = _locked_checkout(tmp_path / a_under / "a", monkeypatch)
     b = _locked_checkout(tmp_path / "b", monkeypatch)
     (a / "docs").mkdir()
     link = a / "docs/latest.jsonl"
@@ -904,10 +908,17 @@ def test_reading_a_link_outside_the_protected_paths_consults_no_lock(tmp_path: P
     monkeypatch.chdir(repo)
     rows = _write(tmp_path, "elsewhere/rows.jsonl", READABLE_FILES[PROV])
     (repo / "docs").mkdir()
+    resolver_module._repo_root_for_dir.cache_clear()
+    git_calls: list[object] = []
+    real_run = subprocess.run
+    monkeypatch.setattr(
+        resolver_module.subprocess, "run", lambda *a, **k: git_calls.append(a) or real_run(*a, **k)
+    )
     for link in (tmp_path / "rows.jsonl", repo / "docs/rows.jsonl"):
         link.symlink_to(rows)
         assert load_provisions(link)[0].citation_path == "nz/statute/a"
         assert fetch_locked_file(link)
+    assert git_calls == []  # review r2 nit 3: no git process to read an unprotected link
 
 
 def test_a_bare_corpus_path_with_dotdot_resolves_through_the_checkout(tmp_path: Path, monkeypatch) -> None:

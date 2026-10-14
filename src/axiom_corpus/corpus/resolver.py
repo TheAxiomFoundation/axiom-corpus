@@ -29,6 +29,7 @@ from axiom_corpus.corpus.content_store import (
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
+    PROTECTED_CORPUS_PREFIXES,
     LockEntry,
     LockSet,
     ScopeKey,
@@ -95,6 +96,11 @@ def _placed(path: Path) -> bool:
 def _link_holder(probe: Path) -> Path | None:
     """The checkout in which ``probe`` is a symlinked file at a protected path, if any."""
     if not _is_symlinked_file(probe):
+        return None
+    # Only a link whose directory lies under a protected prefix can be one;
+    # anything else (``/etc/localtime``) is settled without a git process.
+    parent = fold_path(os.path.realpath(probe.parent) + "/")
+    if not any(f"/{prefix}" in parent for prefix in PROTECTED_CORPUS_PREFIXES):
         return None
     holder = find_repo_root(_existing_ancestor(probe.parent))
     resolver = resolver_for(holder) if holder is not None else None

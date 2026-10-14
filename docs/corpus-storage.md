@@ -225,16 +225,18 @@ through every spelling of a checkout (a symlink to it, `/tmp` for
 `/private/tmp`, a case variant on APFS, the `/System/Volumes/Data` firmlink),
 and a command's `--base` may be relative or absolute and given from any
 directory. A bare `data/corpus/...` path is repository-relative and taken as
-written, unless it has a `..` component, which resolves through the checkout.
+written, unless it has a `..` component: then it resolves through the checkout
+like an absolute path, symlinks included.
 Symlinks are followed as the operating system follows them, with one
 exception: a symlinked file at a protected path of a checkout stands where a
 locked file belongs, so it names that path rather than its target. When a lock
 names the path, the `io` readers (`load_provisions`, `load_source_inventory`),
 `resolve_corpus_path`, `require_materialized` and fetch refuse the link, a
 dangling one included, instead of reading an absent locked file as empty or
-taking a cache object or another corpus file for it. Any other symlink, such
-as one outside a checkout or outside the protected paths, is read as before
-without consulting the locks.
+taking a cache object or another corpus file for it. Any other live symlink,
+such as one outside a checkout or outside the protected paths, is read as
+before without consulting the locks. A dangling one is fetched like the file
+it names, from the checkout its target lies in.
 
 ## Ingest
 
@@ -488,8 +490,9 @@ exactly those 1,362 files.
     `CorpusResolver.relative` gives one answer for every spelling of a
     checkout and names the directory entry a path reaches: what a symlink
     leads to, save a symlinked file at a protected path, which names itself.
-    A bare `data/corpus/...` path names itself as written, `..` resolved. A
-    symlink at a locked path never counts as fetched.
+    A bare `data/corpus/...` path names itself as written; one with a `..`
+    component resolves through the checkout like an absolute path. A symlink
+    at a locked path never counts as fetched.
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
 (1), the partition (2), byte fidelity (4), objects that hash to their names
