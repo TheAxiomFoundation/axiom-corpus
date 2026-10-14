@@ -1288,16 +1288,13 @@ def _clean_title_token(value: str | int) -> str:
 
 
 def _local_name(tag: str) -> str:
-    if "}" in tag:
-        return tag.rsplit("}", 1)[1]
-    return tag
+    return tag.rpartition("}")[2]
 
 
 def _iter_by_local(elem: ET.Element, name: str) -> Iterator[ET.Element]:
-    if _local_name(elem.tag) == name:
-        yield elem
-    for child in elem:
-        yield from _iter_by_local(child, name)
+    for descendant in elem.iter():
+        if _local_name(descendant.tag) == name:
+            yield descendant
 
 
 def _iter_structural_sections(elem: ET.Element) -> Iterator[ET.Element]:
@@ -1310,22 +1307,29 @@ def _iter_structural_sections(elem: ET.Element) -> Iterator[ET.Element]:
 
 
 def _clean_text(value: str | None) -> str:
-    return re.sub(r"\s+", " ", value or "").strip()
+    return " ".join((value or "").split())
 
 
 def _element_text(elem: ET.Element) -> str:
     if _local_name(elem.tag) == "table":
         return _table_to_markdown(elem)
+    # Parts are joined with spaces and whitespace is collapsed once, here. Collapsing
+    # each child's text before joining would give the same string, more slowly.
     parts: list[str] = []
+    _append_text_parts(elem, parts)
+    return _clean_text(" ".join(parts))
+
+
+def _append_text_parts(elem: ET.Element, parts: list[str]) -> None:
     if elem.text:
         parts.append(elem.text)
     for child in elem:
-        child_text = _element_text(child)
-        if child_text:
-            parts.append(child_text)
+        if _local_name(child.tag) == "table":
+            parts.append(_table_to_markdown(child))
+        else:
+            _append_text_parts(child, parts)
         if child.tail:
             parts.append(child.tail)
-    return _clean_text(" ".join(parts))
 
 
 def _table_to_markdown(table: ET.Element) -> str:
