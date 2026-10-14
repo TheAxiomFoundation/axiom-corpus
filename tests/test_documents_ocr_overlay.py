@@ -429,11 +429,32 @@ def _type3_font_written_inline(document, page) -> None:
     _set_page_font(document, page, "F3", document.xref_object(font, compressed=True))
 
 
-def _type3_name_made_indirect(document, page) -> None:
-    font = next(font[0] for font in page.get_fonts(full=True) if font[2] == "Type3")
-    name = document.get_new_xref()
-    document.update_object(name, "/Ind")
-    document.xref_set_key(font, "Name", f"{name} 0 R")
+def _type3_name_made_indirect(printed: str):
+    def change(document, page) -> None:
+        font = next(font[0] for font in page.get_fonts(full=True) if font[2] == "Type3")
+        name = document.get_new_xref()
+        document.update_object(name, printed)
+        document.xref_set_key(font, "Name", f"{name} 0 R")
+
+    return change
+
+
+def _type3_resource_named(printed: str):
+    """Renames the page's Type3 font resource /F3 (``printed`` as PDF writes the name)."""
+
+    def change(document, page) -> None:
+        for xref in page.get_contents():
+            stream = document.xref_stream(xref)
+            document.update_stream(xref, stream.replace(b"/F3 ", f"/{printed} ".encode()))
+        kind, resources = document.xref_get_key(page.xref, "Resources")
+        holder = int(resources.split()[0]) if kind == "xref" else page.xref
+        fonts = document.xref_get_key(holder, "Font" if kind == "xref" else "Resources/Font")
+        target = int(fonts[1].split()[0]) if fonts[0] == "xref" else holder
+        text = document.xref_object(target, compressed=True)
+        assert text.count("/F3") == 1
+        document.update_object(target, text.replace("/F3", f"/{printed}"))
+
+    return change
 
 
 def _resources_inherited_from_the_page_tree(document, page) -> None:
@@ -484,14 +505,27 @@ def _page_drawn_by_a_form(document, page) -> None:
         ("/Name /T3F", [_resources_inherited_from_the_page_tree], "T3F"),
         ("/BaseFont /Foo /Name /Bar", [_type3_font_written_inline, _page_drawn_by_a_form], "Bar"),
         ("/Name /T3F", [_page_drawn_by_a_form], "T3F"),
-        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect], "Ind"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/Ind")], "Ind"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/F#E9")], "F\u00e9"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/Foo#20Bar")], "Foo Bar"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect("/AB12CD+X")], "X"),
+        (
+            "/BaseFont /Foo /Name /Bar",
+            [_type3_font_written_inline, _type3_resource_named("F#203")],
+            "Bar",
+        ),
+        ("/Name /Bar", [_type3_font_written_inline, _type3_resource_named("F#2F3")], "Bar"),
+        ("/Name /Bar", [_type3_font_written_inline, _type3_resource_named("F#E9")], "Bar"),
     ],
 )
 def test_type3_fonts_are_named_however_they_are_written(monkeypatch, font_keys, changes, span_name):
     # Review r4: a Type3 font written inline in the resources has no object number, and
     # reading its /Name by object number raised ValueError, failing the page. Its /Name is
     # read through the resources that hold it (inherited or in a form too), and an indirect
-    # /Name is resolved, so the name matches the spans' under PyMuPDF before 1.27.
+    # /Name is resolved (its #xx escapes undone), so the name matches the spans' under
+    # PyMuPDF before 1.27. An inline font whose resource name can't be addressed ("F/3", or
+    # a byte that isn't UTF-8, which made the lookup raise TypeError) is named by the name
+    # get_fonts lists, its /Name.
     monkeypatch.setattr(
         documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
     )
@@ -515,6 +549,34 @@ def test_type3_fonts_are_named_however_they_are_written(monkeypatch, font_keys, 
     else:
         assert names == frozenset()
     assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+@pytest.mark.parametrize("resource", ["F#2F3", "F#E9"])
+def test_an_unaddressable_inline_type3_font_with_a_base_font_is_a_known_limit(
+    monkeypatch, resource
+):
+    # Limit, pinned: a Type3 font has no /BaseFont in a conforming file. If an inline one
+    # has one and its resource name can't be addressed, get_fonts lists the /BaseFont, so
+    # under PyMuPDF before 1.27 its spans (named by /Name) are not counted painted and the
+    # typed lines are judged as a recognition layer. Nothing raises.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    pdf = _type3_scan_pdf(TYPE3_LINES, font_keys="/BaseFont /Foo /Name /Bar")
+    with fitz.open("pdf", pdf) as document:
+        _type3_font_written_inline(document, document[0])
+        _type3_resource_named(resource)(document, document[0])
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        names = documents_module._pdf_type3_font_names(document[0])
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert names == {"Foo"}
+        assert result == TYPE3_OCR
+    else:
+        assert names == frozenset()
+        assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
 
 
 def _unreadable_xref(xref, key):

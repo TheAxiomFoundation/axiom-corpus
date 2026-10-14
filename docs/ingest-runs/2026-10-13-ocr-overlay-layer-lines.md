@@ -35,7 +35,10 @@ reports filled Type3 glyphs as neither filled nor stroked, as it does invisible 
 under PyMuPDF before 1.27 a span in a Type3 font counts as painted. It is matched by the
 name MuPDF 1.26 gives the span: the font's /Name (an indirect one resolved, a font written
 inline read through the resources that hold it), its bytes read as Latin-1, less a
-six-character subset prefix, or "Unnamed-T3" without one. From 1.27 the span's paint is
+six-character subset prefix, or "Unnamed-T3" without one. An inline font whose resource
+name can't be addressed (it has a "/" or a byte that isn't UTF-8) is named by the name
+PyMuPDF lists for it, its /BaseFont ahead of its /Name; a Type3 font has no /BaseFont in a
+conforming file, but one that does is missed (pinned in a test). From 1.27 the span's paint is
 trusted: 1.27.2.3 and 1.28.2, the releases checked, report Type3 paint, and every Type3
 span on the overlay pages measured is filled under 1.28.2. The limit of the lock: there, an invisible Type3 layer, or invisible
 text in another font sharing a Type3 font's name, counts as painted. If the spans do not hold the

@@ -3337,6 +3337,7 @@ def _pdf_layer_lines(
 # PyMuPDF before 1.27 reports filled Type3 glyphs as neither filled nor stroked, the same
 # as invisible text; 1.27 and later report Type3 paint correctly.
 _PDF_TYPE3_PAINT_UNREPORTED = tuple(fitz.pymupdf_version_tuple[:2]) < (1, 27)
+_PDF_NAME_ESCAPE = re.compile(rb"#([0-9A-Fa-f]{2})")
 
 
 def _pdf_type3_font_names(page: Any) -> frozenset[str]:
@@ -3360,8 +3361,10 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
     It is the font's /Name (an indirect one resolved), its bytes read as Latin-1, less any
     six characters before a "+" (a subset prefix), or "Unnamed-T3" without one. A font
     written inline in a resource dictionary has no object number; its /Name is read through
-    the resources of the page or form that uses it. If the name can't be read, the name
-    ``get_fonts`` lists (its /BaseFont, else its /Name) is used.
+    the resources of the page or form that uses it. If the name can't be read (an inline
+    font whose resource name has a "/" or a byte that isn't UTF-8 can't be addressed), the
+    name ``get_fonts`` lists is used: the /Name, or a /BaseFont, which a Type3 font does not
+    normally have, ahead of it.
     """
     document = page.parent
     try:
@@ -3370,16 +3373,19 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
         else:
             kind, value = _pdf_inline_font_key(document, font[6] or page.xref, str(font[4]))
         if kind == "xref":
-            value = document.xref_object(int(value.split()[0])).strip()
-            kind = "name" if value.startswith("/") else "null"
-    except (ValueError, RuntimeError):
+            # An indirect name is printed as PDF writes it, its #xx escapes in place.
+            printed = document.xref_object(int(value.split()[0])).strip()
+            data = printed[1:].encode("latin-1") if printed.startswith("/") else b""
+            data = _PDF_NAME_ESCAPE.sub(lambda match: bytes.fromhex(match.group(1).decode()), data)
+            name = data.decode("latin-1")
+        elif kind == "name":
+            # A direct one has its escapes undone and its bytes given as UTF-8, any byte that
+            # isn't UTF-8 as a surrogate.
+            name = value[1:].encode("utf-8", "surrogateescape").decode("latin-1")
+        else:
+            name = ""
+    except Exception:  # MuPDF and its bindings raise several types; only a name is at stake
         name = str(font[3])
-    else:
-        # PyMuPDF returns the name's bytes (its #xx escapes undone) as UTF-8, any byte
-        # that isn't UTF-8 as a surrogate; MuPDF reads them as Latin-1.
-        name = (
-            value[1:].encode("utf-8", "surrogateescape").decode("latin-1") if kind == "name" else ""
-        )
     if not name:
         return "Unnamed-T3"
     return name[7:] if name.find("+") == 6 else name
@@ -3387,10 +3393,14 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
 
 def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
     """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
-    of the page-tree nodes it inherits them from when it has none."""
+    of the page-tree nodes it inherits them from when it has none. Raises LookupError when
+    the font is not found under that name (the lookup path splits at a "/" in it)."""
     for _ in range(64):
         if document.xref_get_key(holder, "Resources")[0] != "null":
-            kind, value = document.xref_get_key(holder, f"Resources/Font/{resource}/Name")
+            path = f"Resources/Font/{resource}"
+            if document.xref_get_key(holder, path)[0] == "null":
+                raise LookupError(resource)
+            kind, value = document.xref_get_key(holder, path + "/Name")
             return str(kind), str(value)
         kind, parent = document.xref_get_key(holder, "Parent")
         if kind != "xref":
