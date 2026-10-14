@@ -3334,8 +3334,6 @@ def _pdf_layer_lines(
 # PyMuPDF before 1.27 reports filled Type3 glyphs as neither filled nor stroked, the same
 # as invisible text; 1.27 and later report Type3 paint correctly.
 _PDF_TYPE3_PAINT_UNREPORTED = tuple(fitz.pymupdf_version_tuple[:2]) < (1, 27)
-_PDF_FONT_SUBSET_PREFIX = re.compile(r"^[A-Z]{6}\+")
-_PDF_NAME_ESCAPE = re.compile(r"#([0-9A-Fa-f]{2})")
 
 
 def _pdf_type3_font_names(page: Any) -> frozenset[str]:
@@ -3343,23 +3341,59 @@ def _pdf_type3_font_names(page: Any) -> frozenset[str]:
 
     Under PyMuPDF before 1.27 (this repository locks 1.26) a span in a Type3 font counts
     as painted, since filled and invisible Type3 text look alike there; every Type3 span on
-    the 1,041 overlay pages measured is filled under 1.28.2. MuPDF names a Type3 span by the
-    font's /Name, without a six-letter subset prefix, or "Unnamed-T3" when it has none. Under
-    1.27 and later the paint is read from the span and this is empty.
+    the 1,041 overlay pages measured is filled under 1.28.2. Under 1.27 and later the paint
+    is read from the span and this is empty.
     """
     if not _PDF_TYPE3_PAINT_UNREPORTED:
         return frozenset()
-    names: set[str] = set()
-    for font in page.get_fonts(full=True):
-        if font[2] != "Type3":
-            continue
-        kind, value = page.parent.xref_get_key(font[0], "Name")
-        if kind != "name":
-            names.add("Unnamed-T3")
-            continue
-        name = _PDF_NAME_ESCAPE.sub(lambda match: chr(int(match.group(1), 16)), value[1:])
-        names.add(_PDF_FONT_SUBSET_PREFIX.sub("", name))
-    return frozenset(names)
+    return frozenset(
+        _pdf_type3_span_name(page, font) for font in page.get_fonts(full=True) if font[2] == "Type3"
+    )
+
+
+def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
+    """The name MuPDF 1.26 gives the spans of a Type3 font ``get_fonts(full=True)`` lists.
+
+    It is the font's /Name (an indirect one resolved), its bytes read as Latin-1, less any
+    six characters before a "+" (a subset prefix), or "Unnamed-T3" without one. A font
+    written inline in a resource dictionary has no object number; its /Name is read through
+    the resources of the page or form that uses it. If the name can't be read, the name
+    ``get_fonts`` lists (its /BaseFont, else its /Name) is used.
+    """
+    document = page.parent
+    try:
+        if font[0]:
+            kind, value = document.xref_get_key(font[0], "Name")
+        else:
+            kind, value = _pdf_inline_font_key(document, font[6] or page.xref, str(font[4]))
+        if kind == "xref":
+            value = document.xref_object(int(value.split()[0])).strip()
+            kind = "name" if value.startswith("/") else "null"
+    except (ValueError, RuntimeError):
+        name = str(font[3])
+    else:
+        # PyMuPDF returns the name's bytes (its #xx escapes undone) as UTF-8, any byte
+        # that isn't UTF-8 as a surrogate; MuPDF reads them as Latin-1.
+        name = (
+            value[1:].encode("utf-8", "surrogateescape").decode("latin-1") if kind == "name" else ""
+        )
+    if not name:
+        return "Unnamed-T3"
+    return name[7:] if name.find("+") == 6 else name
+
+
+def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
+    """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
+    of the page-tree nodes it inherits them from when it has none."""
+    for _ in range(64):
+        if document.xref_get_key(holder, "Resources")[0] != "null":
+            kind, value = document.xref_get_key(holder, f"Resources/Font/{resource}/Name")
+            return str(kind), str(value)
+        kind, parent = document.xref_get_key(holder, "Parent")
+        if kind != "xref":
+            break
+        holder = int(parent.split()[0])
+    return "null", "null"
 
 
 def _layer_characters(text: str) -> Counter[str]:

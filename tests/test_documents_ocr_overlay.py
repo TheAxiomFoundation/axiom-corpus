@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import fitz
 import pytest
@@ -333,6 +334,17 @@ def test_blank_ocr_keeps_an_invisible_layer_as_it_is(tmp_path, monkeypatch):
     assert _first_page_text(hidden, {"ocr": True}).split() == NOISE_LAYER.split()
 
 
+def _set_page_font(document, page, resource: str, value: str) -> None:
+    resources = document.xref_get_key(page.xref, "Resources")
+    holder = int(resources[1].split()[0]) if resources[0] == "xref" else page.xref
+    prefix = "" if resources[0] == "xref" else "Resources/"
+    fonts = document.xref_get_key(holder, prefix + "Font")
+    if fonts[0] == "xref":
+        document.xref_set_key(int(fonts[1].split()[0]), resource, value)
+    else:
+        document.xref_set_key(holder, f"{prefix}Font/{resource}", value)
+
+
 def _type3_scan_pdf(lines: list[str], *, font_keys: str = "", render_mode: int = 0) -> bytes:
     """A scanned page whose lines are set in a Type3 font (``font_keys`` adds /Name or
     /BaseFont; render mode 0 fills the glyphs, 3 makes them invisible)."""
@@ -358,14 +370,7 @@ def _type3_scan_pdf(lines: list[str], *, font_keys: str = "", render_mode: int =
         f"/FirstChar 32 /LastChar 126 /Widths [{' '.join(['600'] * 95)}] /Resources << >> "
         f"{font_keys} >>",
     )
-    resources = document.xref_get_key(page.xref, "Resources")
-    holder = int(resources[1].split()[0]) if resources[0] == "xref" else page.xref
-    prefix = "" if resources[0] == "xref" else "Resources/"
-    fonts = document.xref_get_key(holder, prefix + "Font")
-    if fonts[0] == "xref":
-        document.xref_set_key(int(fonts[1].split()[0]), "F3", f"{font} 0 R")
-    else:
-        document.xref_set_key(holder, prefix + "Font/F3", f"{font} 0 R")
+    _set_page_font(document, page, "F3", f"{font} 0 R")
     body = b" ".join(
         b"BT %d Tr /F3 12 Tf 72 %d Td (%s) Tj ET" % (render_mode, 700 - 20 * index, line.encode())
         for index, line in enumerate(lines)
@@ -393,7 +398,11 @@ TYPE3_LINES = ["/s/", "Hye Sun Lee", "Acting Associate Regional Administrator"]
         ("/BaseFont /Foo /Name /Bar", "Bar"),
         ("/BaseFont /Foo", "Unnamed-T3"),
         ("/Name /ABCDEF+Foo", "Foo"),
+        ("/Name /ab12cd+Foo", "Foo"),
         ("/Name /Foo#20Bar", "Foo Bar"),
+        ("/Name /A#2341", "A#41"),
+        ("/Name /F#E9", "F\u00e9"),
+        ("/Name /F#C3#A9", "F\u00c3\u00a9"),
     ],
 )
 def test_typed_lines_in_a_type3_font_are_kept(monkeypatch, font_keys, span_name):
@@ -413,6 +422,116 @@ def test_typed_lines_in_a_type3_font_are_kept(monkeypatch, font_keys, span_name)
     if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
         assert any(font == span_name for _, _, font in spans)
     assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _type3_font_written_inline(document, page) -> None:
+    font = next(font[0] for font in page.get_fonts(full=True) if font[2] == "Type3")
+    _set_page_font(document, page, "F3", document.xref_object(font, compressed=True))
+
+
+def _type3_name_made_indirect(document, page) -> None:
+    font = next(font[0] for font in page.get_fonts(full=True) if font[2] == "Type3")
+    name = document.get_new_xref()
+    document.update_object(name, "/Ind")
+    document.xref_set_key(font, "Name", f"{name} 0 R")
+
+
+def _resources_inherited_from_the_page_tree(document, page) -> None:
+    resources = document.xref_get_key(page.xref, "Resources")[1]
+    pages = int(document.xref_get_key(page.xref, "Parent")[1].split()[0])
+    document.xref_set_key(pages, "Resources", resources)
+    document.xref_set_key(page.xref, "Resources", "null")
+
+
+def _resources_written_into_the_page(document, page) -> None:
+    kind, resources = document.xref_get_key(page.xref, "Resources")
+    assert kind == "xref"
+    resources = document.xref_object(int(resources.split()[0]), compressed=True)
+    document.xref_set_key(page.xref, "Resources", resources)
+
+
+def _page_drawn_by_a_form(document, page) -> None:
+    content = b"\n".join(document.xref_stream(xref) for xref in page.get_contents())
+    resources = document.xref_get_key(page.xref, "Resources")[1]
+    form = document.get_new_xref()
+    document.update_object(
+        form, f"<< /Type /XObject /Subtype /Form /BBox [0 0 612 792] /Resources {resources} >>"
+    )
+    document.update_stream(form, content)
+    contents = document.get_new_xref()
+    document.update_object(contents, "<< >>")
+    document.update_stream(contents, b"q /Fm1 Do Q")
+    document.xref_set_key(page.xref, "Resources", f"<< /XObject << /Fm1 {form} 0 R >> >>")
+    document.xref_set_key(page.xref, "Contents", f"{contents} 0 R")
+
+
+@pytest.mark.parametrize(
+    ("font_keys", "changes", "span_name"),
+    [
+        ("/BaseFont /Foo /Name /Bar", [_type3_font_written_inline], "Bar"),
+        ("/BaseFont /Foo", [_type3_font_written_inline], "Unnamed-T3"),
+        ("/Name /ab12cd+Bar", [_type3_font_written_inline], "Bar"),
+        (
+            "/BaseFont /Foo /Name /Bar",
+            [_type3_font_written_inline, _resources_written_into_the_page],
+            "Bar",
+        ),
+        (
+            "/BaseFont /Foo /Name /Bar",
+            [_type3_font_written_inline, _resources_inherited_from_the_page_tree],
+            "Bar",
+        ),
+        ("/Name /T3F", [_resources_inherited_from_the_page_tree], "T3F"),
+        ("/BaseFont /Foo /Name /Bar", [_type3_font_written_inline, _page_drawn_by_a_form], "Bar"),
+        ("/Name /T3F", [_page_drawn_by_a_form], "T3F"),
+        ("/BaseFont /Foo /Name /Placeholder", [_type3_name_made_indirect], "Ind"),
+    ],
+)
+def test_type3_fonts_are_named_however_they_are_written(monkeypatch, font_keys, changes, span_name):
+    # Review r4: a Type3 font written inline in the resources has no object number, and
+    # reading its /Name by object number raised ValueError, failing the page. Its /Name is
+    # read through the resources that hold it (inherited or in a form too), and an indirect
+    # /Name is resolved, so the name matches the spans' under PyMuPDF before 1.27.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    with fitz.open("pdf", _type3_scan_pdf(TYPE3_LINES, font_keys=font_keys)) as document:
+        for change in changes:
+            change(document, document[0])
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        page = document[0]
+        fonts = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
+        span_fonts = {font for line in _pdf_layer_lines(page, extraction={}) for _, _, font in line}
+        names = documents_module._pdf_type3_font_names(page)
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert len(fonts) == 1
+    assert (fonts[0][0] == 0) == (_type3_font_written_inline in changes)
+    assert (fonts[0][6] != 0) == (_page_drawn_by_a_form in changes)
+    if documents_module._PDF_TYPE3_PAINT_UNREPORTED:
+        assert names == {span_name}
+        assert span_name in span_fonts
+    else:
+        assert names == frozenset()
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _unreadable_xref(xref, key):
+    raise ValueError("bad xref")
+
+
+@pytest.mark.parametrize(
+    ("font", "span_name"),
+    [
+        ((12, "n/a", "Type3", "ABCDEF+Foo", "F3", "", 0), "Foo"),
+        ((0, "n/a", "Type3", "Foo", "F3", "", 0), "Foo"),
+        ((12, "n/a", "Type3", "", "F3", "", 0), "Unnamed-T3"),
+    ],
+)
+def test_a_type3_name_that_cannot_be_read_falls_back_to_the_listed_name(font, span_name):
+    page = SimpleNamespace(xref=5, parent=SimpleNamespace(xref_get_key=_unreadable_xref))
+    assert documents_module._pdf_type3_span_name(page, font) == span_name
 
 
 def test_an_invisible_type3_layer_is_judged_where_paint_is_reported(monkeypatch):
