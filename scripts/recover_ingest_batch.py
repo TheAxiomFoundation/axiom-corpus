@@ -28,9 +28,9 @@ from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
-    build_usc_inventory_from_xml,
+    _build_usc_inventory,
+    _iter_usc_provisions,
     decode_uslm_bytes,
-    iter_usc_title_provisions,
     parse_uslm_title,
 )
 from axiom_corpus.parsers.us_ca.regulations import extract_paragraphs, parse_mpp_sections
@@ -1025,9 +1025,8 @@ def _parse(
             else None
         )
         document = parse_uslm_title(xml, title=usc_title)
-        inventory = build_usc_inventory_from_xml(
-            xml,
-            title=document.title,
+        inventory = _build_usc_inventory(
+            document,
             run_id=None,
             source_sha256=str(provenance["sha256"]),
             source_download_url=str(provenance["url"]),
@@ -1038,11 +1037,10 @@ def _parse(
             mapping["source_path"] = source_key
             items.append(SourceInventoryItem.from_mapping(mapping))
         records = list(
-            iter_usc_title_provisions(
-                xml,
+            _iter_usc_provisions(
+                document,
                 version=str(entry["proposed_version"]),
                 source_path=source_key,
-                title=document.title,
                 source_as_of="2026-07-13",
                 expression_date="2026-07-13",
                 source_download_url=str(provenance["url"]),
