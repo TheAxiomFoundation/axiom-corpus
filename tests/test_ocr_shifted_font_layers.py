@@ -40,24 +40,29 @@ retained CMS pages with Tesseract's stored output):
 
 S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an unmapped
     character, and every span's paint and font unchanged on every page. It runs after
-    ``_with_layer_marks``, so a font whose codes print as combining marks is decoded and
-    its lines kept.
+    ``_with_layer_marks``, so under PyMuPDF 1.26 a font whose codes print as combining
+    marks is decoded and its lines kept (1.28 moves the marks, and nothing is decoded).
 S8. A span without an unmapped character is never changed. A font is not decoded in a line
-    where some of its characters are mapped, nor anywhere when another font object on the
-    page has its name (two unmapped fonts of one name can number their glyphs differently),
-    and a line is decoded whole or not at all: not when one of its characters, in any of
-    its spans, would decode outside printable ASCII.
+    where some of its characters are mapped, nor anywhere when another font object the
+    page's text can be drawn in has its name, as MuPDF names spans: a Type0 font by its
+    descendant, names cut to 31 bytes; fonts in forms, tiling patterns, soft-mask groups
+    and every annotation's appearance (two unmapped fonts of one name can number their
+    glyphs differently). A line is decoded whole or not at all: not when one of its
+    characters, in any of its spans, would decode outside printable ASCII, nor when a span
+    of it would still hold a control character.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
     reports as U+FFFD (a differential test on every retained page); every span holding one
     is one MuPDF marks UNICODE_IS_CID or _IS_GID; and a character is paired with the other
     read's only where the reads agree at its origin (``_pdf_unmapped_status``).
 S10. Only a Type0 font is decoded, and only when its /W gives a width for every code it
-    draws unmapped on the page and leaves a gap between its least and greatest code (a
-    font numbering its glyphs in order of use leaves none). /W read back gives exactly the
-    codes written.
-S11. When an annotation's font can't be known for certain (an inline font, a /Subtype or
-    /BaseFont not written in the font's dictionary, a reference of another generation, or
-    more appearance streams than the walk takes), nothing on the page is decoded.
+    draws unmapped on the page and leaves a code without one between the least and the
+    greatest of those (a font numbering its glyphs in order of use has a glyph for each),
+    whatever the /W says elsewhere; it may be a font only an annotation draws. /W read back
+    gives exactly the codes written, as merged ranges.
+S11. When the page's fonts can't be known for certain (a font or annotation written inline,
+    a /Subtype or /BaseFont not written in the font's dictionary, a reference printed with
+    another generation or to an object the file lacks, or more holders than the walk
+    takes), nothing on the page is decoded, and nothing raises.
 """
 
 from __future__ import annotations
