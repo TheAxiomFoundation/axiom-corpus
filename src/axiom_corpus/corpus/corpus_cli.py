@@ -257,7 +257,7 @@ def _selected_entries(
             chosen[entry.path] = entry
     for path in paths:
         rel = Path(path).as_posix().rstrip("/")
-        matches = locks.entries_under(rel)
+        matches = locks.entries_under(locks.locked_spelling(repo, rel))
         if not matches and rel != CORPUS_BASE:
             _usage_exit(f"no locked files at or under {rel}")
         for entry in matches:

@@ -238,6 +238,32 @@ such as one outside a checkout or outside the protected paths, is read as
 before without consulting the locks. A dangling one is fetched like the file
 it names, from the checkout its target lies in.
 
+Within a checkout, a lock names each file by one spelling, but a
+case-insensitive filesystem stores other spellings of a path in the same
+place: on APFS `DATA/corpus/provisions/x.jsonl` is
+`data/corpus/provisions/x.jsonl`. The resolver's presence checks look locks
+up through `LockSet.locked_spelling`, which maps such a spelling onto the
+locked path whether or not the file has been fetched. That covers
+`fetch_locked_file` (and so the `io` readers), `resolve_corpus_path`,
+`require_materialized` and `missing_under`, `ensure_corpus_paths`, the CLI's
+inputs and `--base`, and `corpus fetch --path`; the partial-test audit hook
+still matches spellings exactly. `stored_together` decides one component at a
+time from the checkout. Where an entry exists under the locked name, the other
+spelling must reach that same entry. Where neither exists yet, the two share a
+place when the deepest existing directory finds one of its own names in the
+other ASCII case (nothing is written to find out) and the names are Unicode
+canonical caseless matches, which is how case-insensitive APFS compares names
+in every case the tests try. On a case-sensitive filesystem the other
+spelling is another path that no lock names, and it reads as before. Two
+limits apply only before the file exists. Case-sensitive APFS still stores
+canonically equivalent names (a decomposed `é`, the Kelvin sign for `K`) in
+one place; until the locked file is there, such a spelling is taken for
+another path. A filesystem that compares names differently from APFS (HFS+
+ignores some format characters, per `fold_path`) may be misjudged; if a
+spelling is fetched as a locked file and still does not reach it,
+`resolve_corpus_path` refuses it rather than return a path that does not
+exist, and `fetch_locked_file` returns False.
+
 ## Ingest
 
 1. An extractor writes the scope under `data/corpus` (git ignores it).
@@ -492,14 +518,17 @@ exactly those 1,362 files.
     leads to, save a symlinked file at a protected path, which names itself.
     A bare `data/corpus/...` path names itself as written; one with a `..`
     component resolves through the checkout like an absolute path. A symlink
-    at a locked path never counts as fetched.
+    at a locked path never counts as fetched. Another spelling of a locked
+    path names that locked file exactly when the filesystem stores the two in
+    one place, fetched or not, save on case-sensitive APFS (under Resolver).
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
 (1), the partition (2), byte fidelity (4), objects that hash to their names
 and are read-only (5), idempotence (6), no links (7), portable names (9,
 with a differential test against a brute-force reference) and path naming
-(10, against the filesystem's identity of the entry each spelling reaches);
-3 on real git trees. `tests/test_corpus_lock_guard.py`
+(10, against the filesystem's identity of the entry each spelling reaches,
+and for locked spellings decided before the file exists, against the
+filesystem once it does); 3 on real git trees. `tests/test_corpus_lock_guard.py`
 checks 8, including tampered locks. The concurrency and failure clauses of 4
 and 5 are pinned by regression tests instead: `tests/test_corpus_storage_review.py`
 and `tests/test_corpus_lock_guard_review.py` hold one test per reproduced

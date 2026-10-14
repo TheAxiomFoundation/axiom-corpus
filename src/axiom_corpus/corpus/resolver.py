@@ -37,6 +37,7 @@ from axiom_corpus.corpus.corpus_locks import (
     is_protected_corpus_path,
     load_locks,
     scope_for_path,
+    stored_together,
 )
 
 NO_FETCH_ENV = "AXIOM_CORPUS_NO_FETCH"
@@ -198,7 +199,7 @@ class CorpusResolver:
             rel = self.relative(path)
             if rel is None:
                 continue
-            for entry in self.locks.entries_under(rel):
+            for entry in self.locks.entries_under(self.locks.locked_spelling(self.repo, rel)):
                 selected[entry.path] = entry
         return self.locks.with_whole_source_dirs(selected.values())
 
@@ -322,7 +323,9 @@ class CorpusResolver:
         """A regular file for one corpus path, fetched if it is locked and absent.
 
         A source file comes with every locked source of its scope, even when it
-        is itself already present: callers list the directory next.
+        is itself already present: callers list the directory next. A spelling
+        the filesystem stores where a locked file belongs (``DATA/corpus/...``
+        on APFS) is that file, present or not.
         """
         rel = self.relative(path)
         if rel is None:
@@ -332,19 +335,7 @@ class CorpusResolver:
         if present and not fold_path(rel).startswith(f"{CORPUS_BASE}/sources/"):
             return target
         self.require_valid_locks()
-        # A case-variant spelling names the same locked file only where the
-        # filesystem merged them, i.e. when the variant exists on disk.
-        entry = self.locks.by_path.get(rel)
-        if entry is None and present:
-            folded = self.locks.find_folded(rel)
-            canonical = self.repo / folded.path if folded is not None else None
-            # Only a spelling the filesystem merged, i.e. the same file on disk.
-            try:
-                merged = canonical is not None and os.path.samefile(target, canonical)
-            except FileNotFoundError:  # one of them vanished meanwhile (a rollback)
-                merged = False
-            if merged:
-                entry = folded
+        entry = self.locks.by_path.get(self.locks.locked_spelling(self.repo, rel))
         if entry is None:
             if present:
                 return target
@@ -373,6 +364,13 @@ class CorpusResolver:
                     f"fetching is off ({NO_FETCH_ENV}); first: {missing[0].path}"
                 )
             self.ensure(missing)
+        if entry.path != rel and not _placed(target):
+            # Taken for the locked file, the spelling must now reach it; a
+            # filesystem that keeps the two apart makes it another, absent file.
+            raise CorpusNotMaterializedError(
+                f"{rel} is neither present nor locked; this filesystem keeps it apart "
+                f"from the locked {entry.path}."
+            )
         if scope is not None and entry.path.startswith(f"{CORPUS_BASE}/sources/"):
             self._complete_source_scopes.add(scope)
         return target
@@ -456,7 +454,11 @@ def require_materialized(
         return
     resolver.require_valid_locks()
     missing: list[LockEntry] = []
-    rels = [rel for rel in (resolver.relative(path) for path in path_list) if rel is not None]
+    rels = [
+        resolver.locks.locked_spelling(resolver.repo, rel)
+        for rel in (resolver.relative(path) for path in path_list)
+        if rel is not None
+    ]
     for rel in rels:
         missing.extend(resolver.locks.missing_under(resolver.repo, rel))
     if not missing:
@@ -481,8 +483,11 @@ def require_materialized(
 def fetch_locked_file(path: str | Path) -> bool:
     """Fetch ``path`` if a lock in its checkout names it; True when it is now in place.
 
-    Returns False (and does nothing) for paths no lock names, outside any
-    checkout, or with fetching disabled. Raises ``CorpusNotMaterializedError``
+    A lock names ``path`` when it names the place the filesystem stores
+    ``path`` in: on a case-insensitive filesystem ``DATA/corpus/...`` is
+    ``data/corpus/...``, fetched or not. Returns False (and does nothing) for
+    paths no lock names, outside any checkout, or with fetching disabled.
+    Raises ``CorpusNotMaterializedError``
     when a locked file cannot be fetched, or when a symlink stands where it
     belongs: silently reading nothing, or bytes no lock checked, would be
     worse.
@@ -498,7 +503,12 @@ def fetch_locked_file(path: str | Path) -> bool:
         return False
     resolver.require_valid_locks()
     rel = resolver.relative(anchor)
-    if rel is None or rel not in resolver.locks.by_path:
+    if rel is None:
+        return False
+    # Another spelling the filesystem stores in the same place
+    # (``DATA/corpus/...`` on APFS) is the locked file, fetched or not.
+    rel = resolver.locks.locked_spelling(resolver.repo, rel)
+    if rel not in resolver.locks.by_path:
         return False
     if (resolver.repo / rel).is_symlink():
         raise _symlinked_error(rel, resolver.repo / rel)
@@ -508,7 +518,7 @@ def fetch_locked_file(path: str | Path) -> bool:
             "as empty would be wrong. Fetch it first."
         )
     resolver.ensure(resolver.entries_for_paths([rel]))
-    return True
+    return anchor.exists()
 
 
 def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
@@ -554,7 +564,16 @@ def _is_corpus_base(repo: Path, base: object) -> bool:
     if not isinstance(base, str | Path) or not str(base):
         return False
     candidate = Path(base) if Path(base).is_absolute() else Path.cwd() / Path(base)
-    return Path(os.path.realpath(candidate)) == (repo / CORPUS_BASE).resolve()
+    if Path(os.path.realpath(candidate)) == (repo / CORPUS_BASE).resolve():
+        return True
+    # Another spelling of it: through a firmlink, or a case variant on APFS
+    # (fetched or not).
+    rel = CorpusResolver(repo, sources=[]).relative(candidate)
+    return (
+        rel is not None
+        and fold_path(rel) == CORPUS_BASE
+        and stored_together(repo, rel, CORPUS_BASE)
+    )
 
 
 def corpus_inputs_from_args(
@@ -580,9 +599,10 @@ def corpus_inputs_from_args(
             if not candidate.is_absolute():
                 candidate = Path.cwd() / candidate
             rel = resolver.relative(candidate)
-            # A path under a protected prefix names files to read; the bare
-            # base (``--base data/corpus``) names nothing by itself.
-            if rel is not None and is_protected_corpus_path(rel.rstrip("/") + "/"):
+            # A path under a protected prefix, in any spelling (the locks
+            # decide which spellings name locked files), names files to read;
+            # the bare base (``--base data/corpus``) names nothing by itself.
+            if rel is not None and is_protected_corpus_path(fold_path(rel).rstrip("/") + "/"):
                 paths.append(rel.rstrip("/"))
     scopes: list[ScopeKey] = []
     if _is_corpus_base(repo, getattr(args, "base", None)):

@@ -11,7 +11,9 @@ Hypothesis alongside example tests:
 6. idempotence (a second fetch changes nothing);
 7. no links (materialized files are independent regular files);
 10. path naming (every spelling of a checkout names one entry; a symlinked
-    corpus file is named, and refused, as itself).
+    corpus file is named, and refused, as itself; a spelling of a locked path
+    names the locked file exactly where the filesystem stores both in one
+    place, fetched or not).
 """
 
 from __future__ import annotations
@@ -28,10 +30,11 @@ from pathlib import Path
 
 import pytest
 from botocore.exceptions import ClientError
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, event, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import corpus_cli
+from axiom_corpus.corpus import corpus_locks as corpus_locks_module
 from axiom_corpus.corpus import resolver as resolver_module
 from axiom_corpus.corpus.cli import main as cli_main
 from axiom_corpus.corpus.content_store import (
@@ -54,6 +57,7 @@ from axiom_corpus.corpus.corpus_locks import (
     LockSet,
     diff_lock_sets,
     fold_collisions,
+    fold_path,
     hash_tree_blobs,
     is_protected_corpus_path,
     list_tree_blobs,
@@ -62,6 +66,7 @@ from axiom_corpus.corpus.corpus_locks import (
     lock_from_worktree,
     lock_path_for_scope,
     locks_from_hashed_blobs,
+    looks_up_case_insensitively,
     parse_lock,
     parse_scope_selector,
     protected_tree_blobs,
@@ -728,6 +733,21 @@ def test_a_lock_set_is_invalid_exactly_when_its_names_collide(tmp_path_factory, 
     assert bool(errors) == bool(_reference_collisions(paths))
 
 
+def _fold_the_long_way(path: str) -> str:
+    """``fold_path`` without its ASCII shortcut."""
+    text = unicodedata.normalize("NFKC", path)
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
+    return unicodedata.normalize("NFKC", text.upper().lower().casefold())
+
+
+@PROPERTY_SETTINGS
+@given(st.text(alphabet=st.characters(max_codepoint=0x7F), max_size=40))
+def test_fold_path_folds_ascii_as_the_full_fold_does(text: str) -> None:
+    """fold_path lowercases ASCII instead of normalizing it; the keys must not change."""
+    assert fold_path(text) == _fold_the_long_way(text)
+    assert all(fold_path(chr(code)) == _fold_the_long_way(chr(code)) for code in range(0x80))
+
+
 # --------------------------------------------------------------------------- path naming (invariant 10)
 
 PROV = "data/corpus/provisions/nz/statute/2026-07-10.jsonl"
@@ -1070,3 +1090,260 @@ def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, drawn) -> N
         probe = os.lstat if kept else os.stat
         for spelling in spellings:
             assert os.path.samestat(probe(spelling / rel), probe(repo / named))
+
+
+# Locked spellings: a spelling the filesystem stores where a locked file belongs.
+
+def _folds_case_on_disk(directory: Path) -> bool:
+    """Ground truth, by writing a file: does ``directory`` find it in another case?"""
+    probe = directory / "case-probe"
+    probe.write_bytes(b"")
+    try:
+        return (directory / "CASE-PROBE").exists()
+    finally:
+        probe.unlink()
+
+
+CASE_VARIANTS = [
+    PROV.replace("data/", "DATA/", 1),  # the #876 review's spelling
+    PROV.replace("/provisions/", "/PROVISIONS/", 1),
+    PROV.replace("/nz/", "/NZ/", 1),
+    PROV.replace(".jsonl", ".JSONL"),
+]
+
+
+@pytest.mark.parametrize("fetched_beside", [False, True])
+@pytest.mark.parametrize("variant", CASE_VARIANTS)
+def test_another_case_of_an_absent_locked_file_is_that_file_where_case_folds(
+    tmp_path: Path, monkeypatch, variant: str, fetched_beside: bool
+) -> None:
+    """#876 review (2026-10-14): on APFS ``DATA/corpus/provisions/...`` names the
+    locked file's place, but no lock named that spelling, so an unfetched scope
+    loaded as empty, require_materialized passed it, and fetch skipped it."""
+    if not _folds_case_on_disk(tmp_path):
+        pytest.skip("needs a case-insensitive filesystem")
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    if fetched_beside:  # data/corpus exists: some components are found, some probed
+        resolver.ensure_paths([COVERAGE])
+    spelled = repo / variant
+    assert resolver.locks.locked_spelling(repo, variant) == PROV
+    assert resolver.entries_for_paths([spelled]) == resolver.entries_for_paths([PROV])
+    directory = variant.rsplit("/", 1)[0]
+    assert resolver.locks.missing_under(repo, directory) == [resolver.locks.by_path[PROV]]
+
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match=f"{PROV} is locked but absent"):
+        load_provisions(spelled)
+    with pytest.raises(CorpusNotMaterializedError, match=f"fetch --path {PROV}"):
+        require_materialized([spelled], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([repo / directory], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="absent and fetching is off"):
+        resolve_corpus_path(spelled, repo=repo)
+    assert not (repo / PROV).exists()
+
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert load_provisions(spelled)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(repo, PROV)
+    (repo / PROV).unlink()
+    assert fetch_locked_file(spelled) and _placed_regular(repo, PROV)
+    (repo / PROV).unlink()
+    assert resolve_corpus_path(spelled, repo=repo).read_bytes() == READABLE_FILES[PROV]
+    (repo / PROV).unlink()
+    require_materialized([repo / directory], repo=repo, fetch=True)
+    assert _placed_regular(repo, PROV)
+
+
+@pytest.mark.parametrize("variant", CASE_VARIANTS)
+def test_another_case_names_another_unlocked_file_where_case_is_kept(
+    tmp_path: Path, monkeypatch, variant: str
+) -> None:
+    """On a case-sensitive filesystem the variant is a different path that no
+    lock names: it reads as before and fetches nothing."""
+    if _folds_case_on_disk(tmp_path):
+        pytest.skip("needs a case-sensitive filesystem")
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    spelled = repo / variant
+    assert resolver.locks.locked_spelling(repo, variant) == variant
+    assert resolver.entries_for_paths([spelled]) == []
+    assert not fetch_locked_file(spelled)
+    assert load_provisions(spelled) == ()
+    require_materialized([spelled], repo=repo)
+    if not PROV.startswith(f"{variant.rsplit('/', 1)[0]}/"):  # the directory is respelled too
+        require_materialized([spelled.parent], repo=repo)
+    assert not (repo / PROV).exists()
+    # Present side by side, each spelling names its own file.
+    resolver.ensure_paths([PROV])
+    other_row = {**PROV_ROW, "citation_path": "nz/statute/b"}
+    _write(repo, variant, (json.dumps(other_row) + "\n").encode())
+    assert resolver.locks.locked_spelling(repo, variant) == variant
+    assert load_provisions(spelled)[0].citation_path == "nz/statute/b"
+    assert _placed_regular(repo, PROV)
+
+
+def test_cli_inputs_take_another_case_of_corpus_paths_and_the_base(tmp_path: Path, monkeypatch) -> None:
+    """The CLI names inputs, and corpus-wide reports require whole trees, under
+    every spelling the filesystem stores in the corpus's place."""
+    import argparse
+    import importlib.util
+
+    from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
+
+    folds = _folds_case_on_disk(tmp_path)
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    monkeypatch.chdir(repo)
+    variant = PROV.replace("data/", "DATA/", 1)
+    args = argparse.Namespace(
+        base=Path("DATA/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version="2026-07-10",
+        provisions=Path(variant),
+    )
+    paths, scopes, _selectors = corpus_inputs_from_args(args, repo=repo)
+    assert paths == [variant]  # named as given; the locks decide what it names
+    assert scopes == ([SCOPE] if folds else [])
+    resolver_module.materialize_cli_inputs(args, repo=repo, include_scope=True)
+    assert all(_placed_regular(repo, rel) for rel in READABLE_FILES) is folds
+    assert (repo / PROV).exists() is folds
+
+    report = build_parser().parse_args(["artifact-report", "--base", "DATA/corpus", "--version", "v1"])
+    prefixes = {p.relative_to(repo).as_posix() for p in _corpus_wide_prefixes(report, "artifact-report")}
+    kinds = ("sources", "inventory", "provisions", "coverage")
+    assert prefixes == ({f"data/corpus/{kind}" for kind in kinds} if folds else set())
+
+    locks = load_locks(repo)
+    select = {"scopes": [], "select_all": False, "paths": ["DATA/corpus/provisions"]}
+    if folds:  # `corpus fetch --path DATA/corpus/provisions`
+        assert corpus_cli._selected_entries(repo, locks, **select) == [locks.by_path[PROV]]
+    else:
+        with pytest.raises(SystemExit):
+            corpus_cli._selected_entries(repo, locks, **select)
+    script = Path(__file__).resolve().parents[1] / "scripts" / "audit_us_release_publishability.py"
+    spec = importlib.util.spec_from_file_location("audit_us_release_publishability", script)
+    assert spec is not None and spec.loader is not None
+    audit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(audit)
+    assert audit._locked_under(repo, repo / variant) is folds
+
+
+def test_resolve_never_returns_a_spelling_the_filesystem_keeps_apart(tmp_path: Path, monkeypatch) -> None:
+    """Were a filesystem's comparison of names misjudged (one that compares them
+    differently from APFS), the spelling would be fetched as the locked file but
+    still not reach it; resolve refuses rather than return a path that does not
+    exist."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    monkeypatch.setattr(corpus_locks_module, "stored_together", lambda *_args: True)
+    variant = COVERAGE.replace(".json", "\u200c.json")  # a zero-width non-joiner: another name
+    with pytest.raises(CorpusNotMaterializedError, match="keeps it apart from the locked"):
+        resolve_corpus_path(repo / variant, repo=repo)
+    assert _placed_regular(repo, COVERAGE) and not (repo / variant).exists()
+    assert not fetch_locked_file(repo / variant)
+
+
+# One character's respellings beyond ASCII case. fold_path merges each with the
+# original; only some of them name the same place on a case-insensitive APFS.
+_RESPELLINGS = {
+    "s": ("S", "\u017f"),  # long s: APFS folds it to s
+    "k": ("K", "\u212a"),  # Kelvin sign: folds to k
+    "K": ("k", "\u212a"),  # Kelvin sign: also canonically equivalent to K
+    "i": ("I", "\u0131"),  # dotless i: APFS keeps it apart
+    "a": ("A", "\uff41"),  # fullwidth a: APFS keeps it apart
+    "\u00e9": ("\u00c9", "e\u0301"),  # e acute: capital, and decomposed
+}
+KISS = "data/corpus/sources/nz/statute/2026-07-10/official/Kiss caf\u00e9.html"
+SPELLING_FILES = {PROV: READABLE_FILES[PROV], KISS: b"<html/>"}
+
+
+def _respell(draw, name: str) -> str:
+    """One edit that fold_path ignores and a filesystem may or may not."""
+    kind = draw(st.sampled_from(["character", "character", "upper", "sharp s", "zero-width"]))
+    if kind == "upper":
+        return name.upper()
+    if kind == "sharp s" and "ss" in name:
+        return name.replace("ss", "\u00df", 1)  # sharp s: APFS folds it to ss
+    if kind == "zero-width":  # a zero-width non-joiner: APFS keeps it apart
+        cut = draw(st.integers(0, len(name)))
+        return name[:cut] + "\u200c" + name[cut:]
+    spots = [i for i, ch in enumerate(name) if ch in _RESPELLINGS or (ch.isascii() and ch.isalpha())]
+    if not spots:
+        return name
+    index = draw(st.sampled_from(spots))
+    options = _RESPELLINGS.get(name[index], (name[index].swapcase(),))
+    return name[:index] + draw(st.sampled_from(options)) + name[index + 1 :]
+
+
+@st.composite
+def _respelled_locked_names(draw):
+    full = draw(st.sampled_from(sorted(SPELLING_FILES)))
+    parts = full.split("/")
+    depth = draw(st.integers(1, len(parts)))  # the file, or a directory above it
+    spelled = parts[:depth]
+    # A few edits in one or two components, so single foldings get tested alone.
+    for index in draw(st.lists(st.integers(0, depth - 1), max_size=2, unique=True)):
+        for _ in range(draw(st.integers(1, 2))):
+            spelled[index] = _respell(draw, spelled[index])
+    present = draw(st.integers(0, len(parts)))  # how much of the locked path exists already
+    return full, "/".join(parts[:depth]), "/".join(spelled), present
+
+
+@settings(PROPERTY_SETTINGS, max_examples=200)
+@given(_respelled_locked_names())
+# The review's spelling, before anything is fetched and after.
+@example((PROV, PROV, PROV.replace("data/", "DATA/", 1), 0))
+@example((PROV, PROV, PROV.replace("data/", "DATA/", 1), 6))
+# Canonical equivalents (decomposed e acute, the Kelvin sign for K): one place
+# on APFS of either kind, two on ext4.
+@example((KISS, KISS, KISS.replace("\u00e9", "e\u0301"), 0))
+@example((KISS, KISS, KISS.replace("\u00e9", "e\u0301"), 8))
+@example((KISS, KISS, KISS.replace("Kiss", "\u212aiss"), 0))
+@example((KISS, KISS, KISS.replace("Kiss", "\u212aiss"), 8))
+# Merged by fold_path, never by APFS: a zero-width non-joiner, a dotless i.
+@example((KISS, KISS, KISS.replace("Kiss", "Ki\u200css"), 0))
+@example((KISS, KISS, KISS.replace("Kiss", "K\u0131ss"), 8))
+def test_a_spelling_names_a_locked_file_exactly_where_the_filesystem_puts_both(
+    tmp_path_factory, drawn
+) -> None:
+    """Invariant 10, locked spellings. Asked before the file exists (or with part of
+    its path in place), ``locked_spelling`` maps a respelled locked path or
+    directory onto it exactly when the filesystem, once the file is there,
+    reaches the same entry through both spellings; ``missing_under`` follows."""
+    full, canonical, spelled, present = drawn
+    repo = tmp_path_factory.mktemp("spelling")
+    (repo / "docs").mkdir()
+    locks = LockSet({SCOPE: _scope_lock(SPELLING_FILES)})
+    parts = full.split("/")
+    if present == len(parts):
+        _write(repo, full, SPELLING_FILES[full])
+    elif present:
+        (repo / "/".join(parts[:present])).mkdir(parents=True)
+
+    named = locks.locked_spelling(repo, spelled)
+    missing = locks.missing_under(repo, spelled)
+    expected_missing = locks.missing_under(repo, canonical)
+    folds_case = looks_up_case_insensitively(repo)
+
+    if not (repo / full).exists():
+        _write(repo, full, SPELLING_FILES[full])
+    try:
+        together = os.path.samestat(os.lstat(repo / spelled), os.lstat(repo / canonical))
+    except FileNotFoundError:
+        together = False
+    assert folds_case == _folds_case_on_disk(repo)
+    differs = [i for i, pair in enumerate(zip(spelled.split("/"), parts, strict=False)) if len(set(pair)) > 1]
+    decided_by = "entry" if differs and present > differs[0] else "probe" if differs else "none"
+    event(f"together={together} folds_case={folds_case} decided by {decided_by}")
+    if named == (canonical if together else spelled):
+        assert missing == (expected_missing if together else [])
+        return
+    event("intended: canonical equivalents on a case-sensitive filesystem")
+    # Intended: a case-sensitive filesystem that still merges canonically
+    # equivalent names (case-sensitive APFS) is taken to keep apart names
+    # neither of which exists yet. CI's ext4 and case-insensitive APFS do not
+    # reach this.
+    assert together and not folds_case and named == spelled
+    assert unicodedata.normalize("NFD", spelled) == unicodedata.normalize("NFD", canonical)

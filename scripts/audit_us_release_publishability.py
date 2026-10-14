@@ -56,7 +56,9 @@ def _locked_under(repo: Path, path: Path) -> bool:
         return False
     resolver.require_valid_locks()
     rel = resolver.relative(path)
-    return rel is not None and bool(resolver.locks.entries_under(rel))
+    if rel is None:
+        return False
+    return bool(resolver.locks.entries_under(resolver.locks.locked_spelling(resolver.repo, rel)))
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
