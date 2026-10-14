@@ -5,8 +5,9 @@ with this interpreter, so sign-ingest-manifest, guard-ingested and validate-rele
 the real commands; the ``uv`` shim also logs each subcommand line it runs, and on request
 fails a signing or a validation, or interrupts the run during validation as Ctrl-C does.
 A commit-msg hook can reject one of the script's commits, or hold it while a test sends
-the script a signal, and a ``git`` shim can hold the cleanup while a test sends another. The resumability tests use these to stop a run at each step, then
-check that the same command, re-run, cuts the selector.
+the script a signal. A ``git`` shim can hold the cleanup while a test sends another, or
+fail the cleanup's first unstage. The resumability tests use these to stop a run at each
+step, then check that the same command, re-run, cuts the selector.
 """
 
 from __future__ import annotations
@@ -83,11 +84,26 @@ exit 1
 GIT_SHIM = """#!/bin/sh
 # While $HOLD_CLEANUP is set, hold on_exit's check that the selector is committed
 # (`git cat-file -e HEAD:<target>`): create $HOLD_DIR/cleanup, then wait (up to 60 s) for
-# $HOLD_DIR/release. Every git call runs the real git.
+# $HOLD_DIR/release. Python, not sh, does the waiting: with sh, whether a SIGINT ended
+# the hold depended on timing.
 if [ -n "${HOLD_CLEANUP:-}" ] && [ "$*" = "cat-file -e HEAD:@TARGET@" ]; then
-  : > "$HOLD_DIR/cleanup"
-  i=0
-  while [ ! -e "$HOLD_DIR/release" ] && [ "$i" -lt 600 ]; do sleep 0.1; i=$((i + 1)); done
+  exec "@PYTHON@" -c '
+import os, sys, time
+hold, git, args = sys.argv[1], sys.argv[2], sys.argv[3:]
+open(os.path.join(hold, "cleanup"), "w").close()
+deadline = time.monotonic() + 60
+while not os.path.exists(os.path.join(hold, "release")) and time.monotonic() < deadline:
+    time.sleep(0.1)
+os.execv(git, [git, *args])
+' "$HOLD_DIR" "@GIT@" "$@"
+fi
+# While $FAIL_RESET_ONCE is set, fail on_exit's first unstage, as a signal to a git that
+# holds index.lock does.
+if [ -n "${FAIL_RESET_ONCE:-}" ] && [ "$*" = "reset -q -- data/corpus .axiom/ingest-manifests @TARGET@" ] \\
+  && [ ! -e "$HOLD_DIR/reset-failed" ]; then
+  : > "$HOLD_DIR/reset-failed"
+  echo "fatal: simulated index.lock write error" >&2
+  exit 128
 fi
 exec "@GIT@" "$@"
 """
@@ -687,6 +703,19 @@ def test_resumes_through_a_chain_of_failures(repo: Path, monkeypatch: pytest.Mon
     assert _signed_versions() == [UNRELEASED[0], UNRELEASED[1], UNRELEASED[1]]
 
 
+def _install_git_shim(tmp_path: Path) -> None:
+    """Put GIT_SHIM first on PATH (the fixture's bin directory), in front of the real git."""
+    git = shutil.which("git", path=os.environ["PATH"].split(os.pathsep, 1)[1])
+    assert git is not None
+    shim = tmp_path / "bin/git"
+    shim.write_text(
+        GIT_SHIM.replace("@GIT@", git)
+        .replace("@TARGET@", TARGET)
+        .replace("@PYTHON@", sys.executable)
+    )
+    shim.chmod(0o755)
+
+
 def _start(repo: Path) -> subprocess.Popen[str]:
     """Start the script in a session of its own, so signals to its group miss pytest."""
     return subprocess.Popen(
@@ -805,26 +834,25 @@ def test_resumes_after_an_artifact_fix_once_its_stale_manifest_is_deleted(repo: 
 @pytest.mark.parametrize(
     "second", [signal.SIGINT, signal.SIGTERM, signal.SIGHUP], ids=["SIGINT", "SIGTERM", "SIGHUP"]
 )
+@pytest.mark.parametrize("first", ["failure", "SIGHUP"])
 def test_a_second_signal_does_not_cut_the_cleanup_short(
-    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, second: int
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, first: str, second: int
 ) -> None:
-    # As when a closing terminal sends SIGHUP twice: the first ends validate-release, and
-    # the second lands while on_exit is cleaning up.
+    # The cleanup starts after a failed validate-release, or after a SIGHUP that ends a held
+    # one (a closing terminal can send SIGHUP twice). The second signal lands while
+    # on_exit is cleaning up.
     start = _cut_release_branch(repo)
-    git = shutil.which("git")
-    assert git is not None
-    shim = tmp_path / "bin/git"
-    shim.write_text(GIT_SHIM.replace("@GIT@", git).replace("@TARGET@", TARGET))
-    shim.chmod(0o755)
+    _install_git_shim(tmp_path)
     hold = tmp_path / "hold"
     hold.mkdir()
     monkeypatch.setenv("HOLD_DIR", str(hold))
-    monkeypatch.setenv("FAIL_VALIDATE_RELEASE", "hold")
+    monkeypatch.setenv("FAIL_VALIDATE_RELEASE", "fail" if first == "failure" else "hold")
     monkeypatch.setenv("HOLD_CLEANUP", "1")
     proc = _start(repo)
     try:
-        _wait_for(hold / "held", proc)
-        os.killpg(proc.pid, signal.SIGHUP)
+        if first == "SIGHUP":
+            _wait_for(hold / "held", proc)
+            os.killpg(proc.pid, signal.SIGHUP)
         _wait_for(hold / "cleanup", proc)
         os.killpg(proc.pid, second)
         # Not ignored, the second signal would end the run now, mid-cleanup.
@@ -835,11 +863,38 @@ def test_a_second_signal_does_not_cut_the_cleanup_short(
     out, err = proc.communicate(timeout=300)
     _wait_for_group_to_exit(proc.pid)
 
-    assert proc.returncode == 128 + signal.SIGHUP, out + err
+    assert proc.returncode == (1 if first == "failure" else 128 + signal.SIGHUP), out + err
     assert _branch_subjects(repo, start) == [SIGN, ADD]
     _assert_resumable(repo)
     assert f"deleted {TARGET}, this run's copy of the draft: the selector was not cut" in err
 
     monkeypatch.delenv("FAIL_VALIDATE_RELEASE")
     monkeypatch.delenv("HOLD_CLEANUP")
+    _assert_cut(repo, _run(repo), start)
+
+
+def test_the_cleanup_tries_a_failed_unstage_again(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    # A signal makes git reset fail while it holds index.lock; git drops the lock first.
+    start = _cut_release_branch(repo)
+    _install_commit_msg_hook(repo)
+    _install_git_shim(tmp_path)
+    hold = tmp_path / "hold"
+    hold.mkdir()
+    monkeypatch.setenv("HOLD_DIR", str(hold))
+    monkeypatch.setenv("FAIL_RESET_ONCE", "1")
+    monkeypatch.setenv("FAIL_COMMIT", SIGN)  # so the signed manifests are staged
+
+    first = _run(repo)
+
+    assert first.returncode == 1, first.stdout + first.stderr
+    assert (hold / "reset-failed").exists()
+    assert "simulated index.lock write error" in first.stderr
+    assert "unstaged what this run staged but did not commit" in first.stderr
+    assert "could not unstage" not in first.stderr
+    assert _branch_subjects(repo, start) == [ADD]
+    _assert_resumable(repo)
+
+    monkeypatch.delenv("FAIL_COMMIT")
     _assert_cut(repo, _run(repo), start)

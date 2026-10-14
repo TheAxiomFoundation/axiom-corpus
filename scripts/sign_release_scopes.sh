@@ -41,8 +41,11 @@
 # (.axiom/ingest-manifests/<jurisdiction>/<class>/<version>.json), committing the
 # deletion if the manifest was committed. Step 2 then signs the scope again. A manifest
 # from the scope's ingest PR may carry reasoning-log attestations this script cannot
-# reproduce, so re-sign such a scope the way its ingest PR did instead. Only a run
-# killed outright (SIGKILL, a crash) can leave files staged or <name>.json behind.
+# reproduce, so re-sign such a scope the way its ingest PR did instead.
+#
+# Only a run killed outright can leave <name>.json behind, or leave files staged
+# without saying so: SIGKILL, Ctrl-\ (SIGQUIT), or a crash. Ctrl-\ is therefore the way
+# to stop a run whose cleanup hangs.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 DRAFT="${1:?draft selector path}"
@@ -67,14 +70,17 @@ on_exit() {
   status=$?
   set +e
   # A second signal must not cut the cleanup short (two SIGHUPs from a closing terminal,
-  # Ctrl-C after a failed step). Its git and rm children inherit the ignored signals too.
+  # Ctrl-C after a failed step). The children inherit the ignored signals, except git
+  # while it holds index.lock: it then handles them itself, drops the lock and fails. So
+  # the unstage below is tried twice.
   trap '' INT TERM HUP
   rm -f "$SCOPE_LIST"
   [ -z "$CUT" ] || return 0
   # HEAD is checked too: an interrupt can land between the selector commit and CUT=1.
   if [ -n "$STARTED" ] && ! git cat-file -e "HEAD:$TARGET" 2>/dev/null; then
     if ! git diff --cached --quiet; then
-      if git reset -q -- data/corpus .axiom/ingest-manifests "$TARGET"; then
+      if git reset -q -- data/corpus .axiom/ingest-manifests "$TARGET" \
+        || git reset -q -- data/corpus .axiom/ingest-manifests "$TARGET"; then
         echo "unstaged what this run staged but did not commit" >&2
       else
         echo "could not unstage this run's changes; unstage them before re-running" >&2
