@@ -1040,7 +1040,16 @@ def test_files_in_place_beneath_a_directory_link_are_read_and_absent_ones_refuse
     (repo / "data/corpus/provisions").mkdir(parents=True)
     (repo / "data/corpus/provisions/nz").symlink_to(holder, target_is_directory=True)
     resolver = resolver_module.resolver_for(repo)
-    assert resolver is not None and resolver.relative(repo / PROV) == PROV
+    assert resolver is not None
+    resolver_module._repo_root_for_dir.cache_clear()
+    git_calls: list[object] = []
+    real_run = subprocess.run
+    monkeypatch.setattr(
+        resolver_module.subprocess, "run", lambda *a, **k: git_calls.append(a) or real_run(*a, **k)
+    )
+    assert resolver.relative(repo / PROV) == PROV
+    assert git_calls == []  # its own checkout is recognized by identity, without git
+    monkeypatch.setattr(resolver_module.subprocess, "run", real_run)
 
     assert load_provisions(repo / PROV)[0].citation_path == "nz/statute/a"
     require_materialized([repo / "data/corpus/provisions/nz"])
@@ -1114,6 +1123,13 @@ def test_a_dotdot_below_a_directory_link_names_only_the_place_it_reaches(tmp_pat
     assert resolver.relative(repo / away) is None and resolver.relative(away) is None
     with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
         require_materialized([back], repo=repo, fetch=True)
+    # Climbing out of the class directory stands at no protected place, even
+    # where a lexical reading reaches the same entry (data/corpus/x links there).
+    (outside / "a/b").mkdir(parents=True)
+    (outside / "x").mkdir()
+    (repo / "data/corpus/provisions/up").symlink_to(outside / "a/b", target_is_directory=True)
+    (repo / "data/corpus/x").symlink_to(outside / "x", target_is_directory=True)
+    assert resolver.relative(repo / "data/corpus/provisions/up/../../x") is None
 
 
 def test_a_symlinked_file_beneath_a_directory_link_is_refused(tmp_path: Path, monkeypatch) -> None:

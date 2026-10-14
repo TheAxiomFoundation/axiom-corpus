@@ -130,15 +130,14 @@ def _checkout_at(root: Path, home: Path | None) -> Path | None:
 def _protected_at(parts: Sequence[str], home: Path | None) -> tuple[Path, str] | None:
     """The checkout and protected corpus path that the absolute path ``parts`` spells, if any.
 
-    A ``..`` after ``data/corpus`` is resolved lexically; the innermost
-    checkout wins.
+    A ``..`` is resolved lexically (callers check that the path reaches the
+    same entry), and the innermost checkout wins.
     """
     folded = [fold_path(part) for part in parts]
     for index in range(len(parts) - _PROTECTED_TAIL, 0, -1):
         if (
             tuple(folded[index : index + len(_CORPUS_PARTS)]) != _CORPUS_PARTS
             or folded[index + len(_CORPUS_PARTS)] not in PROTECTED_ARTIFACT_CLASSES
-            or ".." in parts[:index]
         ):
             continue
         name = posixpath.normpath("/".join(parts[index:]))
