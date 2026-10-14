@@ -11,6 +11,8 @@ from __future__ import annotations
 import contextlib
 import functools
 import os
+import posixpath
+import stat
 import subprocess
 import sys
 import threading
@@ -25,11 +27,12 @@ from axiom_corpus.corpus.content_store import (
     GitBlobSource,
     ObjectSource,
     R2ObjectStore,
+    destination_state,
     materialize,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
-    PROTECTED_CORPUS_PREFIXES,
+    PROTECTED_ARTIFACT_CLASSES,
     LockEntry,
     LockSet,
     ScopeKey,
@@ -93,43 +96,149 @@ def _placed(path: Path) -> bool:
     return path.is_file() and not path.is_symlink()
 
 
+_CORPUS_PARTS = tuple(CORPUS_BASE.split("/"))
+# A protected path is <checkout>/data/corpus/<class>/<at least one more part>.
+_PROTECTED_TAIL = len(_CORPUS_PARTS) + 2
+
+
+def _checkout_at(root: Path, home: Path | None) -> Path | None:
+    """The checkout whose top level ``root`` is, in any spelling, or None.
+
+    ``home`` (a resolver's own checkout) is matched by identity without a git
+    process; any other directory asks git, once per directory.
+    """
+    real = os.path.realpath(root)
+    try:
+        root_stat = os.stat(real)
+    except OSError:
+        return None
+    if not stat.S_ISDIR(root_stat.st_mode):
+        return None
+    if home is not None:
+        with contextlib.suppress(OSError):
+            if os.path.samestat(root_stat, os.stat(home)):
+                return home
+    top = _repo_root_for_dir(Path(real))
+    if top is None:
+        return None
+    try:
+        return top if os.path.samestat(os.stat(top), root_stat) else None
+    except OSError:
+        return None
+
+
+def _protected_at(parts: Sequence[str], home: Path | None) -> tuple[Path, str] | None:
+    """The checkout and protected corpus path that the absolute path ``parts`` spells, if any.
+
+    A ``..`` after ``data/corpus`` is resolved lexically; the innermost
+    checkout wins.
+    """
+    folded = [fold_path(part) for part in parts]
+    for index in range(len(parts) - _PROTECTED_TAIL, 0, -1):
+        if (
+            tuple(folded[index : index + len(_CORPUS_PARTS)]) != _CORPUS_PARTS
+            or folded[index + len(_CORPUS_PARTS)] not in PROTECTED_ARTIFACT_CLASSES
+            or ".." in parts[:index]
+        ):
+            continue
+        name = posixpath.normpath("/".join(parts[index:]))
+        if not is_protected_corpus_path(fold_path(name)):
+            continue
+        root = _checkout_at(Path(*parts[:index]), home)
+        if root is not None:
+            return root, name
+    return None
+
+
+def _same_place(first: Path, second: Path) -> bool:
+    if os.path.realpath(first) == os.path.realpath(second):
+        return True
+    try:
+        return os.path.samefile(first, second)
+    except OSError:
+        return False
+
+
+def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tuple[Path, str] | None:
+    """The checkout and protected corpus path that ``probe`` names, if it names one.
+
+    ``probe`` is absolute and ``physical`` is its realpath. A path that
+    reaches a protected path of a checkout names that path, through every
+    directory link (a worktree whose ``data/corpus/provisions`` links to
+    another checkout's names that checkout's files). Any other path names the
+    last protected path it stands at below a symlink on its way: a link at a
+    protected path that leads where no lock guards (outside every checkout, a
+    dangling target, an unprotected directory) stands where locked files
+    belong, so that path's lock still applies. A symlinked file always names
+    where it stands, never its target.
+    """
+    if not _is_symlinked_file(probe):
+        reached = _protected_at(physical.parts, home)
+        if reached is not None:
+            return reached
+    found = None
+    parts = probe.parts
+    prefix = Path(parts[0])
+    for index in range(1, len(parts)):
+        prefix = prefix / parts[index]
+        if not prefix.is_symlink():
+            continue
+        stands = _protected_at((*Path(os.path.realpath(prefix.parent)).parts, *parts[index:]), home)
+        if stands is None:
+            continue
+        # The operating system resolves a ``..`` below the link from its
+        # target, so the path stands here only if it reaches the same place.
+        if ".." in parts[index + 1 :] and not _same_place(stands[0] / stands[1], physical):
+            continue
+        found = stands
+    return found
+
+
 def _link_holder(probe: Path) -> Path | None:
-    """The checkout in which ``probe`` is a symlinked file at a protected path, if any."""
+    """The checkout in which ``probe`` is a symlinked file at a protected path, if any.
+
+    A link outside the protected paths (``/etc/localtime``) is settled
+    without a git process.
+    """
     if not _is_symlinked_file(probe):
         return None
-    # Only a link whose directory lies under a protected prefix can be one;
-    # anything else (``/etc/localtime``) is settled without a git process.
-    parent = fold_path(os.path.realpath(probe.parent) + "/")
-    if not any(f"/{prefix}" in parent for prefix in PROTECTED_CORPUS_PREFIXES):
-        return None
-    holder = find_repo_root(_existing_ancestor(probe.parent))
-    resolver = resolver_for(holder) if holder is not None else None
-    if resolver is None or resolver.link_name(probe) is None:
-        return None
-    return holder
+    named = _protected_name(probe, Path(os.path.realpath(probe)))
+    return named[0] if named is not None else None
 
 
 def _checkout_for(path: Path) -> Path | None:
     """The checkout that names ``path`` (see ``CorpusResolver.relative``).
 
-    A symlinked file at a protected path belongs to the checkout holding the
-    link; anything else to the checkout it resolves into, a dangling link's
-    target included.
+    The checkout whose protected path ``path`` names (``_protected_name``),
+    else the one it resolves into, a dangling link's target included.
     """
     probe = path if path.is_absolute() else Path.cwd() / path
-    return _link_holder(probe) or find_repo_root(
-        _existing_ancestor(Path(os.path.realpath(probe)))
-    )
+    physical = Path(os.path.realpath(probe))
+    named = _protected_name(probe, physical)
+    if named is not None:
+        return named[0]
+    return find_repo_root(_existing_ancestor(physical))
 
 
-def _symlink_on_path(repo: Path, rel: str) -> bool:
-    """True when any component of ``rel`` below ``repo`` is a symlink (fetch refuses them)."""
+def _symlink_on_path(repo: Path, rel: str) -> Path | None:
+    """The first component of ``rel`` below ``repo`` that is a symlink (fetch refuses them)."""
     lexical = repo
     for part in rel.split("/"):
         lexical = lexical / part
         if lexical.is_symlink():
-            return True
-    return False
+            return lexical
+    return None
+
+
+def _link_note(repo: Path, rel: str) -> str:
+    """Why fetching ``rel`` would fail, when a symlink stands on its path."""
+    link = _symlink_on_path(repo, rel)
+    if link is None:
+        return ""
+    return (
+        f" {link} is a symlink; corpus files are placed as regular files, never through "
+        "symlinks, so remove it first."
+    )
 
 
 def _symlinked_error(rel: str, target: Path) -> CorpusNotMaterializedError:
@@ -217,11 +326,16 @@ class CorpusResolver:
         Every spelling of the checkout gives the same answer: through a symlink,
         ``/tmp`` for ``/private/tmp``, a case variant or a firmlink.
 
-        One symlink is not followed: a symlinked file at a protected corpus
-        path in this checkout names that path, not its target. Such a link
-        stands where a locked file belongs (fetch never makes one), so the
-        callers must see that path's lock and refuse the link, rather than
-        follow it to a cache object, another corpus file, or nothing at all.
+        Symlinks are followed into the protected paths of any checkout, so a
+        worktree whose ``data/corpus/provisions`` links to another checkout's
+        names that checkout's files, and this one names none of them. Where
+        they lead anywhere else, a path at a protected path of this checkout
+        names that path (``_protected_name``): a symlinked file there, or a
+        directory link there to a place no lock guards (outside every
+        checkout, nowhere, an unprotected directory), stands where locked
+        files belong. The callers must see that path's lock and refuse the
+        link, rather than follow it to a cache object, another corpus file,
+        or an empty directory and read an unfetched scope as empty.
         """
         candidate = Path(path)
         if not candidate.is_absolute():
@@ -232,20 +346,19 @@ class CorpusResolver:
                 candidate = self.repo / candidate
             else:
                 candidate = Path.cwd() / candidate
-        return self.link_name(candidate) or self._inside(Path(os.path.realpath(candidate)))
-
-    def link_name(self, candidate: Path) -> str | None:
-        """The protected path that the symlinked file ``candidate`` stands at here, if any.
-
-        ``candidate`` is absolute. None for anything but a symlinked file at a
-        protected corpus path in this checkout.
-        """
-        if not _is_symlinked_file(candidate):
-            return None
-        link = self._inside(Path(os.path.realpath(candidate.parent)) / candidate.name)
-        if link is not None and is_protected_corpus_path(fold_path(link)):
-            return link
-        return None
+        physical = Path(os.path.realpath(candidate))
+        inside = self._inside(physical)
+        if (
+            inside is not None
+            and is_protected_corpus_path(fold_path(inside))
+            and not _is_symlinked_file(candidate)
+        ):
+            return inside  # reaches a protected path here: no git process
+        named = _protected_name(candidate, physical, self.repo)
+        if named is None:
+            return inside
+        root, name = named
+        return name if root == self.repo else None
 
     def _inside(self, physical: Path) -> str | None:
         """``physical`` (symlink-free above its last component) relative to the checkout."""
@@ -270,6 +383,16 @@ class CorpusResolver:
         return None
 
     def ensure(self, entries: Sequence[LockEntry], *, verify: bool = False) -> FetchReport:
+        """Fetch the entries this checkout lacks; raise if any cannot be placed.
+
+        Only entries without a regular file at their own path go to fetch. A
+        file in place is reported as fetch would report it (``present``, or
+        ``modified`` when its size or, with ``verify``, its hash differs from
+        the lock) and left alone. Fetch refuses every path through a symlink,
+        so a file in place beneath a directory link would otherwise fail the
+        call with nothing to write; an absent one there still fails. A
+        symlink at the entry's own path is never in place.
+        """
         self.require_valid_locks()
         if not entries:
             return FetchReport()
@@ -277,20 +400,35 @@ class CorpusResolver:
         # A concurrent fetch that fails rolls back the source files it placed,
         # which may be ones this call counted as present; check and retry once.
         for _attempt in range(2):
-            report = materialize(
-                self.repo,
-                pending,
-                self.cache,
-                self.sources,
-                verify=verify,
-                workers=self.workers,
+            in_place: dict[str, list[str]] = {"present": [], "modified": []}
+            absent: list[LockEntry] = []
+            for entry in pending:
+                target = self.repo / entry.path
+                state = destination_state(target, entry, verify=verify)
+                if state == "present" or (state == "modified" and _placed(target)):
+                    in_place[state].append(entry.path)
+                else:
+                    absent.append(entry)
+            report = (
+                materialize(
+                    self.repo,
+                    absent,
+                    self.cache,
+                    self.sources,
+                    verify=verify,
+                    workers=self.workers,
+                )
+                if absent
+                else FetchReport()
             )
+            report.present[:0] = in_place["present"]
+            report.modified[:0] = in_place["modified"]
             if report.failed:
                 first, reason = next(iter(sorted(report.failed.items())))
                 hint = (
                     "Corpus files are placed as regular files, never through symlinks: "
                     "remove the symlink and fetch again."
-                    if _symlink_on_path(self.repo, first)
+                    if _symlink_on_path(self.repo, first) is not None
                     else "Check R2 credentials (~/.config/axiom-foundation/r2-credentials.json) "
                     "or run `axiom-corpus-ingest corpus fetch` with network access."
                 )
@@ -371,6 +509,7 @@ class CorpusResolver:
                 raise CorpusNotMaterializedError(
                     f"{len(missing)} locked corpus file(s) that {rel} needs are absent and "
                     f"fetching is off ({NO_FETCH_ENV}); first: {missing[0].path}"
+                    + _link_note(self.repo, missing[0].path)
                 )
             self.ensure(missing)
         if scope is not None and entry.path.startswith(f"{CORPUS_BASE}/sources/"):
@@ -430,7 +569,7 @@ def ensure_corpus_scopes(scopes: Iterable[ScopeKey], *, repo: Path | None = None
         if absent:
             raise CorpusNotMaterializedError(
                 f"{len(absent)} locked corpus file(s) are absent and fetching is off "
-                f"({NO_FETCH_ENV}); first: {absent[0]}"
+                f"({NO_FETCH_ENV}); first: {absent[0]}" + _link_note(resolver.repo, absent[0])
             )
         return FetchReport()
     return resolver.ensure(entries)
@@ -475,6 +614,7 @@ def require_materialized(
         f"{len(missing)} locked corpus file(s) under {', '.join(named)} are not in this "
         f"checkout (first: {missing[0].path}); results would cover only part of the "
         f"corpus. Run `axiom-corpus-ingest corpus fetch {command}` first."
+        + _link_note(resolver.repo, missing[0].path)
     )
 
 
@@ -505,7 +645,7 @@ def fetch_locked_file(path: str | Path) -> bool:
     if fetch_disabled():
         raise CorpusNotMaterializedError(
             f"{rel} is locked but absent, and fetching is off ({NO_FETCH_ENV}); reading it "
-            "as empty would be wrong. Fetch it first."
+            "as empty would be wrong. Fetch it first." + _link_note(resolver.repo, rel)
         )
     resolver.ensure(resolver.entries_for_paths([rel]))
     return True
@@ -517,9 +657,13 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     if (
         candidate.is_file()
         and not candidate.is_symlink()
-        # The real path, so a relative or symlinked spelling of a source file
-        # still gets its siblings; realpath runs no git process.
-        and f"/{CORPUS_BASE}/sources/" not in fold_path(os.path.realpath(candidate))
+        # The spelled and the real path, so a relative or symlinked spelling of
+        # a source file, or one below a directory link, still gets its
+        # siblings; neither runs a git process.
+        and not any(
+            f"/{CORPUS_BASE}/sources/" in fold_path(spelling)
+            for spelling in (os.path.abspath(candidate), os.path.realpath(candidate))
+        )
     ):
         return candidate  # present and not a source: nothing to widen, no git call
     if repo is None:
@@ -626,9 +770,10 @@ def materialize_cli_inputs(
     if not missing:
         return None
     if fetch_disabled():
+        first = min(entry.path for entry in missing)
         raise CorpusNotMaterializedError(
             f"{len(missing)} locked corpus file(s) this command reads are absent and "
-            f"fetching is off ({NO_FETCH_ENV}); first: {sorted(e.path for e in missing)[0]}"
+            f"fetching is off ({NO_FETCH_ENV}); first: {first}" + _link_note(resolver.repo, first)
         )
     print(
         f"corpus: fetching {len(missing)} locked file(s) this command reads "
