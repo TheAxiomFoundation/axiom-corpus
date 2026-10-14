@@ -243,8 +243,8 @@ lines among their misreadings.
 
 Re-extracting the 327 manifest documents behind those PDFs with `_extract_blocks` under
 #854's rule and this one, from the same OCR text: no error on either side; no block
-count, heading or section label changes; 154 documents and 360 pages change (51,235 to
-51,903 words on those pages). Every token of the old page text that the new one lacks,
+count, heading or section label changes; 155 documents and 361 pages change (51,608 to
+52,292 words on those pages). Every token of the old page text that the new one lacks,
 even ignoring spacing, is a garbled-font shard or noise from a failed recognition layer,
 except one en dash (IA-20-0003 page 3, where the layer line is now read by OCR's hyphen).
 
