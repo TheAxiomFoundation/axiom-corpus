@@ -35,7 +35,14 @@ are filled or stroked (PyMuPDF `char_flags`) with non-zero opacity. Its provenan
 flag) and neither of MuPDF's flags for a glyph without Unicode (`FZ_STEXT_UNICODE_IS_CID`,
 `FZ_STEXT_UNICODE_IS_GID`) is set, "unmapped" when one of those is, and unknown otherwise.
 PyMuPDF starts a new span wherever these flags change (`extra.i`, `JM_make_spanlist`, in
-1.26.7 and 1.28.2), so they hold for every character of a span.
+1.26.7 and 1.28.2), so they hold for every character of a span. "Mapped" is exact;
+"unmapped" can over-report: MuPDF sets the flag at the first glyph without Unicode and
+keeps it for the rest of the same text-showing operation (`do_extract` in
+`source/fitz/stext-device.c`, 1.26.12). Checked on the overlay pages under 1.26.7 against a
+read without CID substitution, where a glyph without Unicode is U+FFFD (characters matched
+by origin): none of 103,016 unflagged characters lacks Unicode, and 748 of 8,633 flagged
+ones have it (`scripts/cid_flag_probe.py`). The #870 session found the same on
+WV-23-0001 page 132.
 
 PyMuPDF 1.26, which this repository locks, reports filled Type3 glyphs as neither filled
 nor stroked, as it does invisible text, so under PyMuPDF before 1.27 a span in a Type3
@@ -81,10 +88,14 @@ marks in their spans that their text output prints: they are put back, and with
    are kept. A line is painted when one of its kept spans with visible characters is. The
    rule leaves out 490 control-free spans on the overlay pages (213 distinct texts, all
    symbol and digit strings such as "$#", ":;<=", "5MN1") and keeps 19 by provenance:
-   NV-20-0002's "3" and 18 punctuation shards of WV-23-0001's screenshot text. Its limit:
-   a clean span in the same font as a garbled span on its line is still left out when its
-   provenance is unknown (a Type3 font, invisible text under PyMuPDF 1.26) or when the
-   font's map itself gave the control character.
+   NV-20-0002's "3" and 18 punctuation shards of WV-23-0001's screenshot text. All 490 are
+   in Type3 fonts (`scripts/dropped_span_unicode.py`). Its limit: a clean span in the same
+   font as a garbled span on its line is still left out when its provenance is unknown (a
+   Type3 font, invisible text under PyMuPDF 1.26), when it is flagged as lacking Unicode
+   only because a glyph before it in the same text-showing operation lacked it, or when
+   the font's map itself gave the control character (a map that does so after such a
+   glyph is not caught, and its other spans are kept). None of these occurs on a non-Type3
+   font on the overlay pages.
 2. **Recognition layers** (`_without_failed_recognition_lines`). Painted lines are all
    kept. An invisible line (text render mode 3, or fully transparent) belongs to a
    recognition layer, an earlier OCR of the same image, not typed text. Two kinds are
@@ -149,7 +160,7 @@ AL-20-0004 page 4, whose shifted span splits at U+001E, NV-20-0002 page 3, whose
 "3" is kept beside unmapped codes, and WV-23-0001 page 132, whose marks PyMuPDF 1.28's
 spans lack) are run through `_pdf_page_text` on the retained PDFs (checked by SHA-256) with
 Tesseract's stored output, with and without `sort_text` and `ignore_actual_text`. A
-mutation check runs 67 broken variants of the rule against these tests; its result is
+mutation check runs 66 broken variants of the rule against these tests; its result is
 recorded in the PR.
 
 ## Measurement

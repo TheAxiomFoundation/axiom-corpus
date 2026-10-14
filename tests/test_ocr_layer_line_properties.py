@@ -5,7 +5,8 @@ layer's lines are merged after the OCR text in three steps.
 
 ``_without_garbled_spans(span_lines)`` turns the PDF's lines, as (text, painted, font,
 mapped) spans, into (text, painted) lines. ``mapped`` is True when a span's characters come
-from its font's Unicode map, False when MuPDF found no Unicode for them, None when unknown.
+from its font's Unicode map, False when MuPDF flags the span as lacking Unicode (the flag can
+also cover glyphs that have it), None when unknown.
 Its invariants, for every input:
 
 S1. A span holding a control character other than ordinary whitespace (``_garbled``) is

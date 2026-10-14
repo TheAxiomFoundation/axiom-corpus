@@ -3344,11 +3344,15 @@ def _pdf_span_mapped(span: dict[str, Any]) -> bool | None:
     """Whether a span's characters come from its font's own Unicode map.
 
     True when PyMuPDF reports the span's characters (a fill or stroke flag is set) and
-    neither of MuPDF's flags for a glyph without Unicode is; False when one of those is set;
-    None when PyMuPDF reports no flags for the span (an older PyMuPDF, or invisible text
-    under 1.26). A span splits where these flags change, so they hold for all its
-    characters. ``_pdf_layer_lines`` gives None for a Type3 font: its glyph names are its
-    map, and a shifted Type3 font's names are wrong ("OPQRPST" under PyMuPDF 1.28).
+    neither of MuPDF's flags for a glyph without Unicode is: every glyph of the span has
+    Unicode from the font. False when one of those flags is set: MuPDF had no Unicode for a
+    glyph of the span or for an earlier glyph of the same text-showing operation (MuPDF's
+    ``do_extract`` keeps the flag set for the rest of the operation), so a False span can
+    hold glyphs that have Unicode. None when PyMuPDF reports no flags for the span (an older
+    PyMuPDF, or invisible text under 1.26). A span splits where these flags change, so they
+    hold for all its characters. ``_pdf_layer_lines`` gives None for a Type3 font: its glyph
+    names are its map, and a shifted Type3 font's names are wrong ("OPQRPST" under PyMuPDF
+    1.28).
     """
     flags = span.get("char_flags")
     if flags is None:
@@ -3424,16 +3428,13 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
 def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
     """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
     of the page-tree nodes it inherits them from when it has none. Raises LookupError when
-    the name has a "/" (the lookup path would split at it and could reach another
-    dictionary: "F/Resources" is font F's resources) or the font is not found under it."""
+    the name has a "/": the lookup path would split at it (the only character it splits
+    at) and could reach another dictionary ("F/Resources" is font F's resources)."""
     if "/" in resource:
         raise LookupError(resource)  # the lookup path would split at it
     for _ in range(64):
         if document.xref_get_key(holder, "Resources")[0] != "null":
-            path = f"Resources/Font/{resource}"
-            if document.xref_get_key(holder, path)[0] == "null":
-                raise LookupError(resource)
-            kind, value = document.xref_get_key(holder, path + "/Name")
+            kind, value = document.xref_get_key(holder, f"Resources/Font/{resource}/Name")
             return str(kind), str(value)
         kind, parent = document.xref_get_key(holder, "Parent")
         if kind != "xref":
@@ -3522,9 +3523,12 @@ def _without_garbled_spans(
     line's codes wrong characters, some of them control characters. Those spans are left
     out whole, before anything splits them. The exception is a span whose characters come
     from the font's own Unicode map (mapped True) when every control-character span of its
-    font on the line had no Unicode (mapped False): the garbage is the codes the map
-    leaves out, and the mapped span is typed text (NV-20-0002 page 3's "3" in "March 13,
-    2020"). Spans in other fonts, such as a date typed beside a garbled label, stay. The
+    font on the line is flagged as lacking Unicode (mapped False): the garbage is the codes
+    the map leaves out, and the mapped span is typed text (NV-20-0002 page 3's "3" in
+    "March 13, 2020"). The flag can also cover glyphs that have Unicode (after one without,
+    in the same text-showing operation), so a span flagged so is left out even when its
+    text came from the map, and a font whose map gives a control character after such a
+    glyph passes the test. Spans in other fonts, such as a date typed beside a garbled label, stay. The
     runs of kept spans between left-out ones are joined by one space. The line is painted
     when any kept span with visible characters is. A line left with no visible character
     is dropped.
