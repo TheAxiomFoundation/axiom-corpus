@@ -1223,6 +1223,8 @@ def _content_issues(path: str, payload: bytes) -> list[str]:
         )
     if _is_inventory_artifact(path):
         issues.extend(_inventory_primary_source_issues(path, payload))
+    if _is_inventory_artifact(path) or _is_provisions_artifact(path):
+        issues.extend(_local_file_url_issues(path, payload))
     return issues
 
 
@@ -1276,6 +1278,10 @@ def _is_inventory_artifact(path: str) -> bool:
     return path.startswith("data/corpus/inventory/") and path.endswith(".json")
 
 
+def _is_provisions_artifact(path: str) -> bool:
+    return path.startswith("data/corpus/provisions/") and path.endswith(".jsonl")
+
+
 def _looks_like_agent_digest(path: str, payload: bytes) -> bool:
     if Path(path).suffix.lower() not in TEXT_OFFICIAL_DOCUMENT_SUFFIXES:
         return False
@@ -1316,6 +1322,75 @@ def _inventory_primary_source_issues(path: str, payload: bytes) -> list[str]:
             "official-documents/ captures, not reasoning artifacts."
         )
     return issues
+
+
+# Raw JSON that can decode to a string starting "file:" holds those characters
+# literally (any case) or spells some of them as \uXXXX escapes.
+_FILE_URL_CANDIDATE_BYTES = re.compile(rb"(?i:file:)|\\u")
+_FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\u")
+_LOCAL_FILE_URL_EXAMPLES = 3
+
+
+def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
+    """Return ``(citation_path, field)`` for each URL field holding a ``file:`` URL.
+
+    Reads an inventory (``.json``) or provisions (``.jsonl``) artifact. A
+    ``file:`` URL in ``source_url`` or in a metadata ``url``/``*_url`` field
+    (``download_url`` above all) publishes a path on the extracting machine,
+    such as ``file:///Users/<name>/...``, and leads no reader to the source.
+    Only URL fields are read: a scanned document may print a ``file:`` link in
+    its body. Undecodable or malformed artifacts yield nothing here; other
+    checks reject them.
+    """
+    if not _FILE_URL_CANDIDATE_BYTES.search(payload):
+        return []
+    text = _decode_text(payload)
+    if text is None:
+        return []
+    rows: list[Any] = []
+    try:
+        if path.endswith(".jsonl"):
+            rows = [
+                json.loads(line)
+                for line in text.splitlines()
+                if _FILE_URL_CANDIDATE_TEXT.search(line)
+            ]
+        else:
+            parsed = json.loads(text)
+            rows = list(parsed.get("items") or []) if isinstance(parsed, dict) else []
+    except json.JSONDecodeError:
+        return []
+    found: list[tuple[str, str]] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        raw_metadata = row.get("metadata")
+        metadata = raw_metadata if isinstance(raw_metadata, dict) else {}
+        fields = [("source_url", row.get("source_url"))] + [
+            (f"metadata.{key}", value)
+            for key, value in metadata.items()
+            if key == "url" or key.endswith("_url")
+        ]
+        for field, value in fields:
+            if isinstance(value, str) and value.strip().lower().startswith("file:"):
+                found.append((str(row.get("citation_path") or "<unknown citation>"), field))
+    return found
+
+
+def _local_file_url_issues(path: str, payload: bytes) -> list[str]:
+    """Name the rows that record a ``file:`` URL; the message never repeats the path."""
+    found = local_file_url_fields(path, payload)
+    if not found:
+        return []
+    shown = ", ".join(f"`{citation}` {field}" for citation, field in found[:_LOCAL_FILE_URL_EXAMPLES])
+    more = len(found) - _LOCAL_FILE_URL_EXAMPLES
+    return [
+        f"`{path}` records a file: URL in {len(found)} row field(s) ({shown}"
+        + (f", and {more} more" if more > 0 else "")
+        + "). A file: URL is a path on the extracting machine, not a source "
+        "location. Record the official URL; for a manifest local_path copy, "
+        "extract-official-documents records the manifest's download_url or source_url."
+    ]
 
 
 def _decode_text(payload: bytes) -> str | None:
