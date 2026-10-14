@@ -1,9 +1,11 @@
-"""US Code extraction parses each title once and writes what three parses wrote.
+"""US Code extraction calls ``parse_uslm_title`` once per title and writes the same bytes.
 
-``extract_usc``, ``extract_usc_directory`` and the US recovery scripts used to parse
-a USLM title three times: ``parse_uslm_title`` itself, then again inside
-``build_usc_inventory_from_xml`` and ``iter_usc_title_provisions``. They now share
-one parsed ``UscTitleDocument``. These tests pin the properties that make that safe:
+``extract_usc``, ``extract_usc_directory``, ``scripts/recover_ingest.py`` and
+``scripts/recover_ingest_batch.py`` used to parse a USLM title three times:
+``parse_uslm_title`` itself, then again inside ``build_usc_inventory_from_xml`` and
+``iter_usc_title_provisions``. ``scripts/slim_us_recovery_statutes.py`` parsed each
+section excerpt twice, once inside each of those two functions. They now share one
+parsed ``UscTitleDocument``. These tests pin the properties that make that safe:
 
 - re-parsing with the parsed title, which is what the old extractors did, gives an
   equal document;
@@ -15,6 +17,7 @@ one parsed ``UscTitleDocument``. These tests pin the properties that make that s
 from __future__ import annotations
 
 import hashlib
+import json
 import tempfile
 import zipfile
 from collections.abc import Callable, Iterator
@@ -31,7 +34,7 @@ from hypothesis import strategies as st
 
 from axiom_corpus.corpus import usc
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-from scripts import recover_ingest, recover_ingest_batch
+from scripts import recover_ingest, recover_ingest_batch, slim_us_recovery_statutes
 from tests.test_corpus_usc import (
     SAMPLE_USLM,
     SAMPLE_USLM_42,
@@ -39,7 +42,17 @@ from tests.test_corpus_usc import (
     SAMPLE_USLM_SUBSECTIONS,
 )
 
-SAMPLES = (SAMPLE_USLM, SAMPLE_USLM_42, SAMPLE_USLM_NESTED, SAMPLE_USLM_SUBSECTIONS)
+# A lettered title ("5A" in docNumber, token "5a") exercises title-token normalization.
+SAMPLE_USLM_LETTERED = SAMPLE_USLM_42.replace("/us/usc/t42", "/us/usc/t5a").replace(
+    "<docNumber>42</docNumber>", "<docNumber>5A</docNumber>"
+)
+SAMPLES = (
+    SAMPLE_USLM,
+    SAMPLE_USLM_42,
+    SAMPLE_USLM_NESTED,
+    SAMPLE_USLM_SUBSECTIONS,
+    SAMPLE_USLM_LETTERED,
+)
 TITLE_26_SAMPLES = (SAMPLE_USLM, SAMPLE_USLM_NESTED)
 TITLE_42_SAMPLES = (SAMPLE_USLM_42, SAMPLE_USLM_SUBSECTIONS)
 RELEASE_POINT_URL = "https://uscode.house.gov/download/releasepoints/us/pl/119/103/xml_usc.zip"
@@ -66,28 +79,37 @@ def _counting_parses(*modules: ModuleType) -> Iterator[list[str]]:
 
 
 @contextmanager
-def _reparsing_each_pass(
-    text_for_title: Callable[[str], str], *modules: ModuleType
-) -> Iterator[None]:
+def _reparsing_each_pass(*modules: ModuleType) -> Iterator[None]:
     """Restore the old composition: each inventory and provision pass re-parses its text.
 
-    The old extractors called ``build_usc_inventory_from_xml(text, title=document.title)``
-    and ``iter_usc_title_provisions(text, title=document.title)``, so this is the
-    reference path the shared-document extractors must match byte for byte.
+    The old callers ran ``build_usc_inventory_from_xml(text, title=document.title)`` and
+    ``iter_usc_title_provisions(text, title=document.title)``, so this is the reference
+    the shared-document path must match byte for byte. Each document is re-parsed from
+    the exact text it came from, so callers that parse several texts are modelled too.
     """
+    real_parse = usc.parse_uslm_title
     real_inventory = usc._build_usc_inventory
     real_provisions = usc._iter_usc_provisions
+    # Keyed by id(); the document is held alongside so its id is never reused.
+    sources: dict[int, tuple[usc.UscTitleDocument, str]] = {}
+
+    def remembering(xml_content: str, title: str | int | None = None) -> usc.UscTitleDocument:
+        document = real_parse(xml_content, title=title)
+        sources[id(document)] = (document, xml_content)
+        return document
+
+    def reparsed(document: usc.UscTitleDocument) -> usc.UscTitleDocument:
+        return real_parse(sources[id(document)][1], title=document.title)
 
     def inventory(document: usc.UscTitleDocument, **kwargs: Any) -> usc.UscInventory:
-        reparsed = usc.parse_uslm_title(text_for_title(document.title), title=document.title)
-        return real_inventory(reparsed, **kwargs)
+        return real_inventory(reparsed(document), **kwargs)
 
     def provisions(document: usc.UscTitleDocument, **kwargs: Any) -> Iterator[Any]:
-        reparsed = usc.parse_uslm_title(text_for_title(document.title), title=document.title)
-        return real_provisions(reparsed, **kwargs)
+        return real_provisions(reparsed(document), **kwargs)
 
     with pytest.MonkeyPatch.context() as patch:
         for module in (usc, *modules):
+            patch.setattr(module, "parse_uslm_title", remembering)
             patch.setattr(module, "_build_usc_inventory", inventory)
             patch.setattr(module, "_iter_usc_provisions", provisions)
         yield
@@ -120,7 +142,10 @@ def _outcome(run: Callable[[CorpusArtifactStore], usc.UscExtractReport]) -> tupl
 
 def _title_forms(title: str) -> list[str | int | None]:
     """The ways a caller can name a title, plus one that does not match the text."""
-    return [None, title, f" {title.upper()} ", int(title), "7"]
+    forms: list[str | int | None] = [None, title, f" {title.upper()} ", "7"]
+    if title.isdigit():
+        forms.append(int(title))
+    return forms
 
 
 @st.composite
@@ -218,7 +243,7 @@ def test_extract_usc_parses_once_and_writes_what_reparsing_wrote(
 
         with _counting_parses() as calls:
             shared = _outcome(run)
-        with _reparsing_each_pass(lambda _title: text):
+        with _reparsing_each_pass():
             reference = _outcome(run)
 
     assert shared == reference
@@ -266,7 +291,7 @@ def test_extract_usc_directory_parses_each_title_once_and_writes_what_reparsing_
 
         with _counting_parses() as calls:
             shared = _outcome(run)
-        with _reparsing_each_pass(texts.__getitem__):
+        with _reparsing_each_pass():
             reference = _outcome(run)
 
     assert shared == reference
@@ -298,7 +323,7 @@ def test_recover_ingest_parses_each_uscode_row_once(tmp_path: Path):
 
     with _counting_parses(recover_ingest) as calls:
         shared = recover_ingest._uscode_records(entry, (row,), source_keys)
-    with _reparsing_each_pass(lambda _title: SAMPLE_USLM_NESTED, recover_ingest):
+    with _reparsing_each_pass(recover_ingest):
         reference = recover_ingest._uscode_records(entry, (row,), source_keys)
 
     assert shared == reference
@@ -331,7 +356,7 @@ def test_recover_ingest_batch_parses_each_uslm_title_once(tmp_path: Path):
 
     with _counting_parses(recover_ingest_batch) as calls:
         shared = recover_ingest_batch._parse(entry, source, data, provenance, source_key)
-    with _reparsing_each_pass(lambda _title: SAMPLE_USLM, recover_ingest_batch):
+    with _reparsing_each_pass(recover_ingest_batch):
         reference = recover_ingest_batch._parse(entry, source, data, provenance, source_key)
 
     assert shared == reference
@@ -341,3 +366,82 @@ def test_recover_ingest_batch_parses_each_uslm_title_once(tmp_path: Path):
         "us/statute/26/151",
     ]
     assert len(calls) == 1
+
+
+def _slim_sandbox(repo: Path) -> None:
+    """The inputs slim_us_recovery_statutes.main() reads, for one Title 26 plan entry."""
+    version = "2026-07-13-recovery"
+    statute = repo / "data/corpus/sources/us/statute" / version
+    (statute / "official-documents").mkdir(parents=True)
+    (statute / "provenance").mkdir(parents=True)
+    (statute / "official-documents/usc26.xml").write_text(SAMPLE_USLM)
+    (statute / "provenance/usc26.xml.json").write_text(
+        json.dumps(
+            {
+                "url": "https://uscode.house.gov/download/releasepoints/xml_usc26.zip",
+                "archive_member": "usc26.xml",
+                "archive_sha256": "a" * 64,
+                "sha256": hashlib.sha256(SAMPLE_USLM.encode()).hexdigest(),
+            }
+        )
+    )
+    targets = ["us/statute/26/32", "us/statute/26/151"]
+    plan = {"documents": [{"document_id": "uscode-title-26", "covers_citation_paths": targets}]}
+    (repo / "us-source-recovery-plan.json").write_text(json.dumps(plan))
+    (repo / "recovered-coverage-report.json").write_text(json.dumps({"uscode-title-26": {}}))
+    for kind, name, body in (
+        ("inventory", f"{version}.json", json.dumps({"items": []})),
+        ("provisions", f"{version}.jsonl", ""),
+    ):
+        path = repo / "data/corpus" / kind / "us/statute" / name
+        path.parent.mkdir(parents=True)
+        path.write_text(body)
+    manifest = repo / ".axiom/ingest-manifests/us/statute" / f"{version}.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text("{}")
+
+
+def _run_slim(repo: Path) -> dict[str, bytes]:
+    """Run slim_us_recovery_statutes.main() against a sandbox; return every file it leaves."""
+    from datetime import UTC, datetime
+
+    class FixedDatetime(datetime):
+        @classmethod
+        def now(cls, tz: Any = None) -> FixedDatetime:
+            return cls(2026, 10, 13, 12, 0, tzinfo=tz or UTC)
+
+    module = slim_us_recovery_statutes
+    with pytest.MonkeyPatch.context() as patch:
+        patch.setattr(module, "REPO", repo)
+        patch.setattr(module, "BASE", repo / "data/corpus")
+        patch.setattr(module, "PLAN", repo / "us-source-recovery-plan.json")
+        patch.setattr(module, "TITLE_IDS", {"uscode-title-26"})
+        patch.setattr(module, "ensure_corpus_scopes", lambda scopes, repo=None: None)
+        patch.setattr(module, "datetime", FixedDatetime)
+        assert module.main() == 0
+    return {
+        path.relative_to(repo).as_posix(): path.read_bytes()
+        for path in sorted(repo.rglob("*"))
+        if path.is_file()
+    }
+
+
+def test_slim_recovery_statutes_parses_each_excerpt_once(tmp_path: Path):
+    _slim_sandbox(tmp_path / "shared")
+    _slim_sandbox(tmp_path / "reference")
+
+    with _counting_parses(slim_us_recovery_statutes) as calls:
+        shared = _run_slim(tmp_path / "shared")
+    with _reparsing_each_pass(slim_us_recovery_statutes):
+        reference = _run_slim(tmp_path / "reference")
+
+    assert shared == reference
+    excerpts = {path for path in shared if path.endswith(".xml")}
+    assert excerpts == {
+        "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/"
+        "usc26-section-32.xml",
+        "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/"
+        "usc26-section-151.xml",
+    }
+    # One parse per section excerpt, never the same text twice.
+    assert len(calls) == len(set(calls)) == len(excerpts)
