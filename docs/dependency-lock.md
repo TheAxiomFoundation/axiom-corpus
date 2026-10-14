@@ -143,8 +143,10 @@ fetched), CPython 3.14.7 on macOS arm64. The locked environment had PyMuPDF
 (MuPDF 1.28.2), and `pip freeze` differed in that one line.
 
 The snapshots were taken with an earlier version of the script whose records
-have the same format; on 183 sampled tasks (123 documents, 60 PDFs) the
-committed script's records equal them. The document snapshots hashed the
+have the same format. On 183 sampled tasks (123 documents, 60 PDFs) the
+committed script extracts the same blocks and pages; the records differ only
+in elapsed time and in the input hash the committed script adds to PDF
+records. The document snapshots hashed the
 bytes they read: all 11,645 readable sources equal the lock's SHA-256. The
 page-by-page snapshots did not hash their input. After the runs every one of
 the 10,746 PDFs hashed to the lock's SHA-256, and the latest inode change

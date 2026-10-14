@@ -463,7 +463,6 @@ def _run_in_workers(
         return worker
 
     def stop(worker: _Worker, *, kill: bool) -> None:
-        live.pop(id(worker), None)
         if kill:
             worker.process.kill()
         else:
@@ -474,6 +473,8 @@ def _run_in_workers(
             worker.process.kill()
             worker.process.join()
         worker.connection.close()
+        # Only once reaped: an interrupt during the join leaves it for finally.
+        live.pop(id(worker), None)
 
     def assign(worker: _Worker) -> None:
         """Give ``worker`` the next task, or retire it when there is none."""
@@ -669,13 +670,17 @@ def _error_kind(error: str) -> str:
 
 
 def _bytes_check(a: dict[str, Any], b: dict[str, Any], expected: str | None) -> str:
-    """``same``, ``differ`` or ``unchecked`` (a snapshot did not record its hash)."""
-    sha_a, sha_b = a.get("pdf_sha256"), b.get("pdf_sha256")
-    if sha_a is None or sha_b is None:
-        return "unchecked"
-    if sha_a != sha_b or (expected is not None and sha_a != expected):
+    """``differ``, ``same`` or ``unchecked`` (a snapshot did not record its hash).
+
+    Any recorded hash that differs from the lock's, or from the other
+    snapshot's, is ``differ``, even when the other snapshot recorded none.
+    """
+    hashes = [sha for sha in (a.get("pdf_sha256"), b.get("pdf_sha256")) if sha is not None]
+    if expected is not None and any(sha != expected for sha in hashes):
         return "differ"
-    return "same"
+    if len(hashes) == 2 and hashes[0] != hashes[1]:
+        return "differ"
+    return "same" if len(hashes) == 2 else "unchecked"
 
 
 def compare_documents(
@@ -702,8 +707,10 @@ def compare_documents(
         bytes_check = _bytes_check(a, b, task.get("source_sha256"))
         if bytes_check == "differ":
             documents["source_bytes_differ"] += 1
-            details.append({"key": key, "source_bytes": [a["pdf_sha256"], b["pdf_sha256"]]})
+            details.append({"key": key, "source_bytes": [a.get("pdf_sha256"), b.get("pdf_sha256")]})
             continue
+        if bytes_check == "unchecked":
+            documents["source_bytes_unchecked"] += 1
         error_a, error_b = a.get("error"), b.get("error")
         if error_a or error_b:
             kinds = {_error_kind(error) if error else "none" for error in (error_a, error_b)}
@@ -718,8 +725,6 @@ def compare_documents(
             continue
         if len(a["candidates"]) != len(b["candidates"]):
             raise ValueError(f"the snapshots ran different configurations for {key}")
-        if bytes_check == "unchecked":
-            documents["source_bytes_unchecked"] += 1
         committed_document = committed.get(key, {})
         choice = choose_configuration(a, b, committed_document)
         candidate_a, candidate_b = a["candidates"][choice], b["candidates"][choice]
@@ -835,6 +840,8 @@ def compare_pdfs(
             counts["pdfs_bytes_differ"] += 1
             details.append({"key": task["key"], "path": task["path"], "status": "bytes_differ"})
             continue
+        if bytes_check == "unchecked":
+            counts["pdfs_bytes_unchecked"] += 1
         error_a, error_b = a.get("error"), b.get("error")
         if error_a or error_b:
             kinds = {_error_kind(error) if error else "none" for error in (error_a, error_b)}
@@ -846,8 +853,6 @@ def compare_pdfs(
                     {"key": task["key"], "path": task["path"], "errors": [error_a, error_b]}
                 )
             continue
-        if bytes_check == "unchecked":
-            counts["pdfs_bytes_unchecked"] += 1
         pages_a, pages_b = a["pages"], b["pages"]
         counts["pdfs_compared"] += 1
         if len(pages_a) != len(pages_b):

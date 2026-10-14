@@ -42,6 +42,7 @@ from hypothesis import strategies as st
 
 from scripts.compare_pdf_extraction_versions import (
     BODY,
+    _bytes_check,
     _run_in_workers,
     build_plan,
     choose_configuration,
@@ -325,6 +326,65 @@ def test_different_bytes_are_set_aside_before_errors_are_counted() -> None:
     pdf_candidate = {"lock": {"key": "lock", "pdf_sha256": "other", "error": "FileDataError: x"}}
     counts, _ = compare_pdfs(pdf_plan, pdf_locked, pdf_candidate)
     assert counts == {"pdfs_planned": 1, "pdfs_bytes_differ": 1}
+
+
+HASHES = st.one_of(st.none(), st.sampled_from(["lock", "other", "third"]))
+
+
+@settings(max_examples=200, deadline=None)
+@given(sha_a=HASHES, sha_b=HASHES, expected=HASHES)
+def test_bytes_check_flags_every_recorded_hash_that_disagrees(
+    sha_a: str | None, sha_b: str | None, expected: str | None
+) -> None:
+    a = {} if sha_a is None else {"pdf_sha256": sha_a}
+    b = {} if sha_b is None else {"pdf_sha256": sha_b}
+    result = _bytes_check(a, b, expected)
+    recorded = [sha for sha in (sha_a, sha_b) if sha is not None]
+    disagrees = (expected is not None and any(sha != expected for sha in recorded)) or (
+        len(recorded) == 2 and sha_a != sha_b
+    )
+    if disagrees:
+        assert result == "differ"
+    elif len(recorded) == 2:
+        assert result == "same"
+    else:
+        assert result == "unchecked"
+
+
+def test_a_lock_mismatch_shows_even_when_the_other_snapshot_has_no_hash() -> None:
+    plan = [{**_task(0), "source_sha256": "lock"}, {**_task(1), "source_sha256": "lock"}]
+    legacy = {"key": "doc-0", "candidates": [{"blocks": [], "warnings": 0}]}
+    corrupted = {
+        "key": "doc-0",
+        "pdf_sha256": "a corrupted copy",
+        "candidates": [{"error": "FileDataError: Failed to open stream"}],
+    }
+    timeout = {"key": "doc-1", "error": "timeout after 900s"}
+    summary, details = compare_documents(
+        plan, {"doc-0": legacy, "doc-1": timeout}, {"doc-0": corrupted, "doc-1": timeout}, {}
+    )
+    assert summary["documents"]["source_bytes_differ"] == 1
+    assert details[0]["source_bytes"] == [None, "a corrupted copy"]
+    # A record with no hash is counted unchecked even when it is an error.
+    assert summary["documents"]["source_bytes_unchecked"] == 1
+    assert summary["documents"]["task_fails_on_both:timeout"] == 1
+
+    pdf_plan = [
+        {"kind": "pdf", "key": "lock", "path": "x.pdf"},
+        {"kind": "pdf", "key": "k", "path": "y.pdf"},
+    ]
+    pdf_locked = {
+        "lock": {"key": "lock", "pages": [["t", "n", 1, "s", "sn", "w"]]},
+        "k": {"key": "k", "error": "timeout after 900s"},
+    }
+    pdf_candidate = {
+        "lock": {"key": "lock", "pdf_sha256": "other", "error": "FileDataError: x"},
+        "k": {"key": "k", "error": "timeout after 900s"},
+    }
+    counts, _ = compare_pdfs(pdf_plan, pdf_locked, pdf_candidate)
+    assert counts["pdfs_bytes_differ"] == 1
+    assert counts["pdfs_bytes_unchecked"] == 1
+    assert counts["pdfs_failing_on_both"] == 1
 
 
 def _configurations(entries: list[dict[str, Any]]) -> dict[str, Any]:
