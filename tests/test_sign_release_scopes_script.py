@@ -4,19 +4,21 @@ The script calls ``python3`` and ``uv run axiom-corpus-ingest``. Shims on PATH r
 with this interpreter, so sign-ingest-manifest, guard-ingested and validate-release are
 the real commands; the ``uv`` shim also logs each subcommand line it runs, and on request
 fails a signing or a validation, or interrupts the run during validation as Ctrl-C does.
-A commit-msg hook can reject one of the script's commits. The resumability tests use
-these to stop a run at each step, then check that the same command, re-run, cuts the
-selector.
+A commit-msg hook can reject one of the script's commits, or hold it while a test sends
+the script a signal. The resumability tests use these to stop a run at each step, then
+check that the same command, re-run, cuts the selector.
 """
 
 from __future__ import annotations
 
+import contextlib
 import json
 import os
 import shutil
 import signal
 import subprocess
 import sys
+import time
 from base64 import b64encode
 from pathlib import Path
 
@@ -60,8 +62,16 @@ fi
 exec "@PYTHON@" -m axiom_corpus.corpus.cli "$@"
 """
 COMMIT_MSG_HOOK = """#!/bin/sh
-# Reject the commit whose subject is $FAIL_COMMIT, as a failing hook would.
-[ -n "${FAIL_COMMIT:-}" ] && [ "$(head -n 1 "$1")" = "$FAIL_COMMIT" ] || exit 0
+# Hold the commit whose subject is $HOLD_COMMIT: create $HOLD_DIR/held, then wait (up to
+# 60 s) for $HOLD_DIR/release. Reject the one whose subject is $FAIL_COMMIT, as a failing
+# hook would.
+subject=$(head -n 1 "$1")
+if [ -n "${HOLD_COMMIT:-}" ] && [ "$subject" = "$HOLD_COMMIT" ]; then
+  : > "$HOLD_DIR/held"
+  i=0
+  while [ ! -e "$HOLD_DIR/release" ] && [ "$i" -lt 600 ]; do sleep 0.1; i=$((i + 1)); done
+fi
+[ -n "${FAIL_COMMIT:-}" ] && [ "$subject" = "$FAIL_COMMIT" ] || exit 0
 echo "simulated commit failure" >&2
 exit 1
 """
@@ -208,6 +218,12 @@ def _assert_cut(repo: Path, result: subprocess.CompletedProcess[str], start: str
     assert _branch_subjects(repo, start) == [CUT, SIGN, ADD]
     assert json.loads((repo / TARGET).read_text()) == json.loads((repo / DRAFT).read_text())
     assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+
+
+def _install_commit_msg_hook(repo: Path) -> None:
+    hook = repo / ".git/hooks/commit-msg"
+    hook.write_text(COMMIT_MSG_HOOK)
+    hook.chmod(0o755)
 
 
 def _cut_release_branch(repo: Path) -> str:
@@ -432,26 +448,38 @@ def test_refuses_to_run_on_main(repo: Path) -> None:
 
 
 # Each defect is in the second scope: the old step 1 had already staged the first.
+# defect: (the artifact, under data/corpus/, and the problem step 1 reports for it)
 STEP_1_DEFECTS = {
-    "incomplete-coverage": "coverage not complete: data/corpus/coverage/{scope}.json",
-    "no-coverage": "missing data/corpus/coverage/{scope}.json",
-    "no-inventory": "missing data/corpus/inventory/{scope}.json",
-    "no-provisions": "missing data/corpus/provisions/{scope}.jsonl",
-    "no-sources": "missing data/corpus/sources/{scope}",
+    "incomplete-coverage": ("coverage/{scope}.json", "coverage not complete: {path}"),
+    "unreadable-coverage": (
+        "coverage/{scope}.json",
+        "unreadable {path}: Expecting value: line 1 column 1 (char 0)",
+    ),
+    "no-coverage": ("coverage/{scope}.json", "missing {path}"),
+    "no-inventory": ("inventory/{scope}.json", "missing {path}"),
+    "no-provisions": ("provisions/{scope}.jsonl", "missing {path}"),
+    "no-sources": ("sources/{scope}", "missing {path}"),
+    "empty-sources": ("sources/{scope}", "empty {path}"),  # git cannot commit it
 }
 
 
 @pytest.mark.parametrize("defect", STEP_1_DEFECTS)
 def test_resumes_after_step_1_finds_a_scope_not_ready(repo: Path, defect: str) -> None:
     start = _cut_release_branch(repo)
-    scope = f"{JURISDICTION}/{DOCUMENT_CLASS}/{UNRELEASED[1]}"
-    artifact = repo / STEP_1_DEFECTS[defect].format(scope=scope).split()[-1]
+    artifact, problem = STEP_1_DEFECTS[defect]
+    path = "data/corpus/" + artifact.format(
+        scope=f"{JURISDICTION}/{DOCUMENT_CLASS}/{UNRELEASED[1]}"
+    )
     if defect == "incomplete-coverage":
-        _write_json(artifact, {**json.loads(artifact.read_text()), "complete": False})
-    elif defect == "no-sources":
-        shutil.rmtree(artifact)
+        _write_json(repo / path, {**json.loads((repo / path).read_text()), "complete": False})
+    elif defect == "unreadable-coverage":
+        (repo / path).write_text("not json\n")
+    elif defect in ("no-sources", "empty-sources"):
+        shutil.rmtree(repo / path)
+        if defect == "empty-sources":
+            (repo / path).mkdir()
     else:
-        artifact.unlink()
+        (repo / path).unlink()
 
     first = _run(repo)
 
@@ -459,7 +487,7 @@ def test_resumes_after_step_1_finds_a_scope_not_ready(repo: Path, defect: str) -
     assert _git(repo, "rev-parse", "HEAD") == start
     _assert_resumable(repo)
     assert _uv_calls() == []
-    problem = STEP_1_DEFECTS[defect].format(scope=scope)
+    problem = problem.format(path=path)
     assert f"nothing staged; fix these first:\n  {problem}\n" in first.stderr
     assert f"stopped before cutting {TARGET}; fix the cause and run the same command again" in (
         first.stderr
@@ -505,9 +533,7 @@ def test_resumes_after_a_commit_fails(
     repo: Path, monkeypatch: pytest.MonkeyPatch, subject: str
 ) -> None:
     start = _cut_release_branch(repo)
-    hook = repo / ".git/hooks/commit-msg"
-    hook.write_text(COMMIT_MSG_HOOK)
-    hook.chmod(0o755)
+    _install_commit_msg_hook(repo)
     monkeypatch.setenv("FAIL_COMMIT", subject)
 
     first = _run(repo)
@@ -542,9 +568,8 @@ def test_resumes_after_validate_release_fails(
 
     first = _run(repo, interruptible=True)
 
-    # On SIGINT, bash runs the EXIT trap and then dies of the signal.
-    exits = (1,) if failure == "fail" else (130, -signal.SIGINT)
-    assert first.returncode in exits, first.stdout + first.stderr
+    # The script's INT trap exits 130 once the interrupted shim has exited.
+    assert first.returncode == (1 if failure == "fail" else 130), first.stdout + first.stderr
     assert _branch_subjects(repo, start) == [SIGN, ADD]
     _assert_resumable(repo)
     assert f"deleted {TARGET}, this run's copy of the draft: the selector was not cut" in (
@@ -606,9 +631,7 @@ def test_resumes_through_a_chain_of_failures(repo: Path, monkeypatch: pytest.Mon
     every manifest that existed before the run is byte for byte the same.
     """
     start = _cut_release_branch(repo)
-    hook = repo / ".git/hooks/commit-msg"
-    hook.write_text(COMMIT_MSG_HOOK)
-    hook.chmod(0o755)
+    _install_commit_msg_hook(repo)
     scope = f"{JURISDICTION}/{DOCUMENT_CLASS}/{UNRELEASED[1]}"
     (repo / f"data/corpus/provisions/{scope}.jsonl").unlink()
     runs = [
@@ -646,3 +669,113 @@ def test_resumes_through_a_chain_of_failures(repo: Path, monkeypatch: pytest.Mon
     _assert_cut(repo, result, start)
     # The second scope's first signing was the injected failure; neither was signed again.
     assert _signed_versions() == [UNRELEASED[0], UNRELEASED[1], UNRELEASED[1]]
+
+
+def _wait_for(path: Path, proc: subprocess.Popen[str]) -> None:
+    deadline = time.monotonic() + 120
+    while not path.exists():
+        assert proc.poll() is None, "the script exited before it reached the held commit"
+        assert time.monotonic() < deadline, f"timed out waiting for {path}"
+        time.sleep(0.05)
+
+
+def _wait_for_group_to_exit(pgid: int) -> None:
+    """Wait for the script's whole process group, a commit it did not wait for included."""
+    deadline = time.monotonic() + 120
+    while True:
+        try:
+            os.killpg(pgid, 0)
+        except ProcessLookupError:
+            return
+        assert time.monotonic() < deadline, "processes still running in the script's group"
+        time.sleep(0.05)
+
+
+@pytest.mark.parametrize("signum", [signal.SIGTERM, signal.SIGHUP], ids=["SIGTERM", "SIGHUP"])
+@pytest.mark.parametrize("subject", [ADD, CUT])
+def test_a_signal_to_the_script_alone_waits_for_the_running_commit(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, signum: int, subject: str
+) -> None:
+    # `kill <pid>` signals the script but not the git commit it is waiting for.
+    start = _cut_release_branch(repo)
+    _install_commit_msg_hook(repo)
+    hold = tmp_path / "hold"
+    hold.mkdir()
+    monkeypatch.setenv("HOLD_COMMIT", subject)
+    monkeypatch.setenv("HOLD_DIR", str(hold))
+    proc = subprocess.Popen(
+        ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
+        cwd=repo,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        start_new_session=True,
+    )
+    try:
+        _wait_for(hold / "held", proc)
+        os.kill(proc.pid, signum)
+        # Untrapped, the signal would end the script now, with the commit still held.
+        with contextlib.suppress(subprocess.TimeoutExpired):
+            proc.wait(timeout=2)
+    finally:
+        (hold / "release").touch()
+    out, err = proc.communicate(timeout=300)
+    _wait_for_group_to_exit(proc.pid)
+
+    assert proc.returncode == 128 + signum, out + err
+    if subject == CUT:  # the commit landed before the script acted on the signal
+        assert _branch_subjects(repo, start) == [CUT, SIGN, ADD]
+        assert json.loads((repo / TARGET).read_text()) == json.loads((repo / DRAFT).read_text())
+        assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
+        assert "deleted" not in err
+        return
+    assert _branch_subjects(repo, start) == [ADD]
+    _assert_resumable(repo)
+    assert f"stopped before cutting {TARGET}" in err
+
+    monkeypatch.delenv("HOLD_COMMIT")
+    _assert_cut(repo, _run(repo), start)
+
+
+def test_resumes_after_an_artifact_fix_once_its_stale_manifest_is_deleted(repo: Path) -> None:
+    """The header's exception: the fix changes an artifact this branch committed and signed."""
+    start = _cut_release_branch(repo)
+    scope = f"{JURISDICTION}/{DOCUMENT_CLASS}/{UNRELEASED[1]}"
+    sources = repo / f"data/corpus/sources/{scope}"
+    # Step 1 sees a sources directory with a file in it; validate-release sees that the
+    # file the provisions name is not there.
+    (sources / "source.html").rename(sources / "renamed.html")
+
+    first = _run(repo)
+
+    assert first.returncode == 1, first.stdout + first.stderr
+    assert _branch_subjects(repo, start) == [SIGN, ADD]
+    _assert_resumable(repo)
+    assert f"validate-release failed; not cutting {TARGET}" in first.stderr
+
+    # The fix alone: the kept manifest describes the old artifacts, so the guard stops it.
+    (sources / "renamed.html").rename(sources / "source.html")
+    _git(repo, "add", "-f", "-A", f"data/corpus/sources/{scope}")
+    _git(repo, "commit", "-qm", "Restore source.html")
+    second = _run(repo)
+
+    assert second.returncode == 1, second.stdout + second.stderr
+    assert f"guard-ingested failed; not cutting {TARGET}" in second.stderr
+    _assert_resumable(repo)
+
+    # With the scope's manifest deleted, step 2 signs it again and the run cuts.
+    _git(repo, "rm", "-q", f"{MANIFEST_DIR}/{UNRELEASED[1]}.json")
+    _git(repo, "commit", "-qm", "Delete the stale manifest")
+    third = _run(repo)
+
+    assert third.returncode == 0, third.stdout + third.stderr
+    assert "guard-ingested: ok" in third.stdout
+    assert _branch_subjects(repo, start) == [
+        CUT,
+        SIGN,
+        "Delete the stale manifest",
+        "Restore source.html",
+        SIGN,
+        ADD,
+    ]
+    assert _signed_versions() == [*UNRELEASED, UNRELEASED[1]]

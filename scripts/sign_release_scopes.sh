@@ -24,12 +24,20 @@
 #
 # Re-running. Steps 1-3 skip what is already done, so a draft whose scopes were all
 # committed and signed in their ingest PR goes on to the self-check and step 4 without
-# committing anything first. A run that stops before the selector commit, because a step
-# failed or the run was interrupted (Ctrl-C, SIGTERM or SIGHUP), unstages what it staged
-# and deletes its copy of manifests/releases/<name>.json. It keeps its commits and the
-# manifests it signed, which the next run reuses, and step 1 checks every scope's
-# coverage and artifacts before it stages any. So after any failure, fix the cause and
-# run the same command again, with nothing to clean up by hand. Only a run killed
+# committing anything first. A run can stop before the selector commit because a step
+# failed or because it was interrupted (Ctrl-C, SIGTERM or SIGHUP; it acts on a signal
+# once the running command has finished). Either way it unstages what it staged and
+# deletes its copy of manifests/releases/<name>.json. It keeps its commits and the
+# manifests it signed, which the next run reuses. Step 1 checks every scope's coverage
+# and artifacts before it stages any. So after a failure, fix the cause and run the same
+# command again, with nothing to clean up by hand.
+#
+# There is one exception: a fix that changes artifacts this branch has already
+# committed. Their kept manifests no longer match, so guard-ingested rejects the branch.
+# With the public key set, the self-check stops every re-run; without it, CI fails the
+# PR. So commit the fix, and delete those scopes' manifests
+# (.axiom/ingest-manifests/<jurisdiction>/<class>/<version>.json), committing the
+# deletion of any that were committed; step 2 then signs them again. Only a run killed
 # outright (SIGKILL, a crash) can leave files staged or <name>.json behind.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
@@ -49,7 +57,7 @@ SCOPE_LIST=$(mktemp)
 # From step 1 on, a run that stops before the selector commit undoes what it has not
 # committed (see the header). The tracked tree was clean at the start, so the index
 # differs from HEAD only by what this run staged. Bash 3.2 can show $? as 0 here after an
-# expansion error or a signal, so a run that did not finish never exits 0.
+# expansion error or an untrapped signal, so a run that did not finish never exits 0.
 STARTED="" COPIED="" CUT=""
 on_exit() {
   status=$?
@@ -70,11 +78,18 @@ on_exit() {
       echo "deleted $TARGET, this run's copy of the draft: the selector was not cut" >&2
     fi
     echo "stopped before cutting $TARGET; fix the cause and run the same command again" >&2
+    echo "(if the fix changes artifacts this branch committed, see the header of $0 first)" >&2
   fi
   [ "$status" -ne 0 ] || status=1
   exit "$status"
 }
 trap on_exit EXIT
+# Bash runs a trapped signal's handler only once the foreground command has finished, so
+# on_exit never races a commit that is still landing. Left untrapped, a SIGTERM or SIGHUP
+# sent to this script alone would run on_exit at once, while git kept running.
+trap 'exit 130' INT
+trap 'exit 143' TERM
+trap 'exit 129' HUP
 python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
 import json, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
@@ -118,7 +133,11 @@ python3 - "${ARTIFACTS[@]}" <<'PY'
 import json, os, sys
 paths, problems = sys.argv[1:], []
 for coverage, *rest in (paths[i:i + 4] for i in range(0, len(paths), 4)):
-    problems += [f"missing {path}" for path in (coverage, *rest) if not os.path.exists(path)]
+    for path in (coverage, *rest):
+        if not os.path.exists(path):
+            problems.append(f"missing {path}")
+        elif os.path.isdir(path) and not any(files for _, _, files in os.walk(path)):
+            problems.append(f"empty {path}")  # git cannot commit an empty directory
     if not os.path.exists(coverage):
         continue
     try:
