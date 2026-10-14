@@ -220,8 +220,16 @@ locks". Reading a file that is already present does not consult the locks, so
 `load_provisions` on a present file does not notice a broken lock; source
 files are the exception, since they check their siblings. `corpus`
 commands, the test session and CI read every lock first. Paths resolve
-through symlinked spellings, and a command's `--base` may be relative or
-absolute and given from any directory.
+through every spelling of a checkout (a symlink to it, `/tmp` for
+`/private/tmp`, a case variant on APFS, the `/System/Volumes/Data` firmlink),
+and a command's `--base` may be relative or absolute and given from any
+directory. Directory symlinks are followed as the operating system follows
+them. A symlinked file at a protected path is the exception: it stands where
+a locked file belongs, so it names that path rather than its target. When a
+lock names the path, the `io` readers (`load_provisions`,
+`load_source_inventory`), `resolve_corpus_path`, `require_materialized` and
+fetch refuse the link, a dangling one included, instead of reading an absent
+locked file as empty or taking a cache object or another corpus file for it.
 
 ## Ingest
 
@@ -471,12 +479,17 @@ exactly those 1,362 files.
    normalization-insensitive filesystem, so a lock materializes the same tree
    on APFS, NTFS and Linux. At `dbb69efb` the 55,276 `data/corpus` paths have
    no such collision.
+10. **Path naming.** `CorpusResolver.relative` gives one answer for every
+    spelling of a checkout and names the directory entry a path reaches:
+    what a symlink leads to, save a symlinked file at a protected path, which
+    names itself. A symlink at a locked path never counts as fetched.
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
 (1), the partition (2), byte fidelity (4), objects that hash to their names
-and are read-only (5), idempotence (6), no links (7) and portable names (9,
-with a differential test against a brute-force reference); 3 on real git
-trees. `tests/test_corpus_lock_guard.py`
+and are read-only (5), idempotence (6), no links (7), portable names (9,
+with a differential test against a brute-force reference) and path naming
+(10, against the filesystem's identity of the entry each spelling reaches);
+3 on real git trees. `tests/test_corpus_lock_guard.py`
 checks 8, including tampered locks. The concurrency and failure clauses of 4
 and 5 are pinned by regression tests instead: `tests/test_corpus_storage_review.py`
 and `tests/test_corpus_lock_guard_review.py` hold one test per reproduced
