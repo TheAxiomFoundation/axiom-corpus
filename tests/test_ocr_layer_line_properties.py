@@ -22,13 +22,14 @@ and the spans lack into the spans, before S1 runs. Its invariants, for every inp
 
 K1. With no mark missing, the spans come back unchanged.
 K2. What it returns is the spans with combining marks added and nothing else changed (each
-    span's other characters, paint, font and provenance): a line whose text-output line
-    differs otherwise and holds a control character comes back as it was, and every other
-    line, joined, is its text-output line, each added mark in the span of the character
-    before it (the first span when it starts the line).
+    span's other characters, paint, font and provenance). A line that lines up, joined, is
+    its text-output line, each added mark in the span of the character before it (the first
+    span when it starts the line); a line that does not comes back as it was. Every mark of
+    a text-output line without a control character is in its line.
 K3. It returns None exactly when a mark is missing and the text output's lines do not line
-    up with the spans: another number of lines, or a line without a control character whose
-    spans' characters are not its text-output line's with only combining marks taken out.
+    up with the spans: another number of lines, or a line whose spans' characters are not
+    its text-output line's with only combining marks taken out, unless that text-output line
+    holds a control character, or its spans do and it has no mark they lack.
 
 ``_without_failed_recognition_lines(lines, ocr_text)`` chooses the layer lines worth
 merging from (text, painted) pairs. Its invariants, for every input:
@@ -85,7 +86,7 @@ from pathlib import Path
 
 import fitz
 import pytest
-from hypothesis import given, settings
+from hypothesis import example, given, settings
 from hypothesis import strategies as st
 
 import axiom_corpus.corpus.documents as documents_module
@@ -506,10 +507,16 @@ def test_combining_marks_the_spans_lack_are_put_back(rows, extra_line):
     if not missing:
         assert result == span_lines  # K1
         return
+
+    def kept_as_is(text_line: str, spans: list) -> bool:
+        lacking = collections.Counter(_marks(text_line)) - collections.Counter(
+            char for span in spans for char in _marks(span[0])
+        )
+        return _garbled(text_line) or (not lacking and any(_garbled(s[0]) for s in spans))
+
     misaligned = len(text_lines) != len(span_lines) or any(
         not _marks_taken_out(text_line, "".join(span[0] for span in spans))
-        and not _garbled(text_line)
-        and not any(_garbled(span[0]) for span in spans)
+        and not kept_as_is(text_line, spans)
         for text_line, spans in zip(text_lines, span_lines, strict=False)
     )
     if misaligned:
@@ -520,8 +527,13 @@ def test_combining_marks_the_spans_lack_are_put_back(rows, extra_line):
         # K2: only marks added; paint, font and provenance kept.
         assert [span[1:] for span in placed] == [span[1:] for span in spans]
         assert [_unmarked(span[0]) for span in placed] == [_unmarked(span[0]) for span in spans]
+        if not _garbled(text_line):
+            # Every mark of a clean text-output line is in its line (review r7).
+            assert not collections.Counter(_marks(text_line)) - collections.Counter(
+                _marks("".join(span[0] for span in placed))
+            )
         if not _marks_taken_out(text_line, "".join(span[0] for span in spans)):
-            assert placed == spans  # a garbled line that differs is left as it is
+            assert placed == spans  # a line that does not line up is left as it is
             continue
         assert "".join(span[0] for span in placed) == text_line
         for (old, *_), (new, *_) in zip(spans[1:], placed[1:], strict=True):
@@ -549,10 +561,18 @@ def test_combining_mark_cases():
     assert _with_layer_marks(
         [[("Jose", True, "A", True), ("x", True, "B", True)]], "Jose\u0301x\n"
     ) == [[("Jose\u0301", True, "A", True), ("x", True, "B", True)]]
-    # A garbled line that differs is left as it is; its marks are not needed.
+    # A garbled line that differs is left as it is when its text-output line holds a
+    # control character too (it goes whole either way).
     assert _with_layer_marks(
         [[("x", True, "A", True)], [("\x01y", True, "B", False)]], "x\u0301\n\x01z\u17b7\n"
     ) == [[("x\u0301", True, "A", True)], [("\x01y", True, "B", False)]]
+    # Review r7: sort_text drops a garbled font's control "spaces", so a garbled dict line's
+    # text-output line is clean; its accent has no span to go in, so None (the page uses
+    # the text output's lines and keeps "Name: Jose\u0301").
+    label = [("\x01Name:\x01", True, "G", False), (" Jose", True, "F", True)]
+    assert _with_layer_marks([label], "Name: Jose\u0301\n") is None
+    swapped = [[("\x05\x1c", True, "G", False)], [("Jose", True, "F", True)]]
+    assert _with_layer_marks(swapped, "Jose\u0301\n\x05\x1c\n") is None
     # No line to go on (another number of lines, or a clean line that differs): None, and
     # the page uses the text output's lines.
     two = [[("Jo", True, "F", True)], [("se", True, "F", True)]]
@@ -663,6 +683,13 @@ def test_recognition_filter_cases():
     # words is found, and the layer fails.
     dotted = [("\u0130\u0130\u0130 alpha bravo charlie delta", False)]
     assert _without_failed_recognition_lines(dotted, "x\u0130\u0130\u0130x alpha") == []
+    # Review r7: five words, so the layer is judged. Two ("approvaldate", "stateplan") are
+    # found only inside OCR's letters run together, one ("regional") as a word: three of
+    # five, kept. Without the run-together match one of five is found and the layer fails.
+    five = [("ApprovalDate StatePlan Regional ckm rml", False)]
+    assert _without_failed_recognition_lines(five, agree) == [
+        "ApprovalDate StatePlan Regional ckm rml"
+    ]
     # Run-together words of six or more letters are found in OCR's letters run together.
     run_together = [("ApprovalDate StatePlan Regional ckm", False), ("21", False)]
     assert _without_failed_recognition_lines(run_together, agree) == [
@@ -842,11 +869,13 @@ def test_every_line_the_replaced_rule_kept_is_still_held(ocr_text, layer_text):
 
 
 @given(st.text(alphabet=st.sampled_from("0123456789"), min_size=1, max_size=4), OCR)
+@example("1", "\u20131")  # an en dash is a minus once dash variants are folded (#870 found it)
 def test_a_number_is_read_only_as_a_whole_token(number, ocr_text):
     # Digits are never matched inside a longer number, nor glued from two tokens.
     read = _with_unread_layer_lines(ocr_text, number) == ocr_text
 
-    cores = {token[_edges(token)[0] : len(token) - _edges(token)[1]] for token in ocr_text.split()}
+    tokens = _variant_folded(ocr_text).split()
+    cores = {token[_edges(token)[0] : len(token) - _edges(token)[1]] for token in tokens}
     assert read == (number in cores or _reference_reads(ocr_text, number))
     if not any(number in token for token in ocr_text.split()):
         assert not read
@@ -1015,6 +1044,15 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
     lines = _layer_pairs(span_lines, text)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     assert result == _with_unread_layer_lines(page["ocr_text"], layer)
+    if not extraction.get("sort_text"):
+        # Review r7: every mark of a text-output line with text is in the page text. Without
+        # sort_text a text-output line is its dict line; sort_text regroups words, so a mark
+        # of a dict line with no letter or digit (never appended) can share a sorted line
+        # with letters.
+        marks = collections.Counter(
+            c for line in text.split("\n") if _is_text(line) for c in _marks(line)
+        )
+        assert not marks - collections.Counter(_marks(result))
     for line in _held_lines(
         span_lines, text, _text_lines_used(path, bool(extraction.get("sort_text")))
     ):

@@ -53,8 +53,10 @@ subset prefix, or, without a name, "Unnamed-T3" (1.26) or "Type3 (<object> 0 R)"
 They are looked for in the page's resources and forms (PyMuPDF `get_fonts`) and in the
 appearance streams of its annotations and widgets and the forms those draw, whose text is
 extracted too but whose fonts `get_fonts` does not list (`_pdf_appearance_type3_fonts`;
-on the overlay pages, 324 of which carry annotations, those streams hold 112 TrueType and
-226 Type1 fonts and no Type3 one, `scripts/annot_type3_scan.py`).
+on the overlay pages, 334 of which list annotations or widgets in /Annots, those streams
+hold 112 TrueType and 226 Type1 fonts and no Type3 one, `scripts/annot_type3_scan.py`).
+Anything in that scan that can't be read, such as a reference to a missing object, is
+skipped: it only finds fonts and never fails a page.
 An inline font whose resource name has a "/" (a lookup path would split at it and could
 reach another font's dictionary) or a byte that isn't UTF-8 is named by the name PyMuPDF
 lists for it, its /BaseFont ahead of its /Name; a Type3 font has no /BaseFont in a
@@ -69,14 +71,16 @@ glyph names are its map, and a shifted Type3 font's names are wrong (IL-21-0006'
 If the spans do not hold the text output's characters (whitespace, control characters and
 combining marks aside; `sort_text` changes only the lines the text output prints), the
 text output's lines, split at newlines only, are used instead, all counted as painted, so
-no typed text can go missing. Combining marks the text output holds and the spans lack
+no line without a control character can go missing. Combining marks the text output holds and the spans lack
 are put into the spans before anything else (`_with_layer_marks`). Without `sort_text` the
 text output is the dict lines joined by newlines, so each text-output line is lined up
 with its dict line, and a missing mark goes into the span of the character before it,
 taking that character's line, span, paint and font. A line whose spans' characters are not
-its text-output line's with only marks taken out is left as it is when it holds a control
-character (its marks are not needed); otherwise, or when the line counts differ, the text
-output's lines are used. Under 1.26.7 neither happens on any overlay page, with or
+its text-output line's with only marks taken out is left as it is when that text-output
+line holds a control character (it goes whole either way), or when its spans do and the
+text-output line has no mark they lack; otherwise, or when the line counts differ, the
+text output's lines are used. That keeps the accent of a garbled line whose control
+"spaces" `sort_text` drops from the text output ("Name: José"). Under 1.26.7 neither happens on any overlay page, with or
 without `sort_text`. Under 1.28.2, WV-23-0001 pages 132, 237 and 358 lack Khmer marks in
 their spans that their text output prints: they are put back, and with `sort_text`, which
 rebuilds those lines, the text output's lines are used. Those three pages then skip the
@@ -150,10 +154,13 @@ written-out references that do not share the implementation's code):
   otherwise only marks are added (each span's other characters, paint, font and
   provenance kept), each line whose spans are its text-output line less some marks
   becomes that line exactly, with each added mark in the span of the character before
-  it, and a garbled line that differs otherwise is left as it is; it gives up (and the
-  text output's lines are used) exactly when the lines do not line up (another count, or
-  a clean line whose spans are not its text-output line less some marks), checked
-  against a search written independently of the single pass it uses.
+  it, a line that does not line up comes back as it was, and every mark of a text-output
+  line without a control character is in its line; it gives up (and the text output's
+  lines are used) exactly when the lines do not line up and the exception does not
+  apply (another count, or a line whose spans are not its text-output line less some
+  marks, unless that text-output line holds a control character, or its spans do and it
+  lacks no mark), checked against a search written independently of the single pass it
+  uses.
 - R1 to R5 for recognition layers: the result is a subsequence of the input; every
   painted line is kept; an invisible line is dropped only as a fragment or in a failed
   layer; more OCR text never drops a kept line; applying it to its own result changes
@@ -175,7 +182,10 @@ transparent text, a scanned page whose typed lines are set in a Type3 font writt
 ways (named, unnamed, subset-prefixed, #xx-escaped or indirect names; inline, inherited or
 in a form, under resource names with a space, a "/" or a byte that isn't UTF-8) or drawn
 by an annotation's appearance stream (the font referenced, inline, or in a form it
-draws), and pages whose text output holds a combining mark the spans lack. The 22 pages in
+draws; under resource names with a "/" or a byte that isn't UTF-8; through a dictionary of
+appearance states; from an annotation reference of generation 1), pages whose annotations
+reference missing objects (seven ways, none of which may fail the page), and pages whose
+text output holds a combining mark the spans lack. The 22 pages in
 `tests/fixtures/ocr_overlay/` (19 named in the defect report or measured below,
 AL-20-0004 page 4, whose shifted span splits at U+001E, NV-20-0002 page 3, whose mapped
 "3" is kept beside unmapped codes, and WV-23-0001 page 132, whose marks PyMuPDF 1.28's
@@ -246,7 +256,8 @@ Junk this change appends that #854 did not: 129 lines (293 words).
   (MD-19-0008, NJ CHIP 22-0031, a Uganda gazette page and others).
 
 Junk #854 appended that this change does not: 83 lines (209 words): 26 garbled-font
-shards, 38 misreadings and 19 sideways-scan lines from failed layers.
+shards; 38 misreadings, 24 of them dropped with their failed layers and 14 (30 words) now
+read by OCR; and 19 sideways-scan lines from failed layers.
 
 The two layers named in the defect report append nothing: UT-14-0007-MM page 21 ("ac al
 ckm cl err", none of its words in the OCR text) and ID-20-0001 page 3 ("Ejhjubmmz", a
