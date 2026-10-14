@@ -70,7 +70,8 @@ appends none of them. OCR reads the signers' names. What is lost is, on each pag
 
 On a page whose layer `_pdf_page_text` merges with non-blank OCR text, and whose `dict`
 spans hold the text output's characters (#868's `_same_layer_characters`),
-`_pdf_decoded_span_lines` runs before `_without_garbled_spans`:
+`_pdf_decoded_span_lines` runs after #868's `_with_layer_marks` and before
+`_without_garbled_spans`:
 
 1. **Unmapped characters** (`_pdf_unmapped_characters`, `_pdf_unmapped_status`): those
    printed as U+FFFD by a second `rawdict` read without TEXT_CID_FOR_UNKNOWN_UNICODE,
@@ -80,16 +81,25 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
    characters there are unknown. The characters come from the `rawdict` read with the
    page's flags and sort, whose spans must be the `dict` spans exactly; otherwise nothing
    is decoded.
-2. **Which fonts may be decoded.** Spans name fonts, not font objects, so a font name is
-   decoded only when exactly one font object on the page carries it
-   (`_pdf_font_span_name_counts`): those `get_fonts(full=True)` lists, and those of the
-   annotations' appearance streams, which `get_text` reads and `get_fonts` does not list.
-   Each is named as MuPDF names its spans: a Type 3 font by #868's `_pdf_type3_span_name`,
-   any other by its /BaseFont less a subset prefix and an -Identity-H or -Identity-V
-   suffix. That explains every span font name on 1,039 of the 1,041 pages; the other two
-   are a name MuPDF truncates and a substituted font, neither unmapped, and a name that no
-   object explains is not decoded. And a font's characters in a line are candidates only
-   when every one of them there is unmapped, MuPDF's own spaces (U+0020) aside.
+2. **Which fonts may be decoded** (`_pdf_undecodable_fonts`). Spans name fonts, not font
+   objects, so a font name is decoded only when exactly one font object on the page
+   carries it (`_pdf_font_span_name_counts`): those `get_fonts(full=True)` lists, and
+   those of the annotations' appearance streams, which `get_text` reads and `get_fonts`
+   does not list. Each is named as MuPDF names its spans: a Type 3 font by #868's
+   `_pdf_type3_span_name` (one without a /Name under both "Unnamed-T3", PyMuPDF 1.26's
+   name, and "Type3 (<n> 0 R)", 1.28's), any other by its /BaseFont less a subset prefix
+   and an -Identity-H or -Identity-V suffix. That explains every span font name on 1,039
+   of the 1,041 pages; the other two are a name MuPDF truncates and a substituted font,
+   neither unmapped, and a name that no object explains is not decoded. When an
+   annotation's font can't be known for certain, nothing on the page is decoded: a font
+   written inline, a /Subtype or /BaseFont that is not a name written in the font's own
+   dictionary (MuPDF resolves `/BaseFont 70 0 R` to the name it refers to; the bare key
+   would give "70 0 R"), a reference of a generation other than 0, or more than 4,096
+   appearance streams and forms to walk. Further, the font must be a Type0 font, whose
+   codes are CIDs, its /W array must give a width for every code it draws unmapped on the
+   page and leave a gap between its least and greatest code (below). And a font's
+   characters in a line are candidates
+   only when every one of them there is unmapped, MuPDF's own spaces (U+0020) aside.
 3. **A shift k** reads code c as chr(c + k), and only into printable ASCII, U+0020 to
    U+007E (`_pdf_decoded_layer_line`).
 4. **Evidence** for font f and shift k (`_pdf_font_code_shifts`): a line whose candidate
@@ -101,34 +111,67 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
    capitals and small letters. Shift 0 (codes that are the text) counts as a rival but is
    never applied.
 5. **Decoding.** A line is decoded only when every unmapped or unknown character in it can
-   be. One value can run across fonts: AL-20-0004 page 4 writes "03/01/2020" as "0" and
-   "/01/2020" in Arial and "3" in ArialMT, and decoding Arial alone left the fragment
-   "0 /01/2020". Each decoded character is decoded one for one, and a span its font's
-   shift cannot decode becomes a space. Every other character, and every span's paint and
-   font, is unchanged. The decoded spans no longer hold control characters, so
+   be, in every span, into printable ASCII; otherwise it is left as read. One value can
+   run across fonts: AL-20-0004 page 4 writes "03/01/2020" as "0" and "/01/2020" in Arial
+   and "3" in ArialMT, and decoding Arial alone left the fragment "0 /01/2020". Each
+   decoded character is decoded one for one. Every other character, and every span's
+   paint and font, is unchanged. The decoded spans no longer hold control characters, so
    `_without_garbled_spans` keeps them, and #868's merge appends the lines OCR did not
    read.
 
-The class rule is what keeps a font that numbers its glyphs in the order a page first
-uses them (CA-25-0037's Type 3 fonts) from passing. Such a font can fit one shift only
-where its first-use order runs through consecutive ASCII characters. No such run joins two
-of the three classes without the punctuation between them. The review's example, "1234"
-and "1122" at codes 0-3, has four glyphs of one class. The other thresholds sit between
-what chance gives on this sweep and the weakest real evidence. Across every font with
-unmapped characters on the 1,041 pages, the most decoded letters or digits in one line OCR
-reads under a wrong shift is 2 (OR-19-0002, +30: "11"). So no wrong shift has an evidence
-line at all. Here "wrong" excludes, for a font no shift was found for, the shift found for
-a font of the same name elsewhere in the sweep: MO-22-0012's one Minion Pro line,
-"6/6/2022", is read at +31, the shift of every other Minion Pro, with 6 digits. Every
-right detection has evidence from at least two classes. The weakest is exactly at the
-threshold: WA-14-0003's two lines "10 P & I" and "12 P & I", 4 each, five distinct glyphs.
+### Fonts that number their glyphs in order of use
+
+A shift learned from the lines OCR read is applied to glyphs it has not seen. That is right
+for a font whose codes keep the glyph order of the font it was cut from, and wrong for one
+that numbers its glyphs in the order a document first uses them: such a font can fit one
+shift wherever its evidence glyphs were first used in steps that match their ASCII
+distances. The class rule stops the short cases (review round 1: "1234" and "1122" at codes
+0-3, four glyphs of one class) but not a run that bridges two classes through the
+punctuation between them (review round 2: a font whose first eleven glyphs are
+"89:;<=>?@AB", read by OCR with "8899AABB", would read its twelfth glyph, "x", as "C").
+
+Nothing in these fonts' own programs says which character a glyph is: every shifted
+Minion Pro is CID-keyed CFF, which carries no glyph names, and the Arial and Times New
+Roman subsets have neither a cmap nor glyph names (`scripts/font_program_probe.py`,
+`evidence/font-program-probe.json`). Their /W arrays do tell the two numberings apart. A
+font numbering glyphs in order of use assigns every code from its first to its last, so a
+/W listing its glyphs has no gap. All 16 shifted fonts found keep an original glyph order:
+/W lists 10 to 55 codes between 1 and 92 with 35 to 73 gaps, gives every code each font
+draws on its page a width, and leaves the rest to /DW 1000. So only Type0 fonts whose /W
+lists every code drawn on the page and leaves a gap are decoded. Type 3 fonts and simple
+fonts, whose widths run from /FirstChar to /LastChar and so show no gap, are not; none of
+the 16 is either. What this leaves is a producer that numbers glyphs in order of use and
+also leaves glyphs of the default width out of /W: a page drawing one of those glyphs
+fails the width test, so only a page drawing none of them could pass.
+
+Decoding runs after #868's `_with_layer_marks` has put the marks the spans lack into
+them, against the text output as printed (#868 `cd0f19c59`). Decoded first, a font whose
+codes print as combining marks would leave spans lacking marks the text output holds; the
+marks could not be placed, and the page would fall back to its undecoded text-output lines
+(review round 2). In this order such a font is decoded and its lines kept. On a page where
+a mark has been put into a span, the spans no longer match the `rawdict` read and nothing
+is decoded. Under PyMuPDF 1.26.7 that leaves the page level below unchanged.
+
+The other thresholds sit between what chance gives on this sweep and the weakest real
+evidence. Across every font with unmapped characters on the 1,041 pages, the most decoded
+letters or digits in one line OCR reads under a wrong shift is 2 (OR-19-0002, +30: "11").
+So no wrong shift has an evidence line at all. Here "wrong" excludes, for a font no shift
+was found for, the shift found for a font of the same name elsewhere in the sweep:
+MO-22-0012's one Minion Pro line, "6/6/2022", is read at +31, the shift of every other
+Minion Pro, with 6 digits. Every right detection has evidence from at least two classes.
+The weakest is exactly at the threshold: WA-14-0003's two lines "10 P & I" and
+"12 P & I", 4 each, five distinct glyphs.
 
 ## Invariants
 
 Property tests (Hypothesis) in `tests/test_ocr_shifted_font_layers.py`, with example tests
-on built PDFs and on 11 retained pages. The built PDFs use Type 3 fonts whose codes are
-above U+007F, so MuPDF has no Unicode for any of them. Two such fonts can share a name,
-and a mapped font or an annotation's font can share a name with them.
+on built PDFs and on 11 retained pages. The built PDFs use Type0 Identity-H fonts, not
+embedded, whose codes are 0xE000 above ASCII: MuPDF reads a code below about 0x1000 of
+such a font through its substitute font's glyph order (code + 29) but has no Unicode for a
+higher one and prints the code, as it does for the shifted fonts' embedded programs. A
+font's /W and a ToUnicode map for some of its codes can be chosen; Type 3 fonts, whose
+codes above U+007F have no Unicode, are built for the Type 3 cases. Two such fonts can
+share a name, and a mapped font or an annotation's font can share a name with them.
 
 - S1-S3, decoding a line: one character for one; a mapped character, or one of a font
   with no shift, is unchanged; a shifted character becomes chr(code + k) in printable
@@ -140,15 +183,19 @@ and a mapped font or an annotation's font can share a name with them.
 - S5, round trip: ASCII lines written by a shift k and read by OCR give k back when the
   evidence is enough and no other shift has any, and decode to the lines exactly; with
   too little evidence, no shift.
-- S6: line order, repeated lines, lines without unmapped characters, and lines that
-  decode to another line's text with fewer decoded characters change nothing; shift 0 is
-  never applied.
+- S6: line order, repeated lines and lines without unmapped characters change nothing;
+  shift 0 is never applied. A line that decodes under a font's shift to a line's text with
+  fewer decoded characters adds nothing to that shift's evidence: the font keeps its shift
+  unless the line is evidence for another shift (then it has none), and no other font
+  changes. (Review round 2: the test computed its baseline after adding such lines, so it
+  did not test the claim, which as first written, "change nothing", was too strong.)
 - S7-S8, on every built and retained page under every text option: the `rawdict` spans are
   the `dict` spans (decoding is not skipped); paint and font never change; a span without
   an unmapped character is unchanged; a page without one is unchanged; a font name shared
   by two font objects (two unmapped, unmapped and mapped, or a page's and an annotation's)
-  is not decoded; a line is decoded whole or not at all; a font whose characters in a
-  line are partly mapped is not decoded there.
+  is not decoded; a line is decoded whole or not at all, including when one of its spans
+  would decode outside printable ASCII; a font whose characters in a line are partly
+  mapped is not decoded there.
 - S9: the unmapped characters are exactly those PyMuPDF's text trace, another device,
   reports as U+FFFD, origin for origin, on all 29 retained pages of the two fixtures (a
   differential test). Every span holding one carries MuPDF's UNICODE_IS_CID or
@@ -156,17 +203,47 @@ and a mapped font or an annotation's font can share a name with them.
   WV-23-0001 page 132, nine marked spans hold characters MuPDF maps, so the mark alone does
   not say which characters to decode. And a character pairs with the other read's only
   where the reads agree at its origin.
+- S10: only a Type0 font is decoded, and only when its /W gives a width for every code it
+  draws unmapped on the page and leaves a gap: a Type 3 font (named or not) and a font
+  numbering its glyphs in order of use (the review's "89:;<=>?@AB") are not decoded,
+  while the same font declared with a gap is, so /W is what decides; a font whose /W
+  misses a code it draws is not. /W read back gives exactly the codes written (a property
+  test). A font whose codes print as combining marks is decoded, and the page keeps its
+  lines, since decoding follows `_with_layer_marks`.
+- S11: when an annotation's font can't be known for certain (a /BaseFont written as a
+  reference, which MuPDF resolves; an appearance referred to with generation 1; a walk
+  that reaches its limit), nothing on the page is decoded.
 
 #868's real-page tests now merge the decoded spans. Its invariant "every painted span
 without a control character is in the page text" holds for lines decoding leaves alone;
-decoded lines are checked whole instead. Mutation check (`mutate_shifts.py`):
-27 broken variants of the decoding, run against the three OCR test files. Before review round 1 the tests killed 18 of 19. The variants now include the review fixes (no font-object count, annotation fonts uncounted, origins where the reads disagree trusted, one class or one glyph enough, a later line overwriting a count, part of a line decoded). Round 4 killed 22 of 26 that applied; tests were added for the three that a test can catch (a mixed line in a font with a shift, mapped letters counted as evidence, two glyphs enough), and round 5 kills 26 of 27. The one left, S12, reads the first status at an origin instead of the k-th. It is equivalent: a status is used only where every character at its origin has the same one.
+decoded lines are checked whole instead.
+
+Mutation check (`mutate_shifts.py`): broken variants of the decoding, run against the three
+OCR test files. Before review round 1 the tests killed 18 of 19, and after it 26 of 27.
+After review round 2, 36 variants, run at `e4bb92509`, before merging #868's
+`a14678efb`, which changes none of the code they break: 35 killed. Nine are new, and each
+undoes a round-2 fix:
+- an annotation font's indirect names read bare;
+- references of another generation followed;
+- the annotation walk stopping silently at its limit;
+- no /W rule;
+- a /W without a gap allowed;
+- codes missing from /W allowed;
+- decoding before the marks are placed;
+- an unnamed Type 3 font counted under one name;
+- /W ranges beyond a two-byte CID read.
+
+The test written for each kills it. The one left, S12, reads the first status at an origin
+instead of the k-th. It is equivalent: a status is used only where every character at its
+origin has the same one. That run left out #868's `test_a_number_is_read_only_as_a_whole_token`,
+which failed then for a reason of #868's own (fixed in `7639a8db2`), and run 6 was stopped
+when #868 moved. Logs: `evidence/mutation-r1.txt` to `mutation-r7.txt`.
 
 ## Before and after: every page the overlay rule reaches
 
 Both sides were run on the same 1,041 pages in 328 retained PDFs, with Tesseract 5.5.3
-cached by rendered page image (3,123 hits, 0 misses). These figures are for the rule after
-review round 1. The rule before it (no font-object or class test, lines decoded in part)
+cached by rendered page image (3,123 hits, 0 misses). These figures hold for the rule
+after review rounds 1 and 2. The rule before round 1 (no font-object or class test, lines decoded in part)
 also found AL-20-0004's ArialMT; it gave the same lines and one more, the clipped "Acting
 Deputy D". The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
@@ -177,7 +254,10 @@ and gives the same lines, pages and documents; the page level, re-run on #868 at
 code, to `c70a950a2`, changes docstrings and, in `_pdf_inline_font_key`, removes and then
 restores one check. That function is called only for an inline Type 3 font, and the 328
 PDFs have none: their 35,537 font entries, 600 of them Type 3, are all indirect objects.
-So no figure here moves.
+So no figure here moves. After review round 2's fixes (`a77efdd49`), with #868 merged at
+`cd0f19c59` (decoding after `_with_layer_marks`, `dfe3833be`) and at `a14678efb`
+(`a5bc14776`), the page level gives the same lines on every page again
+(`evidence/r7-review-r2-fixes/`, `r8-dfe3833be/`, `r9-a5bc14776/`).
 
 | | |
 | --- | ---: |
@@ -232,7 +312,8 @@ Document level: `_extract_blocks` on the 327 manifest documents behind the PDFs,
 without decoding and the same OCR cache, gives no error on either side. 8 documents
 change, one block each, and no block count, heading or section label changes. The words
 added and removed are the page lines above, 61 added and 4 removed. Re-run on #868 at
-`55bba979b`, it gives the same documents, blocks and words.
+`55bba979b`, after review round 2's fixes, and at `dfe3833be` and `a5bc14776`, it gives
+the same documents, blocks and words.
 
 ## Scopes whose pages change; #864
 
