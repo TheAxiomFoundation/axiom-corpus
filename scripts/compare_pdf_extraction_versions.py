@@ -61,8 +61,11 @@ import argparse
 import hashlib
 import json
 import multiprocessing
+import os
+import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import warnings
 from collections import Counter, defaultdict, deque
@@ -388,8 +391,18 @@ def _trim_torn_tail(path: Path) -> None:
             handle.truncate(content.rfind(b"\n") + 1)
 
 
-def _worker_loop(connection: Connection, root: str, task_function: TaskFunction) -> None:
-    """Run tasks the parent sends until it sends None or goes away."""
+def _worker_loop(
+    connection: Connection, root: str, task_function: TaskFunction, results: str
+) -> None:
+    """Run tasks the parent sends until it sends None or goes away.
+
+    Each result goes to a file in ``results``, and the worker sends only the
+    file's name. The parent blocks in ``recv`` until a message is complete; a
+    name is a few dozen bytes, written by one system call, so a worker that
+    stalls cannot leave the parent waiting on half a message past every
+    deadline, as it could with a large result sent through the pipe.
+    """
+    finished = 0
     while True:
         try:
             task = connection.recv()
@@ -397,7 +410,12 @@ def _worker_loop(connection: Connection, root: str, task_function: TaskFunction)
             return
         if task is None:
             return
-        connection.send(task_function(task, root))
+        finished += 1
+        name = f"{os.getpid()}-{finished}.json"
+        partial = Path(results) / f"{name}.partial"
+        partial.write_text(json.dumps(task_function(task, root)), encoding="utf-8")
+        partial.replace(Path(results) / name)
+        connection.send(name)
 
 
 @dataclass
@@ -428,17 +446,24 @@ def _run_in_workers(
     context = multiprocessing.get_context("spawn")
     pending = deque(tasks)
     busy: dict[Connection, _Worker] = {}
+    # Every started worker until it is stopped, busy or not, so that an
+    # exception anywhere (in emit, or KeyboardInterrupt) still reaps it.
+    live: dict[int, _Worker] = {}
+    results = tempfile.mkdtemp(prefix="compare-pdf-extraction-")
 
     def start() -> _Worker:
         parent, child = context.Pipe()
         process = context.Process(
-            target=_worker_loop, args=(child, root, task_function), daemon=True
+            target=_worker_loop, args=(child, root, task_function, results), daemon=True
         )
         process.start()
         child.close()
-        return _Worker(process=process, connection=parent)
+        worker = _Worker(process=process, connection=parent)
+        live[id(worker)] = worker
+        return worker
 
     def stop(worker: _Worker, *, kill: bool) -> None:
+        live.pop(id(worker), None)
         if kill:
             worker.process.kill()
         else:
@@ -481,7 +506,7 @@ def _run_in_workers(
                 worker = busy.pop(connection)  # type: ignore[arg-type]
                 assert worker.task is not None
                 try:
-                    record = worker.connection.recv()
+                    name = worker.connection.recv()
                 except (EOFError, OSError):
                     worker.process.join(10)
                     emit(
@@ -493,6 +518,9 @@ def _run_in_workers(
                     stop(worker, kill=True)
                     assign(start())
                     continue
+                path = Path(results) / name
+                record = json.loads(path.read_text(encoding="utf-8"))
+                path.unlink()
                 emit(record)
                 assign(worker)
             now = time.monotonic()
@@ -504,8 +532,9 @@ def _run_in_workers(
                     emit({"key": worker.task["key"], "error": f"timeout after {timeout:g}s"})
                     assign(start())
     finally:
-        for worker in busy.values():
+        for worker in list(live.values()):
             stop(worker, kill=True)
+        shutil.rmtree(results, ignore_errors=True)
 
 
 def run_snapshot(
@@ -669,6 +698,12 @@ def compare_documents(
         if a is None or b is None:
             documents["not_in_both_snapshots"] += 1
             continue
+        # Different bytes explain any difference, an error included: set them aside first.
+        bytes_check = _bytes_check(a, b, task.get("source_sha256"))
+        if bytes_check == "differ":
+            documents["source_bytes_differ"] += 1
+            details.append({"key": key, "source_bytes": [a["pdf_sha256"], b["pdf_sha256"]]})
+            continue
         error_a, error_b = a.get("error"), b.get("error")
         if error_a or error_b:
             kinds = {_error_kind(error) if error else "none" for error in (error_a, error_b)}
@@ -683,11 +718,6 @@ def compare_documents(
             continue
         if len(a["candidates"]) != len(b["candidates"]):
             raise ValueError(f"the snapshots ran different configurations for {key}")
-        bytes_check = _bytes_check(a, b, task.get("source_sha256"))
-        if bytes_check == "differ":
-            documents["source_bytes_differ"] += 1
-            details.append({"key": key, "source_bytes": [a["pdf_sha256"], b["pdf_sha256"]]})
-            continue
         if bytes_check == "unchecked":
             documents["source_bytes_unchecked"] += 1
         committed_document = committed.get(key, {})
@@ -798,6 +828,13 @@ def compare_pdfs(
         if a is None or b is None:
             counts["pdfs_not_in_both_snapshots"] += 1
             continue
+        # A pdf task's key is the sha256 the lock records for the file. Different
+        # bytes explain any difference, an error included: set them aside first.
+        bytes_check = _bytes_check(a, b, task["key"])
+        if bytes_check == "differ":
+            counts["pdfs_bytes_differ"] += 1
+            details.append({"key": task["key"], "path": task["path"], "status": "bytes_differ"})
+            continue
         error_a, error_b = a.get("error"), b.get("error")
         if error_a or error_b:
             kinds = {_error_kind(error) if error else "none" for error in (error_a, error_b)}
@@ -808,12 +845,6 @@ def compare_pdfs(
                 details.append(
                     {"key": task["key"], "path": task["path"], "errors": [error_a, error_b]}
                 )
-            continue
-        # A pdf task's key is the sha256 the lock records for the file.
-        bytes_check = _bytes_check(a, b, task["key"])
-        if bytes_check == "differ":
-            counts["pdfs_bytes_differ"] += 1
-            details.append({"key": task["key"], "path": task["path"], "status": "bytes_differ"})
             continue
         if bytes_check == "unchecked":
             counts["pdfs_bytes_unchecked"] += 1

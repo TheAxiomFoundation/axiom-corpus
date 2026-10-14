@@ -140,9 +140,16 @@ Measured on 2026-10-13 with `scripts/compare_pdf_extraction_versions.py` on
 the corpus at `origin/main` 460549782 (2,431 lock files, every locked file
 fetched), CPython 3.14.7 on macOS arm64. The locked environment had PyMuPDF
 1.26.7 (MuPDF 1.26.12); the other was the same lock with PyMuPDF 1.28.2
-(MuPDF 1.28.2), and `pip freeze` differed in that one line. Every document
-snapshot read bytes whose SHA-256 equals the lock's, and no PDF in the corpus
-changed while the snapshots ran.
+(MuPDF 1.28.2), and `pip freeze` differed in that one line.
+
+The snapshots were taken with an earlier version of the script whose records
+have the same format; on 183 sampled tasks (123 documents, 60 PDFs) the
+committed script's records equal them. The document snapshots hashed the
+bytes they read: all 11,645 readable sources equal the lock's SHA-256. The
+page-by-page snapshots did not hash their input. After the runs every one of
+the 10,746 PDFs hashed to the lock's SHA-256, and the latest inode change
+time among them (17:51 UTC) is earlier than the start of the runs (17:56
+UTC), so none changed while the runs read them.
 
 ### Committed PDF documents
 

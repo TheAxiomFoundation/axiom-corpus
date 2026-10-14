@@ -15,7 +15,11 @@ Invariants:
   snapshot over one that extracts on both.
 * ``select_tasks``: ``--ocr skip`` and ``--ocr only`` split ``--ocr all``.
 * ``run_snapshot`` writes one record per task even when a worker dies or
-  hangs, and only those records rerun under ``--retry-errors``.
+  hangs, and only those records rerun under ``--retry-errors``; a large
+  result arrives whole, and an error while writing a record leaves no worker
+  process running.
+* A task whose snapshots read different bytes is set aside before any error
+  on it is counted.
 * End to end, two snapshots of the same environment compare equal, and a
   committed body the extractor does not produce counts as reproduced on neither.
 """
@@ -38,6 +42,7 @@ from hypothesis import strategies as st
 
 from scripts.compare_pdf_extraction_versions import (
     BODY,
+    _run_in_workers,
     build_plan,
     choose_configuration,
     compare,
@@ -300,6 +305,28 @@ def test_compare_documents_sets_aside_different_bytes() -> None:
     assert [item["key"] for item in details] == ["doc-0", "doc-1"]
 
 
+def test_different_bytes_are_set_aside_before_errors_are_counted() -> None:
+    plan = [{**_task(0), "source_sha256": "lock"}]
+    locked = {"doc-0": {**_record("doc-0", _blocks({"p1": digest("one")})), "pdf_sha256": "lock"}}
+    candidate = {
+        "doc-0": {
+            "key": "doc-0",
+            "pdf_sha256": "a corrupted copy",
+            "candidates": [{"error": "FileDataError: Failed to open stream"}],
+        }
+    }
+    summary, _ = compare_documents(plan, locked, candidate, {})
+    assert summary["documents"] == {"planned": 1, "source_bytes_differ": 1}
+
+    pdf_plan = [{"kind": "pdf", "key": "lock", "path": "x.pdf"}]
+    pdf_locked = {
+        "lock": {"key": "lock", "pdf_sha256": "lock", "pages": [["t", "n", 1, "s", "sn", "w"]]}
+    }
+    pdf_candidate = {"lock": {"key": "lock", "pdf_sha256": "other", "error": "FileDataError: x"}}
+    counts, _ = compare_pdfs(pdf_plan, pdf_locked, pdf_candidate)
+    assert counts == {"pdfs_planned": 1, "pdfs_bytes_differ": 1}
+
+
 def _configurations(entries: list[dict[str, Any]]) -> dict[str, Any]:
     return {"key": "doc", "pdf_sha256": "s", "candidates": entries}
 
@@ -382,6 +409,51 @@ def _task_that_crashes_or_hangs(task: dict[str, Any], root: str) -> dict[str, An
 
 def _task_that_succeeds(task: dict[str, Any], root: str) -> dict[str, Any]:
     return {"key": task["key"], "pid": os.getpid()}
+
+
+def _task_with_a_large_result(task: dict[str, Any], root: str) -> dict[str, Any]:
+    return {"key": task["key"], "pid": os.getpid(), "blob": "x" * 3_000_000}
+
+
+def test_a_large_result_reaches_the_parent_whole(tmp_path: Path) -> None:
+    plan = [{"kind": "pdf", "key": key, "path": f"{key}.pdf"} for key in ("one", "two", "three")]
+    out = tmp_path / "snapshot.jsonl"
+    ran = run_snapshot(
+        plan,
+        out,
+        root=tmp_path,
+        kinds={"pdf"},
+        workers=2,
+        timeout=60,
+        task_function=_task_with_a_large_result,
+    )
+    assert ran == 3
+    records = [json.loads(line) for line in out.read_text().splitlines()]
+    assert sorted(record["key"] for record in records) == ["one", "three", "two"]
+    assert all(len(record["blob"]) == 3_000_000 for record in records)
+
+
+def test_an_error_while_writing_a_record_leaves_no_worker_running(tmp_path: Path) -> None:
+    tasks = [{"kind": "pdf", "key": f"task-{index}", "path": "x.pdf"} for index in range(6)]
+    seen: list[int] = []
+
+    def emit(record: dict[str, Any]) -> None:
+        seen.append(record["pid"])
+        raise OSError("disk full")
+
+    with pytest.raises(OSError, match="disk full"):
+        _run_in_workers(
+            tasks,
+            root=str(tmp_path),
+            workers=2,
+            timeout=60,
+            task_function=_task_that_succeeds,
+            emit=emit,
+        )
+    assert seen
+    for pid in seen:
+        with pytest.raises(ProcessLookupError):
+            os.kill(pid, 0)
 
 
 def test_a_dead_or_hung_worker_costs_only_its_own_task(tmp_path: Path) -> None:
