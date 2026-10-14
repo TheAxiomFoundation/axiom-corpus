@@ -88,8 +88,8 @@ on_exit() {
         echo "could not unstage this run's changes; unstage them before re-running" >&2
       fi
     fi
-    # Step 3 moves each manifest signed again over its copy, which may be committed, just
-    # before the sign commit. A committed copy is put back; the next run signs it again.
+    # Step 3 moves each manifest signed again over the old one just before the sign commit.
+    # An old one that was committed is put back here, and the next run signs it again.
     if ! git diff --quiet -- .axiom/ingest-manifests; then
       if git checkout -q -- .axiom/ingest-manifests \
         || git checkout -q -- .axiom/ingest-manifests; then
