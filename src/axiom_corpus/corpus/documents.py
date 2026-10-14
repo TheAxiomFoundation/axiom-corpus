@@ -3574,11 +3574,10 @@ def _has_control_character(text: str) -> bool:
 # A layer line's characters, each with its font's name when it is an unmapped character
 # that may be decoded, and None otherwise. A font's characters in a line may be decoded
 # only when every one of them there is unmapped (``_pdf_unmapped_status``), MuPDF's own
-# spaces (U+0020) aside, and no other font object on the page has its name
-# (``_pdf_font_span_name_counts``). For a Type 3 font MuPDF prints a printable code whose
-# glyph name it does not know as itself, as if mapped, so only the line's control codes
-# show as unmapped, and MuPDF may put them in spans of their own; and two unmapped fonts of
-# one name can number their glyphs differently. A line is decoded whole or not at all
+# spaces (U+0020) aside, and the font is not one ``_pdf_undecodable_fonts`` refuses for the
+# whole page. (For a Type 3 font, which is never decoded, MuPDF prints a printable code
+# whose glyph name it does not know as itself, as if mapped, so only the line's control
+# codes show as unmapped.) A line is decoded whole or not at all
 # (``_pdf_decoded_span_lines``).
 _LayerChars = list[tuple[str, str | None]]
 
@@ -3596,15 +3595,15 @@ def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
     The characters MuPDF has no Unicode for (``_pdf_unmapped_characters``) are decoded in
     each font whose codes the OCR text shows to be a constant shift from ASCII
     (``_pdf_font_code_shifts``), so the font's spans no longer hold control characters
-    and ``_without_garbled_spans`` keeps them. A line is decoded only when every unmapped
-    (or unmatched) character in it can be: one value can run across fonts (AL-20-0004 page
-    4 writes "03/01/2020" as "0" and "/01/2020" in one font and "3" in another), and
-    decoding part of it would leave a fragment. A span of a decoded font that its shift
-    does not decode becomes a space. Every other line, and every span's paint and font, is
-    unchanged (only a span's text is replaced), and so is every line of a page with no such
-    font. The characters are read
-    from the ``rawdict`` output, which has the ``dict`` output's lines and spans; if it
-    does not, nothing is decoded.
+    and ``_without_garbled_spans`` keeps them. Only the fonts ``_pdf_undecodable_fonts``
+    leaves are tried. A line is decoded only when every unmapped (or unmatched) character
+    in it can be, into printable ASCII: one value can run across fonts and spans
+    (AL-20-0004 page 4 writes "03/01/2020" as "0" and "/01/2020" in one font and "3" in
+    another), and decoding part of it would leave a fragment. Every other line, and every
+    span's paint and font, is unchanged (only a span's text is replaced), and so is every
+    line of a page with no such font. The characters are read from the ``rawdict``
+    output, which has the ``dict`` output's lines and spans; if it does not, nothing is
+    decoded.
     """
     sort = bool(extraction.get("sort_text"))
     flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
@@ -3627,12 +3626,10 @@ def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
         for chars in line
         for char in chars
     )
-    objects = _pdf_font_span_name_counts(page)
     seen: Counter[tuple[float, float]] = Counter()
-    lines: list[list[_LayerChars]] = []
-    line_statuses: list[list[bool | None]] = []
+    values: list[list[list[tuple[str, str, bool | None]]]] = []
     for line, spans in zip(raw_lines, span_lines, strict=True):
-        values: list[list[tuple[str, str, bool | None]]] = []
+        line_values: list[list[tuple[str, str, bool | None]]] = []
         for chars, span in zip(line, spans, strict=True):
             font = str(span[2])
             span_values: list[tuple[str, str, bool | None]] = []
@@ -3645,12 +3642,17 @@ def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
                     value, unflagged.get(origin), drawn[origin], occurrence
                 )
                 span_values.append((value, font, status))
-            values.append(span_values)
-        undecoded = {
+            line_values.append(span_values)
+        values.append(line_values)
+    refused = _pdf_undecodable_fonts(page, values)
+    lines: list[list[_LayerChars]] = []
+    line_statuses: list[list[bool | None]] = []
+    for line_values in values:
+        undecoded = refused | {
             font
-            for span in values
+            for span in line_values
             for value, font, status in span
-            if status is None or (not status and value != " ") or objects.get(font) != 1
+            if status is None or (not status and value != " ")
         }
         lines.append(
             [
@@ -3658,10 +3660,10 @@ def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
                     (value, font if status and font not in undecoded else None)
                     for value, font, status in span
                 ]
-                for span in values
+                for span in line_values
             ]
         )
-        line_statuses.append([status for span in values for _, _, status in span])
+        line_statuses.append([status for span in line_values for _, _, status in span])
     shifts = _pdf_font_code_shifts(
         [[char for span in line for char in span] for line in lines], ocr_text
     )
@@ -3669,21 +3671,72 @@ def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
         return span_lines
     decoded_lines: list[list[Span]] = []
     for line_spans, statuses, spans in zip(lines, line_statuses, span_lines, strict=True):
-        if not any(font in shifts for chars in line_spans for _, font in chars) or any(
-            status is not False and (font is None or font not in shifts)
-            for (_, font), status in zip(
-                (char for chars in line_spans for char in chars), statuses, strict=True
+        texts = [_pdf_decoded_layer_line(chars, shifts) for chars in line_spans]
+        if (
+            not any(font in shifts for chars in line_spans for _, font in chars)
+            or any(
+                status is not False and (font is None or font not in shifts)
+                for (_, font), status in zip(
+                    (char for chars in line_spans for char in chars), statuses, strict=True
+                )
             )
+            or any(text is None for text in texts)
         ):
             decoded_lines.append(spans)
             continue
-        decoded: list[Span] = []
-        for chars, span in zip(line_spans, spans, strict=True):
-            decoded_text = _pdf_decoded_layer_line(chars, shifts)
-            text = " " if decoded_text is None else decoded_text
-            decoded.append(cast(Span, (text, *span[1:])))
-        decoded_lines.append(decoded)
+        decoded_lines.append(
+            [cast(Span, (text, *span[1:])) for text, span in zip(texts, spans, strict=True)]
+        )
     return decoded_lines
+
+
+def _pdf_undecodable_fonts(
+    page: Any, values: list[list[list[tuple[str, str, bool | None]]]]
+) -> set[str]:
+    """The span font names whose unmapped characters on the page are not decoded at all.
+
+    ``values`` holds each line's spans' characters, with font name and unmapped status
+    (``_pdf_unmapped_status``). A font with unmapped characters is decoded only when:
+
+    - no other font object on the page carries its name (``_pdf_font_span_name_counts``):
+      two unmapped fonts of one name can number their glyphs differently;
+    - it is a Type0 font, whose codes are CIDs, and its /W array (``_pdf_cid_font_codes``)
+      gives a width for every code it draws unmapped on the page and leaves a gap between
+      its least and greatest code. A font that numbers its glyphs in the order a document
+      first uses them assigns every code in its range, so its /W has no gap; a font whose
+      codes keep the glyph order of the font it was cut from (every shifted font found:
+      Minion Pro, Arial, Times New Roman) has gaps where it left glyphs out;
+    - none of its unmapped codes prints as a combining mark (Unicode category Mn), so that
+      decoding takes no mark out of the spans that ``_with_layer_marks`` would then look
+      for in vain.
+    """
+    objects = _pdf_font_span_name_counts(page)
+    declared: dict[str, frozenset[int]] = {}
+    document = page.parent
+    for font in page.get_fonts(full=True):
+        if font[0] and font[2] == "Type0":
+            codes = _pdf_cid_font_codes(document, font[0])
+            if codes is not None:
+                declared[_pdf_font_span_name(page, font)] = codes
+    unmapped: dict[str, set[str]] = {}
+    for line in values:
+        for span in line:
+            for value, font, status in span:
+                if status:
+                    unmapped.setdefault(font, set()).add(value)
+    refused: set[str] = set()
+    for font, chars in unmapped.items():
+        widths = declared.get(font)
+        if (
+            objects.get(font) != 1
+            or widths is None
+            or any(len(char) != 1 for char in chars)
+            or not {ord(char) for char in chars} <= widths
+            or len(widths) == max(widths) - min(widths) + 1
+            or any(unicodedata.category(char) == "Mn" for char in chars)
+        ):
+            refused.add(font)
+    return refused
 
 
 def _pdf_unmapped_characters(
@@ -3738,25 +3791,41 @@ def _pdf_font_span_name_counts(page: Any) -> Counter[str]:
     The fonts are those ``page.get_fonts(full=True)`` lists (the page's and its forms') and
     those of its annotations' appearance streams, which ``get_text`` reads and
     ``get_fonts`` does not list. Each is named as MuPDF names its spans
-    (``_pdf_font_span_name``). Empty when an annotation's font cannot be named (one written
-    inline in its resources), so that no name counts once and nothing is decoded.
+    (``_pdf_font_span_name``); a Type3 font without a name under both names MuPDF has used
+    for it (``_pdf_type3_font_names``). Empty when an annotation's font cannot be named for
+    certain (one written inline in its resources, or whose /Subtype or /BaseFont is not a
+    name written in its dictionary), or the annotations can't all be walked, so that no
+    name counts once and nothing is decoded.
     """
     document = page.parent
     counts: Counter[str] = Counter()
     listed: set[int] = set()
+
+    def count(font: tuple[Any, ...]) -> None:
+        name = _pdf_font_span_name(page, font)
+        counts[name] += 1
+        if font[2] == "Type3" and name == "Unnamed-T3":
+            counts[f"Type3 ({font[0]} 0 R)"] += 1
+
     for font in page.get_fonts(full=True):
         if font[0]:
             if font[0] in listed:
                 continue
             listed.add(font[0])
-        counts[_pdf_font_span_name(page, font)] += 1
+        count(font)
     annotation_fonts = _pdf_annotation_font_xrefs(page)
     if annotation_fonts is None:
         return Counter()
     for xref in sorted(annotation_fonts - listed):
-        subtype = str(document.xref_get_key(xref, "Subtype")[1]).lstrip("/")
-        base = str(document.xref_get_key(xref, "BaseFont")[1]).lstrip("/")
-        counts[_pdf_font_span_name(page, (xref, "", subtype, base, "", "", 0))] += 1
+        subtype_kind, subtype = document.xref_get_key(xref, "Subtype")
+        base_kind, base = document.xref_get_key(xref, "BaseFont")
+        # MuPDF resolves an indirect name; the bare key would give "70 0 R" instead.
+        if subtype_kind != "name" or base_kind not in (
+            ("name", "null") if subtype == "/Type3" else ("name",)
+        ):
+            return Counter()
+        names = (str(subtype).lstrip("/"), str(base).lstrip("/") if base_kind == "name" else "")
+        count((xref, "", *names, "", "", 0))
     return counts
 
 
@@ -3774,13 +3843,27 @@ def _pdf_font_span_name(page: Any, font: tuple[Any, ...]) -> str:
     return name
 
 
-_PDF_OBJECT_REFERENCE = re.compile(r"(\d+)\s+0\s+R")
+_PDF_OBJECT_REFERENCE = re.compile(r"(\d+)\s+(\d+)\s+R")
+# The most appearance streams and forms ``_pdf_annotation_font_xrefs`` walks on a page.
+_PDF_ANNOTATION_STREAMS = 4096
+
+
+def _pdf_object_references(text: str) -> list[int] | None:
+    """The object numbers ``text`` (a PDF object as PyMuPDF prints it) refers to, or None
+    when a reference has a generation other than 0, which a lookup by number may not
+    reach."""
+    references = _PDF_OBJECT_REFERENCE.findall(text)
+    if any(generation != "0" for _, generation in references):
+        return None
+    return [int(number) for number, _ in references]
 
 
 def _pdf_annotation_font_xrefs(page: Any) -> set[int] | None:
     """The fonts of the page's annotations' appearance streams, by object number, walked
-    through each stream's Resources/Font and the forms in its Resources/XObject; None when
-    one is written inline, without an object number."""
+    through each stream's Resources/Font and the forms in its Resources/XObject. None when
+    one is written inline, without an object number, when a reference has a generation
+    other than 0, or when there are more than _PDF_ANNOTATION_STREAMS streams to walk: then
+    some fonts are not known."""
     document = page.parent
     fonts: set[int] = set()
     streams: list[int] = []
@@ -3790,20 +3873,24 @@ def _pdf_annotation_font_xrefs(page: Any) -> set[int] | None:
             value = document.xref_object(int(value.split()[0]))
         elif kind != "dict":
             continue
-        for reference in _PDF_OBJECT_REFERENCE.findall(value):
-            xref = int(reference)
+        references = _pdf_object_references(value)
+        if references is None:
+            return None
+        for xref in references:
             if document.xref_is_stream(xref):
                 streams.append(xref)
-            else:  # a dictionary of appearance states
-                streams.extend(
-                    int(state)
-                    for state in _PDF_OBJECT_REFERENCE.findall(document.xref_object(xref))
-                )
+                continue
+            states = _pdf_object_references(document.xref_object(xref))  # appearance states
+            if states is None:
+                return None
+            streams.extend(states)
     visited: set[int] = set()
     while streams:
         xref = streams.pop()
-        if xref in visited or len(visited) > 4096:
+        if xref in visited:
             continue
+        if len(visited) >= _PDF_ANNOTATION_STREAMS:
+            return None
         visited.add(xref)
         kind, value = document.xref_get_key(xref, "Resources")
         if kind == "xref":
@@ -3820,12 +3907,74 @@ def _pdf_annotation_font_xrefs(page: Any) -> set[int] | None:
                 continue
             if found is not None and "<<" in value[2:]:
                 return None
-            references = (int(reference) for reference in _PDF_OBJECT_REFERENCE.findall(value))
+            references = _pdf_object_references(value)
+            if references is None:
+                return None
             if found is not None:
                 found.update(references)
             else:
                 streams.extend(references)
     return fonts
+
+
+def _pdf_cid_font_codes(document: Any, font: int) -> frozenset[int] | None:
+    """The codes (CIDs) a Type0 font's descendant gives widths for in its /W array, or
+    None when the font is not a Type0 font or its /W is missing or not read."""
+    try:
+        if document.xref_get_key(font, "Subtype") != ("name", "/Type0"):
+            return None
+        kind, value = document.xref_get_key(font, "DescendantFonts")
+        if kind == "xref":
+            value = document.xref_object(int(value.split()[0]))
+        descendants = _pdf_object_references(value)
+        if descendants is None or len(descendants) != 1:
+            return None
+        kind, value = document.xref_get_key(descendants[0], "W")
+        if kind == "xref":
+            value = document.xref_object(int(value.split()[0]))
+        elif kind != "array":
+            return None
+        return _pdf_width_codes(value)
+    except Exception:  # MuPDF and its bindings raise several types; only decoding is at stake
+        return None
+
+
+_PDF_WIDTH_TOKEN = re.compile(r"\[|\]|[-+]?(?:\d+\.?\d*|\.\d+)|\S")
+
+
+def _pdf_width_codes(text: str) -> frozenset[int] | None:
+    """The codes a CIDFont /W array (as PyMuPDF prints it) gives widths for: each
+    "c [w1 ... wn]" covers c to c + n - 1 and each "first last w" first to last. None when
+    the array is not of that form (an indirect width, say) or covers a code outside 0 to
+    0xFFFF, beyond any two-byte CID."""
+    tokens = _PDF_WIDTH_TOKEN.findall(text.strip())
+    if len(tokens) < 2 or tokens[0] != "[" or tokens[-1] != "]":
+        return None
+    tokens = tokens[1:-1]
+    codes: set[int] = set()
+    index = 0
+    try:
+        while index < len(tokens):
+            first = int(tokens[index])
+            if tokens[index + 1] == "[":
+                end = tokens.index("]", index + 2)
+                widths = tokens[index + 2 : end]
+                if any(token == "[" for token in widths):
+                    return None
+                for width in widths:
+                    float(width)
+                last = first + len(widths) - 1
+                index = end + 1
+            else:
+                last = int(tokens[index + 1])
+                float(tokens[index + 2])
+                index += 3
+            if not 0 <= first <= last <= 0xFFFF:
+                return None
+            codes.update(range(first, last + 1))
+    except (IndexError, ValueError):
+        return None
+    return frozenset(codes)
 
 
 # A Type0 font with Identity-H codes (glyph ids) and no ToUnicode map can leave MuPDF with
@@ -3837,13 +3986,15 @@ def _pdf_annotation_font_xrefs(page: Any) -> set[int] | None:
 # chance does not give: decoded lines the OCR text reads, each with at least
 # _PDF_SHIFT_LINE_LETTERS decoded letters or digits, together at least _PDF_SHIFT_LETTERS,
 # holding at least _PDF_SHIFT_GLYPHS distinct ones from at least two of digits, capitals
-# and small letters. A font that numbers its glyphs in the order a page first uses them
-# (CA-25-0037's Type 3 fonts) can fit one shift only where that order runs through
-# consecutive ASCII characters, and no such run joins two of those classes without the
-# punctuation between them. On the 1,041 overlay pages of the 2026-10-13 OCR sweep (328
-# retained PDFs), every right shift found has evidence from two or more classes; the
-# weakest has five distinct glyphs on two lines of four (WA-14-0003's "10 P & I" and
-# "12 P & I").
+# and small letters. The classes keep a short run of codes numbered in order of use
+# ("1234", or "1122" at codes 0 to 3) from passing for a shift; but a font that numbers its
+# glyphs in the order a document first uses them can still fit one shift wherever its
+# evidence glyphs were first used in steps that match their ASCII distances ("89:;<=>?@AB"
+# first used in that order), and the shift is then wrong for every other glyph. Such fonts
+# are not decoded at all (``_pdf_undecodable_fonts``: only Type0 fonts whose /W leaves a
+# gap). On the 1,041 overlay pages of the 2026-10-13 OCR sweep (328 retained PDFs), every
+# right shift found has evidence from two or more classes; the weakest has five distinct
+# glyphs on two lines of four (WA-14-0003's "10 P & I" and "12 P & I").
 _PDF_SHIFT_FIRST = 0x20
 _PDF_SHIFT_LAST = 0x7E
 _PDF_SHIFT_LINE_LETTERS = 4

@@ -29,9 +29,11 @@ S4. It is ``_reference_shifts``: every shift tried on every line whose unmapped 
 S5. Round trip: ASCII lines written in a font by a shift k, read by OCR, give k back when
     the evidence is enough and no other shift has any, and decoding gives the lines back
     exactly; with too little evidence, no shift.
-S6. The order of the lines, repeated lines, lines without unmapped characters, and lines
-    that decode to another line's text with fewer decoded characters change nothing; shift
-    0 is never returned.
+S6. The order of the lines, repeated lines and lines without unmapped characters change
+    nothing; shift 0 is never returned. A line that decodes under a font's shift to a
+    line's text with fewer decoded characters adds nothing to that shift's evidence: the
+    font keeps its shift unless the line is evidence for another shift (then it has none),
+    and no other font changes.
 
 Reading a page, ``_pdf_decoded_span_lines`` and ``_pdf_page_text`` (built PDFs, and
 retained CMS pages with Tesseract's stored output):
@@ -41,11 +43,19 @@ S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an 
 S8. A span without an unmapped character is never changed. A font is not decoded in a line
     where some of its characters are mapped, nor anywhere when another font object on the
     page has its name (two unmapped fonts of one name can number their glyphs differently),
-    and a line is decoded whole or not at all.
+    and a line is decoded whole or not at all: not when one of its characters, in any of
+    its spans, would decode outside printable ASCII.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
     reports as U+FFFD (a differential test on every retained page); every span holding one
     is one MuPDF marks UNICODE_IS_CID or _IS_GID; and a character is paired with the other
     read's only where the reads agree at its origin (``_pdf_unmapped_status``).
+S10. Only a Type0 font is decoded, and only when its /W gives a width for every code it
+    draws unmapped on the page and leaves a gap between its least and greatest code (a
+    font numbering its glyphs in order of use leaves none), and none of those codes prints
+    as a combining mark. /W read back gives exactly the codes written.
+S11. When an annotation's font can't be known for certain (an inline font, a /Subtype or
+    /BaseFont not written in the font's dictionary, a reference of another generation, or
+    more appearance streams than the walk takes), nothing on the page is decoded.
 """
 
 from __future__ import annotations
@@ -141,6 +151,21 @@ def _reference_shifts(lines: list[list[tuple[str, str | None]]], ocr_text: str) 
 def _encode(text: str, font: str, shift: int) -> list[tuple[str, str | None]]:
     """``text`` written in ``font`` with codes ``shift`` below its characters, unmapped."""
     return [(chr(ord(char) - shift), font) for char in text]
+
+
+def _rival_shifts(lines, font: str, shift: int, ocr_text: str) -> set[int]:
+    """The shifts other than ``shift`` that some line of ``font`` alone is evidence for."""
+    return {
+        other
+        for other in _ALL_SHIFTS
+        if other != shift
+        for line in lines
+        if {f for _, f in line if f is not None} == {font}
+        and (decoded := _reference_decode(line, {font: other})) is not None
+        and sum(1 for c, f in line if f and chr(ord(c) + other).isalnum())
+        >= _PDF_SHIFT_LINE_LETTERS
+        and _reference_reads(ocr_text, decoded)
+    }
 
 
 # -------------------------------------------------------------------------- strategies
@@ -269,16 +294,7 @@ def test_lines_written_by_a_shift_give_the_shift_and_their_text_back(font, shift
     assert shifts == reference
     if enough and shifts != {font: shift}:
         assert shifts == {}
-        rivals = {
-            other
-            for other in _ALL_SHIFTS
-            if other != shift
-            for line in lines
-            if (decoded := _reference_decode(line, {font: other})) is not None
-            and sum(1 for c, _ in line if chr(ord(c) + other).isalnum()) >= _PDF_SHIFT_LINE_LETTERS
-            and _reference_reads(ocr_text, decoded)
-        }
-        assert rivals, "the shift was lost without a rival shift"
+        assert _rival_shifts(lines, font, shift, ocr_text), "the shift was lost without a rival"
     if shifts == {font: shift}:
         assert [_pdf_decoded_layer_line(line, shifts) for line in lines] == texts
     if not enough:
@@ -287,16 +303,16 @@ def test_lines_written_by_a_shift_give_the_shift_and_their_text_back(font, shift
 
 @st.composite
 def partly_mapped_copies(draw, lines, shifts):
-    """For some lines, a copy whose first characters are mapped: under the font's shift
-    (the detected one, else any) it decodes to the same text with fewer decoded
-    characters, the case where counting a text once per line made the order matter."""
+    """For some lines of fonts with a shift, a copy whose first characters are mapped:
+    under the font's shift it decodes to the same text with fewer decoded characters, the
+    case where counting a text once per line made the order matter."""
     copies = []
     for chars in lines:
         fonts = {font for _, font in chars if font is not None}
-        if len(fonts) != 1 or not draw(st.booleans()):
+        if len(fonts) != 1 or not fonts <= shifts.keys() or not draw(st.booleans()):
             continue
         (font,) = fonts
-        shift = shifts.get(font) or draw(SHIFT)
+        shift = shifts[font]
         cut = draw(st.integers(min_value=0, max_value=len(chars)))
         prefix = []
         for char, char_font in chars[:cut]:
@@ -316,18 +332,26 @@ def partly_mapped_copies(draw, lines, shifts):
 def test_line_order_repeats_and_mapped_lines_change_nothing(case, mapped, random, data):
     lines, ocr_text = case
     assume(ocr_text.split())
-    lines = [
-        *lines,
-        *data.draw(partly_mapped_copies(lines, _pdf_font_code_shifts(lines, ocr_text))),
-    ]
     shifts = _pdf_font_code_shifts(lines, ocr_text)
 
+    # S6: order, repeats and lines without unmapped characters change nothing.
     shuffled = [*lines, *lines[:2], *mapped]
     random.shuffle(shuffled)
-    # S6.
     assert _pdf_font_code_shifts(shuffled, ocr_text) == shifts
     assert _pdf_font_code_shifts(list(reversed(lines)), ocr_text) == shifts
     assert 0 not in shifts.values()
+
+    # S6: a line that decodes under a font's shift to a line's text with fewer decoded
+    # characters adds nothing to that shift's evidence. The font keeps its shift unless
+    # such a line is evidence for another shift, which leaves the font with none; no
+    # other font changes.
+    copies = data.draw(partly_mapped_copies(lines, shifts))
+    with_copies = _pdf_font_code_shifts([*lines, *copies], ocr_text)
+    assert with_copies.keys() <= shifts.keys()
+    for font, shift in shifts.items():
+        if with_copies.get(font) != shift:
+            assert font not in with_copies
+            assert _rival_shifts(copies, font, shift, ocr_text)
 
 
 def test_evidence_thresholds():
@@ -408,8 +432,9 @@ def _png(width: int, height: int) -> bytes:
 SCAN_PNG = _png(1275, 1650)
 
 
-def _type3_font(document: fitz.Document, codes: set[int], name: str) -> int:
-    """A Type 3 font whose glyphs' names (/g<code>) give MuPDF no Unicode."""
+def _type3_font(document: fitz.Document, codes: set[int], name: str | None) -> int:
+    """A Type 3 font whose glyphs' names (/g<code>) give MuPDF no Unicode, named ``name``
+    (without a /Name when None)."""
     procs = {}
     for code in sorted(codes):
         xref = document.get_new_xref()
@@ -420,7 +445,9 @@ def _type3_font(document: fitz.Document, codes: set[int], name: str) -> int:
     font = document.get_new_xref()
     document.update_object(
         font,
-        "<< /Type /Font /Subtype /Type3 /Name /" + name + " /FontBBox [0 0 1000 1000]"
+        "<< /Type /Font /Subtype /Type3"
+        + ("" if name is None else " /Name /" + name)
+        + " /FontBBox [0 0 1000 1000]"
         " /FontMatrix [0.001 0 0 0.001 0 0]"
         " /CharProcs << " + " ".join(f"/g{c} {x} 0 R" for c, x in procs.items()) + " >>"
         " /Encoding << /Type /Encoding /Differences ["
@@ -432,19 +459,85 @@ def _type3_font(document: fitz.Document, codes: set[int], name: str) -> int:
     return font
 
 
+def _type0_font(
+    document: fitz.Document,
+    codes: set[int],
+    name: str,
+    *,
+    widths: set[int] | None = None,
+    mapped: dict[int, str] | None = None,
+) -> int:
+    """A Type0 Identity-H font, not embedded, whose /W gives widths for ``widths`` (by
+    default the codes it draws) and whose ToUnicode map, if ``mapped`` gives one, maps
+    only those codes. MuPDF reads a code below about 0x1000 of such a font through its
+    substitute font's glyph order (code + 29), but has no Unicode for a higher one and
+    prints the code, as for the shifted fonts' embedded programs, which name no glyph."""
+    descriptor = document.get_new_xref()
+    document.update_object(
+        descriptor,
+        f"<< /Type /FontDescriptor /FontName /{name} /Flags 32 /FontBBox [0 0 1000 1000]"
+        " /ItalicAngle 0 /Ascent 800 /Descent -200 /CapHeight 700 /StemV 80 >>",
+    )
+    w = " ".join(f"{code} [500]" for code in sorted(codes if widths is None else widths))
+    descendant = document.get_new_xref()
+    document.update_object(
+        descendant,
+        f"<< /Type /Font /Subtype /CIDFontType2 /BaseFont /{name}"
+        " /CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>"
+        f" /FontDescriptor {descriptor} 0 R /DW 1000 /W [{w}] /CIDToGIDMap /Identity >>",
+    )
+    to_unicode = ""
+    if mapped:
+        cmap = document.get_new_xref()
+        document.update_object(cmap, "<< >>")
+        entries = "\n".join(
+            f"<{code:04X}> <{''.join(f'{ord(c):04X}' for c in text)}>"
+            for code, text in sorted(mapped.items())
+        )
+        document.update_stream(
+            cmap,
+            (
+                "/CIDInit /ProcSet findresource begin 12 dict begin begincmap\n"
+                "/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n"
+                "/CMapName /Adobe-Identity-UCS def /CMapType 2 def\n"
+                "1 begincodespacerange <0000> <FFFF> endcodespacerange\n"
+                f"{len(mapped)} beginbfchar\n{entries}\nendbfchar\n"
+                "endcmap CMapName currentdict /CMap defineresource pop end end"
+            ).encode(),
+        )
+        to_unicode = f" /ToUnicode {cmap} 0 R"
+    font = document.get_new_xref()
+    document.update_object(
+        font,
+        f"<< /Type /Font /Subtype /Type0 /BaseFont /{name}-Identity-H /Encoding /Identity-H"
+        f" /DescendantFonts [{descendant} 0 R]{to_unicode} >>",
+    )
+    return font
+
+
+def _code(char: str, shift: int | dict[str, int]) -> int:
+    """``char``'s code: ``shift`` below it, or the code a table gives it."""
+    return shift[char] if isinstance(shift, dict) else ord(char) - shift
+
+
 def _form_pdf(
     path: Path,
     lines: list[tuple],
     *,
-    name: str = "ShiftedT3",
+    name: str | None = "Shifted",
     mapped_name: str = "Helvetica",
-    group_names: dict[int, str] | None = None,
+    group_names: dict[int, str | None] | None = None,
+    kind: str = "type0",
+    widths: dict[int, set[int]] | None = None,
+    mapped: dict[int, dict[int, str]] | None = None,
 ) -> Path:
-    """A page scan with typed lines (text, shift[, group[, y[, x]]]): in a Type 3 font
-    whose codes are ``shift`` below the text, one font object per group, named ``name``
-    unless ``group_names`` names its group; or, with shift None, in a Helvetica named
-    ``mapped_name``. Lines run down from (72, 700) unless given a y and x; two lines at one
-    y and x overprint."""
+    """A page scan with typed lines (text, shift[, group[, y[, x[, size]]]]): in a font
+    whose codes are ``shift`` below the text (or, for a dict, the codes it gives), one font
+    object per group, named ``name`` unless ``group_names`` names its group: a Type0 font
+    (``_type0_font``, with ``widths`` and ``mapped`` for its group) or, with ``kind``
+    "type3", a Type 3 font; or, with shift None, in a Helvetica named ``mapped_name``.
+    Lines run down from (72, 700) in 10-point text unless given a y, x and size; two lines
+    at one y and x overprint."""
     document = fitz.open()
     page = document.new_page(width=612, height=792)
     page.insert_image(page.rect, stream=SCAN_PNG, keep_proportion=False)
@@ -453,15 +546,27 @@ def _form_pdf(
         for line in lines
     ]
     xs = [line[4] if len(line) > 4 else 72 for line in lines]
+    sizes = [line[5] if len(line) > 5 else 10 for line in lines]
     fonts = {}
     for group in sorted({group for _, shift, group, _ in entries if shift is not None}):
         codes = {
-            ord(c) - shift
+            _code(c, shift)
             for text, shift, g, _ in entries
             if g == group and shift is not None
             for c in text
         }
-        fonts[f"T{group}"] = _type3_font(document, codes, (group_names or {}).get(group, name))
+        font_name = (group_names or {}).get(group, name)
+        fonts[f"T{group}"] = (
+            _type3_font(document, codes, font_name)
+            if kind == "type3"
+            else _type0_font(
+                document,
+                codes,
+                font_name,
+                widths=(widths or {}).get(group),
+                mapped=(mapped or {}).get(group),
+            )
+        )
     if any(shift is None for _, shift, _, _ in entries):
         helvetica = document.get_new_xref()
         document.update_object(
@@ -470,14 +575,17 @@ def _form_pdf(
         )
         fonts["F8"] = helvetica
     stream = []
-    for index, ((text, shift, group, y), x) in enumerate(zip(entries, xs, strict=True)):
+    digits = 2 if kind == "type3" else 4
+    for index, ((text, shift, group, y), x, size) in enumerate(
+        zip(entries, xs, sizes, strict=True)
+    ):
         y = 700 - 24 * index if y is None else y
         if shift is None:
             literal = text.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
-            stream.append(f"BT /F8 10 Tf {x} {y} Td ({literal}) Tj ET")
+            stream.append(f"BT /F8 {size} Tf {x} {y} Td ({literal}) Tj ET")
         else:
-            hexed = "".join(f"{ord(c) - shift:02x}" for c in text)
-            stream.append(f"BT /T{group} 10 Tf {x} {y} Td <{hexed}> Tj ET")
+            hexed = "".join(f"{_code(c, shift):0{digits}x}" for c in text)
+            stream.append(f"BT /T{group} {size} Tf {x} {y} Td <{hexed}> Tj ET")
     # insert_image drew the scan and keeps the page resources in an object of their own.
     resources = int(document.xref_get_key(page.xref, "Resources")[1].split()[0])
     document.xref_set_key(
@@ -512,7 +620,10 @@ def _appended(ocr_text: str, result: str) -> list[str]:
     return result[len(head) :].split("\n")
 
 
-# Codes 0x60 above ASCII: every one is above 0x7F, where MuPDF prints U+FFFD without
+# Type0 codes 0xE000 above ASCII, in the Private Use Area: MuPDF has no Unicode for any
+# of them and prints each code as itself, neither a control character nor a mark.
+PUA = -0xE000
+# Type 3 codes 0x60 above ASCII: every one is above 0x7F, where MuPDF prints U+FFFD without
 # TEXT_CID_FOR_UNKNOWN_UNICODE, so every character of the font is unmapped.
 HIGH = -0x60
 
@@ -520,7 +631,7 @@ HIGH = -0x60
 def test_a_shifted_fonts_typed_lines_ocr_missed_are_decoded(tmp_path, monkeypatch):
     pdf = _form_pdf(
         tmp_path / "form.pdf",
-        [("6/24/19", HIGH), ("Wendy Hill Petras", HIGH), ("Acting Deputy Director", HIGH)],
+        [("6/24/19", PUA), ("Wendy Hill Petras", PUA), ("Acting Deputy Director", PUA)],
     )
     ocr = "18. DATE APPROVED: 6/24/19\n21. TYPED NAME: Wendy Hill Petras\n22. TITLE:\n"
 
@@ -531,25 +642,54 @@ def test_a_shifted_fonts_typed_lines_ocr_missed_are_decoded(tmp_path, monkeypatc
     assert _appended(ocr, result) == ["Acting Deputy Director"]
 
 
-def test_a_span_its_fonts_shift_cannot_decode_is_left_out(tmp_path, monkeypatch):
-    # U+007F in the title has code 0xDF, which the shift takes to U+007F, outside printable
-    # ASCII. Raw, the span reads as Latin-1 letters ("¡ÃÔÉÎÇß¤..."), with no control
-    # character to mark it, so it becomes a space and its line is dropped.
+def test_a_line_with_a_character_its_shift_cannot_decode_is_not_decoded(tmp_path):
+    # U+007F in the title has code 0xE07F, which the shift takes to U+007F, outside
+    # printable ASCII; the line is left as read (S8), the other two are decoded.
     pdf = _form_pdf(
         tmp_path / "form.pdf",
-        [("6/24/19", HIGH), ("Wendy Hill Petras", HIGH), ("Acting\x7fDirector", HIGH)],
+        [("6/24/19", PUA), ("Wendy Hill Petras", PUA), ("Acting\x7fDirector", PUA)],
     )
     ocr = "18. DATE APPROVED: 6/24/19\n21. TYPED NAME: Wendy Hill Petras\n"
 
     with fitz.open(pdf) as document:
-        lines = _layer(document[0], ocr)
+        page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
+        decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
 
-    assert lines == ["6/24/19", "Wendy Hill Petras"]
-    assert _appended(ocr, _page_text(pdf, ocr, monkeypatch)) == []
+    assert [[text for text, *_ in line] for line in decoded[:2]] == [
+        ["6/24/19"],
+        ["Wendy Hill Petras"],
+    ]
+    assert decoded[2] == spans[2]
+
+
+def test_a_line_whose_spans_do_not_all_decode_is_not_decoded(tmp_path):
+    # The review's case: one font's line "1234" and, in a span of its own (another size),
+    # a character whose code the shift takes outside printable ASCII (U+00A0). Decoding
+    # the first span alone would keep "1234" and lose the character, so the line is left
+    # as read.
+    pdf = _form_pdf(
+        tmp_path / "form.pdf",
+        [
+            ("June 2020", PUA),
+            ("Scott 2021", PUA),
+            ("1234", PUA, 0, 600, 72, 10),
+            ("\xa0", PUA, 0, 600, 96, 12),
+        ],
+    )
+    ocr = "June 2020\nSigned: Scott 2021\n"
+    with fitz.open(pdf) as document:
+        page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
+        decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
+
+    split = [line for line in spans if len(line) == 2]
+    assert split and all(line in decoded for line in split)
+    assert [[text for text, *_ in line] for line in decoded[:2]] == [["June 2020"], ["Scott 2021"]]
 
 
 def test_without_evidence_nothing_is_decoded(tmp_path, monkeypatch):
-    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", HIGH), ("Acting Deputy Director", HIGH)])
+    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", PUA), ("Acting Deputy Director", PUA)])
     with fitz.open(pdf) as document:
         raw = document[0].get_text("text")
     ocr = "18. DATE APPROVED: 6/24/1\n"
@@ -568,7 +708,7 @@ def test_without_evidence_nothing_is_decoded(tmp_path, monkeypatch):
 
 
 def test_without_ocr_text_the_layer_is_returned_as_it_is(tmp_path, monkeypatch):
-    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", HIGH), ("Wendy Hill Petras", HIGH)])
+    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", PUA), ("Wendy Hill Petras", PUA)])
     with fitz.open(pdf) as document:
         raw = document[0].get_text("text")
 
@@ -580,6 +720,7 @@ def test_unmapped_characters_are_exactly_the_unmapped_fonts_characters(tmp_path)
         tmp_path / "form.pdf",
         [("6/24/19", HIGH), ("Wendy Hill", HIGH), ("Anne M. Costello", None)],
         name="ArialMT",
+        kind="type3",
     )
     with fitz.open(pdf) as document:
         page = document[0]
@@ -614,7 +755,7 @@ def _layer(page, ocr_text: str, extraction: dict | None = None) -> list[str]:
     return [text for text, _ in _without_garbled_spans(spans)]
 
 
-TYPED_FORM = [("4/6/2020", HIGH), ("Anne Marie Costello", HIGH), ("NEW", HIGH)]
+TYPED_FORM = [("4/6/2020", PUA), ("Anne Marie Costello", PUA), ("NEW", PUA)]
 TYPED_OCR = "Date: 4/6/2020\nAnne Marie Costello\nNEW\n"
 
 
@@ -651,10 +792,10 @@ def test_a_shifted_font_sharing_its_name_with_a_mapped_font_is_not_decoded(tmp_p
 
 
 def test_two_unmapped_fonts_of_one_name_are_not_decoded(tmp_path, monkeypatch):
-    # The review's case: font A (codes 0x60 above ASCII) writes "June 2020" and "Scott
-    # 2021", which OCR reads; font B, of the same name, is 0x61 above. A's shift would read
-    # B's unread "Wendy 6666" as "Vdmcx 5555".
-    lines = [("June 2020", HIGH), ("Scott 2021", HIGH), ("Wendy 6666", -0x61, 1)]
+    # The review's case: font A (codes 0xE000 above ASCII) writes "June 2020" and "Scott
+    # 2021", which OCR reads; font B, of the same name, is 0xE001 above. A's shift would
+    # read B's unread "Wendy 6666" as "Vdmcx 5555".
+    lines = [("June 2020", PUA), ("Scott 2021", PUA), ("Wendy 6666", PUA - 1, 1)]
     ocr = "June 2020\nSigned: Scott 2021\n"
     same = _form_pdf(tmp_path / "same.pdf", lines, name="ArialMT")
     with fitz.open(same) as document:
@@ -673,12 +814,12 @@ def test_a_line_is_decoded_whole_or_not_at_all(tmp_path):
     _form_pdf(
         pdf,
         [
-            ("June 2020", HIGH),
-            ("Scott 2021", HIGH),
-            ("Fees:", -0x61, 1, 600, 72),
-            ("$40", HIGH, 0, 600, 98),
+            ("June 2020", PUA),
+            ("Scott 2021", PUA),
+            ("Fees:", PUA - 1, 1, 600, 72),
+            ("$40", PUA, 0, 600, 98),
         ],
-        group_names={1: "OtherT3"},
+        group_names={1: "Other"},
     )
     ocr = "June 2020\nSigned: Scott 2021\n"
     with fitz.open(pdf) as document:
@@ -697,7 +838,7 @@ def test_a_font_named_like_an_annotations_font_is_not_decoded(tmp_path):
     # with the unmapped font, which is therefore not decoded.
     pdf = _form_pdf(
         tmp_path / "form.pdf",
-        [("June 2020", HIGH), ("Scott 2021", HIGH), ("Wendy Hill", HIGH)],
+        [("June 2020", PUA), ("Scott 2021", PUA), ("Wendy Hill", PUA)],
         name="Helvetica",
     )
     with fitz.open(pdf) as document:
@@ -741,7 +882,7 @@ def test_characters_drawn_at_one_origin_by_mapped_and_unmapped_fonts_are_not_dec
     # unknown, so that line is not decoded, while the font's other lines are.
     pdf = _form_pdf(
         tmp_path / "form.pdf",
-        [("June 2020", HIGH), ("Scott 2021", HIGH), ("F", None, 0, 600), ("Q", HIGH, 0, 600)],
+        [("June 2020", PUA), ("Scott 2021", PUA), ("F", None, 0, 600), ("Q", PUA, 0, 600)],
     )
     ocr = "June 2020\nSigned: Scott 2021\n"
     with fitz.open(pdf) as document:
@@ -757,14 +898,14 @@ def test_characters_drawn_at_one_origin_by_mapped_and_unmapped_fonts_are_not_dec
 def test_a_partly_unmapped_type3_font_is_never_decoded(tmp_path):
     # Codes 31 below ASCII: MuPDF prints the printable codes of a Type 3 font whose glyph
     # names it does not know as themselves, as if mapped, and only the control codes show
-    # as unmapped ("\x01" for a space here), in spans of their own. Those decode only to
-    # digits and punctuation, one class, so no shift is found even from "6/24/19" and
-    # "4/1/19", which OCR reads; and the title line mixes mapped and unmapped characters,
-    # so it would not be decoded anyway (a decoded "\x01" span beside the raw letters
-    # would read as '"DUJOH %FQVUZ').
+    # as unmapped ("\x01" for a space here), in spans of their own. A Type 3 font is not
+    # decoded (S10); were it, the title line, which mixes mapped and unmapped characters,
+    # would not be (a decoded "\x01" span beside the raw letters would read as
+    # '"DUJOH %FQVUZ').
     pdf = _form_pdf(
         tmp_path / "form.pdf",
         [("6/24/19", 31), ("4/1/19", 31), ("Acting Deputy Director", 31), ("Wendy", 31)],
+        kind="type3",
     )
     ocr = "DATE APPROVED: 6/24/19\nEFFECTIVE: 4/1/19\n"
 
@@ -778,12 +919,13 @@ def test_a_partly_unmapped_type3_font_is_never_decoded(tmp_path):
 
 
 def test_a_font_whose_characters_in_a_line_are_partly_mapped_is_not_decoded_there(tmp_path):
-    # Codes 0x50 above ASCII: letters and digits land at 0x80 and up, where MuPDF has no
-    # Unicode for them, but a space lands on "p", which it prints as if mapped. Lines with
-    # no space show the shift; decoding only the unmapped characters of a line with one
-    # would give "Wendyp1999".
+    # The font's ToUnicode map gives "y" the character "q". Lines without a "y" show the
+    # shift; decoding only the unmapped characters of the line with one would give
+    # "Wendq 1999".
     pdf = _form_pdf(
-        tmp_path / "form.pdf", [("Scott2021", -0x50), ("June2020", -0x50), ("Wendy 1999", -0x50)]
+        tmp_path / "form.pdf",
+        [("Scott2021", PUA), ("June2020", PUA), ("Wendy 1999", PUA)],
+        mapped={0: {ord("y") - PUA: "q"}},
     )
     ocr = "Scott2021\nJune2020\n"
     with fitz.open(pdf) as document:
@@ -792,6 +934,7 @@ def test_a_font_whose_characters_in_a_line_are_partly_mapped_is_not_decoded_ther
         decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
 
     assert [[text for text, *_ in line] for line in decoded[:2]] == [["Scott2021"], ["June2020"]]
+    assert "q" in "".join(text for text, *_ in spans[2])
     assert decoded[2] == spans[2]
 
 
@@ -807,7 +950,7 @@ def test_a_page_without_unmapped_characters_is_not_decoded(tmp_path):
 
 
 def test_decoding_needs_the_rawdict_spans_to_be_the_dict_spans(tmp_path):
-    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", HIGH), ("Wendy Hill Petras", HIGH)])
+    pdf = _form_pdf(tmp_path / "form.pdf", [("6/24/19", PUA), ("Wendy Hill Petras", PUA)])
     ocr = "6/24/19 Wendy Hill Petras"
     with fitz.open(pdf) as document:
         page = document[0]
@@ -816,6 +959,197 @@ def test_decoding_needs_the_rawdict_spans_to_be_the_dict_spans(tmp_path):
         # Spans that are not the page's (another reading) are returned as they are.
         other = [[(text + "x", *rest) for text, *rest in line] for line in spans]
         assert _pdf_decoded_span_lines(page, other, extraction={}, ocr_text=ocr) == other
+
+
+def _decoded(path: Path, ocr_text: str):
+    """The page's layer spans and ``_pdf_decoded_span_lines``' result for them."""
+    with fitz.open(path) as document:
+        page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
+        return spans, _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr_text)
+
+
+def _texts(lines) -> list[str]:
+    return ["".join(text for text, *_ in line) for line in lines]
+
+
+EVIDENCE = [("June 2020", PUA), ("Scott 2021", PUA)]
+EVIDENCE_OCR = "June 2020\nSigned: Scott 2021\n"
+
+
+@pytest.mark.parametrize("name", ["T23", None])
+def test_a_type3_font_is_never_decoded(tmp_path, name):
+    # Every character of the Type 3 font is unmapped (codes 0x80 and up) and OCR reads two
+    # lines' worth of evidence, but only a Type0 font is decoded (S10). The spans of a Type
+    # 3 font without a /Name are named "Unnamed-T3" by PyMuPDF 1.26 and "Type3 (<n> 0 R)"
+    # by 1.28; it is counted under both, so a collision is seen on either.
+    pdf = _form_pdf(
+        tmp_path / "form.pdf",
+        [("June 2020", HIGH), ("Scott 2021", HIGH), ("Wendy Hill", HIGH)],
+        name=name,
+        kind="type3",
+    )
+    spans, decoded = _decoded(pdf, EVIDENCE_OCR)
+    with fitz.open(pdf) as document:
+        page = document[0]
+        unmapped = documents_module._pdf_unmapped_characters(
+            page, sort=False, flags=fitz.TEXTFLAGS_TEXT
+        )
+        counts = documents_module._pdf_font_span_name_counts(page)
+        (font,) = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
+
+    assert all(all(flags) for flags in unmapped.values())
+    assert decoded == spans
+    if name is None:
+        assert counts["Unnamed-T3"] == counts[f"Type3 ({font[0]} 0 R)"] == 1
+
+
+def test_a_font_numbering_glyphs_in_order_of_use_is_not_decoded(tmp_path):
+    # The review's case: a font numbers its glyphs from 0xE000 in the order they are first
+    # used, and its first eleven are "89:;<=>?@AB", so one shift reads that line and
+    # "8899AABB", which OCR reads: twelve letters and digits, four glyphs, two classes. The
+    # next glyph, "x", gets the next code, which the shift would read as "C". The font
+    # uses every code from its least to its greatest, so its /W has no gap and it is not
+    # decoded (S10). Declared with one code apart from the rest, the same font would be:
+    # /W is what tells it from a font that keeps an original glyph order.
+    table = {char: 0xE000 + index for index, char in enumerate("89:;<=>?@ABx")}
+    lines = [("89:;<=>?@AB", table), ("8899AABB", table), ("xB", table)]
+    ocr = "89:;<=>?@AB\n8899AABB\n"
+    dense = _form_pdf(tmp_path / "dense.pdf", lines)
+    gap = _form_pdf(tmp_path / "gap.pdf", lines, widths={0: {*table.values(), 0xE0F0}})
+
+    spans, decoded = _decoded(dense, ocr)
+    assert decoded == spans
+    assert "CB" in _texts(_decoded(gap, ocr)[1])
+
+
+def test_a_font_whose_widths_miss_a_code_it_draws_is_not_decoded(tmp_path):
+    # /W gives no width for the code of "W": the array is not the font's glyphs, so it
+    # says nothing about their order, and the font is not decoded (S10).
+    lines = [*EVIDENCE, ("Wendy Hill", PUA)]
+    codes = {ord(char) - PUA for text, _ in lines for char in text}
+    missing = _form_pdf(tmp_path / "missing.pdf", lines, widths={0: codes - {ord("W") - PUA}})
+    whole = _form_pdf(tmp_path / "whole.pdf", lines)
+
+    spans, decoded = _decoded(missing, EVIDENCE_OCR)
+    assert decoded == spans
+    assert "Wendy Hill" in _texts(_decoded(whole, EVIDENCE_OCR)[1])
+
+
+def test_a_font_whose_codes_print_as_combining_marks_is_not_decoded(tmp_path):
+    # The review's case in small: the font's codes print as characters from U+1D9F up,
+    # "A" to "D" as combining marks (U+1DC0 to U+1DC3). The shift is plain from
+    # "ABCD1234", which OCR reads, but decoding would take marks out of the spans that the
+    # text output still holds, and ``_with_layer_marks`` would look for them in vain and
+    # give up the page's layer lines; so the font is not decoded (S10).
+    shift = ord("A") - 0x1DC0
+    pdf = _form_pdf(tmp_path / "form.pdf", [("ABCD1234", shift), ("BAD 4321", shift)])
+
+    spans, decoded = _decoded(pdf, "ABCD1234\n")
+    assert any(unicodedata.category(char) == "Mn" for char in "".join(_texts(spans)))
+    assert decoded == spans
+
+
+def _noted(path: Path) -> Path:
+    """``path`` with a FreeText note (a Helvetica appearance) added to its page."""
+    with fitz.open(path) as document:
+        note = document[0].add_freetext_annot(fitz.Rect(300, 100, 500, 140), "Note", fontsize=10)
+        note.update()
+        noted = path.with_name("noted-" + path.name)
+        document.save(noted)
+    return noted
+
+
+def test_an_annotation_font_whose_name_is_not_written_in_it_stops_decoding(tmp_path):
+    # The review's case: the note's font has /BaseFont 70 0 R, an object holding /ArialMT,
+    # and MuPDF names its spans ArialMT. Read bare, the key would give "70 0 R" and leave
+    # the page's unmapped ArialMT counted once. Which object carries a name is then not
+    # known for certain, so nothing on the page is decoded (S11).
+    pdf = _noted(_form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="ArialMT"))
+    with fitz.open(pdf) as document:
+        page = document[0]
+        assert documents_module._pdf_font_span_name_counts(page)["ArialMT"] == 1
+        (font,) = documents_module._pdf_annotation_font_xrefs(page)
+        name = document.get_new_xref()
+        document.update_object(name, "/ArialMT")
+        document.xref_set_key(font, "BaseFont", f"{name} 0 R")
+        document.save(tmp_path / "indirect.pdf")
+    with fitz.open(tmp_path / "indirect.pdf") as document:
+        page = document[0]
+        span_fonts = {
+            span["font"]
+            for block in page.get_text("dict")["blocks"]
+            for line in block.get("lines", ())
+            for span in line["spans"]
+            if span["text"] == "Note"
+        }
+        counts = documents_module._pdf_font_span_name_counts(page)
+    spans, decoded = _decoded(tmp_path / "indirect.pdf", EVIDENCE_OCR)
+
+    assert span_fonts == {"ArialMT"}
+    assert counts == Counter()
+    assert decoded == spans
+
+
+def test_object_references_of_another_generation_stop_decoding(tmp_path):
+    references = documents_module._pdf_object_references
+    assert references("<< /N 50 0 R /D << /On 51 0 R /Off 52 0 R >> >>") == [50, 51, 52]
+    assert references("<< /N 50 1 R >>") is None
+    # The review's case: an appearance referred to as "50 1 R", which a lookup by number
+    # may not reach, so its fonts are not known (S11).
+    pdf = _noted(_form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)]))
+    with fitz.open(pdf) as document:
+        page = document[0]
+        (annotation, *_) = page.annot_xrefs()[0]
+        (stream,) = references(document.xref_get_key(annotation, "AP")[1])
+        document.xref_set_key(annotation, "AP", f"<< /N {stream} 1 R >>")
+        assert documents_module._pdf_annotation_font_xrefs(page) is None
+        assert documents_module._pdf_font_span_name_counts(page) == Counter()
+
+
+def test_annotation_streams_beyond_the_limit_stop_decoding(tmp_path, monkeypatch):
+    # The review's case: a walk that stops at its limit knows only some fonts, so it gives
+    # none (S11). The note's appearance is one stream.
+    pdf = _noted(_form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)]))
+    with fitz.open(pdf) as document:
+        page = document[0]
+        monkeypatch.setattr(documents_module, "_PDF_ANNOTATION_STREAMS", 1)
+        assert len(documents_module._pdf_annotation_font_xrefs(page)) == 1
+        monkeypatch.setattr(documents_module, "_PDF_ANNOTATION_STREAMS", 0)
+        assert documents_module._pdf_annotation_font_xrefs(page) is None
+        assert documents_module._pdf_font_span_name_counts(page) == Counter()
+
+
+def test_width_codes_examples():
+    codes = documents_module._pdf_width_codes
+    # As PyMuPDF prints a real font's /W (MA-20-0024's Minion Pro, abridged).
+    assert codes("[1[227]13[228]15[228 331 480]18 20 480]") == {1, 13, 15, 16, 17, 18, 19, 20}
+    assert codes("[]") == frozenset()
+    assert codes("[1 [227] 5]") is None  # cut short
+    assert codes("[1 2 0 R]") is None  # an indirect width
+    assert codes("[0 70000 500]") is None  # beyond a two-byte CID
+    assert codes("[5 3 500]") is None
+    assert codes("12 0 R") is None
+
+
+@settings(max_examples=300, deadline=None)
+@given(
+    st.lists(
+        st.tuples(st.integers(0, 0xFF00), st.integers(1, 40), st.booleans(), st.booleans()),
+        max_size=8,
+    )
+)
+def test_width_codes_are_the_codes_written(runs):
+    # S10: /W read back gives exactly the codes written, in either form, however spaced.
+    entries, expected = [], set()
+    for first, length, as_range, tight in runs:
+        last = first + length - 1
+        expected.update(range(first, last + 1))
+        widths = " ".join(["500"] * length)
+        entries.append(
+            f"{first} {last} 500" if as_range else f"{first}[{widths}]" if tight else f"{first} [ {widths} ]"
+        )
+    assert documents_module._pdf_width_codes("[" + " ".join(entries) + "]") == expected
 
 
 # ---------------------------------------------------------------------------- real pages
