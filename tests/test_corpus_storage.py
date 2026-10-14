@@ -1111,6 +1111,13 @@ def test_a_source_beneath_a_directory_link_still_comes_with_its_siblings(tmp_pat
     (repo / linked).symlink_to(holder, target_is_directory=True)
     with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
         resolve_corpus_path(repo / act)
+    # Review r2: reached through an alias outside the checkout, neither
+    # spelling names a sources/ directory, and the sibling was skipped.
+    alias = tmp_path / "alias"
+    alias.symlink_to(repo / linked, target_is_directory=True)
+    monkeypatch.chdir(tmp_path)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        resolve_corpus_path(alias / "act.html")
     _write(holder, "sub dir/s 2.xml", READABLE_FILES[linked + "/sub dir/s 2.xml"])
     assert resolve_corpus_path(repo / act) == repo / act
 
@@ -1212,6 +1219,76 @@ def test_a_chain_that_returns_to_the_path_it_spells_is_followed(tmp_path: Path, 
     assert holder is not None and os.path.samefile(holder, c)
     assert load_provisions(a / PROV)[0].citation_path == "nz/statute/a"
     assert _placed_regular(c, PROV)
+
+
+def test_a_directory_link_to_a_regular_file_is_refused(tmp_path: Path, monkeypatch) -> None:
+    """Review r2: ``provisions/nz`` linking to a regular file makes every path
+    below it fail with ENOTDIR; the helpers refuse the link instead of raising
+    an unexplained OS error or reading the scope as empty."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    a_file = _write(tmp_path, "a-file", b"x")
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(a_file)
+    assert CorpusResolver(repo, sources=[]).relative(repo / PROV) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        ensure_corpus_paths([repo / "data/corpus/provisions/nz"], repo=repo)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off.*is a symlink"):
+        load_provisions(repo / PROV)
+    assert a_file.read_bytes() == b"x"
+
+
+def test_a_checkout_without_src_is_still_a_checkout(tmp_path: Path, monkeypatch) -> None:
+    """Review r2: a sparse checkout that holds lock files and data but no
+    ``src/`` was no checkout at all, so its unfetched locked files read as
+    empty. A git top level with the lock directory is a checkout."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    for path in sorted((repo / "src").rglob("*"), reverse=True):
+        path.rmdir()
+    (repo / "src").rmdir()
+    resolver_module._repo_root_for_dir.cache_clear()
+    monkeypatch.chdir(tmp_path)
+    holder = resolver_module._checkout_for(repo / PROV)
+    assert holder is not None and os.path.samefile(holder, repo)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="locked but absent"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([repo / "data/corpus/provisions"])
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert load_provisions(repo / PROV)[0].citation_path == "nz/statute/a"
+
+
+def test_helpers_without_repo_use_the_checkout_each_path_names(tmp_path: Path, monkeypatch) -> None:
+    """Review r2: ``ensure_corpus_paths`` without ``repo`` asked the working
+    directory's checkout, so from anywhere else it passed over a path below a
+    link to an empty directory. Each path now goes to the checkout naming it."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(empty, target_is_directory=True)
+    for cwd in (_init_repo(tmp_path / "elsewhere"), tmp_path):
+        monkeypatch.chdir(cwd)
+        with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+            ensure_corpus_paths([repo / "data/corpus/provisions/nz"])
+        monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+        with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+            ensure_corpus_paths([repo / "data/corpus/provisions/nz"])
+        monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    # Paths of two checkouts in one call: each is fetched into its own.
+    first = _locked_checkout(tmp_path / "first", monkeypatch)
+    second = _locked_checkout(tmp_path / "second", monkeypatch)
+    report = ensure_corpus_paths([first / PROV, second / COVERAGE])
+    assert sorted(report.materialized) == sorted([PROV, COVERAGE])
+    assert _placed_regular(first, PROV) and _placed_regular(second, COVERAGE)
+    assert not (first / COVERAGE).exists() and not (second / PROV).exists()
+    (first / PROV).unlink()
+    (second / COVERAGE).unlink()
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([second / "data/corpus/provisions", first / PROV])
 
 
 def test_a_nested_checkout_names_its_own_corpus_files(tmp_path: Path) -> None:

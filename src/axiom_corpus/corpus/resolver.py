@@ -32,6 +32,7 @@ from axiom_corpus.corpus.content_store import (
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
+    LOCK_ROOT,
     PROTECTED_CORPUS_PREFIXES,
     LockEntry,
     LockSet,
@@ -73,7 +74,10 @@ def _repo_root_for_dir(directory: Path) -> Path | None:
     except (OSError, subprocess.CalledProcessError):
         return None
     root = Path(top)
-    return root if (root / "src" / "axiom_corpus").is_dir() else None
+    # A sparse checkout may hold the lock files and data without src/.
+    if (root / "src" / "axiom_corpus").is_dir() or (root / LOCK_ROOT).is_dir():
+        return root
+    return None
 
 
 def find_repo_root(start: Path | None = None) -> Path | None:
@@ -446,7 +450,10 @@ class CorpusResolver:
             absent: list[LockEntry] = []
             for entry in pending:
                 target = self.repo / entry.path
-                state = destination_state(target, entry, verify=verify)
+                try:
+                    state = destination_state(target, entry, verify=verify)
+                except OSError:  # unreadable (a link to a file on the path): fetch reports it
+                    state = "missing"
                 if state == "present" or (state == "modified" and _placed(target)):
                     in_place[state].append(entry.path)
                 else:
@@ -580,17 +587,54 @@ def fetch_disabled() -> bool:
     return os.environ.get(NO_FETCH_ENV, "").strip().lower() in {"1", "true", "yes"}
 
 
+def _by_checkout(paths: Sequence[str | Path]) -> dict[Path | None, list[str | Path]]:
+    """``paths`` grouped by the checkout that names each (``_checkout_for``), in order.
+
+    None collects the paths no checkout names; the callers hand those to the
+    working directory's checkout, as before.
+    """
+    groups: dict[Path | None, list[str | Path]] = {}
+    for path in paths:
+        groups.setdefault(_checkout_for(Path(path)), []).append(path)
+    return groups
+
+
+def _merged(reports: Iterable[FetchReport]) -> FetchReport:
+    total = FetchReport()
+    for report in reports:
+        total.present.extend(report.present)
+        total.materialized.extend(report.materialized)
+        total.modified.extend(report.modified)
+        total.failed.update(report.failed)
+        total.rolled_back.extend(report.rolled_back)
+        for name, count in report.sources.items():
+            total.sources[name] = total.sources.get(name, 0) + count
+        for name, count in report.methods.items():
+            total.methods[name] = total.methods.get(name, 0) + count
+        total.bytes_materialized += report.bytes_materialized
+    return total
+
+
 def ensure_corpus_paths(paths: Iterable[str | Path], *, repo: Path | None = None) -> FetchReport:
     """Materialize the locked files at or under each path. No-op without locks.
 
-    With fetching disabled, locked files that are absent raise instead.
+    Without ``repo``, each path goes to the checkout that names it. With
+    fetching disabled, locked files that are absent raise instead.
     """
     path_list = list(paths)
+    if repo is None and path_list:
+        return _merged(
+            _ensure_paths_in(checkout, group) for checkout, group in _by_checkout(path_list).items()
+        )
+    return _ensure_paths_in(repo, path_list)
+
+
+def _ensure_paths_in(repo: Path | None, path_list: list[str | Path]) -> FetchReport:
     resolver = resolver_for(repo)
     if resolver is None or not resolver.active:
         return FetchReport()
     if fetch_disabled():
-        require_materialized(path_list, repo=resolver.repo)
+        _require_in(resolver.repo, [Path(path) for path in path_list], fetch=False)
         return FetchReport()
     return resolver.ensure_paths(path_list)
 
@@ -627,11 +671,18 @@ def require_materialized(
 
     Code that lists ``data/corpus`` directories would otherwise compute on
     whatever subset happens to be fetched. With ``fetch`` the missing files
-    are fetched instead. No-op without lock files.
+    are fetched instead. Without ``repo``, each path is checked in the
+    checkout that names it. No-op without lock files.
     """
     path_list = [Path(path) for path in paths]
     if repo is None and path_list:
-        repo = _checkout_for(path_list[0])
+        for checkout, group in _by_checkout(path_list).items():
+            _require_in(checkout, [Path(path) for path in group], fetch=fetch)
+        return
+    _require_in(repo, path_list, fetch=fetch)
+
+
+def _require_in(repo: Path | None, path_list: list[Path], *, fetch: bool) -> None:
     resolver = resolver_for(repo)
     if resolver is None or not resolver.active:
         return
@@ -696,18 +747,16 @@ def fetch_locked_file(path: str | Path) -> bool:
 def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     """Return a regular file for ``path``, fetching it if it is locked and absent."""
     candidate = Path(path)
+    absolute = os.path.abspath(candidate)
     if (
         candidate.is_file()
         and not candidate.is_symlink()
-        # The spelled and the real path, so a relative or symlinked spelling of
-        # a source file, or one below a directory link, still gets its
-        # siblings; neither runs a git process.
-        and not any(
-            f"/{CORPUS_BASE}/sources/" in fold_path(spelling)
-            for spelling in (os.path.abspath(candidate), os.path.realpath(candidate))
-        )
+        # Spelled through no symlink, so it stands nowhere but where it is,
+        # and no source file, so there are no siblings to bring.
+        and os.path.realpath(candidate) == absolute
+        and f"/{CORPUS_BASE}/sources/" not in fold_path(absolute)
     ):
-        return candidate  # present and not a source: nothing to widen, no git call
+        return candidate  # nothing to widen, no git call
     if repo is None:
         repo = _checkout_for(candidate)
     resolver = resolver_for(repo)

@@ -211,7 +211,12 @@ separate command (`axiom_corpus.corpus.resolver`):
 - `build_release_content` and `scripts/publish_corpus.py` fetch the selected
   scopes before hashing.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
-  `require_materialized` are the building blocks.
+  `require_materialized` are the building blocks. Given no `repo`,
+  `ensure_corpus_paths` and `require_materialized` check each path in the
+  checkout that names it (below), whatever the working directory.
+
+A checkout is a git top level that holds `src/axiom_corpus` or the lock
+directory, so a sparse checkout of the data and locks alone is guarded too.
 
 With no lock files every one of these does nothing, so the same code runs
 before and after the switch. Once one of them consults the locks, lock files
