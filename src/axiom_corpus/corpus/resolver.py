@@ -647,14 +647,14 @@ class _Plan:
 
     ``owned`` maps each checkout that names a part to the entries its lock
     names there; ``names`` keeps each part's name, for messages; ``tops``
-    the part each selection itself is; ``witnessed`` holds the entries any
-    other lock that applies names.
+    the part each selection itself is; ``witnessed`` holds, per file any
+    other lock that applies names, each place a selection reads it from.
     """
 
     owned: dict[Path, tuple[CorpusResolver, dict[str, LockEntry]]] = dataclasses.field(default_factory=dict)
-    names: dict[Path, list[str]] = dataclasses.field(default_factory=dict)
+    names: dict[Path, dict[str, None]] = dataclasses.field(default_factory=dict)
     tops: list[_View] = dataclasses.field(default_factory=list)
-    witnessed: dict[tuple[Path, str], _Witnessed] = dataclasses.field(default_factory=dict)
+    witnessed: dict[tuple[Path, str], list[_Witnessed]] = dataclasses.field(default_factory=dict)
 
 
 def _join(head: str, tail: str) -> str:
@@ -808,9 +808,7 @@ def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False
             continue
         plan.tops.append(parts[0])
         for part in parts:
-            plan.names.setdefault(part.resolver.repo, [])
-            if part.name not in plan.names[part.resolver.repo]:
-                plan.names[part.resolver.repo].append(part.name)
+            plan.names.setdefault(part.resolver.repo, {})[part.name] = None
         deepest = sorted(parts, key=lambda part: len(part.sub), reverse=True)
         distinct: list[_View] = []
         for view in sorted(views, key=lambda view: (str(view.resolver.repo), len(view.name))):
@@ -836,9 +834,10 @@ def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False
                 if resolver is part.resolver and entry.path == owner_name:
                     plan.owned.setdefault(resolver.repo, (resolver, {}))[1][entry.path] = entry
                 else:
-                    plan.witnessed[(resolver.repo, entry.path)] = _Witnessed(
-                        resolver, entry, part.resolver, owner_name
-                    )
+                    item = _Witnessed(resolver, entry, part.resolver, owner_name)
+                    places = plan.witnessed.setdefault((resolver.repo, entry.path), [])
+                    if item not in places:
+                        places.append(item)
     return plan
 
 
@@ -859,19 +858,22 @@ def _absent_owned(plan: _Plan) -> list[tuple[CorpusResolver, list[LockEntry]]]:
 def _unfetchable(plan: _Plan, *, recheck: bool = False) -> list[_Witnessed]:
     """Witnessed files that are not in place and that no part's checkout fetches.
 
-    A witnessed file is fetched when its owner's lock names it, or when its
-    own checkout names it in a part. With ``recheck`` (after fetching), any
-    witnessed file still absent counts.
+    A witnessed file is fetched when its own checkout names it in a part, or
+    when the lock of a checkout that names a place it is read from lists that
+    place. With ``recheck`` (after fetching), any witnessed file still absent
+    counts.
     """
-    return [
-        item
-        for item in plan.witnessed.values()
-        if not _placed(item.holder.repo / item.entry.path)
-        and (
-            recheck
-            or not (_owns(plan, item.owner, item.owner_name) or _owns(plan, item.holder, item.entry.path))
-        )
-    ]
+    found = []
+    for places in plan.witnessed.values():
+        first = places[0]
+        if _placed(first.holder.repo / first.entry.path):
+            continue
+        if recheck or not (
+            _owns(plan, first.holder, first.entry.path)
+            or any(_owns(plan, item.owner, item.owner_name) for item in places)
+        ):
+            found.append(first)
+    return found
 
 
 def _unfetchable_error(items: Sequence[_Witnessed]) -> CorpusNotMaterializedError:
@@ -1038,7 +1040,7 @@ def _require(plan: _Plan, *, fetch: bool) -> None:
         _place_owned(plan, [(resolver, resolver.locks.with_whole_source_dirs(found)) for resolver, found in absent])
         return
     resolver, missing = absent[0]
-    rels = plan.names[resolver.repo]
+    rels = list(plan.names[resolver.repo])
     # Name at most a few paths: callers may pass thousands of exact files.
     named = rels if len(rels) <= 3 else [*rels[:3], f"and {len(rels) - 3} more"]
     raise CorpusNotMaterializedError(
@@ -1086,7 +1088,13 @@ def fetch_locked_file(path: str | Path) -> bool:
 
 
 def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
-    """Return a regular file for ``path``, fetching it if it is locked and absent."""
+    """Return a regular file for ``path``, fetching it if it is locked and absent.
+
+    The checkout that names the path fetches it; a bare ``data/corpus/...``
+    path lies in ``repo``. Another lock that applies (see the selections
+    above) that names the file, or for a source file a sibling, refuses the
+    read when no fetch will place it.
+    """
     candidate = Path(path)
     absolute = os.path.abspath(candidate)
     if (
@@ -1098,15 +1106,17 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
         and f"/{CORPUS_BASE}/sources/" not in fold_path(absolute)
     ):
         return candidate  # nothing to widen, no git call
+    # A bare data/corpus path lies in ``repo``; the checkout that names the
+    # path, which ``repo`` may not be (a link to another checkout), decides.
+    spelled = _spelled(candidate, repo)
     resolver = resolver_for(repo) if repo is not None else None
-    if resolver is None or resolver.relative(candidate) is None:
-        # ``repo`` does not name it: the checkout that does decides.
-        resolver = resolver_for(_checkout_for(candidate))
-    witnesses = _read_witnesses(candidate, resolver)
-    if resolver is None or not resolver.active or resolver.relative(candidate) is None:
+    if resolver is None or resolver.relative(spelled) is None:
+        resolver = resolver_for(_checkout_for(spelled))
+    witnesses = _read_witnesses(spelled, resolver)
+    if resolver is None or not resolver.active or resolver.relative(spelled) is None:
         found = candidate if candidate.is_file() and not candidate.is_symlink() else None
     else:
-        found = resolver.resolve(path)
+        found = resolver.resolve(spelled)
     if witnesses is not None:
         unplaced = _unfetchable(witnesses[0], recheck=True)
         if unplaced:
@@ -1146,7 +1156,11 @@ def _read_witnesses(candidate: Path, resolver: CorpusResolver | None) -> tuple[_
     unfetchable = _unfetchable(plan)
     if unfetchable:
         raise _unfetchable_error(unfetchable)
-    return (plan, remember) if plan.witnessed else None
+    if plan.witnessed:
+        return plan, remember
+    if remember is not None:
+        _WITNESSED_SOURCE_DIRS.add(remember)  # no other lock applies: nothing to recheck
+    return None
 
 
 # --------------------------------------------------------------------------- CLI hook
