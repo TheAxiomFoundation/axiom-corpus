@@ -646,6 +646,12 @@ def test_redaction_leaves_no_file_url(parts) -> None:
         ("path file:///home/o'brien/a.pdf, done", "path <file: URL>"),
         ('in "file:///tmp/a b.pdf" here', 'in "<file: URL>" here'),
         ("no file: URL here", "no file: URL here"),
+        (
+            "`fi\tle:///Users/Jane Doe/x.pdf` metadata.download_url",
+            "`<file: URL>` metadata.download_url",
+        ),
+        ("repeats the key 'prefix fi\\tle:///Users/p.pdf'", "repeats the key 'prefix <file: URL>"),
+        ("a-file:///x", "a-<file: URL>"),
     ],
 )
 def test_redaction_takes_unencoded_paths_whole(text: str, expected: str) -> None:
@@ -667,3 +673,30 @@ def test_redaction_takes_unencoded_paths_whole(text: str, expected: str) -> None
 )
 def test_is_file_url_reads_a_value_as_a_url_parser_would(value, expected: bool) -> None:
     assert is_file_url(value) is expected
+
+
+def test_identifiers_that_name_a_control_split_file_url_are_redacted() -> None:
+    """Hardening review: a crafted citation or key could print a tab-split path."""
+    leak = "fi\tle:///Users/Jane Doe/private.pdf"
+    row = {"citation_path": leak, "metadata": {"download_url": leak}}
+    (issue,) = _content_issues(PROVISIONS, (json.dumps(row) + "\n").encode())
+    assert "/Users/Jane" not in issue and "records a file: URL" in issue
+    duplicated = '{"citation_path": "c", "metadata": {"prefix fi\\tle:///Users/p.pdf": 1, "prefix fi\\tle:///Users/p.pdf": 2}}\n'
+    (issue,) = _content_issues(PROVISIONS, duplicated.encode())
+    assert "repeats a key," in issue and "/Users/p" not in issue
+
+
+def test_jsonl_lines_are_split_as_load_provisions_splits_them(tmp_path: Path) -> None:
+    """A record with a literal U+2028 is two lines to the loader, so the scan fails closed too."""
+    from axiom_corpus.corpus.io import load_provisions
+
+    row = {"citation_path": "de/guidance/u", "body": "First\u2028Second\nThird"}
+    payload = (json.dumps(row, ensure_ascii=False) + "\n").encode()
+    with pytest.raises(LocalFileUrlScanError, match="line 2 is not JSON"):
+        local_file_url_fields(PROVISIONS, payload)
+    path = tmp_path / "rows.jsonl"
+    path.write_bytes(payload)
+    with pytest.raises(json.JSONDecodeError):
+        load_provisions(path)
+    # The canonical writer escapes U+2028, and that record scans clean.
+    assert local_file_url_fields(PROVISIONS, (json.dumps(row) + "\n").encode()) == []

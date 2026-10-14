@@ -1355,7 +1355,15 @@ def is_file_url(value: object) -> bool:
 
 # From "file:" followed by a non-space through the end of the quoted or line
 # context, so an unencoded path with spaces or apostrophes goes as a whole.
-_FILE_URL_IN_TEXT = re.compile(r"(?i)file:(?=\S)[^\n\"`]*")
+# The scheme letters may be split by tabs or newlines, raw or as repr() shows
+# them ("fi\\tle:"), which a URL parser would drop. No word boundary is
+# required, so a URL glued to the text before it still goes; a word such as
+# "profile:" followed by a non-space is over-redacted, the safe direction.
+_SCHEME_SPLIT = r"(?:[\t\r\n]|\\[tnr])*"
+_FILE_URL_IN_TEXT = re.compile(
+    rf"(?i)f{_SCHEME_SPLIT}i{_SCHEME_SPLIT}l{_SCHEME_SPLIT}e{_SCHEME_SPLIT}:"
+    r"(?=\S)[^\n\"`]*"
+)
 
 
 def redact_file_urls(text: str) -> str:
@@ -1372,7 +1380,8 @@ def _unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     members: dict[str, Any] = {}
     for key, value in pairs:
         if key in members:
-            named = "a key" if "file:" in key.lower() or is_file_url(key) else f"the key {key!r}"
+            spelled = key.translate(_URL_IGNORED_ANYWHERE).lower()
+            named = "a key" if "file:" in spelled else f"the key {key!r}"
             raise LocalFileUrlScanError(f"repeats {redact_file_urls(named)}")
         members[key] = value
     return members
@@ -1433,6 +1442,8 @@ def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
         return []
     rows: list[Any] = []
     if path.endswith(".jsonl"):
+        # Lines as load_provisions reads them (str.splitlines), so a record the
+        # loader would split at U+2028 fails here too rather than passing.
         for number, line in enumerate(text.splitlines(), start=1):
             if _FILE_URL_CANDIDATE_TEXT.search(line):
                 rows.append(_scan_loads(line, f"`{path}` line {number}"))

@@ -395,6 +395,7 @@ def test_lists_compare_element_by_element_with_types(tmp_path: Path, before, aft
         'application/pdf; name="file:///Users/someone/private.pdf"',
         "application/pdf; charset=",
         'application/pdf; name="unterminated',
+        'application/pdf; name="fi\tle:///Users/someone/private.pdf"',
     ],
 )
 def test_repaired_content_type_must_be_a_media_type(tmp_path: Path, content_type) -> None:
