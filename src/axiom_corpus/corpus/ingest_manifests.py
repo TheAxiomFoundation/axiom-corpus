@@ -28,6 +28,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 
+from axiom_corpus.corpus.atomic_write import write_bytes_atomically
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
     LOCK_ROOT,
@@ -224,7 +225,14 @@ def write_signed_ingest_manifest(
     output: Path | None = None,
     key_id: str = INGEST_MANIFEST_KEY_ID,
 ) -> Path:
-    """Sign and write an ingest manifest."""
+    """Sign and write an ingest manifest.
+
+    The manifest at the returned path is always a complete signed document: an
+    interrupted or failed write leaves the path as it was (absent, or the
+    previous manifest), never truncated. ``scripts/sign_release_scopes.sh``
+    keeps any manifest that already exists, so a partial one would otherwise be
+    committed on the next run.
+    """
     repo = repo.resolve()
     signed = sign_ingest_manifest(manifest, private_key=private_key, key_id=key_id)
     manifest_path = output or default_ingest_manifest_path(
@@ -233,8 +241,8 @@ def write_signed_ingest_manifest(
         version=str(signed["version"]),
     )
     manifest_path = _resolve_under_repo(repo, manifest_path)
-    manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    manifest_path.write_text(json.dumps(signed, indent=2, sort_keys=True) + "\n")
+    payload = json.dumps(signed, indent=2, sort_keys=True) + "\n"
+    write_bytes_atomically(manifest_path, payload.encode("utf-8"))
     return manifest_path
 
 
