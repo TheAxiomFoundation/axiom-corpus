@@ -1,0 +1,1 @@
+US Code extraction parses each USLM title once instead of three times. `extract_usc`, `extract_usc_directory` and the US recovery scripts build the inventory and provisions from the one parsed `UscTitleDocument`; `build_usc_inventory_from_xml` and `iter_usc_title_provisions` keep their signatures and still parse the text they are given. Written artifacts are byte-identical.
