@@ -172,8 +172,8 @@ Deputy D". The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
 measurement first ran on #868 at `c64009789`, before it counted Type 3 spans as painted,
 and gives the same lines, pages and documents; the page level, re-run on #868 at
-`c4ccca4ee` and at `97e3e935e` (Type 3 font names read as MuPDF 1.26 does), gives the same
-lines again.
+`c4ccca4ee`, at `97e3e935e` (Type 3 font names read as MuPDF 1.26 does) and at `55bba979b`
+(mapped spans of garbled fonts kept, layer marks), gives the same lines again.
 
 | | |
 | --- | ---: |
@@ -227,7 +227,8 @@ lines again.
 Document level: `_extract_blocks` on the 327 manifest documents behind the PDFs, with and
 without decoding and the same OCR cache, gives no error on either side. 8 documents
 change, one block each, and no block count, heading or section label changes. The words
-added and removed are the page lines above, 61 added and 4 removed.
+added and removed are the page lines above, 61 added and 4 removed. Re-run on #868 at
+`55bba979b`, it gives the same documents, blocks and words.
 
 ## Scopes whose pages change; #864
 
