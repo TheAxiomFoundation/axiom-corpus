@@ -51,8 +51,17 @@ or locked artifact was changed in Git.
   27 passed with `AXIOM_CORPUS_PARTIAL_TESTS=1`. They check exact reproduction,
   the two-scope delta, the current-pin superset, noncolliding citation paths,
   amendment targets, and the California source-identity rule.
-- Full repository checks, the signed-ingest guard, and exact-head CI must be
-  rerun after committing the refreshed branch.
+- `guard-ingested --base-ref origin/main --head-ref HEAD` passed after commit
+  using the repository's public verification key. No signed ingest bytes were
+  edited.
+- `publish_corpus.py --dry-run` succeeded: 274 scopes, 13,523 artifacts and
+  95,325 provision rows. Nothing was published or activated.
+- Ruff, mypy on `src/axiom_corpus/corpus`, and towncrier check passed.
+- The full local pytest run on a partial checkout produced 198 failures and
+  reported unfetched locked corpus files (5,588 passed, 106 skipped, 208
+  deselected). Those failures were not all classified.
+  It is not a green full-suite result; exact-head CI on a full corpus checkout
+  is still required before merge.
 
 ## After merge
 
