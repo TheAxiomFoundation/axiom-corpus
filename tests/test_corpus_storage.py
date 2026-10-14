@@ -1285,10 +1285,10 @@ def test_helpers_without_repo_use_the_checkout_each_path_names(tmp_path: Path, m
     assert sorted(report.materialized) == sorted([PROV, COVERAGE])
     assert _placed_regular(first, PROV) and _placed_regular(second, COVERAGE)
     assert not (first / COVERAGE).exists() and not (second / PROV).exists()
-    (first / PROV).unlink()
+    # The first path's checkout is complete; the second path's is not.
     (second / COVERAGE).unlink()
-    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
-        require_materialized([second / "data/corpus/provisions", first / PROV])
+    with pytest.raises(CorpusNotMaterializedError, match=f"not in this checkout \\(first: {COVERAGE}"):
+        require_materialized([first / PROV, second / COVERAGE])
 
 
 def test_a_nested_checkout_names_its_own_corpus_files(tmp_path: Path) -> None:
