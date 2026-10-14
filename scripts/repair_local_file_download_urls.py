@@ -89,7 +89,8 @@ def _is_media_type(value: object) -> bool:
     return (
         isinstance(value, str)
         and _MEDIA_TYPE.fullmatch(value) is not None
-        and "file:" not in value.replace("\t", "").lower()
+        # Quoted-pair escapes and tabs removed, as the parameter value reads.
+        and "file:" not in value.replace("\\", "").replace("\t", "").lower()
     )
 
 

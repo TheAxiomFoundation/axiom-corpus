@@ -1359,10 +1359,11 @@ def is_file_url(value: object) -> bool:
 # them ("fi\\tle:"), which a URL parser would drop. No word boundary is
 # required, so a URL glued to the text before it still goes; a word such as
 # "profile:" followed by a non-space is over-redacted, the safe direction.
+# Tabs or newlines right after the colon are skipped too ("file:\t///...").
 _SCHEME_SPLIT = r"(?:[\t\r\n]|\\[tnr])*"
 _FILE_URL_IN_TEXT = re.compile(
     rf"(?i)f{_SCHEME_SPLIT}i{_SCHEME_SPLIT}l{_SCHEME_SPLIT}e{_SCHEME_SPLIT}:"
-    r"(?=\S)[^\n\"`]*"
+    r"[\t\r\n]*(?=\S)[^\n\"`]*"
 )
 
 
@@ -1444,9 +1445,16 @@ def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
     if path.endswith(".jsonl"):
         # Lines as load_provisions reads them (str.splitlines), so a record the
         # loader would split at U+2028 fails here too rather than passing.
+        # Each candidate line must be one object: a bare CR, which JSON allows
+        # as whitespace, would otherwise split a record into fragments that
+        # parse on their own (a string, an array) while a reader splitting
+        # only at LF sees the whole row.
         for number, line in enumerate(text.splitlines(), start=1):
             if _FILE_URL_CANDIDATE_TEXT.search(line):
-                rows.append(_scan_loads(line, f"`{path}` line {number}"))
+                row = _scan_loads(line, f"`{path}` line {number}")
+                if not isinstance(row, dict):
+                    raise LocalFileUrlScanError(f"`{path}` line {number} is not a JSON object")
+                rows.append(row)
     else:
         parsed = _scan_loads(text, f"`{path}`")
         # As load_source_inventory reads it: a mapping's "items", absent meaning none.

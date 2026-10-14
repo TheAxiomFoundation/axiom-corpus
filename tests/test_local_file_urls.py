@@ -625,17 +625,27 @@ def test_a_repeated_key_that_is_itself_a_path_is_not_echoed() -> None:
                 "/Users/Jane Doe/",
                 "o'brien",
                 "\n",
+                "\t",
+                "\r",
+                "\\t",
+                "fi",
+                "le:",
+                "f",
+                "ile:",
+                ")",
             ]
         ),
-        max_size=8,
+        max_size=10,
     )
 )
 def test_redaction_leaves_no_file_url(parts) -> None:
+    """No file: URL survives, read as a URL parser reads it (tabs and newlines dropped)."""
     import re
 
     text = "".join(parts)
     redacted = redact_file_urls(text)
-    assert not re.search(r"(?i)file:(?=\S)", redacted)
+    as_parsed = re.sub(r"[\t\r\n]|\\[tnr]", "", redacted)
+    assert not re.search(r"(?i)file:(?=\S)", as_parsed)
     assert redact_file_urls(redacted) == redacted
 
 
@@ -652,6 +662,7 @@ def test_redaction_leaves_no_file_url(parts) -> None:
         ),
         ("repeats the key 'prefix fi\\tle:///Users/p.pdf'", "repeats the key 'prefix <file: URL>"),
         ("a-file:///x", "a-<file: URL>"),
+        ("a file:\t///Users/Jane Doe/x.pdf", "a <file: URL>"),
     ],
 )
 def test_redaction_takes_unencoded_paths_whole(text: str, expected: str) -> None:
@@ -700,3 +711,29 @@ def test_jsonl_lines_are_split_as_load_provisions_splits_them(tmp_path: Path) ->
         load_provisions(path)
     # The canonical writer escapes U+2028, and that record scans clean.
     assert local_file_url_fields(PROVISIONS, (json.dumps(row) + "\n").encode()) == []
+
+
+def test_a_candidate_line_that_is_not_an_object_fails_closed() -> None:
+    """Opus review of #885: a bare CR splits a record into fragments that parse alone."""
+    record = b'{"citation_path": "c",\r"source_url":\r"file:///Users/Jane/private.pdf"\r}\n'
+    with pytest.raises(LocalFileUrlScanError, match="line 3 is not a JSON object"):
+        local_file_url_fields(PROVISIONS, record)
+    (issue,) = _content_issues(PROVISIONS, record)
+    assert "/Users/Jane" not in issue
+
+
+def test_audit_field_names_that_name_a_path_are_redacted(tmp_path: Path) -> None:
+    """Opus review of #885: nothing pinned the audit's field-name sanitization."""
+    from scripts.audit_local_file_urls import audit
+
+    repo = tmp_path / "repo"
+    key = "fi\tle:///Users/Jane Doe/private.pdf_url"
+    _locked_scope(
+        repo,
+        ("de", "guidance", "2026-09-14-crafted"),
+        [_row("de/guidance/c", metadata={key: "file:///Users/Jane Doe/a.pdf"})],
+    )
+    (record,) = audit(repo)["scopes"]
+    fields = {name for detail in record["artifacts"].values() for name in detail["fields"]}
+    assert fields == {"metadata.<file: URL>"}
+    assert "/Users/Jane" not in json.dumps(record)
