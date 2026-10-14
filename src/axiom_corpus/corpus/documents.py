@@ -3215,14 +3215,19 @@ def _ocr_pixmap_text(pixmap: Any, *, extraction: dict[str, Any]) -> str:
     """OCR of a rendered page, read upright when it was scanned sideways or upside down.
 
     Tesseract's layout analysis reads a page turned a quarter clockwise (its vertical-text
-    detection turns the lines), but reads a page turned a quarter counter-clockwise, or
-    upside down, as upside-down text: "(uas)pjiy usoqun sjuerddy" for "Applicant's Unborn
-    Child(ren)" on a sideways slide in the Utah 14-0007-MM approval document. With
-    ``ocr_orientation`` (the default), Tesseract's orientation detection (``--psm 0``)
-    runs first. A page it finds upright, or cannot judge, is read exactly as without the
-    setting. Otherwise the page is read twice, as rendered and turned upright by an exact
-    pixel rotation, and the turned read is kept only when it reads clearly better
-    (_turned_read_is_better), because detection is unreliable on sparse pages.
+    detection turns the lines back) but reads a page turned a quarter counter-clockwise,
+    or upside down, as upside-down text: "(uas)pjiy usoqun sjuerddy" for "Applicant's
+    Unborn Child(ren)" on a sideways slide in the Utah 14-0007-MM approval document.
+
+    With ``ocr_orientation`` (the default), Tesseract's orientation detection runs first
+    (_tesseract_page_turn). A page it finds upright, or cannot judge, is read with exactly
+    the command and image used without the setting. Otherwise detection is only a
+    proposal: it names upright CMS letterheads "Rotate: 180" at confidence 19, and the
+    sideways Utah slide "Rotate: 90" at confidence 4. So the page is read as rendered and
+    turned by the proposed angle (an exact pixel rotation, _rotate_pixmap_clockwise), and
+    the turned read replaces the read as rendered only when it reads better
+    (_turned_read_is_better). Detection sometimes names the wrong side of a sideways page,
+    so when a quarter turn is not kept the opposite quarter turn is tried too.
     """
     language = str(extraction.get("ocr_language") or "eng")
     page_segmentation_mode = extraction.get("ocr_psm")
@@ -3232,11 +3237,16 @@ def _ocr_pixmap_text(pixmap: Any, *, extraction: dict[str, Any]) -> str:
         turn = _tesseract_page_turn(image_path) if _pdf_ocr_orientation(extraction) else 0
         if not turn:
             return _tesseract_text(image_path, language, page_segmentation_mode)
-        turned_path = Path(temp_dir) / "turned.png"
-        _rotate_pixmap_clockwise(pixmap, turn).save(str(turned_path))
-        upright = _tesseract_read(image_path, language, page_segmentation_mode)
-        turned = _tesseract_read(turned_path, language, page_segmentation_mode)
-        return turned.text if _turned_read_is_better(turned, upright) else upright.text
+        rendered = _tesseract_read(image_path, language, page_segmentation_mode)
+        candidates = (turn, (turn + 180) % 360) if turn in (90, 270) else (turn,)
+        for candidate in candidates:
+            turned_path = Path(temp_dir) / f"turned-{candidate}.png"
+            _rotate_pixmap_clockwise(pixmap, candidate).save(str(turned_path))
+            turned = _tesseract_read(turned_path, language, page_segmentation_mode)
+            # A tie is good enough only for the clockwise-turned page detection named.
+            if _turned_read_is_better(turned, rendered, tie=candidate == turn == 270):
+                return turned.text
+        return rendered.text
 
 
 def _tesseract_command(
@@ -3302,16 +3312,31 @@ def _tsv_word_confidences(tsv: str) -> tuple[float, ...]:
 
 
 # Orientation detection reports "Rotate: R", the clockwise turn in degrees that makes the
-# page upright. It declines a page with too few characters to judge; that page is read as
-# rendered. Any other failure (osd.traineddata missing) stops extraction.
+# page upright. It declines a page with fewer characters than it samples by default ("Too
+# few characters"); such a page is judged again from as few as
+# _OSD_SPARSE_MIN_CHARACTERS characters (a sideways slide holds a few dozen), and read as
+# rendered if detection still declines. Any other failure (osd.traineddata missing) stops
+# extraction.
 _TESSERACT_TURN_RE = re.compile(r"^Rotate:\s*(\d+)\s*$", re.MULTILINE)
 _TESSERACT_TOO_FEW_CHARACTERS = "Too few characters"
+_OSD_SPARSE_MIN_CHARACTERS = 10
 
 
 def _tesseract_page_turn(image_path: Path) -> int:
-    """The clockwise turn (0, 90, 180 or 270) Tesseract's OSD finds for the page image."""
+    """The clockwise turn (0, 90, 180 or 270) Tesseract's OSD proposes for the page image."""
+    turn = _tesseract_osd_turn(image_path, min_characters=None)
+    if turn is None:
+        turn = _tesseract_osd_turn(image_path, min_characters=_OSD_SPARSE_MIN_CHARACTERS)
+    return turn or 0
+
+
+def _tesseract_osd_turn(image_path: Path, *, min_characters: int | None) -> int | None:
+    """One OSD run: the proposed clockwise turn, or None when detection declines the page."""
+    command = ["tesseract", str(image_path), "stdout", "--psm", "0"]
+    if min_characters is not None:
+        command.extend(["-c", f"min_characters_to_try={min_characters}"])
     result = subprocess.run(
-        ["tesseract", str(image_path), "stdout", "--psm", "0"],
+        command,
         check=False,
         capture_output=True,
         encoding="utf-8",
@@ -3325,25 +3350,35 @@ def _tesseract_page_turn(image_path: Path) -> int:
         return turn
     output = f"{result.stderr}\n{result.stdout}"
     if _TESSERACT_TOO_FEW_CHARACTERS in output and "Could not initialize" not in output:
-        return 0
+        return None
     message = result.stderr.strip() or result.stdout.strip()
     raise RuntimeError(f"PDF OCR orientation detection failed: {message}")
 
 
-# A word Tesseract reads at this confidence or more counts as read. WIP: the thresholds
-# below are provisional until the 2026-10-13 orientation sweep sets them.
-_OCR_CONFIDENT_WORD = 60.0
-_OCR_TURN_MIN_RATIO = 2
+# The read-quality gate, set from four-way reads of the 1,552 English pages the
+# 2026-10-13 orientation sweep picked (docs/ingest-runs/2026-10-13-ocr-page-orientation.md).
+# A word Tesseract reads at _OCR_CONFIDENT_WORD or more counts as read: upside-down text
+# yields many junk words at 50-60. A turned read must hold _OCR_TURN_MIN_RATIO times the
+# read words of the read as rendered and _OCR_TURN_MIN_GAIN more; the sideways Utah
+# slides gain only 4-6 words (from 1-4). A page turned a quarter clockwise reads about as
+# well as rendered as turned upright, so for that turn a tie with at least
+# _OCR_TIE_MIN_WORDS read words is enough; an upright page turned that way reads upside
+# down and never ties.
+_OCR_CONFIDENT_WORD = 70.0
+_OCR_TURN_MIN_RATIO = 1.5
 _OCR_TURN_MIN_GAIN = 3
+_OCR_TIE_MIN_WORDS = 5
 
 
-def _turned_read_is_better(turned: _TesseractRead, upright: _TesseractRead) -> bool:
-    """Whether the read of the page turned upright clearly beats the read as rendered."""
+def _turned_read_is_better(turned: _TesseractRead, rendered: _TesseractRead, *, tie: bool) -> bool:
+    """Whether the read of the turned page beats the read as rendered (ties too, with ``tie``)."""
     turned_words = sum(1 for c in turned.word_confidences if c >= _OCR_CONFIDENT_WORD)
-    upright_words = sum(1 for c in upright.word_confidences if c >= _OCR_CONFIDENT_WORD)
+    rendered_words = sum(1 for c in rendered.word_confidences if c >= _OCR_CONFIDENT_WORD)
+    if tie:
+        return turned_words >= rendered_words and turned_words >= _OCR_TIE_MIN_WORDS
     return (
-        turned_words >= _OCR_TURN_MIN_RATIO * upright_words
-        and turned_words >= upright_words + _OCR_TURN_MIN_GAIN
+        turned_words >= _OCR_TURN_MIN_RATIO * rendered_words
+        and turned_words >= rendered_words + _OCR_TURN_MIN_GAIN
     )
 
 

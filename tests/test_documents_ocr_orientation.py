@@ -145,28 +145,46 @@ OSD_TURN_90 = (
 )
 
 
-@pytest.mark.parametrize("turn", [0, 90, 180, 270])
-def test_page_turn_is_tesseracts_rotate(monkeypatch, tmp_path, turn):
+DECLINED = _completed(1, "", "Too few characters. Skipping this page\nError during processing.\n")
+
+
+def _osd(turn: int):
+    return _completed(0, OSD_TURN_90.replace("Rotate: 90", f"Rotate: {turn}"))
+
+
+def _scripted_run(monkeypatch, *results):
     commands = []
+    answers = iter(results)
 
     def run(command, **kwargs):
         commands.append(command)
-        return _completed(0, OSD_TURN_90.replace("Rotate: 90", f"Rotate: {turn}"))
+        return next(answers)
 
     monkeypatch.setattr(documents_module.subprocess, "run", run)
+    return commands
+
+
+@pytest.mark.parametrize("turn", [0, 90, 180, 270])
+def test_page_turn_is_tesseracts_rotate(monkeypatch, tmp_path, turn):
+    commands = _scripted_run(monkeypatch, _osd(turn))
     assert _tesseract_page_turn(tmp_path / "page.png") == turn
     assert commands == [["tesseract", str(tmp_path / "page.png"), "stdout", "--psm", "0"]]
 
 
+@pytest.mark.parametrize("turn", [0, 90, 180, 270])
+def test_a_declined_page_is_judged_again_from_fewer_characters(monkeypatch, tmp_path, turn):
+    commands = _scripted_run(monkeypatch, DECLINED, _osd(turn))
+    assert _tesseract_page_turn(tmp_path / "page.png") == turn
+    assert commands[1] == [
+        "tesseract", str(tmp_path / "page.png"), "stdout", "--psm", "0",
+        "-c", "min_characters_to_try=10",
+    ]
+
+
 def test_page_turn_is_zero_when_tesseract_cannot_judge(monkeypatch, tmp_path):
-    monkeypatch.setattr(
-        documents_module.subprocess,
-        "run",
-        lambda command, **kwargs: _completed(
-            1, "", "Too few characters. Skipping this page\nError during processing.\n"
-        ),
-    )
+    commands = _scripted_run(monkeypatch, DECLINED, DECLINED)
     assert _tesseract_page_turn(tmp_path / "page.png") == 0
+    assert len(commands) == 2
 
 
 @pytest.mark.parametrize(
@@ -178,13 +196,14 @@ def test_page_turn_is_zero_when_tesseract_cannot_judge(monkeypatch, tmp_path):
             "Error opening data file /x/osd.traineddata\nFailed loading language 'osd'\n"
             "Tesseract couldn't load any languages!\nCould not initialize tesseract.\n",
         ),
-        _completed(0, OSD_TURN_90.replace("Rotate: 90", "Rotate: 45")),
+        _osd(45),
         _completed(0, "Page number: 0\n"),
         _completed(1, "", "Error during processing.\n"),
     ],
 )
-def test_page_turn_fails_closed(monkeypatch, tmp_path, result):
-    monkeypatch.setattr(documents_module.subprocess, "run", lambda command, **kwargs: result)
+@pytest.mark.parametrize("declined_first", [False, True])
+def test_page_turn_fails_closed(monkeypatch, tmp_path, result, declined_first):
+    _scripted_run(monkeypatch, *([DECLINED] if declined_first else []), result)
     with pytest.raises(RuntimeError, match="orientation detection"):
         _tesseract_page_turn(tmp_path / "page.png")
 
@@ -194,11 +213,12 @@ def test_page_turn_fails_closed(monkeypatch, tmp_path, result):
 
 
 class FakeTesseract:
-    """Stands in for the tesseract CLI: OSD answers ``osd``; the ``stdout`` read prints
-    ``reads[image]`` text; the ``txt tsv`` read writes that text and its confidences."""
+    """Stands in for the tesseract CLI. OSD answers ``osd`` in turn (None: declines); the
+    ``stdout`` read prints ``reads[image name]``'s text; the ``txt tsv`` read writes that
+    text and its word confidences."""
 
-    def __init__(self, osd: str | None, reads: dict[str, tuple[str, tuple[float, ...]]]):
-        self.osd = osd
+    def __init__(self, osd, reads: dict[str, tuple[str, tuple[float, ...]]]):
+        self.osd = list(osd) if isinstance(osd, (list, tuple)) else [osd, osd]
         self.reads = reads
         self.commands: list[list[str]] = []
         self.images: dict[str, bytes] = {}
@@ -207,10 +227,11 @@ class FakeTesseract:
         self.commands.append(list(command))
         image = Path(command[1])
         self.images[image.name] = image.read_bytes()
-        if command[-2:] == ["--psm", "0"]:
-            if self.osd is None:
-                return _completed(1, "", "Too few characters. Skipping this page\nError during processing.\n")
-            return _completed(0, self.osd)
+        if "--psm" in command and command[command.index("--psm") + 1] == "0":
+            answer = self.osd.pop(0)
+            if answer is None:
+                return DECLINED
+            return _completed(0, answer)
         text, confidences = self.reads[image.name]
         if command[2] == "stdout":
             return _completed(0, text)
@@ -223,6 +244,9 @@ class FakeTesseract:
         base.with_suffix(".tsv").write_text("\n".join(rows), encoding="utf-8")
         return _completed(0)
 
+    def read_images(self):
+        return [Path(c[1]).name for c in self.commands if c[-2:] == ["txt", "tsv"]]
+
 
 def _page_pixmap():
     pixmap = fitz.Pixmap(fitz.csRGB, 7, 5, bytes(range(105)), False)
@@ -230,8 +254,13 @@ def _page_pixmap():
     return pixmap
 
 
-GOOD = tuple([95.0] * 40)
-BAD = tuple([20.0] * 30 + [70.0] * 2)
+def _confident(words: int, junk: int = 20) -> tuple[float, ...]:
+    """Word confidences: ``words`` read at 95 and ``junk`` at 40."""
+    return tuple([95.0] * words + [40.0] * junk)
+
+
+GOOD = _confident(40)
+BAD = _confident(2, junk=30)
 
 
 def _read(monkeypatch, fake, extraction):
@@ -245,7 +274,9 @@ def test_without_the_setting_the_page_is_read_once_as_rendered(monkeypatch):
     assert [command[2:] for command in fake.commands] == [["stdout", "-l", "eng"]]
 
 
-@pytest.mark.parametrize("osd", [OSD_TURN_90.replace("Rotate: 90", "Rotate: 0"), None])
+@pytest.mark.parametrize(
+    "osd", [OSD_TURN_90.replace("Rotate: 90", "Rotate: 0"), [None, None], [None, OSD_TURN_90.replace("Rotate: 90", "Rotate: 0")]]
+)
 def test_an_upright_or_unjudged_page_gets_exactly_the_read_without_the_setting(monkeypatch, osd):
     extraction = {"ocr": True, "ocr_language": "deu", "ocr_psm": 6}
     off = FakeTesseract(osd, {"page.png": ("as rendered\n", BAD)})
@@ -254,26 +285,65 @@ def test_an_upright_or_unjudged_page_gets_exactly_the_read_without_the_setting(m
     assert _read(monkeypatch, on, extraction) == without == "as rendered\n"
     read_without = off.commands[0][2:]
     assert read_without == ["stdout", "-l", "deu", "--psm", "6"]
-    assert [c[2:] for c in on.commands] == [["stdout", "--psm", "0"], read_without]
+    assert on.commands[-1][2:] == read_without
+    assert all(c[3:5] == ["--psm", "0"] for c in on.commands[:-1])
     assert on.images["page.png"] == off.images["page.png"] == _page_pixmap().tobytes("png")
 
 
-def test_a_turned_page_is_read_upright_when_that_reads_better(monkeypatch):
+@pytest.mark.parametrize("turn", [90, 180, 270])
+def test_a_turned_page_is_read_upright_when_that_reads_better(monkeypatch, turn):
     fake = FakeTesseract(
-        OSD_TURN_90,
-        {"page.png": ("upside down\n", BAD), "turned.png": ("upright\n", GOOD)},
+        OSD_TURN_90.replace("Rotate: 90", f"Rotate: {turn}"),
+        {"page.png": ("upside down\n", BAD), f"turned-{turn}.png": ("upright\n", GOOD)},
     )
     assert _read(monkeypatch, fake, {"ocr": True}) == "upright\n"
-    assert fake.images["turned.png"] == _rotate_pixmap_clockwise(_page_pixmap(), 90).tobytes("png")
-    assert [c[-2:] for c in fake.commands] == [["--psm", "0"], ["txt", "tsv"], ["txt", "tsv"]]
+    turned = _rotate_pixmap_clockwise(_page_pixmap(), turn).tobytes("png")
+    assert fake.images[f"turned-{turn}.png"] == turned
+    assert fake.read_images() == ["page.png", f"turned-{turn}.png"]
 
 
 def test_a_turn_that_does_not_read_better_is_not_kept(monkeypatch):
     fake = FakeTesseract(
-        OSD_TURN_90,
-        {"page.png": ("as rendered\n", GOOD), "turned.png": ("turned\n", BAD)},
+        OSD_TURN_90.replace("Rotate: 90", "Rotate: 180"),
+        {"page.png": ("as rendered\n", GOOD), "turned-180.png": ("turned\n", BAD)},
     )
     assert _read(monkeypatch, fake, {"ocr": True}) == "as rendered\n"
+    assert fake.read_images() == ["page.png", "turned-180.png"]
+
+
+@pytest.mark.parametrize("turn", [90, 270])
+def test_the_other_side_is_tried_when_detection_names_the_wrong_side(monkeypatch, turn):
+    # OH-09-027 page 48: detection said 270 (confidence 0.5); the page reads at 90.
+    other = 360 - turn
+    fake = FakeTesseract(
+        OSD_TURN_90.replace("Rotate: 90", f"Rotate: {turn}"),
+        {
+            "page.png": ("upside down\n", _confident(26)),
+            f"turned-{turn}.png": ("still upside down\n", _confident(25)),
+            f"turned-{other}.png": ("upright\n", _confident(216)),
+        },
+    )
+    assert _read(monkeypatch, fake, {"ocr": True}) == "upright\n"
+    assert fake.read_images() == ["page.png", f"turned-{turn}.png", f"turned-{other}.png"]
+
+
+@pytest.mark.parametrize(
+    ("turn", "kept"),
+    [
+        # Detection says the page is turned a quarter clockwise, which Tesseract reads about
+        # as well as upright: the upright read is kept on a tie.
+        (270, "turned\n"),
+        # A tie is no evidence for 90 or 180: an upright page turned 90 also reads well.
+        (90, "as rendered\n"),
+        (180, "as rendered\n"),
+    ],
+)
+def test_only_a_detected_quarter_clockwise_turn_wins_a_tie(monkeypatch, turn, kept):
+    reads = {"page.png": ("as rendered\n", _confident(60))}
+    for candidate in (90, 180, 270):
+        reads[f"turned-{candidate}.png"] = ("turned\n", _confident(60))
+    fake = FakeTesseract(OSD_TURN_90.replace("Rotate: 90", f"Rotate: {turn}"), reads)
+    assert _read(monkeypatch, fake, {"ocr": True}) == kept
 
 
 @pytest.mark.parametrize("value", ["yes", 1, None, "true"])
@@ -285,27 +355,45 @@ def test_ocr_orientation_must_be_a_boolean(value):
 confidences = st.lists(st.floats(min_value=0, max_value=100, allow_nan=False), max_size=60)
 
 
-@settings(max_examples=500, deadline=None)
-@given(confidences, confidences)
-def test_the_turn_gate_needs_more_confident_words_and_is_one_sided(turned, upright):
-    t, u = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(upright))
-    if _turned_read_is_better(t, u):
-        confident = documents_module._OCR_CONFIDENT_WORD
-        assert sum(c >= confident for c in turned) > sum(c >= confident for c in upright)
-        assert not _turned_read_is_better(u, t)
-    assert not _turned_read_is_better(u, u)
+def _read_words(confidences) -> int:
+    return sum(c >= documents_module._OCR_CONFIDENT_WORD for c in confidences)
 
 
 @settings(max_examples=500, deadline=None)
-@given(confidences, confidences, st.floats(min_value=0, max_value=100, allow_nan=False))
-def test_the_turn_gate_is_monotone(turned, upright, extra):
-    t, u = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(upright))
+@given(confidences, confidences, st.booleans())
+def test_the_turn_gate_never_keeps_a_worse_read(turned, rendered, tie):
+    t, r = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(rendered))
+    if _turned_read_is_better(t, r, tie=tie):
+        assert _read_words(turned) >= _read_words(rendered)
+        assert _read_words(turned) >= min(
+            documents_module._OCR_TIE_MIN_WORDS, documents_module._OCR_TURN_MIN_GAIN
+        )
+        if not tie:
+            assert _read_words(turned) > _read_words(rendered)
+            assert not _turned_read_is_better(r, t, tie=False)
+
+
+@settings(max_examples=500, deadline=None)
+@given(confidences)
+def test_the_strict_gate_is_never_a_tie(turned):
+    t = _TesseractRead("", tuple(turned))
+    assert not _turned_read_is_better(t, t, tie=False)
+    if _read_words(turned) >= documents_module._OCR_TIE_MIN_WORDS:
+        assert _turned_read_is_better(t, t, tie=True)
+
+
+@settings(max_examples=500, deadline=None)
+@given(confidences, confidences, st.floats(min_value=0, max_value=100, allow_nan=False), st.booleans())
+def test_the_turn_gate_is_monotone(turned, rendered, extra, tie):
+    t, r = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(rendered))
     more_t = _TesseractRead("", (*turned, extra))
-    more_u = _TesseractRead("", (*upright, extra))
-    if _turned_read_is_better(t, u):
-        assert _turned_read_is_better(more_t, u)
-    if not _turned_read_is_better(t, u):
-        assert not _turned_read_is_better(t, more_u)
+    more_r = _TesseractRead("", (*rendered, extra))
+    if _turned_read_is_better(t, r, tie=tie):
+        assert _turned_read_is_better(more_t, r, tie=tie)
+    else:
+        assert not _turned_read_is_better(t, more_r, tie=tie)
+    if _turned_read_is_better(t, r, tie=False) and _read_words(turned) >= documents_module._OCR_TIE_MIN_WORDS:
+        assert _turned_read_is_better(t, r, tie=True)
 
 
 # ---------------------------------------------------------------------------
@@ -386,3 +474,47 @@ def test_a_turned_page_reads_as_the_upright_page(upright_page, degrees):
     assert _turn_of(turned) == 360 - degrees
     assert _ocr_pixmap_text(turned, extraction={"ocr": True}) == without
 
+
+
+# Pages of the 2026-09-13 CMS state-plan scopes (docs/ingest-runs/2026-10-13-ocr-page-orientation.md).
+CMS_SOURCES = Path(__file__).resolve().parents[1] / "data/corpus/sources"
+
+
+def _cms_page(state: str, plan: str, name: str, number: int) -> fitz.Pixmap:
+    path = (
+        CMS_SOURCES / f"us-{state}/policy/2026-09-13-{plan}/official-documents"
+        / f"us-{state}-cms-{plan}-spa-{name}.pdf"
+    )
+    with fitz.open(path) as document:
+        return document[number - 1].get_pixmap(dpi=200, alpha=False)
+
+
+def _reads(pixmap) -> tuple[str, str]:
+    on = _ocr_pixmap_text(pixmap, extraction={"ocr": True})
+    off = _ocr_pixmap_text(pixmap, extraction={"ocr": True, "ocr_orientation": False})
+    return " ".join(on.split()), " ".join(off.split())
+
+
+@real_tesseract
+def test_an_upright_letter_detection_calls_upside_down_reads_as_before():
+    # Tesseract 5.5.3 detects this upright CMS letter as "Rotate: 180" at confidence 18.7.
+    on, off = _reads(_cms_page("ct", "medicaid-state-plan", "ct-12-009-approval-document", 2))
+    assert on == off
+    assert "Dear Mr. Bremby" in on
+
+
+@real_tesseract
+def test_a_sideways_organisation_chart_reads_upright():
+    on, off = _reads(_cms_page("ut", "medicaid-state-plan", "ut-14-0004-mm-approval-document", 24))
+    assert "Executive Director" in on and "David Patton" in on
+    assert "Executive Director" not in off
+
+
+@real_tesseract
+def test_a_sideways_slide_never_reads_worse():
+    # UT-14-0007-MM page 21 reads "(uas)pjiy usoqun sjuerddy" as rendered. With Tesseract
+    # 5.5.3 the turned read wins by 6 confident words to 2 and is kept; a Tesseract that
+    # reads it differently may keep the read as rendered, never a worse one.
+    on, off = _reads(_cms_page("ut", "medicaid-state-plan", "ut-14-0007-mm-approval-document", 21))
+    assert "Spouse of Applicant" not in off
+    assert on == off or "Spouse of Applicant" in on
