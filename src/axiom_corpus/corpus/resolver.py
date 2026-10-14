@@ -158,23 +158,29 @@ def _same_place(first: Path, second: Path) -> bool:
         return False
 
 
+def _spells(probe: Path, name: str) -> bool:
+    """True when ``probe`` ends in ``name``: no symlink below the checkout moved it."""
+    tail = tuple(name.split("/"))
+    return probe.parts[-len(tail) :] == tail
+
+
 def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tuple[Path, str] | None:
     """The checkout and protected corpus path that ``probe`` names, if it names one.
 
-    ``probe`` is absolute and ``physical`` is its realpath. A path that
-    reaches a protected path of a checkout names that path, through every
-    directory link (a worktree whose ``data/corpus/provisions`` links to
-    another checkout's names that checkout's files). Any other path names the
-    last protected path it stands at below a symlink on its way: a link at a
-    protected path that leads where no lock guards (outside every checkout, a
-    dangling target, an unprotected directory) stands where locked files
-    belong, so that path's lock still applies. A symlinked file always names
-    where it stands, never its target.
+    ``probe`` is absolute and ``physical`` is its realpath. A symlink at or
+    above a protected path stands where locked files belong, so a path
+    through one names the last protected path it stands at on its way, and
+    that path's lock applies. One kind of link is followed instead: a
+    directory link to the same path in another checkout (a worktree whose
+    ``data/corpus/provisions`` links to another checkout's names that
+    checkout's files). Every other link at a protected path, a symlinked
+    file included, leads where that path's lock does not apply (another
+    corpus path, outside every checkout, nowhere, an unprotected directory).
+    A path through no such link names the protected path it reaches, if any.
     """
-    if not _is_symlinked_file(probe):
-        reached = _protected_at(physical.parts, home)
-        if reached is not None:
-            return reached
+    reached = None if _is_symlinked_file(probe) else _protected_at(physical.parts, home)
+    if reached is not None and _spells(probe, reached[1]):
+        return reached  # no link below the checkout moved the path: nothing stands
     found = None
     parts = probe.parts
     prefix = Path(parts[0])
@@ -190,6 +196,8 @@ def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tu
         if ".." in parts[index + 1 :] and not _same_place(stands[0] / stands[1], physical):
             continue
         found = stands
+    if reached is not None and (found is None or fold_path(found[1]) == fold_path(reached[1])):
+        return reached
     return found
 
 
@@ -325,16 +333,15 @@ class CorpusResolver:
         Every spelling of the checkout gives the same answer: through a symlink,
         ``/tmp`` for ``/private/tmp``, a case variant or a firmlink.
 
-        Symlinks are followed into the protected paths of any checkout, so a
-        worktree whose ``data/corpus/provisions`` links to another checkout's
-        names that checkout's files, and this one names none of them. Where
-        they lead anywhere else, a path at a protected path of this checkout
-        names that path (``_protected_name``): a symlinked file there, or a
-        directory link there to a place no lock guards (outside every
-        checkout, nowhere, an unprotected directory), stands where locked
-        files belong. The callers must see that path's lock and refuse the
-        link, rather than follow it to a cache object, another corpus file,
-        or an empty directory and read an unfetched scope as empty.
+        A symlink at or above a protected path of this checkout stands where
+        locked files belong, so a path through it names that path
+        (``_protected_name``): the callers must see that path's lock and
+        refuse the link, rather than follow it to a cache object, another
+        corpus path, or an empty directory and read an unfetched scope as
+        empty. One link is followed: a directory link to the same path in
+        another checkout, so a worktree whose ``data/corpus/provisions``
+        links to another checkout's names that checkout's files, and this
+        one names none of them.
         """
         candidate = Path(path)
         if not candidate.is_absolute():
@@ -351,8 +358,9 @@ class CorpusResolver:
             inside is not None
             and is_protected_corpus_path(fold_path(inside))
             and not _is_symlinked_file(candidate)
+            and _spells(candidate, inside)
         ):
-            return inside  # reaches a protected path here: no git process
+            return inside  # spells the protected path it reaches here: no git process
         named = _protected_name(candidate, physical, self.repo)
         if named is None:
             return inside

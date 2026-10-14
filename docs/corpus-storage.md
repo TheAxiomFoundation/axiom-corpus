@@ -227,28 +227,32 @@ and a command's `--base` may be relative or absolute and given from any
 directory. A bare `data/corpus/...` path is repository-relative and taken as
 written, unless it has a `..` component: then it resolves through the checkout
 like an absolute path, symlinks included.
-Symlinks are followed into the protected paths of a checkout, as the
-operating system follows them: a worktree whose `data/corpus/provisions` links
-to another checkout's reads that checkout's files under that checkout's locks,
-and fetches into it. A symlink at or above a protected path that leads
-anywhere else stands where locked files belong, so a path through it names
-its own place instead. That covers a symlinked file there, whatever it points
-to, and a directory link there that leads outside every checkout, to nothing
-(a removed checkout it once shared), or to an unprotected directory. A path
-through several such links names the last protected place it stands at. When
-a lock names that place, the `io` readers (`load_provisions`,
+A symlink at or above a protected path of a checkout stands where locked
+files belong, so a path through it names that protected path rather than
+where the link leads, and that path's lock applies. That covers a symlinked
+file there, whatever it points to, and a directory link there that leads to
+another corpus path, outside every checkout, to nothing (a removed checkout
+it once shared), or to an unprotected directory. A path through several such
+links names the last protected path it stands at. One link is followed
+instead: a directory link to the same path in another checkout. A worktree
+whose `data/corpus/provisions` links to another checkout's
+`data/corpus/provisions` reads that checkout's files under that checkout's
+locks and fetches into it. The worktree's own locks do not apply there: a
+file only the worktree's lock names is not fetched, and reads as empty when
+absent. When a lock
+names the path, the `io` readers (`load_provisions`,
 `load_source_inventory`), `resolve_corpus_path`, `require_materialized`,
 `ensure_corpus_paths` and fetch refuse a symlinked file, a dangling one
-included, and any absent file beneath such a directory link, naming the link.
+included, and any absent file beneath a directory link, and name the link.
 They no longer read an unfetched scope as empty or take a cache object or
 another corpus file for a locked file, and fetch never writes through either
-link. A regular file beneath a directory link counts as in place, as it does
-anywhere else in the checkout. The operating system resolves a `..` below a
-link from the link's target, so such a path names its own place only where it
-reaches the same entry. Any other live symlink, such as one outside a checkout
-or outside the protected paths, is read as before without consulting the
-locks. A dangling one is fetched like the file it names, from the checkout
-its target lies in.
+kind of link. A regular file beneath a directory link counts as in place, as
+it does anywhere else in the checkout. The operating system resolves a `..`
+below a link from the link's target, so such a path names its own place only
+where it reaches the same entry. Any other live symlink, such as one outside
+a checkout or outside the protected paths, is read as before without
+consulting the locks. A dangling one is fetched like the file it names, from
+the checkout its target lies in.
 
 ## Ingest
 
@@ -502,13 +506,11 @@ exactly those 1,362 files.
     `CorpusResolver.relative` gives one answer for every spelling of a
     checkout, and at most one checkout names a path at a protected path (a
     checkout nested inside another's corpus tree aside: both name its files
-    there, and the helpers use the nested one, as git does). A
-    path that reaches a protected path of a checkout, through any directory
-    links, names that path. A symlinked file at a protected path names
-    itself, and so does a path at a protected path below a directory link
-    that leads where no lock guards; through several links, the last such
-    place names it. A path that is neither names the entry it reaches. A
-    bare `data/corpus/...` path names itself as written; one with a `..`
+    there, and the helpers use the nested one, as git does). A path through
+    a symlink at or above a protected path names the last protected path it
+    stands at, save a directory link to the same path in another checkout,
+    which is followed. Any other path names the entry it reaches. A bare
+    `data/corpus/...` path names itself as written; one with a `..`
     component resolves through the checkout like an absolute path. A symlink
     at a locked path never counts as fetched, and fetch never writes through
     one.

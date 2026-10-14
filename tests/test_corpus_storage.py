@@ -21,6 +21,7 @@ import contextlib
 import hashlib
 import json
 import os
+import posixpath
 import subprocess
 import threading
 import unicodedata
@@ -1108,6 +1109,28 @@ def test_a_link_chain_names_the_last_protected_place_it_stands(tmp_path: Path, m
     assert _tree(empty) == []
 
 
+@pytest.mark.parametrize("where", ["this checkout", "another checkout"])
+def test_a_directory_link_to_another_corpus_path_names_its_own_path(
+    tmp_path: Path, monkeypatch, where: str
+) -> None:
+    """Following ``provisions/nz`` to another corpus directory named a path no
+    lock names (``provisions/us/...``), so an unfetched nz scope read as empty.
+    Only a link to the same path in another checkout is followed."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    holder = repo if where == "this checkout" else _locked_checkout(tmp_path / "other", monkeypatch)
+    (holder / "data/corpus/provisions/us/statute").mkdir(parents=True)
+    (repo / "data/corpus/provisions").mkdir(parents=True, exist_ok=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(holder / "data/corpus/provisions/us", target_is_directory=True)
+    assert CorpusResolver(repo, sources=[]).relative(repo / PROV) == PROV
+    if holder != repo:
+        assert CorpusResolver(holder, sources=[]).relative(repo / PROV) is None
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        require_materialized([repo / "data/corpus/provisions/nz"])
+    assert _tree(holder / "data/corpus/provisions/us") == ["statute"]
+
+
 def test_a_nested_checkout_names_its_own_corpus_files(tmp_path: Path) -> None:
     """Worktrees live under the main checkout's ``.claude/worktrees/``: the
     worktree names its corpus files and the checkout around it names none of
@@ -1214,7 +1237,7 @@ def test_fetch_off_and_cli_inputs_treat_a_symlinked_corpus_file_as_absent(
 
 
 _TAIL_SEGMENT = st.sampled_from(["a", "B", "x.jsonl", "s 2.xml", "2026-07-10"])
-_LINK_KINDS = (None, "dangling", "file inside", "file outside", "directory inside")
+_LINK_KINDS = (None, "dangling", "file inside", "file outside", "directory inside", "directory into corpus")
 _FILE_LINKS = frozenset({"dangling", "file inside", "file outside"})
 # Where a directory link above the path leads: the same subtree outside every
 # checkout, nowhere, under an unprotected directory of this checkout, or at the
@@ -1252,10 +1275,11 @@ def _expected_naming(rel: str, link_kind: str | None, above: str | None):
     Returns what ``repo`` and ``other`` name the path, what they name its
     realpath, and whether a name is the symlinked file itself (lstat identity).
     A place is (checkout, name); the path stands at a place below each link on
-    its way, reaches a place at its end, and names (in order of precedence) the
-    last protected place a symlinked file stands at, the protected place any
-    other path reaches, the last protected place it stands at, or the place it
-    reaches.
+    its way and reaches a place at its end. It names, in order of precedence:
+    the last protected place a symlinked file stands at; the protected place
+    any other path reaches, when it stands at no protected place or the last
+    one has the same name (a link to the same path in another checkout); the
+    last protected place it stands at; the place it reaches.
     """
     home = {
         None: ("repo", rel),
@@ -1267,6 +1291,7 @@ def _expected_naming(rel: str, link_kind: str | None, above: str | None):
     reached = {
         None: home,
         "directory inside": ("repo", "plain"),
+        "directory into corpus": ("repo", posixpath.dirname(COVERAGE)),
         "file inside": ("repo", COVERAGE),
         "file outside": None,
         "dangling": None,
@@ -1276,7 +1301,8 @@ def _expected_naming(rel: str, link_kind: str | None, above: str | None):
         stands.append(home)
     stands = [place for place in stands if is_protected_corpus_path(place[1])]
     file_link = link_kind in _FILE_LINKS
-    if not file_link and reached is not None and is_protected_corpus_path(reached[1]):
+    followed = not stands or stands[-1][1] == (reached or ("", ""))[1]  # the same path elsewhere
+    if not file_link and reached is not None and is_protected_corpus_path(reached[1]) and followed:
         owner = reached
     else:
         owner = stands[-1] if stands else None
@@ -1304,9 +1330,9 @@ def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, drawn) -> N
     """Invariant 10. ``relative`` answers the same for every spelling of the checkout,
     at most one checkout names a path at a protected path, a name reaches the
     directory entry the path reaches (the link itself for a symlinked file standing
-    at a protected path), and the name follows the reference model: directory links
-    are followed into protected paths, and a path at a protected path that leads
-    anywhere else, or a symlinked file there, names itself."""
+    at a protected path), and the name follows the reference model: a directory link
+    to the same path in another checkout is followed, and any other link at a
+    protected path, a symlinked file included, names its own path."""
     rel, link_kind, create, above, depth = drawn
     base = tmp_path_factory.mktemp("naming")
     repo, other = _bare_checkout(base / "repo"), _bare_checkout(base / "other")
@@ -1338,6 +1364,8 @@ def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, drawn) -> N
         path.symlink_to(base / "outside.bin")
     elif link_kind == "directory inside":
         path.symlink_to(repo / "plain", target_is_directory=True)
+    elif link_kind == "directory into corpus":
+        path.symlink_to(repo / posixpath.dirname(COVERAGE), target_is_directory=True)
     expected, physical, link_itself = _expected_naming(rel, link_kind, above)
     resolvers = {"repo": CorpusResolver(repo, sources=[]), "other": CorpusResolver(other, sources=[])}
     named = {name: resolver.relative(path) for name, resolver in resolvers.items()}
