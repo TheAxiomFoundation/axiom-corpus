@@ -3361,24 +3361,33 @@ def _tesseract_osd_turn(image_path: Path, *, min_characters: int | None) -> int 
 # yields many junk words at 50-60. A turned read must hold _OCR_TURN_MIN_RATIO times the
 # read words of the read as rendered and _OCR_TURN_MIN_GAIN more; the sideways Utah
 # slides gain only 4-6 words (from 1-4). A page turned a quarter clockwise reads about as
-# well as rendered as turned upright, so for that turn a tie with at least
-# _OCR_TIE_MIN_WORDS read words is enough; an upright page turned that way reads upside
-# down and never ties.
+# well as rendered as turned upright, so for that turn a tie is enough when the read as
+# rendered is itself good (at least _OCR_GOOD_READ_SHARE of its words read) and the
+# turned read holds _OCR_TIE_MIN_WORDS read words. An upright page turned that way reads
+# upside down and never ties; a page that reads upside down as rendered is not a good
+# read, so two upside-down reads never tie either.
 _OCR_CONFIDENT_WORD = 70.0
 _OCR_TURN_MIN_RATIO = 1.5
 _OCR_TURN_MIN_GAIN = 3
 _OCR_TIE_MIN_WORDS = 5
+_OCR_GOOD_READ_SHARE = 0.5
 
 
 def _turned_read_is_better(turned: _TesseractRead, rendered: _TesseractRead, *, tie: bool) -> bool:
-    """Whether the read of the turned page beats the read as rendered (ties too, with ``tie``)."""
+    """Whether the read of the turned page beats the read as rendered (ties too, with ``tie``,
+    when the read as rendered is good)."""
     turned_words = sum(1 for c in turned.word_confidences if c >= _OCR_CONFIDENT_WORD)
     rendered_words = sum(1 for c in rendered.word_confidences if c >= _OCR_CONFIDENT_WORD)
-    if tie:
-        return turned_words >= rendered_words and turned_words >= _OCR_TIE_MIN_WORDS
-    return (
+    if (
         turned_words >= _OCR_TURN_MIN_RATIO * rendered_words
         and turned_words >= rendered_words + _OCR_TURN_MIN_GAIN
+    ):
+        return True
+    return (
+        tie
+        and rendered_words >= _OCR_GOOD_READ_SHARE * len(rendered.word_confidences)
+        and turned_words >= rendered_words
+        and turned_words >= _OCR_TIE_MIN_WORDS
     )
 
 

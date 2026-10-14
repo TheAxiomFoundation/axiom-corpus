@@ -346,6 +346,22 @@ def test_only_a_detected_quarter_clockwise_turn_wins_a_tie(monkeypatch, turn, ke
     assert _read(monkeypatch, fake, {"ocr": True}) == kept
 
 
+def test_two_upside_down_reads_do_not_tie(monkeypatch):
+    # OH-10-006 page 48: detection said 270, but the page is turned the other way. As
+    # rendered and turned 270 it reads upside down (18 and 21 read words of 121); the
+    # opposite turn reads it.
+    fake = FakeTesseract(
+        OSD_TURN_90.replace("Rotate: 90", "Rotate: 270"),
+        {
+            "page.png": ("upside down\n", _confident(18, junk=103)),
+            "turned-270.png": ("upside down too\n", _confident(21, junk=100)),
+            "turned-90.png": ("upright\n", _confident(88, junk=30)),
+        },
+    )
+    assert _read(monkeypatch, fake, {"ocr": True}) == "upright\n"
+    assert fake.read_images() == ["page.png", "turned-270.png", "turned-90.png"]
+
+
 @pytest.mark.parametrize("value", ["yes", 1, None, "true"])
 def test_ocr_orientation_must_be_a_boolean(value):
     with pytest.raises(ValueError, match="ocr_orientation must be true or false"):
@@ -359,18 +375,21 @@ def _read_words(confidences) -> int:
     return sum(c >= documents_module._OCR_CONFIDENT_WORD for c in confidences)
 
 
-@settings(max_examples=500, deadline=None)
+@settings(max_examples=1000, deadline=None)
 @given(confidences, confidences, st.booleans())
 def test_the_turn_gate_never_keeps_a_worse_read(turned, rendered, tie):
     t, r = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(rendered))
-    if _turned_read_is_better(t, r, tie=tie):
-        assert _read_words(turned) >= _read_words(rendered)
-        assert _read_words(turned) >= min(
-            documents_module._OCR_TIE_MIN_WORDS, documents_module._OCR_TURN_MIN_GAIN
-        )
-        if not tie:
-            assert _read_words(turned) > _read_words(rendered)
-            assert not _turned_read_is_better(r, t, tie=False)
+    if not _turned_read_is_better(t, r, tie=tie):
+        return
+    assert _read_words(turned) >= _read_words(rendered)
+    if not _turned_read_is_better(t, r, tie=False):
+        # Kept only as a tie: the read as rendered was good and the turn holds enough words.
+        assert tie
+        assert _read_words(rendered) >= documents_module._OCR_GOOD_READ_SHARE * len(rendered)
+        assert _read_words(turned) >= documents_module._OCR_TIE_MIN_WORDS
+    else:
+        assert _read_words(turned) >= _read_words(rendered) + documents_module._OCR_TURN_MIN_GAIN
+        assert not _turned_read_is_better(r, t, tie=False)
 
 
 @settings(max_examples=500, deadline=None)
@@ -378,22 +397,27 @@ def test_the_turn_gate_never_keeps_a_worse_read(turned, rendered, tie):
 def test_the_strict_gate_is_never_a_tie(turned):
     t = _TesseractRead("", tuple(turned))
     assert not _turned_read_is_better(t, t, tie=False)
-    if _read_words(turned) >= documents_module._OCR_TIE_MIN_WORDS:
-        assert _turned_read_is_better(t, t, tie=True)
+    good = _read_words(turned) >= documents_module._OCR_GOOD_READ_SHARE * len(turned)
+    enough = _read_words(turned) >= documents_module._OCR_TIE_MIN_WORDS
+    assert _turned_read_is_better(t, t, tie=True) == (good and enough)
 
 
-@settings(max_examples=500, deadline=None)
+@settings(max_examples=1000, deadline=None)
 @given(confidences, confidences, st.floats(min_value=0, max_value=100, allow_nan=False), st.booleans())
-def test_the_turn_gate_is_monotone(turned, rendered, extra, tie):
+def test_the_turn_gate_is_monotone_in_the_turned_read(turned, rendered, extra, tie):
     t, r = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(rendered))
-    more_t = _TesseractRead("", (*turned, extra))
-    more_r = _TesseractRead("", (*rendered, extra))
     if _turned_read_is_better(t, r, tie=tie):
-        assert _turned_read_is_better(more_t, r, tie=tie)
-    else:
-        assert not _turned_read_is_better(t, more_r, tie=tie)
-    if _turned_read_is_better(t, r, tie=False) and _read_words(turned) >= documents_module._OCR_TIE_MIN_WORDS:
+        assert _turned_read_is_better(_TesseractRead("", (*turned, extra)), r, tie=tie)
+    if _turned_read_is_better(t, r, tie=False):
         assert _turned_read_is_better(t, r, tie=True)
+
+
+@settings(max_examples=1000, deadline=None)
+@given(confidences, confidences, st.floats(min_value=0, max_value=100, allow_nan=False))
+def test_a_better_read_as_rendered_never_loses_to_a_strict_turn(turned, rendered, extra):
+    t, r = _TesseractRead("", tuple(turned)), _TesseractRead("", tuple(rendered))
+    if not _turned_read_is_better(t, r, tie=False):
+        assert not _turned_read_is_better(t, _TesseractRead("", (*rendered, extra)), tie=False)
 
 
 # ---------------------------------------------------------------------------
