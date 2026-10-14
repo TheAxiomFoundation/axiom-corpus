@@ -46,6 +46,7 @@ from axiom_corpus.corpus.content_store import (
     read_entry_bytes,
 )
 from axiom_corpus.corpus.corpus_locks import (
+    CORPUS_BASE,
     LOCK_ROOT,
     CorpusLock,
     LockEntry,
@@ -869,12 +870,57 @@ def test_a_link_outside_the_checkout_resolves_to_the_file_it_names(tmp_path: Pat
     repo = _locked_checkout(tmp_path / "repo", monkeypatch)
     link = tmp_path / "latest.jsonl"
     link.symlink_to(repo / PROV)  # dangling until the locked file is fetched
-    monkeypatch.chdir(repo)
+    monkeypatch.chdir(tmp_path)  # the link, not the working directory, finds the checkout
     resolver = resolver_module.resolver_for(repo)
     assert resolver is not None and resolver.relative(link) == PROV
     assert load_provisions(link)[0].citation_path == "nz/statute/a"
     assert _placed_regular(repo, PROV)
-    assert load_provisions(link)[0].citation_path == "nz/statute/a"  # live link, file in place
+    # Review r1 finding 2: a live link to a placed file reads with fetching off.
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    assert load_provisions(link)[0].citation_path == "nz/statute/a"
+    assert fetch_locked_file(link)
+    assert resolve_corpus_path(link) == repo / PROV
+
+
+def test_an_unprotected_link_resolves_in_the_checkout_it_leads_to(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 1: a link outside the protected paths of one checkout,
+    into another, belongs to the checkout it leads to."""
+    a = _locked_checkout(tmp_path / "a", monkeypatch)
+    b = _locked_checkout(tmp_path / "b", monkeypatch)
+    (a / "docs").mkdir()
+    link = a / "docs/latest.jsonl"
+    link.symlink_to(b / PROV)  # dangling until b fetches it
+    monkeypatch.chdir(a)
+    assert load_provisions(link)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(b, PROV) and not (a / PROV).exists()
+    assert resolve_corpus_path(link) == b / PROV
+
+
+def test_reading_a_link_outside_the_protected_paths_consults_no_lock(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 4: any live symlink loaded every lock (and failed on an
+    invalid one); only a symlinked file at a protected path is checked."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    next((repo / LOCK_ROOT).rglob("*.json")).write_text("not a lock\n")
+    monkeypatch.chdir(repo)
+    rows = _write(tmp_path, "elsewhere/rows.jsonl", READABLE_FILES[PROV])
+    (repo / "docs").mkdir()
+    for link in (tmp_path / "rows.jsonl", repo / "docs/rows.jsonl"):
+        link.symlink_to(rows)
+        assert load_provisions(link)[0].citation_path == "nz/statute/a"
+        assert fetch_locked_file(link)
+
+
+def test_a_bare_corpus_path_with_dotdot_resolves_through_the_checkout(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 3: ``data/corpus/provisions/../provisions/...`` named no
+    locked file, so require_materialized passed over an absent one."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    dotted = PROV.replace("provisions/", "provisions/../provisions/", 1)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None and resolver.relative(dotted) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([dotted], repo=repo)
+    require_materialized([dotted], repo=repo, fetch=True)
+    assert _placed_regular(repo, PROV)
 
 
 def test_a_symlinked_directory_still_resolves_into_the_checkout_holding_it(
@@ -1000,6 +1046,13 @@ def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, drawn) -> N
         assert resolver.relative(spelling / rel) == named
     with contextlib.chdir(base):
         assert resolver.relative(Path("repo") / rel) == named
+    if rel.startswith(f"{CORPUS_BASE}/"):
+        parts = rel.split("/")
+        dotted = "/".join([*parts[:3], "..", *parts[2:]])
+        assert resolver.relative(repo / dotted) == named
+        assert resolver.relative(dotted) == named  # bare: `..` resolves through the checkout
+        if link_kind is None or kept:
+            assert resolver.relative(rel) == named  # bare: as written
     if not kept:  # a path and its realpath name one file
         assert resolver.relative(os.path.realpath(path)) == named
     if named is not None and os.path.lexists(path):

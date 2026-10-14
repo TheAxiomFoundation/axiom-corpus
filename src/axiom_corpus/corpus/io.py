@@ -262,9 +262,9 @@ def _fetched(path: Path) -> Path:
     """Fetch a locked corpus file this checkout lacks (docs/corpus-storage.md).
 
     Without this, an unfetched provisions file would read as an empty scope.
-    Paths that no lock names behave exactly as before. A symlink is checked
-    against the locks even when its target exists: one at a locked path is
-    refused, not read.
+    Paths that no lock names behave exactly as before. A symlinked file at a
+    protected corpus path is checked against the locks even when its target
+    exists: one at a locked path is refused, not read.
     """
     if path.exists() and not path.is_symlink():
         return path

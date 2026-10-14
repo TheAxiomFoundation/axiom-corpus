@@ -92,18 +92,28 @@ def _placed(path: Path) -> bool:
     return path.is_file() and not path.is_symlink()
 
 
+def _link_holder(probe: Path) -> Path | None:
+    """The checkout in which ``probe`` is a symlinked file at a protected path, if any."""
+    if not _is_symlinked_file(probe):
+        return None
+    holder = find_repo_root(_existing_ancestor(probe.parent))
+    resolver = resolver_for(holder) if holder is not None else None
+    if resolver is None or resolver.link_name(probe) is None:
+        return None
+    return holder
+
+
 def _checkout_for(path: Path) -> Path | None:
     """The checkout that names ``path`` (see ``CorpusResolver.relative``).
 
-    A symlinked file belongs to the checkout holding the link, when there is
-    one; anything else to the checkout it resolves into.
+    A symlinked file at a protected path belongs to the checkout holding the
+    link; anything else to the checkout it resolves into, a dangling link's
+    target included.
     """
     probe = path if path.is_absolute() else Path.cwd() / path
-    if _is_symlinked_file(probe):
-        holder = find_repo_root(_existing_ancestor(probe.parent))
-        if holder is not None:
-            return holder
-    return find_repo_root(_existing_ancestor(probe))
+    return _link_holder(probe) or find_repo_root(
+        _existing_ancestor(Path(os.path.realpath(probe)))
+    )
 
 
 def _symlink_on_path(repo: Path, rel: str) -> bool:
@@ -195,9 +205,10 @@ class CorpusResolver:
     def relative(self, path: str | Path) -> str | None:
         """Repository-relative posix path for ``path``, or None outside the repo.
 
-        A relative ``data/corpus/...`` spelling is taken as repository-relative;
-        any other relative path is relative to the working directory. Every
-        spelling of the checkout gives the same answer: through a symlink,
+        A relative ``data/corpus/...`` spelling is taken as repository-relative,
+        as written unless it has a ``..`` component, which resolves through the
+        checkout; any other relative path is relative to the working directory.
+        Every spelling of the checkout gives the same answer: through a symlink,
         ``/tmp`` for ``/private/tmp``, a case variant or a firmlink.
 
         One symlink is not followed: a symlinked file at a protected corpus
@@ -210,13 +221,25 @@ class CorpusResolver:
         if not candidate.is_absolute():
             text = candidate.as_posix()
             if text == CORPUS_BASE or text.startswith(f"{CORPUS_BASE}/"):
-                return text
-            candidate = Path.cwd() / candidate
-        if _is_symlinked_file(candidate):
-            link = self._inside(Path(os.path.realpath(candidate.parent)) / candidate.name)
-            if link is not None and is_protected_corpus_path(fold_path(link)):
-                return link
-        return self._inside(Path(os.path.realpath(candidate)))
+                if ".." not in candidate.parts:
+                    return text
+                candidate = self.repo / candidate
+            else:
+                candidate = Path.cwd() / candidate
+        return self.link_name(candidate) or self._inside(Path(os.path.realpath(candidate)))
+
+    def link_name(self, candidate: Path) -> str | None:
+        """The protected path that the symlinked file ``candidate`` stands at here, if any.
+
+        ``candidate`` is absolute. None for anything but a symlinked file at a
+        protected corpus path in this checkout.
+        """
+        if not _is_symlinked_file(candidate):
+            return None
+        link = self._inside(Path(os.path.realpath(candidate.parent)) / candidate.name)
+        if link is not None and is_protected_corpus_path(fold_path(link)):
+            return link
+        return None
 
     def _inside(self, physical: Path) -> str | None:
         """``physical`` (symlink-free above its last component) relative to the checkout."""
@@ -459,9 +482,11 @@ def fetch_locked_file(path: str | Path) -> bool:
     worse.
     """
     candidate = Path(path)
-    if candidate.exists() and not candidate.is_symlink():
-        return True
     anchor = candidate if candidate.is_absolute() else Path.cwd() / candidate
+    # A present path is read as it is, save a symlinked file at a protected
+    # path, which stands where a locked file belongs.
+    if candidate.exists() and _link_holder(anchor) is None:
+        return True
     resolver = resolver_for(_checkout_for(anchor))
     if resolver is None or not resolver.active:
         return False

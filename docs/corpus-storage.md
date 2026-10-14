@@ -218,18 +218,23 @@ before and after the switch. Once one of them consults the locks, lock files
 that fail to parse make it raise: an invalid lock must not read as "no
 locks". Reading a file that is already present does not consult the locks, so
 `load_provisions` on a present file does not notice a broken lock; source
-files are the exception, since they check their siblings. `corpus`
+files are the exception, since they check their siblings, and so is a
+symlinked file at a protected path (below). `corpus`
 commands, the test session and CI read every lock first. Paths resolve
 through every spelling of a checkout (a symlink to it, `/tmp` for
 `/private/tmp`, a case variant on APFS, the `/System/Volumes/Data` firmlink),
 and a command's `--base` may be relative or absolute and given from any
-directory. Directory symlinks are followed as the operating system follows
-them. A symlinked file at a protected path is the exception: it stands where
-a locked file belongs, so it names that path rather than its target. When a
-lock names the path, the `io` readers (`load_provisions`,
-`load_source_inventory`), `resolve_corpus_path`, `require_materialized` and
-fetch refuse the link, a dangling one included, instead of reading an absent
-locked file as empty or taking a cache object or another corpus file for it.
+directory. A bare `data/corpus/...` path is repository-relative and taken as
+written, unless it has a `..` component, which resolves through the checkout.
+Symlinks are followed as the operating system follows them, with one
+exception: a symlinked file at a protected path of a checkout stands where a
+locked file belongs, so it names that path rather than its target. When a lock
+names the path, the `io` readers (`load_provisions`, `load_source_inventory`),
+`resolve_corpus_path`, `require_materialized` and fetch refuse the link, a
+dangling one included, instead of reading an absent locked file as empty or
+taking a cache object or another corpus file for it. Any other symlink, such
+as one outside a checkout or outside the protected paths, is read as before
+without consulting the locks.
 
 ## Ingest
 
@@ -479,10 +484,12 @@ exactly those 1,362 files.
    normalization-insensitive filesystem, so a lock materializes the same tree
    on APFS, NTFS and Linux. At `dbb69efb` the 55,276 `data/corpus` paths have
    no such collision.
-10. **Path naming.** `CorpusResolver.relative` gives one answer for every
-    spelling of a checkout and names the directory entry a path reaches:
-    what a symlink leads to, save a symlinked file at a protected path, which
-    names itself. A symlink at a locked path never counts as fetched.
+10. **Path naming.** For absolute and working-directory-relative paths,
+    `CorpusResolver.relative` gives one answer for every spelling of a
+    checkout and names the directory entry a path reaches: what a symlink
+    leads to, save a symlinked file at a protected path, which names itself.
+    A bare `data/corpus/...` path names itself as written, `..` resolved. A
+    symlink at a locked path never counts as fetched.
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
 (1), the partition (2), byte fidelity (4), objects that hash to their names
