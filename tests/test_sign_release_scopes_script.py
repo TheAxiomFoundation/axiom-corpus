@@ -22,6 +22,7 @@ import sys
 import time
 from base64 import b64encode
 from pathlib import Path
+from typing import IO
 
 import pytest
 from cryptography.hazmat.primitives import serialization
@@ -719,7 +720,7 @@ def _install_git_shim(tmp_path: Path) -> None:
     shim.chmod(0o755)
 
 
-def _start(repo: Path, stdout: object = subprocess.PIPE) -> subprocess.Popen[str]:
+def _start(repo: Path, stdout: int | IO[str] = subprocess.PIPE) -> subprocess.Popen[str]:
     """Start the script in a session of its own, so signals to its group miss pytest."""
     return subprocess.Popen(
         ["bash", str(SCRIPT), DRAFT, PREDECESSOR],
@@ -923,7 +924,7 @@ def test_a_closed_output_pipe_does_not_stop_the_cleanup(
         proc.wait(timeout=300)
     _wait_for_group_to_exit(proc.pid)
 
-    assert proc.returncode not in (0, -signal.SIGPIPE, 128 + signal.SIGPIPE)
+    assert proc.returncode == 1  # the failed commit's status, not death by SIGPIPE
     assert _branch_subjects(repo, start) == [SIGN, ADD]
     _assert_resumable(repo)
 
