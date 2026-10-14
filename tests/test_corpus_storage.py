@@ -812,7 +812,9 @@ def test_a_dangling_symlink_at_a_locked_path_does_not_read_as_empty(tmp_path: Pa
     assert link.is_symlink() and not nowhere.exists() and not nowhere.parent.exists()
 
 
-@pytest.mark.parametrize("target_kind", ["cache object", "another corpus file", "nothing"])
+@pytest.mark.parametrize(
+    "target_kind", ["cache object", "another corpus file", "the same file in another checkout", "nothing"]
+)
 def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
     tmp_path: Path, monkeypatch, target_kind: str
 ) -> None:
@@ -829,6 +831,12 @@ def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
         target = resolver.cache.object_path(_sha(READABLE_FILES[PROV]))
     elif target_kind == "another corpus file":
         target = repo / COVERAGE
+    elif target_kind == "the same file in another checkout":
+        other = _locked_checkout(tmp_path / "other", monkeypatch)
+        other_resolver = resolver_module.resolver_for(other)
+        assert other_resolver is not None
+        other_resolver.ensure_paths([PROV])
+        target = other / PROV
     else:
         target = tmp_path / "missing.jsonl"
     link = repo / PROV
@@ -838,6 +846,9 @@ def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
 
     assert resolver.relative(link) == PROV
     assert resolver.relative(Path(os.path.realpath(repo)) / PROV) == PROV
+    if target_kind == "the same file in another checkout":
+        # Only a directory link to the same path elsewhere is followed.
+        assert CorpusResolver(tmp_path / "other", sources=[]).relative(link) is None
     with pytest.raises(CorpusNotMaterializedError, match="symlink"):
         load_provisions(link)
     with pytest.raises(CorpusNotMaterializedError, match="symlink"):
