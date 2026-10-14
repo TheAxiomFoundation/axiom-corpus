@@ -3425,13 +3425,18 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
 def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
     """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
     of the page-tree nodes it inherits them from when it has none. Raises LookupError when
-    the name has a "/": the lookup path would split at it (the only character it splits
-    at) and could reach another dictionary ("F/Resources" is font F's resources)."""
+    the name has a "/" (the lookup path would split at it, the only character it splits
+    at, and could reach another dictionary: "F/Resources" is font F's resources) or when
+    the font is not in those resources, so a font that is not found is told apart from
+    one without a /Name."""
     if "/" in resource:
         raise LookupError(resource)  # the lookup path would split at it
     for _ in range(64):
         if document.xref_get_key(holder, "Resources")[0] != "null":
-            kind, value = document.xref_get_key(holder, f"Resources/Font/{resource}/Name")
+            path = f"Resources/Font/{resource}"
+            if document.xref_get_key(holder, path)[0] == "null":
+                raise LookupError(resource)  # not where get_fonts' referencer points
+            kind, value = document.xref_get_key(holder, path + "/Name")
             return str(kind), str(value)
         kind, parent = document.xref_get_key(holder, "Parent")
         if kind != "xref":

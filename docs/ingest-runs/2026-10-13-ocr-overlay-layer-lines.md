@@ -160,7 +160,7 @@ AL-20-0004 page 4, whose shifted span splits at U+001E, NV-20-0002 page 3, whose
 "3" is kept beside unmapped codes, and WV-23-0001 page 132, whose marks PyMuPDF 1.28's
 spans lack) are run through `_pdf_page_text` on the retained PDFs (checked by SHA-256) with
 Tesseract's stored output, with and without `sort_text` and `ignore_actual_text`. A
-mutation check runs 66 broken variants of the rule against these tests; its result is
+mutation check runs 67 broken variants of the rule against these tests; its result is
 recorded in the PR.
 
 ## Measurement
