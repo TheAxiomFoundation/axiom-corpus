@@ -14,7 +14,7 @@ import unicodedata
 import warnings
 import zipfile
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from io import BytesIO, StringIO
 from json import dumps as json_dumps
@@ -54,6 +54,19 @@ _REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
 _RANGE_FETCH_CHUNK_SIZE_BYTES = 1024 * 1024
 _CONTENT_RANGE_RE = re.compile(r"^bytes (?P<start>\d+)-(?P<end>\d+)/(?P<total>\d+|\*)$")
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
+# Media types recorded for a manifest ``local_path`` copy, which has no HTTP
+# response to report one. Keys are the source formats ``_extract_blocks`` reads.
+_SOURCE_FORMAT_CONTENT_TYPES = {
+    "csv": "text/csv",
+    "doc": "application/msword",
+    "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "html": "text/html",
+    "javascript": "text/javascript",
+    "json": "application/json",
+    "pdf": "application/pdf",
+    "xls": "application/vnd.ms-excel",
+    "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+}
 _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
@@ -129,19 +142,23 @@ class OfficialDocumentManifest:
 
     @classmethod
     def load(cls, path: str | Path) -> Self:
-        data = yaml.safe_load(Path(path).read_text())
+        """Load a manifest; a relative ``local_path`` is relative to the manifest file."""
+        manifest_path = Path(path)
+        data = yaml.safe_load(manifest_path.read_text())
         if not isinstance(data, dict):
             raise ValueError("official document manifest must be a YAML mapping")
         documents = data.get("documents")
         if not isinstance(documents, list):
             raise ValueError("official document manifest must contain a documents list")
-        return cls(
-            documents=tuple(
-                OfficialDocumentSource.from_mapping(row)
-                for row in documents
-                if isinstance(row, dict)
-            )
-        )
+        sources = []
+        for row in documents:
+            if not isinstance(row, dict):
+                continue
+            source = OfficialDocumentSource.from_mapping(row)
+            if source.local_path and not Path(source.local_path).is_absolute():
+                source = replace(source, local_path=str(manifest_path.parent / source.local_path))
+            sources.append(source)
+        return cls(documents=tuple(sources))
 
     def require_unique_sources(self) -> None:
         seen: set[str] = set()
@@ -341,22 +358,30 @@ def _single_scope(documents: tuple[OfficialDocumentSource, ...]) -> tuple[str, s
     return next(iter(jurisdictions)), next(iter(document_classes))
 
 
+def _official_download_url(source: OfficialDocumentSource) -> str:
+    return source.download_url or google_drive_download_url(source.source_url) or source.source_url
+
+
 def _download_document(
     source: OfficialDocumentSource,
     *,
     session: requests.Session,
 ) -> _DownloadedDocument:
     if source.local_path:
-        path = Path(source.local_path)
-        return _DownloadedDocument(
+        # A retained copy stands in for the official download. Rows record the
+        # official URL the manifest names, never the extracting machine's path,
+        # and the media type of the declared or detected source format.
+        downloaded = _DownloadedDocument(
             source=source,
-            content=path.read_bytes(),
+            content=Path(source.local_path).read_bytes(),
             content_type=None,
-            final_url=path.as_uri(),
+            final_url=_official_download_url(source),
         )
-    download_url = (
-        source.download_url or google_drive_download_url(source.source_url) or source.source_url
-    )
+        return replace(
+            downloaded,
+            content_type=_SOURCE_FORMAT_CONTENT_TYPES.get(_infer_source_format(source, downloaded)),
+        )
+    download_url = _official_download_url(source)
     request_config = source.request or {}
     verify = bool(request_config.get("verify_tls", True))
     request_headers = _request_headers_from_config(request_config)

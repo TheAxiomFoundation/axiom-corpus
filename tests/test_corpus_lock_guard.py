@@ -201,6 +201,24 @@ def test_content_checks_run_on_locked_bytes(repo: Path, keys) -> None:
     assert any("looks like an agent digest" in i for i in result.issues)
 
 
+def test_locked_rows_with_local_file_urls_fail(repo: Path, keys) -> None:
+    private, public = keys
+    files = dict(FILES)
+    leaky = {
+        "citation_path": "nz/statute/a",
+        "source_url": "https://www.legislation.govt.nz/act",
+        "metadata": {"download_url": "file:///Users/someone/act.html"},
+    }
+    files["data/corpus/provisions/nz/statute/2026-07-10.jsonl"] = (json.dumps(leaky) + "\n").encode()
+    files["data/corpus/inventory/nz/statute/2026-07-10.json"] = json.dumps({"items": [leaky]}).encode()
+    base = _ingest_and_commit(repo, private, files)
+    result = _guard(repo, base, public)
+    assert not result.passed
+    file_url_issues = [i for i in result.issues if "records a file: URL" in i]
+    assert len(file_url_issues) == 2
+    assert not any("/Users/someone" in i for i in result.issues)
+
+
 def test_removed_lock_entry_needs_a_deleted_mark(repo: Path, keys) -> None:
     private, public = keys
     _ingest_and_commit(repo, private)
