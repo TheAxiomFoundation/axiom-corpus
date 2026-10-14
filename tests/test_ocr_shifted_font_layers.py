@@ -39,7 +39,9 @@ Reading a page, ``_pdf_decoded_span_lines`` and ``_pdf_page_text`` (built PDFs, 
 retained CMS pages with Tesseract's stored output):
 
 S7. Decoding returns ``_pdf_layer_lines``' spans unchanged on a page without an unmapped
-    character, and every span's paint and font unchanged on every page.
+    character, and every span's paint and font unchanged on every page. It runs after
+    ``_with_layer_marks``, so a font whose codes print as combining marks is decoded and
+    its lines kept.
 S8. A span without an unmapped character is never changed. A font is not decoded in a line
     where some of its characters are mapped, nor anywhere when another font object on the
     page has its name (two unmapped fonts of one name can number their glyphs differently),
@@ -51,8 +53,8 @@ S9. The unmapped characters are exactly those PyMuPDF's text trace, another devi
     read's only where the reads agree at its origin (``_pdf_unmapped_status``).
 S10. Only a Type0 font is decoded, and only when its /W gives a width for every code it
     draws unmapped on the page and leaves a gap between its least and greatest code (a
-    font numbering its glyphs in order of use leaves none), and none of those codes prints
-    as a combining mark. /W read back gives exactly the codes written.
+    font numbering its glyphs in order of use leaves none). /W read back gives exactly the
+    codes written.
 S11. When an annotation's font can't be known for certain (an inline font, a /Subtype or
     /BaseFont not written in the font's dictionary, a reference of another generation, or
     more appearance streams than the walk takes), nothing on the page is decoded.
@@ -84,6 +86,7 @@ from axiom_corpus.corpus.documents import (
     _pdf_layer_lines,
     _pdf_page_text,
     _pdf_text_flags,
+    _with_layer_marks,
     _without_garbled_spans,
 )
 from tests.test_ocr_layer_line_properties import _reference_reads
@@ -748,10 +751,18 @@ def test_unmapped_characters_are_exactly_the_unmapped_fonts_characters(tmp_path)
 
 
 def _layer(page, ocr_text: str, extraction: dict | None = None) -> list[str]:
-    """The layer lines ``_pdf_page_text`` merges, after decoding and garbled spans."""
+    """The layer lines ``_pdf_page_text`` merges: marks put back, then decoding, then
+    garbled spans left out."""
     extraction = extraction or {}
     spans = _pdf_layer_lines(page, extraction=extraction)
-    spans = _pdf_decoded_span_lines(page, spans, extraction=extraction, ocr_text=ocr_text)
+    text = page.get_text(
+        "text",
+        sort=bool(extraction.get("sort_text")),
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+    )
+    marked = _with_layer_marks(spans, text)
+    assert marked is not None
+    spans = _pdf_decoded_span_lines(page, marked, extraction=extraction, ocr_text=ocr_text)
     return [text for text, _ in _without_garbled_spans(spans)]
 
 
@@ -1036,18 +1047,20 @@ def test_a_font_whose_widths_miss_a_code_it_draws_is_not_decoded(tmp_path):
     assert "Wendy Hill" in _texts(_decoded(whole, EVIDENCE_OCR)[1])
 
 
-def test_a_font_whose_codes_print_as_combining_marks_is_not_decoded(tmp_path):
+def test_a_font_whose_codes_print_as_combining_marks_is_decoded(tmp_path, monkeypatch):
     # The review's case in small: the font's codes print as characters from U+1D9F up,
-    # "A" to "D" as combining marks (U+1DC0 to U+1DC3). The shift is plain from
-    # "ABCD1234", which OCR reads, but decoding would take marks out of the spans that the
-    # text output still holds, and ``_with_layer_marks`` would look for them in vain and
-    # give up the page's layer lines; so the font is not decoded (S10).
+    # "A" to "D" as combining marks (U+1DC0 to U+1DC3), and the shift is plain from
+    # "ABCD1234", which OCR reads. Decoded before ``_with_layer_marks``, the spans would
+    # lack marks the text output holds, the marks could not be placed, and the page would
+    # fall back to the text output's undecoded lines. ``_pdf_page_text`` places the marks
+    # first, against the text as printed, so "BAD 4321" is decoded and kept (S7).
     shift = ord("A") - 0x1DC0
     pdf = _form_pdf(tmp_path / "form.pdf", [("ABCD1234", shift), ("BAD 4321", shift)])
 
     spans, decoded = _decoded(pdf, "ABCD1234\n")
     assert any(unicodedata.category(char) == "Mn" for char in "".join(_texts(spans)))
-    assert decoded == spans
+    assert _texts(decoded) == ["ABCD1234", "BAD 4321"]
+    assert _appended("ABCD1234\n", _page_text(pdf, "ABCD1234\n", monkeypatch)) == ["BAD 4321"]
 
 
 def _noted(path: Path) -> Path:

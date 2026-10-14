@@ -3067,10 +3067,13 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
         span_lines = _pdf_layer_lines(page, extraction=extraction)
         layer_lines = None
         if _same_layer_characters(span_lines, layer_text):
-            span_lines = _pdf_decoded_span_lines(
-                page, span_lines, extraction=extraction, ocr_text=ocr_text
-            )
-            layer_lines = _with_layer_marks(_without_garbled_spans(span_lines), layer_text)
+            marked = _with_layer_marks(span_lines, layer_text)
+            if marked is not None:
+                # Decoded after the marks are placed, against the text output as printed.
+                marked = _pdf_decoded_span_lines(
+                    page, marked, extraction=extraction, ocr_text=ocr_text
+                )
+                layer_lines = _without_garbled_spans(marked)
         if layer_lines is None:
             # The dict output does not hold the text output's characters: use the text
             # output's lines, all counted as painted, so no typed text can go missing.
@@ -3376,10 +3379,12 @@ def _pdf_type3_font_names(page: Any) -> frozenset[str]:
     the 1,041 overlay pages measured is filled under 1.28.2. Under 1.27 and later the paint
     is read from the span. On every version a Type3 span's characters are not taken as
     mapped (``_pdf_span_mapped``). A font without a name has its spans named "Unnamed-T3"
-    before 1.27 and "Type3 (<object number> 0 R)" in 1.28; both are listed.
+    before 1.27 and "Type3 (<object number> 0 R)" in 1.28; both are listed. Text in
+    annotation and widget appearance streams is extracted too, and ``get_fonts`` does not
+    list their fonts, so those are found as well (``_pdf_appearance_type3_fonts``).
     """
     names: set[str] = set()
-    for font in page.get_fonts(full=True):
+    for font in [*page.get_fonts(full=True), *_pdf_appearance_type3_fonts(page)]:
         if font[2] != "Type3":
             continue
         name = _pdf_type3_span_name(page, font)
@@ -3387,6 +3392,60 @@ def _pdf_type3_font_names(page: Any) -> frozenset[str]:
         if name == "Unnamed-T3":
             names.add(f"Type3 ({font[0]} 0 R)")
     return frozenset(names)
+
+
+_PDF_OBJECT_REFERENCE = re.compile(r"(\d+) 0 R")
+_PDF_RESOURCE_ENTRY = re.compile(r"/([^\s/<>\[\]()%]+)\s*(<<|\d+ 0 R)")
+_PDF_APPEARANCE_STREAMS = 256
+
+
+def _pdf_appearance_type3_fonts(page: Any) -> list[tuple[Any, ...]]:
+    """The Type3 fonts of the page's annotation and widget appearance streams, and of the
+    forms they draw, as ``get_fonts(full=True)`` tuples (object number, or 0 for a font
+    written inline; the resource name; the stream holding it)."""
+    document = page.parent
+    kind, annots = document.xref_get_key(page.xref, "Annots")
+    if kind == "xref":
+        annots = document.xref_object(int(annots.split()[0]))
+    todo: list[int] = []
+    for annot in _PDF_OBJECT_REFERENCE.findall(annots if kind in ("array", "xref") else ""):
+        kind, value = document.xref_get_key(int(annot), "AP/N")
+        if kind in ("xref", "dict"):
+            todo.extend(int(xref) for xref in _PDF_OBJECT_REFERENCE.findall(value))
+    fonts: list[tuple[Any, ...]] = []
+    seen: set[int] = set()
+    while todo and len(seen) < _PDF_APPEARANCE_STREAMS:
+        holder = todo.pop()
+        if holder in seen:
+            continue
+        seen.add(holder)
+        for key, found in (("Font", fonts), ("XObject", None)):
+            kind, value = document.xref_get_key(holder, f"Resources/{key}")
+            if kind == "xref":
+                value = document.xref_object(int(value.split()[0]))
+            elif kind != "dict":
+                continue
+            for name, target in _PDF_RESOURCE_ENTRY.findall(value):
+                xref = int(target.split()[0]) if target != "<<" else 0
+                resource = _PDF_NAME_ESCAPE.sub(
+                    lambda match: bytes.fromhex(match.group(1).decode()), name.encode("latin-1")
+                ).decode("utf-8", "surrogateescape")
+                if found is None:
+                    if xref:
+                        todo.append(xref)
+                    continue
+                path = f"Resources/Font/{resource}/Subtype"
+                try:
+                    subtype = (
+                        document.xref_get_key(xref, "Subtype")
+                        if xref
+                        else document.xref_get_key(holder, path)
+                    )
+                except Exception:  # an unaddressable name; its font is not judged
+                    continue
+                if subtype == ("name", "/Type3"):
+                    found.append((xref, "n/a", "Type3", "", resource, "", holder))
+    return fonts
 
 
 def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
@@ -3468,53 +3527,66 @@ def _same_layer_characters(
 
 
 def _with_layer_marks(
-    lines: list[tuple[str, bool]], layer_text: str
-) -> list[tuple[str, bool]] | None:
-    """``lines`` (``_without_garbled_spans``) with the combining marks the text output holds
-    and the spans lack, or None when they can't all be placed.
+    span_lines: list[list[tuple[str, bool, str, bool | None]]], layer_text: str
+) -> list[list[tuple[str, bool, str, bool | None]]] | None:
+    """``span_lines`` with the combining marks the text output holds and the spans lack, or
+    None when they can't be placed.
 
-    A text-output line holding a control character is a garbled font's, and its marks are
-    not needed. Each other text-output line holding a mark the spans lack takes a kept line
-    of its own: one that is already that line, or else one that is that line without its
-    marks, which it replaces, keeping the paint (spacing aside in both). If none is left,
-    the marks can't be placed.
+    Without ``sort_text`` the text output is the dict lines joined by newlines, so each
+    text-output line is its dict line's characters, with any marks the spans lack. Each
+    such mark goes into the span of the character before it (or the line's first span),
+    so its line, span, paint and font are the ones that character has. A line whose spans'
+    characters are not its text-output line's with only combining marks taken out is left
+    as it is when it holds a control character (a garbled font's line, whose marks are not
+    needed), and otherwise no mark can be placed: None (with ``sort_text``, which rebuilds
+    the lines, the text output's lines are used).
     """
-    span_marks = Counter(
-        char for text, _ in lines for char in text if unicodedata.category(char) == "Mn"
+    missing = Counter(char for char in layer_text if unicodedata.category(char) == "Mn") - Counter(
+        char
+        for spans in span_lines
+        for span in spans
+        for char in span[0]
+        if unicodedata.category(char) == "Mn"
     )
-    text_marks = Counter(char for char in layer_text if unicodedata.category(char) == "Mn")
-    missing = text_marks - span_marks
     if not missing:
-        return lines
-    placed = list(lines)
-    used: set[int] = set()
-    for text_line in layer_text.split("\n"):
-        if _has_control_character(text_line) or not any(
-            char in missing for char in text_line
-        ):
-            continue
-        whole = " ".join(text_line.split())
-        bare = " ".join(
-            "".join(char for char in text_line if unicodedata.category(char) != "Mn").split()
-        )
-        # Each text-output line takes its own kept line: itself, or itself without marks.
-        for target, replace in ((whole, False), (bare, True)):
-            index = next(
-                (
-                    index
-                    for index, (text, _) in enumerate(placed)
-                    if index not in used and " ".join(text.split()) == target
-                ),
-                None,
-            )
-            if index is not None:
-                if replace:
-                    placed[index] = (whole, placed[index][1])
-                used.add(index)
-                break
+        return span_lines
+    text_lines = layer_text.split("\n")
+    if text_lines and text_lines[-1] == "":
+        text_lines.pop()
+    if len(text_lines) != len(span_lines):
+        return None
+    placed: list[list[tuple[str, bool, str, bool | None]]] = []
+    for text_line, spans in zip(text_lines, span_lines, strict=True):
+        texts = _with_line_marks(text_line, [span[0] for span in spans])
+        if texts is None:
+            if _has_control_character(text_line) or any(
+                _has_control_character(span[0]) for span in spans
+            ):
+                placed.append(spans)
+                continue
+            return None
+        placed.append([(text, *span[1:]) for text, span in zip(texts, spans, strict=True)])
+    return placed
+
+
+def _with_line_marks(text_line: str, span_texts: list[str]) -> list[str] | None:
+    """The span texts of a line with the combining marks of ``text_line`` they lack, each put
+    in the span of the character before it, or None when the spans' characters are not the
+    line's with only combining marks taken out."""
+    chars = [(index, char) for index, text in enumerate(span_texts) for char in text]
+    out = [""] * len(span_texts)
+    at = 0  # the span the last character went to
+    position = 0
+    for char in text_line:
+        if position < len(chars) and chars[position][1] == char:
+            at = chars[position][0]
+            out[at] += char
+            position += 1
+        elif unicodedata.category(char) == "Mn" and span_texts:
+            out[at] += char
         else:
             return None
-    return placed
+    return out if position == len(chars) else None
 
 
 def _without_garbled_spans(
@@ -3601,9 +3673,11 @@ def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
     (AL-20-0004 page 4 writes "03/01/2020" as "0" and "/01/2020" in one font and "3" in
     another), and decoding part of it would leave a fragment. Every other line, and every
     span's paint and font, is unchanged (only a span's text is replaced), and so is every
-    line of a page with no such font. The characters are read from the ``rawdict``
-    output, which has the ``dict`` output's lines and spans; if it does not, nothing is
-    decoded.
+    line of a page with no such font. ``_pdf_page_text`` decodes after
+    ``_with_layer_marks`` has placed the marks the spans lack, since it places them against
+    the text output as printed. The characters are read from the ``rawdict`` output, which
+    has the ``dict`` output's lines and spans; if it does not (or a mark has been put into
+    a span), nothing is decoded.
     """
     sort = bool(extraction.get("sort_text"))
     flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
@@ -3705,10 +3779,7 @@ def _pdf_undecodable_fonts(
       its least and greatest code. A font that numbers its glyphs in the order a document
       first uses them assigns every code in its range, so its /W has no gap; a font whose
       codes keep the glyph order of the font it was cut from (every shifted font found:
-      Minion Pro, Arial, Times New Roman) has gaps where it left glyphs out;
-    - none of its unmapped codes prints as a combining mark (Unicode category Mn), so that
-      decoding takes no mark out of the spans that ``_with_layer_marks`` would then look
-      for in vain.
+      Minion Pro, Arial, Times New Roman) has gaps where it left glyphs out.
     """
     objects = _pdf_font_span_name_counts(page)
     declared: dict[str, frozenset[int]] = {}
@@ -3733,7 +3804,6 @@ def _pdf_undecodable_fonts(
             or any(len(char) != 1 for char in chars)
             or not {ord(char) for char in chars} <= widths
             or len(widths) == max(widths) - min(widths) + 1
-            or any(unicodedata.category(char) == "Mn" for char in chars)
         ):
             refused.add(font)
     return refused
@@ -3843,7 +3913,7 @@ def _pdf_font_span_name(page: Any, font: tuple[Any, ...]) -> str:
     return name
 
 
-_PDF_OBJECT_REFERENCE = re.compile(r"(\d+)\s+(\d+)\s+R")
+_PDF_GENERATION_REFERENCE = re.compile(r"(\d+)\s+(\d+)\s+R")
 # The most appearance streams and forms ``_pdf_annotation_font_xrefs`` walks on a page.
 _PDF_ANNOTATION_STREAMS = 4096
 
@@ -3852,7 +3922,7 @@ def _pdf_object_references(text: str) -> list[int] | None:
     """The object numbers ``text`` (a PDF object as PyMuPDF prints it) refers to, or None
     when a reference has a generation other than 0, which a lookup by number may not
     reach."""
-    references = _PDF_OBJECT_REFERENCE.findall(text)
+    references = _PDF_GENERATION_REFERENCE.findall(text)
     if any(generation != "0" for _, generation in references):
         return None
     return [int(number) for number, _ in references]

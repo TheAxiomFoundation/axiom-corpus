@@ -627,6 +627,72 @@ def test_an_unaddressable_inline_type3_font_with_a_base_font_is_a_known_limit(
         assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
 
 
+def _type3_in_an_annotation_pdf(lines: list[str], *, font_keys: str, where: str) -> bytes:
+    """A scanned page whose typed lines are drawn by a FreeText annotation's appearance
+    stream in a Type3 font, which the page's own resources do not hold: referenced by the
+    appearance ("xref"), written inline in its resources ("inline"), or in a form the
+    appearance draws ("form")."""
+    with fitz.open("pdf", _type3_scan_pdf(lines, font_keys=font_keys)) as document:
+        page = document[0]
+        font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
+        contents = page.get_contents()
+        typed = document.xref_stream(contents[-1])
+        kept = " ".join(f"{xref} 0 R" for xref in contents[:-1])
+        document.xref_set_key(page.xref, "Contents", f"[{kept}]")
+        _set_page_font(document, page, "F3", "null")
+        annot = page.add_freetext_annot(fitz.Rect(0, 0, 612, 792), "x")
+        annot.update()
+        appearance = int(document.xref_get_key(annot.xref, "AP/N")[1].split()[0])
+        fonts = f"<< /F3 {font} 0 R >>"
+        if where == "inline":
+            fonts = f"<< /F3 {document.xref_object(font, compressed=True)} >>"
+        if where == "form":
+            form = document.get_new_xref()
+            document.update_object(
+                form,
+                "<< /Type /XObject /Subtype /Form /BBox [0 0 612 792] "
+                f"/Resources << /Font {fonts} >> >>",
+            )
+            document.update_stream(form, typed)
+            document.update_stream(appearance, b"/Fm1 Do")
+            document.xref_set_key(appearance, "Resources", f"<< /XObject << /Fm1 {form} 0 R >> >>")
+        else:
+            document.update_stream(appearance, typed)
+            document.xref_set_key(appearance, "Resources", f"<< /Font {fonts} >>")
+        document.xref_set_key(appearance, "BBox", "[0 0 612 792]")
+        document.xref_set_key(appearance, "Matrix", "[1 0 0 1 0 0]")
+        return document.tobytes()
+
+
+@pytest.mark.parametrize("where", ["xref", "inline", "form"])
+def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where):
+    # Review r6: text in annotation appearance streams is extracted, but get_fonts lists
+    # only the page's own resources and forms. A Type3 font there is found too, so under
+    # PyMuPDF before 1.27 its typed lines count as painted, and on every version its spans
+    # are not taken as mapped.
+    monkeypatch.setattr(
+        documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
+    )
+    pdf = _type3_in_an_annotation_pdf(TYPE3_LINES, font_keys="/Name /AnnT3", where=where)
+    with fitz.open("pdf", pdf) as document:
+        page = document[0]
+        listed = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
+        names = documents_module._pdf_type3_font_names(page)
+        typed = [
+            span
+            for line in _pdf_layer_lines(page, extraction={})
+            for span in line
+            if span[0].strip()
+        ]
+        result = _pdf_page_text(page, extraction={"ocr": True})
+
+    assert listed == []
+    assert names == {"AnnT3"}
+    assert {font for _, _, font, _ in typed} == {"AnnT3"}
+    assert all(painted and mapped is None for _, painted, _, mapped in typed)
+    assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
 def _unreadable_xref(xref, key):
     raise ValueError("bad xref")
 

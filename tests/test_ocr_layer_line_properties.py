@@ -17,16 +17,18 @@ S1. A span holding a control character other than ordinary whitespace (``_garble
 S2. No line it returns holds such a control character, and each has a visible character.
 S3. A line is painted exactly when one of its kept spans with visible characters is.
 
-``_with_layer_marks(lines, layer_text)`` puts back the combining marks the text output
-holds and the spans lack. Its invariants, for every input:
+``_with_layer_marks(span_lines, layer_text)`` puts the combining marks the text output holds
+and the spans lack into the spans, before S1 runs. Its invariants, for every input:
 
-K1. It returns the lines unchanged when they hold every mark of the text output. Otherwise
-    what it returns is the lines, in order and with their paint, some replaced by a
-    text-output line that is the same once marks are left out (spacing aside).
-K2. What it returns holds every combining mark of the text output's lines without a
-    control character, as a multiset.
-K3. It returns None only when a text-output line without a control character holds a mark
-    the lines lack and no line is left that it, or it without marks, could be.
+K1. With no mark missing, the spans come back unchanged.
+K2. What it returns is the spans with combining marks added and nothing else changed (each
+    span's other characters, paint, font and provenance): a line whose text-output line
+    differs otherwise and holds a control character comes back as it was, and every other
+    line, joined, is its text-output line, each added mark in the span of the character
+    before it (the first span when it starts the line).
+K3. It returns None exactly when a mark is missing and the text output's lines do not line
+    up with the spans: another number of lines, or a line without a control character whose
+    spans' characters are not its text-output line's with only combining marks taken out.
 
 ``_without_failed_recognition_lines(lines, ocr_text)`` chooses the layer lines worth
 merging from (text, painted) pairs. Its invariants, for every input:
@@ -73,6 +75,7 @@ stored output for each page.
 from __future__ import annotations
 
 import collections
+import functools
 import hashlib
 import itertools
 import json
@@ -284,15 +287,16 @@ LAYER_LINE = st.one_of(
             "date\tplan",
             "\u0130\u0130",
             "\u0130\u0130 date",
+            "\u0130\u0130\u0130 x",
             "plan\x1dstate",
         ]
     ),
     st.text(alphabet=st.sampled_from("abCD12 .:/"), max_size=12),
 )
 LAYER = st.lists(st.tuples(LAYER_LINE, st.booleans()), max_size=14)
-OCR_WORDS = st.lists(st.sampled_from([*VOCABULARY, "approvaldate", "the"]), max_size=12).map(
-    " ".join
-)
+OCR_WORDS = st.lists(
+    st.sampled_from([*VOCABULARY, "approvaldate", "the", "x\u0130\u0130\u0130x"]), max_size=12
+).map(" ".join)
 
 
 @settings(max_examples=800, deadline=None)
@@ -428,72 +432,133 @@ def test_same_layer_characters_cases():
 
 
 MARKS = "\u0301\u17b7"
-MARK_LINE = st.text(alphabet=st.sampled_from("ab1 " + MARKS + "\x01"), max_size=6)
+MARK_TEXT = st.text(alphabet=st.sampled_from("ab1 " + MARKS + "\x01"), max_size=5)
 
 
 def _marks(text: str) -> list[str]:
     return sorted(char for char in text if unicodedata.category(char) == "Mn")
 
 
-def _bare(text: str) -> str:
-    return " ".join("".join(c for c in text if unicodedata.category(c) != "Mn").split())
+def _unmarked(text: str) -> str:
+    return "".join(char for char in text if unicodedata.category(char) != "Mn")
 
 
-@settings(max_examples=800, deadline=None)
+def _marks_taken_out(text: str, spans: str) -> bool:
+    """Whether ``spans`` is ``text`` with only combining marks taken out (written as a
+    search over both strings, not a single pass)."""
+
+    @functools.cache
+    def fits(i: int, j: int) -> bool:
+        if i == len(text):
+            return j == len(spans)
+        mark = unicodedata.category(text[i]) == "Mn"
+        return (j < len(spans) and text[i] == spans[j] and fits(i + 1, j + 1)) or (
+            mark and fits(i + 1, j)
+        )
+
+    return fits(0, 0)
+
+
+def _stripped(text: str, keep: list[bool]) -> str:
+    """``text`` without the combining marks whose turn in ``keep`` is False."""
+    out, turn = "", iter(keep)
+    for char in text:
+        if unicodedata.category(char) != "Mn" or next(turn, False):
+            out += char
+    return out
+
+
+@settings(max_examples=1000, deadline=None)
 @given(
-    st.lists(st.tuples(MARK_LINE, st.booleans(), st.booleans(), st.booleans()), max_size=6),
-    st.lists(st.tuples(MARK_LINE, st.booleans()), max_size=2),
+    st.lists(
+        st.tuples(
+            st.lists(
+                st.tuples(
+                    MARK_TEXT, st.booleans(), st.sampled_from(["A", "B"]), st.lists(st.booleans())
+                ),
+                min_size=1,
+                max_size=3,
+            ),
+            st.one_of(st.none(), MARK_TEXT),
+        ),
+        max_size=5,
+    ),
+    st.booleans(),
 )
-def test_combining_marks_the_spans_lack_are_put_back(rows, extra):
-    # The text output's lines; the kept lines are some of them, each with or without its
-    # marks, plus lines the text output does not have.
-    layer_text = "\n".join(text for text, _, _, _ in rows)
-    lines = [
-        (" ".join(text.split()) if keep_marks else _bare(text), painted)
-        for text, keep, keep_marks, painted in rows
-        if keep and not _garbled(text)
-    ] + [(" ".join(text.split()), painted) for text, painted in extra if not _garbled(text)]
-    result = _with_layer_marks(lines, layer_text)
+def test_combining_marks_the_spans_lack_are_put_back(rows, extra_line):
+    # Each row: a line's spans as written (text, paint, font, which of its marks the dict
+    # output keeps) and, optionally, a different text-output line.
+    span_lines = [
+        [(_stripped(text, keep), painted, font, None) for text, painted, font, keep in spans]
+        for spans, _ in rows
+    ]
+    text_lines = [
+        other if other is not None else "".join(text for text, _, _, _ in spans)
+        for spans, other in rows
+    ]
+    if extra_line:
+        text_lines.append("x")
+    layer_text = "".join(line + "\n" for line in text_lines)
+    result = _with_layer_marks(span_lines, layer_text)
 
-    clean = [text for text in layer_text.split("\n") if not _garbled(text)]
-    span_marks = collections.Counter(c for text, _ in lines for c in _marks(text))
-    missing = collections.Counter(_marks(layer_text)) - span_marks
-    if not missing:
-        # K1: nothing missing, nothing changed.
-        assert result == lines
-        return
-    if result is None:
-        # K3: some clean line holding a missing mark has no line left to be.
-        assert any(any(c in missing for c in text) for text in clean)
-        return
-    # K1: same length, order and paint; each line itself or the same without marks.
-    assert len(result) == len(lines)
-    for (new, new_painted), (old, old_painted) in zip(result, lines, strict=True):
-        assert new_painted == old_painted
-        assert new == old or (_bare(new) == " ".join(old.split()) and _marks(new))
-    # K2: every mark of the clean text-output lines is in the result.
-    assert not collections.Counter(c for text in clean for c in _marks(text)) - (
-        collections.Counter(c for text, _ in result for c in _marks(text))
+    missing = collections.Counter(_marks(layer_text)) - collections.Counter(
+        char for spans in span_lines for text, _, _, _ in spans for char in _marks(text)
     )
+    if not missing:
+        assert result == span_lines  # K1
+        return
+    misaligned = len(text_lines) != len(span_lines) or any(
+        not _marks_taken_out(text_line, "".join(span[0] for span in spans))
+        and not _garbled(text_line)
+        and not any(_garbled(span[0]) for span in spans)
+        for text_line, spans in zip(text_lines, span_lines, strict=False)
+    )
+    if misaligned:
+        assert result is None  # K3
+        return
+    assert result is not None  # K3: lined up, so the marks are placed
+    for text_line, spans, placed in zip(text_lines, span_lines, result, strict=True):
+        # K2: only marks added; paint, font and provenance kept.
+        assert [span[1:] for span in placed] == [span[1:] for span in spans]
+        assert [_unmarked(span[0]) for span in placed] == [_unmarked(span[0]) for span in spans]
+        if not _marks_taken_out(text_line, "".join(span[0] for span in spans)):
+            assert placed == spans  # a garbled line that differs is left as it is
+            continue
+        assert "".join(span[0] for span in placed) == text_line
+        for (old, *_), (new, *_) in zip(spans[1:], placed[1:], strict=True):
+            # A mark that starts a span was there already: added marks follow their character.
+            if new and unicodedata.category(new[0]) == "Mn":
+                assert old.startswith(new[0])
 
 
 def test_combining_mark_cases():
-    # Review r5: the spans of "Jose\u0301" lack its accent; it is put back on the line.
-    assert _with_layer_marks([("Jose", True)], "Jose\u0301\n") == [("Jose\u0301", True)]
-    # A garbled line's marks are not needed.
-    assert _with_layer_marks([("x", True)], "x\n\x01y\u17b7\n") == [("x", True)]
-    # Two lines, each with its accent: each takes a line of its own.
-    assert _with_layer_marks([("a", True), ("a", False)], "a\u0301\na\u0301") == [
-        ("a\u0301", True),
-        ("a\u0301", False),
+    # Review r5: the spans of "Jose\u0301" lack its accent; it is put back on the span.
+    assert _with_layer_marks([[("Jose", True, "F", True)]], "Jose\u0301\n") == [
+        [("Jose\u0301", True, "F", True)]
     ]
-    # A line already holding its mark is left as it is.
-    assert _with_layer_marks([("a\u0301", True), ("b", True)], "a\u0301\nb\u0301") == [
-        ("a\u0301", True),
-        ("b\u0301", True),
+    # Review r6: the accent goes on its own line, the painted one, not on the first line
+    # with the same letters (which would take the invisible line's paint).
+    lines = [[("Jose", False, "F", None)], [("Jose", True, "F", True)]]
+    assert _with_layer_marks(lines, "Jose\nJose\u0301\n") == [
+        [("Jose", False, "F", None)],
+        [("Jose\u0301", True, "F", True)],
     ]
-    # A mark with no line to go on: None (the page then uses the text output's lines).
-    assert _with_layer_marks([("x", True)], "Jose\u0301\n") is None
+    # A mark goes in the span of the character before it.
+    assert _with_layer_marks(
+        [[("Jos", True, "A", True), ("e", True, "B", True)]], "Jose\u0301\n"
+    ) == [[("Jos", True, "A", True), ("e\u0301", True, "B", True)]]
+    assert _with_layer_marks(
+        [[("Jose", True, "A", True), ("x", True, "B", True)]], "Jose\u0301x\n"
+    ) == [[("Jose\u0301", True, "A", True), ("x", True, "B", True)]]
+    # A garbled line that differs is left as it is; its marks are not needed.
+    assert _with_layer_marks(
+        [[("x", True, "A", True)], [("\x01y", True, "B", False)]], "x\u0301\n\x01z\u17b7\n"
+    ) == [[("x\u0301", True, "A", True)], [("\x01y", True, "B", False)]]
+    # No line to go on (another number of lines, or a clean line that differs): None, and
+    # the page uses the text output's lines.
+    two = [[("Jo", True, "F", True)], [("se", True, "F", True)]]
+    assert _with_layer_marks(two, "Jose\u0301\n") is None
+    assert _with_layer_marks([[("Josh", True, "F", True)]], "Jose\u0301\n") is None
 
 
 def test_garbled_span_cases():
@@ -537,6 +602,12 @@ def test_garbled_span_cases():
         ("\x01", True, "ArialMT", None),
     ]
     assert _without_garbled_spans([spans]) == []
+    # Limit (review r6), pinned: "mapped" means the font's own map gave the characters, not
+    # that they are right. A non-Type3 font whose map gives wrong characters for some codes
+    # and none for others keeps its mapped garbage (on the overlay pages: 18 punctuation
+    # shards of WV-23-0001's screenshot text).
+    shifted = [("\x05\x1c", True, "Arial", False), ("5678", True, "Arial", True)]
+    assert _without_garbled_spans([shifted]) == [("5678", True)]
     # Paint comes from the spans kept.
     assert _without_garbled_spans([[("\x01x", True, "B", False), ("Ckm", False, "A", None)]]) == [
         ("Ckm", False)
@@ -812,17 +883,26 @@ def _spans(page: dict) -> list[list[tuple[str, bool, str, bool | None]]]:
     return [[(t, p, f, m) for t, p, f, m in spans] for spans in page["layer_spans"]]
 
 
-def _layer_pairs(span_lines: list, layer_text: str) -> list[tuple[str, bool]]:
+def _unchanged(span_lines: list) -> list:
+    return span_lines
+
+
+def _layer_pairs(span_lines: list, layer_text: str, decode=_unchanged) -> list[tuple[str, bool]]:
     """The (text, painted) lines ``_pdf_page_text`` filters: the spans' lines with their
-    marks put back, or the text output's lines when that can't be done."""
-    lines = _with_layer_marks(_without_garbled_spans(span_lines), layer_text)
-    return lines if lines is not None else [(line, True) for line in layer_text.split("\n")]
+    marks put back, then ``decode``d (as ``_pdf_page_text`` decodes shifted fonts with
+    ``_pdf_decoded_span_lines``), or the text output's lines when the marks can't be put
+    back."""
+    marked = _with_layer_marks(span_lines, layer_text)
+    if marked is None:
+        return [(line, True) for line in layer_text.split("\n")]
+    return _without_garbled_spans(decode(marked))
 
 
-def _merged(page: dict, span_lines: list | None = None) -> str:
-    """The page text merged from the fixture's spans, or from ``span_lines`` (the PDF's
-    spans with shifted fonts decoded, ``_pdf_decoded_span_lines``)."""
-    lines = _layer_pairs(_spans(page) if span_lines is None else span_lines, page["layer_text"])
+def _merged(page: dict, span_lines: list | None = None, decode=_unchanged) -> str:
+    """The page text merged from the fixture's spans, or from ``span_lines`` (the PDF's),
+    with ``decode`` applied as in ``_layer_pairs``."""
+    span_lines = _spans(page) if span_lines is None else span_lines
+    lines = _layer_pairs(span_lines, page["layer_text"], decode)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     return _with_unread_layer_lines(page["ocr_text"], layer)
 
@@ -846,16 +926,19 @@ def _clean_painted_text(span_lines: list[list[tuple[str, bool, str, bool | None]
     return out
 
 
-def _held_lines(span_lines: list, layer_text: str, decoded: list | None = None) -> list[str]:
-    """The layer lines the page text must hold: S1's painted lines, or, when the spans'
-    lines can't take the text output's marks and the text output's lines are used, those
-    lines that have text. With ``decoded`` (the spans with shifted fonts decoded,
-    ``_pdf_decoded_span_lines``), S1's painted lines of the lines decoding left alone, and
-    every painted line of text decoding changed (a decoded value can arrive as fragments of
-    one line: "0", "3", "/01/2020")."""
-    decoded = span_lines if decoded is None else decoded
-    if _with_layer_marks(_without_garbled_spans(decoded), layer_text) is not None:
-        pairs = list(zip(span_lines, decoded, strict=True))
+def _held_lines(
+    span_lines: list, layer_text: str, text_lines_used: bool, decode=_unchanged
+) -> list[str]:
+    """The layer lines the page text must hold: S1's painted lines of the spans with their
+    marks put back, or, where the page uses the text output's lines (pinned per page and
+    PyMuPDF version in ``_TEXT_LINES_USED``), those lines that have text. With ``decode``
+    (``_pdf_decoded_span_lines`` on the marked spans), S1's painted lines of the lines
+    decoding left alone, and every painted line of text decoding changed (a decoded value
+    can arrive as fragments of one line: "0", "3", "/01/2020")."""
+    marked = _with_layer_marks(span_lines, layer_text)
+    assert (marked is None) == text_lines_used
+    if marked is not None:
+        pairs = list(zip(marked, decode(marked), strict=True))
         changed = [
             line
             for text, painted in _without_garbled_spans([new for old, new in pairs if old != new])
@@ -873,9 +956,16 @@ def _held_lines(span_lines: list, layer_text: str, decoded: list | None = None) 
 # prints there (what _with_layer_marks handles), so that page matches the fixture only
 # under 1.26.7.
 _FIXTURE_PYMUPDF = tuple(fitz.pymupdf_version_tuple[:3]) == (1, 26, 7)
-_LAYOUT_DIFFERS_BY_VERSION = {
-    SPA.format(state="us-wv", rest="wv-23-0001/approval-document/page-132")
-}
+_WV_MARKS = SPA.format(state="us-wv", rest="wv-23-0001/approval-document/page-132")
+_LAYOUT_DIFFERS_BY_VERSION = {_WV_MARKS}
+# Where the page uses the text output's lines, by PyMuPDF version: only WV-23-0001 page 132
+# under 1.28 with sort_text, which rebuilds the lines its spans' missing marks would go on.
+_TEXT_LINES_USED = {"1.26": set(), "1.28": {(_WV_MARKS, True)}}
+
+
+def _text_lines_used(path: str, sort_text: bool) -> bool:
+    version = "1.26" if tuple(fitz.pymupdf_version_tuple[:2]) < (1, 27) else "1.28"
+    return (path, sort_text) in _TEXT_LINES_USED[version]
 
 
 def _page(state: str, rest: str) -> tuple[str, str, list[str]]:
@@ -897,13 +987,18 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
         pdf_page = document[page["page"] - 1]
         layer_text = pdf_page.get_text("text", flags=fitz.TEXTFLAGS_TEXT)
         span_lines = _pdf_layer_lines(pdf_page, extraction={})
-        decoded = _pdf_decoded_span_lines(
-            pdf_page, span_lines, extraction={}, ocr_text=page["ocr_text"]
-        )
+
+        def decode(marked: list) -> list:
+            return _pdf_decoded_span_lines(
+                pdf_page, marked, extraction={}, ocr_text=page["ocr_text"]
+            )
+
         result = _pdf_page_text(pdf_page, extraction={"ocr": True})
+        held = _held_lines(span_lines, layer_text, _text_lines_used(path, False), decode)
+        merged = _merged(page, span_lines, decode)
 
     assert _same_layer_characters(span_lines, layer_text)
-    for line in _held_lines(span_lines, layer_text, decoded):
+    for line in held:
         assert _reference_reads(result, line), line
     assert result.startswith(page["ocr_text"].rstrip("\n"))
     if path in _LAYOUT_DIFFERS_BY_VERSION and not _FIXTURE_PYMUPDF:
@@ -915,7 +1010,7 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
     # Differential: the dict lines, joined, are the text output.
     joined = "\n".join("".join(span[0] for span in spans) for spans in span_lines)
     assert joined.splitlines() == layer_text.splitlines()
-    assert result == _merged(page, decoded)
+    assert result == merged
 
 
 @pytest.mark.parametrize("path", sorted(PAGES))
@@ -940,10 +1035,21 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
         text = pdf_page.get_text("text", sort=bool(extraction.get("sort_text")), flags=flags)
         needs_ocr = documents_module._pdf_page_needs_ocr(pdf_page, text)
         span_lines = _pdf_layer_lines(pdf_page, extraction=extraction)
-        decoded = _pdf_decoded_span_lines(
-            pdf_page, span_lines, extraction=extraction, ocr_text=page["ocr_text"]
-        )
+
+        def decode(marked: list) -> list:
+            return _pdf_decoded_span_lines(
+                pdf_page, marked, extraction=extraction, ocr_text=page["ocr_text"]
+            )
+
         result = _pdf_page_text(pdf_page, extraction={"ocr": True, **extraction})
+        lines = _layer_pairs(span_lines, text, decode) if needs_ocr else []
+        held = (
+            _held_lines(
+                span_lines, text, _text_lines_used(path, bool(extraction.get("sort_text"))), decode
+            )
+            if needs_ocr
+            else []
+        )
 
     assert _same_layer_characters(span_lines, text)
     if not needs_ocr:
@@ -951,10 +1057,9 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
         # page 4), and a page with that many is read from its layer, not by OCR.
         assert result == text
         return
-    lines = _layer_pairs(decoded, text)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     assert result == _with_unread_layer_lines(page["ocr_text"], layer)
-    for line in _held_lines(span_lines, text, decoded):
+    for line in held:
         assert _reference_reads(result, line), line
 
 
