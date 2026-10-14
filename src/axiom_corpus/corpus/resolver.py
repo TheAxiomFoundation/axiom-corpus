@@ -32,7 +32,7 @@ from axiom_corpus.corpus.content_store import (
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
-    PROTECTED_ARTIFACT_CLASSES,
+    PROTECTED_CORPUS_PREFIXES,
     LockEntry,
     LockSet,
     ScopeKey,
@@ -96,9 +96,22 @@ def _placed(path: Path) -> bool:
     return path.is_file() and not path.is_symlink()
 
 
-_CORPUS_PARTS = tuple(CORPUS_BASE.split("/"))
-# A protected path is <checkout>/data/corpus/<class>/<at least one more part>.
-_PROTECTED_TAIL = len(_CORPUS_PARTS) + 2
+_CORPUS_ROOT = CORPUS_BASE.split("/")[0]
+# How many symlinks one resolution may pass through, as the operating system
+# bounds it (ELOOP).
+_MAX_LINKS = 40
+
+
+def _guarded(name: str) -> bool:
+    """True for a protected corpus path or a directory that holds protected paths.
+
+    ``data``, ``data/corpus`` and ``data/corpus/<class>`` select locked files
+    as surely as the paths below them do.
+    """
+    folded = fold_path(name).rstrip("/") + "/"
+    return is_protected_corpus_path(folded) or any(
+        prefix.startswith(folded) for prefix in PROTECTED_CORPUS_PREFIXES
+    )
 
 
 def _checkout_at(root: Path, home: Path | None) -> Path | None:
@@ -128,20 +141,17 @@ def _checkout_at(root: Path, home: Path | None) -> Path | None:
 
 
 def _protected_at(parts: Sequence[str], home: Path | None) -> tuple[Path, str] | None:
-    """The checkout and protected corpus path that the absolute path ``parts`` spells, if any.
+    """The checkout and guarded corpus path (``_guarded``) that the absolute path ``parts`` spells.
 
     A ``..`` is resolved lexically (callers check that the path reaches the
     same entry), and the innermost checkout wins.
     """
     folded = [fold_path(part) for part in parts]
-    for index in range(len(parts) - _PROTECTED_TAIL, 0, -1):
-        if (
-            tuple(folded[index : index + len(_CORPUS_PARTS)]) != _CORPUS_PARTS
-            or folded[index + len(_CORPUS_PARTS)] not in PROTECTED_ARTIFACT_CLASSES
-        ):
+    for index in range(len(parts) - 1, 0, -1):
+        if folded[index] != _CORPUS_ROOT:
             continue
         name = posixpath.normpath("/".join(parts[index:]))
-        if not is_protected_corpus_path(fold_path(name)):
+        if not _guarded(name):
             continue
         root = _checkout_at(Path(*parts[:index]), home)
         if root is not None:
@@ -159,44 +169,69 @@ def _same_place(first: Path, second: Path) -> bool:
 
 
 def _spells(probe: Path, name: str) -> bool:
-    """True when ``probe`` ends in ``name``: no symlink below the checkout moved it."""
+    """True when ``probe`` ends in ``name``, exactly."""
     tail = tuple(name.split("/"))
     return probe.parts[-len(tail) :] == tail
 
 
+def _standing_places(probe: Path, physical: Path, home: Path | None) -> list[tuple[Path, str]]:
+    """Each guarded place ``probe`` stands at below a symlink, in the order it resolves.
+
+    The path is resolved as the operating system resolves it, links inside a
+    link's target included. At each symlink the path stands at the link's own
+    place plus the rest of the path. A ``..`` after the link is resolved from
+    the link's target, so such a place counts only where it reaches the same
+    entry. A symlinked file ends the walk: it never stands anywhere else.
+    """
+    places: list[tuple[Path, str]] = []
+    for _link in range(_MAX_LINKS):
+        parts = probe.parts
+        prefix = Path(parts[0])
+        for index in range(1, len(parts)):
+            prefix = prefix / parts[index]
+            if prefix.is_symlink():
+                break
+        else:
+            return places
+        parent = Path(os.path.realpath(prefix.parent))
+        rest = parts[index + 1 :]
+        stands = _protected_at((*parent.parts, parts[index], *rest), home)
+        if stands is not None and (".." not in rest or _same_place(stands[0] / stands[1], physical)):
+            places.append(stands)
+        if not rest and not prefix.is_dir():
+            return places
+        try:
+            target = os.readlink(prefix)
+        except OSError:
+            return places
+        probe = Path(parent, target, *rest)
+    return places
+
+
 def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tuple[Path, str] | None:
-    """The checkout and protected corpus path that ``probe`` names, if it names one.
+    """The checkout and guarded corpus path that ``probe`` names, if it names one.
 
     ``probe`` is absolute and ``physical`` is its realpath. A symlink at or
-    above a protected path stands where locked files belong, so a path
-    through one names the last protected path it stands at on its way, and
-    that path's lock applies. One kind of link is followed instead: a
-    directory link to the same path in another checkout (a worktree whose
-    ``data/corpus/provisions`` links to another checkout's names that
-    checkout's files). Every other link at a protected path, a symlinked
-    file included, leads where that path's lock does not apply (another
-    corpus path, outside every checkout, nowhere, an unprotected directory).
-    A path through no such link names the protected path it reaches, if any.
+    above a guarded path (``_guarded``) stands where locked files belong, so
+    a path through one names, in order:
+
+    1. a symlinked file: the last guarded place it stands at, its own path;
+    2. a path that reaches a guarded path whose name it spells exactly: that
+       path, through any links. A worktree whose ``data/corpus/provisions``
+       links to another checkout's names that checkout's files;
+    3. otherwise the last guarded place it stands at below a link (one
+       leading to another corpus path, outside every checkout, nowhere, an
+       unprotected directory), so that place's lock applies; unless that
+       place has the name of the guarded path it reaches, which it then names.
+
+    A path that stands nowhere names the guarded path it reaches, if any.
     """
     reached = None if _is_symlinked_file(probe) else _protected_at(physical.parts, home)
     if reached is not None and _spells(probe, reached[1]):
-        return reached  # no link below the checkout moved the path: nothing stands
-    found = None
-    parts = probe.parts
-    prefix = Path(parts[0])
-    for index in range(1, len(parts)):
-        prefix = prefix / parts[index]
-        if not prefix.is_symlink():
-            continue
-        stands = _protected_at((*Path(os.path.realpath(prefix.parent)).parts, *parts[index:]), home)
-        if stands is None:
-            continue
-        # The operating system resolves a ``..`` below the link from its
-        # target, so the path stands here only if it reaches the same place.
-        if ".." in parts[index + 1 :] and not _same_place(stands[0] / stands[1], physical):
-            continue
-        found = stands
-    if reached is not None and (found is None or fold_path(found[1]) == fold_path(reached[1])):
+        return reached
+    places = _standing_places(probe, physical, home)
+    found = places[-1] if places else None
+    if reached is not None and (found is None or found[1] == reached[1]):
         return reached
     return found
 
@@ -356,11 +391,11 @@ class CorpusResolver:
         inside = self._inside(physical)
         if (
             inside is not None
-            and is_protected_corpus_path(fold_path(inside))
+            and _guarded(inside)
             and not _is_symlinked_file(candidate)
             and _spells(candidate, inside)
         ):
-            return inside  # spells the protected path it reaches here: no git process
+            return inside  # spells the guarded path it reaches here: no git process
         named = _protected_name(candidate, physical, self.repo)
         if named is None:
             return inside
