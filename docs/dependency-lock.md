@@ -131,6 +131,121 @@ text extracted from a source the corpus already holds:
 Before moving one of them in the lock, measure what the move changes across
 the corpus and get a decision on the result: which version is authoritative
 for published extraction is a methodology choice, not a dependency bump.
+`scripts/compare_pdf_extraction_versions.py` measures a PyMuPDF move; its
+docstring gives the commands.
+
+## PyMuPDF 1.26.7 against 1.28.2
+
+Measured on 2026-10-13 with `scripts/compare_pdf_extraction_versions.py` on
+the corpus at `origin/main` 460549782 (2,431 lock files, every locked file
+fetched), CPython 3.14.7 on macOS arm64. The locked environment had PyMuPDF
+1.26.7 (MuPDF 1.26.12); the other was the same lock with PyMuPDF 1.28.2
+(MuPDF 1.28.2), and `pip freeze` differed in that one line. Every document
+snapshot read bytes whose SHA-256 equals the lock's, and no PDF in the corpus
+changed while the snapshots ran.
+
+### Committed PDF documents
+
+Committed provision rows with `source_format: pdf` name 11,656 source
+documents. Each was re-extracted with `documents._extract_blocks` under each
+extraction configuration the manifests give its `source_id`:
+
+| documents | count |
+|---|---|
+| extracted on both versions | 11,630 |
+| identical on both | 11,018 |
+| differing in characters or blocks | 445 |
+| differing in whitespace only | 167 |
+| not extracted: the source path is a JSON Lines file, not a PDF | 15 |
+| not extracted: the source file is not in the corpus | 11 |
+
+The 612 differing documents are in 153 of the 1,443 scopes compared. Of
+241,256 blocks compared, 3,312 differ: 2,052 in non-space characters and
+1,260 in whitespace only. No block exists on one version and not the other.
+
+The 11,630 documents have 245,329 committed rows with a body. A row counts
+as reproduced when an extracted block has its exact body:
+
+| committed rows | count |
+|---|---|
+| reproduced on both versions | 234,145 |
+| reproduced on 1.26.7 only | 3,135 |
+| reproduced on 1.28.2 only | 0 |
+| reproduced on neither | 8,049 |
+
+"Neither" are rows that today's manifests and extractor do not produce on
+either version, so they say nothing about PyMuPDF. In 525 of the 612
+differing documents 1.26.7 reproduces every committed row; in the other 87
+neither version does; in none does 1.28.2 alone. Where the two versions
+differ, the committed rows are 1.26.7's.
+
+### Every PDF page
+
+Each of the 10,746 distinct PDFs in the corpus was also read page by page
+with the calls the statute adapters make. 10,742 were read on both versions.
+The other 4 (two North Dakota and two Ohio tax booklets) hit the 900-second
+limit on one version after about 4,600 seconds of wall time, while the host
+had the run's processes stopped; the same files took 1.5 to 15 seconds on the
+other version.
+
+| pages | count |
+|---|---|
+| compared | 288,493 |
+| `get_text()` differs | 28,558 |
+| `get_text()` differs in non-space characters | 2,078 |
+| `get_text("text", sort=True)` differs | 4,736 |
+| `get_text("words")` differs | 2,585 |
+
+1,809 PDFs have a differing page, 377 a page that differs in non-space
+characters. Most `get_text()` differences are in whitespace, which the
+official-document extractor normalizes away.
+
+### What differs
+
+Neither version is uniformly better. From the bodies of sampled differing
+documents:
+
+- 1.28.2 keeps combining marks attached where 1.26.7 separates them:
+  `sx̌ʷýʔłpx` against `sx ̌ʷy ́ʔłpx`
+  (`us-or/manual/odhs/open/page-336`).
+- 1.28.2 inserts spaces inside words and numbers: `45` becomes `4 5` and
+  `follows:` becomes `follows :` (Georgia IT-511,
+  `us-ga/form/dor/ty2024/it-511/document-1`), `TAXABLE` becomes `TAX` /
+  `ABLE` (FTB 3514), `table` becomes `tabl e`
+  (`us-ca/policy/cdss/tanf/acl-15-52/page-3`).
+- 1.28.2 drops characters: a dot leader after each telephone number on Form
+  760ES (`us-va/form/tax/ty2026/760es/document-1`, whose body is 272
+  characters shorter), and on the Georgia IT-511 repeated title text and
+  `Phone:` (its body is 2,857 characters shorter).
+- 1.28.2 adds text that comes from the PDF's ActualText (it is gone when
+  extracted with `TEXT_IGNORE_ACTUALTEXT`): image descriptions such as "This
+  image shows a sample of the front of the new HHS ORR Verification of
+  Release Card." (`us-or/manual/odhs/open/page-974`), and the line
+  "Tennessee Department of Human Services" from a zero-width box near the
+  top of the page (`us-tn/manual/dhs/snap/24-14/page-1`).
+- 1.28.2 keeps bullet glyphs as the private-use character U+F0B7 where
+  1.26.7 leaves them out (`us-md/manual/mdh/medicaid/section-1500/page-3`).
+- In whitespace, 1.28.2 sometimes joins lines 1.26.7 separates by a blank
+  line (`us-la/manual/dcfs/economic-independence/o-390-dsnap-regular-snap-households-394419/page-1`).
+
+478 of the differing blocks are pages whose committed body is mostly control
+characters (glyph codes with no Unicode mapping): CMS Medicaid and CHIP
+state-plan pages such as `us-az/policy/cms/chip-state-plan/spa/az-22-0007/approval-package/page-110`.
+On the two such pages examined (pages 4 and 110 of that approval package)
+both versions return control characters, 1.28.2 more of them. Those pages
+are unreadable whichever version is used, a corpus defect of its own: 673
+committed rows in 44 scopes have a body that is at least half control
+characters.
+
+### Decision
+
+CI now installs the lock, so tests and extraction run on PyMuPDF 1.26.7, the
+version the committed corpus was extracted with. Moving the lock to 1.28.2
+would change the text a re-extraction gives for 612 documents (5.3%) and
+lose the exact reproduction of 3,135 committed rows, for changes that are
+improvements in some documents and regressions in others. Which version is
+authoritative for published extraction is a methodology call, queued for a
+decision; until it is made, the lock stays on 1.26.7.
 
 ## What the lock does not pin
 
