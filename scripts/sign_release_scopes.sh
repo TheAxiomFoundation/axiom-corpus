@@ -253,8 +253,7 @@ def this_scripts(payload, jur, cls, ver):
         and all(
             isinstance(entry, dict)
             and isinstance(entry.get("path"), str)
-            and isinstance(entry.get("sha256"), str)
-            and entry.get("deleted") is not True
+            and isinstance(entry.get("sha256"), str)  # a deleted file's entry has none
             for entry in entries
         )
     )

@@ -271,9 +271,15 @@ def _assert_resumable(repo: Path) -> None:
     assert not list(repo.glob(RESIGN_DIRS))
 
 
-def _assert_cut(repo: Path, result: subprocess.CompletedProcess[str], start: str) -> None:
+def _assert_cut(
+    repo: Path,
+    result: subprocess.CompletedProcess[str],
+    start: str,
+    history: tuple[str, ...] = (CUT, SIGN, ADD),
+) -> None:
+    """The run cut the selector, leaving only these commits (newest first) since start."""
     assert result.returncode == 0, result.stdout + result.stderr
-    assert _branch_subjects(repo, start) == [CUT, SIGN, ADD]
+    assert _branch_subjects(repo, start) == list(history)
     assert json.loads((repo / TARGET).read_text()) == json.loads((repo / DRAFT).read_text())
     assert _git(repo, "status", "--porcelain", "--untracked-files=no") == ""
     assert not list(repo.glob(RESIGN_DIRS))
@@ -858,10 +864,9 @@ def test_commits_the_unreleased_scopes_manifests_and_no_others(repo: Path, signe
 
     result = _run(repo)
 
-    assert result.returncode == 0, result.stdout + result.stderr
     if signed == "in-their-ingest-pr":
+        _assert_cut(repo, result, start, (CUT,))
         assert "signed manifests already committed; skipping sign commit" in result.stdout
-        assert _branch_subjects(repo, start) == [CUT]
     else:
         _assert_cut(repo, result, start)
         assert _git(repo, "show", "--name-only", "--format=", "HEAD~1").splitlines() == [
@@ -913,13 +918,12 @@ def test_resumes_after_a_fix_to_artifacts_this_branch_signed(repo: Path, fix: st
         _git(repo, "commit", "-qm", "Delete the stale manifest")
     second = _run(repo)
 
-    assert second.returncode == 0, second.stdout + second.stderr
+    _assert_cut(repo, second, start, (CUT, SIGN, *ARTIFACT_FIXES[fix], SIGN, ADD))
     out = second.stdout
     assert f"already signed, keeping existing manifest: {_scope(kept)}" in out
     resigned = f"signing again: {_scope(fixed)} (its artifacts changed after it was signed)"
     assert (resigned in out) == (fix != "manifest-deleted")
     assert "guard-ingested: ok" in out
-    assert _branch_subjects(repo, start) == [CUT, SIGN, *ARTIFACT_FIXES[fix], SIGN, ADD]
     # The second sign commit holds the fixed scope's manifest only, signed against the fix.
     status = "A" if fix == "manifest-deleted" else "M"
     assert _git(repo, "show", "--name-status", "--format=", "HEAD~1").splitlines() == [
@@ -975,9 +979,8 @@ def test_a_run_that_stops_after_signing_again_leaves_the_committed_manifests(
 
     third = _run(repo)
 
-    assert third.returncode == 0, third.stdout + third.stderr
+    _assert_cut(repo, third, start, (CUT, SIGN, "Fix provisions", SIGN, ADD))
     assert "guard-ingested: ok" in third.stdout
-    assert _branch_subjects(repo, start) == [CUT, SIGN, "Fix provisions", SIGN, ADD]
     assert _git(repo, "show", "--name-status", "--format=", "HEAD~1").splitlines() == [
         f"M\t{MANIFEST_DIR}/{version}.json" for version in UNRELEASED
     ]
@@ -1059,8 +1062,7 @@ def test_asks_for_the_private_key_to_sign_a_scope_again(
     monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private_key)
     third = _run(repo)
 
-    assert third.returncode == 0, third.stdout + third.stderr
-    assert _branch_subjects(repo, start) == [CUT, SIGN, "Fix provisions", SIGN, ADD]
+    _assert_cut(repo, third, start, (CUT, SIGN, "Fix provisions", SIGN, ADD))
     assert _signed_versions() == [*UNRELEASED, UNRELEASED[1]]
 
 
@@ -1282,10 +1284,9 @@ def test_signs_again_a_manifest_signed_with_either_command_form(
 
     second = _run(repo)
 
-    assert second.returncode == 0, second.stdout + second.stderr
+    _assert_cut(repo, second, start, (CUT, SIGN, "Fix provisions", SIGN, ADD))
     resigned = f"signing again: {_scope(version)} (its artifacts changed after it was signed)"
     assert resigned in second.stdout
-    assert _branch_subjects(repo, start) == [CUT, SIGN, "Fix provisions", SIGN, ADD]
     assert json.loads(_manifest(repo, version).read_text())["command"]["text"] == command
     assert _signed_versions() == [kept, version, version]
 
@@ -1315,17 +1316,16 @@ def test_with_no_main_to_compare_signs_again_only_untracked_manifests(
 
     second = _run(repo)
 
-    assert second.returncode == 0, second.stdout + second.stderr
     assert "neither origin/main nor main shares history with HEAD;" in second.stdout
     resigned = f"signing again: {_scope(fixed)} (its artifacts changed after it was signed)"
     if manifests == "untracked":
+        _assert_cut(repo, second, start, (CUT, SIGN, "Fix provisions", ADD))
         assert resigned in second.stdout
-        assert _branch_subjects(repo, start) == [CUT, SIGN, "Fix provisions", ADD]
         assert _signed_versions() == [*UNRELEASED, fixed]
     else:  # kept, stale: CI's guard-ingested rejects the PR
+        _assert_cut(repo, second, start, (CUT, "Fix provisions", SIGN, ADD))
         assert resigned not in second.stdout
         assert _manifest(repo, fixed).read_bytes() == stale
-        assert _branch_subjects(repo, start) == [CUT, "Fix provisions", SIGN, ADD]
         assert _signed_versions() == list(UNRELEASED)
 
 
