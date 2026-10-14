@@ -135,7 +135,8 @@ cached by rendered page image (3,123 hits, 0 misses). The before side is this br
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
 measurement first ran on #868 at `c64009789`, before it counted Type 3 spans as painted,
 and gives the same lines, pages and documents; the page level, re-run on #868 at
-`c4ccca4ee` (Type 3 font names read as MuPDF 1.26 does), gives the same lines again.
+`c4ccca4ee` and at `97e3e935e` (Type 3 font names read as MuPDF 1.26 does), gives the same
+lines again.
 
 | | |
 | --- | ---: |
