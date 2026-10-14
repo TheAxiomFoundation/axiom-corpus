@@ -3348,8 +3348,7 @@ def _tesseract_osd_turn(image_path: Path, *, min_characters: int | None) -> int 
         if turn not in (0, 90, 180, 270):
             raise RuntimeError(f"PDF OCR orientation detection gave Rotate: {turn}")
         return turn
-    output = f"{result.stderr}\n{result.stdout}"
-    if _TESSERACT_TOO_FEW_CHARACTERS in output and "Could not initialize" not in output:
+    if _TESSERACT_TOO_FEW_CHARACTERS in f"{result.stderr}\n{result.stdout}":
         return None
     message = result.stderr.strip() or result.stdout.strip()
     raise RuntimeError(f"PDF OCR orientation detection failed: {message}")
@@ -3396,8 +3395,8 @@ def _rotate_pixmap_clockwise(pixmap: Any, degrees: int) -> Any:
 
     Output pixel (x, y) is input pixel (y, height-1-x) for 90 degrees, (width-1-x,
     height-1-y) for 180 and (width-1-y, x) for 270, with every channel byte carried over
-    unchanged and the resolution kept, so turning by 360-degrees undoes the turn and
-    Tesseract sees exactly the pixels of the page scanned upright.
+    unchanged and the resolution kept, so turning by 360 degrees less the angle undoes the
+    turn and Tesseract sees exactly the pixels of the page scanned upright.
     """
     if degrees not in (90, 180, 270):
         raise ValueError(f"page turn must be 90, 180 or 270 degrees, not {degrees!r}")

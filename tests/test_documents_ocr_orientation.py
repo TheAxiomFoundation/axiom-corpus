@@ -18,6 +18,7 @@ Invariants (property tests below, real Tesseract where marked):
 
 from __future__ import annotations
 
+import json
 import os
 import shutil
 import subprocess
@@ -199,6 +200,7 @@ def test_page_turn_is_zero_when_tesseract_cannot_judge(monkeypatch, tmp_path):
         _osd(45),
         _completed(0, "Page number: 0\n"),
         _completed(1, "", "Error during processing.\n"),
+        _completed(1, OSD_TURN_90, "Error during processing.\n"),
     ],
 )
 @pytest.mark.parametrize("declined_first", [False, True])
@@ -360,6 +362,28 @@ def test_two_upside_down_reads_do_not_tie(monkeypatch):
     )
     assert _read(monkeypatch, fake, {"ocr": True}) == "upright\n"
     assert fake.read_images() == ["page.png", "turned-270.png", "turned-90.png"]
+
+
+RECORDED = json.loads(
+    (Path(__file__).parent / "fixtures/ocr_orientation/recorded_reads.json").read_text()
+)["pages"]
+
+
+@pytest.mark.parametrize("page", RECORDED, ids=lambda p: f"{p['document'][:40]}-p{p['page']}")
+def test_recorded_reads_take_the_turn_the_sweep_chose(monkeypatch, page):
+    """Real pages: the OSD answers and word confidences Tesseract 5.5.3 gave (2026-10-13
+    sweep) replayed through the rule, which must pick the turn chosen on the evidence."""
+    osd = [
+        None if answer is None else OSD_TURN_90.replace("Rotate: 90", f"Rotate: {answer}")
+        for answer in page["osd"]
+        if answer != "unused"
+    ]
+    reads = {
+        ("page.png" if turn == "0" else f"turned-{turn}.png"): (f"turn {turn}\n", tuple(confidences))
+        for turn, confidences in page["reads"].items()
+    }
+    fake = FakeTesseract(osd, reads)
+    assert _read(monkeypatch, fake, {"ocr": True}) == f"turn {page['turn']}\n", page["why"]
 
 
 @pytest.mark.parametrize("value", ["yes", 1, None, "true"])
