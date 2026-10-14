@@ -57,7 +57,11 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.corpus_locks import load_locks
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import _SOURCE_FORMAT_CONTENT_TYPES, extract_official_documents
-from axiom_corpus.corpus.ingest_manifests import LocalFileUrlScanError, local_file_url_fields
+from axiom_corpus.corpus.ingest_manifests import (
+    LocalFileUrlScanError,
+    local_file_url_fields,
+    redact_file_urls,
+)
 from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -72,12 +76,34 @@ def _is_web_url(value: object) -> bool:
     return isinstance(value, str) and value.startswith(("https://", "http://"))
 
 
-# RFC 9110 media type: type "/" subtype, then optional parameters.
-_MEDIA_TYPE = re.compile(r"[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*(;[ -~]*)?")
+# RFC 9110 section 8.3.1: type "/" subtype *( OWS ";" OWS parameter ), where a
+# parameter is token "=" ( token / quoted-string ).
+_TOKEN = r"[!#$%&'*+\-.^_`|~0-9A-Za-z]+"
+_QUOTED = r'"(?:[\t !#-\[\]-~\x80-\xff]|\\[\t -~\x80-\xff])*"'
+_MEDIA_TYPE = re.compile(rf"{_TOKEN}/{_TOKEN}(?:[ \t]*;[ \t]*{_TOKEN}=(?:{_TOKEN}|{_QUOTED}))*")
 
 
 def _is_media_type(value: object) -> bool:
-    return isinstance(value, str) and _MEDIA_TYPE.fullmatch(value) is not None
+    """A well-formed media type that names no file: URL, even in a parameter."""
+    return (
+        isinstance(value, str)
+        and _MEDIA_TYPE.fullmatch(value) is not None
+        and "file:" not in value.lower()
+    )
+
+
+def _essence(content_type: str) -> str:
+    """The media type without parameters, as the report shows it."""
+    return content_type.split(";", 1)[0].strip().lower()
+
+
+def _redact_report(value: Any) -> Any:
+    """Every string in the report, keys included, with file: URLs replaced."""
+    if isinstance(value, dict):
+        return {_redact_report(key): _redact_report(child) for key, child in value.items()}
+    if isinstance(value, list):
+        return [_redact_report(child) for child in value]
+    return redact_file_urls(value) if isinstance(value, str) else value
 
 
 def _parse_scope(text: str) -> tuple[str, str, str]:
@@ -106,23 +132,42 @@ class Scope:
 
     @property
     def inventory_path(self) -> Path:
-        return self.base / "inventory" / self.jurisdiction / self.document_class / f"{self.version}.json"
+        return (
+            self.base
+            / "inventory"
+            / self.jurisdiction
+            / self.document_class
+            / f"{self.version}.json"
+        )
 
     @property
     def provisions_path(self) -> Path:
         return (
-            self.base / "provisions" / self.jurisdiction / self.document_class / f"{self.version}.jsonl"
+            self.base
+            / "provisions"
+            / self.jurisdiction
+            / self.document_class
+            / f"{self.version}.jsonl"
         )
 
     @property
     def coverage_path(self) -> Path:
-        return self.base / "coverage" / self.jurisdiction / self.document_class / f"{self.version}.json"
+        return (
+            self.base
+            / "coverage"
+            / self.jurisdiction
+            / self.document_class
+            / f"{self.version}.json"
+        )
 
     def exists(self) -> bool:
-        return any(
-            path.exists()
-            for path in (self.inventory_path, self.provisions_path, self.coverage_path)
-        ) or (self.base / self.source_prefix).exists()
+        return (
+            any(
+                path.exists()
+                for path in (self.inventory_path, self.provisions_path, self.coverage_path)
+            )
+            or (self.base / self.source_prefix).exists()
+        )
 
     def inventory_document(self) -> dict[str, Any]:
         document = json.loads(self.inventory_path.read_text())
@@ -213,7 +258,9 @@ def reextract(old: Scope, new: Scope, manifest: Path, work_dir: Path) -> None:
             entry["download_url"] = recorded  # fetched over the network originally
         documents.append(entry)
     runtime = work_dir / f"{new.version}.runtime-manifest.yaml"
-    runtime.write_text(yaml.safe_dump({"documents": documents}, sort_keys=False, allow_unicode=True))
+    runtime.write_text(
+        yaml.safe_dump({"documents": documents}, sort_keys=False, allow_unicode=True)
+    )
     extract_official_documents(
         CorpusArtifactStore(new.base), manifest_path=runtime, version=new.version
     )
@@ -464,7 +511,7 @@ def verify(old: Scope, new: Scope) -> dict[str, Any]:
             urls[_redacted(new_row.get("source_url"))] = (
                 str(download_url) if _is_web_url(download_url) else "<not a web URL>"
             )
-            shown = str(content_type) if _is_media_type(content_type) else "<not a media type>"
+            shown = _essence(content_type) if _is_media_type(content_type) else "<not a media type>"
             content_types[shown] = content_types.get(shown, 0) + 1
     old_envelope, new_envelope = old.inventory_document(), new.inventory_document()
     old_envelope.pop("items")
@@ -487,18 +534,20 @@ def verify(old: Scope, new: Scope) -> dict[str, Any]:
     coverage_differences = _differences(expected_coverage, new_coverage)
     if coverage_differences:
         problems.append(f"coverage: {', '.join(coverage_differences)}")
-    return {
-        "scope": old.label,
-        "repaired_scope": new.label,
-        "source_files": dict(sorted(new_sources.items())),
-        "inventory_rows": len(new_inventory),
-        "provision_rows": len(new_provisions),
-        "repaired_rows": repaired_rows,
-        "download_urls_by_source_url": dict(sorted(urls.items())),
-        "content_types": dict(sorted(content_types.items())),
-        "coverage_complete": new_coverage.get("complete"),
-        "problems": problems,
-    }
+    return _redact_report(
+        {
+            "scope": old.label,
+            "repaired_scope": new.label,
+            "source_files": dict(sorted(new_sources.items())),
+            "inventory_rows": len(new_inventory),
+            "provision_rows": len(new_provisions),
+            "repaired_rows": repaired_rows,
+            "download_urls_by_source_url": dict(sorted(urls.items())),
+            "content_types": dict(sorted(content_types.items())),
+            "coverage_complete": new_coverage.get("complete"),
+            "problems": problems,
+        }
+    )
 
 
 def lock_mismatches(scope: Scope, repo: Path) -> list[str]:

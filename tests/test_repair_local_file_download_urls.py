@@ -223,7 +223,10 @@ def _recovery_scope(base: Path) -> Scope:
             "source_url": "https://www.mass.gov/reg",
             "body": f"text of {path}",
             "metadata": (
-                {"download_url": "https://www.mass.gov/doc/reg/download", "content_type": "application/pdf"}
+                {
+                    "download_url": "https://www.mass.gov/doc/reg/download",
+                    "content_type": "application/pdf",
+                }
                 if path == "us-ma/regulation/reg"
                 else {"download_url": f"{LEAK}reg.pdf", "content_type": None}
             ),
@@ -275,7 +278,9 @@ def _rewrite_rows(scope: Scope, edit) -> None:
     rows = scope.provisions()
     for row in rows:
         edit(row)
-    scope.provisions_path.write_text("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows))
+    scope.provisions_path.write_text(
+        "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows)
+    )
 
 
 def test_placeholder_strings_do_not_stand_in_for_successor_values(tmp_path: Path) -> None:
@@ -378,7 +383,20 @@ def test_lists_compare_element_by_element_with_types(tmp_path: Path, before, aft
     assert "metadata.ranks" in problem
 
 
-@pytest.mark.parametrize("content_type", ["file:///Users/someone/private.pdf", False, "pdf", ""])
+@pytest.mark.parametrize(
+    "content_type",
+    [
+        "file:///Users/someone/private.pdf",
+        False,
+        "pdf",
+        "",
+        # Review round 3: parameters bypassed the old pattern.
+        "application/pdf;file:///Users/someone/private.pdf",
+        'application/pdf; name="file:///Users/someone/private.pdf"',
+        "application/pdf; charset=",
+        'application/pdf; name="unterminated',
+    ],
+)
 def test_repaired_content_type_must_be_a_media_type(tmp_path: Path, content_type) -> None:
     """Review finding: any non-null content_type passed, and reached the report verbatim."""
     old = _recovery_scope(tmp_path / "corpus")
@@ -426,3 +444,20 @@ def test_verify_scans_the_successor_bytes_for_any_file_url(tmp_path: Path) -> No
     report = verify(old, new)
     assert report["problems"] == [f"{new.version}.jsonl: 1 URL field(s) still record a file: URL"]
     assert "file:///" not in json.dumps(report) and "/Users/someone" not in json.dumps(report)
+
+
+def test_a_well_formed_media_type_with_parameters_is_reported_by_its_essence(
+    tmp_path: Path,
+) -> None:
+    old = _recovery_scope(tmp_path / "corpus")
+    new = _successor(old)
+    rewrite(old, new)
+
+    def with_parameter(row):
+        if row["citation_path"].endswith("/1"):
+            row["metadata"]["content_type"] = 'Application/PDF; charset="binary"'
+
+    _rewrite_rows(new, with_parameter)
+    report = verify(old, new)
+    assert report["problems"] == []
+    assert report["content_types"] == {"application/pdf": 5}

@@ -72,7 +72,9 @@ def _selected(
             continue
         if release_scopes is not None and scope not in release_scopes:
             continue
-        selected.extend((scope, entry) for entry in lock.files if entry.path.startswith(ROW_PREFIXES))
+        selected.extend(
+            (scope, entry) for entry in lock.files if entry.path.startswith(ROW_PREFIXES)
+        )
     return selected
 
 
@@ -170,9 +172,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.json:
         args.json.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     for record in report["scopes"]:
-        rows = {
-            path.split("/")[2]: detail["rows"] for path, detail in record["artifacts"].items()
-        }
+        rows = {path.split("/")[2]: detail["rows"] for path, detail in record["artifacts"].items()}
         print(
             f"{record['scope']}\t"
             + "\t".join(f"{kind}={count}" for kind, count in sorted(rows.items()))

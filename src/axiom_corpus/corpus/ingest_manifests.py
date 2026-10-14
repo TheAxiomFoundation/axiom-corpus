@@ -1330,6 +1330,14 @@ _FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\u")
 _LOCAL_FILE_URL_EXAMPLES = 3
 
 
+_FILE_URL_IN_TEXT = re.compile(r"(?i)file:[^\s\"'<>`]+")
+
+
+def redact_file_urls(text: str) -> str:
+    """Replace each ``file:`` URL in ``text`` with ``<file: URL>``, so no message repeats one."""
+    return _FILE_URL_IN_TEXT.sub("<file: URL>", text)
+
+
 class LocalFileUrlScanError(ValueError):
     """A row artifact whose URL fields cannot be read, so cannot be cleared."""
 
@@ -1339,7 +1347,7 @@ def _unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     members: dict[str, Any] = {}
     for key, value in pairs:
         if key in members:
-            raise LocalFileUrlScanError(f"repeats the key {key!r}")
+            raise LocalFileUrlScanError(f"repeats the key {redact_file_urls(repr(key))}")
         members[key] = value
     return members
 
@@ -1425,17 +1433,19 @@ def _local_file_url_issues(path: str, payload: bytes) -> list[str]:
     try:
         found = local_file_url_fields(path, payload)
     except LocalFileUrlScanError as exc:
-        return [f"{exc}, so its URL fields cannot be checked for file: URLs."]
+        return [redact_file_urls(f"{exc}, so its URL fields cannot be checked for file: URLs.")]
     if not found:
         return []
     shown = ", ".join(f"`{citation}` {field}" for citation, field in found[:_LOCAL_FILE_URL_EXAMPLES])
     more = len(found) - _LOCAL_FILE_URL_EXAMPLES
     return [
-        f"`{path}` records a file: URL in {len(found)} row field(s) ({shown}"
-        + (f", and {more} more" if more > 0 else "")
-        + "). A file: URL is a path on the extracting machine, not a source "
-        "location. Record the official URL; for a manifest local_path copy, "
-        "extract-official-documents records the manifest's download_url or source_url."
+        redact_file_urls(
+            f"`{path}` records a file: URL in {len(found)} row field(s) ({shown}"
+            + (f", and {more} more" if more > 0 else "")
+            + "). A file: URL is a path on the extracting machine, not a source "
+            "location. Record the official URL; for a manifest local_path copy, "
+            "extract-official-documents records the manifest's download_url or source_url."
+        )
     ]
 
 

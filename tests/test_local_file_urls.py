@@ -39,6 +39,7 @@ from axiom_corpus.corpus.ingest_manifests import (
     LocalFileUrlScanError,
     _content_issues,
     local_file_url_fields,
+    redact_file_urls,
 )
 
 INVENTORY = "data/corpus/inventory/de/guidance/2026-10-14-example.json"
@@ -381,7 +382,11 @@ def test_prefiltered_scan_agrees_with_the_brute_force_reference(
     rows, jsonl, ensure_ascii, data
 ) -> None:
     rows = [
-        {"citation_path": f"de/guidance/r/{i}", **row, "metadata": {**row["metadata"], **row.pop("extra")}}
+        {
+            "citation_path": f"de/guidance/r/{i}",
+            **row,
+            "metadata": {**row["metadata"], **row.pop("extra")},
+        }
         for i, row in enumerate(rows)
     ]
     if jsonl:
@@ -488,7 +493,9 @@ def test_audit_lists_locked_scopes_with_local_file_urls(tmp_path: Path) -> None:
             {
                 "name": "de-rulespec-x",
                 "scopes": [
-                    dict(zip(("jurisdiction", "document_class", "version"), leaky_scope, strict=True))
+                    dict(
+                        zip(("jurisdiction", "document_class", "version"), leaky_scope, strict=True)
+                    )
                 ],
             }
         )
@@ -566,3 +573,41 @@ def test_a_repeated_key_fails_closed() -> None:
         local_file_url_fields(PROVISIONS, line.encode())
     (issue,) = _content_issues(PROVISIONS, line.encode())
     assert "/Users/x" not in issue
+
+
+def test_a_repeated_key_that_is_itself_a_path_is_not_echoed() -> None:
+    """Review round 3: the duplicate-key message repeated the member name."""
+    name = "file:///Users/person/private.pdf"
+    line = f'{{"citation_path": "de/guidance/k", "metadata": {{"{name}": 1, "{name}": 2}}}}\n'
+    (issue,) = _content_issues(PROVISIONS, line.encode())
+    assert "repeats the key" in issue
+    assert "/Users/person" not in issue
+
+
+@settings(max_examples=300, deadline=None)
+@given(
+    parts=st.lists(
+        st.sampled_from(
+            [
+                "file:///Users/x/a.pdf",
+                "FILE:/tmp/y",
+                "file:C:/z",
+                "a file: URL",
+                " ",
+                "text",
+                '"',
+                "<",
+                "file:",
+                "%20file:///q",
+            ]
+        ),
+        max_size=8,
+    )
+)
+def test_redaction_leaves_no_file_url(parts) -> None:
+    import re
+
+    text = "".join(parts)
+    redacted = redact_file_urls(text)
+    assert not re.search(r"(?i)file:[^\s\"'<>`]", redacted)
+    assert redact_file_urls(redacted) == redacted
