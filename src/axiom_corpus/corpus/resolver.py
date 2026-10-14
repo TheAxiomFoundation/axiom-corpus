@@ -9,6 +9,7 @@ before and after the corpus left git. See ``docs/corpus-storage.md``.
 from __future__ import annotations
 
 import contextlib
+import dataclasses
 import functools
 import os
 import posixpath
@@ -34,6 +35,7 @@ from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
     LOCK_ROOT,
     PROTECTED_CORPUS_PREFIXES,
+    SINGLE_FILE_SUFFIXES,
     LockEntry,
     LockSet,
     ScopeKey,
@@ -600,16 +602,329 @@ def fetch_disabled() -> bool:
     return os.environ.get(NO_FETCH_ENV, "").strip().lower() in {"1", "true", "yes"}
 
 
-def _by_checkout(paths: Sequence[str | Path]) -> dict[Path | None, list[str | Path]]:
-    """``paths`` grouped by the checkout that names each (``_checkout_for``), in order.
+def _resolver(root: Path) -> CorpusResolver:
+    resolver = resolver_for(root)
+    assert resolver is not None  # an explicit root always has one
+    return resolver
 
-    None collects the paths no checkout names; the callers hand those to the
-    working directory's checkout, as before.
+
+# --------------------------------------------------------------------------- selections
+#
+# A path through a symlink can lie under more than one lock: the lock of the
+# checkout that names it (``relative``), and the lock of every other checkout
+# where it stands at a protected place on the way, such as a worktree whose
+# ``data/corpus/provisions`` links to another checkout's. A directory also
+# holds every symlink below it. So the helpers split each path they are given
+# (a selection) into parts, one per checkout that names a subtree of it: that
+# checkout's lock decides what is fetched there, and fetch writes into that
+# checkout. Every other lock that applies witnesses: a file it names there
+# must be in place once the parts' checkouts have placed theirs, or the
+# helpers refuse, rather than read the file as absent.
+
+
+@dataclasses.dataclass(frozen=True)
+class _View:
+    """``resolver``'s lock at ``name``, which a selection spells ``sub`` below itself."""
+
+    resolver: CorpusResolver
+    name: str
+    sub: str
+
+
+@dataclasses.dataclass(frozen=True)
+class _Witnessed:
+    """A file ``holder``'s lock names where ``owner`` names the path ``owner_name``."""
+
+    holder: CorpusResolver
+    entry: LockEntry
+    owner: CorpusResolver
+    owner_name: str
+
+
+@dataclasses.dataclass
+class _Plan:
+    """The locked files some selections cover, by the checkout that fetches them.
+
+    ``owned`` maps each checkout that names a part to the entries its lock
+    names there; ``names`` keeps each part's name, for messages; ``tops``
+    the part each selection itself is; ``witnessed`` holds the entries any
+    other lock that applies names.
     """
-    groups: dict[Path | None, list[str | Path]] = {}
+
+    owned: dict[Path, tuple[CorpusResolver, dict[str, LockEntry]]] = dataclasses.field(default_factory=dict)
+    names: dict[Path, list[str]] = dataclasses.field(default_factory=dict)
+    tops: list[_View] = dataclasses.field(default_factory=list)
+    witnessed: dict[tuple[Path, str], _Witnessed] = dataclasses.field(default_factory=dict)
+
+
+def _join(head: str, tail: str) -> str:
+    return f"{head}/{tail}" if head and tail else head or tail
+
+
+def _below(path: str, prefix: str) -> str | None:
+    """``path`` relative to ``prefix`` ("" for the same path), or None outside it."""
+    if not prefix or path == prefix:
+        return path if not prefix else ""
+    return path[len(prefix) + 1 :] if path.startswith(f"{prefix}/") else None
+
+
+def _spelled(path: str | Path, repo: Path | None) -> Path:
+    """``path`` made absolute. A bare ``data/corpus/...`` path lies in ``repo``
+    (default: the working directory's checkout), as ``relative`` takes it."""
+    candidate = Path(path)
+    if candidate.is_absolute():
+        return candidate
+    text = candidate.as_posix()
+    if text == CORPUS_BASE or text.startswith(f"{CORPUS_BASE}/"):
+        base = Path(os.path.realpath(repo)) if repo is not None else find_repo_root()
+        if base is not None:
+            return base / candidate
+    return Path.cwd() / candidate
+
+
+def _owner_of(spelled: Path, hint: CorpusResolver | None) -> tuple[CorpusResolver, str] | None:
+    """The checkout that names ``spelled`` and the name, as ``relative`` gives it.
+
+    ``hint`` (a caller's ``repo``) is asked first: it names its own paths
+    without git. A path it does not name goes to the checkout that does.
+    """
+    if hint is not None:
+        name = hint.relative(spelled)
+        if name is not None:
+            return hint, name
+    resolver = resolver_for(_checkout_for(spelled))
+    if resolver is None or resolver is hint:
+        return None
+    name = resolver.relative(spelled)
+    return (resolver, name) if name is not None else None
+
+
+def _places_above(spelled: Path, physical: Path) -> list[tuple[Path, str]]:
+    """The protected places ``spelled`` stands at below a symlink, and the one it
+    reaches (``_standing_places``, ``_protected_at``). None without a symlink."""
+    if str(physical) == os.path.normpath(spelled):
+        return []
+    places, _stands_as_file = _standing_places(spelled, physical, None)
+    reached = _protected_at(physical.parts, None)
+    return [*places, reached] if reached is not None else places
+
+
+def _links_below(top: Path, name: str) -> list[str]:
+    """Where (relative to the directory ``top``, which ``name`` names) a directory
+    link or dangling link stands at a protected place below it.
+
+    Real directories are entered, links are not. A link to a file is left out:
+    it names its own place, which the lock of the directory holding it covers.
+    """
+    found: list[str] = []
+    stack = [(top, "", name)]
+    while stack:
+        directory, sub, space = stack.pop()
+        all_guarded = is_protected_corpus_path(fold_path(space).rstrip("/") + "/")
+        try:
+            with os.scandir(directory) as listing:
+                entries = list(listing)
+        except OSError:
+            continue
+        for entry in entries:
+            child = _join(space, entry.name)
+            if not all_guarded and not _guarded(child):
+                continue
+            where = _join(sub, entry.name)
+            try:
+                if entry.is_symlink():
+                    if entry.is_dir() or not os.path.exists(entry.path):
+                        found.append(where)
+                elif entry.is_dir(follow_symlinks=False):
+                    stack.append((Path(entry.path), where, child))
+            except OSError:  # removed meanwhile
+                continue
+    return found
+
+
+def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tuple[list[_View], list[_View]]:
+    """The parts of the selection ``spelled`` and every lock view that applies to it.
+
+    The first part is the selection itself, in the checkout that names it.
+    With ``walk``, a directory adds a part for each directory link (or
+    dangling link) at a protected place below it, the links below a linked
+    directory's target included.
+    """
+    top = _owner_of(spelled, hint)
+    if top is None:
+        return [], []
+    physical = Path(os.path.realpath(spelled))
+    parts = [_View(top[0], top[1], "")]
+    views = [*parts, *(_View(_resolver(root), name, "") for root, name in _places_above(spelled, physical))]
+    if not walk or not _guarded(top[1]) or top[1] in top[0].locks.by_path:
+        return parts, views  # a locked name is a file: nothing lies below it
+    pending = [(physical, "", top[1])]
+    seen: set[tuple[int, int]] = set()
+    while pending:
+        directory, sub, name = pending.pop()
+        try:
+            info = os.stat(directory)
+        except OSError:
+            continue
+        if not stat.S_ISDIR(info.st_mode) or (info.st_dev, info.st_ino) in seen:
+            continue
+        seen.add((info.st_dev, info.st_ino))
+        for below in _links_below(directory, name):
+            where = _join(sub, below)
+            link = spelled / where
+            found = _owner_of(link, hint)
+            if found is None:
+                continue
+            link_physical = Path(os.path.realpath(link))
+            parts.append(_View(found[0], found[1], where))
+            views.append(parts[-1])
+            views.extend(_View(_resolver(root), place, where) for root, place in _places_above(link, link_physical))
+            pending.append((link_physical, where, found[1]))
+    return parts, views
+
+
+def _covers(outer: _View, inner: _View) -> bool:
+    """True when ``outer`` lists every entry ``inner`` does, at the same places."""
+    if outer.resolver is not inner.resolver:
+        return False
+    rest = _below(inner.name, outer.name)
+    return rest is not None and inner.sub == _join(outer.sub, rest)
+
+
+def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False) -> _Plan:
+    """The locked files ``paths`` select, split by the checkout that fetches them.
+
+    With ``exact``, each path selects only a file of its own name (no
+    directory below it, no link below it).
+    """
+    hint = resolver_for(repo) if repo is not None else None
+    plan = _Plan()
     for path in paths:
-        groups.setdefault(_checkout_for(Path(path)), []).append(path)
-    return groups
+        parts, views = _selection(_spelled(path, repo), hint, walk=not exact)
+        if not parts:
+            fallback = hint or resolver_for(None)
+            if fallback is not None and fallback.active:
+                fallback.require_valid_locks()  # an invalid lock never reads as "no locks"
+            continue
+        plan.tops.append(parts[0])
+        for part in parts:
+            plan.names.setdefault(part.resolver.repo, [])
+            if part.name not in plan.names[part.resolver.repo]:
+                plan.names[part.resolver.repo].append(part.name)
+        deepest = sorted(parts, key=lambda part: len(part.sub), reverse=True)
+        distinct: list[_View] = []
+        for view in sorted(views, key=lambda view: (str(view.resolver.repo), len(view.name))):
+            if not any(_covers(kept, view) for kept in distinct):
+                distinct.append(view)
+        for view in distinct:
+            resolver = view.resolver
+            if not resolver.active:
+                continue
+            resolver.require_valid_locks()
+            if exact:
+                exact_entry = resolver.locks.by_path.get(view.name)
+                entries = [exact_entry] if exact_entry is not None else []
+            else:
+                entries = resolver.locks.entries_under(view.name)
+            for entry in entries:
+                where = _join(view.sub, _below(entry.path, view.name) or "")
+                for part in deepest:
+                    rest = _below(where, part.sub)
+                    if rest is not None:
+                        break
+                owner_name = _join(part.name, rest or "")
+                if resolver is part.resolver and entry.path == owner_name:
+                    plan.owned.setdefault(resolver.repo, (resolver, {}))[1][entry.path] = entry
+                else:
+                    plan.witnessed[(resolver.repo, entry.path)] = _Witnessed(
+                        resolver, entry, part.resolver, owner_name
+                    )
+    return plan
+
+
+def _owns(plan: _Plan, resolver: CorpusResolver, name: str) -> bool:
+    return name in plan.owned.get(resolver.repo, (resolver, {}))[1]
+
+
+def _absent_owned(plan: _Plan) -> list[tuple[CorpusResolver, list[LockEntry]]]:
+    """Per checkout, the entries it names in a part that are not in place."""
+    found = []
+    for resolver, entries in plan.owned.values():
+        absent = [entry for entry in entries.values() if not _placed(resolver.repo / entry.path)]
+        if absent:
+            found.append((resolver, absent))
+    return found
+
+
+def _unfetchable(plan: _Plan, *, recheck: bool = False) -> list[_Witnessed]:
+    """Witnessed files that are not in place and that no part's checkout fetches.
+
+    A witnessed file is fetched when its owner's lock names it, or when its
+    own checkout names it in a part. With ``recheck`` (after fetching), any
+    witnessed file still absent counts.
+    """
+    return [
+        item
+        for item in plan.witnessed.values()
+        if not _placed(item.holder.repo / item.entry.path)
+        and (
+            recheck
+            or not (_owns(plan, item.owner, item.owner_name) or _owns(plan, item.holder, item.entry.path))
+        )
+    ]
+
+
+def _unfetchable_error(items: Sequence[_Witnessed]) -> CorpusNotMaterializedError:
+    first = items[0]
+    rel = first.entry.path
+    link = _symlink_on_path(first.holder.repo, rel)
+    if link is None:
+        through, remedy = "", f"run `axiom-corpus-ingest corpus fetch --path {rel}` in {first.holder.repo}"
+    else:
+        try:
+            through = f"; it reads through the symlink {link} -> {os.readlink(link)}"
+        except OSError:  # removed or replaced meanwhile
+            through = f"; it reads through the symlink {link}"
+        remedy = (
+            f"replace that symlink with a directory and run `axiom-corpus-ingest corpus fetch "
+            f"--path {rel}` in {first.holder.repo}"
+        )
+    if _owns_name(first.owner, first.owner_name):
+        why = f"{first.owner.repo} names that path and its lock lists it, but it is still absent"
+    else:
+        why = (
+            f"{first.owner.repo} names that path, and its lock, which decides what is fetched "
+            f"there, does not list {first.owner_name}"
+        )
+    return CorpusNotMaterializedError(
+        f"{len(items)} locked corpus file(s) are absent and no fetch will place them (first: "
+        f"{rel}, which the lock of {first.holder.repo} names{through}). {why}. Lock that scope "
+        f"in {first.owner.repo} and fetch it there, or {remedy}."
+    )
+
+
+def _owns_name(resolver: CorpusResolver, name: str) -> bool:
+    return resolver.active and not resolver.locks.errors and name in resolver.locks.by_path
+
+
+def _fetch_command(resolver: CorpusResolver, rels: Sequence[str]) -> str:
+    command = (
+        " ".join(f"--path {rel}" for rel in rels)
+        if len(rels) <= 3
+        else "--paths-from <file listing them>"
+    )
+    here = find_repo_root()
+    where = "" if here is not None and here == resolver.repo else f" in {resolver.repo}"
+    return f"`axiom-corpus-ingest corpus fetch {command}`{where}"
+
+
+def _place_owned(plan: _Plan, absent: Sequence[tuple[CorpusResolver, list[LockEntry]]]) -> list[FetchReport]:
+    """Fetch each checkout's absent entries into it, then check every witnessed file."""
+    reports = [resolver.ensure(entries) for resolver, entries in absent]
+    unplaced = _unfetchable(plan, recheck=True)
+    if unplaced:
+        raise _unfetchable_error(unplaced)
+    return reports
 
 
 def _merged(reports: Iterable[FetchReport]) -> FetchReport:
@@ -631,47 +946,68 @@ def _merged(reports: Iterable[FetchReport]) -> FetchReport:
 def ensure_corpus_paths(paths: Iterable[str | Path], *, repo: Path | None = None) -> FetchReport:
     """Materialize the locked files at or under each path. No-op without locks.
 
-    Without ``repo``, each path goes to the checkout that names it. With
-    fetching disabled, locked files that are absent raise instead.
+    Each part of a path is fetched into the checkout that names it, by that
+    checkout's lock, and a file any other lock that applies names must then be
+    in place, or this raises (see the selections above). ``repo`` is where
+    bare ``data/corpus/...`` paths lie and is asked first; a path it does not
+    name goes to the checkout that does. With fetching disabled, locked files
+    that are absent raise instead.
     """
-    path_list = list(paths)
-    if repo is None and path_list:
-        return _merged(
-            _ensure_paths_in(checkout, group) for checkout, group in _by_checkout(path_list).items()
-        )
-    return _ensure_paths_in(repo, path_list)
-
-
-def _ensure_paths_in(repo: Path | None, path_list: list[str | Path]) -> FetchReport:
-    resolver = resolver_for(repo)
-    if resolver is None or not resolver.active:
-        return FetchReport()
+    plan = _plan(list(paths), repo=repo)
     if fetch_disabled():
-        _require_in(resolver.repo, [Path(path) for path in path_list], fetch=False)
+        _require(plan, fetch=False)
         return FetchReport()
-    return resolver.ensure_paths(path_list)
+    unfetchable = _unfetchable(plan)
+    if unfetchable:
+        raise _unfetchable_error(unfetchable)
+    selected = [
+        (resolver, resolver.locks.with_whole_source_dirs(entries.values()))
+        for resolver, entries in plan.owned.values()
+    ]
+    return _merged(_place_owned(plan, selected))
 
 
 def ensure_corpus_scopes(scopes: Iterable[ScopeKey], *, repo: Path | None = None) -> FetchReport:
     """Materialize whole scopes. No-op without locks.
 
-    With fetching disabled, locked files that are absent raise instead.
+    A scope is its four paths in ``repo`` (default: the working directory's
+    checkout), taken as ``ensure_corpus_paths`` takes paths. With fetching
+    disabled, locked files that are absent raise instead.
     """
     scope_list = list(scopes)
     resolver = resolver_for(repo)
     if resolver is None or not resolver.active:
         return FetchReport()
-    entries = resolver.entries_for_scopes(scope_list)
+    resolver.require_valid_locks()
+    plan = _plan(_scope_paths(resolver.repo, scope_list), repo=resolver.repo)
+    unfetchable = _unfetchable(plan)
+    if unfetchable:
+        raise _unfetchable_error(unfetchable)
     if fetch_disabled():
-        resolver.require_valid_locks()
-        absent = [entry.path for entry in entries if not _placed(resolver.repo / entry.path)]
+        absent = _absent_owned(plan)
         if absent:
+            holder, entries = absent[0]
+            count = sum(len(found) for _resolver_, found in absent)
             raise CorpusNotMaterializedError(
-                f"{len(absent)} locked corpus file(s) are absent and fetching is off "
-                f"({NO_FETCH_ENV}); first: {absent[0]}" + _link_note(resolver.repo, absent[0])
+                f"{count} locked corpus file(s) are absent and fetching is off "
+                f"({NO_FETCH_ENV}); first: {entries[0].path}" + _link_note(holder.repo, entries[0].path)
             )
         return FetchReport()
-    return resolver.ensure(entries)
+    return _merged(_place_owned(plan, [(owner, list(entries.values())) for owner, entries in plan.owned.values()]))
+
+
+def _scope_paths(repo: Path, scopes: Iterable[ScopeKey]) -> list[Path]:
+    """The paths that hold each scope's files in ``repo``: its sources directory
+    and its inventory, provisions and coverage files."""
+    paths: list[Path] = []
+    for jurisdiction, document_class, version in scopes:
+        base = repo / CORPUS_BASE
+        paths.append(base / "sources" / jurisdiction / document_class / version)
+        paths.extend(
+            base / artifact_class / jurisdiction / document_class / f"{version}{suffix}"
+            for artifact_class, suffix in SINGLE_FILE_SUFFIXES.items()
+        )
+    return paths
 
 
 def require_materialized(
@@ -684,42 +1020,31 @@ def require_materialized(
 
     Code that lists ``data/corpus`` directories would otherwise compute on
     whatever subset happens to be fetched. With ``fetch`` the missing files
-    are fetched instead. Without ``repo``, each path is checked in the
-    checkout that names it. No-op without lock files.
+    are fetched instead, each into the checkout that names it. Every lock
+    that applies to a path counts (see the selections above), and ``repo``
+    is taken as ``ensure_corpus_paths`` takes it. No-op without lock files.
     """
-    path_list = [Path(path) for path in paths]
-    if repo is None and path_list:
-        for checkout, group in _by_checkout(path_list).items():
-            _require_in(checkout, [Path(path) for path in group], fetch=fetch)
-        return
-    _require_in(repo, path_list, fetch=fetch)
+    _require(_plan(list(paths), repo=repo), fetch=fetch)
 
 
-def _require_in(repo: Path | None, path_list: list[Path], *, fetch: bool) -> None:
-    resolver = resolver_for(repo)
-    if resolver is None or not resolver.active:
-        return
-    resolver.require_valid_locks()
-    missing: list[LockEntry] = []
-    rels = [rel for rel in (resolver.relative(path) for path in path_list) if rel is not None]
-    for rel in rels:
-        missing.extend(resolver.locks.missing_under(resolver.repo, rel))
-    if not missing:
+def _require(plan: _Plan, *, fetch: bool) -> None:
+    unfetchable = _unfetchable(plan)
+    if unfetchable:
+        raise _unfetchable_error(unfetchable)
+    absent = _absent_owned(plan)
+    if not absent:
         return
     if fetch and not fetch_disabled():
-        resolver.ensure(resolver.locks.with_whole_source_dirs(missing))
+        _place_owned(plan, [(resolver, resolver.locks.with_whole_source_dirs(found)) for resolver, found in absent])
         return
+    resolver, missing = absent[0]
+    rels = plan.names[resolver.repo]
     # Name at most a few paths: callers may pass thousands of exact files.
     named = rels if len(rels) <= 3 else [*rels[:3], f"and {len(rels) - 3} more"]
-    command = (
-        " ".join(f"--path {rel}" for rel in rels)
-        if len(rels) <= 3
-        else "--paths-from <file listing them>"
-    )
     raise CorpusNotMaterializedError(
         f"{len(missing)} locked corpus file(s) under {', '.join(named)} are not in this "
         f"checkout (first: {missing[0].path}); results would cover only part of the "
-        f"corpus. Run `axiom-corpus-ingest corpus fetch {command}` first."
+        f"corpus. Run {_fetch_command(resolver, rels)} first."
         + _link_note(resolver.repo, missing[0].path)
     )
 
@@ -729,9 +1054,10 @@ def fetch_locked_file(path: str | Path) -> bool:
 
     Returns False (and does nothing) for paths no lock names, outside any
     checkout, or with fetching disabled. Raises ``CorpusNotMaterializedError``
-    when a locked file cannot be fetched, or when a symlink stands where it
-    belongs: silently reading nothing, or bytes no lock checked, would be
-    worse.
+    when a locked file cannot be fetched, when a symlink stands where it
+    belongs, or when another lock that applies (that of a checkout the path
+    passes through by a symlink) names it and no fetch will place it: silently
+    reading nothing, or bytes no lock checked, would be worse.
     """
     candidate = Path(path)
     anchor = candidate if candidate.is_absolute() else Path.cwd() / candidate
@@ -739,12 +1065,14 @@ def fetch_locked_file(path: str | Path) -> bool:
     # path, which stands where a locked file belongs.
     if candidate.exists() and _link_holder(anchor) is None:
         return True
-    resolver = resolver_for(_checkout_for(anchor))
-    if resolver is None or not resolver.active:
+    plan = _plan([anchor], repo=None, exact=True)
+    unfetchable = _unfetchable(plan)
+    if unfetchable:
+        raise _unfetchable_error(unfetchable)
+    if not plan.tops:
         return False
-    resolver.require_valid_locks()
-    rel = resolver.relative(anchor)
-    if rel is None or rel not in resolver.locks.by_path:
+    resolver, rel = plan.tops[0].resolver, plan.tops[0].name
+    if not _owns(plan, resolver, rel):
         return False
     if (resolver.repo / rel).is_symlink():
         raise _symlinked_error(rel, resolver.repo / rel)
@@ -753,7 +1081,7 @@ def fetch_locked_file(path: str | Path) -> bool:
             f"{rel} is locked but absent, and fetching is off ({NO_FETCH_ENV}); reading it "
             "as empty would be wrong. Fetch it first." + _link_note(resolver.repo, rel)
         )
-    resolver.ensure(resolver.entries_for_paths([rel]))
+    _place_owned(plan, [(resolver, resolver.entries_for_paths([rel]))])
     return True
 
 
@@ -770,14 +1098,55 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
         and f"/{CORPUS_BASE}/sources/" not in fold_path(absolute)
     ):
         return candidate  # nothing to widen, no git call
-    if repo is None:
-        repo = _checkout_for(candidate)
-    resolver = resolver_for(repo)
+    resolver = resolver_for(repo) if repo is not None else None
+    if resolver is None or resolver.relative(candidate) is None:
+        # ``repo`` does not name it: the checkout that does decides.
+        resolver = resolver_for(_checkout_for(candidate))
+    witnesses = _read_witnesses(candidate, resolver)
     if resolver is None or not resolver.active or resolver.relative(candidate) is None:
-        if candidate.is_file() and not candidate.is_symlink():
-            return candidate
+        found = candidate if candidate.is_file() and not candidate.is_symlink() else None
+    else:
+        found = resolver.resolve(path)
+    if witnesses is not None:
+        unplaced = _unfetchable(witnesses[0], recheck=True)
+        if unplaced:
+            raise _unfetchable_error(unplaced)
+        if witnesses[1] is not None:
+            _WITNESSED_SOURCE_DIRS.add(witnesses[1])
+    if found is None:
         raise CorpusNotMaterializedError(f"{path} does not exist")
-    return resolver.resolve(path)
+    return found
+
+
+# Spelled sources directories whose every applicable lock was found satisfied
+# once; like ``CorpusResolver._complete_source_scopes``, checked once per process.
+_WITNESSED_SOURCE_DIRS: set[str] = set()
+
+
+def _read_witnesses(candidate: Path, resolver: CorpusResolver | None) -> tuple[_Plan, str | None] | None:
+    """Refuse a read of ``candidate`` that a lock that applies says no fetch completes.
+
+    A source file counts with its scope's whole sources directory, as
+    ``CorpusResolver.resolve`` fetches it. Returns the plan, and the directory
+    to remember once the read succeeds, for a check after the read; None
+    when there is nothing to check.
+    """
+    anchor = candidate if candidate.is_absolute() else Path.cwd() / candidate
+    rel = resolver.relative(anchor) if resolver is not None else None
+    if resolver is None or rel is None:
+        return None  # no checkout names it, so it stands at no protected place
+    selection, exact, remember = anchor, True, None
+    if ".." not in anchor.parts and scope_for_path(rel) is not None:
+        depth = len(rel.split("/")) - 6  # below data/corpus/sources/<j>/<dc>/<v>
+        if fold_path(rel).startswith(f"{CORPUS_BASE}/sources/") and depth >= 1:
+            selection, exact, remember = anchor.parents[depth - 1], False, str(anchor.parents[depth - 1])
+            if remember in _WITNESSED_SOURCE_DIRS:
+                return None
+    plan = _plan([selection], repo=resolver.repo, exact=exact)
+    unfetchable = _unfetchable(plan)
+    if unfetchable:
+        raise _unfetchable_error(unfetchable)
+    return (plan, remember) if plan.witnessed else None
 
 
 # --------------------------------------------------------------------------- CLI hook
@@ -828,6 +1197,8 @@ def corpus_inputs_from_args(
             if not candidate.is_absolute():
                 candidate = Path.cwd() / candidate
             rel = resolver.relative(candidate)
+            if rel is None:  # another checkout names it: its path here, through a link
+                rel = _name_here(resolver, candidate)
             # A path under a protected prefix names files to read; the bare
             # base (``--base data/corpus``) names nothing by itself.
             if rel is not None and is_protected_corpus_path(rel.rstrip("/") + "/"):
@@ -838,6 +1209,14 @@ def corpus_inputs_from_args(
         if all(isinstance(v, str) and v for v in values):
             scopes.append((str(values[0]), str(values[1]), str(values[2])))
     return paths, scopes, selectors
+
+
+def _name_here(resolver: CorpusResolver, candidate: Path) -> str | None:
+    """The protected path of ``resolver``'s checkout that ``candidate`` stands at
+    below a symlink, when another checkout names ``candidate`` (a link to the
+    same path there), else None."""
+    places, _stands_as_file = _standing_places(candidate, Path(os.path.realpath(candidate)), resolver.repo)
+    return next((name for root, name in places if root == resolver.repo), None)
 
 
 def materialize_cli_inputs(
@@ -863,29 +1242,41 @@ def materialize_cli_inputs(
         scopes.extend(_selector_scopes(resolver.repo, selector))
     if not paths and not scopes:
         return None
-    entries = {e.path: e for e in resolver.entries_for_paths(paths)}
-    for entry in resolver.entries_for_scopes(scopes):
-        entries[entry.path] = entry
+    plan = _plan(
+        [resolver.repo / path for path in paths] + _scope_paths(resolver.repo, scopes),
+        repo=resolver.repo,
+    )
+    unfetchable = _unfetchable(plan)
+    if unfetchable:
+        raise _unfetchable_error(unfetchable)
     missing = [
-        entry
-        for entry in entries.values()
-        if not _placed(resolver.repo / entry.path)
+        (owner, sorted(found, key=lambda e: e.path))
+        for owner, entries in plan.owned.values()
+        if (
+            found := [
+                entry
+                for entry in owner.locks.with_whole_source_dirs(entries.values())
+                if not _placed(owner.repo / entry.path)
+            ]
+        )
     ]
     if not missing:
         return None
+    count = sum(len(found) for _owner, found in missing)
     if fetch_disabled():
-        first = min(entry.path for entry in missing)
+        owner, found = min(missing, key=lambda item: item[1][0].path)
+        first = found[0].path
         raise CorpusNotMaterializedError(
-            f"{len(missing)} locked corpus file(s) this command reads are absent and "
-            f"fetching is off ({NO_FETCH_ENV}); first: {first}" + _link_note(resolver.repo, first)
+            f"{count} locked corpus file(s) this command reads are absent and "
+            f"fetching is off ({NO_FETCH_ENV}); first: {first}" + _link_note(owner.repo, first)
         )
     print(
-        f"corpus: fetching {len(missing)} locked file(s) this command reads "
+        f"corpus: fetching {count} locked file(s) this command reads "
         f"(set {NO_FETCH_ENV}=1 to skip)",
         file=sys.stderr,
     )
     try:
-        return resolver.ensure(sorted(missing, key=lambda e: e.path))
+        return _merged(_place_owned(plan, missing))
     except ContentStoreError as exc:
         raise CorpusNotMaterializedError(str(exc)) from exc
 
