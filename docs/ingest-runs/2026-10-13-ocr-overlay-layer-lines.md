@@ -52,7 +52,7 @@ through the resources that hold it), its bytes read as Latin-1, less a six-chara
 subset prefix, or, without a name, "Unnamed-T3" (1.26) or "Type3 (<object> 0 R)" (1.28).
 They are looked for in the page's resources and forms (PyMuPDF `get_fonts`) and in the
 appearance streams of its annotations and widgets and the forms those draw, whose text is
-extracted too but whose fonts `get_fonts` does not list (`_pdf_appearance_type3_fonts`;
+extracted too but whose fonts `get_fonts` does not list (`_pdf_appearance_type3_font_names`;
 on the overlay pages, 334 of which list annotations or widgets in /Annots, those streams
 hold 112 TrueType and 226 Type1 fonts and no Type3 one, `scripts/annot_type3_scan.py`).
 Anything in that scan that can't be read, such as a reference to a missing object, is
@@ -77,10 +77,13 @@ text output is the dict lines joined by newlines, so each text-output line is li
 with its dict line, and a missing mark goes into the span of the character before it,
 taking that character's line, span, paint and font. A line whose spans' characters are not
 its text-output line's with only marks taken out is left as it is when that text-output
-line holds a control character (it goes whole either way), or when its spans do and the
-text-output line has no mark they lack; otherwise, or when the line counts differ, the
-text output's lines are used. That keeps the accent of a garbled line whose control
-"spaces" `sort_text` drops from the text output ("Name: José"). Under 1.26.7 neither happens on any overlay page, with or
+line holds a control character, or when its spans do and the text-output line has no mark
+they lack; otherwise, or when the line counts differ, the text output's lines are used.
+That keeps the accent of a garbled line whose control "spaces" `sort_text` drops from the
+text output ("Name: José"). Limit: a line left as it is keeps its spans in other fonts
+without a mark its text-output line holds (on the text output's lines the whole line would
+go); that takes a text-output line with a control character and a lacking mark, which
+`sort_text` leaves only for controls above U+0020. Under 1.26.7 neither happens on any overlay page, with or
 without `sort_text`. Under 1.28.2, WV-23-0001 pages 132, 237 and 358 lack Khmer marks in
 their spans that their text output prints: they are put back, and with `sort_text`, which
 rebuilds those lines, the text output's lines are used. Those three pages then skip the

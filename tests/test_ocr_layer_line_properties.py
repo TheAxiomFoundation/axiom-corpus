@@ -562,7 +562,8 @@ def test_combining_mark_cases():
         [[("Jose", True, "A", True), ("x", True, "B", True)]], "Jose\u0301x\n"
     ) == [[("Jose\u0301", True, "A", True), ("x", True, "B", True)]]
     # A garbled line that differs is left as it is when its text-output line holds a
-    # control character too (it goes whole either way).
+    # control character too (its spans in other fonts are kept without a lacking mark: a
+    # stated limit; on the text output's lines the whole line would go).
     assert _with_layer_marks(
         [[("x", True, "A", True)], [("\x01y", True, "B", False)]], "x\u0301\n\x01z\u17b7\n"
     ) == [[("x\u0301", True, "A", True)], [("\x01y", True, "B", False)]]

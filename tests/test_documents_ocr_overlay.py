@@ -635,6 +635,7 @@ def _type3_in_an_annotation_pdf(
     resource: str = "F3",
     states: bool = False,
     generation: int = 0,
+    indirect_name: bool = False,
 ) -> bytes:
     """A scanned page whose typed lines are drawn by a FreeText annotation's appearance
     stream in a Type3 font, which the page's own resources do not hold: referenced by the
@@ -653,6 +654,10 @@ def _type3_in_an_annotation_pdf(
         annot = page.add_freetext_annot(fitz.Rect(0, 0, 612, 792), "x")
         annot.update()
         appearance = int(document.xref_get_key(annot.xref, "AP/N")[1].split()[0])
+        if indirect_name:
+            name = document.get_new_xref()
+            document.update_object(name, document.xref_get_key(font, "Name")[1])
+            document.xref_set_key(font, "Name", f"{name} 0 R")
         fonts = f"<< /{resource} {font} 0 R >>"
         if where == "inline":
             fonts = f"<< /{resource} {document.xref_object(font, compressed=True)} >>"
@@ -692,6 +697,8 @@ def _type3_in_an_annotation_pdf(
         ("inline", {"resource": "F#E9"}),
         ("xref", {"states": True}),
         ("xref", {"generation": 1}),
+        # Review r7b: an inline font's /Name held by reference.
+        ("inline", {"indirect_name": True}),
     ],
 )
 def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where, shape):
@@ -746,6 +753,7 @@ def _annotation_with(document, page, key: str, value: str) -> None:
         ("Resources", "<< /XObject << /Fm9 9999 0 R >> >>"),
         ("Font object", "<< /A\u0100 5 0 R >>"),
         ("Resources", "<< /Font << /A\u0100 5 0 R >> >>"),
+        ("Font object", r"<< /A\u0100 5 0 R >>"),  # a name with a backslash in it (review r7b)
     ],
     ids=[
         "missing-annot",
@@ -755,6 +763,7 @@ def _annotation_with(document, page, key: str, value: str) -> None:
         "missing-form",
         "non-ascii-name-in-an-object",
         "non-ascii-name-inline",
+        "backslash-name",
     ],
 )
 def test_broken_annotation_references_never_fail_a_page(tmp_path, monkeypatch, broken):

@@ -3449,7 +3449,8 @@ def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
                 if value.startswith("<<"):
                     entries = _pdf_dict_entries(value)
                     if entries.get("Subtype") == "/Type3":
-                        inline = _pdf_span_font_name(_pdf_printed_name(entries.get("Name", "")))
+                        name = _pdf_entry_text(document, entries.get("Name", ""), count)
+                        inline = _pdf_span_font_name(_pdf_printed_name(name.strip()))
                         names.add(inline)
                         if inline == "Unnamed-T3":
                             names.add("Type3 (0 0 R)")
@@ -3650,11 +3651,14 @@ def _with_layer_marks(
     such mark goes into the span of the character before it (or the line's first span),
     so its line, span, paint and font are the ones that character has. A line whose spans'
     characters are not its text-output line's with only combining marks taken out is left
-    as it is when its text-output line holds a control character (that line goes whole
-    either way) or when its spans do and the text-output line has no mark they lack;
-    otherwise no mark can be placed: None, and the text output's lines are used. That is
-    how the mark of a garbled line is kept when ``sort_text``, which rebuilds the lines,
-    drops the garbled font's control "spaces" from the text output.
+    as it is when its text-output line holds a control character, or when its spans do and
+    the text-output line has no mark they lack; otherwise no mark can be placed: None, and
+    the text output's lines are used. That is how the mark of a garbled line is kept when
+    ``sort_text``, which rebuilds the lines, drops the garbled font's control "spaces"
+    from the text output. Limit: a line left as it is keeps its spans in other fonts
+    without such a mark (on the text output's lines the whole line would go); that takes a
+    text-output line with a control character and a lacking mark, which ``sort_text``
+    leaves only for controls above U+0020.
     """
     missing = Counter(char for char in layer_text if unicodedata.category(char) == "Mn") - Counter(
         char
