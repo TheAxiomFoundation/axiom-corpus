@@ -157,12 +157,15 @@ and a mapped font or an annotation's font can share a name with them.
 #868's real-page tests now merge the decoded spans. Its invariant "every painted span
 without a control character is in the page text" holds for lines decoding leaves alone;
 decoded lines are checked whole instead. Mutation check (`mutate_shifts.py`):
-@@MUTATION@@
+27 broken variants of the decoding, run against the three OCR test files. Before review round 1 the tests killed 18 of 19. The variants now include the review fixes (no font-object count, annotation fonts uncounted, origins where the reads disagree trusted, one class or one glyph enough, a later line overwriting a count, part of a line decoded). Round 4 killed 22 of 26 that applied; tests were added for the three that a test can catch (a mixed line in a font with a shift, mapped letters counted as evidence, two glyphs enough), and round 5 kills 26 of 27. The one left, S12, reads the first status at an origin instead of the k-th. It is equivalent: a status is used only where every character at its origin has the same one.
 
 ## Before and after: every page the overlay rule reaches
 
 Both sides were run on the same 1,041 pages in 328 retained PDFs, with Tesseract 5.5.3
-cached by rendered page image (3,123 hits, 0 misses). The before side is this branch with
+cached by rendered page image (3,123 hits, 0 misses). These figures are for the rule after
+review round 1. The rule before it (no font-object or class test, lines decoded in part)
+also found AL-20-0004's ArialMT; it gave the same lines and one more, the clipped "Acting
+Deputy D". The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
 measurement first ran on #868 at `c64009789`, before it counted Type 3 spans as painted,
 and gives the same lines, pages and documents; the page level, re-run on #868 at
@@ -219,7 +222,9 @@ lines again.
   characters, the lines that change are the 23 above.
 
 Document level: `_extract_blocks` on the 327 manifest documents behind the PDFs, with and
-without decoding: @@DOC@@
+without decoding and the same OCR cache, gives no error on either side. 8 documents
+change, one block each, and no block count, heading or section label changes. The words
+added and removed are the page lines above, 61 added and 4 removed.
 
 ## Scopes whose pages change; #864
 

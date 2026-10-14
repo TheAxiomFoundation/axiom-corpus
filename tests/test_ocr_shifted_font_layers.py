@@ -344,6 +344,11 @@ def test_evidence_thresholds():
     # Only decoded characters count: mapped letters beside them are no evidence.
     labelled = [[(c, None) for c in f"Approved{n} "] + _encode("6/2/1", font, shift) for n in "AB"]
     assert _pdf_font_code_shifts(labelled, "ApprovedA 6/2/1 ApprovedB 6/2/1") == {}
+    labelled = [
+        [(c, None) for c in "Approved "] + _encode("J2a", font, shift),
+        [(c, None) for c in "Signed "] + _encode("b3K", font, shift),
+    ]
+    assert _pdf_font_code_shifts(labelled, "Approved J2a Signed b3K") == {}
     # Four are a line's worth, but one such line is not enough.
     assert _pdf_font_code_shifts([four], "10 P & I") == {}
     assert _pdf_font_code_shifts([four, four], "10 P & I") == {}  # the same line twice
@@ -373,11 +378,9 @@ def test_evidence_must_show_the_shift_across_glyphs_and_classes():
     # Digits alone, however many, are one class.
     digits = [_encode(text, font, 31) for text in ("12345678", "9/10/2020")]
     assert _pdf_font_code_shifts(digits, "12345678 9/10/2020") == {}
-    # Two glyphs are too few, though from two classes.
-    assert (
-        _pdf_font_code_shifts([_encode("1111", font, 31), _encode("AAAA", font, 31)], "1111 AAAA")
-        == {}
-    )
+    # Two glyphs are too few, though from two classes and eight characters.
+    two_glyphs = [_encode("11A1", font, 31), _encode("A1AA", font, 31)]
+    assert _pdf_font_code_shifts(two_glyphs, "11A1 A1AA") == {}
     # Seven glyphs from three classes are enough.
     assert _pdf_font_code_shifts([_encode("Scott 2021", font, 31)], "Scott 2021") == {font: 31}
 
@@ -772,6 +775,24 @@ def test_a_partly_unmapped_type3_font_is_never_decoded(tmp_path):
 
     assert decoded == spans
     assert "".join(span[0] for span in spans[2]) == '"DUJOH\x01%FQVUZ\x01%JSFDUPS'
+
+
+def test_a_font_whose_characters_in_a_line_are_partly_mapped_is_not_decoded_there(tmp_path):
+    # Codes 0x50 above ASCII: letters and digits land at 0x80 and up, where MuPDF has no
+    # Unicode for them, but a space lands on "p", which it prints as if mapped. Lines with
+    # no space show the shift; decoding only the unmapped characters of a line with one
+    # would give "Wendyp1999".
+    pdf = _form_pdf(
+        tmp_path / "form.pdf", [("Scott2021", -0x50), ("June2020", -0x50), ("Wendy 1999", -0x50)]
+    )
+    ocr = "Scott2021\nJune2020\n"
+    with fitz.open(pdf) as document:
+        page = document[0]
+        spans = _pdf_layer_lines(page, extraction={})
+        decoded = _pdf_decoded_span_lines(page, spans, extraction={}, ocr_text=ocr)
+
+    assert [[text for text, _, _ in line] for line in decoded[:2]] == [["Scott2021"], ["June2020"]]
+    assert decoded[2] == spans[2]
 
 
 def test_a_page_without_unmapped_characters_is_not_decoded(tmp_path):
