@@ -627,25 +627,40 @@ def test_an_unaddressable_inline_type3_font_with_a_base_font_is_a_known_limit(
         assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
 
 
-def _type3_in_an_annotation_pdf(lines: list[str], *, font_keys: str, where: str) -> bytes:
+def _type3_in_an_annotation_pdf(
+    lines: list[str],
+    *,
+    font_keys: str,
+    where: str,
+    resource: str = "F3",
+    states: bool = False,
+    generation: int = 0,
+    indirect_name: bool = False,
+) -> bytes:
     """A scanned page whose typed lines are drawn by a FreeText annotation's appearance
     stream in a Type3 font, which the page's own resources do not hold: referenced by the
     appearance ("xref"), written inline in its resources ("inline"), or in a form the
-    appearance draws ("form")."""
+    appearance draws ("form"); under the resource name ``resource`` (as PDF writes it),
+    through a dictionary of appearance states (``states``), from an annotation reference
+    of generation ``generation``."""
     with fitz.open("pdf", _type3_scan_pdf(lines, font_keys=font_keys)) as document:
         page = document[0]
         font = next(font[0] for font in page.get_fonts(full=True) if font[4] == "F3")
         contents = page.get_contents()
-        typed = document.xref_stream(contents[-1])
+        typed = document.xref_stream(contents[-1]).replace(b"/F3 ", f"/{resource} ".encode())
         kept = " ".join(f"{xref} 0 R" for xref in contents[:-1])
         document.xref_set_key(page.xref, "Contents", f"[{kept}]")
         _set_page_font(document, page, "F3", "null")
         annot = page.add_freetext_annot(fitz.Rect(0, 0, 612, 792), "x")
         annot.update()
         appearance = int(document.xref_get_key(annot.xref, "AP/N")[1].split()[0])
-        fonts = f"<< /F3 {font} 0 R >>"
+        if indirect_name:
+            name = document.get_new_xref()
+            document.update_object(name, document.xref_get_key(font, "Name")[1])
+            document.xref_set_key(font, "Name", f"{name} 0 R")
+        fonts = f"<< /{resource} {font} 0 R >>"
         if where == "inline":
-            fonts = f"<< /F3 {document.xref_object(font, compressed=True)} >>"
+            fonts = f"<< /{resource} {document.xref_object(font, compressed=True)} >>"
         if where == "form":
             form = document.get_new_xref()
             document.update_object(
@@ -661,11 +676,32 @@ def _type3_in_an_annotation_pdf(lines: list[str], *, font_keys: str, where: str)
             document.xref_set_key(appearance, "Resources", f"<< /Font {fonts} >>")
         document.xref_set_key(appearance, "BBox", "[0 0 612 792]")
         document.xref_set_key(appearance, "Matrix", "[1 0 0 1 0 0]")
+        if states:
+            choice = document.get_new_xref()
+            document.update_object(choice, f"<< /On {appearance} 0 R >>")
+            document.xref_set_key(annot.xref, "AP", f"<< /N {choice} 0 R >>")
+            document.xref_set_key(annot.xref, "AS", "/On")
+        if generation:
+            document.xref_set_key(page.xref, "Annots", f"[{annot.xref} {generation} R]")
         return document.tobytes()
 
 
-@pytest.mark.parametrize("where", ["xref", "inline", "form"])
-def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where):
+@pytest.mark.parametrize(
+    ("where", "shape"),
+    [
+        ("xref", {}),
+        ("inline", {}),
+        ("form", {}),
+        # Review r7: shapes the first scan missed.
+        ("inline", {"resource": "F#2F3"}),
+        ("inline", {"resource": "F#E9"}),
+        ("xref", {"states": True}),
+        ("xref", {"generation": 1}),
+        # Review r7b: an inline font's /Name held by reference.
+        ("inline", {"indirect_name": True}),
+    ],
+)
+def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where, shape):
     # Review r6: text in annotation appearance streams is extracted, but get_fonts lists
     # only the page's own resources and forms. A Type3 font there is found too, so under
     # PyMuPDF before 1.27 its typed lines count as painted, and on every version its spans
@@ -673,7 +709,7 @@ def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where):
     monkeypatch.setattr(
         documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: TYPE3_OCR
     )
-    pdf = _type3_in_an_annotation_pdf(TYPE3_LINES, font_keys="/Name /AnnT3", where=where)
+    pdf = _type3_in_an_annotation_pdf(TYPE3_LINES, font_keys="/Name /AnnT3", where=where, **shape)
     with fitz.open("pdf", pdf) as document:
         page = document[0]
         listed = [font for font in page.get_fonts(full=True) if font[2] == "Type3"]
@@ -691,6 +727,82 @@ def test_type3_fonts_in_annotation_appearances_are_found(monkeypatch, where):
     assert {font for _, _, font, _ in typed} == {"AnnT3"}
     assert all(painted and mapped is None for _, painted, _, mapped in typed)
     assert result == TYPE3_OCR.rstrip("\n") + "\n\n" + "\n".join(TYPE3_LINES)
+
+
+def _annotation_with(document, page, key: str, value: str) -> None:
+    annot = page.add_freetext_annot(fitz.Rect(72, 300, 300, 340), "x")
+    annot.update()
+    if key == "AP":
+        document.xref_set_key(annot.xref, "AP", value)
+        return
+    appearance = int(document.xref_get_key(annot.xref, "AP/N")[1].split()[0])
+    if key == "Font object":
+        fonts = document.get_new_xref()
+        document.update_object(fonts, value)
+        value = f"<< /Font {fonts} 0 R >>"
+    document.xref_set_key(appearance, "Resources", value)
+
+
+@pytest.mark.parametrize(
+    "broken",
+    [
+        ("Annots", "[9999 0 R]"),
+        ("Annots", "[0 0 R]"),
+        ("Annots", "9999 0 R"),
+        ("AP", "<< /N 9999 0 R >>"),
+        ("Resources", "<< /XObject << /Fm9 9999 0 R >> >>"),
+        ("Font object", "<< /A\u0100 5 0 R >>"),
+        ("Resources", "<< /Font << /A\u0100 5 0 R >> >>"),
+        ("Font object", r"<< /A\u0100 5 0 R >>"),  # a name with a backslash in it (review r7b)
+    ],
+    ids=[
+        "missing-annot",
+        "object-0",
+        "missing-annots-array",
+        "missing-ap",
+        "missing-form",
+        "non-ascii-name-in-an-object",
+        "non-ascii-name-inline",
+        "backslash-name",
+    ],
+)
+def test_broken_annotation_references_never_fail_a_page(tmp_path, monkeypatch, broken):
+    # Review r7 (P1): the appearance scan passed every object number it found to PyMuPDF,
+    # which raises for one outside the cross-reference table, so one dangling reference
+    # failed the page and its document. It skips what it can't read.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="9/4/13")
+    key, value = broken
+    with fitz.open(pdf) as document:
+        page = document[0]
+        if key == "Annots":
+            document.xref_set_key(page.xref, "Annots", value)
+        else:
+            _annotation_with(document, page, key, value)
+        pdf = document.tobytes()
+    with fitz.open("pdf", pdf) as document:
+        names = documents_module._pdf_type3_font_names(document[0])
+        result = _pdf_page_text(document[0], extraction={"ocr": True})
+
+    assert names == frozenset()
+    assert result.startswith(ocr.rstrip("\n")) and "9/4/13" in result
+
+
+def test_an_accent_of_a_garbled_line_sorted_clean_is_kept(tmp_path, monkeypatch):
+    # Review r7 (P2): sort_text drops a garbled font's control "spaces", so the text output
+    # holds "Name: Jose\u0301" where the spans hold "\x01Name:\x01" and " Jose". The
+    # accent has no span to go in, so the page uses the text output's lines and keeps it.
+    ocr = "Applicant Household Size\n"
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", lambda page, *, extraction: ocr)
+    spans = [[("\x01Name:\x01", True, "G", False), (" Jose", True, "F", True)]]
+    monkeypatch.setattr(documents_module, "_pdf_layer_lines", lambda page, *, extraction: spans)
+    pdf = _pdf(tmp_path / "scan.pdf", image_rect="page", overlay="Jose")
+    with fitz.open(pdf) as document:
+        page = _TextOutputPage(document[0], "Name: Jose\u0301\n")
+        result = _pdf_page_text(page, extraction={"ocr": True, "sort_text": True})
+
+    assert result == "Applicant Household Size\n\nName: Jose\u0301"
 
 
 def _unreadable_xref(xref, key):

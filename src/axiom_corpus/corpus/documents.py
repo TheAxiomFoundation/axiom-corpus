@@ -3075,8 +3075,9 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
                 )
                 layer_lines = _without_garbled_spans(marked)
         if layer_lines is None:
-            # The dict output does not hold the text output's characters: use the text
-            # output's lines, all counted as painted, so no typed text can go missing.
+            # The dict output does not hold the text output's characters (or its marks
+            # can't be placed): use the text output's lines, all counted as painted, so no
+            # line without a control character can go missing.
             # They are split at newlines only, so a garbled line keeps its control
             # characters (splitlines() also breaks at U+001C to U+001E and U+0085).
             layer_lines = [(line, True) for line in layer_text.split("\n")]
@@ -3381,10 +3382,10 @@ def _pdf_type3_font_names(page: Any) -> frozenset[str]:
     mapped (``_pdf_span_mapped``). A font without a name has its spans named "Unnamed-T3"
     before 1.27 and "Type3 (<object number> 0 R)" in 1.28; both are listed. Text in
     annotation and widget appearance streams is extracted too, and ``get_fonts`` does not
-    list their fonts, so those are found as well (``_pdf_appearance_type3_fonts``).
+    list their fonts, so those are found as well (``_pdf_appearance_type3_font_names``).
     """
-    names: set[str] = set()
-    for font in [*page.get_fonts(full=True), *_pdf_appearance_type3_fonts(page)]:
+    names = _pdf_appearance_type3_font_names(page)
+    for font in page.get_fonts(full=True):
         if font[2] != "Type3":
             continue
         name = _pdf_type3_span_name(page, font)
@@ -3394,58 +3395,180 @@ def _pdf_type3_font_names(page: Any) -> frozenset[str]:
     return frozenset(names)
 
 
-_PDF_OBJECT_REFERENCE = re.compile(r"(\d+) 0 R")
-_PDF_RESOURCE_ENTRY = re.compile(r"/([^\s/<>\[\]()%]+)\s*(<<|\d+ 0 R)")
+_PDF_OBJECT_REFERENCE = re.compile(r"(\d+) \d+ R")
 _PDF_APPEARANCE_STREAMS = 256
+_PDF_DELIMITERS = frozenset("()<>[]{}/%")
 
 
-def _pdf_appearance_type3_fonts(page: Any) -> list[tuple[Any, ...]]:
-    """The Type3 fonts of the page's annotation and widget appearance streams, and of the
-    forms they draw, as ``get_fonts(full=True)`` tuples (object number, or 0 for a font
-    written inline; the resource name; the stream holding it)."""
+def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
+    """The span font names of the Type3 fonts in the page's annotation and widget appearance
+    streams and the forms they draw (``get_fonts`` lists only the page's own resources).
+
+    The appearance streams are reached through the page's /Annots and each annotation's
+    /AP /N (a stream, or a dictionary of appearance states, direct or not); resource
+    dictionaries are read from their printed form (``_pdf_dict_entries``), so no name is
+    used as a lookup path. A reference to a missing object, or anything else that can't be
+    read, is skipped: this only finds fonts, and must never fail a page.
+    """
     document = page.parent
-    kind, annots = document.xref_get_key(page.xref, "Annots")
-    if kind == "xref":
-        annots = document.xref_object(int(annots.split()[0]))
-    todo: list[int] = []
-    for annot in _PDF_OBJECT_REFERENCE.findall(annots if kind in ("array", "xref") else ""):
-        kind, value = document.xref_get_key(int(annot), "AP/N")
-        if kind in ("xref", "dict"):
-            todo.extend(int(xref) for xref in _PDF_OBJECT_REFERENCE.findall(value))
-    fonts: list[tuple[Any, ...]] = []
+    count = document.xref_length()
+
+    def references(text: str) -> list[int]:
+        return [n for n in map(int, _PDF_OBJECT_REFERENCE.findall(text)) if 0 < n < count]
+
+    def resolved(kind: str, value: str) -> str:
+        if kind == "xref":
+            numbers = references(value)
+            return document.xref_object(numbers[0]) if numbers else ""
+        return value if kind == "dict" else ""
+
+    holders: list[int] = []
+    try:
+        annots = resolved(*document.xref_get_key(page.xref, "Annots")) or str(
+            document.xref_get_key(page.xref, "Annots")[1]
+        )
+    except Exception:
+        annots = ""
+    for annot in references(annots):
+        try:
+            kind, value = document.xref_get_key(annot, "AP/N")
+            if kind == "xref":
+                numbers = references(value)
+                if numbers and not document.xref_is_stream(numbers[0]):
+                    value = document.xref_object(numbers[0])  # a dictionary of states
+            holders.extend(references(value) if kind in ("xref", "dict") else [])
+        except Exception:
+            continue
+    names: set[str] = set()
     seen: set[int] = set()
-    while todo and len(seen) < _PDF_APPEARANCE_STREAMS:
-        holder = todo.pop()
+    while holders and len(seen) < _PDF_APPEARANCE_STREAMS:
+        holder = holders.pop()
         if holder in seen:
             continue
         seen.add(holder)
-        for key, found in (("Font", fonts), ("XObject", None)):
-            kind, value = document.xref_get_key(holder, f"Resources/{key}")
-            if kind == "xref":
-                value = document.xref_object(int(value.split()[0]))
-            elif kind != "dict":
+        try:
+            resources = _pdf_dict_entries(resolved(*document.xref_get_key(holder, "Resources")))
+            fonts = _pdf_dict_entries(_pdf_entry_text(document, resources.get("Font", ""), count))
+            for value in fonts.values():
+                if value.startswith("<<"):
+                    entries = _pdf_dict_entries(value)
+                    if entries.get("Subtype") == "/Type3":
+                        name = _pdf_entry_text(document, entries.get("Name", ""), count)
+                        inline = _pdf_span_font_name(_pdf_printed_name(name.strip()))
+                        names.add(inline)
+                        if inline == "Unnamed-T3":
+                            names.add("Type3 (0 0 R)")
+                    continue
+                for font in references(value):
+                    if document.xref_get_key(font, "Subtype") == ("name", "/Type3"):
+                        named = _pdf_type3_span_name(page, (font, "", "Type3", "", "", "", 0))
+                        names.add(named)
+                        if named == "Unnamed-T3":
+                            names.add(f"Type3 ({font} 0 R)")
+            xobjects = _pdf_dict_entries(
+                _pdf_entry_text(document, resources.get("XObject", ""), count)
+            )
+            for value in xobjects.values():
+                holders.extend(references(value))
+        except Exception:
+            continue
+    return names
+
+
+def _pdf_entry_text(document: Any, value: str, count: int) -> str:
+    """A dictionary entry's printed value, an indirect one's object printed in its place."""
+    match = _PDF_OBJECT_REFERENCE.fullmatch(value.strip())
+    if match and 0 < int(match.group(1)) < count:
+        return str(document.xref_object(int(match.group(1))))
+    return value
+
+
+def _pdf_dict_entries(text: str) -> dict[str, str]:
+    """The top-level entries of a printed PDF dictionary, key (as printed, #xx escapes in
+    place) to value text; {} for anything else. Nested dictionaries, arrays and strings are
+    skipped whole."""
+    text = text.strip()
+    if not text.startswith("<<"):
+        return {}
+    entries: dict[str, str] = {}
+    i = 2
+    while i < len(text):
+        while i < len(text) and text[i].isspace():
+            i += 1
+        if i >= len(text) or text.startswith(">>", i) or text[i] != "/":
+            break
+        j = i + 1
+        while j < len(text) and not text[j].isspace() and text[j] not in _PDF_DELIMITERS:
+            j += 1
+        key = text[i + 1 : j]
+        while j < len(text) and text[j].isspace():
+            j += 1
+        end = _pdf_value_end(text, j)
+        entries[key] = text[j:end].strip()
+        i = end
+    return entries
+
+
+def _pdf_value_end(text: str, i: int) -> int:
+    """Where the printed PDF value starting at ``i`` ends."""
+    if text.startswith("<<", i) or text.startswith("[", i):
+        depth = 0
+        while i < len(text):
+            if text.startswith("<<", i) or text[i] == "[":
+                depth += 1
+                i += 2 if text[i] == "<" else 1
+            elif text.startswith(">>", i) or text[i] == "]":
+                depth -= 1
+                i += 2 if text[i] == ">" else 1
+                if depth == 0:
+                    return i
+            elif text[i] == "(":
+                i = _pdf_value_end(text, i)
+            elif text[i] == "<":
+                close = text.find(">", i)
+                i = len(text) if close < 0 else close + 1
+            else:
+                i += 1
+        return i
+    if text.startswith("(", i):
+        depth = 0
+        while i < len(text):
+            if text[i] == "\\":
+                i += 2
                 continue
-            for name, target in _PDF_RESOURCE_ENTRY.findall(value):
-                xref = int(target.split()[0]) if target != "<<" else 0
-                resource = _PDF_NAME_ESCAPE.sub(
-                    lambda match: bytes.fromhex(match.group(1).decode()), name.encode("latin-1")
-                ).decode("utf-8", "surrogateescape")
-                if found is None:
-                    if xref:
-                        todo.append(xref)
-                    continue
-                path = f"Resources/Font/{resource}/Subtype"
-                try:
-                    subtype = (
-                        document.xref_get_key(xref, "Subtype")
-                        if xref
-                        else document.xref_get_key(holder, path)
-                    )
-                except Exception:  # an unaddressable name; its font is not judged
-                    continue
-                if subtype == ("name", "/Type3"):
-                    found.append((xref, "n/a", "Type3", "", resource, "", holder))
-    return fonts
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+            if depth == 0:
+                return i
+        return i
+    if text.startswith("<", i):
+        close = text.find(">", i)
+        return len(text) if close < 0 else close + 1
+    if text.startswith("/", i):
+        i += 1
+        while i < len(text) and not text[i].isspace() and text[i] not in _PDF_DELIMITERS:
+            i += 1
+        return i
+    while i < len(text) and text[i] not in "/<>[](":
+        i += 1
+    return i
+
+
+def _pdf_printed_name(value: str) -> bytes:
+    """A printed PDF name's bytes, its #xx escapes undone ("" for anything but a name)."""
+    if not value.startswith("/"):
+        return b""
+    data = value[1:].encode("utf-8", "surrogateescape")
+    return _PDF_NAME_ESCAPE.sub(lambda match: bytes.fromhex(match.group(1).decode()), data)
+
+
+def _pdf_span_font_name(name: bytes) -> str:
+    """The name MuPDF 1.26 gives a Type3 font's spans from its /Name bytes: read as Latin-1,
+    less any six characters before a "+", or "Unnamed-T3" when there are none."""
+    text = name.decode("latin-1")
+    if not text:
+        return "Unnamed-T3"
+    return text[7:] if text.find("+") == 6 else text
 
 
 def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
@@ -3467,21 +3590,16 @@ def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
             kind, value = _pdf_inline_font_key(document, font[6] or page.xref, str(font[4]))
         if kind == "xref":
             # An indirect name is printed as PDF writes it, its #xx escapes in place.
-            printed = document.xref_object(int(value.split()[0])).strip()
-            data = printed[1:].encode("latin-1") if printed.startswith("/") else b""
-            data = _PDF_NAME_ESCAPE.sub(lambda match: bytes.fromhex(match.group(1).decode()), data)
-            name = data.decode("latin-1")
+            data = _pdf_printed_name(document.xref_object(int(value.split()[0])).strip())
         elif kind == "name":
             # A direct one has its escapes undone and its bytes given as UTF-8, any byte that
             # isn't UTF-8 as a surrogate.
-            name = value[1:].encode("utf-8", "surrogateescape").decode("latin-1")
+            data = value[1:].encode("utf-8", "surrogateescape")
         else:
-            name = ""
+            data = b""
     except Exception:  # MuPDF and its bindings raise several types; only a name is at stake
-        name = str(font[3])
-    if not name:
-        return "Unnamed-T3"
-    return name[7:] if name.find("+") == 6 else name
+        data = str(font[3]).encode("latin-1", "replace")
+    return _pdf_span_font_name(data)
 
 
 def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
@@ -3537,9 +3655,14 @@ def _with_layer_marks(
     such mark goes into the span of the character before it (or the line's first span),
     so its line, span, paint and font are the ones that character has. A line whose spans'
     characters are not its text-output line's with only combining marks taken out is left
-    as it is when it holds a control character (a garbled font's line, whose marks are not
-    needed), and otherwise no mark can be placed: None (with ``sort_text``, which rebuilds
-    the lines, the text output's lines are used).
+    as it is when its text-output line holds a control character, or when its spans do and
+    the text-output line has no mark they lack; otherwise no mark can be placed: None, and
+    the text output's lines are used. That is how the mark of a garbled line is kept when
+    ``sort_text``, which rebuilds the lines, drops the garbled font's control "spaces"
+    from the text output. Limit: a line left as it is keeps its spans in other fonts
+    without such a mark (on the text output's lines the whole line would go); that takes a
+    text-output line with a control character and a lacking mark, which ``sort_text``
+    leaves only for controls above U+0020.
     """
     missing = Counter(char for char in layer_text if unicodedata.category(char) == "Mn") - Counter(
         char
@@ -3559,8 +3682,11 @@ def _with_layer_marks(
     for text_line, spans in zip(text_lines, span_lines, strict=True):
         texts = _with_line_marks(text_line, [span[0] for span in spans])
         if texts is None:
-            if _has_control_character(text_line) or any(
-                _has_control_character(span[0]) for span in spans
+            lacking = Counter(c for c in text_line if unicodedata.category(c) == "Mn") - Counter(
+                c for span in spans for c in span[0] if unicodedata.category(c) == "Mn"
+            )
+            if _has_control_character(text_line) or (
+                not lacking and any(_has_control_character(span[0]) for span in spans)
             ):
                 placed.append(spans)
                 continue
@@ -3601,8 +3727,10 @@ def _without_garbled_spans(
     out whole, before anything splits them. The exception is a span whose characters come
     from the font's own Unicode map (mapped True) when every control-character span of its
     font on the line is flagged as lacking Unicode (mapped False): the garbage is the codes
-    the map leaves out, and the mapped span is typed text (NV-20-0002 page 3's "3" in
-    "March 13, 2020"). The flag can also cover glyphs that have Unicode (after one without,
+    the map leaves out, and the mapped span's characters are the ones the font's own map
+    gives (NV-20-0002 page 3's "3" in "March 13, 2020"). "Mapped" is not "right": a font
+    whose map gives wrong characters for some codes and none for others keeps its mapped
+    garbage (WV-23-0001's screenshot shards). The flag can also cover glyphs that have Unicode (after one without,
     in the same text-showing operation), so a span flagged so is left out even when its
     text came from the map, and a font whose map gives a control character after such a
     glyph passes the test. Spans in other fonts, such as a date typed beside a garbled label, stay. The
