@@ -72,61 +72,92 @@ On a page whose layer `_pdf_page_text` merges with non-blank OCR text, and whose
 spans hold the text output's characters (#868's `_same_layer_characters`),
 `_pdf_decoded_span_lines` runs before `_without_garbled_spans`:
 
-1. **Unmapped characters** (`_pdf_unmapped_characters`): those printed as U+FFFD by a
-   second `rawdict` read without TEXT_CID_FOR_UNKNOWN_UNICODE, matched by origin and order
-   at that origin, and not U+FFFD in the first read. The characters come from the
-   `rawdict` read with the page's flags and sort, whose spans must be the `dict` spans
-   exactly; otherwise nothing is decoded.
-2. **A font's characters in a line** are candidates only when none of that font's other
-   characters in the line is mapped. MuPDF's own spaces (U+0020) are the exception.
+1. **Unmapped characters** (`_pdf_unmapped_characters`, `_pdf_unmapped_status`): those
+   printed as U+FFFD by a second `rawdict` read without TEXT_CID_FOR_UNKNOWN_UNICODE,
+   paired with the first read's characters by origin and order at that origin, and not
+   U+FFFD in the first read. Where the reads draw a different number of characters at an
+   origin, or mapped and unmapped ones together (whose order they need not share), the
+   characters there are unknown. The characters come from the `rawdict` read with the
+   page's flags and sort, whose spans must be the `dict` spans exactly; otherwise nothing
+   is decoded.
+2. **Which fonts may be decoded.** Spans name fonts, not font objects, so a font name is
+   decoded only when exactly one font object on the page carries it
+   (`_pdf_font_span_name_counts`): those `get_fonts(full=True)` lists, and those of the
+   annotations' appearance streams, which `get_text` reads and `get_fonts` does not list.
+   Each is named as MuPDF names its spans: a Type 3 font by #868's `_pdf_type3_span_name`,
+   any other by its /BaseFont less a subset prefix and an -Identity-H or -Identity-V
+   suffix. That explains every span font name on 1,039 of the 1,041 pages; the other two
+   are a name MuPDF truncates and a substituted font, neither unmapped, and a name that no
+   object explains is not decoded. And a font's characters in a line are candidates only
+   when every one of them there is unmapped, MuPDF's own spaces (U+0020) aside.
 3. **A shift k** reads code c as chr(c + k), and only into printable ASCII, U+0020 to
    U+007E (`_pdf_decoded_layer_line`).
 4. **Evidence** for font f and shift k (`_pdf_font_code_shifts`): a line whose candidate
    characters are all f's, decoded by k, that the OCR text reads (#868's
    `_ocr_read_line`), with at least 4 letters or digits among the decoded characters.
-   Font f's shift is k when no other shift has evidence for f and k's distinct evidence
-   lines hold at least 8 decoded letters or digits. Shift 0 (codes that are the text)
-   counts as a rival but is never applied.
-5. **Decoding.** Each span's candidate characters of a font with a shift are decoded, one
-   character for one. A span its font's shift cannot decode becomes a space. Every other
-   character, and every span's paint and font, is unchanged. The decoded spans no longer
-   hold control characters, so `_without_garbled_spans` keeps them, and #868's merge
-   appends the lines OCR did not read.
+   Font f's shift is k when no other shift has evidence for f, and k's distinct evidence
+   lines, each counted once at the most decoded letters or digits any line decoding to it
+   has, hold at least 8 of them: at least 4 distinct, from at least two of digits,
+   capitals and small letters. Shift 0 (codes that are the text) counts as a rival but is
+   never applied.
+5. **Decoding.** A line is decoded only when every unmapped or unknown character in it can
+   be. One value can run across fonts: AL-20-0004 page 4 writes "03/01/2020" as "0" and
+   "/01/2020" in Arial and "3" in ArialMT, and decoding Arial alone left the fragment
+   "0 /01/2020". Each decoded character is decoded one for one, and a span its font's
+   shift cannot decode becomes a space. Every other character, and every span's paint and
+   font, is unchanged. The decoded spans no longer hold control characters, so
+   `_without_garbled_spans` keeps them, and #868's merge appends the lines OCR did not
+   read.
 
-The thresholds sit between what chance gives on this sweep and the weakest real evidence.
-Across every font with
-unmapped characters on the 1,041 pages, under every shift but the font's own, the most
-decoded letters or digits in one line OCR reads is 2 (OR-19-0002, +30: "11"). So no wrong
-shift has an evidence line at all. The weakest right detection is exactly at the
-threshold: WA-14-0003's two lines "10 P & I" and "12 P & I", 4 each.
+The class rule is what keeps a font that numbers its glyphs in the order a page first
+uses them (CA-25-0037's Type 3 fonts) from passing. Such a font can fit one shift only
+where its first-use order runs through consecutive ASCII characters. No such run joins two
+of the three classes without the punctuation between them. The review's example, "1234"
+and "1122" at codes 0-3, has four glyphs of one class. The other thresholds sit between
+what chance gives on this sweep and the weakest real evidence. Across every font with
+unmapped characters on the 1,041 pages, the most decoded letters or digits in one line OCR
+reads under a wrong shift is 2 (OR-19-0002, +30: "11"). So no wrong shift has an evidence
+line at all. Here "wrong" excludes, for a font no shift was found for, the shift found for
+a font of the same name elsewhere in the sweep: MO-22-0012's one Minion Pro line,
+"6/6/2022", is read at +31, the shift of every other Minion Pro, with 6 digits. Every
+right detection has evidence from at least two classes. The weakest is exactly at the
+threshold: WA-14-0003's two lines "10 P & I" and "12 P & I", 4 each, five distinct glyphs.
 
 ## Invariants
 
 Property tests (Hypothesis) in `tests/test_ocr_shifted_font_layers.py`, with example tests
-on built PDFs (Type 3 fonts whose codes are above U+007F, so MuPDF has no Unicode for any
-of them, beside a mapped font of the same name) and on 11 retained pages:
+on built PDFs and on 11 retained pages. The built PDFs use Type 3 fonts whose codes are
+above U+007F, so MuPDF has no Unicode for any of them. Two such fonts can share a name,
+and a mapped font or an annotation's font can share a name with them.
 
 - S1-S3, decoding a line: one character for one; a mapped character, or one of a font
   with no shift, is unchanged; a shifted character becomes chr(code + k) in printable
   ASCII, and the line is undecodable exactly when one would leave it; no shifts is the
   identity.
 - S4, learning shifts: equal to a brute-force reference that tries every shift from -768
-  to 255 on every single-font line and reads it with #868's brute-force reader (a
-  differential test).
-- S5, round trip: ASCII lines written by a shift k and read by OCR give k back, unless
-  another shift also has evidence, and decode to the lines exactly; under 8 letters or
-  digits of evidence, no shift.
-- S6: lines without unmapped characters, line order and repeated lines change nothing;
-  shift 0 is never applied.
+  to 255 on every single-font line, reads it with #868's brute-force reader, and applies
+  the thresholds as numbers rather than the module's constants (a differential test).
+- S5, round trip: ASCII lines written by a shift k and read by OCR give k back when the
+  evidence is enough and no other shift has any, and decode to the lines exactly; with
+  too little evidence, no shift.
+- S6: line order, repeated lines, lines without unmapped characters, and lines that
+  decode to another line's text with fewer decoded characters change nothing; shift 0 is
+  never applied.
 - S7-S8, on every built and retained page under every text option: the `rawdict` spans are
   the `dict` spans (decoding is not skipped); paint and font never change; a span without
-  an unmapped character is unchanged; a page without one is unchanged.
+  an unmapped character is unchanged; a page without one is unchanged; a font name shared
+  by two font objects (two unmapped, unmapped and mapped, or a page's and an annotation's)
+  is not decoded; a line is decoded whole or not at all; a font whose characters in a
+  line are partly mapped is not decoded there.
+- S9: the unmapped characters are exactly those PyMuPDF's text trace, another device,
+  reports as U+FFFD, origin for origin, on all 30 retained pages of the two fixtures (a
+  differential test). And a character pairs with the other read's only where the reads
+  agree at its origin.
 
 #868's real-page tests now merge the decoded spans. Its invariant "every painted span
-without a control character is in the page text" holds for lines decoding leaves alone.
-Decoded lines are checked whole instead, because a decoded value can arrive as fragments
-of one line: AL-20-0004's "0", "3", "/01/2020" in three fonts. A mutation check (19 broken
-variants of the decoding, `mutate_shifts.py`): round 1 killed 14 of 19; tests were added for the four survivors that a test could catch (a 3-letter evidence line, decoding into U+007F, an undecodable span kept raw, mapped letters counted as evidence), and round 2 kills 18 of 19. The one left, S13, counts a character printed as U+FFFD in both reads as unmapped. It is equivalent in practice: MuPDF prints a code under the flag even for a glyph named uniFFFD (checked on a built Type 3 font), so U+FFFD with the flag needs a character whose code is 0xFFFD.
+without a control character is in the page text" holds for lines decoding leaves alone;
+decoded lines are checked whole instead. Mutation check (`mutate_shifts.py`):
+@@MUTATION@@
 
 ## Before and after: every page the overlay rule reaches
 
@@ -141,12 +172,12 @@ lines again.
 | | |
 | --- | ---: |
 | Pages with an unmapped character | 58 |
-| Pages with a detected shift | 16 (Minion Pro +31 on 13, Times New Roman +29 on 2, Arial and ArialMT +29 on 1) |
+| Pages with a detected shift | 16 (Minion Pro +31 on 13, Times New Roman +29 on 2, Arial +29 on 1) |
 | Pages whose text changes | 8 (8 PDFs) |
-| Lines added | 21 (64 words) |
+| Lines added | 20 (61 words) |
 | typed values: dates, notes, a page count | 16 (50 words) |
 | typed names and titles | 3 (9 words) |
-| clipped copies of a typed title OCR read whole | 2 (5 words) |
+| a clipped copy of a typed title OCR read whole | 1 (2 words) |
 | Lines removed (all garbled) | 3 (4 words) |
 | Errors | 0 |
 
@@ -157,33 +188,38 @@ lines again.
   Administrator" (WA-14-0003); "4/1/19", where OCR read "4 /1/19" (WA-19-0012); "1/1/2020"
   (WA-20-0004). MO-22-0012 page 3 adds "4*", the page count with the footnote marker for
   its pen-and-ink note.
-- The noise added is two clipped renderings of WA-19-0012's title, "Acting Deputy D" and
-  "Deputy D", beside the whole "Acting Deputy Director" that OCR read. The removed lines
-  are "1(:", "%JSFDUPS" and "%FQVUZ %" (the last is now "Deputy D").
+- The noise added is a clipped rendering of WA-19-0012's title, "Deputy D", beside the
+  whole "Acting Deputy Director" that OCR read. The removed lines are "1(:", "%JSFDUPS"
+  and "%FQVUZ %" (the last is now "Deputy D").
 - On 8 more pages a shift is found and every decoded line is one OCR read, so the text is
   unchanged. Examples: AR-21-0003, MD-19-0003, NV-19-0013, OH-20-0005, SD-21-0002.
 - Not decoded:
+  - AL-20-0004's ArialMT: three font objects carry the name, one of them mapped (the
+    signature). Nor are the lines that mix ArialMT with Arial; OCR read them.
+  - WA-19-0012's second clipped copy of the title, "Acting Deputy D". It is drawn where
+    another line's character is, and the two reads draw a different number of characters
+    there.
   - CA-25-0037's 15 pages, and pages of CT-24-0003, CT-24-0006, IL-21-0006, MI-25-0101,
     MI-25-1501, NC-24-0033 and WI-22-0009. Their Type 3 "T" fonts number their glyphs from
     \x00 in the order the page first uses them (CA-25-0037 page 16 begins
     "\x00\x01\x02\x03"), so no constant shift reads them, and their lines mix mapped and
     unmapped characters.
   - Identity-H fonts with a few unmapped characters inside otherwise mapped lines:
-    MD-25-0012, MI-25-0015, MI-26-0001 and WV-23-0001.
-  - NV-20-0002 page 3, whose line mixes Minion Pro fonts (OCR read it).
+    MD-25-0012 (whose OpenSans name two objects carry), MI-25-0015, MI-26-0001 and
+    WV-23-0001.
+  - NV-20-0002 page 3, whose Minion Pro name two objects carry and whose line mixes them
+    (OCR read it).
   - Fonts with too little evidence. MO-22-0012's Minion Pro has one line, "6/6/2022", 6
-    digits, which OCR read. OR-15-0006 page 4 and OR-15-0007 page 4 have one typed date
-    each and no line OCR read. Evidence is per page, so OR-15-0006 page 3's +29 does not
-    carry over, and "12/10/15" on page 4 is still lost.
-- The brief's estimate, 1,110 recoverable lines on 17 pages, included CA-25-0037's Type 3
-  fonts, which no shift reads. Per font, and only for unmapped characters, the lines that
-  change are the 24 above.
+    digits of one class, which OCR read. OR-15-0006 page 4 and OR-15-0007 page 4 have one
+    typed date each and no line OCR read. Evidence is per page, so OR-15-0006 page 3's +29
+    does not carry over, and "12/10/15" on page 4 is still lost.
+- An earlier estimate, in the task that started this work, applied a shift found on a page
+  to all of that page's control-character lines, and came to 1,110 lines OCR did not read
+  on 17 pages, some of them noise on CA-25-0037. Per font, and only for unmapped
+  characters, the lines that change are the 23 above.
 
 Document level: `_extract_blocks` on the 327 manifest documents behind the PDFs, with and
-without decoding, gives no error on either side. 8 documents change, one block each, and
-no block count, heading or section label changes. The words added and removed are the
-page lines above, 64 added and 4 removed. The OCR cache held 7,874 pages before and after
-both runs, so no page was read by Tesseract anew.
+without decoding: @@DOC@@
 
 ## Scopes whose pages change; #864
 

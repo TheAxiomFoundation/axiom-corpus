@@ -3473,36 +3473,44 @@ def _has_control_character(text: str) -> bool:
 
 
 # A layer line's characters, each with its font's name when it is an unmapped character
-# (``_pdf_unmapped_characters``) and none of that font's other characters in the line is
-# mapped, MuPDF's own spaces (U+0020) aside, and None otherwise. A font whose characters
-# in a line are mixed is not decoded there: for a Type 3 font MuPDF prints a printable
-# code whose glyph name it does not know as itself, as if mapped, so only the line's
-# control codes show as unmapped, and MuPDF may put them in spans of their own.
+# that may be decoded, and None otherwise. A font's characters in a line may be decoded
+# only when every one of them there is unmapped (``_pdf_unmapped_status``), MuPDF's own
+# spaces (U+0020) aside, and no other font object on the page has its name
+# (``_pdf_font_span_name_counts``). For a Type 3 font MuPDF prints a printable code whose
+# glyph name it does not know as itself, as if mapped, so only the line's control codes
+# show as unmapped, and MuPDF may put them in spans of their own; and two unmapped fonts of
+# one name can number their glyphs differently. A line is decoded whole or not at all
+# (``_pdf_decoded_span_lines``).
 _LayerChars = list[tuple[str, str | None]]
 
 
-def _pdf_decoded_span_lines(
+def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
     page: Any,
-    span_lines: list[list[tuple[str, bool, str]]],
+    span_lines: list[list[Span]],
     *,
     extraction: dict[str, Any],
     ocr_text: str,
-) -> list[list[tuple[str, bool, str]]]:
-    """``span_lines`` (``_pdf_layer_lines``) with the codes of shifted fonts decoded.
+) -> list[list[Span]]:
+    """``span_lines`` (``_pdf_layer_lines``: each span's text, then its paint and font
+    name, and whatever else it records) with the codes of shifted fonts decoded.
 
     The characters MuPDF has no Unicode for (``_pdf_unmapped_characters``) are decoded in
     each font whose codes the OCR text shows to be a constant shift from ASCII
     (``_pdf_font_code_shifts``), so the font's spans no longer hold control characters
-    and ``_without_garbled_spans`` keeps them. A span of such a font that the shift does
-    not decode becomes a space. Every other span, and every span's paint and font, is
-    unchanged, and so is every span of a page with no such font. The characters are read
+    and ``_without_garbled_spans`` keeps them. A line is decoded only when every unmapped
+    (or unmatched) character in it can be: one value can run across fonts (AL-20-0004 page
+    4 writes "03/01/2020" as "0" and "/01/2020" in one font and "3" in another), and
+    decoding part of it would leave a fragment. A span of a decoded font that its shift
+    does not decode becomes a space. Every other line, and every span's paint and font, is
+    unchanged (only a span's text is replaced), and so is every line of a page with no such
+    font. The characters are read
     from the ``rawdict`` output, which has the ``dict`` output's lines and spans; if it
     does not, nothing is decoded.
     """
     sort = bool(extraction.get("sort_text"))
     flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
-    unmapped = _pdf_unmapped_characters(page, sort=sort, flags=flags)
-    if not unmapped:
+    unflagged = _pdf_unmapped_characters(page, sort=sort, flags=flags)
+    if not any(any(at_origin) for at_origin in unflagged.values()):
         return span_lines
     data = page.get_text("rawdict", sort=sort, flags=flags)
     raw_lines = [
@@ -3514,70 +3522,211 @@ def _pdf_decoded_span_lines(
         [span[0] for span in spans] for spans in span_lines
     ]:
         return span_lines
+    drawn: Counter[tuple[float, float]] = Counter(
+        (float(char["origin"][0]), float(char["origin"][1]))
+        for line in raw_lines
+        for chars in line
+        for char in chars
+    )
+    objects = _pdf_font_span_name_counts(page)
     seen: Counter[tuple[float, float]] = Counter()
     lines: list[list[_LayerChars]] = []
+    line_statuses: list[list[bool | None]] = []
     for line, spans in zip(raw_lines, span_lines, strict=True):
-        values: list[list[tuple[str, str, bool]]] = []
-        for chars, (_, _, font) in zip(line, spans, strict=True):
-            span_values: list[tuple[str, str, bool]] = []
+        values: list[list[tuple[str, str, bool | None]]] = []
+        for chars, span in zip(line, spans, strict=True):
+            font = str(span[2])
+            span_values: list[tuple[str, str, bool | None]] = []
             for char in chars:
                 origin = (float(char["origin"][0]), float(char["origin"][1]))
                 occurrence = seen[origin]
                 seen[origin] += 1
                 value = str(char["c"])
-                code = value != "\ufffd" and (*origin, occurrence) in unmapped
-                span_values.append((value, font, code))
+                status = _pdf_unmapped_status(
+                    value, unflagged.get(origin), drawn[origin], occurrence
+                )
+                span_values.append((value, font, status))
             values.append(span_values)
-        mixed = {font for span in values for value, font, code in span if not code and value != " "}
+        undecoded = {
+            font
+            for span in values
+            for value, font, status in span
+            if status is None or (not status and value != " ") or objects.get(font) != 1
+        }
         lines.append(
             [
-                [(value, None if not code or font in mixed else font) for value, font, code in span]
+                [
+                    (value, font if status and font not in undecoded else None)
+                    for value, font, status in span
+                ]
                 for span in values
             ]
         )
+        line_statuses.append([status for span in values for _, _, status in span])
     shifts = _pdf_font_code_shifts(
         [[char for span in line for char in span] for line in lines], ocr_text
     )
     if not shifts:
         return span_lines
-    decoded_lines: list[list[tuple[str, bool, str]]] = []
-    for line_spans, spans in zip(lines, span_lines, strict=True):
-        decoded: list[tuple[str, bool, str]] = []
-        for chars, (_, painted, font) in zip(line_spans, spans, strict=True):
+    decoded_lines: list[list[Span]] = []
+    for line_spans, statuses, spans in zip(lines, line_statuses, span_lines, strict=True):
+        if not any(font in shifts for chars in line_spans for _, font in chars) or any(
+            status is not False and (font is None or font not in shifts)
+            for (_, font), status in zip(
+                (char for chars in line_spans for char in chars), statuses, strict=True
+            )
+        ):
+            decoded_lines.append(spans)
+            continue
+        decoded: list[Span] = []
+        for chars, span in zip(line_spans, spans, strict=True):
             decoded_text = _pdf_decoded_layer_line(chars, shifts)
-            decoded.append((" " if decoded_text is None else decoded_text, painted, font))
+            text = " " if decoded_text is None else decoded_text
+            decoded.append(cast(Span, (text, *span[1:])))
         decoded_lines.append(decoded)
     return decoded_lines
 
 
 def _pdf_unmapped_characters(
     page: Any, *, sort: bool, flags: int
-) -> frozenset[tuple[float, float, int]]:
-    """The layer characters MuPDF has no Unicode for, as (x, y, k): the k-th drawn at origin
-    (x, y).
+) -> dict[tuple[float, float], tuple[bool, ...]]:
+    """For each origin (x, y) where the layer draws a character, whether each character
+    drawn there, in drawing order, is one MuPDF has no Unicode for.
 
     With TEXT_CID_FOR_UNKNOWN_UNICODE (in ``fitz.TEXTFLAGS_TEXT``) MuPDF prints such a
-    character as its character code; without the flag it prints U+FFFD. The two reads can
-    break the same characters into different spans and lines, so characters are matched by
-    where they are drawn. Without the flag in ``flags`` no code is printed as a character,
-    and the set is empty.
+    character as its character code; without the flag it prints U+FFFD. This is the read
+    without the flag. The two reads can break the same characters into different spans and
+    lines, so characters are matched by where they are drawn (``_pdf_unmapped_status``).
+    Without the flag in ``flags`` no code is printed as a character, and nothing is
+    unmapped.
     """
     cid_flag = int(fitz.TEXT_CID_FOR_UNKNOWN_UNICODE)
     if not flags & cid_flag:
-        return frozenset()
+        return {}
     data = page.get_text("rawdict", sort=sort, flags=flags & ~cid_flag)
-    seen: Counter[tuple[float, float]] = Counter()
-    unmapped: set[tuple[float, float, int]] = set()
+    at: dict[tuple[float, float], list[bool]] = {}
     for block in data.get("blocks", ()):
         for line in block.get("lines", ()):
             for span in line.get("spans", ()):
                 for char in span.get("chars", ()):
                     origin = (float(char["origin"][0]), float(char["origin"][1]))
-                    occurrence = seen[origin]
-                    seen[origin] += 1
-                    if char["c"] == "\ufffd":
-                        unmapped.add((*origin, occurrence))
-    return frozenset(unmapped)
+                    at.setdefault(origin, []).append(char["c"] == "\ufffd")
+    return {origin: tuple(unmapped) for origin, unmapped in at.items()}
+
+
+def _pdf_unmapped_status(
+    value: str, at_origin: tuple[bool, ...] | None, drawn: int, occurrence: int
+) -> bool | None:
+    """Whether a character of the read with TEXT_CID_FOR_UNKNOWN_UNICODE is unmapped.
+
+    ``at_origin`` is what ``_pdf_unmapped_characters`` gives for its origin, ``drawn`` how
+    many characters this read draws there, and ``occurrence`` which of them it is. False
+    when the other read draws nothing there (MuPDF's own spacing). None when the reads draw
+    a different number of characters there, or both mapped and unmapped ones, whose order
+    they need not share: which is which is unknown. A character printed as U+FFFD with the
+    flag is not a code, so it is never unmapped.
+    """
+    if at_origin is None:
+        return False
+    if len(at_origin) != drawn or len(set(at_origin)) > 1:
+        return None
+    return at_origin[occurrence] and value != "\ufffd"
+
+
+def _pdf_font_span_name_counts(page: Any) -> Counter[str]:
+    """How many font objects the page's text can be drawn in carry each span font name.
+
+    The fonts are those ``page.get_fonts(full=True)`` lists (the page's and its forms') and
+    those of its annotations' appearance streams, which ``get_text`` reads and
+    ``get_fonts`` does not list. Each is named as MuPDF names its spans
+    (``_pdf_font_span_name``). Empty when an annotation's font cannot be named (one written
+    inline in its resources), so that no name counts once and nothing is decoded.
+    """
+    document = page.parent
+    counts: Counter[str] = Counter()
+    listed: set[int] = set()
+    for font in page.get_fonts(full=True):
+        if font[0]:
+            if font[0] in listed:
+                continue
+            listed.add(font[0])
+        counts[_pdf_font_span_name(page, font)] += 1
+    annotation_fonts = _pdf_annotation_font_xrefs(page)
+    if annotation_fonts is None:
+        return Counter()
+    for xref in sorted(annotation_fonts - listed):
+        subtype = str(document.xref_get_key(xref, "Subtype")[1]).lstrip("/")
+        base = str(document.xref_get_key(xref, "BaseFont")[1]).lstrip("/")
+        counts[_pdf_font_span_name(page, (xref, "", subtype, base, "", "", 0))] += 1
+    return counts
+
+
+def _pdf_font_span_name(page: Any, font: tuple[Any, ...]) -> str:
+    """The name MuPDF gives the spans of a font, from its ``get_fonts(full=True)`` entry:
+    a Type3 font's by ``_pdf_type3_span_name``, any other's its /BaseFont less a six-letter
+    subset prefix and an -Identity-H or -Identity-V suffix."""
+    if font[2] == "Type3":
+        return _pdf_type3_span_name(page, font)
+    name = str(font[3])
+    if name.find("+") == 6:
+        name = name[7:]
+    for suffix in ("-Identity-H", "-Identity-V"):
+        name = name.removesuffix(suffix)
+    return name
+
+
+_PDF_OBJECT_REFERENCE = re.compile(r"(\d+)\s+0\s+R")
+
+
+def _pdf_annotation_font_xrefs(page: Any) -> set[int] | None:
+    """The fonts of the page's annotations' appearance streams, by object number, walked
+    through each stream's Resources/Font and the forms in its Resources/XObject; None when
+    one is written inline, without an object number."""
+    document = page.parent
+    fonts: set[int] = set()
+    streams: list[int] = []
+    for annotation in page.annot_xrefs():
+        kind, value = document.xref_get_key(annotation[0], "AP")
+        if kind == "xref":
+            value = document.xref_object(int(value.split()[0]))
+        elif kind != "dict":
+            continue
+        for reference in _PDF_OBJECT_REFERENCE.findall(value):
+            xref = int(reference)
+            if document.xref_is_stream(xref):
+                streams.append(xref)
+            else:  # a dictionary of appearance states
+                streams.extend(
+                    int(state)
+                    for state in _PDF_OBJECT_REFERENCE.findall(document.xref_object(xref))
+                )
+    visited: set[int] = set()
+    while streams:
+        xref = streams.pop()
+        if xref in visited or len(visited) > 4096:
+            continue
+        visited.add(xref)
+        kind, value = document.xref_get_key(xref, "Resources")
+        if kind == "xref":
+            holder, prefix = int(value.split()[0]), ""
+        elif kind == "dict":
+            holder, prefix = xref, "Resources/"
+        else:
+            continue
+        for key, found in (("Font", fonts), ("XObject", None)):
+            kind, value = document.xref_get_key(holder, prefix + key)
+            if kind == "xref":
+                value = document.xref_object(int(value.split()[0]))
+            elif kind != "dict":
+                continue
+            if found is not None and "<<" in value[2:]:
+                return None
+            references = (int(reference) for reference in _PDF_OBJECT_REFERENCE.findall(value))
+            if found is not None:
+                found.update(references)
+            else:
+                streams.extend(references)
+    return fonts
 
 
 # A Type0 font with Identity-H codes (glyph ids) and no ToUnicode map can leave MuPDF with
@@ -3587,19 +3736,30 @@ def _pdf_unmapped_characters(
 # for "6/24"), Arial's and Times New Roman's (TrueType) 29 below. A shift decodes only into
 # printable ASCII, _PDF_SHIFT_FIRST to _PDF_SHIFT_LAST. A font's shift needs evidence that
 # chance does not give: decoded lines the OCR text reads, each with at least
-# _PDF_SHIFT_LINE_LETTERS decoded letters or digits, together at least _PDF_SHIFT_LETTERS.
-# On the 1,041 overlay pages of the 2026-10-13 OCR sweep (328 retained PDFs), no wrong
-# shift of any font decodes a line OCR reads with more than two, and the weakest right one
-# has two lines of four (WA-14-0003's "10 P & I" and "12 P & I").
+# _PDF_SHIFT_LINE_LETTERS decoded letters or digits, together at least _PDF_SHIFT_LETTERS,
+# holding at least _PDF_SHIFT_GLYPHS distinct ones from at least two of digits, capitals
+# and small letters. A font that numbers its glyphs in the order a page first uses them
+# (CA-25-0037's Type 3 fonts) can fit one shift only where that order runs through
+# consecutive ASCII characters, and no such run joins two of those classes without the
+# punctuation between them. On the 1,041 overlay pages of the 2026-10-13 OCR sweep (328
+# retained PDFs), every right shift found has evidence from two or more classes; the
+# weakest has five distinct glyphs on two lines of four (WA-14-0003's "10 P & I" and
+# "12 P & I").
 _PDF_SHIFT_FIRST = 0x20
 _PDF_SHIFT_LAST = 0x7E
 _PDF_SHIFT_LINE_LETTERS = 4
 _PDF_SHIFT_LETTERS = 8
+_PDF_SHIFT_GLYPHS = 4
+_PDF_SHIFT_CLASSES = 2
 
 
 def _pdf_shift_letters(chars: _LayerChars, shift: int) -> int:
     """How many of the line's unmapped characters ``shift`` decodes to a letter or digit."""
     return sum(1 for char, font in chars if font is not None and chr(ord(char) + shift).isalnum())
+
+
+def _pdf_glyph_class(char: str) -> str:
+    return "digit" if char.isdigit() else "capital" if char.isupper() else "small"
 
 
 def _pdf_font_code_shifts(lines: list[_LayerChars], ocr_text: str) -> dict[str, int]:
@@ -3610,12 +3770,16 @@ def _pdf_font_code_shifts(lines: list[_LayerChars], ocr_text: str) -> dict[str, 
     all f's and all decode by k into printable ASCII, which so decoded is a line the OCR
     text reads (``_ocr_read_line``), with at least _PDF_SHIFT_LINE_LETTERS letters or
     digits among the decoded characters. Font f's shift is k when no other shift has
-    evidence for f, and k's distinct evidence lines hold at least _PDF_SHIFT_LETTERS
-    decoded letters or digits. A shift of 0 (the codes are the text) counts as a shift, so
-    it makes any other ambiguous, but it is not returned: such a font is left as it is.
+    evidence for f, and k's distinct evidence lines (each counted once, at the most letters
+    or digits any line decoding to it has) hold at least _PDF_SHIFT_LETTERS decoded letters
+    or digits, at least _PDF_SHIFT_GLYPHS distinct ones, from at least _PDF_SHIFT_CLASSES
+    of digits, capitals and small letters. A shift of 0 (the codes are the text) counts as
+    a shift, so it makes any other ambiguous, but it is not returned: such a font is left
+    as it is.
     """
     reading = _ocr_reading(ocr_text)
     evidence: dict[str, dict[int, dict[str, int]]] = {}
+    glyphs: dict[tuple[str, int], set[str]] = {}
     for chars in lines:
         fonts = {font for _, font in chars if font is not None}
         if len(fonts) != 1:
@@ -3629,13 +3793,26 @@ def _pdf_font_code_shifts(lines: list[_LayerChars], ocr_text: str) -> dict[str, 
             decoded = _pdf_decoded_layer_line(chars, {font: shift}) or ""
             if _ocr_read_line(decoded, reading):
                 line = " ".join(decoded.split())
-                evidence.setdefault(font, {}).setdefault(shift, {})[line] = letters
+                read = evidence.setdefault(font, {}).setdefault(shift, {})
+                read[line] = max(read.get(line, 0), letters)
+                glyphs.setdefault((font, shift), set()).update(
+                    decoded_char
+                    for char, char_font in chars
+                    if char_font is not None
+                    and (decoded_char := chr(ord(char) + shift)).isalnum()
+                )
     shifts: dict[str, int] = {}
     for font, by_shift in evidence.items():
         if len(by_shift) != 1:
             continue
         ((shift, read_lines),) = by_shift.items()
-        if shift and sum(read_lines.values()) >= _PDF_SHIFT_LETTERS:
+        seen = glyphs[(font, shift)]
+        if (
+            shift
+            and sum(read_lines.values()) >= _PDF_SHIFT_LETTERS
+            and len(seen) >= _PDF_SHIFT_GLYPHS
+            and len({_pdf_glyph_class(char) for char in seen}) >= _PDF_SHIFT_CLASSES
+        ):
             shifts[font] = shift
     return shifts
 
