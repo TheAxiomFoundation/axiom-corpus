@@ -200,7 +200,8 @@ separate command (`axiom_corpus.corpus.resolver`):
   `scripts/validate_citation_paths.py`) refuse a partly fetched tree and name
   the fetch command. `analytics` requires only the versions its `--version`
   glob and `<version>-*` parts match, limited to its `--jurisdiction` and
-  `--document-class` filters. `scripts/audit_us_release_publishability.py
+  `--document-class` filters, in every lock that applies to its class
+  directories (`locked_entries_under`). `scripts/audit_us_release_publishability.py
   --repair-derived` fetches a scope's locked artifacts before deciding what
   to regenerate, so it never writes a stand-in for an unfetched one. The
   manifest builders' collision checks and
@@ -545,9 +546,13 @@ exactly those 1,362 files.
     `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
     path itself, and below a directory every directory link or dangling link
     at a protected place, the links below a linked directory's target
-    included. Each part's files belong to the checkout that names the part
-    (invariant 10). Its lock decides what is fetched there, and fetch writes
-    only into that checkout. The lock of every other protected place a part
+    included. Each part's files belong to the checkout that names the paths
+    below it (invariant 10): the one that names the part itself, save for a
+    dangling link at a directory-only place (`data`, `data/corpus`, a class,
+    jurisdiction or document-class directory, a sources version directory)
+    to the same path in another checkout, whose directory that checkout has
+    not made yet. That checkout's lock decides what is fetched there, and
+    fetch writes only into it. The lock of every other protected place a part
     stands at or reaches also applies: the checkout holding a link on the
     way, and the place a link leads to. A file such a lock names must be in
     place once the parts' checkouts have placed theirs. With fetching off,

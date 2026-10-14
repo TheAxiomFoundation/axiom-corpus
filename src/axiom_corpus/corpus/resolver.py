@@ -34,6 +34,7 @@ from axiom_corpus.corpus.content_store import (
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
     LOCK_ROOT,
+    PROTECTED_ARTIFACT_CLASSES,
     PROTECTED_CORPUS_PREFIXES,
     SINGLE_FILE_SUFFIXES,
     LockEntry,
@@ -648,13 +649,15 @@ class _Plan:
     ``owned`` maps each checkout that names a part to the entries its lock
     names there; ``names`` keeps each part's name, for messages; ``tops``
     the part each selection itself is; ``witnessed`` holds, per file any
-    other lock that applies names, each place a selection reads it from.
+    other lock that applies names, each place a selection reads it from;
+    ``spelled`` (when asked for) the path a selection spells for each entry.
     """
 
     owned: dict[Path, tuple[CorpusResolver, dict[str, LockEntry]]] = dataclasses.field(default_factory=dict)
     names: dict[Path, dict[str, None]] = dataclasses.field(default_factory=dict)
     tops: list[_View] = dataclasses.field(default_factory=list)
     witnessed: dict[tuple[Path, str], list[_Witnessed]] = dataclasses.field(default_factory=dict)
+    spelled: dict[tuple[Path, str], Path] = dataclasses.field(default_factory=dict)
 
 
 def _join(head: str, tail: str) -> str:
@@ -697,6 +700,41 @@ def _owner_of(spelled: Path, hint: CorpusResolver | None) -> tuple[CorpusResolve
         return None
     name = resolver.relative(spelled)
     return (resolver, name) if name is not None else None
+
+
+def _directory_place(name: str) -> bool:
+    """True for a guarded place above every path a lock can name, so only ever a
+    directory: ``data``, ``data/corpus``, a class directory, and below it the
+    jurisdiction and document-class directories (and, for sources, the version
+    directory)."""
+    parts = fold_path(name).strip("/").split("/")
+    if parts == ["data"]:
+        return True
+    if parts[:2] != CORPUS_BASE.split("/"):
+        return False
+    rest = parts[2:]
+    if not rest:
+        return True
+    if rest[0] not in PROTECTED_ARTIFACT_CLASSES:
+        return False
+    return len(rest) <= (4 if rest[0] == "sources" else 3)
+
+
+def _part_owner(path: Path, found: tuple[CorpusResolver, str] | None) -> tuple[CorpusResolver, str] | None:
+    """The checkout whose lock decides what is fetched below ``path``, and its name.
+
+    That is the one that names ``path`` (``found``), save for a dangling link
+    at a directory place to the same path in another checkout: a sharing link
+    whose directory that checkout has not made yet. The link's own path names
+    itself (a symlinked file, invariant 10), but every path below it is named
+    in that checkout, so the files below are that checkout's.
+    """
+    if found is None or not _directory_place(found[1]) or not os.path.islink(path) or os.path.exists(path):
+        return found
+    reached = _protected_at(Path(os.path.realpath(path)).parts, None)
+    if reached is None or reached[1] != found[1]:
+        return found
+    return _resolver(reached[0]), reached[1]
 
 
 def _places_above(spelled: Path, physical: Path) -> list[tuple[Path, str]]:
@@ -748,9 +786,10 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
     The first part is the selection itself, in the checkout that names it.
     With ``walk``, a directory adds a part for each directory link (or
     dangling link) at a protected place below it, the links below a linked
-    directory's target included.
+    directory's target included, and a part takes the checkout that names
+    the paths below it (``_part_owner``).
     """
-    top = _owner_of(spelled, hint)
+    top = _part_owner(spelled, _owner_of(spelled, hint)) if walk else _owner_of(spelled, hint)
     if top is None:
         return [], []
     physical = Path(os.path.realpath(spelled))
@@ -772,7 +811,7 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
         for below in _links_below(directory, name):
             where = _join(sub, below)
             link = spelled / where
-            found = _owner_of(link, hint)
+            found = _part_owner(link, _owner_of(link, hint))
             if found is None:
                 continue
             link_physical = Path(os.path.realpath(link))
@@ -791,16 +830,18 @@ def _covers(outer: _View, inner: _View) -> bool:
     return rest is not None and inner.sub == _join(outer.sub, rest)
 
 
-def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False) -> _Plan:
+def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False, spell: bool = False) -> _Plan:
     """The locked files ``paths`` select, split by the checkout that fetches them.
 
     With ``exact``, each path selects only a file of its own name (no
-    directory below it, no link below it).
+    directory below it, no link below it). With ``spell``, ``spelled`` is
+    filled in.
     """
     hint = resolver_for(repo) if repo is not None else None
     plan = _Plan()
     for path in paths:
-        parts, views = _selection(_spelled(path, repo), hint, walk=not exact)
+        selection = _spelled(path, repo)
+        parts, views = _selection(selection, hint, walk=not exact)
         if not parts:
             fallback = hint or resolver_for(None)
             if fallback is not None and fallback.active:
@@ -831,6 +872,8 @@ def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False
                     if rest is not None:
                         break
                 owner_name = _join(part.name, rest or "")
+                if spell:
+                    plan.spelled.setdefault((resolver.repo, entry.path), selection / where if where else selection)
                 if resolver is part.resolver and entry.path == owner_name:
                     plan.owned.setdefault(resolver.repo, (resolver, {}))[1][entry.path] = entry
                 else:
@@ -855,23 +898,30 @@ def _absent_owned(plan: _Plan) -> list[tuple[CorpusResolver, list[LockEntry]]]:
     return found
 
 
+def _covered(plan: _Plan, places: Sequence[_Witnessed]) -> list[tuple[Path, str]]:
+    """The owned entries that are the witnessed file of ``places``: its own
+    checkout's, where that checkout names it in a part, and that of each owner
+    whose lock lists a place it is read from. Each reaches the same directory
+    entry as the witnessed file (invariant 10), so its fetch places that file."""
+    first = places[0]
+    found = [(first.holder.repo, first.entry.path)] if _owns(plan, first.holder, first.entry.path) else []
+    found.extend((item.owner.repo, item.owner_name) for item in places if _owns(plan, item.owner, item.owner_name))
+    return found
+
+
 def _unfetchable(plan: _Plan, *, recheck: bool = False) -> list[_Witnessed]:
     """Witnessed files that are not in place and that no part's checkout fetches.
 
-    A witnessed file is fetched when its own checkout names it in a part, or
-    when the lock of a checkout that names a place it is read from lists that
-    place. With ``recheck`` (after fetching), any witnessed file still absent
-    counts.
+    A covered file (``_covered``) is left to the owned entry that covers it,
+    without a ``stat`` of its own. With ``recheck``, every witnessed file that
+    is not in place counts.
     """
     found = []
     for places in plan.witnessed.values():
-        first = places[0]
-        if _placed(first.holder.repo / first.entry.path):
+        if not recheck and _covered(plan, places):
             continue
-        if recheck or not (
-            _owns(plan, first.holder, first.entry.path)
-            or any(_owns(plan, item.owner, item.owner_name) for item in places)
-        ):
+        first = places[0]
+        if not _placed(first.holder.repo / first.entry.path):
             found.append(first)
     return found
 
@@ -920,10 +970,25 @@ def _fetch_command(resolver: CorpusResolver, rels: Sequence[str]) -> str:
     return f"`axiom-corpus-ingest corpus fetch {command}`{where}"
 
 
-def _place_owned(plan: _Plan, absent: Sequence[tuple[CorpusResolver, list[LockEntry]]]) -> list[FetchReport]:
-    """Fetch each checkout's absent entries into it, then check every witnessed file."""
-    reports = [resolver.ensure(entries) for resolver, entries in absent]
-    unplaced = _unfetchable(plan, recheck=True)
+def _place_owned(plan: _Plan, batches: Sequence[tuple[CorpusResolver, list[LockEntry]]]) -> list[FetchReport]:
+    """Fetch each checkout's entries into it, then check that every witnessed file
+    a fetched entry covers is in place.
+
+    Callers first refuse what no fetch places (``_unfetchable``); a covered file
+    whose owned entry was already in place is that same file, so it is in place.
+    """
+    reports = []
+    fetched: set[tuple[Path, str]] = set()
+    for resolver, entries in batches:
+        report = resolver.ensure(entries)
+        reports.append(report)
+        fetched.update((resolver.repo, path) for path in report.materialized)
+    unplaced = [
+        places[0]
+        for places in plan.witnessed.values()
+        if fetched.intersection(_covered(plan, places))
+        and not _placed(places[0].holder.repo / places[0].entry.path)
+    ]
     if unplaced:
         raise _unfetchable_error(unplaced)
     return reports
@@ -943,6 +1008,25 @@ def _merged(reports: Iterable[FetchReport]) -> FetchReport:
             total.methods[name] = total.methods.get(name, 0) + count
         total.bytes_materialized += report.bytes_materialized
     return total
+
+
+def locked_entries_under(paths: Iterable[str | Path], *, repo: Path | None = None) -> list[tuple[Path, LockEntry]]:
+    """Each locked file at or below each path, under every lock that applies.
+
+    Pairs the path a selection spells for the file with its lock entry: that
+    of the checkout that names it where one does, else that of another lock
+    that applies (invariant 11). ``repo`` is taken as ``ensure_corpus_paths``
+    takes it.
+    """
+    plan = _plan(list(paths), repo=repo, spell=True)
+    found: dict[Path, LockEntry] = {}
+    for resolver, entries in plan.owned.values():
+        for entry in entries.values():
+            found.setdefault(plan.spelled[(resolver.repo, entry.path)], entry)
+    for places in plan.witnessed.values():
+        first = places[0]
+        found.setdefault(plan.spelled[(first.holder.repo, first.entry.path)], first.entry)
+    return sorted(found.items())
 
 
 def ensure_corpus_paths(paths: Iterable[str | Path], *, repo: Path | None = None) -> FetchReport:

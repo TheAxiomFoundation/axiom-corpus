@@ -1474,14 +1474,17 @@ def _sharing(
     shared_locks: dict[str, bytes],
     link: str = "data/corpus/provisions",
     every_file: dict[str, bytes] = SHARED_FILES,
+    dangling: bool = False,
 ) -> tuple[Path, Path]:
-    """A worktree whose ``link`` leads to the same path in a shared checkout. Each
-    checkout locks the files given; an in-memory R2 serves every file."""
+    """A worktree whose ``link`` leads to the same path in a shared checkout (not
+    made yet, if ``dangling``). Each checkout locks the files given; an
+    in-memory R2 serves every file."""
     shared = _init_repo(tmp_path / "shared")
     worktree = _init_repo(tmp_path / "worktree")
     _lock_files(worktree, worktree_locks)
     _lock_files(shared, shared_locks)
-    (shared / link).mkdir(parents=True)
+    if not dangling:
+        (shared / link).mkdir(parents=True)
     (worktree / link).parent.mkdir(parents=True, exist_ok=True)
     (worktree / link).symlink_to(shared / link, target_is_directory=True)
     remote, _fake = _remote({content_key(_sha(d)): d for d in every_file.values()})
@@ -1602,6 +1605,30 @@ def test_a_file_only_the_shared_checkouts_lock_names_is_fetched_there_from_any_s
     assert target.is_file() and not target.is_symlink() and target.read_bytes() == SHARED_FILES[US_PROV]
     assert _tree(worktree / "data/corpus") == ["provisions"]
     require_materialized([selection], **kwargs)
+
+
+@pytest.mark.parametrize("how", ["the linked directory", "a directory above the link", "the file"])
+def test_a_dangling_sharing_link_is_the_shared_checkouts_directory_not_made_yet(
+    tmp_path: Path, monkeypatch, how: str
+) -> None:
+    """The shared checkout has not made ``data/corpus/provisions`` yet, so the
+    worktree's link dangles. The link's own path names itself (a symlinked file,
+    invariant 10), but every path below it is the shared checkout's, so a
+    selection of the link, or above it, fetches the files below into the shared
+    checkout as a selection of a file below does; it did refuse them as files no
+    fetch places."""
+    worktree, shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks=SHARED_FILES, shared_locks=SHARED_FILES, dangling=True
+    )
+    assert not os.path.exists(worktree / "data/corpus/provisions")
+    selection = _selection(worktree, how, PROV)
+    with pytest.raises(CorpusNotMaterializedError, match=r"not in this checkout .* in \S*/shared first"):
+        require_materialized([selection])
+    require_materialized([selection], fetch=True)
+    assert (shared / PROV).read_bytes() == SHARED_FILES[PROV]
+    if how != "the file":
+        assert (shared / US_PROV).read_bytes() == SHARED_FILES[US_PROV]
+    assert _tree(worktree / "data/corpus") == ["provisions"]
 
 
 def test_a_file_both_locks_name_is_fetched_into_the_shared_checkout(tmp_path: Path, monkeypatch) -> None:
@@ -1732,6 +1759,22 @@ def test_scopes_cli_inputs_and_sources_through_a_sharing_link_follow_every_lock(
     assert _tree(worktree / "data") == ["corpus"]
 
 
+def test_analytics_requires_the_shared_checkouts_files_through_a_sharing_link(tmp_path: Path, monkeypatch) -> None:
+    """``analytics`` required the versions its glob matches in the working
+    checkout's lock alone, so a matching scope only the shared lock names, read
+    through the link, was not required and an unfetched one read as absent."""
+    from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
+
+    worktree, _shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks={PROV: SHARED_FILES[PROV]}, shared_locks={US_PROV: SHARED_FILES[US_PROV]}
+    )
+    args = build_parser().parse_args(["analytics", "--base", str(worktree / "data/corpus"), "--version", "2026-07-*"])
+    required = {path.relative_to(worktree).as_posix() for path in _corpus_wide_prefixes(args, "analytics")}
+    assert required == {PROV, US_PROV}
+    with pytest.raises(CorpusNotMaterializedError):
+        require_materialized([worktree / US_PROV])
+
+
 # The sharing layout with random locks, files and selections, against a
 # reference model of invariant 11 written over the layout, not the filesystem.
 _SHARED_UNIVERSE = {**SHARED_FILES, COVERAGE: SCOPE_FILES[COVERAGE]}
@@ -1751,7 +1794,13 @@ def _divergent_sharing(draw):
         "bare": draw(st.booleans()),
         "with_repo": draw(st.booleans()),
         "action": draw(st.sampled_from(["require, fetching", "ensure", "read"])),
+        # The link's target is not made until something is placed below it.
+        "dangling": draw(st.booleans()),
     }
+
+
+def _placed_file(path: Path) -> bool:
+    return path.is_file() and not path.is_symlink()
 
 
 def _expected_sharing(link: str, worktree_locks: set[str], shared_locks: set[str], present: set[str], selection: str):
@@ -1779,8 +1828,8 @@ def _expected_sharing(link: str, worktree_locks: set[str], shared_locks: set[str
 @given(_divergent_sharing())
 def test_every_lock_that_applies_through_a_sharing_link_counts(tmp_path_factory, monkeypatch, drawn) -> None:
     """Invariant 11. For any locks the worktree and the shared checkout hold, any
-    files in place and any selection, spelled bare or absolute, with ``repo`` or
-    without: every helper refuses exactly when a lock that applies names an absent
+    files in place, a live or dangling link, and any selection, spelled bare or
+    absolute, with ``repo`` or without: every helper refuses exactly when a lock that applies names an absent
     file, and with fetching on, it fetches the absent files the shared lock names
     below the link into the shared checkout (and the others the worktree's lock
     names into the worktree), unless some absent file no fetch places, in which
@@ -1794,6 +1843,7 @@ def test_every_lock_that_applies_through_a_sharing_link_counts(tmp_path_factory,
         shared_locks={rel: _SHARED_UNIVERSE[rel] for rel in drawn["shared_locks"]},
         link=link,
         every_file=_SHARED_UNIVERSE,
+        dangling=drawn["dangling"],
     )
 
     def home(rel: str) -> Path:
@@ -1851,6 +1901,7 @@ def test_every_lock_that_applies_through_a_sharing_link_counts(tmp_path_factory,
             (Path(directory) / name).relative_to(root).as_posix()
             for directory, _dirs, names in os.walk(root / "data")
             for name in names
+            if _placed_file(Path(directory) / name)  # a dangling link is listed as a name too
         }
         assert written == {rel for rel in placed if home(rel) == root / rel}, root
 
