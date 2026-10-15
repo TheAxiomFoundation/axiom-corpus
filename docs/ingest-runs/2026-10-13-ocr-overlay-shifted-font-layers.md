@@ -124,10 +124,16 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
      as unmapped NULs in a font named like the page's shifted font, was decoded by its
      shift to "000". So an annotation other than a Link or Popup must have /AP /N a
      stream, or a dictionary whose entry under /AS is one, as MuPDF chooses
-     (`_pdf_stored_appearance`), and no widget may be one the form says to remake.
-     Otherwise the page's fonts are not known. That also refuses a hidden FreeText, and a
-     Text or Square annotation, without a stored appearance, whose made appearances hold
-     no text.
+     (`_pdf_stored_appearance`), and the form must not say to make appearances anew
+     (/NeedAppearances true). Otherwise the page's fonts are not known. The /Subtype is
+     resolved when indirect, as MuPDF resolves it: review round 8 found a widget whose
+     /Subtype was an object of its own escaping the first, widget-only form of the
+     /NeedAppearances rule, while 1.28.2 remade it. Under /NeedAppearances neither version
+     was seen to remake a stored FreeText, Stamp, Line or Square appearance
+     (`scripts/round9_probe.py`, `evidence/round9-probe-before.txt` and `-after.txt`), but
+     every annotation but a Link or Popup is refused there, since a rule keyed to a type's
+     name is what failed. This also refuses a hidden FreeText, and a Text or Square
+     annotation, without a stored appearance, whose made appearances hold no text.
    - **Naming them** (`_pdf_font_names`, checked on PyMuPDF 1.26.7 and 1.28.2). A font's
      span name is its /BaseFont. For a Type0 font it is the descendant's /BaseFont, not
      the Type0 font's own, which can end in -Identity-H; for a Type 3 font it is its
@@ -157,8 +163,9 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
        dictionary (MuPDF resolves `/BaseFont 70 0 R` to the name it refers to, while the
        bare key gives "70 0 R");
      - a /Subtype other than the five MuPDF loads by;
-     - an annotation, other than a Link or Popup, without a stored appearance MuPDF uses,
-       or a widget whose form says to make appearances anew (review round 7);
+     - an annotation, other than a Link or Popup (its /Subtype resolved when indirect),
+       without a stored appearance MuPDF uses, or any such annotation when the form says
+       to make appearances anew (review rounds 7 and 8);
      - a reference printed with a generation other than 0, or to an object the file does
        not have;
      - anything PyMuPDF can't read;
@@ -339,9 +346,11 @@ share a name, and a mapped font or an annotation's font can share a name with th
   annotation; an inline descendant; an inline font in a graphics state's /Font entry; a
   font of /Subtype /Foo that MuPDF loads as a Type0 or a Type 3 font and names as one;
   annotations MuPDF makes appearances for (FreeText without /AP, with /AP null, with
-  states but no /AS; a Stamp; a captioned Line; a text field without /AP, and one with
-  /AP whose form has /NeedAppearances true), with stored appearances, Links and Popups
-  as the converse; an appearance referred to with generation 1, or to
+  states but no /AS, or with its /Subtype written as an object; a Stamp; a captioned
+  Line; a text field without /AP), and under /NeedAppearances true a text field with
+  /AP, its /Subtype direct or indirect, and a FreeText with /AP; with stored
+  appearances, Links and Popups (one with an indirect /Subtype, one under
+  /NeedAppearances) as the converse; an appearance referred to with generation 1, or to
   an object the file lacks; an unused font resource that does; a page tree too deep to
   follow; a walk that reaches its limit, counting each object once (met twice, or as
   both a holder and a graphics-state object).
@@ -415,14 +424,17 @@ new, each undoing a round-6 review fix: a graphics state written as a stream not
 /Font, and an object that looks like a font not walked through. After review round 7, 60 variants at `7c6630130`: 59 killed, S12 again the one left. The
 three new ones each undo part of the round-7 fix: an annotation without a stored
 appearance walked as if it had one; a widget the form says to remake taken as stored;
-appearance states taken as stored without /AS. Logs: `evidence/mutation-r1.txt` to `mutation-r13.txt`.
+appearance states taken as stored without /AS. After review round 8, 62 variants at `b2c8510f5`: 61 killed, S12 again the one left. S60
+was rewritten for the new condition; S63 (an indirect annotation /Subtype not resolved) and
+S64 (only widgets refused under /NeedAppearances, by their /Subtype as written) are new.
+Logs: `evidence/mutation-r1.txt` to `mutation-r14.txt`.
 
 ## Before and after: every page the overlay rule reaches
 
 Both sides were run on the same 1,041 pages in 328 retained PDFs, with Tesseract 5.5.3
 cached by rendered page image: 3,123 hits for the two sides, 4,164 from round 3 on with
 the all-fonts chance pass, 0 misses in every run. These figures hold for the rule after
-review rounds 1 to 7 and the author's round-6 check. The rule before round 1 (no font-object or class test, lines decoded in part)
+review rounds 1 to 8 and the author's round-6 check. The rule before round 1 (no font-object or class test, lines decoded in part)
 also found AL-20-0004's ArialMT; it gave the same lines and one more, the clipped "Acting
 Deputy D". The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
@@ -439,8 +451,9 @@ So no figure here moves. After review round 2's fixes (`a77efdd49`), with #868 m
 (`evidence/r7-review-r2-fixes/`, `r8-dfe3833be/`, `r9-a5bc14776/`), and so does it after
 review round 3's (`d4f4b9c12`, `r10-d4f4b9c12/`), round 4's (`ab9a4b6d3`,
 `r11-ab9a4b6d3/`), round 5's (`044992b5c`, `r12-dd61ee4c8/`), the round-6 check's
-(`1479bd957`, `r13-1479bd957/`), review round 6's (`8fda76c0e`, `r14-8fda76c0e/`) and review
-round 7's (`7c6630130`, `r15-7c6630130/`); r12 to r15 are byte-identical, probes included.
+(`1479bd957`, `r13-1479bd957/`), review round 6's (`8fda76c0e`, `r14-8fda76c0e/`), review
+round 7's (`7c6630130`, `r15-7c6630130/`) and review round 8's (`b2c8510f5`,
+`r16-b2c8510f5/`); r12 to r16 are byte-identical, probes included.
 
 | | |
 | --- | ---: |
@@ -496,7 +509,7 @@ without decoding and the same OCR cache, gives no error on either side. 8 docume
 change, one block each, and no block count, heading or section label changes. The words
 added and removed are the page lines above, 61 added and 4 removed. Re-run on #868 at
 `55bba979b`, after review round 2's fixes, at `dfe3833be` and `a5bc14776`, and after
-review rounds 3 to 7 and the round-6 check, it gives the same documents, blocks and
+review rounds 3 to 8 and the round-6 check, it gives the same documents, blocks and
 words.
 
 ## Scopes whose pages change; #864
