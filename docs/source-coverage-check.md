@@ -33,9 +33,13 @@ repeated phrase must be kept as often as it appears.
 
 ## What a prototype shows
 
-`source_coverage_prototype.py` (in the evidence folder of the run note) applies
-the measure to whole HTML pages, with scripts, styles and the content check's
-navigation elements removed, for a handful of scopes:
+The table and coverage values discussed below are **unpublished prototype
+evidence**. The measuring script, exact input selection, options and raw output
+were not published with this checkout, so these distributions cannot be reproduced
+from repository artifacts alone. They are retained as design context.
+
+The prototype applies the measure to whole HTML pages, with scripts, styles and
+the content check's navigation elements removed, for a handful of scopes:
 
 | Scope | HTML sources | Median | 10th percentile | Under 0.5 | What the low pages lose |
 | --- | ---: | ---: | ---: | ---: | --- |

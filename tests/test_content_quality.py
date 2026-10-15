@@ -9,11 +9,11 @@ Invariants, for every input:
 - A page with no navigation strings never makes a body navigation; such a body
   is prefixed only through a skip link or JavaScript notice.
 - A body is text exactly when it is not navigation and has a word with a
-  letter or is a table of figures (at least ``FIGURE_TEXT_MIN_TOKENS`` figures,
-  at least ``FIGURE_TEXT_MIN_SHARE`` of its tokens). The figure rule decides
-  substance only, never the navigation or prefix verdicts.
-- A table of figures stays one when a figure is added; fewer than
-  ``FIGURE_TEXT_MIN_TOKENS`` tokens never are one.
+  letter or is a table of figures (at least five figures, at least half of
+  its tokens). The figure rule decides substance only, never the navigation
+  or prefix verdicts.
+- A table of figures stays one when a figure is added; fewer than five
+  figures never are one.
 - A scope's findings do not depend on the order of its records, are sorted and
   unique, and its hollow roots are bodyless ``document`` rows with no text-
   bearing row below them; ``text_paths`` never contains a hollow root.
@@ -30,14 +30,13 @@ import tempfile
 from pathlib import Path
 from unittest import mock
 
+import pytest
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import content_quality
 from axiom_corpus.corpus.content_quality import (
     _SKIP_LINK,
-    FIGURE_TEXT_MIN_SHARE,
-    FIGURE_TEXT_MIN_TOKENS,
     HOLLOW_DOCUMENT_ROOT,
     HTML_SNIFF_BYTES,
     NAVIGATION_BODY,
@@ -226,6 +225,23 @@ def test_a_table_of_figures_is_text_and_a_stamp_is_not() -> None:
     assert not classify_body("(1). (2). (3). (4). (5).", None).substantive
 
 
+@pytest.mark.parametrize(
+    ("body", "expected"),
+    [
+        ("16 $15 04/09 10/19--", False),
+        ("16 $15 04/09 10/19-- (450,000)", True),
+        ("16 $15 04/09 10/19-- (450,000) - § — ; %", True),
+        ("16 $15 04/09 10/19-- (450,000) - § — ; % $", False),
+    ],
+    ids=["four-figures", "five-figures", "exactly-half", "just-below-half"],
+)
+def test_figure_table_thresholds_are_five_figures_and_half_the_tokens(
+    body: str, expected: bool
+) -> None:
+    assert is_figure_table(body.split()) is expected
+    assert classify_body(body, None).substantive is expected
+
+
 def test_figures_are_not_residual_words() -> None:
     """Numbers beside a menu's links do not count toward the 25-word residual.
 
@@ -400,20 +416,27 @@ def test_without_navigation_strings_only_a_skip_link_can_flag_a_body(tokens: lis
 
 
 _FIGURE_TOKEN = st.sampled_from(["16", "$15", "04/09", "10/19--", "(450,000)", ".9666", "2.5%"])
-_ANY_TOKEN = st.one_of(_TOKEN, _FIGURE_TOKEN, st.sampled_from(["-", "§", "\x05\x06", "\x071"]))
+_NON_FIGURE_TOKEN = st.sampled_from(["-", "§", "\x05\x06", "\x071", "(1)", "[12]", "3."])
+_ANY_TOKEN = st.one_of(_TOKEN, _FIGURE_TOKEN, _NON_FIGURE_TOKEN)
 
 
 @_SETTINGS
-@given(strings=st.lists(_PHRASE, max_size=8), tokens=st.lists(_ANY_TOKEN, max_size=120))
+@given(
+    strings=st.lists(_PHRASE, max_size=8),
+    tokens=st.one_of(
+        st.lists(_ANY_TOKEN, max_size=120),
+        st.lists(_FIGURE_TOKEN, min_size=5, max_size=60),
+    ),
+)
 def test_text_means_letters_or_figures_and_not_navigation(
     strings: list[str], tokens: list[str]
 ) -> None:
     page = PageNavigation(strings)
     verdict = classify_body(" ".join(tokens), page)
     has_letters = any(char.isalpha() for token in tokens for char in token)
-    assert verdict.substantive == (
-        (has_letters or is_figure_table(tokens)) and not verdict.navigation
-    )
+    figures = sum(1 for token in tokens if is_figure(token))
+    figure_table = figures >= 5 and 2 * figures >= len(tokens)
+    assert verdict.substantive == ((has_letters or figure_table) and not verdict.navigation)
     assert not (verdict.navigation and verdict.prefixed)
     # The figure rule decides substance only: forcing it either way leaves the
     # navigation and prefix verdicts as they were.
@@ -424,18 +447,22 @@ def test_text_means_letters_or_figures_and_not_navigation(
 
 
 @_SETTINGS
-@given(tokens=st.lists(_ANY_TOKEN, max_size=60), extra=_FIGURE_TOKEN)
+@given(
+    figures=st.lists(_FIGURE_TOKEN, max_size=30),
+    other=st.lists(_NON_FIGURE_TOKEN, max_size=30),
+    extra=_FIGURE_TOKEN,
+)
 def test_a_figure_table_grows_by_figures_and_needs_enough_of_them(
-    tokens: list[str], extra: str
+    figures: list[str], other: list[str], extra: str
 ) -> None:
+    tokens = [*figures, *other]
     if is_figure_table(tokens):
         assert is_figure_table([*tokens, extra])
-    if len(tokens) < FIGURE_TEXT_MIN_TOKENS:
+    if len(figures) < 5:
         assert not is_figure_table(tokens)
-    figures = sum(1 for token in tokens if is_figure(token))
-    assert is_figure_table(tokens) == (
-        figures >= FIGURE_TEXT_MIN_TOKENS and figures >= FIGURE_TEXT_MIN_SHARE * len(tokens)
-    )
+    expected = len(figures) >= 5 and len(figures) >= len(other)
+    assert is_figure_table(tokens) is expected
+    assert classify_body(" ".join(tokens), None).substantive is expected
 
 
 _ROW_BODIES = st.sampled_from(

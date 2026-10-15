@@ -29,9 +29,10 @@ artifacts (docs/release-gate-policy.md):
     contents, an index of separate documents, a cross-reference stub, a
     reserved, deleted or repealed item, a page whose content area is empty),
     each with its reason and the run note that records the review. Such a row
-    is not a ``hollow_document_root`` finding, so the baseline does not pin it;
-    validation reports the scope's reviewed rows as a notice. An entry that no
-    longer names a hollow root fails ``content-check --check-baseline``. The
+    is not a ``hollow_document_root`` finding; the baseline records which roots
+    it exempted and is reused only while they remain listed. Validation reports
+    the scope's reviewed rows as a notice. An entry that no longer names a
+    hollow root fails ``content-check --check-baseline``. The
     file is optional: without it every hollow root is a finding.
 
 No file lists a scope it does not need to. A checkout without them validates
@@ -176,16 +177,15 @@ class WithdrawnScope:
 class ContentBaselineEntry:
     """The known content findings of one locked scope, possibly none.
 
-    ``reviewed_empty`` is set only on a fresh scan (``scan_scope``): the hollow
-    roots the reviewed-empty list exempted from ``findings``. The baseline file
-    does not record it, and it takes no part in comparing entries.
+    ``reviewed_empty`` records the hollow roots the reviewed-empty list exempted
+    from ``findings``. Reusing this scan requires those roots to remain listed.
     """
 
     scope: ReleaseScope
     provisions_sha256: str
     inventory_sha256: str
     findings: tuple[ContentFinding, ...] = ()
-    reviewed_empty: tuple[str, ...] = field(default=(), compare=False)
+    reviewed_empty: tuple[str, ...] = ()
 
     def pins(self, provisions_sha256: str, inventory_sha256: str) -> bool:
         return (self.provisions_sha256, self.inventory_sha256) == (
@@ -559,9 +559,10 @@ def load_content_baseline(path: str | Path) -> ContentBaseline:
     for label, raw in scopes.items():
         entry_where = f"{where}: scopes.{label}"
         item = _require_mapping(raw, entry_where)
-        if set(item) != _BASELINE_ENTRY_FIELDS:
+        if not _BASELINE_ENTRY_FIELDS <= set(item) <= _BASELINE_ENTRY_FIELDS | {"reviewed_empty"}:
             raise ReleasePolicyError(
-                f"{entry_where}: fields must be {sorted(_BASELINE_ENTRY_FIELDS)}"
+                f"{entry_where}: fields must be {sorted(_BASELINE_ENTRY_FIELDS)}, "
+                "with optional reviewed_empty"
             )
         scope = parse_scope(label, where=entry_where)
         raw_findings = item["findings"]
@@ -579,6 +580,19 @@ def load_content_baseline(path: str | Path) -> ContentBaseline:
             findings.append(ContentFinding(raw_finding[0], raw_finding[1]))
         if findings != sorted(set(findings)):
             raise ReleasePolicyError(f"{entry_where}: findings must be sorted and unique")
+        raw_reviewed = item.get("reviewed_empty", [])
+        prefix = f"{scope.jurisdiction}/{scope.document_class}/"
+        if not isinstance(raw_reviewed, list) or not all(
+            isinstance(path, str)
+            and path.startswith(prefix)
+            and path == path.strip()
+            and not path.endswith("/")
+            for path in raw_reviewed
+        ):
+            raise ReleasePolicyError(
+                f"{entry_where}.reviewed_empty must be a list of citation paths under {prefix}"
+            )
+        _sorted_unique(raw_reviewed, f"{entry_where}.reviewed_empty")
         entries[scope.key] = ContentBaselineEntry(
             scope=scope,
             provisions_sha256=_require_digest(
@@ -588,6 +602,7 @@ def load_content_baseline(path: str | Path) -> ContentBaseline:
                 item["inventory_sha256"], f"{entry_where}.inventory_sha256"
             ),
             findings=tuple(findings),
+            reviewed_empty=tuple(raw_reviewed),
         )
     return ContentBaseline(check_version=check_version, entries=entries)
 
@@ -608,11 +623,13 @@ def content_baseline_text(
     """The canonical text of a baseline: one scope per line, sorted, so diffs stay small."""
     lines = []
     for entry in sorted(entries, key=lambda item: item.scope.key):
-        record = {
+        record: dict[str, object] = {
             "provisions_sha256": entry.provisions_sha256,
             "inventory_sha256": entry.inventory_sha256,
             "findings": [[finding.code, finding.path] for finding in sorted(set(entry.findings))],
         }
+        if entry.reviewed_empty:
+            record["reviewed_empty"] = sorted(set(entry.reviewed_empty))
         lines.append(
             f"  {json.dumps(scope_label(entry.scope))}: "
             f"{json.dumps(record, ensure_ascii=False, separators=(', ', ': '))}"
@@ -681,8 +698,9 @@ def compare_content_baseline(
     """Every disagreement between ``baseline`` and fresh scans of the locked scopes.
 
     The baseline holds when its check version is current, every entry names a
-    locked scope and matches that scope's scan exactly (digests and findings),
-    and every locked scope it does not list scans clean. The reviewed-empty
+    locked scope and matches that scope's scan exactly (digests, findings and
+    applied reviewed-empty exemptions), and every locked scope it does not list
+    scans clean. The reviewed-empty
     list holds when every scope it names is locked and every row it lists is
     a hollow root the scan exempted (``scanned`` comes from ``scan_scope`` with
     the same list), so a row that gains text below it, or a mistyped path,
@@ -749,6 +767,10 @@ def compare_content_baseline(
                     scope_label(key),
                     f"findings differ: {len(added)} new, {len(removed)} no longer found",
                 )
+            )
+        elif recorded.reviewed_empty != entry.reviewed_empty:
+            differences.append(
+                BaselineDifference(scope_label(key), "reviewed-empty exemptions differ")
             )
     return differences
 

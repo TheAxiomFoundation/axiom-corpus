@@ -13,6 +13,11 @@ Nothing was published, loaded or activated, and no scope was edited. Only
 
 ## Method
 
+The variant table, figure census and near-threshold measurements below are
+**unpublished prototype evidence**. Their measuring scripts, exact options and raw
+outputs were not published with this checkout, so those measurements cannot be
+reproduced from repository artifacts alone.
+
 Every locked scope with provisions and an inventory (2,390) was fetched at #847's
 head `88c1435a5`. A measuring script re-implements v1's per-row quantities
 (navigation coverage, residual words, words with a letter, tokens with a digit,
@@ -65,8 +70,8 @@ figures are at least half its tokens. A list marker (`(1)`, `[12]`, `3.`) is not
 figure, so a body that kept only its paragraph numbers is not text; no locked row has
 that shape today. 45 rows qualify, all tables or lists of figures, none garbled. In
 the baseline the rule removes item 67224 and no other finding; the four attachments
-stay hollow. The census above is `out/figure-census.json`, made with the shipped
-`is_figure` and `is_figure_table`.
+stay hollow. The unpublished census was made with the shipped `is_figure` and
+`is_figure_table`.
 
 ## Reviewed-empty rows
 
@@ -118,11 +123,12 @@ scope, whose two findings were its repealed parts, is now clean. The 115
 `hollow_document_root` findings left are the audit's 103 extractor defects and 12
 missing or placeholder sources.
 
-## Reproduce
+## Evidence availability
 
-The measuring scripts and their outputs are kept outside the repository, in
-`~/reviews/axiom-corpus-content-check-refinements-2026-10-13/`:
-`scripts/measure_variants.py` (the variant table, the near-threshold rows and the
-letterless-row census), `scripts/figure_census.py`, `scripts/build_reviewed_empty.py`
-(writes the reviewed-empty list from the audit CSV) and
-`scripts/source_coverage_prototype.py` (the design note's table).
+The unpublished prototype measurements above are retained as historical design
+context. The [source-coverage design note](../source-coverage-check.md) identifies
+its prototype measurements with the same limitation. Publish the measuring
+scripts, deterministic input selection, options and raw outputs before treating
+either set of measurements as independently reproducible evidence. The baseline
+command above uses the repository CLI; it does not reproduce the prototype's
+variant table or census.

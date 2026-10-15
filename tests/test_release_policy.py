@@ -23,6 +23,7 @@ import hashlib
 import json
 import subprocess
 import tempfile
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -366,7 +367,11 @@ _SCOPE = st.builds(
 )
 
 
-@settings(max_examples=100, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@settings(
+    max_examples=100,
+    deadline=None,
+    suppress_health_check=[HealthCheck.too_slow, HealthCheck.function_scoped_fixture],
+)
 @given(
     entries=st.lists(
         st.builds(
@@ -380,13 +385,28 @@ _SCOPE = st.builds(
         unique_by=lambda entry: entry.scope.key,
     ),
     order=st.randoms(use_true_random=False),
+    reviewed_suffixes=st.sets(
+        st.text(alphabet="abcdefghij", min_size=1, max_size=10), max_size=4
+    ),
 )
-def test_the_baseline_round_trips_in_any_order(entries, order) -> None:  # type: ignore[no-untyped-def]
+def test_the_baseline_round_trips_in_any_order(  # type: ignore[no-untyped-def]
+    tmp_path: Path, entries, order, reviewed_suffixes
+) -> None:
+    entries = [
+        replace(
+            entry,
+            reviewed_empty=tuple(
+                f"{entry.scope.jurisdiction}/{entry.scope.document_class}/{suffix}"
+                for suffix in sorted(reviewed_suffixes)
+            ),
+        )
+        for entry in entries
+    ]
     shuffled = list(entries)
     order.shuffle(shuffled)
     text = content_baseline_text(entries)
     assert text == content_baseline_text(shuffled)
-    with tempfile.TemporaryDirectory() as directory:
+    with tempfile.TemporaryDirectory(dir=tmp_path) as directory:
         path = Path(directory) / "baseline.json"
         write_content_baseline(path, shuffled)
         loaded = load_content_baseline(path)
@@ -514,6 +534,103 @@ def test_a_reviewed_row_with_text_below_it_exempts_nothing(tmp_path: Path) -> No
     report = validate_release(tmp_path, _release("cut", OTHER), policy=policy)
     assert [issue.code for issue in report.issues] == ["navigation_body"]
     assert report.notices == ()
+
+
+def test_the_baseline_preserves_applied_empty_exemptions(tmp_path: Path) -> None:
+    """A cached scan remembers which authorization it needs to remain valid."""
+    _write_scope(tmp_path, OTHER, HOLLOW_ROWS)
+    entry = scan_scope(tmp_path, OTHER, reviewed_empty=["us-xx/statute/17014"])
+    path = tmp_path / "baseline.json"
+    write_content_baseline(path, [entry])
+    loaded = load_content_baseline(path)
+    assert loaded.entries[OTHER.key].reviewed_empty == ("us-xx/statute/17014",)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        None,
+        "us-xx/statute/17014",
+        [17],
+        ["us-yy/statute/17014"],
+        ["us-xx/statute/17014/"],
+        ["us-xx/statute/17014 "],
+        ["us-xx/statute/17014", "us-xx/statute/17014"],
+        ["us-xx/statute/b", "us-xx/statute/a"],
+    ],
+)
+def test_the_baseline_rejects_malformed_empty_exemption_provenance(
+    tmp_path: Path, value: object
+) -> None:
+    path = tmp_path / "baseline.json"
+    write_content_baseline(path, [ContentBaselineEntry(OTHER, "0" * 64, "1" * 64)])
+    payload = json.loads(path.read_text())
+    payload["scopes"]["/".join(OTHER.key)]["reviewed_empty"] = value
+    path.write_text(json.dumps(payload))
+    with pytest.raises(ReleasePolicyError, match="reviewed_empty"):
+        load_content_baseline(path)
+
+
+def test_removing_the_optional_list_revokes_cached_empty_exemptions(tmp_path: Path) -> None:
+    """Unchanged artifact bytes cannot preserve an exemption after its removal."""
+    _write_scope(tmp_path, OTHER, HOLLOW_ROWS)
+    entry = scan_scope(tmp_path, OTHER, reviewed_empty=["us-xx/statute/17014"])
+    report = validate_release(
+        tmp_path,
+        _release("cut", OTHER),
+        policy=ReleaseGatePolicy(
+            content_baseline=ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: entry})
+        ),
+    )
+    assert "hollow_document_root" in {issue.code for issue in report.issues}
+    assert "reviewed_empty_document_roots" not in {notice.code for notice in report.notices}
+
+
+@settings(
+    max_examples=20,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(count=st.integers(min_value=1, max_value=5), remaining=st.integers(min_value=0, max_value=31))
+def test_removing_any_applied_exemption_restores_its_finding(
+    tmp_path: Path, count: int, remaining: int
+) -> None:
+    """Every removed path becomes a finding, while authorized paths stay exempt."""
+    paths = tuple(f"us-xx/statute/{index}" for index in range(count))
+    retained = tuple(path for index, path in enumerate(paths) if remaining & (1 << index))
+    with tempfile.TemporaryDirectory(dir=tmp_path) as directory:
+        root = Path(directory)
+        _write_scope(root, OTHER, [(path, None, "document") for path in paths])
+        entry = scan_scope(root, OTHER, reviewed_empty=paths)
+        report = validate_release(
+            root,
+            _release("cut", OTHER),
+            policy=ReleaseGatePolicy(
+                content_baseline=ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: entry}),
+                reviewed_empty=_reviewed(OTHER, *retained),
+            ),
+        )
+    assert {
+        issue.message.split(":", 1)[0]
+        for issue in report.issues
+        if issue.code == "hollow_document_root"
+    } == set(paths) - set(retained)
+
+
+def test_comparison_requires_matching_applied_empty_exemptions() -> None:
+    """Matching digests and findings alone do not establish baseline validity."""
+    recorded = ContentBaselineEntry(OTHER, "0" * 64, "1" * 64)
+    fresh = ContentBaselineEntry(
+        OTHER, "0" * 64, "1" * 64, reviewed_empty=("us-xx/statute/17014",)
+    )
+    assert [
+        difference.problem
+        for difference in compare_content_baseline(
+            ContentBaseline(CONTENT_CHECK_VERSION, {OTHER.key: recorded}),
+            {OTHER.key: fresh},
+            locked_scopes=[OTHER.key],
+        )
+    ] == ["reviewed-empty exemptions differ"]
 
 
 def test_comparison_names_stale_and_unlocked_reviewed_rows(tmp_path: Path) -> None:

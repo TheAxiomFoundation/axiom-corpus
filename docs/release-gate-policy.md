@@ -236,7 +236,7 @@ against the v1 baseline before it was made
   Rows of up to four figures stay what they were in v1, a few real values among
   them (a DC page with two incomes), but no root has such a row as its only
   text. The rule clears item 67224 and no other finding.
-- **Reviewed-empty rows are listed, not pinned.** The 72 correctly empty rows
+- **Reviewed-empty rows are listed with their reasons.** The 72 correctly empty rows
   (tables of contents, link indexes, cross-reference stubs, reserved, deleted
   and repealed items, empty content areas) are in
   `manifests/reviewed-empty-nodes.yaml`, each with its reason, so the baseline
@@ -307,6 +307,12 @@ counts a reviewed root as carrying no text. In `validate_release`, a scope's
 listed rows that are hollow become one `reviewed_empty_document_roots` notice,
 for a scope checked by scan and by baseline alike.
 
+The baseline records the hollow roots its scan exempted in `reviewed_empty`.
+Validation reuses that scan only while all those roots remain on the list;
+removing a listed root, including by removing the optional file, forces a fresh
+scan so the root becomes a finding again. Baseline entries without exemptions
+omit the field.
+
 `content-check --check-baseline` scans with the list and fails when a listed
 scope is not locked or a listed row is not a hollow root of its scope, so a row
 that gains text (a successor extraction, a fixed extractor) or a mistyped path
@@ -332,15 +338,16 @@ sha256, and validation checks the sources against it, so the two digests pin
 every byte the check reads. In `validate_release`:
 
 - a withdrawn scope is not content-checked (the withdrawal decides it);
-- a scope whose digests match its entry is not read again, and its recorded
-  findings become one `baselined_content_findings` notice;
+- a scope whose digests match its entry and whose applied empty-root exemptions
+  remain listed is not read again, and its recorded findings become one
+  `baselined_content_findings` notice;
 - any other scope is scanned as its provisions stream for validation, and each
   finding is an error (`navigation_body`, `navigation_prefixed_body`,
   `hollow_document_root`, `version_picker_source`), recorded or not: a scope
   whose provisions or inventory are rewritten must have its entry updated
-  (`--update-baseline <scope>`). An entry for other bytes also gives a
-  `content_baseline_mismatch` warning, and a baseline made by other check rules
-  a single `content_baseline_stale` warning;
+  (`--update-baseline <scope>`). An entry for other bytes or removed empty-root
+  exemptions also gives a `content_baseline_mismatch` warning, and a baseline
+  made by other check rules a single `content_baseline_stale` warning;
 - either way, rows on the reviewed-empty list are not findings, and the baseline
   is built with the list (`--update-baseline` reads it).
 

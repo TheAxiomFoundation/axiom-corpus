@@ -562,7 +562,8 @@ class _ContentPlan:
 
     - A withdrawn scope is not checked: the withdrawal already decides it.
     - A scope whose provisions and inventory bytes match its content baseline
-      entry is not read again; its recorded findings become one notice.
+      entry, and whose applied empty-root exemptions remain authorized, is not
+      read again; its recorded findings become one notice.
     - Any other scope is scanned while its provisions stream for validation,
       and each finding is an error: new chrome, a hollow root or a version
       picker fails the release until the extraction is fixed or the finding is
@@ -598,7 +599,7 @@ class _ContentPlan:
             except OSError:
                 # A missing or unreadable artifact is reported by its own check.
                 return cls(scanner=_scanner(store, reviewed), reviewed_empty=reviewed)
-            if entry.pins(*digests):
+            if entry.pins(*digests) and set(entry.reviewed_empty) <= reviewed:
                 return cls(baseline=entry, reviewed_empty=reviewed)
             return cls(scanner=_scanner(store, reviewed), mismatched=True, reviewed_empty=reviewed)
         return cls(scanner=_scanner(store, reviewed), reviewed_empty=reviewed)
@@ -663,7 +664,8 @@ class _ContentPlan:
                 "content_baseline_mismatch",
                 (
                     f"{CONTENT_BASELINE_PATH} records {scope_label(scope)} with other provisions "
-                    "or inventory bytes, so its content was checked again"
+                    "or inventory bytes, or empty-root exemptions no longer authorized, "
+                    "so its content was checked again"
                 ),
                 scope=scope,
                 path=CONTENT_BASELINE_PATH,

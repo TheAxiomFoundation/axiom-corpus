@@ -423,7 +423,20 @@ def test_the_baseline_reproduces_for_the_audited_scopes(key: ScopeKey) -> None:
 
 
 @pytest.mark.parametrize(
-    "key", sorted(ReleaseGatePolicy.load(REPO_ROOT).reviewed_empty), ids=scope_label
+    "key",
+    [
+        pytest.param(
+            key,
+            # This scope parses 243 MB of retained HTML, taking up to 166 s
+            # under coverage in review. Keep the full baseline assertion and
+            # allow margin on slower runners with a bounded per-test override.
+            marks=pytest.mark.timeout(300)
+            if key == ("us-wa", "manual", "2026-09-10-medicaid-state-eligibility-manual")
+            else (),
+            id=scope_label(key),
+        )
+        for key in sorted(ReleaseGatePolicy.load(REPO_ROOT).reviewed_empty)
+    ],
 )
 def test_every_reviewed_row_is_a_hollow_root_of_its_scope(key: ScopeKey) -> None:
     """The CI baseline check enforces this for every scope; here, for the listed ones."""
