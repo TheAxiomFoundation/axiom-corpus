@@ -220,7 +220,10 @@ separate command (`axiom_corpus.corpus.resolver`):
   goes to the checkout that does instead of being skipped.
   `ensure_corpus_scopes` takes each scope's sources directory and its three
   single files in that checkout as such paths, and so does the CLI's input
-  fetch.
+  fetch. A checkout without locks of its own still reads the locks its links
+  lead to. The CLI works in the checkout that holds `--base` as spelled (the
+  innermost checkout whose top level is one of its ancestors), so a worktree
+  whose `data/corpus` links to another checkout's keeps its own lock.
 
 A checkout is a git top level that holds `src/axiom_corpus` or the lock
 directory, so a sparse checkout of the data and locks alone is guarded too.
@@ -546,7 +549,8 @@ exactly those 1,362 files.
     `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
     path itself, and below a directory every directory link or dangling link
     at a protected place, the links below a linked directory's target
-    included. Each part's files belong to the checkout that names the paths
+    included (a directory below two links is walked under each, up to the
+    40 links the operating system resolves). Each part's files belong to the checkout that names the paths
     below it (invariant 10): the one that names the part itself, save for a
     dangling link at a directory-only place (`data`, `data/corpus`, a class,
     jurisdiction or document-class directory, a sources version directory)

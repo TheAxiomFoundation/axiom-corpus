@@ -7878,6 +7878,14 @@ _CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
 }
 
 
+def _name_in(repo: Path, path: Path) -> str | None:
+    """``path`` relative to ``repo`` as spelled (through any links), if below it."""
+    try:
+        return path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+
+
 def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     classes = _CORPUS_WIDE_COMMANDS.get(command)
     base = getattr(args, "base", None)
@@ -7900,7 +7908,9 @@ def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
             for path, entry in locked_entries_under(
                 [repo / "data" / "corpus" / artifact_class for artifact_class in classes], repo=repo
             )
-            if (scope := scope_for_path(entry.path)) is not None
+            # The scope of the path analytics reads, which a link may give
+            # another name in the lock that names it.
+            if (scope := scope_for_path(_name_in(repo, path) or entry.path)) is not None
             # analytics globs "<version>.json" and "<version>-*.json"
             and (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
             and (not jurisdictions or scope[0] in jurisdictions)

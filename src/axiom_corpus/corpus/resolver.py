@@ -807,18 +807,25 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
     views = [*parts, *(_View(_resolver(root), name, "") for root, name in _places_above(spelled, physical))]
     if not walk or top[1] in top[0].locks.by_path or not _guarded(top[1]):
         return parts, views  # a locked name is a file: nothing lies below it
-    pending = [(physical, "", top[1])]
-    seen: set[tuple[int, int]] = set()
+    # A directory can lie below two links (two spellings, two owners), so it
+    # is walked once per place below the selection; a link chain longer than
+    # the operating system resolves (a cycle) ends the walk.
+    pending = [(physical, "", top[1], 0)]
+    seen: set[tuple[int, int, str]] = set()
+    listed: dict[tuple[int, int, str], list[str]] = {}
     while pending:
-        directory, sub, name = pending.pop()
+        directory, sub, name, hops = pending.pop()
         try:
             info = os.stat(directory)
         except OSError:
             continue
-        if not stat.S_ISDIR(info.st_mode) or (info.st_dev, info.st_ino) in seen:
+        node = (info.st_dev, info.st_ino, name)
+        if not stat.S_ISDIR(info.st_mode) or hops > _MAX_LINKS or (*node[:2], sub) in seen:
             continue
-        seen.add((info.st_dev, info.st_ino))
-        for below in _links_below(directory, name):
+        seen.add((*node[:2], sub))
+        if node not in listed:
+            listed[node] = _links_below(directory, name)
+        for below in listed[node]:
             where = _join(sub, below)
             link = spelled / where
             link_physical = Path(os.path.realpath(link))
@@ -828,7 +835,7 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
             parts.append(_View(found[0], found[1], where))
             views.append(parts[-1])
             views.extend(_View(_resolver(root), place, where) for root, place in _places_above(link, link_physical))
-            pending.append((link_physical, where, found[1]))
+            pending.append((link_physical, where, found[1], hops + 1))
     return parts, views
 
 
@@ -1074,9 +1081,11 @@ def ensure_corpus_scopes(scopes: Iterable[ScopeKey], *, repo: Path | None = None
     """
     scope_list = list(scopes)
     resolver = resolver_for(repo)
-    if resolver is None or not resolver.active:
+    if resolver is None:
         return FetchReport()
-    resolver.require_valid_locks()
+    if resolver.active:
+        resolver.require_valid_locks()
+    # A checkout without locks of its own may still link to one with them.
     plan = _plan(_scope_paths(resolver.repo, scope_list), repo=resolver.repo)
     unfetchable = _unfetchable(plan)
     if unfetchable:
@@ -1192,16 +1201,19 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     read when no fetch will place it.
     """
     candidate = Path(path)
-    absolute = os.path.abspath(candidate)
+    text = candidate.as_posix()
+    bare = not candidate.is_absolute() and (text == CORPUS_BASE or text.startswith(f"{CORPUS_BASE}/"))
+    probe = _spelled(candidate, repo) if bare and repo is not None else candidate
+    absolute = os.path.abspath(probe)
     if (
-        candidate.is_file()
-        and not candidate.is_symlink()
+        probe.is_file()
+        and not probe.is_symlink()
         # Spelled through no symlink, so it stands nowhere but where it is,
         # and no source file, so there are no siblings to bring.
-        and os.path.realpath(candidate) == absolute
+        and os.path.realpath(probe) == absolute
         and f"/{CORPUS_BASE}/sources/" not in fold_path(absolute)
     ):
-        return candidate  # nothing to widen, no git call
+        return probe  # nothing to widen, no git call
     # A bare data/corpus path lies in ``repo``; the checkout that names the
     # path, which ``repo`` may not be (a link to another checkout), decides.
     spelled = _spelled(candidate, repo)
@@ -1213,7 +1225,7 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
         rel = resolver._name(spelled, physical) if resolver is not None else None
     witnesses = _read_witnesses(spelled, physical, resolver, rel)
     if resolver is None or not resolver.active or rel is None:
-        found = candidate if candidate.is_file() and not candidate.is_symlink() else None
+        found = probe if probe.is_file() and not probe.is_symlink() else None
     else:
         found = resolver.resolve(spelled)
     if witnesses is not None:
@@ -1246,12 +1258,16 @@ def _read_witnesses(
     if resolver is None or rel is None:
         return None  # no checkout names it, so it stands at no protected place
     selection, exact, remember = anchor, True, None
-    if ".." not in anchor.parts and scope_for_path(rel) is not None:
-        depth = len(rel.split("/")) - 6  # below data/corpus/sources/<j>/<dc>/<v>
-        if fold_path(rel).startswith(f"{CORPUS_BASE}/sources/") and depth >= 1:
-            selection, exact, remember = anchor.parents[depth - 1], False, str(anchor.parents[depth - 1])
-            if remember in _WITNESSED_SOURCE_DIRS:
-                return None
+    depth = len(rel.split("/")) - 6  # below data/corpus/sources/<j>/<dc>/<v>
+    if scope_for_path(rel) is not None and fold_path(rel).startswith(f"{CORPUS_BASE}/sources/") and depth >= 1:
+        # The scope's directory, spelled through the same links. A `..` is
+        # resolved from where the path stands, so climb from the file's own
+        # directory rather than lexically.
+        directory = anchor.parent if ".." in anchor.parts else None
+        selection = Path(directory, *[".."] * (depth - 1)) if directory else anchor.parents[depth - 1]
+        exact, remember = False, str(selection)
+        if remember in _WITNESSED_SOURCE_DIRS:
+            return None
     if exact and str(physical) == os.path.normpath(anchor):
         return None  # through no symlink: no lock but its checkout's applies
     plan = _plan([selection], repo=resolver.repo, exact=exact)
@@ -1274,9 +1290,20 @@ _NON_INPUT_ARGS = frozenset({"func", "command", "_cli_command"})
 
 
 def cli_repo(args: Any) -> Path | None:
-    """The checkout a CLI invocation works on: the one holding ``--base``, else cwd's."""
+    """The checkout a CLI invocation works on: the one holding ``--base``, else cwd's.
+
+    ``--base`` is taken as spelled: the innermost checkout whose top level is
+    one of its ancestors. A ``data/corpus`` that links to another checkout's
+    belongs to the checkout holding the link, whose lock still applies there
+    (invariant 11); only a base no checkout holds is followed to where it leads.
+    """
     base = getattr(args, "base", None)
     if isinstance(base, str | Path) and str(base):
+        spelled = Path(base) if Path(base).is_absolute() else Path.cwd() / Path(base)
+        for ancestor in (spelled, *spelled.parents):
+            holder = _checkout_at(ancestor, None)
+            if holder is not None:
+                return holder
         found = find_repo_root(_existing_ancestor(Path(base)))
         if found is not None:
             return found
@@ -1348,9 +1375,11 @@ def materialize_cli_inputs(
     when ``include_scope`` is set: for extractors it names the output.
     """
     resolver = resolver_for(repo or cli_repo(args))
-    if resolver is None or not resolver.active:
+    if resolver is None:
         return None
-    resolver.require_valid_locks()
+    if resolver.active:
+        resolver.require_valid_locks()
+    # A checkout without locks of its own may still link to one with them.
     paths, scopes, selectors = corpus_inputs_from_args(args, repo=resolver.repo)
     if not include_scope:
         scopes = []

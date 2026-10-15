@@ -1798,6 +1798,155 @@ def test_analytics_requires_the_shared_checkouts_files_through_a_sharing_link(tm
         require_materialized([worktree / US_PROV])
 
 
+def test_the_cli_works_in_the_checkout_holding_a_sharing_link(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 1: with ``data/corpus`` itself shared, the CLI took the
+    checkout ``--base`` resolves into (the shared one) for its own, so analytics
+    and the input fetch read the shared lock alone and passed over a file only
+    the worktree's lock names."""
+    import argparse
+
+    from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
+
+    every = {**SHARED_FILES, COVERAGE: SCOPE_FILES[COVERAGE]}
+    worktree, _shared = _sharing(
+        tmp_path,
+        monkeypatch,
+        worktree_locks={PROV: every[PROV]},
+        shared_locks={COVERAGE: every[COVERAGE]},
+        link="data/corpus",
+        every_file=every,
+    )
+    base = str(worktree / "data/corpus")
+    args = build_parser().parse_args(["analytics", "--base", base, "--version", "2026-07-10"])
+    holder = resolver_module.cli_repo(args)
+    assert holder is not None and os.path.samefile(holder, worktree)
+    assert worktree / PROV in _corpus_wide_prefixes(args, "analytics")
+    assert cli_main(["analytics", "--base", base, "--version", "2026-07-10"]) == 2
+    inputs = argparse.Namespace(base=Path(base), provisions=worktree / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match=_unfetchable(PROV, "worktree", "shared")):
+        resolver_module.materialize_cli_inputs(inputs)
+
+
+def test_analytics_selects_by_the_path_it_reads_not_the_lock_that_names_it(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 2: the worktree's ``nz`` links to another checkout's
+    ``us``, whose lock names the file read as ``nz``'s. Analytics filtered by the
+    lock entry's own scope (``us``), so ``--jurisdiction nz`` dropped it."""
+    from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
+
+    worktree = _init_repo(tmp_path / "worktree")
+    _lock_files(worktree, {COVERAGE: SCOPE_FILES[COVERAGE]})  # an unrelated lock: not the nz provisions
+    other = _init_repo(tmp_path / "other")
+    _lock_files(other, {US_PROV: SHARED_FILES[US_PROV]})
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+    (other / "data/corpus/provisions/us/statute").mkdir(parents=True)
+    (worktree / "data/corpus/provisions").mkdir(parents=True)
+    (worktree / "data/corpus/provisions/nz").symlink_to(other / "data/corpus/provisions/us", target_is_directory=True)
+    monkeypatch.chdir(worktree)
+    argv = ["analytics", "--base", str(worktree / "data/corpus"), "--version", "2026-07-10", "--jurisdiction", "nz"]
+    assert worktree / PROV in _corpus_wide_prefixes(build_parser().parse_args(argv), "analytics")
+    assert cli_main(argv) == 2
+
+
+@pytest.mark.parametrize("spelling", ["official/act.html", "official/../official/act.html", "official/./act.html"])
+@pytest.mark.parametrize("with_repo", [False, True])
+def test_a_source_spelled_with_dotdot_still_needs_every_locked_sibling(
+    tmp_path: Path, monkeypatch, spelling: str, with_repo: bool
+) -> None:
+    """Review r1 finding 3: a ``..`` in a source file's spelling skipped widening
+    the witness check to its scope's sources directory, so a sibling only the
+    worktree's lock names was missed for that spelling alone."""
+    version = "data/corpus/sources/nz/statute/2026-07-10"
+    act, sibling = f"{version}/official/act.html", f"{version}/official/sub dir/s 2.xml"
+    every = {**SHARED_FILES, **SCOPE_FILES}
+    worktree, shared = _sharing(
+        tmp_path,
+        monkeypatch,
+        worktree_locks={act: every[act], sibling: every[sibling]},
+        shared_locks={act: every[act]},
+        link=version,
+        every_file=every,
+    )
+    _write(shared, act, every[act])
+    kwargs = {"repo": worktree} if with_repo else {}
+    path = worktree / version / spelling
+    for fetch_off in (False, True):
+        if fetch_off:
+            monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+        with pytest.raises(CorpusNotMaterializedError, match=_unfetchable(sibling, "worktree", "shared")):
+            resolve_corpus_path(path, **kwargs)
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    _write(shared, sibling, every[sibling])
+    assert os.path.samefile(resolve_corpus_path(path, **kwargs), shared / act)
+
+
+def test_two_links_to_one_directory_each_keep_the_links_below_it(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 4: ``a`` and ``b`` both link to ``x`` in a lock-free
+    checkout, whose ``x/statute`` is shared from a third. The walk entered ``x``
+    once, so the files below ``b`` lost their owner and fetch tried to write
+    through ``b``. Each spelling of the directory is walked."""
+    first = "data/corpus/provisions/a/statute/2026-07-10.jsonl"
+    second = "data/corpus/provisions/b/statute/2026-07-10.jsonl"
+    third = "data/corpus/provisions/x/statute/2026-07-10.jsonl"
+    data = SHARED_FILES[PROV]
+    every = {first: data, second: data, third: data}
+    a = _init_repo(tmp_path / "a")
+    b = _init_repo(tmp_path / "b")
+    c = _init_repo(tmp_path / "c")
+    _lock_files(a, {first: data, second: data})
+    _lock_files(c, {third: data})
+    (c / "data/corpus/provisions/x/statute").mkdir(parents=True)
+    (b / "data/corpus/provisions/x").mkdir(parents=True)
+    (b / "data/corpus/provisions/x/statute").symlink_to(c / "data/corpus/provisions/x/statute", target_is_directory=True)
+    (a / "data/corpus/provisions").mkdir(parents=True)
+    for name in ("a", "b"):
+        (a / f"data/corpus/provisions/{name}").symlink_to(b / "data/corpus/provisions/x", target_is_directory=True)
+    remote, _fake = _remote({content_key(_sha(d)): d for d in every.values()})
+    monkeypatch.setattr(R2ObjectStore, "from_environment", classmethod(lambda cls, **_kwargs: remote))
+    monkeypatch.setenv("AXIOM_CORPUS_CACHE", str(tmp_path / "cache"))
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+    monkeypatch.chdir(a)
+    for name in (first, second):
+        holder = resolver_module._checkout_for(a / name)
+        assert holder is not None and os.path.samefile(holder, c)
+    report = ensure_corpus_paths([a / "data/corpus/provisions"], repo=a)
+    assert report.materialized == [third] and (c / third).read_bytes() == data
+    require_materialized([a / "data/corpus/provisions"], repo=a)
+
+
+def test_a_lock_free_worktree_still_reads_the_shared_checkouts_lock(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 5: ``ensure_corpus_scopes`` and the CLI input fetch did
+    nothing when the selecting checkout had no locks of its own, though its
+    sharing link leads to a checkout whose lock names the scope."""
+    import argparse
+
+    worktree, shared = _sharing(tmp_path, monkeypatch, worktree_locks={}, shared_locks={PROV: SHARED_FILES[PROV]})
+    absent = rf"not in this checkout \(first: {PROV}\)"
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match=rf"absent and fetching is off .*first: {PROV}"):
+        resolver_module.ensure_corpus_scopes([SCOPE], repo=worktree)
+    with pytest.raises(CorpusNotMaterializedError, match=absent):
+        ensure_corpus_paths([worktree / PROV], repo=worktree)
+    inputs = argparse.Namespace(base=Path("data/corpus"), provisions=Path(PROV))
+    with pytest.raises(CorpusNotMaterializedError, match=rf"absent and fetching is off .*first: {PROV}"):
+        resolver_module.materialize_cli_inputs(inputs, repo=worktree)
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert resolver_module.ensure_corpus_scopes([SCOPE], repo=worktree).materialized == [PROV]
+    assert (shared / PROV).read_bytes() == SHARED_FILES[PROV]
+
+
+def test_a_bare_path_with_repo_is_that_checkouts_even_when_present_here(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 6: ``resolve_corpus_path`` returned the working
+    directory's present file for a bare ``data/corpus/...`` path before taking it
+    in ``repo``."""
+    here = _locked_checkout(tmp_path / "here", monkeypatch)
+    there = _locked_checkout(tmp_path / "there", monkeypatch)
+    _write(here, PROV, READABLE_FILES[PROV])
+    _write(there, PROV, READABLE_FILES[PROV])
+    monkeypatch.chdir(here)
+    assert os.path.samefile(resolve_corpus_path(PROV, repo=there), there / PROV)
+    assert os.path.samefile(resolve_corpus_path(PROV), here / PROV)
+
+
 # The sharing layout with random locks, files and selections, against a
 # reference model of invariant 11 written over the layout, not the filesystem.
 _SHARED_UNIVERSE = {**SHARED_FILES, COVERAGE: SCOPE_FILES[COVERAGE]}
