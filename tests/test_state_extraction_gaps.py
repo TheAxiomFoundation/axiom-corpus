@@ -138,10 +138,19 @@ def test_maine_mixed_rejected_targets_remain_inventory_gaps(
 
 
 @pytest.mark.parametrize("failed_index", [0, 1])
-def test_ohio_mixed_section_without_body_remains_inventory_gap(tmp_path, failed_index):
+@pytest.mark.parametrize("failure", ["missing-body", "empty-body", "notice-only"])
+def test_ohio_mixed_section_without_body_remains_inventory_gap(tmp_path, failed_index, failure):
     source = tmp_path / "source"
     chapter = BeautifulSoup(SAMPLE_OHIO_CHAPTER, "html.parser")
-    chapter.select("section.laws-body")[failed_index].decompose()
+    body = chapter.select("section.laws-body")[failed_index]
+    if failure == "missing-body":
+        body.decompose()
+    else:
+        body.clear()
+        if failure == "notice-only":
+            notice = chapter.new_tag("div", attrs={"class": "laws-notice"})
+            notice.string = "Last updated"
+            body.append(notice)
     _write_sources(
         source,
         {
