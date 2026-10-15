@@ -69,8 +69,9 @@ S11. When the page's fonts can't be known for certain (a font, a descendant, a g
     state's font or an annotation written inline; a /Subtype or /BaseFont not written in
     the font's dictionary; a /Subtype other than /Type0, /Type1, /MMType1, /TrueType and
     /Type3, whose type MuPDF guesses; an annotation, other than a Link or Popup, without a
-    stored appearance MuPDF uses, or any such annotation when the form says to make
-    appearances anew, since MuPDF then makes the appearance itself in fonts it chooses; a reference printed
+    stored appearance MuPDF uses, or any such annotation when the form's /NeedAppearances
+    is anything but absent or false, since MuPDF then makes the appearance itself in fonts
+    it chooses; a reference printed
     with another generation or to an object the file lacks; a page tree deeper than the
     walk follows; or more distinct objects than it takes, each counted once), nothing on
     the page is decoded, and nothing raises.
@@ -1936,31 +1937,47 @@ def test_an_object_that_looks_like_a_font_is_walked_through(tmp_path, inline):
     assert decoded == spans
 
 
-def _annotated(tmp_path: Path, name: str, entries: str, acroform: str | None = None):
+def _annotated(
+    tmp_path: Path, name: str, entries: str, acroform: str | None = None, *, form_object: bool = False
+):
     """The page with A (Shared) drawing EVIDENCE and "Wendy Hill" unmapped, and one
     annotation ``<< entries >>`` ("{stored}" in them a stored appearance drawing "Stored" in
     Courier; "{Widget}", "{Link}" and "{FreeText}" references to those names written as
     objects of their own), with the catalog's /AcroForm ``acroform`` ("{annotation}" in it
-    the annotation); its spans, the decoded spans and the fonts the walk finds."""
+    the annotation; "{true}" and "{false}" references to those booleans, and "{chain}" to
+    a reference to true), written in the catalog or, with ``form_object``, as an object of
+    its own; its spans, the decoded spans and the fonts the walk finds."""
     pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="Shared")
     with fitz.open(pdf) as document:
         page = document[0]
         font = _font_object(document, "Courier")
         stored = _form(document, b"BT /F9 12 Tf 80 310 Td (Stored) Tj ET", f"/Font << /F9 {font} 0 R >>")
         names = {"stored": f"{stored} 0 R"}
-        for name in ("Widget", "Link", "FreeText"):
+        for key, value in (
+            ("Widget", "/Widget"),
+            ("Link", "/Link"),
+            ("FreeText", "/FreeText"),
+            ("true", "true"),
+            ("false", "false"),
+        ):
             xref = document.get_new_xref()
-            document.update_object(xref, "/" + name)
-            names[name] = f"{xref} 0 R"
+            document.update_object(xref, value)
+            names[key] = f"{xref} 0 R"
+        chain = document.get_new_xref()
+        document.update_object(chain, names["true"])
+        names["chain"] = f"{chain} 0 R"
         annotation = document.get_new_xref()
         document.update_object(
             annotation, "<< /Type /Annot /Rect [72 300 400 340] " + entries.format(**names) + " >>"
         )
         document.xref_set_key(page.xref, "Annots", f"[{annotation} 0 R]")
         if acroform is not None:
-            document.xref_set_key(
-                document.pdf_catalog(), "AcroForm", acroform.format(annotation=f"{annotation} 0 R")
-            )
+            form = acroform.format(annotation=f"{annotation} 0 R", **names)
+            if form_object:
+                holder = document.get_new_xref()
+                document.update_object(holder, form)
+                form = f"{holder} 0 R"
+            document.xref_set_key(document.pdf_catalog(), "AcroForm", form)
         document.save(tmp_path / name)
     spans, decoded = _decoded(tmp_path / name, EVIDENCE_OCR)
     with fitz.open(tmp_path / name) as document:
@@ -2027,6 +2044,24 @@ def test_a_form_that_says_to_make_appearances_anew_stops_decoding(tmp_path, entr
 
 
 @pytest.mark.parametrize(
+    ("value", "form_object"),
+    [("true", False), ("{true}", False), ("{chain}", False), ("true", True)],
+    ids=["direct", "indirect", "chain", "AcroForm-object"],
+)
+def test_a_need_appearances_written_any_way_stops_decoding(tmp_path, value, form_object):
+    # Review round 9: /NeedAppearances is read through an /AcroForm written as an object of
+    # its own, and resolved once when indirect; anything but absent or false counts. A chain
+    # of references is refused too, though MuPDF reads it as false and draws the stored
+    # appearance (1.26.7 and 1.28.2): failing closed keeps the rule off MuPDF's reading.
+    entries = f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>"
+    acroform = "<< /Fields [{annotation}] /NeedAppearances " + value + " >>"
+    spans, decoded, drawn = _annotated(tmp_path, "need.pdf", entries, acroform, form_object=form_object)
+    assert {"Stored", "Hello"} & set(_texts(spans))
+    assert drawn is None
+    assert decoded == spans
+
+
+@pytest.mark.parametrize(
     ("entries", "acroform"),
     [
         (f"/Subtype /FreeText /Contents (Hello) {HELV} /AP << /N {{stored}} >>", None),
@@ -2040,6 +2075,10 @@ def test_a_form_that_says_to_make_appearances_anew_stops_decoding(tmp_path, entr
         ("/Subtype /Popup /Contents (Hello)", None),
         ("/Subtype {Link} /Border [0 0 0] /A << /S /URI /URI (http://example.org) >>", None),
         ("/Subtype /Link /Border [0 0 0] /A << /S /URI /URI (http://example.org) >>", NEED_APPEARANCES),
+        (
+            f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>",
+            "<< /Fields [{annotation}] /NeedAppearances {false} >>",
+        ),
     ],
     ids=[
         "FreeText",
@@ -2050,6 +2089,7 @@ def test_a_form_that_says_to_make_appearances_anew_stops_decoding(tmp_path, entr
         "Popup",
         "Link-indirect-Subtype",
         "Link-NeedAppearances",
+        "text-field-NeedAppearances-indirect-false",
     ],
 )
 def test_annotations_drawn_from_stored_appearances_leave_decoding_alone(tmp_path, entries, acroform):

@@ -4149,9 +4149,10 @@ def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
     the page and its forms only.
 
     None when a font or an annotation is written inline, without an object number; when
-    an annotation other than a Link or Popup has no stored appearance MuPDF uses
-    (``_pdf_stored_appearance``), or the form's /NeedAppearances is true, since MuPDF
-    then draws an appearance it makes itself, in fonts no object carries; when a
+    an annotation other than a Link or Popup (its /Subtype resolved once) has no stored
+    appearance MuPDF uses (``_pdf_stored_appearance``), or the form's /NeedAppearances is
+    anything but absent or false, since MuPDF then draws an appearance it makes itself, in
+    fonts no object carries; when a
     reference is not one of generation 0 to an object of the file; when something can't
     be read; when the page tree is deeper than 64 nodes above the page without resources;
     or when there are more than _PDF_RESOURCE_WALK distinct holders and graphics-state
@@ -4198,7 +4199,9 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
     kind, value = document.xref_get_key(document.pdf_catalog(), "AcroForm/NeedAppearances")
     if kind == "xref":
         value = str(document.xref_object(_pdf_reference(document, value))).strip()
-    remade = value == "true"  # appearances MuPDF may make anew (1.28 remakes widgets')
+    # Appearances MuPDF may make anew (1.28 remakes widgets'): anything but an absent or
+    # false /NeedAppearances, a chain of references included, which MuPDF reads as false.
+    remade = value not in ("null", "false")
     for annotation in references(annotations):
         kind, subtype = document.xref_get_key(annotation, "Subtype")
         if kind == "xref":  # MuPDF resolves an indirect /Subtype
