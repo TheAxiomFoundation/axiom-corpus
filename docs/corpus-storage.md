@@ -228,9 +228,11 @@ separate command (`axiom_corpus.corpus.resolver`):
   helper makes a scope's sources directory whole, it plans that directory,
   spelled through the selection, as a selection of its own, so a link inside
   it sends its files to the checkout it leads to and every lock that applies
-  there counts. A `repo` never names a path inside a checkout nested in its
-  corpus tree, in any spelling of it: the nested checkout does, as
-  invariant 10 says. Two conventions stay as they were. `fetch_locked_file`
+  there counts. A `repo` never names the corpus paths (`data/...`) of a
+  checkout nested in its corpus tree, in any spelling of it: the nested
+  checkout does, as invariant 10 says. The nested checkout's other files
+  (its `src/`, a licence) stay the outer checkout's, whose sources they are.
+  Two conventions stay as they were. `fetch_locked_file`
   (behind the `io` readers) takes a relative path from the working
   directory, as the reader opens it. `resolve_corpus_path` without `repo`
   returns a present file at a relative path, spelled through no link and
