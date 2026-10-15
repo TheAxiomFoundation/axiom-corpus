@@ -4191,7 +4191,17 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
     annotations = text_of(*document.xref_get_key(page.xref, "Annots"))
     if "<<" in annotations:
         return None  # an annotation written inline
+    kind, value = document.xref_get_key(document.pdf_catalog(), "AcroForm/NeedAppearances")
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value))).strip()
+    remade = value == "true"  # widgets' appearances MuPDF may make anew (1.28 does)
     for annotation in references(annotations):
+        subtype = document.xref_get_key(annotation, "Subtype")
+        if subtype not in (("name", "/Link"), ("name", "/Popup")) and (
+            not _pdf_stored_appearance(document, annotation)
+            or (remade and subtype == ("name", "/Widget"))
+        ):
+            return None  # MuPDF draws an appearance it makes itself, in fonts it chooses
         for appearance in references(text_of(*document.xref_get_key(annotation, "AP"))):
             if document.xref_is_stream(appearance):
                 holders.append(appearance)
@@ -4262,6 +4272,24 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
             else:  # forms and tiling patterns; images and shadings have no resources
                 holders.extend(references(text))
     return fonts
+
+
+def _pdf_stored_appearance(document: Any, annotation: int) -> bool:
+    """Whether MuPDF draws annotation ``annotation`` from an appearance stream the file
+    stores: its /AP /N is a stream, or a dictionary whose entry under the annotation's /AS
+    is one. Otherwise MuPDF makes an appearance itself (a FreeText, Stamp, captioned Line or
+    text-field Widget annotation's, with text), in base-14 fonts or others it chooses, which
+    no font object in the file carries. Checked under PyMuPDF 1.26.7 and 1.28.2."""
+    kind, value = document.xref_get_key(annotation, "AP/N")
+    if kind == "xref" and document.xref_is_stream(_pdf_reference(document, value)):
+        return True
+    if kind not in ("xref", "dict"):
+        return False
+    kind, state = document.xref_get_key(annotation, "AS")
+    if kind != "name" or not re.fullmatch(r"/[A-Za-z0-9_.+-]+", state):
+        return False
+    kind, value = document.xref_get_key(annotation, "AP/N/" + state[1:])
+    return kind == "xref" and document.xref_is_stream(_pdf_reference(document, value))
 
 
 def _pdf_cid_font_widths(document: Any, font: int) -> list[tuple[int, int]] | None:

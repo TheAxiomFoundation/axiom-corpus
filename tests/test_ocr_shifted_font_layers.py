@@ -68,10 +68,12 @@ S10. Only a Type0 font is decoded, and only when its /W gives a width for every 
 S11. When the page's fonts can't be known for certain (a font, a descendant, a graphics
     state's font or an annotation written inline; a /Subtype or /BaseFont not written in
     the font's dictionary; a /Subtype other than /Type0, /Type1, /MMType1, /TrueType and
-    /Type3, whose type MuPDF guesses; a reference printed with another generation or to an
-    object the file lacks; a page tree deeper than the walk follows; or more distinct
-    objects than it takes, each counted once), nothing on the page is decoded, and nothing
-    raises.
+    /Type3, whose type MuPDF guesses; an annotation, other than a Link or Popup, without a
+    stored appearance MuPDF uses, or a widget whose appearance the form says to make anew,
+    since MuPDF then makes the appearance itself in fonts it chooses; a reference printed
+    with another generation or to an object the file lacks; a page tree deeper than the
+    walk follows; or more distinct objects than it takes, each counted once), nothing on
+    the page is decoded, and nothing raises.
 """
 
 from __future__ import annotations
@@ -1932,6 +1934,95 @@ def test_an_object_that_looks_like_a_font_is_walked_through(tmp_path, inline):
     assert drawn is not None and fonts["B"] in drawn
     assert counts["Shared"] == 2 and "Other" not in counts
     assert decoded == spans
+
+
+def _annotated(tmp_path: Path, name: str, entries: str, acroform: str | None = None):
+    """The page with A (Shared) drawing EVIDENCE and "Wendy Hill" unmapped, and one
+    annotation ``<< entries >>`` ("{stored}" in them a stored appearance drawing "Stored" in
+    Courier), with the catalog's /AcroForm ``acroform`` ("{annotation}" in it the
+    annotation); its spans, the decoded spans and the fonts the walk finds."""
+    pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="Shared")
+    with fitz.open(pdf) as document:
+        page = document[0]
+        font = _font_object(document, "Courier")
+        stored = _form(document, b"BT /F9 12 Tf 80 310 Td (Stored) Tj ET", f"/Font << /F9 {font} 0 R >>")
+        annotation = document.get_new_xref()
+        document.update_object(
+            annotation,
+            "<< /Type /Annot /Rect [72 300 400 340] " + entries.format(stored=f"{stored} 0 R") + " >>",
+        )
+        document.xref_set_key(page.xref, "Annots", f"[{annotation} 0 R]")
+        if acroform is not None:
+            document.xref_set_key(
+                document.pdf_catalog(), "AcroForm", acroform.format(annotation=f"{annotation} 0 R")
+            )
+        document.save(tmp_path / name)
+    spans, decoded = _decoded(tmp_path / name, EVIDENCE_OCR)
+    with fitz.open(tmp_path / name) as document:
+        drawn = documents_module._pdf_drawn_font_xrefs(document[0])
+    return spans, decoded, drawn
+
+
+HELV = "/DA (/Helv 12 Tf 0 g)"
+NEED_APPEARANCES = "<< /Fields [{annotation}] /NeedAppearances true >>"
+
+
+@pytest.mark.parametrize(
+    ("entries", "text"),
+    [
+        (f"/Subtype /FreeText /Contents (Hello) {HELV}", "Hello"),
+        (f"/Subtype /FreeText /Contents (Hello) {HELV} /AP null", "Hello"),
+        (f"/Subtype /FreeText /Contents (Hello) {HELV} /AP << /N << /On {{stored}} >> >>", "Hello"),
+        ("/Subtype /Stamp /Name /Approved", "APPROVED"),
+        ("/Subtype /Line /L [72 300 400 300] /Cap true /Contents (Hello)", "Hello"),
+        (f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV}", "Hello"),
+    ],
+    ids=["FreeText", "FreeText-AP-null", "FreeText-states-without-AS", "Stamp", "Line-caption", "text-field"],
+)
+def test_an_appearance_mupdf_makes_itself_stops_decoding(tmp_path, entries, text):
+    # Review round 7: MuPDF makes an appearance itself for an annotation without a stored
+    # one it can use (no /AP /N stream, nor a dictionary with one under /AS), and draws its
+    # text in fonts no object in the file carries (Helvetica, Times-Bold; 1.26.7 and
+    # 1.28.2). One of those can share A's name, and its unmapped characters would then be
+    # decoded by A's shift (the review's "000"), so the page's fonts are not known.
+    spans, decoded, drawn = _annotated(tmp_path, "made.pdf", entries)
+    assert any(span[0] == text and span[2] != "Shared" for line in spans for span in line)
+    assert drawn is None
+    assert decoded == spans
+
+
+def test_a_widget_whose_appearance_may_be_made_anew_stops_decoding(tmp_path):
+    # With the form's /NeedAppearances true, PyMuPDF 1.28.2 makes a text field's appearance
+    # anew though one is stored ("Hello" in Helvetica); 1.26.7 draws the stored one.
+    entries = f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>"
+    spans, decoded, drawn = _annotated(tmp_path, "remade.pdf", entries, NEED_APPEARANCES)
+    assert {"Stored", "Hello"} & set(_texts(spans))
+    assert drawn is None
+    assert decoded == spans
+
+
+@pytest.mark.parametrize(
+    ("entries", "acroform"),
+    [
+        (f"/Subtype /FreeText /Contents (Hello) {HELV} /AP << /N {{stored}} >>", None),
+        (f"/Subtype /FreeText /Contents (Hello) {HELV} /AS /On /AP << /N << /On {{stored}} >> >>", None),
+        (f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>", None),
+        (
+            f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>",
+            "<< /Fields [{annotation}] /NeedAppearances false >>",
+        ),
+        ("/Subtype /Link /Border [0 0 0] /A << /S /URI /URI (http://example.org) >>", None),
+        ("/Subtype /Popup /Contents (Hello)", None),
+    ],
+    ids=["FreeText", "FreeText-AS", "text-field", "text-field-NeedAppearances-false", "Link", "Popup"],
+)
+def test_annotations_drawn_from_stored_appearances_leave_decoding_alone(tmp_path, entries, acroform):
+    # The converse: a stored appearance MuPDF uses, or a Link or Popup, which MuPDF never
+    # gives an appearance of its own, leaves the fonts known and A decoded.
+    spans, decoded, drawn = _annotated(tmp_path, "stored.pdf", entries, acroform)
+    assert "Hello" not in _texts(spans)
+    assert drawn is not None
+    assert "Wendy Hill" in _texts(decoded)
 
 
 # ---------------------------------------------------------------------------- real pages
