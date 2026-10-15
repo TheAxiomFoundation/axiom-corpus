@@ -1363,6 +1363,18 @@ def extract_ohio_revised_code(
                 )
             except requests.RequestException as exc:
                 errors.append(f"chapter {chapter.num}: {exc}")
+                if chapter.citation_path not in seen_citation_paths:
+                    seen_citation_paths.add(chapter.citation_path)
+                    # The title TOC is the source evidence for the rejected chapter.
+                    items.append(
+                        _container_inventory_item(
+                            _ohio_chapter_container(
+                                chapter, source_path=title_source_key, sha256=title_sha
+                            )
+                        )
+                    )
+                    if remaining is not None:
+                        remaining -= 1
                 continue
             chapter_path = store.source_path(
                 jurisdiction,
@@ -1378,9 +1390,15 @@ def extract_ohio_revised_code(
                 source_path=chapter_source_key,
                 sha256=chapter_sha,
             )
+            sections = _parse_ohio_sections(chapter_bytes, chapter=chapter)
             if chapter_container.citation_path not in seen_citation_paths:
                 seen_citation_paths.add(chapter_container.citation_path)
                 items.append(_container_inventory_item(chapter_container))
+                if remaining is not None:
+                    remaining -= 1
+                if not sections:
+                    errors.append(f"chapter {chapter.num}: no sections parsed")
+                    continue
                 records.append(
                     _container_provision(
                         chapter_container,
@@ -1390,10 +1408,8 @@ def extract_ohio_revised_code(
                     )
                 )
                 container_count += 1
-                if remaining is not None:
-                    remaining -= 1
 
-            for section in _parse_ohio_sections(chapter_bytes, chapter=chapter):
+            for section in sections:
                 if remaining is not None and remaining <= 0:
                     break
                 if section.citation_path in seen_citation_paths:
@@ -1420,6 +1436,12 @@ def extract_ohio_revised_code(
                         "parent_citation_path": chapter.citation_path,
                     },
                 )
+                items.append(item)
+                if remaining is not None:
+                    remaining -= 1
+                if section.body is None:
+                    errors.append(f"section {section.section}: no statute body parsed")
+                    continue
                 records.append(
                     _ohio_section_provision(
                         section,
@@ -1429,10 +1451,7 @@ def extract_ohio_revised_code(
                         expression_date=expression_date_text,
                     )
                 )
-                items.append(item)
                 section_count += 1
-                if remaining is not None:
-                    remaining -= 1
 
     if not items:
         raise ValueError("no Ohio Revised Code provisions extracted")
@@ -3333,7 +3352,7 @@ def _parse_ohio_sections(
             continue
         head = content.select_one(".content-head-text a")
         body_tag = content.select_one("section.laws-body")
-        if not isinstance(head, Tag) or not isinstance(body_tag, Tag):
+        if not isinstance(head, Tag):
             continue
         header_text = _clean_text(head.get_text(" ", strip=True))
         parsed = _parse_ohio_section_header(header_text)
@@ -3341,7 +3360,7 @@ def _parse_ohio_sections(
             continue
         section_num, heading = parsed
         source_url = urljoin(chapter.source_url, str(head.get("href") or ""))
-        body = _ohio_laws_body_text(body_tag)
+        body = _ohio_laws_body_text(body_tag) if isinstance(body_tag, Tag) else None
         effective_date, latest_legislation, pdf_url = _ohio_section_info(content)
         sections.append(
             _OhioSection(
@@ -3354,8 +3373,8 @@ def _parse_ohio_sections(
                 effective_date=effective_date,
                 latest_legislation=latest_legislation,
                 pdf_url=pdf_url,
-                last_updated=_ohio_last_updated(body_tag),
-                references_to=_ohio_references(body_tag),
+                last_updated=_ohio_last_updated(body_tag) if isinstance(body_tag, Tag) else None,
+                references_to=_ohio_references(body_tag) if isinstance(body_tag, Tag) else (),
             )
         )
     return tuple(sections)

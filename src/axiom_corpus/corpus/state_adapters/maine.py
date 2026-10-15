@@ -339,6 +339,7 @@ def extract_maine_revised_statutes(
         raise ValueError(f"no Maine title sources selected for filter: {only_title!r}")
 
     section_targets: list[MaineSectionTarget] = []
+    chapter_sources: dict[str, _RecordedSource] = {}
     for title in titles:
         title_page = fetcher.fetch(title.relative_path)
         title_source = _record_source_page(
@@ -396,7 +397,7 @@ def extract_maine_revised_statutes(
                 container_count += 1
             try:
                 chapter_page = fetcher.fetch(chapter.relative_path)
-                _record_source_page(
+                chapter_sources[chapter.citation_path] = _record_source_page(
                     store,
                     jurisdiction=jurisdiction,
                     run_id=run_id,
@@ -424,6 +425,27 @@ def extract_maine_revised_statutes(
     for target, page, parsed, error in fetched_sections:
         if error is not None:
             errors.append(f"{target.relative_path}: {error}")
+            if target.citation_path not in seen:
+                seen.add(target.citation_path)
+                # The official chapter TOC still proves this section is expected,
+                # even when its page cannot be fetched or parsed.
+                listing_source = chapter_sources[target.parent_citation_path]
+                items.append(
+                    SourceInventoryItem(
+                        citation_path=target.citation_path,
+                        source_url=listing_source.source_url,
+                        source_path=listing_source.source_path,
+                        source_format=MAINE_REVISED_STATUTES_SOURCE_FORMAT,
+                        sha256=listing_source.sha256,
+                        metadata={
+                            "kind": "section",
+                            "heading": target.heading,
+                            "source_id": target.source_id,
+                            "parent_citation_path": target.parent_citation_path,
+                            "target_source_url": urljoin(fetcher.base_url, target.relative_path),
+                        },
+                    )
+                )
             continue
         if page is None or parsed is None:
             continue
