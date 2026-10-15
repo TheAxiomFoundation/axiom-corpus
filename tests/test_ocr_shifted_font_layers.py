@@ -69,9 +69,9 @@ S11. When the page's fonts can't be known for certain (a font, a descendant, a g
     state's font or an annotation written inline; a /Subtype or /BaseFont not written in
     the font's dictionary; a /Subtype other than /Type0, /Type1, /MMType1, /TrueType and
     /Type3, whose type MuPDF guesses; an annotation, other than a Link or Popup, without a
-    stored appearance MuPDF uses, or any such annotation when the form's /NeedAppearances
-    is anything but absent or false, since MuPDF then makes the appearance itself in fonts
-    it chooses; a reference printed
+    stored appearance MuPDF uses, a signature widget MuPDF reads as unsigned, or any such
+    annotation when the form's /NeedAppearances is anything but absent or false, since
+    MuPDF then makes the appearance itself in fonts it chooses; a reference printed
     with another generation or to an object the file lacks; a page tree deeper than the
     walk follows; or more distinct objects than it takes, each counted once), nothing on
     the page is decoded, and nothing raises.
@@ -1942,8 +1942,10 @@ def _annotated(
 ):
     """The page with A (Shared) drawing EVIDENCE and "Wendy Hill" unmapped, and one
     annotation ``<< entries >>`` ("{stored}" in them a stored appearance drawing "Stored" in
-    Courier; "{Widget}", "{Link}" and "{FreeText}" references to those names written as
-    objects of their own), with the catalog's /AcroForm ``acroform`` ("{annotation}" in it
+    Courier; "{Widget}", "{Link}", "{FreeText}" and "{Sig}" references to those names
+    written as objects of their own; "{signature}" a signature dictionary as an object;
+    "{sigfield}" and "{signedfield}" parent fields of type /Sig, without and with a
+    value), with the catalog's /AcroForm ``acroform`` ("{annotation}" in it
     the annotation; "{true}" and "{false}" references to those booleans, and "{chain}" to
     a reference to true), written in the catalog or, with ``form_object``, as an object of
     its own; its spans, the decoded spans and the fonts the walk finds."""
@@ -1966,6 +1968,20 @@ def _annotated(
         chain = document.get_new_xref()
         document.update_object(chain, names["true"])
         names["chain"] = f"{chain} 0 R"
+        for key, value in (
+            ("Sig", "/Sig"),
+            ("signature", "<< /Type /Sig /Filter /Adobe.PPKLite /ByteRange [0 0 0 0] /Contents <00> >>"),
+        ):
+            xref = document.get_new_xref()
+            document.update_object(xref, value)
+            names[key] = f"{xref} 0 R"
+        for key, value in (
+            ("sigfield", "<< /FT /Sig /T (s1) >>"),
+            ("signedfield", "<< /FT /Sig /T (s1) /V " + names["signature"] + " >>"),
+        ):
+            xref = document.get_new_xref()
+            document.update_object(xref, value)
+            names[key] = f"{xref} 0 R"
         annotation = document.get_new_xref()
         document.update_object(
             annotation, "<< /Type /Annot /Rect [72 300 400 340] " + entries.format(**names) + " >>"
@@ -2059,6 +2075,55 @@ def test_a_need_appearances_written_any_way_stops_decoding(tmp_path, value, form
     assert {"Stored", "Hello"} & set(_texts(spans))
     assert drawn is None
     assert decoded == spans
+
+
+SIGNED = "/V << /Type /Sig /Filter /Adobe.PPKLite /ByteRange [0 0 0 0] /Contents <00> >>"
+SIG_FORM = "<< /Fields [{annotation}] /SigFlags 1 >>"
+STORED = "/AP << /N {stored} >>"
+
+
+@pytest.mark.parametrize(
+    ("entries", "text"),
+    [
+        (f"/Subtype /Widget /FT /Sig /T (s1) {STORED}", "SIGN"),
+        (f"/Subtype /Widget /Parent {{sigfield}} {STORED}", "SIGN"),
+        (f"/Subtype /Widget /FT /Sig /T (s1) /V null {STORED}", "SIGN"),
+        (f"/Subtype /Widget /FT /Sig /T (s1) /V (x) {STORED}", "SIGN"),
+        (f"/Subtype /Widget /FT /Sig /T (s1) /V << /Type /Foo >> {STORED}", "SIGN"),
+        (f"/Subtype /Widget /FT {{Sig}} /T (s1) {STORED}", "Stored"),
+    ],
+    ids=["unsigned", "inherited-FT", "V-null", "V-string", "V-other-Type", "FT-indirect"],
+)
+def test_an_unsigned_signature_widget_stops_decoding(tmp_path, entries, text):
+    # Review round 10: MuPDF draws an unsigned signature field's appearance itself ("SIGN"
+    # in NimbusSans-Regular), whatever is stored (1.26.7 and 1.28.2), as on OH-19-0025
+    # page 3. Unsigned means a field type of /Sig, inherited through /Parent, and a value,
+    # inherited likewise, that is not a dictionary whose /Type is absent or /Sig. A /Sig
+    # field type written as an object of its own MuPDF does not read as a signature (it
+    # draws the stored appearance); it is refused anyway.
+    spans, decoded, drawn = _annotated(tmp_path, "sig.pdf", entries, SIG_FORM)
+    assert text in _texts(spans)
+    assert drawn is None
+    assert decoded == spans
+
+
+@pytest.mark.parametrize(
+    "entries",
+    [
+        f"/Subtype /Widget /FT /Sig /T (s1) {SIGNED} {STORED}",
+        f"/Subtype /Widget /FT /Sig /T (s1) /V << >> {STORED}",
+        f"/Subtype /Widget /FT /Sig /T (s1) /V {{signature}} {STORED}",
+        f"/Subtype /Widget /Parent {{signedfield}} {STORED}",
+    ],
+    ids=["signed", "V-empty-dict", "V-indirect", "inherited-V"],
+)
+def test_a_signed_signature_widget_leaves_decoding_alone(tmp_path, entries):
+    # The converse: a signed signature field, its value a dictionary written in place or as
+    # an object, or inherited, is drawn from its stored appearance, and A is decoded.
+    spans, decoded, drawn = _annotated(tmp_path, "signed.pdf", entries, SIG_FORM)
+    assert "SIGN" not in _texts(spans) and "Stored" in _texts(spans)
+    assert drawn is not None
+    assert "Wendy Hill" in _texts(decoded)
 
 
 @pytest.mark.parametrize(

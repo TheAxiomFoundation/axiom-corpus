@@ -4150,9 +4150,10 @@ def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
 
     None when a font or an annotation is written inline, without an object number; when
     an annotation other than a Link or Popup (its /Subtype resolved once) has no stored
-    appearance MuPDF uses (``_pdf_stored_appearance``), or the form's /NeedAppearances is
-    anything but absent or false, since MuPDF then draws an appearance it makes itself, in
-    fonts no object carries; when a
+    appearance MuPDF uses (``_pdf_stored_appearance``), or is a signature widget MuPDF reads
+    as unsigned (``_pdf_unsigned_signature``), or the form's /NeedAppearances is anything
+    but absent or false, since MuPDF then draws an appearance it makes itself, in fonts no
+    object carries; when a
     reference is not one of generation 0 to an object of the file; when something can't
     be read; when the page tree is deeper than 64 nodes above the page without resources;
     or when there are more than _PDF_RESOURCE_WALK distinct holders and graphics-state
@@ -4207,7 +4208,9 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
         if kind == "xref":  # MuPDF resolves an indirect /Subtype
             subtype = str(document.xref_object(_pdf_reference(document, subtype))).strip()
         if subtype not in ("/Link", "/Popup") and (
-            remade or not _pdf_stored_appearance(document, annotation)
+            remade
+            or not _pdf_stored_appearance(document, annotation)
+            or (subtype == "/Widget" and _pdf_unsigned_signature(document, annotation))
         ):
             return None  # MuPDF draws an appearance it makes itself, in fonts it chooses
         for appearance in references(text_of(*document.xref_get_key(annotation, "AP"))):
@@ -4298,6 +4301,58 @@ def _pdf_stored_appearance(document: Any, annotation: int) -> bool:
         return False
     kind, value = document.xref_get_key(annotation, "AP/N/" + state[1:])
     return kind == "xref" and bool(document.xref_is_stream(_pdf_reference(document, value)))
+
+
+def _pdf_field_entry(document: Any, field: int, key: str) -> tuple[int, str, str] | None:
+    """Form field ``field``'s entry ``key``, inherited through /Parent as MuPDF reads it:
+    the object that holds it, and the entry's kind and value as PyMuPDF prints them
+    (("null", "null") when no node holds it). None when the chain is longer than 64 nodes
+    or not a chain of references."""
+    node = field
+    for _ in range(64):
+        kind, value = document.xref_get_key(node, key)
+        if kind != "null":
+            return node, kind, value
+        kind, parent = document.xref_get_key(node, "Parent")
+        if kind == "null":
+            return node, "null", "null"
+        if kind != "xref":
+            return None
+        node = _pdf_reference(document, parent)
+    return None
+
+
+def _pdf_unsigned_signature(document: Any, widget: int) -> bool:
+    """Whether widget ``widget`` is a signature field MuPDF reads as unsigned, whose
+    appearance it then makes itself ("SIGN" in NimbusSans-Regular), whatever is stored:
+    its field type, inherited through /Parent, is /Sig, and its value, inherited likewise,
+    is not a dictionary whose /Type is absent or /Sig. A chain that can't be followed counts
+    as unsigned, and so does a /Sig field type written as an object of its own, which
+    MuPDF does not read as a signature. Checked under PyMuPDF 1.26.7 and 1.28.2."""
+    field_type = _pdf_field_entry(document, widget, "FT")
+    if field_type is None:
+        return True
+    _, kind, value = field_type
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value))).strip()
+    elif kind != "name":
+        return False
+    if value != "/Sig":
+        return False
+    signature = _pdf_field_entry(document, widget, "V")
+    if signature is None:
+        return True
+    node, kind, value = signature
+    if kind == "xref":
+        node, kind = _pdf_reference(document, value), "object"
+        if not str(document.xref_object(node)).strip().startswith("<<"):
+            return True
+        kind, value = document.xref_get_key(node, "Type")
+    elif kind == "dict":
+        kind, value = document.xref_get_key(node, "V/Type")
+    else:
+        return True
+    return not (kind == "null" or (kind, value) == ("name", "/Sig"))
 
 
 def _pdf_cid_font_widths(document: Any, font: int) -> list[tuple[int, int]] | None:
