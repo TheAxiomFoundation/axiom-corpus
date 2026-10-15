@@ -786,16 +786,19 @@ def _places_above(spelled: Path, physical: Path) -> list[tuple[Path, str]]:
 
 
 def _links_below(top: Path, name: str) -> list[str]:
-    """Where (relative to the directory ``top``, which ``name`` names) a directory
-    link or dangling link stands at a protected place below it.
+    """Where (relative to the directory ``top``, which ``name`` names) another
+    checkout's lock may decide below it: a directory link or dangling link at a
+    protected place, or the ``data`` directory of a checkout nested in the tree,
+    whose corpus files that checkout names (invariant 10).
 
-    Real directories are entered, links are not. A link to a file is left out:
-    it names its own place, which the lock of the directory holding it covers.
+    Real directories are entered, links are not; a nested checkout's ``data``
+    is reported, not entered. A link to a file is left out: it names its own
+    place, which the lock of the directory holding it covers.
     """
     found: list[str] = []
-    stack = [(top, "", name)]
+    stack = [(top, "", name, False)]
     while stack:
-        directory, sub, space = stack.pop()
+        directory, sub, space, nested = stack.pop()
         all_guarded = is_protected_corpus_path(fold_path(space).rstrip("/") + "/")
         try:
             with os.scandir(directory) as listing:
@@ -812,7 +815,14 @@ def _links_below(top: Path, name: str) -> list[str]:
                     if entry.is_dir() or not os.path.exists(entry.path):
                         found.append(where)
                 elif entry.is_dir(follow_symlinks=False):
-                    stack.append((Path(entry.path), where, child))
+                    if nested and entry.name == _CORPUS_ROOT:
+                        continue  # the nested checkout's own corpus: reported below
+                    holds_checkout = os.path.lexists(os.path.join(entry.path, ".git")) and (
+                        _checkout_at(Path(entry.path), None) is not None
+                    )
+                    if holds_checkout:
+                        found.append(_join(where, _CORPUS_ROOT))  # made yet or not
+                    stack.append((Path(entry.path), where, child, holds_checkout))
             except OSError:  # removed meanwhile
                 continue
     return found
@@ -958,11 +968,16 @@ def _plan(
                 owner, owner_name = part.resolver, _join(part.name, rest)
                 if rest and part.sub in cut:
                     # Below a place the walk stopped at (a cycle): the file's
-                    # own path decides who names it.
+                    # own path decides who names it, and that checkout fetches
+                    # it there when its lock lists it.
                     here = selection / where
                     named = _owner_of(here, Path(os.path.realpath(here)), hint)
                     if named is not None:
                         owner, owner_name = named
+                        listed_there = owner.locks.by_path.get(owner_name) if owner.active else None
+                        if listed_there is not None:
+                            owner.require_valid_locks()
+                            plan.owned.setdefault(owner.repo, (owner, {}))[1][owner_name] = listed_there
                 if spell:
                     spots = plan.spelled.setdefault((resolver.repo, entry.path), [])
                     here = selection / where if where else selection

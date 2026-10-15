@@ -2292,6 +2292,53 @@ def test_a_lock_naming_a_path_through_a_cycle_is_owned_where_that_path_leads(
     require_materialized([a / _VERSION_DIR], repo=a)
 
 
+def test_a_selection_containing_a_nested_checkout_uses_its_lock_inside(tmp_path: Path, monkeypatch) -> None:
+    """Review r5 finding 1: a checkout nested in the selection's tree names its own
+    corpus files (invariant 10), but a selection of the outer directory gave them
+    to the outer checkout, which fetched its own bytes into the nested tree. The
+    nested checkout's corpus is a part of the selection, and its lock decides."""
+    outer_bytes, nested_bytes = b'{"citation_path":"outer"}\n', b'{"citation_path":"nested"}\n'
+    through_outer = f"{_VERSION_DIR}/vendored/{PROV}"
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_VERSION_DIR}/vendored")
+    _lock_files(outer, {through_outer: outer_bytes})
+    _lock_files(nested, {PROV: nested_bytes})
+    _serve(tmp_path, monkeypatch, {"outer": outer_bytes, "nested": nested_bytes})
+    monkeypatch.chdir(outer)
+    for selection in (outer / _VERSION_DIR, nested / PROV):
+        (nested / PROV).unlink(missing_ok=True)
+        ensure_corpus_paths([selection], repo=outer)
+        assert (nested / PROV).read_bytes() == nested_bytes, selection
+    require_materialized([outer / _VERSION_DIR], repo=outer)
+
+
+def test_a_file_placed_by_its_own_path_below_a_cycle_is_fetched_by_its_checkout(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r5 finding 2: below a cut cycle a locked file is placed by its own
+    path, here into the other checkout, whose lock names it; but that checkout's
+    entry was not enrolled for fetching, so the broad selection refused both
+    locks as unfetchable while selecting the file fetched it. With both
+    selections at once, every place a file is read from counts (mutation M19)."""
+    through = "data/corpus/provisions/loop/shared/2026-07-10.jsonl"
+    data = SHARED_FILES[PROV]
+    a = _init_repo(tmp_path / "a")
+    c = _init_repo(tmp_path / "c")
+    _lock_files(a, {through: data})
+    _lock_files(c, {through: data})
+    (c / "data/corpus/provisions/loop/shared").mkdir(parents=True)
+    (a / "data/corpus/provisions").mkdir(parents=True)
+    (a / "data/corpus/provisions/loop").symlink_to(a / "data/corpus/provisions", target_is_directory=True)
+    (a / "data/corpus/provisions/shared").symlink_to(c / "data/corpus/provisions/loop/shared", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {through: data})
+    monkeypatch.chdir(a)
+    for selections in ([a / "data/corpus/provisions"], [a / through], [a / through, a / "data/corpus/provisions"]):
+        (c / through).unlink(missing_ok=True)
+        ensure_corpus_paths(selections, repo=a)
+        assert (c / through).read_bytes() == data, selections
+        require_materialized(selections, repo=a)
+
+
 # The sharing layout with random locks, files and selections, against a
 # reference model of invariant 11 written over the layout, not the filesystem.
 _SHARED_UNIVERSE = {**SHARED_FILES, COVERAGE: SCOPE_FILES[COVERAGE]}

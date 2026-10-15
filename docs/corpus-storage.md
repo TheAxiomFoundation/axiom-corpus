@@ -560,12 +560,14 @@ exactly those 1,362 files.
     `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
     path itself, and below a directory every directory link or dangling link
     at a protected place, the links below a linked directory's target
-    included. A directory below two links is walked under each spelling. A
+    included, and the `data` directory of every checkout nested in its tree,
+    whose corpus that checkout names. A directory below two links is walked under each spelling. A
     link back to a directory already walked on the same spelled path, with
     the same names protected below it, is a cycle and is not followed (every
     link below it was found the first time); a locked file whose own name
     runs through such a link, or through a chain longer than the 40 links
-    the operating system resolves, is placed by its own path. A selection
+    the operating system resolves, is placed by its own path and fetched by
+    the checkout that path leads to, when that checkout's lock lists it. A selection
     with more than 4096 linked places is refused rather than checked in
     part. Each part's files belong to the checkout that names the paths
     below it (invariant 10): the one that names the part itself, save for a
