@@ -149,8 +149,11 @@ a body as whole word runs, longest first. Findings:
 A body with no word with a letter is text when it is a table of figures: at
 least 5 of its tokens are figures (numbers, dates, amounts, rates and ranges,
 such as `$1,014.00`, `.9666`, `10/19--` or `($450,000)`), and figures are at
-least half of its tokens. A list marker (`(1)`, `[12]`, `3.`, `(4).`) is not a figure:
-a body that kept only its paragraph numbers has lost its text. The rule decides
+least half of its tokens. A list marker of one to three digits (`(1)`, `[12]`,
+`3.`, `(4).`) is not a figure: a body that kept only its paragraph numbers has
+lost its text. Four or more digits in brackets, such as `(1234)`, read as a figure,
+because they cannot be told apart from an amount; a body of nothing but such
+numbers therefore passes as a table of figures. The rule decides
 only whether a row carries text. In the navigation rules a figure is a token
 like any other: it counts in the coverage share, a navigation string that holds
 one ("Appendix 1") covers it, and outside any navigation string it has no
