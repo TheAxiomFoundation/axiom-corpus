@@ -1,11 +1,20 @@
 # Successor scopes for the fixed hollow-document-root findings
 
-Date: 2026-10-13.
-Branch `ingest/hollow-root-successors`, on `origin/main` at `c3a8e1d0c`, which includes
-#854 (merged as f98fa2bbd). 46 successors were built at `acf071fe1` (#854's head with
-`origin/main` `91d69e6d3` merged in, a tree identical to #854's merged head), and the
-other 62 at this branch's `0b1ae81b6`. Between the two, `main` changed no extraction
-code, composer or manifest these scopes use; it added only the SSA POMS manifests.
+Date: 2026-10-13, updated 2026-10-15 for #868.
+Branch `ingest/hollow-root-successors`, on `origin/main` (merged in at `0f4e8a2dd`), which
+includes #854 (merged as f98fa2bbd) and #868 (merged as 38d893d50).
+
+- **First build.** 46 successors were built at `acf071fe1`: #854's head with `origin/main`
+  `91d69e6d3` merged in, a tree identical to #854's merged head. The other 62 were built
+  at this branch's `0b1ae81b6`. Between those two commits, `main` changed no extraction
+  code, composer or manifest these scopes use.
+- **Rebuild after #868.** All 108 were rebuilt at `0f4e8a2dd`, once #868's OCR overlay
+  merge rule was on `main`.
+  - 57 rebuilt byte for byte (inventory, provisions and coverage), and their manifests
+    stand.
+  - The other 51 are exactly the state-plan scopes on #868's scope list. They differ
+    only in 360 PDF page bodies: no row, inventory item, coverage figure or source
+    changes. They were replaced and re-signed.
 Builder: `scripts/repro/hollow_root_successors.py`.
 Per-scope figures: `docs/ingest-runs/2026-10-13-hollow-root-successors.json`.
 Evidence (comparisons, content-check and validation output, logs and the scripts that
@@ -100,13 +109,13 @@ Per-scope figures, including every removed path, are in
 | Family | Scopes | Source files | Rows before | Rows after | Added | Removed | Changed | Body characters before | after |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | NYCRR | 2 | 364 | 3,693 | 3,693 | 0 | 0 | 46 | 3,604,185 | 3,611,913 |
-| CMS Medicaid state plans | 51 | 2,294 | 31,251 | 47,551 | 16,300 | 0 | 1,350 | 57,536,899 | 62,467,746 |
-| CMS CHIP state plans | 51 | 935 | 33,871 | 34,826 | 955 | 0 | 144 | 68,434,080 | 68,688,404 |
+| CMS Medicaid state plans | 51 | 2,294 | 31,251 | 47,551 | 16,300 | 0 | 1,350 | 57,536,899 | 62,470,573 |
+| CMS CHIP state plans | 51 | 935 | 33,871 | 34,826 | 955 | 0 | 144 | 68,434,080 | 68,688,215 |
 | CHIP FCEP | 1 | 76 | 2,347 | 2,347 | 0 | 0 | 36 | 4,847,709 | 4,855,993 |
 | Maryland TCA | 1 | 2 | 6 | 4 | 0 | 2 | 4 | 2,562 | 9,258 |
 | Massachusetts TAFDC | 1 | 8 | 216 | 289 | 73 | 0 | 2 | 431,544 | 534,088 |
 | Canada | 1 | 197 | 461 | 460 | 0 | 1 | 0 | 6,094,075 | 6,094,075 |
-| **Total** | **108** | **3,876** | **71,845** | **89,170** | **17,328** | **3** | **1,582** | **140,951,054** | **146,261,477** |
+| **Total** | **108** | **3,876** | **71,845** | **89,170** | **17,328** | **3** | **1,582** | **140,951,054** | **146,264,115** |
 
 - **In every scope** the sources are the original's bytes, coverage is complete, the
   rows that remain keep their order, and ids follow the original's rule (path-only
@@ -165,30 +174,47 @@ findings equal its entry in #847's `manifests/release-content-baseline.json`.
 
 ### OCR overlay rule: words lost
 
-#854's audit counted only digit-bearing text-layer tokens that disappear. Over all
-1,014 PDF pages that change, `scripts/ocr_word_loss.py` in the evidence folder compares the
-original body (the page's text layer) with the successor's, word by word:
+#854's audit counted only digit-bearing text-layer tokens that disappear.
+`scripts/ocr_word_loss.py` in the evidence folder compares, word by word, the original
+body (the page's text layer) with the successor's over all 1,014 PDF pages that change.
 
-- 939 pages gain words: the 1,014 pages go from 17,267 words to 217,393.
-- On 19 of the 961 pages whose layer has no control characters (in 12 scopes), a
-  legible layer word is missing from the successor. The test is strict: the word is
-  absent even allowing for other spacing and for a near-identical OCR reading, and
-  it is in the system word or name list.
-- Those words are mostly the typed name, title or approval date of the CMS signing
-  official. `_with_unread_layer_lines` keeps a layer line only when one of its
-  digit-bearing tokens is absent from the whole OCR text. So:
-  - `us-hi/policy/cms/medicaid-state-plan/spa/hi-14-005/approval-document/page-3`
-    loses the typed date approved, "November 19, 2014", because "19" and "2014" also
-    occur in "March 19, 2014". It loses the official's name and title too.
-  - `us-nh/policy/cms/medicaid-state-plan/spa/nh-18-0001/approval-document/page-3`
-    reads "DATE APPROVED: 531 30, 2018" where the layer has "April 30, 2018".
+**#854's rule alone (the first build).** On 19 of the 961 changed pages whose layer has
+no control characters (in 12 scopes), a legible layer word was missing.
 
-[#868](https://github.com/TheAxiomFoundation/axiom-corpus/pull/868) replaces that merge
-rule. Its scope list (`docs/ingest-runs/2026-10-13-ocr-overlay-layer-lines-scopes.csv` on
-its branch) names 52 scopes whose pages change, 51 of them state-plan scopes rebuilt
-here. If it merges before this PR,
-those 51 successors are rebuilt with it in place and re-signed. If it merges after,
-they need a further successor revision.
+- **The test is strict.** The word is absent even allowing for other spacing and for a
+  near-identical OCR reading, and it is in the system word or name list.
+- **What was lost.** Mostly the typed name, title or approval date of the CMS signing
+  official. `_with_unread_layer_lines` kept a layer line only when one of its
+  digit-bearing tokens was absent from the whole OCR text:
+  - `us-hi/policy/cms/medicaid-state-plan/spa/hi-14-005/approval-document/page-3` lost
+    its typed date approved, "November 19, 2014", because "19" and "2014" also occur in
+    "March 19, 2014".
+  - `us-nh/policy/cms/medicaid-state-plan/spa/nh-18-0001/approval-document/page-3` read
+    "DATE APPROVED: 531 30, 2018" where the layer has "April 30, 2018".
+- **Review.** Review r1 blocked the hand-off on these losses.
+
+**With #868 (these successors).**
+[#868](https://github.com/TheAxiomFoundation/axiom-corpus/pull/868) appends a layer
+line unless the OCR text already holds the whole line, and drops the lines of
+invisible recognition layers that fail against OCR. Its run note,
+`docs/ingest-runs/2026-10-13-ocr-overlay-layer-lines.md`, gives the rule. On the same
+1,014 pages:
+
+- 965 pages gain words: the pages go from 17,267 words to 217,828.
+- Legible layer words missing: 1 page, 1 word ("tint's", in a noise line of NJ CHIP
+  22-0031), down from 19 pages and 32 words. HI 14-005 now keeps "November 19, 2014"
+  and the signer's name and title, and NH 18-0001 keeps "April 30, 2018".
+- 39 digit-bearing layer tokens on 16 pages are absent even ignoring spacing. All 16
+  pages carry the failed recognition layers #868's run note names: MT 13-0048's
+  mirrored layer, UT 14-0007's, NJ CHIP 22-0031, NJ 19-0009, and the shifted signature
+  dates of ID 20-0001 and MO 20-0016 (where "3131" is "2020" shifted by one).
+  Examples: "1ui", "sta1u", "4cow", "9jeo".
+
+[#870](https://github.com/TheAxiomFoundation/axiom-corpus/pull/870), not merged, decodes
+shifted-font layers. Its scope list names one page in each of 8 documents, in 5 of these
+scopes: the AL, MA, MO, OR and WA Medicaid state plans. If #870 merges while this PR is
+open, those five are rebuilt the same way. Otherwise they need a further successor
+revision.
 
 ## Signing and locks
 
@@ -208,9 +234,11 @@ uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
 - **R2.** R2 already held every source object, since each is byte-identical to the
   original's. `--push` uploaded only the new inventory, provisions and coverage objects.
 
-The 108 manifests were signed over three commits of this branch: 48 over `0b1ae81b6`,
-15 over `cb2218d1e` and 45 over `bf6bbe17f`. Each commit holds the same builder; the
-later commits add only manifests, locks, this note and its JSON.
+The 108 manifests were signed over four commits of this branch: 10 over `0b1ae81b6`,
+8 over `cb2218d1e`, 39 over `bf6bbe17f`, and the 51 rebuilt with #868 over `24689631f`.
+`0b1ae81b6`, `cb2218d1e` and `bf6bbe17f` hold the same builder and extractor. `24689631f`
+adds `main` with #868. It also removes the 51 replaced scopes' earlier manifests and
+locks, so they are re-signed from a clean tree.
 
 Checked on the head:
 
