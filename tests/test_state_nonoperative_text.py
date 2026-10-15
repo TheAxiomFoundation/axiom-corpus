@@ -204,9 +204,7 @@ def _visible_gap(store, report, jurisdiction, failed_section):
         missing = {f"us-oh/statute/{failed_section}"}
         gap_source = "ohio-revised-code/chapters/chapter-5160.html"
     assert report.section_count == 1
-    _assert_visible_gaps(
-        store, report, expected=expected, missing=missing, gap_source=gap_source
-    )
+    _assert_visible_gaps(store, report, expected=expected, missing=missing, gap_source=gap_source)
 
 
 @pytest.mark.parametrize("failed_index", [0, 1])
@@ -222,14 +220,11 @@ def test_ohio_template_only_section_remains_visible_gap(tmp_path, failed_index):
 
 @pytest.mark.parametrize("failed_index", [0, 1])
 @pytest.mark.parametrize("wrapper", ["mrs-text", "MRSSubSection"])
-def test_maine_embedded_history_only_section_remains_visible_gap(
-    tmp_path, failed_index, wrapper
-):
+def test_maine_embedded_history_only_section_remains_visible_gap(tmp_path, failed_index, wrapper):
     store, report, failed_section = _extract(
         tmp_path,
         "maine",
-        f'<div class="{wrapper}"><span class="bhistory">'
-        "[PL 2020, c. 1 (NEW).]</span></div>",
+        f'<div class="{wrapper}"><span class="bhistory">[PL 2020, c. 1 (NEW).]</span></div>',
         failed_index=failed_index,
     )
     _visible_gap(store, report, "maine", failed_section)
@@ -246,10 +241,7 @@ def test_maine_embedded_history_only_section_remains_visible_gap(
     ],
 )
 def test_maine_nonoperative_status_cannot_revive_empty_body(markup):
-    html = (
-        '<div class="MRSSection"><h3 class="heading_section">§1. Example</h3>'
-        f"{markup}</div>"
-    )
+    html = f'<div class="MRSSection"><h3 class="heading_section">§1. Example</h3>{markup}</div>'
     with pytest.raises(ValueError, match="lacks operative text or a status body"):
         parse_maine_section(html)
 

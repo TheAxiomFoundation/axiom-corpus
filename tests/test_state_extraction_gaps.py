@@ -104,9 +104,7 @@ def _assert_visible_gaps(
 
 @pytest.mark.parametrize("failed_section", ["5219-S", "5219-T"])
 @pytest.mark.parametrize("failure", ["maintenance", "missing-file"])
-def test_maine_mixed_rejected_targets_remain_inventory_gaps(
-    tmp_path, failed_section, failure
-):
+def test_maine_mixed_rejected_targets_remain_inventory_gaps(tmp_path, failed_section, failure):
     source = tmp_path / "source"
     pages = {
         MAINE_REVISED_STATUTES_INDEX: SAMPLE_TITLE_INDEX_HTML,
@@ -253,9 +251,7 @@ def test_maine_selected_targets_are_extracted_or_covered_as_gaps(tmp_path, case)
                 f'<a href="./title36sec{section}.html">36 §{section}. Credit</a></div>'
             )
             pages[f"36/title36sec{section}.html"] = (
-                MAINTENANCE
-                if index in failures
-                else SAMPLE_SECTION_HTML.replace("5219-S", section)
+                MAINTENANCE if index in failures else SAMPLE_SECTION_HTML.replace("5219-S", section)
             )
         pages["36/title36ch822sec0.html"] = "<html><body>" + "".join(links) + "</body></html>"
         _write_sources(root / "source", pages)
@@ -286,9 +282,9 @@ def test_ohio_selected_targets_are_extracted_or_covered_as_gaps(tmp_path, case):
         sections = []
         for index in order:
             section = f"5160.{index + 1:02}"
-            content = BeautifulSoup(SAMPLE_OHIO_CHAPTER, "html.parser").select(
-                "div.list-content"
-            )[0]
+            content = BeautifulSoup(SAMPLE_OHIO_CHAPTER, "html.parser").select("div.list-content")[
+                0
+            ]
             if index in failures:
                 content.select_one("section.laws-body").decompose()
             sections.append(str(content).replace("5160.01", section))

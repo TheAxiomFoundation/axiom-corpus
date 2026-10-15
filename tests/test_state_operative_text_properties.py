@@ -58,7 +58,7 @@ def _generated_section(draw, jurisdiction: str):
                     f'<div class="MRSSubSection"><div class="mrs-text">'
                     f'<span class="letpara_id">A{index}.</span>INTRO{index}'
                     f'<div class="mrs-text"><span class="letpara_id">(1{index})</span>'
-                    f"{inline}<span class=\"bhistory\">EMBEDDED{index}</span></div>"
+                    f'{inline}<span class="bhistory">EMBEDDED{index}</span></div>'
                     f"TAIL{index}</div>"
                     f'<div class="MRSSubSection">{paragraph}</div></div>'
                 )

@@ -40,8 +40,10 @@ Each excerpt contains source passages the previous extraction lost:
 
 Inline `.bhistory` spans remain in Maine excerpts to test the operative-text
 boundary: amendment histories are metadata wherever they occur, including
-inside `.mrs-text` and fallback subsections. The adapter retains their text in
-`source_history`, separately from the operative body. Labels, inline links,
+inside `.mrs-text` and fallback subsections, and are always kept out of the
+operative body. `source_history` keeps the existing collector's selection: when
+a section has subsection text, it holds the subsection histories, so a unique
+opening-paragraph history is not recorded there. Labels, inline links,
 nested paragraph markers, and table headers remain in document order.
 
 The three `legacy-*.html` fixtures are exact UTF-8 copies of the existing
