@@ -2093,9 +2093,8 @@ def test_whole_source_directories_fetch_each_file_into_the_checkout_naming_it(
 def test_a_directory_cycle_is_walked_in_bounded_time(tmp_path: Path, monkeypatch, locked: bool) -> None:
     """Review r2 finding 6: two links in a directory back to itself made the walk
     follow every left/right combination up to the link bound (exponential). A
-    link back to a directory already walked on its spelled path is a cycle and
-    is not followed, and another spelling of a walked directory is walked only
-    where a lock that applies names files below it."""
+    link back to a directory already walked on its spelled path is a cycle,
+    followed only as far as a lock names files through it (none here)."""
     repo = _init_repo(tmp_path / "repo")
     if locked:
         _lock_files(repo, {PROV: SHARED_FILES[PROV]})
@@ -2105,7 +2104,7 @@ def test_a_directory_cycle_is_walked_in_bounded_time(tmp_path: Path, monkeypatch
         (statute / name).symlink_to(statute, target_is_directory=True)
     monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
     monkeypatch.chdir(repo)
-    parts, _views = resolver_module._selection(repo / "data/corpus/provisions", None, walk=True)
+    parts, _views, _cut = resolver_module._selection(repo / "data/corpus/provisions", None, walk=True)
     # The selection, each link, and each link once more below the other's
     # spelling: 1 + k + k*k for k links, not every combination up to 40 deep.
     assert len(parts) <= 1 + 2 + 2 * 2
@@ -2235,6 +2234,62 @@ def test_a_nested_checkout_is_used_even_when_the_outer_repo_is_given(tmp_path: P
     for kwargs in ({}, {"repo": outer}):
         with pytest.raises(CorpusNotMaterializedError, match=rf"first: {PROV}"):
             require_materialized([nested / PROV], **kwargs)
+
+
+def test_a_nested_checkout_is_used_for_source_reads_and_any_spelling_of_the_outer_repo(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r4 finding 1: ``resolve_corpus_path`` took the outer checkout's name
+    for a nested checkout's source (widening the outer scope), and the nested
+    check compared strings, so a case-variant spelling of the outer checkout
+    passed over the nested lock."""
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_VERSION_DIR}/vendored")
+    _lock_files(nested, {_ACT: _SOURCE_FILES[_ACT], _SIBLING: _SOURCE_FILES[_SIBLING], PROV: SHARED_FILES[PROV]})
+    _write(nested, _ACT, _SOURCE_FILES[_ACT])
+    _serve(tmp_path, monkeypatch, {**_SOURCE_FILES, PROV: SHARED_FILES[PROV]})
+    monkeypatch.chdir(outer)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    for kwargs in ({}, {"repo": outer}):
+        with pytest.raises(CorpusNotMaterializedError, match="fetching is off"):
+            resolve_corpus_path(nested / _ACT, **kwargs)
+        with pytest.raises(CorpusNotMaterializedError, match=f"first: {_SIBLING}"):
+            require_materialized([nested / _VERSION_DIR], **kwargs)
+    spellings = _checkout_spellings(outer)
+    for name, spelling in spellings.items():
+        if name in {"case variant", "firmlink"}:
+            path = spelling / f"{_VERSION_DIR}/vendored" / PROV
+            with pytest.raises(CorpusNotMaterializedError, match=f"first: {PROV}"):
+                require_materialized([path], repo=outer)
+
+
+def test_a_lock_naming_a_path_through_a_cycle_is_owned_where_that_path_leads(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r4 finding 2: ``S/loop`` links back to ``S`` and ``S/shared`` to
+    another checkout; this checkout's lock names ``S/loop/shared/b``. The walk cut
+    the cycle before seeing ``loop/shared``, so the broad selection gave the file
+    to this checkout and refused to write through ``loop``, while selecting the
+    file fetched it into the other checkout. A cycle is followed as far as a lock
+    names files through it."""
+    through = f"{_VERSION_DIR}/loop/shared/b.html"
+    shared = f"{_VERSION_DIR}/shared/b.html"
+    data = _SOURCE_FILES[_LINKED_SOURCE]
+    a = _init_repo(tmp_path / "a")
+    c = _init_repo(tmp_path / "c")
+    _lock_files(a, {through: data})
+    _lock_files(c, {shared: data})
+    (c / f"{_VERSION_DIR}/shared").mkdir(parents=True)
+    (a / _VERSION_DIR).mkdir(parents=True)
+    (a / f"{_VERSION_DIR}/loop").symlink_to(a / _VERSION_DIR, target_is_directory=True)
+    (a / f"{_VERSION_DIR}/shared").symlink_to(c / f"{_VERSION_DIR}/shared", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {shared: data})
+    monkeypatch.chdir(a)
+    for selection in (a / _VERSION_DIR, a / through):
+        (c / shared).unlink(missing_ok=True)
+        ensure_corpus_paths([selection], repo=a)
+        assert (c / shared).read_bytes() == data, selection
+    require_materialized([a / _VERSION_DIR], repo=a)
 
 
 # The sharing layout with random locks, files and selections, against a

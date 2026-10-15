@@ -229,7 +229,12 @@ separate command (`axiom_corpus.corpus.resolver`):
   spelled through the selection, as a selection of its own, so a link inside
   it sends its files to the checkout it leads to and every lock that applies
   there counts. A `repo` never names a path inside a checkout nested in its
-  corpus tree: the nested checkout does, as invariant 10 says.
+  corpus tree, in any spelling of it: the nested checkout does, as
+  invariant 10 says. Two conventions stay as they were. `fetch_locked_file`
+  (behind the `io` readers) takes a relative path from the working
+  directory, as the reader opens it. `resolve_corpus_path` without `repo`
+  returns a present file at a relative path, spelled through no link and
+  not a source, as given, with no lock consulted.
 
 A checkout is a git top level that holds `src/axiom_corpus` or the lock
 directory, so a sparse checkout of the data and locks alone is guarded too.
@@ -557,10 +562,12 @@ exactly those 1,362 files.
     at a protected place, the links below a linked directory's target
     included. A directory below two links is walked under each spelling. A
     link back to a directory already walked on the same spelled path, with
-    the same names protected below it, is a cycle and is not followed. No
-    walk goes past the 40 links the operating system resolves, and a
-    selection with more than 4096 such places is refused rather than
-    checked in part. Each part's files belong to the checkout that names the paths
+    the same names protected below it, is a cycle and is not followed (every
+    link below it was found the first time); a locked file whose own name
+    runs through such a link, or through a chain longer than the 40 links
+    the operating system resolves, is placed by its own path. A selection
+    with more than 4096 linked places is refused rather than checked in
+    part. Each part's files belong to the checkout that names the paths
     below it (invariant 10): the one that names the part itself, save for a
     dangling link at a directory-only place (`data`, `data/corpus`, a class,
     jurisdiction or document-class directory, a sources version directory)

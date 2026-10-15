@@ -707,7 +707,7 @@ def _owner_of(
     """
     if hint is not None:
         name = hint._name(spelled, physical)
-        if name is not None and not _nested_checkout(hint.repo, physical):
+        if name is not None and not _nested_checkout(hint, physical):
             return hint, name
     resolver = resolver_for(_checkout_for(spelled, physical))
     if resolver is None or resolver is hint:
@@ -751,15 +751,17 @@ def _part_owner(path: Path, found: tuple[CorpusResolver, str] | None) -> tuple[C
     return _resolver(reached[0]), reached[1]
 
 
-def _nested_checkout(root: Path, physical: Path) -> bool:
-    """True when a directory between ``root`` and ``physical`` holds ``.git``: the
-    path may lie in a checkout nested in ``root``'s tree, which then names it
-    (invariant 10), so ``root`` is not asked first."""
-    text, top = str(physical), str(root)
-    if not text.startswith(f"{top}/"):
+def _nested_checkout(resolver: CorpusResolver, physical: Path) -> bool:
+    """True when a directory between ``resolver``'s checkout and ``physical``
+    holds ``.git``: the path may lie in a checkout nested in its tree, which
+    then names it (invariant 10), so ``resolver`` is not asked first. The
+    checkout is matched as ``_inside`` matches it, in any spelling."""
+    inside = resolver._inside(physical)
+    if inside is None or inside == ".":
         return False
-    probe = top
-    for part in text[len(top) + 1 :].split("/")[:-1]:
+    steps = inside.split("/")
+    probe = str(physical.parents[len(steps) - 1])  # the checkout, spelled as physical spells it
+    for part in steps[:-1]:
         probe = f"{probe}/{part}"
         if _holds_git(probe):
             return True
@@ -816,37 +818,43 @@ def _links_below(top: Path, name: str) -> list[str]:
     return found
 
 
-def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tuple[list[_View], list[_View]]:
+def _selection(
+    spelled: Path, hint: CorpusResolver | None, *, walk: bool
+) -> tuple[list[_View], list[_View], set[str]]:
     """The parts of the selection ``spelled`` and every lock view that applies to it.
 
     The first part is the selection itself, in the checkout that names it.
     With ``walk``, a directory adds a part for each directory link (or
     dangling link) at a protected place below it, the links below a linked
     directory's target included, and a part takes the checkout that names
-    the paths below it (``_part_owner``).
+    the paths below it (``_part_owner``). The third value holds the places
+    where the walk stopped short (a cycle).
     """
     physical = Path(os.path.realpath(spelled))
     top = _owner_of(spelled, physical, hint)
     if walk:
         top = _part_owner(spelled, top)
     if top is None:
-        return [], []
+        return [], [], set()
     parts = [_View(top[0], top[1], "")]
     views = [*parts, *(_View(_resolver(root), name, "") for root, name in _places_above(spelled, physical))]
     if not walk or top[1] in top[0].locks.by_path or not _guarded(top[1]):
-        return parts, views  # a locked name is a file: nothing lies below it
+        return parts, views, set()  # a locked name is a file: nothing lies below it
     # A directory is listed once per listing class of the name it is walked
     # under (``_listing_class``: which names below it are protected), and
     # walked under every spelling that reaches it, so each alias keeps its
     # parts. A link back to a directory already walked, under the same
     # listing class, on the same spelled path is a cycle and is not followed:
-    # every file below it has a shorter spelling. No walk goes past the links
-    # the operating system resolves, and too many spellings refuse loudly.
+    # every link below it was found the first time. Its place is "cut": a
+    # locked file whose own name runs through it is classified by its own
+    # path (``_plan``). So is one below a chain longer than the operating
+    # system resolves, and too many spellings refuse loudly.
     pending: list[tuple[Path, str, str, int, frozenset[tuple[int, int, str]]]] = [
         (physical, "", top[1], 0, frozenset())
     ]
     seen: set[tuple[int, int, str]] = set()
     listed: dict[tuple[int, int, str], list[str]] = {}
+    cut: set[str] = set()
     while pending:
         directory, sub, name, hops, trail = pending.pop()
         try:
@@ -854,7 +862,10 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
         except OSError:
             continue
         key = (info.st_dev, info.st_ino, _listing_class(name))
-        if not stat.S_ISDIR(info.st_mode) or hops > _MAX_LINKS or key in trail or (*key[:2], sub) in seen:
+        if not stat.S_ISDIR(info.st_mode) or (*key[:2], sub) in seen:
+            continue
+        if key in trail or hops > _MAX_LINKS:
+            cut.add(sub)  # a cycle (or too long a chain): files below are classified one by one
             continue
         seen.add((*key[:2], sub))
         if key not in listed:
@@ -875,7 +886,7 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
             views.append(parts[-1])
             views.extend(_View(_resolver(root), place, where) for root, place in _places_above(link, link_physical))
             pending.append((link_physical, where, found[1], hops + 1, trail | {key}))
-    return parts, views
+    return parts, views, cut
 
 
 def _listing_class(name: str) -> str:
@@ -912,7 +923,7 @@ def _plan(
     plan = _Plan()
     for path in paths:
         selection = _spelled(path, repo)
-        parts, views = _selection(selection, hint, walk=not exact)
+        parts, views, cut = _selection(selection, hint, walk=not exact)
         if not parts:
             fallback = hint or resolver_for(None)
             if fallback is not None and fallback.active:
@@ -944,7 +955,14 @@ def _plan(
                     if below is not None:
                         part, rest = candidate, below
                         break
-                owner_name = _join(part.name, rest)
+                owner, owner_name = part.resolver, _join(part.name, rest)
+                if rest and part.sub in cut:
+                    # Below a place the walk stopped at (a cycle): the file's
+                    # own path decides who names it.
+                    here = selection / where
+                    named = _owner_of(here, Path(os.path.realpath(here)), hint)
+                    if named is not None:
+                        owner, owner_name = named
                 if spell:
                     spots = plan.spelled.setdefault((resolver.repo, entry.path), [])
                     here = selection / where if where else selection
@@ -956,10 +974,10 @@ def _plan(
                         dirs = plan.scope_dirs.setdefault((resolver.repo, entry.path), [])
                         if scope_dir not in dirs:
                             dirs.append(scope_dir)
-                if resolver is part.resolver and entry.path == owner_name:
+                if resolver is owner and entry.path == owner_name:
                     plan.owned.setdefault(resolver.repo, (resolver, {}))[1][entry.path] = entry
                 else:
-                    item = _Witnessed(resolver, entry, part.resolver, owner_name)
+                    item = _Witnessed(resolver, entry, owner, owner_name)
                     places = plan.witnessed.setdefault((resolver.repo, entry.path), [])
                     if item not in places:
                         places.append(item)
@@ -1318,11 +1336,13 @@ def resolve_corpus_path(path: str | Path, *, repo: Path | None = None) -> Path:
     # path, which ``repo`` may not be (a link to another checkout), decides.
     spelled = _spelled(candidate, repo)
     physical = Path(os.path.realpath(spelled))
-    resolver = resolver_for(repo) if repo is not None else None
-    rel = resolver._name(spelled, physical) if resolver is not None else None
-    if rel is None:
-        resolver = resolver_for(_checkout_for(spelled, physical))
-        rel = resolver._name(spelled, physical) if resolver is not None else None
+    owner = _owner_of(spelled, physical, resolver_for(repo) if repo is not None else None)
+    resolver: CorpusResolver | None
+    rel: str | None
+    if owner is not None:
+        resolver, rel = owner
+    else:
+        resolver, rel = resolver_for(_checkout_for(spelled, physical)), None
     witnesses = _read_witnesses(spelled, physical, resolver, rel)
     if resolver is None or not resolver.active or rel is None:
         found = probe if probe.is_file() and not probe.is_symlink() else None
