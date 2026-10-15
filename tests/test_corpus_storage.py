@@ -2271,8 +2271,8 @@ def test_a_lock_naming_a_path_through_a_cycle_is_owned_where_that_path_leads(
     another checkout; this checkout's lock names ``S/loop/shared/b``. The walk cut
     the cycle before seeing ``loop/shared``, so the broad selection gave the file
     to this checkout and refused to write through ``loop``, while selecting the
-    file fetched it into the other checkout. A cycle is followed as far as a lock
-    names files through it."""
+    file fetched it into the other checkout. Cycles are still not followed; a
+    locked file below a cut is placed by its own path."""
     through = f"{_VERSION_DIR}/loop/shared/b.html"
     shared = f"{_VERSION_DIR}/shared/b.html"
     data = _SOURCE_FILES[_LINKED_SOURCE]
@@ -2404,6 +2404,27 @@ def test_a_file_enrolled_below_a_cycle_is_reported_without_fetching(tmp_path: Pa
     for selection in (a / "data/corpus/provisions", a / through):
         with pytest.raises(CorpusNotMaterializedError, match=rf"not in this checkout \(first: {through}\)"):
             require_materialized([selection], repo=a)
+
+
+def test_a_file_of_a_nested_checkout_outside_its_corpus_stays_the_outer_checkouts(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r7 finding 1: with the outer checkout as ``repo``, a locked outer
+    source inside a nested checkout but outside its ``data`` was skipped. The
+    nested check set the outer checkout aside, the checkout lookup returned it
+    again, and that answer was dropped as "the same as the hint"."""
+    licence = f"{_VERSION_DIR}/vendored/license.txt"
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_VERSION_DIR}/vendored")
+    _lock_files(outer, {licence: b"licence\n"})
+    _serve(tmp_path, monkeypatch, {licence: b"licence\n"})
+    monkeypatch.chdir(outer)
+    for kwargs in ({}, {"repo": outer}):
+        (outer / licence).unlink(missing_ok=True)
+        with pytest.raises(CorpusNotMaterializedError, match=f"first: {licence}"):
+            require_materialized([nested / "license.txt"], **kwargs)
+        assert ensure_corpus_paths([nested / "license.txt"], **kwargs).materialized == [licence]
+        assert (outer / licence).read_bytes() == b"licence\n"
 
 
 # The sharing layout with random locks, files and selections, against a

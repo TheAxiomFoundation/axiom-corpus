@@ -705,13 +705,16 @@ def _owner_of(
     ``hint`` (a caller's ``repo``) is asked first: it names its own paths
     without git. A path it does not name goes to the checkout that does.
     """
+    hint_name = None
     if hint is not None:
-        name = hint._name(spelled, physical)
-        if name is not None and not _nested_checkout(hint, physical):
-            return hint, name
+        hint_name = hint._name(spelled, physical)
+        if hint_name is not None and not _nested_checkout(hint, physical):
+            return hint, hint_name
     resolver = resolver_for(_checkout_for(spelled, physical))
-    if resolver is None or resolver is hint:
+    if resolver is None:
         return None
+    if resolver is hint:  # set aside for a nested checkout that does not name it after all
+        return (hint, hint_name) if hint_name is not None else None
     name = resolver._name(spelled, physical)
     return (resolver, name) if name is not None else None
 
