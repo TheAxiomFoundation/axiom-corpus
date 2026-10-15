@@ -24,16 +24,7 @@ from xml.etree import ElementTree as ET
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import (
-    CData,
-    Comment,
-    Declaration,
-    Doctype,
-    NavigableString,
-    PageElement,
-    ProcessingInstruction,
-    Tag,
-)
+from bs4.element import NavigableString, PageElement, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
@@ -3401,15 +3392,33 @@ def _parse_ohio_section_header(text: str) -> tuple[str, str | None] | None:
 
 
 def _ohio_laws_body_text(body_tag: Tag) -> str | None:
-    """Keep every operative text node once, with paragraphs and table rows in order.
+    """Count a body only from rendered operative text, once in DOM order.
 
-    The update notice is metadata; site navigation and history are outside
-    ``.laws-body``. Special HTML string nodes (including declarations) and
-    script/style content are not visible law.
-    Inline references and table headers remain part of the operative body.
+    Only ordinary NavigableString nodes under rendered elements are text:
+    every special string type, non-rendered or hidden subtree, navigation,
+    and notice/section metadata is excluded, including at the body's ancestors.
+    Paragraphs and table rows keep their boundaries; inline references and
+    table headers remain operative text. This is Ohio's body-presence rule.
     """
     lines: list[str] = []
     fragments: list[str] = []
+    nonrendered = {"template", "script", "style", "noscript", "head", "iframe", "object"}
+    metadata_classes = {
+        "laws-notice", "laws-section-info", "laws-section-info-module", "content-head-text"
+    }
+
+    def rendered(node: Tag) -> bool:
+        return not (
+            node.name in nonrendered
+            or node.name == "nav"
+            or str(node.get("role", "")).strip().lower() == "navigation"
+            or node.has_attr("hidden")
+            or str(node.get("aria-hidden", "")).strip().lower() == "true"
+            or metadata_classes.intersection(node.get("class") or ())
+        )
+
+    if any(not rendered(parent) for parent in body_tag.parents if isinstance(parent, Tag)):
+        return None
 
     def flush() -> None:
         text = _clean_text(" ".join(fragments))
@@ -3418,17 +3427,12 @@ def _ohio_laws_body_text(body_tag: Tag) -> str | None:
         fragments.clear()
 
     def visit(node: PageElement, *, in_row: bool = False) -> None:
-        if isinstance(node, Comment | Doctype | CData | ProcessingInstruction | Declaration):
-            return
-        if isinstance(node, NavigableString):
+        if type(node) is NavigableString:
             text = str(node).strip()
             if text:
                 fragments.append(text)
             return
-        if not isinstance(node, Tag):
-            return
-        classes = node.get("class") or ()
-        if node.name in {"script", "style"} or "laws-notice" in classes:
+        if not isinstance(node, Tag) or not rendered(node):
             return
         # A paragraph inside a cell belongs to its row, rather than a second
         # output block. Walking leaves also avoids duplicating nested markup.

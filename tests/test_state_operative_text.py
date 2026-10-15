@@ -1,13 +1,11 @@
 """Operative text must survive source-first Maine and Ohio section parsing.
 
 The source-token oracle deliberately excludes Maine section headings, revisor
-notes, section histories, status blips, and amendment histories outside an
-operative ``.mrs-text`` paragraph or fallback subsection without ``.mrs-text``.
-Amendment history already embedded in either container remains for byte
-compatibility. Substantive headnotes, paragraph labels, and inline references
-are operative text. Ohio excludes ``.laws-notice``.
-Both adapters exclude nonvisible script/style content and HTML comments.
-The source-token oracle also excludes doctype declarations.
+notes, section histories, status blips, and amendment histories wherever they
+occur. Substantive headnotes, paragraph labels, and inline references are
+operative text. Ohio excludes navigation and its notice/metadata containers.
+Both adapters exclude non-rendered subtrees, hidden elements, and every
+BeautifulSoup special string type.
 Equality means normalized token equality: both adapters collapse whitespace;
 Maine also maps non-breaking hyphens and en dashes to ASCII hyphens, and em
 dashes to two ASCII hyphens. Ohio preserves those punctuation characters.
@@ -16,7 +14,7 @@ dashes to two ASCII hyphens. Ohio preserves those punctuation characters.
 from pathlib import Path
 
 import pytest
-from bs4 import BeautifulSoup, Comment, Doctype, NavigableString, Tag
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 from axiom_corpus.corpus.state_adapters.maine import parse_maine_section
 from axiom_corpus.corpus.states import _ohio_laws_body_text
@@ -42,26 +40,33 @@ def _operative_tokens(html: str, jurisdiction: str) -> list[str]:
     root = soup.select_one(".MRSSection" if jurisdiction == "maine" else ".laws-body")
     assert isinstance(root, Tag)
     tokens: list[str] = []
-    excluded = {"heading_section", "note", "qhistory", "headnote_blip"}
+    excluded = {"heading_section", "note", "qhistory", "headnote_blip", "bhistory"}
+    nonrendered = {"template", "script", "style", "noscript", "head", "iframe", "object"}
     for node in root.descendants:
-        if not isinstance(node, NavigableString) or isinstance(node, (Comment, Doctype)):
+        if type(node) is not NavigableString:
             continue
         ancestors = [parent for parent in node.parents if isinstance(parent, Tag)]
-        if any(parent.name in {"script", "style"} for parent in ancestors):
+        if any(
+            parent.name in nonrendered
+            or parent.has_attr("hidden")
+            or str(parent.get("aria-hidden", "")).strip().lower() == "true"
+            for parent in ancestors
+        ):
             continue
         if jurisdiction == "maine":
             if any(excluded.intersection(parent.get("class", [])) for parent in ancestors):
                 continue
-            if any("bhistory" in parent.get("class", []) for parent in ancestors):
-                embedded_history = any("mrs-text" in parent.get("class", []) for parent in ancestors)
-                fallback_history = any(
-                    "MRSSubSection" in parent.get("class", [])
-                    and parent.select_one(".mrs-text") is None
-                    for parent in ancestors
-                )
-                if not embedded_history and not fallback_history:
-                    continue
-        elif any("laws-notice" in parent.get("class", []) for parent in ancestors):
+        elif any(
+            parent.name == "nav"
+            or parent.get("role") == "navigation"
+            or {
+                "laws-notice",
+                "laws-section-info",
+                "laws-section-info-module",
+                "content-head-text",
+            }.intersection(parent.get("class", []))
+            for parent in ancestors
+        ):
             continue
         tokens.extend(_normalized_tokens(str(node), jurisdiction))
     return tokens
@@ -171,8 +176,12 @@ def test_operative_headnotes_and_references_survive_editorial_exclusions():
     assert body.split() == _operative_tokens(html, "maine")
     assert "Substantive headnote." in body
     assert "section 5102" in body
-    assert "Embedded legacy history." in body
+    assert "Embedded legacy history." not in body
     assert "metadata" not in body
+    assert parse_maine_section(html).source_history == (
+        "Embedded legacy history.",
+        "Historical metadata.",
+    )
 
 
 def test_ohio_mixed_wrappers_direct_text_and_notice_are_handled_in_order():
@@ -207,7 +216,7 @@ def test_ohio_mixed_wrappers_direct_text_and_notice_are_handled_in_order():
         (
             SAMPLE_UNSUBDIVIDED_SECTION_HTML,
             "The State Tax Assessor may establish procedures permitting payment of taxes "
-            "by the use of credit cards. [PL 2005, c. 622, §3 (NEW).]",
+            "by the use of credit cards.",
         ),
     ],
 )
@@ -251,6 +260,6 @@ def test_maine_fallback_subsection_keeps_embedded_legacy_history_bytes():
     """
     parsed = parse_maine_section(html)
 
-    assert parsed.body == "Fallback operative sentence. [PL 2020, c. 1 (NEW).]"
+    assert parsed.body == "Fallback operative sentence."
     assert parsed.source_history == ("[PL 2020, c. 1 (NEW).]",)
     assert _extracted_body(html, "maine").split() == _operative_tokens(html, "maine")

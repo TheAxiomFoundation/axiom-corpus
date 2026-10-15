@@ -22,19 +22,19 @@ Each excerpt contains source passages the previous extraction lost:
 - Maine 5213-A: opening applicability to tax years beginning on or after January 1, 2016; both base-credit definitions and their amounts; the nested income definition; phaseouts $10/$500, $15/$750, and $20/$1,000 with $20,000/$30,000/$40,000 thresholds; and all three subsection 6 exclusions.
 - Ohio 5747.02: each schedule header and row, with the income-range cell followed by its tax cell. The 2024 rows contain $360.69 plus 2.75% and $2,394.32 plus 3.5%; the 2025 rows contain $342.00 plus 2.75% and $2,394.32 plus 3.125%.
 
-Inline `.bhistory` spans remain in Maine excerpts to test the existing
-history boundary: histories embedded in `.mrs-text` stay in the body for byte
-compatibility; histories outside `.mrs-text` are metadata. Labels, inline links,
+Inline `.bhistory` spans remain in Maine excerpts to test the operative-text
+boundary: amendment histories are metadata wherever they occur, including
+inside `.mrs-text` and fallback subsections. The adapter retains their text in
+`source_history`, separately from the operative body. Labels, inline links,
 nested paragraph markers, and table headers remain in document order.
 
 The three `legacy-*.html` fixtures are exact UTF-8 copies of the existing
 small test-fixture constants, obtained with Python AST literal evaluation:
 `SAMPLE_SECTION_HTML` and `SAMPLE_UNSUBDIVIDED_SECTION_HTML` from
 `test_corpus_maine.py`, and `SAMPLE_OHIO_CHAPTER` from `test_corpus_states.py`.
-Their golden assertions preserve existing extraction bytes without importing
-the other test modules.
+Their golden assertions preserve operative extraction bytes without importing
+the other test modules. The unsubdivided Maine fixture now excludes embedded
+amendment history from its body while retaining that history as metadata.
 
-Generated fallback subsections with no `.mrs-text` also retain amendment
-history embedded in their operative container, matching the legacy parser.
-Amendment histories outside either a `.mrs-text` paragraph or such a fallback
-subsection remain metadata excluded from the body.
+Generated fallback subsections with no `.mrs-text` retain all operative text
+and exclude embedded amendment history from the body.

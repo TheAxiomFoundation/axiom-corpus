@@ -15,7 +15,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Comment, Doctype, NavigableString, Tag
+from bs4.element import NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -617,18 +617,32 @@ def parse_maine_chapter_page(
     return tuple(targets)
 
 
-def _maine_section_body_lines(section_node: Tag) -> list[str]:
-    """Retain operative text once in DOM order, with one line per table row.
+def _maine_section_body_lines(section_node: Tag, *, include_status: bool = False) -> list[str]:
+    """Count only rendered text remaining after history/annotation removal.
 
-    Section headings, revisor notes, section histories, status blips, and
-    amendment histories outside ``.mrs-text`` or a fallback subsection without
-    ``.mrs-text`` are metadata. Embedded history in either operative container
-    remains for existing body compatibility. Script/style content, comments,
-    and DOCTYPE declarations are not visible legal text.
+    All amendment histories, including embedded .bhistory, section histories,
+    notes, and headings are metadata wherever nested. Only ordinary text nodes
+    in rendered, visible subtrees count. Preserve DOM order and table rows.
+    include_status lets the repeal-status path read a rendered status blip;
+    status annotations are otherwise excluded from the operative body.
     """
     lines: list[str] = []
     fragments: list[str] = []
-    excluded_classes = {"heading_section", "note", "qhistory", "headnote_blip"}
+    excluded_classes = {"heading_section", "note", "qhistory", "bhistory"}
+    if not include_status:
+        excluded_classes.add("headnote_blip")
+    nonrendered = {"template", "script", "style", "noscript", "head", "iframe", "object"}
+
+    def rendered(node: Tag) -> bool:
+        return not (
+            node.name in nonrendered
+            or node.has_attr("hidden")
+            or str(node.get("aria-hidden", "")).strip().lower() == "true"
+            or excluded_classes.intersection(node.get("class") or ())
+        )
+
+    if any(not rendered(parent) for parent in section_node.parents if isinstance(parent, Tag)):
+        return []
 
     def flush() -> None:
         text = _clean_text(" ".join(fragments))
@@ -641,23 +655,16 @@ def _maine_section_body_lines(section_node: Tag) -> list[str]:
         *,
         in_text: bool = False,
         in_row: bool = False,
-        fallback_subsection: bool = False,
     ) -> None:
-        if isinstance(node, Comment | Doctype):
-            return
-        if isinstance(node, NavigableString):
+        if type(node) is NavigableString:
             text = str(node).strip()
             if text:
                 fragments.append(text)
             return
+        if not isinstance(node, Tag) or not rendered(node):
+            return
         classes = set(node.get("class", []))
-        if node.name in {"script", "style"} or excluded_classes.intersection(classes):
-            return
         is_text = in_text or "mrs-text" in classes
-        if "MRSSubSection" in classes:
-            fallback_subsection = node.select_one(".mrs-text") is None
-        if "bhistory" in classes and not (is_text or fallback_subsection):
-            return
         is_row = node.name == "tr"
         # An outer operative paragraph already grouped nested content in the
         # legacy parser. Keep its bytes while giving tables explicit row lines.
@@ -672,7 +679,6 @@ def _maine_section_body_lines(section_node: Tag) -> list[str]:
                     child,
                     in_text=is_text,
                     in_row=in_row or is_row,
-                    fallback_subsection=fallback_subsection,
                 )
         if boundary:
             flush()
@@ -688,7 +694,9 @@ def parse_maine_section(
     target: MaineSectionTarget | None = None,
 ) -> MaineParsedSection:
     """Parse one official Maine section page."""
-    soup = BeautifulSoup(html, "lxml")
+    # Preserve non-rendered wrappers wherever they occur; HTML repair can
+    # otherwise discard a misplaced head tag and expose its text as law.
+    soup = BeautifulSoup(html, "html.parser")
     section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content")
     if section_node is None:
         raise ValueError("Maine section page lacks a recognized statute-content container")
@@ -708,7 +716,7 @@ def parse_maine_section(
     status_notes: list[str] = []
     if isinstance(section_node, Tag):
         for blip in section_node.select(".headnote_blip"):
-            text = _clean_text(blip.get_text(" ", strip=True))
+            text = _clean_text(" ".join(_maine_section_body_lines(blip, include_status=True)))
             if text:
                 status_notes.append(text)
         # Keep the existing amendment-history selection and ordering independent
@@ -741,7 +749,7 @@ def parse_maine_section(
             text = re.sub(r"^SECTION HISTORY\s*", "", text, flags=re.I).strip()
             if text:
                 history.append(text)
-    if not body_lines and status_notes:
+    if not body_lines and _section_status(status_notes, None) == "repealed":
         body_lines.extend(status_notes)
     if not body_lines:
         raise ValueError("Maine section page lacks operative text or a status body")
