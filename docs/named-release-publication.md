@@ -47,11 +47,14 @@ content is an error.
 ## Publication environment setup
 
 The `publish` job runs only for a `workflow_dispatch` on `main` and uses the
-protected `release-publish` environment. Configure it in this order:
+protected `release-publish` environment. The environment's deployment branch
+rule is the strict boundary. The job's `if` is a first filter only: GitHub
+compares strings case-insensitively, so it would also match `refs/heads/MAIN`.
+Configure it in this order:
 
-1. The maintainer creates `release-publish` in the repository's GitHub Actions
-   environment settings, with a deployment branch rule allowing only `main`
-   and administrator bypass disabled. Required reviewers are optional.
+1. `release-publish` exists in the repository's GitHub Actions environment
+   settings, with a deployment branch rule allowing only `main` and
+   administrator bypass disabled. Required reviewers are optional.
 2. The maintainer adds these three groups of environment secrets, retaining
    their existing names:
 
@@ -69,7 +72,9 @@ protected `release-publish` environment. Configure it in this order:
    `release-preview` and `release-activation` retain their Supabase token.
    CI must also retain access to `R2_ACCOUNT_ID`, `R2_ENDPOINT`, and `R2_BUCKET`
    for read-only corpus fetches; it uses separate `R2_CORPUS_READ_*` credentials.
-   Preserve that connection metadata before removing its repository copies.
+   CI jobs use no environment, so environment-only copies cannot supply that
+   metadata: keep it as repository or organization secrets (or variables), and
+   delete only the repository copies of the publication credentials.
 
 `publish.yml` is the only workflow that reads the release signing key.
 `activate-release.yml` and `register-release-object.yml` use the existing
