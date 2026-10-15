@@ -1947,6 +1947,175 @@ def test_a_bare_path_with_repo_is_that_checkouts_even_when_present_here(tmp_path
     assert os.path.samefile(resolve_corpus_path(PROV), here / PROV)
 
 
+_VERSION_DIR = "data/corpus/sources/nz/statute/2026-07-10"
+_ACT = f"{_VERSION_DIR}/official/act.html"
+_SIBLING = f"{_VERSION_DIR}/official/sub dir/s 2.xml"
+_LINKED_SOURCE = f"{_VERSION_DIR}/linked/b.html"
+_SOURCE_FILES = {**SCOPE_FILES, _LINKED_SOURCE: b"<html>B</html>\n"}
+
+
+def _serve(tmp_path: Path, monkeypatch, files: dict[str, bytes]) -> None:
+    remote, _fake = _remote({content_key(_sha(d)): d for d in files.values()})
+    monkeypatch.setattr(R2ObjectStore, "from_environment", classmethod(lambda cls, **_kwargs: remote))
+    monkeypatch.setenv("AXIOM_CORPUS_CACHE", str(tmp_path / "cache"))
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+    monkeypatch.setattr(resolver_module, "_WITNESSED_SOURCE_DIRS", set(), raising=False)
+
+
+def test_analytics_counts_every_spelling_of_a_locked_file(tmp_path: Path, monkeypatch) -> None:
+    """Review r2 finding 1: ``provisions/b`` links to ``provisions/x`` of the same
+    checkout, whose lock names the absent ``x`` file. Only one spelling per entry
+    was kept, so ``--jurisdiction b`` dropped the file read as ``b``'s."""
+    from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
+
+    locked = "data/corpus/provisions/x/statute/2026-07-10.jsonl"
+    repo = _init_repo(tmp_path / "repo")
+    _lock_files(repo, {locked: SHARED_FILES[PROV]})
+    (repo / "data/corpus/provisions/x/statute").mkdir(parents=True)
+    (repo / "data/corpus/provisions/b").symlink_to(repo / "data/corpus/provisions/x", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {locked: SHARED_FILES[PROV]})
+    monkeypatch.chdir(repo)
+    argv = ["analytics", "--base", str(repo / "data/corpus"), "--version", "2026-07-10", "--jurisdiction", "b"]
+    assert repo / "data/corpus/provisions/b/statute/2026-07-10.jsonl" in _corpus_wide_prefixes(
+        build_parser().parse_args(argv), "analytics"
+    )
+    assert cli_main(argv) == 2
+
+
+def test_the_cli_works_where_base_stands_when_it_links_to_another_checkouts_root(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r2 finding 2: ``data/corpus`` links to another checkout's top level;
+    the walk up from ``--base`` met that checkout first, through the link, so the
+    CLI read its (empty) lock and passed over the holder's absent file."""
+    holder = _init_repo(tmp_path / "holder")
+    _lock_files(holder, {PROV: SHARED_FILES[PROV]})
+    target = _init_repo(tmp_path / "target")
+    (target / "provisions/nz/statute").mkdir(parents=True)
+    (holder / "data").mkdir()
+    (holder / "data/corpus").symlink_to(target, target_is_directory=True)
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(holder)
+    base = str(holder / "data/corpus")
+    args = build_parser_for_cli().parse_args(["analytics", "--base", base, "--version", "2026-07-10"])
+    found = resolver_module.cli_repo(args)
+    assert found is not None and os.path.samefile(found, holder)
+    assert cli_main(["analytics", "--base", base, "--version", "2026-07-10"]) == 2
+
+
+def build_parser_for_cli():
+    from axiom_corpus.corpus.cli import build_parser
+
+    return build_parser()
+
+
+def test_a_source_read_needs_siblings_another_checkout_names_below_a_link(tmp_path: Path, monkeypatch) -> None:
+    """Review r2 finding 3: a link inside a scope's sources directory leads to
+    another checkout whose lock names an absent file there. Reading a source of
+    the scope saw no witness and cached the directory as complete; listing the
+    directory would miss that file. The read now fetches it into that checkout,
+    or refuses it with fetching off."""
+    a = _init_repo(tmp_path / "a")
+    z = _init_repo(tmp_path / "z")
+    _lock_files(a, {_ACT: _SOURCE_FILES[_ACT]})
+    _lock_files(z, {_LINKED_SOURCE: _SOURCE_FILES[_LINKED_SOURCE]})
+    _write(a, _ACT, _SOURCE_FILES[_ACT])
+    (z / f"{_VERSION_DIR}/linked").mkdir(parents=True)
+    (a / f"{_VERSION_DIR}/linked").symlink_to(z / f"{_VERSION_DIR}/linked", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, _SOURCE_FILES)
+    monkeypatch.chdir(a)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match=f"fetching is off .*first: {_LINKED_SOURCE}"):
+        resolve_corpus_path(a / _ACT, repo=a)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([a / _VERSION_DIR], repo=a)
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert resolve_corpus_path(a / _ACT, repo=a) == a / _ACT
+    assert (z / _LINKED_SOURCE).read_bytes() == _SOURCE_FILES[_LINKED_SOURCE]
+
+
+def test_a_source_pointer_widens_the_directory_it_points_into(tmp_path: Path, monkeypatch) -> None:
+    """Review r2 finding 4: a ``latest.html`` pointer outside every checkout, to a
+    source through a sharing link, widened the pointer's own parents (the wrong
+    directory, or an IndexError near ``/``), so the worktree's locked sibling was
+    never checked."""
+    every = {**SHARED_FILES, **SCOPE_FILES}
+    worktree, shared = _sharing(
+        tmp_path,
+        monkeypatch,
+        worktree_locks={_ACT: every[_ACT], _SIBLING: every[_SIBLING]},
+        shared_locks={_ACT: every[_ACT]},
+        link=_VERSION_DIR,
+        every_file=every,
+    )
+    _write(shared, _ACT, every[_ACT])
+    pointer = tmp_path / "latest.html"
+    pointer.symlink_to(worktree / _ACT)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    for path in (worktree / _ACT, pointer):
+        with pytest.raises(CorpusNotMaterializedError, match=_unfetchable(_SIBLING, "worktree", "shared")):
+            resolve_corpus_path(path, repo=worktree)
+
+
+def test_whole_source_directories_fetch_each_file_into_the_checkout_naming_it(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r2 finding 5: making a sources directory whole re-added, to the
+    first checkout's batch, a file the planner had given to the checkout a link
+    inside the directory leads to, so fetch refused to write through the link."""
+    a = _init_repo(tmp_path / "a")
+    z = _init_repo(tmp_path / "z")
+    _lock_files(a, {_ACT: _SOURCE_FILES[_ACT], _LINKED_SOURCE: _SOURCE_FILES[_LINKED_SOURCE]})
+    _lock_files(z, {_LINKED_SOURCE: _SOURCE_FILES[_LINKED_SOURCE]})
+    _write(a, _ACT, _SOURCE_FILES[_ACT])
+    (z / f"{_VERSION_DIR}/linked").mkdir(parents=True)
+    (a / f"{_VERSION_DIR}/linked").symlink_to(z / f"{_VERSION_DIR}/linked", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, _SOURCE_FILES)
+    monkeypatch.chdir(a)
+    for selection in (a / _ACT, a / _VERSION_DIR):
+        report = ensure_corpus_paths([selection], repo=a)
+        assert (z / _LINKED_SOURCE).read_bytes() == _SOURCE_FILES[_LINKED_SOURCE]
+        assert _LINKED_SOURCE in report.materialized + report.present
+        (z / _LINKED_SOURCE).unlink()
+    # require_materialized fetches what the selection lacks, its whole sources
+    # directory with it; the act is in place, so select the directory.
+    require_materialized([a / _VERSION_DIR], repo=a, fetch=True)
+    assert (z / _LINKED_SOURCE).is_file()
+    (z / _LINKED_SOURCE).unlink()
+    (a / _ACT).unlink()
+    require_materialized([a / _ACT], repo=a, fetch=True)  # absent: fetched with its directory
+    assert (a / _ACT).is_file() and (z / _LINKED_SOURCE).is_file()
+    (z / _LINKED_SOURCE).unlink()
+    assert _tree(a / f"{_VERSION_DIR}") == ["linked", "official", "official/act.html"]
+
+
+@pytest.mark.parametrize("locked", [False, True])
+def test_a_directory_cycle_is_walked_in_bounded_time(tmp_path: Path, monkeypatch, locked: bool) -> None:
+    """Review r2 finding 6: two links in a directory back to itself made the walk
+    follow every left/right combination up to the link bound (exponential). A
+    link back to a directory already walked on its spelled path is a cycle and
+    is not followed, and another spelling of a walked directory is walked only
+    where a lock that applies names files below it."""
+    repo = _init_repo(tmp_path / "repo")
+    if locked:
+        _lock_files(repo, {PROV: SHARED_FILES[PROV]})
+    statute = repo / "data/corpus/provisions/nz/statute"
+    statute.mkdir(parents=True)
+    for name in ("left", "right"):
+        (statute / name).symlink_to(statute, target_is_directory=True)
+    monkeypatch.setattr(resolver_module, "_RESOLVERS", {})
+    monkeypatch.chdir(repo)
+    parts, _views = resolver_module._selection(repo / "data/corpus/provisions", None, walk=True)
+    # The selection, each link, and each link once more below the other's
+    # spelling: 1 + k + k*k for k links, not every combination up to 40 deep.
+    assert len(parts) <= 1 + 2 + 2 * 2
+    if locked:
+        with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+            require_materialized([repo / "data/corpus/provisions"], repo=repo)
+    else:
+        require_materialized([repo / "data/corpus/provisions"], repo=repo)
+
+
 # The sharing layout with random locks, files and selections, against a
 # reference model of invariant 11 written over the layout, not the filesystem.
 _SHARED_UNIVERSE = {**SHARED_FILES, COVERAGE: SCOPE_FILES[COVERAGE]}
