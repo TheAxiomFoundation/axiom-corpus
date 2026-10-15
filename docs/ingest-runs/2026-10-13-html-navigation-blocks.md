@@ -80,10 +80,15 @@ bodies (1,066 rows) are navigation by both, 107 bodies (132 rows) content.
 | --- | ---: | ---: | ---: |
 | The check's rule | 1,198 | 1,066 | 132 |
 | Positional blocks only | 1,187 | 1,065 | 122 |
-| … with no token of its own but link separators | 863 | 835 | 28 |
+| … with no token of its own but link separators | 861 | 833 | 28 |
 | … and at least two navigation strings | 448 | 435 | 13 |
 | … and none longer than 12 words | 422 | 414 | 8 |
 | … and none ending a sentence (`is_navigation_block`) | 419 | 411 | 8 |
+
+All six rows were recomputed against `57cd05e01` from the 1,198 CSV-labeled
+locked rows and their retained source bytes. The no-own-token row is corrected
+from 863 / 835 / 28 to 861 / 833 / 28; the other five rows match the original
+measurement. The final decisions also match every `extractor_drops` CSV label.
 
 The cap trades a little either way. Capping at 6 or 8 words drops 6 content
 rows instead of 8, but 92 or 49 fewer navigation rows: the strings of 9 to 12
@@ -122,8 +127,10 @@ names, as of the ingest commit) and extracts it twice from the locked bytes.
   new finding of any kind. `navigation_body` findings in the 148 scopes fall from
   1,198 to 828.
 - **Paths.** Kept rows keep their citation path, ordinal, heading and body; only
-  `block_count` changes. The 14 block rows of these scopes that `rulespec-us` and
-  `rulespec-us-az` cite are unchanged in the successors.
+  `block_count` changes. The original author reported that the 14 block rows of
+  these scopes that `rulespec-us` and `rulespec-us-az` cite are unchanged in the
+  successors; the nit-fix verification did not reproduce that cross-repository
+  comparison.
 - **The check.** `content-check --all --check-baseline` still passes over all
   2,390 locked scopes: the check's findings are unchanged.
 

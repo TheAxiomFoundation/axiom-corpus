@@ -21,7 +21,8 @@ import html
 import json
 from pathlib import Path
 
-from hypothesis import HealthCheck, given, settings
+import pytest
+from hypothesis import HealthCheck, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
@@ -163,6 +164,22 @@ def test_a_body_that_repeats_its_heading_is_kept() -> None:
         heading="Forms Publications",
         label="Rules 3",
     )
+
+
+@pytest.mark.parametrize(
+    "labels",
+    [("Forms", "Publications"), ("Rules 2", "Forms", "Publications")],
+    ids=["heading", "label-and-heading"],
+)
+def test_the_extractor_keeps_a_body_that_repeats_its_heading_or_label(
+    labels: tuple[str, ...],
+) -> None:
+    page = _page(_links(*labels) + "<h2>Forms Publications</h2>" + _links(*labels))
+    every = _blocks(page, KEEP)
+
+    assert [ordinal for ordinal, _, _ in every] == [1, 2]
+    assert every[1] == (2, "Forms Publications", "\n\n".join(labels))
+    assert _blocks(page) == [every[1]]
 
 
 def test_a_body_longer_than_the_check_reads_is_kept() -> None:
@@ -369,6 +386,8 @@ _LABELS = st.sampled_from(
         "About Us",
         "Contact",
         "Forms",
+        "Publications",
+        "Rules 2",
         "Income",
         "Apply Now",
         "Eligibility rules",
@@ -389,7 +408,18 @@ _ITEM = st.one_of(
     st.tuples(st.just("text"), st.lists(_WORDS, min_size=1, max_size=8).map(" ".join)),
 )
 _SECTION = st.tuples(
-    st.sampled_from(["Overview", "Income", "Related pages", "Forms", "Home"]),
+    st.sampled_from(
+        [
+            "Overview",
+            "Income",
+            "Related pages",
+            "Forms",
+            "Home",
+            "Forms Publications",
+            "Home About Us",
+            "Previous Section Next Section",
+        ]
+    ),
     st.lists(_ITEM, min_size=0, max_size=5),
 )
 _PAGES = st.tuples(st.lists(_ITEM, max_size=4), st.lists(_SECTION, min_size=0, max_size=5))
@@ -459,6 +489,23 @@ def test_a_navigation_block_is_a_flagged_body_of_links_only(strings, tokens) -> 
 
 @_SETTINGS
 @given(page=_PAGES)
+@example(
+    page=(
+        [("link", "Forms"), ("link", "Publications")],
+        [("Forms Publications", [("link", "Forms"), ("link", "Publications")])],
+    )
+)
+@example(
+    page=(
+        [("link", "Rules 2"), ("link", "Forms"), ("link", "Publications")],
+        [
+            (
+                "Forms Publications",
+                [("link", "Rules 2"), ("link", "Forms"), ("link", "Publications")],
+            )
+        ],
+    )
+)
 def test_the_extractor_drops_only_rows_the_release_check_flags(page, tmp_path_factory) -> None:  # type: ignore[no-untyped-def]
     root = tmp_path_factory.mktemp("corpus")
     content = _render(*page)
