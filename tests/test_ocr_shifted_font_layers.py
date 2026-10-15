@@ -69,8 +69,8 @@ S11. When the page's fonts can't be known for certain (a font, a descendant, a g
     state's font or an annotation written inline; a /Subtype or /BaseFont not written in
     the font's dictionary; a /Subtype other than /Type0, /Type1, /MMType1, /TrueType and
     /Type3, whose type MuPDF guesses; an annotation, other than a Link or Popup, without a
-    stored appearance MuPDF uses, or a widget whose appearance the form says to make anew,
-    since MuPDF then makes the appearance itself in fonts it chooses; a reference printed
+    stored appearance MuPDF uses, or any such annotation when the form says to make
+    appearances anew, since MuPDF then makes the appearance itself in fonts it chooses; a reference printed
     with another generation or to an object the file lacks; a page tree deeper than the
     walk follows; or more distinct objects than it takes, each counted once), nothing on
     the page is decoded, and nothing raises.
@@ -1939,17 +1939,22 @@ def test_an_object_that_looks_like_a_font_is_walked_through(tmp_path, inline):
 def _annotated(tmp_path: Path, name: str, entries: str, acroform: str | None = None):
     """The page with A (Shared) drawing EVIDENCE and "Wendy Hill" unmapped, and one
     annotation ``<< entries >>`` ("{stored}" in them a stored appearance drawing "Stored" in
-    Courier), with the catalog's /AcroForm ``acroform`` ("{annotation}" in it the
-    annotation); its spans, the decoded spans and the fonts the walk finds."""
+    Courier; "{Widget}", "{Link}" and "{FreeText}" references to those names written as
+    objects of their own), with the catalog's /AcroForm ``acroform`` ("{annotation}" in it
+    the annotation); its spans, the decoded spans and the fonts the walk finds."""
     pdf = _form_pdf(tmp_path / "form.pdf", [*EVIDENCE, ("Wendy Hill", PUA)], name="Shared")
     with fitz.open(pdf) as document:
         page = document[0]
         font = _font_object(document, "Courier")
         stored = _form(document, b"BT /F9 12 Tf 80 310 Td (Stored) Tj ET", f"/Font << /F9 {font} 0 R >>")
+        names = {"stored": f"{stored} 0 R"}
+        for name in ("Widget", "Link", "FreeText"):
+            xref = document.get_new_xref()
+            document.update_object(xref, "/" + name)
+            names[name] = f"{xref} 0 R"
         annotation = document.get_new_xref()
         document.update_object(
-            annotation,
-            "<< /Type /Annot /Rect [72 300 400 340] " + entries.format(stored=f"{stored} 0 R") + " >>",
+            annotation, "<< /Type /Annot /Rect [72 300 400 340] " + entries.format(**names) + " >>"
         )
         document.xref_set_key(page.xref, "Annots", f"[{annotation} 0 R]")
         if acroform is not None:
@@ -1976,8 +1981,17 @@ NEED_APPEARANCES = "<< /Fields [{annotation}] /NeedAppearances true >>"
         ("/Subtype /Stamp /Name /Approved", "APPROVED"),
         ("/Subtype /Line /L [72 300 400 300] /Cap true /Contents (Hello)", "Hello"),
         (f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV}", "Hello"),
+        (f"/Subtype {{FreeText}} /Contents (Hello) {HELV}", "Hello"),
     ],
-    ids=["FreeText", "FreeText-AP-null", "FreeText-states-without-AS", "Stamp", "Line-caption", "text-field"],
+    ids=[
+        "FreeText",
+        "FreeText-AP-null",
+        "FreeText-states-without-AS",
+        "Stamp",
+        "Line-caption",
+        "text-field",
+        "FreeText-indirect-Subtype",
+    ],
 )
 def test_an_appearance_mupdf_makes_itself_stops_decoding(tmp_path, entries, text):
     # Review round 7: MuPDF makes an appearance itself for an annotation without a stored
@@ -1991,10 +2005,21 @@ def test_an_appearance_mupdf_makes_itself_stops_decoding(tmp_path, entries, text
     assert decoded == spans
 
 
-def test_a_widget_whose_appearance_may_be_made_anew_stops_decoding(tmp_path):
+@pytest.mark.parametrize(
+    "entries",
+    [
+        f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>",
+        f"/Subtype {{Widget}} /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>",
+        f"/Subtype /FreeText /Contents (Hello) {HELV} /AP << /N {{stored}} >>",
+    ],
+    ids=["text-field", "text-field-indirect-Subtype", "FreeText"],
+)
+def test_a_form_that_says_to_make_appearances_anew_stops_decoding(tmp_path, entries):
     # With the form's /NeedAppearances true, PyMuPDF 1.28.2 makes a text field's appearance
-    # anew though one is stored ("Hello" in Helvetica); 1.26.7 draws the stored one.
-    entries = f"/Subtype /Widget /FT /Tx /T (f1) /V (Hello) {HELV} /AP << /N {{stored}} >>"
+    # anew though one is stored ("Hello" in Helvetica), its /Subtype written directly or as
+    # an object of its own (review round 8); 1.26.7 draws the stored one. Every annotation
+    # but a Link or Popup then stops decoding, a FreeText one too, though neither version
+    # was seen to remake it.
     spans, decoded, drawn = _annotated(tmp_path, "remade.pdf", entries, NEED_APPEARANCES)
     assert {"Stored", "Hello"} & set(_texts(spans))
     assert drawn is None
@@ -2013,12 +2038,24 @@ def test_a_widget_whose_appearance_may_be_made_anew_stops_decoding(tmp_path):
         ),
         ("/Subtype /Link /Border [0 0 0] /A << /S /URI /URI (http://example.org) >>", None),
         ("/Subtype /Popup /Contents (Hello)", None),
+        ("/Subtype {Link} /Border [0 0 0] /A << /S /URI /URI (http://example.org) >>", None),
+        ("/Subtype /Link /Border [0 0 0] /A << /S /URI /URI (http://example.org) >>", NEED_APPEARANCES),
     ],
-    ids=["FreeText", "FreeText-AS", "text-field", "text-field-NeedAppearances-false", "Link", "Popup"],
+    ids=[
+        "FreeText",
+        "FreeText-AS",
+        "text-field",
+        "text-field-NeedAppearances-false",
+        "Link",
+        "Popup",
+        "Link-indirect-Subtype",
+        "Link-NeedAppearances",
+    ],
 )
 def test_annotations_drawn_from_stored_appearances_leave_decoding_alone(tmp_path, entries, acroform):
-    # The converse: a stored appearance MuPDF uses, or a Link or Popup, which MuPDF never
-    # gives an appearance of its own, leaves the fonts known and A decoded.
+    # The converse: a stored appearance MuPDF uses, or a Link or Popup (its /Subtype
+    # resolved when indirect, as MuPDF resolves it), which MuPDF never gives an appearance of
+    # its own, leaves the fonts known and A decoded.
     spans, decoded, drawn = _annotated(tmp_path, "stored.pdf", entries, acroform)
     assert "Hello" not in _texts(spans)
     assert drawn is not None

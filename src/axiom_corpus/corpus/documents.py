@@ -4146,8 +4146,12 @@ def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
     object looks like. MuPDF draws text only in the fonts a /Tf name selects from a
     holder's Resources/Font and a graphics state's /Font entry selects, whatever their
     /Type, and extracts text drawn in all of those holders; ``get_fonts`` lists fonts of
-    the page and its forms only. None when
-    a font or an annotation is written inline, without an object number; when a
+    the page and its forms only.
+
+    None when a font or an annotation is written inline, without an object number; when
+    an annotation other than a Link or Popup has no stored appearance MuPDF uses
+    (``_pdf_stored_appearance``), or the form's /NeedAppearances is true, since MuPDF
+    then draws an appearance it makes itself, in fonts no object carries; when a
     reference is not one of generation 0 to an object of the file; when something can't
     be read; when the page tree is deeper than 64 nodes above the page without resources;
     or when there are more than _PDF_RESOURCE_WALK distinct holders and graphics-state
@@ -4194,12 +4198,13 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
     kind, value = document.xref_get_key(document.pdf_catalog(), "AcroForm/NeedAppearances")
     if kind == "xref":
         value = str(document.xref_object(_pdf_reference(document, value))).strip()
-    remade = value == "true"  # widgets' appearances MuPDF may make anew (1.28 does)
+    remade = value == "true"  # appearances MuPDF may make anew (1.28 remakes widgets')
     for annotation in references(annotations):
-        subtype = document.xref_get_key(annotation, "Subtype")
-        if subtype not in (("name", "/Link"), ("name", "/Popup")) and (
-            not _pdf_stored_appearance(document, annotation)
-            or (remade and subtype == ("name", "/Widget"))
+        kind, subtype = document.xref_get_key(annotation, "Subtype")
+        if kind == "xref":  # MuPDF resolves an indirect /Subtype
+            subtype = str(document.xref_object(_pdf_reference(document, subtype))).strip()
+        if subtype not in ("/Link", "/Popup") and (
+            remade or not _pdf_stored_appearance(document, annotation)
         ):
             return None  # MuPDF draws an appearance it makes itself, in fonts it chooses
         for appearance in references(text_of(*document.xref_get_key(annotation, "AP"))):
