@@ -1,10 +1,13 @@
 # Official statute text regression excerpts
 
-These fixtures copy reduced operative-content excerpts from retained official
-HTML snapshots in the `2026-07-13-recovery` scopes. All source sentences and
+Except for the full `maine-6147.html` page described below, these fixtures copy
+reduced operative-content excerpts from retained official HTML snapshots in
+the `2026-07-13-recovery` scopes. All source sentences and
 nested DOM structure within the chosen excerpts are retained. Page navigation,
 footer content, section history, and unrelated subsections were omitted. HTML
-serialization normalizes attribute quoting; the legal text is unchanged.
+serialization normalizes attribute quoting, line endings, and trailing
+whitespace; the legal text is unchanged. These excerpts are not byte-exact
+source snapshots; the hashes below identify their retained source pages.
 
 | Fixture | Official source | Retained content | Source snapshot SHA-256 |
 | --- | --- | --- | --- |
@@ -12,7 +15,20 @@ serialization normalizes attribute quoting; the legal text is unchanged.
 | `maine-5124-C.html` | https://legislature.maine.gov/statutes/36/title36sec5124-C.html | Subsections 1-B and 2, all lettered paragraphs and nested amounts | `c3c2e1c66cd1ab062612c2ad6b93551586118f19ae909a17ba6959caf2e58886` |
 | `maine-5126-A.html` | https://legislature.maine.gov/statutes/36/title36sec5126-A.html | Both operative subsections | `561487d22b2bd6082d76a650f76e04223015c4b988ab8ecd7e38f2a3ec179d0d` |
 | `maine-5213-A.html` | https://legislature.maine.gov/statutes/36/title36sec5213-A.html | Opening applicability paragraph, 1(A), 1(A-1), 1(B)(1)-(2), 4, and 6 | `ff62b23f0198a8e956f9acc1e5f2d0b4fa5dd096e63cd9a9cd4f9b7b0c5fd10a` |
+| `maine-6147.html` | https://legislature.maine.gov/statutes/36/title36sec6147.html | Full page with heading, reallocation status, and section history | `6aaedfcbc58b133b23469808f2ce40ea285e77bbacb9bdba92fecc98b365e533` |
 | `ohio-5747.02.html` | https://codes.ohio.gov/ohio-revised-code/section-5747.02 | Division (A)(3), both table schedules, and following 2026 rate | `960f9336ebcaf1ab4dbe7f75775224e52642d75f03d0f1afa7c134ff1d6c5c3a` |
+
+`maine-6147.html` retains the full official page from the locked
+`2026-09-14-income-tax-chapter-us-me-title-36` scope, including its
+`(REALLOCATED TO TITLE 36, SECTION 6142)` body. Only line endings and trailing
+whitespace were normalized; its fixture SHA-256 is
+`b03386c760e895ead8d16ad382a057ab9ff0f77288234d7c49a1c7b903882c10`.
+The real title-36 pages also use `(REPEALED)` and dated
+`(WHOLE SECTION TEXT REPEALED ...)` annotations to denote sections without text.
+These three explicit status forms can supply a section body. Other observed
+annotations, `REALLOCATED FROM`, `WHOLE SECTION TEXT EFFECTIVE`,
+`WHOLE SECTION TEXT EFFECTIVE UNTIL`, and `FUTURE CONTINGENT TERMINATION`,
+require operative text and cannot supply a body on their own.
 
 Each excerpt contains source passages the previous extraction lost:
 

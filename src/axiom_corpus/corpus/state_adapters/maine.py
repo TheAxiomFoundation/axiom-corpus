@@ -19,6 +19,11 @@ from bs4.element import NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
+from axiom_corpus.corpus.html_text import (
+    has_statute_text,
+    is_nonrendered_element,
+    statute_text_children,
+)
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -618,12 +623,13 @@ def parse_maine_chapter_page(
 
 
 def _maine_section_body_lines(section_node: Tag, *, include_status: bool = False) -> list[str]:
-    """Count only rendered text remaining after history/annotation removal.
+    """Read operative text using explicit DOM and history/annotation exclusions.
 
     All amendment histories, including embedded .bhistory, section histories,
     notes, and headings are metadata wherever nested. Only ordinary text nodes
-    in rendered, visible subtrees count. Preserve DOM order and table rows.
-    include_status lets the repeal-status path read a rendered status blip;
+    outside browser default non-content and hidden/aria-hidden subtrees count.
+    CSS styles and classes do not hide text. Preserve DOM order and table rows.
+    include_status lets the status-only path read a displayed status blip;
     status annotations are otherwise excluded from the operative body.
     """
     lines: list[str] = []
@@ -631,11 +637,10 @@ def _maine_section_body_lines(section_node: Tag, *, include_status: bool = False
     excluded_classes = {"heading_section", "note", "qhistory", "bhistory"}
     if not include_status:
         excluded_classes.add("headnote_blip")
-    nonrendered = {"template", "script", "style", "noscript", "head", "iframe", "object"}
 
     def rendered(node: Tag) -> bool:
         return not (
-            node.name in nonrendered
+            is_nonrendered_element(node)
             or node.has_attr("hidden")
             or str(node.get("aria-hidden", "")).strip().lower() == "true"
             or excluded_classes.intersection(node.get("class") or ())
@@ -646,7 +651,7 @@ def _maine_section_body_lines(section_node: Tag, *, include_status: bool = False
 
     def flush() -> None:
         text = _clean_text(" ".join(fragments))
-        if text:
+        if has_statute_text(text):
             lines.append(text)
         fragments.clear()
 
@@ -673,7 +678,7 @@ def _maine_section_body_lines(section_node: Tag, *, include_status: bool = False
         )
         if boundary:
             flush()
-        for child in node.children:
+        for child in statute_text_children(node):
             if isinstance(child, (Tag, NavigableString)):
                 visit(
                     child,
@@ -696,7 +701,12 @@ def parse_maine_section(
     """Parse one official Maine section page."""
     # Preserve non-rendered wrappers wherever they occur; HTML repair can
     # otherwise discard a misplaced head tag and expose its text as law.
-    soup = BeautifulSoup(html, "html.parser")
+    # Official snapshots are UTF-8. Short pages without a charset declaration
+    # can otherwise misdecode invisible characters as visible legacy-codepage
+    # text, making a format-only body appear nonempty.
+    soup = BeautifulSoup(
+        html, "html.parser", from_encoding="utf-8" if isinstance(html, bytes) else None
+    )
     section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content")
     if section_node is None:
         raise ValueError("Maine section page lacks a recognized statute-content container")
@@ -749,8 +759,17 @@ def parse_maine_section(
             text = re.sub(r"^SECTION HISTORY\s*", "", text, flags=re.I).strip()
             if text:
                 history.append(text)
-    if not body_lines and _section_status(status_notes, None) == "repealed":
-        body_lines.extend(status_notes)
+    if not body_lines:
+        # These official annotations say why a section has no text. Other
+        # observed blips (effective dates, REALLOCATED FROM, and contingent
+        # termination) describe text that must still be present on the page.
+        no_current_text = (
+            r"\((?:REPEALED|WHOLE SECTION TEXT REPEALED \d{1,2}/\d{1,2}/\d{2,4}"
+            r"|REALLOCATED TO TITLE \d+(?:-[A-Z]+)?, SECTION \d+(?:-[A-Z0-9]+)*)\)"
+        )
+        body_lines.extend(
+            text for text in status_notes if re.fullmatch(no_current_text, text, flags=re.I)
+        )
     if not body_lines:
         raise ValueError("Maine section page lacks operative text or a status body")
     status = _section_status(status_notes, target.status if target is not None else None)

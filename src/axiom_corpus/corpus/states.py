@@ -29,6 +29,11 @@ from bs4.element import NavigableString, PageElement, Tag
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
+from axiom_corpus.corpus.html_text import (
+    has_statute_text,
+    is_nonrendered_element,
+    statute_text_children,
+)
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.models import Section
@@ -3392,24 +3397,24 @@ def _parse_ohio_section_header(text: str) -> tuple[str, str | None] | None:
 
 
 def _ohio_laws_body_text(body_tag: Tag) -> str | None:
-    """Count a body only from rendered operative text, once in DOM order.
+    """Read operative text once in DOM order using explicit DOM exclusions.
 
-    Only ordinary NavigableString nodes under rendered elements are text:
-    every special string type, non-rendered or hidden subtree, navigation,
-    and notice/section metadata is excluded, including at the body's ancestors.
+    Only ordinary NavigableString nodes count: special string types, browser
+    default non-content elements, hidden/aria-hidden subtrees, navigation,
+    and notice/section metadata are excluded, including at body ancestors.
+    CSS styles and classes do not hide text from this reader.
     Paragraphs and table rows keep their boundaries; inline references and
     table headers remain operative text. This is Ohio's body-presence rule.
     """
     lines: list[str] = []
     fragments: list[str] = []
-    nonrendered = {"template", "script", "style", "noscript", "head", "iframe", "object"}
     metadata_classes = {
         "laws-notice", "laws-section-info", "laws-section-info-module", "content-head-text"
     }
 
     def rendered(node: Tag) -> bool:
         return not (
-            node.name in nonrendered
+            is_nonrendered_element(node)
             or node.name == "nav"
             or str(node.get("role", "")).strip().lower() == "navigation"
             or node.has_attr("hidden")
@@ -3422,7 +3427,7 @@ def _ohio_laws_body_text(body_tag: Tag) -> str | None:
 
     def flush() -> None:
         text = _clean_text(" ".join(fragments))
-        if text:
+        if has_statute_text(text):
             lines.append(text)
         fragments.clear()
 
@@ -3439,7 +3444,7 @@ def _ohio_laws_body_text(body_tag: Tag) -> str | None:
         boundary = node.name == "tr" or (node.name == "p" and not in_row)
         if boundary:
             flush()
-        for child in node.children:
+        for child in statute_text_children(node):
             visit(child, in_row=in_row or node.name == "tr")
         if boundary:
             flush()
