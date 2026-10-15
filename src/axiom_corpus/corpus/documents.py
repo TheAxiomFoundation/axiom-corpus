@@ -4289,7 +4289,7 @@ def _pdf_stored_appearance(document: Any, annotation: int) -> bool:
     if kind != "name" or not re.fullmatch(r"/[A-Za-z0-9_.+-]+", state):
         return False
     kind, value = document.xref_get_key(annotation, "AP/N/" + state[1:])
-    return kind == "xref" and document.xref_is_stream(_pdf_reference(document, value))
+    return kind == "xref" and bool(document.xref_is_stream(_pdf_reference(document, value)))
 
 
 def _pdf_cid_font_widths(document: Any, font: int) -> list[tuple[int, int]] | None:
