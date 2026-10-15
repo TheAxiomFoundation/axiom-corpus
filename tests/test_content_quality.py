@@ -8,12 +8,19 @@ Invariants, for every input:
   unless it repeats the row's own heading.
 - A page with no navigation strings never makes a body navigation; such a body
   is prefixed only through a skip link or JavaScript notice.
-- A body is text exactly when it has a word with a letter and is not
-  navigation.
+- A body is text exactly when it is not navigation and has a word with a
+  letter or is a table of figures (at least five figures, at least half of
+  its tokens). The figure rule decides substance only, never the navigation
+  or prefix verdicts.
+- A table of figures stays one when a figure is added; fewer than five
+  figures never are one.
 - A scope's findings do not depend on the order of its records, are sorted and
   unique, and its hollow roots are bodyless ``document`` rows with no text-
   bearing row below them; ``text_paths`` never contains a hollow root.
 - Adding a text-bearing row can only remove hollow roots.
+- A reviewed-empty list removes exactly the hollow roots it names from the
+  findings, reports them in ``reviewed_empty_roots``, and changes nothing else
+  (other findings and ``text_paths`` alike).
 """
 
 from __future__ import annotations
@@ -21,22 +28,29 @@ from __future__ import annotations
 import json
 import tempfile
 from pathlib import Path
+from unittest import mock
 
+import pytest
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
+from axiom_corpus.corpus import content_quality
 from axiom_corpus.corpus.content_quality import (
     _SKIP_LINK,
     HOLLOW_DOCUMENT_ROOT,
     HTML_SNIFF_BYTES,
     NAVIGATION_BODY,
+    NAVIGATION_COVERAGE,
     NAVIGATION_PREFIXED_BODY,
+    NAVIGATION_RESIDUAL_WORDS,
     PREFIX_TOKENS,
     PREFIXED_MIN_TOKENS,
     VERSION_PICKER_SOURCE,
     PageNavigation,
     ScopeContentScanner,
     classify_body,
+    is_figure,
+    is_figure_table,
     is_navigation_string,
     is_version_picker,
     looks_like_html,
@@ -156,6 +170,151 @@ def test_version_picker_detection_follows_the_adapter() -> None:
     assert not is_version_picker(b"%PDF-1.7 selectFromMultiples")
 
 
+# The body of IL CSMM item 67224, WAG 25-06-05-a (1), the minimum monthly SNAP
+# benefit for one or two persons: dates and amounts only.
+IL_MINIMUM_BENEFIT = (
+    "04/09 - 10/13 11/13 - 09/14 10/14 - 09/17 10/17 - 09/19 10/19-- 12/20 01/21- 09/21 "
+    "10/21- 09/22 10/22- 09/25 10/25- 09/26 $16 $15 $16 $15 $16 $19 $20 $23 $24"
+)
+# Letterless bodies seen in the locked scopes that are not text: date stamps on
+# scanned CMS pages, a page number, a stamp with its SPA numbers, and a page
+# whose font maps glyphs to control characters, with a stray digit or two.
+NOT_TEXT = (
+    "9/4/13",
+    "178",
+    "11/22/2019 04/01/2016",
+    "5 30 14",
+    "10/1/11 1/12/12 11-009 01-004",
+    "\x00\x01\x02\x03\x05 \x07 1 \x03\x08 2 \x07\x10 \x10\x05 3 \x12\x13 4 \x14 5 "
+    "\x15\x16 \x17\x15 \x19\x17 \x1a\x1b \x12\x13 \x14\x15 \x16\x15 \x13\x14 \x15\x13",
+    "§ — ;",
+)
+
+
+def test_figures_are_numbers_dates_amounts_and_rates() -> None:
+    for token in (
+        "16",
+        "$1,014.00",
+        ".9666",
+        "10/19--",
+        "($450,000)",
+        "2.5%",
+        "8411.11.40",
+        "23/24",
+    ):
+        assert is_figure(token), token
+    for token in ("§", "-", "—", "1a", "Ch.", "\x05\x061", "$", "%"):
+        assert not is_figure(token), token
+    # List markers are not figures; the same digits as an amount or a year are.
+    for token in ("(1)", "[12]", "3.", "4)", "(123)", "(5).", "6.)", "(7):", "8.,", "[9];"):
+        assert not is_figure(token), token
+    for token in ("(1,200)", "(1234)", "2026.", "3.5", "(13.5)", "12,", "15;", "(450,000)."):
+        assert is_figure(token), token
+
+
+def test_a_table_of_figures_is_text_and_a_stamp_is_not() -> None:
+    verdict = classify_body(IL_MINIMUM_BENEFIT, None)
+    assert (verdict.navigation, verdict.prefixed, verdict.substantive) == (False, False, True)
+    projections = "23/24 24/25 25/26 26/27 27/28 ($450,000) ($800,000) ($900,000)"
+    assert classify_body(projections, None).substantive
+    for body in NOT_TEXT:
+        assert not classify_body(body, None).substantive, body
+    # A section that kept only its paragraph numbers has lost its text.
+    assert not classify_body("(1) (2) (3) (4) (5) (6)", None).substantive
+    assert not classify_body("1. 2. 3. 4. 5. 6. 7.", None).substantive
+    assert not classify_body("(1). (2). (3). (4). (5).", None).substantive
+
+
+@pytest.mark.parametrize(
+    ("body", "expected"),
+    [
+        ("16 $15 04/09 10/19--", False),
+        ("16 $15 04/09 10/19-- (450,000)", True),
+        ("16 $15 04/09 10/19-- (450,000) - § — ; %", True),
+        ("16 $15 04/09 10/19-- (450,000) - § — ; % $", False),
+    ],
+    ids=["four-figures", "five-figures", "exactly-half", "just-below-half"],
+)
+def test_figure_table_thresholds_are_five_figures_and_half_the_tokens(
+    body: str, expected: bool
+) -> None:
+    assert is_figure_table(body.split()) is expected
+    assert classify_body(body, None).substantive is expected
+
+
+def test_figures_are_not_residual_words() -> None:
+    """Numbers beside a menu's links do not count toward the 25-word residual.
+
+    The 30 numbers here are over that residual, and the menu is still
+    navigation because its links still cover 70% of the characters: figures
+    count in the coverage share like any token, but not as left-over words.
+    Counting them would clear navigation blocks that carry dates or counts,
+    such as a CMS index page's "Approval Document" links
+    (docs/ingest-runs/2026-10-13-content-check-v2.md).
+    """
+    page = _page()
+    tokens = [*(" ".join(MENU).split() * 4), *(["12"] * 30)]
+    assert page.coverage(tokens).share >= NAVIGATION_COVERAGE
+    verdict = classify_body(" ".join(tokens), page)
+    assert (verdict.navigation, verdict.substantive) == (True, False)
+
+
+def test_a_root_over_a_figure_table_has_text_and_one_over_date_stamps_does_not(
+    tmp_path: Path,
+) -> None:
+    records = [
+        # IL item 67224: the table is the item's text.
+        _record("us-xx/manual/67224", None, kind="document"),
+        _record("us-xx/manual/67224/block-1", IL_MINIMUM_BENEFIT, kind="block"),
+        # A scanned attachment whose text layer is each page's date stamp
+        # (OH-12-004): no text, so the root is hollow.
+        _record("us-xx/manual/oh-12-004", None, kind="document"),
+        *(
+            _record(f"us-xx/manual/oh-12-004/page-{page}", "9/4/13", kind="page")
+            for page in (1, 2, 3)
+        ),
+    ]
+    findings = scan_provisions(tmp_path, records)
+    assert [(finding.code, finding.path) for finding in findings] == [
+        (HOLLOW_DOCUMENT_ROOT, "us-xx/manual/oh-12-004")
+    ]
+
+
+def test_bodies_just_under_the_navigation_bar_keep_their_text() -> None:
+    """Why ``NAVIGATION_COVERAGE`` stays 0.7 (docs/release-gate-policy.md).
+
+    Between 0.65 and 0.7 the locked scopes hold page chrome and law alike. Two
+    rows from them, with the navigation strings their pages match: a
+    Connecticut repeal notice (RCSA 12-722(a)-2, where "Repealed" is a link
+    text too) and Minnesota manual prose whose terms are one long link. Only
+    the bar keeps them from being navigation: each leaves a handful of words
+    over. The Maine menu that lost §5219-SS's text sits at 0.692 among them.
+    """
+    cases = [
+        (
+            PageNavigation(["Repealed", "Return to Table of Contents"]),
+            "Repealed February 10, 2004. Return to Table of Contents",
+        ),
+        (
+            PageNavigation(
+                [
+                    "Medical Assistance for People Who Are Age 65 or Older and People Who Are "
+                    "Blind or Have a Disability (MA-ABD) Household Composition and Family Size"
+                ]
+            ),
+            "The Medicare Savings Programs (MSP) generally follow the standard Medical "
+            "Assistance for People Who Are Age 65 or Older and People Who Are Blind or Have a "
+            "Disability (MA-ABD) Household Composition and Family Size policy.",
+        ),
+    ]
+    for page, body in cases:
+        coverage = page.coverage(body.split())
+        assert 0.65 <= coverage.share < NAVIGATION_COVERAGE, body
+        assert coverage.residual_words <= NAVIGATION_RESIDUAL_WORDS
+        verdict = classify_body(body, page)
+        assert (verdict.navigation, verdict.substantive) == (False, True)
+
+
 def _write(root: Path, relative: str, payload: str) -> str:
     path = root / relative
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -253,16 +412,57 @@ def test_without_navigation_strings_only_a_skip_link_can_flag_a_body(tokens: lis
     assert not verdict.navigation
     skip_link = bool(_SKIP_LINK.search(" ".join(tokens[:PREFIX_TOKENS])))
     assert verdict.prefixed == (len(tokens) >= PREFIXED_MIN_TOKENS and skip_link)
-    assert verdict.substantive == any(char.isalpha() for char in body)
+    assert verdict.substantive == (any(char.isalpha() for char in body) or is_figure_table(tokens))
+
+
+_FIGURE_TOKEN = st.sampled_from(["16", "$15", "04/09", "10/19--", "(450,000)", ".9666", "2.5%"])
+_NON_FIGURE_TOKEN = st.sampled_from(["-", "§", "\x05\x06", "\x071", "(1)", "[12]", "3."])
+_ANY_TOKEN = st.one_of(_TOKEN, _FIGURE_TOKEN, _NON_FIGURE_TOKEN)
 
 
 @_SETTINGS
-@given(strings=st.lists(_PHRASE, max_size=8), tokens=st.lists(_TOKEN, max_size=120))
-def test_text_means_letters_and_not_navigation(strings: list[str], tokens: list[str]) -> None:
-    verdict = classify_body(" ".join(tokens), PageNavigation(strings))
+@given(
+    strings=st.lists(_PHRASE, max_size=8),
+    tokens=st.one_of(
+        st.lists(_ANY_TOKEN, max_size=120),
+        st.lists(_FIGURE_TOKEN, min_size=5, max_size=60),
+    ),
+)
+def test_text_means_letters_or_figures_and_not_navigation(
+    strings: list[str], tokens: list[str]
+) -> None:
+    page = PageNavigation(strings)
+    verdict = classify_body(" ".join(tokens), page)
     has_letters = any(char.isalpha() for token in tokens for char in token)
-    assert verdict.substantive == (has_letters and not verdict.navigation)
+    figures = sum(1 for token in tokens if is_figure(token))
+    figure_table = figures >= 5 and 2 * figures >= len(tokens)
+    assert verdict.substantive == ((has_letters or figure_table) and not verdict.navigation)
     assert not (verdict.navigation and verdict.prefixed)
+    # The figure rule decides substance only: forcing it either way leaves the
+    # navigation and prefix verdicts as they were.
+    for forced in (True, False):
+        with mock.patch.object(content_quality, "is_figure_table", return_value=forced):
+            other = classify_body(" ".join(tokens), page)
+        assert (other.navigation, other.prefixed) == (verdict.navigation, verdict.prefixed)
+
+
+@_SETTINGS
+@given(
+    figures=st.lists(_FIGURE_TOKEN, max_size=30),
+    other=st.lists(_NON_FIGURE_TOKEN, max_size=30),
+    extra=_FIGURE_TOKEN,
+)
+def test_a_figure_table_grows_by_figures_and_needs_enough_of_them(
+    figures: list[str], other: list[str], extra: str
+) -> None:
+    tokens = [*figures, *other]
+    if is_figure_table(tokens):
+        assert is_figure_table([*tokens, extra])
+    if len(figures) < 5:
+        assert not is_figure_table(tokens)
+    expected = len(figures) >= 5 and len(figures) >= len(other)
+    assert is_figure_table(tokens) is expected
+    assert classify_body(" ".join(tokens), None).substantive is expected
 
 
 _ROW_BODIES = st.sampled_from(
@@ -313,6 +513,52 @@ def test_scope_findings_are_order_free_and_hollow_roots_are_well_formed(rows, or
             first.add(_record(target + "/z", LAW, kind="block", source_path=source))
             after = {f.path for f in first.findings() if f.code == HOLLOW_DOCUMENT_ROOT}
             assert after <= hollow and target not in after
+
+
+@settings(max_examples=150, deadline=None, suppress_health_check=[HealthCheck.too_slow])
+@given(
+    rows=st.lists(
+        st.tuples(_PATHS, _KINDS, _ROW_BODIES), max_size=12, unique_by=lambda row: row[0]
+    ),
+    reviewed=st.sets(_PATHS.map(lambda path: f"us-xx/statute/{path}"), max_size=4),
+)
+def test_reviewed_empty_rows_leave_the_findings_and_nothing_else(rows, reviewed) -> None:  # type: ignore[no-untyped-def]
+    with tempfile.TemporaryDirectory() as directory:
+        root = Path(directory)
+        source = _write(root, "sources/us-xx/statute/v1/page.html", PAGE)
+        records = [
+            _record(f"us-xx/statute/{path}", body, kind=kind, source_path=source)
+            for path, kind, body in rows
+        ]
+        plain = ScopeContentScanner(root)
+        exempting = ScopeContentScanner(root, reviewed_empty=reviewed)
+        for record in records:
+            plain.add(record)
+            exempting.add(record)
+        hollow = {f.path for f in plain.findings() if f.code == HOLLOW_DOCUMENT_ROOT}
+        assert exempting.reviewed_empty_roots() == tuple(sorted(hollow & reviewed))
+        assert set(exempting.findings()) == {
+            finding
+            for finding in plain.findings()
+            if not (finding.code == HOLLOW_DOCUMENT_ROOT and finding.path in reviewed)
+        }
+        assert exempting.text_paths() == plain.text_paths()
+        assert plain.reviewed_empty_roots() == ()
+
+
+def test_a_reviewed_empty_row_is_exempt_only_while_it_is_hollow(tmp_path: Path) -> None:
+    page = _write(tmp_path, "sources/us-xx/statute/v1/page.html", PAGE)
+    toc = _record("us-xx/statute/toc", None, kind="document", heading="Contents", source_path=page)
+    menu = _record("us-xx/statute/toc/block-1", "\n\n".join(MENU), kind="block", source_path=page)
+    reviewed = {"us-xx/statute/toc", "us-xx/statute/absent"}
+    findings = scan_provisions(tmp_path, [toc, menu], reviewed_empty=reviewed)
+    # The menu block is still navigation; only the root's hollowness is exempt.
+    assert [(f.code, f.path) for f in findings] == [(NAVIGATION_BODY, "us-xx/statute/toc/block-1")]
+    scanner = ScopeContentScanner(tmp_path, reviewed_empty=reviewed)
+    for record in (toc, menu, _record("us-xx/statute/toc/block-2", LAW, kind="block")):
+        scanner.add(record)
+    # With text below it the row is not hollow, so the list exempts nothing.
+    assert scanner.reviewed_empty_roots() == ()
 
 
 def test_findings_serialize_by_code_and_path() -> None:
