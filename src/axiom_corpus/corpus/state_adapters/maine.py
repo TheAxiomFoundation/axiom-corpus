@@ -743,6 +743,8 @@ def parse_maine_section(
                 history.append(text)
     if not body_lines and status_notes:
         body_lines.extend(status_notes)
+    if not body_lines:
+        raise ValueError("Maine section page lacks operative text or a status body")
     status = _section_status(status_notes, target.status if target is not None else None)
     references_to = _references_from_links(section_node, target=target) if isinstance(
         section_node,

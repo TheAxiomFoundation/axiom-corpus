@@ -24,7 +24,16 @@ from xml.etree import ElementTree as ET
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Comment, NavigableString, PageElement, Tag
+from bs4.element import (
+    CData,
+    Comment,
+    Declaration,
+    Doctype,
+    NavigableString,
+    PageElement,
+    ProcessingInstruction,
+    Tag,
+)
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.citation_segment import citation_segment, variant_segment
@@ -3395,7 +3404,8 @@ def _ohio_laws_body_text(body_tag: Tag) -> str | None:
     """Keep every operative text node once, with paragraphs and table rows in order.
 
     The update notice is metadata; site navigation and history are outside
-    ``.laws-body``. Comments and script/style content are not visible law.
+    ``.laws-body``. Special HTML string nodes (including declarations) and
+    script/style content are not visible law.
     Inline references and table headers remain part of the operative body.
     """
     lines: list[str] = []
@@ -3408,7 +3418,7 @@ def _ohio_laws_body_text(body_tag: Tag) -> str | None:
         fragments.clear()
 
     def visit(node: PageElement, *, in_row: bool = False) -> None:
-        if isinstance(node, Comment):
+        if isinstance(node, Comment | Doctype | CData | ProcessingInstruction | Declaration):
             return
         if isinstance(node, NavigableString):
             text = str(node).strip()
