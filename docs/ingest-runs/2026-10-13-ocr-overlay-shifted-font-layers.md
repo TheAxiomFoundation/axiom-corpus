@@ -141,6 +141,18 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
      every annotation but a Link or Popup is refused there, since a rule keyed to a type's
      name is what failed. This also refuses a hidden FreeText, and a Text or Square
      annotation, without a stored appearance, whose made appearances hold no text.
+   - **Unsigned signature fields** (review round 10). MuPDF draws an unsigned signature
+     field's appearance itself, "SIGN" in NimbusSans-Regular, whatever is stored: a
+     `%DSBlank` placeholder, real content or an empty stream, with the field type /Sig
+     written on the widget or inherited from its parent field. A signed one, whose value
+     is a dictionary with /Type /Sig or none, keeps its stored appearance; a value that is
+     null, a string or a dictionary of another /Type counts as unsigned. A text field with
+     `%DSBlank` is drawn as stored (`scripts/round11_probe.py`,
+     `evidence/round11-probe-before.txt` and `-after.txt`, both versions). So a widget
+     whose field type, inherited through /Parent, is /Sig and which MuPDF reads as
+     unsigned leaves the page's fonts unknown (`_pdf_unsigned_signature`). A chain that
+     can't be followed counts as unsigned, and so does a /Sig field type written as an
+     object of its own, which MuPDF does not read as a signature (refused anyway).
    - **Naming them** (`_pdf_font_names`, checked on PyMuPDF 1.26.7 and 1.28.2). A font's
      span name is its /BaseFont. For a Type0 font it is the descendant's /BaseFont, not
      the Type0 font's own, which can end in -Identity-H; for a Type 3 font it is its
@@ -160,8 +172,10 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
      1.26.7 and 1.28.2.)
    - **How far the naming reaches.** It explains every span font name on 1,040 of the
      1,041 pages (`scripts/font_identity_probe.py`, `evidence/font-identity-probe-r3.json`).
-     The other is a font MuPDF substitutes, OH-19-0025 page 3's "NimbusSans-Regular",
-     which has no unmapped characters. A name that no object explains is not decoded.
+     The other, OH-19-0025 page 3's "NimbusSans-Regular", is the "SIGN" MuPDF draws for an
+     unsigned signature field (review round 10; earlier drafts of this note called it a
+     substituted font, which was wrong). That page has no unmapped characters, and the
+     signature rule below refuses it now. A name that no object explains is not decoded.
    - **When the fonts can't be known for certain, nothing on the page is decoded.** That
      covers:
      - a font, a Type0 font's descendant, a graphics state's font or an annotation
@@ -171,8 +185,9 @@ spans hold the text output's characters (#868's `_same_layer_characters`),
        bare key gives "70 0 R");
      - a /Subtype other than the five MuPDF loads by;
      - an annotation, other than a Link or Popup (its /Subtype resolved once), without a
-       stored appearance MuPDF uses, or any such annotation when the form's
-       /NeedAppearances is anything but absent or false (review rounds 7 to 9);
+       stored appearance MuPDF uses, a signature widget MuPDF reads as unsigned, or any
+       such annotation when the form's /NeedAppearances is anything but absent or false
+       (review rounds 7 to 10);
      - a reference printed with a generation other than 0, or to an object the file does
        not have;
      - anything PyMuPDF can't read;
@@ -357,7 +372,10 @@ share a name, and a mapped font or an annotation's font can share a name with th
   Line; a text field without /AP), and under /NeedAppearances true a text field with
   /AP, its /Subtype direct or indirect, and a FreeText with /AP; /NeedAppearances
   written indirectly, as a chain of references, and in an /AcroForm written as an object
-  of its own, with an indirect false as the converse; with stored
+  of its own, with an indirect false as the converse; unsigned signature widgets (field
+  type on the widget or inherited, value absent, null, a string or another /Type, and a
+  /Sig field type as an object), with signed ones (value in place, as an object,
+  inherited, or an empty dictionary) as the converse; with stored
   appearances, Links and Popups (one with an indirect /Subtype, one under
   /NeedAppearances) as the converse; an appearance referred to with generation 1, or to
   an object the file lacks; an unused font resource that does; a page tree too deep to
@@ -439,14 +457,18 @@ S64 (only widgets refused under /NeedAppearances, by their /Subtype as written) 
 After review round 9, 64 variants at `d3321e0ad`: 63 killed, S12 again the one left. S61
 was rewritten for the fail-closed rule; S65 (an indirect /NeedAppearances not resolved)
 and S66 (/NeedAppearances counted only when it reads true) are new, killed by the
-indirect-false and chain cases. Logs: `evidence/mutation-r1.txt` to `mutation-r15.txt`.
+indirect-false and chain cases. After review round 10, 67 variants at `86426259e`: 66 killed, S12 again the one left. S60
+and S64 were repointed at the reshaped condition; S67 (an unsigned signature widget walked
+as if drawn from its stored appearance), S68 (any dictionary value taken as a signature)
+and S69 (field entries not inherited through /Parent) are new. Logs:
+`evidence/mutation-r1.txt` to `mutation-r16.txt`.
 
 ## Before and after: every page the overlay rule reaches
 
 Both sides were run on the same 1,041 pages in 328 retained PDFs, with Tesseract 5.5.3
 cached by rendered page image: 3,123 hits for the two sides, 4,164 from round 3 on with
 the all-fonts chance pass, 0 misses in every run. These figures hold for the rule after
-review rounds 1 to 9 and the author's round-6 check. The rule before round 1 (no font-object or class test, lines decoded in part)
+review rounds 1 to 10 and the author's round-6 check. The rule before round 1 (no font-object or class test, lines decoded in part)
 also found AL-20-0004's ArialMT; it gave the same lines and one more, the clipped "Acting
 Deputy D". The before side is this branch with
 `_pdf_decoded_span_lines` returning its spans, which is #868's code at `8a2452fea`. The
@@ -465,8 +487,10 @@ review round 3's (`d4f4b9c12`, `r10-d4f4b9c12/`), round 4's (`ab9a4b6d3`,
 `r11-ab9a4b6d3/`), round 5's (`044992b5c`, `r12-dd61ee4c8/`), the round-6 check's
 (`1479bd957`, `r13-1479bd957/`), review round 6's (`8fda76c0e`, `r14-8fda76c0e/`), review
 round 7's (`7c6630130`, `r15-7c6630130/`) and review round 8's (`b2c8510f5`,
-`r16-b2c8510f5/`) and review round 9's (`d3321e0ad`, `r17-d3321e0ad/`); r12 to r17 are
-byte-identical, probes included.
+`r16-b2c8510f5/`) and review round 9's (`d3321e0ad`, `r17-d3321e0ad/`) and review round 10's (`86426259e`,
+`r18-86426259e/`); r12 to r18 are byte-identical, probes included, but for the identity
+probe at r18, which now finds the fonts not known on OH-19-0025 page 3 (its unsigned
+signature field), a page with no unmapped characters.
 
 | | |
 | --- | ---: |
@@ -522,7 +546,7 @@ without decoding and the same OCR cache, gives no error on either side. 8 docume
 change, one block each, and no block count, heading or section label changes. The words
 added and removed are the page lines above, 61 added and 4 removed. Re-run on #868 at
 `55bba979b`, after review round 2's fixes, at `dfe3833be` and `a5bc14776`, and after
-review rounds 3 to 9 and the round-6 check, it gives the same documents, blocks and
+review rounds 3 to 10 and the round-6 check, it gives the same documents, blocks and
 words.
 
 ## Scopes whose pages change; #864
