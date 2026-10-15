@@ -2116,6 +2116,127 @@ def test_a_directory_cycle_is_walked_in_bounded_time(tmp_path: Path, monkeypatch
         require_materialized([repo / "data/corpus/provisions"], repo=repo)
 
 
+def _file_of(jurisdiction: str) -> str:
+    return f"data/corpus/provisions/{jurisdiction}/statute/2026-07-10.jsonl"
+
+
+def test_a_link_to_a_parent_directory_does_not_hide_links_below_it(tmp_path: Path, monkeypatch) -> None:
+    """Review r3 finding 1: ``provisions`` links to ``data/corpus`` itself, whose
+    ``side/statute`` links to another checkout. Selected from ``data/corpus``,
+    the walk took the second visit of ``data/corpus`` (through ``provisions``) for
+    a cycle and stopped, though below ``provisions`` every name is protected and
+    ``side/statute`` stands where the other checkout's lock names a file."""
+    side = _file_of("side")
+    a = _init_repo(tmp_path / "a")
+    b = _init_repo(tmp_path / "b")
+    _lock_files(b, {side: SHARED_FILES[PROV]})
+    (b / "data/corpus/provisions/side/statute").mkdir(parents=True)
+    (a / "data/corpus/side").mkdir(parents=True)
+    (a / "data/corpus/provisions").symlink_to(a / "data/corpus", target_is_directory=True)
+    (a / "data/corpus/side/statute").symlink_to(b / "data/corpus/provisions/side/statute", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {side: SHARED_FILES[PROV]})
+    monkeypatch.chdir(a)
+    for selection in (a / "data/corpus/provisions", a / "data/corpus"):
+        with pytest.raises(CorpusNotMaterializedError, match=rf"first: {side}"):
+            require_materialized([selection], repo=a)
+        assert a / side in dict(resolver_module.locked_entries_under([selection], repo=a))
+
+
+def test_every_alias_keeps_the_owner_below_it(tmp_path: Path, monkeypatch) -> None:
+    """Review r3 finding 2: ``a`` and ``b`` both link to ``x`` in a lock-free
+    checkout, whose ``statute`` is shared from a third checkout with the only
+    lock. The second alias was walked only when a lock already seen named files
+    below it, which the third checkout's (not yet seen) could not, so analytics
+    dropped one jurisdiction."""
+    a = _init_repo(tmp_path / "a")
+    b = _init_repo(tmp_path / "b")
+    c = _init_repo(tmp_path / "c")
+    _lock_files(c, {_file_of("x"): SHARED_FILES[PROV]})
+    (c / "data/corpus/provisions/x/statute").mkdir(parents=True)
+    (b / "data/corpus/provisions/x").mkdir(parents=True)
+    (b / "data/corpus/provisions/x/statute").symlink_to(c / "data/corpus/provisions/x/statute", target_is_directory=True)
+    (a / "data/corpus/provisions").mkdir(parents=True)
+    for name in ("a", "b"):
+        (a / f"data/corpus/provisions/{name}").symlink_to(b / "data/corpus/provisions/x", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {_file_of("x"): SHARED_FILES[PROV]})
+    monkeypatch.chdir(a)
+    found = dict(resolver_module.locked_entries_under([a / "data/corpus/provisions"], repo=a))
+    assert {a / _file_of("a"), a / _file_of("b")} <= set(found)
+    for jurisdiction in ("a", "b"):
+        argv = ["analytics", "--base", str(a / "data/corpus"), "--version", "2026-07-10", "--jurisdiction", jurisdiction]
+        assert cli_main(argv) == 2, jurisdiction
+
+
+def test_a_selected_source_makes_its_directory_whole_across_checkouts(tmp_path: Path, monkeypatch) -> None:
+    """Review r3 finding 3: selecting one source widened only the selecting
+    checkout's lock, so a sibling only the checkout a link inside the directory
+    leads to names stayed absent, though resolving the same source fetched it."""
+    a = _init_repo(tmp_path / "a")
+    z = _init_repo(tmp_path / "z")
+    _lock_files(a, {_ACT: _SOURCE_FILES[_ACT]})
+    _lock_files(z, {_LINKED_SOURCE: _SOURCE_FILES[_LINKED_SOURCE]})
+    (z / f"{_VERSION_DIR}/linked").mkdir(parents=True)
+    (a / _VERSION_DIR).mkdir(parents=True)
+    (a / f"{_VERSION_DIR}/linked").symlink_to(z / f"{_VERSION_DIR}/linked", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, _SOURCE_FILES)
+    monkeypatch.chdir(a)
+    for fetch in ("ensure_corpus_paths", "require_materialized", "fetch_locked_file"):
+        for placed in (a / _ACT, z / _LINKED_SOURCE):
+            placed.unlink(missing_ok=True)
+        if fetch == "ensure_corpus_paths":
+            ensure_corpus_paths([a / _ACT], repo=a)
+        elif fetch == "require_materialized":
+            require_materialized([a / _ACT], repo=a, fetch=True)
+        else:
+            assert fetch_locked_file(a / _ACT)
+        assert (a / _ACT).is_file(), fetch
+        assert (z / _LINKED_SOURCE).read_bytes() == _SOURCE_FILES[_LINKED_SOURCE], fetch
+    require_materialized([a / _VERSION_DIR], repo=a)
+
+
+def test_a_directory_listed_under_one_namespace_is_listed_again_under_another(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Review r3 finding 4: one directory is reached as ``data/corpus`` (where only
+    the class directories are protected) and as ``provisions/a`` (where every name
+    is). Its listing was cached by inode alone, so whichever came first decided
+    whether ``statute`` (a link to the checkout that locks the file) was seen."""
+    file = _file_of("a")
+    a = _init_repo(tmp_path / "a")
+    b = _init_repo(tmp_path / "b")
+    c = _init_repo(tmp_path / "c")
+    _lock_files(a, {file: SHARED_FILES[PROV]})
+    _lock_files(c, {file: SHARED_FILES[PROV]})
+    (c / "data/corpus/provisions/a/statute").mkdir(parents=True)
+    (b / "data/corpus").mkdir(parents=True)
+    (b / "data/corpus/statute").symlink_to(c / "data/corpus/provisions/a/statute", target_is_directory=True)
+    (a / "data/corpus/provisions/z/statute/data").mkdir(parents=True)
+    (a / "data/corpus/provisions/a").symlink_to(b / "data/corpus", target_is_directory=True)
+    (a / "data/corpus/provisions/z/statute/data/corpus").symlink_to(b / "data/corpus", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {file: SHARED_FILES[PROV]})
+    monkeypatch.chdir(a)
+    for selection in (a / "data/corpus/provisions", a / "data/corpus/provisions/a"):
+        (c / file).unlink(missing_ok=True)
+        ensure_corpus_paths([selection], repo=a)
+        assert (c / file).read_bytes() == SHARED_FILES[PROV], selection
+
+
+def test_a_nested_checkout_is_used_even_when_the_outer_repo_is_given(tmp_path: Path, monkeypatch) -> None:
+    """Review r3 finding 5: with the outer checkout passed as ``repo``, the outer
+    checkout named a nested checkout's corpus file (as one of its own sources)
+    and its lock, which names nothing there, passed it. The helpers use the
+    nested checkout, as invariant 10 says, whatever ``repo`` is given."""
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_VERSION_DIR}/vendored")
+    _lock_files(nested, {PROV: SHARED_FILES[PROV]})
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(outer)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    for kwargs in ({}, {"repo": outer}):
+        with pytest.raises(CorpusNotMaterializedError, match=rf"first: {PROV}"):
+            require_materialized([nested / PROV], **kwargs)
+
+
 # The sharing layout with random locks, files and selections, against a
 # reference model of invariant 11 written over the layout, not the filesystem.
 _SHARED_UNIVERSE = {**SHARED_FILES, COVERAGE: SCOPE_FILES[COVERAGE]}

@@ -225,9 +225,11 @@ separate command (`axiom_corpus.corpus.resolver`):
   link, the checkout of the first protected place it stands at, otherwise
   the checkout that names it. So a worktree whose `data/corpus` links to
   another checkout's (or to its top level) keeps its own lock. When a
-  helper makes a scope's sources directory whole, each file it adds is
-  fetched by the checkout that names that file's path, so a link inside the
-  directory sends its files to the checkout it leads to.
+  helper makes a scope's sources directory whole, it plans that directory,
+  spelled through the selection, as a selection of its own, so a link inside
+  it sends its files to the checkout it leads to and every lock that applies
+  there counts. A `repo` never names a path inside a checkout nested in its
+  corpus tree: the nested checkout does, as invariant 10 says.
 
 A checkout is a git top level that holds `src/axiom_corpus` or the lock
 directory, so a sparse checkout of the data and locks alone is guarded too.
@@ -553,11 +555,12 @@ exactly those 1,362 files.
     `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
     path itself, and below a directory every directory link or dangling link
     at a protected place, the links below a linked directory's target
-    included. A directory below two links is walked again under the second
-    spelling where a lock that applies names files below it. A link back to
-    a directory already walked on the same spelled path (a cycle) is not
-    followed, and no walk goes past the 40 links the operating system
-    resolves. Each part's files belong to the checkout that names the paths
+    included. A directory below two links is walked under each spelling. A
+    link back to a directory already walked on the same spelled path, with
+    the same names protected below it, is a cycle and is not followed. No
+    walk goes past the 40 links the operating system resolves, and a
+    selection with more than 4096 such places is refused rather than
+    checked in part. Each part's files belong to the checkout that names the paths
     below it (invariant 10): the one that names the part itself, save for a
     dangling link at a directory-only place (`data`, `data/corpus`, a class,
     jurisdiction or document-class directory, a sources version directory)

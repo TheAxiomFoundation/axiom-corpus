@@ -104,6 +104,9 @@ def _placed(path: Path) -> bool:
 
 
 _CORPUS_ROOT = CORPUS_BASE.split("/")[0]
+# How many places below links one selection may have before the helpers refuse
+# it rather than check fewer (aliases of aliases multiply them).
+_MAX_PARTS = 4096
 # How many symlinks one resolution may pass through, as the operating system
 # bounds it (ELOOP).
 _MAX_LINKS = 40
@@ -655,7 +658,9 @@ class _Plan:
     names there; ``names`` keeps each part's name, for messages; ``tops``
     the part each selection itself is; ``witnessed`` holds, per file any
     other lock that applies names, each place a selection reads it from;
-    ``spelled`` (when asked for) every path a selection spells for each entry.
+    ``spelled`` (when asked for) every path a selection spells for each entry;
+    ``scope_dirs`` (when asked for) the spelled sources directory of each
+    source entry's scope.
     """
 
     owned: dict[Path, tuple[CorpusResolver, dict[str, LockEntry]]] = dataclasses.field(default_factory=dict)
@@ -663,6 +668,7 @@ class _Plan:
     tops: list[_View] = dataclasses.field(default_factory=list)
     witnessed: dict[tuple[Path, str], list[_Witnessed]] = dataclasses.field(default_factory=dict)
     spelled: dict[tuple[Path, str], list[Path]] = dataclasses.field(default_factory=dict)
+    scope_dirs: dict[tuple[Path, str], list[Path]] = dataclasses.field(default_factory=dict)
 
 
 def _join(head: str, tail: str) -> str:
@@ -701,7 +707,7 @@ def _owner_of(
     """
     if hint is not None:
         name = hint._name(spelled, physical)
-        if name is not None:
+        if name is not None and not _nested_checkout(hint.repo, physical):
             return hint, name
     resolver = resolver_for(_checkout_for(spelled, physical))
     if resolver is None or resolver is hint:
@@ -743,6 +749,28 @@ def _part_owner(path: Path, found: tuple[CorpusResolver, str] | None) -> tuple[C
     if reached is None or reached[1] != found[1]:
         return found
     return _resolver(reached[0]), reached[1]
+
+
+def _nested_checkout(root: Path, physical: Path) -> bool:
+    """True when a directory between ``root`` and ``physical`` holds ``.git``: the
+    path may lie in a checkout nested in ``root``'s tree, which then names it
+    (invariant 10), so ``root`` is not asked first."""
+    text, top = str(physical), str(root)
+    if not text.startswith(f"{top}/"):
+        return False
+    probe = top
+    for part in text[len(top) + 1 :].split("/")[:-1]:
+        probe = f"{probe}/{part}"
+        if _holds_git(probe):
+            return True
+    return False
+
+
+@functools.lru_cache(maxsize=4096)
+def _holds_git(directory: str) -> bool:
+    """True when ``directory`` holds ``.git``; cached per directory, as checkout
+    tops are (``_repo_root_for_dir``)."""
+    return os.path.lexists(os.path.join(directory, ".git"))
 
 
 def _places_above(spelled: Path, physical: Path) -> list[tuple[Path, str]]:
@@ -807,33 +835,31 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
     views = [*parts, *(_View(_resolver(root), name, "") for root, name in _places_above(spelled, physical))]
     if not walk or top[1] in top[0].locks.by_path or not _guarded(top[1]):
         return parts, views  # a locked name is a file: nothing lies below it
-    # Each directory is listed once. One that lies below two links (two
-    # spellings, possibly two owners below) is walked again under the other
-    # spelling only where a lock that applies names files below it. A link
-    # back to a directory already walked on the same spelled path (a cycle)
-    # is not followed: every file below it has a shorter spelling. A chain
-    # longer than the operating system resolves ends the walk too.
-    pending: list[tuple[Path, str, str, int, frozenset[tuple[int, int]]]] = [
+    # A directory is listed once per listing class of the name it is walked
+    # under (``_listing_class``: which names below it are protected), and
+    # walked under every spelling that reaches it, so each alias keeps its
+    # parts. A link back to a directory already walked, under the same
+    # listing class, on the same spelled path is a cycle and is not followed:
+    # every file below it has a shorter spelling. No walk goes past the links
+    # the operating system resolves, and too many spellings refuse loudly.
+    pending: list[tuple[Path, str, str, int, frozenset[tuple[int, int, str]]]] = [
         (physical, "", top[1], 0, frozenset())
     ]
     seen: set[tuple[int, int, str]] = set()
-    listed: dict[tuple[int, int], list[str]] = {}
+    listed: dict[tuple[int, int, str], list[str]] = {}
     while pending:
         directory, sub, name, hops, trail = pending.pop()
         try:
             info = os.stat(directory)
         except OSError:
             continue
-        node = (info.st_dev, info.st_ino)
-        if not stat.S_ISDIR(info.st_mode) or hops > _MAX_LINKS or node in trail or (*node, sub) in seen:
+        key = (info.st_dev, info.st_ino, _listing_class(name))
+        if not stat.S_ISDIR(info.st_mode) or hops > _MAX_LINKS or key in trail or (*key[:2], sub) in seen:
             continue
-        seen.add((*node, sub))
-        if node in listed:
-            if not _locked_below(views, sub):
-                continue
-        else:
-            listed[node] = _links_below(directory, name)
-        for below in listed[node]:
+        seen.add((*key[:2], sub))
+        if key not in listed:
+            listed[key] = _links_below(directory, name)
+        for below in listed[key]:
             where = _join(sub, below)
             link = spelled / where
             link_physical = Path(os.path.realpath(link))
@@ -841,19 +867,23 @@ def _selection(spelled: Path, hint: CorpusResolver | None, *, walk: bool) -> tup
             if found is None:
                 continue
             parts.append(_View(found[0], found[1], where))
+            if len(parts) > _MAX_PARTS:
+                raise CorpusNotMaterializedError(
+                    f"more than {_MAX_PARTS} symlinked places below {spelled}: its links spell too many "
+                    "paths to check every lock that applies. Replace some of them with directories."
+                )
             views.append(parts[-1])
             views.extend(_View(_resolver(root), place, where) for root, place in _places_above(link, link_physical))
-            pending.append((link_physical, where, found[1], hops + 1, trail | {node}))
+            pending.append((link_physical, where, found[1], hops + 1, trail | {key}))
     return parts, views
 
 
-def _locked_below(views: Sequence[_View], sub: str) -> bool:
-    """True when a lock of ``views`` names a file at or below the place ``sub``."""
-    for view in views:
-        rest = _below(sub, view.sub)
-        if rest is not None and view.resolver.active and view.resolver.locks.entries_under(_join(view.name, rest)):
-            return True
-    return False
+def _listing_class(name: str) -> str:
+    """What decides which names below ``name`` a walk keeps (``_links_below``):
+    "" at or below a class directory, where every name is protected, else the
+    name itself (``data``, ``data/corpus``), above which fewer are."""
+    folded = fold_path(name).rstrip("/")
+    return "" if is_protected_corpus_path(f"{folded}/") else folded
 
 
 def _covers(outer: _View, inner: _View) -> bool:
@@ -864,12 +894,19 @@ def _covers(outer: _View, inner: _View) -> bool:
     return rest is not None and inner.sub == _join(outer.sub, rest)
 
 
-def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False, spell: bool = False) -> _Plan:
+def _plan(
+    paths: Iterable[str | Path],
+    *,
+    repo: Path | None,
+    exact: bool = False,
+    spell: bool = False,
+    widen: bool = False,
+) -> _Plan:
     """The locked files ``paths`` select, split by the checkout that fetches them.
 
     With ``exact``, each path selects only a file of its own name (no
     directory below it, no link below it). With ``spell``, ``spelled`` is
-    filled in.
+    filled in; with ``widen``, ``scope_dirs``.
     """
     hint = resolver_for(repo) if repo is not None else None
     plan = _Plan()
@@ -913,6 +950,12 @@ def _plan(paths: Iterable[str | Path], *, repo: Path | None, exact: bool = False
                     here = selection / where if where else selection
                     if here not in spots:
                         spots.append(here)
+                if widen and entry.path.startswith(f"{CORPUS_BASE}/sources/"):
+                    scope_dir = _spelled_scope_dir(selection, where, entry.path)
+                    if scope_dir is not None:
+                        dirs = plan.scope_dirs.setdefault((resolver.repo, entry.path), [])
+                        if scope_dir not in dirs:
+                            dirs.append(scope_dir)
                 if resolver is part.resolver and entry.path == owner_name:
                     plan.owned.setdefault(resolver.repo, (resolver, {}))[1][entry.path] = entry
                 else:
@@ -1009,35 +1052,39 @@ def _fetch_command(resolver: CorpusResolver, rels: Sequence[str]) -> str:
     return f"`axiom-corpus-ingest corpus fetch {command}`{where}"
 
 
-def _whole_source_dirs(
+def _whole_sources(
+    plan: _Plan,
     batches: Sequence[tuple[CorpusResolver, list[LockEntry]]],
+    *,
+    only_absent: bool,
 ) -> list[tuple[CorpusResolver, list[LockEntry]]]:
-    """``batches`` with each scope's sources directory made whole, as
-    ``LockSet.with_whole_source_dirs`` makes it, each added file given to the
-    checkout that names its path: a link inside the directory may lead to
-    another checkout, whose lock then decides it (invariant 11).
+    """``batches`` with the sources directory of each source entry's scope made
+    whole, across every checkout that names files there.
+
+    The directory is planned as a selection, spelled through the original
+    one (``scope_dirs``), so a link inside it sends its files to the checkout
+    it leads to, and every lock that applies there counts (invariant 11).
+    With ``only_absent``, entries already in place are not added. The plan
+    gains the directory's entries, for the check after fetching.
     """
-    merged = {resolver.repo: (resolver, {entry.path: entry for entry in entries}) for resolver, entries in batches}
-    linked: list[Path] = []
+    dirs: dict[str, Path] = {}
     for resolver, entries in batches:
-        through: dict[str, bool] = {}
-        for entry in resolver.locks.with_whole_source_dirs(entries):
-            if entry.path in merged[resolver.repo][1]:
-                continue
-            parent = posixpath.dirname(entry.path)
-            if parent not in through:
-                through[parent] = _symlink_on_path(resolver.repo, parent) is not None
-            if through[parent]:
-                linked.append(resolver.repo / entry.path)
-            else:
-                merged[resolver.repo][1][entry.path] = entry
-    if linked:
-        plan = _plan(linked, repo=None, exact=True)
-        unfetchable = _unfetchable(plan)
+        for entry in entries:
+            for directory in plan.scope_dirs.get((resolver.repo, entry.path), ()):
+                dirs.setdefault(str(directory), directory)
+    merged = {resolver.repo: (resolver, {entry.path: entry for entry in entries}) for resolver, entries in batches}
+    if dirs:
+        whole = _plan(list(dirs.values()), repo=None)
+        unfetchable = _unfetchable(whole)
         if unfetchable:
             raise _unfetchable_error(unfetchable)
-        for owner, owned in plan.owned.values():
-            merged.setdefault(owner.repo, (owner, {}))[1].update(owned)
+        for owner, owned in whole.owned.values():
+            plan.owned.setdefault(owner.repo, (owner, {}))[1].update(owned)
+            for entry in owned.values():
+                if not (only_absent and _placed(owner.repo / entry.path)):
+                    merged.setdefault(owner.repo, (owner, {}))[1].setdefault(entry.path, entry)
+        for key, places in whole.witnessed.items():
+            plan.witnessed.setdefault(key, []).extend(item for item in places if item not in plan.witnessed.get(key, []))
     return [(resolver, [chosen[path] for path in sorted(chosen)]) for resolver, chosen in merged.values()]
 
 
@@ -1112,14 +1159,16 @@ def ensure_corpus_paths(paths: Iterable[str | Path], *, repo: Path | None = None
     name goes to the checkout that does. With fetching disabled, locked files
     that are absent raise instead.
     """
-    plan = _plan(list(paths), repo=repo)
+    plan = _plan(list(paths), repo=repo, widen=not fetch_disabled())
     if fetch_disabled():
         _require(plan, fetch=False)
         return FetchReport()
     unfetchable = _unfetchable(plan)
     if unfetchable:
         raise _unfetchable_error(unfetchable)
-    selected = _whole_source_dirs([(resolver, list(entries.values())) for resolver, entries in plan.owned.values()])
+    selected = _whole_sources(
+        plan, [(resolver, list(entries.values())) for resolver, entries in plan.owned.values()], only_absent=False
+    )
     return _merged(_place_owned(plan, selected))
 
 
@@ -1182,7 +1231,7 @@ def require_materialized(
     that applies to a path counts (see the selections above), and ``repo``
     is taken as ``ensure_corpus_paths`` takes it. No-op without lock files.
     """
-    _require(_plan(list(paths), repo=repo), fetch=fetch)
+    _require(_plan(list(paths), repo=repo, widen=fetch and not fetch_disabled()), fetch=fetch)
 
 
 def _require(plan: _Plan, *, fetch: bool) -> None:
@@ -1193,7 +1242,7 @@ def _require(plan: _Plan, *, fetch: bool) -> None:
     if not absent:
         return
     if fetch and not fetch_disabled():
-        _place_owned(plan, _whole_source_dirs(absent))
+        _place_owned(plan, _whole_sources(plan, absent, only_absent=True))
         return
     resolver, missing = absent[0]
     rels = list(plan.names[resolver.repo])
@@ -1223,7 +1272,7 @@ def fetch_locked_file(path: str | Path) -> bool:
     # path, which stands where a locked file belongs.
     if candidate.exists() and _link_holder(anchor) is None:
         return True
-    plan = _plan([anchor], repo=None, exact=True)
+    plan = _plan([anchor], repo=None, exact=True, widen=not fetch_disabled())
     unfetchable = _unfetchable(plan)
     if unfetchable:
         raise _unfetchable_error(unfetchable)
@@ -1239,7 +1288,7 @@ def fetch_locked_file(path: str | Path) -> bool:
             f"{rel} is locked but absent, and fetching is off ({NO_FETCH_ENV}); reading it "
             "as empty would be wrong. Fetch it first." + _link_note(resolver.repo, rel)
         )
-    _place_owned(plan, _whole_source_dirs([(resolver, [resolver.locks.by_path[rel]])]))
+    _place_owned(plan, _whole_sources(plan, [(resolver, [resolver.locks.by_path[rel]])], only_absent=True))
     return True
 
 
@@ -1338,6 +1387,19 @@ def _read_witnesses(
     if remember is not None:
         _WITNESSED_SOURCE_DIRS.add(remember)  # no other lock applies: nothing to recheck
     return None
+
+
+def _spelled_scope_dir(selection: Path, where: str, rel: str) -> Path | None:
+    """The sources directory of the scope of ``rel`` (a source file a selection
+    spells ``where`` below itself), spelled through the selection, or None
+    for a path not below a scope's sources directory."""
+    depth = len(rel.split("/")) - 6  # below data/corpus/sources/<j>/<dc>/<v>
+    if depth < 1 or scope_for_path(rel) is None:
+        return None
+    steps = where.split("/") if where else []
+    if len(steps) >= depth:  # the directory lies within the selection
+        return selection.joinpath(*steps[: len(steps) - depth])
+    return _scope_directory(selection.joinpath(*steps), rel, depth)
 
 
 def _scope_directory(anchor: Path, rel: str, depth: int) -> Path:
@@ -1470,14 +1532,15 @@ def materialize_cli_inputs(
     plan = _plan(
         [resolver.repo / path for path in paths] + _scope_paths(resolver.repo, scopes),
         repo=resolver.repo,
+        widen=True,
     )
     unfetchable = _unfetchable(plan)
     if unfetchable:
         raise _unfetchable_error(unfetchable)
     missing = [
         (owner, found)
-        for owner, entries in _whole_source_dirs(
-            [(owner, list(entries.values())) for owner, entries in plan.owned.values()]
+        for owner, entries in _whole_sources(
+            plan, [(owner, list(entries.values())) for owner, entries in plan.owned.values()], only_absent=True
         )
         if (found := [entry for entry in entries if not _placed(owner.repo / entry.path)])
     ]
