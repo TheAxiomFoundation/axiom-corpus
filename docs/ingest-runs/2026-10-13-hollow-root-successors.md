@@ -97,9 +97,11 @@ Of the 108 control builds, 107 reproduce their originals exactly: the same rows 
 the same order, the same inventory items and coverage report, and the same source
 bytes. The exception is the Canadian scope, whose control already drops the empty
 `/primary-document` leaf, because the composer fix (477c6650c) is on `main`; its
-control and successor are identical. So every difference below between an original
-and its successor comes from #854, or for Canada from 477c6650c, and none from other
-changes since the originals were extracted.
+control and successor are identical. So, in the first build, every difference between
+an original and its successor came from #854, or for Canada from 477c6650c, and none
+from other changes since the originals were extracted. The final successors also carry
+#868: in the rebuild after it, the only further differences are 360 PDF page bodies in
+the 51 state-plan scopes on its list (see the header).
 
 ## Results
 
@@ -244,11 +246,11 @@ Checked on the head:
 
 - `axiom-corpus-ingest guard-ingested --base-ref origin/main --head-ref HEAD`: every
   changed artifact has a signed manifest.
-- `corpus verify --attest --ref HEAD`: all 68,047 lock entries attested.
+- `corpus verify --attest --ref HEAD`: all 68,059 lock entries attested.
 - `corpus verify --remote --changed-since origin/main`: all 4,200 entries of the 108
   successor locks are in R2. The only new objects are the 324 inventory, provisions and
   coverage files (591 MB).
-- `tests/test_hollow_root_successors.py` (17 tests) checks, for every successor:
+- `tests/test_hollow_root_successors.py` (18 tests) checks, for every successor:
   - its manifest and lock agree, and its sources are its original's locked bytes;
   - coverage is complete, and it lacks only the three documented paths;
   - each audited root has text at or below it, or is retired.
