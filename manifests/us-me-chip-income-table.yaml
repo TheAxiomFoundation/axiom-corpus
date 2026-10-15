@@ -1,0 +1,26 @@
+version: 2026-09-15-chip-income-premium-table-2026
+documents:
+- source_id: us-me-income_table-eligibility-guidelines-2026
+  jurisdiction: us-me
+  document_class: policy
+  title: 'Maine DHHS: 2026 MaineCare Eligibility Guidelines chart (6.23.26)'
+  source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/2026%20MaineCare%20Eligibility%20Guidelines%206.23..26_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2026-06-23'
+  citation_path: us-me/policy/dhhs/mainecare/eligibility-guidelines-2026
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    program: CHIP
+    state: Maine
+    document_subtype: annual_income_table_pdf
+    table_index_url: https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+    carries: 'the annual eligibility-guidelines chart: monthly income limits by household size and FPL percentage for every
+      MaineCare and CubCare coverage group; carries C-SS-INCOME-PREMIUM-TABLE and M-SS-INCOME-TABLE'
+    source_discovery_group: us-me/policy/income_table
+    discovered_via: manual-review:chip-agent-queue wave-5 closure (2026-09-15); publisher index https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+    publisher_note: publisher answered the plain extractor client HTTP 200 on 2026-09-15; TLS verified, no mirror
+    carries_elements: M-SS-INCOME-TABLE C-SS-INCOME-PREMIUM-TABLE

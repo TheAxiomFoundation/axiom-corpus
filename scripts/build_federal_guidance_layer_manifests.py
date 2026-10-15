@@ -26,7 +26,26 @@ their PDF from the USDA guidance portal, which serves only browser-impersonated 
 www.govinfo.gov for Federal Register notices, www.cms.gov, acf.gov and aspe.hhs.gov.
 No mirror or archived copy is used.
 
+Two 2026-09-15 wave-5 families (docs/coverage/needs-closure-2026-09-14, run note
+docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md) share the helpers:
+
+* ``liheap-model-plan`` (``2026-09-15-liheap-model-plan``, guidance,
+  LIHEAP-F-GUID-MODELPLAN): the FY 2027 (LIHEAP-AT-2026-4) and FY 2026
+  (LIHEAP-AT-2025-04) Model Plan Application action transmittals from the ACF OCS
+  action-transmittal index, each with its attachments (the OLDC cloning instructions,
+  the Model Plan Reference Guide and the OMB 0970-0075 Model Plan template). acf.gov
+  answered the plain client with an AWS WAF challenge (HTTP 202, empty body,
+  ``x-amzn-waf-action: challenge``) on 2026-09-15 and served a chrome120 TLS
+  fingerprint, so the documents are fetched with browser impersonation.
+* ``ssi-cfr-416-appendix-k`` (``2026-09-15-title-20-part-416-appendix-k``, regulation,
+  SSI-F-CFR416-APPK): the Appendix to Subpart K of 20 CFR part 416 (income excluded
+  under other federal laws), a subpart-scoped appendix the eCFR adapter's
+  ``--include-appendices`` rejects; taken as an official document from the eCFR
+  renderer API (the same publisher API the adapter reads), the canonical eCFR page
+  being the citation.
+
     uv run python scripts/build_federal_guidance_layer_manifests.py [--only snap,wic,medicare,liheap] [--skip-queue]
+    uv run python scripts/build_federal_guidance_layer_manifests.py --only liheap-model-plan,ssi-cfr-416-appendix-k
 """
 from __future__ import annotations
 
@@ -62,12 +81,14 @@ def doc(
     download_url: str | None = None,
     request: dict[str, Any] | None = None,
     extraction: dict[str, Any] | None = None,
+    document_class: str = "guidance",
+    source_as_of: str = SOURCE_AS_OF,
     metadata: dict[str, Any],
 ) -> dict[str, Any]:
     out: dict[str, Any] = {
         "source_id": source_id,
         "jurisdiction": "us",
-        "document_class": "guidance",
+        "document_class": document_class,
         "title": title,
         "source_url": source_url,
     }
@@ -76,7 +97,7 @@ def doc(
     out.update(
         {
             "source_format": source_format,
-            "source_as_of": SOURCE_AS_OF,
+            "source_as_of": source_as_of,
             "expression_date": expression_date,
             "citation_path": citation_path,
         }
@@ -405,6 +426,155 @@ def build_liheap() -> list[dict[str, Any]]:
     return docs
 
 
+# ------------------------------------------------------------------- wave 5 (2026-09-15)
+WAVE5_AS_OF = "2026-09-15"
+WAVE5_RUN_NOTE = "docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md"
+MODEL_PLAN_VERSION = "2026-09-15-liheap-model-plan"
+AT_INDEX = "https://acf.gov/ocs/resource/liheap-action-transmittals"
+ACF_ACCESS_NOTE = (
+    "acf.gov answered the plain corpus client with an AWS WAF challenge (HTTP 202, empty body, "
+    "x-amzn-waf-action: challenge) on 2026-09-15, one probe each way; a chrome120 TLS fingerprint was served "
+    "(fingerprint-only wall, no CAPTCHA or JavaScript challenge solved, TLS verification on), so the family is "
+    "fetched with browser impersonation; the same host served the plain client on 2026-09-13"
+)
+# (at number, page slug, AT pdf, date, fiscal year, attachments [(slug, file, title, format, pages)])
+MODEL_PLAN_TRANSMITTALS = [
+    {
+        "at": "2026-4", "fiscal_year": "2027", "date": "2026-06-10",
+        "page": "https://acf.gov/ocs/policy-guidance/model-plan-application-liheap-funding-federal-fiscal-year-2027-fy27",
+        "page_title": "Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2027 (FY27)",
+        "transmittal": ("COMM_AT_LIHEAP_Model-Plan_FY27_Final.pdf", 7),
+        "attachments": [
+            ("attachment-1-oldc-cloning-instructions", "Att-1_LIHEAP_AT_Model-Plan_FY27_CloningInstructions.pdf",
+             "Attachment 1: OLDC instructions for cloning the FY26 Model Plan into the FY27 Model Plan", "pdf", 4),
+            ("attachment-2-model-plan-reference-guide", "Att-2_LIHEAP_AT_Model-Plan_FY27_Att-2_ReferenceGuide.pdf",
+             "Attachment 2: LIHEAP Model Plan Reference Guide (FY 2027)", "pdf", 41),
+            ("attachment-3-model-plan-template", "Att-3_LIHEAP-Model-Plan-Template_508_5.8.26.pdf",
+             "Attachment 3: LIHEAP Model Plan template (OMB Clearance No. 0970-0075, FY 2027)", "pdf", 44),
+        ],
+    },
+    {
+        "at": "2025-04", "fiscal_year": "2026", "date": "2025-04-02",
+        "page": "https://acf.gov/ocs/policy-guidance/liheap-2025-04-model-plan-application-liheap-funding-federal-fiscal-year-2026",
+        "page_title": "LIHEAP-AT-2025-04 Model Plan Application for LIHEAP Funding for Federal Fiscal Year 2026 (FY26)",
+        "transmittal": ("COMM_LIHEAP_Model-Plan-AT_FY26_040225.pdf", 6),
+        "attachments": [
+            ("attachment-1-oldc-cloning-instructions", "COMM_LIHEAP_AT_Att-1_Cloning-Instructions_FY2026.docx",
+             "Attachment 1: OLDC instructions for cloning the FY25 Model Plan into the FY26 Model Plan", "docx", None),
+            ("attachment-model-plan-reference-guide", "COMM_LIHEAP-Model-Plan-Reference-Guide_FY26-Final.pdf",
+             "LIHEAP Model Plan Reference Guide (FY 2026)", "pdf", 41),
+            ("attachment-model-plan-template", "COMM_LIHEAP_Model-Plan-Template-draft_032025.docx",
+             "LIHEAP Model Plan template (OMB Clearance No. 0970-0075, FY 2026, Word)", "docx", None),
+        ],
+    },
+]
+
+
+def build_liheap_model_plan() -> list[dict[str, Any]]:
+    """The FY 2027 and FY 2026 Model Plan Application action transmittals and their attachments."""
+    docs: list[dict[str, Any]] = []
+    for at in MODEL_PLAN_TRANSMITTALS:
+        group = f"us/guidance/acf/ocs/liheap-at/{at['at']}"
+        common = {
+            "source_authority": ACF,
+            "program": "LIHEAP",
+            "fiscal_year": at["fiscal_year"],
+            "action_transmittal": f"LIHEAP-AT-{at['at']}",
+            "action_transmittal_date": at["date"],
+            "action_transmittal_page": at["page"],
+            "index_url": AT_INDEX,
+            "source_discovery_group": "us/guidance/acf/ocs",
+            "closure_elements": ["LIHEAP-F-GUID-MODELPLAN"],
+            "discovered_via": (
+                "manual-review:liheap-agent-queue; needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN; ACF OCS LIHEAP "
+                f"action transmittals index {AT_INDEX}"
+            ),
+            "access_note": ACF_ACCESS_NOTE,
+        }
+        docs.append(doc(
+            f"us-acf-ocs-liheap-at-{at['at']}", f"LIHEAP-AT-{at['at']}: {at['page_title']} (page)",
+            at["page"], group, at["date"], request=IMPERSONATE, source_as_of=WAVE5_AS_OF,
+            metadata={**common, "document_subtype": "action_transmittal_page"},
+        ))
+        file_name, pages = at["transmittal"]
+        docs.append(doc(
+            f"us-acf-ocs-liheap-at-{at['at']}-transmittal",
+            f"LIHEAP-AT-{at['at']}: Model Plan Application for LIHEAP Funding for Federal Fiscal Year {at['fiscal_year']} (transmittal)",
+            at["page"], f"{group}/transmittal", at["date"], source_format="pdf",
+            download_url=f"https://acf.gov/sites/default/files/documents/ocs/{file_name}",
+            request=IMPERSONATE, source_as_of=WAVE5_AS_OF,
+            metadata={**common, "document_subtype": "action_transmittal", "pdf_page_count": pages,
+                      "expression_date_note": f"the transmittal's printed DATE line, {at['date']}"},
+        ))
+        for slug, file_name, title, fmt, pages in at["attachments"]:
+            meta = {**common, "document_subtype": "action_transmittal_attachment",
+                    "expression_date_note": f"the attachments carry the transmittal's date, {at['date']}"}
+            if pages:
+                meta["pdf_page_count"] = pages
+            if "template" in slug:
+                meta["omb_control_number"] = "0970-0075"
+            docs.append(doc(
+                f"us-acf-ocs-liheap-at-{at['at']}-{slug}", f"LIHEAP-AT-{at['at']} {title}",
+                at["page"], f"{group}/{slug}", at["date"], source_format=fmt,
+                download_url=f"https://acf.gov/sites/default/files/documents/ocs/{file_name}",
+                request=IMPERSONATE, source_as_of=WAVE5_AS_OF, metadata=meta,
+            ))
+    return docs
+
+
+APPENDIX_K_VERSION = "2026-09-15-title-20-part-416-appendix-k"
+ECFR_APPENDIX_PAGE = (
+    "https://www.ecfr.gov/current/title-20/chapter-III/part-416/appendix-Appendix%20to%20Subpart%20K%20of%20Part%20416"
+)
+ECFR_APPENDIX_RENDERER = (
+    "https://www.ecfr.gov/api/renderer/v1/content/enhanced/2026-09-11/title-20"
+    "?part=416&appendix=Appendix%20to%20Subpart%20K%20of%20Part%20416"
+)
+
+
+def build_ssi_cfr_416_appendix_k() -> list[dict[str, Any]]:
+    """20 CFR part 416, Appendix to Subpart K (list of types of income excluded under the SSI
+    program as provided by federal laws other than the Social Security Act)."""
+    return [doc(
+        "us-ecfr-title-20-part-416-appendix-subpart-k",
+        "20 CFR Part 416, Appendix to Subpart K - List of Types of Income Excluded Under the SSI Program as Provided "
+        "by Federal Laws Other Than the Social Security Act",
+        ECFR_APPENDIX_PAGE, "us/regulation/20/416/subpart-K/appendix", "2026-09-09",
+        download_url=ECFR_APPENDIX_RENDERER, document_class="regulation", source_as_of=WAVE5_AS_OF,
+        extraction={"html_content_selector": "div.appendix"},
+        metadata={
+            "source_authority": "Office of the Federal Register, Electronic Code of Federal Regulations (eCFR)",
+            "document_subtype": "cfr_appendix",
+            "program": "SSI",
+            "title": 20, "part": "416", "subpart": "K",
+            "appendix_identifier": "Appendix to Subpart K of Part 416",
+            "parent_citation_path": "us/regulation/20/416/subpart-K",
+            "ecfr_point_in_time": "2026-09-11",
+            "expression_date_note": (
+                "title 20 latest_issue_date / latest_amended_on 2026-09-09 (eCFR titles.json read 2026-09-15), the "
+                "expression date the sibling scope us/regulation/2026-09-11-title-20-part-416 carries; the appendix's "
+                "own citation line is '45 FR 65547, Oct. 3, 1980, as amended at ... 75 FR 1273, Jan. 11, 2010' (last amendment 2010-01-11)"
+            ),
+            "download_note": (
+                "the canonical eCFR page (source_url) redirects the corpus client to unblock.federalregister.gov; the "
+                "eCFR renderer API (download_url, the publisher's own rendering of the 2026-09-11 point-in-time "
+                "text) serves the appendix HTML; the div.appendix node is the document body"
+            ),
+            "adapter_note": (
+                "extract-ecfr --include-appendices accepts part-scoped 'Appendix X to Part N' identifiers only and "
+                "raises on this subpart-scoped one (run note 2026-09-11-federal-cfr-followon-parts); taken as an "
+                "official document instead"
+            ),
+            "source_discovery_group": "us/regulation/ecfr",
+            "closure_elements": ["SSI-F-CFR416-APPK"],
+            "discovered_via": (
+                "manual-review:ssi-agent-queue; needs-closure-2026-09-14 SSI-F-CFR416-APPK; eCFR structure "
+                "title-20 2026-09-11 (part 416 > subpart K > appendix)"
+            ),
+        },
+    )]
+
+
 # ----------------------------------------------------------------------------------- queues
 def write_manifest(name: str, version: str, docs: list[dict[str, Any]]) -> Path:
     path = ROOT / "manifests" / name
@@ -412,30 +582,40 @@ def write_manifest(name: str, version: str, docs: list[dict[str, Any]]) -> Path:
     return path
 
 
+RUN_NOTES = {MODEL_PLAN_VERSION: WAVE5_RUN_NOTE, APPENDIX_K_VERSION: WAVE5_RUN_NOTE}
+
+
 def scope_record(version: str, manifest: Path, docs: list[dict[str, Any]], elements: list[str], note: str) -> dict[str, Any]:
     return {
-        "jurisdiction": "us", "document_class": "guidance", "version": version,
+        "jurisdiction": "us", "document_class": docs[0]["document_class"], "version": version,
         "target_manifest": str(manifest.relative_to(ROOT)),
         "document_count": len(docs),
         "citation_paths": [d["citation_path"] for d in docs],
         "closure_elements": elements,
-        "run_note": RUN_NOTE,
+        "run_note": RUN_NOTES.get(version, RUN_NOTE),
         "notes": note,
     }
 
 
-def update_queue(queue_name: str, key: str, record: dict[str, Any], note: str) -> dict[str, int]:
+def update_queue(queue_name: str, key: str, record: dict[str, Any], note: str, *, row_name: str | None = None) -> dict[str, int]:
+    """Attach the scope record to the queue's federal row: the row named ``row_name`` when
+    given (the SSI queue keeps an eCFR row beside its POMS row), else the first ``us`` row.
+    Every other row, including the later federal rows, is carried through untouched."""
     path = ROOT / "manifests" / queue_name
     queue = yaml.safe_load(path.read_text())
-    rows = {row["jurisdiction"]: row for row in queue["states"]}
-    federal = rows.get("us")
+    federal_rows = [row for row in queue["states"] if row["jurisdiction"] == "us"]
+    if row_name is not None:
+        federal = next((row for row in federal_rows if row.get("name") == row_name), None)
+        if federal is None:
+            raise SystemExit(f"{queue_name}: no federal row named {row_name!r}")
+    else:
+        federal = federal_rows[0] if federal_rows else None
     if federal is None:
         federal = {"jurisdiction": "us", "name": "Federal", "queue_status": "agent_ready"}
-        rows["us"] = federal
+        queue["states"].insert(0, federal)
     federal[key] = record
     if note not in str(federal.get("notes") or ""):
         federal["notes"] = f"{federal.get('notes') or ''} {note}".strip()
-    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
     queue["status_counts"] = {}
     for row in queue["states"]:
         queue["status_counts"][row["queue_status"]] = queue["status_counts"].get(row["queue_status"], 0) + 1
@@ -469,12 +649,30 @@ FAMILIES = {
                "2026-09-13 closure run (needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/SMI): the 2026 HHS poverty guidelines "
                "notice (91 FR 1797) and ASPE page, and ACF LIHEAP IM 2026-01 with its FPG and SMI tables (acf.gov). The "
                "statute, 45 CFR 96 subpart H and the model plan (LIHEAP-F-GUID-MODELPLAN) are not part of this scope."),
+    "liheap-model-plan": ("us-liheap-model-plan-2026-09-15.yaml", MODEL_PLAN_VERSION, build_liheap_model_plan,
+                          "liheap-agent-queue.yaml", "model_plan_scope", ["LIHEAP-F-GUID-MODELPLAN"],
+                          "2026-09-15 wave-5 closure run (needs-closure-2026-09-14 LIHEAP-F-GUID-MODELPLAN): the FY 2027 "
+                          "(LIHEAP-AT-2026-4, 2026-06-10) and FY 2026 (LIHEAP-AT-2025-04, 2025-04-02) Model Plan Application "
+                          "action transmittals from the ACF OCS action-transmittal index, each with its OLDC cloning "
+                          "instructions, Model Plan Reference Guide and OMB 0970-0075 Model Plan template (10 documents). "
+                          "acf.gov fronted an AWS WAF challenge to the plain client on 2026-09-15 (HTTP 202, empty body) and "
+                          "served a chrome120 TLS fingerprint; fetched with browser impersonation, TLS verification on."),
+    "ssi-cfr-416-appendix-k": ("us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml", APPENDIX_K_VERSION,
+                               build_ssi_cfr_416_appendix_k, "ssi-agent-queue.yaml", "appendix_subpart_k_scope",
+                               ["SSI-F-CFR416-APPK"],
+                               "2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-CFR416-APPK): the Appendix to "
+                               "Subpart K of 20 CFR part 416 (types of income excluded under other federal laws), the one "
+                               "part-416 node the 2026-09-11 eCFR scope skipped (extract-ecfr --include-appendices rejects "
+                               "subpart-scoped appendix identifiers), taken as an official document from the eCFR renderer "
+                               "API under us/regulation/20/416/subpart-K/appendix; the canonical eCFR page is walled to the "
+                               "corpus client (unblock.federalregister.gov) and is the citation."),
 }
+QUEUE_ROW_NAMES = {"ssi-cfr-416-appendix-k": "Federal (20 CFR part 416, eCFR)"}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--only", help="comma-separated families (snap, wic, medicare, liheap)")
+    parser.add_argument("--only", help="comma-separated families (snap, wic, medicare, liheap, liheap-model-plan, ssi-cfr-416-appendix-k)")
     parser.add_argument("--skip-queue", action="store_true")
     args = parser.parse_args()
     selected = set(args.only.split(",")) if args.only else set(FAMILIES)
@@ -487,7 +685,8 @@ def main() -> int:
         manifest = write_manifest(manifest_name, version, docs)
         print(f"{family}: wrote {manifest.relative_to(ROOT)} ({len(docs)} documents, version {version})")
         if not args.skip_queue:
-            counts = update_queue(queue_name, key, scope_record(version, manifest, docs, elements, note), note)
+            counts = update_queue(queue_name, key, scope_record(version, manifest, docs, elements, note), note,
+                                  row_name=QUEUE_ROW_NAMES.get(family))
             print(f"  queue {queue_name}: {counts}")
     return 0
 

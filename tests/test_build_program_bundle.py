@@ -41,9 +41,44 @@ def test_url_state_names_state_publishers_and_leaves_federal_ones():
 
 def test_url_key_reads_alias_hosts_as_the_host_they_serve_for():
     aliases = {"fna.usda.gov": "fns.usda.gov", "fns-prod.azureedge.us": "fns.usda.gov"}
-    assert bundle.url_key("https://www.fna.usda.gov/snap/x", aliases) == ("fns.usda.gov", "/snap/x")
+    assert bundle.url_key("https://www.fna.usda.gov/snap/x", aliases) == (
+        "fns.usda.gov",
+        "/snap/x",
+        "",
+    )
     assert bundle.url_key("https://fns-prod.azureedge.us/a.pdf", aliases) == bundle.url_key(
         "https://www.fns.usda.gov/a.pdf", aliases
+    )
+
+
+def test_url_key_keeps_the_query_that_names_a_query_routed_document():
+    # Colorado's register serves every rule from one script; the query names the rule.
+    snap = "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492&fileName=10%20CCR%202506-1"
+    chp = "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779"
+    assert bundle.url_key(snap) != bundle.url_key(chp)
+    # Parameter order, case, encoding and tracking parameters do not change the key.
+    assert bundle.url_key(snap) == bundle.url_key(
+        "https://sos.state.co.us/ccr/GenerateRulePdf.do?filename=10+CCR+2506-1&ruleVersionId=10492&utm_source=x"
+    )
+
+
+def test_url_lookup_falls_back_to_the_page_named_without_a_query():
+    index = {bundle.url_key("https://example.gov/manual.pdf"): "us-xx/manual"}
+    assert (
+        bundle.url_lookup(index, bundle.url_key("https://example.gov/manual.pdf?v=3"))
+        == "us-xx/manual"
+    )
+    rules = {
+        bundle.url_key(
+            "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=1"
+        ): "us-co/a"
+    }
+    assert (
+        bundle.url_lookup(
+            rules,
+            bundle.url_key("https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=2"),
+        )
+        is None
     )
 
 
@@ -82,6 +117,14 @@ def test_back_year_compares_fiscal_years_and_poverty_guideline_years():
         "https://www.usda.gov/guidance-documents/fns.snap-COLAMemoFY23_0.pdf", day
     )
     assert not bundle.back_year("https://www.fns.usda.gov/snap/allotment/cola/fy27", day)
+    # A three-year state plan is current through its last fiscal year.
+    assert not bundle.back_year(
+        "us-ca/policy/acf/ccdf-plan/fy2025-2027 California CCDF Plan, FFY 2025-2027", day
+    )
+    assert not bundle.back_year("Idaho TANF State Plan Renewal FY2026-FY2028", day)
+    assert bundle.back_year("Nebraska CCDF Plan For Nebraska FFY 2019-2021", day)
+    assert bundle.back_year("Kansas TANF State Plan FFY 2024-2026", day)
+    assert bundle.back_year("2024-09-30-SUA-Table-FY25-508-Update.xlsx", day)
     assert not bundle.back_year("https://www.usda.gov/fna.snap-cola2027.pdf", day)
     # Poverty guidelines are by calendar year, from the URL or the title.
     assert bundle.back_year("https://aspe.hhs.gov/2025-poverty-guidelines", day)
@@ -414,6 +457,139 @@ def test_build_program_joins_an_address_to_the_path_that_holds_it_and_excludes_n
     federal = {d["key"]: d for d in layers["us"]["screener"]}
     assert federal[calculator]["scope"] == "excluded"
     assert federal[calculator]["reason"] == "Calculator: not a source of rules"
+
+
+def test_build_program_joins_a_query_routed_rule_only_to_its_own_manifest(tmp_path, monkeypatch):
+    # Two Colorado rules from the same script: a SNAP reference to a third rule
+    # joins neither (before, all three shared one key and the last manifest won).
+    cfg = config(tmp_path, monkeypatch)
+    pdf = "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId={}&fileName={}"
+    manifests = {
+        "manifests/co.yaml": [
+            {
+                "citation_path": "us-co/regulation/10-ccr-2505-3",
+                "source_url": pdf.format(1, "10 CCR 2505-3"),
+            },
+            {
+                "citation_path": "us-co/regulation/8-ccr-1403-1",
+                "source_url": pdf.format(2, "8 CCR 1403-1"),
+            },
+        ]
+    }
+    snap = pdf.format(3, "10 CCR 2506-1")
+    references = {
+        "references": [
+            {
+                "url": snap,
+                "citation": None,
+                "states": ["co"],
+                "files": ["parameters/gov/usda/snap/x.yaml"],
+            },
+            {
+                "url": pdf.format(2, "8 CCR 1403-1") + "#page=17",
+                "citation": None,
+                "states": ["co"],
+                "files": ["parameters/gov/usda/snap/y.yaml"],
+            },
+        ]
+    }
+    cfg["jurisdictions"] = ["az", "ca", "co"]
+    cfg["not_sources"] = {pdf.format(9, "1 CCR 201-2"): "Not a source"}
+    index = bundle.index_manifests(manifests, {})
+    out = bundle.build_program(cfg, "snap", references, None, {}, index)
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    colorado = {d["key"]: d for d in layers["us-co"]["screener"]}
+    assert set(colorado) == {bundle.normalize_url(snap), "us-co/regulation/8-ccr-1403-1"}
+    assert colorado[bundle.normalize_url(snap)]["scope"] == "in"
+
+
+def test_build_program_joins_a_manifest_entry_without_a_path_to_the_path_that_holds_it(
+    tmp_path, monkeypatch
+):
+    # A state manifest lists a waiver by its address only; a wave decision says
+    # a served path holds that address, so Tier 2 names the path.
+    cfg = config(tmp_path, monkeypatch)
+    waiver = "https://www.fns.usda.gov/sites/default/files/resource-files/az-snap-waiver.pdf"
+    cfg["document_paths"] = {waiver: "us-az/policy/usda/fns/snap-waiver"}
+    manifests = {
+        "manifests/us-az-snap-primary-policy.yaml": [{"title": "SNAP waiver", "source_url": waiver}]
+    }
+    index = bundle.index_manifests(manifests, cfg["host_aliases"])
+    out = bundle.build_program(cfg, "snap", {"references": []}, None, manifests, index)
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    full = {d["key"]: d for d in layers["us-az"]["full"]}
+    assert "us-az/policy/usda/fns/snap-waiver" in full
+    assert (
+        full["us-az/policy/usda/fns/snap-waiver"]["citation_path"]
+        == "us-az/policy/usda/fns/snap-waiver"
+    )
+    assert waiver not in full
+
+
+def test_build_program_moves_a_known_source_to_the_path_a_wave_holds_it_at(tmp_path, monkeypatch):
+    cfg = config(tmp_path, monkeypatch)
+    cfg["path_moves"] = {"us-az/statute/46": "us-az/statute/title-46"}
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, None, {}, bundle.index_manifests({}, {})
+    )
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    keys = {d["key"] for d in layers["us-az"]["full"]}
+    assert "us-az/statute/title-46" in keys and "us-az/statute/46" not in keys
+
+
+def test_build_program_expands_a_plan_row_that_names_parts_of_a_code(tmp_path, monkeypatch):
+    # "USC 26 subtitle-A" names subparts of chapter 1, not the whole subtitle:
+    # the config lists their sections, and the bundle names each of them.
+    cfg = config(tmp_path, monkeypatch)
+    cfg["plan_sections"] = {"USC 26 subtitle-A": ["us/statute/26/21", "us/statute/26/32"]}
+    plan = {
+        "documents": [
+            {
+                "id": "USC 26 subtitle-A",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "urls": [
+                    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-A"
+                ],
+                "title": "26 U.S. Code Subpart A - Nonrefundable Personal Credits",
+            }
+        ]
+    }
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, plan, {}, bundle.index_manifests({}, {})
+    )
+    federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+    keys = {d["key"] for d in federal["screener"]}
+    assert {"us/statute/26/21", "us/statute/26/32"} <= keys
+    assert not any("subtitle-A" in k for k in keys)
+
+
+def test_build_program_excludes_a_plan_document_the_decisions_rule_out(tmp_path, monkeypatch):
+    # A plan row whose URL is a not_source is excluded with its reason, as the
+    # same URL is when PolicyEngine cites it (wave-6 OUT-OF-SCOPE rows such as
+    # MACPAC publications reached the bundles through the plan).
+    cfg = config(tmp_path, monkeypatch)
+    macstats = "https://www.macpac.gov/publication/chip-spending-by-state/"
+    cfg["not_sources"] = {macstats: "Not a source of rules: MACPAC statistics"}
+    plan = {
+        "documents": [
+            {
+                "id": "MACPAC-CHIP-SPENDING",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "urls": [macstats],
+                "title": "MACPAC CHIP spending by state",
+            }
+        ]
+    }
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, plan, {}, bundle.index_manifests({}, {})
+    )
+    federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+    screener = {d["key"]: d for d in federal["screener"]}
+    assert screener[macstats]["scope"] == "excluded"
+    assert screener[macstats]["reason"] == "Not a source of rules: MACPAC statistics"
+    assert macstats not in {d["key"] for d in federal["full"]}
 
 
 def test_apply_wave_decisions_joins_held_addresses_and_excludes_non_sources():

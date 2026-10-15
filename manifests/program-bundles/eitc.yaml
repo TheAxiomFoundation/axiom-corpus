@@ -18,11 +18,11 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a
+    recorded reason, and the screener-level parity run against the newest reference release has no unfixed Axiom
+    errors. Federal law in Tier 1 is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+    rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
       documents, each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/eitc-references.json
     policyengine_us_release: latest
@@ -40,46 +40,26 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 12
-      state: 194
+      state: 195
 - id: full
   title: Full document bundle
-  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
-    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
-    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
+    the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
+    A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
-      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
-      for the program; and the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
+      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
+      the sources the config knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
     federal_manifests: ^us-irs-(guidance|individual)
     state_manifests: eitc|earned-income
     known_sources: 0
     in_scope_by_layer:
       federal: 61
-      state: 197
+      state: 198
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us/guidance/irs/rev-proc-2016-55
     name: Rev. Proc. 2016-55 (2017 inflation-adjusted items)
     layer: federal
@@ -148,6 +128,34 @@ layers:
     part: Credits
     cited:
     - path: us/guidance/irs/rev-proc-2020-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2021-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2022-38
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2023-34
@@ -291,24 +299,6 @@ layers:
     reason: 'Secondary source: not law'
     part: Credits
   full:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us/guidance/irs/rev-proc-2016-55
     name: Rev. Proc. 2016-55 (2017 inflation-adjusted items)
     layer: federal
@@ -349,6 +339,24 @@ layers:
     name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
     source_url: null
     part: Credits
     sources:
@@ -1030,10 +1038,10 @@ layers:
     - path: us-ca/guidance/ftb/reports/california-eitc-report-2019
       references: 1
       part: Credits
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/rtc/17052
+    name: us-ca/statute/rtc/17052
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/rtc/17052
     source_url: null
     sources:
     - policyengine-references
@@ -1041,7 +1049,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-ca/statute/rtc/17054.1
+    - path: us-ca/statute/rtc/17052
       references: 2
       part: Credits
   full:
@@ -1127,10 +1135,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/rtc/17052
+    name: us-ca/statute/rtc/17052
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/rtc/17052
     source_url: null
     part: Credits
     sources:
@@ -1246,6 +1254,20 @@ layers:
     - path: us-co/guidance/state-auditor/tax-expenditure-evaluations/te19-colorado-eitc
       references: 1
       part: Credits
+  - key: us-co/statute/39/39-22-123.5
+    name: us-co/statute/39/39-22-123.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-123.5
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-123.5
+      references: 1
+      part: Credits
   - key: us-co/statute/crs-2023/title-39
     name: Colorado Revised Statutes 2023, Title 39 (Taxation), official OLLS compilation
     layer: state
@@ -1342,6 +1364,15 @@ layers:
     name: 'Office of the State Auditor Tax Expenditure Evaluation: Colorado Earned Income Tax Credit'
     layer: state
     citation_path: us-co/guidance/state-auditor/tax-expenditure-evaluations/te19-colorado-eitc
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-co/statute/39/39-22-123.5
+    name: us-co/statute/39/39-22-123.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-123.5
     source_url: null
     part: Credits
     sources:
@@ -1694,26 +1725,6 @@ layers:
     references: 3
     scope: in
     part: Credits
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Fina
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    sources:
-    - policyengine-references
-    references: 2
-    scope: in
-    part: Credits
   - key: us-dc/form/otr/ty2021/d-40-booklet
     name: 2021 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 07/2021)
     layer: state
@@ -1727,6 +1738,34 @@ layers:
     cited:
     - path: us-dc/form/otr/ty2021/d-40-booklet
       references: 1
+      part: Credits
+  - key: us-dc/form/otr/ty2022/d-40-booklet
+    name: us-dc/form/otr/ty2022/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2022/d-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-dc/form/otr/ty2022/d-40-booklet
+      references: 1
+      part: Credits
+  - key: us-dc/form/otr/ty2023/d-40-booklet
+    name: us-dc/form/otr/ty2023/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2023/d-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+    cited:
+    - path: us-dc/form/otr/ty2023/d-40-booklet
+      references: 2
       part: Credits
   - key: us-dc/form/otr/ty2024/d-40-booklet
     name: 2024 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 09/2024)
@@ -1794,28 +1833,28 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Fina
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-dc/form/otr/ty2021/d-40-booklet
     name: 2021 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 07/2021)
     layer: state
     citation_path: us-dc/form/otr/ty2021/d-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-dc/form/otr/ty2022/d-40-booklet
+    name: us-dc/form/otr/ty2022/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2022/d-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-dc/form/otr/ty2023/d-40-booklet
+    name: us-dc/form/otr/ty2023/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2023/d-40-booklet
     source_url: null
     part: Credits
     sources:
@@ -1861,31 +1900,8 @@ layers:
   screener: []
   full: []
 - jurisdiction: us-ga
-  screener:
-  - key: us-ga/statute/48/48-7-27
-    name: us-ga/statute/48/48-7-27
-    layer: state
-    citation_path: us-ga/statute/48/48-7-27
-    source_url: null
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-    cited:
-    - path: us-ga/statute/48/48-7-27
-      references: 1
-      part: Credits
-  full:
-  - key: us-ga/statute/48/48-7-27
-    name: us-ga/statute/48/48-7-27
-    layer: state
-    citation_path: us-ga/statute/48/48-7-27
-    source_url: null
-    part: Credits
-    sources:
-    - screener
-    scope: in
+  screener: []
+  full: []
 - jurisdiction: us-hi
   screener:
   - key: us-hi/form/dotax/ty2022/n-356
@@ -2126,10 +2142,10 @@ layers:
     - path: us-il/guidance/idor/eitc
       references: 1
       part: Credits
-  - key: us-il/statute/305/5
-    name: us-il/statute/305/5
+  - key: us-il/statute/35/5
+    name: us-il/statute/35/5
     layer: state
-    citation_path: us-il/statute/305/5
+    citation_path: us-il/statute/35/5
     source_url: null
     sources:
     - policyengine-references
@@ -2137,7 +2153,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-il/statute/305/5/5-2
+    - path: us-il/statute/35/5/212-current
       references: 1
       part: Credits
   full:
@@ -2204,10 +2220,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-il/statute/305/5
-    name: us-il/statute/305/5
+  - key: us-il/statute/35/5
+    name: us-il/statute/35/5
     layer: state
-    citation_path: us-il/statute/305/5
+    citation_path: us-il/statute/35/5
     source_url: null
     part: Credits
     sources:
@@ -2225,19 +2241,47 @@ layers:
     references: 1
     scope: in
     part: Credits
-  - key: us-in/form/dor/ty2025/it-40
-    name: Form IT-40, Indiana Full-Year Resident Individual Income Tax Return (2025)
+  - key: us-in/form/dor/ty2023/it-40-booklet
+    name: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
     layer: state
-    citation_path: us-in/form/dor/ty2025/it-40
+    citation_path: us-in/form/dor/ty2023/it-40-booklet
     source_url: null
     sources:
     - policyengine-references
-    references: 4
+    references: 1
     scope: in
     part: Credits
     cited:
-    - path: us-in/form/dor/ty2025/it-40
-      references: 4
+    - path: us-in/form/dor/ty2023/it-40-booklet
+      references: 1
+      part: Credits
+  - key: us-in/form/dor/ty2023/schedule-in-eic
+    name: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/schedule-in-eic
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-in/form/dor/ty2023/schedule-in-eic
+      references: 1
+      part: Credits
+  - key: us-in/form/dor/ty2025/it-40-booklet
+    name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
+    layer: state
+    citation_path: us-in/form/dor/ty2025/it-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+    cited:
+    - path: us-in/form/dor/ty2025/it-40-booklet
+      references: 2
       part: Credits
   - key: us-in/statute/6
     name: us-in/statute/6
@@ -2263,10 +2307,28 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-in/form/dor/ty2025/it-40
-    name: Form IT-40, Indiana Full-Year Resident Individual Income Tax Return (2025)
+  - key: us-in/form/dor/ty2023/it-40-booklet
+    name: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
     layer: state
-    citation_path: us-in/form/dor/ty2025/it-40
+    citation_path: us-in/form/dor/ty2023/it-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-in/form/dor/ty2023/schedule-in-eic
+    name: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/schedule-in-eic
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-in/form/dor/ty2025/it-40-booklet
+    name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
+    layer: state
+    citation_path: us-in/form/dor/ty2025/it-40-booklet
     source_url: null
     part: Credits
     sources:
@@ -2874,10 +2936,10 @@ layers:
     - path: us-md/guidance/dls/fiscal-notes/2023/hb0547
       references: 1
       part: Credits
-  - key: us-md/statute/human-services/5-501
-    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
     layer: state
-    citation_path: us-md/statute/human-services/5-501
+    citation_path: us-md/statute/gtg/10-704
     source_url: null
     sources:
     - policyengine-references
@@ -2885,7 +2947,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-md/statute/human-services/5-501
+    - path: us-md/statute/gtg/10-704
       references: 1
       part: Credits
   full:
@@ -2934,10 +2996,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-md/statute/human-services/5-501
-    name: Maryland Code, Human Services § 5-501 (Supplemental Nutrition Assistance Program)
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
     layer: state
-    citation_path: us-md/statute/human-services/5-501
+    citation_path: us-md/statute/gtg/10-704
     source_url: null
     part: Credits
     sources:
@@ -3092,10 +3154,10 @@ layers:
     - path: us-mi/form/treasury/ty2025/mi-1040-book
       references: 1
       part: Credits
-  - key: us-mi/statute/400.10d
-    name: Michigan Compiled Laws 400.10d, FIP asset test
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
     layer: state
-    citation_path: us-mi/statute/400.10d
+    citation_path: us-mi/statute/206.272
     source_url: null
     sources:
     - policyengine-references
@@ -3103,7 +3165,7 @@ layers:
     scope: in
     part: Credits
     cited:
-    - path: us-mi/statute/400.10d
+    - path: us-mi/statute/206.272
       references: 1
       part: Credits
   full:
@@ -3143,10 +3205,10 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-mi/statute/400.10d
-    name: Michigan Compiled Laws 400.10d, FIP asset test
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
     layer: state
-    citation_path: us-mi/statute/400.10d
+    citation_path: us-mi/statute/206.272
     source_url: null
     part: Credits
     sources:
@@ -4815,27 +4877,12 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Credits
     cited:
     - path: us-ut/statute/59-10-1044
-      references: 1
-      part: Credits
-  - key: us-ut/statute/59-10-1044--version-2022050420220504
-    name: Utah Code 59-10-1044, prior version (effective 5/4/2022, superseded 5/3/2023; le.utah.gov version file
-      C59-10-S1044_2022050420220504)
-    layer: state
-    citation_path: us-ut/statute/59-10-1044--version-2022050420220504
-    source_url: null
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-    cited:
-    - path: us-ut/statute/59-10-1044--version-2022050420220504
-      references: 1
+      references: 2
       part: Credits
   full:
   - key: us-ut/form/ustc/ty2021/tc-40-instructions
@@ -4887,16 +4934,6 @@ layers:
     name: us-ut/statute/59-10-1044
     layer: state
     citation_path: us-ut/statute/59-10-1044
-    source_url: null
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: us-ut/statute/59-10-1044--version-2022050420220504
-    name: Utah Code 59-10-1044, prior version (effective 5/4/2022, superseded 5/3/2023; le.utah.gov version file
-      C59-10-S1044_2022050420220504)
-    layer: state
-    citation_path: us-ut/statute/59-10-1044--version-2022050420220504
     source_url: null
     part: Credits
     sources:
@@ -5101,16 +5138,6 @@ layers:
     scope: in
 - jurisdiction: us-va
   screener:
-  - key: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    name: legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    layer: state
-    citation_path: null
-    source_url: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us-va/form/tax-forms/tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions
     name: 2021 Virginia Form 760 Resident Individual Income Tax Booklet
     layer: state
@@ -5209,6 +5236,20 @@ layers:
     - path: us-va/statute/58.1/58.1-339.8
       references: 1
       part: Credits
+  - key: us-va/statute/budget/2025
+    name: us-va/statute/budget/2025
+    layer: state
+    citation_path: us-va/statute/budget/2025
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-va/statute/budget/2025/hb1600/chapter-725
+      references: 1
+      part: Credits
   - key: us-va/statute/budget/2026
     name: us-va/statute/budget/2026
     layer: state
@@ -5224,15 +5265,6 @@ layers:
       references: 1
       part: Credits
   full:
-  - key: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    name: legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    layer: state
-    citation_path: null
-    source_url: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-va/form/tax-forms/tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions
     name: 2021 Virginia Form 760 Resident Individual Income Tax Booklet
     layer: state
@@ -5291,6 +5323,15 @@ layers:
     name: Va. Code § 58.1-339.8.
     layer: state
     citation_path: us-va/statute/58.1/58.1-339.8
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-va/statute/budget/2025
+    name: us-va/statute/budget/2025
+    layer: state
+    citation_path: us-va/statute/budget/2025
     source_url: null
     part: Credits
     sources:

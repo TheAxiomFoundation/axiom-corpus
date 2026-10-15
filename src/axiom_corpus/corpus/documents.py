@@ -10,9 +10,11 @@ import subprocess
 import sys
 import tempfile
 import time
+import unicodedata
 import warnings
 import zipfile
-from dataclasses import dataclass
+from collections import Counter
+from dataclasses import dataclass, replace
 from datetime import date
 from io import BytesIO, StringIO
 from json import dumps as json_dumps
@@ -26,7 +28,7 @@ import requests
 import xlrd
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
-from bs4.element import Comment, Tag
+from bs4.element import Comment, NavigableString, Tag
 from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -52,6 +54,19 @@ _REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
 _RANGE_FETCH_CHUNK_SIZE_BYTES = 1024 * 1024
 _CONTENT_RANGE_RE = re.compile(r"^bytes (?P<start>\d+)-(?P<end>\d+)/(?P<total>\d+|\*)$")
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
+# Media types recorded for a manifest ``local_path`` copy, which has no HTTP
+# response to report one. Keys are the source formats ``_extract_blocks`` reads.
+_SOURCE_FORMAT_CONTENT_TYPES = {
+    "csv": "text/csv",
+    "doc": "application/msword",
+    "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "html": "text/html",
+    "javascript": "text/javascript",
+    "json": "application/json",
+    "pdf": "application/pdf",
+    "xls": "application/vnd.ms-excel",
+    "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+}
 _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
@@ -127,19 +142,23 @@ class OfficialDocumentManifest:
 
     @classmethod
     def load(cls, path: str | Path) -> Self:
-        data = yaml.safe_load(Path(path).read_text())
+        """Load a manifest; a relative ``local_path`` is relative to the manifest file."""
+        manifest_path = Path(path)
+        data = yaml.safe_load(manifest_path.read_text())
         if not isinstance(data, dict):
             raise ValueError("official document manifest must be a YAML mapping")
         documents = data.get("documents")
         if not isinstance(documents, list):
             raise ValueError("official document manifest must contain a documents list")
-        return cls(
-            documents=tuple(
-                OfficialDocumentSource.from_mapping(row)
-                for row in documents
-                if isinstance(row, dict)
-            )
-        )
+        sources = []
+        for row in documents:
+            if not isinstance(row, dict):
+                continue
+            source = OfficialDocumentSource.from_mapping(row)
+            if source.local_path and not Path(source.local_path).is_absolute():
+                source = replace(source, local_path=str(manifest_path.parent / source.local_path))
+            sources.append(source)
+        return cls(documents=tuple(sources))
 
     def require_unique_sources(self) -> None:
         seen: set[str] = set()
@@ -339,22 +358,30 @@ def _single_scope(documents: tuple[OfficialDocumentSource, ...]) -> tuple[str, s
     return next(iter(jurisdictions)), next(iter(document_classes))
 
 
+def _official_download_url(source: OfficialDocumentSource) -> str:
+    return source.download_url or google_drive_download_url(source.source_url) or source.source_url
+
+
 def _download_document(
     source: OfficialDocumentSource,
     *,
     session: requests.Session,
 ) -> _DownloadedDocument:
     if source.local_path:
-        path = Path(source.local_path)
-        return _DownloadedDocument(
+        # A retained copy stands in for the official download. Rows record the
+        # official URL the manifest names, never the extracting machine's path,
+        # and the media type of the declared or detected source format.
+        downloaded = _DownloadedDocument(
             source=source,
-            content=path.read_bytes(),
+            content=Path(source.local_path).read_bytes(),
             content_type=None,
-            final_url=path.as_uri(),
+            final_url=_official_download_url(source),
         )
-    download_url = (
-        source.download_url or google_drive_download_url(source.source_url) or source.source_url
-    )
+        return replace(
+            downloaded,
+            content_type=_SOURCE_FORMAT_CONTENT_TYPES.get(_infer_source_format(source, downloaded)),
+        )
+    download_url = _official_download_url(source)
     request_config = source.request or {}
     verify = bool(request_config.get("verify_tls", True))
     request_headers = _request_headers_from_config(request_config)
@@ -1027,12 +1054,29 @@ def _extract_pdf_blocks(
 ) -> tuple[_DocumentBlock, ...]:
     extraction_config = extraction or {}
     segmentation = extraction_config.get("segmentation")
-    layered = _pdf_layered_page_text_requested(extraction_config)
+    for key in ("sort_blocks", "ignore_actual_text"):
+        value = extraction_config.get(key)
+        if value is not None and not isinstance(value, bool):
+            raise ValueError(f"{key} must be true or false, not {value!r}")
+    # ocr_dpi is read only when OCR runs (force_ocr, or ocr on a page with no text
+    # layer); check it up front so a bad value fails every PDF extraction.
+    _pdf_ocr_dpi(extraction_config)
+    markup = _pdf_amendment_markup_config(extraction_config)
+    sort_blocks = extraction_config.get("sort_blocks") is True
+    layered = markup is not None or sort_blocks
     if layered and segmentation is not None:
         raise ValueError(
             "amendment_markup and sort_blocks support only the default per-page "
             f"PDF segmentation, not segmentation={segmentation!r}"
         )
+    if layered:
+        unsupported = [
+            key for key in _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS if extraction_config.get(key)
+        ]
+        if unsupported:
+            raise ValueError(
+                f"amendment_markup and sort_blocks do not support {', '.join(unsupported)}"
+            )
     if (
         segmentation != "labeled_sections"
         and extraction_config.get("section_citation_suffix_replacements") is not None
@@ -1044,23 +1088,28 @@ def _extract_pdf_blocks(
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
-    markup = _pdf_amendment_markup_config(extraction_config) if layered else None
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
     with fitz.open(stream=content, filetype="pdf") as document:
+        if markup is not None and markup.start_page > document.page_count:
+            raise ValueError(
+                f"amendment_markup start_page {markup.start_page} is past the last page "
+                f"of the PDF ({document.page_count})"
+            )
         for index, page in enumerate(document, start=1):
             markup_metadata: dict[str, Any] | None = None
-            if layered:
+            page_markup = markup if markup is not None and markup.covers(index) else None
+            if page_markup is not None or sort_blocks:
                 text, markup_metadata = _pdf_page_layered_text(
                     page,
                     extraction=extraction_config,
-                    markup=markup if markup is not None and markup.covers(index) else None,
+                    markup=page_markup,
                     page_number=index,
                 )
-                for phrase, count in (markup_metadata or {}).get(
-                    "typographic_underlines", {}
-                ).items():
+                for phrase, count in (
+                    (markup_metadata or {}).get("typographic_underlines", {}).items()
+                ):
                     typographic_matches[phrase] += count
             else:
                 text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
@@ -1083,7 +1132,8 @@ def _extract_pdf_blocks(
     unmatched = [phrase for phrase, count in typographic_matches.items() if not count]
     if unmatched:
         raise ValueError(
-            f"amendment_markup typographic_underlines not found in the marked pages: {unmatched}"
+            "amendment_markup typographic_underlines not found as an underlined stretch "
+            f"in the marked pages: {unmatched}"
         )
     return tuple(blocks)
 
@@ -1095,7 +1145,14 @@ def _extract_pdf_blocks(
 # ordinary text. With ``amendment_markup`` each character is classified against
 # the page's thin horizontal rules and written with the GNU wdiff delimiters:
 # ``[-deleted text-]`` and ``{+inserted text+}``. Removing the delimiters gives
-# back exactly the page text that extraction without the markup would produce.
+# back exactly the page text that extraction without the markup would produce;
+# ``_pdf_check_layered_page_text`` checks that on every layered page.
+#
+# The classification is geometric: any thin horizontal rule at a strike or
+# underline offset from a text line marks it, so a table rule drawn just under a
+# row of text reads as an underline. Each new use must be checked against a
+# rendering of the pages or the publisher's HTML
+# (``scripts/compare_pdf_amendment_markup_with_html.py``).
 _AMENDMENT_DELETED = "deleted"
 _AMENDMENT_INSERTED = "inserted"
 _AMENDMENT_MARKUP_DELIMITERS = {
@@ -1110,8 +1167,13 @@ _AMENDMENT_MARKUP_NOTATION = {
     "deleted_source_markup": "strike-through",
     "inserted_source_markup": "underline",
 }
-# A rule is a filled or stroked horizontal line at most this thick (points).
+# A rule is a visible filled or stroked horizontal line at most this thick
+# (points): a rectangle's height plus any stroke width, or a line's stroke width.
 _PDF_RULE_MAX_THICKNESS = 1.5
+# Visible horizontal rules thicker than a rule but at most this thick are not
+# classified; a page where one sits at a strike or underline offset from text
+# gets a warning, since a heavy strike or underline would be missed.
+_PDF_RULE_WARNING_MAX_THICKNESS = 3.0
 # Vertical position of a rule's centre relative to a text line's baseline, in
 # multiples of the line's font size (positive is below the baseline). A strike
 # crosses the lower-case letters; an underline sits just below the baseline.
@@ -1122,8 +1184,17 @@ _PDF_RULE_MAX_THICKNESS = 1.5
 # (-0.53) is classified by the superscript's own baseline instead.
 _PDF_STRIKE_OFFSET_RANGE = (-0.40, -0.10)
 _PDF_UNDERLINE_OFFSET_RANGE = (0.05, 0.22)
+# A rule within this many font sizes of either end of a range is classified as
+# the ranges say, but its page gets a warning: a slightly different drawing
+# would flip it between marked and unmarked.
+_PDF_RULE_NEAR_THRESHOLD_MARGIN = 0.03
 _PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
-_PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements")
+_PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements", "sort_text")
+_PDF_WARNING_EXAMPLES = 8
+
+
+class PdfAmendmentMarkupWarning(UserWarning):
+    """A PDF page whose amendment markup should be checked against a rendering."""
 
 
 @dataclass(frozen=True)
@@ -1131,10 +1202,7 @@ class _PdfHorizontalRule:
     x0: float
     x1: float
     y: float
-
-
-def _pdf_layered_page_text_requested(extraction: dict[str, Any]) -> bool:
-    return bool(extraction.get("amendment_markup")) or bool(extraction.get("sort_blocks"))
+    thickness: float
 
 
 @dataclass(frozen=True)
@@ -1150,27 +1218,31 @@ class _PdfAmendmentMarkupConfig:
 def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMarkupConfig | None:
     """Parse the ``amendment_markup`` extraction key.
 
-    ``true`` marks every page. A mapping may limit marking to an inclusive
-    ``start_page``/``end_page`` range (for example the attached regulation text
-    of an agency letter, leaving the letter's own emphasis underlines alone) and
-    may list ``typographic_underlines``: exact phrases whose underline is
+    Absent, null or ``false`` leaves marking off; ``true`` marks every page. A
+    non-empty mapping may limit marking to an inclusive ``start_page``/``end_page``
+    range of positive integer page numbers (for example the attached regulation
+    text of an agency letter, leaving the letter's own emphasis underlines alone)
+    and may list ``typographic_underlines``: exact phrases whose underline is
     citation typography, such as an underlined case name, and not an insertion.
-    Those phrases are written without insertion delimiters, and every listed
-    phrase must occur in the marked pages.
+    An occurrence of a listed phrase loses its insertion delimiters only where it
+    is exactly an underlined stretch (``_typographic_underline_occurrence``), and
+    every listed phrase must occur so in the marked pages.
     """
     config = extraction.get("amendment_markup")
-    if not config:
+    if config is None or config is False:
         return None
     if config is True:
         return _PdfAmendmentMarkupConfig(start_page=1, end_page=sys.maxsize)
     if not isinstance(config, dict):
-        raise ValueError("amendment_markup must be true or a mapping")
+        raise ValueError(f"amendment_markup must be true, false or a mapping, not {config!r}")
+    if not config:
+        raise ValueError("amendment_markup must not be an empty mapping; use true for every page")
     unknown = set(config) - {"start_page", "end_page", "typographic_underlines"}
     if unknown:
         raise ValueError(f"unknown amendment_markup keys: {sorted(unknown)}")
-    start_page = _positive_int(config.get("start_page"), default=1)
-    end_value = config.get("end_page")
-    end_page = sys.maxsize if end_value is None else _positive_int(end_value, default=1)
+    start_page = _pdf_amendment_markup_page(config, "start_page") or 1
+    end_value = _pdf_amendment_markup_page(config, "end_page")
+    end_page = sys.maxsize if end_value is None else end_value
     if end_page < start_page:
         raise ValueError("amendment_markup end_page must not precede start_page")
     phrases = config.get("typographic_underlines") or ()
@@ -1178,14 +1250,20 @@ def _pdf_amendment_markup_config(extraction: dict[str, Any]) -> _PdfAmendmentMar
         isinstance(phrase, str) and phrase.strip() == phrase and phrase for phrase in phrases
     ):
         raise ValueError(
-            "amendment_markup typographic_underlines must be a list of non-empty, "
-            "unpadded strings"
+            "amendment_markup typographic_underlines must be a list of non-empty, unpadded strings"
         )
     return _PdfAmendmentMarkupConfig(
         start_page=start_page,
         end_page=end_page,
         typographic_underlines=tuple(phrases),
     )
+
+
+def _pdf_amendment_markup_page(config: dict[str, Any], key: str) -> int | None:
+    value = config.get(key)
+    if value is None:
+        return None
+    return _positive_int(value, key=f"amendment_markup {key}", default=0)
 
 
 def _pdf_text_flags(extraction: dict[str, Any], *, default: int) -> int:
@@ -1203,55 +1281,87 @@ def _pdf_page_layered_text(
 ) -> tuple[str, dict[str, Any] | None]:
     """Build normalized page text from the character layer.
 
-    Used when ``sort_blocks`` or ``amendment_markup`` is set. The character
-    stream is the one ``page.get_text("text")`` returns (same flags), so without
-    either option the result equals the default page text. ``sort_blocks``
-    orders text blocks top to bottom (PyMuPDF block sort), which places a boxed
-    note drawn last in the content stream where it appears on the page.
+    Used for the pages ``amendment_markup`` marks and, with ``sort_blocks``, for
+    every page. The characters are the ones ``page.get_text("text")`` prints
+    (same text flags), and a line ends in a newline exactly where that printer
+    ends it with one: when the line printed a character and that character is
+    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters removed,
+    is the default page text. ``sort_blocks`` orders text blocks top to bottom
+    (PyMuPDF block sort), which places a boxed note drawn last in the content
+    stream where it appears on the page, and keeps the same characters.
+    ``_pdf_check_layered_page_text`` checks both on every page.
     """
-    unsupported = [key for key in _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS if extraction.get(key)]
-    if unsupported:
-        raise ValueError(
-            "amendment_markup and sort_blocks do not support "
-            f"{', '.join(unsupported)}"
-        )
+    sort_blocks = extraction.get("sort_blocks") is True
     raw = page.get_text(
         "rawdict",
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
-        sort=bool(extraction.get("sort_blocks")),
+        sort=sort_blocks,
     )
-    rules = _pdf_horizontal_rules(page) if markup is not None else ()
+    rules, thick_rules = _pdf_horizontal_rules(page) if markup is not None else ((), ())
     chars: list[str] = []
     states: list[str | None] = []
+    near_threshold: list[list[float]] = []
+    thick_rule_hits: list[list[float]] = []
     for block in raw.get("blocks", ()):
         if block.get("type") != 0:
             continue
         for line in block.get("lines", ()):
             spans = line.get("spans", ())
             reference = _pdf_line_reference(spans)
+            last_character = ""
             for span in spans:
                 span_size = float(span.get("size") or 0.0)
                 for char in span.get("chars", ()):
                     character = str(char.get("c", ""))
                     state = None
-                    if rules and reference is not None and not character.isspace():
+                    if reference is not None and not character.isspace():
                         references = [reference]
                         if span_size > 0:
                             references.append((float(char["origin"][1]), span_size))
-                        state = _pdf_char_amendment_state(
-                            char,
-                            references=tuple(references),
-                            rules=rules,
-                            page_number=page_number,
-                        )
+                        if rules:
+                            offsets = _pdf_rule_offsets(char, references=references, rules=rules)
+                            state = _pdf_char_amendment_state(
+                                char, offsets=offsets, page_number=page_number
+                            )
+                            near = [
+                                offset
+                                for _rule, offset in offsets
+                                if _pdf_offset_near_threshold(offset)
+                            ]
+                            if near:
+                                near_threshold.append(near)
+                        if thick_rules:
+                            thick = [
+                                rule.thickness
+                                for rule, offset in _pdf_rule_offsets(
+                                    char, references=references, rules=thick_rules
+                                )
+                                if _pdf_offset_amendment_state(offset) is not None
+                            ]
+                            if thick:
+                                thick_rule_hits.append(thick)
                     chars.append(character)
                     states.append(state)
-            chars.append("\n")
-            states.append(None)
+                    last_character = character
+            # PyMuPDF's plain-text printer ends a line with a newline only when the
+            # line printed a character that is neither a newline nor NUL.
+            if last_character not in ("", "\n", "\x00"):
+                chars.append("\n")
+                states.append(None)
     raw_text = "".join(chars)
     plain_text = _normalize_text(raw_text)
+    _pdf_check_layered_page_text(
+        page,
+        plain_text,
+        extraction=extraction,
+        sort_blocks=sort_blocks,
+        page_number=page_number,
+    )
     if markup is None:
         return plain_text, None
+    _pdf_warn_about_rules(
+        page_number, near_threshold=near_threshold, thick_rule_hits=thick_rule_hits
+    )
     present = [token for token in _AMENDMENT_MARKUP_TOKENS if token in raw_text]
     if present:
         raise ValueError(
@@ -1262,9 +1372,17 @@ def _pdf_page_layered_text(
         raw_text, states, typographic_underlines=markup.typographic_underlines
     )
     if _strip_amendment_markup(rendered.text) != plain_text:
-        raise RuntimeError(
-            f"amendment markup changed the text of PDF page {page_number}"
-        )
+        raise RuntimeError(f"amendment markup changed the text of PDF page {page_number}")
+    for phrase, count in rendered.typographic_underlines_kept.items():
+        if count:
+            warnings.warn(
+                f"PDF page {page_number}: amendment_markup typographic_underlines phrase "
+                f"{phrase!r} occurs {count} time(s) partly underlined, inside a longer "
+                "underlined stretch or inside a longer word; those occurrences keep their "
+                "insertion delimiters",
+                PdfAmendmentMarkupWarning,
+                stacklevel=2,
+            )
     metadata: dict[str, Any] = {
         **_AMENDMENT_MARKUP_NOTATION,
         "deleted_runs": rendered.deleted_runs,
@@ -1278,33 +1396,141 @@ def _pdf_page_layered_text(
     return rendered.text, metadata
 
 
-def _pdf_horizontal_rules(page: Any) -> tuple[_PdfHorizontalRule, ...]:
-    """Return the page's thin, visible, horizontal vector rules."""
+def _pdf_check_layered_page_text(
+    page: Any,
+    layered_text: str,
+    *,
+    extraction: dict[str, Any],
+    sort_blocks: bool,
+    page_number: int,
+) -> None:
+    """Check layered page text against the default page text.
+
+    Without ``sort_blocks`` the two must be equal; with it they must hold the
+    same non-space characters. They differ where PyMuPDF's character layer
+    (``rawdict``) leaves out a glyph its plain-text printer keeps: it drops a
+    glyph of zero width, such as a combining mark or a zero-advance period, so
+    no markup of that page could strip back to the default text.
+    """
+    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
+    if sort_blocks:
+        default_chars = Counter(char for char in default_text if not char.isspace())
+        layered_chars = Counter(char for char in layered_text if not char.isspace())
+        if default_chars == layered_chars:
+            return
+    elif layered_text == default_text:
+        return
+    else:
+        default_chars = Counter(default_text)
+        layered_chars = Counter(layered_text)
+    missing = default_chars - layered_chars
+    extra = layered_chars - default_chars
+    details = [
+        f"{label} {', '.join(f'U+{ord(char):04X}' for char in sorted(chars))}"
+        for label, chars in (("missing", missing), ("extra", extra))
+        if chars
+    ]
+    raise ValueError(
+        f"PDF page {page_number}: the character layer that amendment_markup and "
+        "sort_blocks read differs from the page's default text "
+        f"({'; '.join(details) or 'same characters, different text'}). PyMuPDF leaves "
+        "zero-width glyphs out of the character layer; keep the page out of the "
+        "amendment_markup page range, or extract this PDF without these keys"
+    )
+
+
+def _pdf_warn_about_rules(
+    page_number: int,
+    *,
+    near_threshold: list[list[float]],
+    thick_rule_hits: list[list[float]],
+) -> None:
+    """Warn about the characters of a marked page whose classification is fragile.
+
+    ``near_threshold`` holds, per character, the offsets of its rules that lie
+    within ``_PDF_RULE_NEAR_THRESHOLD_MARGIN`` of a range end; ``thick_rule_hits``
+    holds, per character, the thicknesses of the ignored thick rules at a strike
+    or underline offset from it.
+    """
+    if near_threshold:
+        offsets = sorted({round(offset, 2) for near in near_threshold for offset in near})
+        shown = ", ".join(f"{offset:+.2f}" for offset in offsets[:_PDF_WARNING_EXAMPLES])
+        warnings.warn(
+            f"PDF page {page_number}: {len(near_threshold)} characters have a rule within "
+            f"{_PDF_RULE_NEAR_THRESHOLD_MARGIN} font sizes of a strike or underline "
+            f"threshold (offsets {shown}); check the amendment markup against a rendering "
+            "of the page",
+            PdfAmendmentMarkupWarning,
+            stacklevel=3,
+        )
+    if thick_rule_hits:
+        thicknesses = sorted({round(value, 2) for hit in thick_rule_hits for value in hit})
+        shown = ", ".join(f"{value:.2f}" for value in thicknesses[:_PDF_WARNING_EXAMPLES])
+        warnings.warn(
+            f"PDF page {page_number}: {len(thick_rule_hits)} characters sit at a strike or "
+            f"underline position of a rule thicker than {_PDF_RULE_MAX_THICKNESS} pt "
+            f"({shown} pt), which amendment_markup ignores; check the page against a "
+            "rendering",
+            PdfAmendmentMarkupWarning,
+            stacklevel=3,
+        )
+
+
+def _pdf_horizontal_rules(
+    page: Any,
+) -> tuple[tuple[_PdfHorizontalRule, ...], tuple[_PdfHorizontalRule, ...]]:
+    """Return the page's visible horizontal vector rules.
+
+    The first tuple holds the rules amendment markup classifies, at most
+    ``_PDF_RULE_MAX_THICKNESS`` thick; the second holds thicker ones up to
+    ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. A rectangle's
+    thickness is its height plus, when it is stroked, the stroke width; a line's
+    is its stroke width. White paint and paint with zero opacity are invisible and
+    never make a rule.
+    """
     rules: list[_PdfHorizontalRule] = []
+    thick_rules: list[_PdfHorizontalRule] = []
     for path in page.get_drawings():
         path_type = str(path.get("type") or "")
-        filled = "f" in path_type and not _pdf_color_is_white(path.get("fill"))
-        stroked = "s" in path_type and not _pdf_color_is_white(path.get("color"))
+        filled = "f" in path_type and _pdf_paint_is_visible(
+            path.get("fill"), path.get("fill_opacity")
+        )
+        stroked = "s" in path_type and _pdf_paint_is_visible(
+            path.get("color"), path.get("stroke_opacity")
+        )
         stroke_width = float(path.get("width") or 0.0)
         for item in path.get("items", ()):
             operator = item[0]
             if operator == "re":
                 rect = item[1]
-                if rect.height > _PDF_RULE_MAX_THICKNESS or rect.width <= rect.height:
+                if rect.width <= rect.height or not (filled or stroked):
                     continue
-                if filled or (stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS):
-                    rules.append(
-                        _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2)
-                    )
-            elif operator == "l" and stroked and stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                # A stroke is centred on the outline, so it adds its width to the
+                # painted height of the rectangle.
+                thickness = rect.height + (stroke_width if stroked else 0.0)
+                rule = _PdfHorizontalRule(rect.x0, rect.x1, (rect.y0 + rect.y1) / 2, thickness)
+                if thickness <= _PDF_RULE_MAX_THICKNESS:
+                    rules.append(rule)
+                elif thickness <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                    thick_rules.append(rule)
+            elif operator == "l" and stroked:
                 start, end = item[1], item[2]
-                if abs(start.y - end.y) <= 0.5 and abs(start.x - end.x) > 0.5:
-                    rules.append(
-                        _PdfHorizontalRule(
-                            min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2
-                        )
-                    )
-    return tuple(rules)
+                if abs(start.y - end.y) > 0.5 or abs(start.x - end.x) <= 0.5:
+                    continue
+                rule = _PdfHorizontalRule(
+                    min(start.x, end.x), max(start.x, end.x), (start.y + end.y) / 2, stroke_width
+                )
+                if stroke_width <= _PDF_RULE_MAX_THICKNESS:
+                    rules.append(rule)
+                elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
+                    thick_rules.append(rule)
+    return tuple(rules), tuple(thick_rules)
+
+
+def _pdf_paint_is_visible(color: Any, opacity: Any) -> bool:
+    if _pdf_color_is_white(color):
+        return False
+    return opacity is None or float(opacity) > 0
 
 
 def _pdf_color_is_white(color: Any) -> bool:
@@ -1337,16 +1563,16 @@ def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
     return (best[2], best[0])
 
 
-def _pdf_char_amendment_state(
+def _pdf_rule_offsets(
     char: dict[str, Any],
     *,
-    references: tuple[tuple[float, float], ...],
+    references: list[tuple[float, float]],
     rules: tuple[_PdfHorizontalRule, ...],
-    page_number: int,
-) -> str | None:
+) -> list[tuple[_PdfHorizontalRule, float]]:
+    """Return each rule under or over the character with its offset from each reference."""
     x0, _y0, x1, _y1 = char["bbox"]
     center = (float(x0) + float(x1)) / 2
-    struck = underlined = False
+    offsets: list[tuple[_PdfHorizontalRule, float]] = []
     for rule in rules:
         if not (
             rule.x0 - _PDF_RULE_HORIZONTAL_TOLERANCE
@@ -1355,19 +1581,40 @@ def _pdf_char_amendment_state(
         ):
             continue
         for baseline, size in references:
-            offset = (rule.y - baseline) / size
-            if _PDF_STRIKE_OFFSET_RANGE[0] <= offset <= _PDF_STRIKE_OFFSET_RANGE[1]:
-                struck = True
-            elif _PDF_UNDERLINE_OFFSET_RANGE[0] <= offset <= _PDF_UNDERLINE_OFFSET_RANGE[1]:
-                underlined = True
-    if struck and underlined:
+            offsets.append((rule, (rule.y - baseline) / size))
+    return offsets
+
+
+def _pdf_offset_amendment_state(offset: float) -> str | None:
+    if _PDF_STRIKE_OFFSET_RANGE[0] <= offset <= _PDF_STRIKE_OFFSET_RANGE[1]:
+        return _AMENDMENT_DELETED
+    if _PDF_UNDERLINE_OFFSET_RANGE[0] <= offset <= _PDF_UNDERLINE_OFFSET_RANGE[1]:
+        return _AMENDMENT_INSERTED
+    return None
+
+
+def _pdf_offset_near_threshold(offset: float) -> bool:
+    return any(
+        abs(offset - bound) <= _PDF_RULE_NEAR_THRESHOLD_MARGIN
+        for bound in (*_PDF_STRIKE_OFFSET_RANGE, *_PDF_UNDERLINE_OFFSET_RANGE)
+    )
+
+
+def _pdf_char_amendment_state(
+    char: dict[str, Any],
+    *,
+    offsets: list[tuple[_PdfHorizontalRule, float]],
+    page_number: int,
+) -> str | None:
+    found = {_pdf_offset_amendment_state(offset) for _rule, offset in offsets}
+    if _AMENDMENT_DELETED in found and _AMENDMENT_INSERTED in found:
         raise ValueError(
             f"PDF page {page_number} character {char.get('c')!r} is both struck "
             "through and underlined; amendment_markup cannot classify it"
         )
-    if struck:
+    if _AMENDMENT_DELETED in found:
         return _AMENDMENT_DELETED
-    if underlined:
+    if _AMENDMENT_INSERTED in found:
         return _AMENDMENT_INSERTED
     return None
 
@@ -1378,6 +1625,7 @@ class _RenderedAmendmentMarkup:
     deleted_runs: int
     inserted_runs: int
     typographic_underlines: dict[str, int]
+    typographic_underlines_kept: dict[str, int]
 
 
 _WORD_SEPARATOR = "separator"
@@ -1393,13 +1641,20 @@ def _render_amendment_markup(
 
     Whitespace is neutral: a space between two words with the same state stays
     inside one run, so a struck clause reads ``[-a b c-]``, not ``[-a-] [-b-]``.
-    Each ``typographic_underlines`` phrase loses its insertion state wherever it
-    occurs within a paragraph.
+    A ``typographic_underlines`` phrase loses its insertion state wherever it is
+    exactly an underlined stretch within a paragraph; such occurrences are
+    counted in ``typographic_underlines``. Occurrences that are underlined only
+    in part, or that sit inside a longer underlined stretch, keep their state
+    and are counted in ``typographic_underlines_kept``, as are underlined matches
+    that begin or end inside a word (``_phrase_is_whole_words``), such as a case
+    name followed by a footnote digit. Every occurrence, overlapping ones
+    included, is judged on the states before any phrase is
+    applied, so the result does not depend on the order of the phrases.
     """
     kept = [
         (character, state)
         for character, state in zip(raw_text, states, strict=True)
-        if character not in {"\u200b", "\ufeff"}
+        if character not in {"​", "﻿"}
     ]
     text = "".join(character for character, _state in kept)
     paragraphs: list[list[tuple[str, str | None]]] = []
@@ -1432,19 +1687,28 @@ def _render_amendment_markup(
         paragraphs.append(current)
 
     typographic_counts = dict.fromkeys(typographic_underlines, 0)
+    typographic_kept = dict.fromkeys(typographic_underlines, 0)
     counts = {_AMENDMENT_DELETED: 0, _AMENDMENT_INSERTED: 0}
     rendered: list[str] = []
     for paragraph in paragraphs:
         paragraph_text = "".join(character for character, _state in paragraph)
+        cleared: set[int] = set()
         for phrase in typographic_underlines:
             start = paragraph_text.find(phrase)
             while start >= 0:
-                typographic_counts[phrase] += 1
-                for position in range(start, start + len(phrase)):
-                    character, state = paragraph[position]
-                    if state == _AMENDMENT_INSERTED:
-                        paragraph[position] = (character, None)
-                start = paragraph_text.find(phrase, start + len(phrase))
+                end = start + len(phrase)
+                if _phrase_is_whole_words(
+                    paragraph_text, start, end
+                ) and _typographic_underline_occurrence(paragraph, start, end):
+                    typographic_counts[phrase] += 1
+                    cleared.update(range(start, end))
+                elif any(state == _AMENDMENT_INSERTED for _c, state in paragraph[start:end]):
+                    typographic_kept[phrase] += 1
+                start = paragraph_text.find(phrase, start + 1)
+        for position in cleared:
+            character, state = paragraph[position]
+            if state == _AMENDMENT_INSERTED:
+                paragraph[position] = (character, None)
         out: list[str] = []
         open_state: str | None = None
         for position, (character, state) in enumerate(paragraph):
@@ -1471,7 +1735,45 @@ def _render_amendment_markup(
         deleted_runs=counts[_AMENDMENT_DELETED],
         inserted_runs=counts[_AMENDMENT_INSERTED],
         typographic_underlines=typographic_counts,
+        typographic_underlines_kept=typographic_kept,
     )
+
+
+def _phrase_is_whole_words(text: str, start: int, end: int) -> bool:
+    """Whether ``text[start:end]`` does not begin or end inside a word.
+
+    A phrase that begins (or ends) with a letter or digit must not continue a
+    letter or digit next to it, so "Jones" does not occur in "Jonesboro"; a
+    phrase ending in punctuation, like "Lyng;", may be followed by anything.
+    Unlike a regular expression's ``\\b``, "_" counts as punctuation here.
+    """
+    if text[start].isalnum() and start > 0 and text[start - 1].isalnum():
+        return False
+    return not (text[end - 1].isalnum() and end < len(text) and text[end].isalnum())
+
+
+def _typographic_underline_occurrence(
+    paragraph: list[tuple[str, str | None]], start: int, end: int
+) -> bool:
+    """Whether ``paragraph[start:end]`` is exactly an underlined stretch.
+
+    Its first and last characters are underlined and the nearest characters
+    outside it are not, so the phrase is all that the PDF underlines there.
+    Words inside it may be plain, like the "v." between the underlined party
+    names of a case name. An occurrence inside a longer underlined stretch is
+    read as part of that insertion.
+    """
+    if paragraph[start][1] != _AMENDMENT_INSERTED or paragraph[end - 1][1] != _AMENDMENT_INSERTED:
+        return False
+    before = next(
+        (state for _char, state in reversed(paragraph[:start]) if state != _WORD_SEPARATOR),
+        None,
+    )
+    after = next(
+        (state for _char, state in paragraph[end:] if state != _WORD_SEPARATOR),
+        None,
+    )
+    return _AMENDMENT_INSERTED not in (before, after)
 
 
 def _strip_amendment_markup(text: str) -> str:
@@ -2203,6 +2505,18 @@ def _legacy_word_document_text(content: bytes) -> str:
         return _normalize_text(result.stdout)
 
 
+def _require_start_marker(started: bool, pattern: object, *, context: str) -> None:
+    """Fail when a configured ``start_after_pattern`` never matched.
+
+    Extraction skips everything before the marker, so a marker that never appears would
+    return no text at all and leave the document an empty row (106 CMR 701 and 702 in
+    ``2026-06-27-ma-tafdc-regulations`` lost every section this way). The HTML start and
+    content selectors already fail the same way.
+    """
+    if pattern is not None and not started:
+        raise ValueError(f"{context}: start_after_pattern did not match: {str(pattern)!r}")
+
+
 def _extract_labeled_docx_section_blocks(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[_DocumentBlock, ...]:
@@ -2281,6 +2595,7 @@ def _extract_labeled_docx_section_blocks(
             continue
         if current_label is not None:
             current_body.append(line)
+    _require_start_marker(started, start_after_pattern, context="labeled_sections DOCX")
     flush()
     return tuple(sections)
 
@@ -2413,6 +2728,7 @@ def _extract_styled_labeled_docx_section_blocks(
             rows = [row for row in table_text.splitlines() if row and keep_line(row)]
             if rows:
                 sections[current_label]["body"].append("\n".join(rows))
+    _require_start_marker(started, start_after_pattern, context="styled_labeled_sections DOCX")
 
     blocks: list[_DocumentBlock] = []
     for label in order:
@@ -2553,9 +2869,11 @@ def _filtered_pdf_styled_lines(
 ) -> tuple[tuple[str, int, int], ...]:
     if extraction.get("page_windows") is not None:
         return _windowed_pdf_styled_lines(content, extraction=extraction)
-    start_page = _positive_int(extraction.get("start_page"), default=1)
+    start_page = _positive_int(extraction.get("start_page"), key="start_page", default=1)
     end_page = extraction.get("end_page")
-    parsed_end_page = _positive_int(end_page, default=0) if end_page is not None else None
+    parsed_end_page = (
+        _positive_int(end_page, key="end_page", default=0) if end_page is not None else None
+    )
     if parsed_end_page is not None and parsed_end_page < start_page:
         raise ValueError("end_page must be greater than or equal to start_page")
     drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
@@ -2570,6 +2888,7 @@ def _filtered_pdf_styled_lines(
     started = start_after_re is None
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
+        page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
@@ -2585,6 +2904,13 @@ def _filtered_pdf_styled_lines(
                         started = True
                     continue
                 lines.append((line, page_index, style))
+    last_page = min(parsed_end_page or page_count, page_count)
+    context = (
+        f"PDF start_page {start_page} is beyond its {page_count} pages"
+        if start_page > page_count
+        else f"PDF pages {start_page}-{last_page} of {page_count}"
+    )
+    _require_start_marker(started, start_after_pattern, context=context)
     return tuple(lines)
 
 
@@ -2605,11 +2931,15 @@ def _parse_pdf_page_windows(extraction: dict[str, Any]) -> tuple[_PdfPageWindow,
         raise ValueError("page_windows must be a non-empty list of window mappings")
     windows: list[_PdfPageWindow] = []
     previous_end = 0
-    for raw in raw_windows:
+    for index, raw in enumerate(raw_windows):
         if not isinstance(raw, dict):
             raise ValueError("each page window must be a mapping")
-        start_page = _positive_int(raw.get("start_page"), default=0)
-        end_page = _positive_int(raw.get("end_page"), default=0)
+        start_page = _positive_int(
+            raw.get("start_page"), key=f"page_windows[{index}].start_page", default=0
+        )
+        end_page = _positive_int(
+            raw.get("end_page"), key=f"page_windows[{index}].end_page", default=0
+        )
         if not start_page or not end_page:
             raise ValueError("each page window requires start_page and end_page")
         if end_page < start_page:
@@ -2670,6 +3000,7 @@ def _windowed_pdf_styled_lines(
     stopped: dict[int, bool] = {id(window): False for window in windows}
     lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
+        page_count = document.page_count
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
                 break
@@ -2692,6 +3023,12 @@ def _windowed_pdf_styled_lines(
                     stopped[id(page_window)] = True
                     break
                 lines.append((line, page_index, style))
+    for window in windows:
+        if window.start_at_re is not None and not started[id(window)]:
+            raise ValueError(
+                f"PDF page window {window.start_page}-{window.end_page} of {page_count} "
+                f"pages: start_at_pattern did not match: {window.start_at_re.pattern!r}"
+            )
     return tuple(lines)
 
 
@@ -2747,10 +3084,796 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
         sort=bool(extraction.get("sort_text")),
         flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
     )
-    if _normalize_text(text) or not extraction.get("ocr"):
+    if not extraction.get("ocr") or not _pdf_page_needs_ocr(page, str(text)):
         return _replace_text(str(text), text_replacements)
-    text = _ocr_pdf_page_text(page, extraction=extraction)
-    return _replace_text(text, text_replacements)
+    ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
+    layer_text = str(text)
+    if _normalize_text(ocr_text):
+        span_lines = _pdf_layer_lines(page, extraction=extraction)
+        layer_lines = None
+        if _same_layer_characters(span_lines, layer_text):
+            marked = _with_layer_marks(span_lines, layer_text)
+            if marked is not None:
+                layer_lines = _without_garbled_spans(marked)
+        if layer_lines is None:
+            # The dict output does not hold the text output's characters (or its marks
+            # can't be placed): use the text output's lines, all counted as painted, so no
+            # line without a control character can go missing.
+            # They are split at newlines only, so a garbled line keeps its control
+            # characters (splitlines() also breaks at U+001C to U+001E and U+0085).
+            layer_lines = [(line, True) for line in layer_text.split("\n")]
+        layer_text = "\n".join(_without_failed_recognition_lines(layer_lines, ocr_text))
+    return _replace_text(_with_unread_layer_lines(ocr_text, layer_text), text_replacements)
+
+
+# A scanned page can carry a thin text layer over its page image: a filing stamp, or the
+# dates and signature typed onto a scanned form. That layer is not the page's text, so with
+# ``ocr`` a page is read by OCR when its layer has fewer than _OCR_OVERLAY_MAX_WORDS words
+# with a letter in them and scanned images cover at least _OCR_PAGE_IMAGE_COVERAGE of the
+# page. A text page holds hundreds of words, so it never qualifies. An image counts as a
+# scan only at _OCR_MIN_SCAN_DPI or more: a born-digital slide's full-bleed background
+# photo (about 70 dpi in the Georgia Medicaid Fair deck) does not.
+_OCR_OVERLAY_MAX_WORDS = 30
+_OCR_PAGE_IMAGE_COVERAGE = 0.9
+_OCR_MIN_SCAN_DPI = 100
+
+
+def _pdf_page_needs_ocr(page: Any, text: str) -> bool:
+    """Whether an ``ocr`` extraction should read ``page`` by OCR rather than its text layer."""
+    if not _normalize_text(text):
+        return True
+    words = sum(1 for token in text.split() if any(char.isalpha() for char in token))
+    if words >= _OCR_OVERLAY_MAX_WORDS:
+        return False
+    return _pdf_page_image_coverage(page) >= _OCR_PAGE_IMAGE_COVERAGE
+
+
+def _pdf_page_image_coverage(page: Any, *, min_dpi: float = _OCR_MIN_SCAN_DPI) -> float:
+    """The exact share of the visible page that placed scan images cover (0 when none does).
+
+    PyMuPDF gives image rectangles in unrotated space measured from the crop box's
+    top-left corner, so the visible page there is ``(0, 0, crop width, crop height)``
+    whatever the rotation, crop box or media-box origin. Images count together (their
+    union), so a scan stored as strips covers the page as one image would. An image whose
+    effective resolution, on its sharper axis, is below ``min_dpi`` is not a scan and is
+    left out.
+    """
+    cropbox = page.cropbox
+    width, height = cropbox.width, cropbox.height
+    if width <= 0 or height <= 0:
+        return 0.0
+    visible = fitz.Rect(0, 0, width, height)
+    rects: list[Any] = []
+    for image in page.get_images(full=True):
+        pixels_wide, pixels_high = image[2], image[3]
+        for rect in page.get_image_rects(image[0]):
+            placed = fitz.Rect(rect)
+            if placed.width <= 0 or placed.height <= 0:
+                continue
+            dpi = 72 * max(pixels_wide / placed.width, pixels_high / placed.height)
+            if dpi < min_dpi:
+                continue
+            shown = placed & visible
+            if not shown.is_empty:
+                rects.append(shown)
+    return float(_rect_union_area(rects) / (width * height))
+
+
+def _rect_union_area(rects: list[Any]) -> float:
+    """The area the rectangles cover together (exact).
+
+    A sweep over the x edges: in each vertical strip, the covered height is the merged
+    length of the y-intervals of the rectangles that span the strip.
+    """
+    if not rects:
+        return 0.0
+    xs = sorted({edge for rect in rects for edge in (rect.x0, rect.x1)})
+    area = 0.0
+    for left, right in zip(xs, xs[1:], strict=False):
+        spans = sorted((rect.y0, rect.y1) for rect in rects if rect.x0 <= left and right <= rect.x1)
+        covered = 0.0
+        top = bottom = None
+        for y0, y1 in spans:
+            if bottom is None or y0 > bottom:
+                if bottom is not None and top is not None:
+                    covered += bottom - top
+                top, bottom = y0, y1
+            else:
+                bottom = max(bottom, y1)
+        if bottom is not None and top is not None:
+            covered += bottom - top
+        area += (right - left) * covered
+    return area
+
+
+# Punctuation at the ends of an OCR token that a text-layer line may begin after or end
+# before, so the layer's "$1,234" is read by OCR's "($1,234)." A leading currency sign or
+# minus and a trailing percent sign belong to the value and are never skipped.
+_OCR_TOKEN_LEAD = re.compile(r"^[^\w$\u20ac\u00a3%-]+")
+_OCR_TOKEN_TRAIL = re.compile(r"[^\w%]+$")
+# Quote and dash variants compared as one character: OCR prints "Children’s" where a
+# layer has "Children's". One character for one, so offsets are unchanged.
+_OCR_TYPOGRAPHIC_FOLD = str.maketrans(
+    {
+        **dict.fromkeys("\u2018\u2019\u201a\u201b\u2032", "'"),
+        **dict.fromkeys("\u201c\u201d\u201e\u201f\u2033", '"'),
+        **dict.fromkeys("\u2010\u2011\u2012\u2013\u2014\u2015\u2212", "-"),
+    }
+)
+
+
+def _spacing_folded(tokens: list[str]) -> tuple[str, list[int]]:
+    """``tokens`` joined for comparison, and each token's offset in the joined text.
+
+    A text layer and OCR break words differently ("EffectiveDate" for "Effective Date",
+    "of39" for "of 39"), so a gap with a letter on either side is dropped. Any other gap
+    is kept as one space: between digits and punctuation the spacing is part of the value
+    ("1 2" is not "12", and "3. 1" is not "3.1").
+    """
+    parts: list[str] = []
+    offsets: list[int] = []
+    length = 0
+    previous = ""
+    for token in tokens:
+        if previous and not (previous[-1].isalpha() or token[0].isalpha()):
+            parts.append(" ")
+            length += 1
+        offsets.append(length)
+        parts.append(token)
+        length += len(token)
+        previous = token
+    return "".join(parts), offsets
+
+
+def _ocr_reading(ocr_text: str) -> tuple[str, frozenset[int], frozenset[int]]:
+    """The OCR text folded for comparison, and where a text-layer line may start and end.
+
+    A line may start where an OCR token starts, or after any of the punctuation that
+    leads the token (``_OCR_TOKEN_LEAD``); it may end where the token ends, or before any
+    of the punctuation that trails it (``_OCR_TOKEN_TRAIL``). It can never start or end
+    among a token's letters and digits, so "24" is not read by "2024".
+    """
+    tokens = ocr_text.translate(_OCR_TYPOGRAPHIC_FOLD).split()
+    folded, offsets = _spacing_folded(tokens)
+    starts: set[int] = set()
+    ends: set[int] = set()
+    for token, offset in zip(tokens, offsets, strict=True):
+        lead = _OCR_TOKEN_LEAD.match(token)
+        trail = _OCR_TOKEN_TRAIL.search(token)
+        core_start = lead.end() if lead else 0
+        core_end = trail.start() if trail else len(token)
+        if core_start >= core_end:
+            # Punctuation only: the token is taken whole or not at all.
+            core_start, core_end = 0, len(token)
+        starts.update(range(offset, offset + core_start + 1))
+        ends.update(range(offset + core_end, offset + len(token) + 1))
+    return folded, frozenset(starts), frozenset(ends)
+
+
+def _ocr_read_line(line: str, reading: tuple[str, frozenset[int], frozenset[int]]) -> bool:
+    """Whether the OCR text holds ``line``: the same characters in the same order, as whole
+    tokens, whatever the spacing next to a letter (quote and dash variants compare equal)."""
+    folded, starts, ends = reading
+    needle, _ = _spacing_folded(line.translate(_OCR_TYPOGRAPHIC_FOLD).split())
+    index = folded.find(needle)
+    while index != -1:
+        if index in starts and index + len(needle) in ends:
+            return True
+        index = folded.find(needle, index + 1)
+    return False
+
+
+def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
+    """OCR text, followed by the text-layer lines OCR did not read.
+
+    A scanned page's text layer holds what was typed onto the scan: dates, transmittal
+    numbers, amounts, and the name and title of the signing official. OCR can misread any
+    of it, or skip it. A layer line is kept, after the OCR text, unless the OCR text
+    already holds the whole line (``_ocr_read_line``): the same characters in the same
+    order, as whole tokens. Only spacing next to a letter, and quote and dash variants, are
+    not compared, because layers and OCR break words differently. Two kinds of line are
+    never kept: a line holding a control character (Unicode category Cc) is font-encoding
+    garbage, and a line with no letter or digit is not text. Each kept line appears once, in layer order, and the kept
+    lines follow as a paragraph of their own. With no OCR text the layer is returned as it
+    is.
+
+    A layer line that is not garbage by those two tests is always in the result. The
+    caller removes the lines of an invisible recognition layer that are not worth keeping
+    first (``_without_failed_recognition_lines``).
+    """
+    if not _normalize_text(ocr_text):
+        return layer_text
+    reading = _ocr_reading(ocr_text)
+    kept: dict[str, None] = {}
+    for raw in layer_text.splitlines():
+        line = " ".join(raw.split())
+        if line in kept or not any(char.isalnum() for char in line):
+            continue
+        if any(unicodedata.category(char) == "Cc" for char in line):
+            continue
+        if not _ocr_read_line(line, reading):
+            kept[line] = None
+    if not kept:
+        return ocr_text
+    return ocr_text.rstrip("\n") + "\n\n" + "\n".join(kept)
+
+
+# A span's characters are painted when they are filled or stroked (MuPDF's FZ_STEXT_FILLED
+# and FZ_STEXT_STROKED in its ``char_flags``). Text render mode 3 does neither: that is how
+# a scanner or OCR program lays an invisible recognition layer over a page image.
+_PDF_TEXT_PAINTED = 16 | 32
+# MuPDF's FZ_STEXT_UNICODE_IS_CID and FZ_STEXT_UNICODE_IS_GID: the font gave no Unicode
+# for the glyph, and its CID or glyph id stands in for one.
+_PDF_TEXT_UNICODE_GUESSED = 128 | 256
+# An invisible line with fewer letters than this and no digit is a fragment.
+_RECOGNITION_FRAGMENT_LETTERS = 3
+# A recognition layer is judged by its distinct words of _RECOGNITION_WORD_LETTERS or more
+# letters, and only when it has at least _RECOGNITION_MIN_WORDS of them. It has failed when
+# fewer than a third of them occur in the OCR text. A word of _RECOGNITION_RUN_LETTERS or
+# more letters also occurs when it is in OCR's letters run together, since recognition
+# layers often run words together ("EffectiveDate").
+_RECOGNITION_WORD_LETTERS = 3
+_RECOGNITION_MIN_WORDS = 5
+_RECOGNITION_RUN_LETTERS = 6
+# Control characters a text layer uses as ordinary whitespace. Any other (Unicode category
+# Cc) marks a garbled font. Python's split() and splitlines() treat some of those as
+# separators (U+001C to U+001F, U+0085), so a line is judged before it is split.
+_ORDINARY_CONTROL_CHARACTERS = frozenset("\t\n\r\x0b\x0c")
+
+
+def _pdf_span_painted(span: dict[str, Any]) -> bool:
+    """Whether a text span is drawn visibly: filled or stroked, and not fully transparent.
+
+    A PyMuPDF too old to report ``char_flags`` gives no answer, and the span counts as
+    painted, so nothing is filtered.
+    """
+    flags = span.get("char_flags")
+    if flags is None:
+        return True
+    return bool(int(flags) & _PDF_TEXT_PAINTED) and int(span.get("alpha", 255)) > 0
+
+
+def _pdf_layer_lines(
+    page: Any, *, extraction: dict[str, Any]
+) -> list[list[tuple[str, bool, str, bool | None]]]:
+    """The page's text-layer lines, each as its spans' (text, painted, font name, mapped).
+
+    The lines and spans of the ``dict`` output, with the text flags and sort of
+    ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
+    spans (``_pdf_span_painted`` gives the paint; under PyMuPDF before 1.27 a Type3 font's
+    spans count as painted, ``_pdf_type3_font_names``). ``mapped`` is where the span's
+    characters come from (``_pdf_span_mapped``). Without ``sort_text`` the lines' text
+    joined with newlines is the text output; with it, that output rebuilds lines from
+    words by position, but the characters are the same (``_same_layer_characters``).
+    """
+    data = page.get_text(
+        "dict",
+        sort=bool(extraction.get("sort_text")),
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+    )
+    type3 = _pdf_type3_font_names(page)
+    lines: list[list[tuple[str, bool, str, bool | None]]] = []
+    for block in data.get("blocks", ()):
+        for line in block.get("lines", ()):
+            spans = []
+            for span in line.get("spans", ()):
+                font = str(span.get("font", ""))
+                painted = (_PDF_TYPE3_PAINT_UNREPORTED and font in type3) or _pdf_span_painted(span)
+                mapped = None if font in type3 else _pdf_span_mapped(span)
+                spans.append((str(span.get("text", "")), painted, font, mapped))
+            lines.append(spans)
+    return lines
+
+
+def _pdf_span_mapped(span: dict[str, Any]) -> bool | None:
+    """Whether a span's characters come from its font's own Unicode map.
+
+    True when PyMuPDF reports the span's characters (a fill or stroke flag is set) and
+    neither of MuPDF's flags for a glyph without Unicode is: every glyph of the span has
+    Unicode from the font. False when one of those flags is set: MuPDF had no Unicode for a
+    glyph of the span or for an earlier glyph of the same text-showing operation (MuPDF's
+    ``do_extract`` keeps the flag set for the rest of the operation), so a False span can
+    hold glyphs that have Unicode. None when PyMuPDF reports no flags for the span (an older
+    PyMuPDF, or invisible text under 1.26). A span splits where these flags change, so they
+    hold for all its characters. ``_pdf_layer_lines`` gives None for a Type3 font: its glyph
+    names are its map, and a shifted Type3 font's names are wrong ("OPQRPST" under PyMuPDF
+    1.28).
+    """
+    flags = span.get("char_flags")
+    if flags is None:
+        return None
+    if int(flags) & _PDF_TEXT_UNICODE_GUESSED:
+        return False
+    return True if int(flags) & _PDF_TEXT_PAINTED else None
+
+
+# PyMuPDF before 1.27 reports filled Type3 glyphs as neither filled nor stroked, the same
+# as invisible text; 1.27 and later report Type3 paint correctly.
+_PDF_TYPE3_PAINT_UNREPORTED = tuple(fitz.pymupdf_version_tuple[:2]) < (1, 27)
+_PDF_NAME_ESCAPE = re.compile(rb"#([0-9A-Fa-f]{2})")
+
+
+def _pdf_type3_font_names(page: Any) -> frozenset[str]:
+    """The span font names of the page's Type3 fonts.
+
+    Under PyMuPDF before 1.27 (this repository locks 1.26) a span in a Type3 font counts
+    as painted, since filled and invisible Type3 text look alike there; every Type3 span on
+    the 1,041 overlay pages measured is filled under 1.28.2. Under 1.27 and later the paint
+    is read from the span. On every version a Type3 span's characters are not taken as
+    mapped (``_pdf_span_mapped``). A font without a name has its spans named "Unnamed-T3"
+    before 1.27 and "Type3 (<object number> 0 R)" in 1.28; both are listed. Text in
+    annotation and widget appearance streams is extracted too, and ``get_fonts`` does not
+    list their fonts, so those are found as well (``_pdf_appearance_type3_font_names``).
+    """
+    names = _pdf_appearance_type3_font_names(page)
+    for font in page.get_fonts(full=True):
+        if font[2] != "Type3":
+            continue
+        name = _pdf_type3_span_name(page, font)
+        names.add(name)
+        if name == "Unnamed-T3":
+            names.add(f"Type3 ({font[0]} 0 R)")
+    return frozenset(names)
+
+
+_PDF_OBJECT_REFERENCE = re.compile(r"(\d+) \d+ R")
+_PDF_APPEARANCE_STREAMS = 256
+_PDF_DELIMITERS = frozenset("()<>[]{}/%")
+
+
+def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
+    """The span font names of the Type3 fonts in the page's annotation and widget appearance
+    streams and the forms they draw (``get_fonts`` lists only the page's own resources).
+
+    The appearance streams are reached through the page's /Annots and each annotation's
+    /AP /N (a stream, or a dictionary of appearance states, direct or not); resource
+    dictionaries are read from their printed form (``_pdf_dict_entries``), so no name is
+    used as a lookup path. A reference to a missing object, or anything else that can't be
+    read, is skipped: this only finds fonts, and must never fail a page.
+    """
+    document = page.parent
+    count = document.xref_length()
+
+    def references(text: str) -> list[int]:
+        return [n for n in map(int, _PDF_OBJECT_REFERENCE.findall(text)) if 0 < n < count]
+
+    def resolved(kind: str, value: str) -> str:
+        if kind == "xref":
+            numbers = references(value)
+            return document.xref_object(numbers[0]) if numbers else ""
+        return value if kind == "dict" else ""
+
+    holders: list[int] = []
+    try:
+        annots = resolved(*document.xref_get_key(page.xref, "Annots")) or str(
+            document.xref_get_key(page.xref, "Annots")[1]
+        )
+    except Exception:
+        annots = ""
+    for annot in references(annots):
+        try:
+            kind, value = document.xref_get_key(annot, "AP/N")
+            if kind == "xref":
+                numbers = references(value)
+                if numbers and not document.xref_is_stream(numbers[0]):
+                    value = document.xref_object(numbers[0])  # a dictionary of states
+            holders.extend(references(value) if kind in ("xref", "dict") else [])
+        except Exception:
+            continue
+    names: set[str] = set()
+    seen: set[int] = set()
+    while holders and len(seen) < _PDF_APPEARANCE_STREAMS:
+        holder = holders.pop()
+        if holder in seen:
+            continue
+        seen.add(holder)
+        try:
+            resources = _pdf_dict_entries(resolved(*document.xref_get_key(holder, "Resources")))
+            fonts = _pdf_dict_entries(_pdf_entry_text(document, resources.get("Font", ""), count))
+            for value in fonts.values():
+                if value.startswith("<<"):
+                    entries = _pdf_dict_entries(value)
+                    if entries.get("Subtype") == "/Type3":
+                        name = _pdf_entry_text(document, entries.get("Name", ""), count)
+                        inline = _pdf_span_font_name(_pdf_printed_name(name.strip()))
+                        names.add(inline)
+                        if inline == "Unnamed-T3":
+                            names.add("Type3 (0 0 R)")
+                    continue
+                for font in references(value):
+                    if document.xref_get_key(font, "Subtype") == ("name", "/Type3"):
+                        named = _pdf_type3_span_name(page, (font, "", "Type3", "", "", "", 0))
+                        names.add(named)
+                        if named == "Unnamed-T3":
+                            names.add(f"Type3 ({font} 0 R)")
+            xobjects = _pdf_dict_entries(
+                _pdf_entry_text(document, resources.get("XObject", ""), count)
+            )
+            for value in xobjects.values():
+                holders.extend(references(value))
+        except Exception:
+            continue
+    return names
+
+
+def _pdf_entry_text(document: Any, value: str, count: int) -> str:
+    """A dictionary entry's printed value, an indirect one's object printed in its place."""
+    match = _PDF_OBJECT_REFERENCE.fullmatch(value.strip())
+    if match and 0 < int(match.group(1)) < count:
+        return str(document.xref_object(int(match.group(1))))
+    return value
+
+
+def _pdf_dict_entries(text: str) -> dict[str, str]:
+    """The top-level entries of a printed PDF dictionary, key (as printed, #xx escapes in
+    place) to value text; {} for anything else. Nested dictionaries, arrays and strings are
+    skipped whole."""
+    text = text.strip()
+    if not text.startswith("<<"):
+        return {}
+    entries: dict[str, str] = {}
+    i = 2
+    while i < len(text):
+        while i < len(text) and text[i].isspace():
+            i += 1
+        if i >= len(text) or text.startswith(">>", i) or text[i] != "/":
+            break
+        j = i + 1
+        while j < len(text) and not text[j].isspace() and text[j] not in _PDF_DELIMITERS:
+            j += 1
+        key = text[i + 1 : j]
+        while j < len(text) and text[j].isspace():
+            j += 1
+        end = _pdf_value_end(text, j)
+        entries[key] = text[j:end].strip()
+        i = end
+    return entries
+
+
+def _pdf_value_end(text: str, i: int) -> int:
+    """Where the printed PDF value starting at ``i`` ends."""
+    if text.startswith("<<", i) or text.startswith("[", i):
+        depth = 0
+        while i < len(text):
+            if text.startswith("<<", i) or text[i] == "[":
+                depth += 1
+                i += 2 if text[i] == "<" else 1
+            elif text.startswith(">>", i) or text[i] == "]":
+                depth -= 1
+                i += 2 if text[i] == ">" else 1
+                if depth == 0:
+                    return i
+            elif text[i] == "(":
+                i = _pdf_value_end(text, i)
+            elif text[i] == "<":
+                close = text.find(">", i)
+                i = len(text) if close < 0 else close + 1
+            else:
+                i += 1
+        return i
+    if text.startswith("(", i):
+        depth = 0
+        while i < len(text):
+            if text[i] == "\\":
+                i += 2
+                continue
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+            if depth == 0:
+                return i
+        return i
+    if text.startswith("<", i):
+        close = text.find(">", i)
+        return len(text) if close < 0 else close + 1
+    if text.startswith("/", i):
+        i += 1
+        while i < len(text) and not text[i].isspace() and text[i] not in _PDF_DELIMITERS:
+            i += 1
+        return i
+    while i < len(text) and text[i] not in "/<>[](":
+        i += 1
+    return i
+
+
+def _pdf_printed_name(value: str) -> bytes:
+    """A printed PDF name's bytes, its #xx escapes undone ("" for anything but a name)."""
+    if not value.startswith("/"):
+        return b""
+    data = value[1:].encode("utf-8", "surrogateescape")
+    return _PDF_NAME_ESCAPE.sub(lambda match: bytes.fromhex(match.group(1).decode()), data)
+
+
+def _pdf_span_font_name(name: bytes) -> str:
+    """The name MuPDF 1.26 gives a Type3 font's spans from its /Name bytes: read as Latin-1,
+    less any six characters before a "+", or "Unnamed-T3" when there are none."""
+    text = name.decode("latin-1")
+    if not text:
+        return "Unnamed-T3"
+    return text[7:] if text.find("+") == 6 else text
+
+
+def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
+    """The name MuPDF 1.26 gives the spans of a Type3 font ``get_fonts(full=True)`` lists.
+
+    It is the font's /Name (an indirect one resolved), its bytes read as Latin-1, less any
+    six characters before a "+" (a subset prefix), or "Unnamed-T3" without one. A font
+    written inline in a resource dictionary has no object number; its /Name is read through
+    the resources of the page or form that uses it. If the name can't be read (an inline
+    font whose resource name has a "/" or a byte that isn't UTF-8 can't be addressed), the
+    name ``get_fonts`` lists is used: the /Name, or a /BaseFont, which a Type3 font does not
+    normally have, ahead of it.
+    """
+    document = page.parent
+    try:
+        if font[0]:
+            kind, value = document.xref_get_key(font[0], "Name")
+        else:
+            kind, value = _pdf_inline_font_key(document, font[6] or page.xref, str(font[4]))
+        if kind == "xref":
+            # An indirect name is printed as PDF writes it, its #xx escapes in place.
+            data = _pdf_printed_name(document.xref_object(int(value.split()[0])).strip())
+        elif kind == "name":
+            # A direct one has its escapes undone and its bytes given as UTF-8, any byte that
+            # isn't UTF-8 as a surrogate.
+            data = value[1:].encode("utf-8", "surrogateescape")
+        else:
+            data = b""
+    except Exception:  # MuPDF and its bindings raise several types; only a name is at stake
+        data = str(font[3]).encode("latin-1", "replace")
+    return _pdf_span_font_name(data)
+
+
+def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
+    """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
+    of the page-tree nodes it inherits them from when it has none. Raises LookupError when
+    the name has a "/" (the lookup path would split at it, the only character it splits
+    at, and could reach another dictionary: "F/Resources" is font F's resources) or when
+    the font is not in those resources, so a font that is not found is told apart from
+    one without a /Name."""
+    if "/" in resource:
+        raise LookupError(resource)  # the lookup path would split at it
+    for _ in range(64):
+        if document.xref_get_key(holder, "Resources")[0] != "null":
+            path = f"Resources/Font/{resource}"
+            if document.xref_get_key(holder, path)[0] == "null":
+                raise LookupError(resource)  # not where get_fonts' referencer points
+            kind, value = document.xref_get_key(holder, path + "/Name")
+            return str(kind), str(value)
+        kind, parent = document.xref_get_key(holder, "Parent")
+        if kind != "xref":
+            break
+        holder = int(parent.split()[0])
+    return "null", "null"
+
+
+def _layer_characters(text: str) -> Counter[str]:
+    return Counter(
+        char
+        for char in text
+        if not char.isspace() and unicodedata.category(char) not in ("Cc", "Mn")
+    )
+
+
+def _same_layer_characters(
+    span_lines: list[list[tuple[str, bool, str, bool | None]]], layer_text: str
+) -> bool:
+    """Whether the spans hold the text output's characters, whitespace, control characters
+    and combining marks aside (the sorted text output drops a garbled font's control
+    "spaces"; PyMuPDF 1.28 prints combining marks on WV-23-0001 that its spans lack: those
+    are restored by ``_with_layer_marks``)."""
+    spans = "".join(span[0] for spans in span_lines for span in spans)
+    return _layer_characters(spans) == _layer_characters(layer_text)
+
+
+def _with_layer_marks(
+    span_lines: list[list[tuple[str, bool, str, bool | None]]], layer_text: str
+) -> list[list[tuple[str, bool, str, bool | None]]] | None:
+    """``span_lines`` with the combining marks the text output holds and the spans lack, or
+    None when they can't be placed.
+
+    Without ``sort_text`` the text output is the dict lines joined by newlines, so each
+    text-output line is its dict line's characters, with any marks the spans lack. Each
+    such mark goes into the span of the character before it (or the line's first span),
+    so its line, span, paint and font are the ones that character has. A line whose spans'
+    characters are not its text-output line's with only combining marks taken out is left
+    as it is when its text-output line holds a control character, or when its spans do and
+    the text-output line has no mark they lack; otherwise no mark can be placed: None, and
+    the text output's lines are used. That is how the mark of a garbled line is kept when
+    ``sort_text``, which rebuilds the lines, drops the garbled font's control "spaces"
+    from the text output. Limit: a line left as it is keeps its spans in other fonts
+    without such a mark (on the text output's lines the whole line would go); that takes a
+    text-output line with a control character and a lacking mark, which ``sort_text``
+    leaves only for controls above U+0020.
+    """
+    missing = Counter(char for char in layer_text if unicodedata.category(char) == "Mn") - Counter(
+        char
+        for spans in span_lines
+        for span in spans
+        for char in span[0]
+        if unicodedata.category(char) == "Mn"
+    )
+    if not missing:
+        return span_lines
+    text_lines = layer_text.split("\n")
+    if text_lines and text_lines[-1] == "":
+        text_lines.pop()
+    if len(text_lines) != len(span_lines):
+        return None
+    placed: list[list[tuple[str, bool, str, bool | None]]] = []
+    for text_line, spans in zip(text_lines, span_lines, strict=True):
+        texts = _with_line_marks(text_line, [span[0] for span in spans])
+        if texts is None:
+            lacking = Counter(c for c in text_line if unicodedata.category(c) == "Mn") - Counter(
+                c for span in spans for c in span[0] if unicodedata.category(c) == "Mn"
+            )
+            if _has_control_character(text_line) or (
+                not lacking and any(_has_control_character(span[0]) for span in spans)
+            ):
+                placed.append(spans)
+                continue
+            return None
+        placed.append([(text, *span[1:]) for text, span in zip(texts, spans, strict=True)])
+    return placed
+
+
+def _with_line_marks(text_line: str, span_texts: list[str]) -> list[str] | None:
+    """The span texts of a line with the combining marks of ``text_line`` they lack, each put
+    in the span of the character before it, or None when the spans' characters are not the
+    line's with only combining marks taken out."""
+    chars = [(index, char) for index, text in enumerate(span_texts) for char in text]
+    out = [""] * len(span_texts)
+    at = 0  # the span the last character went to
+    position = 0
+    for char in text_line:
+        if position < len(chars) and chars[position][1] == char:
+            at = chars[position][0]
+            out[at] += char
+            position += 1
+        elif unicodedata.category(char) == "Mn" and span_texts:
+            out[at] += char
+        else:
+            return None
+    return out if position == len(chars) else None
+
+
+def _without_garbled_spans(
+    span_lines: list[list[tuple[str, bool, str, bool | None]]],
+) -> list[tuple[str, bool]]:
+    """Each layer line's text without its garbled font's spans, with whether it is painted.
+
+    A span holding a control character other than ordinary whitespace
+    (``_has_control_character``) is a garbled font's, and so is every other span on the
+    same line in a font of that name (CA-25-0037's "5678", "9C<:"): the font gives that
+    line's codes wrong characters, some of them control characters. Those spans are left
+    out whole, before anything splits them. The exception is a span whose characters come
+    from the font's own Unicode map (mapped True) when every control-character span of its
+    font on the line is flagged as lacking Unicode (mapped False): the garbage is the codes
+    the map leaves out, and the mapped span's characters are the ones the font's own map
+    gives (NV-20-0002 page 3's "3" in "March 13, 2020"). "Mapped" is not "right": a font
+    whose map gives wrong characters for some codes and none for others keeps its mapped
+    garbage (WV-23-0001's screenshot shards). The flag can also cover glyphs that have Unicode (after one without,
+    in the same text-showing operation), so a span flagged so is left out even when its
+    text came from the map, and a font whose map gives a control character after such a
+    glyph passes the test. Spans in other fonts, such as a date typed beside a garbled label, stay. The
+    runs of kept spans between left-out ones are joined by one space. The line is painted
+    when any kept span with visible characters is. A line left with no visible character
+    is dropped.
+    """
+    lines: list[tuple[str, bool]] = []
+    for spans in span_lines:
+        unmapped: dict[str, bool] = {}
+        for text, _, font, mapped in spans:
+            if _has_control_character(text):
+                unmapped[font] = unmapped.get(font, True) and mapped is False
+        runs: list[str] = []
+        run = ""
+        painted = False
+        for text, span_painted, font, mapped in spans:
+            if _has_control_character(text) or (
+                font in unmapped and not (unmapped[font] and mapped is True)
+            ):
+                runs.append(run)
+                run = ""
+                continue
+            run += text
+            painted = painted or (span_painted and bool(text.strip()))
+        runs.append(run)
+        line = " ".join(run for run in runs if run)
+        if line.strip():
+            lines.append((line, painted))
+    return lines
+
+
+def _has_control_character(text: str) -> bool:
+    """Whether ``text`` holds a control character other than ordinary whitespace."""
+    return any(
+        unicodedata.category(char) == "Cc" and char not in _ORDINARY_CONTROL_CHARACTERS
+        for char in text
+    )
+
+
+def _letter_runs(text: str) -> list[str]:
+    """Maximal runs of letters (``str.isalpha``) after NFKC, not yet lower-cased
+    (lower-casing can lengthen a run: "\u0130" becomes two characters), so lengths are
+    counted on these."""
+    runs: list[str] = []
+    run = ""
+    for char in unicodedata.normalize("NFKC", text):
+        if char.isalpha():
+            run += char
+            continue
+        if run:
+            runs.append(run)
+        run = ""
+    if run:
+        runs.append(run)
+    return runs
+
+
+def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool:
+    """Whether an invisible recognition layer disagrees with the OCR text almost everywhere.
+
+    True when the layer has at least _RECOGNITION_MIN_WORDS distinct words (letter runs of
+    _RECOGNITION_WORD_LETTERS or more, then lower-cased) and fewer than a third of them occur in
+    the OCR text: as one of its letter runs, or, at _RECOGNITION_RUN_LETTERS or more
+    letters, inside its letters run together. Lines with a control character
+    (``_has_control_character``) do not count.
+    """
+    # Each word with its most letters before lower-casing ("\u0130" lower-cases to two).
+    words: dict[str, int] = {}
+    for line in invisible_lines:
+        if _has_control_character(line):
+            continue
+        for run in _letter_runs(line):
+            if len(run) >= _RECOGNITION_WORD_LETTERS:
+                words[run.lower()] = max(words.get(run.lower(), 0), len(run))
+    if len(words) < _RECOGNITION_MIN_WORDS:
+        return False
+    ocr_runs = [run.lower() for run in _letter_runs(ocr_text)]
+    ocr_words = set(ocr_runs)
+    ocr_letters = "".join(ocr_runs)
+    found = sum(
+        1
+        for word, letters in words.items()
+        if word in ocr_words or (letters >= _RECOGNITION_RUN_LETTERS and word in ocr_letters)
+    )
+    return found * 3 < len(words)
+
+
+def _without_failed_recognition_lines(
+    lines: list[tuple[str, bool]], ocr_text: str
+) -> list[str]:
+    """The text-layer lines worth merging into ``ocr_text``, from (text, painted) pairs.
+
+    A line holding a control character (``_has_control_character``) is a garbled font's
+    and is dropped (``_pdf_page_text`` has already left garbled spans out of the PDF's
+    lines). Other painted lines were typed onto the scan, and every one is kept. Invisible lines are a recognition
+    layer, an earlier OCR of the same image, and two more kinds are dropped: a fragment
+    (fewer than _RECOGNITION_FRAGMENT_LETTERS letters and no digit, counted after NFKC
+    normalization, such as "cc:" or a stray "L"), and every invisible line of a failed
+    layer (``_recognition_layer_failed``), such as a sideways slide read as "Ckm" and "rML",
+    or a signature string written one code above ASCII ("Ejhjubmmz!tjhofe!cz" for "Digitally
+    signed by"). The lines kept stay in order.
+    """
+    invisible = [text for text, painted in lines if not painted]
+    failed = _recognition_layer_failed(invisible, ocr_text)
+    kept: list[str] = []
+    for text, painted in lines:
+        if _has_control_character(text):
+            continue
+        if not painted:
+            letters = sum(len(run) for run in _letter_runs(text))
+            fragment = letters < _RECOGNITION_FRAGMENT_LETTERS and not any(
+                char.isdigit() for char in unicodedata.normalize("NFKC", text)
+            )
+            if failed or fragment:
+                continue
+        kept.append(text)
+    return kept
+
+
+def _pdf_ocr_dpi(extraction: dict[str, Any]) -> int:
+    return _positive_int(extraction.get("ocr_dpi"), key="ocr_dpi", default=200, noun="DPI")
 
 
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
@@ -2758,7 +3881,7 @@ def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     if not shutil.which("tesseract"):
         raise RuntimeError("PDF OCR extraction requires tesseract on PATH")
 
-    dpi = _positive_int(extraction.get("ocr_dpi"), default=200)
+    dpi = _pdf_ocr_dpi(extraction)
     language = str(extraction.get("ocr_language") or "eng")
     page_segmentation_mode = extraction.get("ocr_psm")
 
@@ -2793,13 +3916,18 @@ _NUMBERED_SECTION_START_RE = re.compile(
 )
 
 
-def _positive_int(value: Any, *, default: int) -> int:
+def _positive_int(value: Any, *, key: str, default: int, noun: str = "page number") -> int:
+    """Return an extraction value that must be a positive integer, or ``default`` if absent.
+
+    Only a true YAML integer is accepted: ``int()`` would read ``true`` as 1, cut
+    ``2.5`` to 2 and parse ``"3"``, so a mistyped manifest value would pick a page
+    silently instead of failing with the key named.
+    """
     if value is None:
         return default
-    parsed = int(value)
-    if parsed < 1:
-        raise ValueError("page numbers must be positive")
-    return parsed
+    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+        raise ValueError(f"{key} must be a positive integer {noun}, not {value!r}")
+    return int(value)
 
 
 def _page_header_patterns(extraction: dict[str, Any]) -> tuple[re.Pattern[str], ...]:
@@ -2943,13 +4071,26 @@ def _extract_html_blocks(
             )
         parts = []
 
+    # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
+    # lines with a space). The Maryland StatuteText page separates its subsections with
+    # <br><br> and has no paragraph tags. The source's own line breaks are collapsed first,
+    # so only <br> elements break the text.
+    br_breaks = bool((extraction or {}).get("html_br_breaks"))
+    if br_breaks:
+        for string in list(root.find_all(string=True)):
+            if type(string) is NavigableString and ("\n" in string or "\r" in string):
+                string.replace_with(re.sub(r"[\r\n]+", " ", string))
+        for br in root.find_all("br"):
+            br.replace_with("\n")
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
+        text = _normalize_text(
+            node.get_text(" ") if br_breaks else node.get_text(" ", strip=True)
+        )
         if not text:
             continue
         if node.name in _HEADING_TAGS:
             flush()
-            heading = text
+            heading = " ".join(text.split())
             continue
         parts.append(text)
     flush()
