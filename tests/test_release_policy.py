@@ -22,7 +22,7 @@ import tempfile
 from pathlib import Path
 
 import pytest
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
@@ -164,6 +164,7 @@ def test_the_grandfathered_selector_keeps_the_scope_with_a_notice(tmp_path: Path
     assert "selected it before the gate listed it, and keeps it" in notice.message
     payload = report.to_mapping()
     assert payload["notice_count"] == 1 and payload["issue_count"] == 0
+    assert payload["notices"] == [notice.to_mapping()]
 
 
 def test_an_allowance_does_not_follow_an_edited_selector(tmp_path: Path) -> None:
@@ -356,6 +357,28 @@ _SCOPE = st.builds(
         lambda value: value[0].isalnum()
     ),
 )
+
+
+@settings(max_examples=100, deadline=None)
+@example(scopes=[SCOPE, SCOPE])
+@example(scopes=[OTHER, SCOPE])
+@given(scopes=st.lists(_SCOPE, min_size=2, max_size=6))
+def test_registry_scope_entries_must_be_sorted_and_unique(scopes: list[ReleaseScope]) -> None:
+    """A later entry cannot replace an earlier entry's withdrawal and allowances."""
+    document = json.loads(_registry_text())
+    template = document["scopes"][0]
+    document["scopes"] = [
+        {**template, "scope": "/".join(scope.key), "replace_with": []} for scope in scopes
+    ]
+    keys = [scope.key for scope in scopes]
+    with tempfile.TemporaryDirectory() as directory:
+        path = Path(directory) / "withdrawn.yaml"
+        path.write_text(json.dumps(document))
+        if keys == sorted(set(keys)):
+            assert list(load_withdrawn_scopes(path)) == keys
+        else:
+            with pytest.raises(ReleasePolicyError, match="free of duplicates"):
+                load_withdrawn_scopes(path)
 
 
 @settings(max_examples=100, deadline=None, suppress_health_check=[HealthCheck.too_slow])

@@ -19,8 +19,9 @@ The gate now also reads two tracked files from the repository
 
 Local validation (`axiom-corpus-ingest validate-release`), the
 `Validate named release selectors` CI job and `scripts/publish_corpus.py`
-(dry run, preflight and post-readback) all call `validate_release`, so all three
-enforce both files. `publish_corpus.py` reads the policy from the checkout it
+(dry run, preflight and post-readback) call `validate_release` or its batched
+counterpart `validate_releases`, so all three enforce both files.
+`publish_corpus.py` reads the policy from the checkout it
 publishes; `validate-release` reads it from the checkout holding `--base`, and
 says on stderr when `--base` is in no checkout, in which case neither file
 applies. In a checkout that keeps corpus locks, both files are required: a
@@ -98,14 +99,16 @@ The 19 entries:
 The audits keep `us/guidance/2026-07-13-recovery` (the only selected carrier of
 five cited ED and IRS paths) and the CO consolidated scope, and
 `us-mt/regulation/2026-07-13-recovery` stays until its successor (#761) merges;
-none of the three is listed. Four cuts made after the 2026-10-03 decision still
+none of the three is listed. Six cuts made after the 2026-10-03 decision still
 select withdrawn scopes. The 2026-10-07, 2026-10-11 and 2026-10-12 unions keep
 the landing scopes and the SC statute scope. `us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected`
 (#848), an additive successor of the obbb-alien-snap pin, drops the CA scopes
 but keeps 16: the CO regulation, landing, ME, MI, MN, NY, UT and SC statute
-recovery scopes, NY article 22 core and SC Act 110. All four reached `main`
-before the gate, so they are grandfathered like every earlier selector; the next
-cut in each line must take the swap. Their notice says the selector chose the
+recovery scopes, NY article 22 core and SC Act 110. The Arizona DES ECE dated
+selector (#799), merged on 2026-10-14, keeps the same 16; the w7 bundle-gaps union
+(#856) keeps the seven landing scopes and both SC statute scopes, nine in all.
+All six reached `main` before the gate, so they are grandfathered like every
+earlier selector; the next cut in each line must take the swap. Their notice says the selector chose the
 scope before the gate listed it.
 
 ### Withdrawing a scope
@@ -236,11 +239,12 @@ uv run axiom-corpus-ingest content-check --all --update-baseline --workers 4
 
 A named scope that matches no locked scope with provisions and inventory is an
 error (exit 2), so a mistyped scope cannot pass as a clean check of nothing.
-A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions; it
-takes about 90 seconds on four workers locally and about three minutes on the
-CI runner, where it runs on three workers beside the single-process test run,
-so it overlaps the tests instead of adding its time to the `test` job. Raising `CONTENT_CHECK_VERSION` requires rebuilding
-the baseline in the same change: validation ignores a baseline made by other
+A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions. Earlier
+measurements took about 90 seconds on four workers locally and about three
+minutes on the CI runner. CI runs the check on three workers after its
+four-worker pytest run, including when tests fail; the two checks run
+sequentially within the runner's four cores. Raising `CONTENT_CHECK_VERSION`
+requires rebuilding the baseline in the same change: validation ignores a baseline made by other
 rules, and CI's check fails on it.
 
 ## Recovery reconciliation

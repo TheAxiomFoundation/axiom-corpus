@@ -22,7 +22,7 @@ import json
 import tempfile
 from pathlib import Path
 
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.content_quality import (
@@ -146,6 +146,24 @@ def test_linked_terms_inside_prose_do_not_make_a_prefix() -> None:
         "same household. " + " ".join([LAW] * 6)
     )
     assert not classify_body(body, glossary).prefixed
+
+
+@_SETTINGS
+@given(opening=st.integers(min_value=0, max_value=7))
+def test_dense_glossary_links_need_an_opening_run_to_make_a_prefix(opening: int) -> None:
+    """Dense glossary links need an opening run before they can count as chrome."""
+    glossary = PageNavigation(["Household"])
+    head = (
+        ["Household"] * opening
+        + ["resident"]
+        + ["Household"] * (30 - opening)
+        + ["resident"] * 29
+    )
+    assert len(head) == PREFIX_TOKENS
+    assert glossary.coverage(head).share >= 0.4
+    body = " ".join(head + ["resident"] * (PREFIXED_MIN_TOKENS - PREFIX_TOKENS))
+    verdict = classify_body(body, glossary)
+    assert (verdict.navigation, verdict.prefixed, verdict.substantive) == (False, False, True)
 
 
 def test_version_picker_detection_follows_the_adapter() -> None:
@@ -393,6 +411,8 @@ def test_the_scanner_accepts_any_row_the_loader_yields(rows: list[dict]) -> None
 
 
 @settings(max_examples=300, deadline=None)
+@example(prefix=b"<!doctype html>", rest=b"")
+@example(prefix=b"<!doctype html>", rest=b"<!--selectFromMultiples-->")
 @given(
     prefix=st.sampled_from(
         [
