@@ -78,7 +78,7 @@ FINDING_CODES = (
 # words they may leave over, for the body to count as navigation.
 NAVIGATION_COVERAGE = 0.7
 NAVIGATION_RESIDUAL_WORDS = 25
-# Words a body is read to, so a very long row costs no more than this.
+# Limit navigation matching; substance detection still reads the full body.
 MAX_BODY_TOKENS = 1200
 # The opening of a body that the prefix check reads, the share of it that
 # navigation strings must cover, and the run of navigation words it must open
@@ -295,7 +295,7 @@ def classify_body(
 ) -> RowVerdict:
     """Apply the navigation, prefix and substance rules to one body."""
     tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
-    words = sum(1 for token in tokens if _has_letters(token))
+    has_letters = _has_letters(body or "")
     if not tokens:
         return RowVerdict(navigation=False, prefixed=False, substantive=False)
     covered = navigation.cover(tokens) if navigation else [False] * len(tokens)
@@ -321,7 +321,7 @@ def classify_body(
             and _opening_run(head, head_covered) >= PREFIX_RUN_TOKENS
         )
         prefixed = chrome_opening and rest_coverage.share < REST_MAX_COVERAGE
-    substantive = not is_navigation and words > 0
+    substantive = not is_navigation and has_letters
     return RowVerdict(navigation=is_navigation, prefixed=prefixed, substantive=substantive)
 
 

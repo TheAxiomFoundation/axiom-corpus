@@ -180,8 +180,10 @@ Two rules were measured and dropped:
   audit identified) from statute pages with large menus (up to 0.753). A landing
   page is caught when its blocks are navigation, or its root has none with text.
 
-Over every locked scope (2,390 with provisions and an inventory), the check
-finds 1,489 findings in 182 scopes:
+**Original scan snapshot (recorded 2026-10-13 at `be6f6da81`).** The following
+table and interpretation describe that scan, not the current corpus. Across
+the 2,390 locked scopes then holding provisions and an inventory, the check
+reported 1,489 findings in 182 scopes:
 
 | Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -192,12 +194,13 @@ finds 1,489 findings in 182 scopes:
 | regulation | 11 | 41 | 1 | 54 | |
 | form | 2 | 3 | | | |
 
-Most are site menus, language pickers, "Authenticate / PDF" and "View In PDF"
+Most were site menus, language pickers, "Authenticate / PDF" and "View In PDF"
 blocks, and related-link lists in scopes ingested from agency web pages,
-including the 2026-10-06 w6 scopes. 56 of the 69 policy prefixes are Canadian
-government pages (Canada.ca, CRA, Revenu Québec) that open with skip links. 177 of the 182 scopes are selected
-by a tracked selector, and the newest union (`us-rulespec-2026-10-12-w5-benefits-union`)
-selects 152 of them.
+including the 2026-10-06 w6 scopes. 56 of the 69 policy prefixes were Canadian
+government pages (Canada.ca, CRA, Revenu Québec) that opened with skip links.
+At that snapshot, 177 of the 182 scopes were selected by a tracked selector,
+and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
+152 of them.
 
 ### The baseline
 

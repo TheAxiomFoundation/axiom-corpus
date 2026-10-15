@@ -29,6 +29,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.content_quality import (
     CONTENT_CHECK_VERSION,
     FINDING_CODES,
+    MAX_BODY_TOKENS,
     ContentFinding,
 )
 from axiom_corpus.corpus.corpus_locks import LOCK_ROOT
@@ -216,6 +217,39 @@ def test_new_content_findings_fail_and_recorded_ones_are_notices(tmp_path: Path)
     [notice] = recorded.notices
     assert notice.code == "baselined_content_findings"
     assert "1 hollow_document_root, 1 navigation_body" in notice.message
+
+
+def test_a_new_scope_with_text_after_the_navigation_sample_passes_release_validation(
+    tmp_path: Path,
+) -> None:
+    citation = "us-xx/statute/17014"
+    numbers = [str(number) for number in range(1, MAX_BODY_TOKENS + 1)]
+    body = " ".join(numbers) + " Tax liability."
+    _write_scope(
+        tmp_path,
+        OTHER,
+        [(citation, None, "document"), (citation + "/block-1", body, "block")],
+    )
+    # The source contains the same table and text, and the inventory pins it.
+    source = tmp_path / f"sources/{'/'.join(OTHER.key)}/official-documents/page.html"
+    source.write_text(
+        "<html><body><table>"
+        + "".join(f"<tr><td>{number}</td></tr>" for number in numbers)
+        + "</table><p>Tax liability.</p></body></html>",
+        encoding="utf-8",
+    )
+    store = CorpusArtifactStore(tmp_path)
+    inventory = store.inventory_path(*OTHER.key)
+    payload = json.loads(inventory.read_text(encoding="utf-8"))
+    for item in payload["items"]:
+        item["sha256"] = hashlib.sha256(source.read_bytes()).hexdigest()
+    store.write_json(inventory, payload)
+    report = validate_release(
+        tmp_path, _release("numeric-tail", OTHER), policy=ReleaseGatePolicy.empty()
+    )
+    assert (report.ok, report.error_count, report.warning_count) == (True, 0, 0)
+    assert report.issues == ()
+    assert report.notices == ()
 
 
 def test_a_baseline_entry_for_other_bytes_is_checked_again(tmp_path: Path) -> None:

@@ -21,6 +21,7 @@ from __future__ import annotations
 import json
 import tempfile
 from pathlib import Path
+from unittest.mock import patch
 
 from hypothesis import HealthCheck, example, given, settings
 from hypothesis import strategies as st
@@ -29,6 +30,7 @@ from axiom_corpus.corpus.content_quality import (
     _SKIP_LINK,
     HOLLOW_DOCUMENT_ROOT,
     HTML_SNIFF_BYTES,
+    MAX_BODY_TOKENS,
     NAVIGATION_BODY,
     NAVIGATION_PREFIXED_BODY,
     PREFIX_TOKENS,
@@ -123,6 +125,16 @@ def test_a_menu_body_is_navigation_and_law_is_text() -> None:
     assert (repealed.navigation, repealed.substantive) == (False, True)
 
 
+def test_text_after_the_navigation_sample_is_substantive() -> None:
+    body = " ".join(str(number) for number in range(1, MAX_BODY_TOKENS + 1)) + " Tax liability."
+    page = _page()
+    with patch.object(page, "cover", wraps=page.cover) as cover:
+        verdict = classify_body(body, page)
+    assert (verdict.navigation, verdict.prefixed, verdict.substantive) == (False, False, True)
+    cover.assert_called_once()
+    assert len(cover.call_args.args[0]) == MAX_BODY_TOKENS
+
+
 def test_a_body_that_repeats_its_heading_is_not_navigation() -> None:
     page = PageNavigation(["Chapter 1: General provisions"])
     body = "Chapter 1: General provisions"
@@ -154,10 +166,7 @@ def test_dense_glossary_links_need_an_opening_run_to_make_a_prefix(opening: int)
     """Dense glossary links need an opening run before they can count as chrome."""
     glossary = PageNavigation(["Household"])
     head = (
-        ["Household"] * opening
-        + ["resident"]
-        + ["Household"] * (30 - opening)
-        + ["resident"] * 29
+        ["Household"] * opening + ["resident"] + ["Household"] * (30 - opening) + ["resident"] * 29
     )
     assert len(head) == PREFIX_TOKENS
     assert glossary.coverage(head).share >= 0.4
@@ -238,6 +247,18 @@ def test_rows_without_html_sources_are_never_navigation(tmp_path: Path) -> None:
     assert findings == ()
 
 
+def test_a_root_with_text_after_the_navigation_sample_is_not_hollow(tmp_path: Path) -> None:
+    body = " ".join(str(number) for number in range(1, MAX_BODY_TOKENS + 1)) + " Tax liability."
+    source = _write(tmp_path, "sources/us-xx/statute/v1/page.html", f"<html><p>{body}</p></html>")
+    root = "us-xx/statute/17014"
+    child = root + "/block-1"
+    scanner = ScopeContentScanner(tmp_path)
+    scanner.add(_record(root, None, kind="document", source_path=source))
+    scanner.add(_record(child, body, kind="block", source_path=source))
+    assert scanner.findings() == ()
+    assert scanner.text_paths() == {root, child}
+
+
 _WORD = st.text(alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGH", min_size=2, max_size=8)
 _PHRASE = st.lists(_WORD, min_size=1, max_size=4).map(" ".join)
 _TOKEN = st.one_of(_WORD, st.sampled_from(["17014", "(a)", "§", "—", "2,500", ";"]))
@@ -281,6 +302,32 @@ def test_text_means_letters_and_not_navigation(strings: list[str], tokens: list[
     has_letters = any(char.isalpha() for token in tokens for char in token)
     assert verdict.substantive == (has_letters and not verdict.navigation)
     assert not (verdict.navigation and verdict.prefixed)
+
+
+@_SETTINGS
+@given(
+    before=st.integers(min_value=0, max_value=MAX_BODY_TOKENS * 2),
+    after=st.integers(min_value=0, max_value=MAX_BODY_TOKENS * 2),
+    word=st.text(alphabet=st.characters(categories=("L",)), min_size=1, max_size=16).filter(
+        lambda word: word not in " ".join(MENU).split()
+    ),
+)
+@example(before=MAX_BODY_TOKENS, after=0, word="Tax")
+@example(before=0, after=MAX_BODY_TOKENS, word="Tax")
+@example(before=MAX_BODY_TOKENS + 1, after=MAX_BODY_TOKENS, word="税")
+def test_a_lettered_word_anywhere_makes_a_body_and_its_root_text(
+    before: int, after: int, word: str
+) -> None:
+    body = " ".join(["17014"] * before + [word] + ["17014"] * after)
+    verdict = classify_body(body, _page())
+    assert (verdict.navigation, verdict.prefixed, verdict.substantive) == (False, False, True)
+    root = "us-xx/statute/17014"
+    child = root + "/block-1"
+    scanner = ScopeContentScanner(Path("."))
+    scanner.add(_record(root, None, kind="document"))
+    scanner.add(_record(child, body, kind="block"))
+    assert scanner.findings() == ()
+    assert scanner.text_paths() == {root, child}
 
 
 _ROW_BODIES = st.sampled_from(
