@@ -796,7 +796,10 @@ def _links_below(top: Path, name: str) -> list[str]:
     place, which the lock of the directory holding it covers.
     """
     found: list[str] = []
-    stack = [(top, "", name, False)]
+    top_holds_checkout = _holds_checkout(top)
+    if top_holds_checkout:
+        found.append(_CORPUS_ROOT)  # the selection is itself a nested checkout
+    stack = [(top, "", name, top_holds_checkout)]
     while stack:
         directory, sub, space, nested = stack.pop()
         all_guarded = is_protected_corpus_path(fold_path(space).rstrip("/") + "/")
@@ -817,15 +820,18 @@ def _links_below(top: Path, name: str) -> list[str]:
                 elif entry.is_dir(follow_symlinks=False):
                     if nested and entry.name == _CORPUS_ROOT:
                         continue  # the nested checkout's own corpus: reported below
-                    holds_checkout = os.path.lexists(os.path.join(entry.path, ".git")) and (
-                        _checkout_at(Path(entry.path), None) is not None
-                    )
+                    holds_checkout = _holds_checkout(Path(entry.path))
                     if holds_checkout:
                         found.append(_join(where, _CORPUS_ROOT))  # made yet or not
                     stack.append((Path(entry.path), where, child, holds_checkout))
             except OSError:  # removed meanwhile
                 continue
     return found
+
+
+def _holds_checkout(directory: Path) -> bool:
+    """True when ``directory`` is a checkout's top level (it holds ``.git``)."""
+    return os.path.lexists(directory / ".git") and _checkout_at(directory, None) is not None
 
 
 def _selection(
@@ -978,6 +984,7 @@ def _plan(
                         if listed_there is not None:
                             owner.require_valid_locks()
                             plan.owned.setdefault(owner.repo, (owner, {}))[1][owner_name] = listed_there
+                            plan.names.setdefault(owner.repo, {})[owner_name] = None
                 if spell:
                     spots = plan.spelled.setdefault((resolver.repo, entry.path), [])
                     here = selection / where if where else selection
@@ -1092,7 +1099,9 @@ def _whole_sources(
     only_absent: bool,
 ) -> list[tuple[CorpusResolver, list[LockEntry]]]:
     """``batches`` with the sources directory of each source entry's scope made
-    whole, across every checkout that names files there.
+    whole, across every checkout that names files there. The entries are those
+    of the batches and every witnessed source (absent ones, with
+    ``only_absent``).
 
     The directory is planned as a selection, spelled through the original
     one (``scope_dirs``), so a link inside it sends its files to the checkout
@@ -1105,6 +1114,13 @@ def _whole_sources(
         for entry in entries:
             for directory in plan.scope_dirs.get((resolver.repo, entry.path), ()):
                 dirs.setdefault(str(directory), directory)
+    # A source only another lock names (a witness) needs its whole directory too.
+    for key, places in plan.witnessed.items():
+        first = places[0]
+        if only_absent and _placed(first.holder.repo / first.entry.path):
+            continue
+        for directory in plan.scope_dirs.get(key, ()):
+            dirs.setdefault(str(directory), directory)
     merged = {resolver.repo: (resolver, {entry.path: entry for entry in entries}) for resolver, entries in batches}
     if dirs:
         whole = _plan(list(dirs.values()), repo=None)
@@ -1278,7 +1294,7 @@ def _require(plan: _Plan, *, fetch: bool) -> None:
         _place_owned(plan, _whole_sources(plan, absent, only_absent=True))
         return
     resolver, missing = absent[0]
-    rels = list(plan.names[resolver.repo])
+    rels = list(plan.names.get(resolver.repo, {})) or [missing[0].path]
     # Name at most a few paths: callers may pass thousands of exact files.
     named = rels if len(rels) <= 3 else [*rels[:3], f"and {len(rels) - 3} more"]
     raise CorpusNotMaterializedError(
@@ -1575,7 +1591,7 @@ def materialize_cli_inputs(
     missing = [
         (owner, found)
         for owner, entries in _whole_sources(
-            plan, [(owner, list(entries.values())) for owner, entries in plan.owned.values()], only_absent=True
+            plan, [(owner, list(entries.values())) for owner, entries in plan.owned.values()], only_absent=False
         )
         if (found := [entry for entry in entries if not _placed(owner.repo / entry.path)])
     ]

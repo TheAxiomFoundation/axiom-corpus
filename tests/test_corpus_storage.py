@@ -2093,8 +2093,9 @@ def test_whole_source_directories_fetch_each_file_into_the_checkout_naming_it(
 def test_a_directory_cycle_is_walked_in_bounded_time(tmp_path: Path, monkeypatch, locked: bool) -> None:
     """Review r2 finding 6: two links in a directory back to itself made the walk
     follow every left/right combination up to the link bound (exponential). A
-    link back to a directory already walked on its spelled path is a cycle,
-    followed only as far as a lock names files through it (none here)."""
+    link back to a directory already walked on its spelled path (with the same
+    names protected below it) is a cycle and is not followed; a locked file
+    below it is placed by its own path."""
     repo = _init_repo(tmp_path / "repo")
     if locked:
         _lock_files(repo, {PROV: SHARED_FILES[PROV]})
@@ -2337,6 +2338,72 @@ def test_a_file_placed_by_its_own_path_below_a_cycle_is_fetched_by_its_checkout(
         ensure_corpus_paths(selections, repo=a)
         assert (c / through).read_bytes() == data, selections
         require_materialized(selections, repo=a)
+
+
+def test_selecting_a_nested_checkout_itself_uses_its_lock(tmp_path: Path, monkeypatch) -> None:
+    """Review r6 finding 1: the walk found checkouts nested below a selection but
+    not one the selection itself is, so selecting the nested checkout's top
+    level read its corpus under the outer checkout's lock (and fetched the outer
+    bytes into it, where both lock the file)."""
+    outer_bytes, nested_bytes = b'{"citation_path":"outer"}\n', b'{"citation_path":"nested"}\n'
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_VERSION_DIR}/vendored")
+    _lock_files(outer, {f"{_VERSION_DIR}/vendored/{PROV}": outer_bytes})
+    _lock_files(nested, {PROV: nested_bytes})
+    _serve(tmp_path, monkeypatch, {"outer": outer_bytes, "nested": nested_bytes})
+    monkeypatch.chdir(outer)
+    with pytest.raises(CorpusNotMaterializedError, match=f"first: {PROV}"):
+        require_materialized([nested], repo=outer)
+    ensure_corpus_paths([nested], repo=outer)
+    assert (nested / PROV).read_bytes() == nested_bytes
+    require_materialized([nested], repo=outer)
+
+
+def test_a_source_only_another_lock_names_still_needs_its_whole_directory(tmp_path: Path, monkeypatch) -> None:
+    """Review r6 finding 2: the worktree's lock names two sources of a scope shared
+    from a checkout with no source lock. Selecting the present one checked its
+    directory only when some checkout owned an entry there, so the absent
+    sibling was never checked, though selecting the directory refused it."""
+    import argparse
+
+    every = {**SHARED_FILES, **SCOPE_FILES}
+    worktree, shared = _sharing(
+        tmp_path,
+        monkeypatch,
+        worktree_locks={_ACT: every[_ACT], _SIBLING: every[_SIBLING]},
+        shared_locks={PROV: every[PROV]},
+        link=_VERSION_DIR,
+        every_file=every,
+    )
+    _write(shared, _ACT, every[_ACT])
+    refused = _unfetchable(_SIBLING, "worktree", "shared")
+    with pytest.raises(CorpusNotMaterializedError, match=refused):
+        ensure_corpus_paths([worktree / _ACT], repo=worktree)
+    with pytest.raises(CorpusNotMaterializedError, match=refused):
+        resolver_module.materialize_cli_inputs(argparse.Namespace(source=worktree / _ACT), repo=worktree)
+    with pytest.raises(CorpusNotMaterializedError, match=refused):
+        resolve_corpus_path(worktree / _ACT, repo=worktree)
+
+
+def test_a_file_enrolled_below_a_cycle_is_reported_without_fetching(tmp_path: Path, monkeypatch) -> None:
+    """Review r6 finding 3: the checkout a file below a cut cycle is placed in had
+    no part name, so the fetching-off error raised KeyError instead of naming
+    the absent file."""
+    through = "data/corpus/provisions/loop/shared/2026-07-10.jsonl"
+    data = SHARED_FILES[PROV]
+    a = _init_repo(tmp_path / "a")
+    c = _init_repo(tmp_path / "c")
+    _lock_files(a, {through: data})
+    _lock_files(c, {through: data})
+    (c / "data/corpus/provisions/loop/shared").mkdir(parents=True)
+    (a / "data/corpus/provisions").mkdir(parents=True)
+    (a / "data/corpus/provisions/loop").symlink_to(a / "data/corpus/provisions", target_is_directory=True)
+    (a / "data/corpus/provisions/shared").symlink_to(c / "data/corpus/provisions/loop/shared", target_is_directory=True)
+    _serve(tmp_path, monkeypatch, {through: data})
+    monkeypatch.chdir(a)
+    for selection in (a / "data/corpus/provisions", a / through):
+        with pytest.raises(CorpusNotMaterializedError, match=rf"not in this checkout \(first: {through}\)"):
+            require_materialized([selection], repo=a)
 
 
 # The sharing layout with random locks, files and selections, against a
