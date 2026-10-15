@@ -49,13 +49,13 @@ S8. A span without an unmapped character is never changed. A font is not decoded
     descendant, a Type 3 font by its /Name (one the cut leaves empty is "", only a missing
     /Name is "Unnamed-T3"), every name cut to 31 bytes. Those fonts include the fonts of
     forms, tiling patterns and every annotation's appearance, and what a graphics state
-    reaches: the font its /Font entry selects, the array written in it or as an object of
-    its own, whatever the font's /Type; soft-mask groups, written as dictionaries or
-    streams; and any object known as a font by its /Type or /Subtype, resolved when
-    indirect (two unmapped fonts of one name can number their glyphs differently). A line
-    is decoded whole or not at all: not when one of its characters, in any of its spans,
-    would decode outside printable ASCII, nor when a span of it would still hold a control
-    character.
+    reaches: the font a /Font entry in any object it reaches selects (a stream's
+    dictionary included), the array written there or as an object of its own, whatever
+    the font's /Type; and soft-mask groups, written as dictionaries or streams, reached
+    through any object whatever it looks like (two unmapped fonts of one name can number
+    their glyphs differently). A line is decoded whole or not at all: not when one of its
+    characters, in any of its spans, would decode outside printable ASCII, nor when a span
+    of it would still hold a control character.
 S9. The unmapped characters are exactly those PyMuPDF's text trace, another device,
     reports as U+FFFD (a differential test on every retained page); every span holding one
     is one MuPDF marks UNICODE_IS_CID or _IS_GID; and a character is paired with the other
@@ -1883,32 +1883,55 @@ def test_a_font_named_nothing_is_never_decoded(tmp_path, missing):
     assert decoded == spans
 
 
-@pytest.mark.parametrize(
-    ("entries", "font"),
-    [
-        ("/Type /Font /Subtype /Type1", True),
-        ("/Type {font} /Subtype /Type1", True),
-        ("/Type {font}", True),
-        ("/Subtype /Type0", True),
-        ("/Subtype {type0}", True),
-        ("/Type /XObject /Subtype /Type1", False),
-        ("/Type {xobject} /Subtype /Type1", False),
-        ("/Subtype /Form", False),
-        ("/Subtype {form}", False),
-        ("/BaseFont /Courier", False),
-    ],
-)
-def test_an_object_a_graphics_state_reaches_is_a_font_by_its_type_or_subtype(entries, font):
-    # S8: an object a graphics state reaches is counted as a font when its /Type is /Font,
-    # or it has no /Type and its /Subtype is a font's, each resolved when indirect.
-    with fitz.open() as document:
-        names = {}
-        for key, value in (("font", "/Font"), ("type0", "/Type0"), ("xobject", "/XObject"), ("form", "/Form")):
-            names[key] = f"{document.get_new_xref()} 0 R"
-            document.update_object(int(names[key].split()[0]), value)
-        xref = document.get_new_xref()
-        document.update_object(xref, "<< " + entries.format(**names) + " >>")
-        assert documents_module._pdf_is_font(document, xref) is font
+def test_a_graphics_state_written_as_a_stream_has_its_font_entry_read(tmp_path):
+    # Review round 6: /ExtGState << /GS S 0 R >>, S a stream whose dictionary holds
+    # /Font [B 0 R 10], B and its descendant of /Type /Foo. MuPDF draws in B (1.26.7 and
+    # 1.28.2). The walk reads a stream's dictionary for /Font entries as it reads any
+    # object's, so B is counted and A is not decoded.
+    fonts = {}
+
+    def build(document, page):
+        b = fonts["B"] = _type0_font(document, B_CODES, "Shared")
+        (descendant,) = documents_module._pdf_object_references(
+            document.xref_get_key(b, "DescendantFonts")[1]
+        )
+        document.xref_set_key(b, "Type", "/Foo")
+        document.xref_set_key(descendant, "Type", "/Foo")
+        state = document.get_new_xref()
+        document.update_object(state, f"<< /Font [{b} 0 R 10] >>")
+        document.update_stream(state, b"")
+        content = f"q /GS gs BT 72 450 Td <{B_HEX}> Tj ET Q".encode()
+        _draw(document, page, "ExtGState", "GS", state, content)
+
+    spans, decoded, drawn, counts = _shared_rival(tmp_path, "stream.pdf", build)
+    assert B_LINE in _texts(spans)  # MuPDF draws B
+    assert drawn is not None and fonts["B"] in drawn and counts["Shared"] == 2
+    assert decoded == spans
+
+
+@pytest.mark.parametrize("inline", [False, True])
+def test_an_object_that_looks_like_a_font_is_walked_through(tmp_path, inline):
+    # Review round 6: the graphics state << /Subtype /Type1 /BaseFont /Other /SMask << /S
+    # /Luminosity /G G 0 R >> >>, G a group whose resources hold B, which G draws. MuPDF
+    # extracts B's text. The walk counts fonts only where MuPDF selects them, and follows
+    # every object's references whatever the object looks like, so G is walked, B is
+    # counted, and nothing is counted as "Other". (Taken for a font, the state hid G.)
+    fonts = {}
+
+    def build(document, page):
+        b = fonts["B"] = _type0_font(document, B_CODES, "Shared")
+        group = _form(
+            document, f"BT /B1 10 Tf 72 450 Td <{B_HEX}> Tj ET".encode(), f"/Font << /B1 {b} 0 R >>"
+        )
+        entries = f"/Subtype /Type1 /BaseFont /Other /SMask << /S /Luminosity /G {group} 0 R >>"
+        content = b"q /GS gs 0 g 50 400 300 200 re f Q"
+        _graphics_state(document, page, "GS", entries, content, inline)
+
+    spans, decoded, drawn, counts = _shared_rival(tmp_path, "masked.pdf", build)
+    assert B_LINE in _texts(spans)  # MuPDF extracts the group's text
+    assert drawn is not None and fonts["B"] in drawn
+    assert counts["Shared"] == 2 and "Other" not in counts
+    assert decoded == spans
 
 
 # ---------------------------------------------------------------------------- real pages

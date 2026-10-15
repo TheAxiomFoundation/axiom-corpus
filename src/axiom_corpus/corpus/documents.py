@@ -4114,33 +4114,6 @@ def _pdf_descendant(document: Any, font: int) -> int | None:
     return int(match.group(1))
 
 
-_PDF_FONT_SUBTYPES = frozenset(
-    {"/Type0", "/Type1", "/MMType1", "/Type3", "/TrueType", "/CIDFontType0", "/CIDFontType2"}
-)
-
-
-def _pdf_is_font(document: Any, xref: int) -> bool:
-    """Whether object ``xref`` is a font dictionary: its /Type is /Font, or it has none and
-    its /Subtype is a font's (each resolved when indirect).
-
-    MuPDF draws text in whatever a /Tf name or a graphics state's /Font entry selects,
-    whatever its /Type, and the walk takes those as fonts without asking this. It is asked
-    of the other objects a graphics state reaches, so that a font among them is counted
-    too: counting a font that draws nothing only refuses.
-    """
-
-    def name_of(key: str) -> str | None:
-        kind, value = document.xref_get_key(xref, key)
-        if kind == "xref":
-            return str(document.xref_object(_pdf_reference(document, value))).strip()
-        return str(value) if kind == "name" else None
-
-    kind = name_of("Type")
-    if kind is not None:
-        return kind == "/Font"
-    return name_of("Subtype") in _PDF_FONT_SUBTYPES
-
-
 # A graphics state's /Font entry: [font size], written in it (the font, group 1) or as an
 # object of its own (the array's reference, group 2).
 _PDF_STATE_FONT = re.compile(r"/Font\s*(?:\[\s*(<<|\d+\s+\d+\s+R)|(\d+\s+\d+\s+R))")
@@ -4165,13 +4138,15 @@ def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
     them) and from the appearance streams of every annotation in the page's /Annots,
     whatever its subtype. From each resource holder it takes the fonts in Resources/Font
     and walks on into the forms in Resources/XObject and the tiling patterns in
-    Resources/Pattern. From Resources/ExtGState it takes the font each graphics state's
-    /Font entry names (the array written in the state or as an object of its own, and the
-    font taken whatever its /Type, as MuPDF draws in it), and follows every reference: a
-    font dictionary (``_pdf_is_font``) is taken, a stream (a soft-mask group, say) is
-    walked as a holder, and any object's own references are followed in turn (a soft-mask
-    dictionary written as a stream holds its group in /G). MuPDF extracts text drawn in
-    all of those, and ``get_fonts`` lists fonts of the page and its forms only. None when
+    Resources/Pattern. From Resources/ExtGState it follows every reference, and in every
+    object it reaches, a stream's dictionary included, it takes the font a /Font entry
+    names (the array written there or as an object of its own). A stream (a soft-mask
+    group, say) is walked as a holder too, and every object's references are followed in
+    turn (a soft-mask dictionary written as a stream holds its group in /G), whatever the
+    object looks like. MuPDF draws text only in the fonts a /Tf name selects from a
+    holder's Resources/Font and a graphics state's /Font entry selects, whatever their
+    /Type, and extracts text drawn in all of those holders; ``get_fonts`` lists fonts of
+    the page and its forms only. None when
     a font or an annotation is written inline, without an object number; when a
     reference is not one of generation 0 to an object of the file; when something can't
     be read; when the page tree is deeper than 64 nodes above the page without resources;
@@ -4256,14 +4231,10 @@ def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
             if not visit(state):
                 return None
             followed.add(state)
-            if _pdf_is_font(document, state):
-                fonts.add(state)  # a graphics state's /Font
-                continue
-            text = str(document.xref_object(state))
+            text = str(document.xref_object(state))  # a stream's dictionary
             if document.xref_is_stream(state):
                 holders.append(state)  # a soft-mask group, say: walked as a holder too
-            else:
-                state_fonts(text)
+            state_fonts(text)  # a graphics state written as a stream as well
             states.extend(references(text))
             continue
         holder = holders.pop()
