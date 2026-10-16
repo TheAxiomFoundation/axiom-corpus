@@ -430,8 +430,16 @@ class LockSet:
         return [chosen[path] for path in sorted(chosen)]
 
     def missing_under(self, repo: Path, path: str) -> list[LockEntry]:
-        """Locked entries at or under ``path`` that the worktree lacks."""
-        return [entry for entry in self.entries_under(path) if not (repo / entry.path).is_file()]
+        """Locked entries at or under ``path`` that the worktree lacks.
+
+        A symlink at an entry's path does not count as having it: fetch never
+        places one, and it reads bytes no lock checked.
+        """
+        return [
+            entry
+            for entry in self.entries_under(path)
+            if not (repo / entry.path).is_file() or (repo / entry.path).is_symlink()
+        ]
 
 
 def load_locks(repo: Path) -> LockSet:
