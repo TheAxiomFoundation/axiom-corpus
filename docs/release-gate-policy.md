@@ -165,7 +165,11 @@ their retained sources. On them:
   alias copies; and roots that do have text below them.
 
 `test_the_content_check_agrees_with_the_audit` pins this table for the sibling
-scopes. Each missed row belongs to a withdrawn scope, so the registry stops it.
+scopes. In a withdrawn scope the registry stops every missed row. Two retained
+scopes keep missed rows that pass the gate: `us/guidance/2026-07-13-recovery`
+(seven empty roots with text below them and three prose landing pages) and
+`us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated` (four and
+one). The empty roots are not defects; the four landing pages are tolerated.
 
 Two rules were measured and dropped:
 
