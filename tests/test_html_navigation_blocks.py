@@ -7,7 +7,7 @@ every positional block. Invariants, for every page:
   navigation, in order, with unchanged ordinals, headings and bodies, so a
   dropped block never renumbers the blocks after it.
 - A page with no navigation strings loses no block, and
-  ``html_keep_navigation_blocks: true`` keeps every block.
+  ``html_keep_navigation_blocks: true`` keeps every block the filter would drop.
 - Every block the helper calls navigation is a ``navigation_body`` by the release
   content check, with no word of its own and at least two navigation strings.
 - Differential against the release content check on the written rows: every
