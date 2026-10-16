@@ -17,6 +17,7 @@ from typing import Any
 
 import pytest
 
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, scan_scope
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from scripts.audit_recovery_sibling_scopes import (
@@ -438,11 +439,74 @@ def test_no_text_verdicts_are_the_documented_ones() -> None:
     assert BY_KEY["us-mn/statute/2026-07-13-recovery"].history == "div.history"
 
 
-def test_release_validation_does_not_see_the_defects() -> None:
-    """The gate passes every audited scope alone; only this audit records the defects."""
+KEPT = (
+    ("us", "guidance", "2026-07-13-recovery"),
+    ("us-co", "regulation", "2026-07-13-recovery-r2026-09-11-tanf-consolidated"),
+    ("us-mt", "regulation", "2026-07-13-recovery"),
+)
+
+
+def test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones() -> None:
+    """Follow-up 6 landed: manifests/withdrawn-scopes.yaml carries the swap decision.
+
+    Alone in a new cut, each scope the decision takes out fails; the three this
+    audit keeps (MT until its successor merges) pass, their recorded content
+    findings reported as notices. Before the release gate read the registry and
+    the content baseline, this test asserted that every audited scope passed.
+    """
+    withdrawn = ReleaseGatePolicy.load(REPO_ROOT).withdrawn
+    kept = []
     for scope in SCOPES:
         report = _validate(scope.jurisdiction, scope.document_class, scope.version)
-        assert (report["ok"], report["issue_count"]) == (True, 0), scope.key
+        key = (scope.jurisdiction, scope.document_class, scope.version)
+        if key in withdrawn:
+            assert [issue["code"] for issue in report["issues"]] == ["withdrawn_scope_selected"]
+            assert withdrawn[key].run_note in report["issues"][0]["message"]
+        else:
+            kept.append(key)
+            assert (report["ok"], report["issue_count"]) == (True, 0), scope.key
+    assert tuple(sorted(kept)) == KEPT
+
+
+# Each audit verdict against the release content check's finding for the same
+# row ("-" for none). No row the audit found to carry text (legal_text,
+# document_page_text, document_section_text) is flagged. The no-text rows the
+# check misses are prose landing pages, empty roots with text below them, alias
+# copies, and the UT and MI pages whose chrome is not a link menu. The
+# withdrawal registry stops those rows in withdrawn scopes; the retained
+# us/guidance and CO TANF consolidated scopes keep eleven empty roots, four
+# prose landing pages and three alias copies, which pass the gate.
+VERDICTS_AGAINST_FINDINGS = {
+    ("alias_copy", "-"): 16,
+    ("document_page_text", "-"): 460,
+    ("document_section_text", "-"): 60,
+    ("empty_document_root", "-"): 30,
+    ("empty_document_root", "hollow_document_root"): 10,
+    ("history_note_and_site_chrome", "-"): 5,
+    ("landing_page_text", "-"): 17,
+    ("landing_page_text", "navigation_body"): 6,
+    ("legal_text", "-"): 88,
+    ("page_text_with_chrome", "-"): 4,
+    ("page_text_with_chrome", "navigation_prefixed_body"): 12,
+    ("site_chrome", "-"): 11,
+    ("site_chrome", "navigation_body"): 36,
+    ("tables_from_other_sections", "-"): 1,
+}
+
+
+def test_the_content_check_agrees_with_the_audit() -> None:
+    table: dict[tuple[str, str], int] = {}
+    for scope in SCOPES:
+        scope_key = (scope.jurisdiction, scope.document_class, scope.version)
+        flagged = {
+            finding.path: finding.code for finding in scan_scope(CORPUS_ROOT, scope_key).findings
+        }
+        for path, verdict in _verdicts(scope.key).items():
+            key = (verdict, flagged.get(path, "-"))
+            table[key] = table.get(key, 0) + 1
+    assert table == VERDICTS_AGAINST_FINDINGS
+    text_verdicts = {"legal_text", "document_page_text", "document_section_text"}
+    assert all(finding == "-" for verdict, finding in table if verdict in text_verdicts)
 
 
 @pytest.mark.parametrize(
