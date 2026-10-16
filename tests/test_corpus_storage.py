@@ -10,8 +10,9 @@ Hypothesis alongside example tests:
 5. cache integrity (objects hash to their names);
 6. idempotence (a second fetch changes nothing);
 7. no links (materialized files are independent regular files);
-10. path naming (every spelling of a checkout names one entry; a symlinked
-    corpus file is named, and refused, as itself).
+10. path naming (every spelling of a checkout names one entry, and one
+    checkout names it; a symlinked corpus file, or a path below a directory
+    link to a place no lock guards, is named, and refused, as itself).
 """
 
 from __future__ import annotations
@@ -20,6 +21,7 @@ import contextlib
 import hashlib
 import json
 import os
+import posixpath
 import subprocess
 import threading
 import unicodedata
@@ -810,7 +812,16 @@ def test_a_dangling_symlink_at_a_locked_path_does_not_read_as_empty(tmp_path: Pa
     assert link.is_symlink() and not nowhere.exists() and not nowhere.parent.exists()
 
 
-@pytest.mark.parametrize("target_kind", ["cache object", "another corpus file", "nothing"])
+@pytest.mark.parametrize(
+    "target_kind",
+    [
+        "cache object",
+        "another corpus file",
+        "the same file in another checkout",
+        "a symlinked file in another checkout",
+        "nothing",
+    ],
+)
 def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
     tmp_path: Path, monkeypatch, target_kind: str
 ) -> None:
@@ -827,6 +838,16 @@ def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
         target = resolver.cache.object_path(_sha(READABLE_FILES[PROV]))
     elif target_kind == "another corpus file":
         target = repo / COVERAGE
+    elif target_kind in {"the same file in another checkout", "a symlinked file in another checkout"}:
+        other = _locked_checkout(tmp_path / "other", monkeypatch)
+        other_resolver = resolver_module.resolver_for(other)
+        assert other_resolver is not None
+        other_resolver.ensure_paths([PROV])
+        target = other / PROV
+        if target_kind == "a symlinked file in another checkout":
+            # A link to a link: the walk stops at the path's own symlinked file.
+            target.unlink()
+            target.symlink_to(other_resolver.cache.object_path(_sha(READABLE_FILES[PROV])))
     else:
         target = tmp_path / "missing.jsonl"
     link = repo / PROV
@@ -836,6 +857,9 @@ def test_a_symlinked_corpus_file_names_its_own_path_and_is_refused(
 
     assert resolver.relative(link) == PROV
     assert resolver.relative(Path(os.path.realpath(repo)) / PROV) == PROV
+    if target_kind in {"the same file in another checkout", "a symlinked file in another checkout"}:
+        # Only a directory link to the same path elsewhere is followed.
+        assert CorpusResolver(tmp_path / "other", sources=[]).relative(link) is None
     with pytest.raises(CorpusNotMaterializedError, match="symlink"):
         load_provisions(link)
     with pytest.raises(CorpusNotMaterializedError, match="symlink"):
@@ -951,10 +975,429 @@ def test_a_symlinked_directory_still_resolves_into_the_checkout_holding_it(
     assert CorpusResolver(other, sources=[]).relative(worktree / PROV) == PROV
     assert load_provisions(worktree / PROV)[0].citation_path == "nz/statute/a"
     assert _placed_regular(other, PROV)
+    # A pointer outside both checkouts, through the sharing link, names the
+    # other checkout's file too (review r2c).
+    pointer = tmp_path / "latest.jsonl"
+    pointer.symlink_to(worktree / PROV)
+    assert CorpusResolver(worktree, sources=[]).relative(pointer) is None
+    assert CorpusResolver(other, sources=[]).relative(pointer) == PROV
+    holder = resolver_module._checkout_for(pointer)
+    assert holder is not None and os.path.samefile(holder, other)
+    # A file in place beneath the link needs no fetch, so ensure passes.
+    report = CorpusResolver(worktree, sources=[]).ensure_paths(["data/corpus/provisions"])
+    assert report.present == [PROV] and report.failed == {}
     # Fetch never writes through the link, and says so rather than blame R2.
     (other / PROV).unlink()
     with pytest.raises(CorpusNotMaterializedError, match="never through symlinks: remove the symlink"):
         CorpusResolver(worktree, sources=[]).ensure_paths(["data/corpus/provisions"])
+    assert not (other / PROV).exists()
+
+
+# Where a test links ``data/corpus/provisions/nz`` (or an ancestor), the
+# places no lock guards that the link can lead to.
+_UNGUARDED_TARGETS = ("empty directory outside", "nothing", "unprotected directory here", "another checkout's docs")
+
+
+def _link_unguarded(repo: Path, linked: str, target_kind: str, tmp_path: Path, monkeypatch) -> Path:
+    """Link ``repo/<linked>`` to a directory no lock guards; return the target."""
+    if target_kind == "empty directory outside":
+        target = tmp_path / "elsewhere" / "empty"
+    elif target_kind == "nothing":  # e.g. the checkout it once shared was removed
+        target = tmp_path / "removed-checkout" / linked
+    elif target_kind == "unprotected directory here":
+        target = repo / "scratch" / linked
+    else:
+        target = _locked_checkout(tmp_path / "other", monkeypatch) / "docs" / linked
+    if target_kind != "nothing":
+        target.mkdir(parents=True)
+    (repo / linked).parent.mkdir(parents=True, exist_ok=True)
+    (repo / linked).symlink_to(target, target_is_directory=True)
+    return target
+
+
+def _tree(path: Path) -> list[str]:
+    return sorted(str(p.relative_to(path)) for p in path.rglob("*")) if path.exists() else ["<absent>"]
+
+
+@pytest.mark.parametrize("linked", ["data/corpus/provisions/nz", "data/corpus/provisions", "data"])
+@pytest.mark.parametrize("target_kind", _UNGUARDED_TARGETS)
+def test_a_directory_link_to_an_unguarded_place_does_not_read_as_empty(
+    tmp_path: Path, monkeypatch, linked: str, target_kind: str
+) -> None:
+    """A directory link at (or above) a protected path that leads where no lock
+    guards (outside every checkout, nowhere, an unprotected directory) made every
+    path below it name no locked file, so an unfetched provisions file loaded as
+    an empty scope. The path now names itself and every helper refuses the link."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    target = _link_unguarded(repo, linked, target_kind, tmp_path, monkeypatch)
+    before = _tree(target)
+    monkeypatch.chdir(tmp_path)  # the path, not the working directory, finds the checkout
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    for spelling in [repo, *_checkout_spellings(repo).values()]:
+        assert resolver.relative(spelling / PROV) == PROV, spelling
+        assert resolver.relative(spelling / "data/corpus/provisions/nz") == "data/corpus/provisions/nz"
+        # Review r1 finding 3: the linked directory itself selects locked files.
+        assert resolver.relative(spelling / linked) == linked, spelling
+    if target_kind == "another checkout's docs":
+        other = CorpusResolver(tmp_path / "other", sources=[])
+        assert other.relative(repo / PROV) is None  # one checkout names it
+        assert other.relative(os.path.realpath(repo / PROV)) == f"docs/{linked}/" + PROV[len(linked) + 1 :]
+
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks: remove the symlink"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        fetch_locked_file(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        resolve_corpus_path(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks: remove the symlink"):
+        ensure_corpus_paths([repo / "data/corpus/provisions/nz"], repo=repo)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        require_materialized([repo / "data/corpus/provisions/nz"])
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        require_materialized([repo / linked])
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        ensure_corpus_paths([repo / linked], repo=repo)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off.*is a symlink"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        ensure_corpus_paths([repo / PROV], repo=repo)
+    assert (repo / linked).is_symlink() and _tree(target) == before  # nothing written through it
+
+
+def test_files_in_place_beneath_a_directory_link_are_read_and_absent_ones_refused(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """A file present beneath a directory link counts as in place, with fetching
+    on or off; an absent locked file beneath it is refused, never written."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    holder = tmp_path / "external" / "nz"
+    _write(holder, "statute/2026-07-10.jsonl", READABLE_FILES[PROV])
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(holder, target_is_directory=True)
+    resolver = resolver_module.resolver_for(repo)
+    assert resolver is not None
+    resolver_module._repo_root_for_dir.cache_clear()
+    git_calls: list[object] = []
+    real_run = subprocess.run
+    monkeypatch.setattr(
+        resolver_module.subprocess, "run", lambda *a, **k: git_calls.append(a) or real_run(*a, **k)
+    )
+    assert resolver.relative(repo / PROV) == PROV
+    assert git_calls == []  # its own checkout is recognized by identity, without git
+    monkeypatch.setattr(resolver_module.subprocess, "run", real_run)
+
+    assert load_provisions(repo / PROV)[0].citation_path == "nz/statute/a"
+    require_materialized([repo / "data/corpus/provisions/nz"])
+    assert ensure_corpus_paths([repo / "data/corpus/provisions/nz"], repo=repo).present == [PROV]
+    assert resolve_corpus_path(repo / PROV) == repo / PROV
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    ensure_corpus_paths([repo / "data/corpus/provisions/nz"], repo=repo)
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+
+    # A changed file is reported, and left, as it would be anywhere else.
+    (holder / "statute/2026-07-10.jsonl").write_bytes(b"{}\n")
+    assert ensure_corpus_paths([repo / PROV], repo=repo).modified == [PROV]
+    assert (holder / "statute/2026-07-10.jsonl").read_bytes() == b"{}\n"
+    (holder / "statute/2026-07-10.jsonl").unlink()
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(repo / PROV)
+    assert _tree(holder) == ["statute"]
+
+
+def test_a_source_beneath_a_directory_link_still_comes_with_its_siblings(tmp_path: Path, monkeypatch) -> None:
+    """``resolve_corpus_path`` took a present source file below a directory link
+    to an unguarded place for a plain file, so a scope's half-present sources
+    directory read as a smaller scope."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    act = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    linked = "data/corpus/sources/nz/statute/2026-07-10/official"
+    holder = tmp_path / "external" / "official"
+    _write(holder, "act.html", READABLE_FILES[act])  # its sibling "sub dir/s 2.xml" is absent
+    (repo / linked).parent.mkdir(parents=True)
+    (repo / linked).symlink_to(holder, target_is_directory=True)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        resolve_corpus_path(repo / act)
+    # Review r2: reached through an alias outside the checkout, neither
+    # spelling names a sources/ directory, and the sibling was skipped.
+    alias = tmp_path / "alias"
+    alias.symlink_to(repo / linked, target_is_directory=True)
+    monkeypatch.chdir(tmp_path)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        resolve_corpus_path(alias / "act.html")
+    _write(holder, "sub dir/s 2.xml", READABLE_FILES[linked + "/sub dir/s 2.xml"])
+    assert resolve_corpus_path(repo / act) == repo / act
+
+
+def test_a_link_chain_names_the_last_protected_place_it_stands(tmp_path: Path, monkeypatch) -> None:
+    """A worktree shares another checkout's provisions, and that checkout's ``nz``
+    links outside every checkout: the sharing link is followed, so the path is
+    the other checkout's, and that checkout refuses its own link."""
+    other = _locked_checkout(tmp_path / "other", monkeypatch)
+    worktree = _init_repo(tmp_path / "worktree")
+    write_lock(worktree, _scope_lock(READABLE_FILES))
+    (worktree / "data/corpus").mkdir(parents=True)
+    (worktree / "data/corpus/provisions").symlink_to(other / "data/corpus/provisions", target_is_directory=True)
+    empty = tmp_path / "elsewhere" / "nz"
+    empty.mkdir(parents=True)
+    (other / "data/corpus/provisions").mkdir(parents=True)
+    (other / "data/corpus/provisions/nz").symlink_to(empty, target_is_directory=True)
+    assert CorpusResolver(worktree, sources=[]).relative(worktree / PROV) is None
+    assert CorpusResolver(other, sources=[]).relative(worktree / PROV) == PROV
+    holder = resolver_module._checkout_for(worktree / PROV)
+    assert holder is not None and os.path.samefile(holder, other)
+    with pytest.raises(CorpusNotMaterializedError, match="through a symlink: .*/other/data/corpus/provisions/nz"):
+        load_provisions(worktree / PROV)
+    assert _tree(empty) == []
+
+
+@pytest.mark.parametrize(
+    ("where", "name"),
+    [
+        ("this checkout", "us"),
+        ("another checkout", "us"),
+        # Review r1 finding 1: a name that only folds to "nz" (fullwidth) is
+        # another path; it was taken for the same one.
+        ("another checkout", "\uff4e\uff5a"),
+    ],
+)
+def test_a_directory_link_to_another_corpus_path_names_its_own_path(
+    tmp_path: Path, monkeypatch, where: str, name: str
+) -> None:
+    """Following ``provisions/nz`` to another corpus directory named a path no
+    lock names (``provisions/us/...``), so an unfetched nz scope read as empty.
+    Only a link to exactly the same path in another checkout is followed."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    holder = repo if where == "this checkout" else _locked_checkout(tmp_path / "other", monkeypatch)
+    (holder / f"data/corpus/provisions/{name}/statute").mkdir(parents=True)
+    (repo / "data/corpus/provisions").mkdir(parents=True, exist_ok=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(holder / f"data/corpus/provisions/{name}", target_is_directory=True)
+    assert CorpusResolver(repo, sources=[]).relative(repo / PROV) == PROV
+    if holder != repo:
+        assert CorpusResolver(holder, sources=[]).relative(repo / PROV) is None
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        require_materialized([repo / "data/corpus/provisions/nz"])
+    assert _tree(holder / f"data/corpus/provisions/{name}") == ["statute"]
+
+
+def test_a_link_to_a_link_names_where_the_chain_stands(tmp_path: Path, monkeypatch) -> None:
+    """Review r1 finding 2: ``a``'s ``nz`` links straight to ``b``'s ``nz``, which
+    links to an empty directory. Only links spelled in the path were seen, so
+    ``b``'s link (and lock) was skipped and the absent file read as empty. The
+    path is followed into ``b``, which refuses its own link."""
+    a = _init_repo(tmp_path / "a")
+    b = _locked_checkout(tmp_path / "b", monkeypatch)
+    write_lock(a, _scope_lock({PROV.replace("/nz/", "/us/"): b"{}\n"}, scope=("us", "statute", "2026-07-10")))
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    for root in (a, b):
+        (root / "data/corpus/provisions").mkdir(parents=True)
+    (b / "data/corpus/provisions/nz").symlink_to(empty, target_is_directory=True)
+    (a / "data/corpus/provisions/nz").symlink_to(b / "data/corpus/provisions/nz", target_is_directory=True)
+    assert CorpusResolver(a, sources=[]).relative(a / PROV) is None
+    assert CorpusResolver(b, sources=[]).relative(a / PROV) == PROV
+    holder = resolver_module._checkout_for(a / PROV)
+    assert holder is not None and os.path.samefile(holder, b)
+    with pytest.raises(CorpusNotMaterializedError, match="through a symlink: .*/b/data/corpus/provisions/nz"):
+        load_provisions(a / PROV)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off.*/b/data/corpus/provisions/nz is a symlink"):
+        load_provisions(a / PROV)
+    assert _tree(empty) == []
+
+
+def test_a_chain_that_returns_to_the_path_it_spells_is_followed(tmp_path: Path, monkeypatch) -> None:
+    """``a/nz`` links to ``b/us``, which links to ``c/nz``: the path reaches
+    exactly the path it spells, so ``c`` names it (as a direct link to ``c/nz``
+    would), and the fast path that names it without walking agrees."""
+    a = _init_repo(tmp_path / "a")
+    b = _init_repo(tmp_path / "b")
+    c = _locked_checkout(tmp_path / "c", monkeypatch)
+    (c / "data/corpus/provisions/nz").mkdir(parents=True)
+    (b / "data/corpus/provisions").mkdir(parents=True)
+    (b / "data/corpus/provisions/us").symlink_to(c / "data/corpus/provisions/nz", target_is_directory=True)
+    (a / "data/corpus/provisions").mkdir(parents=True)
+    (a / "data/corpus/provisions/nz").symlink_to(b / "data/corpus/provisions/us", target_is_directory=True)
+    names = [CorpusResolver(root, sources=[]).relative(a / PROV) for root in (a, b, c)]
+    assert names == [None, None, PROV]
+    holder = resolver_module._checkout_for(a / PROV)
+    assert holder is not None and os.path.samefile(holder, c)
+    assert load_provisions(a / PROV)[0].citation_path == "nz/statute/a"
+    assert _placed_regular(c, PROV)
+
+
+@pytest.mark.parametrize("where", ["outside the checkout", "docs"])
+def test_a_pointer_through_a_directory_link_reads_like_the_path_it_names(
+    tmp_path: Path, monkeypatch, where: str
+) -> None:
+    """Review r2c finding 1: a ``latest.jsonl`` pointer at no protected path,
+    to a provisions file below a directory link to an empty directory, ended
+    the walk at itself, so it read as an empty scope. A pointer is followed
+    like any other link: it reads, and is refused, as the path it names."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    empty = tmp_path / "empty"
+    (empty / "statute").mkdir(parents=True)
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(empty, target_is_directory=True)
+    pointer = (tmp_path if where == "outside the checkout" else repo / "docs") / "latest.jsonl"
+    pointer.parent.mkdir(parents=True, exist_ok=True)
+    pointer.symlink_to(repo / PROV)
+    monkeypatch.chdir(tmp_path)
+    assert resolver_module._link_holder(pointer) is None  # the pointer stands at no protected path
+    assert CorpusResolver(repo, sources=[]).relative(pointer) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(pointer)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+        require_materialized([pointer])
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off.*is a symlink"):
+        load_provisions(pointer)
+    # With the file in place beneath the link, the pointer reads it, fetching off too.
+    (empty / "statute/2026-07-10.jsonl").write_bytes(READABLE_FILES[PROV])
+    assert load_provisions(pointer)[0].citation_path == "nz/statute/a"
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert load_provisions(pointer)[0].citation_path == "nz/statute/a"
+
+
+def test_a_directory_link_to_a_regular_file_is_refused(tmp_path: Path, monkeypatch) -> None:
+    """Review r2: ``provisions/nz`` linking to a regular file makes every path
+    below it fail with ENOTDIR; the helpers refuse the link instead of raising
+    an unexplained OS error or reading the scope as empty."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    a_file = _write(tmp_path, "a-file", b"x")
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(a_file)
+    assert CorpusResolver(repo, sources=[]).relative(repo / PROV) == PROV
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        ensure_corpus_paths([repo / "data/corpus/provisions/nz"], repo=repo)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="fetching is off.*is a symlink"):
+        load_provisions(repo / PROV)
+    assert a_file.read_bytes() == b"x"
+
+
+def test_a_checkout_without_src_is_still_a_checkout(tmp_path: Path, monkeypatch) -> None:
+    """Review r2: a sparse checkout that holds lock files and data but no
+    ``src/`` was no checkout at all, so its unfetched locked files read as
+    empty. A git top level with the lock directory is a checkout."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    for path in sorted((repo / "src").rglob("*"), reverse=True):
+        path.rmdir()
+    (repo / "src").rmdir()
+    resolver_module._repo_root_for_dir.cache_clear()
+    monkeypatch.chdir(tmp_path)
+    holder = resolver_module._checkout_for(repo / PROV)
+    assert holder is not None and os.path.samefile(holder, repo)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="locked but absent"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([repo / "data/corpus/provisions"])
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    assert load_provisions(repo / PROV)[0].citation_path == "nz/statute/a"
+
+
+def test_helpers_without_repo_use_the_checkout_each_path_names(tmp_path: Path, monkeypatch) -> None:
+    """Review r2: ``ensure_corpus_paths`` without ``repo`` asked the working
+    directory's checkout, so from anywhere else it passed over a path below a
+    link to an empty directory. Each path now goes to the checkout naming it."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(empty, target_is_directory=True)
+    for cwd in (_init_repo(tmp_path / "elsewhere"), tmp_path):
+        monkeypatch.chdir(cwd)
+        with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+            ensure_corpus_paths([repo / "data/corpus/provisions/nz"])
+        monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+        with pytest.raises(CorpusNotMaterializedError, match="not in this checkout.*is a symlink"):
+            ensure_corpus_paths([repo / "data/corpus/provisions/nz"])
+        monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+    # Paths of two checkouts in one call: each is fetched into its own.
+    first = _locked_checkout(tmp_path / "first", monkeypatch)
+    second = _locked_checkout(tmp_path / "second", monkeypatch)
+    report = ensure_corpus_paths([first / PROV, second / COVERAGE])
+    assert sorted(report.materialized) == sorted([PROV, COVERAGE])
+    assert _placed_regular(first, PROV) and _placed_regular(second, COVERAGE)
+    assert not (first / COVERAGE).exists() and not (second / PROV).exists()
+    # The first path's checkout is complete; the second path's is not.
+    (second / COVERAGE).unlink()
+    with pytest.raises(CorpusNotMaterializedError, match=f"not in this checkout \\(first: {COVERAGE}"):
+        require_materialized([first / PROV, second / COVERAGE])
+
+
+def test_a_nested_checkout_names_its_own_corpus_files(tmp_path: Path) -> None:
+    """Worktrees live under the main checkout's ``.claude/worktrees/``: the
+    worktree names its corpus files and the checkout around it names none of
+    them. A checkout nested inside another's corpus tree belongs to itself for
+    the module helpers, as git's top level does; the outer checkout, which
+    names its own corpus paths without asking git, names them too (the one
+    exception docs/corpus-storage.md invariant 10 states)."""
+    outer = _init_repo(tmp_path / "main")
+    worktree = _init_repo(outer / ".claude/worktrees/w")
+    write_lock(worktree, _scope_lock(READABLE_FILES))
+    assert CorpusResolver(worktree, sources=[]).relative(worktree / PROV) == PROV
+    assert CorpusResolver(outer, sources=[]).relative(worktree / PROV) is None
+    holder = resolver_module._checkout_for(worktree / PROV)
+    assert holder is not None and os.path.samefile(holder, worktree)
+    vendored = _init_repo(outer / "data/corpus/sources/nz/statute/2026-07-10/vendored")
+    holder = resolver_module._checkout_for(vendored / PROV)
+    assert holder is not None and os.path.samefile(holder, vendored)
+    assert CorpusResolver(vendored, sources=[]).relative(vendored / PROV) == PROV
+    assert (
+        CorpusResolver(outer, sources=[]).relative(vendored / PROV)
+        == f"data/corpus/sources/nz/statute/2026-07-10/vendored/{PROV}"
+    )
+
+
+def test_a_dotdot_below_a_directory_link_names_only_the_place_it_reaches(tmp_path: Path, monkeypatch) -> None:
+    """The operating system resolves a ``..`` below a link from the link's
+    target, so a lexical reading of it would name a different file."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    outside = tmp_path / "elsewhere"
+    (outside / "nz").mkdir(parents=True)
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(outside / "nz", target_is_directory=True)
+    resolver = CorpusResolver(repo, sources=[])
+    back = "data/corpus/provisions/nz/../nz/statute/2026-07-10.jsonl"  # /elsewhere/nz/...: PROV
+    away = "data/corpus/provisions/nz/../us/statute/2026-07-10.jsonl"  # /elsewhere/us/...: nothing here
+    assert resolver.relative(repo / back) == PROV and resolver.relative(back) == PROV
+    assert resolver.relative(repo / away) is None and resolver.relative(away) is None
+    with pytest.raises(CorpusNotMaterializedError, match="never through symlinks"):
+        require_materialized([back], repo=repo, fetch=True)
+    # Climbing out of the class directory stands at no protected place, even
+    # where a lexical reading reaches the same entry (data/corpus/x links there).
+    (outside / "a/b").mkdir(parents=True)
+    (outside / "x").mkdir()
+    (repo / "data/corpus/provisions/up").symlink_to(outside / "a/b", target_is_directory=True)
+    (repo / "data/corpus/x").symlink_to(outside / "x", target_is_directory=True)
+    assert resolver.relative(repo / "data/corpus/provisions/up/../../x") is None
+
+
+def test_a_symlinked_file_beneath_a_directory_link_is_refused(tmp_path: Path, monkeypatch) -> None:
+    """A symlinked file stands where a locked file belongs wherever it lies
+    physically, so a link to the right bytes beneath a directory link is
+    refused too, not read as the locked file."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    holder = tmp_path / "external" / "nz"
+    real = _write(tmp_path, "bytes/prov.jsonl", READABLE_FILES[PROV])
+    (holder / "statute").mkdir(parents=True)
+    (holder / "statute/2026-07-10.jsonl").symlink_to(real)
+    (repo / "data/corpus/provisions").mkdir(parents=True)
+    (repo / "data/corpus/provisions/nz").symlink_to(holder, target_is_directory=True)
+    holder = resolver_module._link_holder(repo / PROV)
+    assert holder is not None and os.path.samefile(holder, repo)
+    with pytest.raises(CorpusNotMaterializedError, match="is a symlink in this checkout"):
+        load_provisions(repo / PROV)
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout"):
+        require_materialized([repo / PROV])
+    assert real.read_bytes() == READABLE_FILES[PROV]
 
 
 
@@ -993,8 +1436,15 @@ def test_fetch_off_and_cli_inputs_treat_a_symlinked_corpus_file_as_absent(
         resolver_module.materialize_cli_inputs(args, repo=repo)
     assert (repo / PROV).is_symlink()
 
+
 _TAIL_SEGMENT = st.sampled_from(["a", "B", "x.jsonl", "s 2.xml", "2026-07-10"])
-_LINK_KINDS = (None, "dangling", "file inside", "file outside", "directory inside")
+_LINK_KINDS = (None, "dangling", "file inside", "file outside", "directory inside", "directory into corpus")
+_FILE_LINKS = frozenset({"dangling", "file inside", "file outside"})
+# Where a directory link above the path leads: the same subtree outside every
+# checkout, nowhere, under an unprotected directory of this checkout, the same
+# place in another checkout (the sharing layout), or the same place in another
+# checkout that is itself a link to a subtree outside every checkout.
+_ABOVE_KINDS = (None, "outside", "dangling", "unprotected inside", "another checkout", "chain via another checkout")
 
 
 @st.composite
@@ -1010,63 +1460,150 @@ def _named_paths(draw):
         )
     )
     tail = draw(st.lists(_TAIL_SEGMENT, min_size=1, max_size=3))
-    return "/".join([prefix, *tail]), draw(st.sampled_from(_LINK_KINDS)), draw(st.booleans())
+    rel = "/".join([prefix, *tail])
+    above = draw(st.sampled_from(_ABOVE_KINDS))
+    # The linked ancestor lies below data/corpus, so COVERAGE (the "file
+    # inside" target) stays a plain file of the checkout.
+    lowest = len(CORPUS_BASE.split("/")) if rel.startswith(f"{CORPUS_BASE}/") else 0
+    depth = draw(st.integers(lowest, rel.count("/") - 1)) if above is not None else None
+    if above == "dangling":  # nothing can be made below a dangling link
+        return rel, None, False, above, depth
+    return rel, draw(st.sampled_from(_LINK_KINDS)), draw(st.booleans()), above, depth
+
+
+def _expected_naming(rel: str, link_kind: str | None, above: str | None):
+    """Reference model of invariant 10 for ``repo/<rel>`` in the layouts above.
+
+    Returns what ``repo`` and ``other`` name the path, what they name its
+    realpath, and whether a name is the symlinked file itself (lstat identity).
+    A place is (checkout, name); the path stands at a place below each link on
+    its way and reaches a place at its end. It names, in order of precedence:
+    the last protected place a symlinked file stands at; the protected place
+    any other path reaches, when it stands at no protected place or the last
+    one has the same name (a link to the same path in another checkout); the
+    last protected place it stands at; the place it reaches.
+    """
+    home = {
+        None: ("repo", rel),
+        "outside": None,
+        "dangling": None,
+        "unprotected inside": ("repo", f"scratch/{rel}"),
+        "another checkout": ("other", rel),
+        "chain via another checkout": None,
+    }[above]
+    reached = {
+        None: home,
+        "directory inside": ("repo", "plain"),
+        "directory into corpus": ("repo", posixpath.dirname(COVERAGE)),
+        "file inside": ("repo", COVERAGE),
+        "file outside": None,
+        "dangling": None,
+    }[link_kind]
+    stands = [("repo", rel)] if above is not None else []
+    if above == "chain via another checkout":
+        stands.append(("other", rel))
+    if link_kind is not None and home is not None:
+        stands.append(home)
+    stands = [place for place in stands if is_protected_corpus_path(place[1])]
+    file_link = link_kind in _FILE_LINKS
+    followed = not stands or stands[-1][1] == (reached or ("", ""))[1]  # the same path elsewhere
+    if not file_link and reached is not None and is_protected_corpus_path(reached[1]) and followed:
+        owner = reached
+    else:
+        owner = stands[-1] if stands else None
+    physical = dict.fromkeys(("repo", "other"))
+    if reached is not None:
+        physical[reached[0]] = reached[1]
+    named = dict.fromkeys(("repo", "other"))
+    if owner is not None:
+        named[owner[0]] = owner[1]
+    else:
+        named.update(physical)
+    return named, physical, file_link and owner is not None
+
+
+def _bare_checkout(path: Path) -> Path:
+    path.mkdir(parents=True)
+    (path / "src" / "axiom_corpus").mkdir(parents=True)
+    _git(path, "init", "-q")
+    return path
 
 
 @PROPERTY_SETTINGS
 @given(_named_paths())
 def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, drawn) -> None:
     """Invariant 10. ``relative`` answers the same for every spelling of the checkout,
-    names the directory entry a path reaches (the link itself for a symlinked file
-    at a protected corpus path, what it leads to otherwise), and agrees with the
-    path's realpath everywhere a symlinked corpus file is not involved."""
-    rel, link_kind, create = drawn
+    at most one checkout names a path at a protected path, a name reaches the
+    directory entry the path reaches (the link itself for a symlinked file standing
+    at a protected path), and the name follows the reference model: a directory link
+    to the same path in another checkout is followed, and any other link at a
+    protected path, a symlinked file included, names its own path."""
+    rel, link_kind, create, above, depth = drawn
     base = tmp_path_factory.mktemp("naming")
-    repo = base / "repo"
-    (repo / "docs").mkdir(parents=True)
+    repo, other = _bare_checkout(base / "repo"), _bare_checkout(base / "other")
+    (repo / "plain").mkdir()  # "directory inside" leads here, never through a link
+    _write(repo, COVERAGE, b"{}")
+    _write(base, "outside.bin", b"x")
+    if above is not None:
+        ancestor = "/".join(rel.split("/")[: depth + 1])
+        target = {
+            "outside": base / "outside" / ancestor,
+            "dangling": base / "gone" / ancestor,
+            "unprotected inside": repo / "scratch" / ancestor,
+            "another checkout": other / ancestor,
+            "chain via another checkout": other / ancestor,
+        }[above]
+        if above == "chain via another checkout":
+            (base / "outside" / ancestor).mkdir(parents=True)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.symlink_to(base / "outside" / ancestor, target_is_directory=True)
+        elif above != "dangling":
+            target.mkdir(parents=True)
+        (repo / ancestor).parent.mkdir(parents=True, exist_ok=True)
+        (repo / ancestor).symlink_to(target, target_is_directory=True)
     path = repo / rel
     if create or link_kind is not None:
-        path.parent.mkdir(parents=True, exist_ok=True)
+        path.parent.mkdir(parents=True, exist_ok=True)  # beneath any link above
     if link_kind is None and create:
         path.write_bytes(b"x")
     elif link_kind == "dangling":
         path.symlink_to(base / "nowhere")
     elif link_kind == "file inside":
-        _write(repo, COVERAGE, b"{}")
         path.symlink_to(repo / COVERAGE)
     elif link_kind == "file outside":
-        _write(base, "outside.bin", b"x")
         path.symlink_to(base / "outside.bin")
     elif link_kind == "directory inside":
-        path.symlink_to(repo / "docs", target_is_directory=True)
-    resolver = CorpusResolver(repo, sources=[])
-    named = resolver.relative(path)
+        path.symlink_to(repo / "plain", target_is_directory=True)
+    elif link_kind == "directory into corpus":
+        path.symlink_to(repo / posixpath.dirname(COVERAGE), target_is_directory=True)
+    expected, physical, link_itself = _expected_naming(rel, link_kind, above)
+    resolvers = {"repo": CorpusResolver(repo, sources=[]), "other": CorpusResolver(other, sources=[])}
+    named = {name: resolver.relative(path) for name, resolver in resolvers.items()}
 
-    symlinked_file = link_kind in {"dangling", "file inside", "file outside"}
-    kept = symlinked_file and is_protected_corpus_path(rel)
-    expected = {
-        None: rel,
-        "directory inside": "docs",
-        "dangling": None,
-        "file inside": COVERAGE,
-        "file outside": None,
-    }[link_kind]
-    assert named == (rel if kept else expected)
+    assert named == expected
+    assert sum(is_protected_corpus_path(n) for n in named.values() if n is not None) <= 1
     spellings = [repo, *_checkout_spellings(repo).values()]
-    for spelling in spellings:
-        assert resolver.relative(spelling / rel) == named
-    with contextlib.chdir(base):
-        assert resolver.relative(Path("repo") / rel) == named
+    for name, resolver in resolvers.items():
+        for spelling in spellings:
+            assert resolver.relative(spelling / rel) == named[name], spelling
+        with contextlib.chdir(base):
+            assert resolver.relative(Path("repo") / rel) == named[name]
+        # A symlink-free path names itself: a path and its realpath name one
+        # file wherever the path neither is nor stands below such a link.
+        assert resolver.relative(os.path.realpath(path)) == physical[name]
+    resolver = resolvers["repo"]
     if rel.startswith(f"{CORPUS_BASE}/"):
         parts = rel.split("/")
+        # A `..` straight after the class directory: below the link when the
+        # link is that directory. The targets above mirror the checkout's
+        # layout, so it still reaches the path's own entry.
         dotted = "/".join([*parts[:3], "..", *parts[2:]])
-        assert resolver.relative(repo / dotted) == named
-        assert resolver.relative(dotted) == named  # bare: `..` resolves through the checkout
-        if link_kind is None or kept:
-            assert resolver.relative(rel) == named  # bare: as written
-    if not kept:  # a path and its realpath name one file
-        assert resolver.relative(os.path.realpath(path)) == named
-    if named is not None and os.path.lexists(path):
-        probe = os.lstat if kept else os.stat
-        for spelling in spellings:
-            assert os.path.samestat(probe(spelling / rel), probe(repo / named))
+        assert resolver.relative(repo / dotted) == named["repo"]
+        assert resolver.relative(dotted) == named["repo"]  # bare: `..` resolves through the checkout
+        if named["repo"] == rel:
+            assert resolver.relative(rel) == rel  # bare: as written
+    for name, checkout in (("repo", repo), ("other", other)):
+        if named[name] is not None and os.path.lexists(path):
+            probe = os.lstat if link_itself else os.stat
+            for spelling in spellings:
+                assert os.path.samestat(probe(spelling / rel), probe(checkout / named[name]))

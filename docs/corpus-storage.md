@@ -211,7 +211,12 @@ separate command (`axiom_corpus.corpus.resolver`):
 - `build_release_content` and `scripts/publish_corpus.py` fetch the selected
   scopes before hashing.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
-  `require_materialized` are the building blocks.
+  `require_materialized` are the building blocks. Given no `repo`,
+  `ensure_corpus_paths` and `require_materialized` check each path in the
+  checkout that names it (below), whatever the working directory.
+
+A checkout is a git top level that holds `src/axiom_corpus` or the lock
+directory, so a sparse checkout of the data and locks alone is guarded too.
 
 With no lock files every one of these does nothing, so the same code runs
 before and after the switch. Once one of them consults the locks, lock files
@@ -227,16 +232,38 @@ and a command's `--base` may be relative or absolute and given from any
 directory. A bare `data/corpus/...` path is repository-relative and taken as
 written, unless it has a `..` component: then it resolves through the checkout
 like an absolute path, symlinks included.
-Symlinks are followed as the operating system follows them, with one
-exception: a symlinked file at a protected path of a checkout stands where a
-locked file belongs, so it names that path rather than its target. When a lock
-names the path, the `io` readers (`load_provisions`, `load_source_inventory`),
-`resolve_corpus_path`, `require_materialized` and fetch refuse the link, a
-dangling one included, instead of reading an absent locked file as empty or
-taking a cache object or another corpus file for it. Any other live symlink,
-such as one outside a checkout or outside the protected paths, is read as
-before without consulting the locks. A dangling one is fetched like the file
-it names, from the checkout its target lies in.
+A symlink at or above a protected path of a checkout stands where locked
+files belong. Here `data`, `data/corpus` and the artifact-class directories
+(`data/corpus/provisions` and the like) count as protected paths, since a
+path naming one selects the locked files below it. That is for naming
+paths: the CLI still takes only paths under the four protected prefixes as
+inputs, so `--base data/corpus` names no input by itself. A path that reaches
+exactly the protected path it spells, through any links, names that path.
+So a worktree whose `data/corpus/provisions` links to another checkout's
+`data/corpus/provisions` reads that checkout's files under that checkout's
+locks and fetches into it. The worktree's own locks do not apply there: a
+file only the worktree's lock names is not fetched, and reads as empty when
+absent. Any other path through such a link names the last protected path it
+stands at on its way, following links inside a link's target as the
+operating system does, and that path's lock applies. That covers a symlinked
+file there, which always names its own path whatever it points to, and a
+directory link there that leads to another corpus path, outside every
+checkout, to nothing (a removed checkout it once shared), or to an
+unprotected directory. A symlinked file at no protected path, such as a
+`latest.jsonl` pointer, is followed like any other link, so it reads, and is
+refused, as the path it names. When a lock names the path, the `io` readers
+(`load_provisions`, `load_source_inventory`), `resolve_corpus_path`,
+`require_materialized`, `ensure_corpus_paths` and fetch refuse a symlinked
+file, a dangling one included, and any absent file beneath a directory link,
+and name the link. They no longer read an unfetched scope as empty or take a
+cache object or another corpus file for a locked file, and fetch never writes
+through either kind of link. A regular file beneath a directory link counts
+as in place, as it does anywhere else in the checkout. The operating system resolves a `..`
+below a link from the link's target, so such a path names its own place only
+where it reaches the same entry. Any other live symlink, such as one outside
+a checkout or outside the protected paths, is read as before without
+consulting the locks. A dangling one is fetched like the file it names, from
+the checkout its target lies in.
 
 ## Ingest
 
@@ -488,17 +515,27 @@ exactly those 1,362 files.
    no such collision.
 10. **Path naming.** For absolute and working-directory-relative paths,
     `CorpusResolver.relative` gives one answer for every spelling of a
-    checkout and names the directory entry a path reaches: what a symlink
-    leads to, save a symlinked file at a protected path, which names itself.
-    A bare `data/corpus/...` path names itself as written; one with a `..`
+    checkout, and at most one checkout names a path at a protected path (a
+    checkout nested inside another's corpus tree aside: both name its files
+    there, and the helpers use the nested one, as git does). Protected paths
+    here include `data`, `data/corpus` and the artifact-class directories. A
+    symlinked file at a protected path names itself. Any other path that
+    reaches exactly the protected path it spells names that path, through
+    any links. Otherwise a path through a symlink at a protected path names
+    the last protected path it stands at, links inside link targets
+    included, unless that path has the name of the protected path it
+    reaches. Any other path names the entry it reaches. A bare
+    `data/corpus/...` path names itself as written; one with a `..`
     component resolves through the checkout like an absolute path. A symlink
-    at a locked path never counts as fetched.
+    at a locked path never counts as fetched, and fetch never writes through
+    one.
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
 (1), the partition (2), byte fidelity (4), objects that hash to their names
 and are read-only (5), idempotence (6), no links (7), portable names (9,
 with a differential test against a brute-force reference) and path naming
-(10, against the filesystem's identity of the entry each spelling reaches);
+(10, against a reference model of the layouts and the filesystem's identity
+of the entry each spelling reaches);
 3 on real git trees. `tests/test_corpus_lock_guard.py`
 checks 8, including tampered locks. The concurrency and failure clauses of 4
 and 5 are pinned by regression tests instead: `tests/test_corpus_storage_review.py`
