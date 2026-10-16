@@ -170,7 +170,7 @@ scopes keep missed rows that pass the gate: `us/guidance/2026-07-13-recovery`
 (seven empty roots, three prose landing pages and three alias copies) and
 `us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated` (four
 empty roots and one prose landing page). Seven of the eleven empty roots have
-legal text below them; the other four have only a landing page below them.
+text-bearing rows below them; the other four have only a landing page below them.
 The four landing pages and three alias copies are tolerated.
 
 Two rules were measured and dropped:
