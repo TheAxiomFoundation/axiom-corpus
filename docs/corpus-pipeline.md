@@ -399,6 +399,29 @@ axiom-corpus-ingest extract-official-documents \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
 
+### Retained copies (`local_path`)
+
+A manifest entry with `local_path` reads the document's bytes from that file
+instead of fetching them, for a publisher that blocks or breaks automated
+fetches. A relative `local_path` is relative to the manifest file. The rows
+record the official URL, never the file: `metadata.download_url` is the entry's
+`download_url`, else the Google Drive direct link, else `source_url` (the URL a
+fetch would have requested), and `metadata.content_type` is the media type of
+the declared or detected `source_format`. The source snapshot keeps the
+retained bytes and their sha256.
+
+`guard-ingested` rejects a new or changed inventory or provisions artifact whose
+`source_url` or metadata `url`/`*_url` field holds a `file:` URL, which would
+publish a path on the extracting machine. Body text is not checked: a scanned
+document can print a `file:` link itself.
+
+Scopes extracted before this rule record such paths.
+`scripts/audit_local_file_urls.py [--release <selector>]` lists the locked ones,
+and `scripts/repair_local_file_download_urls.py` writes a successor scope from a
+locked scope's own bytes, by re-extraction with the committed manifest or, for
+recovery-batch scopes, by rewriting only the leaked URL. It then checks that the
+successor differs only in those URLs, their media types and the version.
+
 ### Amended rule text in PDFs
 
 Register orders and agency letters often print amended rule text with deleted

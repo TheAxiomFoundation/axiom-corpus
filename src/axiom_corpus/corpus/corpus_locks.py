@@ -15,11 +15,12 @@ import json
 import os
 import re
 import subprocess
-import tempfile
 import unicodedata
 from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
+
+from axiom_corpus.corpus.atomic_write import write_bytes_atomically
 
 ScopeKey = tuple[str, str, str]
 
@@ -338,16 +339,7 @@ def parse_lock(payload: bytes, *, source: str = "<lock>") -> CorpusLock:
 def write_lock(repo: Path, lock: CorpusLock) -> Path:
     """Write one lock file atomically; return its absolute path."""
     target = repo / lock.relative_path
-    target.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp_name = tempfile.mkstemp(dir=target.parent, prefix=f".{target.name}.")
-    tmp = Path(tmp_name)
-    try:
-        with os.fdopen(fd, "wb") as handle:
-            handle.write(serialize_lock(lock))
-        os.chmod(tmp, 0o644)
-        os.replace(tmp, target)
-    finally:
-        tmp.unlink(missing_ok=True)
+    write_bytes_atomically(target, serialize_lock(lock))
     return target
 
 
