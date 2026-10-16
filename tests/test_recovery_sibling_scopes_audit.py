@@ -474,8 +474,8 @@ def test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones(
 # check misses are prose landing pages, empty roots with text below them, alias
 # copies, and the UT and MI pages whose chrome is not a link menu. The
 # withdrawal registry stops those rows in withdrawn scopes; the retained
-# us/guidance and CO TANF consolidated scopes keep empty roots with text below
-# them and four prose landing pages, which pass the gate.
+# us/guidance and CO TANF consolidated scopes keep eleven empty roots, four
+# prose landing pages and three alias copies, which pass the gate.
 VERDICTS_AGAINST_FINDINGS = {
     ("alias_copy", "-"): 16,
     ("document_page_text", "-"): 460,
