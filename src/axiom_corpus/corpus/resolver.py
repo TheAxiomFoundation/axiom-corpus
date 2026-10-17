@@ -185,7 +185,7 @@ def _spells(probe: Path, name: str) -> bool:
 
 
 def _standing_places(
-    probe: Path, physical: Path, home: Path | None
+    probe: Path, physical: Path, home: Path | None, *, spellings: list[Path] | None = None
 ) -> tuple[list[tuple[Path, str]], bool]:
     """Each guarded place ``probe`` stands at below a symlink, in the order it resolves.
 
@@ -196,10 +196,14 @@ def _standing_places(
     entry. A symlinked file that stands at a guarded place ends the walk, and
     the second value is then True: it stands there and nowhere else. Any other
     symlinked file (a pointer such as ``latest.jsonl``) is followed like a
-    directory link.
+    directory link. ``spellings``, when supplied, keeps the complete path at
+    each resolution step so witness collection can also check its enclosing
+    checkouts without changing which checkout names the path.
     """
     places: list[tuple[Path, str]] = []
     for _link in range(_MAX_LINKS):
+        if spellings is not None:
+            spellings.append(probe)
         parts = probe.parts
         prefix = Path(parts[0])
         for index in range(1, len(parts)):
@@ -783,15 +787,22 @@ def _places_above(spelled: Path, physical: Path) -> list[tuple[Path, str]]:
     """The protected places reached through links and enclosing a nested corpus.
 
     A nested checkout owns its corpus paths, but every enclosing checkout's
-    protected-path lock still witnesses them, even without a symlink.
+    protected-path lock still witnesses them, even without a symlink. Keep
+    every full spelling along a sharing chain: its innermost protected place
+    alone may already belong to a nested checkout and omit the sharing one.
     """
     places: list[tuple[Path, str]] = []
-    if str(physical) != os.path.normpath(spelled):
-        places, _stands_as_file = _standing_places(spelled, physical, None)
+    spellings: list[Path] = []
+    if str(physical) != os.path.normpath(spelled) or ".." in spelled.parts:
+        places, _stands_as_file = _standing_places(spelled, physical, None, spellings=spellings)
         reached = _protected_at(physical.parts, None)
         if reached is not None:
             places.append(reached)
-    for probe in [physical, *(root / name for root, name in places)]:
+    for probe in [physical, *spellings, *(root / name for root, name in places)]:
+        normalized = Path(os.path.normpath(probe))
+        if ".." in probe.parts and not _same_place(normalized, physical):
+            continue  # a link before .. makes this lexical spelling name another entry
+        probe = normalized
         parts = probe.parts
         starts = [
             index

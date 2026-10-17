@@ -2916,3 +2916,179 @@ def test_every_spelling_names_the_entry_it_reaches(tmp_path_factory, monkeypatch
             assert not fetch_locked_file(path)
     finally:
         monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH")
+
+
+# Round 2: exact selections must retain every sharing and enclosing witness.
+
+
+def _sharing_into_nested_witness(
+    tmp_path: Path, monkeypatch, links: int, lock_holder: str
+) -> tuple[dict[str, Path], Path, Path, str]:
+    source = _init_repo(tmp_path / "source")
+    nested = _init_repo(source / _NESTED_SOURCE_DIR / "vendored")
+    worktree = _init_repo(tmp_path / "worktree")
+    checkouts = {"source": source, "worktree": worktree, "nested": nested}
+    target = source
+    if links == 2:
+        middle = _init_repo(tmp_path / "middle")
+        (middle / "data/corpus").mkdir(parents=True)
+        (middle / "data/corpus/sources").symlink_to(source / "data/corpus/sources", target_is_directory=True)
+        checkouts["middle"] = middle
+        target = middle
+    (worktree / "data/corpus").mkdir(parents=True)
+    (worktree / "data/corpus/sources").symlink_to(target / "data/corpus/sources", target_is_directory=True)
+    rel = f"{_NESTED_SOURCE_DIR}/vendored/{_NESTED_PROV}"
+    holder = checkouts[lock_holder]
+    _lock_files(holder, {rel: SHARED_FILES[PROV]})
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(worktree)
+    return checkouts, holder, nested, rel
+
+
+def _assert_round2_witness_refusal(
+    monkeypatch,
+    action: str,
+    path: Path,
+    holder: Path,
+    owner: Path,
+    holder_name: str,
+    kwargs: dict[str, Path] | None = None,
+) -> None:
+    from axiom_corpus.corpus.io import iter_provisions
+
+    for no_fetch in ("", "1"):
+        monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", no_fetch)
+        with pytest.raises(CorpusNotMaterializedError, match="absent and no fetch will place them") as refused:
+            if action == "ensure":
+                ensure_corpus_paths([path], **(kwargs or {}))
+            elif action in {"require", "require-fetch"}:
+                require_materialized([path], fetch=action == "require-fetch", **(kwargs or {}))
+            elif action == "fetch-locked-file":
+                fetch_locked_file(path)
+            elif action == "load-provisions":
+                load_provisions(path)
+            elif action == "iter-provisions":
+                tuple(iter_provisions(path))
+            elif action == "resolve":
+                resolve_corpus_path(path, **(kwargs or {}))
+            else:
+                raise AssertionError(action)
+        message = str(refused.value)
+        assert f"{holder_name}, which the lock of {holder} names" in message
+        assert f"{owner} names that path" in message
+        assert f"does not list {_NESTED_PROV}" in message
+        assert f"Lock that scope in {owner} and fetch it there" in message
+        assert f"axiom-corpus-ingest corpus fetch --path {holder_name}` in {holder}" in message
+        # Even though the remote holds the witness's bytes, only the owner may
+        # fetch here, and its lock does not name this file.
+        assert not (owner / _NESTED_PROV).exists()
+
+
+@pytest.mark.parametrize("links,lock_holder", [(1, "worktree"), (2, "worktree"), (2, "middle")])
+@pytest.mark.parametrize("repo_hint", [None, "worktree", "source"], ids=["no-repo", "worktree-repo", "source-repo"])
+@pytest.mark.parametrize("selection", ["exact", "broad"])
+@pytest.mark.parametrize("action", ["require", "require-fetch", "ensure"])
+def test_every_sharing_lock_refuses_an_absent_file_inside_a_nested_checkout(
+    tmp_path: Path, monkeypatch, links: int, lock_holder: str, repo_hint: str | None, selection: str, action: str
+) -> None:
+    checkouts, holder, owner, rel = _sharing_into_nested_witness(tmp_path, monkeypatch, links, lock_holder)
+    path = checkouts["worktree"] / (rel if selection == "exact" else _NESTED_SOURCE_DIR)
+    kwargs = {} if repo_hint is None else {"repo": checkouts[repo_hint]}
+    _assert_round2_witness_refusal(monkeypatch, action, path, holder, owner, rel, kwargs)
+
+
+@pytest.mark.parametrize("links,lock_holder", [(1, "worktree"), (2, "worktree"), (2, "middle")])
+@pytest.mark.parametrize("action", ["require", "require-fetch", "ensure", "resolve"])
+def test_a_bare_path_keeps_every_sharing_lock_when_the_worktree_repo_is_given(
+    tmp_path: Path, monkeypatch, links: int, lock_holder: str, action: str
+) -> None:
+    checkouts, holder, owner, rel = _sharing_into_nested_witness(tmp_path, monkeypatch, links, lock_holder)
+    _assert_round2_witness_refusal(
+        monkeypatch, action, Path(rel), holder, owner, rel, {"repo": checkouts["worktree"]}
+    )
+
+
+@pytest.mark.parametrize("links,lock_holder", [(1, "worktree"), (2, "worktree"), (2, "middle")])
+@pytest.mark.parametrize(
+    "action,repo_hint",
+    [
+        ("fetch-locked-file", None),
+        ("load-provisions", None),
+        ("iter-provisions", None),
+        ("resolve", None),
+        ("resolve", "worktree"),
+        ("resolve", "source"),
+    ],
+)
+def test_exact_readers_keep_every_sharing_lock_above_a_nested_checkout(
+    tmp_path: Path, monkeypatch, links: int, lock_holder: str, action: str, repo_hint: str | None
+) -> None:
+    checkouts, holder, owner, rel = _sharing_into_nested_witness(tmp_path, monkeypatch, links, lock_holder)
+    kwargs = {} if repo_hint is None else {"repo": checkouts[repo_hint]}
+    _assert_round2_witness_refusal(monkeypatch, action, checkouts["worktree"] / rel, holder, owner, rel, kwargs)
+
+
+_ROUND2_SELECTION_ACTIONS = [
+    (selection, action)
+    for selection in ("exact", "broad")
+    for action in ("require", "require-fetch", "ensure")
+] + [("exact", action) for action in ("fetch-locked-file", "load-provisions", "iter-provisions", "resolve")]
+
+
+@pytest.mark.parametrize("selection,action", _ROUND2_SELECTION_ACTIONS)
+def test_an_enclosing_lock_survives_a_nested_checkouts_own_sharing_link(
+    tmp_path: Path, monkeypatch, selection: str, action: str
+) -> None:
+    """Kill M3: the enclosing witness is absent from the resolved path."""
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / _NESTED_SOURCE_DIR / "vendored")
+    owner = _init_repo(tmp_path / "owner")
+    (owner / "data/corpus/provisions").mkdir(parents=True)
+    (nested / "data/corpus").mkdir(parents=True)
+    (nested / "data/corpus/provisions").symlink_to(owner / "data/corpus/provisions", target_is_directory=True)
+    rel = f"{_NESTED_SOURCE_DIR}/vendored/{_NESTED_PROV}"
+    _lock_files(outer, {rel: SHARED_FILES[PROV]})
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(outer)
+    path = nested / _NESTED_PROV if selection == "exact" else nested / "data/corpus/provisions"
+    _assert_round2_witness_refusal(monkeypatch, action, path, outer, owner, rel)
+
+
+@pytest.mark.parametrize("selection,action", _ROUND2_SELECTION_ACTIONS)
+def test_only_the_middle_of_three_nested_checkouts_can_witness_an_absent_file(
+    tmp_path: Path, monkeypatch, selection: str, action: str
+) -> None:
+    """Kill M4: retaining only the outermost enclosing checkout loses the lock."""
+    outer = _init_repo(tmp_path / "outer")
+    middle = _init_repo(outer / _NESTED_SOURCE_DIR / "vendored")
+    owner = _init_repo(middle / _NESTED_SOURCE_DIR / "vendored")
+    rel = f"{_NESTED_SOURCE_DIR}/vendored/{_NESTED_PROV}"
+    _lock_files(middle, {rel: SHARED_FILES[PROV]})
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(outer)
+    path = owner / _NESTED_PROV if selection == "exact" else middle / _NESTED_SOURCE_DIR
+    _assert_round2_witness_refusal(monkeypatch, action, path, middle, owner, rel)
+
+
+@pytest.mark.parametrize(
+    "action", ["require", "require-fetch", "ensure", "fetch-locked-file", "load-provisions", "iter-provisions", "resolve"]
+)
+def test_a_sharing_lock_applies_when_dotdot_returns_to_the_normalized_spelling(
+    tmp_path: Path, monkeypatch, action: str
+) -> None:
+    """A sharing checkout visited before ``..`` still witnesses the final file."""
+    worktree = _init_repo(tmp_path / "worktree")
+    middle = _init_repo(tmp_path / "middle")
+    provisions = "data/corpus/provisions"
+    (worktree / provisions / "child").mkdir(parents=True)
+    (middle / "data/corpus").mkdir(parents=True)
+    (middle / provisions).symlink_to(worktree / provisions, target_is_directory=True)
+    (worktree / provisions / "link").symlink_to(middle / provisions / "child", target_is_directory=True)
+    _lock_files(middle, {_NESTED_PROV: SHARED_FILES[PROV]})
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(worktree)
+    path = worktree / provisions / "link/../nz/statute/v1.jsonl"
+    # The spelling enters middle's corpus, then returns to the same normalized
+    # path in worktree. Equal final paths do not mean no sharing link was used.
+    assert os.path.normpath(path) == os.path.realpath(path) == str(worktree / _NESTED_PROV)
+    _assert_round2_witness_refusal(monkeypatch, action, path, middle, worktree, _NESTED_PROV)
