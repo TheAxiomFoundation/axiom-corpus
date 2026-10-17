@@ -622,7 +622,8 @@ def _resolver(root: Path) -> CorpusResolver:
 # A path through a symlink can lie under more than one lock: the lock of the
 # checkout that names it (``relative``), and the lock of every other checkout
 # where it stands at a protected place on the way, such as a worktree whose
-# ``data/corpus/provisions`` links to another checkout's. A directory also
+# ``data/corpus/provisions`` links to another checkout's. Enclosing protected
+# paths also apply when a checkout is nested in another's corpus tree. A directory also
 # holds every symlink below it. So the helpers split each path they are given
 # (a selection) into parts, one per checkout that names a subtree of it: that
 # checkout's lock decides what is fetched there, and fetch writes into that
@@ -779,13 +780,31 @@ def _holds_git(directory: str) -> bool:
 
 
 def _places_above(spelled: Path, physical: Path) -> list[tuple[Path, str]]:
-    """The protected places ``spelled`` stands at below a symlink, and the one it
-    reaches (``_standing_places``, ``_protected_at``). None without a symlink."""
-    if str(physical) == os.path.normpath(spelled):
-        return []
-    places, _stands_as_file = _standing_places(spelled, physical, None)
-    reached = _protected_at(physical.parts, None)
-    return [*places, reached] if reached is not None else places
+    """The protected places reached through links and enclosing a nested corpus.
+
+    A nested checkout owns its corpus paths, but every enclosing checkout's
+    protected-path lock still witnesses them, even without a symlink.
+    """
+    places: list[tuple[Path, str]] = []
+    if str(physical) != os.path.normpath(spelled):
+        places, _stands_as_file = _standing_places(spelled, physical, None)
+        reached = _protected_at(physical.parts, None)
+        if reached is not None:
+            places.append(reached)
+    for probe in [physical, *(root / name for root, name in places)]:
+        parts = probe.parts
+        starts = [
+            index
+            for index in range(1, len(parts))
+            if fold_path(parts[index]) == _CORPUS_ROOT and _guarded("/".join(parts[index:]))
+        ]
+        # The innermost possible corpus place is the owner's, already in the
+        # selection. Ordinary paths have just that place and need no git call.
+        for index in starts[:-1]:
+            root = _checkout_at(Path(*parts[:index]), None)
+            if root is not None:
+                places.append((root, "/".join(parts[index:])))
+    return list(dict.fromkeys(places))
 
 
 def _links_below(top: Path, name: str) -> list[str]:
@@ -1314,8 +1333,8 @@ def fetch_locked_file(path: str | Path) -> bool:
     Returns False (and does nothing) for paths no lock names, outside any
     checkout, or with fetching disabled. Raises ``CorpusNotMaterializedError``
     when a locked file cannot be fetched, when a symlink stands where it
-    belongs, or when another lock that applies (that of a checkout the path
-    passes through by a symlink) names it and no fetch will place it: silently
+    belongs, or when another applicable lock (through a symlink or enclosing a
+    nested checkout) names it and no fetch will place it: silently
     reading nothing, or bytes no lock checked, would be worse.
     """
     candidate = Path(path)
@@ -1418,8 +1437,8 @@ def _read_witnesses(
         remember = str(selection)
         if remember in _WITNESSED_SOURCE_DIRS:
             return None
-    if exact and str(physical) == os.path.normpath(anchor):
-        return None  # through no symlink: no lock but its checkout's applies
+    if exact and str(physical) == os.path.normpath(anchor) and not _places_above(anchor, physical):
+        return None  # no symlink or enclosing protected place: only its own lock applies
     plan = _plan([selection], repo=resolver.repo, exact=exact)
     unfetchable = _unfetchable(plan)
     if unfetchable:

@@ -230,7 +230,11 @@ separate command (`axiom_corpus.corpus.resolver`):
   it sends its files to the checkout it leads to and every lock that applies
   there counts. A `repo` never names the corpus paths (`data/...`) of a
   checkout nested in its corpus tree, in any spelling of it: the nested
-  checkout does, as invariant 10 says. The nested checkout's other files
+  checkout does, as invariant 10 says. Every applicable enclosing protected-path
+  lock remains a witness, even without a symlink. If an enclosing lock names an
+  absent file that the nested checkout's lock lacks, exact and broad selections
+  both refuse it and name the remedy; the outer checkout's bytes are never
+  fetched into the nested checkout. The nested checkout's other files
   (its `src/`, a licence) stay the outer checkout's, whose sources they are.
   Two conventions stay as they were. `fetch_locked_file`
   (behind the `io` readers) takes a relative path from the working
@@ -269,11 +273,12 @@ still applies (invariant 11): a file only it names is never fetched there,
 so while it is absent the helpers refuse it, naming both checkouts and the
 link, rather than read it as empty. A path above the link, such as the
 worktree's `data/corpus`, also reads the other checkout's lock for the part
-below the link, so every path over the same files gives the same answer. On
-2026-10-14 both live sharing worktrees' locks named 633 files (33 scopes)
-that the shared checkout's lock did not. Any other path through such a link names the last protected path it
-stands at on its way, following links inside a link's target as the
-operating system does, and that path's lock applies. That covers a symlinked
+below the link, so every path over the same files gives the same answer.
+Worktrees that share another checkout's corpus directories can hold lock
+entries that the shared checkout's lock lacks. Any other path through such a
+link names the last protected path it stands at on its way, following links
+inside a link's target as the operating system does, and that path's lock
+applies. That covers a symlinked
 file there, which always names its own path whatever it points to, and a
 directory link there that leads to another corpus path, outside every
 checkout, to nothing (a removed checkout it once shared), or to an

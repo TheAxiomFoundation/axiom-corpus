@@ -1531,8 +1531,8 @@ def _unfetchable(rel: str, holder: str, owner: str) -> str:
 def test_a_file_only_the_worktrees_lock_names_is_refused_through_a_sharing_link(
     tmp_path: Path, monkeypatch, how: str, with_repo: bool, shared_has_locks: bool
 ) -> None:
-    """The limit #881 left open, first direction (live: both sharing worktrees' locks
-    name 633 files their shared checkout's lock does not). Only the shared
+    """The limit #881 left open, first direction: sharing worktrees' locks can
+    name files their shared checkout's lock does not. Only the shared
     checkout's lock was read, so a file only the worktree's lock names was never
     fetched and read as an empty scope; with ``repo`` given, every helper passed
     over the path. Every helper now refuses it, from any selection, and writes
@@ -2237,6 +2237,91 @@ def test_a_nested_checkout_is_used_even_when_the_outer_repo_is_given(tmp_path: P
             require_materialized([nested / PROV], **kwargs)
 
 
+_NESTED_SOURCE_DIR = "data/corpus/sources/nz/statute/v1"
+_NESTED_PROV = "data/corpus/provisions/nz/statute/v1.jsonl"
+
+
+def _nested_witness_checkout(tmp_path: Path, monkeypatch, unrelated_lock: bool) -> tuple[Path, Path, str]:
+    outer = _init_repo(tmp_path / "outer")
+    nested = _init_repo(outer / f"{_NESTED_SOURCE_DIR}/vendored")
+    outer_rel = f"{_NESTED_SOURCE_DIR}/vendored/{_NESTED_PROV}"
+    _lock_files(outer, {outer_rel: SHARED_FILES[PROV]})
+    if unrelated_lock:
+        _lock_files(nested, {US_PROV: SHARED_FILES[US_PROV]})
+        _write(nested, US_PROV, SHARED_FILES[US_PROV])
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(outer)
+    return outer, nested, outer_rel
+
+
+@pytest.mark.parametrize("unrelated_lock", [False, True], ids=["no-nested-lock", "unrelated-nested-lock"])
+@pytest.mark.parametrize("repo_hint", [None, "outer", "nested"], ids=["no-repo", "outer-repo", "nested-repo"])
+@pytest.mark.parametrize("selection", ["exact", "broad"])
+@pytest.mark.parametrize("action", ["require", "require-fetch", "ensure"])
+def test_an_enclosing_lock_refuses_an_absent_nested_checkout_file(
+    tmp_path: Path, monkeypatch, unrelated_lock: bool, repo_hint: str | None, selection: str, action: str
+) -> None:
+    """The outer source lock remains a witness when the nested checkout owns fetches."""
+    outer, nested, outer_rel = _nested_witness_checkout(tmp_path, monkeypatch, unrelated_lock)
+    path = nested / _NESTED_PROV if selection == "exact" else outer / _NESTED_SOURCE_DIR
+    kwargs = {} if repo_hint is None else {"repo": outer if repo_hint == "outer" else nested}
+    assert CorpusResolver(nested, sources=[]).relative(nested / _NESTED_PROV) == _NESTED_PROV
+    assert CorpusResolver(outer, sources=[]).relative(nested / _NESTED_PROV) == outer_rel
+    for no_fetch in ("", "1"):
+        monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", no_fetch)
+        with pytest.raises(CorpusNotMaterializedError, match="absent and no fetch will place them") as refused:
+            if action == "ensure":
+                ensure_corpus_paths([path], **kwargs)
+            else:
+                require_materialized([path], fetch=action == "require-fetch", **kwargs)
+        message = str(refused.value)
+        assert f"{outer_rel}, which the lock of {outer} names" in message
+        assert f"{nested} names that path" in message
+        assert f"does not list {_NESTED_PROV}" in message
+        assert f"Lock that scope in {nested} and fetch it there" in message
+        assert f"axiom-corpus-ingest corpus fetch --path {outer_rel}` in {outer}" in message
+        # The remote has the outer lock's bytes: refusal must precede fetching them
+        # into the nested checkout, whose lock does not name this file.
+        assert not (nested / _NESTED_PROV).exists()
+
+
+@pytest.mark.parametrize("unrelated_lock", [False, True], ids=["no-nested-lock", "unrelated-nested-lock"])
+@pytest.mark.parametrize("no_fetch", ["", "1"], ids=["fetch-on", "fetch-off"])
+@pytest.mark.parametrize(
+    "reader", [fetch_locked_file, load_provisions, resolve_corpus_path],
+    ids=["fetch-locked-file", "load-provisions", "resolve-corpus-path"],
+)
+def test_an_enclosing_lock_refuses_an_empty_read_of_an_absent_nested_checkout_file(
+    tmp_path: Path, monkeypatch, unrelated_lock: bool, no_fetch: str, reader
+) -> None:
+    outer, nested, outer_rel = _nested_witness_checkout(tmp_path, monkeypatch, unrelated_lock)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", no_fetch)
+    with pytest.raises(CorpusNotMaterializedError, match="absent and no fetch will place them") as refused:
+        reader(nested / _NESTED_PROV)
+    assert f"axiom-corpus-ingest corpus fetch --path {outer_rel}` in {outer}" in str(refused.value)
+    assert not (nested / _NESTED_PROV).exists()
+
+
+def test_every_enclosing_lock_counts_through_multiple_nested_checkouts(tmp_path: Path, monkeypatch) -> None:
+    """An outer witness applies even when a nearer enclosing checkout does not name the file."""
+    outer = _init_repo(tmp_path / "outer")
+    middle = _init_repo(outer / f"{_NESTED_SOURCE_DIR}/vendored")
+    inner = _init_repo(middle / f"{_NESTED_SOURCE_DIR}/vendored")
+    outer_rel = inner.relative_to(outer).as_posix() + f"/{_NESTED_PROV}"
+    _lock_files(outer, {outer_rel: SHARED_FILES[PROV]})
+    _lock_files(middle, {US_PROV: SHARED_FILES[US_PROV]})
+    _write(middle, US_PROV, SHARED_FILES[US_PROV])
+    _serve(tmp_path, monkeypatch, SHARED_FILES)
+    monkeypatch.chdir(inner)
+    for hint in (None, outer, middle, inner):
+        for selection in (outer / _NESTED_SOURCE_DIR, middle / _NESTED_SOURCE_DIR, inner / _NESTED_PROV):
+            with pytest.raises(CorpusNotMaterializedError, match="absent and no fetch will place them") as refused:
+                require_materialized([selection], repo=hint, fetch=True)
+            assert f"{outer_rel}, which the lock of {outer} names" in str(refused.value)
+            assert f"Lock that scope in {inner} and fetch it there" in str(refused.value)
+            assert not (inner / _NESTED_PROV).exists()
+
+
 def test_a_nested_checkout_is_used_for_source_reads_and_any_spelling_of_the_outer_repo(
     tmp_path: Path, monkeypatch
 ) -> None:
@@ -2556,6 +2641,68 @@ def test_every_lock_that_applies_through_a_sharing_link_counts(tmp_path_factory,
             if _placed_file(Path(directory) / name)  # a dangling link is listed as a name too
         }
         assert written == {rel for rel in placed if home(rel) == root / rel}, root
+
+
+@PROPERTY_SETTINGS
+@given(
+    layout=st.sampled_from(["ordinary", "sharing", "nested"]),
+    outer_locks=st.booleans(),
+    owner_locks=st.booleans(),
+    present=st.booleans(),
+    fetch=st.booleans(),
+    repo_hint=st.sampled_from([None, "outer", "owner"]),
+)
+@example(layout="nested", outer_locks=True, owner_locks=False, present=False, fetch=True, repo_hint="outer")
+def test_broad_and_exact_selections_agree_for_every_checkout_layout(
+    tmp_path_factory, monkeypatch, layout: str, outer_locks: bool, owner_locks: bool,
+    present: bool, fetch: bool, repo_hint: str | None,
+) -> None:
+    """Every generated layout applies the same locks to an exact file and its enclosing selection."""
+    base = tmp_path_factory.mktemp("selection-agreement")
+    outer = _bare_checkout(base / "outer")
+    if layout == "nested":
+        owner = _bare_checkout(outer / f"{_NESTED_SOURCE_DIR}/vendored")
+        outer_rel = f"{_NESTED_SOURCE_DIR}/vendored/{_NESTED_PROV}"
+        broad = outer / _NESTED_SOURCE_DIR
+    elif layout == "sharing":
+        owner = _bare_checkout(base / "owner")
+        (owner / "data/corpus/provisions").mkdir(parents=True)
+        (outer / "data/corpus").mkdir(parents=True)
+        (outer / "data/corpus/provisions").symlink_to(owner / "data/corpus/provisions", target_is_directory=True)
+        outer_rel = _NESTED_PROV
+        broad = outer / "data/corpus/provisions"
+    else:
+        owner, outer_rel, broad = outer, _NESTED_PROV, outer / "data/corpus/provisions"
+    outer_bytes, owner_bytes, present_bytes = b"outer lock\n", b"owner lock\n", b"already present\n"
+    if outer_locks:
+        _lock_files(outer, {outer_rel: outer_bytes})
+    if owner_locks and layout != "ordinary":
+        _lock_files(owner, {_NESTED_PROV: owner_bytes})
+    _serve(base, monkeypatch, {"outer": outer_bytes, "owner": owner_bytes})
+    monkeypatch.chdir(outer)
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH", raising=False)
+    kwargs = {} if repo_hint is None else {"repo": outer if repo_hint == "outer" else owner}
+    path = outer / outer_rel
+    owned = outer_locks if layout == "ordinary" else owner_locks
+    any_lock = outer_locks or owned
+    expected = "refused" if not present and any_lock and (not fetch or not owned) else "passed"
+    outcomes = []
+    for selection in (broad, path):
+        path.unlink(missing_ok=True)
+        if present:
+            _write(owner, _NESTED_PROV, present_bytes)
+        try:
+            require_materialized([selection], fetch=fetch, **kwargs)
+        except CorpusNotMaterializedError:
+            outcomes.append("refused")
+        else:
+            outcomes.append("passed")
+        placed = present or (fetch and owned)
+        assert path.is_file() == placed
+        if placed:
+            assert path.read_bytes() == (present_bytes if present else outer_bytes if layout == "ordinary" else owner_bytes)
+    assert outcomes[0] == outcomes[1], (layout, outcomes)
+    assert outcomes == [expected, expected]
 
 
 _TAIL_SEGMENT = st.sampled_from(["a", "B", "x.jsonl", "s 2.xml", "2026-07-10"])
