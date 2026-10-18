@@ -11,6 +11,10 @@ published release. It must have an explicit immutable name and exact
 reserved and rejected. Names are at most 128 characters and contain only
 lowercase alphanumeric segments separated by single hyphens.
 
+Merging a selector does not authorize publication. After review and green CI,
+an operator must explicitly dispatch `publish.yml` with that selector's
+immutable name or path. The workflow does not run on pushes to `main`.
+
 Publication accepts only the canonical, non-symlink selector path
 `manifests/releases/<name>.json` from a clean Git checkout. The selector and
 every selected artifact must already be tracked and committed. The commit and
@@ -48,6 +52,45 @@ counts unchanged.
 The release object's `content_sha256` addresses its signed content. R2 stores
 it at `releases/<name>/<content_sha256>.json`. Reusing a name for different
 content is an error.
+
+## Publication environment setup
+
+The `publish` job runs only for a `workflow_dispatch` on `main` and uses the
+protected `release-publish` environment. The environment's deployment branch
+rule is the strict boundary. The job's `if` is a first filter only: GitHub
+compares strings case-insensitively, so it would also match `refs/heads/MAIN`.
+Configure it in this order:
+
+1. `release-publish` exists in the repository's GitHub Actions environment
+   settings, with a deployment branch rule allowing only `main` and
+   administrator bypass disabled. Required reviewers are optional.
+2. The maintainer adds these three groups of environment secrets, retaining
+   their existing names:
+
+   - Release signing: `AXIOM_CORPUS_RELEASE_SIGNING_KEY`.
+   - R2 access: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`,
+     `R2_ENDPOINT`, and `R2_BUCKET`.
+   - Supabase management: `SUPABASE_ACCESS_TOKEN`.
+
+   Environment secrets take precedence over repository secrets. The workflow
+   continues mapping the signing secret to `AXIOM_CORPUS_RELEASE_PRIVATE_KEY`.
+   The maintainer handles the values; agents do not read or move them.
+3. Only after the publication-gate PR merges, the hub deletes the
+   repository-level copies of those secrets. Before deleting shared copies,
+   verify that `release-mirror` retains its R2 secrets and that
+   `release-preview` and `release-activation` retain their Supabase token.
+   CI must also retain access to `R2_ACCOUNT_ID`, `R2_ENDPOINT`, and `R2_BUCKET`
+   for read-only corpus fetches; it uses separate `R2_CORPUS_READ_*` credentials.
+   CI jobs use no environment, so environment-only copies cannot supply that
+   metadata: keep it as repository or organization secrets (or variables), and
+   delete only the repository copies of the publication credentials.
+
+`publish.yml` is the only workflow that reads the release signing key.
+`activate-release.yml` and `register-release-object.yml` use the existing
+preview/activation environments and verify signatures with public keys.
+`mirror-release.yml` writes R2 objects through `release-mirror` and verifies
+with a public key. CI fetches and verifies corpus objects with read-only R2
+credentials. These workflows retain their existing gates.
 
 ## Publication order
 

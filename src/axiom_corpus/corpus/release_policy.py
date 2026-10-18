@@ -5,14 +5,15 @@ artifacts (docs/release-gate-policy.md):
 
 ``manifests/withdrawn-scopes.yaml``
     Scopes no new release may select, each with its reason, the decision that
-    withdrew it (``withdrawn_on``), the date the gate began enforcing it
+    withdrew it (``withdrawn_on``), the day the entry was written
     (``listed_on``), its run note, and what a cut puts in its place. Tracked
-    selectors are immutable, so every selector added before ``listed_on`` that
-    selects the scope keeps it: it is listed under ``grandfathered_selectors``
-    and pinned by its selector digest, so the allowance cannot follow a selector
-    that is edited later. Some of these were cut after the decision but before
-    the gate existed. A selector added later may keep the scope only as a named
-    ``exception`` that gives a reason.
+    selectors are immutable, so every selector that reached ``main`` before the
+    entry did and selects the scope keeps it: it is listed under
+    ``grandfathered_selectors`` and pinned by its selector digest, so the
+    allowance cannot follow a selector that is edited later. Some of these were
+    cut after the decision but before the gate existed. A selector that reaches
+    ``main`` later may keep the scope only as a named ``exception`` that gives a
+    reason.
 ``manifests/release-content-baseline.json``
     The content findings (``axiom_corpus.corpus.content_quality``) of every
     locked scope when the content gate began, findings or none, each pinned to

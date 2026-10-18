@@ -17,6 +17,7 @@ from pathlib import Path
 import pytest
 
 import scripts.recover_ingest_batch as batch
+from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OWN = ("us-xx", "statute", "2026-07-13-recovery")
@@ -262,6 +263,63 @@ def _batch_run(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Path:
         monkeypatch.setattr(batch, name, value)
     monkeypatch.setattr(batch, "REPROCESS", {"doc-b"})
     return report
+
+
+@pytest.mark.parametrize(
+    ("body", "kind", "resolved"),
+    [(None, "document", False), (MENU, "section", False), (LAW, "section", True)],
+)
+def test_a_successful_parse_reports_targets_without_text(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    body: str | None,
+    kind: str,
+    resolved: bool,
+) -> None:
+    """A parsed row's path alone cannot suppress the missing-text diagnostic."""
+    report = _batch_run(monkeypatch, tmp_path)
+    _write(batch.BASE, OWN, [])
+    (batch.FETCHED / "doc-b.xml.provenance.json").write_text("{}")
+    monkeypatch.setenv("AXIOM_RECOVERY_ONLY_DOCUMENT_ID", "doc-b")
+    monkeypatch.setenv("AXIOM_RECOVERY_SKIP_MANIFESTS", "1")
+    monkeypatch.setattr(
+        batch, "_load_file", lambda path: (PAGE.encode(), {"url": "https://example.gov/doc-b"})
+    )
+
+    def parse(
+        entry: dict[str, object],
+        path: Path,
+        data: bytes,
+        provenance: dict[str, object],
+        source_key: str,
+    ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+        target = "us-xx/statute/200"
+        return (
+            [SourceInventoryItem(citation_path=target, source_path=source_key)],
+            [
+                ProvisionRecord(
+                    jurisdiction=OWN[0],
+                    document_class=OWN[1],
+                    version=OWN[2],
+                    citation_path=target,
+                    body=body,
+                    kind=kind,
+                    source_path=source_key,
+                )
+            ],
+        )
+
+    monkeypatch.setattr(batch, "_parse", parse)
+    assert batch.main() == 0
+    result = json.loads(report.read_text())["doc-b"]
+    assert result["parsed"] is True
+    assert result["citations_resolved"] == ("1/1" if resolved else "0/1")
+    assert result["unresolved_citations"] == ([] if resolved else ["us-xx/statute/200"])
+    assert result["issues"] == (
+        []
+        if resolved
+        else ["not all planned citation paths resolve to text in this document's parsed rows"]
+    )
 
 
 def test_single_document_reruns_keep_every_earlier_parse(

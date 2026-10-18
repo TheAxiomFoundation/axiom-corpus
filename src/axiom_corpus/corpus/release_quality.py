@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping
+import sys
+from collections.abc import Callable, Mapping, Sequence
+from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -154,6 +156,22 @@ class _IssueCollector:
             )
         )
 
+    def replay(self, issues: Sequence[ReleaseValidationIssue]) -> None:
+        """Add issues another collector recorded, as ``add`` would have."""
+        for issue in issues:
+            target = self.issues
+            if issue.severity == "error":
+                self.error_count += 1
+            elif issue.severity == "warning":
+                self.warning_count += 1
+            elif issue.severity == "notice":
+                self.notice_count += 1
+                target = self.notices
+            else:
+                raise ValueError(f"invalid validation severity: {issue.severity}")
+            if len(target) < self.max_issues:
+                target.append(issue)
+
 
 def validate_release(
     root: str | Path,
@@ -177,18 +195,163 @@ def validate_release(
     store = CorpusArtifactStore(root)
     collector = _IssueCollector(max_issues=max_issues)
     gate_policy = policy if policy is not None else ReleaseGatePolicy.for_corpus(root)
-    artifact_rows = {}
+    return _release_report(
+        store,
+        release,
+        artifact_report,
+        collector,
+        policy=gate_policy,
+        strict_warnings=strict_warnings,
+        ignore_r2_missing=ignore_r2_missing,
+        deep_check=lambda scope: _validate_scope(
+            store,
+            scope,
+            collector,
+            require_expression_dates=release.requires_complete_expression_dates,
+            policy=gate_policy,
+        ),
+    )
+
+
+def validate_releases(
+    root: str | Path,
+    releases: Sequence[ReleaseManifest],
+    *,
+    artifact_reports: Sequence[ArtifactReport | None] | None = None,
+    max_issues: int = 200,
+    strict_warnings: bool = False,
+    ignore_r2_missing: bool = False,
+    workers: int = 1,
+    policy: ReleaseGatePolicy | None = None,
+) -> list[ReleaseValidationReport]:
+    """``validate_release`` for many selectors, deep-checking each scope once.
+
+    A union release repeats almost every scope of the cut before it (the 144
+    named selectors of 2026-10-13 hold 18,783 scope entries but only 2,116
+    distinct scopes), so validating each selector on its own read and checked
+    every scope about nine times. A scope's deep checks read only its own
+    artifacts and the selector's expression-date profile (parent integrity is
+    scope-local; the one release-wide provision check is citation uniqueness),
+    so they run once per scope and profile, optionally in ``workers``
+    processes. Each selector's report then replays them, in scope order and
+    under its own issue limit, after the selector's artifact-report, profile
+    and uniqueness checks: every report equals what ``validate_release``
+    returns for that selector.
+    """
+    if max_issues <= 0:
+        raise ValueError("max_issues must be positive")
+    if workers <= 0:
+        raise ValueError("workers must be positive")
+    reports = list(artifact_reports) if artifact_reports is not None else [None] * len(releases)
+    if len(reports) != len(releases):
+        raise ValueError("artifact_reports must hold one entry per release")
+    store = CorpusArtifactStore(root)
+    gate_policy = policy if policy is not None else ReleaseGatePolicy.for_corpus(root)
+    needed: dict[tuple[tuple[str, str, str], bool], ReleaseScope] = {}
+    for release, report in zip(releases, reports, strict=True):
+        rows = _artifact_rows(report)
+        for scope in release.scopes:
+            if not _scope_has_remote_artifacts(scope, rows):
+                needed.setdefault((scope.key, release.requires_complete_expression_dates), scope)
+    keys = list(needed)
+    args = (
+        [str(store.root)] * len(keys),
+        [needed[key] for key in keys],
+        [key[1] for key in keys],
+        [gate_policy] * len(keys),
+    )
+    if workers == 1 or len(keys) < 2:
+        results = list(map(_check_scope, *args, strict=True))
+    else:
+        with ProcessPoolExecutor(max_workers=workers) as pool:
+            results = list(pool.map(_check_scope, *args, chunksize=4))
+    checks = dict(zip(keys, results, strict=True))
+    citation_paths = {key[0]: result[1] for key, result in checks.items()}
+    out = []
+    for release, report in zip(releases, reports, strict=True):
+        collector = _IssueCollector(max_issues=max_issues)
+        profile = release.requires_complete_expression_dates
+        out.append(
+            _release_report(
+                store,
+                release,
+                report,
+                collector,
+                policy=gate_policy,
+                strict_warnings=strict_warnings,
+                ignore_r2_missing=ignore_r2_missing,
+                deep_check=_replay_checks(collector, checks, profile),
+                citation_paths=lambda scope: citation_paths[scope.key],
+            )
+        )
+    return out
+
+
+def _replay_checks(
+    collector: _IssueCollector,
+    checks: Mapping[
+        tuple[tuple[str, str, str], bool],
+        tuple[tuple[ReleaseValidationIssue, ...], list[str] | None],
+    ],
+    profile: bool,
+) -> Callable[[ReleaseScope], None]:
+    """A selector's ``deep_check``: replay a scope's recorded issues into its report."""
+
+    def deep_check(scope: ReleaseScope) -> None:
+        collector.replay(checks[(scope.key, profile)][0])
+
+    return deep_check
+
+
+def _check_scope(
+    root: str,
+    scope: ReleaseScope,
+    require_expression_dates: bool,
+    policy: ReleaseGatePolicy,
+) -> tuple[tuple[ReleaseValidationIssue, ...], list[str] | None]:
+    """One scope's deep-check issues, in the order they arise, and its
+    citation paths (a process-pool task of ``validate_releases``)."""
+    store = CorpusArtifactStore(root)
+    recorder = _IssueCollector(max_issues=sys.maxsize)
+    _validate_scope(
+        store, scope, recorder, require_expression_dates=require_expression_dates, policy=policy
+    )
+    return tuple(recorder.issues + recorder.notices), _scope_citation_paths(store, scope)
+
+
+def _artifact_rows(
+    artifact_report: ArtifactReport | None,
+) -> dict[tuple[str, str, str], Any]:
+    if artifact_report is None:
+        return {}
+    return {
+        (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
+    }
+
+
+def _release_report(
+    store: CorpusArtifactStore,
+    release: ReleaseManifest,
+    artifact_report: ArtifactReport | None,
+    collector: _IssueCollector,
+    *,
+    policy: ReleaseGatePolicy,
+    strict_warnings: bool,
+    ignore_r2_missing: bool,
+    deep_check: Callable[[ReleaseScope], None],
+    citation_paths: Callable[[ReleaseScope], list[str] | None] | None = None,
+) -> ReleaseValidationReport:
+    """A selector's report: its artifact-report, profile and uniqueness checks,
+    then each locally held scope's deep checks (``deep_check``), in order."""
     if artifact_report is not None:
         _validate_artifact_report(
             artifact_report,
             collector,
             ignore_r2_missing=ignore_r2_missing,
         )
-        artifact_rows = {
-            (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
-        }
-    _validate_withdrawn_scopes(release, gate_policy, collector)
-    baseline = gate_policy.content_baseline
+    artifact_rows = _artifact_rows(artifact_report)
+    _validate_withdrawn_scopes(release, policy, collector)
+    baseline = policy.content_baseline
     if baseline.entries and baseline.check_version != CONTENT_CHECK_VERSION:
         collector.add(
             "warning",
@@ -211,12 +374,13 @@ def validate_release(
             "legacy_release_citation_uniqueness_grandfathered",
             "known historical release predates release-wide citation uniqueness enforcement",
         )
-    release_citation_paths = _release_citation_paths(
+    _check_release_citation_uniqueness(
         store,
         release,
         artifact_rows,
         collector,
         require_unique=require_unique_citations,
+        citation_paths=citation_paths,
     )
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
@@ -230,21 +394,14 @@ def validate_release(
                 scope=scope,
             )
             continue
-        _validate_scope(
-            store,
-            scope,
-            collector,
-            release_citation_paths,
-            require_expression_dates=release.requires_complete_expression_dates,
-            policy=gate_policy,
-        )
+        deep_check(scope)
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
         error_count=collector.error_count,
         warning_count=collector.warning_count,
         issues=tuple(collector.issues),
-        max_issues=max_issues,
+        max_issues=collector.max_issues,
         strict_warnings=strict_warnings,
         notices=tuple(collector.notices),
         notice_count=collector.notice_count,
@@ -273,10 +430,7 @@ def _validate_withdrawn_scopes(
             how = (
                 f"selected under a recorded exception: {allowance.reason}"
                 if allowance.is_exception
-                else (
-                    "this tracked selector selected it before the gate listed it on "
-                    f"{withdrawn.listed_on}, and keeps it"
-                )
+                else "this tracked selector selected it before the gate listed it, and keeps it"
             )
             collector.add(
                 "notice",
@@ -307,21 +461,33 @@ def _citation_uniqueness_grandfathered(release: ReleaseManifest) -> bool:
     return expected is not None and selector_sha256(release) == expected
 
 
-def _release_citation_paths(
+def _scope_citation_paths(store: CorpusArtifactStore, scope: ReleaseScope) -> list[str] | None:
+    """A scope's citation paths, or None when its provisions do not parse
+    (``_validate_scope`` reports that, once)."""
+    path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
+    try:
+        return [record.citation_path for record in iter_provisions(path)]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+        return None
+
+
+def _check_release_citation_uniqueness(
     store: CorpusArtifactStore,
     release: ReleaseManifest,
     artifact_rows: Mapping[tuple[str, str, str], Any],
     collector: _IssueCollector,
     *,
     require_unique: bool,
-) -> set[str]:
-    """Collect parents available anywhere in the local release cut.
+    citation_paths: Callable[[ReleaseScope], list[str] | None] | None = None,
+) -> None:
+    """Report a citation path that two scopes of a profiled release both carry.
 
-    A release may deliberately split a legal hierarchy across source snapshots.
-    Parent integrity is therefore a release-wide invariant, not a scope-local one.
-    Parsing errors remain owned by ``_validate_scope`` so they are reported once.
+    This is the only release-wide provision check: parent integrity is
+    scope-local (Supabase derives versioned parent UUIDs, so a parent found only
+    in another scope cannot satisfy a scope's foreign key; see
+    ``missing_parent_citation``). Parsing errors remain owned by
+    ``_validate_scope`` so they are reported once.
     """
-    paths: set[str] = set()
     owners: dict[str, ReleaseScope] = {}
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
@@ -337,11 +503,14 @@ def _release_citation_paths(
                 )
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
-        try:
-            citation_paths = [record.citation_path for record in iter_provisions(path)]
-        except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+        scope_paths = (
+            citation_paths(scope)
+            if citation_paths is not None
+            else _scope_citation_paths(store, scope)
+        )
+        if scope_paths is None:
             continue
-        for citation_path in citation_paths:
+        for citation_path in scope_paths:
             owner = owners.get(citation_path)
             if require_unique and owner is not None and owner != scope:
                 collector.add(
@@ -356,8 +525,6 @@ def _release_citation_paths(
                 )
             else:
                 owners[citation_path] = scope
-            paths.add(citation_path)
-    return paths
 
 
 class _ProvisionFacts(NamedTuple):
@@ -488,7 +655,6 @@ def _validate_scope(
     store: CorpusArtifactStore,
     scope: ReleaseScope,
     collector: _IssueCollector,
-    release_citation_paths: set[str],
     *,
     require_expression_dates: bool,
     policy: ReleaseGatePolicy | None = None,
@@ -513,7 +679,6 @@ def _validate_scope(
         inventory_source_paths,
         scope,
         collector,
-        release_citation_paths,
         require_expression_dates=require_expression_dates,
     )
     recomputed = compare_provision_coverage(
@@ -903,7 +1068,6 @@ def _validate_provisions(
     inventory_source_paths: set[str],
     scope: ReleaseScope,
     collector: _IssueCollector,
-    release_citation_paths: set[str] | None = None,
     *,
     require_expression_dates: bool = False,
 ) -> None:
@@ -973,7 +1137,6 @@ def _validate_provisions(
             by_path,
             scope,
             collector,
-            release_citation_paths or set(by_path),
             require_expression_dates=require_expression_dates,
         )
 
@@ -1012,7 +1175,6 @@ def _validate_provision_record(
     by_path: dict[str, _ProvisionFacts],
     scope: ReleaseScope,
     collector: _IssueCollector,
-    release_citation_paths: set[str],
     *,
     require_expression_dates: bool,
 ) -> None:

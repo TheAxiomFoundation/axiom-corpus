@@ -19,8 +19,9 @@ The gate now also reads two tracked files from the repository
 
 Local validation (`axiom-corpus-ingest validate-release`), the
 `Validate named release selectors` CI job and `scripts/publish_corpus.py`
-(dry run, preflight and post-readback) all call `validate_release`, so all three
-enforce both files. `publish_corpus.py` reads the policy from the checkout it
+(dry run, preflight and post-readback) call `validate_release` or its batched
+counterpart `validate_releases`, so all three enforce both files.
+`publish_corpus.py` reads the policy from the checkout it
 publishes; `validate-release` reads it from the checkout holding `--base`, and
 says on stderr when `--base` is in no checkout, in which case neither file
 applies. In a checkout that keeps corpus locks, both files are required: a
@@ -47,16 +48,16 @@ its notices.
 Each entry of `manifests/withdrawn-scopes.yaml` names a scope and records:
 
 - `withdrawn_on` and `decision`: when and by which release decision;
-- `listed_on`: when the gate began enforcing the withdrawal (2026-10-13 for
-  every current entry);
+- `listed_on`: the day the entry was written (2026-10-13 for every current
+  entry);
 - `reason` and `run_note`: why, and the audit that shows it;
 - `replace_with`: scopes a new cut selects in its place, or `carried_by`: scopes
   that already carry its text, so it is simply dropped;
-- `grandfathered_selectors`: every tracked selector added before `listed_on`
-  that selects the scope. Tracked selectors are immutable, so they keep it.
-  Some were cut after the decision but before the gate existed;
-- `exceptions`: a selector added on or after `listed_on` that keeps the scope on
-  purpose, with a `reason`.
+- `grandfathered_selectors`: every tracked selector that reached `main` before
+  the entry did and selects the scope. Tracked selectors are immutable, so they
+  keep it. Some were cut after the decision but before the gate existed;
+- `exceptions`: a selector that reaches `main` after the entry and keeps the
+  scope on purpose, with a `reason`.
 
 Every allowance is pinned to the selector's digest
 (`axiom_corpus.release.manifest.selector_sha256`) under `selector_digests`, so
@@ -66,12 +67,23 @@ with `withdrawn_scope_selected`, naming the reason, the decision, the scopes to
 select instead and the run note.
 
 `test_grandfathered_selectors_predate_the_listing_and_later_ones_are_exceptions`
-checks the date each grandfathered selector landed on the first-parent line
-(for a merged pull request, the merge commit's date) against `listed_on`, and
+reads `origin/main`'s first-parent history: a grandfathered selector must have
+been on `main`, at its pinned digest, before its entry reached `main` (a merged
+pull request's merge commit). Order decides, not dates, so a selector merged
+earlier on the day an entry is written is still grandfathered. Every version of
+the registry on `main` is parsed as YAML, so an entry counts however it is
+spelled. While an entry is pending (on a branch, or in pull-request CI), any
+selector already on `main` at its pinned digest may be grandfathered, but not
+one the same branch adds or changes; a selector deleted and recreated with other
+contents has a digest that was never on `main` in time. The test needs main's
+whole history: it fails in a shallow clone, or without `origin/main`, and a
+registry or selector version it cannot read fails it rather than counting as
+deleted. Where main's ref has another name, set `AXIOM_CORPUS_MAIN_REF` to it;
+it must name main, never a branch. A stale `origin/main` can read a recently
+merged entry as pending, so run `git fetch origin main` first (CI always
+fetches it).
 `test_no_entry_is_listed_in_the_future` keeps `listed_on` no later than the
-current commit. On a local branch that has merged `main` in, selectors that
-arrived through that merge are dated by the merge, so the test can fail there
-spuriously; it is exact on `main` and in pull-request CI.
+current commit.
 
 The 19 entries:
 
@@ -87,20 +99,27 @@ The 19 entries:
 The audits keep `us/guidance/2026-07-13-recovery` (the only selected carrier of
 five cited ED and IRS paths) and the CO consolidated scope, and
 `us-mt/regulation/2026-07-13-recovery` stays until its successor (#761) merges;
-none of the three is listed. Three cuts made after the 2026-10-03 decision (the
-2026-10-07, 2026-10-11 and 2026-10-12 unions) still select the landing scopes and
-the SC statute scope. They are grandfathered like every earlier selector; the
-next cut in each line must take the swap. Their notice says the selector chose
-the scope before the gate listed it.
+none of the three is listed. Six cuts made after the 2026-10-03 decision still
+select withdrawn scopes. The 2026-10-07, 2026-10-11 and 2026-10-12 unions keep
+the landing scopes and the SC statute scope. `us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected`
+(#848), an additive successor of the obbb-alien-snap pin, drops the CA scopes
+but keeps 16: the CO regulation, landing, ME, MI, MN, NY, UT and SC statute
+recovery scopes, NY article 22 core and SC Act 110. The Arizona DES ECE dated
+selector (#799), merged on 2026-10-14, keeps the same 16; the w7 bundle-gaps union
+(#856) keeps the seven landing scopes and both SC statute scopes, nine in all.
+All six reached `main` before the gate, so they are grandfathered like every
+earlier selector; the next cut in each line must take the swap. Their notice says the selector chose the
+scope before the gate listed it.
 
 ### Withdrawing a scope
 
 1. Record the audit and decision in a run note.
 2. Add the entry, sorted by jurisdiction, document class and version, with
    `listed_on` set to the day you write it. List under `grandfathered_selectors`
-   every tracked selector that selects the scope and landed before that day,
-   and add each one's digest to `selector_digests`. A selector that lands on or
-   after `listed_on` goes under `exceptions`, with a reason. The failure message
+   every tracked selector on `main` that selects the scope, and add each one's
+   digest to `selector_digests`; if one lands before your entry merges, add it
+   too. A selector that reaches `main` after the entry goes under `exceptions`,
+   with a reason. The failure message
    of `test_no_tracked_selector_selects_a_withdrawn_scope_without_an_allowance`
    prints the digest of every selector it finds.
 3. Run `uv run --extra dev python -m pytest -q tests/test_release_policy_repository.py`.
@@ -146,7 +165,13 @@ their retained sources. On them:
   alias copies; and roots that do have text below them.
 
 `test_the_content_check_agrees_with_the_audit` pins this table for the sibling
-scopes. Each missed row belongs to a withdrawn scope, so the registry stops it.
+scopes. In a withdrawn scope the registry stops every missed row. Two retained
+scopes keep missed rows that pass the gate: `us/guidance/2026-07-13-recovery`
+(seven empty roots, three prose landing pages and three alias copies) and
+`us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated` (four
+empty roots and one prose landing page). Seven of the eleven empty roots have
+text-bearing rows below them; the other four have only a landing page below them.
+The four landing pages and three alias copies are tolerated.
 
 Two rules were measured and dropped:
 
@@ -161,8 +186,10 @@ Two rules were measured and dropped:
   audit identified) from statute pages with large menus (up to 0.753). A landing
   page is caught when its blocks are navigation, or its root has none with text.
 
-Over every locked scope (2,390 with provisions and an inventory), the check
-finds 1,489 findings in 182 scopes:
+**Original scan snapshot (recorded 2026-10-13 at `be6f6da81`).** The following
+table and interpretation describe that scan, not the current corpus. Across
+the 2,390 locked scopes then holding provisions and an inventory, the check
+reported 1,489 findings in 182 scopes:
 
 | Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -173,12 +200,13 @@ finds 1,489 findings in 182 scopes:
 | regulation | 11 | 41 | 1 | 54 | |
 | form | 2 | 3 | | | |
 
-Most are site menus, language pickers, "Authenticate / PDF" and "View In PDF"
+Most were site menus, language pickers, "Authenticate / PDF" and "View In PDF"
 blocks, and related-link lists in scopes ingested from agency web pages,
-including the 2026-10-06 w6 scopes. 56 of the 69 policy prefixes are Canadian
-government pages (Canada.ca, CRA, Revenu Québec) that open with skip links. 177 of the 182 scopes are selected
-by a tracked selector, and the newest union (`us-rulespec-2026-10-12-w5-benefits-union`)
-selects 152 of them.
+including the 2026-10-06 w6 scopes. 56 of the 69 policy prefixes were Canadian
+government pages (Canada.ca, CRA, Revenu Québec) that opened with skip links.
+At that snapshot, 177 of the 182 scopes were selected by a tracked selector,
+and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
+152 of them.
 
 ### The baseline
 
@@ -257,11 +285,12 @@ uv run axiom-corpus-ingest content-check --all --update-baseline --workers 4
 
 A named scope that matches no locked scope with provisions and inventory is an
 error (exit 2), so a mistyped scope cannot pass as a clean check of nothing.
-A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions; it
-takes about 90 seconds on four workers locally and about three minutes on the
-CI runner, where it runs on three workers beside the single-process test run
-and so adds no time to the `test` job. Raising `CONTENT_CHECK_VERSION` requires rebuilding
-the baseline in the same change: validation ignores a baseline made by other
+A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions. Earlier
+measurements took about 90 seconds on four workers locally and about three
+minutes on the CI runner. CI runs the check on three workers after its
+four-worker pytest run, including when tests fail; the two checks run
+sequentially within the runner's four cores. Raising `CONTENT_CHECK_VERSION`
+requires rebuilding the baseline in the same change: validation ignores a baseline made by other
 rules, and CI's check fails on it.
 
 ## Recovery reconciliation

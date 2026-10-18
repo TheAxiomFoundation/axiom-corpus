@@ -15,11 +15,12 @@ import json
 import os
 import re
 import subprocess
-import tempfile
 import unicodedata
 from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
+
+from axiom_corpus.corpus.atomic_write import write_bytes_atomically
 
 ScopeKey = tuple[str, str, str]
 
@@ -151,6 +152,15 @@ def fold_path(path: str) -> str:
     spellings a filesystem keeps apart, which only makes the checks that use
     it stricter.
     """
+    if path.isascii():
+        # NFKC leaves ASCII alone, and ASCII has no format characters, so every
+        # step below reduces to lowercasing (tests/test_corpus_storage.py checks it).
+        return path.lower()
+    return _fold_unicode(path)
+
+
+def _fold_unicode(path: str) -> str:
+    """``fold_path`` for any text, ASCII included."""
     text = unicodedata.normalize("NFKC", path)
     # HFS+ ignores format characters (ZWNJ, bidi marks, BOM) in names; drop them.
     text = "".join(ch for ch in text if unicodedata.category(ch) != "Cf")
@@ -329,16 +339,7 @@ def parse_lock(payload: bytes, *, source: str = "<lock>") -> CorpusLock:
 def write_lock(repo: Path, lock: CorpusLock) -> Path:
     """Write one lock file atomically; return its absolute path."""
     target = repo / lock.relative_path
-    target.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp_name = tempfile.mkstemp(dir=target.parent, prefix=f".{target.name}.")
-    tmp = Path(tmp_name)
-    try:
-        with os.fdopen(fd, "wb") as handle:
-            handle.write(serialize_lock(lock))
-        os.chmod(tmp, 0o644)
-        os.replace(tmp, target)
-    finally:
-        tmp.unlink(missing_ok=True)
+    write_bytes_atomically(target, serialize_lock(lock))
     return target
 
 
@@ -438,8 +439,16 @@ class LockSet:
         return [chosen[path] for path in sorted(chosen)]
 
     def missing_under(self, repo: Path, path: str) -> list[LockEntry]:
-        """Locked entries at or under ``path`` that the worktree lacks."""
-        return [entry for entry in self.entries_under(path) if not (repo / entry.path).is_file()]
+        """Locked entries at or under ``path`` that the worktree lacks.
+
+        A symlink at an entry's path does not count as having it: fetch never
+        places one, and it reads bytes no lock checked.
+        """
+        return [
+            entry
+            for entry in self.entries_under(path)
+            if not (repo / entry.path).is_file() or (repo / entry.path).is_symlink()
+        ]
 
 
 def load_locks(repo: Path) -> LockSet:
