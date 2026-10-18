@@ -62,6 +62,7 @@ from axiom_corpus.corpus.corpus_locks import (
     LockSet,
     diff_lock_sets,
     fold_collisions,
+    fold_path,
     hash_tree_blobs,
     is_protected_corpus_path,
     list_tree_blobs,
@@ -1569,14 +1570,17 @@ def test_hard_links_in_another_case_are_two_names_not_one(tmp_path: Path, monkey
 
 def test_cli_inputs_take_another_case_of_corpus_paths_and_the_base(tmp_path: Path, monkeypatch) -> None:
     """The CLI names inputs, and corpus-wide reports require whole trees, under
-    every spelling the filesystem stores in the corpus's place."""
+    every spelling that reaches the corpus's place: another case where the
+    filesystem folds it, a directory link under that name where it does not."""
     import argparse
     import importlib.util
 
     from axiom_corpus.corpus.cli import _corpus_wide_prefixes, build_parser
 
-    folds = _folds_case_on_disk(tmp_path)
     repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    if not _folds_case_on_disk(tmp_path):
+        (repo / "data/corpus").mkdir(parents=True)
+        (repo / "DATA").symlink_to("data", target_is_directory=True)
     monkeypatch.chdir(repo)
     variant = PROV.replace("data/", "DATA/", 1)
     args = argparse.Namespace(
@@ -1588,29 +1592,25 @@ def test_cli_inputs_take_another_case_of_corpus_paths_and_the_base(tmp_path: Pat
     )
     paths, scopes, _selectors = corpus_inputs_from_args(args, repo=repo)
     assert paths == [variant]  # named as given; the locks decide what it names
-    assert scopes == ([SCOPE] if folds else [])
+    assert scopes == [SCOPE]
     resolver_module.materialize_cli_inputs(args, repo=repo, include_scope=True)
-    assert all(_placed_regular(repo, rel) for rel in READABLE_FILES) is folds
-    assert (repo / PROV).exists() is folds
+    assert all(_placed_regular(repo, rel) for rel in READABLE_FILES)
 
     report = build_parser().parse_args(["artifact-report", "--base", "DATA/corpus", "--version", "v1"])
     prefixes = {p.relative_to(repo).as_posix() for p in _corpus_wide_prefixes(report, "artifact-report")}
     kinds = ("sources", "inventory", "provisions", "coverage")
-    assert prefixes == ({f"data/corpus/{kind}" for kind in kinds} if folds else set())
+    assert prefixes == {f"data/corpus/{kind}" for kind in kinds}
 
     locks = load_locks(repo)
     select = {"scopes": [], "select_all": False, "paths": ["DATA/corpus/provisions"]}
-    if folds:  # `corpus fetch --path DATA/corpus/provisions`
-        assert corpus_cli._selected_entries(repo, locks, **select) == [locks.by_path[PROV]]
-    else:
-        with pytest.raises(SystemExit):
-            corpus_cli._selected_entries(repo, locks, **select)
+    # `corpus fetch --path DATA/corpus/provisions`
+    assert corpus_cli._selected_entries(repo, locks, **select) == [locks.by_path[PROV]]
     script = Path(__file__).resolve().parents[1] / "scripts" / "audit_us_release_publishability.py"
     spec = importlib.util.spec_from_file_location("audit_us_release_publishability", script)
     assert spec is not None and spec.loader is not None
     audit = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(audit)
-    assert audit._locked_under(repo, repo / variant) is folds
+    assert audit._locked_under(repo, repo / variant)
 
 
 def test_corpus_status_counts_a_file_stored_in_another_case_as_the_locked_one(
@@ -1758,6 +1758,25 @@ def test_a_spelling_names_a_locked_file_exactly_where_the_filesystem_puts_both(
     # reach this.
     assert decided_by == "probe" and together and not folds_case and named == spelled
     assert unicodedata.normalize("NFD", spelled) == unicodedata.normalize("NFD", canonical)
+
+
+def test_a_unicode_alias_of_a_locked_directory_is_found_by_its_caseless_form(tmp_path: Path) -> None:
+    """r1 finding 2: fold_path keys the alternate spelling of GREEK_DIR apart from
+    it, so no candidate reached the filesystem check; the canonical caseless
+    form finds it. Where names keep their case, a directory link under the
+    alternate name reaches the same place."""
+    repo = tmp_path / "repo"
+    (repo / "docs").mkdir(parents=True)
+    locks = LockSet({SCOPE: _scope_lock({GREEK: READABLE_FILES[PROV]})})
+    directory = GREEK.rsplit("/", 1)[0]
+    alternate = directory.replace(GREEK_DIR, GREEK_ALTERNATES[0])
+    (repo / directory).mkdir(parents=True)
+    if not _folds_case_on_disk(tmp_path):
+        (repo / alternate).symlink_to(GREEK_DIR, target_is_directory=True)
+    assert fold_path(alternate) != fold_path(directory)
+    assert locks.locked_spelling(repo, f"{alternate}/official.jsonl") == GREEK
+    assert locks.locked_spelling(repo, alternate) == directory
+    assert locks.missing_under(repo, alternate) == [locks.by_path[GREEK]]
 
 
 def test_a_directory_alias_keeps_the_whole_sources_directory_required(tmp_path: Path, monkeypatch) -> None:
@@ -3486,11 +3505,26 @@ _SHARING_CASE_ACTIONS = [
 
 
 def _respelled_in_sharing(tmp_path: Path, monkeypatch, links: int, lock_holder: str, variant: str):
-    if not _folds_case_on_disk(tmp_path):
-        pytest.skip("needs a case-insensitive filesystem")
+    folds = _folds_case_on_disk(tmp_path)
+    if not folds and variant == "the file":
+        pytest.skip("a file in another case is another file on a case-sensitive filesystem")
     checkouts, holder, owner, rel = _sharing_into_nested_witness(tmp_path, monkeypatch, links, lock_holder)
     old, new = _SHARING_CASE_VARIANTS[variant]
-    return checkouts, holder, owner, rel, rel.replace(old, new, 1)
+    spelled = rel.replace(old, new, 1)
+    if not folds:
+        _alias_directory(checkouts["worktree"], rel, spelled)
+    return checkouts, holder, owner, rel, spelled
+
+
+def _alias_directory(root: Path, rel: str, spelled: str) -> None:
+    """Where names keep their case, link the first respelled directory of
+    ``spelled`` to the one it respells: the spelling then reaches the same
+    place, as it does where the filesystem folds case."""
+    mine, theirs = spelled.split("/"), rel.split("/")
+    index = next(i for i, (a, b) in enumerate(zip(mine, theirs, strict=True)) if a != b)
+    parent = Path(os.path.realpath(root.joinpath(*theirs[:index])))
+    (parent / theirs[index]).mkdir(parents=True, exist_ok=True)
+    (parent / mine[index]).symlink_to(theirs[index], target_is_directory=True)
 
 
 def _owner_spelling(spelled: str) -> str:
