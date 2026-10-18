@@ -133,15 +133,22 @@ def test_retained_files_are_the_signed_bytes() -> None:
             assert record["sha256_matches_provenance"] is expected, (key, record["document_id"])
 
 
-def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes() -> None:
+def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Replay the July builders on every page whose rows they still reproduce.
 
     This replays history through ``scripts/recover_ingest_batch.py`` and the shared
     extractor. If it fails after a change to that code, the committed scopes have
-    not changed; re-check the run note's "How the rows were made" section.
+    not changed; re-check the run note's "How the rows were made" section. The
+    July extractor kept navigation blocks, which it now drops
+    (``docs/ingest-runs/2026-10-13-html-navigation-blocks.md``), so the replay
+    turns that filter off.
     """
+    from axiom_corpus.corpus import documents
     from scripts.recover_ingest_batch import _generic, _targeted_state_html
 
+    monkeypatch.setattr(documents, "is_navigation_block", lambda *args, **kwargs: False)
     replayed = 0
     for key in (
         "us-ny/statute/2026-07-13-recovery",

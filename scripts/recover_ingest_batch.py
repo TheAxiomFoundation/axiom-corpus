@@ -784,7 +784,9 @@ def _generic(
         source_format,
         source_url=source.source_url,
         title=source.title,
-        extraction=None,
+        # The extractor drops navigation blocks by the release content check's
+        # reading of the retained bytes; re-encoded bytes can read differently.
+        extraction=None if extract_data == data else {"html_keep_navigation_blocks": True},
     )
     if not blocks or not any((block.body or "").strip() for block in blocks):
         raise ValueError("parser produced no non-empty text blocks")

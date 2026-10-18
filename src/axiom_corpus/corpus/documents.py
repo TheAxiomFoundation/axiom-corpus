@@ -34,6 +34,11 @@ from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.citation_segment import citation_segment
+from axiom_corpus.corpus.content_quality import (
+    PageNavigation,
+    is_navigation_block,
+    page_navigation,
+)
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -4019,7 +4024,33 @@ def _extract_html_blocks(
     source_url: str,
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
+    drop_navigation: bool = True,
 ) -> tuple[_DocumentBlock, ...]:
+    """Segment an HTML page into blocks.
+
+    A positional block (``block-N``, from the heading walk, a WebWorks page or the
+    whole-root fallback) that is the page's navigation is dropped
+    (``content_quality.is_navigation_block``, read against the navigation strings
+    of ``content`` itself, the bytes the scope retains). Its ordinal is used up, so
+    the blocks after it keep the paths an unfiltered extraction gives them. Nothing
+    is dropped from a page whose manifest declares its sections
+    (``segmentation: labeled_sections`` or ``anchor_range``), even when it is read
+    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block.
+    A caller whose ``content`` is not the retained source turns the filter off,
+    so the extractor drops only rows the release content check, which reads the
+    retained source, would flag: ``_extract_json_html_blocks`` passes
+    ``drop_navigation=False`` for an HTML field inside a JSON file, and
+    ``scripts/recover_ingest_batch.py`` passes ``html_keep_navigation_blocks`` when
+    it re-encodes the bytes before extracting.
+    """
+    config = extraction or {}
+    navigation = (
+        page_navigation(content)
+        if drop_navigation
+        and not config.get("html_keep_navigation_blocks")
+        and config.get("segmentation") not in {"labeled_sections", "anchor_range"}
+        else None
+    )
     soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
     kept_default_drops = set(_html_keep_default_drop_selectors(extraction))
     drop_selectors = [
@@ -4042,8 +4073,14 @@ def _extract_html_blocks(
             source_url=source_url,
             extraction=extraction or {},
         )
-    webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
-    if webworks_blocks:
+    webworks_blocks = _extract_webworks_html_blocks(
+        root,
+        title=title,
+        source_url=source_url,
+        navigation=navigation,
+        label_title=fallback_title,
+    )
+    if webworks_blocks is not None:
         return webworks_blocks
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_html_section_blocks(
@@ -4052,23 +4089,15 @@ def _extract_html_blocks(
             source_url=source_url,
             extraction=extraction or {},
         )
-    blocks: list[_DocumentBlock] = []
+    blocks = _PositionalBlocks(
+        source_url=source_url, navigation=navigation, label_title=fallback_title
+    )
     heading = title
     parts: list[str] = []
 
     def flush() -> None:
         nonlocal parts
-        body = _normalize_text("\n\n".join(parts))
-        if body:
-            blocks.append(
-                _DocumentBlock(
-                    kind="block",
-                    ordinal=len(blocks) + 1,
-                    heading=heading,
-                    body=body,
-                    metadata={"source_url": source_url},
-                )
-            )
+        blocks.add(heading, _normalize_text("\n\n".join(parts)))
         parts = []
 
     # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
@@ -4094,20 +4123,58 @@ def _extract_html_blocks(
             continue
         parts.append(text)
     flush()
-    if blocks:
-        return tuple(blocks)
-    fallback = _normalize_text(root.get_text(" ", strip=True))
-    if not fallback:
-        return ()
-    return (
-        _DocumentBlock(
-            kind="block",
-            ordinal=1,
-            heading=title,
-            body=fallback,
-            metadata={"source_url": source_url},
-        ),
-    )
+    if blocks.position:
+        return blocks.kept()
+    blocks.add(title, _normalize_text(root.get_text(" ", strip=True)))
+    return blocks.kept()
+
+
+class _PositionalBlocks:
+    """Number a page's ``block-N`` blocks and drop the ones that are its navigation.
+
+    Every non-empty body takes the next ordinal, kept or not, so dropping a
+    navigation block never renumbers the blocks after it: their citation paths
+    are those an unfiltered extraction of the same page gives. A block's
+    ``citation_label`` will be ``"<title> <ordinal>"`` (``_provision_records``),
+    so the navigation test sees the label the release content check sees.
+    """
+
+    def __init__(
+        self,
+        *,
+        source_url: str,
+        navigation: PageNavigation | None,
+        label_title: str | None,
+    ) -> None:
+        self.source_url = source_url
+        self.navigation = navigation
+        self.label_title = label_title
+        self.position = 0
+        self._kept: list[_DocumentBlock] = []
+
+    def add(self, heading: str | None, body: str) -> None:
+        if not body:
+            return
+        self.position += 1
+        if self.navigation and is_navigation_block(
+            body,
+            self.navigation,
+            heading=heading,
+            label=f"{self.label_title} {self.position}",
+        ):
+            return
+        self._kept.append(
+            _DocumentBlock(
+                kind="block",
+                ordinal=self.position,
+                heading=heading,
+                body=body,
+                metadata={"source_url": self.source_url},
+            )
+        )
+
+    def kept(self) -> tuple[_DocumentBlock, ...]:
+        return tuple(self._kept)
 
 
 def _extract_json_html_blocks(
@@ -4157,6 +4224,7 @@ def _extract_json_html_blocks(
         source_url=source_url,
         fallback_title=fallback_title,
         extraction=extraction,
+        drop_navigation=False,
     )
 
 
@@ -4789,31 +4857,29 @@ def _extract_webworks_html_blocks(
     *,
     title: str | None,
     source_url: str,
-) -> tuple[_DocumentBlock, ...]:
+    navigation: PageNavigation | None = None,
+    label_title: str | None = None,
+) -> tuple[_DocumentBlock, ...] | None:
+    """Blocks of a WebWorks page, or ``None`` when ``root`` is not one or has no text.
+
+    An empty tuple means every block of the page was navigation.
+    """
     page = root.select_one("#page_content")
     if not isinstance(page, Tag):
-        return ()
+        return None
     for selector in (".WebWorks_MiniTOC", ".ww_skin_page_globalization"):
         for node in page.select(selector):
             node.decompose()
 
-    blocks: list[_DocumentBlock] = []
+    blocks = _PositionalBlocks(
+        source_url=source_url, navigation=navigation, label_title=label_title
+    )
     heading = title
     parts: list[str] = []
 
     def flush() -> None:
         nonlocal parts
-        body = _normalize_text("\n\n".join(parts))
-        if body:
-            blocks.append(
-                _DocumentBlock(
-                    kind="block",
-                    ordinal=len(blocks) + 1,
-                    heading=heading,
-                    body=body,
-                    metadata={"source_url": source_url},
-                )
-            )
+        blocks.add(heading, _normalize_text("\n\n".join(parts)))
         parts = []
 
     for node in page.find_all(_is_webworks_content_node):
@@ -4826,7 +4892,7 @@ def _extract_webworks_html_blocks(
             continue
         parts.append(text)
     flush()
-    return tuple(blocks)
+    return blocks.kept() if blocks.position else None
 
 
 def _is_webworks_content_node(node: Tag) -> bool:
