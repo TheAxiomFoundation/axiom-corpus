@@ -4352,8 +4352,10 @@ def _pdf_unsigned_signature(document: Any, widget: int) -> bool:
     appearance it then makes itself ("SIGN" in NimbusSans-Regular), whatever is stored:
     its field type, inherited through /Parent, is /Sig, and its value, inherited likewise,
     is not a dictionary whose /Type is absent or /Sig. A chain that can't be followed counts
-    as unsigned, and so does a /Sig field type written as an object of its own, which
-    MuPDF does not read as a signature. Checked under PyMuPDF 1.26.7 and 1.28.2."""
+    as unsigned. A /Sig field type written as an object of its own, which MuPDF does not
+    read as a signature, is resolved and judged by its value like a direct one: signed, the
+    page is decoded, as MuPDF draws the stored appearance; unsigned, it counts as unsigned,
+    which only refuses more. Checked under PyMuPDF 1.26.7 and 1.28.2."""
     field_type = _pdf_field_entry(document, widget, "FT")
     if field_type is None:
         return True

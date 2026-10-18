@@ -429,6 +429,18 @@ def test_evidence_must_show_the_shift_across_glyphs_and_classes():
     assert _pdf_font_code_shifts([_encode("Scott 2021", font, 31)], "Scott 2021") == {font: 31}
 
 
+def test_a_shift_whose_greatest_code_decodes_to_the_last_printable_character():
+    # The shift search runs up to the shift that takes a line's greatest code to "~"
+    # (_PDF_SHIFT_LAST); a range one short would drop these lines as evidence. The
+    # hypothesis alphabet stops at "z", so this pins the boundary directly.
+    font = "MinionPro-Regular"
+    lines = [_encode("Wendy 2019~", font, 31), _encode("Hill 2020~", font, 31)]
+    ocr_text = "Signed: Wendy 2019~\nHill 2020~"
+    assert max(ord(c) for line in lines for c, _ in line) + 31 == 0x7E
+    assert _pdf_font_code_shifts(lines, ocr_text) == {font: 31}
+    assert _reference_shifts(lines, ocr_text) == {font: 31}
+
+
 def test_evidence_does_not_depend_on_line_order():
     # The review's case: two lines decode to the same text, one wholly in the font (8
     # decoded letters or digits), one with a mapped prefix (4). Each text counts once, at
