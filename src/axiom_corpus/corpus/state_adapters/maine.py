@@ -15,10 +15,15 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from bs4.element import Tag
+from bs4.element import NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
+from axiom_corpus.corpus.html_text import (
+    has_statute_text,
+    is_nonrendered_element,
+    statute_text_children,
+)
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -339,6 +344,7 @@ def extract_maine_revised_statutes(
         raise ValueError(f"no Maine title sources selected for filter: {only_title!r}")
 
     section_targets: list[MaineSectionTarget] = []
+    chapter_sources: dict[str, _RecordedSource] = {}
     for title in titles:
         title_page = fetcher.fetch(title.relative_path)
         title_source = _record_source_page(
@@ -396,7 +402,7 @@ def extract_maine_revised_statutes(
                 container_count += 1
             try:
                 chapter_page = fetcher.fetch(chapter.relative_path)
-                _record_source_page(
+                chapter_sources[chapter.citation_path] = _record_source_page(
                     store,
                     jurisdiction=jurisdiction,
                     run_id=run_id,
@@ -424,6 +430,27 @@ def extract_maine_revised_statutes(
     for target, page, parsed, error in fetched_sections:
         if error is not None:
             errors.append(f"{target.relative_path}: {error}")
+            if target.citation_path not in seen:
+                seen.add(target.citation_path)
+                # The official chapter TOC still proves this section is expected,
+                # even when its page cannot be fetched or parsed.
+                listing_source = chapter_sources[target.parent_citation_path]
+                items.append(
+                    SourceInventoryItem(
+                        citation_path=target.citation_path,
+                        source_url=listing_source.source_url,
+                        source_path=listing_source.source_path,
+                        source_format=MAINE_REVISED_STATUTES_SOURCE_FORMAT,
+                        sha256=listing_source.sha256,
+                        metadata={
+                            "kind": "section",
+                            "heading": target.heading,
+                            "source_id": target.source_id,
+                            "parent_citation_path": target.parent_citation_path,
+                            "target_source_url": urljoin(fetcher.base_url, target.relative_path),
+                        },
+                    )
+                )
             continue
         if page is None or parsed is None:
             continue
@@ -595,14 +622,94 @@ def parse_maine_chapter_page(
     return tuple(targets)
 
 
+def _maine_section_body_lines(section_node: Tag, *, include_status: bool = False) -> list[str]:
+    """Read operative text using explicit DOM and history/annotation exclusions.
+
+    All amendment histories, including embedded .bhistory, section histories,
+    notes, and headings are metadata wherever nested. Only ordinary text nodes
+    outside browser default non-content and hidden/aria-hidden subtrees count.
+    CSS styles and classes do not hide text. Preserve DOM order and table rows.
+    include_status lets the status-only path read a displayed status blip;
+    status annotations are otherwise excluded from the operative body.
+    """
+    lines: list[str] = []
+    fragments: list[str] = []
+    excluded_classes = {"heading_section", "note", "qhistory", "bhistory"}
+    if not include_status:
+        excluded_classes.add("headnote_blip")
+
+    def rendered(node: Tag) -> bool:
+        return not (
+            is_nonrendered_element(node)
+            or node.has_attr("hidden")
+            or str(node.get("aria-hidden", "")).strip().lower() == "true"
+            or excluded_classes.intersection(node.get("class") or ())
+        )
+
+    if any(not rendered(parent) for parent in section_node.parents if isinstance(parent, Tag)):
+        return []
+
+    def flush() -> None:
+        text = _clean_text(" ".join(fragments))
+        if has_statute_text(text):
+            lines.append(text)
+        fragments.clear()
+
+    def visit(
+        node: Tag | NavigableString,
+        *,
+        in_text: bool = False,
+        in_row: bool = False,
+    ) -> None:
+        if type(node) is NavigableString:
+            text = str(node).strip()
+            if text:
+                fragments.append(text)
+            return
+        if not isinstance(node, Tag) or not rendered(node):
+            return
+        classes = set(node.get("class", []))
+        is_text = in_text or "mrs-text" in classes
+        is_row = node.name == "tr"
+        # An outer operative paragraph already grouped nested content in the
+        # legacy parser. Keep its bytes while giving tables explicit row lines.
+        boundary = not in_row and (
+            is_row or (not in_text and bool({"mrs-text", "MRSSubSection"} & classes))
+        )
+        if boundary:
+            flush()
+        for child in statute_text_children(node):
+            if isinstance(child, (Tag, NavigableString)):
+                visit(
+                    child,
+                    in_text=is_text,
+                    in_row=in_row or is_row,
+                )
+        if boundary:
+            flush()
+
+    visit(section_node)
+    flush()
+    return lines
+
+
 def parse_maine_section(
     html: str | bytes,
     *,
     target: MaineSectionTarget | None = None,
 ) -> MaineParsedSection:
     """Parse one official Maine section page."""
-    soup = BeautifulSoup(html, "lxml")
-    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content") or soup
+    # Preserve non-rendered wrappers wherever they occur; HTML repair can
+    # otherwise discard a misplaced head tag and expose its text as law.
+    # Official snapshots are UTF-8. Short pages without a charset declaration
+    # can otherwise misdecode invisible characters as visible legacy-codepage
+    # text, making a format-only body appear nonempty.
+    soup = BeautifulSoup(
+        html, "html.parser", from_encoding="utf-8" if isinstance(html, bytes) else None
+    )
+    section_node = soup.select_one(".MRSSection") or soup.select_one(".section-content")
+    if section_node is None:
+        raise ValueError("Maine section page lacks a recognized statute-content container")
     heading_node = section_node.select_one(".heading_section") if isinstance(section_node, Tag) else None
     display_section = target.display_section if target is not None else ""
     heading = target.heading if target is not None else ""
@@ -619,31 +726,30 @@ def parse_maine_section(
     status_notes: list[str] = []
     if isinstance(section_node, Tag):
         for blip in section_node.select(".headnote_blip"):
-            text = _clean_text(blip.get_text(" ", strip=True))
+            text = _clean_text(" ".join(_maine_section_body_lines(blip, include_status=True)))
             if text:
                 status_notes.append(text)
+        # Keep the existing amendment-history selection and ordering independent
+        # of the opening paragraphs and additional operative text now retained.
+        has_subsection_text = False
         for subsection in section_node.select(".MRSSubSection"):
             text_node = subsection.select_one(".mrs-text") or subsection
-            text = _clean_text(text_node.get_text(" ", strip=True))
-            if text:
-                body_lines.append(text)
+            has_subsection_text |= bool(_clean_text(text_node.get_text(" ", strip=True)))
             for item in subsection.select(".bhistory"):
                 text = _clean_text(item.get_text(" ", strip=True))
                 if text:
                     history.append(text)
-        if not body_lines:
+        if not has_subsection_text:
             # Sections without subsections (for example 36 M.R.S. §115) print their
             # text in ``.mrs-text`` paragraphs directly under the section node.
             for text_node in section_node.select(".mrs-text"):
                 if text_node.find_parent(class_="MRSSubSection") is not None:
                     continue
-                text = _clean_text(text_node.get_text(" ", strip=True))
-                if text:
-                    body_lines.append(text)
                 for item in text_node.select(".bhistory"):
                     text = _clean_text(item.get_text(" ", strip=True))
                     if text:
                         history.append(text)
+        body_lines = _maine_section_body_lines(section_node)
         for note in section_node.select(".note"):
             text = _clean_text(note.get_text(" ", strip=True))
             if text:
@@ -653,8 +759,19 @@ def parse_maine_section(
             text = re.sub(r"^SECTION HISTORY\s*", "", text, flags=re.I).strip()
             if text:
                 history.append(text)
-    if not body_lines and status_notes:
-        body_lines.extend(status_notes)
+    if not body_lines:
+        # These official annotations say why a section has no text. Other
+        # observed blips (effective dates, REALLOCATED FROM, and contingent
+        # termination) describe text that must still be present on the page.
+        no_current_text = (
+            r"\((?:REPEALED|WHOLE SECTION TEXT REPEALED \d{1,2}/\d{1,2}/\d{2,4}"
+            r"|REALLOCATED TO TITLE \d+(?:-[A-Z]+)?, SECTION \d+(?:-[A-Z0-9]+)*)\)"
+        )
+        body_lines.extend(
+            text for text in status_notes if re.fullmatch(no_current_text, text, flags=re.I)
+        )
+    if not body_lines:
+        raise ValueError("Maine section page lacks operative text or a status body")
     status = _section_status(status_notes, target.status if target is not None else None)
     references_to = _references_from_links(section_node, target=target) if isinstance(
         section_node,
