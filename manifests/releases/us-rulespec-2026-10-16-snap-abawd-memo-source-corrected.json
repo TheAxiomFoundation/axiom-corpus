@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected. Adds the already-ingested FNS OBBB ABAWD exceptions implementation memorandum scope needed to preserve source-grounded 7 CFR 273.24 proofs in protected RuleSpec replacement. All predecessor scopes are unchanged. This selector does not activate or publish the release.",
+  "description": "Successor to the published us-rulespec-2026-10-09-az-des-ece-dated release. Preserves its source-corrected FY2026 SNAP scopes, FY2027 COLA guidance, and dated Arizona DES ECE authority, and adds the already-ingested FNS OBBB ABAWD exceptions implementation memorandum scope needed to preserve source-grounded 7 CFR 273.24 proofs in protected RuleSpec replacement. All predecessor scopes are unchanged. This selector does not activate or publish the release.",
   "name": "us-rulespec-2026-10-16-snap-abawd-memo-source-corrected",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -82,6 +82,11 @@
       "document_class": "guidance",
       "jurisdiction": "us",
       "version": "2026-09-13-snap-fns-guidance"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-09-24-snap-fy2027-cola"
     },
     {
       "document_class": "policy",
@@ -337,6 +342,11 @@
       "document_class": "manual",
       "jurisdiction": "us-az",
       "version": "2026-07-17-faa5-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-10-09-az-des-snap-ece-dated-authority"
     },
     {
       "document_class": "regulation",
