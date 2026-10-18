@@ -298,6 +298,42 @@ a checkout or outside the protected paths, is read as before without
 consulting the locks. A dangling one is fetched like the file it names, from
 the checkout its target lies in.
 
+Within a checkout, a lock names each file by one spelling, but a
+case-insensitive filesystem stores other spellings of a path in the same
+place: on APFS `DATA/corpus/provisions/x.jsonl` is
+`data/corpus/provisions/x.jsonl`. `LockSet.locked_spelling` maps such a
+spelling onto the locked path or locked directory, whether or not the file
+has been fetched, and the resolver looks locks up through it. Each part and
+view of a selection takes its name from it, so the sharing and nested
+layouts of invariant 11 keep every lock that applies under any spelling, and
+so do `CorpusResolver.resolve` and `entries_for_paths`,
+`LockSet.missing_under`, `corpus fetch --path` and `corpus status` (a file
+stored under another spelling of a locked path is not counted as unlocked).
+The CLI takes a path under the protected prefixes in any spelling as an
+input, and a `--base` that is another spelling of `data/corpus` as the
+corpus base. The partial-test audit hook still matches spellings exactly.
+A candidate is a
+locked name with the same `fold_path` or the same Unicode canonical caseless
+form, and `stored_together` decides, one component at a time from the
+checkout. Where an entry exists under the locked name, the other spelling
+must reach that same entry: the same directory, through any link to it, or
+the same file itself (a symlinked file is never its target, and two hard
+links are two names). Where neither exists yet, they share a place when the
+deepest existing directory finds one of its own names in the other ASCII case
+and the names are canonical caseless matches, which is how case-insensitive
+APFS compares names in every case the tests try. Nothing is written to find
+out, and a name that changes while it is being asked about leaves the
+question to the next one. On a case-sensitive filesystem the other spelling
+is another path that no lock names, and it reads as before. Two limits apply
+only before the file exists. Case-sensitive APFS still stores canonically
+equivalent names (a decomposed `é`, the Kelvin sign for `K`) in one place;
+until the locked file is there, such a spelling is taken for another path. A
+filesystem that compares names differently from APFS (HFS+ ignores some
+format characters, per `fold_path`) may be misjudged; if a spelling is
+fetched as a locked file and still does not reach it, `resolve_corpus_path`
+refuses it rather than return a path that does not exist, and
+`fetch_locked_file` returns False.
+
 ## Ingest
 
 1. An extractor writes the scope under `data/corpus` (git ignores it).
@@ -561,7 +597,9 @@ exactly those 1,362 files.
     `data/corpus/...` path names itself as written; one with a `..`
     component resolves through the checkout like an absolute path. A symlink
     at a locked path never counts as fetched, and fetch never writes through
-    one.
+    one. Another spelling of a locked path names that locked file exactly
+    when the filesystem stores the two in one place, fetched or not, save on
+    case-sensitive APFS (under Resolver).
 11. **Every lock that applies.** The helpers split each path they are given
     (`fetch_locked_file`, `require_materialized`, `ensure_corpus_paths`,
     `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
@@ -597,7 +635,9 @@ exactly those 1,362 files.
 and are read-only (5), idempotence (6), no links (7), portable names (9,
 with a differential test against a brute-force reference) and path naming
 (10, against a reference model of the layouts and the filesystem's identity
-of the entry each spelling reaches) and every lock that applies (11, against
+of the entry each spelling reaches, and for locked spellings, decided with
+the file absent or partly in place, against the filesystem's identity once
+it is placed) and every lock that applies (11, against
 a reference model of the sharing layout: random locks in both checkouts,
 files in place, link depth and selection, bare or absolute, with or without
 `repo`; the property for 10 also checks, for its layouts, that with fetching
