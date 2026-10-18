@@ -40,6 +40,15 @@ source reference must use that same boundary and occur in the inventory. The
 signed artifact list is the complete allowed inventory for the declared
 scopes; a consumer must not discover additional files by scanning a directory.
 
+Deep validation also applies the repository's release policy
+([release-gate-policy.md](release-gate-policy.md)): a selector may not select a
+scope listed in `manifests/withdrawn-scopes.yaml` unless that entry grandfathers
+it, and a selected scope may carry only the content findings (page navigation,
+chrome-prefixed bodies, hollow document roots, version pickers) that
+`manifests/release-content-baseline.json` records for its exact bytes. Known
+conditions are reported as notices and leave the attested error and warning
+counts unchanged.
+
 The release object's `content_sha256` addresses its signed content. R2 stores
 it at `releases/<name>/<content_sha256>.json`. Reusing a name for different
 content is an error.
