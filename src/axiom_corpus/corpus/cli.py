@@ -47,7 +47,7 @@ from axiom_corpus.corpus.california_mpp import (
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
 from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
-from axiom_corpus.corpus.corpus_locks import LockFormatError
+from axiom_corpus.corpus.corpus_locks import LockFormatError, scope_for_path
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -139,9 +139,9 @@ from axiom_corpus.corpus.resolver import (
     CorpusNotMaterializedError,
     _is_corpus_base,
     cli_repo,
+    locked_entries_under,
     materialize_cli_inputs,
     require_materialized,
-    resolver_for,
 )
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
@@ -7878,6 +7878,14 @@ _CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
 }
 
 
+def _name_in(repo: Path, path: Path) -> str | None:
+    """``path`` relative to ``repo`` as spelled (through any links), if below it."""
+    try:
+        return path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+
+
 def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     classes = _CORPUS_WIDE_COMMANDS.get(command)
     base = getattr(args, "base", None)
@@ -7891,21 +7899,22 @@ def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     if command == "analytics":
         # Analytics reads one version (and its "<version>-*" parts) of the
         # jurisdictions and classes it reports on; require exactly those files.
-        resolver = resolver_for(repo)
-        if resolver is None or not resolver.active:
-            return []
-        resolver.require_valid_locks()
+        # Every lock that applies counts, such as a shared checkout's where a
+        # class directory links to it (docs/corpus-storage.md, invariant 11).
         version = str(args.version)
         document_classes = set(getattr(args, "document_class", None) or [])
         return [
-            repo / entry.path
-            for scope, lock in sorted(resolver.locks.locks.items())
+            path
+            for path, entry in locked_entries_under(
+                [repo / "data" / "corpus" / artifact_class for artifact_class in classes], repo=repo
+            )
+            # The scope of the path analytics reads, which a link may give
+            # another name in the lock that names it.
+            if (scope := scope_for_path(_name_in(repo, path) or entry.path)) is not None
             # analytics globs "<version>.json" and "<version>-*.json"
-            if (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
+            and (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
             and (not jurisdictions or scope[0] in jurisdictions)
             and (not document_classes or scope[1] in document_classes)
-            for entry in lock.files
-            if entry.path.split("/")[2] in classes
         ]
     return [
         repo / "data" / "corpus" / artifact_class / jurisdiction

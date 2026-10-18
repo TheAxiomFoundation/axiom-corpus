@@ -200,7 +200,8 @@ separate command (`axiom_corpus.corpus.resolver`):
   `scripts/validate_citation_paths.py`) refuse a partly fetched tree and name
   the fetch command. `analytics` requires only the versions its `--version`
   glob and `<version>-*` parts match, limited to its `--jurisdiction` and
-  `--document-class` filters. `scripts/audit_us_release_publishability.py
+  `--document-class` filters, in every lock that applies to its class
+  directories (`locked_entries_under`). `scripts/audit_us_release_publishability.py
   --repair-derived` fetches a scope's locked artifacts before deciding what
   to regenerate, so it never writes a stand-in for an unfetched one. The
   manifest builders' collision checks and
@@ -211,9 +212,35 @@ separate command (`axiom_corpus.corpus.resolver`):
 - `build_release_content` and `scripts/publish_corpus.py` fetch the selected
   scopes before hashing.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
-  `require_materialized` are the building blocks. Given no `repo`,
-  `ensure_corpus_paths` and `require_materialized` check each path in the
-  checkout that names it (below), whatever the working directory.
+  `require_materialized` are the building blocks. Each checks each path in
+  the checkout that names it (below), whatever the working directory, and
+  under every other lock that applies to it (invariant 11). A `repo` they
+  are given is where a bare `data/corpus/...` path lies, and is asked first;
+  a path it does not name, such as one through a link to another checkout,
+  goes to the checkout that does instead of being skipped.
+  `ensure_corpus_scopes` takes each scope's sources directory and its three
+  single files in that checkout as such paths, and so does the CLI's input
+  fetch. A checkout without locks of its own still reads the locks its links
+  lead to. The CLI works in the checkout where `--base` stands: through a
+  link, the checkout of the first protected place it stands at, otherwise
+  the checkout that names it. So a worktree whose `data/corpus` links to
+  another checkout's (or to its top level) keeps its own lock. When a
+  helper makes a scope's sources directory whole, it plans that directory,
+  spelled through the selection, as a selection of its own, so a link inside
+  it sends its files to the checkout it leads to and every lock that applies
+  there counts. A `repo` never names the corpus paths (`data/...`) of a
+  checkout nested in its corpus tree, in any spelling of it: the nested
+  checkout does, as invariant 10 says. Every applicable enclosing protected-path
+  lock remains a witness, even without a symlink. If an enclosing lock names an
+  absent file that the nested checkout's lock lacks, exact and broad selections
+  both refuse it and name the remedy; the outer checkout's bytes are never
+  fetched into the nested checkout. The nested checkout's other files
+  (its `src/`, a licence) stay the outer checkout's, whose sources they are.
+  Two conventions stay as they were. `fetch_locked_file`
+  (behind the `io` readers) takes a relative path from the working
+  directory, as the reader opens it. `resolve_corpus_path` without `repo`
+  returns a present file at a relative path, spelled through no link and
+  not a source, as given, with no lock consulted.
 
 A checkout is a git top level that holds `src/axiom_corpus` or the lock
 directory, so a sparse checkout of the data and locks alone is guarded too.
@@ -240,12 +267,18 @@ paths: the CLI still takes only paths under the four protected prefixes as
 inputs, so `--base data/corpus` names no input by itself. A path that reaches
 exactly the protected path it spells, through any links, names that path.
 So a worktree whose `data/corpus/provisions` links to another checkout's
-`data/corpus/provisions` reads that checkout's files under that checkout's
-locks and fetches into it. The worktree's own locks do not apply there: a
-file only the worktree's lock names is not fetched, and reads as empty when
-absent. Any other path through such a link names the last protected path it
-stands at on its way, following links inside a link's target as the
-operating system does, and that path's lock applies. That covers a symlinked
+`data/corpus/provisions` reads that checkout's files, that checkout's lock
+decides what is fetched there, and fetch writes into it. The worktree's lock
+still applies (invariant 11): a file only it names is never fetched there,
+so while it is absent the helpers refuse it, naming both checkouts and the
+link, rather than read it as empty. A path above the link, such as the
+worktree's `data/corpus`, also reads the other checkout's lock for the part
+below the link, so every path over the same files gives the same answer.
+Worktrees that share another checkout's corpus directories can hold lock
+entries that the shared checkout's lock lacks. Any other path through such a
+link names the last protected path it stands at on its way, following links
+inside a link's target as the operating system does, and that path's lock
+applies. That covers a symlinked
 file there, which always names its own path whatever it points to, and a
 directory link there that leads to another corpus path, outside every
 checkout, to nothing (a removed checkout it once shared), or to an
@@ -529,13 +562,47 @@ exactly those 1,362 files.
     component resolves through the checkout like an absolute path. A symlink
     at a locked path never counts as fetched, and fetch never writes through
     one.
+11. **Every lock that applies.** The helpers split each path they are given
+    (`fetch_locked_file`, `require_materialized`, `ensure_corpus_paths`,
+    `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
+    path itself, and below a directory every directory link or dangling link
+    at a protected place, the links below a linked directory's target
+    included, and the `data` directory of every checkout nested in its tree,
+    whose corpus that checkout names. A directory below two links is walked under each spelling. A
+    link back to a directory already walked on the same spelled path, with
+    the same names protected below it, is a cycle and is not followed (every
+    link below it was found the first time); a locked file whose own name
+    runs through such a link, or through a chain longer than the 40 links
+    the operating system resolves, is placed by its own path and fetched by
+    the checkout that path leads to, when that checkout's lock lists it. A selection
+    with more than 4096 linked places is refused rather than checked in
+    part. Each part's files belong to the checkout that names the paths
+    below it (invariant 10): the one that names the part itself, save for a
+    dangling link at a directory-only place (`data`, `data/corpus`, a class,
+    jurisdiction or document-class directory, a sources version directory)
+    to the same path in another checkout, whose directory that checkout has
+    not made yet. That checkout's lock decides what is fetched there, and
+    fetch writes only into it. The lock of every other protected place a part
+    stands at or reaches also applies: the checkout holding a link on the
+    way, and the place a link leads to. A file such a lock names must be in
+    place once the parts' checkouts have placed theirs. With fetching off,
+    the helpers refuse a path exactly when a lock that applies names a file
+    that is not in place. With fetching on, they refuse before fetching
+    anything when such a file is one no part's checkout's lock names.
+    Otherwise they fetch each part's absent files into its checkout, then
+    check every lock again.
 
 `tests/test_corpus_storage.py` checks as Hypothesis properties the round trip
 (1), the partition (2), byte fidelity (4), objects that hash to their names
 and are read-only (5), idempotence (6), no links (7), portable names (9,
 with a differential test against a brute-force reference) and path naming
 (10, against a reference model of the layouts and the filesystem's identity
-of the entry each spelling reaches);
+of the entry each spelling reaches) and every lock that applies (11, against
+a reference model of the sharing layout: random locks in both checkouts,
+files in place, link depth and selection, bare or absolute, with or without
+`repo`; the property for 10 also checks, for its layouts, that with fetching
+off the helpers refuse a path exactly when it is absent and the lock of a
+place it stands at or reaches names it);
 3 on real git trees. `tests/test_corpus_lock_guard.py`
 checks 8, including tampered locks. The concurrency and failure clauses of 4
 and 5 are pinned by regression tests instead: `tests/test_corpus_storage_review.py`
