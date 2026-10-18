@@ -3516,6 +3516,10 @@ def _respelled_in_sharing(tmp_path: Path, monkeypatch, links: int, lock_holder: 
     folds = _folds_case_on_disk(tmp_path)
     if not folds and variant == "the file":
         pytest.skip("a file in another case is another file on a case-sensitive filesystem")
+    if not folds and variant == "the worktree's data":
+        # A link to the worktree's own data directory resolves through that
+        # name, so the worktree's lock would apply without any spelling rule.
+        pytest.skip("a link to a real directory passes through its own name, so it emulates nothing")
     checkouts, holder, owner, rel = _sharing_into_nested_witness(tmp_path, monkeypatch, links, lock_holder)
     old, new = _SHARING_CASE_VARIANTS[variant]
     spelled = rel.replace(old, new, 1)
@@ -3525,21 +3529,29 @@ def _respelled_in_sharing(tmp_path: Path, monkeypatch, links: int, lock_holder: 
 
 
 def _alias_directory(root: Path, rel: str, spelled: str) -> None:
-    """Where names keep their case, link the first respelled directory of
-    ``spelled`` to the one it respells: the spelling then reaches the same
-    place, as it does where the filesystem folds case."""
+    """Where names keep their case, make the first respelled directory of
+    ``spelled`` reach the one it respells, as it does where the filesystem
+    folds case: a second link to the same target for a link (r3 finding 2: a
+    link to the link would resolve through its exact name), else a link to
+    the directory."""
     mine, theirs = spelled.split("/"), rel.split("/")
     index = next(i for i, (a, b) in enumerate(zip(mine, theirs, strict=True)) if a != b)
     parent = Path(os.path.realpath(root.joinpath(*theirs[:index])))
-    if not os.path.lexists(parent / theirs[index]):  # a dangling sharing link stays as it is
-        (parent / theirs[index]).mkdir(parents=True)
-    (parent / mine[index]).symlink_to(theirs[index], target_is_directory=True)
+    canonical = parent / theirs[index]
+    if canonical.is_symlink():
+        target = os.readlink(canonical)
+    else:
+        canonical.mkdir(parents=True, exist_ok=True)
+        target = theirs[index]
+    (parent / mine[index]).symlink_to(target, target_is_directory=True)
 
 
-def _owner_spelling(spelled: str) -> str:
-    """The nested checkout's name for ``spelled``: as spelled, since its own lock
-    (it has none) cannot say otherwise."""
-    return spelled.split("/vendored/", 1)[1]
+def _owner_spelling(tmp_path: Path, spelled: str) -> str:
+    """The nested checkout's name for ``spelled``. Where the filesystem folds
+    case, the name the selection reaches, as spelled: the nested checkout has no
+    lock to spell it otherwise, and nothing is there yet. Where an alias stands
+    in for the folding, the alias leads to the directory's own name."""
+    return spelled.split("/vendored/", 1)[1] if _folds_case_on_disk(tmp_path) else _NESTED_PROV
 
 
 @pytest.mark.parametrize("variant", list(_SHARING_CASE_VARIANTS))
@@ -3550,7 +3562,7 @@ def test_every_sharing_lock_refuses_an_absent_file_spelled_in_another_case(
     checkouts, holder, owner, rel, spelled = _respelled_in_sharing(tmp_path, monkeypatch, 1, "worktree", variant)
     kwargs = {} if repo_hint is None else {"repo": checkouts[repo_hint]}
     _assert_round2_witness_refusal(
-        monkeypatch, action, checkouts["worktree"] / spelled, holder, owner, rel, kwargs, _owner_spelling(spelled)
+        monkeypatch, action, checkouts["worktree"] / spelled, holder, owner, rel, kwargs, _owner_spelling(tmp_path, spelled)
     )
 
 
@@ -3658,3 +3670,129 @@ def test_an_unlistable_directory_never_merges_two_hard_linked_names(tmp_path: Pa
         assert resolver.resolve(alias) == repo / alias
     finally:
         os.chmod(repo / official, 0o755)
+
+
+# Review r3 findings ------------------------------------------------------------
+
+
+def _second_link(root: Path, rel: str, spelled: str) -> None:
+    """Where names keep their case, give the link at ``rel`` a second name, ``spelled``,
+    leading where it leads: the spelling then reaches the same place through a
+    link of its own, as it does where the filesystem folds case."""
+    (root / spelled).symlink_to(os.readlink(root / rel), target_is_directory=True)
+
+
+_LIVE_RESPELLINGS = {"the link": "data/corpus/PROVISIONS", "the worktree's data": "DATA/corpus/provisions"}
+
+
+def _live_respelled_sharing(tmp_path: Path, monkeypatch, respelled: str) -> tuple[Path, Path, str]:
+    worktree, shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks={PROV: SHARED_FILES[PROV]}, shared_locks={PROV: SHARED_FILES[PROV]}
+    )
+    spelled = _LIVE_RESPELLINGS[respelled]
+    if not _folds_case_on_disk(tmp_path):
+        if respelled == "the worktree's data":
+            pytest.skip("a link to a real directory passes through its own name, so it emulates nothing")
+        _second_link(worktree, "data/corpus/provisions", spelled)
+    return worktree, shared, spelled
+
+
+@pytest.mark.parametrize("call", ["require", "load", "cli input"])
+@pytest.mark.parametrize("respelled", list(_LIVE_RESPELLINGS))
+def test_a_live_sharing_link_spelled_in_another_case_is_fetched_into_the_shared_checkout(
+    tmp_path: Path, monkeypatch, respelled: str, call: str
+) -> None:
+    """r3 finding 1: ``_protected_name`` took ``.../PROVISIONS/...`` for the link's
+    own place, as it did not spell the shared path exactly, so the worktree
+    owned the part and fetch tried to write through its link."""
+    import argparse
+
+    worktree, shared, spelled = _live_respelled_sharing(tmp_path, monkeypatch, respelled)
+    file_spelled = PROV.replace("data/corpus/provisions", spelled, 1)
+    if call == "require":
+        require_materialized([worktree / spelled], fetch=True)
+    elif call == "load":
+        assert load_provisions(worktree / file_spelled)[0].citation_path == "nz/statute/a"
+    else:
+        resolver_module.materialize_cli_inputs(argparse.Namespace(provisions=Path(file_spelled)), repo=worktree)
+    assert _placed_file(shared / PROV)
+    assert (worktree / "data/corpus/provisions").is_symlink()  # fetch wrote into the shared checkout, not through the link
+
+
+@pytest.mark.parametrize("respelled", list(_LIVE_RESPELLINGS))
+def test_a_live_sharing_link_spelled_in_another_case_names_the_shared_checkout_with_fetching_off(
+    tmp_path: Path, monkeypatch, respelled: str
+) -> None:
+    worktree, shared, spelled = _live_respelled_sharing(tmp_path, monkeypatch, respelled)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    with pytest.raises(CorpusNotMaterializedError, match="not in this checkout") as refused:
+        require_materialized([worktree / spelled])
+    assert f"in {shared}" in str(refused.value) and "is a symlink" not in str(refused.value)
+
+
+@pytest.mark.parametrize("above", ["DATA/corpus", "DATA", "data/CORPUS"])
+def test_a_directory_above_a_sharing_link_spelled_in_another_case_fetches_into_the_shared_checkout(
+    tmp_path: Path, monkeypatch, above: str
+) -> None:
+    if not _folds_case_on_disk(tmp_path):
+        pytest.skip("needs a case-insensitive filesystem")
+    worktree, shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks={PROV: SHARED_FILES[PROV]}, shared_locks={PROV: SHARED_FILES[PROV]}
+    )
+    require_materialized([worktree / above], fetch=True)
+    assert _placed_file(shared / PROV)
+
+
+def test_the_case_probe_asks_the_filesystem_the_names_would_land_on(tmp_path: Path, monkeypatch) -> None:
+    """r3 finding 3: an empty linked directory on another filesystem had no names
+    to ask, so the probe climbed lexically to the link's own filesystem."""
+    here = tmp_path / "checkout" / "data/corpus"
+    here.mkdir(parents=True)
+    elsewhere = tmp_path / "volume" / "empty"
+    elsewhere.mkdir(parents=True)
+    (tmp_path / "volume" / "Named").mkdir()
+    (here / "provisions").symlink_to(elsewhere, target_is_directory=True)
+    volume = os.path.realpath(tmp_path / "volume")
+    # Two filesystems on one: the volume folds case, everything else keeps it.
+    monkeypatch.setattr(
+        corpus_locks_module, "_case_probe", lambda place, name: str(os.path.realpath(place)).startswith(volume)
+    )
+    assert looks_up_case_insensitively(here / "provisions" / "nz" / "statute")
+    assert not looks_up_case_insensitively(here)
+    # Where a mount point ends the filesystem with nothing on it to ask, two
+    # spellings count as one place: that only makes the checks stricter. The
+    # filesystem above it, which would say otherwise, is not asked.
+    monkeypatch.setattr(corpus_locks_module, "_case_probe", lambda place, name: False)
+    real_device = corpus_locks_module._device
+    monkeypatch.setattr(
+        corpus_locks_module, "_device",
+        lambda place: 1 if str(os.path.realpath(place)).startswith(str(os.path.realpath(elsewhere))) else real_device(place),
+    )
+    assert looks_up_case_insensitively(here / "provisions" / "nz")
+
+
+@pytest.mark.parametrize("dangling", [True, False])
+def test_a_sharing_link_under_another_name_only_is_decided_alike_dangling_or_live(
+    tmp_path: Path, monkeypatch, dangling: bool
+) -> None:
+    """r3 nit 4: a worktree whose only link is ``PROVISIONS`` was handed to the
+    shared checkout while the link dangled (``fold_path`` said so) but kept as
+    its own place once live. Both now follow the filesystem: where it folds
+    case the link is at ``provisions`` and the shared checkout fetches; where
+    it keeps case it is another name, the worktree's own, and refused."""
+    worktree, shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks={PROV: SHARED_FILES[PROV]},
+        shared_locks={PROV: SHARED_FILES[PROV]}, dangling=dangling,
+    )
+    link = worktree / "data/corpus/provisions"
+    target = os.readlink(link)
+    link.unlink()
+    (worktree / "data/corpus/PROVISIONS").symlink_to(target, target_is_directory=True)
+    selection = worktree / "data/corpus/PROVISIONS"
+    if _folds_case_on_disk(tmp_path):
+        require_materialized([selection], fetch=True)
+        assert _placed_file(shared / PROV)
+    else:
+        with pytest.raises(CorpusNotMaterializedError):
+            require_materialized([selection], fetch=True)
+        assert not (shared / PROV).exists()

@@ -40,6 +40,7 @@ from axiom_corpus.corpus.corpus_locks import (
     LockEntry,
     LockSet,
     ScopeKey,
+    _caseless,
     fold_path,
     is_protected_corpus_path,
     load_locks,
@@ -185,6 +186,21 @@ def _spells(probe: Path, name: str) -> bool:
     return probe.parts[-len(tail) :] == tail
 
 
+def _spells_place(probe: Path, name: str) -> bool:
+    """True when ``probe`` ends in ``name``, exactly or in another spelling that its
+    filesystem stores in the same place (``stored_together``): on APFS
+    ``.../DATA/corpus/provisions`` ends in ``data/corpus/provisions``."""
+    if _spells(probe, name):
+        return True
+    tail = name.split("/")
+    if len(probe.parts) <= len(tail):
+        return False
+    spelled = "/".join(probe.parts[-len(tail) :])
+    if fold_path(spelled) != fold_path(name) and _caseless(spelled) != _caseless(name):
+        return False  # no filesystem merges them: no lookups
+    return stored_together(Path(*probe.parts[: -len(tail)]), spelled, name)
+
+
 def _standing_places(
     probe: Path, physical: Path, home: Path | None, *, spellings: list[Path] | None = None
 ) -> tuple[list[tuple[Path, str]], bool]:
@@ -250,7 +266,7 @@ def _protected_name(probe: Path, physical: Path, home: Path | None = None) -> tu
     """
     file_link = _is_symlinked_file(probe)
     reached = None if file_link else _protected_at(physical.parts, home)
-    if reached is not None and _spells(probe, reached[1]):
+    if reached is not None and _spells_place(probe, reached[1]):
         return reached
     places, stands_as_file = _standing_places(probe, physical, home)
     if stands_as_file:
@@ -769,9 +785,11 @@ def _part_owner(path: Path, found: tuple[CorpusResolver, str] | None) -> tuple[C
     if found is None or not _directory_place(found[1]) or not os.path.islink(path) or os.path.exists(path):
         return found
     reached = _protected_at(Path(os.path.realpath(path)).parts, None)
-    # The same path in any spelling: a link named ``PROVISIONS`` on APFS is at
-    # ``provisions`` (``LockSet.locked_spelling``).
-    if reached is None or fold_path(reached[1]) != fold_path(found[1]):
+    # The same path in any spelling its checkout stores in one place: a link
+    # named ``PROVISIONS`` on APFS is at ``provisions`` (``stored_together``).
+    if reached is None or not (
+        reached[1] == found[1] or stored_together(found[0].repo, found[1], reached[1])
+    ):
         return found
     return _resolver(reached[0]), reached[1]
 

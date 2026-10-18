@@ -237,15 +237,13 @@ def _caseless(name: str) -> str:
     return unicodedata.normalize("NFD", unicodedata.normalize("NFD", name).casefold())
 
 
-def _listed_apart(directory: Path, first: str, second: str, entry: os.stat_result) -> bool | None:
-    """True when ``first`` and ``second`` reach ``entry`` as two names in ``directory``.
+def _listed_apart(directory: Path, first: str, second: str) -> bool | None:
+    """True when ``directory``'s listing holds both ``first`` and ``second``.
 
-    Only a file with several hard links can; the listing then holds both
-    names, where a filesystem that merges two spellings lists one. None when
-    the directory cannot be listed to tell.
+    Asked of a file with several hard links that both names reach: two names
+    are both listed, where a filesystem that merges two spellings lists one.
+    None when the directory cannot be listed to tell.
     """
-    if stat.S_ISDIR(entry.st_mode) or entry.st_nlink < 2:
-        return False
     try:
         names = set(os.listdir(directory))
     except OSError:
@@ -296,14 +294,32 @@ def _case_probe(directory: Path, name: str) -> bool | None:
     return found is not None and os.path.samestat(found, mine)
 
 
-def looks_up_case_insensitively(directory: Path) -> bool:
-    """True when ``directory`` finds the names it holds in another case, as APFS usually does.
+def _device(path: Path) -> int:
+    return os.stat(path).st_dev
 
-    Asked of one name it holds, or one held by the nearest directory above it
-    when it has none to ask (or does not exist); nothing is written.
+
+def looks_up_case_insensitively(directory: Path) -> bool:
+    """True when names made in ``directory`` are found in another case, as on APFS usually.
+
+    Asked on the filesystem the names would land on: of one name held by the
+    directory itself, or by the deepest existing directory above it, through
+    any links, or failing that by the nearest directory above that on the same
+    filesystem; nothing is written. When nothing there can tell (an empty
+    mount point), True: taking two spellings for one place only makes the
+    checks stricter.
     """
-    for here in (directory, *directory.parents):
+    existing = directory
+    while not existing.is_dir() and existing.parent != existing:
+        existing = existing.parent
+    physical = Path(os.path.realpath(existing))
+    try:
+        device = _device(physical)
+    except OSError:
+        return True
+    for here in (physical, *physical.parents):
         try:
+            if _device(here) != device:
+                break  # another filesystem from here up: it cannot answer for this one
             with os.scandir(here) as found:
                 for item in found:
                     answer = _case_probe(here, item.name)
@@ -311,14 +327,26 @@ def looks_up_case_insensitively(directory: Path) -> bool:
                         return answer
         except OSError:
             continue
-    return False
+    return True
 
 
-def _entry(path: Path) -> os.stat_result:
-    """What ``path`` names, for comparing places: the directory a directory (or a
-    link to one) leads to, and any other entry, a symlinked file included,
-    itself."""
-    return os.stat(path) if os.path.isdir(path) else os.lstat(path)
+def _place(path: Path) -> tuple[tuple[object, ...], int] | None:
+    """What ``path`` names, for comparing places, and its link count; None when
+    nothing is there.
+
+    The directory a directory, or a link to one, leads to; for a dangling link,
+    the place it leads to; any other entry, a symlinked file included, itself.
+    """
+    try:
+        if os.path.isdir(path):
+            info = os.stat(path)
+            return ("directory", info.st_dev, info.st_ino), 0
+        info = os.lstat(path)
+    except OSError:
+        return None
+    if stat.S_ISLNK(info.st_mode) and not os.path.exists(path):
+        return ("dangling", os.path.realpath(path)), 0
+    return ("entry", info.st_dev, info.st_ino), info.st_nlink
 
 
 def stored_together(root: Path, spelled: str, canonical: str) -> bool:
@@ -327,12 +355,14 @@ def stored_together(root: Path, spelled: str, canonical: str) -> bool:
     and ``data/corpus``.
 
     Compared one component at a time. Where an entry exists under the
-    canonical name, the spelled name must reach that same entry: the same
-    directory, through any link to it, or the same file itself (a symlinked
-    file is never its target). Where neither name exists yet, the two share a
-    place when the deepest existing directory looks names up
-    case-insensitively and they are canonical caseless matches
-    (``_caseless``); a case-sensitive filesystem keeps them apart.
+    canonical name, the spelled name must reach the same place (``_place``):
+    the same directory, through any link to it, the same place a dangling
+    link leads to, or the same file itself (a symlinked file is never its
+    target, and two hard-linked names are two places). Where neither name
+    exists yet, the two share a place when the filesystem they would land on
+    looks names up case-insensitively (``looks_up_case_insensitively``) and
+    they are canonical caseless matches (``_caseless``); a case-sensitive
+    filesystem keeps them apart.
     """
     spelled_parts = spelled.split("/")
     canonical_parts = canonical.split("/")
@@ -342,20 +372,14 @@ def stored_together(root: Path, spelled: str, canonical: str) -> bool:
     folds_case: bool | None = None  # of the deepest existing directory, once asked
     for mine, theirs in zip(spelled_parts, canonical_parts, strict=True):
         if mine != theirs:
-            try:
-                there: os.stat_result | None = _entry(directory / theirs)
-            except OSError:
-                there = None
+            there = _place(directory / theirs)
             if there is not None:
-                try:
-                    reached = _entry(directory / mine)
-                except OSError:
+                reached = _place(directory / mine)
+                if reached is None or reached[0] != there[0]:
                     return False
                 # Two hard-linked names are two places; so is a pair the
                 # listing cannot tell apart from that.
-                if not os.path.samestat(reached, there) or _listed_apart(
-                    directory, mine, theirs, there
-                ) is not False:
+                if there[1] > 1 and _listed_apart(directory, mine, theirs) is not False:
                     return False
             else:
                 # The canonical name is absent, so a spelling stored in its

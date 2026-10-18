@@ -265,7 +265,9 @@ files belong. Here `data`, `data/corpus` and the artifact-class directories
 path naming one selects the locked files below it. That is for naming
 paths: the CLI still takes only paths under the four protected prefixes as
 inputs, so `--base data/corpus` names no input by itself. A path that reaches
-exactly the protected path it spells, through any links, names that path.
+the protected path it spells, through any links, names that path; it may
+spell it in another spelling its filesystem stores in the same place
+(`data/corpus/PROVISIONS` on APFS, below).
 So a worktree whose `data/corpus/provisions` links to another checkout's
 `data/corpus/provisions` reads that checkout's files, that checkout's lock
 decides what is fetched there, and fetch writes into it. The worktree's lock
@@ -307,8 +309,8 @@ has been fetched, and the resolver looks locks up through it. Each part and
 view of a selection takes its name from it, so the sharing and nested
 layouts of invariant 11 keep every lock that applies under any spelling (a
 source read spelled `.../NZ/...` still checks its whole scope directory, and
-a dangling sharing link spelled `PROVISIONS` still belongs to the checkout
-it leads to), and so do `CorpusResolver.resolve` and `entries_for_paths`,
+a sharing link spelled `PROVISIONS`, live or dangling, still sends its files
+to the checkout it leads to), and so do `CorpusResolver.resolve` and `entries_for_paths`,
 `LockSet.missing_under`, `corpus fetch --path` and `corpus status` (a file
 stored under another spelling of a locked path is not counted as unlocked).
 The CLI takes a path under the protected prefixes in any spelling as an
@@ -318,18 +320,23 @@ A candidate is a
 locked name with the same `fold_path` or the same Unicode canonical caseless
 form, and `stored_together` decides, one component at a time from the
 checkout. Where an entry exists under the locked name, the other spelling
-must reach that same entry: the same directory, through any link to it, or
-the same file itself (a symlinked file is never its target, and two hard
-links are two names, as they are when the directory cannot be listed to
-tell). Where neither exists yet, they share a place when the
-deepest existing directory finds one of its own names in the other ASCII case
-and the names are canonical caseless matches, which is how case-insensitive
-APFS compares names in every case the tests try. Nothing is written to find
-out. A name with other hard links, or a directory that changes while a name
-is being asked about (an entry added, removed or renamed, even when renamed
-back), leaves the question to the next name. On a case-sensitive filesystem
-the other spelling
-is another path that no lock names, and it reads as before. Two limits apply
+must reach the same place: the same directory, through any link to it; for
+a dangling link, the same place it leads to; otherwise the same file itself
+(a symlinked file is never its target, and two hard links are two names, as
+they are when the directory cannot be listed to tell). Where neither exists
+yet, they share a place when the filesystem the names would land on finds
+one of its own names in the other ASCII case, and the names are canonical
+caseless matches, which is how case-insensitive APFS compares names in every
+case the tests try. That filesystem is asked in the deepest existing
+directory, through any links (a link to another volume is asked there), or
+the nearest directory above it on the same filesystem. Nothing is written to
+find out. A name with other hard links, or a directory that changes while a
+name is being asked about (an entry added, removed or renamed, even when
+renamed back), leaves the question to the next name; where no name on that
+filesystem can tell (an empty mount point), the two count as one place,
+which only makes the checks stricter. On a case-sensitive filesystem the
+other spelling is another path that no lock names, and it reads as before,
+unless a link under that name leads to the same directory. Two limits apply
 only before the file exists. Case-sensitive APFS still stores canonically
 equivalent names (a decomposed `é`, the Kelvin sign for `K`) in one place;
 until the locked file is there, such a spelling is taken for another path. A
@@ -594,8 +601,9 @@ exactly those 1,362 files.
     there, and the helpers use the nested one, as git does). Protected paths
     here include `data`, `data/corpus` and the artifact-class directories. A
     symlinked file at a protected path names itself. Any other path that
-    reaches exactly the protected path it spells names that path, through
-    any links. Otherwise a path through a symlink at a protected path names
+    reaches the protected path it spells, exactly or in another spelling its
+    filesystem stores in the same place, names that path, through any
+    links. Otherwise a path through a symlink at a protected path names
     the last protected path it stands at, links inside link targets
     included, unless that path has the name of the protected path it
     reaches. Any other path names the entry it reaches. A bare
