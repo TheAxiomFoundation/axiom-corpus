@@ -479,8 +479,10 @@ def test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones(
 # row ("-" for none). No row the audit found to carry text (legal_text,
 # document_page_text, document_section_text) is flagged. The no-text rows the
 # check misses are prose landing pages, empty roots with text below them, alias
-# copies, and the UT and MI pages whose chrome is not a link menu; the
-# withdrawal registry covers every scope they belong to.
+# copies, and the UT and MI pages whose chrome is not a link menu. The
+# withdrawal registry stops those rows in withdrawn scopes; the retained
+# us/guidance and CO TANF consolidated scopes keep eleven empty roots, four
+# prose landing pages and three alias copies, which pass the gate.
 VERDICTS_AGAINST_FINDINGS = {
     ("alias_copy", "-"): 16,
     ("document_page_text", "-"): 460,

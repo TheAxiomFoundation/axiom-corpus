@@ -78,7 +78,7 @@ FINDING_CODES = (
 # words they may leave over, for the body to count as navigation.
 NAVIGATION_COVERAGE = 0.7
 NAVIGATION_RESIDUAL_WORDS = 25
-# Words a body is read to, so a very long row costs no more than this.
+# Limit navigation matching; substance detection still reads the full body.
 MAX_BODY_TOKENS = 1200
 # The opening of a body that the prefix check reads, the share of it that
 # navigation strings must cover, and the run of navigation words it must open
@@ -252,7 +252,8 @@ def _coverage(tokens: list[str], covered: list[bool]) -> Coverage:
 def _parse_html(raw: bytes) -> etree._Element | None:
     try:
         return lxml.html.document_fromstring(raw)
-    except (etree.ParserError, ValueError):
+    except (etree.LxmlError, ValueError):
+        # LxmlError is the base of every lxml error (ParserError, XMLSyntaxError, ...).
         return None
 
 
@@ -318,7 +319,7 @@ def classify_body(
 ) -> RowVerdict:
     """Apply the navigation, prefix and substance rules to one body."""
     tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
-    words = sum(1 for token in tokens if _has_letters(token))
+    has_letters = _has_letters(body or "")
     if not tokens:
         return RowVerdict(navigation=False, prefixed=False, substantive=False)
     covered = navigation.cover(tokens) if navigation else [False] * len(tokens)
@@ -344,7 +345,7 @@ def classify_body(
             and _opening_run(head, head_covered) >= PREFIX_RUN_TOKENS
         )
         prefixed = chrome_opening and rest_coverage.share < REST_MAX_COVERAGE
-    substantive = not is_navigation and words > 0
+    substantive = not is_navigation and has_letters
     return RowVerdict(
         navigation=is_navigation,
         prefixed=prefixed,
@@ -410,6 +411,10 @@ def is_navigation_block(
     )
 
 
+def _text_or_none(value: object) -> str | None:
+    return value if isinstance(value, str) else None
+
+
 class ScopeContentScanner:
     """Stream one scope's provisions and report its content findings.
 
@@ -422,6 +427,11 @@ class ScopeContentScanner:
     text but never navigation; ``validate_release`` reports the missing file
     itself, and callers outside validation fetch a scope's locked sources
     before scanning it.
+
+    ``add`` never raises on a malformed row: ``validate_release`` feeds it each
+    record while it loads them, and must report what it reported without the
+    scan. A ``source_path``, ``heading`` or ``citation_label`` that is not a
+    string is read as absent; validation reports the field itself.
     """
 
     def __init__(self, corpus_root: str | Path):
@@ -453,7 +463,9 @@ class ScopeContentScanner:
                     page = page_navigation(raw)
                     if is_version_picker(raw):
                         self._pickers.add(source_path)
-        except OSError:
+        except (OSError, ValueError, etree.LxmlError):
+            # ValueError: a path the platform cannot name, e.g. one with a NUL;
+            # LxmlError: a page lxml cannot read. Either way the row has no page.
             page = None
         self._pages[source_path] = page
         if len(self._pages) > PAGE_CACHE_SIZE:
@@ -461,9 +473,13 @@ class ScopeContentScanner:
         return page
 
     def add(self, record: ProvisionRecord) -> None:
-        page = self._page(record.source_path)
+        source = _text_or_none(record.source_path)
+        page = self._page(source)
         verdict = classify_body(
-            record.body, page, heading=record.heading, label=record.citation_label
+            _text_or_none(record.body),
+            page,
+            heading=_text_or_none(record.heading),
+            label=_text_or_none(record.citation_label),
         )
         if verdict.navigation:
             self._findings.append(
@@ -478,8 +494,9 @@ class ScopeContentScanner:
                 )
             )
         if verdict.substantive:
-            self._text_rows.append((record.citation_path, record.source_path))
-        if record.kind == "document" and not (record.body and record.body.strip()):
+            self._text_rows.append((record.citation_path, source))
+        body = _text_or_none(record.body)
+        if record.kind == "document" and not (body and body.strip()):
             self._empty_roots.append(record.citation_path)
 
     def _text_row_paths(self) -> list[str]:
