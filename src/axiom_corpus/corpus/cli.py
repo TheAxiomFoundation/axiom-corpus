@@ -46,6 +46,7 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_check_cli import add_content_check_parser
 from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
 from axiom_corpus.corpus.corpus_locks import LockFormatError, scope_for_path
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -133,6 +134,7 @@ from axiom_corpus.corpus.r2 import (
 from axiom_corpus.corpus.regulation_completion import (
     build_regulation_completion_report,
 )
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, ReleasePolicyError
 from axiom_corpus.corpus.release_quality import validate_release, validate_releases
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.resolver import (
@@ -5233,6 +5235,18 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
             release_name=release.name,
             release_scopes=release.scope_keys,
         )
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     report = validate_release(
         args.base,
         release,
@@ -5240,6 +5254,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         max_issues=args.max_issues,
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
+        policy=policy,
     )
     payload = report.to_mapping()
     payload["release_path"] = str(release_path)
@@ -5274,6 +5289,18 @@ def _cmd_validate_releases(args: argparse.Namespace) -> int:
         )
         for release in releases
     ]
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     reports = validate_releases(
         args.base,
         releases,
@@ -5282,6 +5309,7 @@ def _cmd_validate_releases(args: argparse.Namespace) -> int:
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
         workers=args.workers,
+        policy=policy,
     )
     for report, release_path in zip(reports, release_paths, strict=True):
         payload = report.to_mapping()
@@ -5712,6 +5740,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
             "coverage",
             "verify-release-coverage",
             "validate-release",
+            "content-check",
             "snapshot-provision-counts",
             "analytics",
             "artifact-report",
@@ -7628,6 +7657,8 @@ def build_parser() -> argparse.ArgumentParser:
     validate_release_cmd.add_argument("--max-issues", type=int, default=200)
     validate_release_cmd.add_argument("--output", type=Path)
     validate_release_cmd.set_defaults(func=_cmd_validate_release)
+
+    add_content_check_parser(sub)
 
     state_statute_completion = sub.add_parser(
         "state-statute-completion",
