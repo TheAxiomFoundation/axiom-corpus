@@ -27,6 +27,7 @@ import hashlib
 import json
 import os
 import posixpath
+import re
 import subprocess
 import threading
 import unicodedata
@@ -1807,7 +1808,7 @@ def test_a_directory_alias_keeps_the_whole_sources_directory_required(tmp_path: 
     assert resolver.locks.locked_spelling(repo, f"{official}/\uff41ct.html") == f"{official}/\uff41ct.html"
 
 
-@pytest.mark.parametrize("change", ["replaced", "removed, then made again"])
+@pytest.mark.parametrize("change", ["replaced", "removed, then made again", "set aside, then put back"])
 def test_the_case_probe_never_classifies_a_name_that_changed_under_it(
     tmp_path: Path, monkeypatch, change: str
 ) -> None:
@@ -1825,9 +1826,16 @@ def test_the_case_probe_never_classifies_a_name_that_changed_under_it(
             (tmp_path / "next").write_bytes(b"new")  # a new inode, whatever the filesystem reuses
             if change == "replaced":
                 os.replace(tmp_path / "next", sample)
-            else:
+            elif change == "removed, then made again":
                 sample.unlink()
                 os.rename(tmp_path / "next", sample)
+            else:  # r2 finding 2: the original is back before the probe looks again
+                os.rename(sample, tmp_path / "aside")
+                os.rename(tmp_path / "next", sample)
+                try:
+                    return real_lstat(path, *args, **kwargs)
+                finally:
+                    os.replace(tmp_path / "aside", sample)
         return real_lstat(path, *args, **kwargs)
 
     monkeypatch.setattr(os, "lstat", interleaved)
@@ -3523,7 +3531,8 @@ def _alias_directory(root: Path, rel: str, spelled: str) -> None:
     mine, theirs = spelled.split("/"), rel.split("/")
     index = next(i for i, (a, b) in enumerate(zip(mine, theirs, strict=True)) if a != b)
     parent = Path(os.path.realpath(root.joinpath(*theirs[:index])))
-    (parent / theirs[index]).mkdir(parents=True, exist_ok=True)
+    if not os.path.lexists(parent / theirs[index]):  # a dangling sharing link stays as it is
+        (parent / theirs[index]).mkdir(parents=True)
     (parent / mine[index]).symlink_to(theirs[index], target_is_directory=True)
 
 
@@ -3574,3 +3583,78 @@ def test_a_bare_path_spelled_in_another_case_keeps_every_sharing_lock(tmp_path: 
         tmp_path, monkeypatch, 1, "worktree", "the shared link"
     )
     _assert_round2_witness_refusal(monkeypatch, action, Path(spelled), holder, owner, rel, {"repo": checkouts["worktree"]})
+
+
+# Review r2 findings ------------------------------------------------------------
+
+
+def _respell_link_target(root: Path, rel: str, spelled: str) -> None:
+    """Where names keep their case, make ``spelled`` reach ``rel`` (``_alias_directory``)."""
+    if not _folds_case_on_disk(root):
+        _alias_directory(root, rel, spelled)
+
+
+@pytest.mark.parametrize("with_repo", [False, True])
+def test_a_source_spelled_in_another_case_still_needs_its_witnessed_siblings(
+    tmp_path: Path, monkeypatch, with_repo: bool
+) -> None:
+    """r2 finding 1: ``_read_witnesses`` asked ``scope_for_path`` of the raw
+    ``.../NZ/...`` name, got no scope, and so checked the file alone: the
+    worktree's lock naming an absent sibling was never consulted."""
+    act = "data/corpus/sources/nz/statute/2026-07-10/official/act.html"
+    sibling = act.replace("/act.html", "/sibling.html")
+    files = {act: b"<html>a</html>", sibling: b"<html>b</html>"}
+    worktree, shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks=files, shared_locks={act: files[act]},
+        link="data/corpus/sources", every_file=files,
+    )
+    _write(shared, act, files[act])
+    spelled = act.replace("/nz/", "/NZ/")
+    _respell_link_target(worktree, act, spelled)
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    kwargs = {"repo": worktree} if with_repo else {}
+    for path in (worktree / act, worktree / spelled):
+        with pytest.raises(CorpusNotMaterializedError, match=re.escape(sibling)):
+            resolve_corpus_path(path, **kwargs)
+    assert not (shared / sibling).exists() and not (worktree / sibling).exists()
+
+
+@pytest.mark.parametrize("with_repo", [False, True])
+def test_a_dangling_sharing_link_spelled_in_another_case_is_fetched_into_the_shared_checkout(
+    tmp_path: Path, monkeypatch, with_repo: bool
+) -> None:
+    """r2 finding 3: ``_part_owner`` compared the raw ``PROVISIONS`` with the
+    link target's ``provisions``, so the worktree kept the part and fetch tried
+    to write through its own link."""
+    worktree, shared = _sharing(
+        tmp_path, monkeypatch, worktree_locks={PROV: SHARED_FILES[PROV]},
+        shared_locks={PROV: SHARED_FILES[PROV]}, dangling=True,
+    )
+    _respell_link_target(worktree, "data/corpus/provisions", "data/corpus/PROVISIONS")
+    kwargs = {"repo": worktree} if with_repo else {}
+    require_materialized([worktree / "data/corpus/PROVISIONS"], fetch=True, **kwargs)
+    assert _placed_file(shared / PROV) and (worktree / "data/corpus/provisions").is_symlink()
+
+
+def test_an_unlistable_directory_never_merges_two_hard_linked_names(tmp_path: Path, monkeypatch) -> None:
+    """r2 finding 4: with the directory unreadable, ``os.listdir`` failed and two
+    hard-linked names (``act.html`` and a fullwidth one, apart on every
+    filesystem) read as one stored name, so the unlocked one needed the locked
+    one's absent siblings."""
+    repo = _locked_checkout(tmp_path / "repo", monkeypatch)
+    official = "data/corpus/sources/nz/statute/2026-07-10/official"
+    act = f"{official}/act.html"
+    alias = f"{official}/\uff41ct.html"
+    _write(repo, act, READABLE_FILES[act])
+    os.link(repo / act, repo / alias)
+    resolver = CorpusResolver(repo, sources=[])
+    monkeypatch.setenv("AXIOM_CORPUS_NO_FETCH", "1")
+    assert resolver.resolve(alias) == repo / alias
+    os.chmod(repo / official, 0o111)
+    try:
+        assert (repo / alias).read_bytes() == READABLE_FILES[act]
+        assert not corpus_locks_module.stored_together(repo, alias, act)
+        assert resolver.locks.locked_spelling(repo, alias) == alias
+        assert resolver.resolve(alias) == repo / alias
+    finally:
+        os.chmod(repo / official, 0o755)

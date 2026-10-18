@@ -305,8 +305,10 @@ place: on APFS `DATA/corpus/provisions/x.jsonl` is
 spelling onto the locked path or locked directory, whether or not the file
 has been fetched, and the resolver looks locks up through it. Each part and
 view of a selection takes its name from it, so the sharing and nested
-layouts of invariant 11 keep every lock that applies under any spelling, and
-so do `CorpusResolver.resolve` and `entries_for_paths`,
+layouts of invariant 11 keep every lock that applies under any spelling (a
+source read spelled `.../NZ/...` still checks its whole scope directory, and
+a dangling sharing link spelled `PROVISIONS` still belongs to the checkout
+it leads to), and so do `CorpusResolver.resolve` and `entries_for_paths`,
 `LockSet.missing_under`, `corpus fetch --path` and `corpus status` (a file
 stored under another spelling of a locked path is not counted as unlocked).
 The CLI takes a path under the protected prefixes in any spelling as an
@@ -318,12 +320,15 @@ form, and `stored_together` decides, one component at a time from the
 checkout. Where an entry exists under the locked name, the other spelling
 must reach that same entry: the same directory, through any link to it, or
 the same file itself (a symlinked file is never its target, and two hard
-links are two names). Where neither exists yet, they share a place when the
+links are two names, as they are when the directory cannot be listed to
+tell). Where neither exists yet, they share a place when the
 deepest existing directory finds one of its own names in the other ASCII case
 and the names are canonical caseless matches, which is how case-insensitive
 APFS compares names in every case the tests try. Nothing is written to find
-out, and a name that changes while it is being asked about leaves the
-question to the next one. On a case-sensitive filesystem the other spelling
+out. A name with other hard links, or a directory that changes while a name
+is being asked about (an entry added, removed or renamed, even when renamed
+back), leaves the question to the next name. On a case-sensitive filesystem
+the other spelling
 is another path that no lock names, and it reads as before. Two limits apply
 only before the file exists. Case-sensitive APFS still stores canonically
 equivalent names (a decomposed `é`, the Kelvin sign for `K`) in one place;

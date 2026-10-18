@@ -237,33 +237,47 @@ def _caseless(name: str) -> str:
     return unicodedata.normalize("NFD", unicodedata.normalize("NFD", name).casefold())
 
 
-def _listed_apart(directory: Path, first: str, second: str, entry: os.stat_result) -> bool:
+def _listed_apart(directory: Path, first: str, second: str, entry: os.stat_result) -> bool | None:
     """True when ``first`` and ``second`` reach ``entry`` as two names in ``directory``.
 
     Only a file with several hard links can; the listing then holds both
-    names, where a filesystem that merges two spellings lists one.
+    names, where a filesystem that merges two spellings lists one. None when
+    the directory cannot be listed to tell.
     """
     if stat.S_ISDIR(entry.st_mode) or entry.st_nlink < 2:
         return False
     try:
         names = set(os.listdir(directory))
     except OSError:
-        return False
+        return None
     return first in names and second in names
+
+
+def _same_directory_state(first: os.stat_result, second: os.stat_result) -> bool:
+    """True when two looks at a directory saw no entry added, removed or renamed."""
+    return os.path.samestat(first, second) and (first.st_mtime_ns, first.st_ctime_ns) == (
+        second.st_mtime_ns,
+        second.st_ctime_ns,
+    )
 
 
 def _case_probe(directory: Path, name: str) -> bool | None:
     """Whether ``directory`` finds its entry ``name`` in the other ASCII case.
 
-    None when ``name`` cannot tell: it has no ASCII letter, or it was removed
-    or replaced while being asked about.
+    None when ``name`` cannot tell: it has no ASCII letter, it is a file with
+    other hard links (which may be spelled either way), or the directory
+    changed while it was being asked about (a replace, an unlink and
+    recreate, a rename aside and back), which leaves the question open.
     """
     other = name.translate(_ASCII_CASE_SWAP)
     if other == name:
         return None
     try:
+        before = os.stat(directory)
         mine = os.lstat(directory / name)
     except OSError:
+        return None
+    if not stat.S_ISDIR(mine.st_mode) and mine.st_nlink > 1:
         return None
     try:
         found: os.stat_result | None = os.lstat(directory / other)
@@ -271,16 +285,15 @@ def _case_probe(directory: Path, name: str) -> bool | None:
         found = None
     except OSError:
         return None
-    if found is not None and os.path.samestat(found, mine):
-        return not _listed_apart(directory, name, other, mine)
-    # The other case is absent or another entry: a case-sensitive directory,
-    # unless ``name`` itself changed meanwhile (a replace, an unlink and
-    # recreate), which leaves the question open.
     try:
         again = os.lstat(directory / name)
+        after = os.stat(directory)
     except OSError:
         return None
-    return False if os.path.samestat(again, mine) else None
+    if not (os.path.samestat(again, mine) and _same_directory_state(before, after)):
+        return None
+    # Absent in the other case, or another entry there: case-sensitive.
+    return found is not None and os.path.samestat(found, mine)
 
 
 def looks_up_case_insensitively(directory: Path) -> bool:
@@ -338,9 +351,11 @@ def stored_together(root: Path, spelled: str, canonical: str) -> bool:
                     reached = _entry(directory / mine)
                 except OSError:
                     return False
+                # Two hard-linked names are two places; so is a pair the
+                # listing cannot tell apart from that.
                 if not os.path.samestat(reached, there) or _listed_apart(
                     directory, mine, theirs, there
-                ):
+                ) is not False:
                     return False
             else:
                 # The canonical name is absent, so a spelling stored in its

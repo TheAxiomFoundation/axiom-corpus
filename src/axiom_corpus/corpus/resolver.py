@@ -769,7 +769,9 @@ def _part_owner(path: Path, found: tuple[CorpusResolver, str] | None) -> tuple[C
     if found is None or not _directory_place(found[1]) or not os.path.islink(path) or os.path.exists(path):
         return found
     reached = _protected_at(Path(os.path.realpath(path)).parts, None)
-    if reached is None or reached[1] != found[1]:
+    # The same path in any spelling: a link named ``PROVISIONS`` on APFS is at
+    # ``provisions`` (``LockSet.locked_spelling``).
+    if reached is None or fold_path(reached[1]) != fold_path(found[1]):
         return found
     return _resolver(reached[0]), reached[1]
 
@@ -1468,7 +1470,10 @@ def _read_witnesses(
         return None  # no checkout names it, so it stands at no protected place
     selection, exact, remember = anchor, True, None
     depth = len(rel.split("/")) - 6  # below data/corpus/sources/<j>/<dc>/<v>
-    if scope_for_path(rel) is not None and fold_path(rel).startswith(f"{CORPUS_BASE}/sources/") and depth >= 1:
+    # Folded, so a scope spelled in another case (``.../NZ/...``) is still a
+    # scope: its directory is planned below, under every lock that applies.
+    folded = fold_path(rel)
+    if scope_for_path(folded) is not None and folded.startswith(f"{CORPUS_BASE}/sources/") and depth >= 1:
         selection, exact = _scope_directory(anchor, rel, depth), False
         remember = str(selection)
         if remember in _WITNESSED_SOURCE_DIRS:
