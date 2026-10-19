@@ -31,9 +31,8 @@ jobs:
       - uses: actions/setup-python@v6.2.0
         with:
           python-version: '3.14'
-      - uses: astral-sh/setup-uv@v7
       - name: Install locked runtime without credentials
-        run: uv sync --locked
+        run: bash .github/scripts/install-locked.sh --editable
       - name: Fetch existing public release object
         env:
           RELEASE_NAME: ${{ inputs.release }}
@@ -61,7 +60,7 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$R2_ACCESS_KEY_ID" && test -n "$R2_SECRET_ACCESS_KEY"
-          uv run --locked python scripts/export_release_artifact.py \
+          python scripts/export_release_artifact.py \
             --release-object "$RUNNER_TEMP/export-release.json" \
             --release "$RELEASE_NAME" --content-sha "$CONTENT_SHA" \
             --artifact-path "$ARTIFACT_PATH" --destination "$RUNNER_TEMP/release-artifact-export"
