@@ -1,0 +1,74 @@
+name: Export authenticated release artifact
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Existing signed release name
+        type: string
+        required: true
+      content_sha256:
+        description: Existing signed release content address
+        type: string
+        required: true
+      artifact_path:
+        description: Exact provisions path in that signed release (maximum 16 MiB)
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  export:
+    if: github.repository == 'TheAxiomFoundation/axiom-corpus' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Existing environment restricts branches to main; it does not require reviewers.
+    environment: release-preview
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: '3.14'
+      - uses: astral-sh/setup-uv@v7
+      - name: Install locked runtime without credentials
+        run: uv sync --locked
+      - name: Fetch existing public release object
+        env:
+          RELEASE_NAME: ${{ inputs.release }}
+          CONTENT_SHA: ${{ inputs.content_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_NAME" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] && [ "${#RELEASE_NAME}" -le 128 ]
+          [[ "$CONTENT_SHA" =~ ^[0-9a-f]{64}$ ]]
+          curl --fail --silent --show-error --location \
+            --proto '=https' --proto-redir '=https' --tlsv1.2 \
+            --max-time 120 --max-filesize 67108864 \
+            --output "$RUNNER_TEMP/export-release.json" \
+            "https://pub-a8952f8657fc49fda358146ac001366c.r2.dev/releases/$RELEASE_NAME/$CONTENT_SHA.json"
+      - name: Authenticate and read exactly one provision object
+        env:
+          RELEASE_NAME: ${{ inputs.release }}
+          CONTENT_SHA: ${{ inputs.content_sha256 }}
+          ARTIFACT_PATH: ${{ inputs.artifact_path }}
+          RELEASE_TRUST_ROOT: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_CORPUS_READ_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$R2_ACCESS_KEY_ID" && test -n "$R2_SECRET_ACCESS_KEY"
+          uv run --locked python scripts/export_release_artifact.py \
+            --release-object "$RUNNER_TEMP/export-release.json" \
+            --release "$RELEASE_NAME" --content-sha "$CONTENT_SHA" \
+            --artifact-path "$ARTIFACT_PATH" --destination "$RUNNER_TEMP/release-artifact-export"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: authenticated-release-artifact
+          path: ${{ runner.temp }}/release-artifact-export/
+          if-no-files-found: error
+          retention-days: 7
+          include-hidden-files: false
