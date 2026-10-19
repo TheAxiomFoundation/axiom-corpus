@@ -1,0 +1,1 @@
+Ingest 12 CFR part 1005 (Regulation E, electronic fund transfers) and part 1006 (Regulation F, debt collection) from the eCFR at 2026-10-16, the corpus's first Title 12 CFR scopes, for the financial-services encoder pilot (12 CFR 1005.6, 1005.11 and 1006.14).
