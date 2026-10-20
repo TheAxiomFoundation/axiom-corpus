@@ -228,77 +228,102 @@ and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
 
 ### Version 2 (2026-10-13)
 
-<!-- re-measure in phase B -->
+Re-measured on 2026-10-20 at combined-code commit `761cf682d`: 1,417 findings
+in 182 of the 2,425 locked scopes with provisions and an inventory, plus 72
+reviewed-empty roots (`content-check-v2`). The earlier 2026-10-13 measurement,
+recorded at `5838d7d37`, reported 1,416 findings in 181 of 2,390 scopes. On the
+current inputs, the v1 comparison (whole-body letter detection, with figure
+tables and reviewed exemptions disabled) finds 1,490 findings in 183 scopes.
 
-The original Version 2 scan reported 1,416 findings in 181 of the 2,390 locked
-scopes with provisions and an inventory, and 72 more rows were reviewed empty
-(content-check-v2; v1 found 1,489 in 182). These figures record that earlier
-measurement and await re-measurement on the combined code.
+Rebuilding adds 34 clean scope entries to the merge's baseline at `761cf682d`,
+with findings unchanged. Against main's v1 baseline at `e019e4456`, no finding
+is added and 73 are removed. Against #847's historical v1 baseline at
+`88c1435a5`, the baseline adds 35 scope entries, adds one finding from the OASDI
+POMS RS scope and removes 73. Neither comparison changes a shared scope's
+provisions or inventory digest.
 
 | Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| manual | 43 | 734 | 4 | 10 | |
+| manual | 44 | 735 | 4 | 10 | |
 | guidance | 57 | 207 | 9 | | |
 | policy | 47 | 94 | 69 | 44 | |
 | statute | 22 | 119 | 19 | 12 | 1 |
 | regulation | 10 | 41 | 1 | 49 | |
 | form | 2 | 3 | | | |
 
-At that measurement, 176 of the 181 scopes were selected by a tracked selector,
-and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
+Of the 182 scopes with findings, 176 are selected by at least one tracked
+selector. The named union `us-rulespec-2026-10-12-w5-benefits-union` selects
 151 of them.
 
 The [hollow-root audit](ingest-runs/2026-10-13-hollow-document-root-audit.md)
-classified all 188 v1 `hollow_document_root` findings against their sources:
+classified all 188 historical v1 `hollow_document_root` findings against their
+sources:
 103 extractor defects, 12 missing or placeholder sources, 72 correctly empty
 nodes and one check false positive. Version 2 acts on its section "What the check
-misses and over-counts". Each change was measured over every locked scope
-against the v1 baseline before it was made
-([run note](ingest-runs/2026-10-13-content-check-v2.md)):
+misses and over-counts". The combined-code measurements and comparisons with
+v1 are in the [run note](ingest-runs/2026-10-13-content-check-v2.md):
 
 - **Tables of figures are text.** The false positive was IL CSMM item 67224, the
   minimum monthly SNAP benefit, whose only block is dates and amounts. Counting
   every token with a digit as text would also clear four CMS scanned attachments
   (IN-12-014, OH-12-004, OH-12-006, OH-13-001), whose pages read as a date stamp
-  such as `9/4/13`: real text losses. Of the 1,381 locked rows with a digit
-  and no letter, date stamps, page numbers and stamps with SPA numbers hold one
-  to four figures, and pages whose font maps glyphs to control characters hold
-  stray digits, under 15% of their tokens. The rule makes 45 rows text, all
+  such as `9/4/13`: real text losses. Of the 1,384 locked rows whose whole body
+  has a digit and no letter, date stamps, page numbers and stamps with SPA
+  numbers hold one to four figures, and pages whose font maps glyphs to control characters hold
+  stray digits, at most 14.3% of their tokens. The rule makes 45 rows text, all
   tables or lists of figures (benefit and rate tables, IRS code lists, tariff
   code annexes, ZIP code lists, revenue projections) and none of them garbled.
+  Figure counts and their share use the whole body; navigation matching still
+  reads at most 1,200 tokens. No locked row consists only of list markers.
   Rows of up to four figures stay what they were in v1, a few real values among
   them (a DC page with two incomes), but no root has such a row as its only
   text. The rule clears item 67224 and no other finding.
 - **Reviewed-empty rows are listed with their reasons.** The 72 correctly empty rows
-  (tables of contents, link indexes, cross-reference stubs, reserved, deleted
-  and repealed items, empty content areas) are in
-  `manifests/reviewed-empty-nodes.yaml`, each with its reason, so the baseline
+  in 13 scopes are in `manifests/reviewed-empty-nodes.yaml`: 45 `index`, 10
+  `reserved`, 6 `empty_in_source`, 4 `deleted`, 3 `table_of_contents`, 2
+  `cross_reference` and 2 `repealed`. Each has its reason, so the baseline
   no longer records them as findings. The 115 `hollow_document_root` findings
   left are the audit's 103 extractor defects and 12 missing sources.
 - **The navigation threshold stays at 0.7.** ME 36 §5219-SS lost all its text
   in `us-me/statute/2026-07-13-recovery`, but its menu block is 69.2%
   navigation (its "§5219-SS PDF" and "Ch. 822 Contents" links are under 75%
   letters, so they are not navigation strings), so neither the block nor its
-  root is flagged. Lowering the threshold was measured: at 0.69 the check adds 8
-  `navigation_body` findings and 1 hollow root, at 0.65 86 and 2, at 0.6 159 and
-  6. The band holds text: a UK sentence announcing new National Insurance rates
+  root is flagged. Lowering the threshold under the combined Version 2 rules
+  adds the following findings:
+
+  | Navigation threshold | Additional `navigation_body` | Additional hollow roots |
+  | --- | ---: | ---: |
+  | 0.69 | 9 | 1 |
+  | 0.65 | 87 | 2 |
+  | 0.6 | 160 | 6 |
+
+  The band holds text: a UK sentence announcing new National Insurance rates
   from 6 April 2026 (0.692), a heading of the Israeli National Insurance Law
   (0.691), Connecticut repeal notices beside a "Return to Table of Contents"
   link (0.660) and Minnesota manual prose whose terms are links (0.656). A bar
   for hollow roots only (a row counts as text for its root only below 0.65)
-  would flag §5219-SS and one Wisconsin pointer page and nothing else today, but
+  adds two hollow roots, §5219-SS and one Wisconsin pointer page, but
   it would call those same prose and repeal-notice rows empty whenever they are
   a root's only text. The scope is withdrawn, so no new cut selects the miss; the
   2026-09-14 chapter scope that replaces it carries 5,280 characters of
-  §5219-SS, though not all of it (its history notes and one paragraph are
-  missing there: a partial loss, see the design note below).
+  §5219-SS. The earlier audit identified missing history notes and one paragraph
+  there, a partial loss described in the design note below.
   `navigation_body` also decides which blocks the HTML extractor may drop
   (axiom-corpus#852), a second reason not to lower it.
 - **Partial loss is not a content-check finding.** The audit's partial losses
-  (12,911 CMS SPA summaries on unflagged index pages, scanned pages read as a
-  stamp, prose dropped beside a kept table) leave text below the root. Catching
-  them takes a comparison of a source's visible text with the text extracted
-  from it: [design note](source-coverage-check.md).
+  include CMS SPA summaries on unflagged index pages, scanned pages read as a
+  stamp and prose dropped beside a kept table. Re-measured on 2026-10-20,
+  11,833 bare summary cells occur on 206 of the 210 CMS index pages with no
+  content findings. The earlier count of 12,911 is also reproduced, on 218 of
+  222 pages, when only `hollow_document_root` and `navigation_body` findings
+  exclude a page: that definition includes 12 additional pages with
+  `navigation_prefixed_body` findings and their 1,078 bare summary cells. Bare
+  cells are the markup proxy for summaries the extractor dropped. These losses
+  leave text below the root. Catching them takes a comparison of a source's
+  visible text with the text extracted from it:
+  [design note](source-coverage-check.md). The source-coverage prototype was
+  also re-run on 2026-10-20 over the same 15 scopes; every per-source result
+  matched the earlier measurement ([run note](ingest-runs/2026-10-13-content-check-v2.md)).
 
 ### Reviewed-empty rows
 
