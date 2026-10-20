@@ -39,18 +39,21 @@ import os
 import re
 import subprocess
 from pathlib import Path
+from unittest import mock
 
 import pytest
 import yaml
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
+from axiom_corpus.corpus import record_local_paths
 from axiom_corpus.corpus.manifest_local_paths import LOCAL_PATH_ROOTS, find_local_paths
 from axiom_corpus.corpus.record_local_paths import (
     RECORD_LOCAL_PATH_ALLOWLIST_PATH,
     RECORD_ROOTS,
     _closed_tags,
     _line_paths,
+    _scan,
     audit_record_local_paths,
     find_record_local_paths,
     load_record_local_path_allowlist,
@@ -530,6 +533,9 @@ def test_an_allowlist_that_is_not_yaml_fails_closed(tmp_path) -> None:
         # Inline markup inside a relative path renders as one relative path.
         "<td>data<em>/tmp/x</em></td>",
         "see **bold** and data/tmp/x",
+        'ignored = list(Path("data").glob("**/tmp/**"))',
+        'Run `find data -path "*/tmp/*" -print`.',
+        "use `**/tmp/**` to match",
         '{"pattern": "data\\\\/corpus\\\\/x"}',
     ],
 )
@@ -578,6 +584,16 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         ('{"cache": "\\/Users\\/alice\\/work"}', "/Users/…"),
         ('cache: "C:\\\\Users\\\\alice\\\\work"', "C:\\Users\\…"),
         ('{"html": "<td>\\/tmp/<b>job</b>/out</td>"}', "/tmp/…"),
+        (json.dumps({"html": '<td title="C:\\Users\\alice\\work">cell</td>'}), "C:\\Users\\…"),
+        ('{"html": "<td title=\\"\\/tmp\\/job\\">cell</td>"}', "/tmp/…"),
+        # Standard JSON and YAML string escapes before a path.
+        (json.dumps({"note": "Source:\n/Users/alice/work/source.pdf"}), "/Users/…"),
+        (json.dumps({"command": "cp\t/tmp/job/out\tdata/corpus"}), "/tmp/…"),
+        (json.dumps({"note": "Saved to \u201c/Users/alice/work\u201d"}), "/Users/…"),
+        ('note: "Source:\\n/Users/alice/work/source.pdf"', "/Users/…"),
+        # Markdown emphasis closed by any punctuation, and nested.
+        ("Output: **/Users/alice/work**\u2014copied", "/Users/…"),
+        ("Cache: **_/tmp/axiom_**.", "/tmp/…"),
         # A letter Python folds onto an ASCII one when matching case-insensitively.
         ("C:\\U\u017fers\\alice\\work", "C:\\Users\\…"),
     ],
@@ -738,6 +754,12 @@ _WRAPPERS = [
     ("*", "*"),
     ("**", "**"),
     ("**", "**."),
+    ("**", "**\u2014"),
+    ("**_", "_**"),
+    ("\\n", ""),
+    ("\\t", "\\t"),
+    ("\\u201c", "\\u201d"),
+    ('\\"', '\\"'),
     ("_", "_"),
     ("\u201c", "\u201d"),
     ("\u2018", "\u2019"),
@@ -767,12 +789,30 @@ def test_every_path_below_a_machine_root_is_found_in_prose_and_markup(
     if path.startswith("/media/file/"):
         return
     before, after = wrapper
-    head = " ".join(prefix) + " " + before
+    words = " ".join(prefix)
+    # Prose, not an open code span, where ``*`` is literal (a glob's ``**``).
+    words += " `" if words.rpartition("\n")[2].count("`") % 2 else ""
+    # Inside an escaped string, the path's own backslashes are escaped too.
+    if before.startswith("\\") and "\\\\" not in root:
+        path = path.replace("\\", "\\\\")
+    head = words + " " + before
     text = head + path + after
 
     found = find_record_local_paths(text)
 
     assert any(item.start == len(head) for item in found), text
+
+
+@settings(max_examples=500, deadline=None)
+@given(words=_WORDS, joiner=st.sampled_from(["", " ", "\t", "/"]), piece=st.integers(1, 12))
+def test_reading_a_long_line_in_pieces_finds_what_find_local_paths_finds(
+    words: list[str], joiner: str, piece: int
+) -> None:
+    """Differential: pieces ending in whitespace find exactly the line's paths."""
+    text = joiner.join(words).replace("\n", " ")
+
+    with mock.patch.object(record_local_paths, "_PIECE", piece):
+        assert _scan(text) == find_local_paths(text), text
 
 
 # --- 3. Functional manifest paths --------------------------------------------

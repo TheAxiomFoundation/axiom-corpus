@@ -25,6 +25,7 @@ import json
 import math
 import re
 import subprocess
+import sys
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
@@ -67,17 +68,20 @@ _WEB_PATH_PREFIXES = ("/media/file/",)
 # whitespace, a quote, ``=``, ``:`` or a shell operator; a path right after
 # ``<name>`` is relative to that placeholder; and text is read as written.
 # Records are prose, markup and data, so each line that could hold a path is
-# read up to three ways, and a path found in any reading is reported at its
+# read up to four ways, and a path found in any reading is reported at its
 # offset in the record:
 # A. as written, with block tags (``<td>``, ``<li>``, ``<br>``) as spaces;
 # B. as rendered: block tags as spaces and inline tags deleted (``<code>``,
 #    ``<em class="x">``, or any tag the record closes, such as ``</path>``), so
 #    ``/tmp/<b>job</b>/out`` is whole and ``data<em>/tmp/x</em>`` stays
 #    relative; A keeps what B drops, such as a path in an attribute value;
-# C. as B, after decoding the JSON and YAML escapes ``\\`` and ``\/``.
-# In each, an opener before a path start (``@``, a typographic quote, or
-# Markdown emphasis such as ``**`` that closes later on the line) becomes
-# spaces. A placeholder such as ``<scratchpad>`` is neither a tag nor closed.
+# C and D. as B and as A, after decoding JSON and YAML string escapes
+#    (``\n``, ``\t``, ``\"``, ``\\``, ``\/``, ``\u201c`` and the like).
+# In each, an opener before a path start becomes spaces: ``@`` or a typographic
+# quote after a delimiter, or Markdown emphasis (``**``, ``_``, ``**_``) opened
+# after whitespace or a bracket outside a code span and closed later on the
+# line, so the glob ``"**/tmp/**"`` stays a glob. A placeholder such as
+# ``<scratchpad>`` is neither a tag nor closed.
 _BLOCK_ELEMENT = re.compile(
     r"address|article|aside|blockquote|body|br|caption|dd|details|div|dl|dt|figcaption"
     r"|figure|footer|h[1-6]|head|header|hr|html|li|main|nav|ol|p|pre|section|summary|table"
@@ -89,7 +93,10 @@ _INLINE_ELEMENT = re.compile(
 )
 _TAG = re.compile(r"<(/?)([A-Za-z][A-Za-z0-9-]*)(\s[^<>]*)?/?>")
 _CLOSING_TAG = re.compile(r"</([A-Za-z][A-Za-z0-9-]*)\s*>")
-_ESCAPE = re.compile(r"\\([\\/])")
+_ESCAPE = re.compile(
+    r"\\(?:u([0-9A-Fa-f]{4})|U([0-9A-Fa-f]{8})|x([0-9A-Fa-f]{2})|([\\/\"'nrtbf0 ]))"
+)
+_ESCAPED = {"n": "\n", "r": "\r", "t": "\t", "b": "\b", "f": "\f", "0": "\0"}
 # Where a path can begin: a root, a home-relative ``~``, a Windows drive.
 _PATH_START = re.compile(
     "|".join(re.escape(root) for root in LOCAL_PATH_ROOTS) + r"|~|[A-Za-z]:[\\/]"
@@ -102,8 +109,9 @@ _EMPHASIS = frozenset("*_")
 # Lower-cased bytes, one of which every line a reading can find a path in
 # holds: what ``find_local_paths`` matches (its case-insensitive parts are
 # ASCII, but Python also folds the four letters at the end onto ``i``, ``s``
-# and ``k``), a closing tag (B can join a root split by markup) and the escapes
-# C decodes. A line holding none is never read, which keeps a full scan fast.
+# and ``k``), a closing tag (B can join a root split by markup) and an escaped
+# backslash or slash (C and D can decode a root from them). A line holding
+# none is never read, which keeps a full scan fast.
 _CANDIDATE = re.compile(
     b"|".join(
         re.escape(candidate)
@@ -160,11 +168,37 @@ def _line_paths(start: int, line: str, closed: set[str]) -> list[LocalPath]:
     """Return the paths in ``line`` (at ``start`` in its record), read each way."""
     paths = []
     for reading in _readings(line, closed):
-        for path in find_local_paths(reading.text):
+        for path in _scan(reading.text):
             if not _names_no_place(reading.text, path):
                 begin, end = reading.origin(path.start), reading.origin(path.end)
                 paths.append(LocalPath(start + begin, start + end, path.kind, path.root))
     return paths
+
+
+# ``find_local_paths`` rescans the text before each match for a placeholder, so
+# a long line is read in pieces that end in whitespace. No match, placeholder
+# or token spans whitespace, so the pieces find exactly what the line does.
+_PIECE = 1 << 16
+
+
+def _scan(text: str) -> list[LocalPath]:
+    paths: list[LocalPath] = []
+    start = 0
+    while start < len(text):
+        end = len(text)
+        if end - start > _PIECE:
+            space = _LAST_SPACE.search(text, start, start + _PIECE)
+            if space is None:
+                space = _SPACE.search(text, start + _PIECE)
+            end = space.end() if space else len(text)
+        for path in find_local_paths(text[start:end]):
+            paths.append(LocalPath(start + path.start, start + path.end, path.kind, path.root))
+        start = end
+    return paths
+
+
+_SPACE = re.compile(r"\s")
+_LAST_SPACE = re.compile(r"\s(?=\S*\Z)")
 
 
 def _candidate_lines(text: str) -> list[tuple[int, str]]:
@@ -249,10 +283,18 @@ def _readings(line: str, closed: set[str]) -> list[_Reading]:
         rendered = line_reading.rewritten(_TAG, as_rendered)
         readings.append(rendered.with_text(_open_tokens(rendered.text)))
     if _ESCAPE.search(line):
-        decoded = line_reading.rewritten(_ESCAPE, lambda escape: escape.group(1))
-        rendered = decoded.rewritten(_TAG, as_rendered)
-        readings.append(rendered.with_text(_open_tokens(rendered.text)))
+        decoded = line_reading.rewritten(_ESCAPE, _unescape)
+        for reading in (decoded.rewritten(_TAG, as_rendered), decoded.rewritten(_TAG, as_written)):
+            readings.append(reading.with_text(_open_tokens(reading.text)))
     return readings
+
+
+def _unescape(escape: re.Match[str]) -> str:
+    code = escape.group(1) or escape.group(2) or escape.group(3)
+    if code is not None:
+        number = int(code, 16)
+        return chr(number) if number <= sys.maxunicode else escape.group()
+    return _ESCAPED.get(escape.group(4), escape.group(4))
 
 
 def _open_tokens(line: str) -> str:
@@ -262,24 +304,27 @@ def _open_tokens(line: str) -> str:
         at = begin = start.start()
         while begin > 0 and (line[begin - 1] in _QUOTE_OPENERS or line[begin - 1] in _EMPHASIS):
             begin -= 1
-        if begin == at or (begin > 0 and not _DELIMITER.match(line, begin - 1)):
+        if begin == at:
             continue
+        before = line[begin - 1] if begin else " "
         emphasis = "".join(char for char in line[begin:at] if char in _EMPHASIS)
-        if emphasis and not _closes(line, at, emphasis):
+        if emphasis:
+            # Markdown emphasis opens after whitespace or a bracket, outside a
+            # code span, and closes in reverse order before a non-word character.
+            if not (before.isspace() or before in "([{") or line.count("`", 0, begin) % 2:
+                continue
+            if _closer(emphasis[::-1]).search(line, at) is None:
+                continue
+        elif not _DELIMITER.match(before):
             continue
         chars = chars or list(line)
         chars[begin:at] = " " * (at - begin)
     return line if chars is None else "".join(chars)
 
 
-def _closes(line: str, after: int, emphasis: str) -> bool:
-    """Whether Markdown emphasis ``emphasis`` closes on ``line`` after ``after``."""
-    return _closer(emphasis).search(line, after) is not None
-
-
 @functools.cache
 def _closer(emphasis: str) -> re.Pattern[str]:
-    return re.compile(rf"(?<=\S){re.escape(emphasis)}(?=$|[\s.,;:!?)\]\"'`])")
+    return re.compile(rf"(?<=\S){re.escape(emphasis)}(?![^\W_])")
 
 
 def _names_no_place(text: str, path: LocalPath) -> bool:
