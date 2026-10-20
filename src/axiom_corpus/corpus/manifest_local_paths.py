@@ -206,6 +206,9 @@ _PATH_TOKEN = re.compile(
 )
 
 
+_FILE_SCHEME_BEFORE = re.compile(r"(?i)(?<![A-Za-z0-9+.-])file:\Z")
+
+
 def relativize_repo_paths(text: str, *, repo: Path) -> str:
     """Rewrite each absolute path inside ``repo`` as a repository-relative path.
 
@@ -215,14 +218,17 @@ def relativize_repo_paths(text: str, *, repo: Path) -> str:
     is inside the checkout when, with ``~`` and ``$HOME`` expanded and ``..``
     collapsed, it is the checkout or lies under it, spelled either as given or
     through symbolic links (macOS ``/tmp`` is ``/private/tmp``). Every other
-    path is left as written.
+    path is left as written, and so is a ``file:`` URL, which no relative path
+    can stand for.
     """
     roots = _checkout_spellings(repo)
     home = os.path.expanduser("~")
 
     def rewrite(match: re.Match[str]) -> str:
         token = match.group()
-        if _PLACEHOLDER_BEFORE.search(text, 0, match.start()):
+        if _PLACEHOLDER_BEFORE.search(text, 0, match.start()) or _FILE_SCHEME_BEFORE.search(
+            text, 0, match.start()
+        ):
             return token
         expanded = token
         for prefix in ("~", "$HOME", "${HOME}"):
@@ -256,8 +262,4 @@ def _path_spellings(path: str) -> list[str]:
     # A NUL byte, or a path the OS will not resolve, has no other spelling.
     with contextlib.suppress(OSError, ValueError):
         spellings.append(os.path.realpath(normalized))
-    # macOS: /tmp and /var are links into /private.
-    for spelling in list(spellings):
-        if spelling.startswith("/private/"):
-            spellings.append(spelling[len("/private") :])
     return spellings

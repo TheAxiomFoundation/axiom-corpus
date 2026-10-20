@@ -345,7 +345,7 @@ def test_paths_are_found_in_every_string_field_but_signature_value() -> None:
         "coverage": {"nested": [{"deep": "$HOME/x"}]},
         "/Users/someone/key": 1,
         # base64 may hold "/Users/" by chance; it records bytes, not a path.
-        "signature": {"algorithm": "ed25519", "key_id": "~/k", "value": "ab/Users/cd/tmp/ef=="},
+        "signature": {"algorithm": "ed25519", "key_id": "~/k", "value": "/Users/cd+tmp/ef=="},
     }
 
     fields = [field for field, _ in local_path_fields(payload)]
@@ -786,6 +786,33 @@ def test_a_rewrite_cannot_turn_a_later_path_into_a_placeholder_path(checkout) ->
     with pytest.raises(ManifestLocalPathError) as raised:
         recordable_command(command, repo=checkout)
     assert "`/tmp/y`" in str(raised.value)
+
+
+def test_a_checkout_reached_through_a_symbolic_link_is_relativized(tmp_path) -> None:
+    repo = tmp_path / "axiom-corpus"
+    repo.mkdir()
+    link = tmp_path / "axiom-corpus-old-name"
+    link.symlink_to(repo, target_is_directory=True)
+
+    assert relativize_repo_paths(f"--base {link}/data/corpus", repo=repo) == "--base data/corpus"
+    assert relativize_repo_paths(f"--base {repo}/data", repo=link) == "--base data"
+
+
+def test_a_relativized_path_that_reads_as_home_relative_is_refused(checkout) -> None:
+    """A checkout directory named ``~cache`` would record ``~cache/x``."""
+    with pytest.raises(ManifestLocalPathError) as raised:
+        recordable_command(f"x --dir {checkout}/~cache/y --env {checkout}/$HOME/z", repo=checkout)
+
+    assert "`~cache/y`" in str(raised.value) and "`$HOME/z`" in str(raised.value)
+
+
+@pytest.mark.parametrize("scheme", ["file:", "FILE:", "file://"])
+def test_a_file_url_into_the_checkout_is_refused_not_rewritten(checkout, scheme) -> None:
+    command = f"x --url {scheme}{checkout}/data/a.pdf"
+
+    assert relativize_repo_paths(command, repo=checkout) == command
+    with pytest.raises(ManifestLocalPathError):
+        recordable_command(command, repo=checkout)
 
 
 def test_git_tracks_no_ingest_manifest_the_scan_cannot_see() -> None:

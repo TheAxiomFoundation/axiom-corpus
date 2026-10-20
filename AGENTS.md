@@ -34,6 +34,16 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
 - After an ingest, `sign-ingest-manifest ... --lock --push` writes the scope's
   lock and uploads its new objects; commit the lock with the signed manifest.
   Never `git add -f` corpus files.
+- `--command` is public once signed, so it names no path on your machine:
+  repository files by their repository-relative path (the signer rewrites
+  absolute paths inside the checkout), scratch, cache and tool directories by
+  a placeholder such as `TMPDIR=<scratchpad>` or `<ocr-cache>`, and a
+  parenthetical naming the run note under `docs/ingest-runs/`. The signer
+  refuses `/Users/`, `/home/`, `/tmp/`, `/private/`, `/var/folders/`, `~/`,
+  `$HOME` and `file:` paths outside the checkout, and
+  `tests/test_ingest_manifest_local_paths.py` fails on any manifest that
+  records one. `.axiom/ingest-manifest-local-paths.yaml` grandfathers the
+  fourteen signed before the guard (axiom-corpus#896); it only shrinks.
 - An ingest you were asked to do includes `corpus push` of its own new objects
   (Max, 2026-09-30). They are content-addressed and write-once under R2
   `objects/sha256/`: an upload never overwrites an object and publishes
