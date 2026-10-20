@@ -156,6 +156,17 @@ the official form. `--section` selectors take the official form (`--section '1.4
 Before 2026-09-13 such identifiers were skipped by the inventory and truncated by the XML
 pass, so no earlier scope contains one.
 
+Title 41 numbers each part within its chapter: part 60-20 is part 20 of chapter 60, and
+its sections are 60-20.1, 60-20.2, and so on (`us/regulation/41/60-20/1`). The identifier
+alone cannot say whether a hyphenated prefix is a part, because 14 CFR part 241 numbers
+its own sections 19-8.1 to 19-8.10, so the adapter reads a hyphenated part only inside
+that part; every other identifier parses as before. `--only-part 60-20` and
+`--section 60-20.1` take the official form, and lettered or numbered part appendices take
+the same part grammar (`Appendix A to Part 60-300` is
+`us/regulation/41/60-300/appendix-a`). Before 2026-10-12 the inventory skipped these
+sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
+`manifests/releases/` carried title 41 then.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
@@ -387,6 +398,29 @@ axiom-corpus-ingest extract-official-documents \
   --version 2026-04-30 \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
+
+### Retained copies (`local_path`)
+
+A manifest entry with `local_path` reads the document's bytes from that file
+instead of fetching them, for a publisher that blocks or breaks automated
+fetches. A relative `local_path` is relative to the manifest file. The rows
+record the official URL, never the file: `metadata.download_url` is the entry's
+`download_url`, else the Google Drive direct link, else `source_url` (the URL a
+fetch would have requested), and `metadata.content_type` is the media type of
+the declared or detected `source_format`. The source snapshot keeps the
+retained bytes and their sha256.
+
+`guard-ingested` rejects a new or changed inventory or provisions artifact whose
+`source_url` or metadata `url`/`*_url` field holds a `file:` URL, which would
+publish a path on the extracting machine. Body text is not checked: a scanned
+document can print a `file:` link itself.
+
+Scopes extracted before this rule record such paths.
+`scripts/audit_local_file_urls.py [--release <selector>]` lists the locked ones,
+and `scripts/repair_local_file_download_urls.py` writes a successor scope from a
+locked scope's own bytes, by re-extraction with the committed manifest or, for
+recovery-batch scopes, by rewriting only the leaked URL. It then checks that the
+successor differs only in those URLs, their media types and the version.
 
 ### Amended rule text in PDFs
 

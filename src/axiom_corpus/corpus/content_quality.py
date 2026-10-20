@@ -87,7 +87,7 @@ FINDING_CODES = (
 # words they may leave over, for the body to count as navigation.
 NAVIGATION_COVERAGE = 0.7
 NAVIGATION_RESIDUAL_WORDS = 25
-# Words a body is read to, so a very long row costs no more than this.
+# Limit navigation matching; substance detection still reads the full body.
 MAX_BODY_TOKENS = 1200
 # The opening of a body that the prefix check reads, the share of it that
 # navigation strings must cover, and the run of navigation words it must open
@@ -107,6 +107,11 @@ NAVIGATION_STRING_LETTER_SHARE = 0.75
 # glyph codes hold under 15% figures (docs/release-gate-policy.md).
 FIGURE_TEXT_MIN_TOKENS = 5
 FIGURE_TEXT_MIN_SHARE = 0.5
+# An extractor drops a block as navigation only when it is at least this many of
+# its page's navigation strings, none longer than this many words
+# (``is_navigation_block``).
+NAVIGATION_BLOCK_MIN_STRINGS = 2
+NAVIGATION_BLOCK_MAX_STRING_WORDS = 12
 # Bytes read to decide whether a source is HTML.
 HTML_SNIFF_BYTES = 4096
 
@@ -131,6 +136,13 @@ _FIGURE = re.compile(r"[(\[]?[-+\u2212]?[$\u00a3\u20ac\u00a5]?\.?\d[\d.,/:\u2013
 # period or a closing bracket, with or without punctuation after it
 # ("(1)", "[12]", "3.", "4)", "(5).", "6.)", "(7):").
 _ENUMERATOR = re.compile(r"(?:[(\[]\d{1,3}[)\]]|\d{1,3}(?:\.\)?|[)\]]))[.,;:]?")
+# A token that ends a sentence: a final period or exclamation mark, before any
+# closing quotes or brackets, that is not the last of an ellipsis.
+_ENDS_SENTENCE = re.compile(r"(?<!\.)[.!][\"')\]’”]*$")
+# Characters that only separate links (breadcrumb and menu dividers). Any other
+# token outside the page's navigation strings is the block's own content: a word,
+# a figure, or a table mark such as a check, a cross or a dash for "none".
+_SEPARATOR_CHARS = frozenset("|/\\<>«»‹›•·")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -237,9 +249,9 @@ class PageNavigation:
     def __bool__(self) -> bool:
         return bool(self._by_first)
 
-    def cover(self, tokens: list[str]) -> list[bool]:
-        """Mark each token that lies in a longest-first match of a navigation string."""
-        covered = [False] * len(tokens)
+    def matches(self, tokens: list[str]) -> list[tuple[int, int]]:
+        """The ``(start, end)`` token spans of the longest-first navigation string matches."""
+        spans = []
         index = 0
         while index < len(tokens):
             matched = 0
@@ -253,11 +265,18 @@ class PageNavigation:
                     matched = len(sequence)
                     break
             if matched:
-                for position in range(index, index + matched):
-                    covered[position] = True
+                spans.append((index, index + matched))
                 index += matched
             else:
                 index += 1
+        return spans
+
+    def cover(self, tokens: list[str]) -> list[bool]:
+        """Mark each token that lies in a longest-first match of a navigation string."""
+        covered = [False] * len(tokens)
+        for start, end in self.matches(tokens):
+            for position in range(start, end):
+                covered[position] = True
         return covered
 
     def coverage(self, tokens: list[str]) -> Coverage:
@@ -314,11 +333,16 @@ def is_version_picker(raw: bytes) -> bool:
 
 @dataclass(frozen=True)
 class RowVerdict:
-    """What the row checks conclude about one body."""
+    """What the row checks conclude about one body.
+
+    ``residual_words`` counts the body's words with a letter that no navigation
+    string covers (read to ``MAX_BODY_TOKENS``).
+    """
 
     navigation: bool
     prefixed: bool
     substantive: bool
+    residual_words: int = 0
 
 
 def _opening_run(tokens: list[str], covered: list[bool]) -> int:
@@ -342,15 +366,18 @@ def classify_body(
 
     A body is text (``substantive``) when it is not navigation and has a word
     with a letter in it, or, having none, is a table of figures
-    (``is_figure_table``). That rule decides substance only: the navigation
-    and prefix verdicts are what they were without it. In those verdicts a
+    (``is_figure_table``). Both substance checks read the whole body, so the
+    navigation token limit cannot hide figures or skew their share. That rule
+    decides substance only: the navigation and prefix verdicts are what they
+    were without it. In those verdicts a
     figure is a token like any other: it counts in the coverage share, a
     navigation string that holds one ("Appendix 1") covers it, and outside any
     navigation string it has no letter, so it is neither a left-over word nor
     the end of an opening run.
     """
-    tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
-    words = sum(1 for token in tokens if _has_letters(token))
+    body_tokens = _tokens(body or "")
+    tokens = body_tokens[:MAX_BODY_TOKENS]
+    has_letters = _has_letters(body or "")
     if not tokens:
         return RowVerdict(navigation=False, prefixed=False, substantive=False)
     covered = navigation.cover(tokens) if navigation else [False] * len(tokens)
@@ -376,8 +403,70 @@ def classify_body(
             and _opening_run(head, head_covered) >= PREFIX_RUN_TOKENS
         )
         prefixed = chrome_opening and rest_coverage.share < REST_MAX_COVERAGE
-    substantive = not is_navigation and (words > 0 or is_figure_table(tokens))
-    return RowVerdict(navigation=is_navigation, prefixed=prefixed, substantive=substantive)
+    substantive = not is_navigation and (has_letters or is_figure_table(body_tokens))
+    return RowVerdict(
+        navigation=is_navigation,
+        prefixed=prefixed,
+        substantive=substantive,
+        residual_words=whole.residual_words,
+    )
+
+
+def is_navigation_block(
+    body: str | None,
+    navigation: PageNavigation | None,
+    *,
+    heading: str | None = None,
+    label: str | None = None,
+) -> bool:
+    """Whether an extractor may drop a block of a page as that page's navigation.
+
+    The official-document HTML extractor asks this of every positional block it
+    makes (``documents._extract_html_blocks``) and drops the block when it holds.
+    It is the ``navigation_body`` rule of ``classify_body`` with four more
+    conditions, so that a dropped block is a list of the page's link labels and
+    nothing else:
+
+    - every token lies in one of the page's navigation strings or is made only of
+      link separators (``|``, ``>``, ``»``, ``•`` ...), so a status ("Repealed April
+      6, 2000. Return to Table of Contents"), an instruction ("See Certification
+      Periods."), a figure beside a linked label ("Gross monthly income limit
+      $2,000") or a table mark ("✓", "✗", "-", "—") keeps its block;
+    - the body is at least ``NAVIGATION_BLOCK_MIN_STRINGS`` navigation strings: a
+      lone link can be a section's whole text ("See reciprocal agreement", an
+      exhibit's title, a glossary term whose definition sits inside its link);
+    - no matched string is longer than ``NAVIGATION_BLOCK_MAX_STRING_WORDS`` words,
+      so a table of contents whose entries carry amendment notes, or prose inside
+      a link, is kept;
+    - no matched string ends a sentence (a final period or exclamation mark): a
+      label names a page, while "Income means money received." is a definition.
+
+    A body longer than ``MAX_BODY_TOKENS`` words, which the check reads only in
+    part, and a body that repeats the block's heading are never navigation. So
+    every block the extractor drops is a row this check would flag; a flagged row
+    that fails one of these conditions is kept, for the check to report.
+    """
+    if not navigation or not body:
+        return False
+    tokens = _tokens(body)
+    if len(tokens) > MAX_BODY_TOKENS:
+        return False
+    if not classify_body(body, navigation, heading=heading, label=label).navigation:
+        return False
+    spans = navigation.matches(tokens)
+    covered = {position for start, end in spans for position in range(start, end)}
+    if any(
+        not set(token) <= _SEPARATOR_CHARS
+        for position, token in enumerate(tokens)
+        if position not in covered
+    ):
+        return False
+    return len(spans) >= NAVIGATION_BLOCK_MIN_STRINGS and all(
+        sum(1 for token in tokens[start:end] if _has_letters(token))
+        <= NAVIGATION_BLOCK_MAX_STRING_WORDS
+        and not _ENDS_SENTENCE.search(tokens[end - 1])
+        for start, end in spans
+    )
 
 
 def _text_or_none(value: object) -> str | None:

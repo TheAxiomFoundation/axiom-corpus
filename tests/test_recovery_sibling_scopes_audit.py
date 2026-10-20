@@ -133,15 +133,22 @@ def test_retained_files_are_the_signed_bytes() -> None:
             assert record["sha256_matches_provenance"] is expected, (key, record["document_id"])
 
 
-def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes() -> None:
+def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Replay the July builders on every page whose rows they still reproduce.
 
     This replays history through ``scripts/recover_ingest_batch.py`` and the shared
     extractor. If it fails after a change to that code, the committed scopes have
-    not changed; re-check the run note's "How the rows were made" section.
+    not changed; re-check the run note's "How the rows were made" section. The
+    July extractor kept navigation blocks, which it now drops
+    (``docs/ingest-runs/2026-10-13-html-navigation-blocks.md``), so the replay
+    turns that filter off.
     """
+    from axiom_corpus.corpus import documents
     from scripts.recover_ingest_batch import _generic, _targeted_state_html
 
+    monkeypatch.setattr(documents, "is_navigation_block", lambda *args, **kwargs: False)
     replayed = 0
     for key in (
         "us-ny/statute/2026-07-13-recovery",
@@ -472,8 +479,10 @@ def test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones(
 # row ("-" for none). No row the audit found to carry text (legal_text,
 # document_page_text, document_section_text) is flagged. The no-text rows the
 # check misses are prose landing pages, empty roots with text below them, alias
-# copies, and the UT and MI pages whose chrome is not a link menu; the
-# withdrawal registry covers every scope they belong to.
+# copies, and the UT and MI pages whose chrome is not a link menu. The
+# withdrawal registry stops those rows in withdrawn scopes; the retained
+# us/guidance and CO TANF consolidated scopes keep eleven empty roots, four
+# prose landing pages and three alias copies, which pass the gate.
 VERDICTS_AGAINST_FINDINGS = {
     ("alias_copy", "-"): 16,
     ("document_page_text", "-"): 460,

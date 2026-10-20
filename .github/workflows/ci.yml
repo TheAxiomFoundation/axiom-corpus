@@ -87,24 +87,37 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install corpus artifact guard
+        # Every install in this workflow goes through install-locked.sh, which
+        # installs the versions uv.lock pins (docs/dependency-lock.md).
         if: github.event_name != 'schedule'
         run: |
-          cd "$RUNNER_TEMP"
-          python -I -m pip install --upgrade pip
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_REF="${{ github.event.pull_request.base.sha }}"
             VERIFIER_DIR="$RUNNER_TEMP/axiom-corpus-verifier"
-            git clone --no-checkout "$GITHUB_SERVER_URL/${{ github.repository }}.git" "$VERIFIER_DIR"
+            # Only the base commit: a full clone downloaded the 5.7 GB history
+            # to check out this one commit.
+            git init -q "$VERIFIER_DIR"
+            git -C "$VERIFIER_DIR" remote add origin "$GITHUB_SERVER_URL/${{ github.repository }}.git"
             git -C "$VERIFIER_DIR" fetch --depth 1 origin "$BASE_REF"
             git -C "$VERIFIER_DIR" checkout --detach "$BASE_REF"
             if [ -f "$VERIFIER_DIR/src/axiom_corpus/corpus/ingest_manifests.py" ]; then
-              python -I -m pip install "$VERIFIER_DIR"
+              # The base commit's code, on the versions its uv.lock pins,
+              # installed by its own install-locked.sh. This workflow file
+              # still comes from the pull request, so review of
+              # .github/workflows and .github/scripts stays the trust root.
+              if [ -f "$VERIFIER_DIR/.github/scripts/install-locked.sh" ]; then
+                bash "$VERIFIER_DIR/.github/scripts/install-locked.sh" --project "$VERIFIER_DIR"
+              else
+                # The base predates install-locked.sh, and its lock may still
+                # pin a package that has only a source distribution.
+                bash .github/scripts/install-locked.sh --project "$VERIFIER_DIR" --allow-source-builds
+              fi
             else
               echo "Base commit has no ingest guard yet; using checked-out bootstrap guard."
-              python -I -m pip install -e "$GITHUB_WORKSPACE"
+              bash .github/scripts/install-locked.sh --editable
             fi
           else
-            python -I -m pip install -e "$GITHUB_WORKSPACE"
+            bash .github/scripts/install-locked.sh --editable
           fi
 
       - name: Guard generated corpus artifacts
@@ -154,15 +167,13 @@ jobs:
               # push and schedule runs audit the branch's own commit with its own code.
               echo "No base verifier on ${{ github.event_name }} runs; auditing with the checked-out code."
             fi
-            python -I -m pip install -e "$GITHUB_WORKSPACE"
+            bash .github/scripts/install-locked.sh --editable
           fi
           axiom-corpus-ingest corpus verify --attest --ref "${{ github.sha }}"
 
       - name: Install dependencies
-        run: |
-          cd "$RUNNER_TEMP"
-          python -I -m pip install --upgrade pip
-          python -I -m pip install -e "${GITHUB_WORKSPACE}[dev]"
+        # The checked-out code and the dev extra, on the versions uv.lock pins.
+        run: bash .github/scripts/install-locked.sh --editable --extra dev
 
       - name: Check R2 serves every new corpus lock entry
         # Every object a lock entry names must be fetchable before it merges;
@@ -202,27 +213,6 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
         run: axiom-corpus-ingest corpus fetch --all --no-cache --workers 32
 
-      - name: Start the release content baseline check
-        id: content_check
-        # Every locked scope's content findings (page navigation, chrome-prefixed
-        # bodies, hollow document roots, version pickers) must match
-        # manifests/release-content-baseline.json, which pins each scope's
-        # provisions and inventory digests. A new scope with no findings needs no
-        # entry; one with findings fails until its extraction is fixed or the
-        # findings are recorded on purpose (docs/release-gate-policy.md).
-        # The check takes about three minutes on three workers. It runs beside
-        # the single-process test run below, on cores that run leaves idle, so it
-        # overlaps the tests instead of adding its time to this job; "Check the
-        # release content baseline" after the tests reports it.
-        run: |
-          (
-            set +e
-            axiom-corpus-ingest content-check --all --check-baseline --workers 3 \
-              > "$RUNNER_TEMP/content-check.log" 2>&1
-            echo $? > "$RUNNER_TEMP/content-check.rc.tmp"
-            mv "$RUNNER_TEMP/content-check.rc.tmp" "$RUNNER_TEMP/content-check.rc"
-          ) > /dev/null 2>&1 &
-
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
 
@@ -236,23 +226,21 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          python -I -m pip install pytest-cov pytest-timeout
-          pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
+          # Four processes (the runner's cores); a test file's tests stay in
+          # one process, with its module-level fixtures.
+          pytest -v -n 4 --dist loadfile --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 
       - name: Check the release content baseline
-        # Reports the check started before the tests, whether or not they passed.
-        if: ${{ !cancelled() && steps.content_check.outcome == 'success' }}
-        run: |
-          for _ in $(seq 180); do
-            [ -f "$RUNNER_TEMP/content-check.rc" ] && break
-            sleep 5
-          done
-          cat "$RUNNER_TEMP/content-check.log" 2>/dev/null || true
-          if [ ! -f "$RUNNER_TEMP/content-check.rc" ]; then
-            echo "::error title=Content baseline check unfinished::content-check --all --check-baseline did not finish within 15 minutes of the tests"
-            exit 1
-          fi
-          exit "$(cat "$RUNNER_TEMP/content-check.rc")"
+        # Every locked scope's content findings (page navigation, chrome-prefixed
+        # bodies, hollow document roots, version pickers) must match
+        # manifests/release-content-baseline.json, which pins each scope's
+        # provisions and inventory digests. A new scope with no findings needs no
+        # entry; one with findings fails until its extraction is fixed or the
+        # findings are recorded on purpose (docs/release-gate-policy.md).
+        # Run after the four-worker tests so the checks share the runner's four
+        # cores sequentially. Check the baseline even when tests failed.
+        if: ${{ !cancelled() }}
+        run: axiom-corpus-ingest content-check --all --check-baseline --workers 3
 
   citation-path-grammar:
     name: Citation-path grammar (A6)
@@ -284,7 +272,7 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_CORPUS_READ_SECRET_ACCESS_KEY }}
         run: |
           if [ -d .axiom/corpus-locks ]; then
-            python -I -m pip install -e .
+            bash .github/scripts/install-locked.sh --editable
             axiom-corpus-ingest corpus fetch --path data/corpus/provisions --no-cache --workers 32
           else
             echo "No corpus lock files; corpus bytes are tracked in git."
@@ -321,9 +309,7 @@ jobs:
           python-version: "3.14"
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e ".[dev,postgres]"
+        run: bash .github/scripts/install-locked.sh --editable --extra dev --extra postgres
 
       - name: Test PostgreSQL connection
         env:
@@ -377,9 +363,7 @@ jobs:
           python-version: "3.14"
 
       - name: Install package
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e .
+        run: bash .github/scripts/install-locked.sh --editable
 
       - name: Verify release coverage
         if: env.SUPABASE_ANON_KEY != ''
@@ -405,7 +389,7 @@ jobs:
         with:
           python-version: "3.14"
       - name: Install package
-        run: python -I -m pip install -e .
+        run: bash .github/scripts/install-locked.sh --editable
       - name: Fetch the corpus the selectors name
         # Deep validation reads every selected scope's artifacts; with corpus
         # bytes outside git they come from R2. No-op without lock files.
@@ -427,17 +411,21 @@ jobs:
           fi
       - name: Deep-validate every named release selector
         # The step above fetched every selected scope; validation itself
-        # never reaches the network.
+        # never reaches the network. One pass validates every selector: the
+        # union selectors repeat each other's scopes (18,783 entries, 2,116
+        # distinct scopes on 2026-10-13), so each distinct scope is
+        # deep-checked once, in four processes, and every selector still gets
+        # its own full report and verdict (validate_releases).
         env:
           AXIOM_CORPUS_NO_FETCH: "1"
         run: |
-          found=0
+          set --
           for selector in manifests/releases/*.json; do
-            [ -f "$selector" ] || continue
-            found=1
-            axiom-corpus-ingest validate-release \
-              --base data/corpus \
-              --release "$selector" \
-              --max-issues 100
+            [ -f "$selector" ] && set -- "$@" --release "$selector"
           done
-          [ "$found" = "1" ]
+          [ "$#" -gt 0 ]
+          axiom-corpus-ingest validate-release \
+            --base data/corpus \
+            --max-issues 100 \
+            --workers 4 \
+            "$@"

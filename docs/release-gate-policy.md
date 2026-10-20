@@ -20,8 +20,9 @@ The gate now also reads tracked files from the repository
 
 Local validation (`axiom-corpus-ingest validate-release`), the
 `Validate named release selectors` CI job and `scripts/publish_corpus.py`
-(dry run, preflight and post-readback) all call `validate_release`, so all three
-enforce both files. `publish_corpus.py` reads the policy from the checkout it
+(dry run, preflight and post-readback) call `validate_release` or its batched
+counterpart `validate_releases`, so all three enforce both files.
+`publish_corpus.py` reads the policy from the checkout it
 publishes; `validate-release` reads it from the checkout holding `--base`, and
 says on stderr when `--base` is in no checkout, in which case no file
 applies. In a checkout that keeps corpus locks, the first two files are required: a
@@ -102,14 +103,16 @@ The 19 entries:
 The audits keep `us/guidance/2026-07-13-recovery` (the only selected carrier of
 five cited ED and IRS paths) and the CO consolidated scope, and
 `us-mt/regulation/2026-07-13-recovery` stays until its successor (#761) merges;
-none of the three is listed. Four cuts made after the 2026-10-03 decision still
+none of the three is listed. Six cuts made after the 2026-10-03 decision still
 select withdrawn scopes. The 2026-10-07, 2026-10-11 and 2026-10-12 unions keep
 the landing scopes and the SC statute scope. `us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected`
 (#848), an additive successor of the obbb-alien-snap pin, drops the CA scopes
 but keeps 16: the CO regulation, landing, ME, MI, MN, NY, UT and SC statute
-recovery scopes, NY article 22 core and SC Act 110. All four reached `main`
-before the gate, so they are grandfathered like every earlier selector; the next
-cut in each line must take the swap. Their notice says the selector chose the
+recovery scopes, NY article 22 core and SC Act 110. The Arizona DES ECE dated
+selector (#799), merged on 2026-10-14, keeps the same 16; the w7 bundle-gaps union
+(#856) keeps the seven landing scopes and both SC statute scopes, nine in all.
+All six reached `main` before the gate, so they are grandfathered like every
+earlier selector; the next cut in each line must take the swap. Their notice says the selector chose the
 scope before the gate listed it.
 
 ### Withdrawing a scope
@@ -180,7 +183,13 @@ their retained sources. On them:
   alias copies; and roots that do have text below them.
 
 `test_the_content_check_agrees_with_the_audit` pins this table for the sibling
-scopes. Each missed row belongs to a withdrawn scope, so the registry stops it.
+scopes. In a withdrawn scope the registry stops every missed row. Two retained
+scopes keep missed rows that pass the gate: `us/guidance/2026-07-13-recovery`
+(seven empty roots, three prose landing pages and three alias copies) and
+`us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated` (four
+empty roots and one prose landing page). Seven of the eleven empty roots have
+text-bearing rows below them; the other four have only a landing page below them.
+The four landing pages and three alias copies are tolerated.
 
 Two rules were measured and dropped:
 
@@ -195,10 +204,36 @@ Two rules were measured and dropped:
   audit identified) from statute pages with large menus (up to 0.753). A landing
   page is caught when its blocks are navigation, or its root has none with text.
 
-Over every locked scope (2,390 with provisions and an inventory), the check
-finds 1,416 findings in 181 scopes, and 72 more rows are reviewed empty
-(content-check-v2; v1 found 1,489 in 182, before the changes in
-[Version 2](#version-2-2026-10-13)):
+**Original scan snapshot (recorded 2026-10-13 at `be6f6da81`).** The following
+table and interpretation describe that scan, not the current corpus. Across
+the 2,390 locked scopes then holding provisions and an inventory, the check
+reported 1,489 findings in 182 scopes:
+
+| Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| manual | 43 | 734 | 4 | 78 | |
+| guidance | 57 | 207 | 9 | | |
+| policy | 47 | 94 | 69 | 44 | |
+| statute | 22 | 119 | 19 | 12 | 1 |
+| regulation | 11 | 41 | 1 | 54 | |
+| form | 2 | 3 | | | |
+
+Most were site menus, language pickers, "Authenticate / PDF" and "View In PDF"
+blocks, and related-link lists in scopes ingested from agency web pages,
+including the 2026-10-06 w6 scopes. 56 of the 69 policy prefixes were Canadian
+government pages (Canada.ca, CRA, Revenu Québec) that opened with skip links.
+At that snapshot, 177 of the 182 scopes were selected by a tracked selector,
+and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
+152 of them.
+
+### Version 2 (2026-10-13)
+
+<!-- re-measure in phase B -->
+
+The original Version 2 scan reported 1,416 findings in 181 of the 2,390 locked
+scopes with provisions and an inventory, and 72 more rows were reviewed empty
+(content-check-v2; v1 found 1,489 in 182). These figures record that earlier
+measurement and await re-measurement on the combined code.
 
 | Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -209,14 +244,9 @@ finds 1,416 findings in 181 scopes, and 72 more rows are reviewed empty
 | regulation | 10 | 41 | 1 | 49 | |
 | form | 2 | 3 | | | |
 
-Most are site menus, language pickers, "Authenticate / PDF" and "View In PDF"
-blocks, and related-link lists in scopes ingested from agency web pages,
-including the 2026-10-06 w6 scopes. 56 of the 69 policy prefixes are Canadian
-government pages (Canada.ca, CRA, Revenu Québec) that open with skip links. 176 of the 181 scopes are selected
-by a tracked selector, and the newest union (`us-rulespec-2026-10-12-w5-benefits-union`)
-selects 151 of them.
-
-### Version 2 (2026-10-13)
+At that measurement, 176 of the 181 scopes were selected by a tracked selector,
+and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
+151 of them.
 
 The [hollow-root audit](ingest-runs/2026-10-13-hollow-document-root-audit.md)
 classified all 188 v1 `hollow_document_root` findings against their sources:
@@ -358,6 +388,70 @@ So existing scopes stay selectable, and a new scope with chrome, a hollow root
 or a picker fails the release that selects it until its extraction is fixed or
 its findings are recorded on purpose. A clean new scope needs no entry.
 
+### The extractor drops navigation blocks
+
+The official-document HTML extractor (`documents._extract_html_blocks`) asks
+`content_quality.is_navigation_block` of every positional block it makes: the
+heading walk's `block-N` blocks, a WebWorks page's blocks, and the whole-root
+fallback. The helper is the `navigation_body` rule above, read against the same
+navigation strings of the same retained bytes, with four more conditions so
+that a dropped block is a list of the page's link labels and nothing else:
+
+- every token lies in a navigation string or is only link separators (`|`,
+  `>`, `»`, `•` ...), so a status line, a pointer, a figure beside a linked label
+  or a table mark (✓, ✗, a dash) keeps its block;
+- the body is at least two navigation strings
+  (`NAVIGATION_BLOCK_MIN_STRINGS`): a lone link can be a section's whole text;
+- no matched string is longer than 12 words
+  (`NAVIGATION_BLOCK_MAX_STRING_WORDS`): long link text can be prose;
+- no matched string ends a sentence (a final period or exclamation mark): a
+  label names a page, a sentence inside a link can be a definition.
+
+A body longer than the 1,200 words the check reads, or one that repeats its
+heading, is never dropped. A dropped block's ordinal is used up, so the blocks
+after it keep the citation paths an unfiltered extraction gives them; encodings
+that cite `block-N` paths resolve the same way in a successor scope. The filter
+drops nothing from a page whose manifest declares its sections
+(`labeled_sections`, `anchor_range`), from HTML read out of a JSON field, which
+the check cannot see, or from a page `scripts/recover_ingest_batch.py`
+re-encodes before extracting. `html_keep_navigation_blocks: true` in a
+manifest's `extraction` keeps every block the filter would drop.
+
+So every block this filter drops is a row the check would flag, and the check
+still reports the flagged rows the extractor keeps. Existing scopes do not
+change: a successor is a separate, signed ingest. The calibration, a measurement
+over the 148 scopes with `navigation_body` rows, and the scope families that
+would gain from successors are in
+[the run note](ingest-runs/2026-10-13-html-navigation-blocks.md);
+`scripts/measure_html_navigation_blocks.py` repeats the measurement.
+
+#### Declared navigation
+
+A manifest can also name a publisher's navigation, for chrome the filter keeps
+on purpose (a lone tab link, a link list with unlinked section codes):
+
+- `html_navigation_selectors` match navigation elements; a positional block
+  whose every string lies inside a matched element is dropped. A block with
+  any other text keeps its whole body.
+- `html_navigation_heading_selectors` match headings; the positional block a
+  matched heading starts is dropped.
+
+Matched elements stay in the tree, so headings and block boundaries are those of
+an unfiltered extraction, and a dropped block's ordinal is used up as above.
+`html_drop_selectors` cannot stand in for them on positional pages: they remove
+elements before the blocks are numbered, so every block after one they empty is
+renumbered. The declarations are independent of the filter: they apply to HTML
+read out of a JSON field too, and `html_keep_navigation_blocks: true` keeps the
+filter's blocks while still dropping the declared ones. A manifest whose pages
+have no positional blocks (declared sections, JSON records or source-only JSON,
+a JSON field read as one block, a source that is not HTML or JSON) cannot
+declare navigation; the extractor raises. A declared block is
+dropped whether or not the check would flag it, so a manifest that declares
+navigation is measured before its successor is ingested
+(`scripts/measure_html_navigation_blocks.py` reports declared drops apart from
+the filter's). The Washington DSHS EA-Z and Texas HHS handbook manifests declare
+theirs ([run note](ingest-runs/2026-10-13-html-navigation-selectors.md)).
+
 ### Commands
 
 ```bash
@@ -374,11 +468,12 @@ uv run axiom-corpus-ingest content-check --all --update-baseline --workers 4
 
 A named scope that matches no locked scope with provisions and inventory is an
 error (exit 2), so a mistyped scope cannot pass as a clean check of nothing.
-A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions; it
-takes about 90 seconds on four workers locally and about three minutes on the
-CI runner, where it runs on three workers beside the single-process test run,
-so it overlaps the tests instead of adding its time to the `test` job. Raising `CONTENT_CHECK_VERSION` requires rebuilding
-the baseline in the same change: validation ignores a baseline made by other
+A full check parses about 1.9 GB of HTML and reads 2.5 GB of provisions. Earlier
+measurements took about 90 seconds on four workers locally and about three
+minutes on the CI runner. CI runs the check on three workers after its
+four-worker pytest run, including when tests fail; the two checks run
+sequentially within the runner's four cores. Raising `CONTENT_CHECK_VERSION`
+requires rebuilding the baseline in the same change: validation ignores a baseline made by other
 rules, and CI's check fails on it.
 
 ## Recovery reconciliation

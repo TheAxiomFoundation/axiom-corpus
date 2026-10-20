@@ -408,6 +408,7 @@ AUDITED = sorted(
         ("us-mt", "regulation", "2026-07-13-recovery"),
         ("us", "guidance", "2026-07-13-recovery"),
         ("us-co", "regulation", "2026-07-13-recovery-r2026-09-11-tanf-consolidated"),
+        ("us", "manual", "2026-10-12-oasdi-poms-rs"),
     }
 )
 
