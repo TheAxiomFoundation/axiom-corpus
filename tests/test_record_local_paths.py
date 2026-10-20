@@ -53,6 +53,7 @@ from axiom_corpus.corpus.record_local_paths import (
     RECORD_ROOTS,
     _closed_tags,
     _line_paths,
+    _prose,
     _scan,
     audit_record_local_paths,
     find_record_local_paths,
@@ -188,6 +189,18 @@ def test_a_record_with_a_local_path_fails_naming_line_and_root(tmp_path, name: s
     assert issue.startswith(f"`{name}`: line 3 holds /Users/…")
     assert "never grandfathered" in issue
     assert "someone" not in issue and "secret-dir" not in issue
+
+
+def test_markdown_records_read_emphasis_and_other_records_read_globs(tmp_path) -> None:
+    repo = _repo(tmp_path)
+    _write(repo, "docs/ingest-runs/note.md", "Output: **/Users/someone/work**.\n")
+    _write(repo, "docs/coverage/check.py", 'paths = Path("data").glob("**/tmp/**")\n')
+    _write(repo, "manifests/x.yaml", 'pattern: "**/tmp/**"\n')
+    _write_allowlist(repo, [])
+
+    [issue] = _audit(repo)
+
+    assert issue.startswith("`docs/ingest-runs/note.md`: line 1 holds /Users/…")
 
 
 def test_a_new_record_is_caught_before_it_is_committed(tmp_path) -> None:
@@ -526,20 +539,38 @@ def test_an_allowlist_that_is_not_yaml_fails_closed(tmp_path) -> None:
         "<code>data/corpus</code> and <td>../tmp/x</td>",
         "download_dir: ../data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter",
         "a_b/tmp/x, data/home/x, ./tmp/y, data/*/tmp/x, data/export_/tmp/x",
-        # Globs and regular expressions that name a relative or web path.
-        'retained = list(Path("data").glob("**/tmp/*.pdf"))',
-        '"**/tmp/**/*.pdf"',
+        # A regular expression that names a web path.
         json.dumps({"href_pattern": "^/home/.*\\.pdf$"}),
         # Inline markup inside a relative path renders as one relative path.
         "<td>data<em>/tmp/x</em></td>",
         "see **bold** and data/tmp/x",
-        'ignored = list(Path("data").glob("**/tmp/**"))',
+        '{"pattern": "data\\\\/corpus\\\\/x"}',
+        # Globs in Markdown code: a code span, a double-backtick span, fences.
         'Run `find data -path "*/tmp/*" -print`.',
         "use `**/tmp/**` to match",
-        '{"pattern": "data\\\\/corpus\\\\/x"}',
+        "Run ``find data -path */tmp/* -print``.",
+        '```sh\ncase "$path" in\n  */tmp/*) continue ;;\nesac\n```\n',
+        "~~~\n*/tmp/*\n~~~\n",
     ],
 )
-def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
+@pytest.mark.parametrize("markdown", [False, True])
+def test_spellings_that_name_no_machine_path_pass(text: str, markdown: bool) -> None:
+    assert find_record_local_paths(text, markdown=markdown) == []
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        'retained = list(Path("data").glob("**/tmp/*.pdf"))',
+        'ignored = list(Path("data").glob("**/tmp/**"))',
+        '"**/tmp/**/*.pdf"',
+        "find data -path */tmp/* -print",
+    ],
+)
+def test_outside_markdown_a_glob_is_literal(text: str) -> None:
+    """Intended: only a Markdown record has emphasis, so ``*`` before a root
+    elsewhere is a glob, and ``**/tmp/**`` in a ``.py`` or ``.yaml`` record is
+    not a path."""
     assert find_record_local_paths(text) == []
 
 
@@ -571,12 +602,9 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         ("x<b>~/a", "~…"),
         # Prose punctuation that opens a token, which no command line holds.
         ("see @/Users/someone/x", "/Users/…"),
-        ("**/Users/someone/x**", "/Users/…"),
-        ("_/tmp/x_", "/tmp/…"),
         ("\u201c/Users/someone/x\u201d", "/Users/…"),
         ("\u00ab/private/tmp/x\u00bb", "/private/…"),
         ("\u201c~alice/work\u201d", "~…"),
-        ("**C:\\Users\\alice\\work**", "C:\\Users\\…"),
         ("@C:\\Users\\alice\\work", "C:\\Users\\…"),
         ("line one\r\n/tmp/x\tand more", "/tmp/…"),
         # Escaped in JSON or YAML.
@@ -591,15 +619,36 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         (json.dumps({"command": "cp\t/tmp/job/out\tdata/corpus"}), "/tmp/…"),
         (json.dumps({"note": "Saved to \u201c/Users/alice/work\u201d"}), "/Users/…"),
         ('note: "Source:\\n/Users/alice/work/source.pdf"', "/Users/…"),
-        # Markdown emphasis closed by any punctuation, and nested.
-        ("Output: **/Users/alice/work**\u2014copied", "/Users/…"),
-        ("Cache: **_/tmp/axiom_**.", "/tmp/…"),
+        ('note: "Saved to\\_/Users/alice/work"', "/Users/…"),
+        ('{"path": "\\u002ftmp\\u002fjob"}', "/tmp/…"),
         # A letter Python folds onto an ASCII one when matching case-insensitively.
         ("C:\\U\u017fers\\alice\\work", "C:\\Users\\…"),
+        # The one root with whitespace, past where a long line is split.
+        ("x" * 65516 + " C:\\Documents and Settings\\alice\\a.pdf", "C:\\Users\\…"),
     ],
 )
-def test_paths_on_a_machine_fail(text: str, root: str) -> None:
-    found = find_record_local_paths(text)
+@pytest.mark.parametrize("markdown", [False, True])
+def test_paths_on_a_machine_fail(text: str, root: str, markdown: bool) -> None:
+    found = find_record_local_paths(text, markdown=markdown)
+
+    assert found and found[0].describe() == root
+
+
+@pytest.mark.parametrize(
+    ("text", "root"),
+    [
+        ("**/Users/someone/x**", "/Users/…"),
+        ("_/tmp/x_", "/tmp/…"),
+        ("**C:\\Users\\alice\\work**", "C:\\Users\\…"),
+        ("Output: **/Users/alice/work**\u2014copied", "/Users/…"),
+        ("Cache: **_/tmp/axiom_**.", "/tmp/…"),
+        ("|Source|Status|\n|---|---|\n|**/Users/alice/work/a.pdf**|retained|\n", "/Users/…"),
+        ("Old cache: ~~/Users/alice/work/a.pdf~~ (replaced).", "/Users/…"),
+        ("Run `ls` then **/tmp/y**.", "/tmp/…"),
+    ],
+)
+def test_markdown_emphasis_and_strikethrough_around_a_path_fail(text: str, root: str) -> None:
+    found = find_record_local_paths(text, markdown=True)
 
     assert found and found[0].describe() == root
 
@@ -607,7 +656,7 @@ def test_paths_on_a_machine_fail(text: str, root: str) -> None:
 def test_offsets_and_lines_are_the_records() -> None:
     text = 'a\n{"x": "C:\\\\Users\\\\alice\\\\w"}\n<b>q</b> **/tmp/<code>j</code>/o**\n'
 
-    found = find_record_local_paths(text)
+    found = find_record_local_paths(text, markdown=True)
 
     assert [text[path.start : path.end] for path in found] == [
         "C:\\\\Users\\\\alice\\\\w",
@@ -660,7 +709,16 @@ _TOKENS = [
     "</em>",
     "<td>",
     "\\/",
+    "\\u002f",
+    "\\_",
+    "C:\\Documents and Settings\\",
+    # Markdown: emphasis, strikethrough, code spans and fences.
     "**",
+    "~~",
+    "`",
+    "``",
+    "```",
+    "~~~",
     "@",
     "_",
     "\u201c",
@@ -689,13 +747,16 @@ def _names_a_place(text: str, path) -> bool:
     return _NO_PLACE_TOKEN.fullmatch(token) is None
 
 
+_JOINERS = st.sampled_from(["", " ", "/", "\n"])
+
+
 @settings(max_examples=500, deadline=None)
-@given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
+@given(words=_WORDS, joiner=_JOINERS, markdown=st.booleans())
 def test_it_reports_every_path_find_local_paths_finds_that_names_a_place(
-    words: list[str], joiner: str
+    words: list[str], joiner: str, markdown: bool
 ) -> None:
     text = joiner.join(words)
-    found = find_record_local_paths(text)
+    found = find_record_local_paths(text, markdown=markdown)
 
     # Opening a token can merge a match into a longer path (``*/Users/file:/x``
     # reads as ``/Users/file``), so each match starts inside a reported path.
@@ -705,26 +766,32 @@ def test_it_reports_every_path_find_local_paths_finds_that_names_a_place(
 
 
 @settings(max_examples=500, deadline=None)
-@given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
-def test_reading_only_candidate_lines_loses_nothing(words: list[str], joiner: str) -> None:
+@given(words=_WORDS, joiner=_JOINERS, markdown=st.booleans())
+def test_reading_only_candidate_lines_loses_nothing(
+    words: list[str], joiner: str, markdown: bool
+) -> None:
     """Differential: skipping lines without a candidate equals reading every line."""
     text = joiner.join(words)
     closed = _closed_tags(text)
+    in_prose = _prose(text, markdown=markdown)
     every_line: dict[int, object] = {}
     offset = 0
     for line in text.split("\n"):
-        for path in _line_paths(offset, line, closed):
+        for path in _line_paths(offset, line, closed, prose=in_prose(offset)):
             every_line.setdefault(path.start, path)
         offset += len(line) + 1
 
-    assert find_record_local_paths(text) == [every_line[key] for key in sorted(every_line)]
+    found = find_record_local_paths(text, markdown=markdown)
+    assert found == [every_line[key] for key in sorted(every_line)]
 
 
 @settings(max_examples=500, deadline=None)
-@given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
-def test_it_never_reports_a_spelling_that_names_no_place(words: list[str], joiner: str) -> None:
+@given(words=_WORDS, joiner=_JOINERS, markdown=st.booleans())
+def test_it_never_reports_a_spelling_that_names_no_place(
+    words: list[str], joiner: str, markdown: bool
+) -> None:
     text = joiner.join(words)
-    found = find_record_local_paths(text)
+    found = find_record_local_paths(text, markdown=markdown)
 
     assert [path.start for path in found] == sorted({path.start for path in found})
     for path in found:
@@ -756,6 +823,9 @@ _WRAPPERS = [
     ("**", "**."),
     ("**", "**\u2014"),
     ("**_", "_**"),
+    ("~~", "~~"),
+    ("|**", "**|"),
+    ("\\_", ""),
     ("\\n", ""),
     ("\\t", "\\t"),
     ("\\u201c", "\\u201d"),
@@ -789,16 +859,16 @@ def test_every_path_below_a_machine_root_is_found_in_prose_and_markup(
     if path.startswith("/media/file/"):
         return
     before, after = wrapper
-    words = " ".join(prefix)
-    # Prose, not an open code span, where ``*`` is literal (a glob's ``**``).
-    words += " `" if words.rpartition("\n")[2].count("`") % 2 else ""
+    # One line of Markdown prose: no code span, and no fence (a line opening with
+    # ``~~~`` or three backticks), where ``*`` is literal.
+    words = "Note: " + " ".join(prefix).replace("`", "").replace("\n", " ")
     # Inside an escaped string, the path's own backslashes are escaped too.
     if before.startswith("\\") and "\\\\" not in root:
         path = path.replace("\\", "\\\\")
     head = words + " " + before
     text = head + path + after
 
-    found = find_record_local_paths(text)
+    found = find_record_local_paths(text, markdown=True)
 
     assert any(item.start == len(head) for item in found), text
 
