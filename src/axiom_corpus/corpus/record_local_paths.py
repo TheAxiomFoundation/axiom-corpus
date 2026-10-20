@@ -6,13 +6,14 @@ public, like the signed ingest manifests that ``manifest_local_paths`` guards.
 A path such as ``/Users/<name>/...``, ``/private/tmp/...`` or ``~/...`` reaches
 no reader and publishes the operator's account name and directory layout. The
 convention is the same: repository-relative paths for repository files, and
-placeholders for directories on the machine (``<worktrees>/<name>``,
-``<rulespec-us>``, ``<axiom-cache>``, ``<scratchpad>``, ``<uv-cache>``).
+placeholders for directories on the machine (``<main-checkout>``,
+``<worktrees>/<name>``, ``<rulespec-us>``, ``<axiom-cache>``, ``<scratchpad>``).
 
-``find_record_local_paths`` finds such paths in a record's text;
-``audit_record_local_paths`` checks every record in the repository against
-``.axiom/record-local-paths.yaml``, which grandfathers only records a signed
-ingest manifest attests (their bytes cannot change without signing it again).
+``find_record_local_paths`` finds such paths in a record's prose, markup or
+data; ``audit_record_local_paths`` checks every record in the repository against
+``.axiom/record-local-paths.yaml``, which grandfathers only records an ingest
+manifest attests in ``reasoning_logs`` (their bytes cannot change without
+signing that manifest again; signatures are verified where manifests are).
 """
 
 from __future__ import annotations
@@ -26,7 +27,12 @@ from pathlib import Path
 
 import yaml
 
-from axiom_corpus.corpus.manifest_local_paths import LocalPath, find_local_paths
+from axiom_corpus.corpus.ingest_manifests import INGEST_MANIFEST_ROOT
+from axiom_corpus.corpus.manifest_local_paths import (
+    LOCAL_PATH_ROOTS,
+    LocalPath,
+    find_local_paths,
+)
 
 # Directories whose files are records of how the corpus was built.
 RECORD_ROOTS: tuple[str, ...] = (
@@ -37,7 +43,6 @@ RECORD_ROOTS: tuple[str, ...] = (
 )
 RECORD_LOCAL_PATH_ALLOWLIST_PATH = Path(".axiom") / "record-local-paths.yaml"
 RECORD_LOCAL_PATH_ALLOWLIST_SCHEMA_VERSION = "axiom-corpus/record-local-paths/v1"
-INGEST_MANIFEST_ROOT = ".axiom/ingest-manifests"
 
 # Spellings that name no place below a root, so publish neither an account name
 # nor a layout: a lone ``~`` (in records, "approximately", OCR noise, a
@@ -49,10 +54,26 @@ _NO_PLACE = {
     "home_variable": re.compile(r"(?i)(?:\$HOME|\$\{HOME\}|%USERPROFILE%)/?"),
     "windows": re.compile(r"(?i)[A-Za-z]:[\\/](?:Users|Documents and Settings)[\\/]?"),
 }
-# On the macOS machines that write these records ``/media/`` does not exist;
-# in them it is the path of a page on content-managed sites
-# (``/media/file/ia-13-0022-mc5.pdf`` on medicaid.gov).
-_URL_PATH_ROOTS = frozenset({"/media/"})
+# ``/media/file/...`` is the path Drupal sites such as medicaid.gov serve files
+# under; no machine mounts a volume for a user named ``file``. Every other
+# ``/media/<user>/...`` path is a Linux removable-drive mount and is reported.
+_WEB_PATH_PREFIXES = ("/media/file/",)
+
+# ``find_local_paths`` reads command lines: a root starts a path only after
+# whitespace, a quote, ``=``, ``:`` or a shell operator, and a path right after
+# ``<name>`` is relative to that placeholder. Records are prose and markup, so
+# before scanning, an HTML element tag (``<code>``, ``</td>``) and any character
+# before a root that cannot continue a URL or relative path (``**``, ``@``, ``_``,
+# typographic quotes) become spaces, keeping every offset.
+_HTML_TAG = re.compile(
+    r"(?i)</?(?:a|abbr|b|blockquote|body|br|caption|cite|code|dd|del|details|div|dl|dt|em"
+    r"|h[1-6]|head|hr|html|i|ins|kbd|li|mark|ol|p|pre|q|s|samp|section|small|span|strong"
+    r"|sub|summary|sup|table|tbody|td|tfoot|th|thead|tr|tt|u|ul|var)\s*/?>"
+)
+_ROOT_START = re.compile("|".join(re.escape(root) for root in (*LOCAL_PATH_ROOTS, "~/")))
+# Characters a URL or relative path can hold just before a root, and the
+# delimiters after which ``find_local_paths`` already starts a token.
+_CONTINUES_PATH = re.compile(r"[^\W_]|[.%+~/#?!$\-\s\"'`=:,;|&()<>\[\]{}\\]")
 
 _TRACKING_ISSUE = re.compile(
     r"https://github\.com/TheAxiomFoundation/axiom-corpus/issues/[1-9][0-9]*"
@@ -63,17 +84,31 @@ _SHA256 = re.compile(r"[0-9a-f]{64}")
 def find_record_local_paths(text: str) -> list[LocalPath]:
     """Return the paths on the writing machine in a record's ``text``, in order.
 
-    These are ``find_local_paths``'s, less the spellings that name no place
-    (``~``, ``file://``, ``$HOME`` or a root such as ``/Users/`` alone) and
-    ``/media/`` paths, which in these records are web paths.
+    Every path ``find_local_paths`` finds, less the spellings that name no
+    place (``~``, ``file://``, ``$HOME`` or a root such as ``/Users/`` alone)
+    and ``/media/file/`` web paths; and also the paths it would miss in prose
+    and markup: after an HTML tag (``<code>/Users/...``) or after punctuation
+    that cannot continue a URL (``**/tmp/...**``, ``@/Users/...``, ``“~/...”``).
     """
-    return [path for path in find_local_paths(text) if not _names_no_place(text, path)]
+    scan = _as_command_text(text)
+    return [path for path in find_local_paths(scan) if not _names_no_place(scan, path)]
+
+
+def _as_command_text(text: str) -> str:
+    chars = list(text)
+    for tag in _HTML_TAG.finditer(text):
+        chars[tag.start() : tag.end()] = " " * (tag.end() - tag.start())
+    for root in _ROOT_START.finditer(text):
+        before = root.start() - 1
+        if before >= 0 and not _CONTINUES_PATH.match(text, before):
+            chars[before] = " "
+    return "".join(chars)
 
 
 def _names_no_place(text: str, path: LocalPath) -> bool:
     token = text[path.start : path.end]
     if path.kind == "absolute":
-        return token == path.root or path.root in _URL_PATH_ROOTS
+        return token == path.root or token.startswith(_WEB_PATH_PREFIXES)
     return _NO_PLACE[path.kind].fullmatch(token) is not None
 
 
@@ -125,7 +160,7 @@ def load_record_local_path_allowlist(path: Path) -> list[RecordAllowance]:
         ):
             raise ValueError(
                 f"{where} attested_by must be a sorted list of distinct .json files "
-                f"under {INGEST_MANIFEST_ROOT}/"
+                f"under {INGEST_MANIFEST_ROOT.as_posix()}/"
             )
         if not (isinstance(issue, str) and _TRACKING_ISSUE.fullmatch(issue)):
             raise ValueError(f"{where} issue must be an axiom-corpus issue URL")
@@ -145,7 +180,7 @@ def _is_record_path(path: str) -> bool:
 def _is_ingest_manifest_path(path: str) -> bool:
     parts = path.split("/")
     return (
-        path.startswith(f"{INGEST_MANIFEST_ROOT}/")
+        path.startswith(f"{INGEST_MANIFEST_ROOT.as_posix()}/")
         and path.endswith(".json")
         and ".." not in parts
         and "" not in parts
@@ -156,7 +191,8 @@ def record_files(repo: Path) -> list[str]:
     """Return the records in ``repo``: tracked or untracked, never git-ignored.
 
     Ignored files (``__pycache__/``, ``.DS_Store``, ``downloads/``) are local
-    by-products, not records.
+    by-products, not records. A tracked file deleted from the working tree is
+    not listed; a symbolic link is.
     """
     listed = subprocess.run(
         [
@@ -174,11 +210,17 @@ def record_files(repo: Path) -> list[str]:
         check=True,
         capture_output=True,
     ).stdout.decode("utf-8")
-    return sorted({name for name in listed.split("\0") if name and (repo / name).is_file()})
+    return sorted(
+        {
+            name
+            for name in listed.split("\0")
+            if name and ((repo / name).is_symlink() or (repo / name).exists())
+        }
+    )
 
 
 def _attestations(repo: Path) -> tuple[dict[str, dict[str, str]], list[str]]:
-    """Map each record a signed ingest manifest attests to ``{manifest: sha256}``."""
+    """Map each record an ingest manifest attests to ``{manifest: sha256}``."""
     attested: dict[str, dict[str, str]] = {}
     issues: list[str] = []
     root = repo / INGEST_MANIFEST_ROOT
@@ -188,6 +230,9 @@ def _attestations(repo: Path) -> tuple[dict[str, dict[str, str]], list[str]]:
             payload = json.loads(manifest.read_bytes())
             logs = payload.get("reasoning_logs") or []
             entries = [(str(log["path"]), str(log["sha256"])) for log in logs]
+        except OSError as exc:
+            issues.append(f"`{relative}` cannot be read ({exc.strerror}).")
+            continue
         except (ValueError, TypeError, KeyError, AttributeError):
             issues.append(f"`{relative}` cannot be read, so the records it attests are unknown.")
             continue
@@ -199,7 +244,7 @@ def _attestations(repo: Path) -> tuple[dict[str, dict[str, str]], list[str]]:
 def audit_record_local_paths(
     repo: Path,
     *,
-    grandfathered_sha256: frozenset[str],
+    grandfathered: frozenset[tuple[str, str]],
     allowlist: Path = RECORD_LOCAL_PATH_ALLOWLIST_PATH,
 ) -> list[str]:
     """Return the issues that keep the repository's records from passing.
@@ -207,10 +252,12 @@ def audit_record_local_paths(
     Every record under ``RECORD_ROOTS`` must hold no path on the machine that
     wrote it (``find_record_local_paths``), unless the allowlist grandfathers
     it. An allowance holds only while its record keeps the bytes it pins, still
-    holds a local path, and is attested at those bytes by exactly the signed
-    ingest manifests it names, and only for bytes in ``grandfathered_sha256``,
-    so the allowlist only shrinks. A record that is not UTF-8 text fails closed.
-    Messages name a path by its root only (``/Users/…``), never in full.
+    holds a local path, and is attested at those bytes by exactly the ingest
+    manifests it names, and only for ``(path, sha256)`` pairs in
+    ``grandfathered``, so the allowlist only shrinks. A symbolic link, a record
+    that cannot be read or is not UTF-8 text, an unreadable ingest manifest and a
+    malformed allowlist fail closed. Messages name a path by its root and line
+    only (``line 3 holds /Users/…``), never in full.
     """
     repo = repo.resolve()
     issues: list[str] = []
@@ -228,15 +275,26 @@ def audit_record_local_paths(
         if allowance.path in by_path:
             issues.append(f"`{allowlist.as_posix()}` lists `{allowance.path}` twice.")
         by_path[allowance.path] = allowance
-        if allowance.sha256 not in grandfathered_sha256:
+        if (allowance.path, allowance.sha256) not in grandfathered:
             issues.append(
                 f"`{allowlist.as_posix()}` lists `{allowance.path}` at bytes that were not "
                 "grandfathered on 2026-10-20. The allowlist only shrinks: write the record "
                 "without local paths instead of listing it."
             )
     for relative in record_files(repo):
-        payload = (repo / relative).read_bytes()
         allowed = by_path.pop(relative, None)
+        record = repo / relative
+        if record.is_symlink():
+            issues.append(
+                f"`{relative}` is a symbolic link; a record is a file, and a link's target "
+                "can name a path on the machine that made it."
+            )
+            continue
+        try:
+            payload = record.read_bytes()
+        except OSError as exc:
+            issues.append(f"`{relative}` cannot be read ({exc.strerror}).")
+            continue
         try:
             text = payload.decode("utf-8")
         except UnicodeDecodeError:
@@ -274,10 +332,10 @@ def audit_record_local_paths(
         if attesting != allowed.attested_by:
             issues.append(
                 f"`{relative}` is attested at these bytes by "
-                f"{', '.join(f'`{name}`' for name in attesting) or 'no signed ingest manifest'}, "
+                f"{', '.join(f'`{name}`' for name in attesting) or 'no ingest manifest'}, "
                 f"but `{allowlist.as_posix()}` names "
-                f"{', '.join(f'`{name}`' for name in allowed.attested_by)}. Only a record a "
-                "signed ingest manifest attests is grandfathered; scrub any other."
+                f"{', '.join(f'`{name}`' for name in allowed.attested_by)}. Only a record an "
+                "ingest manifest attests is grandfathered; scrub any other."
             )
     for allowance in by_path.values():
         issues.append(
@@ -289,15 +347,17 @@ def audit_record_local_paths(
 
 _REMEDY = (
     "Name repository files by their repository-relative path and directories on "
-    "your machine by a placeholder such as `<worktrees>/<name>`, `<scratchpad>` or "
-    "`<axiom-cache>`; a new record is never grandfathered."
+    "your machine by a placeholder such as `<main-checkout>`, `<worktrees>/<name>`, "
+    "`<scratchpad>` or `<axiom-cache>`; a new record is never grandfathered."
 )
 
 
 def _describe(text: str, found: list[LocalPath]) -> str:
     by_line: dict[int, set[str]] = {}
+    line, counted = 1, 0
     for path in found:
-        line = text.count("\n", 0, path.start) + 1
+        line += text.count("\n", counted, path.start)
+        counted = path.start
         by_line.setdefault(line, set()).add(path.describe())
     return "; ".join(
         f"line {line} holds {', '.join(sorted(roots))}" for line, roots in sorted(by_line.items())

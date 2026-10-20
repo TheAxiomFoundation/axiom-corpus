@@ -12,7 +12,7 @@ decisions file). Minnesota extraction: `scripts/extract_w7_state_benefits_mn.py`
 
 - Sparse worktree `<worktrees>/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` cut from
   `main` 89dc519fa. `data/corpus/` excluded, never symlinked. Every extraction wrote to the main checkout's corpus root
-  (`--base data/corpus`), `--source-as-of 2026-10-12`; artifacts are unsigned and
+  (`--base <main-checkout>/data/corpus`), `--source-as-of 2026-10-12`; artifacts are unsigned and
   uncommitted. Nothing was signed, locked, pushed to R2 or loaded to Supabase; `manifests/releases/` and
   `manifests/program-bundles/` are untouched.
 - Timing: started 15:19 EDT; held check and probes to 15:31; first extraction batch 15:33-15:35; Pennsylvania Code
@@ -227,7 +227,7 @@ selector for the IDEC page footer and calculator; the printed effective date of 
 ## Rebuild
 
 ```bash
-B=data/corpus
+B=<main-checkout>/data/corpus
 export REQUESTS_CA_BUNDLE=<certifi + data/certs/*.pem>
 uv run --extra dev python scripts/build_w7_state_benefits_manifests.py
 for m in manifests/*-state-benefits-w7-*.yaml; do

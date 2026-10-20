@@ -9,7 +9,7 @@ wave 5 is the tax, Medicaid, LIHEAP and CCDF families plus seven federal documen
 
 - Your worktree and branch are named in your brief. It is a **sparse worktree** (`data/corpus/` excluded). Never symlink
   `data/corpus`; never `git sparse-checkout` anything else. Every extraction writes to the main checkout's corpus root:
-  `--base data/corpus`. Artifacts there stay **uncommitted** (they are signed and
+  `--base <main-checkout>/data/corpus`. Artifacts there stay **uncommitted** (they are signed and
   committed later by the release step — not your job).
 - Python: `uv run --extra dev ...` inside your worktree (a bare `pytest` resolves to the Anaconda one and fails collection).
   First command: `uv sync --extra dev` (one time, ~1 min).
@@ -44,7 +44,7 @@ Your target lists (built from the recount matrices; absolute paths, read-only):
   scope_version, citation_path, note (why it is only a candidate).
 - Element definitions: `.../needs-closure-2026-09-14/<program>-schema.yaml`; the matrices `<program>-matrix.csv`; the
   reports `<program>.md`.
-- Provision rows to read: `data/corpus/provisions/<jurisdiction>/<document_class>/<version>.jsonl`
+- Provision rows to read: `<main-checkout>/data/corpus/provisions/<jurisdiction>/<document_class>/<version>.jsonl`
   (one JSON object per line: `citation_path`, `heading`, `body`, `kind`, `metadata`). The `scope_version` column is either
   the bare version (look up the class from the citation_path's second segment) or `jur/class/version`.
 

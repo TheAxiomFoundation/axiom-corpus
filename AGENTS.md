@@ -46,16 +46,18 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   fourteen signed before the guard (axiom-corpus#896); it only shrinks.
 - Run notes (`docs/ingest-runs/`), closure work (`docs/coverage/`),
   reasoning logs and source manifests (`manifests/`) are public too, so they
-  follow the same rule: `data/corpus`, not `/Users/<name>/axiom-corpus/data/corpus`,
-  and placeholders for directories on your machine: `<worktrees>/<name>` for
-  another checkout of this repository, `<rulespec-us>` or `<policyengine-us>`
-  for a sibling repository, `<axiom-cache>` for `~/.axiom`, `<scratchpad>` for
-  a temporary directory, `<uv-cache>`. A manifest's `local_path` names the
+  follow the same rule. Name repository files by their repository-relative
+  path, or `<main-checkout>/data/corpus` when the note's commands run in
+  another worktree. Name directories on your machine by a placeholder such as
+  `<worktrees>/<name>` (another checkout of this repository), `<rulespec-us>`
+  (a sibling repository), `<axiom-cache>` (`~/.axiom`), `<scratchpad>` (a
+  temporary directory) or `<uv-cache>`. A manifest's `local_path` names the
   retained copy where the corpus locks it (`../data/corpus/sources/...`) and
   `download_dir` is `../data/corpus/downloads/...`, both relative to the
   manifest. `tests/test_record_local_paths.py` fails on a record that holds a
-  local path. `.axiom/record-local-paths.yaml` grandfathers only the five a
-  signed ingest manifest attests (axiom-corpus#896); it only shrinks.
+  local path, in prose and markup as well as commands.
+  `.axiom/record-local-paths.yaml` grandfathers only the five that an ingest
+  manifest attests in `reasoning_logs` (axiom-corpus#896); it only shrinks.
 - An ingest you were asked to do includes `corpus push` of its own new objects
   (Max, 2026-09-30). They are content-addressed and write-once under R2
   `objects/sha256/`: an upload never overwrites an object and publishes

@@ -423,7 +423,7 @@ the legacy protected groups.
   tables above); every row carries `expression_date`.
 - Draft selector `docs/ingest-runs/2026-09-13-cms-state-plans.selector.json` = the follow-up draft
   (`us-rulespec-2026-09-13-followup-union`, 556 scopes) + the 102 CMS state-plan scopes = 658 scopes.
-  `uv run axiom-corpus-ingest validate-release --base data/corpus --release
+  `uv run axiom-corpus-ingest validate-release --base <main-checkout>/data/corpus --release
   docs/ingest-runs/2026-09-13-cms-state-plans.selector.json --ignore-r2-missing --max-issues 50`:
   not yet run on the full draft; a partial draft (follow-up + the first 28 CHIP scopes) validated ok: true, 0 errors, 546 pre-existing missing_parent_id warnings.
 - Disk: 21 GB free at start, 4.6-8 GB during the run (other agents extract into the same corpus root); the driver stops itself below 4 GB.

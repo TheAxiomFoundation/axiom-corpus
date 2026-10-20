@@ -6,7 +6,7 @@ chapters: 18 states) of the needs-driven closure check for individual income tax
 (`docs/coverage/needs-closure-2026-09-11/tax.md`, `tax-schema.yaml`, `tax-matrix.csv`).
 Branch `discovery/ingest-state-tax-statute-ty2026` cut from `origin/main` (5c2505ec6) in the sparse
 worktree `<worktrees>/tax-statute` (`data/corpus/` excluded, never symlinked); every
-extraction wrote to the main checkout's corpus root (`--base data/corpus`)
+extraction wrote to the main checkout's corpus root (`--base <main-checkout>/data/corpus`)
 with `--source-as-of 2026-09-14`. Research of the 30 revenue-department indexes ran on 2026-09-13
 (three parallel read-only probes, curl with the corpus user agent, every URL fetched and read);
 extractions ran 2026-09-13T21:24-04:00 to 2026-09-14T00:10-04:00; per-scope seconds are in the tables.
@@ -248,7 +248,7 @@ Draft selector `docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.selector.js
 `manifests/releases/us-rulespec-2026-09-13-federal-and-plans-union.json` (761 scopes) minus the 19
 superseded scopes plus the 48 new scopes (790 scopes); `validate-release --ignore-r2-missing`:
 `ok: true`, 0 errors, 546 warnings (all pre-existing). Artifacts are unsigned, on the controller's
-disk under `data/corpus`, not committed. Remaining steps are the
+disk under `<main-checkout>/data/corpus`, not committed. Remaining steps are the
 controller's: `sign-ingest-manifest` per scope, merge into the next selector, re-validate, sign,
 publish, activate; and the rulespec-us re-point of the dangling sub-section citations listed above.
 
@@ -326,7 +326,7 @@ Rebuild:
 
 ```bash
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/state-tax-statute-ca-bundle.pem
-B=data/corpus
+B=<main-checkout>/data/corpus
 # adapter-driven chapters (AL, AZ, CT 229 + 17b, DE, ID, MD, ME, MI, MN 290 + 142G + 256P, NE, OH, UT)
 uv run axiom-corpus-ingest extract-state-statutes --base $B --manifest manifests/state-income-tax-chapters-2026-09-14.yaml
 # index-driven section manifests (KY, VA, NY) and the CA section list

@@ -7,7 +7,7 @@ unchanged count; the same six rows gain the same mapping).
 Issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/680 and the hand-off
 `docs/ingest-runs/2026-09-11-program-ingestion-handoff.md` ("Revised editions found during the SNAP
 completion pass ... need superseding scopes; released scopes are immutable").
-Agent: one session from a US network in the sparse worktree `axiom-corpus-worktrees/snap2`, branch
+Agent: one session from a US network in the sparse worktree `<worktrees>/snap2`, branch
 `discovery/ingest-snap-superseding-2` cut from `origin/discovery/program-ingestion-union`; artifacts written
 to the main checkout's corpus root. started_at 2026-09-11T20:44Z (worktree created), extraction window
 2026-09-11T21:04:09Z-21:09:12Z. Per-state extraction seconds (timer around `extract-official-documents`):
@@ -301,7 +301,7 @@ own keys, so the mapping survives a `--static-only` rebuild; it is not in the ge
 
 ## Artifacts (unsigned, uncommitted; `data/` is gitignored)
 
-Under `data/corpus`, for each of the six scopes:
+Under `<main-checkout>/data/corpus`, for each of the six scopes:
 `sources/<jur>/<class>/<version>/official-documents/*`, `inventory/<jur>/<class>/<version>.json`,
 `provisions/<jur>/<class>/<version>.jsonl`, `coverage/<jur>/<class>/<version>.json`. The first failed NE
 and AR attempts wrote nothing (they failed on the first download). Draft selectors (not tracked) are in the
@@ -319,12 +319,12 @@ git sparse-checkout set --no-cone '/*' '!/data/corpus/' && git read-tree -mu HEA
 # extraction (REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE = certifi + data/certs/digicert-global-g2-tls-rsa-sha256-2020-ca1.pem)
 for st in ne ar nv wy nd me; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base data/corpus \
+    --base <main-checkout>/data/corpus \
     --version 2026-09-11-$st-snap-manual-supersede --manifest manifests/<state manifest>.yaml
 done
 
 # per-state and combined draft selectors: the release selector with the released version swapped
-uv run axiom-corpus-ingest validate-release --base data/corpus \
+uv run axiom-corpus-ingest validate-release --base <main-checkout>/data/corpus \
   --release <draft>.json --ignore-r2-missing --max-issues 50
 ```
 

@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 Program: TANF (board Year 1 list; `manifests/tanf-agent-queue.yaml`)
-Branch: `discovery/ingest-tanf` (worktree, sparse checkout without `data/corpus`; artifacts written to the shared corpus root of the main checkout, `--base data/corpus`)
+Branch: `discovery/ingest-tanf` (worktree, sparse checkout without `data/corpus`; artifacts written to the shared corpus root of the main checkout, `--base <main-checkout>/data/corpus`)
 
 started_at: 2026-09-10T20:33:00+0200 (first command; the shell timer started 20:34:44)
 finished_at: 2026-09-10T21:33:21+0200 (commit)

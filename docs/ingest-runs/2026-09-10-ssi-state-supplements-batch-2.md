@@ -57,7 +57,7 @@ effective dates in metadata).
 
 Extraction: `uv run axiom-corpus-ingest extract-official-documents` for the seven manifests and the existing
 adapters `extract-ohio-administrative-code` and `extract-maryland-comar` for OH and MD; artifacts under the
-main checkout's `--base data/corpus` (this worktree is sparse). TLS
+main checkout's `--base <main-checkout>/data/corpus` (this worktree is sparse). TLS
 verification was never disabled. Two publishers serve incomplete chains: rules.nebraska.gov omits the DigiCert
 Global G2 TLS RSA SHA256 2020 CA1 intermediate and img1.scdhhs.gov (the SCDHHS document host the MPPM page
 redirects to) omits the Go Daddy Secure Certificate Authority - G2 intermediate. Each publisher's public
@@ -267,7 +267,7 @@ us-sc/manual; and the adapter scopes
 `us-oh/regulation/2026-09-10-ssi-state-supplement-agency-5122-chapter-5122-36`,
 `us-md/regulation/2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapter-06` and
 `...-chapter-07` (same four artifact kinds; OH sources under `ohio-administrative-code/`, MD under
-`maryland-comar-xml/`), all under `data/corpus` (main checkout).
+`maryland-comar-xml/`), all under `<main-checkout>/data/corpus` (main checkout).
 
 Certificates committed: `data/certs/digicert-global-g2-tls-rsa-sha256-2020-ca1.pem` (SHA-256
 C8:02:5F:9F:C6:5F:DF:C9:5B:3C:A8:CC:78:67:B9:A5:87:B5:27:79:73:95:79:17:46:3F:C8:13:D0:B6:25:A9) and
@@ -288,22 +288,22 @@ every document; NE and SC need the bundles above, LA and NH use `browser_imperso
 uv run python scripts/build_ssi_state_supplement_manifests.py --print-index   # batch 2 (default)
 for s in ky la nm nh me; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base data/corpus \
+    --base <main-checkout>/data/corpus \
     --version 2026-09-10-ssi-state-supplement \
     --manifest manifests/us-$s-ssi-state-supplement.yaml
 done
 REQUESTS_CA_BUNDLE=$PWD/data/certs/rules-nebraska-gov-ca-bundle.pem uv run axiom-corpus-ingest extract-official-documents \
-  --base data/corpus --version 2026-09-10-ssi-state-supplement \
+  --base <main-checkout>/data/corpus --version 2026-09-10-ssi-state-supplement \
   --manifest manifests/us-ne-ssi-state-supplement.yaml
 REQUESTS_CA_BUNDLE=$PWD/data/certs/img1-scdhhs-gov-ca-bundle.pem uv run axiom-corpus-ingest extract-official-documents \
-  --base data/corpus --version 2026-09-10-ssi-state-supplement \
+  --base <main-checkout>/data/corpus --version 2026-09-10-ssi-state-supplement \
   --manifest manifests/us-sc-ssi-state-supplement.yaml
 uv run axiom-corpus-ingest extract-ohio-administrative-code \
-  --base data/corpus --version 2026-09-10-ssi-state-supplement \
+  --base <main-checkout>/data/corpus --version 2026-09-10-ssi-state-supplement \
   --only-chapter 5122-36 --source-as-of 2026-09-10 --expression-date 2026-09-10 --workers 2
 for ch in 06 07; do
   uv run axiom-corpus-ingest extract-maryland-comar \
-    --base data/corpus --version 2026-09-10-ssi-state-supplement \
+    --base <main-checkout>/data/corpus --version 2026-09-10-ssi-state-supplement \
     --publication-branch publication/2026-09-09.2026-09-09 --only-title 07 --only-subtitle 03 --only-chapter $ch \
     --source-as-of 2026-09-10 --expression-date 2026-09-09 --download-dir <scratch>/md-comar-download
 done

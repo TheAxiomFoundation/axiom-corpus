@@ -1,23 +1,23 @@
-# Records that hold a path on the machine that wrote them, grandfathered because a
-# signed ingest manifest attests their bytes (axiom-corpus#896).
+# Records that hold a path on the machine that wrote them, grandfathered because an
+# ingest manifest attests their bytes in reasoning_logs (axiom-corpus#896).
 #
 # Run notes (docs/ingest-runs/), closure work (docs/coverage/), reasoning logs
 # (.axiom/reasoning-logs/) and source manifests (manifests/) are public. A path
 # such as /Users/<name>/..., /private/tmp/... or ~/... reaches no reader and
 # publishes the operator's account name and directory layout. Records name
 # repository files by their repository-relative path and directories on the
-# machine by a placeholder (<worktrees>/<name>, <rulespec-us>, <axiom-cache>,
-# <scratchpad>, <uv-cache>).
+# machine by a placeholder such as <main-checkout>, <worktrees>/<name>,
+# <rulespec-us>, <axiom-cache> or <scratchpad>.
 #
 # tests/test_record_local_paths.py fails when a record holds a local path and is
 # not listed here. This list only shrinks:
 # - each entry pins the record's bytes (sha256 of the file), so a record that
 #   changes must lose its paths and its entry together;
-# - each entry names exactly the signed ingest manifests whose reasoning_logs
-#   attest those bytes; a record no manifest attests is scrubbed, not listed;
+# - each entry names exactly the ingest manifests whose reasoning_logs attest
+#   those bytes; a record no manifest attests is scrubbed, not listed;
 # - an entry whose record no longer holds a local path fails as stale;
-# - an entry whose sha256 is not one of the bytes grandfathered on 2026-10-20
-#   (GRANDFATHERED_SHA256 in the test) fails, so no entry can be added.
+# - an entry whose path and sha256 are not a pair grandfathered on 2026-10-20
+#   (GRANDFATHERED in the test) fails, so no entry can be added.
 #
 # Scrubbing an attested record changes bytes a signed manifest attests, so every
 # manifest in its attested_by must be signed again with the new sha256: the

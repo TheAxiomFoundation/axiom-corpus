@@ -11,15 +11,17 @@ Invariants:
    holds no local path, unless ``.axiom/record-local-paths.yaml`` grandfathers
    it. An entry holds only while its record keeps the bytes it pins (sha256),
    still holds a local path, and is attested at those bytes by exactly the
-   signed ingest manifests it names; and an entry whose bytes are not in
-   ``GRANDFATHERED_SHA256`` (the five attested records on ``main`` on
-   2026-10-20) fails, so the allowlist only shrinks. A record that is not UTF-8
-   text, an unreadable ingest manifest and a malformed allowlist fail closed.
-2. Detection. ``find_record_local_paths`` returns a subset of
-   ``find_local_paths``: it drops exactly the spellings that name no place
-   (``~``, ``file://``, ``$HOME``, a root alone) and ``/media/`` web paths, and
-   keeps every path below a home or temporary root. Messages name a path by its
-   root only.
+   ingest manifests it names; and an entry whose ``(path, sha256)`` is not in
+   ``GRANDFATHERED`` (the five attested records on ``main`` on 2026-10-20)
+   fails, so the allowlist only shrinks. A symbolic link, a record that cannot
+   be read or is not UTF-8 text, an unreadable ingest manifest and a malformed
+   allowlist fail closed, and no message names a full path.
+2. Detection. ``find_record_local_paths`` finds every path
+   ``find_local_paths`` finds except the spellings that name no place (``~``,
+   ``file://``, ``$HOME``, a root alone) and ``/media/file/`` web paths, and
+   returns none of those; and it also finds a path below any machine root after
+   markup or prose punctuation (``<code>``, ``**``, ``@``, ``_``, typographic
+   quotes), where ``find_local_paths``, written for command lines, does not.
 3. Functional manifest paths. Every ``local_path`` in a source manifest is
    relative and names a file a corpus lock records, so ``corpus fetch`` supplies
    it on any machine; every ``download_dir`` is relative and stays inside the
@@ -53,23 +55,33 @@ from tests.test_ingest_manifest_provenance import _init_repo
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# The bytes of the five records on main that held a local path when this guard
-# landed (2026-10-20; axiom-corpus#896). Each is attested by a signed ingest
-# manifest, so it cannot change without signing that manifest again. An
-# allowlist entry must pin one of these, so the allowlist can only lose entries.
-# This set only ever loses members: never add to it; scrub the record instead.
-GRANDFATHERED_SHA256 = frozenset(
+# The five records on main that held a local path when this guard landed
+# (2026-10-20; axiom-corpus#896), at their bytes then. An ingest manifest
+# attests each, so it cannot change without signing that manifest again. An
+# allowlist entry must be one of these pairs, so the allowlist can only lose
+# entries. This set only ever loses members: never add to it; scrub the record.
+GRANDFATHERED = frozenset(
     {
-        # .axiom/reasoning-logs/us-co-regulation-2026-06-19-co-oap-9-ccr-2503-5.md
-        "a9640fa2f2f6c276e8fedb44b1dbef32842ab5f627370ebe4a2fe3fc230ceeb5",
-        # docs/ingest-runs/2026-07-03-dc-code-title-4-refresh.md
-        "a77162479d6c753d6836a0c3a60df92b4aed0acf938a3fd8a07955741f6d2b0b",
-        # docs/ingest-runs/2026-07-04-be-wallonia-aviq-family-benefit-plafonds-2025.md
-        "d12702294775e77329fe01c569c0180c4b92058c7ec6c928938560d6ed62dc4e",
-        # docs/ingest-runs/2026-07-21-co-snap-policy.md
-        "e2f804fd6b5bdd2ab2c812da9651d0ed146fdb6995dee49eef8cfdc8523149bb",
-        # docs/ingest-runs/2026-07-21-wv-snap-manual.md
-        "925ebb25d65477fbcedfa3f4d203de0216fe9e7336aac026d0e72aefb70b8746",
+        (
+            ".axiom/reasoning-logs/us-co-regulation-2026-06-19-co-oap-9-ccr-2503-5.md",
+            "a9640fa2f2f6c276e8fedb44b1dbef32842ab5f627370ebe4a2fe3fc230ceeb5",
+        ),
+        (
+            "docs/ingest-runs/2026-07-03-dc-code-title-4-refresh.md",
+            "a77162479d6c753d6836a0c3a60df92b4aed0acf938a3fd8a07955741f6d2b0b",
+        ),
+        (
+            "docs/ingest-runs/2026-07-04-be-wallonia-aviq-family-benefit-plafonds-2025.md",
+            "d12702294775e77329fe01c569c0180c4b92058c7ec6c928938560d6ed62dc4e",
+        ),
+        (
+            "docs/ingest-runs/2026-07-21-co-snap-policy.md",
+            "e2f804fd6b5bdd2ab2c812da9651d0ed146fdb6995dee49eef8cfdc8523149bb",
+        ),
+        (
+            "docs/ingest-runs/2026-07-21-wv-snap-manual.md",
+            "925ebb25d65477fbcedfa3f4d203de0216fe9e7336aac026d0e72aefb70b8746",
+        ),
     }
 )
 ISSUE = "https://github.com/TheAxiomFoundation/axiom-corpus/issues/896"
@@ -79,7 +91,7 @@ ISSUE = "https://github.com/TheAxiomFoundation/axiom-corpus/issues/896"
 
 
 def test_no_record_holds_a_local_path_unless_grandfathered() -> None:
-    issues = audit_record_local_paths(REPO_ROOT, grandfathered_sha256=GRANDFATHERED_SHA256)
+    issues = audit_record_local_paths(REPO_ROOT, grandfathered=GRANDFATHERED)
 
     assert issues == [], "\n".join(issues)
 
@@ -87,8 +99,8 @@ def test_no_record_holds_a_local_path_unless_grandfathered() -> None:
 def test_the_allowlist_is_inside_the_grandfathered_set() -> None:
     allowances = load_record_local_path_allowlist(REPO_ROOT / RECORD_LOCAL_PATH_ALLOWLIST_PATH)
 
-    assert {allowance.sha256 for allowance in allowances} <= GRANDFATHERED_SHA256
-    assert len(allowances) <= len(GRANDFATHERED_SHA256)
+    assert {(allowance.path, allowance.sha256) for allowance in allowances} <= GRANDFATHERED
+    assert len(allowances) <= len(GRANDFATHERED)
 
 
 LEAKY = "Ran `uv run x --base /Users/someone/secret-dir/data/corpus`.\n"
@@ -138,8 +150,12 @@ def _entry(path: str, data: bytes, attested_by: list[str]) -> dict[str, object]:
     }
 
 
-def _audit(repo: Path, grandfathered: set[str] | frozenset[str] = frozenset()) -> list[str]:
-    return audit_record_local_paths(repo, grandfathered_sha256=frozenset(grandfathered))
+def _audit(repo: Path, grandfathered: set[tuple[str, str]] | None = None) -> list[str]:
+    return audit_record_local_paths(repo, grandfathered=frozenset(grandfathered or ()))
+
+
+def _pair(name: str, data: bytes) -> set[tuple[str, str]]:
+    return {(name, hashlib.sha256(data).hexdigest())}
 
 
 @pytest.mark.parametrize(
@@ -199,7 +215,7 @@ def test_a_grandfathered_attested_record_passes_while_its_bytes_hold(tmp_path) -
     manifest = _attest(repo, "us/statute/old.json", {name: data})
     _write_allowlist(repo, [_entry(name, data, [manifest])])
 
-    assert _audit(repo, {hashlib.sha256(data).hexdigest()}) == []
+    assert _audit(repo, _pair(name, data)) == []
 
 
 def test_a_changed_grandfathered_record_fails(tmp_path) -> None:
@@ -209,7 +225,7 @@ def test_a_changed_grandfathered_record_fails(tmp_path) -> None:
     _write_allowlist(repo, [_entry(name, data, [manifest])])
     _write(repo, name, LEAKY + "More.\n")
 
-    [issue] = _audit(repo, {hashlib.sha256(data).hexdigest()})
+    [issue] = _audit(repo, _pair(name, data))
 
     assert "changed since it was grandfathered" in issue and ISSUE in issue
     assert "line 1 holds /Users/…" in issue
@@ -222,7 +238,7 @@ def test_a_scrubbed_record_leaves_a_stale_entry_that_fails(tmp_path) -> None:
     _write_allowlist(repo, [_entry(name, data, [manifest])])
     _write(repo, name, CLEAN)
 
-    [issue] = _audit(repo, {hashlib.sha256(data).hexdigest()})
+    [issue] = _audit(repo, _pair(name, data))
 
     assert "no longer holds a local path; remove its entry" in issue
 
@@ -233,7 +249,18 @@ def test_an_entry_outside_the_grandfathered_set_fails_so_the_list_only_shrinks(t
     manifest = _attest(repo, "us/statute/old.json", {name: data})
     _write_allowlist(repo, [_entry(name, data, [manifest])])
 
-    [issue] = _audit(repo, {"0" * 64})
+    [issue] = _audit(repo, {(name, "0" * 64)})
+
+    assert "not grandfathered on 2026-10-20" in issue
+
+
+def test_grandfathered_bytes_at_another_path_are_not_grandfathered(tmp_path) -> None:
+    repo = _repo(tmp_path)
+    name, data = _write(repo, "docs/ingest-runs/copy.md", LEAKY)
+    manifest = _attest(repo, "us/statute/copy.json", {name: data})
+    _write_allowlist(repo, [_entry(name, data, [manifest])])
+
+    [issue] = _audit(repo, _pair("docs/ingest-runs/original.md", data))
 
     assert "not grandfathered on 2026-10-20" in issue
 
@@ -244,9 +271,9 @@ def test_an_unattested_record_cannot_be_grandfathered(tmp_path) -> None:
     manifest = _attest(repo, "us/statute/old.json", {})
     _write_allowlist(repo, [_entry(name, data, [manifest])])
 
-    [issue] = _audit(repo, {hashlib.sha256(data).hexdigest()})
+    [issue] = _audit(repo, _pair(name, data))
 
-    assert "attested at these bytes by no signed ingest manifest" in issue
+    assert "attested at these bytes by no ingest manifest" in issue
 
 
 def test_an_entry_must_name_every_attesting_manifest(tmp_path) -> None:
@@ -256,7 +283,7 @@ def test_an_entry_must_name_every_attesting_manifest(tmp_path) -> None:
     second = _attest(repo, "us/statute/b.json", {name: data})
     _write_allowlist(repo, [_entry(name, data, [first])])
 
-    [issue] = _audit(repo, {hashlib.sha256(data).hexdigest()})
+    [issue] = _audit(repo, _pair(name, data))
 
     assert f"attested at these bytes by `{first}`, `{second}`" in issue
 
@@ -267,9 +294,9 @@ def test_an_attestation_of_other_bytes_does_not_count(tmp_path) -> None:
     manifest = _attest(repo, "us/statute/old.json", {name: b"earlier bytes"})
     _write_allowlist(repo, [_entry(name, data, [manifest])])
 
-    [issue] = _audit(repo, {hashlib.sha256(data).hexdigest()})
+    [issue] = _audit(repo, _pair(name, data))
 
-    assert "by no signed ingest manifest" in issue
+    assert "by no ingest manifest" in issue
 
 
 def test_an_entry_for_a_missing_record_fails(tmp_path) -> None:
@@ -277,7 +304,7 @@ def test_an_entry_for_a_missing_record_fails(tmp_path) -> None:
     gone = "docs/ingest-runs/gone.md"
     _write_allowlist(repo, [_entry(gone, b"x", [".axiom/ingest-manifests/a.json"])])
 
-    [issue] = _audit(repo, {hashlib.sha256(b"x").hexdigest()})
+    [issue] = _audit(repo, _pair(gone, b"x"))
 
     assert f"`{gone}`, which is not a record in the repository" in issue
 
@@ -288,7 +315,7 @@ def test_an_entry_listed_twice_fails(tmp_path) -> None:
     manifest = _attest(repo, "us/statute/old.json", {name: data})
     _write_allowlist(repo, [_entry(name, data, [manifest]), _entry(name, data, [manifest])])
 
-    [issue] = _audit(repo, {hashlib.sha256(data).hexdigest()})
+    [issue] = _audit(repo, _pair(name, data))
 
     assert "twice" in issue
 
@@ -311,6 +338,35 @@ def test_an_unreadable_ingest_manifest_fails_closed(tmp_path) -> None:
     [issue] = _audit(repo)
 
     assert "cannot be read, so the records it attests are unknown" in issue
+
+
+def test_a_manifest_that_cannot_be_opened_fails_closed_without_naming_the_checkout(
+    tmp_path,
+) -> None:
+    repo = _repo(tmp_path)
+    link = repo / ".axiom/ingest-manifests/us/statute/gone.json"
+    link.parent.mkdir(parents=True)
+    link.symlink_to(repo / "nowhere.json")
+    _write_allowlist(repo, [])
+
+    [issue] = _audit(repo)
+
+    assert issue == (
+        "`.axiom/ingest-manifests/us/statute/gone.json` cannot be read (No such file or directory)."
+    )
+
+
+@pytest.mark.parametrize("target", ["/Users/someone/notes.md", "clean.md"])
+def test_a_record_that_is_a_symbolic_link_fails_closed(tmp_path, target: str) -> None:
+    repo = _repo(tmp_path)
+    _write(repo, "docs/ingest-runs/clean.md", CLEAN)
+    (repo / "docs/ingest-runs/latest.md").symlink_to(target)
+    _write_allowlist(repo, [])
+
+    [issue] = _audit(repo)
+
+    assert issue.startswith("`docs/ingest-runs/latest.md` is a symbolic link")
+    assert "someone" not in issue
 
 
 @pytest.mark.parametrize(
@@ -449,13 +505,18 @@ def test_an_allowlist_that_is_not_yaml_fails_closed(tmp_path) -> None:
         "Disk: `df -g ~` 32 GB free.",
         "official (non-`file://`) download URLs; records a `file://` download URL",
         "under `$HOME` or `/Users/` or `/private/`",
-        # Web paths on content-managed sites.
+        # Web paths: Drupal files on medicaid.gov, and roots inside URLs.
         '{"href": "/media/file/ia-13-0022-mc5.pdf"}',
         "(`/media/<id>/download?inline`)",
-        # Placeholders and repository-relative paths.
+        "(`https://dss.sc.gov/media/bxwc1jdj/tanf-policy-manual-volume-67-final.pdf`)",
+        "https://www.childcare.virginia.gov/home/showpublisheddocument/65775",
+        "https://example.gov/page#/tmp/x and https://example.gov/a?/tmp/x",
+        # Placeholders, HTML around clean text, and relative paths.
         CLEAN,
-        "`<scratchpad>/tmp/replay.json`, `data/corpus/downloads/us-al-code`",
+        "`<scratchpad>/tmp/replay.json`, `<main-checkout>/data/corpus`",
+        "<code>data/corpus</code> and <td>../tmp/x</td>",
         "download_dir: ../data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter",
+        "a_b/tmp/x, data/home/x, ./tmp/y",
     ],
 )
 def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
@@ -475,6 +536,17 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         ("cd /home/runner/work/axiom-corpus", "/home/…"),
         ("/var/folders/xy/T/tmp.abc", "/var/folders/…"),
         ("PATH=/Volumes/Data/bin:$PATH", "/Volumes/…"),
+        # A Linux removable drive is mounted under the user's name.
+        ("restored from `/media/someone/Backup/axiom-corpus`", "/media/…"),
+        # Markup and prose punctuation, which no command line holds.
+        ("<code>/Users/someone/x</code>", "/Users/…"),
+        ("<td>~/notes/x</td>", "~…"),
+        ("see @/Users/someone/x", "/Users/…"),
+        ("**/Users/someone/x**", "/Users/…"),
+        ("_/tmp/x_", "/tmp/…"),
+        ("\u201c/Users/someone/x\u201d", "/Users/…"),
+        ("\u00ab/private/tmp/x\u00bb", "/private/…"),
+        ("line one\r\n/tmp/x\tand more", "/tmp/…"),
     ],
 )
 def test_paths_on_a_machine_fail(text: str, root: str) -> None:
@@ -484,65 +556,92 @@ def test_paths_on_a_machine_fail(text: str, root: str) -> None:
 
 
 _NAME = st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789._-", min_size=1, max_size=12)
+_TOKENS = [
+    *LOCAL_PATH_ROOTS,
+    "~",
+    "~/",
+    "~/x",
+    "file://",
+    "file:///x",
+    "$HOME",
+    "${HOME}/x",
+    "%USERPROFILE%",
+    "C:\\Users\\",
+    "C:/Users/x",
+    "/media/file/a.pdf",
+    "<scratchpad>",
+    "<code>",
+    "</code>",
+    "**",
+    "@",
+    "\u201c",
+]
 _WORDS = st.lists(
     st.one_of(
-        st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789 ~/:.$<>`'\"=()-\n", max_size=20),
-        st.sampled_from(
-            [*LOCAL_PATH_ROOTS, "~", "~/", "~/x", "file://", "file:///x", "$HOME", "${HOME}/x"]
-            + ["%USERPROFILE%", "C:\\Users\\", "C:/Users/x", "/media/file/a.pdf", "<scratchpad>"]
-        ),
+        st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789 ~/:.$<>`'\"=()_*@-\n", max_size=20),
+        st.sampled_from(_TOKENS),
     ),
-    max_size=6,
+    max_size=8,
 )
-
-
-@settings(max_examples=300, deadline=None)
-@given(text=st.text(max_size=120))
-def test_detection_is_a_subset_of_find_local_paths(text: str) -> None:
-    found = find_record_local_paths(text)
-
-    assert set(found) <= set(find_local_paths(text))
-
-
 _NO_PLACE_TOKEN = re.compile(
     r"(?i)~/?|file:/*|(?:\$HOME|\$\{HOME\}|%USERPROFILE%)/?"
     r"|[a-z]:[\\/](?:users|documents and settings)[\\/]?"
 )
 
 
-@settings(max_examples=300, deadline=None)
-@given(words=_WORDS)
-def test_it_drops_exactly_the_spellings_that_name_no_place(words: list[str]) -> None:
-    text = " ".join(words)
-    kept = set(find_record_local_paths(text))
+def _names_a_place(text: str, path) -> bool:
+    token = text[path.start : path.end]
+    if path.kind == "absolute":
+        return token != path.root and not token.startswith("/media/file/")
+    return _NO_PLACE_TOKEN.fullmatch(token) is None
+
+
+@settings(max_examples=500, deadline=None)
+@given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
+def test_it_finds_every_path_find_local_paths_finds_that_names_a_place(
+    words: list[str], joiner: str
+) -> None:
+    text = joiner.join(words)
+    starts = {path.start for path in find_record_local_paths(text)}
 
     for path in find_local_paths(text):
-        token = text[path.start : path.end]
-        names_no_place = (
-            token == path.root or path.root == "/media/"
-            if path.kind == "absolute"
-            else _NO_PLACE_TOKEN.fullmatch(token) is not None
-        )
-        assert (path in kept) is not names_no_place, token
+        if _names_a_place(text, path):
+            assert path.start in starts, text
 
 
-@settings(max_examples=300, deadline=None)
+@settings(max_examples=500, deadline=None)
+@given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
+def test_it_never_reports_a_spelling_that_names_no_place(words: list[str], joiner: str) -> None:
+    text = joiner.join(words)
+    found = find_record_local_paths(text)
+
+    assert all(_names_a_place(text, path) for path in found), text
+    assert [path.start for path in found] == sorted({path.start for path in found})
+
+
+@settings(max_examples=500, deadline=None)
 @given(
-    root=st.sampled_from([root for root in LOCAL_PATH_ROOTS if root != "/media/"] + ["~/"]),
+    root=st.sampled_from([*LOCAL_PATH_ROOTS, "~/"]),
     name=_NAME,
-    before=_WORDS,
-    after=_WORDS,
+    before=st.sampled_from(
+        ["", " ", "\t", "\r\n", "`", '"', "'", "(", "[", "=", ":", ">", "<code>", "<td>"]
+        + ["*", "**", "@", "_", "\u201c", "\u2018", "\u00ab", "|", ",", ";", "{"]
+    ),
+    after=st.sampled_from(["", " ", "`", '"', ")", "**", "_", "\u201d", "</code>", ".", ",\n"]),
+    prefix=_WORDS,
 )
-def test_every_path_below_a_machine_root_is_found(
-    root: str, name: str, before: list[str], after: list[str]
+def test_every_path_below_a_machine_root_is_found_in_prose_and_markup(
+    root: str, name: str, before: str, after: str, prefix: list[str]
 ) -> None:
     path = f"{root}{name}/x"
-    text = " ".join(before) + f" `{path}` " + " ".join(after)
+    if path.startswith("/media/file/"):
+        return
+    head = " ".join(prefix) + " " + before
+    text = head + path + after
 
     found = find_record_local_paths(text)
 
-    start = text.index(f"`{path}`") + 1
-    assert any(item.start == start for item in found), text
+    assert any(item.start == len(head) for item in found), text
 
 
 # --- 3. Functional manifest paths --------------------------------------------
@@ -551,7 +650,7 @@ def test_every_path_below_a_machine_root_is_found(
 def _source_manifests(key: str) -> list[Path]:
     """The manifests whose text names ``key`` (parsing all 1,700 takes a minute)."""
     return sorted(
-        path for path in (REPO_ROOT / "manifests").rglob("*.yaml") if f"{key}:" in path.read_text()
+        path for path in (REPO_ROOT / "manifests").rglob("*.yaml") if key in path.read_text()
     )
 
 
@@ -568,36 +667,52 @@ def _manifest_rows(manifest: Path, key: str) -> list[dict]:
     return [row for row in rows or [] if isinstance(row, dict)]
 
 
+def _manifest_relative(manifest: Path, value: object) -> Path | None:
+    """``value`` resolved against ``manifest`` without following links, or None if absolute."""
+    if not isinstance(value, str) or Path(value).is_absolute():
+        return None
+    return Path(os.path.normpath(manifest.parent / value))
+
+
 def test_every_local_path_names_a_locked_corpus_file() -> None:
     locked = _locked_corpus_files()
+    problems: list[str] = []
     seen = 0
     for manifest in _source_manifests("local_path"):
         for row in _manifest_rows(manifest, "documents"):
-            local_path = row.get("local_path")
-            if local_path is None:
+            if "local_path" not in row:
                 continue
             seen += 1
-            assert not Path(local_path).is_absolute(), f"{manifest.name}: {row['source_id']}"
-            resolved = Path(os.path.normpath(manifest.parent / local_path))
-            relative = resolved.relative_to(REPO_ROOT).as_posix()
-            assert relative in locked, f"{manifest.name}: {row['source_id']}"
+            where = f"{manifest.relative_to(REPO_ROOT)} {row.get('source_id')}"
+            resolved = _manifest_relative(manifest, row["local_path"])
+            if resolved is None:
+                problems.append(f"{where}: local_path is not relative to the manifest")
+            elif not resolved.is_relative_to(REPO_ROOT):
+                problems.append(f"{where}: local_path leaves the checkout")
+            elif resolved.relative_to(REPO_ROOT).as_posix() not in locked:
+                problems.append(f"{where}: local_path names no corpus-locked file")
+    # Messages name the manifest and source only, never the value.
+    assert problems == [], "\n".join(problems)
     # The bo, mz (three) and us-ny retained copies at least.
     assert seen >= 5
 
 
 def test_every_download_dir_stays_inside_the_checkout_data_directory() -> None:
+    problems: list[str] = []
     seen = 0
-    data = REPO_ROOT / "data"
     for manifest in _source_manifests("download_dir"):
         for row in _manifest_rows(manifest, "sources"):
             options = row.get("options")
-            download_dir = options.get("download_dir") if isinstance(options, dict) else None
-            if download_dir is None:
+            if not isinstance(options, dict) or "download_dir" not in options:
                 continue
             seen += 1
-            assert not Path(download_dir).is_absolute(), f"{manifest.name}: {row['source_id']}"
-            resolved = Path(os.path.normpath(manifest.parent / download_dir))
-            assert resolved.is_relative_to(data), manifest.name
+            where = f"{manifest.relative_to(REPO_ROOT)} {row.get('source_id')}"
+            resolved = _manifest_relative(manifest, options["download_dir"])
+            if resolved is None:
+                problems.append(f"{where}: download_dir is not relative to the manifest")
+            elif not resolved.is_relative_to(REPO_ROOT / "data"):
+                problems.append(f"{where}: download_dir leaves the checkout's data/")
+    assert problems == [], "\n".join(problems)
     assert seen > 0
 
 
@@ -606,7 +721,7 @@ def test_the_record_roots_exist() -> None:
         assert (REPO_ROOT / root).is_dir(), root
 
 
-def test_record_files_lists_the_repository_records() -> None:
+def test_record_files_lists_every_tracked_record() -> None:
     files = record_files(REPO_ROOT)
     tracked = subprocess.run(
         ["git", "-C", str(REPO_ROOT), "ls-files", "--", *RECORD_ROOTS],
@@ -615,4 +730,4 @@ def test_record_files_lists_the_repository_records() -> None:
         text=True,
     ).stdout.split("\n")
 
-    assert {name for name in tracked if name and (REPO_ROOT / name).is_file()} <= set(files)
+    assert {name for name in tracked if name and (REPO_ROOT / name).exists()} <= set(files)

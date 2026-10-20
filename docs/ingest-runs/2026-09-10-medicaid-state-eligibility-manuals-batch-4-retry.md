@@ -56,7 +56,7 @@ fetched; the manifests were generated before local midnight so they carry 2026-0
 documents were not parsed; same judgment as batches 1-3).
 
 Extraction: `uv run axiom-corpus-ingest extract-official-documents`, no new adapter, all artifacts under the main
-checkout's `--base data/corpus` (this worktree is sparse). PDFs use the extractor's
+checkout's `--base <main-checkout>/data/corpus` (this worktree is sparse). PDFs use the extractor's
 page granularity with `ocr: true`; HTML pages use `html_content_selector` per publisher (RoboHelp outputs: `body` minus
 the `#rh-topic-header` chrome); the SC Word files use the extractor's existing `docx` path. TLS verification was never
 disabled. Two publishers serve incomplete chains: img1.scdhhs.gov (SC MPPM host) omits the GoDaddy "Go Daddy Secure
@@ -239,7 +239,7 @@ manuals.
 - `data/corpus/provisions/us-xx/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl`
 - `data/corpus/coverage/us-xx/manual/2026-09-10-medicaid-state-eligibility-manual.json`
 
-for xx in oh, tn, ky, sc, az, ut, nm, ks, la, mt, under `data/corpus` (main checkout),
+for xx in oh, tn, ky, sc, az, ut, nm, ks, la, mt, under `<main-checkout>/data/corpus` (main checkout),
 alongside the batch-1 to batch-3 artifacts. Other sessions (CHIP, SSI and others) write to the same base concurrently;
 nothing outside these ten scopes was touched by this session.
 

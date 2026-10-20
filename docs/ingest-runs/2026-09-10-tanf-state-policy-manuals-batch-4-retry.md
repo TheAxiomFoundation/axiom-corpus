@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 Program: TANF (board Year 1 list; `manifests/tanf-agent-queue.yaml`)
-Branch: `discovery/ingest-tanf` (worktree, sparse checkout without `data/corpus`; artifacts written to the shared corpus root of the main checkout, `--base data/corpus`, where `data/` is gitignored)
+Branch: `discovery/ingest-tanf` (worktree, sparse checkout without `data/corpus`; artifacts written to the shared corpus root of the main checkout, `--base <main-checkout>/data/corpus`, where `data/` is gitignored)
 
 started_at: 2026-09-10T21:33:54Z (first command of this session)
 finished_at: 2026-09-10T21:59:39Z (tests re-run and commit follow within the minute)
@@ -100,7 +100,7 @@ explicitly because the adapter otherwise uses the version string as a date).
 PDF links (APS policies, "Economic Services Policy and Procedure Manuals": SNAP manual volume 71 - the corpus holds the
 us-sc SNAP manual scope -, the TANF Policy Manual, the SNAP/TANF Benefit Integrity manual; DSNAP, Refugee Resettlement,
 SC Voucher, child welfare documents). Taken: the TANF Policy Manual, now **volume 67**
-(`/media/bxwc1jdj/tanf-policy-manual-volume-67-final.pdf`, 407 pages, HTTP Last-Modified 2026-07-31 = expression_date),
+(`https://dss.sc.gov/media/bxwc1jdj/tanf-policy-manual-volume-67-final.pdf`, 407 pages, HTTP Last-Modified 2026-07-31 = expression_date),
 page-level (`us-sc/manual/dss/tanf-policy-manual` and `.../page-N`, mirroring `us-sc/manual/dss/snap-policy-manual`).
 The lead list's volume 65 URL still serves the superseded volume (Last-Modified 2025-01-13); not taken. Plain clients
 answer, no impersonation flag.

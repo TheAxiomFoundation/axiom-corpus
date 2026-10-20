@@ -425,6 +425,6 @@ Decisions needed:
 6. The Guam, USVI and territory E&T plans on the FNA index were left to the territories lane.
 7. `snap_s32` for New Mexico should be re-scored ABSENT in the next closure run.
 
-Artifacts for the 57 scopes are under `data/corpus` only
+Artifacts for the 57 scopes are under `<main-checkout>/data/corpus` only
 (uncommitted, unsigned); `scripts/sign_release_scopes.sh` on the release branch commits and signs them
 when the controller cuts the successor selector.

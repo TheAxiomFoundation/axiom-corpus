@@ -28,7 +28,7 @@ scope per state: version `2026-09-10-snap-state-manual-completion`, `document_cl
 state's existing convention, manifest `manifests/us-xx-snap-manual-completion.yaml`, citation
 paths under the state's existing convention. A release rejects duplicate citation paths across
 scopes, so every candidate citation path was checked against every provisions JSONL under
-`data/corpus/provisions/<jurisdiction>/` (all document classes,
+`<main-checkout>/data/corpus/provisions/<jurisdiction>/` (all document classes,
 all versions) before it was taken; the generator skips and records collisions
 (`citation_path_already_in_corpus`). None occurred for TX or NH.
 
@@ -197,16 +197,16 @@ host answers.
 - `data/corpus/provisions/us-xx/manual/2026-09-10-snap-state-manual-completion.jsonl`
 - `data/corpus/coverage/us-xx/manual/2026-09-10-snap-state-manual-completion.json`
 
-for xx in tx, nh, under `data/corpus`.
+for xx in tx, nh, under `<main-checkout>/data/corpus`.
 
 Rebuild:
 
 ```bash
 uv run python scripts/build_snap_state_manual_completion_manifests.py \
-  --corpus-base data/corpus
+  --corpus-base <main-checkout>/data/corpus
 for j in tx nh; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base data/corpus \
+    --base <main-checkout>/data/corpus \
     --version 2026-09-10-snap-state-manual-completion \
     --manifest manifests/us-$j-snap-manual-completion.yaml
 done

@@ -9,7 +9,7 @@ nothing under `data/corpus` is committed on this branch.
 
 Branch: `discovery/ingest-federal-cfr-followon`, cut from `origin/discovery/program-ingestion-union`,
 worked in a sparse worktree (`<worktrees>/federal-cfr`, `data/corpus` excluded) with
-every extraction pointed at `--base data/corpus`. GitNexus MCP
+every extraction pointed at `--base <main-checkout>/data/corpus`. GitNexus MCP
 tools were not available in this session, so the impact analysis CLAUDE.md asks for before editing
 `src/axiom_corpus/corpus/ecfr.py` was done by hand (see "Adapter fix").
 
@@ -160,7 +160,7 @@ from the worktree:
 
 ```bash
 uv run axiom-corpus-ingest validate-release \
-  --base data/corpus \
+  --base <main-checkout>/data/corpus \
   --release <scratch>/draft-federal-cfr.selector.json \
   --ignore-r2-missing --max-issues 50
 ```
@@ -184,7 +184,7 @@ round-trip byte-identically through `yaml.safe_dump(sort_keys=False, allow_unico
 ## Commands
 
 ```bash
-B=data/corpus
+B=<main-checkout>/data/corpus
 for tp in "45 98" "42 436" "20 416"; do set -- $tp
   uv run axiom-corpus-ingest inventory-ecfr --base $B --version 2026-09-11 --as-of 2026-09-09 \
     --only-title $1 --only-part $2
