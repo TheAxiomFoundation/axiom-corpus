@@ -21,6 +21,7 @@ from bs4 import BeautifulSoup
 from axiom_corpus.corpus.anchors import generate_anchors_for_provision
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.california_mpp import _section_provision, _subsection_provision
+from axiom_corpus.corpus.content_quality import ScopeContentScanner
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from axiom_corpus.corpus.ingest_manifests import build_ingest_manifest, default_ingest_manifest_path
@@ -128,40 +129,127 @@ def _normalized_citation_path(value: str) -> str:
     return re.sub(r"/+", "/", unquote(value).strip().strip("/"))
 
 
-def _all_ingested_citation_paths() -> tuple[set[str], dict[str, list[str]]]:
-    """Index every durable provision scope for the final offline recovery audit."""
-    exact: set[str] = set()
+ScopeKey = tuple[str, str, str]
+
+
+def _all_ingested_citation_paths() -> tuple[dict[str, frozenset[ScopeKey]], dict[str, list[str]]]:
+    """Index, for the final offline recovery audit, where each citation path carries text.
+
+    Returns each citation path that carries text in some durable provision
+    scope, with the scopes it carries text in, and the paths grouped by their
+    representation-normalized form. A path carries text where its row does by
+    the release content rules (``ScopeContentScanner.text_paths``): a body that
+    is neither page navigation nor taken from a version picker, or a bodyless
+    root with such a row below it. Indexing every path regardless of body let
+    the July 2026 batch count empty roots and LegInfo menus as recovered text
+    (docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md).
+    """
+    carriers: dict[str, set[ScopeKey]] = defaultdict(set)
     normalized: dict[str, list[str]] = defaultdict(list)
-    require_materialized([BASE / "provisions"], fetch=True, repo=REPO)
-    for path in sorted((BASE / "provisions").rglob("*.jsonl")):
+    # The text test reads each row's retained page: without the sources, every
+    # menu would read as text again.
+    require_materialized([BASE / "provisions", BASE / "sources"], fetch=True, repo=REPO)
+    provisions_root = BASE / "provisions"
+    for path in sorted(provisions_root.rglob("*.jsonl")):
+        parts = path.relative_to(provisions_root).with_suffix("").parts
+        if len(parts) != 3:
+            raise ValueError(f"provisions file outside jurisdiction/class/version: {path}")
+        scope: ScopeKey = (parts[0], parts[1], parts[2])
+        scanner = ScopeContentScanner(BASE)
         for line_number, line in enumerate(path.read_text().splitlines(), 1):
             if not line.strip():
                 continue
             try:
-                citation_path = str(json.loads(line)["citation_path"])
+                record = ProvisionRecord.from_mapping(json.loads(line))
             except (json.JSONDecodeError, KeyError, TypeError) as exc:
                 raise ValueError(f"invalid provision row at {path}:{line_number}") from exc
-            exact.add(citation_path)
-            normalized[_normalized_citation_path(citation_path)].append(citation_path)
-    return exact, normalized
+            scanner.add(record)
+        for citation_path in scanner.text_paths():
+            carriers[citation_path].add(scope)
+    for citation_path in sorted(carriers):
+        normalized[_normalized_citation_path(citation_path)].append(citation_path)
+    return {path: frozenset(scopes) for path, scopes in carriers.items()}, normalized
+
+
+def _planned_scope(entry: dict[str, Any]) -> ScopeKey | None:
+    """The scope a plan entry's document is recovered into, when the plan names one."""
+    values = (entry.get("jurisdiction"), entry.get("document_class"), entry.get("proposed_version"))
+    if not all(isinstance(value, str) and value for value in values):
+        return None
+    return (str(values[0]), str(values[1]), str(values[2]))
+
+
+def _own_scope_vouches(result: dict[str, Any]) -> bool:
+    """Whether a document's own planned scope may resolve its targets.
+
+    Only when the document's recorded result is parsed: parsed in this run, or
+    an earlier parse this run reuses or carries forward unchanged (a run limited
+    to one document, or one whose snapshot has left recovered-fetched). A
+    reparse that fails records an unparsed result, so its own scope no longer
+    vouches, in this run and every later one alike.
+    """
+    return bool(result.get("parsed"))
+
+
+def _carrier_kind(
+    citation_path: str,
+    carriers: dict[str, frozenset[ScopeKey]],
+    own_scope: ScopeKey | None,
+    include_own: bool,
+) -> str | None:
+    """``cross-scope`` if another scope carries text here, ``own-scope`` if only the target's own does."""
+    scopes = carriers.get(citation_path, frozenset())
+    if scopes - {own_scope}:
+        return "cross-scope"
+    if include_own and own_scope in scopes:
+        return "own-scope"
+    return None
 
 
 def _resolve_across_ingested_scopes(
-    target: str, exact: set[str], normalized: dict[str, list[str]]
+    target: str,
+    carriers: dict[str, frozenset[ScopeKey]],
+    normalized: dict[str, list[str]],
+    *,
+    own_scope: ScopeKey | None = None,
+    include_own: bool = True,
 ) -> dict[str, str] | None:
-    """Resolve exact, representation-only, and generic-document fallback paths."""
-    if target in exact:
-        return {"citation_path": target, "method": "exact-cross-scope"}
-    matches = sorted(set(normalized.get(_normalized_citation_path(target), [])))
+    """Resolve exact, representation-only, and generic-document fallback paths to text.
+
+    ``own_scope`` is the scope the target's own document was planned into. Its
+    rows count only with ``include_own``, which the caller sets when that
+    document was parsed: rows a scope holds for a page it did not parse prove
+    nothing about the target, so they must not resolve it.
+    """
+
+    def kind(path: str) -> str | None:
+        return _carrier_kind(path, carriers, own_scope, include_own)
+
+    exact = kind(target)
+    if exact:
+        return {"citation_path": target, "method": f"exact-{exact}"}
+    matches = sorted(
+        {
+            candidate
+            for candidate in normalized.get(_normalized_citation_path(target), [])
+            if kind(candidate)
+        }
+    )
     if len(matches) == 1:
-        return {"citation_path": matches[0], "method": "normalized-format-cross-scope"}
+        return {
+            "citation_path": matches[0],
+            "method": f"normalized-format-{kind(matches[0])}",
+        }
     document_matches = sorted(
         candidate
-        for candidate in exact
-        if re.fullmatch(re.escape(target) + r"/document-[0-9]+", candidate)
+        for candidate in carriers
+        if re.fullmatch(re.escape(target) + r"/document-[0-9]+", candidate) and kind(candidate)
     )
     if len(document_matches) == 1:
-        return {"citation_path": document_matches[0], "method": "document-fallback-cross-scope"}
+        return {
+            "citation_path": document_matches[0],
+            "method": f"document-fallback-{kind(document_matches[0])}",
+        }
     return None
 
 
@@ -696,7 +784,9 @@ def _generic(
         source_format,
         source_url=source.source_url,
         title=source.title,
-        extraction=None,
+        # The extractor drops navigation blocks by the release content check's
+        # reading of the retained bytes; re-encoded bytes can read differently.
+        extraction=None if extract_data == data else {"html_keep_navigation_blocks": True},
     )
     if not blocks or not any((block.body or "").strip() for block in blocks):
         raise ValueError("parser produced no non-empty text blocks")
@@ -1141,7 +1231,12 @@ def main() -> int:
             scoped_items[scope].extend(items)
             scoped_records[scope].extend(records)
             scoped_artifacts[scope].extend((source_path, provenance_path))
-            paths = {row.citation_path for row in records}
+            # A planned citation is resolved only by a row that carries text,
+            # read with the release content rules against the retained page.
+            scanner = ScopeContentScanner(BASE)
+            for row in records:
+                scanner.add(row)
+            paths = scanner.text_paths()
             resolved = sum(
                 target in paths
                 or any(candidate.startswith(target + "/document-") for candidate in paths)
@@ -1152,7 +1247,7 @@ def main() -> int:
             )
             if resolved != len(targets):
                 result["issues"].append(
-                    "not all planned citation paths resolve in this document's parsed rows"
+                    "not all planned citation paths resolve to text in this document's parsed rows"
                 )
         except Exception as exc:
             result["issues"].append(str(exc))
@@ -1239,6 +1334,21 @@ def main() -> int:
         }
     for document_id, entry in entries.items():
         if document_id not in results:
+            if document_id in previously_parsed or (
+                only_document_id
+                and document_id != only_document_id
+                and document_id in previous_results
+            ):
+                # A document this run did not parse keeps its earlier result when
+                # that result was a parse, or when the run was limited to another
+                # document: an unparsed stand-in would erase the parse from the
+                # report the next run reads its parsed documents from, or replace
+                # a recorded parse failure (and its provenance error) with a
+                # missing-snapshot result although the snapshot is still there.
+                # The document a run is limited to is answered afresh, as a full
+                # run would answer it.
+                results[document_id] = {**previous_results[document_id], "newly_ingested": False}
+                continue
             targets = list(entry.get("covers_citation_paths") or [])
             results[document_id] = {
                 "parsed": False,
@@ -1248,16 +1358,25 @@ def main() -> int:
                 "resolution_class": "awaiting-fetch",
             }
     # Final reconciliation is deliberately global: a citation is recovered when any
-    # ingested durable scope contains it, not only the document originally assigned
-    # by the fetch plan. This closes incremental-batch and document-id bookkeeping bugs.
-    all_paths, normalized_paths = _all_ingested_citation_paths()
+    # ingested durable scope carries text at it, not only the document originally
+    # assigned by the fetch plan. This closes incremental-batch and document-id
+    # bookkeeping bugs. A document's own planned scope counts only when the
+    # document was parsed: otherwise its leftover rows would vouch for themselves.
+    text_carriers, normalized_paths = _all_ingested_citation_paths()
     for document_id, entry in entries.items():
         targets = list(entry.get("covers_citation_paths") or [])
         result = results[document_id]
+        own_scope = _planned_scope(entry)
         resolved_citations: list[dict[str, str]] = []
         unresolved_citations: list[str] = []
         for target in targets:
-            match = _resolve_across_ingested_scopes(target, all_paths, normalized_paths)
+            match = _resolve_across_ingested_scopes(
+                target,
+                text_carriers,
+                normalized_paths,
+                own_scope=own_scope,
+                include_own=_own_scope_vouches(result),
+            )
             if match is None:
                 unresolved_citations.append(target)
             else:
@@ -1309,10 +1428,10 @@ def main() -> int:
             for key, value in results.items()
             if not key.startswith("_") and value.get("resolution_class") == class_name
         ]
+        # The class's remaining citations: its documents' unresolved targets,
+        # not every target of a document that is only partly resolved.
         remaining_classes[class_name] = {
-            "count": sum(
-                int(results[key]["citations_resolved"].split("/")[1]) for key in members
-            ),
+            "count": sum(len(results[key]["unresolved_citations"]) for key in members),
             "documents": members,
         }
         for key in members:
