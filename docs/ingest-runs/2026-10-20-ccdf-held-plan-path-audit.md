@@ -315,11 +315,25 @@ check exists to prevent.
    as plan text and raises the warning. `us-mo` and `us-md` now both report
    `HELD` with the collision warning.
 
-**Remaining limit, recorded rather than fixed.** A scope that is locked but neither
-fetched nor named by a queue pointer is still invisible to the check when its version
-name carries no CCDF subfamily, because the lock sweep deliberately skips an
-unclassified version to avoid listing every unrelated scope a jurisdiction holds.
-Closing that gap means reading each signed ingest manifest's citation paths rather
-than trusting the version name. Until then, a `NOT HELD` verdict is evidence of
-absence only for a jurisdiction whose CCDF scopes are either fetched or pointed at
-from the queue, and this audit's own per-jurisdiction table is the stronger record.
+**Remaining limit, and a correction to how it can be closed.** A scope that is
+locked but neither fetched nor named by a queue pointer is still invisible to the
+check when its version name carries no CCDF subfamily, because the lock sweep
+deliberately skips an unclassified version to avoid listing every unrelated scope a
+jurisdiction holds.
+
+An earlier draft of this section said the gap could be closed by reading each signed
+ingest manifest's citation paths. **That is wrong, and the controller checked it.**
+Neither record holds citation paths for an unfetched scope: a lock file
+(`.axiom/corpus-locks/...`) lists only artifact paths with their sha256 and size, and
+a signed ingest manifest (`.axiom/ingest-manifests/...`) holds a coverage summary
+(`complete`, `matched_count`, `provision_count`, `source_count`) and a `command` that
+is only a pointer to the run note. An unfetched scope's paths are not available
+locally, which is what "not fetched" means.
+
+So the gap has two real closures, not that one. Either fetch the scope's bytes, or
+record the holding in the queue, which is exactly what this audit does for 59 rows.
+After this audit the residual gap therefore covers only a scope that is locked,
+unfetched **and** recorded nowhere in the queue, which is a scope nobody has yet
+written down. A `NOT HELD` verdict is evidence of absence for every jurisdiction whose
+CCDF scopes are fetched or pointed at from the queue, and this audit's own
+per-jurisdiction table remains the stronger record.
