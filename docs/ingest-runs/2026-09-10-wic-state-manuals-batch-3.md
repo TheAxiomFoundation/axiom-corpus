@@ -135,7 +135,7 @@ Manual not posted on the publisher's own site:
 
 ## Artifacts (unsigned, uncommitted, awaiting controller)
 
-In the main checkout's corpus root (`/Users/pavelmakarchuk/axiom-corpus/data/corpus`, where batches 1 and 2's artifacts
+In the main checkout's corpus root (`data/corpus`, where batches 1 and 2's artifacts
 are; this worktree is sparse and excludes `data/corpus`):
 
 - `data/corpus/sources/us-xx/manual/2026-09-10-wic-state-policy-manual/official-documents/*.pdf`
@@ -150,7 +150,7 @@ extraction of that document needs `tesseract` on PATH, 5.5.3 here):
 uv run python scripts/build_wic_manifests.py --only us-co,us-mn,us-ct,us-ut,us-ia,us-sc,us-al,us-la,us-ky,us-or,us-ok,us-nv,us-ar,us-ms,us-ks,us-nm
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/wic-state-ca-bundle.pem
 for st in co mn ct ut ia; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
     --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-$st-wic-policy-manual.yaml \
     --source-as-of 2026-09-10 --expression-date 2026-09-10
 done

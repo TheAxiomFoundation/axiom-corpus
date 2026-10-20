@@ -5,10 +5,10 @@ against the sixth cut, manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.
 Re-run (read-only over data/corpus; writes only into --out):
 
     python3 docs/coverage/needs-closure-2026-09-14/check_snap_wic.py \
-        --corpus /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+        --corpus data/corpus \
         --selector manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json \
         --queues manifests \
-        --rulespec /Users/pavelmakarchuk/rulespec-us \
+        --rulespec <rulespec-us> \
         --out docs/coverage/needs-closure-2026-09-14
 
 Outputs per program: <program>-schema.yaml, <program>-matrix.csv, <program>-summary.json and a

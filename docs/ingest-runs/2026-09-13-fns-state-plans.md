@@ -5,7 +5,7 @@ Work order: `docs/coverage/needs-closure-2026-09-11/snap.md` elements `snap_s31`
 Plan, 7 CFR 273.7(c)) and `snap_s32` (State Plan of Operation, 7 CFR 272.2); `wic.md` element
 `wic_s30` (WIC State Plan, 7 CFR 246.4).
 Branch: `discovery/ingest-fns-state-plans` (sparse worktree
-`/Users/pavelmakarchuk/axiom-corpus-worktrees/fns-state-plans` cut from `origin/main`; `data/corpus`
+`<worktrees>/fns-state-plans` cut from `origin/main`; `data/corpus`
 excluded, every extraction wrote to the main checkout's `data/corpus` with `--base`). No pull request.
 Queue: `manifests/fns-state-plan-agent-queue.yaml` (51 rows, one per state and DC, three families
 per row), written by `scripts/build_fns_state_plan_manifests.py`; the WIC queue rows for the eight
@@ -425,6 +425,6 @@ Decisions needed:
 6. The Guam, USVI and territory E&T plans on the FNA index were left to the territories lane.
 7. `snap_s32` for New Mexico should be re-scored ABSENT in the next closure run.
 
-Artifacts for the 57 scopes are under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` only
+Artifacts for the 57 scopes are under `data/corpus` only
 (uncommitted, unsigned); `scripts/sign_release_scopes.sh` on the release branch commits and signs them
 when the controller cuts the successor selector.

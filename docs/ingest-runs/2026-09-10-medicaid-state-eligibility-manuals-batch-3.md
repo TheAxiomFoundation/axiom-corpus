@@ -43,7 +43,7 @@ trees as fetched; effective dates printed inside the documents were not parsed; 
 and 2).
 
 Extraction: `uv run axiom-corpus-ingest extract-official-documents`, no new adapter, all artifacts under the
-main checkout's `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus` (this worktree is sparse). PDFs use the
+main checkout's `--base data/corpus` (this worktree is sparse). PDFs use the
 extractor's page granularity with `ocr: true`; HTML pages use `html_content_selector` per publisher; the CT
 Word files use the extractor's existing `doc`/`docx` paths (legacy `.doc` is converted with macOS `textutil`;
 the extractor also accepts `antiword` or `catdoc`, so a Linux rebuild needs one of those installed). TLS
@@ -190,7 +190,7 @@ of the manual's own Appendix A, not a separate forms library.
 - `data/corpus/provisions/us-xx/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl`
 - `data/corpus/coverage/us-xx/manual/2026-09-10-medicaid-state-eligibility-manual.json`
 
-for xx in ok, ct, ia, nv, ms, under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` (main checkout), alongside
+for xx in ok, ct, ia, nv, ms, under `data/corpus` (main checkout), alongside
 the batch-1 and batch-2 artifacts. The OK artifacts were deleted and rebuilt once after the manifest grew from
 250 to 350 documents, so no stale source files remain from the first run.
 

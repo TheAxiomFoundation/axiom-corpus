@@ -15,7 +15,7 @@ A page served by one script for many documents (`GenerateRulePdf.do?fileName=…
 
 - Your worktree and branch are named in your brief. It is a **sparse worktree** (`data/corpus/` excluded). Never symlink
   `data/corpus`; never `git sparse-checkout` anything else. Every extraction writes to the main checkout's corpus root:
-  `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`. Artifacts there stay **uncommitted** (they are signed and
+  `--base data/corpus`. Artifacts there stay **uncommitted** (they are signed and
   committed later by the release step — not your job).
 - Python: `uv run --extra dev ...` inside your worktree (a bare `pytest` resolves to the Anaconda one and fails
   collection). First command: `uv sync --extra dev` (one time, ~1 min).

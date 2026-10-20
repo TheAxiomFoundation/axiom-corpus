@@ -107,7 +107,7 @@ Smoke runs (scratch base, `--only-source-id`, `--allow-incomplete`, each downloa
 ch. 1 56 provisions 15.3 s, ch. 2 62 provisions 5.4 s, ch. 3 21 provisions 4.8 s, ch. 4 18 provisions 4.6 s,
 ch. 5 18 provisions 4.2 s, ch. 6 25 provisions 4.8 s; each coverage complete.
 
-Full run 2026-09-11 11:42:16-11:42:31+0200 (14.6 s wall, `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`):
+Full run 2026-09-11 11:42:16-11:42:31+0200 (14.6 s wall, `--base data/corpus`):
 200 provisions written, then an explicit `coverage --write` recompute agreed.
 
 Counts: 1 scope, 6 documents, 200 provisions = 6 chapter roots + 194 sections

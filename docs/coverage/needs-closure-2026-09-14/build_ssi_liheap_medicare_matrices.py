@@ -74,7 +74,7 @@ SEL = {
 }
 
 CORPUS_ROWS: dict[str, list[dict]] = {}
-BASE = Path("/Users/pavelmakarchuk/axiom-corpus/data/corpus")
+BASE = Path("data/corpus")
 SELECTED: set[tuple[str, str, str]] = set()  # (jurisdiction, document_class, version) from --selector
 SEL_BY_JC: dict[tuple[str, str], list[str]] = {}
 
@@ -1235,8 +1235,8 @@ def rollup(m: Matrix):
 def main():
     global BASE
     ap = argparse.ArgumentParser()
-    ap.add_argument("--base", default="/Users/pavelmakarchuk/axiom-corpus/data/corpus")
-    ap.add_argument("--selector", default="/Users/pavelmakarchuk/axiom-corpus-worktrees/closure-r6/manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json",
+    ap.add_argument("--base", default="data/corpus")
+    ap.add_argument("--selector", default="manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json",
                     help="named-release selector; every SEL version and every PRESENT scope is resolved against it")
     a = ap.parse_args()
     base = Path(a.base)

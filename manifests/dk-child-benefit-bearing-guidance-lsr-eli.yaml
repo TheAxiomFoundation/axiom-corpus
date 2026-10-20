@@ -7,7 +7,7 @@
 # bears on no computed output; it enters corpus for citation completeness of the
 # dispositioned frontier. In force per the ELI graph.
 #
-#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#   UV_CACHE_DIR=<uv-cache> uv run --no-sync \
 #     axiom-corpus-ingest extract-eli-documents --base data/corpus \
 #     --version 2026-08-22-dk-child-benefit-bearing-guidance-lsr \
 #     --manifest manifests/dk-child-benefit-bearing-guidance-lsr-eli.yaml \

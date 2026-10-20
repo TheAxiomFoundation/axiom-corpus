@@ -2,8 +2,8 @@
 
 Date: 2026-09-14
 Branch `fix/wave4-citation-path-slugs` cut from `origin/main` in the sparse worktree
-`~/axiom-corpus-worktrees/slug-fix` (`data/corpus/` excluded, never symlinked); every extraction
-wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`).
+`<worktrees>/slug-fix` (`data/corpus/` excluded, never symlinked); every extraction
+wrote to the main checkout's corpus root (`--base data/corpus`).
 
 ## Problem
 
@@ -109,7 +109,7 @@ Verification:
   not in the new scopes are NE's ten `block-N` sub-rows of those three sections; DE and AL have none).
   CT and CO share no path with any selector scope. The held-out first-run scopes are not in the
   selector; they share the unchanged paths with the `-r2` scopes and must not be added alongside them.
-- Cited-path check (rulespec-us commit c8951033, `~/rulespec-us/us-xx`): every path rulespec-us
+- Cited-path check (rulespec-us commit c8951033, `<rulespec-us>/us-xx`): every path rulespec-us
   cites in the three superseded recovery scopes is in the new scope: NE 3 / 3 / 0 / none
   (`77/77-2715.03`, `77/77-2715.07`, `77/77-2716.01`), DE 6 / 6 / 0 / none (`30/1102`, `1108`,
   `1109`, `1110`, `1114`, `1117`), AL 3 / 3 / 0 / none (`40-18-5`, `40-18-15`, `40-18-19`). None
@@ -142,7 +142,7 @@ Verification:
 
 ## Controller
 
-Artifacts are unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`
+Artifacts are unsigned, on the controller's disk under `data/corpus`
 (provisions, inventory, coverage, sources), not committed; no `.axiom/ingest-manifests` entry exists
 yet for the `-r2` versions. Remaining steps are the controller's: `sign-ingest-manifest` per scope,
 merge into the next selector (in place of the five held-out first-run scopes), re-validate, sign,
@@ -167,7 +167,7 @@ with the `-r2` scopes.
 ## Rebuild
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=data/corpus
 uv run axiom-corpus-ingest extract-state-statutes --base $B \
   --manifest manifests/state-income-tax-chapters-2026-09-14.yaml \
   --only-jurisdiction us-ne --only-jurisdiction us-de --only-jurisdiction us-al

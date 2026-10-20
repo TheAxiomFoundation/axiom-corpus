@@ -42,17 +42,17 @@ and collection-suspension text.
 Initial extraction from the coordinator-staged bytes:
 
 ```bash
-UV_CACHE_DIR=/tmp/axiom-uv-cache uv run --extra dev python \
+UV_CACHE_DIR=<uv-cache> uv run --extra dev python \
   scripts/repro/us_s338_canada_suspension.py \
   --base data/corpus \
-  --source-path /Users/maxghenis/PolicyEngine/_tariff-p5/b1/canada-338-staging/wh-2026-08-18-canada-338-suspension.html
+  --source-path <tariff-p5>/b1/canada-338-staging/wh-2026-08-18-canada-338-suspension.html
 ```
 
 Once retained, the same extraction is reproducible without the external
 staging path:
 
 ```bash
-UV_CACHE_DIR=/tmp/axiom-uv-cache uv run --extra dev python \
+UV_CACHE_DIR=<uv-cache> uv run --extra dev python \
   scripts/repro/us_s338_canada_suspension.py \
   --base data/corpus
 ```

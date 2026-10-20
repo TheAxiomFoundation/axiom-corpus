@@ -41,7 +41,7 @@ manual trees as fetched; effective dates printed inside the documents were not p
 batch 1).
 
 Extraction: `uv run axiom-corpus-ingest extract-official-documents`, no new adapter, all artifacts
-under the main checkout's `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus` (this worktree is
+under the main checkout's `--base data/corpus` (this worktree is
 sparse). PDFs use the extractor's page granularity with `ocr: true`; HTML pages use
 `html_content_selector` per publisher. Where the publisher's index page carries no text and only a PDF
 (MA, CO), the page is `source_url` and the PDF is `download_url` (existing manifest option). TLS
@@ -210,7 +210,7 @@ None this batch (see selection above).
 - `data/corpus/provisions/us-xx/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl`
 - `data/corpus/coverage/us-xx/manual/2026-09-10-medicaid-state-eligibility-manual.json`
 
-for xx in wa, ma, in, md, mo, wi, co, mn, under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` (main
+for xx in wa, ma, in, md, mo, wi, co, mn, under `data/corpus` (main
 checkout), alongside batch 1's artifacts.
 
 Rebuild:

@@ -1,6 +1,6 @@
 # Wave 5 brief — individual income tax (group `tax`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w5-tax`, branch
+Read `00-common-preamble.md` first. Worktree `<worktrees>/w5-tax`, branch
 `discovery/ingest-w5-tax` (at main 9b0641afc). Inputs: `wave5/tax-extractable.csv` (454 rows) and `wave5/tax-review.csv`
 (29 rows). Schema `tax-schema.yaml`, report `tax.md` (its "statute coverage in the selection" column is 09-11 text — verify
 against the corpus, not the column).

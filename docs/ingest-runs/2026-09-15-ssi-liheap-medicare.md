@@ -6,8 +6,8 @@ Work order: `docs/coverage/needs-closure-2026-09-14/wave5/00-common-preamble.md`
 `wave5/ssi-liheap-medicare-extractable.csv` (357 federal, inherited by 51 states from 7 elements; 78 state-level) and the
 219 REVIEW cells of `wave5/ssi-liheap-medicare-review.csv`.
 Branch `discovery/ingest-w5-ssi-liheap-medicare` cut from `main` 9b0641afc in the sparse worktree
-`~/axiom-corpus-worktrees/w5-ssi-liheap-medicare` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
-main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`) with `--source-as-of 2026-09-15`; the
+`<worktrees>/w5-ssi-liheap-medicare` (`data/corpus/` excluded, never symlinked); every extraction wrote to the
+main checkout's corpus root (`--base data/corpus`) with `--source-as-of 2026-09-15`; the
 artifacts stay uncommitted for the controller. Agent timing: worktree read and inputs inventoried 2026-09-15T00:00Z to
 00:10Z; publisher research 00:10Z to 00:22Z (the Part B reading pass ran in parallel as one read-only sub-agent, 00:12Z to
 00:21Z); generators and the five federal extractions 00:22Z to 00:25Z; the Arkansas, Wisconsin and Utah scopes 00:27Z to
@@ -239,7 +239,7 @@ Run as one read-only sub-agent over the provision JSONL on disk; its rows are me
 
 ## Controller
 
-Selector additions (artifacts unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`, not
+Selector additions (artifacts unsigned, on the controller's disk under `data/corpus`, not
 committed), as `jurisdiction / document_class / version`; no swap and no consolidation:
 
 | jurisdiction | document_class | version |
@@ -260,7 +260,7 @@ successor) is selected.
 Rebuild:
 
 ```bash
-cd ~/axiom-corpus-worktrees/w5-ssi-liheap-medicare
+cd <worktrees>/w5-ssi-liheap-medicare
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 uv run python scripts/build_federal_guidance_layer_manifests.py --only liheap-model-plan,ssi-cfr-416-appendix-k
 uv run python scripts/build_ssi_poms_si_manifests.py --family si-00529
@@ -268,7 +268,7 @@ uv run python scripts/build_cms_iom_100_01_manifests.py --publication 100-03
 uv run python scripts/build_cms_iom_100_01_manifests.py --publication 100-05
 uv run python scripts/build_liheap_benefit_matrix_manifests.py --family policy-manual
 uv run python scripts/build_ssi_state_supplement_manifests.py --batch 6
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=data/corpus
 uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-15-title-20-part-416-appendix-k --manifest manifests/us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml --source-as-of 2026-09-15
 uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-15-ssi-poms-si-00529 --manifest manifests/us-ssa-poms-si-00529-2026-09-15.yaml --source-as-of 2026-09-15
 uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-15-liheap-model-plan --manifest manifests/us-liheap-model-plan-2026-09-15.yaml --source-as-of 2026-09-15

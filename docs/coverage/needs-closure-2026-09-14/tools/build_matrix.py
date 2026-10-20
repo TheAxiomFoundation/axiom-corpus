@@ -2,7 +2,7 @@
 
 Read-only over data/corpus. Usage (2026-09-14 re-run over the sixth cut):
   uv run python docs/coverage/needs-closure-2026-09-14/tools/build_matrix.py \
-      --corpus /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+      --corpus data/corpus \
       --selector manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json \
       --repo . --out docs/coverage/needs-closure-2026-09-14 [--program medicaid|chip]
 

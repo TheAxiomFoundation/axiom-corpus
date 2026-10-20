@@ -10,9 +10,9 @@ decisions file). Minnesota extraction: `scripts/extract_w7_state_benefits_mn.py`
 
 ## Worktree, branch, timing, disk
 
-- Sparse worktree `~/axiom-corpus-worktrees/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` cut from
+- Sparse worktree `<worktrees>/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` cut from
   `main` 89dc519fa. `data/corpus/` excluded, never symlinked. Every extraction wrote to the main checkout's corpus root
-  (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`), `--source-as-of 2026-10-12`; artifacts are unsigned and
+  (`--base data/corpus`), `--source-as-of 2026-10-12`; artifacts are unsigned and
   uncommitted. Nothing was signed, locked, pushed to R2 or loaded to Supabase; `manifests/releases/` and
   `manifests/program-bundles/` are untouched.
 - Timing: started 15:19 EDT; held check and probes to 15:31; first extraction batch 15:33-15:35; Pennsylvania Code
@@ -28,7 +28,7 @@ decisions file). Minnesota extraction: `scripts/extract_w7_state_benefits_mn.py`
 1. Held already? Every row's `bundle_url`, `check_final_url` and `id` were normalised (host without `www.`, decoded
    path, query kept minus a trailing `&` or `&d=reduce`) and matched against every URL-valued field of every local
    inventory of the 23 jurisdictions and `us`, plus the inventories of locked scopes read from the corpus cache
-   (`~/.axiom/corpus-cache`, 33,212 addresses; two locked inventories have no bytes locally:
+   (`<axiom-cache>/corpus-cache`, 33,212 addresses; two locked inventories have no bytes locally:
    `us-co/regulation/2026-07-13-recovery-r2026-09-11-tanf-consolidated-r2026-09-27-ccap-sections` and an SC statute
    scope, both read through their lock file lists). Query-routed addresses were also matched by their key
    (`item=`, `dDocName=`, `dID=`, `ruleVersionId=`) against every citation path and URL, and the citation paths and
@@ -227,7 +227,7 @@ selector for the IDEC page footer and calculator; the printed effective date of 
 ## Rebuild
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=data/corpus
 export REQUESTS_CA_BUNDLE=<certifi + data/certs/*.pem>
 uv run --extra dev python scripts/build_w7_state_benefits_manifests.py
 for m in manifests/*-state-benefits-w7-*.yaml; do

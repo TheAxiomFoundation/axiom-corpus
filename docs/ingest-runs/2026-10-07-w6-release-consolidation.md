@@ -4,8 +4,8 @@ Date: 2026-10-07
 Controller pass that turns the nine wave-6 program-bundle-gap runs of 2026-10-06 (draft PRs #786-#794, branches
 `discovery/ingest-w6-{federal,tax-al-hi,tax-ia-mi,tax-mn-oh,tax-ok-wv,tanf-ccdf-ak-ne,tanf-ccdf-nh-wy,health,benefits}`)
 into the seventh selector of the union lineage. Branch `release/2026-10-07-w6-bundle-gaps`, cut from `main` (e16ccb799)
-in the sparse worktree `~/axiom-corpus-worktrees/w6-release` (`data/corpus/` excluded); the nine branches are merged into
-it. Everything here is local and unsigned: the artifacts live under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` on
+in the sparse worktree `<worktrees>/w6-release` (`data/corpus/` excluded); the nine branches are merged into
+it. Everything here is local and unsigned: the artifacts live under `data/corpus` on
 the controller's machine only. Nothing was signed or locked, nothing was written to R2 or Supabase, no PR was merged.
 
 Draft selector: `docs/ingest-runs/2026-10-07-us-rulespec-w6-bundle-gaps-union.selector.json`
@@ -69,7 +69,7 @@ Three builds were redone during the pass (MT, MA and the CA WIC name); the earli
 shared and were moved out of the corpus root to the session scratch directory.
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=data/corpus
 C="uv run --extra dev python scripts/consolidate_release_scopes.py --base $B"
 
 # K1 us/regulation: 26 CFR part 1 container
@@ -167,7 +167,7 @@ import sys; from pathlib import Path
 sys.path.insert(0, "scripts")
 from consolidate_release_scopes import consolidate_release_scopes
 from axiom_corpus.corpus.io import load_provisions
-base = Path("/Users/pavelmakarchuk/axiom-corpus/data/corpus")
+base = Path("data/corpus")
 src = "2026-10-06-w6-tanf-ccdf-statutes-ca-us-ca-title-WIC"
 released = {f"us-ca/statute/wic/{s}" for s in
             ("11450", "11450.12", "11451.5", "11452", "11452.018", "12200", "18901.3", "18901.5")}
@@ -386,7 +386,7 @@ fully fetched tree, then review the diff); `test_citation_path_grammar` fails wi
 - Citation-path grammar: `uv run --extra dev python scripts/validate_citation_paths.py --provisions <tree of the 398 new
   provisions files>`: 75,572 records, 75,572 unique paths, `RESULT: OK` (0 pattern failures, 0 jurisdiction or class
   mismatches, no identity drift).
-- `uv run --extra dev axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus
+- `uv run --extra dev axiom-corpus-ingest validate-release --base data/corpus
   --release docs/ingest-runs/2026-10-07-us-rulespec-w6-bundle-gaps-union.selector.json --ignore-r2-missing --max-issues 1000`:
   `ok: true`, `scope_count: 1445`, `error_count: 0`, `warning_count: 562` (57 s). 546 are the pre-existing ones of the
   wave-4 note (541 `missing_parent_id` in `us-ca/regulation/2026-07-13-recovery`, 5 `unsectioned_document_body`). 16 are
@@ -432,7 +432,7 @@ fully fetched tree, then review the diff); `test_citation_path_grammar` fails wi
    fetch the locked rest:
 
    ```bash
-   B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+   B=data/corpus
    tail -n +2 docs/ingest-runs/2026-10-07-w6-release-unsigned-scopes.tsv | while IFS=$'\t' read -r j c v note; do
      for f in inventory/$j/$c/$v.json provisions/$j/$c/$v.jsonl coverage/$j/$c/$v.json; do
        mkdir -p "data/corpus/$(dirname "$f")" && cp -c "$B/$f" "data/corpus/$f"; done

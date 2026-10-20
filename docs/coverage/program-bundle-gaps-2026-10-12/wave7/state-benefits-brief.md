@@ -1,7 +1,7 @@
 # Wave 7 brief — State benefit-program documents (SNAP, TANF, CCDF, Medicaid, CHIP, SSI, LIHEAP, WIC, UI) (group `state-benefits`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` (cut from main). Input:
-`/Users/pavelmakarchuk/axiom-corpus-worktrees/w7-workorder/docs/coverage/program-bundle-gaps-2026-10-12/wave7/state-benefits.csv` (79 rows, 75 of them in Tier 1; 23 jurisdictions).
+Read `00-common-preamble.md` first. Worktree `<worktrees>/w7-state-benefits`, branch `discovery/ingest-w7-state-benefits` (cut from main). Input:
+`<worktrees>/w7-workorder/docs/coverage/program-bundle-gaps-2026-10-12/wave7/state-benefits.csv` (79 rows, 75 of them in Tier 1; 23 jurisdictions).
 
 ## Rows by action
 

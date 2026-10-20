@@ -7,9 +7,9 @@ extended with `superseding_scope` / `supporting_superseding_scope`)
 Issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/680 follow-on; the revised editions
 were recorded by `2026-09-10-snap-state-manual-completion-batch-{2,3}.md` and listed under "Revised
 editions found during the SNAP completion pass" in `2026-09-11-program-ingestion-handoff.md`.
-Agent: one session from a US network in the sparse worktree `~/axiom-corpus-worktrees/snap`, branch
+Agent: one session from a US network in the sparse worktree `<worktrees>/snap`, branch
 `discovery/ingest-snap-superseding-1` cut from `origin/discovery/program-ingestion-union`, artifacts
-written to the main checkout's `data/corpus` (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`).
+written to the main checkout's `data/corpus` (`--base data/corpus`).
 Extractions started_at 2026-09-11T20:58:05Z (all six launched within 8 s of each other), Georgia
 re-run 21:02:00Z to 21:02:22Z, release validations 21:02:05Z to 21:07:54Z; note committed at 2026-09-11T21:11:33Z. Per-state extraction
 wall-clock seconds are in the table below (`date +%s` around each `extract-official-documents`).
@@ -257,25 +257,25 @@ None. Every host answered HTTP 200 to the plain extractor request.
 
 ```bash
 # worktree
-cd ~/axiom-corpus-worktrees/snap
+cd <worktrees>/snap
 git fetch origin && git checkout -b discovery/ingest-snap-superseding-1 origin/discovery/program-ingestion-union
 
 # per state (df -h / checked before each; date +%s around the run)
 uv run axiom-corpus-ingest extract-official-documents \
-  --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  --base data/corpus \
   --version 2026-09-11-<st>-snap-manual-supersede --manifest manifests/<manifest>.yaml
 #   nc us-nc-fns-manuals | ga us-ga-snap-manual (run twice: the second after 3025's dates were set)
 #   tn us-tn-snap-policies | ok us-ok-snap-policy | mi us-mi-bridges-manual | ky us-ky-snap-manual
 
 # Georgia companion scope (drops the orphan 3614/block-12 fragment)
-uv run python scripts/consolidate_release_scopes.py --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run python scripts/consolidate_release_scopes.py --base data/corpus \
   --jurisdiction us-ga --document-class manual \
   --source-version 2026-07-13-recovery-r2026-07-17-dedup \
   --target-version 2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup \
   --include-citation-from 2026-07-13-recovery-r2026-07-17-dedup=<each of the other 12 citation paths>
 
 # draft selectors (scratchpad): the released selector with the version(s) swapped
-uv run axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run axiom-corpus-ingest validate-release --base data/corpus \
   --release <draft.json> --ignore-r2-missing --max-issues 50
 
 # queues
@@ -286,7 +286,7 @@ uv run --extra dev pytest -q -m "not integration and not slow" -k "manifest or o
 
 ## Artifacts (unsigned, uncommitted; `data/` is gitignored in the main checkout)
 
-Under `/Users/pavelmakarchuk/axiom-corpus/data/corpus/{sources,inventory,provisions,coverage}/`:
+Under `data/corpus/{sources,inventory,provisions,coverage}/`:
 `us-nc/manual/2026-09-11-nc-snap-manual-supersede` (725 rows, 12 MB of sources),
 `us-ga/manual/2026-09-11-ga-snap-manual-supersede` (1,207 rows, 21 MB),
 `us-ga/manual/2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup` (12 rows, 1.3 MB),

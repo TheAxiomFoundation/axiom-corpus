@@ -108,7 +108,7 @@ queue row note now ends "re-checked 2026-09-10T18:47Z, still not published."
 
 ## Artifacts (unsigned, uncommitted, awaiting controller)
 
-In the main checkout's corpus root (`/Users/pavelmakarchuk/axiom-corpus/data/corpus`, where batch 1's artifacts are;
+In the main checkout's corpus root (`data/corpus`, where batch 1's artifacts are;
 this worktree is sparse and excludes `data/corpus`):
 
 - `data/corpus/sources/us-xx/manual/2026-09-10-wic-state-policy-manual/official-documents/*.pdf`
@@ -122,7 +122,7 @@ regenerated; without it every row is rebuilt):
 uv run python scripts/build_wic_manifests.py --only us-va,us-wa,us-md,us-nj,us-az,us-tn,us-mo,us-ma,us-in,us-wi,us-ny,us-fl,us-il,us-oh
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/wic-state-ca-bundle.pem
 for st in va wa md nj; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
     --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-$st-wic-policy-manual.yaml \
     --source-as-of 2026-09-10 --expression-date 2026-09-10
 done

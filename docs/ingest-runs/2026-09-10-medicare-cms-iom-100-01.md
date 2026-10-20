@@ -92,7 +92,7 @@ Smoke runs (scratch base, `--only-source-id`): chapter 2 (68 provisions) and cha
 (29 provisions), each 1 s, coverage complete, before the full run. Both were re-run after the
 continuation-pattern fixes described below.
 
-Full run history (each 4 s, `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`):
+Full run history (each 4 s, `--base data/corpus`):
 16:45:07-16:45:11+0200 first run, 341 provisions, complete; the continuation pattern was then
 widened to accept a bare dash token so two wrapped headings (ch. 1 §10.1, ch. 4 §10) keep their
 second line; 16:48:49-16:48:53 second run regressed to 340 because ch. 3 §10 (a bare container

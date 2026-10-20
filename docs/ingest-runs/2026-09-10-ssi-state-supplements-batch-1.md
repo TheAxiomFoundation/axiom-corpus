@@ -39,7 +39,7 @@ conventions; `source_as_of` 2026-09-10; `expression_date` is the date the publis
 there is one (FL per-rule effective date, NC revision date) and otherwise the fetch date (MA, VA).
 
 Extraction: `uv run axiom-corpus-ingest extract-official-documents`, no new adapter, artifacts under
-the main checkout's `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus` (this worktree is
+the main checkout's `--base data/corpus` (this worktree is
 sparse). FL rule text is the publisher's `.doc` download per rule (`download_url`); MA is one PDF via
 `download_url` segmented into `labeled_sections`; NC and VA are PDFs at page granularity with
 `ocr: true`. TLS verification was never disabled and no publisher needed a certificate bundle (no
@@ -190,16 +190,16 @@ against the rows by script. Top-level `queue_status` stays `in_progress`.
 - `data/corpus/coverage/us-xx/<class>/2026-09-10-ssi-state-supplement.json`
 
 for us-fl/regulation, us-ma/regulation, us-nc/manual, us-va/manual under
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus` (main checkout).
+`data/corpus` (main checkout).
 
-Rebuild (the generator caches index pages under `~/.axiom/ssi-state-supplement-cache`; the extractor
+Rebuild (the generator caches index pages under `<axiom-cache>/ssi-state-supplement-cache`; the extractor
 re-fetches every document):
 
 ```bash
 uv run python scripts/build_ssi_state_supplement_manifests.py --print-index
 for s in fl ma nc va; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+    --base data/corpus \
     --version 2026-09-10-ssi-state-supplement \
     --manifest manifests/us-$s-ssi-state-supplement.yaml
 done

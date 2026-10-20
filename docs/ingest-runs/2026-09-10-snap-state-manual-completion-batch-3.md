@@ -24,7 +24,7 @@ chrome120 browser-impersonation request, 20 s timeouts. AZ and NY are both still
 
 Step 2: the issue's seven remaining discovery-gap states in its order, NC, OH, MT, OK, GA, TN, MI (TN
 and MI borderline, re-checked against the publisher rather than the threshold). Per state: the
-released scope's inventory and coverage under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` were
+released scope's inventory and coverage under `data/corpus` were
 read, the publisher's own index was fetched live and every document on it was inventoried by family
 and compared, by URL and by section number, with the released manifest; then the released files were
 compared with the publisher's current files (SHA-256 where the released inventory carries per-file
@@ -42,7 +42,7 @@ The same constraints as batches 1 and 2 applied: released SNAP scopes are immuta
 document would have gone into a new scope per state, version `2026-09-10-snap-state-manual-completion`,
 `document_class` per the state's existing convention, manifest `manifests/us-xx-snap-manual-completion.yaml`,
 citation paths under the state's existing convention, every citation path checked against every
-provisions JSONL under `/Users/pavelmakarchuk/axiom-corpus/data/corpus/provisions/<jurisdiction>/`.
+provisions JSONL under `data/corpus/provisions/<jurisdiction>/`.
 None was needed. Every index was the publisher's own, fetched live; no mirrors, archives, compiled lists
 or PolicyEngine files. TLS verification was never disabled (no chain problem arose; `data/certs/` is
 unchanged). No publisher was worked around: OK's SPA home answers HTTP 403 and its own production API
@@ -215,7 +215,7 @@ failures in the queue row. The OAC 5101:4 family is complete.
 ## Artifacts
 
 None. No manifest `manifests/us-xx-snap-manual-completion.yaml` was written for this batch and nothing
-under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` changed; the batch-1 (tx, nh) and batch-2 (ky, wy,
+under `data/corpus` changed; the batch-1 (tx, nh) and batch-2 (ky, wy,
 nd) artifacts there remain unsigned and uncommitted. `data/certs/` is unchanged (both intermediates from
 batches 1 and 2 remain).
 
@@ -294,7 +294,7 @@ the five batch-1 and batch-2 scopes (TX, NH, KY, WY, ND), an immutable release s
 
 Status is the `queue_status` in `manifests/snap-completion-agent-queue.yaml` after this batch (28 rows:
 20 done, 5 agent_ready, 3 blocked_primary_source). "Extracted" is the new completion scope's documents and
-provisions, unsigned and uncommitted under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`.
+provisions, unsigned and uncommitted under `data/corpus`.
 
 | State | #680 list | Batch | Final status | Finding |
 | --- | --- | --- | --- | --- |

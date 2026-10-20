@@ -2,7 +2,7 @@
 
 Date: 2026-09-10
 Program: TANF (board Year 1 list; `manifests/tanf-agent-queue.yaml`)
-Branch: `discovery/ingest-tanf` (worktree, sparse checkout without `data/corpus`; artifacts written to the shared corpus root of the main checkout, `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`, where `data/` is gitignored)
+Branch: `discovery/ingest-tanf` (worktree, sparse checkout without `data/corpus`; artifacts written to the shared corpus root of the main checkout, `--base data/corpus`, where `data/` is gitignored)
 
 started_at: 2026-09-10T20:44:07Z (22:44:07+02:00; first command of this session, a previous attempt was killed at startup with a clean worktree)
 finished_at: 2026-09-10T21:12:23Z (commit)

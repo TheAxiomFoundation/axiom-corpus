@@ -1,6 +1,6 @@
 # Wave 5 brief — TANF and CCDF (group `tanf-ccdf`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w5-tanf-ccdf`, branch
+Read `00-common-preamble.md` first. Worktree `<worktrees>/w5-tanf-ccdf`, branch
 `discovery/ingest-w5-tanf-ccdf` (at main 9b0641afc). Inputs: `wave5/tanf-ccdf-extractable.csv` (75 rows, 8 federal) and
 `wave5/tanf-ccdf-review.csv` (418 rows). Schemas `tanf-schema.yaml`, `ccdf-schema.yaml`; reports `tanf.md`, `ccdf.md`;
 builder `build_tanf_ccdf_matrix.py` (its `CCDF_RULEBOOK_LISTED` / `CCDF_RATE_SHEETS` dicts carry the publisher URLs the

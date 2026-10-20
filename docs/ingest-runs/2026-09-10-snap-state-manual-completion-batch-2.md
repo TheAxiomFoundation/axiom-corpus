@@ -35,7 +35,7 @@ the corpus goes into a new scope per state, version `2026-09-10-snap-state-manua
 `document_class` per the state's existing convention, manifest
 `manifests/us-xx-snap-manual-completion.yaml`, citation paths under the state's existing convention.
 Every candidate citation path was checked against every provisions JSONL under
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus/provisions/<jurisdiction>/` (all document classes, all
+`data/corpus/provisions/<jurisdiction>/` (all document classes, all
 versions) by the generator (`citation_path_already_in_corpus`, none occurred) and again independently
 on the JSONL after extraction (0 collisions). Every document was confirmed on the publisher's own
 index, fetched live; no mirrors, archives, compiled lists or PolicyEngine files. TLS verification was
@@ -271,17 +271,17 @@ which this run's rules exclude for new documents. ID was taken as the replacemen
 - `data/corpus/provisions/us-xx/manual/2026-09-10-snap-state-manual-completion.jsonl`
 - `data/corpus/coverage/us-xx/manual/2026-09-10-snap-state-manual-completion.json`
 
-for xx in ky, wy, nd, under `/Users/pavelmakarchuk/axiom-corpus/data/corpus` (alongside the batch-1 tx
+for xx in ky, wy, nd, under `data/corpus` (alongside the batch-1 tx
 and nh artifacts).
 
 Rebuild (batch-1 manifests are never regenerated; `--only` restricts the live builders):
 
 ```bash
 uv run python scripts/build_snap_state_manual_completion_manifests.py \
-  --corpus-base /Users/pavelmakarchuk/axiom-corpus/data/corpus --only us-ky --only us-wy --only us-nd
+  --corpus-base data/corpus --only us-ky --only us-wy --only us-nd
 for j in ky wy nd; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+    --base data/corpus \
     --version 2026-09-10-snap-state-manual-completion \
     --manifest manifests/us-$j-snap-manual-completion.yaml
 done

@@ -74,12 +74,12 @@ Every PRESENT cell in all ten matrices was checked against the sixth-cut selecto
 All builders read `data/corpus` read-only and write only into this directory. From a checkout holding `manifests/`:
 
 ```
-PY=~/axiom-corpus/.venv/bin/python; SEL=manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json; D=docs/coverage/needs-closure-2026-09-14
-$PY $D/check_snap_wic.py --corpus ~/axiom-corpus/data/corpus --selector $SEL --queues manifests --rulespec ~/rulespec-us --out $D && $PY $D/write_snap_wic_reports.py --dir $D
-$PY $D/tools/build_matrix.py --corpus ~/axiom-corpus/data/corpus --selector $SEL --repo . --out $D      # medicaid + chip; tools/summarize.py <prog> $D for the tables
-$PY $D/build_tanf_ccdf_matrix.py --base ~/axiom-corpus/data/corpus --repo . --selector $SEL --out $D
-$PY $D/build_ssi_liheap_medicare_matrices.py --base ~/axiom-corpus/data/corpus --selector $SEL && $PY $D/write_reports.py
-$PY $D/tax-check.py --corpus ~/axiom-corpus/data/corpus --selector $SEL --queue manifests/tax-agent-queue.yaml --pe ~/policyengine-us/policyengine_us/parameters/gov --rulespec ~/rulespec-us --out $D
+PY=.venv/bin/python; SEL=manifests/releases/us-rulespec-2026-09-14-wave4-r2-union.json; D=docs/coverage/needs-closure-2026-09-14
+$PY $D/check_snap_wic.py --corpus data/corpus --selector $SEL --queues manifests --rulespec <rulespec-us> --out $D && $PY $D/write_snap_wic_reports.py --dir $D
+$PY $D/tools/build_matrix.py --corpus data/corpus --selector $SEL --repo . --out $D      # medicaid + chip; tools/summarize.py <prog> $D for the tables
+$PY $D/build_tanf_ccdf_matrix.py --base data/corpus --repo . --selector $SEL --out $D
+$PY $D/build_ssi_liheap_medicare_matrices.py --base data/corpus --selector $SEL && $PY $D/write_reports.py
+$PY $D/tax-check.py --corpus data/corpus --selector $SEL --queue manifests/tax-agent-queue.yaml --pe <policyengine-us>/policyengine_us/parameters/gov --rulespec <rulespec-us> --out $D
 $PY $D/verify_matrices.py --selector $SEL --programs ssi,liheap,medicare   # PRESENT citations; tanf/ccdf/tax/snap/wic were checked with an equivalent script
 ```
 

@@ -88,7 +88,7 @@ A separate destination proves that no pre-existing derived CFR artifact is
 reused:
 
 ```bash
-repro_dir=$(mktemp -d /private/tmp/cfr416-repro.XXXXXX)
+repro_dir=$(mktemp -d <scratchpad>/cfr416-repro.XXXXXX)
 uv run --extra dev python scripts/repro_us_cfr_416_deeming_slice.py \
   --source-base data/corpus \
   --base "$repro_dir"

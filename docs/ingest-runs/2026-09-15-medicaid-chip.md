@@ -6,8 +6,8 @@ Work order: `docs/coverage/needs-closure-2026-09-14/wave5/00-common-preamble.md`
 (`wave5/medicaid-chip-extractable.csv`), 2,731 REVIEW cells (`wave5/medicaid-chip-review.csv`, 765 of them with no cited
 provision), schemas `medicaid-schema.yaml` (302 elements) and `chip-schema.yaml`.
 Branch `discovery/ingest-w5-medicaid-chip` cut from `main` 9b0641afc in the sparse worktree
-`~/axiom-corpus-worktrees/w5-medicaid-chip` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
-checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`), artifacts uncommitted. Timing: started
+`<worktrees>/w5-medicaid-chip` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
+checkout's corpus root (`--base data/corpus`), artifacts uncommitted. Timing: started
 2026-09-14T23:59Z (19:59 EDT), reading pass, probes and generators to 00:20Z, extractions 00:20Z-00:24Z, decisions file
 and this note to about 00:45Z, then the income-table pass to about 01:00Z; about 65 minutes of agent time, well inside the four-hour box. Disk: `df -h /` 26 GB free
 at the start, 28 GB at the end (the four new families hold 157 MB of source files under `data/corpus/sources`; the stop
@@ -312,23 +312,23 @@ found no shared path). Artifacts are unsigned on the controller's disk.
 Rebuild:
 
 ```bash
-cd ~/axiom-corpus-worktrees/w5-medicaid-chip
+cd <worktrees>/w5-medicaid-chip
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 uv run python scripts/build_medicaid_magi_verification_plan_manifests.py
 uv run python scripts/build_medicaid_1115_stc_manifests.py
 uv run python scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 8 --only us-wy
 uv run python scripts/build_medicaid_income_table_manifests.py
 for m in manifests/us-*-medicaid-magi-verification-plan.yaml; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
     --version 2026-09-15-medicaid-magi-verification-plan --manifest $m --source-as-of 2026-09-15; done
 for m in manifests/us-*-medicaid-1115-stc.yaml; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
     --version 2026-09-15-medicaid-1115-stc --manifest $m --source-as-of 2026-09-15; done
-uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
   --version 2026-09-15-medicaid-eligibility-manual-closure --manifest manifests/us-wy-medicaid-eligibility-manual.yaml \
   --source-as-of 2026-09-15
-for j in mn id; do uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+for j in mn id; do uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
   --version 2026-09-15-medicaid-income-table-2026 --manifest manifests/us-$j-medicaid-income-table.yaml --source-as-of 2026-09-15; done
-for j in sc me; do uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+for j in sc me; do uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
   --version 2026-09-15-chip-income-premium-table-2026 --manifest manifests/us-$j-chip-income-table.yaml --source-as-of 2026-09-15; done
 ```

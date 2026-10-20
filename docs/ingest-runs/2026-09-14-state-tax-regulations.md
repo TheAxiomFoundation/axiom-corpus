@@ -7,9 +7,9 @@ scope per jurisdiction, version `2026-09-14-income-tax-regulations` (dedicated a
 run-id suffix), document class `regulation`, `--source-as-of 2026-09-14`, expression date the
 publisher's stated currency date where printed and otherwise 2026-09-14.
 Branch `discovery/ingest-state-tax-regulations` in the sparse worktree
-`~/axiom-corpus-worktrees/tax-regs` (`data/corpus/` excluded, never symlinked; reset to `origin/main`
+`<worktrees>/tax-regs` (`data/corpus/` excluded, never symlinked; reset to `origin/main`
 5c2505ec6 after the first session died on an API limit, its two extracted scopes kept). Every
-extraction wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`);
+extraction wrote to the main checkout's corpus root (`--base data/corpus`);
 artifacts are unsigned and uncommitted there. Timing: publisher probes 2026-09-13 21:30 to 2026-09-14
 02:30 EDT (two networks: the laptop's Wi-Fi flapped once mid-run, nothing was lost); extractions
 2026-09-14 02:30 to 09:40 EDT, per-scope seconds below. Disk: 32 GB free at start, never near the
@@ -221,7 +221,7 @@ Library changes (callers read directly; GitNexus was unavailable):
 ## Controller
 
 Selector additions (artifacts unsigned, on the controller's disk under
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus`, not committed). The three starred scopes need
+`data/corpus`, not committed). The three starred scopes need
 their root row consolidated with the released scope before the cut.
 
 | jurisdiction | document_class | version |
@@ -288,7 +288,7 @@ uv run python scripts/consolidate_release_scopes.py --base data/corpus \
 Rebuild (manifests, then the 29 official-documents scopes, then the adapters):
 
 ```bash
-uv run python scripts/build_us_state_income_tax_regulation_manifests.py --cache-dir /tmp/tax-reg-cache
+uv run python scripts/build_us_state_income_tax_regulation_manifests.py --cache-dir <scratchpad>/tax-reg-cache
 for st in al az ca co ct ga hi ia id in ks ky la ma me mi mn mo ms nc nd ne nm ok ri sc vt wi wv; do
   s=$(date +%s); uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
     --version 2026-09-14-income-tax-regulations --manifest manifests/us-$st-income-tax-regulations.yaml \

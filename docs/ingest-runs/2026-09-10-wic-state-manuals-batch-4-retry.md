@@ -116,7 +116,7 @@ unchanged NY, FL, IL, OH, MO, IN, WI, AL, OK, MS, NM, NV rows. The exact failure
 
 ## Artifacts (unsigned, uncommitted, awaiting controller)
 
-In the main checkout's corpus root (`/Users/pavelmakarchuk/axiom-corpus/data/corpus`, where batches 1-3's artifacts are;
+In the main checkout's corpus root (`data/corpus`, where batches 1-3's artifacts are;
 this worktree is sparse and excludes `data/corpus`):
 
 - `data/corpus/sources/us-xx/manual/2026-09-10-wic-state-policy-manual/official-documents/*.pdf`
@@ -132,7 +132,7 @@ uv run python scripts/build_wic_manifests.py --only us-or,us-ky,us-wv,us-me,us-r
 uv run python scripts/build_wic_manifests.py --only us-az,us-tn,us-sc,us-la,us-ks,us-ar,us-ma,us-il,us-oh,us-mo,us-nv,us-nm,us-ny,us-fl,us-in,us-wi,us-al,us-ok,us-ms,us-ne,us-id,us-hi,us-nh,us-mt,us-de,us-sd
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/wic-state-ca-bundle.pem
 for st in ky or wv me ri; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base data/corpus \
     --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-$st-wic-policy-manual.yaml \
     --source-as-of 2026-09-10 --expression-date 2026-09-10
 done

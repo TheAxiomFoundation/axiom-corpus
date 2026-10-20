@@ -688,7 +688,7 @@ def write_manifests() -> list[tuple[str, str, Path]]:
                 "options": {
                     "source_as_of": SOURCE_AS_OF,
                     "expression_date": SOURCE_AS_OF,
-                    "download_dir": f"/Users/pavelmakarchuk/axiom-corpus/data/corpus/downloads/{s['jurisdiction']}-w6-tax-ok-wv/{SOURCE_AS_OF}",
+                    "download_dir": f"../data/corpus/downloads/{s['jurisdiction']}-w6-tax-ok-wv/{SOURCE_AS_OF}",
                     **s["options"],
                 },
                 "metadata": {"source_authority": s["authority"], "source_scope_note": s["note"]},
