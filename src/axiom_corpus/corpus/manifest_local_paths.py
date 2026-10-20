@@ -56,9 +56,10 @@ _TOKEN_REST = f"[^{_DELIMITERS}]*"
 # options taking an attached value (``-o/path``, ``-I/path``), and curl's
 # ``@file``.
 _LEAD = "(?:-[A-Za-z]+)?@?"
-# Detection also reads through variables in front of a path: unset, ``$X`` is
-# empty and ``$X/Users/...`` is ``/Users/...``, and the text names it anyway.
-_DETECTION_LEAD = rf"{_LEAD}(?:\$[A-Za-z_][A-Za-z0-9_]*)*"
+# Detection also reads through parameters in front of a path, named, positional
+# or special: unset, ``$X`` is empty and ``$X/Users/...`` is ``/Users/...``, and
+# the text names the path anyway.
+_DETECTION_LEAD = rf"{_LEAD}(?:\$(?:[A-Za-z_][A-Za-z0-9_]*|[0-9@*#?$!-]))*"
 # The home directory and Windows per-user directories, by variable.
 _HOME_VARIABLE = (
     r"(?:\$HOME\b|\$\{HOME\}|\$TMPDIR\b|\$\{TMPDIR\}"
@@ -247,27 +248,30 @@ def find_local_paths(text: str) -> list[LocalPath]:
     behind a short-option cluster, ``@`` or variables (``-o/path``, ``@/path``,
     ``$X/path``).
 
-    The text is read twice: as written, and as a shell's words spell it once
+    The text is read three times: as written; as a shell's words spell it once
     quotes, backslash escapes and line continuations are removed
-    (``/U\\sers``, ``/U'se'rs`` and ``\\/Users`` are ``/Users``). A path found
-    in either reading is reported, at its span in ``text``. Expansions are not
-    evaluated: a glob, a brace list, a variable other than the home directory,
-    or a command's output is read as the text it is.
+    (``/U\\sers``, ``/U'se'rs`` and ``\\/Users`` are ``/Users``); and with every
+    quote mark and backslash removed whatever its context, which also reads
+    the quoting inside a command substitution (``"$(cat '/U'sers/x)"``). A path
+    found in any reading is reported, at its span in ``text``. Expansions are
+    not evaluated: a glob, a brace list, a variable other than the home
+    directory, or a command's output is read as the text it is.
 
     Not paths: a root later in a URL argument than its ``scheme://`` (the URL's
     path, query or fragment, ``https://x.gov/?f=/home/a``; whitespace or an
     unquoted shell operator such as ``>`` or ``;`` ends the argument, and one
     holding a command substitution is no URL's); a root inside a relative path
     (``data/tmp/``) or after a placeholder (``<scratchpad>/tmp/``); ``~`` or
-    ``$HOME`` with no path after it. A ``file:`` URL and a home-directory
-    variable are read wherever they appear, quoted or not, even inside another
-    URL or a placeholder's path.
+    ``$HOME`` with no path after it. A ``file:`` URL is read wherever it
+    appears, even inside another URL; a home-directory variable is read quoted
+    or not, and after a placeholder. A URL spelled across quotes or escapes is
+    read as text, and what follows it may be reported.
     """
     layout = _shell_layout(text)
     found = _find_in_reading(text, list(range(len(text))), text, layout)
-    dequoted, origin = _dequote(text, layout.literal_quotes)
-    if dequoted != text:
-        found += _find_in_reading(dequoted, origin, text, layout)
+    for reading, origin in (_dequote(text, layout.literal_quotes), _strip_quoting(text)):
+        if reading != text:
+            found += _find_in_reading(reading, origin, text, layout)
     # A path inside a longer one, or found in both readings, is reported once.
     found.sort(key=lambda path: (path.start, -path.end))
     reported: list[LocalPath] = []
@@ -308,6 +312,27 @@ def _find_in_reading(
             root = variable.group() if variable else ""
         found.append(LocalPath(start, end, kind, root))
     return found
+
+
+def _strip_quoting(text: str) -> tuple[str, list[int]]:
+    """``text`` with line continuations, then every quote mark and backslash, removed.
+
+    A superset reading: it ignores where each quote opens and closes, so it
+    reads quoting the shell would apply in a nested context (a command
+    substitution inside double quotes) as well as some it would not.
+    """
+    out: list[str] = []
+    origin: list[int] = []
+    index = 0
+    while index < len(text):
+        if text.startswith("\\\n", index):
+            index += 2
+            continue
+        if text[index] not in "'\"\\":
+            out.append(text[index])
+            origin.append(index)
+        index += 1
+    return "".join(out), origin
 
 
 def _dequote(text: str, literal_quotes: frozenset[int] = frozenset()) -> tuple[str, list[int]]:
@@ -369,7 +394,7 @@ def local_path_fields(payload: Any) -> list[tuple[str, LocalPath]]:
 
     Every string is read, at any depth: values and object keys alike, with
     lists indexed (``applied_files[3].path``). The top-level ``signature``
-    object's ``value`` is base64 and is not read.
+    object's ``value`` is base64 and is not read when it is a string.
     """
     return list(_walk(payload, "", ()))
 
@@ -384,7 +409,7 @@ def _walk(value: Any, field: str, node: tuple[object, ...]) -> Iterator[tuple[st
                 for path in find_local_paths(key):
                     yield f"{child_field} (key)", path
             child_node = (*node, key)
-            if child_node != _UNSCANNED_NODE:
+            if child_node != _UNSCANNED_NODE or not isinstance(child, str):
                 yield from _walk(child, child_field, child_node)
     elif isinstance(value, list):
         for index, child in enumerate(value):
@@ -550,16 +575,17 @@ def _recorded_form(
     ``<checkout>/data/.=z`` is the file ``.=z`` in ``data``, not ``data=z``.
 
     Nothing is rewritten where the shell would compute the name: a word (in a
-    search-path list, the entry) with an unquoted ``$``, backtick, glob, brace
-    or backslash (or a double-quoted ``$``, backtick or backslash) other than a
-    leading ``$HOME``; a ``~`` that is quoted or does not start the word; a
-    single-quoted ``$HOME``. Nor is a path that spans a word boundary (an
-    unquoted space).
+    search-path list, the entry) with an unquoted ``$``, glob, brace or
+    backslash (or a double-quoted ``$`` or backslash) other than a leading
+    ``$HOME``, or with a backtick anywhere; a ``~`` that is quoted or does not
+    start the word; a single-quoted ``$HOME``. Nor is a path that spans a word
+    boundary (an unquoted space).
 
     The form is ``relative``, written ``./relative`` where it could be read as
-    something else (see ``_unambiguous``), including where the rewritten word
-    would start like an assignment (``x=:...``), which a second reading would
-    take apart differently.
+    something else (see ``_unambiguous``), where it is a whole word without a
+    slash (``./tool``, which ``tool`` would not name as a command), and where
+    the rewritten word would start like an assignment (``x=:...``), which a
+    second reading would take apart differently.
     """
     lead, lead_start, (start, end) = match.group("lead"), match.start("lead"), match.span("path")
     if any(layout.boundary[index] for index in range(lead_start, end)):
@@ -586,6 +612,11 @@ def _recorded_form(
         colon = text.find(":", end, word_end)
         entry_end = word_end if colon < 0 else colon
     skipped = range(start, start + home.end()) if home else range(0)
+    # A backtick runs a command whose own expansions decide the name.
+    if any(
+        layout.quote[index] == "`" or text[index] == "`" for index in range(entry_start, entry_end)
+    ):
+        return None
     for index in range(entry_start, entry_end):
         if layout.mark[index] or index in skipped:
             continue
@@ -601,8 +632,17 @@ def _recorded_form(
     if glued and not text[start:end].endswith("/" + relative.removeprefix("./")):
         return None
     recorded = _unambiguous(relative, lead)
-    if not before and not lead and _ASSIGNMENT.match(recorded + after):
-        recorded = "./" + recorded
+    if (
+        not before
+        and not lead
+        and ("/" not in recorded + after or _ASSIGNMENT.match(recorded + after))
+    ):
+        # A whole word without a slash is a command name to the shell, and to
+        # ``env``, ``sudo`` or ``uv run``: ``tool`` is looked up on PATH, while
+        # ``<checkout>/tool`` was this file. ``./`` keeps it a path.
+        # (``.`` alone becomes ``./``; glued to more of the word it keeps its
+        # ``.``: ``<checkout>/.=z`` is ``./.=z``.)
+        recorded = "./" if recorded == "." and not after else "./" + recorded
     return recorded
 
 

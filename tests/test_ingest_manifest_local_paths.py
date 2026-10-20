@@ -21,8 +21,9 @@ Invariants:
    with one in any field, the signature's key id included, so
    ``sign-ingest-manifest`` exits 2 and writes nothing.
 3. Detection (``find_local_paths``) is sound for every root at a token start
-   (behind ``-o``/``@``/``$X``, in any case, spelled with ``//``, ``/.`` or
-   ``..``, and however quoted, escaped or split by line continuations),
+   (behind ``-o``/``@``/``$X``/``$1``, in any case, spelled with ``//``, ``/.``
+   or ``..``, and however quoted, escaped or split by line continuations, also
+   inside a command substitution),
    never flags a root inside a URL argument or relative path or after a
    placeholder, is additive over whitespace-joined text holding no quote, and
    agrees with a brute-force tokenizing reference. ``local_path_fields``
@@ -32,7 +33,8 @@ Invariants:
 4. ``relativize_repo_paths`` maps ``<checkout>/<rel>`` to ``<rel>`` in every
    quoting and option context, never changes which file a shell word names
    (checked with ``shlex``; nothing is rewritten where the shell would expand
-   the name), and is idempotent; ``recordable_command`` either refuses or
+   the name, and a whole word keeps a slash so it is never a command name), and
+   is idempotent; ``recordable_command`` either refuses or
    returns a command with no local path that it returns unchanged.
 """
 
@@ -382,6 +384,16 @@ def test_paths_are_found_in_every_string_field_but_signature_value() -> None:
     assert [field for field, _ in manifest_local_path_fields(escaped)] == ["a", "b"]
 
 
+def test_a_signature_value_that_is_not_a_string_is_read() -> None:
+    """Only a base64 string is skipped; a container in its place is walked."""
+    assert [
+        field for field, _ in local_path_fields({"signature": {"value": {"x": "/Users/a"}}})
+    ] == ["signature.value.x"]
+    assert [field for field, _ in local_path_fields({"signature": {"value": ["~/a"]}})] == [
+        "signature.value[0]"
+    ]
+
+
 def test_manifest_local_path_fields_refuses_repeated_keys_without_echoing_a_path() -> None:
     with pytest.raises(ManifestReadError) as raised:
         manifest_local_path_fields(b'{"/Users/someone/x": 1, "/Users/someone/x": 2}')
@@ -425,7 +437,7 @@ def test_build_records_checkout_paths_repository_relative(tmp_path, monkeypatch)
         assert manifest["command"]["text"] == (
             "UV_PROJECT_ENVIRONMENT=.venv .venv/bin/python -m x --base data/corpus "
             "--manifest manifests/m.yaml --out data/ -o./out.pdf -d @q.json "
-            "&& cd . && echo done"
+            "&& cd ./ && echo done"
         )
 
 
@@ -618,6 +630,8 @@ def test_a_key_spelled_like_the_signature_value_is_read(tmp_path) -> None:
         'curl "https://x.gov/?q=$(cat </Users/operator/s.json)"',
         "cat \\/Users/operator/a",
         "cat /U\\sers/operator/a",
+        "cat $1/Users/operator/a",
+        "curl \"x$(cat '/U'sers/operator/s)\"",
     ],
 )
 def test_cli_refuses_a_path_after_a_url_or_behind_a_redundant_prefix(
@@ -738,8 +752,15 @@ _PREFIX = st.text(max_size=20).filter(lambda text: "<" not in text and "://" not
         ('curl "https://x.gov/?q=`cat </Users/o/s`"', ["/Users/o/s"]),
         ('curl "https://x.gov/?q=$(cat</Users/o/s)"', ["/Users/o/s"]),
         ('curl "https://x.gov/?q=`cat</Users/o/s`"', ["/Users/o/s"]),
-        # A variable in front of a root does not hide it; $TMPDIR is the temp directory.
+        # A parameter in front of a root does not hide it; $TMPDIR is the temp directory.
         ("PATH=$X/private/var/a/bin:a -o$Y/Users/b", ["/private/var/a/bin", "/Users/b"]),
+        (
+            "cat $1/Users/x $@/tmp/y $$/home/z ${1}/Users/w",
+            ["/Users/x", "/tmp/y", "/home/z", "/Users/w"],
+        ),
+        # Quoting starts afresh inside a command substitution.
+        ("curl \"x$(cat '/U'sers/o/s)\"", ["/U'sers/o/s"]),
+        ('curl "x$(cat /U\\sers/o/s)"', ["/U\\sers/o/s"]),
         ("$TMPDIR/x ${TMPDIR}/y", ["$TMPDIR/x", "${TMPDIR}/y"]),
         # A file: URL is read wherever it is, even in another URL.
         ("https://x.gov/?u=file:///a", ["file:///a"]),
@@ -806,9 +827,11 @@ def test_quoting_and_escaping_never_hide_a_path(root, rest, data) -> None:
             max_size=len(path),
         )
     )
-    text = "cat " + "".join(_spelled(char, how) for char, how in zip(path, spellings, strict=True))
+    spelled = "".join(_spelled(char, how) for char, how in zip(path, spellings, strict=True))
 
-    assert find_local_paths(text)
+    assert find_local_paths("cat " + spelled)
+    # Inside a command substitution in double quotes, quoting starts afresh.
+    assert find_local_paths(f'curl "https://x.gov/?q=$(cat {spelled})"')
 
 
 @settings(max_examples=300, deadline=None)
@@ -1065,6 +1088,7 @@ _RELATIVE = st.lists(_SEGMENT.filter(lambda s: s not in {".", ".."}), min_size=1
 )
 
 
+_WHOLE_WORD_CONTEXTS = {"--x {lead}{path}", '--x "{path}"', "--x '{path}'", "cat <{path}>/dev/null"}
 _CONTEXTS = [
     ("--x {lead}{path}", True),
     ("--x={lead}{path}", True),
@@ -1087,6 +1111,9 @@ def test_a_checkout_path_becomes_its_relative_path(checkout, relative, context, 
     lead = lead if takes_lead else ""
     expected = os.path.normpath(relative)
     if expected.startswith(("-", "@")) or (lead == "-o" and not expected.startswith(".")):
+        expected = "./" + expected
+    # A whole word without a slash would be a command name.
+    if template in _WHOLE_WORD_CONTEXTS and not lead and "/" not in expected:
         expected = "./" + expected
     for spelling in _spellings(checkout):
         text = template.format(lead=lead, path=f"{spelling}/{relative}")
@@ -1232,7 +1259,14 @@ def test_a_rewrite_never_changes_which_file_a_shell_word_names(checkout, data) -
         ("PATH={c}/bin:$PATH", "PATH=bin:$PATH"),
         ("PATH=a:{c}:b", "PATH=a:.:b"),
         ('--base="{c}/data"', '--base="data"'),
-        ("cd {c} && ls", "cd . && ls"),
+        # A whole word without a slash would be a command name: ``./`` keeps it a path.
+        ("cd {c} && ls", "cd ./ && ls"),
+        ("{c}/tool --x", "./tool --x"),
+        ("env {c}/tool", "env ./tool"),
+        ("cat {c}/.=z", "cat ./.=z"),
+        # Nothing inside backticks is rewritten.
+        ("`{c}/tool`", None),
+        ("echo `cat {c}/x`", None),
         # Rewritten, the word must not start like an assignment it was not.
         ("cat {c}/x=:{c}", "cat ./x=:{c}"),
         ("cat {c}/data/.=z", None),
@@ -1289,7 +1323,7 @@ def test_recording_refuses_exactly_when_a_path_leaves_the_checkout(
     assume(not os.path.realpath(outside).startswith(str(checkout) + "/"))
     base = " ".join(words)
     expected = os.path.normpath(relative)
-    if expected.startswith(("-", "@")):
+    if expected.startswith(("-", "@")) or "/" not in expected:
         expected = "./" + expected
 
     assert recordable_command(f"{base} {inside}", repo=checkout) == f"{base} {expected}"
@@ -1300,7 +1334,7 @@ def test_recording_refuses_exactly_when_a_path_leaves_the_checkout(
 def test_a_rewrite_cannot_turn_a_later_path_into_a_placeholder_path(checkout) -> None:
     command = f"x <{checkout}/a>/tmp/y"
 
-    assert relativize_repo_paths(command, repo=checkout) == "x <a>/tmp/y"
+    assert relativize_repo_paths(command, repo=checkout) == "x <./a>/tmp/y"
     assert find_local_paths("x <a>/tmp/y") == []
     with pytest.raises(ManifestLocalPathError) as raised:
         recordable_command(command, repo=checkout)
@@ -1321,8 +1355,8 @@ def test_a_relative_path_that_would_read_as_local_is_written_dot_slash(checkout)
 @pytest.mark.parametrize(
     ("command", "recorded"),
     [
-        ("cat ~/{name}/x", "cat x"),
-        ('cat "$HOME/{name}/x"', 'cat "x"'),
+        ("cat ~/{name}/x", "cat ./x"),
+        ('cat "$HOME/{name}/x"', 'cat "./x"'),
         # Quoted, or not at the start of the word, ``~`` is a literal name;
         # single-quoted, so is ``$HOME``.
         ('cat "~/{name}/x"', None),
@@ -1358,7 +1392,7 @@ def test_a_dot_dot_after_a_symbolic_link_is_judged_where_the_link_points(checkou
     assert relativize_repo_paths(f"{checkout}/link/x.json", repo=checkout) == "link/x.json"
     with pytest.raises(ManifestLocalPathError):
         recordable_command(f"--in {checkout}/link/../secret.json", repo=checkout)
-    assert recordable_command(f"--in {checkout}/data/../x.json", repo=checkout) == "--in x.json"
+    assert recordable_command(f"--in {checkout}/data/../x.json", repo=checkout) == "--in ./x.json"
 
 
 def test_a_checkout_path_holding_a_space_is_relativized(tmp_path) -> None:
@@ -1367,7 +1401,7 @@ def test_a_checkout_path_holding_a_space_is_relativized(tmp_path) -> None:
     (repo / "data").mkdir(parents=True)
     command = f'--base "{repo}/data/corpus" --out="{repo}/" --x "{repo}"'
 
-    assert recordable_command(command, repo=repo) == '--base "data/corpus" --out="./" --x "."'
+    assert recordable_command(command, repo=repo) == '--base "data/corpus" --out="./" --x "./"'
     # Unquoted, the shell splits it into two words; it is refused, not rewritten.
     with pytest.raises(ManifestLocalPathError):
         recordable_command(f"--base {repo}/data", repo=repo)
@@ -1410,7 +1444,7 @@ def test_a_checkout_reached_through_a_symbolic_link_is_relativized(tmp_path) -> 
     link.symlink_to(repo, target_is_directory=True)
 
     assert relativize_repo_paths(f"--base {link}/data/corpus", repo=repo) == "--base data/corpus"
-    assert relativize_repo_paths(f"--base {repo}/data", repo=link) == "--base data"
+    assert relativize_repo_paths(f"--base {repo}/data", repo=link) == "--base ./data"
 
 
 def test_git_tracks_no_ingest_manifest_the_scan_cannot_see() -> None:
