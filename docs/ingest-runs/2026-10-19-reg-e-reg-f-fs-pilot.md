@@ -64,7 +64,7 @@ eCFR `titles.json` (read 2026-10-19): title 12 `up_to_date_as_of` 2026-10-16,
   sections; 19 units, 19 rows.
 - Section bodies are all non-empty: 565 to 15,801 characters, 59,684 in total.
 - Pilot target: 1006.14 (harassing, oppressive or abusive conduct; 5,160
-  characters; carries the (b)(2) telephone-call frequency presumptions, "more
+  characters; carries the (b)(2) telephone-call frequency presumptions, "More
   than seven times within seven consecutive days"). 1006.2 (definitions, 5,738
   characters) is in scope as context.
 - Sources (`sources/us/regulation/2026-10-19-title-12-part-1006/ecfr/`):
@@ -75,15 +75,21 @@ eCFR `titles.json` (read 2026-10-19): title 12 `up_to_date_as_of` 2026-10-16,
 
 ## Not taken
 
-- **Appendices A to C of both parts** (model forms and clauses). The pilot
-  targets do not cite them.
+- **The appendices.** Part 1005: Appendix A (model disclosure clauses and
+  forms), Appendix B (reserved), Appendix C (issuance of official
+  interpretations). Part 1006: Appendix A (procedures for state application for
+  exemption from the Act), Appendix B (model forms), Appendix C (issuance of
+  advisory opinions). The three pilot targets do not cite them.
 - **Supplement I to Parts 1005 and 1006** (the CFPB's official interpretations).
   `inventory-ecfr --include-appendices` raises `unsupported nonreserved eCFR
   appendix identifier: 'Supplement I to Part 1005'` (and the same for 1006): the
   adapter accepts only `Appendix X to Part N` identifiers. The interpretations
-  matter for later Regulation E work (for example the comments to 1005.6 and
-  1005.11), so taking them needs an adapter change; it is a follow-up, not part of
-  this run.
+  bear on the current targets, not only on later work: the retained part 1006 XML
+  carries comments to 1006.14, including (b)(2) itself and what counts as a
+  telephone call (ringless voicemail), and Supplement I to part 1005 carries the
+  comments to 1005.6 and 1005.11. These scopes are complete for the selected
+  sections; taking the interpretations needs an adapter change and is a
+  follow-up, not part of this run.
 
 ## Checks
 
@@ -93,6 +99,18 @@ eCFR `titles.json` (read 2026-10-19): title 12 `up_to_date_as_of` 2026-10-16,
   `1006/subpart-B`, `1006/subpart-D`). `uppercase_segments` moves 19,353 to
   19,358 in `schema/citation-path.v1.json`; every other family is unchanged and
   the result is OK.
+- Re-fetch on 2026-10-20: `full/2026-10-16/title-12.xml?part=1005` and `?part=1006`
+  return bytes whose sha256 equals the retained files. A re-fetched
+  `structure/2026-10-16/title-12.json` differs in bytes from the retained copy, but
+  the part 1005 and 1006 subtrees and every other part node parse identical; the
+  retained bytes are the ones the manifest hashes.
+- `guard-ingested --base-ref origin/main --head-ref HEAD` with the repository's
+  `AXIOM_CORPUS_INGEST_PUBLIC_KEY`: "All changed corpus artifacts have signed ingest
+  manifests."
+- R2: all 10 locked objects of the two scopes are present at their recorded sizes.
+- Independent review (GPT-6.1 Sol, read-only): every one of the 42 section bodies
+  matches the retained XML's paragraph text, markers included; structure-to-row
+  comparison 30/30 and 19/19.
 
 ## Downstream
 
