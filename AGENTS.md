@@ -39,11 +39,14 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   absolute paths inside the checkout), scratch, cache and tool directories by
   a placeholder such as `TMPDIR=<scratchpad>` or `<ocr-cache>`, and a
   parenthetical naming the run note under `docs/ingest-runs/`. The signer
-  refuses `/Users/`, `/home/`, `/tmp/`, `/private/`, `/var/folders/`, `~/`,
-  `$HOME` and `file:` paths outside the checkout, and
-  `tests/test_ingest_manifest_local_paths.py` fails on any manifest that
-  records one. `.axiom/ingest-manifest-local-paths.yaml` grandfathers the
-  fourteen signed before the guard (axiom-corpus#896); it only shrinks.
+  refuses any other path under `/Users`, `/home`, `/root`, `/private`, `/tmp`,
+  `/var/folders`, `/var/tmp`, `/Volumes`, `/mnt` or `/media` (in any case, and
+  after `-o` or `@`), any `~/` or `$HOME/` path, and any `file:` URL, inside the
+  checkout or not; a path inside a source URL is the URL's and is kept. It
+  also refuses a manifest with such a path in any field, and
+  `tests/test_ingest_manifest_local_paths.py` fails CI on any that reaches the
+  tree. `.axiom/ingest-manifest-local-paths.yaml` grandfathers the fourteen
+  signed before the guard (axiom-corpus#896); it only shrinks.
 - An ingest you were asked to do includes `corpus push` of its own new objects
   (Max, 2026-09-30). They are content-addressed and write-once under R2
   `objects/sha256/`: an upload never overwrites an object and publishes

@@ -51,6 +51,7 @@ from axiom_corpus.corpus.manifest_local_paths import (
     local_path_fields,
     manifest_local_path_fields,
     relativize_repo_paths,
+    repo_rewrites,
 )
 
 INGEST_MANIFEST_SCHEMA_VERSION = "axiom-corpus/ingest-manifest/v1"
@@ -198,15 +199,18 @@ def recordable_command(command: str, *, repo: Path) -> str:
     placeholder and names the run note, as ``LOCAL_PATH_RECORDING_CONVENTION``
     says, since only they know what it held.
     """
+    rewrites = repo_rewrites(command, repo=repo)
     recorded = relativize_repo_paths(command, repo=repo)
     unresolved: dict[str, None] = {}
-    # A path the rewrite leaves as written is outside the checkout.
+    # A local path that no rewrite covers is outside the checkout.
     for path in find_local_paths(command):
-        token = command[path.start : path.end]
-        if relativize_repo_paths(token, repo=repo) == token:
-            unresolved[token] = None
-    # A rewrite can change how the text after it reads (`</checkout/x>/tmp/y`
-    # becomes `<x>/tmp/y`, a placeholder), so the recorded command is read too.
+        if not any(
+            rewrite.start <= path.start and path.end <= rewrite.end for rewrite in rewrites
+        ):
+            unresolved[command[path.start : path.end]] = None
+    # By construction a rewrite never reads as a local path (it is written
+    # ``./~cache`` rather than ``~cache``), so this finds nothing unless that
+    # changes; the recorded text is what gets signed, so it is read as well.
     for path in find_local_paths(recorded):
         unresolved[recorded[path.start : path.end]] = None
     if unresolved:
@@ -299,7 +303,7 @@ def load_local_path_allowlist(path: Path) -> list[LocalPathAllowance]:
 def audit_manifest_local_paths(
     repo: Path,
     *,
-    grandfathered_sha256: frozenset[str],
+    grandfathered: frozenset[tuple[str, str]],
     allowlist: Path = LOCAL_PATH_ALLOWLIST_PATH,
 ) -> list[str]:
     """Return the issues that keep the repository's ingest manifests from passing.
@@ -308,8 +312,8 @@ def audit_manifest_local_paths(
     machine that wrote it (``manifest_local_path_issues``), unless the allowlist
     grandfathers it. An allowance holds only while its manifest keeps the bytes
     it pins and still records paths in exactly the fields it lists, and only
-    for bytes in ``grandfathered_sha256``, so the allowlist only shrinks. A
-    manifest that cannot be read fails closed.
+    for a ``(path, sha256)`` pair in ``grandfathered``, so the allowlist only
+    shrinks. A manifest that cannot be read fails closed.
     """
     repo = repo.resolve()
     issues: list[str] = []
@@ -322,10 +326,10 @@ def audit_manifest_local_paths(
         if allowance.path in by_path:
             issues.append(f"`{allowlist.as_posix()}` lists `{allowance.path}` twice.")
         by_path[allowance.path] = allowance
-        if allowance.sha256 not in grandfathered_sha256:
+        if (allowance.path, allowance.sha256) not in grandfathered:
             issues.append(
-                f"`{allowlist.as_posix()}` lists `{allowance.path}` at bytes that were not "
-                "grandfathered on 2026-10-20. The allowlist only shrinks: sign the manifest "
+                f"`{allowlist.as_posix()}` lists `{allowance.path}` at a path and bytes that "
+                "were not grandfathered on 2026-10-20. The allowlist only shrinks: sign the manifest "
                 "again without local paths instead of listing it."
             )
     manifest_root = repo / INGEST_MANIFEST_ROOT
@@ -389,7 +393,11 @@ def sign_ingest_manifest(
             "Cannot sign an ingest manifest with non-canonical generator state: "
             + " ".join(provenance_issues)
         )
-    local_path_issues = manifest_local_path_issues(signed)
+    # The signature block is read too (its value, base64, is not): a key id is
+    # a recorded string like any other.
+    local_path_issues = manifest_local_path_issues(
+        {**signed, "signature": {"algorithm": INGEST_MANIFEST_SIGNATURE_ALGORITHM, "key_id": key_id}}
+    )
     if local_path_issues:
         raise ManifestLocalPathError(
             "Cannot sign an ingest manifest that records a local path: "

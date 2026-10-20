@@ -5865,8 +5865,8 @@ def build_parser() -> argparse.ArgumentParser:
             "Exact ingestion command or run description to record in the manifest. "
             "Absolute paths inside the repository are recorded repository-relative; "
             "any other path on this machine (/Users/, /home/, /tmp/, /private/, "
-            "~/, ...) is refused: write a placeholder such as <scratchpad> and name "
-            "the run note under docs/ingest-runs/."
+            "~/, $HOME/, file: URLs, ...) is refused: write a placeholder such as "
+            "<scratchpad> and name the run note under docs/ingest-runs/."
         ),
     )
     sign_ingest.add_argument(
