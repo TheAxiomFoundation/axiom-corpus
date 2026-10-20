@@ -43,12 +43,21 @@ smoke check. Run the relevant subset locally before opening the PR:
 
 ```bash
 uv sync --extra dev
-uv pip install pytest-cov pytest-timeout
 uv run towncrier build --draft --version 0.0.0
 uv run ruff check .
 uv run mypy src/axiom_corpus/corpus --ignore-missing-imports
 uv run pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 ```
+
+## Dependencies
+
+`uv.lock` pins every dependency version, and CI installs from it
+(`.github/scripts/install-locked.sh`), so a check gives the same result
+locally under `uv run` and in CI. After changing a requirement in
+`pyproject.toml`, run `uv lock` and commit both files. Do not move an
+extraction library (PyMuPDF, lxml, Beautiful Soup, striprtf, openpyxl, xlrd)
+in the lock without measuring what the move changes in extracted text; see
+`docs/dependency-lock.md`.
 
 ## Repo notes
 
