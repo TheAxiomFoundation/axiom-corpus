@@ -1,6 +1,6 @@
 {
  "revision": "r2026-10-13-hollow-roots",
- "code_commit": "0f4e8a2dd (all 108 rebuilt after #868; 57 byte-identical to the 0b1ae81b6/acf071fe1 builds)",
+ "code_commit": "86456f0e9 (AL/MA/MO/OR/WA rebuilt after #870; other 103 unchanged from the #868 rebuild at 0f4e8a2dd)",
  "control_commit": "91d69e6d3",
  "content_check": "content-check-v1 (PR #847 head 88c1435a5)",
  "totals": {
@@ -11,7 +11,7 @@
   "provisions_removed": 3,
   "provisions_changed": 1582,
   "body_chars_before": 140951054,
-  "body_chars_after": 146264115,
+  "body_chars_after": 146264462,
   "source_files": 3876,
   "findings_before": {
    "hollow_document_root": 96,
@@ -34,7 +34,7 @@
    "pages_losing_any_token_clean_layer": 174,
    "lost_digit_tokens": 1411,
    "lost_digit_tokens_clean_layer": 248,
-   "lost_letter_tokens": 1564,
+   "lost_letter_tokens": 1566,
    "lost_letter_tokens_clean_layer": 1020,
    "layer_lines_lost_clean_layer": 8,
    "pages_with_lost_lines_clean_layer": 8,
@@ -46,7 +46,7 @@
    "changed_pages_clean_layer": 961,
    "scopes_measured": 68,
    "old_words": 17267,
-   "new_words": 217828
+   "new_words": 217918
   },
   "new_findings": {}
  },
@@ -258,7 +258,7 @@
     },
     "order_preserved": true,
     "body_chars_before": 1064031,
-    "body_chars_after": 1111853
+    "body_chars_after": 1111849
    },
    "inventory": {
     "before": 270,
@@ -2352,7 +2352,7 @@
     },
     "order_preserved": true,
     "body_chars_before": 1452541,
-    "body_chars_after": 1529669
+    "body_chars_after": 1529673
    },
    "inventory": {
     "before": 520,
@@ -3578,7 +3578,7 @@
     },
     "order_preserved": true,
     "body_chars_before": 711249,
-    "body_chars_after": 785114
+    "body_chars_after": 785316
    },
    "inventory": {
     "before": 270,
@@ -4450,7 +4450,7 @@
     },
     "order_preserved": true,
     "body_chars_before": 1039480,
-    "body_chars_after": 1156603
+    "body_chars_after": 1156748
    },
    "inventory": {
     "before": 680,

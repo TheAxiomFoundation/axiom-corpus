@@ -1,8 +1,8 @@
 # Successor scopes for the fixed hollow-document-root findings
 
-Date: 2026-10-13, updated 2026-10-15 for #868.
-Branch `ingest/hollow-root-successors`, on `origin/main` (merged in at `0f4e8a2dd`), which
-includes #854 (merged as f98fa2bbd) and #868 (merged as 38d893d50).
+Date: 2026-10-13, updated 2026-10-20 after the five-scope #870 rebuild.
+PR branch `ingest/hollow-root-successors`; `main` at `e019e4456` was merged in at
+`b45edcdf5`. The state plans carry #854, #868's OCR merge rule and #870's shifted-font rule.
 
 - **First build.** 46 successors were built at `acf071fe1`: #854's head with `origin/main`
   `91d69e6d3` merged in, a tree identical to #854's merged head. The other 62 were built
@@ -15,10 +15,19 @@ includes #854 (merged as f98fa2bbd) and #868 (merged as 38d893d50).
   - The other 51 are exactly the state-plan scopes on #868's scope list. They differ
     only in 360 PDF page bodies: no row, inventory item, coverage figure or source
     changes. They were replaced and re-signed.
+- **Rebuild after #870.** All 102 state-plan successors were rebuilt into scratch
+  with the current extractor. Exactly five changed: the AL, MA, MO, OR and WA
+  Medicaid successors; 97 were byte-identical. Only eight PDF page bodies in eight
+  documents changed, with 61 whitespace-delimited words added and four removed
+  (net +57). Sources, inventories, coverage, row membership and ordering were
+  unchanged. The five were replaced, signed, locked and their content-addressed
+  objects uploaded at `33bc7de9d`.
+
 Builder: `scripts/repro/hollow_root_successors.py`.
-Per-scope figures: `docs/ingest-runs/2026-10-13-hollow-root-successors.json`.
-Evidence (comparisons, content-check and validation output, logs and the scripts that
-made them), on the machine that built the scopes:
+Per-scope figures: `docs/ingest-runs/2026-10-13-hollow-root-successors.json` and
+`docs/ingest-runs/2026-10-13-hollow-root-successors.csv`.
+Historical evidence (comparisons, content-check and validation output, logs and the
+scripts that made them), on the machine that built the scopes:
 `~/reviews/axiom-corpus-hollow-root-successors-2026-10-13/`.
 
 The hollow-document-root audit
@@ -100,24 +109,27 @@ bytes. The exception is the Canadian scope, whose control already drops the empt
 control and successor are identical. So, in the first build, every difference between
 an original and its successor came from #854, or for Canada from 477c6650c, and none
 from other changes since the originals were extracted. The final successors also carry
-#868: in the rebuild after it, the only further differences are 360 PDF page bodies in
-the 51 state-plan scopes on its list (see the header).
+#868 (360 PDF page bodies in 51 state-plan scopes) and #870 (eight page bodies in
+five Medicaid scopes; see the header). The original/control evidence is retained
+from that historical build; the original/successor comparison and content/OCR scans
+were regenerated on the current data.
 
 ## Results
 
 Per-scope figures, including every removed path, are in
-`docs/ingest-runs/2026-10-13-hollow-root-successors.json`.
+`docs/ingest-runs/2026-10-13-hollow-root-successors.json`; its CSV companion has one
+row per scope.
 
 | Family | Scopes | Source files | Rows before | Rows after | Added | Removed | Changed | Body characters before | after |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | NYCRR | 2 | 364 | 3,693 | 3,693 | 0 | 0 | 46 | 3,604,185 | 3,611,913 |
-| CMS Medicaid state plans | 51 | 2,294 | 31,251 | 47,551 | 16,300 | 0 | 1,350 | 57,536,899 | 62,470,573 |
+| CMS Medicaid state plans | 51 | 2,294 | 31,251 | 47,551 | 16,300 | 0 | 1,350 | 57,536,899 | 62,470,920 |
 | CMS CHIP state plans | 51 | 935 | 33,871 | 34,826 | 955 | 0 | 144 | 68,434,080 | 68,688,215 |
 | CHIP FCEP | 1 | 76 | 2,347 | 2,347 | 0 | 0 | 36 | 4,847,709 | 4,855,993 |
 | Maryland TCA | 1 | 2 | 6 | 4 | 0 | 2 | 4 | 2,562 | 9,258 |
 | Massachusetts TAFDC | 1 | 8 | 216 | 289 | 73 | 0 | 2 | 431,544 | 534,088 |
 | Canada | 1 | 197 | 461 | 460 | 0 | 1 | 0 | 6,094,075 | 6,094,075 |
-| **Total** | **108** | **3,876** | **71,845** | **89,170** | **17,328** | **3** | **1,582** | **140,951,054** | **146,264,115** |
+| **Total** | **108** | **3,876** | **71,845** | **89,170** | **17,328** | **3** | **1,582** | **140,951,054** | **146,264,462** |
 
 - **In every scope** the sources are the original's bytes, coverage is complete, the
   rows that remain keep their order, and ids follow the original's rule (path-only
@@ -143,8 +155,9 @@ The three removed rows are those two Maryland `block-2` rows and the Canadian le
 The 17,255 new index blocks are positional `block-N` paths (`…/spa-index/pNN/block-K`),
 the shared extractor's path for an unlabeled HTML block. They raise the citation-path
 grammar's `block_n` ratchet (`schema/citation-path.v1.json`) from 88,143 to 105,398;
-CI's `scripts/validate_citation_paths.py` count at this branch's head is exactly that,
-and no other family changes.
+The original CI run of `scripts/validate_citation_paths.py` measured exactly that,
+and no other family changed. This phase did not repeat the full-corpus scan; the
+five-scope rebuild preserves every citation path.
 
 ### Content check
 
@@ -195,14 +208,15 @@ no control characters (in 12 scopes), a legible layer word was missing.
     "DATE APPROVED: 531 30, 2018" where the layer has "April 30, 2018".
 - **Review.** Review r1 blocked the hand-off on these losses.
 
-**With #868 (these successors).**
+**With #868 and #870 (these successors).**
 [#868](https://github.com/TheAxiomFoundation/axiom-corpus/pull/868) appends a layer
 line unless the OCR text already holds the whole line, and drops the lines of
 invisible recognition layers that fail against OCR. Its run note,
-`docs/ingest-runs/2026-10-13-ocr-overlay-layer-lines.md`, gives the rule. On the same
-1,014 pages:
+`docs/ingest-runs/2026-10-13-ocr-overlay-layer-lines.md`, gives the merge rule.
+[#870](https://github.com/TheAxiomFoundation/axiom-corpus/pull/870) also decodes
+shifted-font typed text on these OCR-overlay pages. On the same 1,014 pages:
 
-- 965 pages gain words: the pages go from 17,267 words to 217,828.
+- 965 pages gain words: the pages go from 17,267 words to 217,918.
 - Legible layer words missing: 1 page, 1 word ("tint's", in a noise line of NJ CHIP
   22-0031), down from 19 pages and 32 words. HI 14-005 now keeps "November 19, 2014"
   and the signer's name and title, and NH 18-0001 keeps "April 30, 2018".
@@ -212,11 +226,11 @@ invisible recognition layers that fail against OCR. Its run note,
   dates of ID 20-0001 and MO 20-0016 (where "3131" is "2020" shifted by one).
   Examples: "1ui", "sta1u", "4cow", "9jeo".
 
-[#870](https://github.com/TheAxiomFoundation/axiom-corpus/pull/870), not merged, decodes
-shifted-font layers. Its scope list names one page in each of 8 documents, in 5 of these
-scopes: the AL, MA, MO, OR and WA Medicaid state plans. If #870 merges while this PR is
-open, those five are rebuilt the same way. Otherwise they need a further successor
-revision.
+The #870 rebuild changes only the five scopes and eight pages listed in
+`docs/ingest-runs/2026-10-13-ocr-overlay-shifted-font-layers-scopes.csv`. Against the
+previous successors, those eight pages go from 2,541 to 2,598 whitespace-delimited
+words (+61/−4 words as multisets). The OCR word-loss totals above instead use the
+normalized word tokenizer in `ocr_word_loss.py`.
 
 ## Signing and locks
 
@@ -236,20 +250,24 @@ uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
 - **R2.** R2 already held every source object, since each is byte-identical to the
   original's. `--push` uploaded only the new inventory, provisions and coverage objects.
 
-The 108 manifests were signed over four commits of this branch: 10 over `0b1ae81b6`,
-8 over `cb2218d1e`, 39 over `bf6bbe17f`, and the 51 rebuilt with #868 over `24689631f`.
+The 108 current manifests were signed over five commits of this branch: 10 over
+`0b1ae81b6`, 8 over `cb2218d1e`, 39 over `bf6bbe17f`, 46 over `24689631f`, and the
+five rebuilt with #870 over `86456f0e9`.
 `0b1ae81b6`, `cb2218d1e` and `bf6bbe17f` hold the same builder and extractor. `24689631f`
-adds `main` with #868. It also removes the 51 replaced scopes' earlier manifests and
-locks, so they are re-signed from a clean tree.
+adds `main` with #868 and removes the 51 replaced scopes' earlier manifests and
+locks. `86456f0e9` removes the five #870 replacements' earlier metadata after the
+merge at `b45edcdf5`, so they too were re-signed from a clean tree.
 
 Checked on the head:
 
 - `axiom-corpus-ingest guard-ingested --base-ref origin/main --head-ref HEAD`: every
   changed artifact has a signed manifest.
-- `corpus verify --attest --ref HEAD`: all 68,059 lock entries attested.
+- `corpus verify --attest --changed-since origin/main --workers 4`: 4,200 changed
+  lock entries verified locally; attestation audits all 68,059 entries at HEAD.
 - `corpus verify --remote --changed-since origin/main`: all 4,200 entries of the 108
-  successor locks are in R2. The only new objects are the 324 inventory, provisions and
-  coverage files (591 MB).
+  successor locks are in R2 (checked after signing, before this reporting update).
+  Those locks name 324 inventory, provisions and coverage files (591 MB); the #870
+  rebuild changed only five provision objects.
 - `tests/test_hollow_root_successors.py` (18 tests) checks, for every successor:
   - its manifest and lock agree, and its sources are its original's locked bytes;
   - coverage is complete, and it lacks only the three documented paths;
@@ -275,7 +293,7 @@ are unchanged:
 | `2026-10-13-hollow-root-successors-snap.selector.json` (`us-rulespec-2026-10-13-snap-fy2026-hollow-root-successors`) | `us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected` (272) | 3: FCEP, MA TAFDC, NY SNAP regulations |
 | `2026-10-13-hollow-root-successors-ca.selector.json` (`ca-rulespec-2026-10-13-source-complete-hollow-roots`) | `ca-rulespec-2026-07-21-source-complete` (1) | 1 |
 
-46 tracked selectors select at least one original. Six union cuts select all 107 US
+47 tracked selectors select at least one original. Six union cuts select all 107 US
 originals, `us-rulespec-2026-09-13-cms-state-plans-union` selects 106, and the others
 select between one and four.
 
@@ -293,7 +311,7 @@ uv run --extra dev python scripts/repro/hollow_root_successors.py selector \
   not resolve that with `scripts/deduplicate_release_selector.py`, which would delete
   the successor's colliding rows. `swap_successors` refuses a selector that already
   selects a successor.
-- **Both US lines also owe #847's swaps.** Once #847 merges, a new cut must also drop
+- **Both US lines also owe #847's swaps.** #847 is merged; a new cut must also drop
   or replace the scopes `manifests/withdrawn-scopes.yaml` lists. Each base selector is
   grandfathered at its own digest only, so under #847's gate the US drafts fail
   `withdrawn_scope_selected`: 9 errors for the union, 16 for SNAP. Any new cut of those
@@ -303,6 +321,9 @@ uv run --extra dev python scripts/repro/hollow_root_successors.py selector \
   successor serves a cut of the source-complete line only.
 
 ## Release checks
+
+These selector-validation results are historical checks from the original run;
+they were not rerun as part of the five-scope reporting update.
 
 `axiom-corpus-ingest validate-release --base data/corpus --release <selector>
 --ignore-r2-missing`, on each draft and on its base selector:
@@ -328,23 +349,17 @@ uv run --extra dev python scripts/repro/hollow_root_successors.py selector \
   - The `baselined_content_findings` notices drop from 28 originals to 2 successors,
     the two NYCRR scopes with their expected-empty Refs roots.
 
-### PR #847's content baseline
+### Release content baseline after #847
 
-Once #847 merges, CI runs `content-check --all --check-baseline`. That check fails on
-any locked scope whose findings the baseline does not record, which would include the
-three successors that keep findings: the two NYCRR scopes and Canada. In a checkout of
-#847 with this branch's 108 locks:
+#847 is merged. CI runs `content-check --all --check-baseline`, and the release gate
+reads `manifests/release-content-baseline.json`. The merge brought main's baseline,
+which had no entries for these 108 successors. Clean scopes, including the five
+rebuilt Medicaid scopes, need no entry, but the three successors with retained
+findings do. The earlier handoff also assigned regeneration of all 108 entries to
+this phase.
 
-- `content-check <the 108 successors>` gives the 27 findings above, the same as the
-  module-level scan: 3
-  `hollow_document_root`, 10 `navigation_body` and 14 `navigation_prefixed_body`, in
-  3 scopes.
-- `--update-baseline` records an entry for each of the 108 successors (108 added lines
-  in `manifests/release-content-baseline.json`), after which `--check-baseline` on them
-  reports no difference.
-
-Whichever of #847 and this PR merges second must add those entries. The patch, made
-against #847's head `88c1435a5`, is `evidence/release-content-baseline-successors.patch`
-in the evidence folder. On `main` without #847 there is no
-baseline, and nothing is needed.
-
+The repository's `content-check --update-baseline --workers 4 <108 successors>`
+regenerated those entries with the current checker, taking the baseline from 2,391
+to 2,499 scopes. `content-check --check-baseline` on all 108 successors then passed.
+No original-scope entry was changed. The historical #847 scanner used for the
+comparison above remains labeled separately; its old baseline patch was not applied.
