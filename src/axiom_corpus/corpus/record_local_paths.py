@@ -18,10 +18,13 @@ signing that manifest again; signatures are verified where manifests are).
 
 from __future__ import annotations
 
+import bisect
 import hashlib
 import json
+import math
 import re
 import subprocess
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -60,20 +63,58 @@ _NO_PLACE = {
 _WEB_PATH_PREFIXES = ("/media/file/",)
 
 # ``find_local_paths`` reads command lines: a root starts a path only after
-# whitespace, a quote, ``=``, ``:`` or a shell operator, and a path right after
-# ``<name>`` is relative to that placeholder. Records are prose and markup, so
-# before scanning, an HTML element tag (``<code>``, ``</td>``) and any character
-# before a root that cannot continue a URL or relative path (``**``, ``@``, ``_``,
-# typographic quotes) become spaces, keeping every offset.
-_HTML_TAG = re.compile(
-    r"(?i)</?(?:a|abbr|b|blockquote|body|br|caption|cite|code|dd|del|details|div|dl|dt|em"
-    r"|h[1-6]|head|hr|html|i|ins|kbd|li|mark|ol|p|pre|q|s|samp|section|small|span|strong"
-    r"|sub|summary|sup|table|tbody|td|tfoot|th|thead|tr|tt|u|ul|var)\s*/?>"
+# whitespace, a quote, ``=``, ``:`` or a shell operator; a path right after
+# ``<name>`` is relative to that placeholder; and text is read as written.
+# Records are prose, markup and data, so each line that could hold a path is
+# read three ways, and a path found in any reading is reported at its offset in
+# the record:
+# 1. markup tags and the punctuation that opens a token before a root
+#    (``**``, ``@``, ``_``, typographic quotes) become spaces;
+# 2. markup tags are deleted, so a path split by inline markup is whole again;
+# 3. JSON and YAML escapes ``\\`` and ``\/`` are decoded.
+# A tag is markup when it names an HTML element or the record closes it
+# (``</path>``); a placeholder such as ``<scratchpad>`` is never closed.
+_HTML_ELEMENT = re.compile(
+    r"a|abbr|b|blockquote|body|br|caption|cite|code|dd|del|details|div|dl|dt|em|h[1-6]|head"
+    r"|hr|html|i|ins|kbd|li|mark|ol|p|pre|q|s|samp|section|small|span|strong|sub|summary"
+    r"|sup|table|tbody|td|tfoot|th|thead|tr|tt|u|ul|var"
 )
-_ROOT_START = re.compile("|".join(re.escape(root) for root in (*LOCAL_PATH_ROOTS, "~/")))
-# Characters a URL or relative path can hold just before a root, and the
-# delimiters after which ``find_local_paths`` already starts a token.
-_CONTINUES_PATH = re.compile(r"[^\W_]|[.%+~/#?!$\-\s\"'`=:,;|&()<>\[\]{}\\]")
+_TAG = re.compile(r"<(/?)([A-Za-z][A-Za-z0-9-]*)[ \t]*/?>")
+_CLOSING_TAG = re.compile(r"</([A-Za-z][A-Za-z0-9-]*)[ \t]*>")
+_ESCAPE = re.compile(r"\\([\\/])")
+# Where a path can begin: a root, a home-relative ``~``, a Windows drive.
+_PATH_START = re.compile(
+    "|".join(re.escape(root) for root in LOCAL_PATH_ROOTS) + r"|~|[A-Za-z]:[\\/]"
+)
+# Characters that continue a URL or relative path, and the delimiters after
+# which ``find_local_paths`` starts a token; any other character before a path
+# start opens the token only when a delimiter or the line's start precedes it.
+_PATH_CHAR = re.compile(r"[^\W_]|[.%+~/#?!$\\-]")
+_DELIMITER = re.compile(r"[\s\"'`=:,;|&()<>\[\]{}]")
+# Lower-cased bytes, one of which every path ``find_local_paths`` can find holds
+# (its case-insensitive parts are ASCII, but Python also folds the four letters
+# at the end onto ``i``, ``s`` and ``k``), and the escapes reading 3 decodes. A
+# line holding none is never read, which keeps a scan of every record fast.
+_CANDIDATE = re.compile(
+    b"|".join(
+        re.escape(candidate)
+        for candidate in (
+            *sorted({root.lower().encode() for root in LOCAL_PATH_ROOTS}),
+            b"~",
+            b"$home",
+            b"${home}",
+            b"%userprofile%",
+            b"file:/",
+            b":\\users",
+            b":/users",
+            b":\\documents and settings",
+            b":/documents and settings",
+            b"\\\\",
+            b"\\/",
+            *(letter.encode() for letter in "\u0130\u0131\u017f\u212a"),
+        )
+    )
+)
 
 _TRACKING_ISSUE = re.compile(
     r"https://github\.com/TheAxiomFoundation/axiom-corpus/issues/[1-9][0-9]*"
@@ -84,25 +125,120 @@ _SHA256 = re.compile(r"[0-9a-f]{64}")
 def find_record_local_paths(text: str) -> list[LocalPath]:
     """Return the paths on the writing machine in a record's ``text``, in order.
 
-    Every path ``find_local_paths`` finds, less the spellings that name no
-    place (``~``, ``file://``, ``$HOME`` or a root such as ``/Users/`` alone)
-    and ``/media/file/`` web paths; and also the paths it would miss in prose
-    and markup: after an HTML tag (``<code>/Users/...``) or after punctuation
-    that cannot continue a URL (``**/tmp/...**``, ``@/Users/...``, ``“~/...”``).
+    Every path ``find_local_paths`` finds lies inside one of these, less the
+    spellings that name no place (``~``, ``file://``, ``$HOME`` or a root such
+    as ``/Users/`` alone) and ``/media/file/`` web paths; and these also hold
+    the paths it misses in prose,
+    markup and data: after a tag (``<code>/Users/...``), inside inline markup
+    (``/tmp/<b>job</b>/out``), after punctuation that opens a token
+    (``**/tmp/...**``, ``@/Users/...``, ``“~alice/...”``) and escaped in JSON
+    or YAML (``"C:\\\\Users\\\\alice"``). Offsets are the record's.
     """
-    scan = _as_command_text(text)
-    return [path for path in find_local_paths(scan) if not _names_no_place(scan, path)]
+    found: dict[int, LocalPath] = {}
+    closed = _closed_tags(text)
+    for start, line in _candidate_lines(text):
+        for path in _line_paths(start, line, closed):
+            found.setdefault(path.start, path)
+    return [found[offset] for offset in sorted(found)]
 
 
-def _as_command_text(text: str) -> str:
-    chars = list(text)
-    for tag in _HTML_TAG.finditer(text):
-        chars[tag.start() : tag.end()] = " " * (tag.end() - tag.start())
-    for root in _ROOT_START.finditer(text):
-        before = root.start() - 1
-        if before >= 0 and not _CONTINUES_PATH.match(text, before):
-            chars[before] = " "
-    return "".join(chars)
+def _closed_tags(text: str) -> set[str]:
+    return {name.lower() for name in _CLOSING_TAG.findall(text)}
+
+
+def _line_paths(start: int, line: str, closed: set[str]) -> list[LocalPath]:
+    """Return the paths in ``line`` (at ``start`` in its record), read each way."""
+    paths = []
+    for reading in _readings(line, closed):
+        for path in find_local_paths(reading.text):
+            if not _names_no_place(reading.text, path):
+                begin, end = reading.origin(path.start), reading.origin(path.end)
+                paths.append(LocalPath(start + begin, start + end, path.kind, path.root))
+    return paths
+
+
+def _candidate_lines(text: str) -> list[tuple[int, str]]:
+    """Return ``(offset, line)`` for each line of ``text`` holding a ``_CANDIDATE``."""
+    data = text.encode("utf-8", "surrogatepass")
+    lines: list[tuple[int, str]] = []
+    line_end = -1
+    char_at = byte_at = 0
+    for candidate in _CANDIDATE.finditer(data.lower()):
+        if candidate.start() <= line_end:
+            continue
+        line_start = data.rfind(b"\n", 0, candidate.start()) + 1
+        line_end = data.find(b"\n", candidate.start())
+        line_end = len(data) if line_end == -1 else line_end
+        char_at += len(data[byte_at:line_start].decode("utf-8", "surrogatepass"))
+        byte_at = line_start
+        lines.append((char_at, data[line_start:line_end].decode("utf-8", "surrogatepass")))
+    return lines
+
+
+@dataclass(frozen=True)
+class _Reading:
+    """A line as read, with ``(offset here, offset in the line)`` at each piece's start."""
+
+    text: str
+    pieces: tuple[tuple[int, int], ...] = ((0, 0),)
+
+    def origin(self, offset: int) -> int:
+        at, source = self.pieces[bisect.bisect_right(self.pieces, (offset, math.inf)) - 1]
+        return source + offset - at
+
+
+def _readings(line: str, closed: set[str]) -> list[_Reading]:
+    def is_markup(tag: re.Match[str]) -> bool:
+        name = tag.group(2).lower()
+        return _HTML_ELEMENT.fullmatch(name) is not None or name in closed
+
+    def blank_markup(text: str) -> str:
+        return _TAG.sub(lambda tag: " " * len(tag.group()) if is_markup(tag) else tag.group(), text)
+
+    readings = [_Reading(_open_tokens(blank_markup(line)))]
+    if any(is_markup(tag) for tag in _TAG.finditer(line)):
+        deleted = _rewrite(line, _TAG, lambda tag: "" if is_markup(tag) else tag.group())
+        readings.append(_Reading(_open_tokens(deleted.text), deleted.pieces))
+    if _ESCAPE.search(line):
+        decoded = _rewrite(line, _ESCAPE, lambda escape: escape.group(1))
+        readings.append(_Reading(_open_tokens(blank_markup(decoded.text)), decoded.pieces))
+    return readings
+
+
+def _rewrite(
+    line: str, pattern: re.Pattern[str], replace: Callable[[re.Match[str]], str]
+) -> _Reading:
+    parts: list[str] = []
+    pieces = [(0, 0)]
+    length = position = 0
+    for match in pattern.finditer(line):
+        new = replace(match)
+        if new == match.group():
+            continue
+        parts.append(line[position : match.start()])
+        length += match.start() - position
+        pieces.append((length, match.start()))
+        parts.append(new)
+        length += len(new)
+        pieces.append((length, match.end()))
+        position = match.end()
+    parts.append(line[position:])
+    return _Reading("".join(parts), tuple(pieces))
+
+
+def _open_tokens(line: str) -> str:
+    """Blank the punctuation that opens a token before a path start, keeping offsets."""
+    chars: list[str] | None = None
+    for start in _PATH_START.finditer(line):
+        begin = start.start()
+        while begin > 0 and not (
+            _PATH_CHAR.match(line, begin - 1) or _DELIMITER.match(line, begin - 1)
+        ):
+            begin -= 1
+        if begin < start.start() and (begin == 0 or _DELIMITER.match(line, begin - 1)):
+            chars = chars or list(line)
+            chars[begin : start.start()] = " " * (start.start() - begin)
+    return line if chars is None else "".join(chars)
 
 
 def _names_no_place(text: str, path: LocalPath) -> bool:

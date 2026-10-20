@@ -55,7 +55,7 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   retained copy where the corpus locks it (`../data/corpus/sources/...`) and
   `download_dir` is `../data/corpus/downloads/...`, both relative to the
   manifest. `tests/test_record_local_paths.py` fails on a record that holds a
-  local path, in prose and markup as well as commands.
+  local path, in prose, markup and escaped JSON or YAML as well as commands.
   `.axiom/record-local-paths.yaml` grandfathers only the five that an ingest
   manifest attests in `reasoning_logs` (axiom-corpus#896); it only shrinks.
 - An ingest you were asked to do includes `corpus push` of its own new objects

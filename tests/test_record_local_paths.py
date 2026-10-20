@@ -16,12 +16,15 @@ Invariants:
    fails, so the allowlist only shrinks. A symbolic link, a record that cannot
    be read or is not UTF-8 text, an unreadable ingest manifest and a malformed
    allowlist fail closed, and no message names a full path.
-2. Detection. ``find_record_local_paths`` finds every path
-   ``find_local_paths`` finds except the spellings that name no place (``~``,
-   ``file://``, ``$HOME``, a root alone) and ``/media/file/`` web paths, and
-   returns none of those; and it also finds a path below any machine root after
-   markup or prose punctuation (``<code>``, ``**``, ``@``, ``_``, typographic
-   quotes), where ``find_local_paths``, written for command lines, does not.
+2. Detection. Every path ``find_local_paths`` finds lies inside one
+   ``find_record_local_paths`` reports, except the spellings that name no
+   place (``~``, ``file://``, ``$HOME``, a root alone) and ``/media/file/`` web
+   paths, which it never reports. It also finds a path below any machine root
+   after markup or prose punctuation (``<code>``, ``</path>``, ``**``, ``@``,
+   ``_``, typographic quotes), inside inline markup, and escaped in JSON or
+   YAML, where ``find_local_paths``, written for command lines, does not.
+   Reading only lines that hold a candidate equals reading every line
+   (differential), and offsets and line numbers are the record's.
 3. Functional manifest paths. Every ``local_path`` in a source manifest is
    relative and names a file a corpus lock records, so ``corpus fetch`` supplies
    it on any machine; every ``download_dir`` is relative and stays inside the
@@ -46,6 +49,8 @@ from axiom_corpus.corpus.manifest_local_paths import LOCAL_PATH_ROOTS, find_loca
 from axiom_corpus.corpus.record_local_paths import (
     RECORD_LOCAL_PATH_ALLOWLIST_PATH,
     RECORD_ROOTS,
+    _closed_tags,
+    _line_paths,
     audit_record_local_paths,
     find_record_local_paths,
     load_record_local_path_allowlist,
@@ -511,12 +516,14 @@ def test_an_allowlist_that_is_not_yaml_fails_closed(tmp_path) -> None:
         "(`https://dss.sc.gov/media/bxwc1jdj/tanf-policy-manual-volume-67-final.pdf`)",
         "https://www.childcare.virginia.gov/home/showpublisheddocument/65775",
         "https://example.gov/page#/tmp/x and https://example.gov/a?/tmp/x",
-        # Placeholders, HTML around clean text, and relative paths.
+        "https://example.gov/export_/tmp/x",
+        # Placeholders, markup around clean text, relative paths and globs.
         CLEAN,
         "`<scratchpad>/tmp/replay.json`, `<main-checkout>/data/corpus`",
         "<code>data/corpus</code> and <td>../tmp/x</td>",
         "download_dir: ../data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter",
-        "a_b/tmp/x, data/home/x, ./tmp/y",
+        "a_b/tmp/x, data/home/x, ./tmp/y, data/*/tmp/x, data/export_/tmp/x",
+        '{"pattern": "data\\\\/corpus\\\\/x"}',
     ],
 )
 def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
@@ -536,17 +543,31 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         ("cd /home/runner/work/axiom-corpus", "/home/…"),
         ("/var/folders/xy/T/tmp.abc", "/var/folders/…"),
         ("PATH=/Volumes/Data/bin:$PATH", "/Volumes/…"),
+        ("$HOME*/tmp/x", "$HOME…"),
         # A Linux removable drive is mounted under the user's name.
         ("restored from `/media/someone/Backup/axiom-corpus`", "/media/…"),
-        # Markup and prose punctuation, which no command line holds.
+        # Markup: HTML elements, tags the record closes, and inline markup.
         ("<code>/Users/someone/x</code>", "/Users/…"),
         ("<td>~/notes/x</td>", "~…"),
+        ("<path>/Users/alice/work</path>", "/Users/…"),
+        ("<output>/Users/alice/work</output>", "/Users/…"),
+        ("/tmp/<code>job</code>/out", "/tmp/…"),
+        # Prose punctuation that opens a token, which no command line holds.
         ("see @/Users/someone/x", "/Users/…"),
         ("**/Users/someone/x**", "/Users/…"),
         ("_/tmp/x_", "/tmp/…"),
         ("\u201c/Users/someone/x\u201d", "/Users/…"),
         ("\u00ab/private/tmp/x\u00bb", "/private/…"),
+        ("\u201c~alice/work\u201d", "~…"),
+        ("**C:\\Users\\alice\\work**", "C:\\Users\\…"),
+        ("@C:\\Users\\alice\\work", "C:\\Users\\…"),
         ("line one\r\n/tmp/x\tand more", "/tmp/…"),
+        # Escaped in JSON or YAML.
+        (json.dumps({"cache": "C:\\Users\\alice\\work"}), "C:\\Users\\…"),
+        ('{"cache": "\\/Users\\/alice\\/work"}', "/Users/…"),
+        ('cache: "C:\\\\Users\\\\alice\\\\work"', "C:\\Users\\…"),
+        # A letter Python folds onto an ASCII one when matching case-insensitively.
+        ("C:\\U\u017fers\\alice\\work", "C:\\Users\\…"),
     ],
 )
 def test_paths_on_a_machine_fail(text: str, root: str) -> None:
@@ -555,30 +576,53 @@ def test_paths_on_a_machine_fail(text: str, root: str) -> None:
     assert found and found[0].describe() == root
 
 
+def test_offsets_and_lines_are_the_records() -> None:
+    text = 'a\n{"x": "C:\\\\Users\\\\alice\\\\w"}\n<b>q</b> **/tmp/<code>j</code>/o**\n'
+
+    found = find_record_local_paths(text)
+
+    assert [text[path.start : path.end] for path in found] == [
+        "C:\\\\Users\\\\alice\\\\w",
+        # A token runs to the next delimiter, as ``find_local_paths`` reads it.
+        "/tmp/<code>j</code>/o**",
+    ]
+    assert [text.count("\n", 0, path.start) + 1 for path in found] == [2, 3]
+
+
 _NAME = st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789._-", min_size=1, max_size=12)
 _TOKENS = [
     *LOCAL_PATH_ROOTS,
     "~",
     "~/",
     "~/x",
+    "~alice/",
     "file://",
     "file:///x",
     "$HOME",
     "${HOME}/x",
     "%USERPROFILE%",
     "C:\\Users\\",
+    "C:\\\\Users\\\\",
     "C:/Users/x",
+    "\\/Users\\/x",
     "/media/file/a.pdf",
     "<scratchpad>",
     "<code>",
     "</code>",
+    "<path>",
+    "</path>",
     "**",
     "@",
+    "_",
     "\u201c",
+    "\u0130\u0131\u017f\u212a",
 ]
 _WORDS = st.lists(
     st.one_of(
-        st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789 ~/:.$<>`'\"=()_*@-\n", max_size=20),
+        st.text(
+            alphabet="abcdefghijklmnopqrstuvwxyzABCU0123456789 ~/\\:.$<>`'\"=()_*@-\n",
+            max_size=20,
+        ),
         st.sampled_from(_TOKENS),
     ),
     max_size=8,
@@ -598,15 +642,33 @@ def _names_a_place(text: str, path) -> bool:
 
 @settings(max_examples=500, deadline=None)
 @given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
-def test_it_finds_every_path_find_local_paths_finds_that_names_a_place(
+def test_it_reports_every_path_find_local_paths_finds_that_names_a_place(
     words: list[str], joiner: str
 ) -> None:
     text = joiner.join(words)
-    starts = {path.start for path in find_record_local_paths(text)}
+    found = find_record_local_paths(text)
 
+    # Opening a token can merge a match into a longer path (``*/Users/file:/x``
+    # reads as ``/Users/file``), so each match lies inside a reported path.
     for path in find_local_paths(text):
         if _names_a_place(text, path):
-            assert path.start in starts, text
+            assert any(item.start <= path.start < item.end for item in found), text
+
+
+@settings(max_examples=500, deadline=None)
+@given(words=_WORDS, joiner=st.sampled_from(["", " ", "/", "\n"]))
+def test_reading_only_candidate_lines_loses_nothing(words: list[str], joiner: str) -> None:
+    """Differential: skipping lines without a candidate equals reading every line."""
+    text = joiner.join(words)
+    closed = _closed_tags(text)
+    every_line: dict[int, object] = {}
+    offset = 0
+    for line in text.split("\n"):
+        for path in _line_paths(offset, line, closed):
+            every_line.setdefault(path.start, path)
+        offset += len(line) + 1
+
+    assert find_record_local_paths(text) == [every_line[key] for key in sorted(every_line)]
 
 
 @settings(max_examples=500, deadline=None)
@@ -615,17 +677,21 @@ def test_it_never_reports_a_spelling_that_names_no_place(words: list[str], joine
     text = joiner.join(words)
     found = find_record_local_paths(text)
 
-    assert all(_names_a_place(text, path) for path in found), text
     assert [path.start for path in found] == sorted({path.start for path in found})
+    for path in found:
+        assert 0 <= path.start < path.end <= len(text), text
+        assert _names_a_place(text, path), text
 
 
 @settings(max_examples=500, deadline=None)
 @given(
-    root=st.sampled_from([*LOCAL_PATH_ROOTS, "~/"]),
+    root=st.sampled_from(
+        [*LOCAL_PATH_ROOTS, "~/", "~alice/", "C:\\Users\\", "C:/Users/", "C:\\\\Users\\\\"]
+    ),
     name=_NAME,
     before=st.sampled_from(
         ["", " ", "\t", "\r\n", "`", '"', "'", "(", "[", "=", ":", ">", "<code>", "<td>"]
-        + ["*", "**", "@", "_", "\u201c", "\u2018", "\u00ab", "|", ",", ";", "{"]
+        + ["*", "**", "@", "_", "\u201c", "\u2018", "\u00ab", "|", ",", ";", "{", "<path>"]
     ),
     after=st.sampled_from(["", " ", "`", '"', ")", "**", "_", "\u201d", "</code>", ".", ",\n"]),
     prefix=_WORDS,
@@ -637,7 +703,7 @@ def test_every_path_below_a_machine_root_is_found_in_prose_and_markup(
     if path.startswith("/media/file/"):
         return
     head = " ".join(prefix) + " " + before
-    text = head + path + after
+    text = head + path + after + ("</path>" if before == "<path>" else "")
 
     found = find_record_local_paths(text)
 
