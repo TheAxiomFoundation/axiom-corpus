@@ -17,6 +17,7 @@ loses nothing.
 
 from __future__ import annotations
 
+import contextlib
 import json
 import os
 import re
@@ -54,7 +55,7 @@ _LOCAL_PATH = re.compile(
     "|".join(
         (
             # Any file: URL names a file on the machine that wrote it.
-            r"(?P<file_url>(?i:(?<![A-Za-z0-9+.-])file:/)[^\s\"'`<>]*)",
+            rf"(?P<file_url>(?i:(?<![A-Za-z0-9+.-])file:/){_TOKEN_REST})",
             # An absolute path under one of the roots above.
             rf"(?P<absolute>{_AT_TOKEN_START}"
             rf"(?:{'|'.join(re.escape(root) for root in LOCAL_PATH_ROOTS)}){_TOKEN_REST})",
@@ -251,7 +252,10 @@ def _checkout_spellings(repo: Path) -> list[str]:
 def _path_spellings(path: str) -> list[str]:
     """The path normalized as written, and with its symbolic links resolved."""
     normalized = os.path.normpath(path)
-    spellings = [normalized, os.path.realpath(normalized)]
+    spellings = [normalized]
+    # A NUL byte, or a path the OS will not resolve, has no other spelling.
+    with contextlib.suppress(OSError, ValueError):
+        spellings.append(os.path.realpath(normalized))
     # macOS: /tmp and /var are links into /private.
     for spelling in list(spellings):
         if spelling.startswith("/private/"):
