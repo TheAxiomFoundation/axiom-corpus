@@ -21,7 +21,8 @@ Invariants:
    with one in any field, the signature's key id included, so
    ``sign-ingest-manifest`` exits 2 and writes nothing.
 3. Detection (``find_local_paths``) is sound for every root at a token start
-   (behind ``-o``/``@``, in any case, spelled with ``//``, ``/.`` or ``..``),
+   (behind ``-o``/``@``/``$X``, in any case, spelled with ``//``, ``/.`` or
+   ``..``, and however quoted, escaped or split by line continuations),
    never flags a root inside a URL argument or relative path or after a
    placeholder, is additive over whitespace-joined text holding no quote, and
    agrees with a brute-force tokenizing reference. ``local_path_fields``
@@ -30,8 +31,9 @@ Invariants:
    root only.
 4. ``relativize_repo_paths`` maps ``<checkout>/<rel>`` to ``<rel>`` in every
    quoting and option context, never changes which file a shell word names
-   (checked with ``shlex``), and is idempotent; ``recordable_command`` either
-   refuses or returns a command with no local path that it returns unchanged.
+   (checked with ``shlex``; nothing is rewritten where the shell would expand
+   the name), and is idempotent; ``recordable_command`` either refuses or
+   returns a command with no local path that it returns unchanged.
 """
 
 from __future__ import annotations
@@ -613,6 +615,9 @@ def test_a_key_spelled_like_the_signature_value_is_read(tmp_path) -> None:
         "cat /./private/tmp/operator/source.json",
         "cat //Users/operator/a",
         "cat /var/../tmp/operator/a",
+        'curl "https://x.gov/?q=$(cat </Users/operator/s.json)"',
+        "cat \\/Users/operator/a",
+        "cat /U\\sers/operator/a",
     ],
 )
 def test_cli_refuses_a_path_after_a_url_or_behind_a_redundant_prefix(
@@ -725,7 +730,21 @@ _PREFIX = st.text(max_size=20).filter(lambda text: "<" not in text and "://" not
         # Quoted, a URL's & is its own; unquoted, it ends the command.
         ('"https://x.gov/?a=/Users/b&c=/tmp/d"', []),
         ("https://x.gov/?a=/Users/b&c=/tmp/d", ["/tmp/d"]),
+        # Quotes, escapes and line continuations are removed before reading.
+        ("cat \\/Users/x /U\\sers/y /Us\\\ners/z", ["/Users/x", "/U\\sers/y", "/Us\\\ners/z"]),
+        ("cat /U'se'rs/x \"/Use\"rs/y", ["/U'se'rs/x", '/Use"rs/y']),
+        # A command substitution is no URL's text.
+        ('curl "https://x.gov/?q=$(cat </Users/o/s)"', ["/Users/o/s"]),
+        ('curl "https://x.gov/?q=`cat </Users/o/s`"', ["/Users/o/s"]),
+        ('curl "https://x.gov/?q=$(cat</Users/o/s)"', ["/Users/o/s"]),
+        ('curl "https://x.gov/?q=`cat</Users/o/s`"', ["/Users/o/s"]),
+        # A variable in front of a root does not hide it; $TMPDIR is the temp directory.
+        ("PATH=$X/private/var/a/bin:a -o$Y/Users/b", ["/private/var/a/bin", "/Users/b"]),
+        ("$TMPDIR/x ${TMPDIR}/y", ["$TMPDIR/x", "${TMPDIR}/y"]),
+        # A file: URL is read wherever it is, even in another URL.
+        ("https://x.gov/?u=file:///a", ["file:///a"]),
         # Not paths on this machine.
+        ("$X/data/x $PWD/.venv $TMPDIRS/x $HOMEBREW/x", []),
         ('--source-url "https://x.gov/?a=1&b=/home/x" https://tmp/x http://home/a', []),
         ("$HOMEBREW_PREFIX/bin ~2 hours ~ 2 hours profile:/x /usr/bin/env /opt/x /tmpfoo", []),
         ("cd ~ && cd $HOME && $HOME-independent", []),
@@ -759,6 +778,37 @@ def test_every_root_at_a_token_start_is_found(
 
     # Reported as the path it starts, or inside one that holds it (``C:/Users/...``).
     assert any(path.start <= start < path.end for path in found)
+
+
+def _spelled(char: str, how: str) -> str:
+    return {
+        "plain": char,
+        "escaped": "\\" + char,
+        "single": f"'{char}'",
+        "double": f'"{char}"',
+        "continued": "\\\n" + char,
+    }[how]
+
+
+@settings(max_examples=500, deadline=None)
+@given(
+    root=st.sampled_from(LOCAL_PATH_ROOTS),
+    rest=_REST,
+    data=st.data(),
+)
+def test_quoting_and_escaping_never_hide_a_path(root, rest, data) -> None:
+    """``/U\\sers``, ``/U'se'rs`` and a line continuation in ``/Users`` are ``/Users``."""
+    path = root + "/" + rest
+    spellings = data.draw(
+        st.lists(
+            st.sampled_from(["plain", "escaped", "single", "double", "continued"]),
+            min_size=len(path),
+            max_size=len(path),
+        )
+    )
+    text = "cat " + "".join(_spelled(char, how) for char, how in zip(path, spellings, strict=True))
+
+    assert find_local_paths(text)
 
 
 @settings(max_examples=300, deadline=None)
@@ -1110,7 +1160,23 @@ def test_a_rewrite_names_the_same_file(checkout, segments) -> None:
 
 
 _FORMS = ["", "--x=", "-o", "@", "X="]
-_CONTINUATIONS = ["/data", "/x", "-backup", ":backup", "/..", "/link", "/.", '"/y"', "=z", "'-q'"]
+_CONTINUATIONS = [
+    "/data",
+    "/x",
+    "-backup",
+    ":backup",
+    "/..",
+    "/link",
+    "/.",
+    '"/y"',
+    "=z",
+    "'-q'",
+    "/$X",
+    "/*",
+    '"/$X"',
+    "'/$X'",
+    "/a\\ b",
+]
 
 
 @settings(max_examples=1000, deadline=None)
@@ -1170,6 +1236,26 @@ def test_a_rewrite_never_changes_which_file_a_shell_word_names(checkout, data) -
         # Rewritten, the word must not start like an assignment it was not.
         ("cat {c}/x=:{c}", "cat ./x=:{c}"),
         ("cat {c}/data/.=z", None),
+        # Only search-path variables hold lists; in any other assignment a colon
+        # or comma is part of the name.
+        ('X="{c}:backup"', None),
+        ('X="{c},b"', None),
+        ("PATH={c}/bin:$PATH", "PATH=bin:$PATH"),
+        ("PYTHONPATH=a:{c}", "PYTHONPATH=a:."),
+        ("XDG_DATA_DIRS={c}/share:/usr/share", "XDG_DATA_DIRS=share:/usr/share"),
+        # Nothing the shell would expand is rewritten.
+        ("cat {c}/$UNSET/../x", None),
+        ("cat {c}/*/../x", None),
+        ("cat {c}/a\\ b", None),
+        ("PATH={c}/b*n:a", None),
+        # Only option and assignment syntax hands a program a value after ``=``.
+        ("cat a.b={c}/x", None),
+        ("--x.y={c}/x", "--x.y=x"),
+        # Read without its quotes this is one path, which would hide the quoted
+        # one; the recorded text is read again and refuses it.
+        ("cat {c}{c}'{c}'", None),
+        # A trailing slash keeps the tail as written.
+        ('cat "{c}/"x.json', 'cat "./"x.json'),
     ],
 )
 def test_a_checkout_path_is_rewritten_only_where_the_shell_word_keeps_its_file(
@@ -1232,21 +1318,39 @@ def test_a_relative_path_that_would_read_as_local_is_written_dot_slash(checkout)
     assert relativize_repo_paths(recorded, repo=checkout) == recorded
 
 
-def test_a_relative_path_a_shell_would_expand_is_refused(checkout) -> None:
-    """``./$HOME/z`` still names the home directory to a shell, so it is not recorded."""
-    with pytest.raises(ManifestLocalPathError) as raised:
-        recordable_command(f"x --env {checkout}/$HOME/z", repo=checkout)
-
-    assert "`$HOME/z`" in str(raised.value)
-
-
-def test_relativizing_a_checkout_directory_named_home_is_idempotent(checkout) -> None:
-    """``<checkout>/$HOME/axiom-corpus`` must not become ``$HOME/axiom-corpus``, then ``.``."""
+@pytest.mark.parametrize(
+    ("command", "recorded"),
+    [
+        ("cat ~/{name}/x", "cat x"),
+        ('cat "$HOME/{name}/x"', 'cat "x"'),
+        # Quoted, or not at the start of the word, ``~`` is a literal name;
+        # single-quoted, so is ``$HOME``.
+        ('cat "~/{name}/x"', None),
+        ("cat '~/{name}/x'", None),
+        ("cat '$HOME/{name}/x'", None),
+        ("-o~/{name}/x", None),
+    ],
+)
+def test_a_home_prefix_is_expanded_only_where_the_shell_expands_it(
+    checkout, command, recorded
+) -> None:
+    text = command.format(name=checkout.name)
     with _home_above(checkout):
-        once = relativize_repo_paths(f"--in {checkout}/$HOME/{checkout.name}/data", repo=checkout)
+        if recorded is None:
+            with pytest.raises(ManifestLocalPathError):
+                recordable_command(text, repo=checkout)
+        else:
+            assert recordable_command(text, repo=checkout) == recorded
 
-        assert once == f"--in ./$HOME/{checkout.name}/data"
-        assert relativize_repo_paths(once, repo=checkout) == once
+
+def test_a_checkout_path_a_shell_would_expand_is_not_rewritten(checkout) -> None:
+    """``<checkout>/$HOME/z`` names whatever ``$HOME`` holds, so it stays as written."""
+    with _home_above(checkout):
+        command = f"--in {checkout}/$HOME/{checkout.name}/data"
+
+        assert relativize_repo_paths(command, repo=checkout) == command
+        with pytest.raises(ManifestLocalPathError):
+            recordable_command(command, repo=checkout)
 
 
 def test_a_dot_dot_after_a_symbolic_link_is_judged_where_the_link_points(checkout) -> None:

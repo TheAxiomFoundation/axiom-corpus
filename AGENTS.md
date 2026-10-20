@@ -41,12 +41,14 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
   parenthetical naming the run note under `docs/ingest-runs/`. The signer
   refuses any other path under `/Users`, `/home`, `/root`, `/private`, `/tmp`,
   `/var/folders`, `/var/tmp`, `/Volumes`, `/mnt` or `/media` (in any case,
-  after `-o` or `@`, and however spelled: `//Users`, `/var/../tmp`), any `~/`
-  or `$HOME/` path, and any `file:` URL, inside the checkout or not. A path
-  inside a source URL argument (its query or fragment) is the URL's and is
-  kept; whitespace or an unquoted `>`, `;`, `&` ends that argument. It only
-  rewrites a checkout path where the shell word still names the same file, and
-  refuses the rest. It also refuses a manifest with such a path in any field, and
+  after `-o`, `@` or a `$VAR`, and however spelled, quoted or escaped:
+  `//Users`, `/var/../tmp`, `/U\sers`), any `~/`, `$HOME/` or `$TMPDIR/` path,
+  and any `file:` URL, inside the checkout or not. A path inside a source URL
+  argument (its query or fragment) is the URL's and is kept; whitespace, an
+  unquoted `>`, `;` or `&`, or a command substitution ends that exemption. It
+  only rewrites a checkout path where the shell word still names the same file
+  (never where the shell would expand the name), and refuses the rest. It also
+  refuses a manifest with such a path in any field, and
   `tests/test_ingest_manifest_local_paths.py` fails CI on any that reaches the
   tree. `.axiom/ingest-manifest-local-paths.yaml` grandfathers the fourteen
   signed before the guard (axiom-corpus#896); it only shrinks.

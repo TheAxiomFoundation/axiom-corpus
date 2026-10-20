@@ -56,20 +56,24 @@ _TOKEN_REST = f"[^{_DELIMITERS}]*"
 # options taking an attached value (``-o/path``, ``-I/path``), and curl's
 # ``@file``.
 _LEAD = "(?:-[A-Za-z]+)?@?"
+# Detection also reads through variables in front of a path: unset, ``$X`` is
+# empty and ``$X/Users/...`` is ``/Users/...``, and the text names it anyway.
+_DETECTION_LEAD = rf"{_LEAD}(?:\$[A-Za-z_][A-Za-z0-9_]*)*"
 # The home directory and Windows per-user directories, by variable.
 _HOME_VARIABLE = (
-    r"(?:\$HOME|\$\{HOME\}|(?i:%(?:USERPROFILE|HOMEPATH|TEMP|TMP|LOCALAPPDATA|APPDATA)%))"
+    r"(?:\$HOME\b|\$\{HOME\}|\$TMPDIR\b|\$\{TMPDIR\}"
+    r"|(?i:%(?:USERPROFILE|HOMEPATH|TEMP|TMP|LOCALAPPDATA|APPDATA)%))"
 )
 
 # Every absolute path token; whether it lies under a root is decided after
 # normalizing it (``/./Users``, ``//private``, ``/var/../tmp``).
-_ABSOLUTE = re.compile(rf"{_AT_TOKEN_START}{_LEAD}(?P<absolute>/{_TOKEN_REST})")
+_ABSOLUTE = re.compile(rf"{_AT_TOKEN_START}{_DETECTION_LEAD}(?P<absolute>/{_TOKEN_REST})")
 _OTHER_PATHS = re.compile(
     "|".join(
         (
             # Any file: URL names a file on the machine that wrote it.
             rf"(?P<file_url>(?i:(?<![A-Za-z0-9+.-])file:/){_TOKEN_REST})",
-            rf"{_AT_TOKEN_START}{_LEAD}(?:"
+            rf"{_AT_TOKEN_START}{_DETECTION_LEAD}(?:"
             # A home-relative path: ~/... or ~user/...
             rf"(?P<tilde>~[A-Za-z0-9._-]*/{_TOKEN_REST})"
             # A Windows user profile.
@@ -137,6 +141,7 @@ class _ShellLayout:
     quote: tuple[str | None, ...]
     mark: tuple[bool, ...]
     boundary: tuple[bool, ...]
+    literal_quotes: frozenset[int] = frozenset()
 
     def word_start(self, index: int) -> int:
         while index > 0 and not self.boundary[index - 1]:
@@ -159,7 +164,7 @@ def _shell_layout(text: str) -> _ShellLayout:
     while True:
         layout, unclosed = _scan_shell(text, literal)
         if unclosed is None:
-            return layout
+            return _ShellLayout(layout.quote, layout.mark, layout.boundary, frozenset(literal))
         literal.add(unclosed)
 
 
@@ -199,13 +204,19 @@ def _inside_url(text: str, layout: _ShellLayout, start: int) -> bool:
     """Whether ``text[start:]`` continues a URL begun earlier in the same argument.
 
     A URL runs to the first whitespace (a URL holds none, quoted or not) or
-    unquoted shell operator (``>``, ``;``, ``&``...). A token can start at the
-    ``//`` of the URL's own ``://`` (after its colon), so a scheme ending up to
-    two characters past ``start`` counts.
+    unquoted shell operator (``>``, ``;``, ``&``...), and an argument holding a
+    command substitution (``$(...)``, a backtick) is never treated as a URL's.
+    A token can start at the ``//`` of the URL's own ``://`` (after its colon),
+    so a scheme ending up to two characters past ``start`` counts.
     """
     url_start = start
     while url_start > 0 and not (layout.boundary[url_start - 1] or text[url_start - 1].isspace()):
         url_start -= 1
+    # A command substitution runs a command of its own, whose redirections and
+    # arguments are not the URL's text: no exemption across one.
+    for index in range(url_start, start):
+        if layout.quote[index] != "'" and (text[index] == "`" or text.startswith("$(", index)):
+            return False
     scheme = _URL_SCHEME.search(text, url_start, min(len(text), start + 2))
     return scheme is not None and scheme.start() < start
 
@@ -229,37 +240,35 @@ def find_local_paths(text: str) -> list[LocalPath]:
     A path is a ``file:`` URL; an absolute path that lies under one of
     ``LOCAL_PATH_ROOTS`` (any case) once ``//``, ``.`` and ``..`` are collapsed,
     or is the root itself; a home-relative path (``~/``, ``~user/``,
-    ``$HOME/``, ``${HOME}/``, ``%USERPROFILE%\\`` and the other Windows
-    per-user variables); or a Windows user profile (``C:\\Users\\``). All but
-    the variables must start a token: at the start of the text, or after
+    ``$HOME/``, ``${HOME}/``, ``$TMPDIR/``, ``%USERPROFILE%\\`` and the other
+    Windows per-user variables); or a Windows user profile (``C:\\Users\\``).
+    All but the variables must start a token: at the start of the text, or after
     whitespace, a quote, ``=``, ``:``, a shell operator or bracket, optionally
-    behind a short-option cluster or ``@`` (``-o/path``, ``@/path``).
+    behind a short-option cluster, ``@`` or variables (``-o/path``, ``@/path``,
+    ``$X/path``).
 
-    Not paths: a root later in a shell word than a URL's ``scheme://`` (the
-    URL's path, query or fragment, ``https://x.gov/?f=/home/a``; a shell
-    operator such as ``>`` or ``;`` ends the word); a root inside a relative
-    path (``data/tmp/``) or after a placeholder (``<scratchpad>/tmp/``); ``~``
-    or ``$HOME`` with no path after it.
+    The text is read twice: as written, and as a shell's words spell it once
+    quotes, backslash escapes and line continuations are removed
+    (``/U\\sers``, ``/U'se'rs`` and ``\\/Users`` are ``/Users``). A path found
+    in either reading is reported, at its span in ``text``. Expansions are not
+    evaluated: a glob, a brace list, a variable other than the home directory,
+    or a command's output is read as the text it is.
+
+    Not paths: a root later in a URL argument than its ``scheme://`` (the URL's
+    path, query or fragment, ``https://x.gov/?f=/home/a``; whitespace or an
+    unquoted shell operator such as ``>`` or ``;`` ends the argument, and one
+    holding a command substitution is no URL's); a root inside a relative path
+    (``data/tmp/``) or after a placeholder (``<scratchpad>/tmp/``); ``~`` or
+    ``$HOME`` with no path after it. A ``file:`` URL and a home-directory
+    variable are read wherever they appear, quoted or not, even inside another
+    URL or a placeholder's path.
     """
     layout = _shell_layout(text)
-    found: list[LocalPath] = []
-    for match in _ABSOLUTE.finditer(text):
-        start, end = match.span("absolute")
-        root = _root_of(match.group("absolute"))
-        if root is None or _inside_url(text, layout, start) or _after_placeholder(text, start):
-            continue
-        found.append(LocalPath(start, end, "absolute", root))
-    for match in _OTHER_PATHS.finditer(text):
-        kind = next(name for name in _OTHER_KINDS if match.group(name) is not None)
-        start, end = match.span(kind)
-        if kind != "file_url" and _inside_url(text, layout, start):
-            continue
-        root = ""
-        if kind == "home_variable":
-            variable = _HOME_VARIABLE_ROOT.match(match.group(kind))
-            root = variable.group() if variable else ""
-        found.append(LocalPath(start, end, kind, root))
-    # A path inside a longer one is reported as part of it.
+    found = _find_in_reading(text, list(range(len(text))), text, layout)
+    dequoted, origin = _dequote(text, layout.literal_quotes)
+    if dequoted != text:
+        found += _find_in_reading(dequoted, origin, text, layout)
+    # A path inside a longer one, or found in both readings, is reported once.
     found.sort(key=lambda path: (path.start, -path.end))
     reported: list[LocalPath] = []
     for path in found:
@@ -267,6 +276,74 @@ def find_local_paths(text: str) -> list[LocalPath]:
             continue
         reported.append(path)
     return reported
+
+
+def _find_in_reading(
+    reading: str, origin: list[int], text: str, layout: _ShellLayout
+) -> list[LocalPath]:
+    """The paths in ``reading``, a version of ``text`` whose ``i``-th character is ``text[origin[i]]``."""
+
+    def span(start: int, end: int) -> tuple[int, int]:
+        return origin[start], origin[end - 1] + 1
+
+    found: list[LocalPath] = []
+    for match in _ABSOLUTE.finditer(reading):
+        start, end = span(*match.span("absolute"))
+        root = _root_of(match.group("absolute"))
+        if (
+            root is None
+            or _inside_url(text, layout, start)
+            or _after_placeholder(reading, match.start("absolute"))
+        ):
+            continue
+        found.append(LocalPath(start, end, "absolute", root))
+    for match in _OTHER_PATHS.finditer(reading):
+        kind = next(name for name in _OTHER_KINDS if match.group(name) is not None)
+        start, end = span(*match.span(kind))
+        if kind != "file_url" and _inside_url(text, layout, start):
+            continue
+        root = ""
+        if kind == "home_variable":
+            variable = _HOME_VARIABLE_ROOT.match(match.group(kind))
+            root = variable.group() if variable else ""
+        found.append(LocalPath(start, end, kind, root))
+    return found
+
+
+def _dequote(text: str, literal_quotes: frozenset[int] = frozenset()) -> tuple[str, list[int]]:
+    """``text`` with quote marks, backslash escapes and line continuations removed.
+
+    Returns the result and, for each of its characters, the index in ``text``
+    it came from. Outside quotes a backslash escapes the next character and a
+    backslash-newline disappears; inside double quotes only ``$ ` " \\`` and a
+    newline can be escaped; inside single quotes nothing can. Backticks are kept,
+    and so is a quote in ``literal_quotes`` (one left open, as ``_shell_layout``
+    reads it).
+    """
+    out: list[str] = []
+    origin: list[int] = []
+    quote: str | None = None
+    index = 0
+    while index < len(text):
+        char = text[index]
+        escapable = None if quote == "'" else ('$`"\\\n' if quote == '"' else "")
+        if char == "\\" and escapable is not None and index + 1 < len(text):
+            following = text[index + 1]
+            if quote is None or following in escapable:
+                if following != "\n":
+                    out.append(following)
+                    origin.append(index + 1)
+                index += 2
+                continue
+        if quote is None and char in "'\"" and index not in literal_quotes:
+            quote = char
+        elif char == quote:
+            quote = None
+        else:
+            out.append(char)
+            origin.append(index)
+        index += 1
+    return "".join(out), origin
 
 
 def redact_local_paths(text: str) -> str:
@@ -359,6 +436,15 @@ _PATH_TOKEN = re.compile(
 _HAS_DELIMITER = re.compile(f"[{_DELIMITERS}]")
 _FILE_SCHEME_BEFORE = re.compile(r"(?i)(?<![A-Za-z0-9+.-])file:/*\Z")
 _ASSIGNMENT = re.compile(r"[A-Za-z_][A-Za-z0-9_]*=")
+# What may precede a path in its word: an option's or an assignment's ``=``, or
+# earlier entries of a search-path list (``PATH=a:``, ``PYTHONPATH=a:b:``).
+_VALUE_PREFIX = re.compile(r"(?:--?[A-Za-z0-9][A-Za-z0-9_.-]*|[A-Za-z_][A-Za-z0-9_]*)=")
+_LIST_VARIABLE = re.compile(r"(?:[A-Za-z_][A-Za-z0-9_]*)?(?:PATH|DIRS)=")
+_LIST_PREFIX = re.compile(r"(?:[A-Za-z_][A-Za-z0-9_]*)?(?:PATH|DIRS)=(?:[^:]*:)*")
+# Characters a shell expands where they are unquoted, and where double-quoted.
+_ACTIVE_UNQUOTED = frozenset("$`*?[{\\")
+_ACTIVE_DOUBLE_QUOTED = frozenset("$`\\")
+_HOME_PREFIX = re.compile(r"\$HOME|\$\{HOME\}")
 
 
 @dataclass(frozen=True)
@@ -455,20 +541,27 @@ def _recorded_form(
 
     The path is the shell word, or the part of it that option syntax hands a
     program as a value: what precedes it in the word, quote marks aside, must be
-    nothing, or end in ``=`` (``--base=``, ``VAR=``), or, in an assignment, in
-    ``:`` or ``,`` (``PATH=a:``). What follows it in the word is harmless when
-    it continues the path (``/...``) or the assignment's list (``:``, ``,``).
-    Anything else joins the path's last name, so the path's tail must stay as
-    written: ``"<checkout>"-backup`` is a sibling directory, not ``.-backup``,
-    and ``<checkout>/data/.=z`` is the file ``.=z`` in ``data``, not ``data=z``.
-    A path that spans a word boundary (an unquoted space) is never rewritten.
+    nothing, an option's or assignment's ``--name=`` / ``NAME=``, or earlier
+    entries of a search-path list (``PATH=a:``, any ``*PATH`` or ``*DIRS``
+    variable). What follows it in the word is harmless when it continues the
+    path (``/...``) or, in such a list, starts the next entry (``:``). Anything
+    else joins the path's last name, so the path's tail must stay as written:
+    ``"<checkout>"-backup`` is a sibling directory, not ``.-backup``, and
+    ``<checkout>/data/.=z`` is the file ``.=z`` in ``data``, not ``data=z``.
+
+    Nothing is rewritten where the shell would compute the name: a word (in a
+    search-path list, the entry) with an unquoted ``$``, backtick, glob, brace
+    or backslash (or a double-quoted ``$``, backtick or backslash) other than a
+    leading ``$HOME``; a ``~`` that is quoted or does not start the word; a
+    single-quoted ``$HOME``. Nor is a path that spans a word boundary (an
+    unquoted space).
 
     The form is ``relative``, written ``./relative`` where it could be read as
     something else (see ``_unambiguous``), including where the rewritten word
     would start like an assignment (``x=:...``), which a second reading would
     take apart differently.
     """
-    lead_start, (start, end) = match.start("lead"), match.span("path")
+    lead, lead_start, (start, end) = match.group("lead"), match.start("lead"), match.span("path")
     if any(layout.boundary[index] for index in range(lead_start, end)):
         return None
     word_start, word_end = layout.word_start(lead_start), layout.word_end(end)
@@ -476,17 +569,39 @@ def _recorded_form(
     def unquoted(begin: int, stop: int) -> str:
         return "".join(text[index] for index in range(begin, stop) if not layout.mark[index])
 
-    in_assignment = _ASSIGNMENT.match(unquoted(word_start, word_end)) is not None
-    separators = ":," if in_assignment else ""
     before, after = unquoted(word_start, lead_start), unquoted(end, word_end)
-    if before and not (before.endswith("=") or before[-1] in separators):
+    path = match.group("path")
+    quote = layout.quote[start]
+    if path.startswith("~") and (quote is not None or before or lead):
+        return None  # the shell expands ``~`` only unquoted, at the start of a word
+    home = _HOME_PREFIX.match(path)
+    if home and quote == "'":
+        return None  # single-quoted, ``$HOME`` is literal
+    in_list = _LIST_VARIABLE.match(unquoted(word_start, word_end)) is not None
+    # The text that names this path's file: the word, or in a search-path list
+    # only this entry (``PATH=<checkout>/bin:$PATH`` expands ``$PATH`` apart).
+    entry_start, entry_end = word_start, word_end
+    if in_list:
+        entry_start = max(word_start, text.rfind(":", word_start, lead_start) + 1)
+        colon = text.find(":", end, word_end)
+        entry_end = word_end if colon < 0 else colon
+    skipped = range(start, start + home.end()) if home else range(0)
+    for index in range(entry_start, entry_end):
+        if layout.mark[index] or index in skipped:
+            continue
+        active = _ACTIVE_UNQUOTED if layout.quote[index] is None else _ACTIVE_DOUBLE_QUOTED
+        if layout.quote[index] in (None, '"') and text[index] in active:
+            return None
+    if before and not (
+        _VALUE_PREFIX.fullmatch(before) or (in_list and _LIST_PREFIX.fullmatch(before))
+    ):
         return None
-    glued = bool(after) and after[0] != "/" and after[0] not in separators
+    glued = bool(after) and after[0] != "/" and not (in_list and after[0] == ":")
     # A tail glued to what follows must stay exactly as written.
     if glued and not text[start:end].endswith("/" + relative.removeprefix("./")):
         return None
-    recorded = _unambiguous(relative, match.group("lead"))
-    if not before and not match.group("lead") and _ASSIGNMENT.match(recorded + after):
+    recorded = _unambiguous(relative, lead)
+    if not before and not lead and _ASSIGNMENT.match(recorded + after):
         recorded = "./" + recorded
     return recorded
 
@@ -519,15 +634,13 @@ def _relative_to_checkout(token: str, *, roots: list[str], home: str) -> str | N
 def _unambiguous(relative: str, lead: str) -> str:
     """``relative``, prefixed ``./`` where it could be read as something else.
 
-    That is where it would read as a home-relative path, curl's ``@file``, an
-    option or a variable (``~cache``, ``@x``, ``-v``, ``$HOME/x``), or where it
-    follows a short option and would run into it: ``-o`` and ``private/var/x``
-    would read as the option ``-oprivate`` with the path ``/var/x``. A relative
-    path that a shell would still expand (``./$HOME/z``) is refused by
-    ``recordable_command``; the prefix only keeps a second rewrite from
-    reading it as the home directory.
+    That is where it would read as a home-relative path, curl's ``@file`` or an
+    option (``~cache``, ``@x``, ``-v``), or where it follows a short option and
+    would run into it: ``-o`` and ``private/var/x`` would read as the option
+    ``-oprivate`` with the path ``/var/x``. (A path holding ``$`` is never
+    rewritten; see ``_recorded_form``.)
     """
-    if relative.startswith(("~", "@", "-", "$")) or (
+    if relative.startswith(("~", "@", "-")) or (
         lead[-1:].isalpha() and not relative.startswith(".")
     ):
         return "./" + relative

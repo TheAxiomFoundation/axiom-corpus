@@ -202,15 +202,16 @@ def recordable_command(command: str, *, repo: Path) -> str:
     rewrites = repo_rewrites(command, repo=repo)
     recorded = relativize_repo_paths(command, repo=repo)
     unresolved: dict[str, None] = {}
-    # A local path that no rewrite covers is outside the checkout.
+    # A local path that starts in no rewrite is outside the checkout. (One that
+    # starts in a rewrite and runs on, as ``"<checkout>"/x.json`` reads once
+    # its quotes are removed, continues the checkout path; the recorded text is
+    # read again below.)
     for path in find_local_paths(command):
-        if not any(
-            rewrite.start <= path.start and path.end <= rewrite.end for rewrite in rewrites
-        ):
+        if not any(rewrite.start <= path.start < rewrite.end for rewrite in rewrites):
             unresolved[command[path.start : path.end]] = None
-    # By construction a rewrite never reads as a local path (it is written
-    # ``./~cache`` rather than ``~cache``), so this finds nothing unless that
-    # changes; the recorded text is what gets signed, so it is read as well.
+    # The recorded text is what gets signed, so it is read as well. The check
+    # above can miss a path: read without its quotes, ``<checkout><checkout>'<x>'``
+    # is one longer path, starting in the rewrite, that hides the quoted one.
     for path in find_local_paths(recorded):
         unresolved[recorded[path.start : path.end]] = None
     if unresolved:
