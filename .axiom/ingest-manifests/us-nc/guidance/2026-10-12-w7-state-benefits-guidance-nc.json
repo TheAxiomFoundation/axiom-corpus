@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/guidance/2026-10-12-w7-state-benefits-guidance-nc.json",
+      "sha256": "7934524df0597abd9be5a430674424b4fd2e17bb3e36e9e109b51e401da34f62"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/guidance/2026-10-12-w7-state-benefits-guidance-nc.json",
+      "sha256": "f6e9fd7125ea23749842d4e6943c5b5422a5f0aa97849e780f4bfa4912ec2bff"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/guidance/2026-10-12-w7-state-benefits-guidance-nc.jsonl",
+      "sha256": "610f3d16233633ad6611aef8396812223bfe2ac98b51396a33acde4389823cb2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/guidance/2026-10-12-w7-state-benefits-guidance-nc/official-documents/us-nc-guidance-dss-economic-services-admin-letter-6-2005.pdf",
+      "sha256": "ab742e6d7a4f7792b7641af357bd9f3b41d4089704bcb0cf0914ec5f483a48d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-13T12:06:36.692357+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "brmg2aykq1RiGKSqmDpLzYpWcZ6a4WgFyHEydfOmyRGvLHrTJb4p/BMvRy8Ng8X8G74L2sQ9pJtmLWlOCZS6CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-guidance-nc"
+}

@@ -1,0 +1,23 @@
+# Wave 6 tax-ia-mi (2026-10-06): Indiana Code Title 4 from the General Assembly's official 2026 HTML
+# release, for IC 4-10-22 (use of excess reserves; automatic taxpayer refund), which the program
+# bundles cite through Justia mirrors. Run as:
+#   uv run axiom-corpus-ingest extract-indiana-code --base <corpus> --version 2026-10-06-w6-income-tax-statute-in \
+#     --only-title 4 --source-year 2026 --download-dir <cache> --source-as-of 2026-10-06 --expression-date 2026-06-30
+# (scope us-in/statute/2026-10-06-w6-income-tax-statute-in-us-in-title-4). The adapter fetches the
+# release ZIP with its own browser user agent, as the 2026-07-16 Title 6 run did.
+version: "2026-10-06-w6-income-tax-statute-in"
+sources:
+  - source_id: us-in-code
+    jurisdiction: us-in
+    document_class: statute
+    adapter: indiana-code
+    source_url: https://iga.in.gov/ic/2026/2026-Indiana-Code-html.zip
+    version: "2026-10-06-w6-income-tax-statute-in"
+    options:
+      source_year: 2026
+      source_as_of: "2026-10-06"
+      expression_date: "2026-06-30"
+      only_title: "4"
+    metadata:
+      source_authority: Indiana General Assembly
+      source_scope_note: 2026 Indiana Code title 4 (release ZIP last modified 2026-06-30) from the official IGA HTML release.

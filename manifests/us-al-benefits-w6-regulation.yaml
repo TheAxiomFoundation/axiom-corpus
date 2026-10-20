@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-benefits-regulation-al
+documents:
+- source_id: us-al-regulation-alabama-administrative-code-480-4-3
+  jurisdiction: us-al
+  document_class: regulation
+  title: 'Alabama Administrative Code Chapter 480-4-3: Benefits (Department of Workforce)'
+  source_url: https://admincode.legislature.state.al.us/administrative-code/480-4-3
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-al/regulation/alabama-administrative-code/480/4/3
+  download_url: https://admincode.legislature.state.al.us/api/chapter/480-4-3
+  metadata:
+    primary_source: true
+    source_authority: Alabama Legislative Services Agency (Alabama Administrative Code)
+    document_subtype: administrative_code_chapter_pdf
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 8)
+    source_url_note: source_url is the chapter page the bundle cites (a JavaScript application); download_url is the publisher's
+      chapter PDF route, the same /api route as the held 660-2-4 chapter
+    wave6_rows:
+    - 8
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

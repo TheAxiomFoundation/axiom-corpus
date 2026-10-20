@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-rulemaking-la
+documents:
+- source_id: us-la-rulemaking-register-2003-04
+  jurisdiction: us-la
+  document_class: rulemaking
+  title: Louisiana Register, April 2003 (Vol. 29, No. 04)
+  source_url: https://www.doa.louisiana.gov/media/m23b1mhf/0304.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2003-04-20'
+  citation_path: us-la/rulemaking/register/2003-04
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Division of Administration, Office of the State Register
+    document_subtype: state_register_issue
+    program: SNAP
+    expression_date_note: the April 2003 issue (published on the 20th of the month)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 111)
+    wave6_rows:
+    - 111
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

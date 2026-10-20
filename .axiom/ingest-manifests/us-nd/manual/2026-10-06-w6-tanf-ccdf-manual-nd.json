@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd.json",
+      "sha256": "f4ccfc7995656f74afc07e8b363e38b8e80be3e09e58bf76ef9b23e7344b3a4b"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd.json",
+      "sha256": "a729c720985a7cfd8409d4b9229eb3e00c362706dc0c7d4c50e1cd64c9ff0409"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd.jsonl",
+      "sha256": "b10e757425fb38e3a94162987729fee4be21898f9d90c873ce0fb6a07a8bb4d3"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd/official-documents/us-nd-w6-hhs-ccap-ml-3909-2025-05-01.pdf",
+      "sha256": "62e143ebb7a286c3c6d0f28c146bea6011a49f7423c48795e43b0da74fc001ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd/official-documents/us-nd-w6-hhs-tanf-archive-2016-ml-3482-400-19-55-20-15.html",
+      "sha256": "bca93c6324384f8e4b994f0a2db2844dc8e9b00e63f58c7dc433265bf4bd1a4c"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd/official-documents/us-nd-w6-hhs-tanf-archive-2023-ml-3740-400-19-110-05.html",
+      "sha256": "0217e9e079950f6ff297190e8f4e23be3d623d808300457139564c0b6bfe82c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd/official-documents/us-nd-w6-hhs-tanf-archive-2024-ml-3869-400-19-110-05.html",
+      "sha256": "6d18aec4cff281bbdb7b0be9d9187a0bc93cc38112cde76feee6b7f2c845c453"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/manual/2026-10-06-w6-tanf-ccdf-manual-nd/official-documents/us-nd-w6-hhs-tanf-archive-2025-release-25-1-400-19-110-05.html",
+      "sha256": "4b5905f2909b1d54a588972cd747a530c213a52c46650e5b49cced6cdcbf06b5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:55:27.354508+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KWtTwB4Jcwd4yFm5GDQmkfNjHM0Id3vPc4an5D0G4GYMavmstB+dBAus/5fQuMsStpekguD5bhKXF8fPqSguCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-nd"
+}

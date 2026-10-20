@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/guidance/2026-10-06-w6-tanf-ccdf-guidance-tn.json",
+      "sha256": "c378e4cf98189e35289e4753175b8712cafcc5a0f12659d45a66709d7bd9b8f6"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/guidance/2026-10-06-w6-tanf-ccdf-guidance-tn.json",
+      "sha256": "552c5d608256646ae2360ec494fe31d7d5519193ce774368eb9a4cd9b48a98c3"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/guidance/2026-10-06-w6-tanf-ccdf-guidance-tn.jsonl",
+      "sha256": "36536de5e8b11d9a942e7f30299cf50c3f450cbf2e6ee279375ca8aab5aceb81"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/guidance/2026-10-06-w6-tanf-ccdf-guidance-tn/official-documents/us-tn-w6-dhs-update-on-child-care-funding.html",
+      "sha256": "de2ff4bfd09e3967dce8a80a37ce3944cc93f0a9ffd9a9bf2a03319c7883b9da"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:58:55.109278+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YzV7lgSia7GJD1sgGPwXtLiFcezA6I91hsI1Zmt3mqLKIS0xcPoLdkXMyHJIYDPTLAFz3Tr1nnA1IYdNMjtWBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-tn"
+}

@@ -1,0 +1,27 @@
+version: '2026-09-15'
+documents:
+- source_id: us-ny-tax-it-201-ty2025
+  jurisdiction: us-ny
+  document_class: form
+  title: Form IT-201 Resident Income Tax Return, full year January 1, 2025, through December 31, 2025
+  source_url: https://www.tax.ny.gov/pdf/current_forms/it/it201_fill_in.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ny/form/tax/ty2025/it-201
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Taxation and Finance
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.tax.ny.gov/forms/income_fullyear_forms.htm
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.tax.ny.gov/forms/income_fullyear_forms.htm
+      (read 2026-09-14)
+    page_count_at_research: 4
+    first_page_first_line: IT-201 Department of Taxation and Finance Resident Income Tax Return
+    source_note: The IT-201-I instructions (with the tax tables and rate schedules) are already released in us-ny/form/2026-06-05-ny-tax-current-forms;
+      only the form is taken. The current_forms path is not year-stamped.

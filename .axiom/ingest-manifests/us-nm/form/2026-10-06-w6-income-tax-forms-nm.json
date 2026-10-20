@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/form/2026-10-06-w6-income-tax-forms-nm.json",
+      "sha256": "a6ffb6014fb38e02bed30b6975d3e119602cbead37a95d5cf6ca4ad0113fb0cc"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/form/2026-10-06-w6-income-tax-forms-nm.json",
+      "sha256": "c3eacae390e5e6922d352e4eff710604005df7a2d7272c562d6e3e9601040519"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/form/2026-10-06-w6-income-tax-forms-nm.jsonl",
+      "sha256": "0abf03db74fb8fe994f5ff0036feb765a80e8f37b4e57ed62d18dfd4652dffdf"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2021-pit-1-instructions.pdf",
+      "sha256": "211737f2b1ba80f9fd598f2d9dca58cbfedae631d32e4e2800f96e2f25cf28f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2021-pit-packet.pdf",
+      "sha256": "03b38f1724b798aa533cbb8fe969347c5286ed866bfc6dc83cb49c6eec05defe"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2021-pit-rc.pdf",
+      "sha256": "53c41357252e8491474646595122516bdec32c8e5b96fa0a7a7dfe768e0677ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2022-pit-adj-instructions.pdf",
+      "sha256": "7bcc16a82776726b6642f7f9665da758e54b5d917c5895a472cd99c68397a4d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2022-pit-adj.pdf",
+      "sha256": "3e2ec32b304c4153f295042440c007f3b6513a49a2b058519167ad4dcb85d317"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2022-pit-packet.pdf",
+      "sha256": "6d0695fc5e7a7588792f73a4015c1c37d7f590499d7526f0d3f2a0a24c33db46"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2023-pit-adj-instructions.pdf",
+      "sha256": "a09db86a21c0950c94c1117535282d171625da90c15859d9a0673d86ba688a7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2023-pit-adj.pdf",
+      "sha256": "58e58ce5f3389093af599ce8688e9b0c5441de7aac92b10582c2d2ef044bf7ed"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2023-pit-packet.pdf",
+      "sha256": "3430adac552a1fa80a59ae71daaaf49abd85897bd68eb20797adcb5a9a8bb2a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2024-pit-adj.pdf",
+      "sha256": "7ebf4b41be575948c0beca3798deaff5b8ed57c746f8438d569016e1e2893573"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2024-pit-packet.pdf",
+      "sha256": "51a671282a774921afcff9dad143d51d3aa204735fd41fe7f801000f7803e4e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/form/2026-10-06-w6-income-tax-forms-nm/official-documents/us-nm-form-trd-ty2025-pit-packet.pdf",
+      "sha256": "4275460485476db10133817a9d25ac3fa8fc7a97e67068467607865d206be982"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:56:14.437756+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oFMm/GoTfUHXJdd9YO605HWDgxZa/9d0lBU4McwW8/jWJA0FEMe77TaaNmcEXxeyKMQCknPkXRhm40R2LRyXAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-nm"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "a378443ac25561b75837a48ffb2dfbb27747cabba1230f3a03df704f68dd4e8c"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "9a4e7d1f9540534443722eec533ecbe67d7b9d154c0c487c6f965f90c3d0fb34"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "7de61f3a7241fc8afe4d680b8a80a66ff1df5f1f9c50cbcdf3ce1e977222c747"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mn-department-of-revenue-form-m1-instructions-ty2025.pdf",
+      "sha256": "a07232c8b24f32a455bf818b4fec6063b6ff5f9d59319167b4c3a6c6606b42ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-mn-department-of-revenue-form-m1-ty2025.pdf",
+      "sha256": "6207b7b0ecbcf5d87effd4ead8f3c6e326b6807997b9b0ffe79bb755d115f268"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:41.432813+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6E5yQC15/OEuQNZrEqftqxX+6DEOcqDW+FuK1FvKMaONTByDJUDg4bj2UkHf3QRivADQNn0wS0MmRiAnsLrYBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

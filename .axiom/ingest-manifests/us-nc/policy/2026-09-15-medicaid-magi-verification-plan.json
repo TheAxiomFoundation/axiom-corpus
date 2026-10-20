@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "4fe7d430ade34663806bc72393d705832fbf17893a811c19e3330f7ceb5bea7b"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "a12852f018264df0f3cbbe99a72820e9ca051b42d2311b43afb210e2afb0584d"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "f19d7bfe163c909f6b73b5246fb6b586216d0fb8afd5b576330c7740a4e69749"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-nc-cms-magi-verification-plan-north-carolina-verification-plan-template-final.pdf",
+      "sha256": "11b445bcf3eccca71e0b0d456855982d6767cdd7a40d4eeced4a68004646f0f6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:31.758447+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2pNBExgUAlECK1VwNWqLtODVKO5YChyMp6bcom1ao10YgTcKaRee1+KkKQcPVqmtzDK59U2eWCKloEA9juhyDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

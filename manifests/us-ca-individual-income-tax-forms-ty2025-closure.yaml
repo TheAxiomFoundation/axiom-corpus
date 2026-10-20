@@ -1,0 +1,49 @@
+version: '2026-09-15'
+documents:
+- source_id: us-ca-ftb-form-540-ty2025
+  jurisdiction: us-ca
+  document_class: form
+  title: 2025 Form 540 California Resident Income Tax Return
+  source_url: https://www.ftb.ca.gov/forms/2025/2025-540.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ca/form/ftb/ty2025/form-540
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: California Franchise Tax Board
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.ftb.ca.gov/forms/index.html
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.ftb.ca.gov/forms/index.html
+      (read 2026-09-14)
+    page_count_at_research: 6
+    first_page_first_line: TAXABLE YEAR 2025 FORM 540
+- source_id: us-ca-ftb-form-540-booklet-ty2025
+  jurisdiction: us-ca
+  document_class: form
+  title: 2025 Personal Income Tax Booklet, California 540 Forms & Instructions
+  source_url: https://www.ftb.ca.gov/forms/2025/2025-540-booklet.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ca/form/ftb/ty2025/form-540-booklet
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: California Franchise Tax Board
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://www.ftb.ca.gov/forms/2025/2025-540-booklet.html
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://www.ftb.ca.gov/forms/2025/2025-540-booklet.html
+      (read 2026-09-14)
+    page_count_at_research: 80
+    first_page_first_line: CALIFORNIA 540 Forms & Instructions 2025 Personal Income Tax Booklet
+    source_note: The 2025 tax rate schedules are a section of this booklet; the separate 2025 tax table and rate schedules
+      are already released as us-ca/form/2026-07-23-ca-2025-tax-materials-for-2026-estimates and are not re-taken.

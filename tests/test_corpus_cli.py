@@ -3354,6 +3354,47 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
     assert payload["ok"] is True
     assert payload["error_count"] == 0
     assert payload["warning_count"] == 0
+    # Several selectors in one pass print the same report as one run each.
+    second = release_dir / "test-release-v2.json"
+    second.write_text(
+        json.dumps(
+            {
+                "name": "test-release-v2",
+                "scopes": [
+                    {"jurisdiction": "us-co", "document_class": "policy", "version": "2026-04-30"},
+                    {"jurisdiction": "us-co", "document_class": "policy", "version": "missing"},
+                ],
+            }
+        )
+    )
+    singles = []
+    for path in (release_path, second):
+        code = main(["validate-release", "--base", str(store.root), "--release", str(path)])
+        singles.append((code, json.loads(capsys.readouterr().out)))
+    exit_code = main(
+        [
+            "validate-release",
+            "--base",
+            str(store.root),
+            "--release",
+            str(release_path),
+            "--release",
+            str(second),
+            "--workers",
+            "2",
+        ]
+    )
+    out = capsys.readouterr().out
+    decoder = json.JSONDecoder()
+    payloads, index = [], 0
+    while index < len(out.strip()):
+        payload, index = decoder.raw_decode(out, index)
+        payloads.append(payload)
+        while index < len(out) and out[index].isspace():
+            index += 1
+    assert payloads == [payload for _, payload in singles]
+    assert [code for code, _ in singles] == [0, 2]
+    assert exit_code == 2
 
 
 def test_resolve_encoded_paths_supports_monorepo_and_legacy_layouts(tmp_path):

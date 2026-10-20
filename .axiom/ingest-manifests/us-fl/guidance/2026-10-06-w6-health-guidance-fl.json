@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/guidance/2026-10-06-w6-health-guidance-fl.json",
+      "sha256": "d3b826ee0955a897577c72dd9668badd6b490e940953985db49fc3a1b443104a"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/guidance/2026-10-06-w6-health-guidance-fl.json",
+      "sha256": "c534e47d4af79eb23a4f2537722a6ad555a359ef2a1548d3a6b90abccf2bc8ea"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/guidance/2026-10-06-w6-health-guidance-fl.jsonl",
+      "sha256": "774fe4463d356dcc715b2c2c270e1930d15268a59dc428e650d65a893d14798c"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/guidance/2026-10-06-w6-health-guidance-fl/official-documents/us-fl-w6-health-florida-healthy-kids-kidcare-income-guidelines-2025.pdf",
+      "sha256": "f654b66211e642784ff3cfc176a228173cfc774a73c2475183c8b0df3d788de1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:31.744236+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "E57biBWhJ8qpTc+31Ba/mUvTGWP0DgV9JqdcutnXYxftfPgm/DnsxJTIxYJH1w1jAVkb88UFrfMIMXhcvjy/DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-fl"
+}

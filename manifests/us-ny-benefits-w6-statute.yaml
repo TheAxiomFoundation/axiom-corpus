@@ -1,0 +1,95 @@
+version: 2026-10-06-w6-benefits-statute-ny
+documents:
+- source_id: us-ny-statute-bills-2021-s7148
+  jurisdiction: us-ny
+  document_class: statute
+  title: New York Senate Bill S7148 (2021-2022 Regular Sessions), bill text
+  source_url: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S7148&term=2021&Text=Y
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2021-06-02'
+  citation_path: us-ny/statute/bills/2021/s7148
+  extraction:
+    html_content_selector: '#legcontent'
+    html_text_selector: pre
+  metadata:
+    primary_source: true
+    source_authority: New York State Assembly (legislative information system)
+    document_subtype: bill_text
+    program: Unemployment insurance
+    expression_date_note: introduced June 2, 2021
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 179)
+    wave6_rows:
+    - 179
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-statute-bills-2025-s3006
+  jurisdiction: us-ny
+  document_class: statute
+  title: New York Senate Bill S3006 (2025-2026 Regular Sessions), bill text
+  source_url: https://assembly.state.ny.us/leg/?default_fld=&leg_video=&bn=S03006&term=2025&Text=Y
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/statute/bills/2025/s3006
+  extraction:
+    html_content_selector: '#legcontent'
+    html_text_selector: pre
+  metadata:
+    primary_source: true
+    source_authority: New York State Assembly (legislative information system)
+    document_subtype: bill_text
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row )
+    wave6_rows: []
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-statute-LAB-527
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Labor Law § 527
+  source_url: https://www.nysenate.gov/legislation/laws/LAB/527
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/statute/LAB/527
+  request:
+    browser_impersonation: chrome120
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 193)
+    access_note: www.nysenate.gov answers HTTP 403 (Cloudflare) to the plain corpus client and serves a Chrome TLS fingerprint;
+      the documented fallback of docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md (TLS verified)
+    wave6_rows:
+    - 193
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ny-statute-LAB-590
+  jurisdiction: us-ny
+  document_class: statute
+  title: N.Y. Labor Law § 590
+  source_url: https://www.nysenate.gov/legislation/laws/LAB/590
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ny/statute/LAB/590
+  request:
+    browser_impersonation: chrome120
+  extraction:
+    html_content_selector: div.nys-openleg-result-text
+  metadata:
+    primary_source: true
+    source_authority: New York State Senate (OpenLegislation)
+    document_subtype: codified_statute_section
+    program: Unemployment insurance
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 194)
+    access_note: www.nysenate.gov answers HTTP 403 (Cloudflare) to the plain corpus client and serves a Chrome TLS fingerprint;
+      the documented fallback of docs/ingest-runs/2026-09-14-state-tax-statute-ty2026.md (TLS verified)
+    wave6_rows:
+    - 194
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

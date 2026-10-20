@@ -1,0 +1,66 @@
+version: 2026-10-06-w6-income-tax-guidance-ct
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Connecticut
+documents:
+- source_id: us-ct-w6-drs-tssb-2022-5
+  jurisdiction: us-ct
+  document_class: guidance
+  title: TSSB 2022-5, Frequently Asked Questions Concerning the Child Tax Rebate
+  source_url: https://portal.ct.gov/-/media/drs/publications/tssb/2022/tssb-2022-5.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/guidance/drs/tssb/2022-5
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    document_subtype: special_notice
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: TSSB 2022-5 TAXPAYER SERVICE SPECIAL BULLETIN
+    wave6_work_order_rows:
+    - 296
+- source_id: us-ct-w6-drs-child-tax-rebate-overview
+  jurisdiction: us-ct
+  document_class: guidance
+  title: 2022 Child Tax Rebate (DRS page)
+  source_url: https://portal.ct.gov/drs/credit-programs/child-tax-rebate/overview
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/guidance/drs/child-tax-rebate-overview
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    document_subtype: agency_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 2022 Child Tax Rebate
+    wave6_work_order_rows:
+    - 297
+- source_id: us-ct-w6-drs-state-tax-developments-2025-income-tax
+  jurisdiction: us-ct
+  document_class: guidance
+  title: '2025 State Tax Developments: Income Tax (DRS page)'
+  source_url: https://portal.ct.gov/drs/miscellaneous-taxes/other-tax-page/state-tax-developments/2025-developments/income-tax
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ct/guidance/drs/state-tax-developments/2025/income-tax
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Revenue Services
+    document_subtype: agency_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Income Tax (2025 developments)
+    wave6_work_order_rows:
+    - 298

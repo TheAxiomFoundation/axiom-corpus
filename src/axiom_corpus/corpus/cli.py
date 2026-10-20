@@ -46,8 +46,9 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_check_cli import add_content_check_parser
 from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
-from axiom_corpus.corpus.corpus_locks import LockFormatError
+from axiom_corpus.corpus.corpus_locks import LockFormatError, scope_for_path
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -126,21 +127,23 @@ from axiom_corpus.corpus.r2 import (
     DEFAULT_RELEASE_ARTIFACT_PREFIXES,
     build_artifact_report,
     build_artifact_report_with_r2,
+    iter_local_artifacts,
     load_r2_config,
     sync_artifacts_to_r2,
 )
 from axiom_corpus.corpus.regulation_completion import (
     build_regulation_completion_report,
 )
-from axiom_corpus.corpus.release_quality import validate_release
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, ReleasePolicyError
+from axiom_corpus.corpus.release_quality import validate_release, validate_releases
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.resolver import (
     CorpusNotMaterializedError,
     _is_corpus_base,
     cli_repo,
+    locked_entries_under,
     materialize_cli_inputs,
     require_materialized,
-    resolver_for,
 )
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
@@ -3060,6 +3063,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_chapter=only_title,
+            only_act=_optional_text(options.get("only_act")),
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
         )
@@ -5204,7 +5208,9 @@ def _cmd_section_provisions(args: argparse.Namespace) -> int:
 
 
 def _cmd_validate_release(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.release)
+    if len(args.release) > 1:
+        return _cmd_validate_releases(args)
+    release_path = resolve_release_manifest_path(args.release[0])
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
     if args.include_r2:
@@ -5229,6 +5235,18 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
             release_name=release.name,
             release_scopes=release.scope_keys,
         )
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     report = validate_release(
         args.base,
         release,
@@ -5236,6 +5254,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         max_issues=args.max_issues,
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
+        policy=policy,
     )
     payload = report.to_mapping()
     payload["release_path"] = str(release_path)
@@ -5245,6 +5264,64 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         payload["written_to"] = str(args.output)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0 if report.ok else 2
+
+
+def _cmd_validate_releases(args: argparse.Namespace) -> int:
+    """Several selectors in one pass: each distinct scope is deep-checked once
+    (``validate_releases``) and the local corpus tree is walked once; each
+    selector's report equals its own ``validate-release`` run."""
+    if args.output:
+        raise SystemExit("validate-release: --output takes a single --release")
+    if args.include_r2:
+        raise SystemExit("validate-release: --include-r2 takes a single --release")
+    release_paths = [resolve_release_manifest_path(name) for name in args.release]
+    releases = [ReleaseManifest.load(path) for path in release_paths]
+    prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
+    walked = iter_local_artifacts(args.base, prefixes=prefixes)
+    artifact_reports = [
+        build_artifact_report(
+            args.base,
+            prefixes=prefixes,
+            supabase_counts_path=args.supabase_counts,
+            release_name=release.name,
+            release_scopes=release.scope_keys,
+            local_artifacts=walked,
+        )
+        for release in releases
+    ]
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
+    reports = validate_releases(
+        args.base,
+        releases,
+        artifact_reports=artifact_reports,
+        max_issues=args.max_issues,
+        strict_warnings=args.strict_warnings,
+        ignore_r2_missing=args.ignore_r2_missing,
+        workers=args.workers,
+        policy=policy,
+    )
+    for report, release_path in zip(reports, release_paths, strict=True):
+        payload = report.to_mapping()
+        payload["release_path"] = str(release_path)
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    failed = [report.release_name for report in reports if not report.ok]
+    print(
+        f"validate-release: {len(reports)} selectors, {len(reports) - len(failed)} ok"
+        + (f"; failed: {', '.join(failed)}" if failed else ""),
+        file=sys.stderr,
+    )
+    return 2 if failed else 0
 
 
 def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
@@ -5663,6 +5740,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
             "coverage",
             "verify-release-coverage",
             "validate-release",
+            "content-check",
             "snapshot-provision-counts",
             "analytics",
             "artifact-report",
@@ -7540,7 +7618,21 @@ def build_parser() -> argparse.ArgumentParser:
         help="Validate release artifacts, coverage, provision invariants, and optional R2/Supabase state.",
     )
     validate_release_cmd.add_argument("--base", type=Path, required=True)
-    validate_release_cmd.add_argument("--release", required=True)
+    validate_release_cmd.add_argument(
+        "--release",
+        action="append",
+        required=True,
+        help=(
+            "Release selector path or name; repeat to validate several selectors in one "
+            "pass, each distinct scope checked once (one report per selector)."
+        ),
+    )
+    validate_release_cmd.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Processes for the per-scope checks when several --release are given.",
+    )
     validate_release_cmd.add_argument("--supabase-counts", type=Path)
     validate_release_cmd.add_argument(
         "--prefix",
@@ -7565,6 +7657,8 @@ def build_parser() -> argparse.ArgumentParser:
     validate_release_cmd.add_argument("--max-issues", type=int, default=200)
     validate_release_cmd.add_argument("--output", type=Path)
     validate_release_cmd.set_defaults(func=_cmd_validate_release)
+
+    add_content_check_parser(sub)
 
     state_statute_completion = sub.add_parser(
         "state-statute-completion",
@@ -7815,6 +7909,14 @@ _CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
 }
 
 
+def _name_in(repo: Path, path: Path) -> str | None:
+    """``path`` relative to ``repo`` as spelled (through any links), if below it."""
+    try:
+        return path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+
+
 def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     classes = _CORPUS_WIDE_COMMANDS.get(command)
     base = getattr(args, "base", None)
@@ -7828,21 +7930,22 @@ def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     if command == "analytics":
         # Analytics reads one version (and its "<version>-*" parts) of the
         # jurisdictions and classes it reports on; require exactly those files.
-        resolver = resolver_for(repo)
-        if resolver is None or not resolver.active:
-            return []
-        resolver.require_valid_locks()
+        # Every lock that applies counts, such as a shared checkout's where a
+        # class directory links to it (docs/corpus-storage.md, invariant 11).
         version = str(args.version)
         document_classes = set(getattr(args, "document_class", None) or [])
         return [
-            repo / entry.path
-            for scope, lock in sorted(resolver.locks.locks.items())
+            path
+            for path, entry in locked_entries_under(
+                [repo / "data" / "corpus" / artifact_class for artifact_class in classes], repo=repo
+            )
+            # The scope of the path analytics reads, which a link may give
+            # another name in the lock that names it.
+            if (scope := scope_for_path(_name_in(repo, path) or entry.path)) is not None
             # analytics globs "<version>.json" and "<version>-*.json"
-            if (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
+            and (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
             and (not jurisdictions or scope[0] in jurisdictions)
             and (not document_classes or scope[1] in document_classes)
-            for entry in lock.files
-            if entry.path.split("/")[2] in classes
         ]
     return [
         repo / "data" / "corpus" / artifact_class / jurisdiction

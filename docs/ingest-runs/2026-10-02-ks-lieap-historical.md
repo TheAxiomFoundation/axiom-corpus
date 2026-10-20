@@ -5,11 +5,12 @@
 This is the source prerequisite for
 [rulespec-us#1469](https://github.com/TheAxiomFoundation/rulespec-us/issues/1469).
 Extraction and signing are complete. This PR includes four signed ingest
-manifests and four corpus locks covering all 33 artifacts. **Object upload,
-release admission, and RuleSpec corpus-pin approval are still pending**. The
-October 2 audit remains a record of the original unsigned extraction; the
-October 5 signing evidence is recorded below. This is not an admitted corpus
-release or executable Kansas rules.
+manifests and four corpus locks covering all 33 artifacts. **Pavel completed
+the object upload on October 20; release publication and a RuleSpec corpus-pin
+update remain pending.** The October 2 audit remains a record of the original
+unsigned extraction; the October 5 signing evidence and October 20 merge
+validation are recorded below. This is not a published corpus release or
+executable Kansas rules.
 
 Official documents determine the rules. The tracking issue supplies discovery
 leads and a review checklist; its proposed formulas, module paths, tests, and
@@ -102,7 +103,51 @@ adoption dates or rounding rules.
   self-employment treatment must be derived from the dated sources. PE's
   annual-income and household proxies belong in oracle mappings/dispositions.
 
-## Admission review, 2026-10-05
+## Main merge and upload follow-up, 2026-10-20
+
+[Pavel's review](https://github.com/TheAxiomFoundation/axiom-corpus/pull/778#issuecomment-6275900677)
+confirmed byte-identical reproduction of all 33 artifacts and accepted the
+19-block/3-page increase because it preserves the existing adapters' extraction
+units. His [upload update](https://github.com/TheAxiomFoundation/axiom-corpus/pull/778#issuecomment-6299867174)
+records 33 objects uploaded, zero failures, and zero remotely missing entries.
+The previously failing jobs then passed on the original October 5 merge tree.
+That rerun did not validate the subsequent merge from current main.
+
+This branch merges `origin/main` at
+`b5505bdbf0806c8d1469df3bbc37e4395d9cc0a4`, preserving signing ancestry.
+All four corpus locks and all four signed manifests are byte-identical to
+`a825f48a2`; the source artifacts require no re-signing or repeat upload.
+
+The [full-tree main CI scan](https://github.com/TheAxiomFoundation/axiom-corpus/actions/runs/39478677536/job/118821229438)
+fetched all 2,542 locked provision files and measured 764,665 records and
+534,647 unique paths. Its live irregular counts exactly match main's ceilings.
+A fresh local scan of this intake's 63 rows measures 19 `block_n` and three
+`page_n` paths, with no other irregular family or identity drift. Main has
+advanced beyond the earlier 88,143-block estimate in the review comment.
+
+| Family | Measured main count / ceiling | Intake paths | Merged ceiling |
+| --- | ---: | ---: | ---: |
+| `block_n` | 105,398 | 19 | 105,417 |
+| `page_n` | 178,885 | 3 | 178,888 |
+
+All other ceilings and the empty identity-drift baseline remain exactly as on
+main. The expected merged tree has 2,546 provision files, 764,728 records and
+534,710 unique paths. These expectations must be checked by the full merged-tree
+scan in PR CI; the scoped scan alone does not establish the union counts.
+
+Local Ruff, mypy (103 source files), and Towncrier checks pass. Full local
+pytest stops at the corpus-completeness guard: this checkout lacks 11,743
+locked files from newer main scopes and has no R2 read credentials. No partial
+test mode is used. The full merged-tree scan and test suite run in PR CI using
+the existing read-only R2 credentials; their results are required before this
+merge is considered validated.
+
+The release successor should preserve the selected scopes of
+`us-rulespec-2026-10-09-az-des-ece-dated` and add these four scopes plus the
+existing FY2026 Kansas plan and matrix listed above. Publication is publish-only,
+followed by a `rulespec-us` re-pin; this branch does not activate a release.
+
+## Admission review, 2026-10-05 (historical evidence)
 
 The user's reference-library copies of the FY2025 plan and benefit matrix
 match the official-source SHA-256 values in the original audit. The FY2026
