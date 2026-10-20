@@ -521,7 +521,7 @@ def test_the_maine_menu_under_the_navigation_bar_is_left_to_the_withdrawal() -> 
 
     The hollow-root audit (2026-10-13) found the miss. Lowering the bar was
     measured over every locked scope (docs/release-gate-policy.md, "Navigation
-    threshold"): 0.69 adds eight navigation_body findings, among them a UK
+    threshold"): 0.69 adds nine navigation_body findings, among them a UK
     sentence on new National Insurance rates and an Israeli statute heading,
     and the band down to 0.65 holds repeal notices and manual prose with
     linked terms. So the bar stays; the scope is withdrawn, and the chapter

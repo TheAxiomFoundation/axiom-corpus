@@ -13,8 +13,9 @@ opens with chrome, and a `document` root with no text below it. A scope that kee
 some of a page's text and drops the rest passes, because something with text is
 left. The audit found:
 
-- 12,911 CMS SPA summaries lost on 218 index pages the check does not flag (every
-  date on all 240 pages), and the state, dates and topics of 16 FCEP summaries;
+- 12,911 CMS SPA summaries lost on 218 index pages that carry no hollow-root or
+  navigation-body finding (11,833 on the 206 pages with no finding of any code;
+  every date on all 240 pages), and the state, dates and topics of 16 FCEP summaries;
 - scanned state-plan pages read as a date stamp or typed overlay (1,021 pages
   are candidates);
 - prose dropped beside a kept table (ME §5111), history notes dropped beside
