@@ -99,7 +99,7 @@ eCFR `titles.json` (read 2026-10-19): title 12 `up_to_date_as_of` 2026-10-16,
   `1006/subpart-B`, `1006/subpart-D`). `uppercase_segments` moves 19,353 to
   19,358 in `schema/citation-path.v1.json`; every other family is unchanged and
   the result is OK.
-- Re-fetch on 2026-10-20: `full/2026-10-16/title-12.xml?part=1005` and `?part=1006`
+- Re-fetch on 2026-10-20 (UTC; 2026-10-19 US Eastern): `full/2026-10-16/title-12.xml?part=1005` and `?part=1006`
   return bytes whose sha256 equals the retained files. A re-fetched
   `structure/2026-10-16/title-12.json` differs in bytes from the retained copy, but
   the part 1005 and 1006 subtrees and every other part node parse identical; the
@@ -108,9 +108,11 @@ eCFR `titles.json` (read 2026-10-19): title 12 `up_to_date_as_of` 2026-10-16,
   `AXIOM_CORPUS_INGEST_PUBLIC_KEY`: "All changed corpus artifacts have signed ingest
   manifests."
 - R2: all 10 locked objects of the two scopes are present at their recorded sizes.
-- Independent review (GPT-6.1 Sol, read-only): every one of the 42 section bodies
-  matches the retained XML's paragraph text, markers included; structure-to-row
-  comparison 30/30 and 19/19.
+- `content-check` on both scopes: 0 findings.
+- Independent review, round 1 (GPT-6.1 Sol, read-only): every one of the 42 section
+  bodies matches the retained XML's paragraph text, markers included;
+  structure-to-row comparison 30/30 and 19/19. Round 2 (Opus 5.5, read-only) checked
+  the run-note corrections against the retained XML and structure JSON.
 
 ## Downstream
 
