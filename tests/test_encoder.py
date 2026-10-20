@@ -24,8 +24,8 @@ from axiom_corpus.encoder import (
 from axiom_corpus.models import Citation, Section, Subsection
 
 # Mock the provider with the HTTP package the installed SDK uses: the locked
-# anthropic 0.x uses httpx, while anthropic 1.x (which CI installs unpinned with
-# `pip install -e .`) uses httpx2 and rejects httpx objects.
+# anthropic 0.x uses httpx, while anthropic 1.x (which an unpinned
+# `pip install -e .` resolves to) uses httpx2 and rejects httpx objects.
 http = importlib.import_module(DefaultHttpxClient.__mro__[-2].__module__.partition(".")[0])
 
 # =============================================================================
