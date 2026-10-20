@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-10-09-az-des-ece-dated. It preserves every prior scope and adds 12 CFR part 1005 (Regulation E, Electronic Fund Transfers) and part 1006 (Regulation F, Debt Collection) from the eCFR as of 2026-10-16, ingested and signed in axiom-corpus#894, for the financial-services pilot encodes of 12 CFR 1005.6, 1005.11 and 1006.14.",
+  "description": "Successor to us-rulespec-2026-10-09-az-des-ece-dated. It keeps every prior scope except the 16 that manifests/withdrawn-scopes.yaml withdraws (release decisions of 2026-10-03 on axiom-corpus#757 and 2026-10-11 on #760), selecting each one's listed replacement in its place (9 scopes) or dropping it where nothing replaces it, and adds 12 CFR part 1005 (Regulation E, Electronic Fund Transfers) and part 1006 (Regulation F, Debt Collection) from the eCFR as of 2026-10-16, ingested and signed in axiom-corpus#894, for the financial-services pilot encodes of 12 CFR 1005.6, 1005.11 and 1006.14.",
   "name": "us-rulespec-2026-10-20-fs-pilot-reg-e-f",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -446,7 +446,7 @@
     {
       "document_class": "regulation",
       "jurisdiction": "us-co",
-      "version": "2026-07-13-recovery"
+      "version": "2026-07-13-recovery-r2026-09-11-tanf-consolidated"
     },
     {
       "document_class": "regulation",
@@ -542,11 +542,6 @@
       "document_class": "regulation",
       "jurisdiction": "us-fl",
       "version": "2026-05-29-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us-fl",
-      "version": "2026-07-13-recovery"
     },
     {
       "document_class": "statute",
@@ -669,11 +664,6 @@
       "version": "2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained"
     },
     {
-      "document_class": "manual",
-      "jurisdiction": "us-il",
-      "version": "2026-07-13-recovery-r2026-07-17-dedup"
-    },
-    {
       "document_class": "statute",
       "jurisdiction": "us-il",
       "version": "2026-06-26-ilcs-320-30-us-il-chapter-320-act-30-r2026-07-15-self-contained"
@@ -702,11 +692,6 @@
       "document_class": "manual",
       "jurisdiction": "us-in",
       "version": "2026-07-04-in-ssp-sapn"
-    },
-    {
-      "document_class": "manual",
-      "jurisdiction": "us-in",
-      "version": "2026-07-13-recovery"
     },
     {
       "document_class": "statute",
@@ -856,7 +841,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-me",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-me-title-36"
     },
     {
       "document_class": "guidance",
@@ -871,7 +856,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-mi",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-mi-chapter-206"
     },
     {
       "document_class": "guidance",
@@ -891,7 +876,17 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-mn",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-142g"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-mn",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-256p"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-mn",
+      "version": "2026-09-14-income-tax-chapter-us-mn-title-290"
     },
     {
       "document_class": "manual",
@@ -1081,12 +1076,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ny",
-      "version": "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ny",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter"
     },
     {
       "document_class": "guidance",
@@ -1184,29 +1174,14 @@
       "version": "2026-05-27-sc-snap-manual"
     },
     {
-      "document_class": "manual",
-      "jurisdiction": "us-sc",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "regulation",
       "jurisdiction": "us-sc",
       "version": "2026-05-29-r2026-07-15-self-contained"
     },
     {
-      "document_class": "regulation",
-      "jurisdiction": "us-sc",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "statute",
       "jurisdiction": "us-sc",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-sc",
-      "version": "2026-07-24-sc-act110-us-sc-title-12-chapter-6"
+      "version": "2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6"
     },
     {
       "document_class": "guidance",
@@ -1244,11 +1219,6 @@
       "version": "2026-05-29-r2026-07-15-self-contained"
     },
     {
-      "document_class": "regulation",
-      "jurisdiction": "us-tn",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "statute",
       "jurisdiction": "us-tn",
       "version": "2026-07-24-tn-hall-income-tax-zero-rate-statute"
@@ -1269,11 +1239,6 @@
       "version": "2026-05-27-ut-manuals-r2026-07-15-self-contained"
     },
     {
-      "document_class": "manual",
-      "jurisdiction": "us-ut",
-      "version": "2026-07-13-recovery"
-    },
-    {
       "document_class": "regulation",
       "jurisdiction": "us-ut",
       "version": "2026-07-02-ut-fep-official-documents"
@@ -1286,7 +1251,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-ut",
-      "version": "2026-07-13-recovery"
+      "version": "2026-09-14-income-tax-chapter-title-59"
     },
     {
       "document_class": "manual",
