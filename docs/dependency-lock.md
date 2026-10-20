@@ -70,8 +70,8 @@ installs into the job's Python:
 3. The project in `DIR`, with `--no-deps`.
 
 Every install step in `ci.yml` calls the script, and so does the exporter: it
-installs in a step that has no credentials, and only the next step, which
-receives the read-only storage credentials, runs
+installs in a step that has no credentials, and a later step, the only one
+that receives the read-only storage credentials, runs
 `scripts/export_release_artifact.py` with that Python. (#892 brought the
 installer, its uv pin, the lock changes and `tests/test_locked_install.py` to
 `main` with the exporter.) On a pull request the corpus
