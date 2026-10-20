@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025.json",
+      "sha256": "5553d9664b7b1e665fc36ff5c2c155116fcc680f80feada6c9ce1674fa9f6a00"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025.json",
+      "sha256": "429e27d8d6882918bc9a301cb8ded068cbfe1bc72eb524282d2fd55ddcbcf704"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025.jsonl",
+      "sha256": "7af141687c5f5166304132dd1298afb263391cb697e92d077d352c1d07e26705"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-10-02-ks-liheap-plan-fy2025/official-documents/us-ks-acf-liheap-plan-fy2025.pdf",
+      "sha256": "2508c180fcb78448929f26c284f08a0bb1282e434682cba399de8dbfc99575b5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b5f170b65eeec17aaab592fd21f01bd7084dceb5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-02-ks-liheap-plan-fy2025 --manifest manifests/us-ks-liheap-state-plan-fy2025.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-05T18:16:41.680603+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1nDjIbYcwX5RyTjkFPq1gq4Ae3n1tHKyLAdFXbeyiTwHMNIqeqfuGYnXaCv7nFzNUdhYlZfQHUZM/x5QHLutBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-02-ks-liheap-plan-fy2025"
+}
