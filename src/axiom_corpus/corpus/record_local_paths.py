@@ -19,6 +19,7 @@ signing that manifest again; signatures are verified where manifests are).
 from __future__ import annotations
 
 import bisect
+import functools
 import hashlib
 import json
 import math
@@ -66,35 +67,43 @@ _WEB_PATH_PREFIXES = ("/media/file/",)
 # whitespace, a quote, ``=``, ``:`` or a shell operator; a path right after
 # ``<name>`` is relative to that placeholder; and text is read as written.
 # Records are prose, markup and data, so each line that could hold a path is
-# read three ways, and a path found in any reading is reported at its offset in
-# the record:
-# 1. markup tags and the punctuation that opens a token before a root
-#    (``**``, ``@``, ``_``, typographic quotes) become spaces;
-# 2. markup tags are deleted, so a path split by inline markup is whole again;
-# 3. JSON and YAML escapes ``\\`` and ``\/`` are decoded.
-# A tag is markup when it names an HTML element or the record closes it
-# (``</path>``); a placeholder such as ``<scratchpad>`` is never closed.
-_HTML_ELEMENT = re.compile(
-    r"a|abbr|b|blockquote|body|br|caption|cite|code|dd|del|details|div|dl|dt|em|h[1-6]|head"
-    r"|hr|html|i|ins|kbd|li|mark|ol|p|pre|q|s|samp|section|small|span|strong|sub|summary"
-    r"|sup|table|tbody|td|tfoot|th|thead|tr|tt|u|ul|var"
+# read up to three ways, and a path found in any reading is reported at its
+# offset in the record:
+# A. as written, with block tags (``<td>``, ``<li>``, ``<br>``) as spaces;
+# B. as rendered: block tags as spaces and inline tags deleted (``<code>``,
+#    ``<em class="x">``, or any tag the record closes, such as ``</path>``), so
+#    ``/tmp/<b>job</b>/out`` is whole and ``data<em>/tmp/x</em>`` stays
+#    relative; A keeps what B drops, such as a path in an attribute value;
+# C. as B, after decoding the JSON and YAML escapes ``\\`` and ``\/``.
+# In each, an opener before a path start (``@``, a typographic quote, or
+# Markdown emphasis such as ``**`` that closes later on the line) becomes
+# spaces. A placeholder such as ``<scratchpad>`` is neither a tag nor closed.
+_BLOCK_ELEMENT = re.compile(
+    r"address|article|aside|blockquote|body|br|caption|dd|details|div|dl|dt|figcaption"
+    r"|figure|footer|h[1-6]|head|header|hr|html|li|main|nav|ol|p|pre|section|summary|table"
+    r"|tbody|td|tfoot|th|thead|tr|ul"
 )
-_TAG = re.compile(r"<(/?)([A-Za-z][A-Za-z0-9-]*)[ \t]*/?>")
-_CLOSING_TAG = re.compile(r"</([A-Za-z][A-Za-z0-9-]*)[ \t]*>")
+_INLINE_ELEMENT = re.compile(
+    r"a|abbr|b|cite|code|del|dfn|em|i|ins|kbd|mark|q|s|samp|small|span|strong|sub|sup|time"
+    r"|tt|u|var"
+)
+_TAG = re.compile(r"<(/?)([A-Za-z][A-Za-z0-9-]*)(\s[^<>]*)?/?>")
+_CLOSING_TAG = re.compile(r"</([A-Za-z][A-Za-z0-9-]*)\s*>")
 _ESCAPE = re.compile(r"\\([\\/])")
 # Where a path can begin: a root, a home-relative ``~``, a Windows drive.
 _PATH_START = re.compile(
     "|".join(re.escape(root) for root in LOCAL_PATH_ROOTS) + r"|~|[A-Za-z]:[\\/]"
 )
-# Characters that continue a URL or relative path, and the delimiters after
-# which ``find_local_paths`` starts a token; any other character before a path
-# start opens the token only when a delimiter or the line's start precedes it.
-_PATH_CHAR = re.compile(r"[^\W_]|[.%+~/#?!$\\-]")
 _DELIMITER = re.compile(r"[\s\"'`=:,;|&()<>\[\]{}]")
-# Lower-cased bytes, one of which every path ``find_local_paths`` can find holds
-# (its case-insensitive parts are ASCII, but Python also folds the four letters
-# at the end onto ``i``, ``s`` and ``k``), and the escapes reading 3 decodes. A
-# line holding none is never read, which keeps a scan of every record fast.
+_QUOTE_OPENERS = frozenset(
+    "@\u2018\u2019\u201a\u201b\u201c\u201d\u201e\u201f\u00ab\u00bb\u2039\u203a"
+)
+_EMPHASIS = frozenset("*_")
+# Lower-cased bytes, one of which every line a reading can find a path in
+# holds: what ``find_local_paths`` matches (its case-insensitive parts are
+# ASCII, but Python also folds the four letters at the end onto ``i``, ``s``
+# and ``k``), a closing tag (B can join a root split by markup) and the escapes
+# C decodes. A line holding none is never read, which keeps a full scan fast.
 _CANDIDATE = re.compile(
     b"|".join(
         re.escape(candidate)
@@ -109,6 +118,7 @@ _CANDIDATE = re.compile(
             b":/users",
             b":\\documents and settings",
             b":/documents and settings",
+            b"</",
             b"\\\\",
             b"\\/",
             *(letter.encode() for letter in "\u0130\u0131\u017f\u212a"),
@@ -125,14 +135,14 @@ _SHA256 = re.compile(r"[0-9a-f]{64}")
 def find_record_local_paths(text: str) -> list[LocalPath]:
     """Return the paths on the writing machine in a record's ``text``, in order.
 
-    Every path ``find_local_paths`` finds lies inside one of these, less the
-    spellings that name no place (``~``, ``file://``, ``$HOME`` or a root such
-    as ``/Users/`` alone) and ``/media/file/`` web paths; and these also hold
-    the paths it misses in prose,
-    markup and data: after a tag (``<code>/Users/...``), inside inline markup
-    (``/tmp/<b>job</b>/out``), after punctuation that opens a token
-    (``**/tmp/...**``, ``@/Users/...``, ``“~alice/...”``) and escaped in JSON
-    or YAML (``"C:\\\\Users\\\\alice"``). Offsets are the record's.
+    Each path ``find_local_paths`` finds starts inside one of these, unless it
+    is a spelling that names no place (``~``, ``file://``, ``$HOME`` or a root
+    such as ``/Users/`` alone) or a ``/media/file/`` web path. These also hold
+    the paths it misses in prose, markup and data: after a tag
+    (``<code>/Users/...``), split by inline markup (``/tmp/<b>job</b>/out``),
+    after an opener (``**/tmp/...**``, ``@/Users/...``, ``“~alice/...”``) and
+    escaped in JSON or YAML (``"C:\\\\Users\\\\alice"``). Offsets are the
+    record's.
     """
     found: dict[int, LocalPath] = {}
     closed = _closed_tags(text)
@@ -177,68 +187,99 @@ def _candidate_lines(text: str) -> list[tuple[int, str]]:
 
 @dataclass(frozen=True)
 class _Reading:
-    """A line as read, with ``(offset here, offset in the line)`` at each piece's start."""
+    """A line as read: ``(offset here, offset in base)`` at each piece's start."""
 
     text: str
     pieces: tuple[tuple[int, int], ...] = ((0, 0),)
+    base: _Reading | None = None
 
     def origin(self, offset: int) -> int:
+        """Map an offset in this reading to the line's."""
         at, source = self.pieces[bisect.bisect_right(self.pieces, (offset, math.inf)) - 1]
-        return source + offset - at
+        offset = source + offset - at
+        return offset if self.base is None else self.base.origin(offset)
+
+    def with_text(self, text: str) -> _Reading:
+        """The same reading with ``text`` of the same length in place of its own."""
+        return _Reading(text, self.pieces, self.base)
+
+    def rewritten(
+        self, pattern: re.Pattern[str], replace: Callable[[re.Match[str]], str]
+    ) -> _Reading:
+        """This reading with each match of ``pattern`` replaced."""
+        parts: list[str] = []
+        pieces = [(0, 0)]
+        length = position = 0
+        for match in pattern.finditer(self.text):
+            new = replace(match)
+            if new == match.group():
+                continue
+            parts.append(self.text[position : match.start()])
+            length += match.start() - position
+            pieces.append((length, match.start()))
+            parts.append(new)
+            length += len(new)
+            pieces.append((length, match.end()))
+            position = match.end()
+        parts.append(self.text[position:])
+        return _Reading("".join(parts), tuple(pieces), self)
 
 
 def _readings(line: str, closed: set[str]) -> list[_Reading]:
-    def is_markup(tag: re.Match[str]) -> bool:
+    def is_block(tag: re.Match[str]) -> bool:
+        return _BLOCK_ELEMENT.fullmatch(tag.group(2).lower()) is not None
+
+    def is_inline(tag: re.Match[str]) -> bool:
         name = tag.group(2).lower()
-        return _HTML_ELEMENT.fullmatch(name) is not None or name in closed
+        return not is_block(tag) and (_INLINE_ELEMENT.fullmatch(name) is not None or name in closed)
 
-    def blank_markup(text: str) -> str:
-        return _TAG.sub(lambda tag: " " * len(tag.group()) if is_markup(tag) else tag.group(), text)
+    def as_written(tag: re.Match[str]) -> str:
+        bare_block = is_block(tag) and tag.group(3) is None
+        return " " * len(tag.group()) if bare_block else tag.group()
 
-    readings = [_Reading(_open_tokens(blank_markup(line)))]
-    if any(is_markup(tag) for tag in _TAG.finditer(line)):
-        deleted = _rewrite(line, _TAG, lambda tag: "" if is_markup(tag) else tag.group())
-        readings.append(_Reading(_open_tokens(deleted.text), deleted.pieces))
+    def as_rendered(tag: re.Match[str]) -> str:
+        if is_block(tag):
+            return " " * len(tag.group())
+        return "" if is_inline(tag) else tag.group()
+
+    line_reading = _Reading(line)
+    written = line_reading.rewritten(_TAG, as_written)
+    readings = [written.with_text(_open_tokens(written.text))]
+    if any(is_block(tag) or is_inline(tag) for tag in _TAG.finditer(line)):
+        rendered = line_reading.rewritten(_TAG, as_rendered)
+        readings.append(rendered.with_text(_open_tokens(rendered.text)))
     if _ESCAPE.search(line):
-        decoded = _rewrite(line, _ESCAPE, lambda escape: escape.group(1))
-        readings.append(_Reading(_open_tokens(blank_markup(decoded.text)), decoded.pieces))
+        decoded = line_reading.rewritten(_ESCAPE, lambda escape: escape.group(1))
+        rendered = decoded.rewritten(_TAG, as_rendered)
+        readings.append(rendered.with_text(_open_tokens(rendered.text)))
     return readings
 
 
-def _rewrite(
-    line: str, pattern: re.Pattern[str], replace: Callable[[re.Match[str]], str]
-) -> _Reading:
-    parts: list[str] = []
-    pieces = [(0, 0)]
-    length = position = 0
-    for match in pattern.finditer(line):
-        new = replace(match)
-        if new == match.group():
-            continue
-        parts.append(line[position : match.start()])
-        length += match.start() - position
-        pieces.append((length, match.start()))
-        parts.append(new)
-        length += len(new)
-        pieces.append((length, match.end()))
-        position = match.end()
-    parts.append(line[position:])
-    return _Reading("".join(parts), tuple(pieces))
-
-
 def _open_tokens(line: str) -> str:
-    """Blank the punctuation that opens a token before a path start, keeping offsets."""
+    """Blank the openers before each path start, keeping offsets."""
     chars: list[str] | None = None
     for start in _PATH_START.finditer(line):
-        begin = start.start()
-        while begin > 0 and not (
-            _PATH_CHAR.match(line, begin - 1) or _DELIMITER.match(line, begin - 1)
-        ):
+        at = begin = start.start()
+        while begin > 0 and (line[begin - 1] in _QUOTE_OPENERS or line[begin - 1] in _EMPHASIS):
             begin -= 1
-        if begin < start.start() and (begin == 0 or _DELIMITER.match(line, begin - 1)):
-            chars = chars or list(line)
-            chars[begin : start.start()] = " " * (start.start() - begin)
+        if begin == at or (begin > 0 and not _DELIMITER.match(line, begin - 1)):
+            continue
+        emphasis = "".join(char for char in line[begin:at] if char in _EMPHASIS)
+        if emphasis and not _closes(line, at, emphasis):
+            continue
+        chars = chars or list(line)
+        chars[begin:at] = " " * (at - begin)
     return line if chars is None else "".join(chars)
+
+
+def _closes(line: str, after: int, emphasis: str) -> bool:
+    """Whether Markdown emphasis ``emphasis`` closes on ``line`` after ``after``."""
+    return _closer(emphasis).search(line, after) is not None
+
+
+@functools.cache
+def _closer(emphasis: str) -> re.Pattern[str]:
+    return re.compile(rf"(?<=\S){re.escape(emphasis)}(?=$|[\s.,;:!?)\]\"'`])")
 
 
 def _names_no_place(text: str, path: LocalPath) -> bool:

@@ -16,7 +16,7 @@ Invariants:
    fails, so the allowlist only shrinks. A symbolic link, a record that cannot
    be read or is not UTF-8 text, an unreadable ingest manifest and a malformed
    allowlist fail closed, and no message names a full path.
-2. Detection. Every path ``find_local_paths`` finds lies inside one
+2. Detection. Every path ``find_local_paths`` finds starts inside one
    ``find_record_local_paths`` reports, except the spellings that name no
    place (``~``, ``file://``, ``$HOME``, a root alone) and ``/media/file/`` web
    paths, which it never reports. It also finds a path below any machine root
@@ -523,6 +523,13 @@ def test_an_allowlist_that_is_not_yaml_fails_closed(tmp_path) -> None:
         "<code>data/corpus</code> and <td>../tmp/x</td>",
         "download_dir: ../data/corpus/downloads/us-al-code/2026-09-14-income-tax-chapter",
         "a_b/tmp/x, data/home/x, ./tmp/y, data/*/tmp/x, data/export_/tmp/x",
+        # Globs and regular expressions that name a relative or web path.
+        'retained = list(Path("data").glob("**/tmp/*.pdf"))',
+        '"**/tmp/**/*.pdf"',
+        json.dumps({"href_pattern": "^/home/.*\\.pdf$"}),
+        # Inline markup inside a relative path renders as one relative path.
+        "<td>data<em>/tmp/x</em></td>",
+        "see **bold** and data/tmp/x",
         '{"pattern": "data\\\\/corpus\\\\/x"}',
     ],
 )
@@ -552,6 +559,10 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         ("<path>/Users/alice/work</path>", "/Users/…"),
         ("<output>/Users/alice/work</output>", "/Users/…"),
         ("/tmp/<code>job</code>/out", "/tmp/…"),
+        ('<td>/tmp/<em class="path">job</em>/out</td>', "/tmp/…"),
+        ("<code>/Users</code>/alice/work/source.pdf", "/Users/…"),
+        ('<td title="/Users/alice/x">cell</td>', "/Users/…"),
+        ("x<b>~/a", "~…"),
         # Prose punctuation that opens a token, which no command line holds.
         ("see @/Users/someone/x", "/Users/…"),
         ("**/Users/someone/x**", "/Users/…"),
@@ -566,6 +577,7 @@ def test_spellings_that_name_no_machine_path_pass(text: str) -> None:
         (json.dumps({"cache": "C:\\Users\\alice\\work"}), "C:\\Users\\…"),
         ('{"cache": "\\/Users\\/alice\\/work"}', "/Users/…"),
         ('cache: "C:\\\\Users\\\\alice\\\\work"', "C:\\Users\\…"),
+        ('{"html": "<td>\\/tmp/<b>job</b>/out</td>"}', "/tmp/…"),
         # A letter Python folds onto an ASCII one when matching case-insensitively.
         ("C:\\U\u017fers\\alice\\work", "C:\\Users\\…"),
     ],
@@ -587,6 +599,16 @@ def test_offsets_and_lines_are_the_records() -> None:
         "/tmp/<code>j</code>/o**",
     ]
     assert [text.count("\n", 0, path.start) + 1 for path in found] == [2, 3]
+
+
+def test_a_root_right_after_a_closing_tag_reads_as_find_local_paths_reads_it() -> None:
+    """Intended: ``>`` ends a token for ``find_local_paths``, so the record guard
+    is never laxer than the signed-manifest guard, even where markup renders a
+    relative path (``<b>data</b>/tmp/x``)."""
+    text = "<b>data</b>/tmp/x"
+
+    assert [path.start for path in find_local_paths(text)] == [11]
+    assert [path.start for path in find_record_local_paths(text)] == [11]
 
 
 _NAME = st.text(alphabet="abcdefghijklmnopqrstuvwxyz0123456789._-", min_size=1, max_size=12)
@@ -611,6 +633,17 @@ _TOKENS = [
     "</code>",
     "<path>",
     "</path>",
+    # Roots split by markup or escapes.
+    "/tm",
+    "p/",
+    "/Us",
+    "ers/",
+    "<b>",
+    "</b>",
+    '<em class="x">',
+    "</em>",
+    "<td>",
+    "\\/",
     "**",
     "@",
     "_",
@@ -649,7 +682,7 @@ def test_it_reports_every_path_find_local_paths_finds_that_names_a_place(
     found = find_record_local_paths(text)
 
     # Opening a token can merge a match into a longer path (``*/Users/file:/x``
-    # reads as ``/Users/file``), so each match lies inside a reported path.
+    # reads as ``/Users/file``), so each match starts inside a reported path.
     for path in find_local_paths(text):
         if _names_a_place(text, path):
             assert any(item.start <= path.start < item.end for item in found), text
@@ -683,27 +716,59 @@ def test_it_never_reports_a_spelling_that_names_no_place(words: list[str], joine
         assert _names_a_place(text, path), text
 
 
+# What can open and close a path in prose, markup and data.
+_WRAPPERS = [
+    ("", ""),
+    (" ", " "),
+    ("\t", ""),
+    ("\r\n", ""),
+    ("`", "`"),
+    ('"', '"'),
+    ("'", "'"),
+    ("(", ")"),
+    ("[", "]"),
+    ("{", "}"),
+    ("=", ""),
+    (":", ""),
+    ("|", "|"),
+    (",", ","),
+    (";", ""),
+    (">", ""),
+    ("@", ""),
+    ("*", "*"),
+    ("**", "**"),
+    ("**", "**."),
+    ("_", "_"),
+    ("\u201c", "\u201d"),
+    ("\u2018", "\u2019"),
+    ("\u00ab", "\u00bb"),
+    ("<code>", "</code>"),
+    ("<b>", "</b>"),
+    ('<em class="x">', "</em>"),
+    ("<td>", "</td>"),
+    ("<li>", ""),
+    ("<path>", "</path>"),
+]
+
+
 @settings(max_examples=500, deadline=None)
 @given(
     root=st.sampled_from(
         [*LOCAL_PATH_ROOTS, "~/", "~alice/", "C:\\Users\\", "C:/Users/", "C:\\\\Users\\\\"]
     ),
     name=_NAME,
-    before=st.sampled_from(
-        ["", " ", "\t", "\r\n", "`", '"', "'", "(", "[", "=", ":", ">", "<code>", "<td>"]
-        + ["*", "**", "@", "_", "\u201c", "\u2018", "\u00ab", "|", ",", ";", "{", "<path>"]
-    ),
-    after=st.sampled_from(["", " ", "`", '"', ")", "**", "_", "\u201d", "</code>", ".", ",\n"]),
+    wrapper=st.sampled_from(_WRAPPERS),
     prefix=_WORDS,
 )
 def test_every_path_below_a_machine_root_is_found_in_prose_and_markup(
-    root: str, name: str, before: str, after: str, prefix: list[str]
+    root: str, name: str, wrapper: tuple[str, str], prefix: list[str]
 ) -> None:
     path = f"{root}{name}/x"
     if path.startswith("/media/file/"):
         return
+    before, after = wrapper
     head = " ".join(prefix) + " " + before
-    text = head + path + after + ("</path>" if before == "<path>" else "")
+    text = head + path + after
 
     found = find_record_local_paths(text)
 
