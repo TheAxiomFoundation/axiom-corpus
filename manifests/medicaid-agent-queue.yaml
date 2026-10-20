@@ -73,6 +73,13 @@ policy:
     Code section 11344) names govt.westlaw.com/calregs as the official online CCR, so the vendor host is the state''s own
     publication channel; the plain corpus client meets a Cloudflare interstitial, so the rows carry browser_impersonation_direct
     (TLS verified). Generator: scripts/build_medicaid_ca_ccr_section_manifests.py.'
+  - 'CMS 1115 service-authority family (2026-10-20, wave 8): one `family: cms_1115_service_authority` row per state that holds
+    a current approved section 1115 demonstration whose authority is service rather than eligibility (AK ID), for the approval
+    letter, special terms and conditions and waiver and expenditure authority lists the state''s own demonstration page on
+    https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list posts as current, version 2026-10-20-w8-medicaid-1115-service-authority,
+    document_class policy, citation root us-xx/policy/cms/1115-service-authority. This is a sibling of `cms_1115_stc`, whose
+    selection rule is unchanged and still excludes service authority; the two families are separable by citation root. Superseded,
+    expired, withdrawn and pending postings are inventoried and not taken. Generator: scripts/build_medicaid_1115_service_authority_manifests.py.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -81,7 +88,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 7
-  agent_ready: 194
+  agent_ready: 196
   blocked_primary_source: 9
   done: 6
 states:
@@ -1635,6 +1642,53 @@ states:
     eligibility demonstration is approved. The wave-5 selection rule stands: SUD/SMI, reentry, CCBHC, dental and payment demonstrations
     are service authority, not eligibility terms, and are not taken into the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
   run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+- jurisdiction: us-ak
+  name: Alaska
+  family: cms_1115_service_authority
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ak-medicaid-1115-service-authority.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: policy
+    version: 2026-10-20-w8-medicaid-1115-service-authority
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/80966
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 66
+  taken_count: 1
+  index_families:
+    'Administrative Record: application':
+      found: 3
+      taken: 0
+    'Administrative Record: approval_document':
+      found: 7
+      taken: 0
+    'Administrative Record: correspondence':
+      found: 4
+      taken: 0
+    'Administrative Record: evaluation_document':
+      found: 6
+      taken: 0
+    'Administrative Record: monitoring_report':
+      found: 39
+      taken: 0
+    'Administrative Record: other':
+      found: 6
+      taken: 0
+    'Approved Application(s) and Related Documents: approval_document':
+      found: 1
+      taken: 1
+  notes: 'CMS 1115 service-authority row (2026-10-20, wave 8): sibling family of `cms_1115_stc`, which stays as written. "Alaska
+    Behavioral Health Reform" prints Status Approved (approval 2018-11-21, effective 2019-01-01, expiration 2028-12-31) on
+    its own medicaid.gov page, which answered the plain extractor client HTTP 200 in 0.3 s. 66 posted documents inventoried
+    by page section, 1 taken under version 2026-10-20-w8-medicaid-1115-service-authority, citation root us-ak/policy/cms/1115-service-authority.
+    Not taken: the 2024-03-26 Behavioral Health Reform Approval and the 2023-11-03 SUD-BHP Demonstration Approval sit in the
+    page''s Administrative Record; the 2026-03-27 technical correction restates the same approval period in full and is the
+    only posting under Approved Application(s), so the earlier two are superseded and not taken. The demonstration is service
+    authority, so M-ST-1315 stays ABSENT for the state and the `cms_1115_stc` row is unchanged. Generator: scripts/build_medicaid_1115_service_authority_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-1115-behavioral-health.md
 - jurisdiction: us-al
   name: Alabama
   lead_counts: {}
@@ -4000,6 +4054,57 @@ states:
     reentry, CCBHC, dental and payment demonstrations are service authority, not eligibility terms, and are not taken into
     the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
   run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+- jurisdiction: us-id
+  name: Idaho
+  family: cms_1115_service_authority
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-id-medicaid-1115-service-authority.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-10-20-w8-medicaid-1115-service-authority
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81511
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 88
+  taken_count: 3
+  index_families:
+    'Administrative Record: application':
+      found: 3
+      taken: 0
+    'Administrative Record: approval_document':
+      found: 9
+      taken: 2
+    'Administrative Record: correspondence':
+      found: 9
+      taken: 0
+    'Administrative Record: evaluation_document':
+      found: 5
+      taken: 0
+    'Administrative Record: monitoring_report':
+      found: 52
+      taken: 0
+    'Administrative Record: other':
+      found: 7
+      taken: 0
+    'Approved Application(s) and Related Documents: approval_document':
+      found: 2
+      taken: 1
+    'Pending Application(s) and Related Documents: application':
+      found: 1
+      taken: 0
+  notes: 'CMS 1115 service-authority row (2026-10-20, wave 8): sibling family of `cms_1115_stc`, which stays as written. "Idaho
+    Behavioral Health Transformation" prints Status Pending (approval 2020-04-17, effective 2020-04-17, expiration 2027-03-31)
+    on its own medicaid.gov page, which answered the plain extractor client HTTP 200 in 0.5 s. 88 posted documents inventoried
+    by page section, 3 taken under version 2026-10-20-w8-medicaid-1115-service-authority, citation root us-id/policy/cms/1115-service-authority.
+    Not taken: the earlier CMS Temporary Extension Approvals (2025-09-25 under Approved Application(s), 2025-03-31 in the
+    Administrative Record) cover expired extension periods, the 2025-03-12 Pending Application - Extension is pending, and
+    the pre-2024 Demonstration Approvals are superseded by the 2024-03-29 amended and restated approval; none of them is taken.
+    The demonstration is service authority, so M-ST-1315 stays ABSENT for the state and the `cms_1115_stc` row is unchanged.
+    Generator: scripts/build_medicaid_1115_service_authority_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-1115-behavioral-health.md
 - jurisdiction: us-id
   name: Idaho
   family: income_table
