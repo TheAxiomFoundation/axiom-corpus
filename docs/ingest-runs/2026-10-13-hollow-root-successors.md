@@ -27,8 +27,12 @@ Builder: `scripts/repro/hollow_root_successors.py`.
 Per-scope figures: `docs/ingest-runs/2026-10-13-hollow-root-successors.json` and
 `docs/ingest-runs/2026-10-13-hollow-root-successors.csv`.
 Historical evidence (comparisons, content-check and validation output, logs and the
-scripts that made them), on the machine that built the scopes:
-`~/reviews/axiom-corpus-hollow-root-successors-2026-10-13/`.
+scripts that made them) is kept with the build records outside this repository.
+In the per-scope JSON, `control_reproduces_original` records for Canada that the
+successor matches its composer control (`successor_vs_control_identical`); that
+control differs from the original by the empty clone described below
+(`control_vs_original_identical: false`). For every other scope it is the
+control-versus-original comparison itself.
 
 The hollow-document-root audit
 ([#853](https://github.com/TheAxiomFoundation/axiom-corpus/pull/853),
@@ -272,7 +276,7 @@ Checked on the head:
   - its manifest and lock agree, and its sources are its original's locked bytes;
   - coverage is complete, and it lacks only the three documented paths;
   - each audited root has text at or below it, or is retired.
-  
+
   It also rebuilds the Maryland, Massachusetts, NY SNAP and Canadian successors
   offline, byte for byte, and checks `swap_successors` and `compare_rows` with
   Hypothesis.
