@@ -228,30 +228,38 @@ and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
 
 ### Version 2 (2026-10-13)
 
-Re-measured on 2026-10-20 at combined-code commit `761cf682d`: 1,417 findings
-in 182 of the 2,425 locked scopes with provisions and an inventory, plus 72
-reviewed-empty roots (`content-check-v2`). The earlier 2026-10-13 measurement,
-recorded at `5838d7d37`, reported 1,416 findings in 181 of 2,390 scopes. On the
-current inputs, the v1 comparison (whole-body letter detection, with figure
-tables and reviewed exemptions disabled) finds 1,490 findings in 183 scopes.
+Re-measured on 2026-10-20 at combined-code commit `6aff1565d`, after merging
+main `a8f15eb13` and #864's 108 successor scopes. Compared with phase B at
+`7edfb272b`, findings change **1,417 → 1,444**, affected scopes **182 → 185**,
+and scanned scopes **2,425 → 2,533**, with **72 → 72** reviewed-empty roots
+(`content-check-v2`). The earlier 2026-10-13 measurement, recorded at
+`5838d7d37`, reported 1,416 findings in 181 of 2,390 scopes. On current inputs,
+the v1 comparison (whole-body letter detection, with figure tables and reviewed
+exemptions disabled) changes **1,490 → 1,517** findings in **183 → 186** scopes.
 
-Rebuilding adds 34 clean scope entries to the merge's baseline at `761cf682d`,
-with findings unchanged. Against main's v1 baseline at `e019e4456`, no finding
+All 2,425 phase-B baseline entries are unchanged. The 108 successors add 27
+findings in three scopes: 10 navigation and 14 prefix findings in Canada, plus
+three NYCRR hollow refs. All 108 entries match an independent v2 scan. Their v1
+entries in the merge have identical findings on these inputs, so rebuilding
+leaves the 2,533-entry merged baseline byte-identical.
+Against main's v1 baseline at `a8f15eb13`, entries change 2,499 → 2,533 with 34
+clean additions, findings 1,517 → 1,444 and affected scopes 186 → 185: no finding
 is added and 73 are removed. Against #847's historical v1 baseline at
-`88c1435a5`, the baseline adds 35 scope entries, adds one finding from the OASDI
-POMS RS scope and removes 73. Neither comparison changes a shared scope's
-provisions or inventory digest.
+`88c1435a5`, the baseline adds 143 scope entries, adds 28 findings (one OASDI POMS
+RS finding and 27 successor findings) and removes 73. Neither comparison changes
+a shared scope's provisions or inventory digest. The table compares phase B →
+phase C:
 
 | Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| manual | 44 | 735 | 4 | 10 | |
-| guidance | 57 | 207 | 9 | | |
-| policy | 47 | 94 | 69 | 44 | |
-| statute | 22 | 119 | 19 | 12 | 1 |
-| regulation | 10 | 41 | 1 | 49 | |
-| form | 2 | 3 | | | |
+| manual | 44 → 44 | 735 → 735 | 4 → 4 | 10 → 10 | 0 → 0 |
+| guidance | 57 → 57 | 207 → 207 | 9 → 9 | 0 → 0 | 0 → 0 |
+| policy | 47 → 48 | 94 → 104 | 69 → 83 | 44 → 44 | 0 → 0 |
+| statute | 22 → 22 | 119 → 119 | 19 → 19 | 12 → 12 | 1 → 1 |
+| regulation | 10 → 12 | 41 → 41 | 1 → 1 | 49 → 52 | 0 → 0 |
+| form | 2 → 2 | 3 → 3 | 0 → 0 | 0 → 0 | 0 → 0 |
 
-Of the 182 scopes with findings, 176 are selected by at least one tracked
+Of the 185 scopes with findings, 176 are selected by at least one tracked
 selector. The named union `us-rulespec-2026-10-12-w5-benefits-union` selects
 151 of them.
 
@@ -267,9 +275,12 @@ v1 are in the [run note](ingest-runs/2026-10-13-content-check-v2.md):
   minimum monthly SNAP benefit, whose only block is dates and amounts. Counting
   every token with a digit as text would also clear four CMS scanned attachments
   (IN-12-014, OH-12-004, OH-12-006, OH-13-001), whose pages read as a date stamp
-  such as `9/4/13`: real text losses. Of the 1,384 locked rows whose whole body
-  has a digit and no letter, date stamps, page numbers and stamps with SPA
-  numbers hold one to four figures, and pages whose font maps glyphs to control characters hold
+  such as `9/4/13`: real text losses in the original scopes, now repaired in their
+  #864 successors. Locked rows whose whole body has a digit and no letter change
+  **1,384 → 1,789**: 405 surviving numeric-only rows are also counted in the
+  successors, while every previous census row is unchanged. Among these rows,
+  date stamps, page numbers and stamps with SPA numbers hold one to four figures,
+  and pages whose font maps glyphs to control characters hold
   stray digits, at most 14.3% of their tokens. The rule makes 45 rows text, all
   tables or lists of figures (benefit and rate tables, IRS code lists, tariff
   code annexes, ZIP code lists, revenue projections) and none of them garbled.
@@ -277,27 +288,36 @@ v1 are in the [run note](ingest-runs/2026-10-13-content-check-v2.md):
   reads at most 1,200 tokens. No locked row consists only of list markers.
   Rows of up to four figures stay what they were in v1, a few real values among
   them (a DC page with two incomes), but no root has such a row as its only
-  text. The rule clears item 67224 and no other finding.
+  text. The rule clears item 67224 and no other finding. All 45 qualifying
+  figure-table row identities are unchanged.
 - **Reviewed-empty rows are listed with their reasons.** The 72 correctly empty rows
   in 13 scopes are in `manifests/reviewed-empty-nodes.yaml`: 45 `index`, 10
   `reserved`, 6 `empty_in_source`, 4 `deleted`, 3 `table_of_contents`, 2
   `cross_reference` and 2 `repealed`. Each has its reason, so the baseline
-  no longer records them as findings. The 115 `hollow_document_root` findings
-  left are the audit's 103 extractor defects and 12 missing sources.
+  no longer records them as findings. Hollow findings change **115 → 118**:
+  the original audit's 103 extractor defects and 12 missing sources remain, plus
+  three expected-empty NYCRR refs in the two successor scopes. The reviewed list
+  is keyed by scope and does not exempt these copies of 18 NYCRR 387 and 20 NYCRR
+  151 and 152 refs. #864's successors clear all 93 audited extractor-defect
+  hollows in their scope pairs (92 gain text, one clone is retired); immutable
+  originals remain in the all-scope scan.
 - **The navigation threshold stays at 0.7.** ME 36 §5219-SS lost all its text
   in `us-me/statute/2026-07-13-recovery`, but its menu block is 69.2%
   navigation (its "§5219-SS PDF" and "Ch. 822 Contents" links are under 75%
   letters, so they are not navigation strings), so neither the block nor its
   root is flagged. Lowering the threshold under the combined Version 2 rules
-  adds the following findings:
+  adds the following findings (phase B → phase C):
 
   | Navigation threshold | Additional `navigation_body` | Additional hollow roots |
   | --- | ---: | ---: |
-  | 0.69 | 9 | 1 |
-  | 0.65 | 87 | 2 |
-  | 0.6 | 160 | 6 |
+  | 0.69 | 9 → 9 | 1 → 1 |
+  | 0.65 | 87 → 88 | 2 → 2 |
+  | 0.6 | 160 → 162 | 6 → 6 |
 
-  The band holds text: a UK sentence announcing new National Insurance rates
+  The new navigation additions are two Canadian successor rows copied from its
+  original: child disability benefit links (0.679) and a Yukon prior-years
+  sentence (0.600). The first adds a finding at 0.65, and both add findings at 0.6.
+  The bands hold text: a UK sentence announcing new National Insurance rates
   from 6 April 2026 (0.692), a heading of the Israeli National Insurance Law
   (0.691), Connecticut repeal notices beside a "Return to Table of Contents"
   link (0.660) and Minnesota manual prose whose terms are links (0.656). A bar
@@ -312,8 +332,9 @@ v1 are in the [run note](ingest-runs/2026-10-13-content-check-v2.md):
   (axiom-corpus#852), a second reason not to lower it.
 - **Partial loss is not a content-check finding.** The audit's partial losses
   include CMS SPA summaries on unflagged index pages, scanned pages read as a
-  stamp and prose dropped beside a kept table. Re-measured on 2026-10-20,
-  11,833 bare summary cells occur on 206 of the 210 CMS index pages with no
+  stamp and prose dropped beside a kept table. Re-measured on 2026-10-20 over
+  the original state-plan selection, excluding #864's repaired successors,
+  11,833 bare summary cells still occur on 206 of the 210 CMS index pages with no
   content findings. The earlier count of 12,911 is also reproduced, on 218 of
   222 pages, when only `hollow_document_root` and `navigation_body` findings
   exclude a page: that definition includes 12 additional pages with
@@ -322,8 +343,9 @@ v1 are in the [run note](ingest-runs/2026-10-13-content-check-v2.md):
   leave text below the root. Catching them takes a comparison of a source's
   visible text with the text extracted from it:
   [design note](source-coverage-check.md). The source-coverage prototype was
-  also re-run on 2026-10-20 over the same 15 scopes; every per-source result
-  matched the earlier measurement ([run note](ingest-runs/2026-10-13-content-check-v2.md)).
+  also re-run on 2026-10-20 over the same 15 original scopes, without substituting
+  successors; every per-source result matched the earlier measurement
+  ([run note](ingest-runs/2026-10-13-content-check-v2.md)).
 
 ### Reviewed-empty rows
 
