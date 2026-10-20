@@ -230,6 +230,18 @@ jobs:
           # one process, with its module-level fixtures.
           pytest -v -n 4 --dist loadfile --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 
+      - name: Check the release content baseline
+        # Every locked scope's content findings (page navigation, chrome-prefixed
+        # bodies, hollow document roots, version pickers) must match
+        # manifests/release-content-baseline.json, which pins each scope's
+        # provisions and inventory digests. A new scope with no findings needs no
+        # entry; one with findings fails until its extraction is fixed or the
+        # findings are recorded on purpose (docs/release-gate-policy.md).
+        # Run after the four-worker tests so the checks share the runner's four
+        # cores sequentially. Check the baseline even when tests failed.
+        if: ${{ !cancelled() }}
+        run: axiom-corpus-ingest content-check --all --check-baseline --workers 3
+
   citation-path-grammar:
     name: Citation-path grammar (A6)
     # Additive gate: validates every corpus citation_path against the versioned

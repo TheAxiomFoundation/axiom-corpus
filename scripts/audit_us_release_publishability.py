@@ -49,14 +49,11 @@ def _exists(repo: Path, artifact_class: str, path: Path) -> bool:
 
 
 def _locked_under(repo: Path, path: Path) -> bool:
-    from axiom_corpus.corpus.resolver import resolver_for
+    from axiom_corpus.corpus.resolver import locked_entries_under
 
-    resolver = resolver_for(repo)
-    if resolver is None or not resolver.active:
-        return False
-    resolver.require_valid_locks()
-    rel = resolver.relative(path)
-    return rel is not None and bool(resolver.locks.entries_under(rel))
+    # Every lock that applies counts, such as a shared checkout's where a class
+    # directory links to it (docs/corpus-storage.md, invariant 11).
+    return bool(locked_entries_under([path], repo=repo))
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:

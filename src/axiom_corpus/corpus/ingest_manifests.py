@@ -14,7 +14,7 @@ import subprocess
 import tempfile
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -28,6 +28,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 
+from axiom_corpus.corpus.atomic_write import write_bytes_atomically
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
     LOCK_ROOT,
@@ -224,7 +225,14 @@ def write_signed_ingest_manifest(
     output: Path | None = None,
     key_id: str = INGEST_MANIFEST_KEY_ID,
 ) -> Path:
-    """Sign and write an ingest manifest."""
+    """Sign and write an ingest manifest.
+
+    The manifest at the returned path is always a complete signed document: an
+    interrupted or failed write leaves the path as it was (absent, or the
+    previous manifest), never truncated. ``scripts/sign_release_scopes.sh``
+    keeps any manifest that already exists, so a partial one would otherwise be
+    committed on the next run.
+    """
     repo = repo.resolve()
     signed = sign_ingest_manifest(manifest, private_key=private_key, key_id=key_id)
     manifest_path = output or default_ingest_manifest_path(
@@ -233,8 +241,8 @@ def write_signed_ingest_manifest(
         version=str(signed["version"]),
     )
     manifest_path = _resolve_under_repo(repo, manifest_path)
-    manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    manifest_path.write_text(json.dumps(signed, indent=2, sort_keys=True) + "\n")
+    payload = json.dumps(signed, indent=2, sort_keys=True) + "\n"
+    write_bytes_atomically(manifest_path, payload.encode("utf-8"))
     return manifest_path
 
 
@@ -1223,6 +1231,8 @@ def _content_issues(path: str, payload: bytes) -> list[str]:
         )
     if _is_inventory_artifact(path):
         issues.extend(_inventory_primary_source_issues(path, payload))
+    if _is_inventory_artifact(path) or _is_provisions_artifact(path):
+        issues.extend(_local_file_url_issues(path, payload))
     return issues
 
 
@@ -1276,6 +1286,10 @@ def _is_inventory_artifact(path: str) -> bool:
     return path.startswith("data/corpus/inventory/") and path.endswith(".json")
 
 
+def _is_provisions_artifact(path: str) -> bool:
+    return path.startswith("data/corpus/provisions/") and path.endswith(".jsonl")
+
+
 def _looks_like_agent_digest(path: str, payload: bytes) -> bool:
     if Path(path).suffix.lower() not in TEXT_OFFICIAL_DOCUMENT_SUFFIXES:
         return False
@@ -1316,6 +1330,131 @@ def _inventory_primary_source_issues(path: str, payload: bytes) -> list[str]:
             "official-documents/ captures, not reasoning artifacts."
         )
     return issues
+
+
+# Raw JSON that can decode to a string starting "file:" holds those characters
+# literally (any case) or spells some of them as \uXXXX escapes.
+_FILE_URL_CANDIDATE_TEXT = re.compile(r"(?i:file:)|\\u")
+_LOCAL_FILE_URL_EXAMPLES = 3
+
+
+_FILE_URL_IN_TEXT = re.compile(r"(?i)file:[^\s\"'<>`]+")
+
+
+def redact_file_urls(text: str) -> str:
+    """Replace each ``file:`` URL in ``text`` with ``<file: URL>``, so no message repeats one."""
+    return _FILE_URL_IN_TEXT.sub("<file: URL>", text)
+
+
+class LocalFileUrlScanError(ValueError):
+    """A row artifact whose URL fields cannot be read, so cannot be cleared."""
+
+
+def _unique_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """``object_pairs_hook`` refusing duplicate members, whose earlier values JSON parsing drops."""
+    members: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in members:
+            raise LocalFileUrlScanError(f"repeats the key {redact_file_urls(repr(key))}")
+        members[key] = value
+    return members
+
+
+def _scan_loads(text: str, where: str) -> Any:
+    try:
+        return json.loads(text, object_pairs_hook=_unique_keys)
+    except json.JSONDecodeError as exc:
+        raise LocalFileUrlScanError(f"{where} is not JSON") from exc
+    except LocalFileUrlScanError as exc:
+        raise LocalFileUrlScanError(f"{where} {exc}") from exc
+
+
+def _is_url_key(key: object) -> bool:
+    return isinstance(key, str) and (
+        key in {"url", "urls"} or key.endswith("_url") or key.endswith("_urls")
+    )
+
+
+def _file_url_fields(value: Any, path: str) -> Iterator[str]:
+    """Yield the dotted path of each URL-keyed string under ``value`` that is a file: URL."""
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_path = f"{path}.{key}" if path else str(key)
+            if _is_url_key(key):
+                urls = child if isinstance(child, list) else [child]
+                if any(
+                    isinstance(url, str) and url.strip().lower().startswith("file:")
+                    for url in urls
+                ):
+                    yield child_path
+            if isinstance(child, dict | list):
+                yield from _file_url_fields(child, child_path)
+    elif isinstance(value, list):
+        for child in value:
+            yield from _file_url_fields(child, path)
+
+
+def local_file_url_fields(path: str, payload: bytes) -> list[tuple[str, str]]:
+    """Return ``(citation_path, field)`` for each URL field holding a ``file:`` URL.
+
+    Reads an inventory (``.json``) or provisions (``.jsonl``) artifact. A
+    ``file:`` URL in any field named ``url``, ``urls``, ``*_url`` or ``*_urls``,
+    at any depth of a row (``source_url``, ``metadata.download_url`` above all),
+    publishes a path on the extracting machine, such as
+    ``file:///Users/<name>/...``, and leads no reader to the source. Other
+    fields are not read: a scanned document may print a ``file:`` link in its
+    body.
+
+    Fails closed: raises ``LocalFileUrlScanError`` for an artifact that is not
+    UTF-8, or whose JSON (for provisions, any line that could hold such a URL)
+    does not parse or repeats a key in one object (parsing would keep only the
+    last value, so an earlier ``file:`` URL would go unseen), rather than
+    reporting it clean.
+    """
+    text = _decode_text(payload)
+    if text is None:
+        raise LocalFileUrlScanError(f"`{path}` is not UTF-8 text")
+    if not _FILE_URL_CANDIDATE_TEXT.search(text):
+        return []
+    rows: list[Any] = []
+    if path.endswith(".jsonl"):
+        for number, line in enumerate(text.splitlines(), start=1):
+            if _FILE_URL_CANDIDATE_TEXT.search(line):
+                rows.append(_scan_loads(line, f"`{path}` line {number}"))
+    else:
+        parsed = _scan_loads(text, f"`{path}`")
+        # As load_source_inventory reads it: a mapping's "items", absent meaning none.
+        items = parsed.get("items", []) if isinstance(parsed, dict) else parsed
+        if not isinstance(items, list):
+            raise LocalFileUrlScanError(f"`{path}` has no list of inventory items")
+        rows = items
+    found: list[tuple[str, str]] = []
+    for row in rows:
+        if isinstance(row, dict):
+            citation = str(row.get("citation_path") or "<unknown citation>")
+            found.extend((citation, field) for field in _file_url_fields(row, ""))
+    return found
+
+
+def _local_file_url_issues(path: str, payload: bytes) -> list[str]:
+    """Name the rows that record a ``file:`` URL; the message never repeats the path."""
+    try:
+        found = local_file_url_fields(path, payload)
+    except LocalFileUrlScanError as exc:
+        return [redact_file_urls(f"{exc}, so its URL fields cannot be checked for file: URLs.")]
+    if not found:
+        return []
+    shown = ", ".join(f"`{citation}` {field}" for citation, field in found[:_LOCAL_FILE_URL_EXAMPLES])
+    more = len(found) - _LOCAL_FILE_URL_EXAMPLES
+    return [
+        redact_file_urls(
+            f"`{path}` records a file: URL in {len(found)} row field(s) ({shown}"
+            + (f", and {more} more" if more > 0 else "")
+            + "). A file: URL is a path on the extracting machine, not a source "
+            "location. Record the official URL; for a manifest local_path copy, "
+            "extract-official-documents records the manifest's download_url or source_url."
+        )
+    ]
 
 
 def _decode_text(payload: bytes) -> str | None:

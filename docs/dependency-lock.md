@@ -1,7 +1,8 @@
 # Dependency versions: one lock for local runs and CI
 
 `uv.lock` pins the version and file hashes of every dependency. Local runs use
-it through `uv sync` and `uv run`. CI installs from it through
+it through `uv sync` and `uv run`. CI and the authenticated release-artifact
+exporter (`export-release-artifact.yml`) install from it through
 `.github/scripts/install-locked.sh`. A test therefore runs on the same versions
 on a laptop and in CI, and an extraction run under
 `uv run axiom-corpus-ingest ...` uses the versions the tests ran on.
@@ -68,7 +69,12 @@ installs into the job's Python:
    to build a source distribution.
 3. The project in `DIR`, with `--no-deps`.
 
-Every install step in `ci.yml` calls the script. On a pull request the corpus
+Every install step in `ci.yml` calls the script, and so does the exporter: it
+installs in a step that has no credentials, and only the next step, which
+receives the read-only storage credentials, runs
+`scripts/export_release_artifact.py` with that Python. (#892 brought the
+installer, its uv pin, the lock changes and `tests/test_locked_install.py` to
+`main` with the exporter.) On a pull request the corpus
 guard still runs the base commit's code, on the versions the base commit's
 `uv.lock` pins, installed by the base commit's own copy of the script. The
 pull request changes none of these, but `ci.yml` itself runs as the pull
