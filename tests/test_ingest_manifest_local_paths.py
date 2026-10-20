@@ -20,15 +20,18 @@ Invariants:
    refuses any other local path; ``sign_ingest_manifest`` refuses a manifest
    with one in any field, the signature's key id included, so
    ``sign-ingest-manifest`` exits 2 and writes nothing.
-3. Detection (``find_local_paths``) is sound for every root at a token start,
-   never flags a root inside a URL or relative path or after a placeholder,
-   is additive over whitespace-joined text, and agrees with a brute-force
-   tokenizing reference. ``local_path_fields`` reports exactly the fields that
-   hold one, and messages name a path by its root only.
-4. ``relativize_repo_paths`` maps ``<checkout>/<rel>`` to ``<rel>``, rewrites a
-   path only to one naming the same file, and is idempotent;
-   ``recordable_command`` either refuses or returns a command with no local
-   path that it returns unchanged.
+3. Detection (``find_local_paths``) is sound for every root at a token start
+   (behind ``-o``/``@``, in any case, spelled with ``//``, ``/.`` or ``..``),
+   never flags a root inside a URL argument or relative path or after a
+   placeholder, is additive over whitespace-joined text holding no quote, and
+   agrees with a brute-force tokenizing reference. ``local_path_fields``
+   reports exactly the fields that hold one (only the real
+   ``signature``/``value`` node is skipped), and messages name a path by its
+   root only.
+4. ``relativize_repo_paths`` maps ``<checkout>/<rel>`` to ``<rel>`` in every
+   quoting and option context, never changes which file a shell word names
+   (checked with ``shlex``), and is idempotent; ``recordable_command`` either
+   refuses or returns a command with no local path that it returns unchanged.
 """
 
 from __future__ import annotations
@@ -38,6 +41,7 @@ import hashlib
 import json
 import os
 import re
+import shlex
 import subprocess
 from collections.abc import Iterator
 from pathlib import Path
@@ -357,6 +361,8 @@ def test_paths_are_found_in_every_string_field_but_signature_value() -> None:
         "/Users/someone/key": 1,
         # base64 may hold "/Users/" by chance; it records bytes, not a path.
         "signature": {"algorithm": "ed25519", "key_id": "~/k", "value": "/Users/cd+tmp/ef=="},
+        # Only the real signature/value node is skipped, not a key spelled like it.
+        "signature.value": "/Users/someone/private.json",
     }
 
     fields = [field for field, _ in local_path_fields(payload)]
@@ -366,6 +372,7 @@ def test_paths_are_found_in_every_string_field_but_signature_value() -> None:
         "coverage.nested[0].deep",
         "/Users/… (key)",
         "signature.key_id",
+        "signature.value",
     ]
     assert "someone" not in " ".join(manifest_local_path_issues(payload))
     # Read as decoded: a JSON escape cannot hide a path.
@@ -581,6 +588,62 @@ def test_cli_refuses_a_local_key_id_and_signs_nothing(tmp_path, capsys, monkeypa
     assert not (repo / ".axiom").exists()
 
 
+def test_a_key_spelled_like_the_signature_value_is_read(tmp_path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    manifest = _signable(repo)
+    manifest["signature.value"] = "/Users/someone/private.json"
+    _, private, _ = _keys()
+
+    with pytest.raises(ManifestLocalPathError) as raised:
+        sign_ingest_manifest(manifest, private_key=private)
+    assert "`signature.value` holds /Users/…" in str(raised.value)
+
+    path, _ = _write_manifest(tmp_path, "us/statute/w.json", {**CLEAN, "signature.value": "/tmp/x"})
+    _write_allowlist(tmp_path, [])
+    [issue] = _audit(tmp_path)
+    assert issue.startswith(f"`{path}`") and "`signature.value` holds /tmp/…" in issue
+
+
+@pytest.mark.parametrize(
+    "command",
+    [
+        "curl https://x.gov/a>/tmp/operator/out.json",
+        "curl https://x.gov/a;cat</Users/operator/secret.json",
+        "curl https://x.gov/a&&cat</Users/operator/secret.json",
+        "cat /./private/tmp/operator/source.json",
+        "cat //Users/operator/a",
+        "cat /var/../tmp/operator/a",
+    ],
+)
+def test_cli_refuses_a_path_after_a_url_or_behind_a_redundant_prefix(
+    tmp_path, capsys, monkeypatch, command
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    _artifact(repo)
+    _, private, _ = _keys()
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private)
+
+    exit_code = main(
+        [
+            "sign-ingest-manifest",
+            "--repo",
+            str(repo),
+            "--jurisdiction",
+            "nz",
+            "--document-class",
+            "statute",
+            "--version",
+            "2026-07-10",
+            "--command",
+            command,
+        ]
+    )
+
+    assert exit_code == 2
+    assert "(nothing was signed)" in capsys.readouterr().err
+    assert not (repo / ".axiom").exists()
+
+
 def test_recover_ingest_records_an_outside_fetched_dir_as_a_placeholder(tmp_path) -> None:
     repo = tmp_path / "repo"
     (repo / "fetched").mkdir(parents=True)
@@ -603,7 +666,8 @@ def test_signing_flow_commands_record_no_local_path() -> None:
 
 DELIMITERS = " \t\n\"'`=:,;|&()<>[]{}"
 _SEGMENT = st.text(alphabet="abcXYZ019._-", min_size=1, max_size=8)
-_REST = st.lists(_SEGMENT, max_size=4).map("/".join)
+# ``..`` would climb out of the root (``/Users/..`` is ``/``, not a local path).
+_REST = st.lists(_SEGMENT.filter(lambda s: s not in {".", ".."}), max_size=4).map("/".join)
 # Arbitrary text that holds no placeholder and no URL, so hides no path.
 _PREFIX = st.text(max_size=20).filter(lambda text: "<" not in text and "://" not in text)
 
@@ -642,7 +706,27 @@ _PREFIX = st.text(max_size=20).filter(lambda text: "<" not in text and "://" not
         ("/private/var/folders/ab/T/x", ["/private/var/folders/ab/T/x"]),
         # A path after a colon is read as one, whatever the colon means.
         ("docker -v data:/home/app rsync host:/home/x", ["/home/app", "/home/x"]),
+        # Redundant prefixes name the same place.
+        (
+            "cat /./private/tmp/x //Users/a /var/../tmp/b /opt/../Users/c",
+            ["/./private/tmp/x", "//Users/a", "/var/../tmp/b", "/opt/../Users/c"],
+        ),
+        # A shell operator ends a URL argument; whitespace ends a URL even in quotes.
+        ("curl https://x.gov/a>/tmp/o/out.json", ["/tmp/o/out.json"]),
+        ("curl https://x.gov/a;cat</Users/o/s.json", ["/Users/o/s.json"]),
+        ("curl https://x.gov/a&&cat</Users/o/s.json", ["/Users/o/s.json"]),
+        ('--note "see https://x.gov/a and /Users/me/x"', ["/Users/me/x"]),
+        # An unbalanced quote is a literal character and stretches nothing.
+        ('"https://x/a /Users/y', ["/Users/y"]),
+        ('"https://x.gov/a>/tmp/y', ["/tmp/y"]),
+        # An escaped quote opens nothing; an escaped operator is the URL's own.
+        ('echo \\" https://x.gov/a>/tmp/y "', ["/tmp/y"]),
+        ("curl https://x.gov/a\\>/tmp/y", []),
+        # Quoted, a URL's & is its own; unquoted, it ends the command.
+        ('"https://x.gov/?a=/Users/b&c=/tmp/d"', []),
+        ("https://x.gov/?a=/Users/b&c=/tmp/d", ["/tmp/d"]),
         # Not paths on this machine.
+        ('--source-url "https://x.gov/?a=1&b=/home/x" https://tmp/x http://home/a', []),
         ("$HOMEBREW_PREFIX/bin ~2 hours ~ 2 hours profile:/x /usr/bin/env /opt/x /tmpfoo", []),
         ("cd ~ && cd $HOME && $HOME-independent", []),
         ("https://example.gov/Users/tmp/ data/home/x ./tmp/y s3://bucket/tmp/x", []),
@@ -660,10 +744,15 @@ def test_detection_examples(text: str, found: list[str]) -> None:
     lead=st.sampled_from(["", "-o", "-sLo", "@", "-d@"]),
     root=st.sampled_from(LOCAL_PATH_ROOTS),
     case=st.sampled_from([str, str.lower, str.upper]),
+    spelling=st.sampled_from(["", "/.", "/", "/opt/..", "/./x/.."]),
     rest=_REST,
 )
-def test_every_root_at_a_token_start_is_found(prefix, delimiter, lead, root, case, rest) -> None:
-    text = prefix + delimiter + lead + case(root) + "/" + rest
+def test_every_root_at_a_token_start_is_found(
+    prefix, delimiter, lead, root, case, spelling, rest
+) -> None:
+    # ``a:`` then ``//Users`` would spell the URL ``a://Users``.
+    assume(not (delimiter == ":" and spelling == "/"))
+    text = prefix + delimiter + lead + spelling + case(root) + "/" + rest
     start = len(prefix) + len(delimiter) + len(lead)
 
     found = find_local_paths(text)
@@ -699,7 +788,8 @@ _URL_SEGMENT = (
     scheme=st.sampled_from(["https://", "http://", "s3://", "gs://"]),
     host=st.sampled_from(["example.gov", "uscode.house.gov", "home", "tmp", "a.b:8080"]),
     segments=st.lists(_URL_SEGMENT, min_size=1, max_size=6),
-    query=st.sampled_from(["", "?f=/home/x", "?a=/Users/b&c=/tmp/d", "#:~:text=~/x"]),
+    # An unquoted ``&`` is a shell operator; see test_detection_examples.
+    query=st.sampled_from(["", "?f=/home/x", "?a=/Users/b,c=/tmp/d", "#:~:text=~/x"]),
 )
 def test_a_root_inside_a_url_is_never_a_local_path(scheme, host, segments, query) -> None:
     url = f"{scheme}{host}/" + "/".join(segments) + query
@@ -746,8 +836,16 @@ _COMMAND_TOKENS = [
 _COMMAND = st.lists(st.sampled_from(_COMMAND_TOKENS), max_size=12).map("".join)
 
 
+# Quotes pair across a join (``"a`` and ``b"`` make one quoted word), as a shell
+# reads them, so additivity is stated for text holding none.
+_UNQUOTED = st.lists(
+    st.sampled_from([token for token in _COMMAND_TOKENS if not set(token) & set("\"'`")]),
+    max_size=12,
+).map("".join) | st.text().filter(lambda text: not set(text) & set("\"'`"))
+
+
 @settings(max_examples=500, deadline=None)
-@given(a=_COMMAND | st.text(), b=_COMMAND | st.text())
+@given(a=_UNQUOTED, b=_UNQUOTED)
 def test_detection_is_additive_over_whitespace(a, b) -> None:
     assert len(find_local_paths(f"{a} {b}")) == len(find_local_paths(a)) + len(find_local_paths(b))
 
@@ -760,6 +858,9 @@ _REFERENCE_TOKENS = [
     "/var/",
     "/opt/",
     "/",
+    "//",
+    "/.",
+    "/..",
     "Users",
     "tmp",
     "home",
@@ -774,79 +875,91 @@ _REFERENCE_TOKENS = [
     ".",
     "<s1>",
     "<a.b>",
-    "<",
-    ">",
-    *DELIMITERS,
+    # Every delimiter but the quotes, whose pairing the reference does not model.
+    *(char for char in DELIMITERS if char not in "\"'`"),
 ]
+_LETTERS = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+_SCHEME_CHARS = _LETTERS | frozenset("0123456789+.-")
 
 
 def _reference_absolute_starts(text: str) -> set[int]:
     """Where an absolute local path starts, read token by token.
 
-    A root (any case) followed by ``/``, a delimiter or the end, whose token
-    begins with nothing or a short-option cluster and ``@``; not after a
-    ``<name>`` placeholder, and not later in a word than a URL's ``scheme://``.
+    Tokens are the runs between delimiters. A token gives a path when, after a
+    short-option cluster and ``@``, it is ``/...`` and, with ``//``, ``.`` and
+    ``..`` collapsed, lies under a root (any case). It does not when it follows a
+    ``<name>`` placeholder, or when a URL's ``scheme://`` begins earlier in the
+    same argument (which whitespace and ``; | & ( ) < >`` end).
     """
-    starts = set()
-    lowered = text.lower()
-    for index in range(len(text)):
-        root = next(
-            (
-                root
-                for root in LOCAL_PATH_ROOTS
-                if lowered.startswith(root.lower(), index)
-                and (
-                    index + len(root) == len(text)
-                    or text[index + len(root)] == "/"
-                    or text[index + len(root)] in DELIMITERS
-                )
-            ),
-            None,
-        )
-        if root is None:
+    starts: set[int] = set()
+    token_start = 0
+    for index in range(len(text) + 1):
+        if index < len(text) and text[index] not in DELIMITERS:
             continue
-        token_start = max((text.rfind(char, 0, index) for char in DELIMITERS), default=-1) + 1
-        lead = text[token_start:index]
-        if lead.startswith("-") and len(lead) > 1 and lead[1].isascii() and lead[1].isalpha():
-            lead = lead[1:].lstrip("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        if lead not in ("", "@"):
+        token = text[token_start:index]
+        lead = 0
+        if token[:1] == "-" and token[1:2] in _LETTERS:
+            lead = 1
+            while lead < len(token) and token[lead] in _LETTERS:
+                lead += 1
+        if token[lead : lead + 1] == "@":
+            lead += 1
+        start = token_start + lead
+        token_start = index + 1
+        if token[lead : lead + 1] != "/" or not _reference_under_root(token[lead:]):
             continue
-        if index == token_start and index and text[index - 1] == ">":
-            opening = text.rfind("<", 0, index - 1)
-            name = text[opening + 1 : index - 1] if opening >= 0 else ""
-            if name and all(char.isascii() and (char.isalnum() or char in "_-") for char in name):
+        if lead == 0 and start and text[start - 1] == ">":
+            opening = text.rfind("<", 0, start - 1)
+            name = text[opening + 1 : start - 1] if opening >= 0 else ""
+            if name and all(char in _LETTERS or char in "0123456789_-" for char in name):
                 continue
-        word_start = max((text.rfind(char, 0, index) for char in " \t\n\"'`"), default=-1) + 1
-        if _reference_has_url_scheme(text[word_start:index]):
+        argument_start = max((text.rfind(char, 0, start) for char in " \t\n;|&()<>"), default=-1)
+        argument = text[argument_start + 1 : min(len(text), start + 2)]
+        if _reference_has_url_scheme(argument, before=start - argument_start - 1):
             continue
-        starts.add(index)
+        starts.add(start)
     return starts
 
 
-_SCHEME_CHARS = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+.-")
+def _reference_under_root(path: str) -> bool:
+    kept: list[str] = []
+    for part in path.split("/"):
+        if part == "..":
+            if kept:
+                kept.pop()
+        elif part not in ("", "."):
+            kept.append(part.lower())
+    normalized = "/" + "/".join(kept)
+    return any(
+        normalized == root.lower() or normalized.startswith(root.lower() + "/")
+        for root in LOCAL_PATH_ROOTS
+    )
 
 
-def _reference_has_url_scheme(word: str) -> bool:
-    """Whether ``word`` holds ``scheme://`` for a scheme other than ``file``.
+def _reference_has_url_scheme(argument: str, *, before: int) -> bool:
+    """Whether ``argument`` holds ``scheme://`` beginning before ``before``.
 
-    The scheme is the whole run of scheme characters before ``://``, and starts
-    with a letter.
+    The scheme is the whole run of scheme characters before ``://``, starts with
+    a letter, and is not ``file``.
     """
-    at = word.find("://")
+    at = argument.find("://")
     while at >= 0:
         begin = at
-        while begin > 0 and word[begin - 1] in _SCHEME_CHARS:
+        while begin > 0 and argument[begin - 1] in _SCHEME_CHARS:
             begin -= 1
-        scheme = word[begin:at]
-        if scheme and scheme[0].isalpha() and scheme.lower() != "file":
+        scheme = argument[begin:at]
+        if scheme[:1] in _LETTERS and scheme.lower() != "file" and begin < before:
             return True
-        at = word.find("://", at + 1)
+        at = argument.find("://", at + 1)
     return False
 
 
 @settings(max_examples=1000, deadline=None)
 @given(st.lists(st.sampled_from(_REFERENCE_TOKENS), max_size=14).map("".join))
 def test_detection_agrees_with_a_brute_force_reference(text) -> None:
+    # ``y:/Users/`` is a Windows profile (see test_detection_examples), which the
+    # reference does not model.
+    assume(not re.search(r"[A-Za-z]:[\\/](?i:users)[\\/]", text))
     found = find_local_paths(text)
 
     assert all(path.kind == "absolute" for path in found)
@@ -902,18 +1015,35 @@ _RELATIVE = st.lists(_SEGMENT.filter(lambda s: s not in {".", ".."}), min_size=1
 )
 
 
+_CONTEXTS = [
+    ("--x {lead}{path}", True),
+    ("--x={lead}{path}", True),
+    ("PATH=a:{path}:b", False),
+    ('--x "{path}"', False),
+    ("--x '{path}'", False),
+    ('--x="{path}"', False),
+    ("cat <{path}>/dev/null", False),
+]
+
+
 @settings(max_examples=300, deadline=None)
 @given(
-    relative=_RELATIVE, delimiter=st.sampled_from(" =:\"'"), lead=st.sampled_from(["", "-o", "@"])
+    relative=_RELATIVE,
+    context=st.sampled_from(_CONTEXTS),
+    lead=st.sampled_from(["", "-o", "@"]),
 )
-def test_a_checkout_path_becomes_its_relative_path(checkout, relative, delimiter, lead) -> None:
+def test_a_checkout_path_becomes_its_relative_path(checkout, relative, context, lead) -> None:
+    template, takes_lead = context
+    lead = lead if takes_lead else ""
+    expected = os.path.normpath(relative)
+    if expected.startswith(("-", "@")) or (lead == "-o" and not expected.startswith(".")):
+        expected = "./" + expected
     for spelling in _spellings(checkout):
-        text = f"--x{delimiter}{lead}{spelling}/{relative}"
+        text = template.format(lead=lead, path=f"{spelling}/{relative}")
 
-        expected = os.path.normpath(relative)
-        if expected.startswith(("-", "@")) or (lead == "-o" and not expected.startswith(".")):
-            expected = "./" + expected
-        assert relativize_repo_paths(text, repo=checkout) == f"--x{delimiter}{lead}{expected}"
+        assert relativize_repo_paths(text, repo=checkout) == template.format(
+            lead=lead, path=expected
+        )
 
 
 @contextlib.contextmanager
@@ -929,6 +1059,7 @@ def _relativizing_tokens(checkout: Path) -> list[str]:
         *_spellings(checkout),
         f"~/{checkout.name}",
         f"$HOME/{checkout.name}",
+        f"/{checkout.name}",
         "/~",
         "/~cache",
         "/$HOME",
@@ -976,6 +1107,86 @@ def test_a_rewrite_names_the_same_file(checkout, segments) -> None:
 
     for rewrite in rewrites:
         assert os.path.realpath(checkout / rewrite.relative) == os.path.realpath(original)
+
+
+_FORMS = ["", "--x=", "-o", "@", "X="]
+_CONTINUATIONS = ["/data", "/x", "-backup", ":backup", "/..", "/link", "/.", '"/y"', "=z", "'-q'"]
+
+
+@settings(max_examples=1000, deadline=None)
+@given(data=st.data())
+def test_a_rewrite_never_changes_which_file_a_shell_word_names(checkout, data) -> None:
+    """Read the command as a shell would, before and after; every changed word names one file."""
+    firsts = [*_spellings(checkout), *(f'"{spelling}"' for spelling in _spellings(checkout))]
+    firsts += [f"'{checkout}'", "/data", "/tmp/x"]
+    words = data.draw(
+        st.lists(
+            st.tuples(
+                st.sampled_from(_FORMS),
+                st.sampled_from(firsts),
+                st.lists(st.sampled_from(_CONTINUATIONS), max_size=3),
+            ),
+            min_size=1,
+            max_size=4,
+        )
+    )
+    # A colon in an assignment separates a list; the property reads one path a word.
+    words = [
+        (form, first, [piece for piece in rest if not (form == "X=" and piece == ":backup")])
+        for form, first, rest in words
+    ]
+    command = " ".join(form + first + "".join(rest) for form, first, rest in words)
+
+    rewritten = relativize_repo_paths(command, repo=checkout)
+
+    before, after = shlex.split(command), shlex.split(rewritten)
+    assert len(before) == len(after)
+    for (form, _, _), old, new in zip(words, before, after, strict=True):
+        if old == new:
+            continue
+        assert old.startswith(form) and new.startswith(form)
+        old_path, new_path = old[len(form) :], new[len(form) :]
+        assert not new_path.startswith("/")
+        assert os.path.realpath(old_path) == os.path.realpath(checkout / new_path), (old, new)
+
+
+@pytest.mark.parametrize(
+    ("command", "recorded"),
+    [
+        ('cat "{c}"-backup/x.json', None),
+        ('cat "{c}:backup/x.json"', None),
+        ("cat {c}:backup", None),
+        ("cat {c}=b", None),
+        ('x"{c}/d"', None),
+        ('-o"{c}"', None),
+        ('cat "{c}"/x.json', 'cat "."/x.json'),
+        ("cat '{c}'\"/y\"", "cat '.'\"/y\""),
+        # ``a=b`` alone would read as an assignment.
+        ("cat {c}/a=b", "cat ./a=b"),
+        ("PATH={c}/bin:$PATH", "PATH=bin:$PATH"),
+        ("PATH=a:{c}:b", "PATH=a:.:b"),
+        ('--base="{c}/data"', '--base="data"'),
+        ("cd {c} && ls", "cd . && ls"),
+        # Rewritten, the word must not start like an assignment it was not.
+        ("cat {c}/x=:{c}", "cat ./x=:{c}"),
+        ("cat {c}/data/.=z", None),
+    ],
+)
+def test_a_checkout_path_is_rewritten_only_where_the_shell_word_keeps_its_file(
+    checkout, command, recorded
+) -> None:
+    """``"<checkout>"-backup`` is a sibling directory; ``"."-backup`` would not be."""
+    text = command.format(c=checkout)
+    if recorded is None:
+        with pytest.raises(ManifestLocalPathError):
+            recordable_command(text, repo=checkout)
+    elif "{c}" in recorded:
+        # Still names the checkout once: refused, and the rewrite is stable.
+        once = relativize_repo_paths(text, repo=checkout)
+        assert once == recorded.format(c=checkout)
+        assert relativize_repo_paths(once, repo=checkout) == once
+    else:
+        assert recordable_command(text, repo=checkout) == recorded
 
 
 @settings(max_examples=300, deadline=None)
@@ -1029,6 +1240,15 @@ def test_a_relative_path_a_shell_would_expand_is_refused(checkout) -> None:
     assert "`$HOME/z`" in str(raised.value)
 
 
+def test_relativizing_a_checkout_directory_named_home_is_idempotent(checkout) -> None:
+    """``<checkout>/$HOME/axiom-corpus`` must not become ``$HOME/axiom-corpus``, then ``.``."""
+    with _home_above(checkout):
+        once = relativize_repo_paths(f"--in {checkout}/$HOME/{checkout.name}/data", repo=checkout)
+
+        assert once == f"--in ./$HOME/{checkout.name}/data"
+        assert relativize_repo_paths(once, repo=checkout) == once
+
+
 def test_a_dot_dot_after_a_symbolic_link_is_judged_where_the_link_points(checkout) -> None:
     """``link`` leaves the checkout, so ``link/../secret.json`` is outside it."""
     assert relativize_repo_paths(f"{checkout}/link/x.json", repo=checkout) == "link/x.json"
@@ -1041,16 +1261,20 @@ def test_a_checkout_path_holding_a_space_is_relativized(tmp_path) -> None:
     """Matched as written; spelled through a symbolic link it is refused, never misread."""
     repo = (tmp_path / "My Repo").resolve()
     (repo / "data").mkdir(parents=True)
-    command = f'--base "{repo}/data/corpus" --out={repo}/ -o{repo} --x {repo}'
+    command = f'--base "{repo}/data/corpus" --out="{repo}/" --x "{repo}"'
 
-    assert recordable_command(command, repo=repo) == '--base "data/corpus" --out=./ -o. --x .'
+    assert recordable_command(command, repo=repo) == '--base "data/corpus" --out="./" --x "."'
+    # Unquoted, the shell splits it into two words; it is refused, not rewritten.
+    with pytest.raises(ManifestLocalPathError):
+        recordable_command(f"--base {repo}/data", repo=repo)
     with pytest.raises(ManifestLocalPathError):
         recordable_command(f"--in {repo}/../elsewhere", repo=repo)
 
 
 @pytest.mark.parametrize("scheme", ["file:", "FILE:", "file://"])
-def test_a_file_url_into_the_checkout_is_refused_not_rewritten(checkout, scheme) -> None:
-    command = f"x --url {scheme}{checkout}/data/a.pdf"
+@pytest.mark.parametrize("context", ["x --url {url}", "X={url}", "PATH=a:{url}"])
+def test_a_file_url_into_the_checkout_is_refused_not_rewritten(checkout, scheme, context) -> None:
+    command = context.format(url=f"{scheme}{checkout}/data/a.pdf")
 
     assert relativize_repo_paths(command, repo=checkout) == command
     with pytest.raises(ManifestLocalPathError):
