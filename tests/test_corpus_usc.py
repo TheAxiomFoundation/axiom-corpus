@@ -9,6 +9,8 @@ import pytest
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.usc import (
+    _build_usc_inventory,
+    _iter_usc_provisions,
     _source_artifact_bytes,
     build_usc_inventory_from_xml,
     decode_uslm_bytes,
@@ -333,7 +335,9 @@ def test_official_title_26_node_count_and_semantic_label_fidelity():
             source_kind_by_identifier.setdefault(identifier, kind)
     source_kind_counts = Counter(source_kind_by_identifier.values())
 
-    inventory = build_usc_inventory_from_xml(decode_uslm_bytes(source_bytes))
+    # Parse the 56 MB title once and reuse it, as extract_usc does.
+    document = parse_uslm_title(decode_uslm_bytes(source_bytes))
+    inventory = _build_usc_inventory(document)
     kind_counts = Counter(item.metadata["kind"] for item in inventory.items)
 
     assert len(inventory.items) == len(
@@ -427,8 +431,8 @@ def test_official_title_26_node_count_and_semantic_label_fidelity():
 
     records_by_path = {
         record.citation_path: record
-        for record in iter_usc_title_provisions(
-            decode_uslm_bytes(source_bytes),
+        for record in _iter_usc_provisions(
+            document,
             version="2026-07-24-official-fixture",
             source_path="official-title-26/usc26.xml",
             allowed_citation_paths=set(expected),
@@ -541,13 +545,13 @@ def test_official_title_26_duplicate_number_siblings_survive_traversal():
         )
     )
     allowed_citation_paths = set(expected_paths)
-    inventory = build_usc_inventory_from_xml(
-        source_text,
+    inventory = _build_usc_inventory(
+        document,
         allowed_citation_paths=allowed_citation_paths,
     )
     records = tuple(
-        iter_usc_title_provisions(
-            source_text,
+        _iter_usc_provisions(
+            document,
             version="2026-07-24-duplicate-number-fixture",
             source_path="official-title-26/usc26.xml",
             allowed_citation_paths=allowed_citation_paths,
