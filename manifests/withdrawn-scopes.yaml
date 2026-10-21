@@ -455,7 +455,7 @@ scopes:
           Release decision on axiom-corpus#911: this pin release keeps the scope so that
           the rulespec-us modules whose citations resolve only here keep resolving after
           the re-pin. The exception stays with this immutable selector; the next cut in
-          the line drops the scope and selects its replacement, together with
+          the line drops the scope and selects its replacement scopes, together with
           rulespec-us#1365.
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
@@ -510,7 +510,7 @@ scopes:
           Release decision on axiom-corpus#911: this pin release keeps the scope so that
           the rulespec-us modules whose citations resolve only here keep resolving after
           the re-pin. The exception stays with this immutable selector; the next cut in
-          the line drops the scope and selects its replacement, together with
+          the line drops the scope and selects its replacement scopes, together with
           rulespec-us#1365.
   - scope: us-mn/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
@@ -567,7 +567,7 @@ scopes:
           Release decision on axiom-corpus#911: this pin release keeps the scope so that
           the rulespec-us modules whose citations resolve only here keep resolving after
           the re-pin. The exception stays with this immutable selector; the next cut in
-          the line drops the scope and selects its replacement, together with
+          the line drops the scope and selects its replacement scopes, together with
           rulespec-us#1365.
   - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
     withdrawn_on: "2026-10-03"

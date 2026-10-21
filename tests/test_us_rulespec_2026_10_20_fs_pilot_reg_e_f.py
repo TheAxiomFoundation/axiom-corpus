@@ -25,6 +25,7 @@ from scripts.repro.us_rulespec_2026_10_20_fs_pilot_reg_e_f import (
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE_DIR = ROOT / "manifests/releases"
+REGISTRY = ROOT / WITHDRAWN_SCOPES_PATH
 
 Key = tuple[str, str, str]
 
@@ -46,7 +47,7 @@ def test_reproducer_matches_committed_selector(tmp_path: Path) -> None:
 def test_selector_is_the_base_with_the_registry_applied() -> None:
     """Derived here without the reproducer: drop every withdrawn scope the base selects
     except the kept exceptions, select the dropped scopes' replacements, add Reg E and F."""
-    withdrawn = load_withdrawn_scopes(WITHDRAWN_SCOPES_PATH)
+    withdrawn = load_withdrawn_scopes(REGISTRY)
     base = set(_keys(BASE_RELEASE))
     dropped = {key for key in base if key in withdrawn and key not in KEPT}
     replacements = {r.key for key in dropped for r in withdrawn[key].replace_with}
@@ -91,7 +92,7 @@ def test_delta_against_the_pin_is_exact() -> None:
 
 
 def test_kept_scopes_are_exceptions_pinned_to_this_selector() -> None:
-    withdrawn = load_withdrawn_scopes(WITHDRAWN_SCOPES_PATH)
+    withdrawn = load_withdrawn_scopes(REGISTRY)
     release = ReleaseManifest.load(RELEASE_DIR / f"{RELEASE}.json")
     selected = set(_keys(RELEASE))
     for key in KEPT:
@@ -106,7 +107,7 @@ def test_kept_scopes_are_exceptions_pinned_to_this_selector() -> None:
 
 
 def test_only_the_kept_scopes_are_withdrawn_in_the_selector() -> None:
-    withdrawn = load_withdrawn_scopes(WITHDRAWN_SCOPES_PATH)
+    withdrawn = load_withdrawn_scopes(REGISTRY)
     assert {key for key in _keys(RELEASE) if key in withdrawn} == set(KEPT)
 
 
@@ -185,3 +186,16 @@ def test_select_scopes_refuses_a_withdrawn_replacement() -> None:
     withdrawn = {a: _entry(a, [b]), b: _entry(b, [])}
     with pytest.raises(ValueError, match="itself withdrawn"):
         select_scopes([_scope(a)], withdrawn, additions=(), kept=())
+
+
+def test_select_scopes_refuses_a_base_with_duplicate_scopes() -> None:
+    scope = _scope(("us-ny", "statute", "2026-01-01-a"))
+    with pytest.raises(ValueError, match="base release selector has duplicate scopes"):
+        select_scopes([scope, dict(scope)], {}, additions=(), kept=())
+
+
+def test_select_scopes_refuses_an_addition_that_is_also_a_replacement() -> None:
+    a = ("us-ny", "statute", "2026-01-01-a")
+    b = ("us-ny", "statute", "2026-01-02-b")
+    with pytest.raises(ValueError, match="would contain duplicate scopes"):
+        select_scopes([_scope(a)], {a: _entry(a, [b])}, additions=(_scope(b),), kept=())

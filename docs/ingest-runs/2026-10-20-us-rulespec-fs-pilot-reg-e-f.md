@@ -39,8 +39,8 @@ The pin itself is grandfathered for them; a new selector is not.
 - **3 stay as recorded exceptions** (release decision on axiom-corpus#911): the
   us-me, us-mi and us-mn `statute/2026-07-13-recovery` scopes.
   - **Why:** dropping them would leave 13 cited paths in 14 rulespec-us modules
-    unresolved. These include the ME `36/5111`, MI `206.30` and `206.51`, and MN
-    `290.06` blocks.
+    unresolved: the ME `36/5111` block, MI subsections of `206.30` and `206.51`,
+    and MN `290.06` blocks.
   - **Why not their replacements:** the five 2026-09-14 replacement scopes are
     not selected, because alongside the recovery scopes they would duplicate 12
     citation paths (`duplicate_release_citation`).
@@ -66,14 +66,15 @@ The result is 267 scopes, sorted, with the same `quality_profile`.
     of them carry different text, across 31 modules (CO, NY, SC and UT). That is
     the replacement working as intended. The rulespec-us re-pin has to check
     whether those 31 modules need re-verification or re-encoding.
-- **Tests:** `tests/test_us_rulespec_2026_10_20_fs_pilot_reg_e_f.py` (8 tests).
+- **Tests:** `tests/test_us_rulespec_2026_10_20_fs_pilot_reg_e_f.py` (10 tests).
   - The reproducer matches the committed selector byte for byte.
   - An independent derivation from the registry gives the same scopes.
   - The exact added and removed sets are pinned.
   - The three exceptions are pinned to this selector's digest.
   - A Hypothesis property checks the selection rule over arbitrary bases and
     registries.
-  - Five single-rule mutants of `select_scopes` are each caught.
+  - Tests cover both input guards, the duplicate base and an addition that is also a replacement.
+  - Each of 13 single-rule mutants of `select_scopes` is caught.
 - **Release-policy tests:** the withdrawn-scope, exception and digest tests pass.
 
 ## After merge

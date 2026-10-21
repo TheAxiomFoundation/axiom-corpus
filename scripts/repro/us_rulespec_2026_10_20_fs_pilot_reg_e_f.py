@@ -14,6 +14,8 @@ from axiom_corpus.corpus.release_policy import (
     load_withdrawn_scopes,
 )
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
 BASE_RELEASE = "us-rulespec-2026-10-09-az-des-ece-dated"
 RELEASE = "us-rulespec-2026-10-20-fs-pilot-reg-e-f"
 ADDITIONS = (
@@ -107,7 +109,7 @@ def build_release(
     *,
     release_dir: Path,
     output_dir: Path | None = None,
-    registry: Path = WITHDRAWN_SCOPES_PATH,
+    registry: Path = REPO_ROOT / WITHDRAWN_SCOPES_PATH,
 ) -> Path:
     """Write the release selector built from the base selector and the registry."""
     source = release_dir / f"{BASE_RELEASE}.json"
@@ -122,7 +124,7 @@ def build_release(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--release-dir", type=Path, default=Path("manifests/releases"))
+    parser.add_argument("--release-dir", type=Path, default=REPO_ROOT / "manifests/releases")
     parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
     print(build_release(release_dir=args.release_dir, output_dir=args.output_dir))
