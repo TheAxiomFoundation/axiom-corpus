@@ -1292,77 +1292,88 @@ def _pdf_page_layered_text(
     every page. The characters are the ones ``page.get_text("text")`` prints
     (same text flags), and a line ends in a newline exactly where that printer
     ends it with one: when the line printed a character and that character is
-    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters removed,
-    is the default page text. ``sort_blocks`` orders text blocks top to bottom
-    (PyMuPDF block sort), which places a boxed note drawn last in the content
-    stream where it appears on the page, and keeps the same characters.
+    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters
+    removed, is the default page text. ``sort_blocks`` orders text blocks top to
+    bottom (PyMuPDF block sort), which places a boxed note drawn last in the
+    content stream where it appears on the page, and keeps the same characters.
     ``_pdf_check_layered_page_text`` checks both on every page.
+
+    The page is read from PyMuPDF's ``rawdict``. Where that reading does not
+    match the default text, because ``rawdict`` left out glyphs the printer
+    prints, it is read again with those glyphs (``_pdf_page_character_blocks``).
     """
     sort_blocks = extraction.get("sort_blocks") is True
-    raw = page.get_text(
-        "rawdict",
-        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
-        sort=sort_blocks,
-    )
+    flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
+    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
     rules, thick_rules = _pdf_horizontal_rules(page) if markup is not None else ((), ())
-    chars: list[str] = []
-    states: list[str | None] = []
     near_threshold: list[list[float]] = []
     thick_rule_hits: list[list[float]] = []
-    for block in raw.get("blocks", ()):
-        if block.get("type") != 0:
-            continue
-        for line in block.get("lines", ()):
-            spans = line.get("spans", ())
-            reference = _pdf_line_reference(spans)
-            last_character = ""
-            for span in spans:
-                span_size = float(span.get("size") or 0.0)
-                for char in span.get("chars", ()):
-                    character = str(char.get("c", ""))
-                    state = None
-                    if reference is not None and not character.isspace():
-                        references = [reference]
-                        if span_size > 0:
-                            references.append((float(char["origin"][1]), span_size))
-                        if rules:
-                            offsets = _pdf_rule_offsets(char, references=references, rules=rules)
-                            state = _pdf_char_amendment_state(
-                                char, offsets=offsets, page_number=page_number
-                            )
-                            near = [
-                                offset
-                                for _rule, offset in offsets
-                                if _pdf_offset_near_threshold(offset)
-                            ]
-                            if near:
-                                near_threshold.append(near)
-                        if thick_rules:
-                            thick = [
-                                rule.thickness
-                                for rule, offset in _pdf_rule_offsets(
-                                    char, references=references, rules=thick_rules
+
+    def read(blocks: Any) -> tuple[str, list[str | None]]:
+        chars: list[str] = []
+        states: list[str | None] = []
+        near_threshold.clear()
+        thick_rule_hits.clear()
+        for block in blocks:
+            if block.get("type") != 0:
+                continue
+            for line in block.get("lines", ()):
+                spans = line.get("spans", ())
+                reference = _pdf_layered_line_reference(spans)
+                last_character = ""
+                for span in spans:
+                    span_size = float(span.get("size") or 0.0)
+                    for char in span.get("chars", ()):
+                        character = str(char.get("c", ""))
+                        state = None
+                        if reference is not None and not character.isspace():
+                            references = [reference]
+                            if span_size > 0:
+                                references.append((float(char["origin"][1]), span_size))
+                            if rules:
+                                offsets = _pdf_rule_offsets(
+                                    char, references=references, rules=rules
                                 )
-                                if _pdf_offset_amendment_state(offset) is not None
-                            ]
-                            if thick:
-                                thick_rule_hits.append(thick)
-                    chars.append(character)
-                    states.append(state)
-                    last_character = character
-            # PyMuPDF's plain-text printer ends a line with a newline only when the
-            # line printed a character that is neither a newline nor NUL.
-            if last_character not in ("", "\n", "\x00"):
-                chars.append("\n")
-                states.append(None)
-    raw_text = "".join(chars)
+                                state = _pdf_char_amendment_state(
+                                    char, offsets=offsets, page_number=page_number
+                                )
+                                near = [
+                                    offset
+                                    for _rule, offset in offsets
+                                    if _pdf_offset_near_threshold(offset)
+                                ]
+                                if near:
+                                    near_threshold.append(near)
+                            if thick_rules:
+                                thick = [
+                                    rule.thickness
+                                    for rule, offset in _pdf_rule_offsets(
+                                        char, references=references, rules=thick_rules
+                                    )
+                                    if _pdf_offset_amendment_state(offset) is not None
+                                ]
+                                if thick:
+                                    thick_rule_hits.append(thick)
+                        chars.append(character)
+                        states.append(state)
+                        last_character = character
+                # PyMuPDF's plain-text printer ends a line with a newline only when the
+                # line printed a character that is neither a newline nor NUL.
+                if last_character not in ("", "\n", "\x00"):
+                    chars.append("\n")
+                    states.append(None)
+        return "".join(chars), states
+
+    raw = page.get_text("rawdict", flags=flags, sort=sort_blocks)
+    raw_text, states = read(raw.get("blocks", ()))
     plain_text = _normalize_text(raw_text)
+    if _pdf_layered_text_difference(plain_text, default_text, sort_blocks=sort_blocks):
+        raw_text, states = read(
+            _pdf_page_character_blocks(page, flags=flags, sort=sort_blocks, page_number=page_number)
+        )
+        plain_text = _normalize_text(raw_text)
     _pdf_check_layered_page_text(
-        page,
-        plain_text,
-        extraction=extraction,
-        sort_blocks=sort_blocks,
-        page_number=page_number,
+        plain_text, default_text, sort_blocks=sort_blocks, page_number=page_number
     )
     if markup is None:
         return plain_text, None
@@ -1403,30 +1414,276 @@ def _pdf_page_layered_text(
     return rendered.text, metadata
 
 
-def _pdf_check_layered_page_text(
-    page: Any,
-    layered_text: str,
-    *,
-    extraction: dict[str, Any],
-    sort_blocks: bool,
-    page_number: int,
-) -> None:
-    """Check layered page text against the default page text.
+# MuPDF's rectangle conventions (fitz/geometry.h), on (x0, y0, x1, y1) tuples. A
+# rectangle is empty when it has no area and valid when its corners are ordered,
+# so a zero-width glyph's box is empty but valid. Each comparison is written as
+# MuPDF writes it, so NaN coordinates compare as they do there.
+_PDF_EMPTY_RECT = (
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+)
+_PDF_INFINITE_RECT = (
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+)
+_PdfRect = tuple[float, float, float, float]
+
+
+def _pdf_rect(rect: Any) -> _PdfRect:
+    return (float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1))
+
+
+def _pdf_rect_is_empty(rect: _PdfRect) -> bool:
+    return rect[0] >= rect[2] or rect[1] >= rect[3]
+
+
+def _pdf_rect_is_valid(rect: _PdfRect) -> bool:
+    return rect[0] <= rect[2] and rect[1] <= rect[3]
+
+
+def _pdf_rects_overlap(a: _PdfRect, b: _PdfRect) -> bool:
+    """PyMuPDF's ``JM_rects_overlap``: strict, so a zero-width box inside ``a`` overlaps it."""
+    return not (a[0] >= b[2] or a[1] >= b[3] or a[2] <= b[0] or a[3] <= b[1])
+
+
+def _pdf_intersect_rect(a: _PdfRect, b: _PdfRect) -> _PdfRect:
+    """MuPDF's ``fz_intersect_rect``."""
+    if b == _PDF_INFINITE_RECT:
+        return a
+    if a == _PDF_INFINITE_RECT:
+        return b
+    return (
+        b[0] if a[0] < b[0] else a[0],
+        b[1] if a[1] < b[1] else a[1],
+        b[2] if a[2] > b[2] else a[2],
+        b[3] if a[3] > b[3] else a[3],
+    )
+
+
+def _pdf_union_rect(a: _PdfRect, b: _PdfRect) -> _PdfRect:
+    """MuPDF's ``fz_union_rect``: an invalid box adds nothing, an empty valid one does."""
+    if not _pdf_rect_is_valid(b):
+        return a
+    if not _pdf_rect_is_valid(a):
+        return b
+    if a == _PDF_INFINITE_RECT:
+        return a
+    if b == _PDF_INFINITE_RECT:
+        return b
+    return (
+        b[0] if a[0] > b[0] else a[0],
+        b[1] if a[1] > b[1] else a[1],
+        b[2] if a[2] < b[2] else a[2],
+        b[3] if a[3] < b[3] else a[3],
+    )
+
+
+def _pdf_same_rect(a: Any, b: Any) -> bool:
+    """Compare boxes or points value by value, NaN equal to NaN."""
+    return len(a) == len(b) and all(
+        x == y or (x != x and y != y) for x, y in zip(a, b, strict=True)
+    )
+
+
+def _pdf_page_character_blocks(
+    page: Any, *, flags: int, sort: bool, page_number: int
+) -> list[dict[str, Any]]:
+    """Return the page's rawdict blocks with the glyphs rawdict leaves out added.
+
+    The blocks have rawdict's shape and hold the lines and characters that
+    ``page.get_text("text")`` prints with the same flags, in the same order.
+
+    PyMuPDF's plain-text printer (``JM_print_stext_page_as_text``) prints a
+    character when its box overlaps the page, using a strict test that a
+    zero-width box inside the page passes. rawdict (``JM_make_textpage_dict``)
+    applies the same test to each character, but it also skips a block whose box
+    does not overlap the page, a line whose box clipped to the page has no area,
+    and the last span of a line when that span's box has no area. A zero-advance
+    period, a combining mark or a private-use glyph drawn with no width can make
+    such a line or span, and rawdict then leaves it out.
+
+    So the page's text page is built once and read twice: rawdict for its spans,
+    and a walk over the same text page (PyMuPDF's low-level bindings) that
+    applies the printer's test and rawdict's block and line tests side by side,
+    as PyMuPDF writes them from 1.26.6. Every character rawdict keeps must line
+    up with the walk, and so must the fields the layered path reads (a span's
+    size and origin, a block's box), or extraction stops. The characters rawdict
+    leaves out are added where the printer prints them, marked ``added``: a
+    skipped last span as one span, a skipped line as one span per run of one font
+    size, both with only ``size``, ``origin`` and ``chars``. Each character is
+    given as the printer prints it, so a lone surrogate code point, which
+    rawdict passes through, reads as U+FFFD.
+
+    ``sort`` orders the blocks as ``get_text("rawdict", sort=True)`` does, by the
+    bottom and then the left edge of each block's box, keeping their order on
+    ties. A block keeps rawdict's box, so added characters never move a block
+    whose text rawdict read. Only a block rawdict read no character of takes the
+    box around its added characters that print, so that it sorts where they
+    appear; one whose added characters are all spaces or characters
+    ``_normalize_text`` drops keeps rawdict's empty box and sorts first, as
+    rawdict sorts it, adding no blank line between other blocks. A space-only
+    line added inside a block keeps its place there, where the printer's own
+    text has the same line break.
+    """
+    textpage = page.get_textpage(flags=flags)
+    raw_blocks = iter(textpage.extractRAWDICT()["blocks"])
+    stext_page = textpage.this
+    page_rect = _pdf_rect(stext_page.m_internal.mediabox)
+    unclipped = page_rect == _PDF_INFINITE_RECT
+
+    def mismatch(detail: str) -> RuntimeError:
+        return RuntimeError(
+            f"PDF page {page_number}: PyMuPDF's rawdict does not line up with its text page "
+            f"({detail}); keep the page out of the amendment_markup page range, or extract "
+            "this PDF without amendment_markup and sort_blocks"
+        )
+
+    blocks: list[dict[str, Any]] = []
+    for stext_block in stext_page:
+        block_type = stext_block.m_internal.type
+        if block_type != fitz.mupdf.FZ_STEXT_BLOCK_TEXT:
+            # Text flags without images, vectors, structure or table hunting
+            # give only text blocks.
+            raise mismatch(f"text page block of type {block_type}")
+        raw_block: dict[str, Any] | None = None
+        if unclipped or _pdf_rects_overlap(page_rect, _pdf_rect(stext_block.m_internal.bbox)):
+            raw_block = next(raw_blocks, None)
+            if raw_block is None or raw_block.get("type") != 0:
+                raise mismatch("a text block is missing from rawdict")
+        raw_lines = iter(raw_block["lines"] if raw_block is not None else ())
+        lines: list[dict[str, Any]] = []
+        kept_box: _PdfRect = _PDF_EMPTY_RECT
+        kept_any = False
+        added_box: _PdfRect = _PDF_EMPTY_RECT
+        for stext_line in stext_block:
+            printed: list[dict[str, Any]] = []
+            sizes: list[float] = []
+            for stext_char in stext_line:
+                # PyMuPDF's C++ JM_char_bbox, the box rawdict and the printer test.
+                bbox = _pdf_rect(fitz.extra.JM_char_bbox(stext_line, stext_char))
+                if unclipped or _pdf_rects_overlap(page_rect, bbox):
+                    char = stext_char.m_internal
+                    printed.append(
+                        {"c": chr(char.c), "origin": (char.origin.x, char.origin.y), "bbox": bbox}
+                    )
+                    sizes.append(float(char.size))
+            raw_line: dict[str, Any] | None = None
+            if raw_block is not None and (
+                unclipped
+                or not _pdf_rect_is_empty(
+                    _pdf_intersect_rect(page_rect, _pdf_rect(stext_line.m_internal.bbox))
+                )
+            ):
+                raw_line = next(raw_lines, None)
+                if raw_line is None:
+                    raise mismatch("a line is missing from rawdict")
+            if raw_line is None:
+                if printed:
+                    lines.append({"spans": _pdf_added_spans(printed, sizes), "added": True})
+                    added_box = _pdf_printing_box(added_box, printed)
+                continue
+            spans = list(raw_line.get("spans", ()))
+            position = 0
+            for span in spans:
+                chars = span.get("chars", ())
+                if not chars or position + len(chars) > len(printed):
+                    raise mismatch(
+                        "rawdict holds a character the plain-text printer does not print"
+                    )
+                if not _pdf_same_rect(span["origin"], printed[position]["origin"]):
+                    raise mismatch("a span's origin is not its first character's")
+                for char in chars:
+                    walked = printed[position]
+                    if not (
+                        char["c"] == walked["c"]
+                        and _pdf_same_rect(char["origin"], walked["origin"])
+                        and _pdf_same_rect(char["bbox"], walked["bbox"])
+                    ):
+                        raise mismatch(
+                            "rawdict holds a character the plain-text printer does not print"
+                        )
+                    if not _pdf_same_rect((float(span["size"]),), (sizes[position],)):
+                        raise mismatch("a span's size is not its characters'")
+                    kept_box = _pdf_union_rect(kept_box, walked["bbox"])
+                    kept_any = True
+                    position += 1
+            dropped = printed[position:]
+            if dropped:
+                dropped_box = dropped[0]["bbox"]
+                for char in dropped[1:]:
+                    dropped_box = _pdf_union_rect(dropped_box, char["bbox"])
+                if len(set(sizes[position:])) != 1 or not _pdf_rect_is_empty(dropped_box):
+                    raise mismatch("rawdict leaves out characters that are not a last empty span")
+                raw_line = {
+                    **raw_line,
+                    "spans": [*spans, *_pdf_added_spans(dropped, sizes[position:])],
+                }
+                added_box = _pdf_printing_box(added_box, dropped)
+            lines.append(raw_line)
+        if next(raw_lines, None) is not None:
+            raise mismatch("rawdict holds a line the text page does not")
+        if raw_block is None:
+            if lines:
+                blocks.append({"type": 0, "bbox": added_box, "lines": lines, "added": True})
+            continue
+        if not _pdf_same_rect(raw_block.get("bbox", ()), kept_box):
+            raise mismatch("a block's box is not the box around its characters")
+        block = {**raw_block, "lines": lines}
+        if added_box != _PDF_EMPTY_RECT and not kept_any:
+            block["bbox"] = added_box
+        blocks.append(block)
+    if next(raw_blocks, None) is not None:
+        raise mismatch("rawdict holds a block the text page does not")
+    # The printer (JM_append_rune) prints a lone surrogate code point, which
+    # rawdict passes through, as U+FFFD.
+    for block in blocks:
+        for line in block["lines"]:
+            for span in line.get("spans", ()):
+                for char in span.get("chars", ()):
+                    if "\ud800" <= char["c"] <= "\udfff":
+                        char["c"] = "\ufffd"
+    if sort:
+        blocks.sort(key=lambda block: (block["bbox"][3], block["bbox"][0]))
+    return blocks
+
+
+def _pdf_printing_box(box: _PdfRect, chars: list[dict[str, Any]]) -> _PdfRect:
+    """Add to ``box`` the boxes of the characters that print in normalized text."""
+    for char in chars:
+        if not char["c"].isspace() and char["c"] not in {"\u200b", "\ufeff"}:
+            box = _pdf_union_rect(box, char["bbox"])
+    return box
+
+
+def _pdf_added_spans(chars: list[dict[str, Any]], sizes: list[float]) -> list[dict[str, Any]]:
+    """Group characters rawdict left out into spans, one per run of one font size."""
+    spans: list[dict[str, Any]] = []
+    for char, size in zip(chars, sizes, strict=True):
+        if not spans or spans[-1]["size"] != size:
+            spans.append({"size": size, "origin": char["origin"], "chars": [], "added": True})
+        spans[-1]["chars"].append(char)
+    return spans
+
+
+def _pdf_layered_text_difference(
+    layered_text: str, default_text: str, *, sort_blocks: bool
+) -> str | None:
+    """Say how layered page text differs from the default page text, or return None.
 
     Without ``sort_blocks`` the two must be equal; with it they must hold the
-    same non-space characters. They differ where PyMuPDF's character layer
-    (``rawdict``) leaves out a glyph its plain-text printer keeps: it drops a
-    glyph of zero width, such as a combining mark or a zero-advance period, so
-    no markup of that page could strip back to the default text.
+    same non-space characters.
     """
-    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
     if sort_blocks:
         default_chars = Counter(char for char in default_text if not char.isspace())
         layered_chars = Counter(char for char in layered_text if not char.isspace())
         if default_chars == layered_chars:
-            return
+            return None
     elif layered_text == default_text:
-        return
+        return None
     else:
         default_chars = Counter(default_text)
         layered_chars = Counter(layered_text)
@@ -1437,12 +1694,27 @@ def _pdf_check_layered_page_text(
         for label, chars in (("missing", missing), ("extra", extra))
         if chars
     ]
+    return "; ".join(details) or "same characters, different text"
+
+
+def _pdf_check_layered_page_text(
+    layered_text: str, default_text: str, *, sort_blocks: bool, page_number: int
+) -> None:
+    """Check layered page text against the default page text.
+
+    ``_pdf_page_layered_text`` reads the characters the plain-text printer
+    prints, so a difference means PyMuPDF's printer and its character layer
+    disagree in some new way, and no markup of that page could strip back to the
+    default text.
+    """
+    difference = _pdf_layered_text_difference(layered_text, default_text, sort_blocks=sort_blocks)
+    if difference is None:
+        return
     raise ValueError(
         f"PDF page {page_number}: the character layer that amendment_markup and "
-        "sort_blocks read differs from the page's default text "
-        f"({'; '.join(details) or 'same characters, different text'}). PyMuPDF leaves "
-        "zero-width glyphs out of the character layer; keep the page out of the "
-        "amendment_markup page range, or extract this PDF without these keys"
+        f"sort_blocks read differs from the page's default text ({difference}); keep "
+        "the page out of the amendment_markup page range, or extract this PDF without "
+        "these keys"
     )
 
 
@@ -1568,6 +1840,18 @@ def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
     if best is None:
         return None
     return (best[2], best[0])
+
+
+def _pdf_layered_line_reference(spans: Any) -> tuple[float, float] | None:
+    """Return ``_pdf_line_reference`` of the spans rawdict read, if they have one.
+
+    Spans ``_pdf_page_character_blocks`` added count only on a line whose rawdict
+    spans have no visible characters, so glyphs rawdict left out never change
+    how the rest of the line is classified.
+    """
+    return _pdf_line_reference(
+        [span for span in spans if not span.get("added")]
+    ) or _pdf_line_reference(spans)
 
 
 def _pdf_rule_offsets(
