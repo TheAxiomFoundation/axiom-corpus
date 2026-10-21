@@ -452,10 +452,11 @@ scopes:
     exceptions:
       - selector: us-rulespec-2026-10-20-fs-pilot-reg-e-f
         reason: >-
-          Release decision on axiom-corpus#911: the FS pilot release keeps this scope so
-          that rulespec-us modules whose citations resolve only here keep resolving
-          after the re-pin. Remove it once rulespec-us#1365 re-points them to the
-          replacement scope.
+          Release decision on axiom-corpus#911: this pin release keeps the scope so that
+          the rulespec-us modules whose citations resolve only here keep resolving after
+          the re-pin. The exception stays with this immutable selector; the next cut in
+          the line drops the scope and selects its replacement, together with
+          rulespec-us#1365.
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -506,10 +507,11 @@ scopes:
     exceptions:
       - selector: us-rulespec-2026-10-20-fs-pilot-reg-e-f
         reason: >-
-          Release decision on axiom-corpus#911: the FS pilot release keeps this scope so
-          that rulespec-us modules whose citations resolve only here keep resolving
-          after the re-pin. Remove it once rulespec-us#1365 re-points them to the
-          replacement scope.
+          Release decision on axiom-corpus#911: this pin release keeps the scope so that
+          the rulespec-us modules whose citations resolve only here keep resolving after
+          the re-pin. The exception stays with this immutable selector; the next cut in
+          the line drops the scope and selects its replacement, together with
+          rulespec-us#1365.
   - scope: us-mn/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -562,10 +564,11 @@ scopes:
     exceptions:
       - selector: us-rulespec-2026-10-20-fs-pilot-reg-e-f
         reason: >-
-          Release decision on axiom-corpus#911: the FS pilot release keeps this scope so
-          that rulespec-us modules whose citations resolve only here keep resolving
-          after the re-pin. Remove it once rulespec-us#1365 re-points them to the
-          replacement scope.
+          Release decision on axiom-corpus#911: this pin release keeps the scope so that
+          the rulespec-us modules whose citations resolve only here keep resolving after
+          the re-pin. The exception stays with this immutable selector; the next cut in
+          the line drops the scope and selects its replacement, together with
+          rulespec-us#1365.
   - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
