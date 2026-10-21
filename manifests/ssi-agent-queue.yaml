@@ -2088,7 +2088,11 @@ states:
     is not in the corpus and not taken. (2026-09-10 state-supplement batch 2.) Utah Admin. Code R414-306-6 State Supplemental
     Payments for Institutionalized SSI Recipients ($15 to a Medicaid-eligible resident of a medical institution whose SSI
     is reduced to $30) taken from the Office of Administrative Rules eRules public API as us-ut/regulation/admin-rules/r414/306
-    (section 6). Closes SSI-ST-2 beside the DWS manual pointer. (2026-09-15 wave-5 batch 6.)'
+    (section 6). Closes SSI-ST-2 beside the DWS manual pointer. (2026-09-15 wave-5 batch 6.) Address repaired 2026-10-20.
+    eRules relaunched v1.0.0 on 2026-10-16 and every /public/rule/ and /api/public/ address answers HTTP 404. index_url is
+    now the POST /api/search endpoint, called with searchTerm R414-306 and ruleTypeId 51, and the rule itself is read from
+    the rule page https://adminrules.utah.gov/Rule/980/51/7248/undefined. The rule version is unchanged, so no document was
+    added or dropped and taken_count stays 1. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.'
   index_families: 'pointer to the DWS Eligibility Manual scope (2,398 rows; section 205-10 State Supplemental Payments to
     SSI Recipients present with the 2026-01-01 rates): 0 new documents taken'
   authority_scope:
@@ -2098,7 +2102,7 @@ states:
     version: 2026-09-15-ssi-state-supplement-rules
     target_manifest: manifests/us-ut-ssi-state-supplement-rules.yaml
     source_kind: official_state_administrative_rule
-    index_url: https://adminrules.utah.gov/api/public/searchRuleDataTotal/R414-306/Current%20Rules
+    index_url: https://adminrules.utah.gov/api/search
     index_document_count: 1
     taken_count: 1
     citation_paths:
@@ -2109,7 +2113,10 @@ states:
     notes: Utah Admin. Code R414-306-6 State Supplemental Payments for Institutionalized SSI Recipients ($15 to a Medicaid-eligible
       resident of a medical institution whose SSI is reduced to $30) taken from the Office of Administrative Rules eRules
       public API as us-ut/regulation/admin-rules/r414/306 (section 6). Closes SSI-ST-2 beside the DWS manual pointer. (2026-09-15
-      wave-5 batch 6.)
+      wave-5 batch 6.) Address repaired 2026-10-20. eRules relaunched v1.0.0 on 2026-10-16 and every /public/rule/ and /api/public/
+      address answers HTTP 404. index_url is now the POST /api/search endpoint, called with searchTerm R414-306 and ruleTypeId
+      51, and the rule itself is read from the rule page https://adminrules.utah.gov/Rule/980/51/7248/undefined. The rule
+      version is unchanged, so no document was added or dropped and taken_count stays 1. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.
 - jurisdiction: us-va
   name: Virginia
   lead_counts: {}
