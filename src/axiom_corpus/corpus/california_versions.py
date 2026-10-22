@@ -263,7 +263,11 @@ def validate_leginfo_selector(value: str) -> str:
 
 
 def parse_leginfo_picker(html_bytes: bytes) -> LegInfoPicker | None:
-    """Parse a LegInfo ``selectFromMultiples`` page, or return ``None``."""
+    """Parse a LegInfo picker, returning ``None`` for a non-picker page.
+
+    Malformed version links raise rather than silently shortening the list of
+    versions. The picker's unrelated navigation links are ignored.
+    """
     soup = BeautifulSoup(html_bytes, "html.parser")
     form = soup.find("form", id="selectFromMultiples")
     if not isinstance(form, Tag):
@@ -280,15 +284,27 @@ def parse_leginfo_picker(html_bytes: bytes) -> LegInfoPicker | None:
         action if isinstance(action, str) and action else "/faces/selectFromMultiples.xhtml"
     )
     links: list[LegInfoPickerLink] = []
-    for anchor in form.find_all("a", onclick=re.compile("op_statues")):
+    for anchor in form.find_all("a"):
         onclick = anchor.get("onclick")
-        if not isinstance(onclick, str):
+        is_version_link = "portletNav" in (anchor.get("class") or ()) or (
+            isinstance(onclick, str) and re.search(r"op_(?:statues|chapter|section)", onclick)
+        )
+        if not is_version_link:
             continue
+        if not isinstance(onclick, str):
+            raise ValueError("LegInfo picker version link has no onclick handler")
         params = tuple(_ONCLICK_PARAM_RE.findall(onclick))
         param_map = dict(params)
         command_keys = [key for key in param_map if key.startswith(PICKER_COMMAND_PREFIX)]
-        if not command_keys:
-            continue
+        if len(command_keys) != 1:
+            raise ValueError("LegInfo picker version link must have exactly one command key")
+        command_key = command_keys[0]
+        if param_map[command_key] != command_key or len(param_map) != len(params):
+            raise ValueError("LegInfo picker version link has ambiguous submission fields")
+        for field in _PAGE_VAR_RE:
+            if field not in param_map:
+                raise ValueError(f"LegInfo picker version link is missing {field}")
+            _normalized_value(param_map[field], field=field, required=field == "op_statues")
         version = LegInfoVersion(
             op_statues=param_map.get("op_statues", ""),
             op_chapter=param_map.get("op_chapter", ""),
@@ -299,7 +315,7 @@ def parse_leginfo_picker(html_bytes: bytes) -> LegInfoPicker | None:
                 index=len(links),
                 version=version,
                 text=" ".join(anchor.get_text(" ", strip=True).split()),
-                command_key=command_keys[0],
+                command_key=command_key,
                 params=params,
             )
         )

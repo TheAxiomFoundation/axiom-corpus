@@ -201,6 +201,39 @@ def test_a_section_page_is_not_a_picker_and_names_its_own_version():
     assert leginfo_page_version(b"<html><body>no script</body></html>") is None
 
 
+@pytest.mark.parametrize(
+    ("handler", "message"),
+    [
+        ("{'other:version':'other:version',", "exactly one command key"),
+        ("{'selectFromMultiples:v':'wrong',", "ambiguous submission fields"),
+        (
+            "{'selectFromMultiples:v':'selectFromMultiples:v',"
+            "'selectFromMultiples:w':'selectFromMultiples:w',",
+            "exactly one command key",
+        ),
+        (
+            "{'selectFromMultiples:v':'selectFromMultiples:v','op_section':'2',",
+            "ambiguous submission fields",
+        ),
+    ],
+)
+def test_malformed_version_submission_fields_raise(handler, message):
+    html = (
+        '<form id="selectFromMultiples"><a onclick="'
+        f"{handler}'op_statues':'2024','op_chapter':'798','op_section':'1'}}"
+        '">Version</a></form>'
+    ).encode()
+    with pytest.raises(ValueError, match=message):
+        parse_leginfo_picker(html)
+
+
+@pytest.mark.parametrize("handler", ["", "onclick=\"{'op_statues':'2024'}\""])
+def test_a_version_anchor_with_missing_submission_fields_raises(handler):
+    html = f'<form id="selectFromMultiples"><a class="portletNav" {handler}>Version</a></form>'
+    with pytest.raises(ValueError, match="LegInfo picker version link"):
+        parse_leginfo_picker(html.encode())
+
+
 # --- properties -----------------------------------------------------------------------
 
 _VALUES = st.from_regex(r"[0-9a-z]{1,4}(\.[0-9a-z]{1,3})?", fullmatch=True)

@@ -68,6 +68,18 @@ policy:
     Generator: scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 8 --only us-wy; see docs/ingest-runs/2026-09-15-medicaid-chip.md.'
   - 'Income table family (2026-09-15, wave-5 closure): `family: income_table` rows for the annual income-level / premium table
     the agency posts as text, version 2026-09-15-medicaid-income-table-2026, citation path per state. Generator: scripts/build_medicaid_income_table_manifests.py.'
+  - 'CA CCR section family (2026-10-20, wave-8 reprobe): the `family: w6_bundle_gap` us-ca row for govt.westlaw.com, version
+    2026-10-20-w8-medicaid-ccr-section, document_class regulation, citation root us-ca/regulation/<title>-ccr. OAL (Government
+    Code section 11344) names govt.westlaw.com/calregs as the official online CCR, so the vendor host is the state''s own
+    publication channel; the plain corpus client meets a Cloudflare interstitial, so the rows carry browser_impersonation_direct
+    (TLS verified). Generator: scripts/build_medicaid_ca_ccr_section_manifests.py.'
+  - 'CMS 1115 service-authority family (2026-10-20, wave 8): one `family: cms_1115_service_authority` row per state that holds
+    a current approved section 1115 demonstration whose authority is service rather than eligibility (AK ID), for the approval
+    letter, special terms and conditions and waiver and expenditure authority lists the state''s own demonstration page on
+    https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list posts as current, version 2026-10-20-w8-medicaid-1115-service-authority,
+    document_class policy, citation root us-xx/policy/cms/1115-service-authority. This is a sibling of `cms_1115_stc`, whose
+    selection rule is unchanged and still excludes service authority; the two families are separable by citation root. Superseded,
+    expired, withdrawn and pending postings are inventoried and not taken. Generator: scripts/build_medicaid_1115_service_authority_manifests.py.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -76,8 +88,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   needs_review: 7
-  agent_ready: 192
-  blocked_primary_source: 11
+  agent_ready: 196
+  blocked_primary_source: 9
   done: 6
 states:
 - jurisdiction: us
@@ -1615,13 +1627,68 @@ states:
   index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
   queue_status: needs_review
   source_kind: cms_posted_1115_approval_and_stc
-  index_document_count: 0
+  index_document_count: 7
   taken_count: 0
-  index_families: {}
-  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; the only approved 1115 is Alaska Behavioral Health
-    Reform (SUD/SMI service authority, approved 2024-03-26); the other listed items are 1915(c) waivers; no eligibility demonstration
-    (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an eligibility demonstration
-    is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  index_families:
+    waiver_1915c: 5
+    waiver_1915c_terminated: 1
+    demo_1115_approved_service_authority: 1
+  notes: '2026-10-20 wave-8 reprobe: www.medicaid.gov answers the plain corpus client (the Approved-filter demonstration list
+    and every demonstration page read, HTTP 200; a burst of requests draws an Akamai HTTP 403 that clears on a paced retry),
+    and nothing is takeable: the one approved section 1115 demonstration is still Alaska Behavioral Health Reform (Status
+    Approved, 11/21/2018 to 12/31/2028), SUD/SMI service authority; its newest postings are a Technical Correction Approval
+    (03/27/2026) and a Demonstration Approval - Evaluation Design (12/09/2025), neither of which sets eligibility terms. The
+    other six listings are 1915(c) waivers. 7 listings inventoried, 0 taken. M-ST-1315 stays ABSENT for the state until an
+    eligibility demonstration is approved. The wave-5 selection rule stands: SUD/SMI, reentry, CCBHC, dental and payment demonstrations
+    are service authority, not eligibility terms, and are not taken into the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+- jurisdiction: us-ak
+  name: Alaska
+  family: cms_1115_service_authority
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ak-medicaid-1115-service-authority.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: policy
+    version: 2026-10-20-w8-medicaid-1115-service-authority
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/80966
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 66
+  taken_count: 1
+  index_families:
+    'Administrative Record: application':
+      found: 3
+      taken: 0
+    'Administrative Record: approval_document':
+      found: 7
+      taken: 0
+    'Administrative Record: correspondence':
+      found: 4
+      taken: 0
+    'Administrative Record: evaluation_document':
+      found: 6
+      taken: 0
+    'Administrative Record: monitoring_report':
+      found: 39
+      taken: 0
+    'Administrative Record: other':
+      found: 6
+      taken: 0
+    'Approved Application(s) and Related Documents: approval_document':
+      found: 1
+      taken: 1
+  notes: 'CMS 1115 service-authority row (2026-10-20, wave 8): sibling family of `cms_1115_stc`, which stays as written. "Alaska
+    Behavioral Health Reform" prints Status Approved (approval 2018-11-21, effective 2019-01-01, expiration 2028-12-31) on
+    its own medicaid.gov page, which answered the plain extractor client HTTP 200 in 0.3 s. 66 posted documents inventoried
+    by page section, 1 taken under version 2026-10-20-w8-medicaid-1115-service-authority, citation root us-ak/policy/cms/1115-service-authority.
+    Not taken: the 2024-03-26 Behavioral Health Reform Approval and the 2023-11-03 SUD-BHP Demonstration Approval sit in the
+    page''s Administrative Record; the 2026-03-27 technical correction restates the same approval period in full and is the
+    only posting under Approved Application(s), so the earlier two are superseded and not taken. The demonstration is service
+    authority, so M-ST-1315 stays ABSENT for the state and the `cms_1115_stc` row is unchanged. Generator: scripts/build_medicaid_1115_service_authority_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-1115-behavioral-health.md
 - jurisdiction: us-al
   name: Alabama
   lead_counts: {}
@@ -3969,13 +4036,75 @@ states:
   index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
   queue_status: needs_review
   source_kind: cms_posted_1115_approval_and_stc
-  index_document_count: 0
+  index_document_count: 13
   taken_count: 0
-  index_families: {}
-  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Idaho Medicaid Reform Waiver is pending (no approval
-    document); Idaho Childless Adults and Children''s Access Card are legacy listings without a current approval; Idaho Medicaid
-    Plus (ID-04) is a 1915(b) waiver; Idaho Behavioral Health Transformation is SUD/SMI (read on the live list with the Approved
-    filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  index_families:
+    waiver_1915b: 4
+    waiver_1915c: 2
+    waiver_1915c_terminated: 2
+    demo_1115_pending: 3
+    demo_1115_expired: 2
+  notes: '2026-10-20 wave-8 reprobe: www.medicaid.gov answers the plain corpus client (the Approved-filter demonstration list
+    and every demonstration page read, HTTP 200; a burst of requests draws an Akamai HTTP 403 that clears on a paced retry),
+    and nothing is takeable: no approved eligibility demonstration. Idaho Behavioral Health Transformation, Idaho Family Planning
+    Referrals and the Idaho Medicaid Reform Waiver all read Status Pending; Idaho Childless Adults expired 09/30/2014 and
+    the Children''s Access Card Demonstration expired 09/30/2013; Dental Smiles (ID-03), Idaho Behavioral Health (ID-02),
+    Idaho Medicaid Plus (ID-04) and ID.0004.R01.01 are 1915(b) managed-care authority. 13 listings inventoried, 0 taken. M-ST-1315
+    stays ABSENT for the state until an eligibility demonstration is approved. The wave-5 selection rule stands: SUD/SMI,
+    reentry, CCBHC, dental and payment demonstrations are service authority, not eligibility terms, and are not taken into
+    the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+- jurisdiction: us-id
+  name: Idaho
+  family: cms_1115_service_authority
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-id-medicaid-1115-service-authority.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-10-20-w8-medicaid-1115-service-authority
+  primary_source_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
+  index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list/81511
+  queue_status: agent_ready
+  source_kind: cms_posted_1115_approval_and_stc
+  index_document_count: 88
+  taken_count: 3
+  index_families:
+    'Administrative Record: application':
+      found: 3
+      taken: 0
+    'Administrative Record: approval_document':
+      found: 9
+      taken: 2
+    'Administrative Record: correspondence':
+      found: 9
+      taken: 0
+    'Administrative Record: evaluation_document':
+      found: 5
+      taken: 0
+    'Administrative Record: monitoring_report':
+      found: 52
+      taken: 0
+    'Administrative Record: other':
+      found: 7
+      taken: 0
+    'Approved Application(s) and Related Documents: approval_document':
+      found: 2
+      taken: 1
+    'Pending Application(s) and Related Documents: application':
+      found: 1
+      taken: 0
+  notes: 'CMS 1115 service-authority row (2026-10-20, wave 8): sibling family of `cms_1115_stc`, which stays as written. "Idaho
+    Behavioral Health Transformation" prints Status Pending (approval 2020-04-17, effective 2020-04-17, expiration 2027-03-31)
+    on its own medicaid.gov page, which answered the plain extractor client HTTP 200 in 0.5 s. 88 posted documents inventoried
+    by page section, 3 taken under version 2026-10-20-w8-medicaid-1115-service-authority, citation root us-id/policy/cms/1115-service-authority.
+    Not taken: the earlier CMS Temporary Extension Approvals (2025-09-25 under Approved Application(s), 2025-03-31 in the
+    Administrative Record) cover expired extension periods, the 2025-03-12 Pending Application - Extension is pending, and
+    the pre-2024 Demonstration Approvals are superseded by the 2024-03-29 amended and restated approval; none of them is taken.
+    The demonstration is service authority, so M-ST-1315 stays ABSENT for the state and the `cms_1115_stc` row is unchanged.
+    Generator: scripts/build_medicaid_1115_service_authority_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-1115-behavioral-health.md
 - jurisdiction: us-id
   name: Idaho
   family: income_table
@@ -6778,13 +6907,22 @@ states:
   index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
   queue_status: needs_review
   source_kind: cms_posted_1115_approval_and_stc
-  index_document_count: 0
+  index_document_count: 11
   taken_count: 0
-  index_families: {}
-  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; no 1115 eligibility demonstration; the listed items
-    are 1915(c) waivers, the ND-04 1915(b) managed-care waiver for the new adult group and the COVID-19 managed-care risk-mitigation
-    demonstration (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the state until an
-    eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  index_families:
+    waiver_1915c: 6
+    waiver_1915b: 2
+    waiver_1915c_terminated: 2
+    demo_1115_expired: 1
+  notes: '2026-10-20 wave-8 reprobe: www.medicaid.gov answers the plain corpus client (the Approved-filter demonstration list
+    and every demonstration page read, HTTP 200; a burst of requests draws an Akamai HTTP 403 that clears on a paced retry),
+    and nothing is takeable: no approved eligibility demonstration. The only 1115 listing, North Dakota Managed Care Risk
+    Mitigation COVID-19 PHE, reads Status Expired (expiration 05/11/2023); ND-0004.R05.00 (Status Approved, 06/07/2024, to
+    06/30/2026) and the managed-care enrolment waiver for the new adult group (ND-04) are 1915(b) authority, not eligibility
+    terms. 11 listings inventoried, 0 taken. M-ST-1315 stays ABSENT for the state until an eligibility demonstration is approved.
+    The wave-5 selection rule stands: SUD/SMI, reentry, CCBHC, dental and payment demonstrations are service authority, not
+    eligibility terms, and are not taken into the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
 - jurisdiction: us-ne
   name: Nebraska
   lead_counts: {}
@@ -6962,13 +7100,23 @@ states:
   index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
   queue_status: needs_review
   source_kind: cms_posted_1115_approval_and_stc
-  index_document_count: 0
+  index_document_count: 12
   taken_count: 0
-  index_families: {}
-  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Nebraska Heritage Health Adult 1115 (the expansion
-    premium/wellness demonstration) was terminated at the state''s request (CMS approval to terminate 2021-09-02); the SUD
-    demonstration is service authority only (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT
-    for the state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  index_families:
+    waiver_1915c: 5
+    waiver_1915c_terminated: 3
+    waiver_1915b: 2
+    demo_1115_terminated: 1
+    demo_1115_approved_service_authority: 1
+  notes: '2026-10-20 wave-8 reprobe: www.medicaid.gov answers the plain corpus client (the Approved-filter demonstration list
+    and every demonstration page read, HTTP 200; a burst of requests draws an Akamai HTTP 403 that clears on a paced retry),
+    and nothing is takeable: no approved eligibility demonstration. Nebraska Heritage Health Adult 1115 still reads Status
+    Terminated (expiration 09/02/2021, with the CMS approval to terminate posted); the Nebraska Substance Use Disorder Program
+    demonstration is service authority; Heritage Health (NE-0003, Status Approved to 09/30/2027) and NE-0004.R00.00 are 1915(b)
+    managed-care authority. 12 listings inventoried, 0 taken. M-ST-1315 stays ABSENT for the state until an eligibility demonstration
+    is approved. The wave-5 selection rule stands: SUD/SMI, reentry, CCBHC, dental and payment demonstrations are service
+    authority, not eligibility terms, and are not taken into the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
 - jurisdiction: us-nh
   name: New Hampshire
   lead_counts: {}
@@ -7671,13 +7819,24 @@ states:
   index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
   queue_status: needs_review
   source_kind: cms_posted_1115_approval_and_stc
-  index_document_count: 0
+  index_document_count: 15
   taken_count: 0
-  index_families: {}
-  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Nevada Healthy Futures is pending; the Nevada Comprehensive
-    Care Waiver approvals are 2014-2015 STC amendments of an expired demonstration; SUD/OUD, reentry and CCBHC demonstrations
-    are service authority (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the state
-    until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  index_families:
+    waiver_1915c: 4
+    waiver_1915c_terminated: 1
+    waiver_1915b: 3
+    demo_1115_approved_service_authority: 4
+    demo_1115_expired: 2
+    demo_1115_pending: 1
+  notes: '2026-10-20 wave-8 reprobe: www.medicaid.gov answers the plain corpus client (the Approved-filter demonstration list
+    and every demonstration page read, HTTP 200; a burst of requests draws an Akamai HTTP 403 that clears on a paced retry),
+    and nothing is takeable: no approved eligibility demonstration. Nevada Healthy Futures still reads Status Pending (the
+    application was posted 07/20/2026 and the CMS completeness letter 08/03/2026, with no approval document); the Nevada Comprehensive
+    Care Waiver reads Status Expired (expiration 06/30/2018); the reentry, OUD/SUD, CCBHC, dental and youth behavioural-health
+    demonstrations are service authority. 15 listings inventoried, 0 taken. M-ST-1315 stays ABSENT for the state until an
+    eligibility demonstration is approved. The wave-5 selection rule stands: SUD/SMI, reentry, CCBHC, dental and payment demonstrations
+    are service authority, not eligibility terms, and are not taken into the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
 - jurisdiction: us-ny
   name: New York
   lead_counts: {}
@@ -9044,13 +9203,25 @@ states:
   index_url: https://www.medicaid.gov/medicaid/section-1115-demo/demonstration-and-waiver-list?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&filter%5Bfield_status%5D%5Bin%5D%5B%5D=1561&limit=100
   queue_status: needs_review
   source_kind: cms_posted_1115_approval_and_stc
-  index_document_count: 0
+  index_document_count: 16
   taken_count: 0
-  index_families: {}
-  notes: 'CMS 1115 STC row (2026-09-15, wave-5 closure): nothing taken; Healthy Connections Works and Palmetto Pathways to
-    Independence (community engagement, 2019 approvals) are withdrawn; the 2025 Palmetto Pathways and Transitioning to Preconception
-    Care applications are pending (read on the live list with the Approved filter, 2026-09-14). M-ST-1315 is ABSENT for the
-    state until an eligibility demonstration is approved. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  index_families:
+    waiver_1915c: 9
+    waiver_1915c_terminated: 1
+    waiver_1915b: 1
+    demo_1115_pending: 2
+    demo_1115_withdrawn: 2
+    demo_1115_expired: 1
+  notes: '2026-10-20 wave-8 reprobe: www.medicaid.gov answers the plain corpus client (the Approved-filter demonstration list
+    and every demonstration page read, HTTP 200; a burst of requests draws an Akamai HTTP 403 that clears on a paced retry),
+    and nothing is takeable: no approved eligibility demonstration. South Carolina Healthy Connections Works and South Carolina
+    Palmetto Pathways to Independence both read Status Withdrawn (2019 approvals, withdrawn 2021), and their CMS Approval
+    PDFs are therefore not current terms; the 2025 Palmetto Pathways to Independence and Transitioning to Preconception Care
+    listings read Status Pending; the Enhanced Prenatal and Postpartum Home Visitation Pilot expired 03/31/2023. 16 listings
+    inventoried, 0 taken. M-ST-1315 stays ABSENT for the state until an eligibility demonstration is approved. The wave-5
+    selection rule stands: SUD/SMI, reentry, CCBHC, dental and payment demonstrations are service authority, not eligibility
+    terms, and are not taken into the cms_1115_stc family. Generator: scripts/build_medicaid_1115_stc_manifests.py.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}
@@ -10902,7 +11073,6 @@ states:
     for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
     browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
     --program medicaid.'
-# --- wave 6 health rows (scripts/append_w6_health_queue_rows.py) ---
 - jurisdiction: us-al
   name: Alabama
   family: w6_bundle_gap
@@ -10918,7 +11088,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-al/guidance/adph/infant-mortality-reduction-plan-2018
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-al/guidance/2026-10-06-w6-health-guidance-al (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-al/guidance/2026-10-06-w6-health-guidance-al
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-al
   name: Alabama
   family: w6_bundle_gap
@@ -10934,7 +11105,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-al/regulation/alabama-administrative-code/560/x/25
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-al/regulation/2026-10-06-w6-health-regulation-al (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-al/regulation/2026-10-06-w6-health-regulation-al
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ca
   name: California
   family: w6_bundle_gap
@@ -10950,7 +11122,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-ca/form/official-forms/dhcs.ca.gov/formsandpubs/forms/forms/mced/mc-forms/mc250a-eng
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ca/form/2026-10-06-w6-health-form-ca (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ca/form/2026-10-06-w6-health-form-ca
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ca
   name: California
   family: w6_bundle_gap
@@ -10969,7 +11142,8 @@ states:
   - us-ca/guidance/dhcs/acwdl/25-01
   - us-ca/guidance/dhcs/haccp/income-eligibility-comparison-chart-2025
   - us-ca/guidance/dhcs/magi-household-size-flowchart
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 4 work-order row(s) extracted from the official publisher into us-ca/guidance/2026-10-06-w6-health-guidance-ca (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 4 work-order row(s) extracted from the official publisher into us-ca/guidance/2026-10-06-w6-health-guidance-ca
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-co
   name: Colorado
   family: w6_bundle_gap
@@ -10989,7 +11163,8 @@ states:
   - us-co/guidance/hcpf/chp-plus-income-chart/2022-04
   - us-co/guidance/hcpf/chp-plus-income-chart/2023-04
   - us-co/guidance/hcpf/health-first-colorado/health-coverage-for-immigrants
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 5 work-order row(s) extracted from the official publisher into us-co/guidance/2026-10-06-w6-health-guidance-co (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 5 work-order row(s) extracted from the official publisher into us-co/guidance/2026-10-06-w6-health-guidance-co
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-co
   name: Colorado
   family: w6_bundle_gap
@@ -11005,7 +11180,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-co/statute/10/10-16-1203
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-co/statute/2026-10-06-w6-health-statute-co-crs2025 (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-co/statute/2026-10-06-w6-health-statute-co-crs2025
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-dc
   name: District of Columbia
   family: w6_bundle_gap
@@ -11021,7 +11197,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-dc/guidance/hbx/proposed-extension-loss-of-medicaid-sep-2025-11
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-dc/guidance/2026-10-06-w6-health-guidance-dc (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-dc/guidance/2026-10-06-w6-health-guidance-dc
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ga
   name: Georgia
   family: w6_bundle_gap
@@ -11040,7 +11217,8 @@ states:
   - us-ga/guidance/dch/peachcare-copayments-premiums-resume-2024-10-01
   - us-ga/guidance/macpac/exhibit-36/2024-07
   - us-ga/guidance/macpac/exhibit-36/2025-07
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 4 work-order row(s) extracted from the official publisher into us-ga/guidance/2026-10-06-w6-health-guidance-ga (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 4 work-order row(s) extracted from the official publisher into us-ga/guidance/2026-10-06-w6-health-guidance-ga
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ga
   name: Georgia
   family: w6_bundle_gap
@@ -11056,7 +11234,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-ga/manual/dfcs/medicaid/appendix-a2-2026-family-limits
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ga/manual/2026-10-06-w6-health-manual-ga (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ga/manual/2026-10-06-w6-health-manual-ga
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ia
   name: Iowa
   family: w6_bundle_gap
@@ -11072,7 +11251,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-ia/regulation/iac/441/75/75.1
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ia/regulation/2026-10-06-w6-health-regulation-ia (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ia/regulation/2026-10-06-w6-health-regulation-ia
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-il
   name: Illinois
   family: w6_bundle_gap
@@ -11096,7 +11276,8 @@ states:
   - us-il/guidance/hfs/health-benefits-for-immigrants
   - us-il/guidance/hfs/health-benefits-for-immigrants/hbia-faq
   - us-il/guidance/hfs/health-benefits-for-immigrants/immigrant-adults
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 9 work-order row(s) extracted from the official publisher into us-il/guidance/2026-10-06-w6-health-guidance-il (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 9 work-order row(s) extracted from the official publisher into us-il/guidance/2026-10-06-w6-health-guidance-il
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-il
   name: Illinois
   family: w6_bundle_gap
@@ -11117,7 +11298,8 @@ states:
   - us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-381
   - us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-510
   - us-il/regulation/title-089/chapter-i/subchapter-b/part-120/section-120-66
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 7 work-order row(s) extracted from the official publisher into us-il/regulation/2026-10-06-w6-health-regulation-il-title-089-part-00120 (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 7 work-order row(s) extracted from the official publisher into us-il/regulation/2026-10-06-w6-health-regulation-il-title-089-part-00120
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-il
   name: Illinois
   family: w6_bundle_gap
@@ -11132,7 +11314,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-il/statute/305/5/5-2
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 3 work-order row(s) extracted from the official publisher into us-il/statute/2026-10-06-w6-health-statute-il-us-il-chapter-305-act-5 (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 3 work-order row(s) extracted from the official publisher into us-il/statute/2026-10-06-w6-health-statute-il-us-il-chapter-305-act-5
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-in
   name: Indiana
   family: w6_bundle_gap
@@ -11150,7 +11333,8 @@ states:
   - us-in/guidance/fssa/hhw-package-c-medworks-premium
   - us-in/guidance/fssa/hip/power-accounts
   - us-in/guidance/fssa/residential-care-assistance-program
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 3 work-order row(s) extracted from the official publisher into us-in/guidance/2026-10-06-w6-health-guidance-in (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 3 work-order row(s) extracted from the official publisher into us-in/guidance/2026-10-06-w6-health-guidance-in
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-la
   name: Louisiana
   family: w6_bundle_gap
@@ -11166,7 +11350,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-la/regulation/lac/50/iii
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-la/regulation/2026-10-06-w6-health-regulation-la (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-la/regulation/2026-10-06-w6-health-regulation-la
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-mi
   name: Michigan
   family: w6_bundle_gap
@@ -11185,7 +11370,8 @@ states:
   - us-mi/guidance/mdhhs/healthy-michigan-plan/b-23-07-hmp-final
   - us-mi/guidance/mdhhs/medicaid-bulletin/mmp-24-20
   - us-mi/guidance/mdhhs/michild/program-general-information
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 4 work-order row(s) extracted from the official publisher into us-mi/guidance/2026-10-06-w6-health-guidance-mi (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 4 work-order row(s) extracted from the official publisher into us-mi/guidance/2026-10-06-w6-health-guidance-mi
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-mo
   name: Missouri
   family: w6_bundle_gap
@@ -11202,7 +11388,8 @@ states:
   citation_paths:
   - us-mo/guidance/dss/benefit-program-income-limits
   - us-mo/guidance/dss/chip-premium-chart
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-mo/guidance/2026-10-06-w6-health-guidance-mo (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-mo/guidance/2026-10-06-w6-health-guidance-mo
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ms
   name: Mississippi
   family: w6_bundle_gap
@@ -11222,7 +11409,8 @@ states:
   - us-ms/guidance/dom/income-limits-for-medicaid-and-chip-programs
   - us-ms/guidance/dom/member-coverage-descriptions-job-aid
   - us-ms/guidance/dom/working-disabled
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 5 work-order row(s) extracted from the official publisher into us-ms/guidance/2026-10-06-w6-health-guidance-ms (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 5 work-order row(s) extracted from the official publisher into us-ms/guidance/2026-10-06-w6-health-guidance-ms
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ms
   name: Mississippi
   family: w6_bundle_gap
@@ -11238,7 +11426,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-ms/manual/dom/medicaid/chapter-101-2017-10
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ms/manual/2026-10-06-w6-health-manual-ms (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ms/manual/2026-10-06-w6-health-manual-ms
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ms
   name: Mississippi
   family: w6_bundle_gap
@@ -11254,7 +11443,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-ms/policy/dom/healthier-mississippi-1115-extension-2024
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ms/policy/2026-10-06-w6-health-policy-ms (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ms/policy/2026-10-06-w6-health-policy-ms
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ms
   name: Mississippi
   family: w6_bundle_gap
@@ -11270,7 +11460,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-ms/regulation/title-23/part-104
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ms/regulation/2026-10-06-w6-health-regulation-ms (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-ms/regulation/2026-10-06-w6-health-regulation-ms
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-nd
   name: North Dakota
   family: w6_bundle_gap
@@ -11286,7 +11477,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-nd/guidance/legislature/testimony/hb-1067-2025-01-14-dhhs
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-nd/guidance/2026-10-06-w6-health-guidance-nd (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-nd/guidance/2026-10-06-w6-health-guidance-nd
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-nv
   name: Nevada
   family: w6_bundle_gap
@@ -11302,7 +11494,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-nv/guidance/dhcfp/web-announcement-3748
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-nv/guidance/2026-10-06-w6-health-guidance-nv (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-nv/guidance/2026-10-06-w6-health-guidance-nv
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-or
   name: Oregon
   family: w6_bundle_gap
@@ -11319,7 +11512,8 @@ states:
   citation_paths:
   - us-or/guidance/odhs-oha/combined-standards-de5530
   - us-or/guidance/oha/healthier-oregon
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-or/guidance/2026-10-06-w6-health-guidance-or (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-or/guidance/2026-10-06-w6-health-guidance-or
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-or
   name: Oregon
   family: w6_bundle_gap
@@ -11335,7 +11529,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-or/regulation/chapter-461/division-155/rule-461-155-0250-history
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-or/regulation/2026-10-06-w6-health-regulation-or (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-or/regulation/2026-10-06-w6-health-regulation-or
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-or
   name: Oregon
   family: w6_bundle_gap
@@ -11351,7 +11546,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-or/statute/session-laws/2021/hb3352
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-or/statute/2026-10-06-w6-health-statute-or (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-or/statute/2026-10-06-w6-health-statute-or
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-or
   name: Oregon
   family: w6_bundle_gap
@@ -11366,7 +11562,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-or/statute/414.231
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414 (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-sc
   name: South Carolina
   family: w6_bundle_gap
@@ -11382,7 +11579,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-sc/policy/scdhhs/1115/palmetto-pathways-to-independence-2025-06-23
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-sc/policy/2026-10-06-w6-health-policy-sc (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-sc/policy/2026-10-06-w6-health-policy-sc
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-tn
   name: Tennessee
   family: w6_bundle_gap
@@ -11398,7 +11596,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-tn/policy/2026-10-06-w6-health-policy-tn (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-tn/policy/2026-10-06-w6-health-policy-tn
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-va
   name: Virginia
   family: w6_bundle_gap
@@ -11414,7 +11613,8 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-va/manual/dmas/medicaid/m03-2024-07-01
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-va/manual/2026-10-06-w6-health-manual-va (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-va/manual/2026-10-06-w6-health-manual-va
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-wa
   name: Washington
   family: w6_bundle_gap
@@ -11431,7 +11631,8 @@ states:
   citation_paths:
   - us-wa/guidance/hca/apple-health-expansion
   - us-wa/guidance/hca/children
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-wa/guidance/2026-10-06-w6-health-guidance-wa (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-wa/guidance/2026-10-06-w6-health-guidance-wa
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-wa
   name: Washington
   family: w6_bundle_gap
@@ -11448,7 +11649,8 @@ states:
   - us-wa/regulation/182/182-505/182-505-0100
   - us-wa/regulation/182/182-505/182-505-0210
   - us-wa/regulation/182/182-505/182-505-0225
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 3 work-order row(s) extracted from the official publisher into us-wa/regulation/2026-10-06-w6-health-regulation-wa-182-505 (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 3 work-order row(s) extracted from the official publisher into us-wa/regulation/2026-10-06-w6-health-regulation-wa-182-505
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-wa
   name: Washington
   family: w6_bundle_gap
@@ -11464,7 +11666,8 @@ states:
   citation_paths:
   - us-wa/regulation/182/182-512/182-512-0010
   - us-wa/regulation/182/182-512/182-512-0100
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-wa/regulation/2026-10-06-w6-health-regulation-wa-182-512 (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-wa/regulation/2026-10-06-w6-health-regulation-wa-182-512
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-wa
   name: Washington
   family: w6_bundle_gap
@@ -11481,7 +11684,8 @@ states:
   citation_paths:
   - us-wa/statute/74/74.09/74.09.470
   - us-wa/statute/session-laws/2023/chapter-475-essb-5187
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-wa/statute/2026-10-06-w6-health-statute-wa (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 2 work-order row(s) extracted from the official publisher into us-wa/statute/2026-10-06-w6-health-statute-wa
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-wy
   name: Wyoming
   family: w6_bundle_gap
@@ -11497,17 +11701,35 @@ states:
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
   citation_paths:
   - us-wy/guidance/wdh/medicaid-income-requirements
-  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-wy/guidance/2026-10-06-w6-health-guidance-wy (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
+  notes: '2026-10-06 wave 6 health (program-bundle gaps): 1 work-order row(s) extracted from the official publisher into us-wy/guidance/2026-10-06-w6-health-guidance-wy
+    (unsigned, uncommitted; controller signs and selects). See docs/ingest-runs/2026-10-06-w6-health.md.'
 - jurisdiction: us-ca
   name: California
   family: w6_bundle_gap
-  queue_status: blocked_primary_source
+  queue_status: agent_ready
   source_kind: official_documents_program_bundle_gap
   primary_source_url: https://govt.westlaw.com/calregs/Search/Results?t_querytext=2699.200&t_Method=tnc
-  blocked_count: 1
+  index_url: https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEC93CBD05C2F11EC9C68000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+  index_document_count: 12
+  taken_count: 1
+  index_families:
+    administrative_code_section: 12
+  target_manifest: manifests/us-ca-medicaid-ccr-sections.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: regulation
+    version: 2026-10-20-w8-medicaid-ccr-section
+  blocked_count: 0
   work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
-  run_note: docs/ingest-runs/2026-10-06-w6-health.md
-  notes: '2026-10-06 wave 6 health: govt.westlaw.com blocks the corpus client (Official CCR publisher (OAL''s govt.westlaw.com/calregs) answers HTTP 403 Cloudflare ''Just a moment'' challenge; 10 CCR 2699.200 (MCAP basis of eligibility) not otherwise published officially; the bundle names the Cornell LII mirror). OUTREACH; not worked around.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+  citation_paths:
+  - us-ca/regulation/10-ccr/2699.200
+  notes: '2026-10-20 wave-8 reprobe: the official CCR publisher answers again. OAL (Government Code section 11344) names govt.westlaw.com/calregs
+    as the official online CCR, so the host is the state''s own publication channel, not a vendor repost; the plain corpus
+    client still meets a Cloudflare interstitial, so the rows fetch with chrome120 impersonation (TLS verified). 1 of the
+    12 sections the Article 2 table of contents lists taken into us-ca/regulation/2026-10-20-w8-medicaid-ccr-section (unsigned,
+    uncommitted; controller signs and selects). The queue row''s own search URL names 10 CCR 2699.200, not a title 22 section.
+    See docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md.'
 - jurisdiction: us-ca
   name: California
   family: w6_bundle_gap
@@ -11516,18 +11738,71 @@ states:
   primary_source_url: https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3/
   blocked_count: 6
   work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
-  run_note: docs/ingest-runs/2026-10-06-w6-health.md
-  notes: '2026-10-06 wave 6 health: www.dhcs.ca.gov blocks the corpus client (dhcs.ca.gov answers the corpus client HTTP 200 with a 212-byte Incapsula challenge (2026-10-06; same block as 2026-09-10 and 2026-09-13); no wp-content copy of this document was found). OUTREACH; not worked around.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+  notes: '2026-10-20 wave-8 reprobe: still blocked, judged on the response bodies. Every www.dhcs.ca.gov HTML address, the
+    site root included, answers an Imperva/Incapsula `_Incapsula_Resource` challenge stub and no page content: HTTP 200 with
+    212 bytes to the extractor''s browser-user-agent fallback, 840-955 bytes to the corpus user agent and to a chrome120 fingerprint.
+    dhcs.ca.gov without www and the WordPress REST path answer the same stub, so the ACWDL index body cannot be read. The
+    publisher''s own sitemaps do answer (sitemap.xml, page-sitemap{,2,3,4}.xml) and list the ACWDL index plus 92 year pages,
+    which proves the pages exist but carries no letter text. No official alternative host serves the index and no mirror was
+    taken. OUTREACH, unchanged; the six work-order rows (ACWDL 23-03, ACWDL 25-14, Program descriptions by FPL Enclosure 3,
+    the non-MAGI asset-limit page, the Former Foster Youth page, the Working Disabled Program page) stay blocked.'
+  index_url: https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/
+  index_document_count: 93
+  taken_count: 0
+  index_families:
+    acwdl_medil_year_page: 92
+    acwdl_index_page: 1
 - jurisdiction: us-la
   name: Louisiana
   family: w6_bundle_gap
-  queue_status: blocked_primary_source
+  queue_status: agent_ready
   source_kind: official_documents_program_bundle_gap
   primary_source_url: https://ldh.la.gov/faq/category/19
-  blocked_count: 1
+  blocked_count: 0
   work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
-  run_note: docs/ingest-runs/2026-10-06-w6-health.md
-  notes: '2026-10-06 wave 6 health: ldh.la.gov blocks the corpus client (ldh.la.gov HTML pages answer HTTP 403 (479 bytes) to the corpus client; the Cloudflare block on ldh.la.gov HTML is recorded since 2026-09-10). OUTREACH; not worked around.'
+  run_note: docs/ingest-runs/2026-10-20-w8-medicaid-ca-la-waivers.md
+  notes: '2026-10-20 wave-8 reprobe: already held, nothing new taken. ldh.la.gov answers again, and the block is on the user
+    agent only: the corpus user agent gets a 118-byte ''403 Forbidden'' body, while the browser-user-agent fallback the extractor
+    already retries with on a 403 is served the real pages (the eligibility-manual index HTTP 200, 189,146 bytes; H-3040m.pdf
+    HTTP 200, 29,941 bytes of application/pdf). No browser impersonation is needed on this host. FAQ category 19 is the LaCHIP
+    Affordable Plan question set, not a policy document; the eligibility document LDH''s own index lists as current for that
+    program is H-3040 LaCHIP Affordable Plan on https://ldh.la.gov/medicaid/medicaid-eligibility-manual. All 99 documents
+    that index lists are already held in us-la/manual/2026-09-10-medicaid-state-eligibility-manual at byte-identical URLs
+    (live index and manifest diff to zero on both sides), and that version is in signed releases, so it is immutable and was
+    not touched. No new scope was created.'
+  index_url: https://ldh.la.gov/medicaid/medicaid-eligibility-manual
+  index_document_count: 99
+  taken_count: 0
+  index_families:
+    preface: 1
+    chapter_A: 2
+    chapter_B: 1
+    chapter_C: 1
+    chapter_E: 1
+    chapter_F: 1
+    chapter_G: 1
+    chapter_H: 38
+    chapter_I: 25
+    chapter_J: 1
+    chapter_K: 1
+    chapter_L: 1
+    chapter_N: 1
+    chapter_P: 1
+    chapter_Q: 1
+    chapter_R: 1
+    chapter_S: 1
+    chapter_T: 1
+    chapter_U: 1
+    chapter_X: 1
+    chapter_Z: 17
+  target_manifest: manifests/us-la-medicaid-eligibility-manual.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: manual
+    version: 2026-09-10-medicaid-state-eligibility-manual
+  citation_paths:
+  - us-la/manual/ldh/medicaid/h-3040
 - jurisdiction: us-ny
   name: New York
   family: w6_bundle_gap
@@ -11537,7 +11812,9 @@ states:
   blocked_count: 1
   work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
   run_note: docs/ingest-runs/2026-10-06-w6-health.md
-  notes: '2026-10-06 wave 6 health: info.nystateofhealth.ny.gov blocks the corpus client (info.nystateofhealth.ny.gov answers HTTP 403 CloudFront ''The request could not be satisfied''; no run note documents an impersonation fallback for this host). OUTREACH; not worked around.'
+  notes: '2026-10-06 wave 6 health: info.nystateofhealth.ny.gov blocks the corpus client (info.nystateofhealth.ny.gov answers
+    HTTP 403 CloudFront ''The request could not be satisfied''; no run note documents an impersonation fallback for this host).
+    OUTREACH; not worked around.'
 - jurisdiction: us-wy
   name: Wyoming
   family: magi_verification_plan
