@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/statute/2026-10-20-rulespec-nz-pco.json",
+      "sha256": "532adf3b9063ee6a527e8ef87c58da927d15418272f5f4cc506b35df73da9dc3"
+    },
+    {
+      "path": "data/corpus/inventory/nz/statute/2026-10-20-rulespec-nz-pco.json",
+      "sha256": "d2bf3de90fe6b9d9e5bc2c46d49be5cb7f4b791550aced0d98e0802864f215da"
+    },
+    {
+      "path": "data/corpus/provisions/nz/statute/2026-10-20-rulespec-nz-pco.jsonl",
+      "sha256": "d2ab925a62b289510c6248dc14c35de3d3cacdd4fae81ebc6c9841cd395d29a7"
+    },
+    {
+      "path": "data/corpus/sources/nz/statute/2026-10-20-rulespec-nz-pco/act/public/2026/54/act_public_2026_54_en_2026-09-03.xml",
+      "sha256": "aa6b16470e1302a80503a5a8fb44ea40159081cd234c731cad672652b5545f52"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a543e54be4f2ba0f1386c9dc396243922e064e37",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-nz-legislation --source-as-of 2026-10-20 --expression-date 2026-10-20 over 1 pinned official NZ Legislation API XML snapshot (act/public/2026/0054 Social Security (Jobseeker Support and Accommodation Supplement) Amendment Act 2026, version act_public_2026_54_en_2026-09-03; run note: docs/ingest-runs/2026-10-20-nz-act-2026-54.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 26,
+    "missing_count": 0,
+    "provision_count": 26,
+    "source_count": 26
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-20T16:26:05.345011+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xOlIpLjAbXadXQESw/ZnCbVPjiv75y3mJRkozl9w83zlN4Tr11NBus45YvhYdqx2GSJGNK//Sue6ZL9sT5M9AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-20-rulespec-nz-pco"
+}
