@@ -2435,7 +2435,7 @@ def extract_california_code_sections(
     exactly as before.
     """
     jurisdiction = "us-ca"
-    selected = tuple(dict.fromkeys(_california_section_request(section) for section in sections))
+    selected = tuple(_california_section_request(section) for section in sections)
     if not selected:
         raise ValueError("extract_california_code_sections: sections must be non-empty")
     requested: dict[tuple[str, str], list[str | None]] = {}
@@ -2447,6 +2447,7 @@ def extract_california_code_sections(
                 f"extract_california_code_sections: {law_code} {token} is requested more than "
                 "once with a version selector; request it once (with @all for every version)"
             )
+    selected = tuple(dict.fromkeys(selected))
     run_id = _california_sections_run_id(version, selected)
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
@@ -2505,6 +2506,10 @@ def extract_california_code_sections(
                 raise CaliforniaVersionError(f"{law_code} {section_num}@{selector}: {exc}") from exc
             errors.append(f"{law_code} {section_num}: {exc}")
             continue
+        except ValueError as exc:
+            if selector is None or isinstance(exc, CaliforniaVersionError):
+                raise
+            raise CaliforniaVersionError(f"{law_code} {section_num}@{selector}: {exc}") from exc
         picker_source_key: str | None = None
         if capture is not None and capture.picker_bytes is not None:
             picker_relative_name = _california_picker_html_relative_name(law_code, section_num)

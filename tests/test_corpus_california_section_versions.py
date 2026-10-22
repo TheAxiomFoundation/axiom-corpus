@@ -264,6 +264,37 @@ def test_a_picker_that_changes_mid_capture_raises(tmp_path, monkeypatch):
         _extract(tmp_path, "WIC:11450@all")
 
 
+@pytest.mark.parametrize("source", ["initial", "refresh", "cache"])
+def test_a_malformed_second_picker_anchor_cannot_produce_complete_coverage(
+    tmp_path, monkeypatch, source
+):
+    fake = FakeLegInfo(_two_versions())
+    _install(monkeypatch, fake)
+    cache = tmp_path / "cache" if source == "cache" else None
+    prefix = b"selectFromMultiples:j_idt139:1:j_idt141"
+    if cache is not None:
+        _extract(tmp_path, "WIC:11450@all", cache=cache, base="valid")
+        picker = cache / "california-leginfo-pickers/WIC-11450.html"
+        picker.write_bytes(picker.read_bytes().replace(prefix, b"unknown:version"))
+        fake.log.clear()
+    else:
+        original_picker = fake.picker
+
+        def malformed_picker(token, versions):
+            content = original_picker(token, versions)
+            if source == "initial" or fake.issued >= 2:
+                return content.replace(prefix, b"unknown:version")
+            return content
+
+        monkeypatch.setattr(fake, "picker", malformed_picker)
+    with pytest.raises(CaliforniaVersionError, match="exactly one command key"):
+        _extract(tmp_path, "WIC:11450@all", cache=cache, base="malformed")
+    assert not list((tmp_path / "malformed").rglob("*.json"))
+    assert not list((tmp_path / "malformed").rglob("*.jsonl"))
+    if source == "cache":
+        assert fake.log == []
+
+
 def test_two_versions_with_one_slug_raise(tmp_path, monkeypatch):
     versions = _two_versions()
     versions[0].note = V2_NOTE
@@ -338,6 +369,7 @@ def test_a_section_requested_twice_with_a_selector_is_refused(tmp_path, monkeypa
     _install(monkeypatch, FakeLegInfo(_two_versions()))
     store = CorpusArtifactStore(tmp_path / "corpus")
     for sections in (
+        ("WIC:11450@all", "WIC:11450@all"),
         ("WIC:11450@all", "WIC:11450@operative-2024-07-01"),
         ("WIC:11450@all", "WIC:11450.@all"),
         ("WIC:11450", "WIC:11450@all"),

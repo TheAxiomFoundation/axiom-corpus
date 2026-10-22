@@ -242,10 +242,14 @@ def test_the_scope_rebuilds_offline_and_byte_identically_from_its_retained_bytes
     }
 
 
-def test_every_us_ca_plain_row_of_these_sections_is_one_of_these_versions() -> None:
-    """Differential check across carriers, over every us-ca statute scope: a plain-path row
-    of a multi-version section is the same LegInfo version (op triple and sectionuid) as
-    exactly one variant row here, with the same text apart from the history note."""
+def test_every_us_ca_plain_row_source_matches_one_concurrent_version() -> None:
+    """Check source-version identity (op triple and sectionuid) across carriers.
+
+    Re-extract each plain row's retained HTML with the current table-preserving
+    extractor and compare it to the variant body, apart from the history note.
+    This does not compare the legacy normalized body: earlier extraction omitted
+    table structure and deduplicated repeated paragraphs. See the run-note erratum.
+    """
     rows = _rows()
     by_source_id = {row["source_id"]: path for path, row in rows.items()}
     seen: dict[str, set[str]] = {}
@@ -354,10 +358,13 @@ def test_no_other_us_ca_scope_carries_a_variant_path() -> None:
         "us-rulespec-2026-10-13-w7-bundle-gaps-union",
     ],
 )
-def test_the_scope_joins_the_newest_cuts_us_ca_statute_scopes_cleanly(cut: str) -> None:
-    """Additive: next to each line's us-ca statute scopes (CalWORKs plus the recovery scope,
-    CalWORKs plus the chapter scope, or their table-preserving successors plus the WIC title
-    scope) it shares no citation path and validates clean."""
+def test_the_scope_joins_release_carriers_with_only_expected_validation_issues(cut: str) -> None:
+    """The variants add no citation overlap or unexpected validation issues.
+
+    Main's withdrawal gate rejects the old recovery and PIT scopes in a new
+    candidate built from the September 24 cut. Expect exactly those two errors
+    there; candidates built from the later carriers must validate cleanly.
+    """
     manifest = ReleaseManifest.load(REPO_ROOT / f"manifests/releases/{cut}.json")
     scopes = tuple(
         scope
@@ -370,4 +377,17 @@ def test_the_scope_joins_the_newest_cuts_us_ca_statute_scopes_cleanly(cut: str) 
         scopes=(*scopes, ReleaseScope("us-ca", "statute", VERSION)),
     )
     report = validate_release(CORPUS_ROOT, release, strict_warnings=True, max_issues=50)
-    assert report.to_mapping()["issue_count"] == 0, report.to_mapping()["issues"]
+    expected_withdrawn = (
+        {
+            "2026-07-13-recovery",
+            "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052"
+            "-rtc-17054-rtc-17073.5",
+        }
+        if cut == "us-rulespec-2026-09-24-snap-fy2027-cola"
+        else set()
+    )
+    assert report.warning_count == 0, report.to_mapping()["issues"]
+    assert report.error_count == len(expected_withdrawn), report.to_mapping()["issues"]
+    assert {(issue.code, issue.version) for issue in report.issues} == {
+        ("withdrawn_scope_selected", version) for version in expected_withdrawn
+    }
