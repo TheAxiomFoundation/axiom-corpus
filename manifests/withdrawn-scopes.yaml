@@ -59,6 +59,8 @@ selector_digests:
   us-rulespec-2026-10-12-w5-benefits-union: 39ccd66c6803fb784a42c39d8f5e5a9d895e3993e61d9cf2fceafda31ab722b3
   us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected: acdd6106f82490f6a9827b97943600321003125254c5ebfa42b635295e7208ed
   us-rulespec-2026-10-13-w7-bundle-gaps-union: c09b3bbc62b9134612eb2ec1bb8bb90042da57cd5f6058f61408701674e38620
+  us-rulespec-2026-10-20-fs-pilot-reg-e-f: 002113b75208226f3d57a2e52cdfd0836f5f311f0db3cab3014452a5ea1a3e7a
+  us-rulespec-2026-10-22-ca-concurrent-versions: af8622c3960b7d9d693020fe6393cf9de5fa21608f49117d5417c55b8e1b24e7
   us-rulespec-ny-snap-2026-07-17: 7ff17ffafe5c61205dd9b8ee92d6580093d9fd30d1e4692eaab30893835ffb3c
   us-rulespec-snap-2026-07-21: 1d2cae04d8b83694e13756fe3302cda386272013b72818342dc0ccfb826a744a
 scopes:
@@ -448,7 +450,21 @@ scopes:
       - us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected
       - us-rulespec-ny-snap-2026-07-17
       - us-rulespec-snap-2026-07-21
-    exceptions: []
+    exceptions:
+      - selector: us-rulespec-2026-10-20-fs-pilot-reg-e-f
+        reason: >-
+          Release decision on axiom-corpus#911: this pin release keeps the scope so that
+          the rulespec-us modules whose citations resolve only here keep resolving after
+          the re-pin. The exception stays with this immutable selector; the next cut in
+          the line drops the scope and selects its replacement scopes, together with
+          rulespec-us#1365.
+      - selector: us-rulespec-2026-10-22-ca-concurrent-versions
+        reason: >-
+          Release decision on axiom-corpus#918: this successor pin release in the same
+          line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -496,7 +512,21 @@ scopes:
       - us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected
       - us-rulespec-ny-snap-2026-07-17
       - us-rulespec-snap-2026-07-21
-    exceptions: []
+    exceptions:
+      - selector: us-rulespec-2026-10-20-fs-pilot-reg-e-f
+        reason: >-
+          Release decision on axiom-corpus#911: this pin release keeps the scope so that
+          the rulespec-us modules whose citations resolve only here keep resolving after
+          the re-pin. The exception stays with this immutable selector; the next cut in
+          the line drops the scope and selects its replacement scopes, together with
+          rulespec-us#1365.
+      - selector: us-rulespec-2026-10-22-ca-concurrent-versions
+        reason: >-
+          Release decision on axiom-corpus#918: this successor pin release in the same
+          line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
   - scope: us-mn/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -546,7 +576,21 @@ scopes:
       - us-rulespec-2026-10-13-snap-fy2026-memo-source-corrected
       - us-rulespec-ny-snap-2026-07-17
       - us-rulespec-snap-2026-07-21
-    exceptions: []
+    exceptions:
+      - selector: us-rulespec-2026-10-20-fs-pilot-reg-e-f
+        reason: >-
+          Release decision on axiom-corpus#911: this pin release keeps the scope so that
+          the rulespec-us modules whose citations resolve only here keep resolving after
+          the re-pin. The exception stays with this immutable selector; the next cut in
+          the line drops the scope and selects its replacement scopes, together with
+          rulespec-us#1365.
+      - selector: us-rulespec-2026-10-22-ca-concurrent-versions
+        reason: >-
+          Release decision on axiom-corpus#918: this successor pin release in the same
+          line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
   - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
