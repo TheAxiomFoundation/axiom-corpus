@@ -11,11 +11,12 @@ Structure mirrors ``test_citation_path_grammar.py``:
    target yields at least a floor number of anchors. A green suite therefore
    means the checks can actually fail, not that there was nothing to check.
 
-Both targets are read from the real committed provision JSONL so the test
+Both targets are read from the real lock-pinned provision JSONL so the test
 exercises production data, and the committed anchor JSONL is checked to be
 exactly what the generator reproduces (the derived artifact is in sync). These
-fixtures are tracked in git, so a missing file or row fails the suite rather
-than skipping it: it means a test points at a renamed or superseded scope.
+are lock-pinned corpus fixtures, fetched on demand, so a missing file or row
+fails the suite rather than skipping it: it means a test points at a renamed or
+superseded scope.
 """
 
 from __future__ import annotations
