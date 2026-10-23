@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/guidance/2026-10-06-w6-health-guidance-nv.json",
+      "sha256": "582068d3210e9fa0f7349cc762a92000ec5b34a415827105cdefc1a7c65d9dcf"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/guidance/2026-10-06-w6-health-guidance-nv.json",
+      "sha256": "6bbbaaab16d25817a04992768c57ea310361dfca5e4201d1315e42d1774db5b9"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/guidance/2026-10-06-w6-health-guidance-nv.jsonl",
+      "sha256": "14253eecd40ae7840084fe71a0669c8209b9b7ae20acd622c0ca2744d1a26d03"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/guidance/2026-10-06-w6-health-guidance-nv/official-documents/us-nv-w6-health-dhcfp-web-announcement-3748.pdf",
+      "sha256": "b9cb3cc09a8393c43000edeb12b9bf017ddb16face95a694b5bba6e088319a0f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:31.650883+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GRKZMcJ3OvqHpLMF2amBcDZAvoyKkbM5n7RWdQmIhNkQO0rTLN2CVhFlff9ekaOrilGN8Z6QOgpJQKcFMXGBDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-nv"
+}

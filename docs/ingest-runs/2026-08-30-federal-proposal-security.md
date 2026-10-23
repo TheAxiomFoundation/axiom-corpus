@@ -311,10 +311,16 @@ and 10 eCFR subpart labels (`us/regulation/2/25/subpart-A` to `subpart-D`,
 subparagraph rows plus 37 clause rows beneath them. The four `1862o–1` rows add four
 en-dash paths.
 
-In `schema/citation-path.v1.json`, `uppercase_segments` is raised from main's 16,281 to
-16,396 and `endash_segments` from 1,652 to 1,656. `scripts/validate_citation_paths.py`
-then passes. Other branches that raise these ceilings will conflict on those lines;
-recompute them on merge.
+After merging `origin/main` at `08e9be136`, the full locked provision corpus
+(2,555 files; 765,121 records; 535,077 unique paths) measures 19,473 uppercase
+paths and 1,656 en-dash paths. In `schema/citation-path.v1.json`,
+`uppercase_segments` therefore rises from main's 19,358 to 19,473 and
+`endash_segments` from 1,652 to 1,656.
+
+The ceilings were regenerated with `scripts/validate_citation_paths.py
+--update-baselines`, using a lossless projection of its five `CHECKED_FIELDS`
+for the repeated local scans. All unrelated main ratchets and the empty
+identity-drift baseline are preserved.
 
 ## Release validation
 

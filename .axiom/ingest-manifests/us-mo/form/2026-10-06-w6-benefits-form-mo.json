@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/form/2026-10-06-w6-benefits-form-mo.json",
+      "sha256": "1bde664263e348a6664bfe28f1871e14851b235e532569e7b46dff97a20a1c0c"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/form/2026-10-06-w6-benefits-form-mo.json",
+      "sha256": "71fd0a79893e2acb55d237466b1c26c10e176801bd58ac5a068cc4039d34b3a4"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/form/2026-10-06-w6-benefits-form-mo.jsonl",
+      "sha256": "ff7bde3ba10623c2de6a9c2d785efe75ecb917e1b00340b6abbdcc771dff0de4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/form/2026-10-06-w6-benefits-form-mo/official-documents/us-mo-form-dss-fsd-im-72.pdf",
+      "sha256": "aac336d28a4d1e65e34c924b389a9a98e4ce8b4b564a832639d68a0e22259c2d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:54:05.813125+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "R02PnKpbpS/vlmxtORimjrW+SyE0pbcc9IMOSaRozSvY70rqnG3ZQS6zoICJWP9y3I9v3zyBAurSHJDSkujnAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-form-mo"
+}

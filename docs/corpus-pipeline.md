@@ -156,6 +156,17 @@ the official form. `--section` selectors take the official form (`--section '1.4
 Before 2026-09-13 such identifiers were skipped by the inventory and truncated by the XML
 pass, so no earlier scope contains one.
 
+Title 41 numbers each part within its chapter: part 60-20 is part 20 of chapter 60, and
+its sections are 60-20.1, 60-20.2, and so on (`us/regulation/41/60-20/1`). The identifier
+alone cannot say whether a hyphenated prefix is a part, because 14 CFR part 241 numbers
+its own sections 19-8.1 to 19-8.10, so the adapter reads a hyphenated part only inside
+that part; every other identifier parses as before. `--only-part 60-20` and
+`--section 60-20.1` take the official form, and lettered or numbered part appendices take
+the same part grammar (`Appendix A to Part 60-300` is
+`us/regulation/41/60-300/appendix-a`). Before 2026-10-12 the inventory skipped these
+sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
+`manifests/releases/` carried title 41 then.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
@@ -388,31 +399,104 @@ axiom-corpus-ingest extract-official-documents \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
 
+### Retained copies (`local_path`)
+
+A manifest entry with `local_path` reads the document's bytes from that file
+instead of fetching them, for a publisher that blocks or breaks automated
+fetches. A relative `local_path` is relative to the manifest file. The rows
+record the official URL, never the file: `metadata.download_url` is the entry's
+`download_url`, else the Google Drive direct link, else `source_url` (the URL a
+fetch would have requested), and `metadata.content_type` is the media type of
+the declared or detected `source_format`. The source snapshot keeps the
+retained bytes and their sha256.
+
+`guard-ingested` rejects a new or changed inventory or provisions artifact whose
+`source_url` or metadata `url`/`*_url` field holds a `file:` URL, which would
+publish a path on the extracting machine. Body text is not checked: a scanned
+document can print a `file:` link itself.
+
+Scopes extracted before this rule record such paths.
+`scripts/audit_local_file_urls.py [--release <selector>]` lists the locked ones,
+and `scripts/repair_local_file_download_urls.py` writes a successor scope from a
+locked scope's own bytes, by re-extraction with the committed manifest or, for
+recovery-batch scopes, by rewriting only the leaked URL. It then checks that the
+successor differs only in those URLs, their media types and the version.
+
 ### Amended rule text in PDFs
 
 Register orders and agency letters often print amended rule text with deleted
 words struck through and inserted words underlined. The strike and underline
 are drawn rules, not text, so default PDF text extraction reads both as ordinary
 text. Three opt-in `extraction` keys in an official-document manifest handle
-such PDFs (default per-page segmentation only; without them extraction is
-unchanged):
+such PDFs. Without them extraction is unchanged.
 
-- `amendment_markup: true`, or a mapping with `start_page`/`end_page` (inclusive)
-  and optional `typographic_underlines`, writes the text with GNU wdiff
-  delimiters: `[-deleted text-]` for struck-through text and `{+inserted text+}`
-  for underlined text. Each marked page row carries
-  `metadata.amendment_markup` (the notation and its counts of deleted and
-  inserted runs). Removing the four delimiters gives back exactly the page text
-  extracted without the option. Limit the page range to the amended text so
-  that ordinary emphasis underlines elsewhere are not marked, and list in
-  `typographic_underlines` any exact phrase whose underline is citation
-  typography (an underlined case name, say) rather than an insertion. Extraction
-  fails if a page's own text already contains one of the delimiters, or if a
-  character is both struck through and underlined.
+- `amendment_markup` writes the text with GNU wdiff delimiters:
+  `[-deleted text-]` for struck-through text and `{+inserted text+}` for
+  underlined text. Its value is `true` (every page) or a non-empty mapping with
+  `start_page` and `end_page` (inclusive, positive integers) and an optional
+  `typographic_underlines` list. Each marked page row carries
+  `metadata.amendment_markup`: the notation and its counts of deleted and
+  inserted runs.
+  - Removing the four delimiters gives back exactly the page text extracted
+    without the option. Every marked page is checked against that text.
+  - Limit the page range to the amended text, so that ordinary emphasis
+    underlines elsewhere are not marked.
+  - List in `typographic_underlines` any exact phrase whose underline is
+    citation typography (an underlined case name, say) rather than an
+    insertion. A phrase occurs only as whole words ("Jones" does not occur in
+    "Jonesboro"). An occurrence counts, and loses its insertion delimiters, only
+    where it is exactly an underlined stretch: its first and last characters
+    are underlined and the text next to it is not. Words inside it may be plain,
+    like the "v." of a case name. An occurrence inside a longer underlined
+    stretch reads as part of that insertion, keeps its delimiters and draws a
+    warning. Extraction fails if a listed phrase never occurs as an underlined
+    stretch in the marked pages.
 - `sort_blocks: true` orders a page's text blocks top to bottom, so a boxed note
-  drawn last in the content stream is read where it is printed.
-- `ignore_actual_text: true` extracts the visible glyphs even where the PDF's tag
-  tree supplies a replacement `/ActualText` (an empty one hides the text).
+  drawn last in the content stream is read where it is printed. This is
+  PyMuPDF's block sort, not the order `sort_text: true` gives. Each page is
+  checked to hold the same characters as the default text.
+- `ignore_actual_text: true` extracts the glyphs drawn inside marked content
+  that carries an `/ActualText` replacement (an empty one hides the text)
+  instead of the replacement. Those glyphs are not necessarily visible on the page. Check
+  the result against a rendering. This key works with every PDF segmentation.
+
+`amendment_markup` and `sort_blocks` work only with the default per-page
+segmentation and reject `ocr`, `force_ocr`, `text_replacements` and
+`sort_text`. They read the page's character layer, PyMuPDF's `rawdict`: the
+characters with their positions. `rawdict` leaves out some glyphs that
+PyMuPDF's plain-text printer prints: a line whose box has no area, and the last
+span of a line (a run in its own font, size or colour) when that span's box has
+no area. Glyphs drawn with no width, such as a combining mark or a zero-advance
+period, make such lines and spans. Where the `rawdict` reading differs from the
+page's default text, the page is read again: its text page is walked with the
+printer's test for each glyph, and the glyphs `rawdict` left out are added
+where the printer prints them; every character of a re-read page is given as
+the printer prints it, so a lone surrogate code point, which `rawdict` passes
+through, reads as U+FFFD. They never move a block whose text `rawdict` read or
+change how its other glyphs are classified. A page whose `rawdict` reading
+already matches the default text reads exactly as before. Extraction stops with
+an error naming the page if the walk and `rawdict` do not line up, or if the
+result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
+`amendment_markup` also fails if a page's own text already contains one of the
+delimiters, if a character is both struck through and underlined, or if
+`start_page` is past the last page.
+
+The strike and underline classifier is geometric. A visible horizontal rule at
+most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
+line's stroke width) marks a character when its offset from the text baseline,
+in multiples of the font size, is from -0.40 to -0.10 (strike) or from 0.05 to
+0.22 (underline). White rules and rules with zero opacity are ignored. So a thin
+table rule drawn 1-2 pt under 10 pt text reads as an underline. Extraction
+warns (`PdfAmendmentMarkupWarning`) about a page with a rule within 0.03 font
+sizes of a threshold, or with a rule from 1.5 to 3 pt thick at a strike or
+underline position, which is not classified. Check every new use against a
+rendering of the pages or the publisher's HTML before ingesting it.
+`scripts/compare_pdf_amendment_markup_with_html.py` compares the marked text
+with HTML whose inline styles carry the markup. It labels every character,
+normalizes typographic spelling (hyphen, dash and quote variants), and compares
+the labels character by character in both directions, so labels swapped between
+words or inside a word (a struck and an inserted digit) fail, and so does a word
+that moves and changes label.
 
 See `manifests/us-ca-cdss-acl-06-31.yaml` and
 `manifests/us-de-register-13-de-reg-1550.yaml`.

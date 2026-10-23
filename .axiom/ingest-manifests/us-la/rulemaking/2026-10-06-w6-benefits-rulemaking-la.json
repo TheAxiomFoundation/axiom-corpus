@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/rulemaking/2026-10-06-w6-benefits-rulemaking-la.json",
+      "sha256": "8c7b0f896d5842b53b899b2a9ba198d777fa8fb02777d20f8ae633eb8982cd4b"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/rulemaking/2026-10-06-w6-benefits-rulemaking-la.json",
+      "sha256": "c8092f5fa90273a10041fa92efd5da1550b313c8fa52074324ae2597f84ec10e"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/rulemaking/2026-10-06-w6-benefits-rulemaking-la.jsonl",
+      "sha256": "43102b2db6c25d32844b47cc4a7af246a33a020ee27d138612eec189f1c6e840"
+    },
+    {
+      "path": "data/corpus/sources/us-la/rulemaking/2026-10-06-w6-benefits-rulemaking-la/official-documents/us-la-rulemaking-register-2003-04.pdf",
+      "sha256": "3c853f00686b5be1aee4cef3940936bec06cd8db056f63f778f0aa776753fd9f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 146,
+    "missing_count": 0,
+    "provision_count": 146,
+    "source_count": 146
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T17:52:46.272239+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PQrHHKXgJiaWxp2Hdfuq1Jwzu53jFgLZXvc6nKIv2F1LEujbTtkbYRcKJSyGXDzhAnWNeLKHDfjWP8ECl6FZDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-rulemaking-la"
+}

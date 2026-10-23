@@ -1,0 +1,1 @@
+Add wave 7 official-documents manifests for the state benefit-program gaps of the 2026-10-12 program-bundle list (CCDF plan amendments, Illinois CCAP and Cash/SNAP/Medical manual pages, Minnesota Combined Manual sections, Colorado CCCAP rules, state statutes, register filings and agency pages), with one decision per bundle-gap row.

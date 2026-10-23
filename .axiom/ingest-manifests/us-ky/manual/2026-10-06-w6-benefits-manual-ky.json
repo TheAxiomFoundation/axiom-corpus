@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-10-06-w6-benefits-manual-ky.json",
+      "sha256": "176dab7eb8f38dfa970f2b9563a9779b8ab352b713cf9f53c81af3030a9da8e6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-10-06-w6-benefits-manual-ky.json",
+      "sha256": "b0736453d106f34d89369aa8dcc83e9e45df0ffc16ff717c93145718c311a352"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-10-06-w6-benefits-manual-ky.jsonl",
+      "sha256": "6f5afc77fd957745945172cee0ef2b7980be29b6673bff82dc0db6842f5ef19a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-10-06-w6-benefits-manual-ky/official-documents/us-ky-manual-dcbs-dfs-volume-v-state-supplementation.pdf",
+      "sha256": "2ddb657cb594114a8b099285fec523ae9f45c6b6aaeffcbf7f86c3336430bc65"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 64,
+    "missing_count": 0,
+    "provision_count": 64,
+    "source_count": 64
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:52:24.138031+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8RE0/GVWc3eRVxKws8Y76mPfYgh76q7ssJ3OkbA4DopjXK0hidSMTDWV31UvJftFbe5/oHIaY7uHjWAIwKUkDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-manual-ky"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/guidance/2026-10-06-w6-income-tax-guidance-md.json",
+      "sha256": "84fbf64a4b43b2e183ff75a1799963fca8acb16c7a5d2761fae67d851fc0c302"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/guidance/2026-10-06-w6-income-tax-guidance-md.json",
+      "sha256": "ded3fa5dc6fece615190be5bc74015223577b2649d3e67e029b0fc34383c587f"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/guidance/2026-10-06-w6-income-tax-guidance-md.jsonl",
+      "sha256": "e533c270caf15d3600b1ffcf47c3b171b5a5f0e5f4950614f8b29c1d46956b05"
+    },
+    {
+      "path": "data/corpus/sources/us-md/guidance/2026-10-06-w6-income-tax-guidance-md/official-documents/us-md-guidance-dls-fiscal-notes-2023-hb0547.pdf",
+      "sha256": "b3e57e9e5986ef8b4bbf1ef0ed5b0a4b05b50f23a8610b25e0b12a7834574fa8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:05.003567+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kNnK+wc1RM/j9qVrvHHuP0oCbIwna69fgH1oX1MOBpx1DGnAV8qI1OXqqnP7uUQGaR8dbqpYiEdBbUAUkOEHDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-md"
+}

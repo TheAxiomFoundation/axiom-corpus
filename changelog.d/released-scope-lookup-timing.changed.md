@@ -1,0 +1,1 @@
+Publication's released-scope lookup logs one line per read (what it read, the attempt, its time, rows and bytes) and gives up on a read after 120 s instead of 600 s before retrying, so a stalled read no longer costs ten minutes per attempt (the lookup took 2 h 55 min in the last publication).

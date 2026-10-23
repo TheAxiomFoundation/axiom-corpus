@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import requests
+from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -10,6 +11,7 @@ from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
 from axiom_corpus.corpus.nycrr import (
     NycrrAdoptedAmendment,
     NycrrPartSource,
+    _document_body,
     extract_nycrr,
     extract_nycrr_parts,
 )
@@ -445,3 +447,77 @@ def test_extract_ny_state_register_writes_issue_records(tmp_path):
         "https://dos.ny.gov/state-register",
         "https://dos.ny.gov/may-6-2026vol-xlviii-issue-18",
     ]
+
+
+# A Part's "Notes" page as Westlaw serves it (abridged from the retained source for
+# 20 NYCRR Part 106 Notes): no ``.co_body``; the text is the ``.co_refsAnnos`` block,
+# followed by the currency line and the end-of-document table.
+WESTLAW_PART_NOTES_HTML = """
+<html><body><main><section class="co_innertube">
+<div id="co_docHeaderTitle"><ul><li id="citation">20 CRR-NY II A 1 106 Notes</li></ul></div>
+<div id="co_document" class="co_document co_codesStateAdminCodesNY">
+<div class="co_documentHead">
+<div class="co_contentBlock co_prelimBlock">
+<div class="co_headtext" role="heading">PART 106. IMPOSITION OF ADDITIONAL TAX</div>
+</div>
+<div class="co_cites">20 CRR-NY II A 1 106 Notes</div>
+</div>
+<div class="co_contentBlock co_refsAnnos"><div class="co_subsection"><div class="co_paragraph">
+<div class="co_paragraphText co_hAlign2">(Statutory authority: Tax Law, &#167;&#167; 171, 697, 1096[a])</div>
+</div></div>
+<div class="co_subsection"><div class="co_headtext">Note:</div><div class="co_paragraph">
+<div class="co_paragraphText">Section 106.1 of this Part does not reflect amendments to the Tax Law made by the Tax Reform and Reduction Act of 1987.</div>
+</div></div></div>
+<div>Current through May 15, 2026</div>
+<table id="co_endOfDocument" role="presentation"><tr><td>End of Document</td></tr></table>
+</div>
+</section></main></body></html>
+"""
+
+# A Part's "Refs" page whose annotation block is empty (18 NYCRR Part 387 Refs).
+WESTLAW_EMPTY_REFS_HTML = """
+<html><body><main><section class="co_innertube">
+<div id="co_document" class="co_document co_codesStateAdminCodesNY">
+<div class="co_documentHead"><div class="co_cites">18 CRR-NY II B 4 387 Refs</div></div>
+<div class="co_contentBlock co_refsAnnos"></div>
+<div>Current through September 15, 2021</div>
+<table id="co_endOfDocument" role="presentation"><tr><td>End of Document</td></tr></table>
+</div>
+</section></main></body></html>
+"""
+
+
+def test_document_body_reads_part_notes_annotation_block():
+    body = _document_body(BeautifulSoup(WESTLAW_PART_NOTES_HTML, "lxml"))
+
+    assert body == (
+        "(Statutory authority: Tax Law, \u00a7\u00a7 171, 697, 1096[a])\n"
+        "Note:\n"
+        "Section 106.1 of this Part does not reflect amendments to the Tax Law "
+        "made by the Tax Reform and Reduction Act of 1987."
+    )
+    assert "Current through" not in body
+    assert "End of Document" not in body
+    assert "20 CRR-NY" not in body
+
+
+def test_document_body_leaves_an_empty_refs_page_bodyless():
+    assert _document_body(BeautifulSoup(WESTLAW_EMPTY_REFS_HTML, "lxml")) is None
+
+
+def test_document_body_prefers_section_body_over_annotations():
+    marker = "<div>Current through September 15, 2021</div>"
+    assert marker in DOCUMENT_HTML
+    html = DOCUMENT_HTML.replace(
+        marker,
+        '<div class="co_contentBlock co_refsAnnos">(Statutory authority: X)</div>' + marker,
+    )
+    soup = BeautifulSoup(html, "lxml")
+    assert soup.select_one("#co_document .co_contentBlock.co_refsAnnos") is not None
+
+    body = _document_body(soup)
+
+    assert body == (
+        "This Part implements subdivision 5 of section 211 of the Social Services Law.\n"
+        "18 CRR-NY 360.1"
+    )

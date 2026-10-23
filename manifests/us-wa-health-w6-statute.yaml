@@ -1,0 +1,45 @@
+version: 2026-10-06-w6-health-statute-wa
+documents:
+- source_id: us-wa-w6-health-74-74-09-74-09-470
+  jurisdiction: us-wa
+  document_class: statute
+  title: 'RCW 74.09.470: Children''s health care coverage'
+  source_url: https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-wa/statute/74/74.09/74.09.470
+  extraction:
+    html_content_selector: '#mainContent'
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Washington State Legislature
+    program: CHIP
+    document_subtype: statute_section_html
+    source_discovery_group: us-wa/statute/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 115
+    bundle_url: https://app.leg.wa.gov/rcw/default.aspx?cite=74.09.470
+- source_id: us-wa-w6-health-session-laws-2023-chapter-475-essb-5187
+  jurisdiction: us-wa
+  document_class: statute
+  title: Laws of 2023, chapter 475 (Engrossed Substitute Senate Bill 5187, 2023-25 operating budget, partial veto)
+  source_url: https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session%20Laws/Senate/5187-S.SL.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2023-05-16'
+  citation_path: us-wa/statute/session-laws/2023/chapter-475-essb-5187
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Washington State Legislature
+    program: MEDICAID
+    document_subtype: session_law_pdf
+    source_discovery_group: us-wa/statute/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 122
+    bundle_url: https://lawfilesext.leg.wa.gov/biennium/2023-24/Pdf/Bills/Session%20Laws/Senate/5187-S.SL.pdf

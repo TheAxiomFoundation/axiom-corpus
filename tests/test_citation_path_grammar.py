@@ -20,10 +20,20 @@ from pathlib import Path
 from uuid import NAMESPACE_URL, uuid5
 
 import pytest
+from hypothesis import example, given, settings
+from hypothesis import strategies as st
+
+from tests.corpus_scan import corpus_scan
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "citation-path.v1.json"
 PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
+
+# The module-scoped `result` fixture parses the whole corpus, and pytest-timeout
+# charges that setup to whichever test first requests it. Under CI's flat 60 s a
+# slow scan errored all eight corpus tests (axiom-corpus#736), so the corpus-sized
+# budget covers the whole module, including its fast tmp_path tests.
+pytestmark = corpus_scan
 
 _spec = importlib.util.spec_from_file_location(
     "validate_citation_paths", REPO_ROOT / "scripts" / "validate_citation_paths.py"
@@ -110,6 +120,58 @@ def test_segment1_matches_document_class_field(result):
 
 def test_irregular_families_within_ratchet(result):
     assert result["ratchet_regressions"] == {}, result["ratchet_regressions"]
+
+
+PROPOSAL_SECURITY_VERSIONS = (
+    "2026-09-28-federal-proposal-security-guidance",
+    "2026-08-30-proposal-security-title-2-part-25",
+    "2026-08-30-proposal-security-title-45-part-604",
+    "2026-08-30-proposal-security-title-31",
+    "2026-08-30-proposal-security-title-42",
+)
+PROPOSAL_SECURITY_RATCHETS = ("endash_segments", "uppercase_segments")
+
+
+@pytest.fixture(scope="module")
+def proposal_security_path_sets():
+    # A partial checkout could falsely justify lowering main's ratchets.
+    assert validate_mod.unfetched_locked_provisions(PROVISIONS_DIR) == []
+    grouped = {
+        version: {family: set() for family in PROPOSAL_SECURITY_RATCHETS}
+        for version in (None, *PROPOSAL_SECURITY_VERSIONS)
+    }
+    seen = set()
+    for record in validate_mod.iter_records(PROVISIONS_DIR):
+        assert "_error" not in record, record
+        version = record.get("version")
+        if version in PROPOSAL_SECURITY_VERSIONS:
+            seen.add(version)
+        else:
+            version = None
+        path = record["citation_path"]
+        for family in PROPOSAL_SECURITY_RATCHETS:
+            if validate_mod.IRREGULAR_PREDICATES[family](path):
+                grouped[version][family].add(path)
+    assert seen == set(PROPOSAL_SECURITY_VERSIONS)
+    return grouped
+
+
+@settings(max_examples=20, deadline=None)
+@example(scope_order=[])
+@example(scope_order=list(PROPOSAL_SECURITY_VERSIONS))
+@example(scope_order=list(PROPOSAL_SECURITY_VERSIONS) * 2)
+@given(scope_order=st.lists(st.sampled_from(PROPOSAL_SECURITY_VERSIONS), max_size=10))
+def test_proposal_security_ratchets_preserve_main_for_any_scope_selection(
+    schema, proposal_security_path_sets, scope_order
+):
+    # Main plus any selection of this pack must fit the merged ceilings;
+    # repeated immutable scopes and scope ordering cannot increase counts.
+    for family in PROPOSAL_SECURITY_RATCHETS:
+        paths = proposal_security_path_sets[None][family].union(
+            *(proposal_security_path_sets[version][family] for version in scope_order)
+        )
+        ceiling = schema["known_irregulars_ratchet"]["baselines"][family]
+        assert len(paths) <= ceiling, (family, len(paths), ceiling)
 
 
 def test_identity_drift_does_not_grow(result):
