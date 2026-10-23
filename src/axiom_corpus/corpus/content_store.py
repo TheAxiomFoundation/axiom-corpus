@@ -16,6 +16,7 @@ import fcntl
 import hashlib
 import os
 import queue
+import random
 import shutil
 import signal
 import subprocess
@@ -663,13 +664,26 @@ class R2ObjectStore:
         return uploaded
 
     def _get(self, key: str) -> Any | None:
-        try:
-            response = self.client.get_object(Bucket=self.bucket, Key=key)
-        except Exception as exc:  # noqa: BLE001
-            if _is_missing(exc):
-                return None
-            raise
-        return response.get("Body")
+        for attempt in range(5):
+            try:
+                response = self.client.get_object(Bucket=self.bucket, Key=key)
+            except Exception as exc:  # noqa: BLE001
+                if _is_missing(exc):
+                    return None
+                metadata = getattr(exc, "response", None)
+                error = metadata.get("Error", {}) if isinstance(metadata, dict) else {}
+                status = (
+                    metadata.get("ResponseMetadata", {}).get("HTTPStatusCode")
+                    if isinstance(metadata, dict)
+                    else None
+                )
+                transient = error.get("Code") in {"ServiceUnavailable", "SlowDown"} or status == 503
+                if not transient or attempt == 4:
+                    raise
+                time.sleep(random.uniform(0.5, 1.5) * (2**attempt))
+            else:
+                return response.get("Body")
+        raise AssertionError("unreachable R2 retry state")
 
 
 def _is_missing(exc: Exception) -> bool:
