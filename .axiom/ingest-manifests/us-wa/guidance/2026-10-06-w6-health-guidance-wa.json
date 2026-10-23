@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/guidance/2026-10-06-w6-health-guidance-wa.json",
+      "sha256": "47c688bacdc348a796765bcd606c495f65a64f6e179fc7e5f1252dfa6aacfb31"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/guidance/2026-10-06-w6-health-guidance-wa.json",
+      "sha256": "60193009ac9709e8d5c74073a7e3db338054a8cbc050a2b2044d282ad3363d38"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/guidance/2026-10-06-w6-health-guidance-wa.jsonl",
+      "sha256": "872db8f00dad2f53c9a4142207db4f2581b5ffaec021d257c332c90c8b8dccd3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-health-guidance-wa/official-documents/us-wa-w6-health-hca-apple-health-expansion.html",
+      "sha256": "827a9bd34b87eb679f7e60761c8dc7421af63c9ff6e68e0932551c3831945a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-10-06-w6-health-guidance-wa/official-documents/us-wa-w6-health-hca-children.html",
+      "sha256": "10a4c9fc5e157aa2f364b125c043c18f40a704acffd26fe41f3005276aae0aa3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T18:00:13.364211+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nBx6DlJTyuCkvwKHJyvvrzWauu/1rv768DXu1RXLfFAyIQ1p55cynBMIpRHPzv/YSJ5jSKI+gAUqJT+QCzv3DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-wa"
+}

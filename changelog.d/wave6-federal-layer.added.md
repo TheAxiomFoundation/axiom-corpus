@@ -1,0 +1,1 @@
+Add wave-6 federal-layer manifests (IRS forms, publications and revenue procedures; CMS letters, fact sheets and state plan amendments; SSA, FNS, DOL and HHS guidance; public laws; Federal Register rules; historical U.S. Code editions) and the `html_parser` official-document extraction option for pages whose unclosed banner markup hides the body from lxml.

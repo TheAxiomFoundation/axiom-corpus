@@ -1,0 +1,46 @@
+version: 2026-10-06-w6-health-guidance-mo
+documents:
+- source_id: us-mo-w6-health-dss-benefit-program-income-limits
+  jurisdiction: us-mo
+  document_class: guidance
+  title: 'Missouri DSS: Benefit Program Income Limits'
+  source_url: https://mydss.mo.gov/benefit-program-income-limits
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/guidance/dss/benefit-program-income-limits
+  extraction:
+    html_content_selector: div.region-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services (DSS)
+    program: MEDICAID
+    document_subtype: income_standards_page
+    source_discovery_group: us-mo/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 87
+    bundle_url: https://mydss.mo.gov/benefit-program-income-limits
+    final_url: https://dss.mo.gov/benefit-program-income-limits
+- source_id: us-mo-w6-health-dss-chip-premium-chart
+  jurisdiction: us-mo
+  document_class: guidance
+  title: 'Missouri DSS: Children''s Health Insurance Program (CHIP) Premium Chart'
+  source_url: https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-mo/guidance/dss/chip-premium-chart
+  extraction:
+    html_content_selector: div.region-content
+  metadata:
+    primary_source: true
+    source_authority: Missouri Department of Social Services (DSS)
+    program: CHIP
+    document_subtype: premium_chart_page
+    source_discovery_group: us-mo/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 88
+    bundle_url: https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart
+    final_url: https://dss.mo.gov/childrens-health-insurance-program-chip-premium-chart

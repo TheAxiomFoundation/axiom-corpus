@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/policy/2026-10-06-w6-tanf-ccdf-policy-or.json",
+      "sha256": "484cc0e4fa421a8032d1ecaa1368d42012d6b75ce2be489ea981355a2936bbbf"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/policy/2026-10-06-w6-tanf-ccdf-policy-or.json",
+      "sha256": "e585965ae0399e9e9186e5e9d2848dfb7ac5d789713055ba50366a366d248905"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/policy/2026-10-06-w6-tanf-ccdf-policy-or.jsonl",
+      "sha256": "62d832389dc1ecc5fa2c3c4a57a881981bdabcfc2228b85e75be9496a5fc3450"
+    },
+    {
+      "path": "data/corpus/sources/us-or/policy/2026-10-06-w6-tanf-ccdf-policy-or/official-documents/us-or-w6-ccdf-rate-schedules-erdc-provider-guide-insert-delc-7492i-2026-02-27.pdf",
+      "sha256": "f54cc46e53bca2a8660841e216eb1e340c05a680493f7f08ddbb321d08822e28"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:57:34.602865+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "U5tL5gJFzgehLoDQQnb7LDKSYSX3NZQSWMDVkLEbk5T0+/fuPMWxWZE2OCKlqt0JduPwdsbIYhIpEsyKYbkxDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-or"
+}
