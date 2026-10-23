@@ -17,6 +17,7 @@ which is not in the inventory.
 
 import json
 import re
+import tempfile
 import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
@@ -678,7 +679,7 @@ def test_retained_selector_naming_two_sections_fails_before_any_write(tmp_path, 
 
 def test_two_xml_elements_under_one_citation_path_are_a_title_error(tmp_path, monkeypatch):
     # The XML search reads "19-3800.5" as 3800.5, the path of the section before it. The
-    # later record would replace the earlier, so the title fails and writes no provision.
+    # later record would replace the earlier, so the title fails before writing artifacts.
     xml = TITLE_43_XML.replace(
         '<DIV8 N="3802.0-1"',
         '<DIV8 N="19-3800.5" TYPE="SECTION" NODE="misread"><HEAD>19-3800.5 Other.</HEAD>'
@@ -688,16 +689,142 @@ def test_two_xml_elements_under_one_citation_path_are_a_title_error(tmp_path, mo
     monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
     store = CorpusArtifactStore(tmp_path / "corpus")
 
-    report = extract_ecfr(
-        store, version="2026-10-12", as_of="2026-10-08", only_title=43, only_part="3800",
-        workers=1,
-    )
+    with pytest.raises(ValueError, match="'us/regulation/43/3800/5' twice") as exc:
+        extract_ecfr(
+            store, version="2026-10-12", as_of="2026-10-08", only_title=43, only_part="3800",
+            workers=1,
+        )
 
-    assert report.title_error_count == 1
-    assert "'us/regulation/43/3800/5' twice" in report.title_errors[0]
-    assert "'43:2.1.1.3.38.1.1.1' and 'misread'" in report.title_errors[0]
-    assert not report.coverage.complete
-    assert load_provisions(report.provisions_path) == ()
+    assert "'43:2.1.1.3.38.1.1.1' and 'misread'" in str(exc.value)
+    assert not any(path.is_file() for path in store.root.rglob("*"))
+
+
+@pytest.mark.parametrize("resumed", [False, True])
+@pytest.mark.parametrize("allow_incomplete", [False, True])
+def test_retained_duplicate_rebuild_is_fatal_and_preserves_run(
+    tmp_path, monkeypatch, capsys, resumed, allow_incomplete
+):
+    # Review #841: only one selector is requested, so the scoped inventory misses
+    # the other element whose distinct N folds to the selected citation path.
+    monkeypatch.chdir(tmp_path)
+    _assert_collision_rebuild_preserves_run(
+        tmp_path, "3800", "3809.401(k)-1", "3809.401-k-1",
+        resumed=resumed, allow_incomplete=allow_incomplete,
+    )
+    assert "twice" in capsys.readouterr().err
+
+
+def _assert_collision_rebuild_preserves_run(
+    root, part, selected, conflicting, *, resumed, allow_incomplete, reverse=False
+):
+    from axiom_corpus.corpus.cli import main
+
+    source = root / "official.xml"
+    store = CorpusArtifactStore(root / "corpus")
+    section = (
+        f'<DIV8 N="{selected}" TYPE="SECTION" NODE="good"><HEAD>Selected</HEAD>'
+        '<P>Saved body.</P></DIV8>'
+    )
+    prefix = f'<ECFR><DIV5 N="{part}" TYPE="PART"><HEAD>Part {part}</HEAD>'
+    suffix = "</DIV5></ECFR>"
+    source.write_text(prefix + section + suffix)
+    args = [
+        "extract-ecfr", "--base", str(store.root), "--version", "review",
+        "--as-of", "2026-10-08", "--source-xml", str(source),
+        "--only-title", "43", "--only-part", part, "--section", selected,
+        "--workers", "1",
+    ]
+    if resumed:
+        assert main(args) == 0
+    before = {p.relative_to(store.root): p.read_bytes() for p in store.root.rglob("*") if p.is_file()}
+    replacement = section.replace("Saved body.", "Changed selected body.")
+    other = (
+        f'<DIV8 N="{conflicting}" TYPE="SECTION" NODE="bad"><HEAD>Sibling</HEAD>'
+        '<P>Conflicting body.</P></DIV8>'
+    )
+    elements = other + replacement if reverse else replacement + other
+    source.write_text(prefix + elements + suffix)
+
+    assert main([*args, *(["--allow-incomplete"] if allow_incomplete else [])]) == 2
+    after = {p.relative_to(store.root): p.read_bytes() for p in store.root.rglob("*") if p.is_file()}
+    # Invariant: rejecting an ambiguous identity leaves all four artifact families
+    # byte-for-byte intact (or absent on a fresh run), including the source snapshot.
+    assert after == before
+
+
+@settings(
+    max_examples=40, deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(
+    part=st.sampled_from(["3800", "3809"]),
+    number=st.integers(min_value=1, max_value=999),
+    letter=st.sampled_from(list("akz")),
+    tail=st.integers(min_value=1, max_value=9),
+    resumed=st.booleans(), allow_incomplete=st.booleans(), reverse=st.booleans(),
+)
+def test_property_duplicate_rebuild_is_fatal_and_preserves_run(
+    tmp_path, monkeypatch, part, number, letter, tail, resumed, allow_incomplete, reverse
+):
+    monkeypatch.chdir(tmp_path)
+    with tempfile.TemporaryDirectory(dir=tmp_path) as tmp:
+        _assert_collision_rebuild_preserves_run(
+            Path(tmp), part, f"3809.{number}({letter})-{tail}",
+            f"3809.{number}-{letter}-{tail}", resumed=resumed,
+            allow_incomplete=allow_incomplete, reverse=reverse,
+        )
+
+
+@pytest.mark.parametrize("allow_incomplete", [False, True])
+def test_remote_duplicate_xml_is_fatal_before_writing(tmp_path, monkeypatch, capsys, allow_incomplete):
+    from axiom_corpus.corpus.cli import main
+
+    monkeypatch.chdir(tmp_path)
+    structure = {"type": "title", "identifier": "43", "children": [
+        {"type": "part", "identifier": "3800", "children": [
+            {"type": "section", "identifier": "3809.401(k)-1"},
+        ]},
+    ]}
+    xml = (
+        '<ECFR><DIV5 N="3800" TYPE="PART"><HEAD>Part 3800</HEAD>'
+        '<DIV8 N="3809.401(k)-1" TYPE="SECTION" NODE="good"><P>Selected.</P></DIV8>'
+        '<DIV8 N="3809.401-k-1" TYPE="SECTION" NODE="bad"><P>Conflicting.</P></DIV8>'
+        '</DIV5></ECFR>'
+    )
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    args = [
+        "extract-ecfr", "--base", str(store.root), "--version", "review",
+        "--as-of", "2026-10-08", "--only-title", "43", "--only-part", "3800",
+        "--workers", "1", *(["--allow-incomplete"] if allow_incomplete else []),
+    ]
+
+    assert main(args) == 2
+    assert "twice" in capsys.readouterr().err
+    assert not any(p.is_file() for p in store.root.rglob("*"))
+
+
+def test_recoverable_xml_error_retains_snapshot_for_resume(tmp_path, monkeypatch):
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: TITLE_43_STRUCTURE)
+    calls = []
+
+    def fetch(title, part, as_of):
+        calls.append((title, part, as_of))
+        assert len(calls) == 1, "resume must reuse the saved snapshot"
+        return "<ECFR>"
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", fetch)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    for _ in range(2):
+        report = extract_ecfr(
+            store, version="review", as_of="2026-10-08", only_title=43,
+            only_part="3800", only_sections=("3809.1",), workers=1,
+        )
+        assert report.title_error_count == 1
+        assert not report.coverage.complete
+    assert len(calls) == 1
+    assert [p.read_text() for p in (store.root / "sources").rglob("*.xml")] == ["<ECFR>"]
 
 
 @pytest.mark.parametrize(
@@ -1067,18 +1194,16 @@ def test_property_retained_extraction_writes_the_one_element_that_claims_the_pat
             )
         except ValueError as exc:
             assert len(claimants) > 1
-            assert "names more than one section in retained XML" in str(exc)
+            assert (
+                "names more than one section in retained XML" in str(exc)
+                or "twice" in str(exc)
+            )
             assert not store.root.exists() or not any(p.is_file() for p in store.root.rglob("*"))
             return
         sections = [r for r in load_provisions(report.provisions_path) if r.kind == "section"]
 
-    if len(claimants) == 1:
-        assert report.coverage.complete and not report.title_errors
-        assert [(r.citation_path, r.body, r.source_id) for r in sections] == [
-            (path, f"Body {claimants[0]}.", f"n{claimants[0]}")
-        ]
-    else:
-        # Two elements under one path with different selectors: the title fails.
-        assert report.title_error_count == 1 and "twice" in report.title_errors[0]
-        assert not report.coverage.complete
-        assert sections == []
+    assert len(claimants) == 1
+    assert report.coverage.complete and not report.title_errors
+    assert [(r.citation_path, r.body, r.source_id) for r in sections] == [
+        (path, f"Body {claimants[0]}.", f"n{claimants[0]}")
+    ]

@@ -1803,22 +1803,26 @@ def extract_ecfr(
         run_id=run_id,
         include_appendices=include_appendices,
     )
-    if retained_source is not None:
-        store.write_bytes(*retained_source)
-
-    if not only_sections and source_xml is None:
-        for structure in structures:
-            title = int(structure["identifier"])
-            structure_path = store.source_path(
-                "us",
-                DocumentClass.REGULATION,
-                run_id,
-                f"ecfr/title-{title}.structure.json",
-            )
-            store.write_json(structure_path, structure)
-            source_paths.append(structure_path)
-
     allowed_citation_paths = {item.citation_path for item in inventory.items}
+    if retained_source is not None:
+        # A scoped structure includes only the requested selectors. Another XML
+        # element can still normalize to one of their paths, so validate the
+        # actual selected records before replacing a consistent source snapshot.
+        _reject_repeated_citation_paths(
+            tuple(
+                iter_ecfr_title_provisions(
+                    retained_source[1].decode("utf-8"),
+                    part_targets_from_structure(structures[0]),
+                    version=run_id,
+                    source_path=_ecfr_source_key(run_id, int(structures[0]["identifier"]), only_part),
+                    source_as_of=as_of,
+                    expression_date=expression_date_text,
+                    allowed_citation_paths=allowed_citation_paths,
+                    include_appendices=include_appendices,
+                )
+            )
+        )
+        store.write_bytes(*retained_source)
 
     existing_records = {
         record.citation_path: record
@@ -1874,6 +1878,18 @@ def extract_ecfr(
             include_appendices=include_appendices,
         )
     )
+    if not only_sections and source_xml is None:
+        for structure in structures:
+            title = int(structure["identifier"])
+            structure_path = store.source_path(
+                "us",
+                DocumentClass.REGULATION,
+                run_id,
+                f"ecfr/title-{title}.structure.json",
+            )
+            store.write_json(structure_path, structure)
+            source_paths.append(structure_path)
+
     for result in title_results:
         source_paths.extend(result.source_paths)
         if result.source_sha256 is not None:
@@ -2142,6 +2158,7 @@ def _extract_one_title(
         run_id,
         source_relative_name,
     )
+    xml_content: str | None = None
     try:
         if source_path.exists():
             source_bytes = source_path.read_bytes()
@@ -2157,7 +2174,7 @@ def _extract_one_title(
                     else fetch_ecfr_title_xml(title, as_of)
                 ),
             )
-            source_sha256 = store.write_text(source_path, xml_content)
+            source_sha256 = sha256_bytes(xml_content.encode("utf-8"))
         graphic_paths, used_transcriptions, transcription_evidence = (
             _capture_ecfr_math_graphics(
                 store,
@@ -2182,7 +2199,6 @@ def _extract_one_title(
                 include_appendices=include_appendices,
             )
         )
-        _reject_repeated_citation_paths(provisions)
     except (
         TimeoutError,
         ValueError,
@@ -2190,7 +2206,15 @@ def _extract_one_title(
         urllib.error.URLError,
         ET.ParseError,
     ) as exc:
+        # Keep ordinary download/parse failures resumable from the fetched XML.
+        if xml_content is not None and not source_path.exists():
+            store.write_text(source_path, xml_content)
         return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
+    # Identity collisions are fatal validation failures, even if cached rows
+    # already cover the inventory or the CLI permits incomplete downloads.
+    _reject_repeated_citation_paths(provisions)
+    if not source_path.exists():
+        store.write_text(source_path, xml_content)
     return _EcfrTitleResult(
         title=title,
         provisions=provisions,
