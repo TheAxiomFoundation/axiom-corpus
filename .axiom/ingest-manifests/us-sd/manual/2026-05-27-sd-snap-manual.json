@@ -11,16 +11,20 @@
     {
       "path": "data/corpus/provisions/us-sd/manual/2026-05-27-sd-snap-manual.jsonl",
       "sha256": "b9b0ceb150d674f547e5638075c454ba468bb6b95276398c78b720faa0592fd4"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf",
+      "sha256": "9b2d299bf6637787306c3ba8571fb19aa5a64e2f24e42b265abb328bd5f3cba9"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "commit": "12e0411845d7fc3f11dd5ae1da91cbc75d9399e2",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "Restore the PDF source the rows name (axiom-corpus#873): uv run --extra dev python scripts/restore_unlocked_pdf_sources.py --from 9b2d299bf6637787306c3ba8571fb19aa5a64e2f24e42b265abb328bd5f3cba9=$HOME/TheAxiomFoundation/axiom-corpus-wave1/data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf (the file the 2026-05-27 ingest wrote). Evidence: docs/ingest-runs/2026-10-13-restore-unlocked-pdf-sources.md"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +35,14 @@
     "source_count": 339
   },
   "document_class": "manual",
-  "generated_at": "2026-07-21T11:42:03.193585+00:00",
+  "generated_at": "2026-10-13T22:45:40.106225+00:00",
   "jurisdiction": "us-sd",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Y2UY3uYKXpv3r84Jsxnw4j2PktwljogHCI7zALFci/2FkTifzBV4XG2BLWJhyjlRD1igCadt9Q1CC1YRbAwWDQ=="
+    "value": "t39KjC6h9m4aEfH30zTrho4F3Y8qRtWOiA24IRlvAB/T0J40LV2SQ++R1mpzCB734SDzP9iHcWLtsNTaZtmsCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-sd-snap-manual"

@@ -1,0 +1,1 @@
+Restored the PDF sources of five scopes whose committed rows named a file no lock listed (us-ny TANF state plan, us-sd/us-va/us-wi SNAP manuals of 2026-05-27, FNS SNAP QC FY 2024 technical documentation), with re-extraction evidence and a reproduction script; the SNAP QC scope's contents now carry its own version instead of the extractor's run id.
