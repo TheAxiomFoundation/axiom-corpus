@@ -9,13 +9,14 @@ paths, LegInfo menus, a version picker in place of WIC 11450, and landing pages
 in place of manuals ([us-ca audit](ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md),
 [sibling audit](ingest-runs/2026-09-27-recovery-sibling-scopes-audit.md)).
 
-The gate now also reads two tracked files from the repository
+The gate now also reads tracked files from the repository
 (`ReleaseGatePolicy`, `src/axiom_corpus/corpus/release_policy.py`):
 
 | File | Holds | A release fails when |
 | --- | --- | --- |
 | `manifests/withdrawn-scopes.yaml` | scopes no new cut may select | it selects one and is not a selector the scope's entry allows |
 | `manifests/release-content-baseline.json` | every locked scope's known content findings, pinned to its bytes | a selected scope has a content finding and the baseline has no entry for the scope's exact bytes |
+| `manifests/reviewed-empty-nodes.yaml` | document rows that review found correctly empty, with reasons | never by itself: a listed row is not a `hollow_document_root` finding ([Reviewed-empty rows](#reviewed-empty-rows)) |
 
 Local validation (`axiom-corpus-ingest validate-release`), the
 `Validate named release selectors` CI job and `scripts/publish_corpus.py`
@@ -23,9 +24,10 @@ Local validation (`axiom-corpus-ingest validate-release`), the
 counterpart `validate_releases`, so all three enforce both files.
 `publish_corpus.py` reads the policy from the checkout it
 publishes; `validate-release` reads it from the checkout holding `--base`, and
-says on stderr when `--base` is in no checkout, in which case neither file
-applies. In a checkout that keeps corpus locks, both files are required: a
-missing one fails validation and publication. `tests/test_release_policy_repository.py`, in the required
+says on stderr when `--base` is in no checkout, in which case no file
+applies. In a checkout that keeps corpus locks, the first two files are required: a
+missing one fails validation and publication. The reviewed-empty list is
+optional: without it no hollow root is exempt, which can only add findings. `tests/test_release_policy_repository.py`, in the required
 `test (3.14)` job, fails any tracked selector that selects a withdrawn scope
 without an allowance, so a non-compliant cut cannot merge either.
 
@@ -35,6 +37,8 @@ Known, accepted conditions are reported as `notices`, not issues:
 
 - `withdrawn_scope_grandfathered`: an allowed selector keeps a withdrawn scope.
 - `baselined_content_findings`: a scope carries findings the baseline records.
+- `reviewed_empty_document_roots`: a scope has document rows that review found
+  correctly empty (`manifests/reviewed-empty-nodes.yaml`).
 
 Notices never count as errors or warnings, so they change neither `ok` nor the
 `error_count` and `warning_count` that a signed release object attests
@@ -142,10 +146,24 @@ a body as whole word runs, longest first. Findings:
 | --- | --- |
 | `navigation_body` | navigation strings cover at least 70% of the body's characters with at most 25 words left over, and the body is not just the row's heading, alone or after its citation label (compared without case or punctuation) |
 | `navigation_prefixed_body` | at least 80 words, with a skip link or JavaScript notice in the first 60, or a first 60 words that are at least 40% navigation and open with at least 8 navigation words; the rest is less than half navigation |
-| `hollow_document_root` | a bodyless `document` row with no row below it that carries text (a word with a letter, not navigation, not from a version picker); a bodyless document with nothing below it at all is hollow too |
+| `hollow_document_root` | a bodyless `document` row with no row below it that carries text (a word with a letter or a table of figures, not navigation, not from a version picker); a bodyless document with nothing below it at all is hollow too; a row on the reviewed-empty list is not a finding |
 | `version_picker_source` | an HTML source with LegInfo's `form#selectFromMultiples` and no `#single_law_section`, the shape the California adapter resolves (`states._resolve_california_multiple_section_html`) |
 
-`CONTENT_CHECK_VERSION` (`content-check-v1`) names these rules.
+A body with no word with a letter is text when it is a table of figures: at
+least 5 of its tokens are figures (numbers, dates, amounts, rates and ranges,
+such as `$1,014.00`, `.9666`, `10/19--` or `($450,000)`), and figures are at
+least half of its tokens. A list marker of one to three digits (`(1)`, `[12]`,
+`3.`, `(4).`) is not a figure: a body that kept only its paragraph numbers has
+lost its text. Four or more digits in brackets, such as `(1234)`, read as a figure,
+because they cannot be told apart from an amount; a body of nothing but such
+numbers therefore passes as a table of figures. The rule decides
+only whether a row carries text. In the navigation rules a figure is a token
+like any other: it counts in the coverage share, a navigation string that holds
+one ("Appendix 1") covers it, and outside any navigation string it has no
+letter, so it is neither a left-over word nor the end of an opening run.
+
+`CONTENT_CHECK_VERSION` (`content-check-v2`) names these rules. Version 1
+counted only words with a letter as text; see [Version 2](#version-2-2026-10-13).
 
 ### How the rules were set
 
@@ -208,6 +226,188 @@ At that snapshot, 177 of the 182 scopes were selected by a tracked selector,
 and the then-newest union (`us-rulespec-2026-10-12-w5-benefits-union`) selected
 152 of them.
 
+### Version 2 (2026-10-13)
+
+Re-measured on 2026-10-20 at combined-code commit `6aff1565d`, after merging
+main `a8f15eb13` and #864's 108 successor scopes. Compared with phase B at
+`7edfb272b`, findings change **1,417 → 1,444**, affected scopes **182 → 185**,
+and scanned scopes **2,425 → 2,533**, with **72 → 72** reviewed-empty roots
+(`content-check-v2`). The earlier 2026-10-13 measurement, recorded at
+`5838d7d37`, reported 1,416 findings in 181 of 2,390 scopes. On current inputs,
+the v1 comparison (whole-body letter detection, with figure tables and reviewed
+exemptions disabled) changes **1,490 → 1,517** findings in **183 → 186** scopes.
+
+All 2,425 phase-B baseline entries are unchanged. The 108 successors add 27
+findings in three scopes: 10 navigation and 14 prefix findings in Canada, plus
+three NYCRR hollow refs. All 108 entries match an independent v2 scan. Their v1
+entries in the merge have identical findings on these inputs, so rebuilding
+leaves the 2,533-entry merged baseline byte-identical.
+Against main's v1 baseline at `a8f15eb13`, entries change 2,499 → 2,533 with 34
+clean additions, findings 1,517 → 1,444 and affected scopes 186 → 185: no finding
+is added and 73 are removed. Against #847's historical v1 baseline at
+`88c1435a5`, the baseline adds 143 scope entries, adds 28 findings (one OASDI POMS
+RS finding and 27 successor findings) and removes 73. Neither comparison changes
+a shared scope's provisions or inventory digest. The table compares phase B →
+phase C:
+
+| Class | Scopes | `navigation_body` | `navigation_prefixed_body` | `hollow_document_root` | `version_picker_source` |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| manual | 44 → 44 | 735 → 735 | 4 → 4 | 10 → 10 | 0 → 0 |
+| guidance | 57 → 57 | 207 → 207 | 9 → 9 | 0 → 0 | 0 → 0 |
+| policy | 47 → 48 | 94 → 104 | 69 → 83 | 44 → 44 | 0 → 0 |
+| statute | 22 → 22 | 119 → 119 | 19 → 19 | 12 → 12 | 1 → 1 |
+| regulation | 10 → 12 | 41 → 41 | 1 → 1 | 49 → 52 | 0 → 0 |
+| form | 2 → 2 | 3 → 3 | 0 → 0 | 0 → 0 | 0 → 0 |
+
+Of the 185 scopes with findings, 176 are selected by at least one tracked
+selector. The named union `us-rulespec-2026-10-12-w5-benefits-union` selects
+151 of them.
+
+The [hollow-root audit](ingest-runs/2026-10-13-hollow-document-root-audit.md)
+classified all 188 historical v1 `hollow_document_root` findings against their
+sources:
+103 extractor defects, 12 missing or placeholder sources, 72 correctly empty
+nodes and one check false positive. Version 2 acts on its section "What the check
+misses and over-counts". The combined-code measurements and comparisons with
+v1 are in the [run note](ingest-runs/2026-10-13-content-check-v2.md):
+
+- **Tables of figures are text.** The false positive was IL CSMM item 67224, the
+  minimum monthly SNAP benefit, whose only block is dates and amounts. Counting
+  every token with a digit as text would also clear four CMS scanned attachments
+  (IN-12-014, OH-12-004, OH-12-006, OH-13-001), whose pages read as a date stamp
+  such as `9/4/13`: real text losses in the original scopes, now repaired in their
+  #864 successors. Locked rows whose whole body has a digit and no letter change
+  **1,384 → 1,789**: 405 surviving numeric-only rows are also counted in the
+  successors, while every previous census row is unchanged. Among these rows,
+  date stamps, page numbers and stamps with SPA numbers hold one to four figures,
+  and pages whose font maps glyphs to control characters hold
+  stray digits, at most 14.3% of their tokens. The rule makes 45 rows text, all
+  tables or lists of figures (benefit and rate tables, IRS code lists, tariff
+  code annexes, ZIP code lists, revenue projections) and none of them garbled.
+  Figure counts and their share use the whole body; navigation matching still
+  reads at most 1,200 tokens. No locked row consists only of list markers.
+  Rows of up to four figures stay what they were in v1, a few real values among
+  them (a DC page with two incomes), but no root has such a row as its only
+  text. The rule clears item 67224 and no other finding. All 45 qualifying
+  figure-table row identities are unchanged.
+- **Reviewed-empty rows are listed with their reasons.** The 72 correctly empty rows
+  in 13 scopes are in `manifests/reviewed-empty-nodes.yaml`: 45 `index`, 10
+  `reserved`, 6 `empty_in_source`, 4 `deleted`, 3 `table_of_contents`, 2
+  `cross_reference` and 2 `repealed`. Each has its reason, so the baseline
+  no longer records them as findings. Hollow findings change **115 → 118**:
+  the original audit's 103 extractor defects and 12 missing sources remain, plus
+  three expected-empty NYCRR refs in the two successor scopes. The reviewed list
+  is keyed by scope and does not exempt these copies of 18 NYCRR 387 and 20 NYCRR
+  151 and 152 refs. #864's successors clear all 93 audited extractor-defect
+  hollows in their scope pairs (92 gain text, one clone is retired); immutable
+  originals remain in the all-scope scan.
+- **The navigation threshold stays at 0.7.** ME 36 §5219-SS lost all its text
+  in `us-me/statute/2026-07-13-recovery`, but its menu block is 69.2%
+  navigation (its "§5219-SS PDF" and "Ch. 822 Contents" links are under 75%
+  letters, so they are not navigation strings), so neither the block nor its
+  root is flagged. Lowering the threshold under the combined Version 2 rules
+  adds the following findings (phase B → phase C):
+
+  | Navigation threshold | Additional `navigation_body` | Additional hollow roots |
+  | --- | ---: | ---: |
+  | 0.69 | 9 → 9 | 1 → 1 |
+  | 0.65 | 87 → 88 | 2 → 2 |
+  | 0.6 | 160 → 162 | 6 → 6 |
+
+  The new navigation additions are two Canadian successor rows copied from its
+  original: child disability benefit links (0.679) and a Yukon prior-years
+  sentence (0.600). The first adds a finding at 0.65, and both add findings at 0.6.
+  The bands hold text: a UK sentence announcing new National Insurance rates
+  from 6 April 2026 (0.692), a heading of the Israeli National Insurance Law
+  (0.691), Connecticut repeal notices beside a "Return to Table of Contents"
+  link (0.660) and Minnesota manual prose whose terms are links (0.656). A bar
+  for hollow roots only (a row counts as text for its root only below 0.65)
+  adds two hollow roots, §5219-SS and one Wisconsin pointer page, but
+  it would call those same prose and repeal-notice rows empty whenever they are
+  a root's only text. The scope is withdrawn, so no new cut selects the miss; the
+  2026-09-14 chapter scope that replaces it carries 5,280 characters of
+  §5219-SS. The earlier audit identified missing history notes and one paragraph
+  there, a partial loss described in the design note below.
+  `navigation_body` also decides which blocks the HTML extractor may drop
+  (axiom-corpus#852), a second reason not to lower it.
+- **Partial loss is not a content-check finding.** The audit's partial losses
+  include CMS SPA summaries on unflagged index pages, scanned pages read as a
+  stamp and prose dropped beside a kept table. Re-measured on 2026-10-20 over
+  the original state-plan selection, excluding #864's repaired successors,
+  11,833 bare summary cells still occur on 206 of the 210 CMS index pages with no
+  content findings. The earlier count of 12,911 is also reproduced, on 218 of
+  222 pages, when only `hollow_document_root` and `navigation_body` findings
+  exclude a page: that definition includes 12 additional pages with
+  `navigation_prefixed_body` findings and their 1,078 bare summary cells. Bare
+  cells are the markup proxy for summaries the extractor dropped. These losses
+  leave text below the root. Catching them takes a comparison of a source's
+  visible text with the text extracted from it:
+  [design note](source-coverage-check.md). The source-coverage prototype was
+  also re-run on 2026-10-20 over the same 15 original scopes, without substituting
+  successors; every per-source result matched the earlier measurement
+  ([run note](ingest-runs/2026-10-13-content-check-v2.md)).
+
+### Reviewed-empty rows
+
+`manifests/reviewed-empty-nodes.yaml` lists, per scope, the `document` rows that
+review found correctly empty, with the run note that records the review. Each
+row has a `reason`:
+
+| Reason | The official node |
+| --- | --- |
+| `table_of_contents` | is the source's table of contents |
+| `index` | only lists links to separate documents: its sub-items, each its own row in the scope, or documents the scope leaves out on purpose (an archive of superseded memos, desk aids outside the manual) |
+| `cross_reference` | is a "see" or relocation stub whose target is elsewhere |
+| `reserved` | is a reserved item |
+| `deleted` | is a deleted item: only a deletion marker is left |
+| `repealed` | is a repealed part: only its repeal notice and history are left |
+| `empty_in_source` | has an empty content area in the official source |
+
+and a `note` that says what the reviewer saw and where (the retained source, or
+for Illinois, whose scope retains no per-item page, the live page). The test is
+whose text is missing. A node whose own content is a document the scope does
+not retain is a missing source, not an empty node, and stays a finding: a
+manual section whose text is a linked PDF hard card, a Glossary whose entries
+are sub-pages that were not ingested. A node that only indexes separate
+documents has no text of its own, whether the scope holds those documents or
+leaves them out on purpose; if they should be in the corpus, that is a coverage
+gap of the scope, recorded in its run note, not an empty row. The audit drew
+this line; two listed rows index documents outside their scope (North Dakota's
+archived memos, Washington's desk aids).
+
+A withdrawn scope may be listed. Validation never content-checks a withdrawn
+scope, so its entry only keeps the baseline and the CI check in step with the
+audit.
+
+The list never changes what a row is: it removes only `hollow_document_root`
+findings at the listed paths. A listed root's blocks are still checked (a menu
+block below a reviewed table of contents is still `navigation_body`), and
+`ScopeContentScanner.text_paths`, which recovery reconciliation reads, still
+counts a reviewed root as carrying no text. In `validate_release`, a scope's
+listed rows that are hollow become one `reviewed_empty_document_roots` notice,
+for a scope checked by scan and by baseline alike.
+
+The baseline records the hollow roots its scan exempted in `reviewed_empty`.
+Validation reuses that scan only while all those roots remain on the list;
+removing a listed root, including by removing the optional file, forces a fresh
+scan so the root becomes a finding again. Baseline entries without exemptions
+omit the field.
+
+`content-check --check-baseline` scans with the list and fails when a listed
+scope is not locked or a listed row is not a hollow root of its scope, so a row
+that gains text (a successor extraction, a fixed extractor) or a mistyped path
+cannot stay listed. Adding a row removes its finding, so the list and the
+baseline change in the same commit:
+
+1. Read the row's source (and its descendants) and record the review in a run
+   note.
+2. Add the row under its scope, sorted, with `reason`, `note` and the run note.
+3. Run `uv run axiom-corpus-ingest content-check <scope> --update-baseline`, then
+   `uv run --extra dev python -m pytest -q tests/test_release_policy_repository.py`.
+
+A successor scope is a new version: it does not inherit its predecessor's
+entries, and its empty rows are reviewed again.
+
 ### The baseline
 
 Because so many selected scopes carry findings, grandfathering *selectors* for
@@ -218,15 +418,18 @@ sha256, and validation checks the sources against it, so the two digests pin
 every byte the check reads. In `validate_release`:
 
 - a withdrawn scope is not content-checked (the withdrawal decides it);
-- a scope whose digests match its entry is not read again, and its recorded
-  findings become one `baselined_content_findings` notice;
+- a scope whose digests match its entry and whose applied empty-root exemptions
+  remain listed is not read again, and its recorded findings become one
+  `baselined_content_findings` notice;
 - any other scope is scanned as its provisions stream for validation, and each
   finding is an error (`navigation_body`, `navigation_prefixed_body`,
   `hollow_document_root`, `version_picker_source`), recorded or not: a scope
   whose provisions or inventory are rewritten must have its entry updated
-  (`--update-baseline <scope>`). An entry for other bytes also gives a
-  `content_baseline_mismatch` warning, and a baseline made by other check rules
-  a single `content_baseline_stale` warning.
+  (`--update-baseline <scope>`). An entry for other bytes or removed empty-root
+  exemptions also gives a `content_baseline_mismatch` warning, and a baseline
+  made by other check rules a single `content_baseline_stale` warning;
+- either way, rows on the reviewed-empty list are not findings, and the baseline
+  is built with the list (`--update-baseline` reads it).
 
 So existing scopes stay selectable, and a new scope with chrome, a hollow root
 or a picker fails the release that selects it until its extraction is fixed or

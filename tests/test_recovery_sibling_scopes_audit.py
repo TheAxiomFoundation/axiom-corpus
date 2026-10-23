@@ -516,6 +516,41 @@ def test_the_content_check_agrees_with_the_audit() -> None:
     assert all(finding == "-" for verdict, finding in table if verdict in text_verdicts)
 
 
+def test_the_maine_menu_under_the_navigation_bar_is_left_to_the_withdrawal() -> None:
+    """ME §5219-SS lost its text, and its menu is 69.2% navigation, under the 0.7 bar.
+
+    The hollow-root audit (2026-10-13) found the miss. Lowering the bar was
+    measured over every locked scope (docs/release-gate-policy.md, "Navigation
+    threshold"): 0.69 adds nine navigation_body findings, among them a UK
+    sentence on new National Insurance rates and an Israeli statute heading,
+    and the band down to 0.65 holds repeal notices and manual prose with
+    linked terms. So the bar stays; the scope is withdrawn, and the chapter
+    scope that replaces it carries the section's text (most of it: its history
+    notes and one paragraph are missing there, docs/source-coverage-check.md).
+    """
+    from axiom_corpus.corpus.content_quality import (
+        NAVIGATION_COVERAGE,
+        classify_body,
+        page_navigation,
+    )
+
+    rows = _rows("us-me/statute/2026-07-13-recovery")
+    menu = rows["us-me/statute/36/5219-SS/block-1"]
+    page = page_navigation((CORPUS_ROOT / menu["source_path"]).read_bytes())
+    tokens = menu["body"].split()
+    share = page.coverage(tokens).share
+    assert round(share, 3) == 0.692 and share < NAVIGATION_COVERAGE
+    verdict = classify_body(menu["body"], page, heading=menu.get("heading"))
+    assert (verdict.navigation, verdict.substantive) == (False, True)
+    assert ("us-me", "statute", "2026-07-13-recovery") in ReleaseGatePolicy.load(
+        REPO_ROOT
+    ).withdrawn
+    chapter = _rows("us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36")
+    section = chapter["us-me/statute/36/5219-SS"]
+    assert classify_body(section["body"], None).substantive
+    assert len(section["body"]) > 5000
+
+
 @pytest.mark.parametrize(
     "key",
     [

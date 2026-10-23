@@ -6,11 +6,14 @@ to its current selector digest. ``test (3.14)`` is a required check, so this
 gates merges as well as ``validate_release`` gates publication.
 ``manifests/release-content-baseline.json`` is checked in full by the CI step
 ``content-check --all --check-baseline``; here, the audited July recovery
-scopes and their replacements are re-scanned.
+scopes and their replacements are re-scanned. ``manifests/reviewed-empty-nodes.yaml``
+names only locked scopes and existing run notes, and the rows the hollow-root
+audit found correctly empty are exactly the rows it lists from that audit.
 """
 
 from __future__ import annotations
 
+import csv
 import json
 import os
 import subprocess
@@ -25,9 +28,11 @@ import yaml
 from axiom_corpus.corpus.content_quality import CONTENT_CHECK_VERSION
 from axiom_corpus.corpus.release_policy import (
     CONTENT_BASELINE_PATH,
+    REVIEWED_EMPTY_PATH,
     WITHDRAWN_SCOPES_PATH,
     ReleaseGatePolicy,
     WithdrawnScope,
+    load_reviewed_empty,
     load_withdrawn_scopes,
     scan_scope,
     scope_label,
@@ -70,6 +75,33 @@ def test_every_named_scope_is_locked_and_every_run_note_exists() -> None:
         assert (REPO_ROOT / entry.run_note).is_file(), entry.run_note
     for key in _policy().content_baseline.entries:
         assert _locked(key), scope_label(key)
+    for key, reviewed in _policy().reviewed_empty.items():
+        assert _locked(key), scope_label(key)
+        assert (REPO_ROOT / reviewed.run_note).is_file(), reviewed.run_note
+
+
+HOLLOW_ROOT_AUDIT = "docs/ingest-runs/2026-10-13-hollow-document-root-audit.md"
+
+
+def test_the_reviewed_rows_are_the_rows_the_hollow_root_audit_found_empty() -> None:
+    """Each row the audit classified ``expected_empty`` is listed, citing the audit, and no other."""
+    assert _policy().reviewed_empty == load_reviewed_empty(REPO_ROOT / REVIEWED_EMPTY_PATH)
+    table = (REPO_ROOT / HOLLOW_ROOT_AUDIT).with_suffix(".csv")
+    assert table.is_file(), f"{table.name} is missing: the audit run note (#853) must merge first"
+    with table.open(encoding="utf-8", newline="") as handle:
+        expected_empty = {
+            (row["scope"], row["citation_path"])
+            for row in csv.DictReader(handle)
+            if row["classification"] == "expected_empty"
+        }
+    listed = {
+        (scope_label(key), node.path)
+        for key, reviewed in _policy().reviewed_empty.items()
+        if reviewed.run_note == HOLLOW_ROOT_AUDIT
+        for node in reviewed.nodes
+    }
+    assert len(expected_empty) == 72
+    assert listed == expected_empty
 
 
 def _yaml_for(name: str, release: ReleaseManifest) -> str:
@@ -385,7 +417,34 @@ AUDITED = sorted(
 def test_the_baseline_reproduces_for_the_audited_scopes(key: ScopeKey) -> None:
     recorded = _policy().content_baseline.entries.get(key)
     assert recorded is not None, scope_label(key)
-    assert scan_scope(CORPUS_ROOT, key) == recorded
+    reviewed = _policy().reviewed_empty_paths(key)
+    scanned = scan_scope(CORPUS_ROOT, key, reviewed_empty=reviewed)
+    assert scanned == recorded
+    assert set(scanned.reviewed_empty) == reviewed
+
+
+@pytest.mark.parametrize(
+    "key",
+    [
+        pytest.param(
+            key,
+            # This scope parses 243 MB of retained HTML, taking up to 166 s
+            # under coverage in review. Keep the full baseline assertion and
+            # allow margin on slower runners with a bounded per-test override.
+            marks=pytest.mark.timeout(300)
+            if key == ("us-wa", "manual", "2026-09-10-medicaid-state-eligibility-manual")
+            else (),
+            id=scope_label(key),
+        )
+        for key in sorted(ReleaseGatePolicy.load(REPO_ROOT).reviewed_empty)
+    ],
+)
+def test_every_reviewed_row_is_a_hollow_root_of_its_scope(key: ScopeKey) -> None:
+    """The CI baseline check enforces this for every scope; here, for the listed ones."""
+    reviewed = _policy().reviewed_empty_paths(key)
+    scanned = scan_scope(CORPUS_ROOT, key, reviewed_empty=reviewed)
+    assert set(scanned.reviewed_empty) == reviewed
+    assert scanned == _policy().content_baseline.entries[key]
 
 
 def test_the_content_check_command_reports_and_checks_a_scope(

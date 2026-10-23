@@ -32,8 +32,8 @@ documents:
     plan_status: 'Certified as of 2024-10-01 (the publisher labels it "Virginia''s Approved 2025-2027 CCDF State Plan"; the
       CARS print carries Plan Status Certified and no approval print is posted; retry 2 2026-09-10T21:35Z from a US network:
       plain requests still get HTTP 403 AkamaiGHost, curl_cffi chrome impersonation receives the page and the PDF)'
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     publisher_index_url: https://www.childcare.virginia.gov/reports-resources/administrative-program-manuals-reports-and-data/virginia-child-care-plan
     acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/VA-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
     source_discovery_group: us-va/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
