@@ -44,6 +44,8 @@ from axiom_corpus.corpus.content_store import (
     ContentStoreError,
     GitBlobSource,
     R2ObjectStore,
+    R2UnavailableError,
+    RetryPolicy,
     clone_file,
     content_key,
     ensure_cached,
@@ -403,7 +405,7 @@ def test_fetch_falls_back_to_a_verified_legacy_path_key(tmp_path: Path) -> None:
     assert fake.gets == [content_key(entry.sha256), "provisions/nz/statute/v1.jsonl"]
 
 
-def test_r2_get_retries_temporary_service_unavailability(monkeypatch) -> None:
+def test_r2_get_retries_temporary_service_unavailability() -> None:
     data = b"locked bytes"
     entry = LockEntry("data/corpus/provisions/nz/statute/v1.jsonl", _sha(data), len(data))
 
@@ -423,10 +425,13 @@ def test_r2_get_retries_temporary_service_unavailability(monkeypatch) -> None:
             return super().get_object(**kwargs)
 
     delays: list[float] = []
-    monkeypatch.setattr("axiom_corpus.corpus.content_store.time.sleep", delays.append)
-    monkeypatch.setattr("axiom_corpus.corpus.content_store.random.uniform", lambda *_: 1.0)
     client = TemporarilyUnavailable({content_key(entry.sha256): data})
-    remote = R2ObjectStore(bucket="axiom-corpus", client=client)
+    # Jitter at its maximum: after failure n the wait is the whole 2**(n-1) s.
+    remote = R2ObjectStore(
+        bucket="axiom-corpus",
+        client=client,
+        retry=RetryPolicy(sleep=delays.append, jitter=lambda: 1.0),
+    )
 
     assert b"".join(remote.open(entry) or ()) == data
     assert delays == [1.0, 2.0]
@@ -435,7 +440,7 @@ def test_r2_get_retries_temporary_service_unavailability(monkeypatch) -> None:
 
 @pytest.mark.parametrize("code,status", [("ServiceUnavailable", 503), ("AccessDenied", 403)])
 def test_r2_get_retries_only_temporary_errors_and_preserves_final_error(
-    monkeypatch, code: str, status: int
+    code: str, status: int
 ) -> None:
     class AlwaysFails:
         calls = 0
@@ -448,13 +453,22 @@ def test_r2_get_retries_only_temporary_errors_and_preserves_final_error(
             )
 
     delays: list[float] = []
-    monkeypatch.setattr("axiom_corpus.corpus.content_store.time.sleep", delays.append)
-    monkeypatch.setattr("axiom_corpus.corpus.content_store.random.uniform", lambda *_: 1.0)
     client = AlwaysFails()
-    remote = R2ObjectStore(bucket="axiom-corpus", client=client)
+    remote = R2ObjectStore(
+        bucket="axiom-corpus",
+        client=client,
+        legacy_path_keys=False,
+        retry=RetryPolicy(attempts=5, sleep=delays.append, jitter=lambda: 1.0),
+    )
+    entry = LockEntry("data/corpus/provisions/nz/statute/v1.jsonl", "0" * 64, 1)
 
-    with pytest.raises(ClientError, match=code):
-        remote._get("objects/sha256/example")
+    # A temporary error that never clears gives up after the budget, keeping
+    # R2's final error as the cause; any other error is raised at once.
+    expected = R2UnavailableError if status == 503 else ClientError
+    with pytest.raises(expected, match=code) as raised:
+        remote.open(entry)
+    if status == 503:
+        assert isinstance(raised.value.__cause__, ClientError)
     assert client.calls == (5 if status == 503 else 1)
     assert delays == ([1.0, 2.0, 4.0, 8.0] if status == 503 else [])
 
