@@ -194,9 +194,13 @@ simultaneous reads on the same object` (`GetObject`), `429 Too Many Requests`
   (`404`, or a `NoSuchKey` whatever its status), a refused request (`400`,
   `403`, `416`), a TLS failure, and bytes that do not hash to the lock are
   never retried: they fail at once, as before;
-- up to 8 HTTP requests per object, the first included. These are the only
-  retries on reads: `R2ObjectStore.from_environment` gives reads a client with
-  botocore's own retries off (`make_r2_client(..., sdk_retries=False)`). After
+- up to 8 HTTP requests per object in one pass, the first included. These are
+  the only retries inside a read: `R2ObjectStore.from_environment` gives reads a
+  client with botocore's own retries off (`make_r2_client(..., sdk_retries=False)`).
+  Above the store, `corpus fetch` and the resolver call `materialize_resilient`,
+  which re-asks entries that still failed up to three more times (1, 4 and 10 s
+  later, at a quarter of the concurrency), so an object that keeps failing gets
+  at most 4 passes of 8 requests before the fetch fails. After
   failure `n` the read waits a random time between half and all of
   `min(30 s, 2^(n-1) s)`, or the `Retry-After` R2 sent (at most 30 s) plus up
   to a second, so parallel readers spread out instead of retrying in step;

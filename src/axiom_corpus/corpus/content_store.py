@@ -28,7 +28,7 @@ import sys
 import tempfile
 import threading
 import time
-from collections.abc import Callable, Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import suppress
 from dataclasses import dataclass, field
@@ -1290,6 +1290,75 @@ def _install_sigint_flag(flag: list[bool]) -> Any:
     except (ValueError, OSError):
         return None
     return previous
+
+
+FETCH_RETRY_DELAYS: tuple[float, ...] = (1.0, 4.0, 10.0)
+
+
+def materialize_resilient(
+    repo: Path,
+    entries: Iterable[LockEntry],
+    cache: ContentCache | None,
+    sources: Iterable[ObjectSource],
+    *,
+    force: bool = False,
+    verify: bool = False,
+    workers: int = 8,
+    progress: Callable[[int, int], None] | None = None,
+    delays: Sequence[float] = FETCH_RETRY_DELAYS,
+    retriable: Callable[[dict[str, str]], bool] | None = None,
+    fetch: Callable[..., FetchReport] | None = None,
+) -> FetchReport:
+    """``materialize``, re-asking the store for whatever failed.
+
+    A bulk fetch asks for tens of thousands of objects at high concurrency, and
+    a small random subset can fail on throttling or a dropped connection.
+    ``materialize`` reports a per-entry failure instead of raising, so a caller
+    that treats a non-empty ``failed`` as fatal ended the whole fetch on the
+    first flake: CI could not fetch 22 objects on one run and 6 wholly
+    different ones on its own re-run, with the corpus itself intact.
+
+    Each pass re-asks only the entries that failed, and at a quarter of the
+    concurrency, because lowering pressure is what clears throttling. Pass
+    ``retriable`` to refuse a failure that cannot be transient; ``delays=()``
+    restores ``materialize``'s own behaviour exactly. ``fetch`` overrides which
+    materialize is called, so a caller keeps whatever seam its own tests patch.
+    """
+    selected = list(entries)
+    ask = fetch if fetch is not None else materialize
+    report = ask(
+        repo, selected, cache, sources, force=force, verify=verify, workers=workers, progress=progress
+    )
+    by_path = {entry.path: entry for entry in selected}
+    for delay in delays:
+        if not report.failed:
+            return report
+        if retriable is not None and not retriable(report.failed):
+            return report
+        again = [by_path[path] for path in report.failed if path in by_path]
+        if not again:
+            return report
+        time.sleep(delay)
+        retry = ask(
+            repo, again, cache, sources, force=force, verify=verify, workers=max(1, workers // 4)
+        )
+        report = _absorb_retry(report, retry)
+    return report
+
+
+def _absorb_retry(first: FetchReport, retry: FetchReport) -> FetchReport:
+    """``first`` with ``retry`` folded in; ``failed`` becomes what still fails."""
+    first.present.extend(retry.present)
+    first.materialized.extend(retry.materialized)
+    first.modified.extend(retry.modified)
+    first.rolled_back.extend(retry.rolled_back)
+    for name, count in retry.sources.items():
+        first.sources[name] = first.sources.get(name, 0) + count
+    for name, count in retry.methods.items():
+        first.methods[name] = first.methods.get(name, 0) + count
+    first.bytes_materialized += retry.bytes_materialized
+    first.failed = dict(retry.failed)
+    return first
 
 
 def materialize(
