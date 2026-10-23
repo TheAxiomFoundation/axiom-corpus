@@ -15,9 +15,8 @@ The selector `nz-rulespec-2026-10-23-amendment-markers` replaces exactly the
 2026-10-20 statute supplement in `nz-rulespec-2026-10-20`; its other eight
 scope objects and order are unchanged. This is a **publish-only pin release
 for rulespec-nz; never activate it**. No selected scope is withdrawn under
-`manifests/withdrawn-scopes.yaml`. Nothing was signed, locked, uploaded or
-published by the extraction itself. The hub signed the preceding output;
-this regeneration needs re-signing as described under "Signing and publication".
+`manifests/withdrawn-scopes.yaml`. The extraction itself signs, locks, uploads and publishes nothing; the scope is
+signed and locked as described under "Signing and publication".
 
 ## Retained official evidence
 
@@ -239,10 +238,8 @@ is `d2bfab06f4f699010567547e4b47acc3e9d6eb9f9593d33b526ec3e9b4476d9a`
 
 ## Signing and publication
 
-The hub signed and locked the preceding generator output with
-`sign-ingest-manifest --lock --push`, which records the generator commit and
-pins the corpus bytes outside git. The regenerated provisions from this fix
-round need a new hub signature and lock; this round performs no signing or upload. The release
+The scope is signed and locked with `sign-ingest-manifest --lock --push`, which
+records the generator commit and pins the corpus bytes outside git. The release
 selector is publish-only: dispatch `publish.yml`, then `mirror-release.yml`. Never
 activate it.
 
