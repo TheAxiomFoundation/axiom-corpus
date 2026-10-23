@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import contextlib
 import json
+import random
 import subprocess
 import sys
 from collections.abc import Iterable
@@ -212,6 +213,20 @@ def _remote(workers: int) -> R2ObjectStore:
         raise SystemExit(f"corpus: {exc}") from exc
 
 
+def _spread(entries: Iterable[LockEntry]) -> list[LockEntry]:
+    """``entries`` in a random order, for the commands that read R2 for each one.
+
+    Every CI job, and every pull request's run, walks the same sorted lock
+    entries; in that order they ask R2 for the same object at the same moment,
+    as do a successor scope and the predecessor whose files it repeats, and R2
+    throttles simultaneous reads of one object. Nothing else depends on the
+    order: each entry is fetched, verified and reported on its own.
+    """
+    spread = list(entries)
+    random.shuffle(spread)
+    return spread
+
+
 def _emit(args: argparse.Namespace, payload: dict[str, Any], lines: Iterable[str]) -> None:
     if args.json:
         print(json.dumps(payload, indent=2, sort_keys=True))
@@ -310,7 +325,7 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
     )
     report = materialize(
         repo,
-        entries,
+        _spread(entries),
         None if args.no_cache else _cache(args),
         _sources(repo, r2=not args.no_r2, workers=args.workers),
         force=args.force,
@@ -622,7 +637,7 @@ def _push_entries(
         return entry, remote.has(entry.sha256, entry.size)
 
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
-        for future in as_completed([pool.submit(probe, e) for e in unique.values()]):
+        for future in as_completed([pool.submit(probe, e) for e in _spread(unique.values())]):
             entry, present = future.result()
             if present:
                 result["present"] += 1
@@ -718,7 +733,7 @@ def _cmd_verify(args: argparse.Namespace) -> int:
 
         absent: set[str] = set()
         with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
-            for future in as_completed([pool.submit(probe, e) for e in unique.values()]):
+            for future in as_completed([pool.submit(probe, e) for e in _spread(unique.values())]):
                 entry, present = future.result()
                 if not present:
                     absent.add(entry.sha256)
