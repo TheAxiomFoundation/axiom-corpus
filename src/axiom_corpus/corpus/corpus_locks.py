@@ -14,9 +14,11 @@ import hashlib
 import json
 import os
 import re
+import stat
+import string
 import subprocess
 import unicodedata
-from collections.abc import Iterable, Iterator, Mapping
+from collections.abc import Callable, Iterable, Iterator, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -213,6 +215,186 @@ def fold_collisions(paths: Iterable[str]) -> list[tuple[str, str]]:
     return collisions
 
 
+# Swaps the case of ASCII letters only: a name and its swap differ in a way
+# every case-insensitive filesystem folds.
+_ASCII_CASE_SWAP = str.maketrans(
+    string.ascii_lowercase + string.ascii_uppercase,
+    string.ascii_uppercase + string.ascii_lowercase,
+)
+
+
+def _caseless(name: str) -> str:
+    """The Unicode canonical caseless form of ``name`` (definition D145).
+
+    Case-insensitive APFS stores two names in one place exactly when these
+    forms match, on every pair the tests try: it folds case and ignores
+    normalization. Some names ``fold_path`` merges stay apart there
+    (fullwidth letters, a zero-width non-joiner), and some it keeps apart
+    are merged (a combining mark next to a subscript iota, in either order).
+    """
+    if name.isascii():
+        return name.lower()  # NFD leaves ASCII alone; casefold lowercases it
+    return unicodedata.normalize("NFD", unicodedata.normalize("NFD", name).casefold())
+
+
+def _listed_apart(directory: Path, first: str, second: str) -> bool | None:
+    """True when ``directory``'s listing holds both ``first`` and ``second``.
+
+    Asked of a file with several hard links that both names reach: two names
+    are both listed, where a filesystem that merges two spellings lists one.
+    None when the directory cannot be listed to tell.
+    """
+    try:
+        names = set(os.listdir(directory))
+    except OSError:
+        return None
+    return first in names and second in names
+
+
+def _same_directory_state(first: os.stat_result, second: os.stat_result) -> bool:
+    """True when two looks at a directory saw no entry added, removed or renamed."""
+    return os.path.samestat(first, second) and (first.st_mtime_ns, first.st_ctime_ns) == (
+        second.st_mtime_ns,
+        second.st_ctime_ns,
+    )
+
+
+def _case_probe(directory: Path, name: str) -> bool | None:
+    """Whether ``directory`` finds its entry ``name`` in the other ASCII case.
+
+    None when ``name`` cannot tell: it has no ASCII letter, it is a file with
+    other hard links (which may be spelled either way), or the directory
+    changed while it was being asked about (a replace, an unlink and
+    recreate, a rename aside and back), which leaves the question open.
+    """
+    other = name.translate(_ASCII_CASE_SWAP)
+    if other == name:
+        return None
+    try:
+        before = os.stat(directory)
+        mine = os.lstat(directory / name)
+    except OSError:
+        return None
+    if not stat.S_ISDIR(mine.st_mode) and mine.st_nlink > 1:
+        return None
+    try:
+        found: os.stat_result | None = os.lstat(directory / other)
+    except FileNotFoundError:
+        found = None
+    except OSError:
+        return None
+    try:
+        again = os.lstat(directory / name)
+        after = os.stat(directory)
+    except OSError:
+        return None
+    if not (os.path.samestat(again, mine) and _same_directory_state(before, after)):
+        return None
+    # Absent in the other case, or another entry there: case-sensitive.
+    return found is not None and os.path.samestat(found, mine)
+
+
+def _device(path: Path) -> int:
+    return os.stat(path).st_dev
+
+
+def looks_up_case_insensitively(directory: Path) -> bool:
+    """True when names made in ``directory`` are found in another case, as on APFS usually.
+
+    Asked on the filesystem the names would land on: of one name held by the
+    directory itself, or by the deepest existing directory above it, through
+    any links, or failing that by the nearest directory above that on the same
+    filesystem; nothing is written. When nothing there can tell (an empty
+    mount point), True: taking two spellings for one place only makes the
+    checks stricter.
+    """
+    existing = directory
+    while not existing.is_dir() and existing.parent != existing:
+        existing = existing.parent
+    physical = Path(os.path.realpath(existing))
+    try:
+        device = _device(physical)
+    except OSError:
+        return True
+    for here in (physical, *physical.parents):
+        try:
+            if _device(here) != device:
+                break  # another filesystem from here up: it cannot answer for this one
+            with os.scandir(here) as found:
+                for item in found:
+                    answer = _case_probe(here, item.name)
+                    if answer is not None:
+                        return answer
+        except OSError:
+            continue
+    return True
+
+
+def _place(path: Path) -> tuple[tuple[object, ...], int] | None:
+    """What ``path`` names, for comparing places, and its link count; None when
+    nothing is there.
+
+    The directory a directory, or a link to one, leads to; for a dangling link,
+    the place it leads to; any other entry, a symlinked file included, itself.
+    """
+    try:
+        if os.path.isdir(path):
+            info = os.stat(path)
+            return ("directory", info.st_dev, info.st_ino), 0
+        info = os.lstat(path)
+    except OSError:
+        return None
+    if stat.S_ISLNK(info.st_mode) and not os.path.exists(path):
+        return ("dangling", os.path.realpath(path)), 0
+    return ("entry", info.st_dev, info.st_ino), info.st_nlink
+
+
+def stored_together(root: Path, spelled: str, canonical: str) -> bool:
+    """True when the filesystem under ``root`` stores the relative paths
+    ``spelled`` and ``canonical`` in one place, as APFS stores ``DATA/corpus``
+    and ``data/corpus``.
+
+    Compared one component at a time. Where an entry exists under the
+    canonical name, the spelled name must reach the same place (``_place``):
+    the same directory, through any link to it, the same place a dangling
+    link leads to, or the same file itself (a symlinked file is never its
+    target, and two hard-linked names are two places). Where neither name
+    exists yet, the two share a place when the filesystem they would land on
+    looks names up case-insensitively (``looks_up_case_insensitively``) and
+    they are canonical caseless matches (``_caseless``); a case-sensitive
+    filesystem keeps them apart.
+    """
+    spelled_parts = spelled.split("/")
+    canonical_parts = canonical.split("/")
+    if len(spelled_parts) != len(canonical_parts):
+        return False
+    directory = root
+    folds_case: bool | None = None  # of the deepest existing directory, once asked
+    for mine, theirs in zip(spelled_parts, canonical_parts, strict=True):
+        if mine != theirs:
+            there = _place(directory / theirs)
+            if there is not None:
+                reached = _place(directory / mine)
+                if reached is None or reached[0] != there[0]:
+                    return False
+                # Two hard-linked names are two places; so is a pair the
+                # listing cannot tell apart from that.
+                if there[1] > 1 and _listed_apart(directory, mine, theirs) is not False:
+                    return False
+            else:
+                # The canonical name is absent, so a spelling stored in its
+                # place is too; ask how the directory they would land in
+                # compares names.
+                if os.path.lexists(directory / mine) or _caseless(mine) != _caseless(theirs):
+                    return False
+                if folds_case is None:
+                    folds_case = looks_up_case_insensitively(directory)
+                if not folds_case:
+                    return False
+        directory = directory / theirs
+    return True
+
+
 def lands_on_lock_root(path: str) -> bool:
     """True when ``path``, in any merged spelling, lies under the lock directory."""
     return fold_path(path).startswith(f"{LOCK_ROOT.as_posix()}/")
@@ -390,26 +572,79 @@ class LockSet:
             if scope in wanted_scopes or any(scope_matches(scope, s) for s in selector_list)
         ]
 
-    def find_folded(self, path: str) -> LockEntry | None:
-        """The entry whose path is ``path`` in another spelling a case-insensitive
-        filesystem merges (``Data/corpus/Sources/...``), if any."""
-        index: dict[str, LockEntry] | None = getattr(self, "_by_fold", None)
+    def _names_keyed(self, attribute: str, key: Callable[[str], str]) -> dict[str, str]:
+        """``key`` of every locked path and every directory above one, to that name."""
+        index: dict[str, str] | None = getattr(self, attribute, None)
         if index is None:
-            index = {fold_path(entry_path): entry for entry_path, entry in self.by_path.items()}
-            object.__setattr__(self, "_by_fold", index)
-        return index.get(fold_path(path))
+            index = {}
+            seen: set[str] = set()
+            for entry_path in self.by_path:
+                name = entry_path
+                while name not in seen:  # a directory seen once has all its parents seen
+                    seen.add(name)
+                    index.setdefault(key(name), name)
+                    name, _slash, _tail = name.rpartition("/")
+                    if not name:
+                        break
+            object.__setattr__(self, attribute, index)
+        return index
+
+    def locked_spelling(self, repo: Path, path: str) -> str:
+        """``path`` as the locks spell it, when ``repo``'s filesystem stores it there.
+
+        Locks name files case-sensitively, but a case-insensitive filesystem
+        stores ``DATA/corpus/provisions/x.jsonl`` where it stores
+        ``data/corpus/provisions/x.jsonl``, fetched or not. For a file or
+        directory that no lock names as spelled, this returns the locked
+        spelling of the same place (``stored_together``), if there is one;
+        otherwise ``path`` without surrounding slashes. A candidate is any
+        locked name with the same ``fold_path`` or the same canonical caseless
+        form; the filesystem decides. The resolver's presence checks look locks
+        up through it, so such a spelling of an absent locked file is fetched
+        or refused like the locked path.
+        """
+        cleaned = path.strip("/")
+        if (
+            cleaned in self.by_path
+            or self._names_directory(cleaned)
+            or not lands_on_protected_path(cleaned)
+        ):
+            return cleaned
+        tried: set[str] = set()
+        for attribute, key in (("_by_fold", fold_path), ("_by_caseless", _caseless)):
+            name = self._names_keyed(attribute, key).get(key(cleaned))
+            if name is None or name in tried:
+                continue
+            tried.add(name)
+            if stored_together(repo, cleaned, name):
+                return name
+        return cleaned
+
+    def _sorted_paths(self) -> list[str]:
+        paths: list[str] | None = getattr(self, "_sorted", None)
+        if paths is None:
+            paths = sorted(self.by_path)
+            object.__setattr__(self, "_sorted", paths)
+        return paths
+
+    def _names_directory(self, path: str) -> bool:
+        """True when ``path``, as spelled, is a directory above a locked path."""
+        paths = self._sorted_paths()
+        index = bisect.bisect_left(paths, path + "/")
+        return index < len(paths) and paths[index].startswith(path + "/")
 
     def entries_under(self, path: str) -> list[LockEntry]:
-        """Entries at ``path`` or below it (a repository-relative file or directory)."""
+        """Entries at ``path`` or below it (a repository-relative file or directory).
+
+        ``path`` is matched as spelled; ``locked_spelling`` maps another
+        spelling of the same place onto it first.
+        """
         cleaned = path.strip("/")
         prefix = cleaned + "/"
         exact = self.by_path.get(cleaned)
         if exact is not None:
             return [exact]
-        paths: list[str] | None = getattr(self, "_sorted_paths", None)
-        if paths is None:
-            paths = sorted(self.by_path)
-            object.__setattr__(self, "_sorted_paths", paths)
+        paths = self._sorted_paths()
         found: list[LockEntry] = []
         for index in range(bisect.bisect_left(paths, prefix), len(paths)):
             if not paths[index].startswith(prefix):
@@ -441,12 +676,13 @@ class LockSet:
     def missing_under(self, repo: Path, path: str) -> list[LockEntry]:
         """Locked entries at or under ``path`` that the worktree lacks.
 
-        A symlink at an entry's path does not count as having it: fetch never
-        places one, and it reads bytes no lock checked.
+        ``path`` may be any spelling the filesystem stores in the same place
+        (``locked_spelling``). A symlink at an entry's path does not count as
+        having it: fetch never places one, and it reads bytes no lock checked.
         """
         return [
             entry
-            for entry in self.entries_under(path)
+            for entry in self.entries_under(self.locked_spelling(repo, path))
             if not (repo / entry.path).is_file() or (repo / entry.path).is_symlink()
         ]
 

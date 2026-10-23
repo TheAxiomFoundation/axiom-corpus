@@ -265,7 +265,9 @@ files belong. Here `data`, `data/corpus` and the artifact-class directories
 path naming one selects the locked files below it. That is for naming
 paths: the CLI still takes only paths under the four protected prefixes as
 inputs, so `--base data/corpus` names no input by itself. A path that reaches
-exactly the protected path it spells, through any links, names that path.
+the protected path it spells, through any links, names that path; it may
+spell it in another spelling its filesystem stores in the same place
+(`data/corpus/PROVISIONS` on APFS, below).
 So a worktree whose `data/corpus/provisions` links to another checkout's
 `data/corpus/provisions` reads that checkout's files, that checkout's lock
 decides what is fetched there, and fetch writes into it. The worktree's lock
@@ -297,6 +299,52 @@ where it reaches the same entry. Any other live symlink, such as one outside
 a checkout or outside the protected paths, is read as before without
 consulting the locks. A dangling one is fetched like the file it names, from
 the checkout its target lies in.
+
+Within a checkout, a lock names each file by one spelling, but a
+case-insensitive filesystem stores other spellings of a path in the same
+place: on APFS `DATA/corpus/provisions/x.jsonl` is
+`data/corpus/provisions/x.jsonl`. `LockSet.locked_spelling` maps such a
+spelling onto the locked path or locked directory, whether or not the file
+has been fetched, and the resolver looks locks up through it. Each part and
+view of a selection takes its name from it, so the sharing and nested
+layouts of invariant 11 keep every lock that applies under any spelling (a
+source read spelled `.../NZ/...` still checks its whole scope directory, and
+a sharing link spelled `PROVISIONS`, live or dangling, still sends its files
+to the checkout it leads to), and so do `CorpusResolver.resolve` and `entries_for_paths`,
+`LockSet.missing_under`, `corpus fetch --path` and `corpus status` (a file
+stored under another spelling of a locked path is not counted as unlocked).
+The CLI takes a path under the protected prefixes in any spelling as an
+input, and a `--base` that is another spelling of `data/corpus` as the
+corpus base. The partial-test audit hook still matches spellings exactly.
+A candidate is a
+locked name with the same `fold_path` or the same Unicode canonical caseless
+form, and `stored_together` decides, one component at a time from the
+checkout. Where an entry exists under the locked name, the other spelling
+must reach the same place: the same directory, through any link to it; for
+a dangling link, the same place it leads to; otherwise the same file itself
+(a symlinked file is never its target, and two hard links are two names, as
+they are when the directory cannot be listed to tell). Where neither exists
+yet, they share a place when the filesystem the names would land on finds
+one of its own names in the other ASCII case, and the names are canonical
+caseless matches, which is how case-insensitive APFS compares names in every
+case the tests try. That filesystem is asked in the deepest existing
+directory, through any links (a link to another volume is asked there), or
+the nearest directory above it on the same filesystem. Nothing is written to
+find out. A name with other hard links, or a directory that changes while a
+name is being asked about (an entry added, removed or renamed, even when
+renamed back), leaves the question to the next name; where no name on that
+filesystem can tell (an empty mount point), the two count as one place,
+which only makes the checks stricter. On a case-sensitive filesystem the
+other spelling is another path that no lock names, and it reads as before,
+unless a link under that name leads to the same directory. Two limits apply
+only before the file exists. Case-sensitive APFS still stores canonically
+equivalent names (a decomposed `é`, the Kelvin sign for `K`) in one place;
+until the locked file is there, such a spelling is taken for another path. A
+filesystem that compares names differently from APFS (HFS+ ignores some
+format characters, per `fold_path`) may be misjudged; if a spelling is
+fetched as a locked file and still does not reach it, `resolve_corpus_path`
+refuses it rather than return a path that does not exist, and
+`fetch_locked_file` returns False.
 
 ## Ingest
 
@@ -553,15 +601,18 @@ exactly those 1,362 files.
     there, and the helpers use the nested one, as git does). Protected paths
     here include `data`, `data/corpus` and the artifact-class directories. A
     symlinked file at a protected path names itself. Any other path that
-    reaches exactly the protected path it spells names that path, through
-    any links. Otherwise a path through a symlink at a protected path names
+    reaches the protected path it spells, exactly or in another spelling its
+    filesystem stores in the same place, names that path, through any
+    links. Otherwise a path through a symlink at a protected path names
     the last protected path it stands at, links inside link targets
     included, unless that path has the name of the protected path it
     reaches. Any other path names the entry it reaches. A bare
     `data/corpus/...` path names itself as written; one with a `..`
     component resolves through the checkout like an absolute path. A symlink
     at a locked path never counts as fetched, and fetch never writes through
-    one.
+    one. Another spelling of a locked path names that locked file exactly
+    when the filesystem stores the two in one place, fetched or not, save on
+    case-sensitive APFS (under Resolver).
 11. **Every lock that applies.** The helpers split each path they are given
     (`fetch_locked_file`, `require_materialized`, `ensure_corpus_paths`,
     `ensure_corpus_scopes`, `resolve_corpus_path`, CLI inputs) into parts: the
@@ -597,7 +648,9 @@ exactly those 1,362 files.
 and are read-only (5), idempotence (6), no links (7), portable names (9,
 with a differential test against a brute-force reference) and path naming
 (10, against a reference model of the layouts and the filesystem's identity
-of the entry each spelling reaches) and every lock that applies (11, against
+of the entry each spelling reaches, and for locked spellings, decided with
+the file absent or partly in place, against the filesystem's identity once
+it is placed) and every lock that applies (11, against
 a reference model of the sharing layout: random locks in both checkouts,
 files in place, link depth and selection, bare or absolute, with or without
 `repo`; the property for 10 also checks, for its layouts, that with fetching
