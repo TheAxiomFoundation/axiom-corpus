@@ -1,0 +1,444 @@
+version: 2026-10-06-w6-federal-cms-guidance
+documents:
+- source_id: cms-sho-10-006
+  jurisdiction: us
+  document_class: guidance
+  title: 'SHO #10-006 (State Health Official letter, July 1, 2010)'
+  source_url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2010-07-01'
+  citation_path: us/guidance/cms/sho/10-006
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: state_health_official_letter
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-smd-10-003
+  jurisdiction: us
+  document_class: guidance
+  title: 'SMDL #10-003 (State Medicaid Director letter, February 18, 2010)'
+  source_url: https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/smd10003.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2010-02-18'
+  citation_path: us/guidance/cms/smd/10-003
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: state_medicaid_director_letter
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-sho-12-002
+  jurisdiction: us
+  document_class: guidance
+  title: 'SHO #12-002 (State Health Official letter, August 28, 2012)'
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2012-08-28'
+  citation_path: us/guidance/cms/sho/12-002
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: state_health_official_letter
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+    bundle_addresses:
+    - https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf
+- source_id: cms-sho-21-007
+  jurisdiction: us
+  document_class: guidance
+  title: 'SHO #21-007, Improving Maternal Health and Extending Postpartum Coverage (December 7, 2021)'
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/sho21007.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-12-07'
+  citation_path: us/guidance/cms/sho/21-007
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: state_health_official_letter
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-sho-26-001
+  jurisdiction: us
+  document_class: guidance
+  title: 'SHO #26-001, Implementation of Section 71109 Alien Medicaid Eligibility of Public Law 119-21 (April 8, 2026)'
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-04-08'
+  citation_path: us/guidance/cms/sho/26-001
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: state_health_official_letter
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-cib-2025-05-28
+  jurisdiction: us
+  document_class: guidance
+  title: CMCS Informational Bulletin, May 28, 2025
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib05282025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-05-28'
+  citation_path: us/guidance/cms/cib/2025-05-28
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: informational_bulletin
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-cib-2025-11-18
+  jurisdiction: us
+  document_class: guidance
+  title: CMCS Informational Bulletin, November 18, 2025
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib11182025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-11-18'
+  citation_path: us/guidance/cms/cib/2025-11-18
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: informational_bulletin
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-cib-2025-12-08
+  jurisdiction: us
+  document_class: guidance
+  title: CMCS Informational Bulletin, December 8, 2025
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-12-08'
+  citation_path: us/guidance/cms/cib/2025-12-08
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: informational_bulletin
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-cib-2025-12-09
+  jurisdiction: us
+  document_class: guidance
+  title: CMCS Informational Bulletin, December 9, 2025
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib12092025.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-12-09'
+  citation_path: us/guidance/cms/cib/2025-12-09
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: informational_bulletin
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-cib-2026-04-27
+  jurisdiction: us
+  document_class: guidance
+  title: CMCS Informational Bulletin, April 27, 2026
+  source_url: https://www.medicaid.gov/federal-policy-guidance/downloads/cib04272026.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-04-27'
+  citation_path: us/guidance/cms/cib/2026-04-27
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: informational_bulletin
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-macpro-implementation-guide-more-restrictive-requirements-1902f-209b
+  jurisdiction: us
+  document_class: guidance
+  title: 'Implementation Guide: Medicaid State Plan Eligibility More Restrictive Requirements than SSI under 1902(f) (209(b)
+    States)'
+  source_url: https://www.medicaid.gov/resources-for-states/downloads/macpro-ig-more-restrictive-requirements-1902f-209bstates.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/macpro-implementation-guide/more-restrictive-requirements-1902f-209b
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: implementation_guide
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-mac-learning-collaborative-magi-household-composition-and-income-training
+  jurisdiction: us
+  document_class: guidance
+  title: MAGI-Based Household Income Eligibility Training Manual (last updated December 1, 2020)
+  source_url: https://www.medicaid.gov/state-resource-center/mac-learning-collaboratives/downloads/household-composition-and-income-training.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2020-12-01'
+  citation_path: us/guidance/cms/mac-learning-collaborative/magi-household-composition-and-income-training
+  extraction:
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: training_manual
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-medicaid-gov-chip-eligibility-enrollment
+  jurisdiction: us
+  document_class: guidance
+  title: CHIP Eligibility & Enrollment
+  source_url: https://www.medicaid.gov/chip/chip-eligibility-enrollment
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/medicaid-gov/chip-eligibility-enrollment
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: program_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-medicaid-gov-coverage-of-lawfully-residing-children-and-pregnant-women
+  jurisdiction: us
+  document_class: guidance
+  title: Medicaid and CHIP Coverage of Lawfully Residing Children & Pregnant Women
+  source_url: https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/medicaid-gov/coverage-of-lawfully-residing-children-and-pregnant-women
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: program_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-medicaid-gov-section-1115-demonstrations
+  jurisdiction: us
+  document_class: guidance
+  title: Section 1115 Demonstrations
+  source_url: https://www.medicaid.gov/medicaid/section-1115-demonstrations/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/medicaid-gov/section-1115-demonstrations
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: program_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-medicare-program-general-information
+  jurisdiction: us
+  document_class: guidance
+  title: Medicare Program - General Information
+  source_url: https://www.cms.gov/about-cms/what-we-do/medicare
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/medicare-program-general-information
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: program_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-parts-a-b-premiums-deductibles-2021-press-release
+  jurisdiction: us
+  document_class: guidance
+  title: 2021 Medicare Part B Premiums Remain Steady (CMS press release)
+  source_url: https://www.cms.gov/newsroom/press-releases/2021-medicare-part-b-premiums-remain-steady
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2021-01-01'
+  citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2021/press-release
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: press_release
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-parts-a-b-premiums-deductibles-2022-fact-sheet
+  jurisdiction: us
+  document_class: guidance
+  title: 2022 Medicare Parts A & B Premiums and Deductibles / 2022 Medicare Part D Income-Related Monthly Adjustment Amounts
+    (CMS fact sheet)
+  source_url: https://www.cms.gov/newsroom/fact-sheets/2022-medicare-parts-b-premiums-deductibles-2022-medicare-part-d-income-related-monthly-adjustment
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2022-01-01'
+  citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2022/fact-sheet
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: fact_sheet
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-parts-a-b-premiums-deductibles-2023-fact-sheet
+  jurisdiction: us
+  document_class: guidance
+  title: 2023 Medicare Parts A & B Premiums and Deductibles / 2023 Medicare Part D Income-Related Monthly Adjustment Amounts
+    (CMS fact sheet)
+  source_url: https://www.cms.gov/newsroom/fact-sheets/2023-medicare-parts-b-premiums-and-deductibles-2023-medicare-part-d-income-related-monthly
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-01-01'
+  citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2023/fact-sheet
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: fact_sheet
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-parts-a-b-premiums-deductibles-2024-fact-sheet
+  jurisdiction: us
+  document_class: guidance
+  title: 2024 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet)
+  source_url: https://www.cms.gov/newsroom/fact-sheets/2024-medicare-parts-b-premiums-and-deductibles
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2024-01-01'
+  citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2024/fact-sheet
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: fact_sheet
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-parts-a-b-premiums-deductibles-2025-fact-sheet
+  jurisdiction: us
+  document_class: guidance
+  title: 2025 Medicare Parts A & B Premiums and Deductibles (CMS fact sheet)
+  source_url: https://www.cms.gov/newsroom/fact-sheets/2025-medicare-parts-b-premiums-and-deductibles
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2025-01-01'
+  citation_path: us/guidance/cms/parts-a-b-premiums-deductibles/2025/fact-sheet
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: fact_sheet
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-medicare-gov-medicare-savings-programs
+  jurisdiction: us
+  document_class: guidance
+  title: Medicare Savings Programs (Medicare.gov)
+  source_url: https://www.medicare.gov/basics/costs/help/medicare-savings-programs
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/medicare-gov/medicare-savings-programs
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: beneficiary_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-medicare-gov-medicare-costs
+  jurisdiction: us
+  document_class: guidance
+  title: Costs (Medicare.gov)
+  source_url: https://www.medicare.gov/basics/costs/medicare-costs
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/medicare-gov/medicare-costs
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: beneficiary_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-healthcare-gov-glossary-federal-poverty-level
+  jurisdiction: us
+  document_class: guidance
+  title: Federal Poverty Level (FPL) - Glossary (HealthCare.gov)
+  source_url: https://www.healthcare.gov/glossary/federal-poverty-level-fpl/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/healthcare-gov/glossary/federal-poverty-level
+  extraction:
+    html_drop_selectors: &id001
+    - .ds-c-tooltip__content
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: glossary_entry
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-healthcare-gov-glossary-modified-adjusted-gross-income
+  jurisdiction: us
+  document_class: guidance
+  title: Modified Adjusted Gross Income (MAGI) - Glossary (HealthCare.gov)
+  source_url: https://www.healthcare.gov/glossary/modified-adjusted-gross-income-magi
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/healthcare-gov/glossary/modified-adjusted-gross-income
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: glossary_entry
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+- source_id: cms-healthcare-gov-childrens-health-insurance-program
+  jurisdiction: us
+  document_class: guidance
+  title: Children's Health Insurance Program (CHIP) Eligibility Requirements (HealthCare.gov)
+  source_url: https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us/guidance/cms/healthcare-gov/childrens-health-insurance-program
+  extraction:
+    html_drop_selectors: *id001
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: beneficiary_page
+    source_family: w6-federal-cms-guidance
+    discovered_via: wave6 program-bundle gaps 2026-10-06 (axiom-corpus#780 bundles; group federal, docs/coverage/program-bundle-gaps-2026-10-06/wave6/federal.csv)
+    run_note: docs/ingest-runs/2026-10-06-w6-federal.md

@@ -1,0 +1,34 @@
+version: 2026-09-15-medicaid-income-table-2026
+documents:
+- source_id: us-mn-income_table-appendix-f
+  jurisdiction: us-mn
+  document_class: manual
+  title: 'Minnesota Health Care Programs Eligibility Policy Manual (EPM): Appendix F Standards and Guidelines'
+  source_url: https://hcopub.dhs.state.mn.us/epm/appendix_f.htm
+  source_format: html
+  source_as_of: '2026-09-15'
+  expression_date: '2026-09-15'
+  citation_path: us-mn/manual/dhs/medicaid/appendix-f
+  extraction:
+    html_content_selector: '#rh-topic'
+    html_drop_selectors:
+    - nav
+    - header
+    - footer
+    - script
+    - style
+    - p.Footer
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services
+    program: MEDICAID
+    state: Minnesota
+    document_subtype: annual_income_table_html
+    table_index_url: https://hcopub.dhs.state.mn.us/epm/home.htm
+    carries: 'the EPM''s standards appendix: federal poverty guidelines, MA income and asset standards, community spouse allowances,
+      MinnesotaCare income limits and the pointer to the MinnesotaCare premium table (DHS-4139); the one EPM topic the 2026-09-10
+      scope left untaken; carries M-SS-INCOME-TABLE and, for MinnesotaCare, C-SS-INCOME-PREMIUM-TABLE'
+    source_discovery_group: us-mn/manual/income_table
+    discovered_via: manual-review:medicaid-agent-queue wave-5 closure (2026-09-15); publisher index https://hcopub.dhs.state.mn.us/epm/home.htm
+    publisher_note: publisher answered the plain extractor client HTTP 200 on 2026-09-15; TLS verified, no mirror
+    carries_elements: M-SS-INCOME-TABLE C-SS-INCOME-PREMIUM-TABLE

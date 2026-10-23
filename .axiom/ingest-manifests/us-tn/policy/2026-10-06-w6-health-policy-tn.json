@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/policy/2026-10-06-w6-health-policy-tn.json",
+      "sha256": "8b6884920032dbda23b1325fb352cdcd2c2ac04a240447162f4ce500352edf0d"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/policy/2026-10-06-w6-health-policy-tn.json",
+      "sha256": "4df52278518d752ad3608e74f4053546fa49587834066817a7fad27504a43006"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/policy/2026-10-06-w6-health-policy-tn.jsonl",
+      "sha256": "cbd212e2c5ffcd017c1400fa48abf178e576f8f9bce6c73a5739be6f4bbcd874"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/policy/2026-10-06-w6-health-policy-tn/official-documents/us-tn-w6-health-tenncare-state-plan-parents-and-other-caretaker-relatives.pdf",
+      "sha256": "100fbc0a4804497c885d96d214566ee61064940e34618e75109fd56d3850362d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:58:57.253615+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+hmnXtTBg4hCgXbpNo9fRZRcQqMlJHjhjj9c4XbBdThibuIwqrB2E3nrD1Vw9+ARJXD1eehyotL7TTDbeY1KCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-policy-tn"
+}

@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak.json",
+      "sha256": "ce3067c57dde66b62c9e3641c115b458027b6ee6cd19536c41efb86082a30914"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak.json",
+      "sha256": "8f0b865578640116535c84725a4ca95c83d7701f634f83607e1d56bae19a1342"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak.jsonl",
+      "sha256": "5eb8e6689c18a9a855ed9d34b743f9e88cbd299085d7633958c1029629799f04"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak/official-documents/us-ak-w6-doh-ccdf-alaska-inclusive-child-care-program.html",
+      "sha256": "a8e7a60ef1cf4dadf747862b3294504a5e833363e4f4613fbba64d87480a3477"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak/official-documents/us-ak-w6-doh-ccdf-ccap-rate-schedule.pdf",
+      "sha256": "fc5a09a96d3695bb9bf00e3cddf26c0243a7e3a4efabf677d90c0520bc408ec3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak/official-documents/us-ak-w6-doh-ccdf-family-income-and-contribution-schedule-2022-02-21.pdf",
+      "sha256": "40e969a41f52356a8bc1d17bfa5ed593ce5600208bd73a09f1ab109e365fb296"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/policy/2026-10-06-w6-tanf-ccdf-docs-ak/official-documents/us-ak-w6-doh-tanf-alaska-temporary-assistance-program.html",
+      "sha256": "a976688881df1a92f8a55d2abd1d90607bd6731bd30746cc0f4222507f111a31"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 29,
+    "missing_count": 0,
+    "provision_count": 29,
+    "source_count": 29
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:47:57.159623+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SXtOObfl+jl2S39gnXIMBrpZZ9HDK9ANRNRBie4HYwZnvDp7RaZXP28qIg887KuHMEiY1ewUZc7FLdaiQJHHDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-ak"
+}

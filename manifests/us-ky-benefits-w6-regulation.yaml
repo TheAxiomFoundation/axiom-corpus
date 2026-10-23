@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-benefits-regulation-ky
+documents:
+- source_id: us-ky-regulation-kar-921-004-116
+  jurisdiction: us-ky
+  document_class: regulation
+  title: 921 KAR 4:116. Low Income Home Energy Assistance Program or "LIHEAP"
+  source_url: https://apps.legislature.ky.gov/law/kar/titles/921/004/116/
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ky/regulation/kar/921/004/116
+  extraction:
+    html_content_selector: div.regulation-content
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Legislative Research Commission (Kentucky Administrative Regulations)
+    document_subtype: administrative_regulation_html
+    program: LIHEAP
+    expression_date_note: fetch date; the publisher serves the current text
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 108)
+    wave6_rows:
+    - 108
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

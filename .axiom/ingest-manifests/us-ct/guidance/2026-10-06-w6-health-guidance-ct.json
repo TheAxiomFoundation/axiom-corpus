@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/guidance/2026-10-06-w6-health-guidance-ct.json",
+      "sha256": "8949d6f7910a2078e113d82aa2719df0f415f29fa22880490fcef4b71eebb71a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/guidance/2026-10-06-w6-health-guidance-ct.json",
+      "sha256": "06d4a9e9769922836274ee921855d4895558b050cb0dd9f04e2ce0cc43e2b55f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/guidance/2026-10-06-w6-health-guidance-ct.jsonl",
+      "sha256": "f7ccd1af0c1f101b6b16d05cf08e28b5130569b3aa10efdcd0002c59cca8ea75"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-health-guidance-ct/official-documents/us-ct-w6-health-ads-choices-benefits-quick-guide-2023-03-01.pdf",
+      "sha256": "fa6ffe46fb20149f5028ce77e541ada51be658d40bd6ffad72dcc1bc38242e34"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-health-guidance-ct/official-documents/us-ct-w6-health-ads-choices-benefits-quick-guide-2024-03-01.pdf",
+      "sha256": "4136f773eab2e88e59cba30224b7b92126e4efb1758c6b5a76b85c1779fda85a"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-health-guidance-ct/official-documents/us-ct-w6-health-ads-choices-benefits-quick-guide-2026-03-01.pdf",
+      "sha256": "54285514c2b38a33c080a0f53ff452096e6dea9587313c80ccf7b3e8285b65ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-health-guidance-ct/official-documents/us-ct-w6-health-dss-husky-health-monthly-income-chart-2025-03-01.pdf",
+      "sha256": "21ac94c3a208be6e692f7301fbac857aade4a562a436d5cf9b2ea65d2bbe8421"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-health-guidance-ct/official-documents/us-ct-w6-health-dss-medical-coverage-groups-upm-2540.pdf",
+      "sha256": "e00018015c809099ee3bcf9cd4162f7e231ad8467aa74bcba9e59909c69def8a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:01.660018+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9Dq57skMeNXE177/hq88MAzAKW7ayI/1SGh+9kcYFJ5G2oTIwCTJx65nMng/IJef1HGPqKjGdj0v+Gn4MI4IBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-ct"
+}

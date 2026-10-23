@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/statute/2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990.json",
+      "sha256": "9972dbf56a83bb8a32959ee65e2be19786e8024f666378eee342593bf732fd98"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/statute/2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990.json",
+      "sha256": "12e59daa225a973959789c8a96465127d053da15f357118b0edb0bdfecaa3c15"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/statute/2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990.jsonl",
+      "sha256": "1d492869b4ed7294e4eb9f28f37467df91952ad7fd9aa2ce87d3d86b0e5466e1"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990/wisconsin-statutes-html/statutes/prefaces/toc.html",
+      "sha256": "2b7592c8b49670ac2733567ab399e48d8136c460862e4c6fe5f9cef6247ffc63"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/statute/2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990/wisconsin-statutes-html/statutes/statutes/990.html",
+      "sha256": "388298625b32abb81aa8988fb139466ea8f6616d009b2ff6c436bd67e7e31377"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 122,
+    "missing_count": 0,
+    "provision_count": 122,
+    "source_count": 122
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:01:04.449489+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nh2qMVTrCP97sDVvRE6kIHqWtiRorrnWVpoJ+cBPi0+jsoiG8mkBnwiaQh932hTzjriJgyPenReiNrEshu8iBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statute-wi-chapter-990"
+}

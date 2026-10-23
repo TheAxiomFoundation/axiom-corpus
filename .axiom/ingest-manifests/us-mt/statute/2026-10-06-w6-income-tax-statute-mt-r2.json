@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2.json",
+      "sha256": "e677a8c9426f5d915d53b356c4d762554e6412a953145e9eec659e44d3da7f1a"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2.json",
+      "sha256": "82b440919fe0325398d921fae82c2fa5961c2921360784ef3a88485a3f7ee5e0"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2.jsonl",
+      "sha256": "32ead7515927deb6921afd248f48372dfc7baac3c125c6c7218173dceba3be49"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2/official-documents/us-mt-statute-15-30-2131--mca-2019.html",
+      "sha256": "65ef06f6006ffc7e0541d26f3eee986e99706da4a4ac3b5d8e4358a58ada9c6c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2/official-documents/us-mt-statute-15-30-2131--mca-2021.html",
+      "sha256": "262c432163bc5acf3cad65dbd2bb0dea6f018ee83d6e0fff22c81d39306900b2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2/official-documents/us-mt-statute-bills-2021-sb399-version-3.pdf",
+      "sha256": "e796b65d066534d33780765cf3d4acedff65205cf74cc031dcd2d2ae63080b6a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2/official-documents/us-mt-statute-session-laws-2021-sb399.pdf",
+      "sha256": "1cc7a4c1f1cd7e30cdb3e9620a2d796de850cce323fbf14c23ae9d547c4a1549"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2/official-documents/us-mt-statute-session-laws-2023-hb192.pdf",
+      "sha256": "9b2a278eada89bc38956cd563740b9f44fb001b85766b24d62417649c66d64f2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2/official-documents/us-mt-statute-session-laws-2023-hb222.pdf",
+      "sha256": "57a4385afb20bd0a39f0d200500fa5fc44b35fb16f70b4e9265d6dd0f17646b7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:55:00.845657+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2AGGjnifWKI9RSNLMLpp2TpkYB6eluzzWl11MCveGXdq997aQgjpqGQuaXILE8FFJXNsCm+5QjsK0TNnJB7WAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-mt-r2"
+}

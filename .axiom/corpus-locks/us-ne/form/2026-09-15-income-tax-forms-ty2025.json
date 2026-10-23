@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-ne",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-ne/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "b6f21a1f1e4f01b510c821d42843e2040c54ddb7c05ee46268b9f086007906cd", "size": 330},
+    {"path": "data/corpus/inventory/us-ne/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "3762d4f1695a8b1a9be4c05c76b5fca4bc4278bf8181f6c0db177f94f45f5452", "size": 8601},
+    {"path": "data/corpus/provisions/us-ne/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "d4b4929547f79a18bf7579ea31fbabced07b76fe9aa15817ed2c5dcf647e2f4f", "size": 287438},
+    {"path": "data/corpus/sources/us-ne/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ne-dor-form-1040n-ty2025.pdf", "sha256": "db5850008b04901cce2a467707cc8db19e0f9194548d610247403ae8a9e078a3", "size": 608936},
+    {"path": "data/corpus/sources/us-ne/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ne-dor-individual-income-tax-booklet-ty2025.pdf", "sha256": "c3aff5d0f5b99141ae3f69ad9c701bd18e172ef0d17ea641537712638dd57419", "size": 1637893},
+    {"path": "data/corpus/sources/us-ne/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ne-dor-tax-table-ty2025.pdf", "sha256": "a4ce4bfc60966322207eda547b49d4e9d996cdbd3468863c2e8ffebb14513b85", "size": 277978}
+  ]
+}

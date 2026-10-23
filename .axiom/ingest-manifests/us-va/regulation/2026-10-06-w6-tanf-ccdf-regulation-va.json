@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/regulation/2026-10-06-w6-tanf-ccdf-regulation-va.json",
+      "sha256": "f7014527906d0d81fd84f9fe2073db7d369b23c2e2227633d12b806a1e8fcafe"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/regulation/2026-10-06-w6-tanf-ccdf-regulation-va.json",
+      "sha256": "3299f90bf5206dd430aa291af00f154ae1a77d40f25ccb38bc707defac50a431"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/regulation/2026-10-06-w6-tanf-ccdf-regulation-va.jsonl",
+      "sha256": "fcf9f6fd1025472bc2c56abb8ccf43316772327e560154c14bd249b5f439da6e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-10-06-w6-tanf-ccdf-regulation-va/official-documents/us-va-w6-title-22-agency-40-chapter-295-section-50.html",
+      "sha256": "b34efe7ce4a86ed0738ea7a75557a1eced329e2ea8f5c4142d459d2155bd7968"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-10-06-w6-tanf-ccdf-regulation-va/official-documents/us-va-w6-title-8-agency-20-chapter-790-section-20.html",
+      "sha256": "b65b964bac5a580fe341191681fc6750840718bb73354c75b12a25bb0ace406e"
+    },
+    {
+      "path": "data/corpus/sources/us-va/regulation/2026-10-06-w6-tanf-ccdf-regulation-va/official-documents/us-va-w6-title-8-agency-20-chapter-790-section-40.html",
+      "sha256": "88326f2a4a81b97d5d6f362431a7774779ff01a42d6f4fc99c732329867bc104"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:59:48.334834+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6iauziuxFsqrEMU3Dd4FU2ieE2w4K3/ZbVJdorYIH3oehaRSN3hoFAded9cu8l3MqSFBCNQZTMz0VWFpqKUyAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-regulation-va"
+}

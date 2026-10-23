@@ -586,13 +586,21 @@ def build_artifact_report(
     remote_coverage: Mapping[str, Mapping[str, Any]] | None = None,
     release_name: str | None = None,
     release_scopes: Iterable[ScopeKey] | None = None,
+    local_artifacts: Iterable[LocalArtifact] | None = None,
 ) -> ArtifactReport:
+    """``local_artifacts``: the result of ``iter_local_artifacts(root, prefixes)``
+    when the caller already walked the tree (one walk for many selectors)."""
     prefix_tuple = _normalize_prefixes(prefixes)
     root_path = Path(root)
     release_scope_keys = _normalize_release_scopes(release_scopes)
+    walked = (
+        local_artifacts
+        if local_artifacts is not None
+        else iter_local_artifacts(root_path, prefixes=prefix_tuple)
+    )
     local = tuple(
         artifact
-        for artifact in iter_local_artifacts(root_path, prefixes=prefix_tuple)
+        for artifact in walked
         if _artifact_matches_scope(
             artifact.key,
             jurisdiction=jurisdiction,

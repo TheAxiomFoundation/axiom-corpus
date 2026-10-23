@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots.json",
+      "sha256": "b8c94d9804ea9c33189851ef87255c928f76d1446fa31410c5d7a3b6d77693c5"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots.json",
+      "sha256": "19e5e7324789e6e9d82b4615627870212c1a605160e525ecdbe665721becb2e8"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots.jsonl",
+      "sha256": "8600290c67462bf97761db67c84dde1d431485e86a8c0794204c7a30603c4d27"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots/official-documents/md-human-services-5-312-temporary-cash-assistance-current.html",
+      "sha256": "5532ba2348e27338f5364047f6eddd8ce465f30fd47f541e2ce60644922fb2e9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots/official-documents/md-human-services-5-316-fip-funding-current.html",
+      "sha256": "2f5da8ccfd4bf66bb5a6c4e2096ed84173a3ddf96f7b202ba90452b3013dbcf2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bf6bbe17f40cc60875edc496862b338a9aa80cde",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/hollow_root_successors.py build --base data/corpus --scope us-md/statute/2026-07-03-md-tca-statutes (run note: docs/ingest-runs/2026-10-13-hollow-root-successors.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-13T20:14:25.482151+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1Wad6e9XR9l3CTvd0wGp5ZYdLzqC258f3GwhQO7GlThtCpfqNzX61Mv/JXrJ83lN0plXH5Q2H4zz3etFEHCsAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-md-tca-statutes-r2026-10-13-hollow-roots"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/statute/2026-10-06-w6-income-tax-statute-ks.json",
+      "sha256": "8fbca52c8c4260be2f103aaad022e0be99f42853b2d0335c52d99a7a02793481"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/statute/2026-10-06-w6-income-tax-statute-ks.json",
+      "sha256": "b7d68be051a4405d2412dad1fa3cb276ffe318e95cb9fe1207beb8049ddf5e25"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/statute/2026-10-06-w6-income-tax-statute-ks.jsonl",
+      "sha256": "831804cb761a91dc46252dcd0292ae80eef7beb2307e5882f8ae70f9e3d54939"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/statute/2026-10-06-w6-income-tax-statute-ks/official-documents/us-ks-statute-session-laws-2021-hb2106.html",
+      "sha256": "4f88bd24803c6db25c0a68857a22ae48687044bed211914186fb979a611f517d"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/statute/2026-10-06-w6-income-tax-statute-ks/official-documents/us-ks-statute-session-laws-2025-hb2231.pdf",
+      "sha256": "5976a73b7ef46a1335aa5113feb9a223ba730721e8875fb0219691f956d829fb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:16.683866+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uiD2BYVRH1lYUN+tkf3NiS/4hWufIV8kVYORh/BcAa4Eam6+K5ZYkXH4c/gdO82qBdc7oZKidykhVu96aQXuBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ks"
+}
