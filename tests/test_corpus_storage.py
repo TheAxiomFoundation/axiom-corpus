@@ -403,6 +403,62 @@ def test_fetch_falls_back_to_a_verified_legacy_path_key(tmp_path: Path) -> None:
     assert fake.gets == [content_key(entry.sha256), "provisions/nz/statute/v1.jsonl"]
 
 
+def test_r2_get_retries_temporary_service_unavailability(monkeypatch) -> None:
+    data = b"locked bytes"
+    entry = LockEntry("data/corpus/provisions/nz/statute/v1.jsonl", _sha(data), len(data))
+
+    class TemporarilyUnavailable(FakeR2):
+        failures_left = 2
+
+        def get_object(self, **kwargs):
+            if self.failures_left:
+                self.failures_left -= 1
+                raise ClientError(
+                    {
+                        "Error": {"Code": "ServiceUnavailable"},
+                        "ResponseMetadata": {"HTTPStatusCode": 503},
+                    },
+                    "GetObject",
+                )
+            return super().get_object(**kwargs)
+
+    delays: list[float] = []
+    monkeypatch.setattr("axiom_corpus.corpus.content_store.time.sleep", delays.append)
+    monkeypatch.setattr("axiom_corpus.corpus.content_store.random.uniform", lambda *_: 1.0)
+    client = TemporarilyUnavailable({content_key(entry.sha256): data})
+    remote = R2ObjectStore(bucket="axiom-corpus", client=client)
+
+    assert b"".join(remote.open(entry) or ()) == data
+    assert delays == [1.0, 2.0]
+    assert client.gets == [content_key(entry.sha256)]
+
+
+@pytest.mark.parametrize("code,status", [("ServiceUnavailable", 503), ("AccessDenied", 403)])
+def test_r2_get_retries_only_temporary_errors_and_preserves_final_error(
+    monkeypatch, code: str, status: int
+) -> None:
+    class AlwaysFails:
+        calls = 0
+
+        def get_object(self, **_kwargs):
+            self.calls += 1
+            raise ClientError(
+                {"Error": {"Code": code}, "ResponseMetadata": {"HTTPStatusCode": status}},
+                "GetObject",
+            )
+
+    delays: list[float] = []
+    monkeypatch.setattr("axiom_corpus.corpus.content_store.time.sleep", delays.append)
+    monkeypatch.setattr("axiom_corpus.corpus.content_store.random.uniform", lambda *_: 1.0)
+    client = AlwaysFails()
+    remote = R2ObjectStore(bucket="axiom-corpus", client=client)
+
+    with pytest.raises(ClientError, match=code):
+        remote._get("objects/sha256/example")
+    assert client.calls == (5 if status == 503 else 1)
+    assert delays == ([1.0, 2.0, 4.0, 8.0] if status == 503 else [])
+
+
 def test_fetch_never_overwrites_modified_files_without_force(tmp_path: Path) -> None:
     lock = _scope_lock()
     remote, _fake = _remote({content_key(_sha(d)): d for d in SCOPE_FILES.values()})

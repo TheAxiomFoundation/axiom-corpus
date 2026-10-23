@@ -962,7 +962,8 @@ def test_image_coverage_is_the_share_of_the_page(tmp_path):
     assert _coverage(_pdf(tmp_path / "none.pdf", image_rect=None, overlay="text")) == 0.0
     assert _coverage(_pdf(tmp_path / "strips.pdf", image_rect="strips", overlay=None)) == 1.0
     overhang = _coverage(_pdf(tmp_path / "over.pdf", image_rect="overhang", overlay=None))
-    assert overhang == pytest.approx(0.6, abs=1e-6)
+    # PDF image placement is rounded by MuPDF when the saved page is reopened.
+    assert overhang == pytest.approx(0.6, abs=1e-5)
     assert _coverage(_pdf(tmp_path / "slide.pdf", image_rect="slide", overlay=None)) == 0.0
 
 
