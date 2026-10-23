@@ -15,6 +15,7 @@ from typing import Any
 
 import pytest
 
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, scan_scope
 from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from scripts.audit_us_ca_statute_recovery_rows import (
@@ -277,15 +278,35 @@ def test_the_recovery_scope_cannot_join_a_release_with_the_chapter_scope() -> No
     assert duplicates == [f"us-ca/statute/rtc/{section}" for section in sorted(RTC_SECTIONS)]
 
 
-def test_release_validation_does_not_see_the_defects() -> None:
-    """The gate passes the scope; only this audit and the run note record the defects.
+def test_the_release_gate_refuses_the_scope_and_names_the_swap() -> None:
+    """Follow-up 3 landed: the scope is withdrawn, so no new cut may select it.
 
-    The run note's follow-up 3 proposes a gate check for these rows. When it lands,
-    this test is expected to fail: replace it, and update the note's "The release
-    gate does not catch these rows" bullet.
+    Before the release gate read ``manifests/withdrawn-scopes.yaml``, this test
+    asserted that ``validate_release`` passed the scope with no issue.
     """
     report = _validate(VERSION)
-    assert (report["ok"], report["issue_count"]) == (True, 0)
+    assert (report["ok"], report["error_count"], report["warning_count"]) == (False, 1, 0)
+    [issue] = report["issues"]
+    assert issue["code"] == "withdrawn_scope_selected"
+    assert f"{CHAPTER}-r2026-09-24-preserve-tables" in issue["message"]
+    assert RUN_NOTE.name in issue["message"]
+
+
+def test_the_content_check_finds_the_defective_rows() -> None:
+    """The rows this audit classified without section text, as the content check sees them."""
+    entry = scan_scope(CORPUS_ROOT, ("us-ca", "statute", VERSION))
+    by_code: dict[str, set[str]] = {}
+    for finding in entry.findings:
+        by_code.setdefault(finding.code, set()).add(finding.path)
+    assert by_code == {
+        "navigation_body": {f"{root}/block-1" for root in ROOTS},
+        # The R&TC roots have their section text one level down; the WIC root has
+        # only the menu and the picker's history lines, which carry no text.
+        "hollow_document_root": {WIC_ROOT},
+        "version_picker_source": {
+            f"sources/us-ca/statute/{VERSION}/official-documents/us-ca-code-wic"
+        },
+    }
 
 
 def test_the_newest_tracked_cuts_already_swap_the_recovery_scope_for_the_chapter() -> None:
@@ -307,7 +328,7 @@ def test_the_same_swap_validates_on_the_canada_338_line() -> None:
 
 # Tracked selectors cut before this audit that select the recovery scope (as of
 # main b5b637167). They are immutable, so they keep it. No later selector may add
-# it back.
+# it back: manifests/withdrawn-scopes.yaml grandfathers exactly these.
 SELECTORS_WITH_RECOVERY = frozenset(
     {
         "us-rulespec-2026-07-13",
@@ -346,22 +367,24 @@ SELECTORS_WITH_RECOVERY = frozenset(
 )
 
 
-def test_no_new_tracked_selector_selects_the_recovery_scope() -> None:
-    """A new cut swaps the recovery scope (and PIT core) for the chapter scope.
+def test_the_withdrawn_scope_registry_carries_this_audits_rule() -> None:
+    """The freeze this test first enforced now lives in manifests/withdrawn-scopes.yaml.
 
-    See "How later cuts supersede the scope" in the run note.
+    tests/test_release_policy_repository.py fails any tracked selector that
+    selects a withdrawn scope without an allowance, and validate_release refuses
+    it at publication. Here: the registry withdraws the recovery scope and PIT
+    core, grandfathers exactly the 32 selectors above, and names the swap and
+    this run note.
     """
-    selecting = {
-        path.stem
-        for path in RELEASES.glob("*.json")
-        if VERSION in _us_ca_statute_versions(_selector(path.stem))
-    }
-    assert selecting - SELECTORS_WITH_RECOVERY == set(), (
-        f"{sorted(selecting - SELECTORS_WITH_RECOVERY)} select us-ca/statute/{VERSION}; "
-        f"replace it and {PIT_CORE} with {CHAPTER} (or its successor), as {RUN_NOTE.name} "
-        "describes"
-    )
-    assert selecting >= SELECTORS_WITH_RECOVERY
+    withdrawn = ReleaseGatePolicy.load(REPO_ROOT).withdrawn
+    run_note = RUN_NOTE.relative_to(REPO_ROOT).as_posix()
+    successor = ReleaseScope("us-ca", "statute", f"{CHAPTER}-r2026-09-24-preserve-tables")
+    recovery = withdrawn[("us-ca", "statute", VERSION)]
+    assert set(recovery.allowances) == SELECTORS_WITH_RECOVERY
+    assert not any(allowance.is_exception for allowance in recovery.allowances.values())
+    assert (recovery.run_note, recovery.replace_with) == (run_note, (successor,))
+    pit_core = withdrawn[("us-ca", "statute", PIT_CORE)]
+    assert (pit_core.run_note, pit_core.replace_with) == (run_note, (successor,))
 
 
 def test_run_note_names_the_audit_command() -> None:

@@ -46,8 +46,9 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_check_cli import add_content_check_parser
 from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
-from axiom_corpus.corpus.corpus_locks import LockFormatError
+from axiom_corpus.corpus.corpus_locks import LockFormatError, scope_for_path
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -133,15 +134,16 @@ from axiom_corpus.corpus.r2 import (
 from axiom_corpus.corpus.regulation_completion import (
     build_regulation_completion_report,
 )
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, ReleasePolicyError
 from axiom_corpus.corpus.release_quality import validate_release, validate_releases
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.resolver import (
     CorpusNotMaterializedError,
     _is_corpus_base,
     cli_repo,
+    locked_entries_under,
     materialize_cli_inputs,
     require_materialized,
-    resolver_for,
 )
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
@@ -5233,6 +5235,18 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
             release_name=release.name,
             release_scopes=release.scope_keys,
         )
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     report = validate_release(
         args.base,
         release,
@@ -5240,6 +5254,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         max_issues=args.max_issues,
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
+        policy=policy,
     )
     payload = report.to_mapping()
     payload["release_path"] = str(release_path)
@@ -5274,6 +5289,18 @@ def _cmd_validate_releases(args: argparse.Namespace) -> int:
         )
         for release in releases
     ]
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     reports = validate_releases(
         args.base,
         releases,
@@ -5282,6 +5309,7 @@ def _cmd_validate_releases(args: argparse.Namespace) -> int:
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
         workers=args.workers,
+        policy=policy,
     )
     for report, release_path in zip(reports, release_paths, strict=True):
         payload = report.to_mapping()
@@ -5712,6 +5740,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
             "coverage",
             "verify-release-coverage",
             "validate-release",
+            "content-check",
             "snapshot-provision-counts",
             "analytics",
             "artifact-report",
@@ -6736,7 +6765,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--section",
         action="append",
         required=True,
-        help="California section spec such as WIC:11450.12 or a LegInfo section URL.",
+        help=(
+            "California section spec such as WIC:11450.12 or a LegInfo section URL. Append "
+            "@all to capture every concurrent LegInfo version of a multi-version section, or "
+            "@<variant slug> (e.g. WIC:11450@operative-2024-07-01) for one; each version is "
+            "written at its <section>--<slug> variant path."
+        ),
     )
     extract_california_sections_cmd.add_argument("--download-dir", type=Path)
     extract_california_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
@@ -7629,6 +7663,8 @@ def build_parser() -> argparse.ArgumentParser:
     validate_release_cmd.add_argument("--output", type=Path)
     validate_release_cmd.set_defaults(func=_cmd_validate_release)
 
+    add_content_check_parser(sub)
+
     state_statute_completion = sub.add_parser(
         "state-statute-completion",
         help="Classify 50-state plus DC statute ingestion against a named release.",
@@ -7878,6 +7914,14 @@ _CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
 }
 
 
+def _name_in(repo: Path, path: Path) -> str | None:
+    """``path`` relative to ``repo`` as spelled (through any links), if below it."""
+    try:
+        return path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+
+
 def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     classes = _CORPUS_WIDE_COMMANDS.get(command)
     base = getattr(args, "base", None)
@@ -7891,21 +7935,22 @@ def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
     if command == "analytics":
         # Analytics reads one version (and its "<version>-*" parts) of the
         # jurisdictions and classes it reports on; require exactly those files.
-        resolver = resolver_for(repo)
-        if resolver is None or not resolver.active:
-            return []
-        resolver.require_valid_locks()
+        # Every lock that applies counts, such as a shared checkout's where a
+        # class directory links to it (docs/corpus-storage.md, invariant 11).
         version = str(args.version)
         document_classes = set(getattr(args, "document_class", None) or [])
         return [
-            repo / entry.path
-            for scope, lock in sorted(resolver.locks.locks.items())
+            path
+            for path, entry in locked_entries_under(
+                [repo / "data" / "corpus" / artifact_class for artifact_class in classes], repo=repo
+            )
+            # The scope of the path analytics reads, which a link may give
+            # another name in the lock that names it.
+            if (scope := scope_for_path(_name_in(repo, path) or entry.path)) is not None
             # analytics globs "<version>.json" and "<version>-*.json"
-            if (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
+            and (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
             and (not jurisdictions or scope[0] in jurisdictions)
             and (not document_classes or scope[1] in document_classes)
-            for entry in lock.files
-            if entry.path.split("/")[2] in classes
         ]
     return [
         repo / "data" / "corpus" / artifact_class / jurisdiction

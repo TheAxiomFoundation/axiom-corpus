@@ -1,0 +1,33 @@
+version: 2026-10-20-w8-medicaid-ccr-section
+documents:
+- source_id: ca-ccr-10-2699.200
+  jurisdiction: us-ca
+  document_class: regulation
+  citation_path: us-ca/regulation/10-ccr/2699.200
+  title: 10 CCR § 2699.200. Basis of Eligibility.
+  source_url: https://govt.westlaw.com/calregs/Document/IEC9BE2315C2F11EC9C68000D3A7C4BC3?viewType=FullText&originationContext=documenttoc&transitionType=CategoryPageItem&contextData=(sc.Default)
+  source_format: html
+  source_as_of: '2026-10-20'
+  expression_date: '2026-10-20'
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: '#co_document'
+    html_text_selector: h1, h2, h3, .co_headtext, .co_paragraph, p, li, table
+  metadata:
+    primary_source: true
+    source_authority: California Office of Administrative Law
+    official_publisher: California Office of Administrative Law (official CCR via govt.westlaw.com, Government Code section
+      11344)
+    document_subtype: administrative_code_section
+    program: MEDICAID
+    state: California
+    source_discovery_group: us-ca/regulation/medicaid-ccr
+    discovered_via: manual-review:medicaid-agent-queue w6_bundle_gap row; official CCR table of contents https://govt.westlaw.com/calregs/Browse/Home/California/CaliforniaCodeofRegulations?guid=IEC93CBD05C2F11EC9C68000D3A7C4BC3&originationContext=documenttoc&transitionType=Default&contextData=(sc.Default)
+    ccr_toc_path: Title 10. Investment > Chapter 5.6. Access for Infants and Mothers Program > Article 2. Eligibility, Application,
+      and Enrollment
+    selected_for: the basis-of-eligibility rule of the Access for Infants and Mothers program, which the Medi-Cal Access Program
+      (MCAP) continues; the 2026-10-06 wave-6 health bundle row names it
+    publisher_note: govt.westlaw.com answers the plain corpus client a Cloudflare interstitial (HTTP 403); fetched with curl_cffi
+      chrome120 impersonation, TLS verified. OAL names this site as the official online CCR at https://oal.ca.gov/publications/ccr/.

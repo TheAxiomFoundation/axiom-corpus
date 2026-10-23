@@ -22,7 +22,7 @@ import tempfile
 from collections.abc import Callable
 from pathlib import Path
 
-from hypothesis import HealthCheck, event, given, settings
+from hypothesis import HealthCheck, event, example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.release_quality import validate_release
@@ -233,11 +233,59 @@ def _release(draw: st.DrawFn) -> tuple[ReleaseManifest, dict]:
     return release, trees
 
 
+def _one_row_scope(
+    source: bytes = b"<title n='0'/>", **fields: object
+) -> tuple[ReleaseManifest, dict]:
+    """One scope without an inventory whose single provision has ``fields``."""
+    scope = ("us", "statute", "2026-05-01")
+    record = {
+        "body": "Text.",
+        "citation_path": "us/statute/1",
+        "document_class": "statute",
+        "expression_date": "2026-05-01",
+        "heading": None,
+        "jurisdiction": "us",
+        "source_as_of": "2026-05-01",
+        "source_path": f"sources/us/statute/2026-05-01/{_source_name(0)}",
+        "version": "2026-05-01",
+        **fields,
+    }
+    coverage = {
+        "complete": True,
+        "extra_provisions": [],
+        "matched_count": 1,
+        "missing_from_provisions": [],
+        "provision_count": 1,
+        "source_count": 1,
+    }
+    tree = {
+        "sources": {_source_name(0): source},
+        "inventory": None,
+        "provisions": json.dumps(record, sort_keys=True) + "\n",
+        "coverage": json.dumps(coverage, indent=2, sort_keys=True) + "\n",
+    }
+    release = ReleaseManifest(name="us-streaming-2026-09-25", scopes=(ReleaseScope(*scope),))
+    return release, {scope: tree}
+
+
 @_SETTINGS
 @given(
     release_trees=_release(),
     max_issues=st.sampled_from([1, 3, 200]),
     strict_warnings=st.booleans(),
+)
+# The content scan reads each record as it streams; a field of the wrong type
+# must not make it report (or raise) anything full-record validation did not.
+@example(release_trees=_one_row_scope(source_path=7), max_issues=1, strict_warnings=False)
+@example(release_trees=_one_row_scope(source_path=7), max_issues=200, strict_warnings=False)
+@example(release_trees=_one_row_scope(heading=["list"]), max_issues=200, strict_warnings=False)
+# An HTML source is parsed by the content scan (the generator only writes XML).
+@example(
+    release_trees=_one_row_scope(
+        source=b"<html><body><nav><a href='/'>Home</a></nav><p>Text.</p></body></html>"
+    ),
+    max_issues=200,
+    strict_warnings=False,
 )
 def test_validate_release_matches_full_record_validation(
     release_trees: tuple[ReleaseManifest, dict],
