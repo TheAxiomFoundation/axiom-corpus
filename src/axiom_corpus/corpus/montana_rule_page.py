@@ -27,9 +27,9 @@ attached to a letter or digit joins the next word directly (``Post-`` +
 and inside a table cell a break inside a numeral joins directly (``$ 37`` +
 ``5``): a word processor breaks a numeral only when it does not fit the cell.
 
-The chrome is read separately, for metadata only. Every rule the parser
-cannot read (overlapping columns, a table without labelled rows, a heading
-without an ARM number) raises ``MontanaRulePageError`` instead of guessing.
+The chrome is read separately, for metadata only. The parser rejects mixed
+nested span text, ambiguous table columns, a table without labelled rows and
+a heading without an ARM number with ``MontanaRulePageError``.
 """
 
 from __future__ import annotations
@@ -219,7 +219,18 @@ def text_layer_lines(html: bytes) -> tuple[TextLayerLine, ...]:
             raise MontanaRulePageError(f"page {number} has no text layer")
         by_top: dict[float, list[TextLayerSegment]] = {}
         for span in layer.find_all("span"):
-            if not isinstance(span, Tag) or span.find("span") is not None:
+            if not isinstance(span, Tag):
+                continue
+            if span.find("span") is not None:
+                # Wrapper-only spans are safe to skip. Text outside their
+                # descendant spans has no unambiguous position of its own.
+                if any(
+                    str(node).strip() and node.find_parent("span") is span
+                    for node in span.find_all(string=True)
+                ):
+                    raise MontanaRulePageError(
+                        f"page {number}: nested span with text outside its child spans"
+                    )
                 continue
             text = span.get_text()
             if not text:
@@ -352,8 +363,11 @@ def _table_rows(lines: list[TextLayerLine], *, pitch: float) -> list[list[str]]:
             cells = [[], []]
         if cells is None:  # pragma: no cover - data starts at a labelled line
             raise MontanaRulePageError("table data before its first row")
-        for word in line.words:
-            cells[0 if word.left < boundary else 1].append(word.text)
+        columns = [0 if word.left < boundary else 1 for word in line.words]
+        if len(columns) != len(set(columns)):
+            raise MontanaRulePageError("unexpected table columns: multiple cells in one column")
+        for column, word in zip(columns, line.words, strict=True):
+            cells[column].append(word.text)
     if cells is not None:
         rows.append([join_wrapped(cell, numeral_wrap=True) for cell in cells])
     return rows

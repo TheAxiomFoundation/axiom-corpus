@@ -252,3 +252,44 @@ uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
 
 The manifest is committed on its own. `guard-ingested --base-ref origin/main`
 then verifies it with the repository's public key.
+
+## Correction and evidence limits (2026-10-23)
+
+The text above preserves the historical run record. The retained evidence for
+this successor is enumerated in
+`.axiom/corpus-locks/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free.json`
+and the corresponding signed manifest under `.axiom/ingest-manifests/`.
+Under
+`data/corpus/sources/us-mt/regulation/2026-07-13-recovery-r2026-09-27-chrome-free/`,
+the relevant source paths and sha256 hashes are:
+
+| Path relative to that source directory | sha256 |
+| --- | --- |
+| `official-documents/us-mt-arm-37-78` | `9d51d895c08913793e6a33ab459c914d0f0a706ec97093fac114081902bc8406` |
+| `montana-rules/policies/37-78-420-81418fed-12b0-4ed9-a953-50b600e353d1.json` | `4b29c34efe4b2b30c25ddf9b53b5674f76751931f06371030975bd2874ad4459` |
+| `montana-rules/html/37-78-420-81418fed-12b0-4ed9-a953-50b600e353d1-d13f3962-467e-4fbc-9c2a-f0fdba477711.html` | `d94053c9aa73addab6916b7bb9c557c0e94116d74613f1fca23080d3f18c28ae` |
+| `montana-rules/pdf/37-78-420-81418fed-12b0-4ed9-a953-50b600e353d1-d13f3962-467e-4fbc-9c2a-f0fdba477711.pdf` | `d3d670b45101aa1b401c57253999144670bfba62a57261a882089154073a35a3` |
+
+The retained policy JSON records AMD 2026-529's effective date and declares its
+accessible-HTML hash as
+`0726c6fd4c2888f7b0c31a63dd90550bc4d8ab960b75d7531dd0959a640229e8`.
+That amendment's HTML rendition is **not retained** in this scope. Its table
+amounts, table replacements and implementing-statute change listed above are
+historical observations of an unretained rendition; they cannot be reproduced
+from this successor's artifacts. The build and its rendition checks concern
+version 33678 only. Ingesting the amendment requires a fresh official fetch and
+retained provenance.
+
+The downstream resolver and waiver observations and the mutation failure tallies
+above also record the original run; their result logs and downstream checkout
+are not retained in this scope. The committed tests can reproduce the supported
+synthetic layouts and the version-33678 rendition comparisons, without proving
+that every rules.mt.gov DOM layout is supported. In particular, the original
+multiset conservation check used text already extracted by the parser and did
+not establish DOM-text conservation or order. The review found that mixed
+direct/nested positioned text and a three-column continuation were accepted.
+The reader's broad rejection claim above must therefore be read with those
+limits; the review repair adds explicit rejection and independent DOM-text
+conservation coverage for these cases.
+Hypothesis is available in the current dev dependencies and supplies the new
+DOM-conservation and policy-version mismatch properties.

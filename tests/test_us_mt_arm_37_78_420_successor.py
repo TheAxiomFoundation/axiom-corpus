@@ -5,11 +5,15 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
 from collections import Counter
 from functools import cache
 from pathlib import Path
 
+import fitz
 import pytest
+from hypothesis import HealthCheck, given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord
@@ -112,6 +116,113 @@ def test_build_reproduces_the_committed_scope_byte_for_byte(tmp_path: Path) -> N
     )
     for leaf in committed:
         assert (built_sources / leaf).read_bytes() == (NEW_SOURCES / leaf).read_bytes(), leaf
+
+
+def _copy_build_sources(base: Path) -> Path:
+    for version, source in ((SOURCE_VERSION, OLD_SOURCES), (VERSION, NEW_SOURCES)):
+        destination = base / "sources/us-mt/regulation" / version
+        shutil.copytree(source, destination, dirs_exist_ok=True)
+    inventory = base / "inventory/us-mt/regulation" / f"{SOURCE_VERSION}.json"
+    inventory.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(_artifact("inventory", SOURCE_VERSION), inventory)
+    return base / "sources/us-mt/regulation" / VERSION
+
+
+def _corrupt_verification_source(
+    root: Path, probe: str, *, wrong_version_number: str = "-1"
+) -> None:
+    """Keep upstream hashes valid so each probe reaches its intended gate."""
+
+    policy_path = root / POLICY_LEAF
+    policy = json.loads(policy_path.read_bytes())
+    version = policy_version(policy, VERSION_UUID)
+    if probe == "provenance-hash":
+        provenance_path = root / POLICY_PROVENANCE_LEAF
+        provenance = json.loads(provenance_path.read_bytes())
+        provenance["sha256"] = "0" * 64
+        provenance_path.write_text(json.dumps(provenance), encoding="utf-8")
+        return
+    if probe == "declared-rendition-hash":
+        version["previewDocument"]["contentHashSha256"] = "0" * 64
+    elif probe in {"version-number", "effective-start", "history"}:
+        key, value = {
+            "version-number": ("version_number", wrong_version_number),
+            "effective-start": ("effective_start_date", "1900-01-01"),
+            "history": ("history", "Changed history note"),
+        }[probe]
+        field = next(field for field in version["fields"] if field["key"] == key)
+        field["value"] = value
+    elif probe in {"pdf-characters", "accessible-html-text"}:
+        if probe == "pdf-characters":
+            rendition = next(item for item in VERSION_RENDITIONS if item.key == "previewDocument")
+            with fitz.open() as pdf:
+                pdf.new_page().insert_text((72, 72), "Changed PDF characters")
+                content = pdf.tobytes()
+        else:
+            rendition = next(
+                item for item in VERSION_RENDITIONS if item.key == "accessibleHtmlDocument"
+            )
+            content = b'<div id="documentBody"><p>Changed accessible HTML text</p></div>'
+        (root / rendition.leaf).write_bytes(content)
+        digest = hashlib.sha256(content).hexdigest()
+        provenance_path = root / rendition.provenance_leaf
+        provenance = json.loads(provenance_path.read_bytes())
+        provenance.update(sha256=digest, declared_sha256=digest)
+        provenance_path.write_text(json.dumps(provenance), encoding="utf-8")
+        version[rendition.key]["contentHashSha256"] = digest
+    else:
+        raise AssertionError(f"unknown verification probe {probe}")
+
+    policy_path.write_text(json.dumps(policy), encoding="utf-8")
+    provenance_path = root / POLICY_PROVENANCE_LEAF
+    provenance = json.loads(provenance_path.read_bytes())
+    provenance["sha256"] = _digest(policy_path)
+    provenance_path.write_text(json.dumps(provenance), encoding="utf-8")
+
+
+@pytest.mark.parametrize(
+    ("probe", "message"),
+    (
+        ("provenance-hash", "does not match its provenance"),
+        ("declared-rendition-hash", "is not the previewDocument the policy declares"),
+        ("version-number", "disagree on the version number"),
+        ("effective-start", "disagree on the effective start date"),
+        ("history", "disagree on the history note"),
+        ("pdf-characters", "does not carry the characters of the version's PDF"),
+        ("accessible-html-text", "differs from the version's accessible HTML"),
+    ),
+)
+def test_build_rejects_inconsistent_verification_sources(
+    tmp_path: Path, probe: str, message: str
+) -> None:
+    source_base = tmp_path / "source"
+    root = _copy_build_sources(source_base)
+    _corrupt_verification_source(root, probe)
+
+    output = tmp_path / "output"
+    with pytest.raises(ValueError, match=re.escape(message)):
+        build_scope(base=output, source_base=source_base)
+    for kind in ("inventory", "provisions", "coverage"):
+        assert not (output / kind).exists(), kind
+
+
+@settings(
+    max_examples=10,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(wrong_version_number=st.integers(min_value=0, max_value=33677))
+def test_build_rejects_every_other_policy_version_number(
+    tmp_path: Path, wrong_version_number: int
+) -> None:
+    # Every example overwrites its copied inputs; no generated state survives.
+    source_base = tmp_path / "source"
+    root = _copy_build_sources(source_base)
+    _corrupt_verification_source(
+        root, "version-number", wrong_version_number=str(wrong_version_number)
+    )
+    with pytest.raises(ValueError, match="disagree on the version number"):
+        build_scope(base=tmp_path / "output", source_base=source_base)
 
 
 def test_retained_page_and_its_provenance_are_copied_unchanged() -> None:

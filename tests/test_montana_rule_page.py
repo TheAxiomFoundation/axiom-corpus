@@ -3,9 +3,10 @@
 The property tests draw rule documents from a seeded generator, lay them out
 the way the rules.mt.gov PDF text layer does (absolutely positioned spans,
 wrapped lines, page breaks, two-column tables with wrapped cells) and require
-the parser to give back exactly the lines the document was made of. They use
-``random.Random`` with fixed seeds rather than Hypothesis, which is not a
-dependency of this repository.
+the parser to give back exactly the lines the document was made of. These are
+synthetic supported layouts, not retained renditions of other rule versions.
+Hypothesis also checks raw DOM text independently of the parser's span reader:
+accepted paragraph layouts must preserve every non-whitespace character in order.
 """
 
 from __future__ import annotations
@@ -17,12 +18,14 @@ from dataclasses import dataclass, field
 from html import escape
 
 import pytest
+from bs4 import BeautifulSoup
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from axiom_corpus.corpus.montana_rule_page import (
     MontanaRulePageError,
     join_wrapped,
     parse_montana_rule_document,
-    text_layer_lines,
 )
 
 PITCH = 1.85
@@ -301,7 +304,8 @@ def test_parser_reads_back_every_synthetic_rule(seed: int) -> None:
 @pytest.mark.parametrize("seed", range(0, 400, 7))
 def test_parser_keeps_every_character_of_the_text_layer(seed: int) -> None:
     html, _ = _synthetic_rule(seed)
-    layer = "".join(segment.text for line in text_layer_lines(html) for segment in line.segments)
+    soup = BeautifulSoup(html, "html.parser")
+    layer = "".join(node.get_text() for node in soup.select(".react-pdf__Page__textContent"))
     rendered = "".join(parse_montana_rule_document(html).document_lines()).replace("|", "")
     assert Counter(_non_space(rendered)) == Counter(_non_space(layer))
 
@@ -361,3 +365,83 @@ def test_parser_rejects_a_span_without_a_position() -> None:
     )
     with pytest.raises(MontanaRulePageError, match="without a position"):
         parse_montana_rule_document(html)
+
+
+def _paragraph_page(content: str) -> bytes:
+    return (
+        '<div class="react-pdf__Page" data-page-number="1">'
+        '<div class="react-pdf__Page__textContent">'
+        '<span style="left:5%; top:5%;">37.78.420 RULE</span>'
+        '<span style="left:10%; top:8%;">(1)</span>'
+        f"{content}</div></div>"
+    ).encode()
+
+
+@pytest.mark.parametrize("direct_text_after_child", [False, True])
+def test_parser_rejects_nested_positioned_spans_with_direct_text(
+    direct_text_after_child: bool,
+) -> None:
+    child = '<span style="left:15%; top:8%;">pay.</span>'
+    content = child + " DO NOT" if direct_text_after_child else "DO NOT " + child
+    html = _paragraph_page(f'<span style="left:15%; top:8%;">{content}</span>')
+    with pytest.raises(MontanaRulePageError, match="nested.*text"):
+        parse_montana_rule_document(html)
+
+
+def test_parser_keeps_nested_wrappers_without_direct_text() -> None:
+    html = _paragraph_page('<span><span style="left:15%; top:8%;">DO NOT pay.</span></span>')
+    assert parse_montana_rule_document(html).body_lines == ("(1) DO NOT pay.",)
+
+
+@pytest.mark.parametrize(
+    "continuation",
+    [
+        [(6.0, 16.0, "Month"), (20.0, 16.0, "amount"), (40.0, 16.0, "third column")],
+        [(20.0, 16.0, "amount"), (40.0, 16.0, "third column")],
+        [(6.0, 16.0, "Month"), (10.0, 16.0, "extra column")],
+    ],
+)
+def test_parser_rejects_unexpected_continuation_columns(
+    continuation: list[tuple[float, float, str]],
+) -> None:
+    html = _page(
+        [(5.0, 5.0, "37.78.420 RULE")],
+        [(10.0, 8.0, "(1)"), (15.0, 8.0, "Text.")],
+        [(6.0, 14.0, "1"), (20.0, 14.0, "$ 10")],
+        continuation,
+    )
+    with pytest.raises(MontanaRulePageError, match="column"):
+        parse_montana_rule_document(html)
+
+
+@settings(max_examples=100, deadline=None)
+@given(
+    before=st.text(alphabet="DO NOT ab12.,-&<>\u00a0", min_size=1, max_size=30),
+    child=st.text(alphabet="pay ab12.,-&<>\u00a0", min_size=1, max_size=30),
+    after=st.text(alphabet="ab12.,-&<>\u00a0", max_size=30),
+    nested=st.booleans(),
+)
+def test_parser_preserves_raw_dom_text_in_order_or_rejects(
+    before: str,
+    child: str,
+    after: str,
+    nested: bool,
+) -> None:
+    inner = f'<span style="left:15%; top:8%;">{escape(child)}</span>' if nested else escape(child)
+    html = _paragraph_page(
+        f'<span style="left:15%; top:8%;">{escape(before)}{inner}{escape(after)}</span>'
+    )
+    # Read raw DOM strings directly: using text_layer_lines here would share
+    # the parser's old bug of skipping parent text around a nested span.
+    soup = BeautifulSoup(html, "html.parser")
+    layer = soup.select_one(".react-pdf__Page__textContent")
+    assert layer is not None
+    raw_text = _non_space(layer.get_text())
+    try:
+        document = parse_montana_rule_document(html)
+    except MontanaRulePageError:
+        # This generated grammar permits rejection only for mixed nested text
+        # or an entirely whitespace paragraph; valid flat text must still work.
+        assert (nested and _non_space(before + after)) or not _non_space(before + child + after)
+        return
+    assert _non_space("".join(document.document_lines())) == raw_text
