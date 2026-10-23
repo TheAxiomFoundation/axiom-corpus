@@ -2461,53 +2461,151 @@ def build_wi_statute(session: requests.Session, cache_dir: Path) -> tuple[list[d
 
 
 UT_RULE = "R414-306"
-UT_SEARCH_URL = f"https://adminrules.utah.gov/api/public/searchRuleDataTotal/{UT_RULE}/Current%20Rules"
-UT_RULE_ROUTE = f"https://adminrules.utah.gov/public/rule/{UT_RULE}/Current%20Rules"
-UT_GETFILE = "https://adminrules.utah.gov/api/public/getfile/"
+UT_RULE_TYPE_ID = 51  # eRules ruleTypeId enum: currentRules=51
+UT_SEARCH_URL = "https://adminrules.utah.gov/api/search"
+UT_RULE_VERSION_URL = "https://adminrules.utah.gov/api/ruleVersion"
+# The rule page wraps the publisher's converted rule HTML in a CSS-module class whose hash
+# prefix changes per build (e.g. class="eJUlaq_ruleHtml"); only the suffix is stable.
+UT_RULE_HTML_WRAPPER = "_ruleHtml"
+# eRules v1.0.0 dropped ruleFilingType from the rule-version record, and the rule page does not
+# print it either. This is the value the pre-relaunch API gave for R414-306 on 2026-09-15; it is
+# kept rather than emitted as null, so the manifest does not lose a fact the publisher recorded.
+UT_RULE_FILING_TYPE = "Nonsubstantive"
+
+
+def ut_rule_page(rule_id: int, rule_version_id: int) -> str:
+    """The eRules v1.0.0 rule page. The trailing /undefined segment is required; the route
+    answers HTTP 404 without it."""
+    return f"https://adminrules.utah.gov/Rule/{rule_id}/{UT_RULE_TYPE_ID}/{rule_version_id}/undefined"
+
+
+def ut_post_json(session: requests.Session, url: str, body: dict, cache: Path | None) -> object:
+    """POST a JSON body to the eRules public API. The pre-2026-10-16 API was GET-only, so the
+    shared GET `fetch` helper cannot reach it."""
+    if cache is not None and cache.exists():
+        return json.loads(cache.read_text(encoding="utf-8"))
+    for attempt in range(4):
+        try:
+            resp = session.post(url, json=body, timeout=30)
+            resp.raise_for_status()
+            break
+        except requests.RequestException as exc:  # transient: retry with backoff
+            if attempt == 3:
+                raise
+            print(f"retry {attempt + 1} for {url}: {exc}", file=sys.stderr)
+            time.sleep(3 * (attempt + 1))
+    if cache is not None:
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_text(resp.text, encoding="utf-8")
+    return resp.json()
+
+
+def ut_rule_results(payload: object) -> list[dict]:
+    """Collect every ruleResults entry of an /api/search payload (agencies -> titleResults ->
+    ruleResults). The entries carry ruleId and ruleVersionId only; /api/ruleVersion names them."""
+    out: list[dict] = []
+
+    def walk(node: object) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == "ruleResults" and isinstance(value, list):
+                    out.extend(item for item in value if isinstance(item, dict))
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    walk(payload)
+    return out
+
+
+def ut_rule_version_records(payload: object) -> dict[int, dict]:
+    """Index an /api/ruleVersion payload by ruleVersionId."""
+    out: dict[int, dict] = {}
+
+    def walk(node: object) -> None:
+        if isinstance(node, dict):
+            if "ruleReference" in node and "ruleVersionId" in node:
+                out[int(node["ruleVersionId"])] = node
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    walk(payload)
+    return out
 
 
 @builder6("UT")
 def build_ut_rule(session: requests.Session, cache_dir: Path) -> tuple[list[dict], dict]:
     """Utah Admin. Code R414-306-6 State Supplemental Payments for Institutionalized SSI Recipients,
-    from the Office of Administrative Rules eRules public API (the single-page application's own data
-    source: the rule search returns the current rule record with its HTML file id, served by
-    /api/public/getfile/, the route the 2026-07-04 FEP R986-200-239 manifest used)."""
-    text = fetch(session, UT_SEARCH_URL, cache_dir / "ut" / "search-r414-306.json")
-    record = None
-    for agency in json.loads(text):
-        for program in agency.get("programs", []):
-            for rule in program.get("rules", []):
-                if rule.get("referenceNumber") == UT_RULE and rule.get("ruleType") == "Current Rules":
-                    record = rule
+    from the Office of Administrative Rules eRules public API.
+
+    The Office relaunched eRules v1.0.0 on 2026-10-16
+    (https://rules.utah.gov/new-erules-launch-october-16/). Every address this builder used before
+    (GET /api/public/searchRuleDataTotal/<rule>/Current%20Rules for the record and
+    GET /api/public/getfile/... for the HTML) answers HTTP 404. The replacement is
+    POST /api/search for the rule's (ruleId, ruleVersionId) pair, POST /api/ruleVersion for its
+    record, and the rule page itself for the text: the page server-renders the publisher's own
+    converted rule HTML into the DOM, and the new /api/storage/<file> download route answers
+    HTTP 500 for every file name, including the htmlName the record gives. Repaired 2026-10-20; see
+    docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.
+    """
+    search = ut_post_json(
+        session,
+        UT_SEARCH_URL,
+        {"searchTerm": UT_RULE, "ruleTypeId": UT_RULE_TYPE_ID},
+        cache_dir / "ut" / "search-r414-306.json",
+    )
+    results = ut_rule_results(search)
+    if not results:
+        raise SystemExit(f"Utah eRules search: no rule results for {UT_RULE} at {UT_SEARCH_URL}")
+    versions = ut_post_json(
+        session,
+        UT_RULE_VERSION_URL,
+        {"ruleTypeId": UT_RULE_TYPE_ID, "versionIds": [r["ruleVersionId"] for r in results]},
+        cache_dir / "ut" / "ruleversion-r414-306.json",
+    )
+    by_version = ut_rule_version_records(versions)
+    record = next(
+        (
+            by_version[r["ruleVersionId"]]
+            for r in results
+            if r["ruleVersionId"] in by_version
+            and str(by_version[r["ruleVersionId"]].get("ruleReference", "")).strip().upper()
+            == UT_RULE
+        ),
+        None,
+    )
     if record is None:
         raise SystemExit(f"Utah eRules search: no current rule {UT_RULE} in {UT_SEARCH_URL}")
-    download_url = f"{UT_GETFILE}{record['htmlDownload']}/{record['htmlDownloadName']}"
-    rule_html = fetch(session, download_url, cache_dir / "ut" / record["htmlDownloadName"])
+    rule_page = ut_rule_page(int(record["ruleId"]), int(record["ruleVersionId"]))
+    rule_html = fetch(session, rule_page, cache_dir / "ut" / f"{UT_RULE}-rule-page.html")
+    if UT_RULE_HTML_WRAPPER not in rule_html:
+        raise SystemExit(f"Utah {UT_RULE} page: no {UT_RULE_HTML_WRAPPER!r} wrapper; layout changed?")
     for needle in ("R414-306-6.  State Supplemental Payments for Institutionalized SSI Recipients.", "KEY:"):
         if needle not in rule_html:
             raise SystemExit(f"Utah {UT_RULE} HTML: {needle!r} not found; layout changed?")
-    effective = dt.datetime.strptime(record["effectiveDate"], "%m/%d/%Y").date().isoformat()
+    effective = dt.datetime.strptime(record["effectiveDateString"], "%m/%d/%Y").date().isoformat()
     docs = [
         {
             "source_id": "ut-admin-rules-r414-306-6-current",
             "jurisdiction": "us-ut",
             "document_class": "regulation",
             "title": "Utah Administrative Code R414-306-6: State Supplemental Payments for Institutionalized SSI Recipients",
-            "source_url": UT_RULE_ROUTE,
-            "download_url": download_url,
+            "source_url": rule_page,
             "source_format": "html",
             "source_as_of": SOURCE_AS_OF_6,
             "expression_date": effective,
             "citation_path": "us-ut/regulation/admin-rules/r414/306",
-            # the getfile API answers a browser-style Accept header (text/html first, the extractor
-            # session's default) with the 2 KB application shell and any other Accept with the rule
-            # HTML; the curl range backend sends Accept: */* (the 2026-07-04 FEP R986-200-239 route)
-            "request": {"range_fetch": True, "range_backend": "curl", "range_chunk_size": 4194304},
             "extraction": {
                 "segmentation": "anchor_range",
-                # the rule HTML is two absolutely positioned "awpage" divs; without a content selector the
-                # extractor's main-content heuristic keeps page 1 only and section 6 (page 2) is not found
-                "html_content_selector": "body",
+                # the converted rule is two absolutely positioned "awpage" divs inside the page's
+                # own rule-HTML wrapper; without a content selector the extractor's main-content
+                # heuristic keeps page 1 only and section 6 (page 2) is not found. The CSS-module
+                # hash prefix changes per build, so the selector matches the stable suffix.
+                "html_content_selector": "div[class$='_ruleHtml']",
                 "html_start_selector": 'div.awdiv:has(> span.awtext1:-soup-contains("R414-306-6."))',
                 "html_stop_selector": 'div.awdiv:has(> span.awtext1:-soup-contains("KEY:"))',
                 "section_label": "6",
@@ -2520,25 +2618,37 @@ def build_ut_rule(session: requests.Session, cache_dir: Path) -> tuple[list[dict
                 "program": "SSI",
                 "state": "UT",
                 "rule_id": record["ruleId"],
+                "rule_version_id": record["ruleVersionId"],
+                "rule_type_id": UT_RULE_TYPE_ID,
                 "reference_number": UT_RULE,
-                "rule_title": record["name"],
+                "rule_title": record["ruleName"],
                 "effective_date": effective,
-                "rule_filing_type": record.get("ruleFilingType"),
+                "rule_filing_type": UT_RULE_FILING_TYPE,
                 "agency": record.get("agencyName"),
-                "program_name": record.get("programName"),
-                "official_rule_route": UT_RULE_ROUTE,
+                "program_name": record.get("titleName"),
+                "official_rule_route": rule_page,
                 "api_note": (
-                    "adminrules.utah.gov is a single-page application (its /public/rule/ route answers HTTP 404 with an "
-                    "empty body to any non-browser client); the rule record comes from the application's public search "
-                    "API (searchRuleDataTotal) and the HTML from its getfile API, both of which served the plain corpus "
-                    "client on 2026-09-15 (the getfile route returns the application shell to a request whose Accept "
-                    "header prefers text/html, so the document is fetched with the curl range backend, Accept */*); the "
-                    "2026-07-04 FEP R986-200-239 manifest used the same getfile route and backend"
+                    "Repaired 2026-10-20. The Office of Administrative Rules relaunched eRules v1.0.0 on "
+                    "2026-10-16, and the addresses this row used before (/public/rule/R414-306/Current%20Rules "
+                    "and the /api/public/getfile/uac-html/... download) both answer HTTP 404. The replacement "
+                    "is one address, the new rule page, whose trailing /undefined segment is required, because "
+                    "/Rule/980/51/7248 alone answers 404. The page server-renders the publisher's own converted "
+                    "rule HTML (Aspose div.awdiv / span.awtext1) and holds both awpage divs, so "
+                    "html_content_selector div[class$='_ruleHtml'] replaces the earlier body selector; the "
+                    "CSS-module hash prefix changes per build, so the selector matches the stable _ruleHtml "
+                    "suffix. The plain corpus client reads the full body, so the curl range backend is no longer "
+                    "needed and the separate download_url is gone. The rule record now comes from "
+                    "POST /api/search and POST /api/ruleVersion, which still name htmlName "
+                    "1f7c0fac-db65-46f9-bceb-37aaf2db016d.html and effectiveDate 06/19/2025, so this is the same "
+                    "rule version the 2026-09-15 run took. The new /api/storage/<file> route answers HTTP 500 "
+                    "for every file name, so no direct file route is used. See "
+                    "docs/ingest-runs/2026-10-20-ut-erules-url-repair.md."
                 ),
                 "parent_rule_source": "us-ut/regulation/admin-rules/r414/306",
                 "closure_elements": ["SSI-ST-2"],
                 "source_discovery_group": "us-ut/regulation/ssi",
                 "discovered_via": DISCOVERED_VIA_6,
+                "run_note": "docs/ingest-runs/2026-10-20-ut-erules-url-repair.md",
             },
         }
     ]
@@ -2546,7 +2656,7 @@ def build_ut_rule(session: requests.Session, cache_dir: Path) -> tuple[list[dict
         "index_url": UT_SEARCH_URL,
         "index_document_count": 1,
         "taken_count": 1,
-        "families": [{"family": f"Utah Admin. Code {UT_RULE} {record['name']} (eRules current rule, 6 sections; section 6 taken)", "found": 1, "taken": 1}],
+        "families": [{"family": f"Utah Admin. Code {UT_RULE} {record['ruleName']} (eRules current rule, 6 sections; section 6 taken)", "found": 1, "taken": 1}],
     }
     return docs, index
 
@@ -2563,6 +2673,18 @@ ROW_NOTES_6 = {
         "eligible resident of a medical institution whose SSI is reduced to $30) taken from the Office of Administrative "
         "Rules eRules public API as us-ut/regulation/admin-rules/r414/306 (section 6). Closes SSI-ST-2 beside the DWS "
         "manual pointer. (2026-09-15 wave-5 batch 6.)"
+    ),
+}
+# Appended to the queue rows whose recorded addresses the 2026-10-16 eRules relaunch broke. Kept apart
+# from ROW_NOTES_6 so the batch-6 note still matches the note already in the queue and neither is
+# duplicated on a re-run.
+REPAIR_NOTES_6 = {
+    "UT": (
+        "Address repaired 2026-10-20. eRules relaunched v1.0.0 on 2026-10-16 and every /public/rule/ and "
+        "/api/public/ address answers HTTP 404. index_url is now the POST /api/search endpoint, called with "
+        "searchTerm R414-306 and ruleTypeId 51, and the rule itself is read from the rule page "
+        "https://adminrules.utah.gov/Rule/980/51/7248/undefined. The rule version is unchanged, so no document "
+        "was added or dropped and taken_count stays 1. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md."
     ),
 }
 POINTER_ROWS_6 = {
@@ -2622,10 +2744,13 @@ def update_queue_batch6(results: dict[str, dict]) -> dict:
             "citation_paths": [d["citation_path"] for d in docs],
             "closure_elements": ["SSI-ST-2"],
             "run_note": RUN_NOTE_6,
-            "notes": index["note"],
+            "notes": " ".join(
+                part for part in (index["note"], REPAIR_NOTES_6.get(code)) if part
+            ),
         }
-        if index["note"] not in str(row.get("notes") or ""):
-            row["notes"] = f"{row.get('notes') or ''} {index['note']}".strip()
+        for note in (index["note"], REPAIR_NOTES_6.get(code)):
+            if note and note not in str(row.get("notes") or ""):
+                row["notes"] = f"{row.get('notes') or ''} {note}".strip()
     for code, pointer in POINTER_ROWS_6.items():
         row = rows[f"us-{code.lower()}"]
         row["authority_scope"] = {**pointer, "run_note": RUN_NOTE_6}
