@@ -353,3 +353,7 @@ the first artifact commit. Title 42 and the guidance scope were re-signed after 
 
 No R2 synchronization, release selector, publication, Supabase load, production
 activation, or deployment was performed.
+
+## Reviewed content finding (2026-10-23)
+
+`content-check` reports one `navigation_prefixed_body` finding in `us/guidance/2026-09-28-federal-proposal-security-guidance`, at `us/guidance/nsf/important-notice/149-implementation-faq/question-4`. It's recorded in `manifests/release-content-baseline.json` on purpose, as a reviewed false positive. The retained official NSF FAQ repeats the full question in its table-of-contents link and in the question heading. The provision correctly holds that question followed by the grace-period answer, and nothing in it is page chrome. The navigation heuristic reads the substantive question prefix as navigation. Refining the heuristic for FAQ question headings is a separate change.
