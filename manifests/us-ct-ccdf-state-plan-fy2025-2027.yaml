@@ -31,8 +31,8 @@ documents:
       located on retry 2 2026-09-10T21:35Z from a US network: plain requests now answer 200 while curl_cffi chrome impersonation
       still gets HTTP 403 cloudflare, so no impersonation is configured; the draft, implementation summaries and public comment
       report are posted separately, not taken)'
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     publisher_index_url: https://www.ctoec.org/ccdf/
     acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/CT-Accepted-ACF118-CCDF-FFY-2025-2027-Appendix.pdf
     source_discovery_group: us-ct/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027

@@ -4,17 +4,13 @@ documents:
     document_class: regulation
     citation_path: us-ut/regulation/admin-rules/r986/200
     title: "Utah Administrative Code R986-200-239: Determining the Amount of the Financial Assistance Payment"
-    source_url: https://adminrules.utah.gov/api/public/getfile/uac-html/1a059e78-4927-4528-9bcd-97c534cd51cf.html/R986-200.html
+    source_url: https://adminrules.utah.gov/Rule/2196/51/4835/undefined
     source_format: html
     source_as_of: "2026-07-04"
     expression_date: "2026-07-04"
-    request:
-      browser_user_agent: true
-      range_fetch: true
-      range_backend: curl
-      range_chunk_size: 4194304
     extraction:
       segmentation: anchor_range
+      html_content_selector: "div[class$='_ruleHtml']"
       html_start_selector: 'div.awdiv:has(> span.awtext1:-soup-contains("R986-200-239."))'
       html_stop_selector: 'div.awdiv:has(> span.awtext1:-soup-contains("R986-200-240."))'
       section_label: "239"
@@ -27,13 +23,26 @@ documents:
       federal_program: TANF
       state_program: FEP
       rule_id: 2196
+      rule_version_id: 4835
+      rule_type_id: 51
       reference_number: R986-200-239
       effective_date: "2022-10-24"
       notice_of_continuation: "2025-08-14"
       agency: Workforce Services
       program_name: Employment Development
-      official_rule_route: https://adminrules.utah.gov/public/rule/R986-200/Current%20Rules
+      official_rule_route: https://adminrules.utah.gov/Rule/2196/51/4835/undefined
+      source_url_note: >-
+        Repaired 2026-10-20. The Office of Administrative Rules relaunched eRules v1.0.0 on 2026-10-16, and
+        every /public/rule/ and /api/public/getfile/ address answers HTTP 404. source_url is the new rule
+        page; its trailing /undefined segment is required, because /Rule/2196/51/4835 alone answers 404. The
+        page server-renders the publisher's own converted rule HTML, so html_content_selector
+        div[class$='_ruleHtml'] holds the whole rule and both anchor selectors match exactly one node inside
+        it, as they did in the retained 2026-07-04 source. The plain corpus client reads the full body, so
+        the earlier curl range-fetch request options are no longer needed. The rule record still names
+        htmlName 1a059e78-4927-4528-9bcd-97c534cd51cf.html and effectiveDate 10/24/2022, so this is the same
+        rule version the 2026-07-04 run took. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.
       parent_rule_source: us-ut/regulation/admin-rules/r986/200
       source_discovery_group: us-ut/regulation/tanf
       discovered_via: active_policyengine_parity_review
       source_note: Focused official-source section extraction added for Utah FEP financial-assistance calculation encoding; the existing 2026-07-02 whole-rule block is preserved for already-applied 204 and 230 RuleSpec source pins.
+      run_note: docs/ingest-runs/2026-10-20-ut-erules-url-repair.md
