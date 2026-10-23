@@ -32,6 +32,7 @@ from axiom_corpus.corpus.ingest_manifests import (
     LocalFileUrlScanError,
     default_content_reader,
     local_file_url_fields,
+    redact_file_urls,
 )
 
 REPO = Path(__file__).resolve().parents[1]
@@ -133,7 +134,8 @@ def audit(
             )
             fields: dict[str, int] = {}
             for _citation, field in found:
-                fields[field] = fields.get(field, 0) + 1
+                shown = redact_file_urls(field)  # a crafted key could itself name a path
+                fields[shown] = fields.get(shown, 0) + 1
             record["artifacts"][entry.path] = {"rows": len(found), "fields": fields}
     return {
         "scanned": len(entries),
