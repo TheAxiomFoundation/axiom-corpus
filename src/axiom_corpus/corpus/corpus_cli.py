@@ -24,7 +24,7 @@ from axiom_corpus.corpus.content_store import (
     R2ObjectStore,
     destination_state,
     ensure_cached,
-    materialize,
+    materialize_resilient,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -308,7 +308,11 @@ def _cmd_fetch(args: argparse.Namespace) -> int:
         releases=args.release,
         paths=paths,
     )
-    report = materialize(
+    # A bulk fetch asks for tens of thousands of objects, so a small random subset
+    # can fail on throttling; re-ask for those rather than report the whole fetch
+    # failed (exit 1 below). This is the same resilience `CorpusResolver.ensure`
+    # relies on, which is why both callers share one implementation.
+    report = materialize_resilient(
         repo,
         entries,
         None if args.no_cache else _cache(args),
