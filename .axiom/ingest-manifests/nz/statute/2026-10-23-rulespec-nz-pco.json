@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/nz/statute/2026-10-23-rulespec-nz-pco.jsonl",
-      "sha256": "dbe03f9617b77175c8faa0943a9cd18c50ec0c1d77f4c0fe21c815c958a46756"
+      "sha256": "d2bfab06f4f699010567547e4b47acc3e9d6eb9f9593d33b526ec3e9b4476d9a"
     },
     {
       "path": "data/corpus/sources/nz/statute/2026-10-23-rulespec-nz-pco/act/public/2026/54/act_public_2026_54_en_2026-09-03.xml",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c61606a021acc74d15d7d1fafa0e07aad6d7f1d6",
+    "commit": "d71c0e715f55ded334955e715843973957b51902",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "python -m axiom_corpus.corpus.nz_amendment_markers --overlay manifests/nz-amendment-markers/act-2026-0054.yaml --temp-root <scratch-dir> (re-extracts the retained official XML of nz/statute/2026-10-20-rulespec-nz-pco, act/public/2026/0054 version act_public_2026_54_en_2026-09-03, with reviewed amendment markers; no new capture; run note: docs/ingest-runs/2026-10-23-nz-act-2026-54-amendment-markers.md)"
+    "text": "python -m axiom_corpus.corpus.nz_amendment_markers --overlay manifests/nz-amendment-markers/act-2026-0054.yaml --temp-root <scratch-dir> (re-extracts the retained official XML of nz/statute/2026-10-20-rulespec-nz-pco, act/public/2026/0054 version act_public_2026_54_en_2026-09-03, with reviewed amendment markers on every body-bearing row; no new capture; run note: docs/ingest-runs/2026-10-23-nz-act-2026-54-amendment-markers.md)"
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 26
   },
   "document_class": "statute",
-  "generated_at": "2026-10-23T03:05:33.351367+00:00",
+  "generated_at": "2026-10-23T03:57:17.893583+00:00",
   "jurisdiction": "nz",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rgnSyM6VAz5e8zfErCdG2b9YRLg5jSG7VOsF3dhxnMOTeUyo1BKq0xTUxFM5rs4nKr5GVyalaxxBtoNAD75BAw=="
+    "value": "m77TecOk5r5jlJsbzSG/Q8emuc2aCaB15fOT56mKzU5sihBbWsJ0I4oReeQMB7u/9BIODnYQSoGOdcBvNmrzAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-10-23-rulespec-nz-pco"
