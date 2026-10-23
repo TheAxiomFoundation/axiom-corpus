@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor-r2026-10-14-portable-download-url.json",
+      "sha256": "958746d22dc676beef81b0f8cd370c3ee2cf74c306f2293dec2396e2f67f3b4d"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor-r2026-10-14-portable-download-url.json",
+      "sha256": "089056bae968134f69c4f29900727d47561a7d2b39daba98faa2a6058c771c49"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "3b4b0a6aec6ee1e95d28f716b33ef322bbb12042b5b0586f3296038ce2a830e6"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor-r2026-10-14-portable-download-url/official-documents/bgh-xii-zr-98-13-2015-06-17.pdf",
+      "sha256": "5ef56d5e4a7229f2067ff414a65f6d1399611d861cb352e08677d708f3174432"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor --manifest manifests/de-kindergeld-bgh-form-predecessor.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-11-de-kindergeld-bgh-form-predecessor without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:18:23.672888+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2KYBYU7o0OL60h1cf8GPvqpFq5zZbP0nU9KlKagKBHS+q0ZozWwK5rRwGvY8nRZA6KngyOJTU/vuyqYfQspnCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-bgh-form-predecessor-r2026-10-14-portable-download-url"
+}

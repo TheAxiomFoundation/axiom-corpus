@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url.json",
+      "sha256": "34d2c488dbe24f451dce17fdee82f2cefed3247231b2fe170e7405cde28bd9cd"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url.json",
+      "sha256": "57ad8940f9ee710acb0268d694c6b5ed88d5183133903364dde723cc09368290"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "952d5bb0e5fd09910391f6b2cb1a54888cefb5de44edc08696e72e634e885d68"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url/official-documents/bgbl295s0634.pdf",
+      "sha256": "78b16512c74d6f7bd83109222b200a2b00911b78f70461ac2b9af5eb73dce081"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url/official-documents/bgbl295s0641.pdf",
+      "sha256": "27c2f8335b8f939af7bf53cda02e2092c8fdf0e9719879bf2c247e97510b37fa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-09-de-kindergeld-treaty-texts --manifest manifests/de-kindergeld-treaty-texts.yaml --tag r2026-10-14-portable-download-url (successor of de/statute/2026-09-09-de-kindergeld-treaty-texts without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-23T15:26:28.489483+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kYjTxaEWQ/ajPCVCEgwl/HQDitzBh9mUdxtsIPPegKmawTtZ5C+6egtOeeMCMjIGBkQyyj0dTMKtE/jWF/y+Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-treaty-texts-r2026-10-14-portable-download-url"
+}
