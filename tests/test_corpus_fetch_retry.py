@@ -19,7 +19,7 @@ from pathlib import Path
 
 import pytest
 
-from axiom_corpus.corpus import resolver as resolver_module
+from axiom_corpus.corpus import content_store
 from axiom_corpus.corpus.content_store import ContentCache, LockEntry
 from axiom_corpus.corpus.resolver import CorpusNotMaterializedError, CorpusResolver
 
@@ -87,5 +87,36 @@ def test_a_fetch_that_never_succeeds_still_raises(tmp_path: Path) -> None:
     with pytest.raises(CorpusNotMaterializedError, match="could not be fetched"):
         resolver.ensure([_entry()])
 
-    expected = 1 + len(getattr(resolver_module, "FETCH_RETRY_DELAYS", ()))
+    expected = 1 + len(getattr(content_store, "FETCH_RETRY_DELAYS", ()))
     assert source.asks == expected, "every delay is tried once, then the call fails"
+
+
+def test_the_cli_fetch_shares_the_retry(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """The command-line fetch must retry too, not only `CorpusResolver.ensure`.
+
+    The first version of this fix put the retry on the resolver alone. CI's test
+    job passed and its selector job kept failing, because `corpus fetch` calls
+    the store directly and never passes through `ensure`. One implementation now
+    serves both callers, and this pins the CLI half.
+    """
+    from axiom_corpus.corpus import corpus_cli
+
+    assert corpus_cli.materialize_resilient is content_store.materialize_resilient
+
+
+def test_materialize_resilient_leaves_a_deterministic_failure_alone(tmp_path: Path) -> None:
+    """`retriable` refuses a retry, so a caller can fail fast on a permanent error."""
+    source = FlakySource(BODY, succeed_from=99)
+    repo = tmp_path / "repo"
+    (repo / "data" / "corpus").mkdir(parents=True)
+
+    report = content_store.materialize_resilient(
+        repo,
+        [_entry()],
+        ContentCache(tmp_path / "cache"),
+        [source],
+        retriable=lambda _failed: False,
+    )
+
+    assert set(report.failed) == {PATH}
+    assert source.asks == 1, "refused as non-transient, so it was asked exactly once"
