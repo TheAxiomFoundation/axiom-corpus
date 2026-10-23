@@ -1214,6 +1214,20 @@ FOREIGN_MANIFESTS = {
     "committed-on-newer-local-main": Foreign(on_main=True, origin_main_behind=True),
     # The rest are on this branch.
     "ingest-command": Foreign(on_main=False, command="test ingest {version}"),
+    "custom-manifest-path": Foreign(
+        on_main=False,
+        command=SCRIPT_COMMAND.replace(
+            " (run note:", " --manifest custom/scope.yml (run note:"
+        ),
+    ),
+    "consolidation-for-ordinary-version": Foreign(
+        on_main=False,
+        command=(
+            "scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-co"
+            " --document-class policy --target-version {version}"
+            " (run note: docs/ingest-runs/2026-09-11-release-consolidation.md)"
+        ),
+    ),
     "reasoning-log": Foreign(on_main=False, extra_args=("--reasoning-log", REASONING_LOG)),
     "deleted-file": Foreign(
         on_main=False,
@@ -1467,7 +1481,10 @@ def _plan(repo: Path) -> str:
     scope_list.write_text(f"{JURISDICTION} {DOCUMENT_CLASS} {PLAN_VERSION}\n")
     result = subprocess.run(
         # No guard ref, merge base or main bases: no main to compare.
-        [sys.executable, "-", "", "", "", str(scope_list), f"{MANIFEST_DIR}/{PLAN_VERSION}.json"],
+        [
+            sys.executable, "-", "", "", "", str(scope_list),
+            f"{MANIFEST_DIR}/{PLAN_VERSION}.json", SCRIPT_COMMAND.format(version=PLAN_VERSION),
+        ],
         input=match.group(1),
         cwd=repo,
         capture_output=True,

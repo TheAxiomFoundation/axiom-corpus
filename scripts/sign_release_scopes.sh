@@ -206,15 +206,19 @@ command_for() {  # jurisdiction document_class version; plan_signing recognises 
 # plan stops the run before step 1 when a scope it would sign does that, and says how
 # to sign the scope by hand. A manifest signed that way is kept.
 # The plan is one "<action>\t<reason>" line per scope; the action is sign, resign or keep.
-plan_signing() {  # guard-ref merge-base main-bases scope-list manifest...
+plan_signing() {  # guard-ref merge-base main-bases scope-list manifest... command...
   python3 - "$@" <<'PY'
 import functools, hashlib, json, re, subprocess, sys
 from pathlib import Path
 
-guard_ref, merge_base, main_bases, scope_list, *manifests = sys.argv[1:]
+guard_ref, merge_base, main_bases, scope_list, *manifest_commands = sys.argv[1:]
 scopes = [line.split() for line in Path(scope_list).read_text().splitlines()]
-if len(scopes) != len(manifests):
-    sys.exit("plan_signing: one manifest path per scope expected")
+if len(manifest_commands) != 2 * len(scopes):
+    sys.exit("plan_signing: one manifest path and command per scope expected")
+manifests = manifest_commands[:len(scopes)]
+expected_commands = {
+    tuple(scope): command for scope, command in zip(scopes, manifest_commands[len(scopes):])
+}
 ROOT = ".axiom/ingest-manifests"
 
 
@@ -274,15 +278,6 @@ def signing_commit(payload):
 
 
 def this_scripts(payload, commit, jur, cls, ver):
-    # The two forms command_for writes, whichever manifests/*.yaml it found.
-    j, c, v = (re.escape(part) for part in (jur, cls, ver))
-    script_command = re.compile(
-        rf"scripts/consolidate_release_scopes\.py --base data/corpus --jurisdiction {j}"
-        rf" --document-class {c} --target-version {v}"
-        r" \(run note: docs/ingest-runs/2026-09-11-release-consolidation\.md\)"
-        rf"|axiom-corpus-ingest extract-official-documents --base data/corpus --version {v}"
-        r"( --manifest \S+)? \(run note: docs/ingest-runs/2026-09-10-\*\.md\)"
-    )
     command = payload.get("command")
     text = command.get("text") if isinstance(command, dict) else None
     entries = payload.get("applied_files")
@@ -290,7 +285,7 @@ def this_scripts(payload, commit, jur, cls, ver):
         (payload.get("jurisdiction"), payload.get("document_class"), payload.get("version"))
         == (jur, cls, ver)
         and isinstance(text, str)
-        and script_command.fullmatch(text) is not None
+        and text == expected_commands[(jur, cls, ver)]
         and payload.get("reasoning_logs") == []
         and isinstance(entries, list)
         and all(
@@ -373,7 +368,31 @@ if removals:
 print(*plan, sep="\n")
 PY
 }
-PLAN=$(plan_signing "$GUARD_BASE" "$MERGE_BASE" "$MAIN_BASES" "$SCOPE_LIST" "${MANIFESTS[@]}")
+# Resolve each rebuild command once, for both recognition and signing. Main-owned
+# manifests are kept before command comparison; spare them the YAML lookup.
+COMMANDS=()
+for i in "${!SCOPES[@]}"; do
+  read -r jur cls ver <<<"${SCOPES[$i]}"
+  main_owned=""
+  if [ -f "${MANIFESTS[$i]}" ]; then
+    for base in $MAIN_BASES; do
+      if git cat-file -e "$base:${MANIFESTS[$i]}" 2>/dev/null; then
+        main_owned=1
+        break
+      fi
+    done
+    if [ -z "$MAIN_BASES" ] && git --literal-pathspecs ls-files --error-unmatch \
+      -- "${MANIFESTS[$i]}" >/dev/null 2>&1; then
+      main_owned=1
+    fi
+  fi
+  if [ -n "$main_owned" ]; then
+    COMMANDS+=("")
+  else
+    COMMANDS+=("$(command_for "$jur" "$cls" "$ver")")
+  fi
+done
+PLAN=$(plan_signing "$GUARD_BASE" "$MERGE_BASE" "$MAIN_BASES" "$SCOPE_LIST" "${MANIFESTS[@]}" "${COMMANDS[@]}")
 ACTIONS=() REASONS=()
 while IFS=$'\t' read -r action reason; do
   ACTIONS+=("$action")
@@ -466,10 +485,9 @@ for i in "${!SCOPES[@]}"; do
       [ -n "$RESIGN_DIR" ] || RESIGN_DIR=$(mktemp -d .sign-release-scopes.XXXXXX)
       output="$RESIGN_DIR/$jur/$cls/$ver.json" ;;
   esac
-  cmd=$(command_for "$jur" "$cls" "$ver")
   uv run axiom-corpus-ingest sign-ingest-manifest \
     --jurisdiction "$jur" --document-class "$cls" --version "$ver" \
-    --command "$cmd" ${output:+--output "$output"}
+    --command "${COMMANDS[$i]}" ${output:+--output "$output"}
 done
 
 # 3. move each manifest signed again into place, then commit the unreleased scopes'
