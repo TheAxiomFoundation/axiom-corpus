@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-08-de-kindergeld-withdrawal-r2026-10-14-portable-download-url.json",
+      "sha256": "13121280ed760174a64ad98e9d0ae37d8c79d0b199d7a45e38086ddb400910c4"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-08-de-kindergeld-withdrawal-r2026-10-14-portable-download-url.json",
+      "sha256": "2a5d48dc2ca9c1090de125ba318288f1d12a3d2a346287287c5ff53c9a0195d3"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-08-de-kindergeld-withdrawal-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "f5dadb1e5b4ebbe72212f07ebe27cb1d017b3504b228e2e2159e41624f2cb0e4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-withdrawal-r2026-10-14-portable-download-url/official-documents/de-kindergeld-withdrawal-agreement.pdf",
+      "sha256": "d7715ff758b2b17db74e9ab6c772484b3764e65a38f59a87522c077798876ae5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-08-de-kindergeld-withdrawal --manifest manifests/de-kindergeld-withdrawal-agreement.yaml --tag r2026-10-14-portable-download-url (successor of de/regulation/2026-09-08-de-kindergeld-withdrawal without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-23T15:20:11.717997+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "trzOwBGwGWJPS+/3P2DWNUVISdajnuDdamB9v3pP0vvJpNmWlbqGXcQl0EAXK/tYijQDsEt60LX4GCsXrs47DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-withdrawal-r2026-10-14-portable-download-url"
+}

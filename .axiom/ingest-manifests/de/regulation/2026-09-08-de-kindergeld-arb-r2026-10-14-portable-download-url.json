@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-08-de-kindergeld-arb-r2026-10-14-portable-download-url.json",
+      "sha256": "80b281b0bd320d5c0447d6d16997af7e91163490f2e19da703ea21f30440adb8"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-08-de-kindergeld-arb-r2026-10-14-portable-download-url.json",
+      "sha256": "940de1f1f9745c02518b2bdc68e5d94b23d9c7eea797278a82495eb7c476c8d1"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-08-de-kindergeld-arb-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "feb38d792ca4cceb10a2f57b450157dcbc214bcc20afa6036cae89bbfd8dfa0d"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-arb-r2026-10-14-portable-download-url/official-documents/de-kindergeld-arb-3-80.pdf",
+      "sha256": "00fa5e09d753d67f45421529161f5ce11b115e02a681ee64d7a02cd3266f10f8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/regulation/2026-09-08-de-kindergeld-arb --manifest manifests/de-kindergeld-arb-3-80.yaml --tag r2026-10-14-portable-download-url (successor of de/regulation/2026-09-08-de-kindergeld-arb without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-23T15:19:42.625120+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "whud3akXGnux8CRl1ZC6NC8I9ZTvzuRW3xmSUXGEWUGrzBElcHBBYd/yjug2H3t2fqnIaQ7lLLg8mYQIK1wlCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-arb-r2026-10-14-portable-download-url"
+}

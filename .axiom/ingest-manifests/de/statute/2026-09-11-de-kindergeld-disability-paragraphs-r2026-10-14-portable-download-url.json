@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url.json",
+      "sha256": "95f8ad96d151568a086f77f9691e5a44fb334db4598c2cbfe8a540581dbefaf1"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url.json",
+      "sha256": "f3df78052e75f0db5d9c8a8c2573a806d3f187c38a71fc32136e7c1de0a2d96e"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "89d6bc4aada0771f0693a2e09f8e11522fa14ff43b7ee0d1172ce9a69dd37769"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url/official-documents/de-sgbix2-absatz1-2001.html",
+      "sha256": "9e2991c8d89911da844ba1ef49bdc0c13b07aa7a2c2a2bc46bc59236e1e69f16"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url/official-documents/de-sgbix2-absatz1-2018.html",
+      "sha256": "9df302e8acfb73706f3716b430f0f9795c1699f0b11497781e3827638ba59ff0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-11-de-kindergeld-disability-paragraphs --manifest manifests/de-kindergeld-disability-paragraphs.yaml --tag r2026-10-14-portable-download-url (successor of de/statute/2026-09-11-de-kindergeld-disability-paragraphs without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-23T15:29:47.387548+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/6RZUCg2lGoaPQucgMgfkhVTJDiGFHUCJBT7J+yiFMT9YrWp6DNFieiEgUNyvfdw8/Nn5eaIu1E0JDh5BlmkBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-disability-paragraphs-r2026-10-14-portable-download-url"
+}
