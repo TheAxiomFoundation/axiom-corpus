@@ -747,11 +747,16 @@ class _KeyGate:
 class R2ObjectStore:
     """R2 content-addressed objects, with read-only fallback to legacy path keys.
 
-    Reads retry transient errors (``is_transient``) under ``retry``; a missing
-    object or any other error is never retried. At most ``reads_per_object``
-    reads of one key run at once in this process: R2 refuses simultaneous
-    reads of one object, and successor scopes repeat many of their
-    predecessors' files, so one fetch meets the same key several times.
+    Reads (``open``, ``has``) retry transient errors (``is_transient``) under
+    ``retry``, and they are the only retries: ``from_environment`` gives them
+    a client without botocore's own, so ``retry.attempts`` bounds the HTTP
+    requests for one object. A missing object or any other error is never
+    retried. ``put`` uses ``write_client``, which keeps botocore's retries.
+    At most ``reads_per_object`` reads of one key run at once through this
+    store: R2 refuses simultaneous reads of one object ("Reduce your rate of
+    simultaneous reads on the same object"), and successor scopes repeat many
+    of their predecessors' files, so one fetch meets the same key several
+    times.
     """
 
     name = "r2"
@@ -762,6 +767,7 @@ class R2ObjectStore:
         bucket: str,
         client: Any | None = None,
         client_factory: Callable[[], Any] | None = None,
+        write_client_factory: Callable[[], Any] | None = None,
         legacy_path_keys: bool = True,
         retry: RetryPolicy | None = None,
         reads_per_object: int = 1,
@@ -771,6 +777,8 @@ class R2ObjectStore:
         self.bucket = bucket
         self._client = client
         self._client_factory = client_factory
+        self._write_client: Any | None = None
+        self._write_client_factory = write_client_factory
         self._client_lock = threading.Lock()
         self.legacy_path_keys = legacy_path_keys
         self.retry = retry or RetryPolicy()
@@ -783,24 +791,38 @@ class R2ObjectStore:
         config = load_r2_config()
         return cls(
             bucket=config.bucket,
-            client_factory=lambda: make_r2_client(config, max_pool_connections=workers + 4),
+            client_factory=lambda: make_r2_client(
+                config, max_pool_connections=workers + 4, sdk_retries=False
+            ),
+            write_client_factory=lambda: make_r2_client(config, max_pool_connections=workers + 4),
         )
 
     @property
     def client(self) -> Any:
+        """The client reads use."""
         with self._client_lock:
             if self._client is None:
                 assert self._client_factory is not None
                 self._client = self._client_factory()
             return self._client
 
+    @property
+    def write_client(self) -> Any:
+        """The client ``put`` uses: the read client unless a write factory was given."""
+        if self._write_client_factory is None:
+            return self.client
+        with self._client_lock:
+            if self._write_client is None:
+                self._write_client = self._write_client_factory()
+            return self._write_client
+
     def open(self, entry: LockEntry) -> Iterator[bytes] | None:
         keys = [content_key(entry.sha256)]
         if self.legacy_path_keys:
             keys.append(entry.path.removeprefix(f"{CORPUS_BASE}/"))
         for key in keys:
-            release = self._reads.acquire(key)
             attempts = _Attempts(self.retry, f"GetObject {key}")
+            release = self._reads.acquire(key)
             try:
                 body = self._get(key, attempts)
             except BaseException:
@@ -844,10 +866,10 @@ class R2ObjectStore:
         with _snapshot_file(path) as (snapshot, actual_sha, actual_size):
             if (actual_sha, actual_size) != (sha256, size):
                 raise ContentStoreError(f"{path} no longer hashes to {sha256}")
-            existing = _read_object_or_none(self.client, bucket=self.bucket, key=key)
+            existing = _read_object_or_none(self.write_client, bucket=self.bucket, key=key)
             if existing is None:
                 uploaded = _put_snapshot_if_absent(
-                    self.client,
+                    self.write_client,
                     bucket=self.bucket,
                     key=key,
                     snapshot=snapshot,
@@ -858,7 +880,7 @@ class R2ObjectStore:
             else:
                 _verify_bytes(existing, sha256=sha256, size=size, label=key)
                 uploaded = False
-        readback = _read_object_or_none(self.client, bucket=self.bucket, key=key)
+        readback = _read_object_or_none(self.write_client, bucket=self.bucket, key=key)
         if readback is None:
             raise ContentStoreError(f"R2 readback is missing after upload: {key}")
         _verify_bytes(readback, sha256=sha256, size=size, label=key)
@@ -964,9 +986,13 @@ class _BodyChunks:
         return chunk
 
     def close(self) -> None:
-        if not self._closed:
-            self._closed = True
+        if self._closed:
+            return
+        self._closed = True
+        try:
             _close_quietly(self._body)
+        finally:
+            # Free the slot even when closing the body is interrupted.
             release, self._release = self._release, None
             if release is not None:
                 release()

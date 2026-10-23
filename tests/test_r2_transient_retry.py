@@ -37,8 +37,11 @@ from pathlib import Path
 from typing import Any
 
 import pytest
+import urllib3
+from botocore.awsrequest import AWSResponse
 from botocore.exceptions import (
     ClientError,
+    ConnectionClosedError,
     ConnectTimeoutError,
     EndpointConnectionError,
     IncompleteReadError,
@@ -48,6 +51,7 @@ from botocore.exceptions import (
 )
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
+from urllib3.response import HTTPResponse
 
 from axiom_corpus.corpus import corpus_cli
 from axiom_corpus.corpus.cli import main as cli_main
@@ -62,6 +66,7 @@ from axiom_corpus.corpus.content_store import (
     materialize,
 )
 from axiom_corpus.corpus.corpus_locks import CORPUS_BASE, CorpusLock, LockEntry, write_lock
+from axiom_corpus.corpus.r2 import R2Config, make_r2_client
 
 THROTTLED = "Reduce your rate of simultaneous reads on the same object."
 
@@ -649,3 +654,266 @@ def _cache(tmp_path: Path) -> Any:
     from axiom_corpus.corpus.content_store import ContentCache
 
     return ContentCache(tmp_path / "cache")
+
+
+# --------------------------------------------------------------------------- the real SDK
+#
+# The fakes above stand in for the client. These run botocore itself, with an
+# in-memory transport on ``before-send``, so they count HTTP requests: the
+# retry budget must bound requests, not SDK calls (review of the first draft:
+# botocore's own five retries multiplied it to 48 requests).
+
+# conftest refuses ``from_environment`` so no test reads real credentials or
+# R2. The one test of its client wiring restores it with a fixture config and
+# an in-memory transport, so it still cannot reach either.
+_FROM_ENVIRONMENT = R2ObjectStore.__dict__["from_environment"]
+
+R2_CONFIG = R2Config(
+    bucket="axiom-corpus",
+    endpoint_url="https://r2.invalid",
+    access_key_id="fixture-key",
+    secret_access_key="fixture-secret",
+)
+
+
+def _xml_error(code: str, status: int, headers: dict[str, str] | None = None) -> tuple[int, bytes, dict[str, str]]:
+    body = f"<Error><Code>{code}</Code><Message>{THROTTLED}</Message></Error>".encode()
+    return status, body, {"Content-Type": "application/xml", **(headers or {})}
+
+
+class _BreakingRaw:
+    """A response stream that drops the connection ``after`` bytes in."""
+
+    def __init__(self, data: bytes, after: int):
+        self._stream = BytesIO(data)
+        self._after = after
+
+    def read(self, amount: int | None = None) -> bytes:
+        if self._stream.tell() >= self._after:
+            raise urllib3.exceptions.ProtocolError("Connection broken: connection reset by peer")
+        limit = self._after - self._stream.tell()
+        return self._stream.read(limit if amount is None else min(amount, limit))
+
+    def stream(self, *_args: Any, **_kwargs: Any) -> Any:
+        yield self.read()
+
+    def close(self) -> None:
+        pass
+
+
+class Transport:
+    """Answers a real client's HTTP requests in memory and records each one.
+
+    ``answers`` are taken in order and the last repeats: an exception to
+    raise, ``(status, body, headers)``, ``"object"`` for the stored bytes
+    (honouring a Range header), or ``("break", n)`` for the stored bytes
+    breaking ``n`` bytes in.
+    """
+
+    def __init__(self, client: Any, data: bytes, answers: list[Any]):
+        self.data = data
+        self.answers = list(answers)
+        self.requests: list[tuple[str, str | None]] = []
+        client.meta.events.register("before-send.s3", self)
+
+    def __call__(self, request: Any, **_kwargs: Any) -> AWSResponse:
+        requested = request.headers.get("Range")
+        self.requests.append((request.method, requested.decode() if isinstance(requested, bytes) else requested))
+        answer = self.answers.pop(0) if len(self.answers) > 1 else self.answers[0]
+        if isinstance(answer, BaseException):
+            raise answer
+        if isinstance(answer, tuple) and answer[0] != "break":
+            status, body, headers = answer
+            body = b"" if request.method == "HEAD" else body  # a HEAD answer has no body
+            raw = HTTPResponse(body=BytesIO(body), headers=headers, status=status,
+                               preload_content=False, request_method=request.method)
+            return AWSResponse(request.url, status, headers, raw)
+        start = 0
+        status, headers = 200, {"ETag": '"fixture"'}
+        if request.headers.get("Range"):
+            requested = request.headers["Range"]
+            requested = requested.decode() if isinstance(requested, bytes) else requested
+            start = int(requested.removeprefix("bytes=").removesuffix("-"))
+            status = 206
+            headers["Content-Range"] = f"bytes {start}-{len(self.data) - 1}/{len(self.data)}"
+        body = self.data[start:]
+        headers["Content-Length"] = str(len(body))
+        if request.method == "HEAD":
+            empty = HTTPResponse(body=BytesIO(b""), headers=headers, status=status,
+                                 preload_content=False, request_method="HEAD")
+            return AWSResponse(request.url, status, headers, empty)
+        raw: Any = (
+            _BreakingRaw(body, answer[1]) if isinstance(answer, tuple)
+            else HTTPResponse(body=BytesIO(body), headers=headers, status=status, preload_content=False)
+        )
+        return AWSResponse(request.url, status, headers, raw)
+
+
+def _sdk_store(answers: list[Any], data: bytes, *, attempts: int = 4) -> tuple[R2ObjectStore, Transport, _Sleeps]:
+    client = make_r2_client(R2_CONFIG, sdk_retries=False)
+    transport = Transport(client, data, answers)
+    policy, sleeps = _policy(attempts=attempts)
+    return _store(client, policy), transport, sleeps
+
+
+def test_the_sdk_read_client_makes_one_request_per_attempt(tmp_path: Path) -> None:
+    data = b"bytes R2 keeps refusing"
+    entry = _entry(data)
+    store, transport, sleeps = _sdk_store([_xml_error("ServiceUnavailable", 503)], data, attempts=4)
+    report = materialize(tmp_path, [entry], None, [store])
+    assert "gave up after 4 attempts" in report.failed[entry.path]
+    assert len(transport.requests) == 4 and len(sleeps.calls) == 3
+    assert not (tmp_path / entry.path).exists()
+
+
+@pytest.mark.parametrize(
+    "answer",
+    [
+        SSLError(endpoint_url="https://r2.invalid", error="certificate verify failed"),
+        _xml_error("NoSuchKey", 503),
+        _xml_error("AccessDenied", 403),
+        _xml_error("NoSuchKey", 404),
+    ],
+)
+def test_the_sdk_read_client_never_retries_what_must_fail_closed(tmp_path: Path, answer: Any) -> None:
+    data = b"never fetched"
+    entry = _entry(data)
+    store, transport, sleeps = _sdk_store([answer], data)
+    report = materialize(tmp_path, [entry], None, [store])
+    assert set(report.failed) == {entry.path}
+    assert len(transport.requests) == 1 and sleeps.calls == []
+
+
+def test_the_sdk_read_client_retries_throttling_then_reads_the_object(tmp_path: Path) -> None:
+    data = bytes(range(256)) * 40
+    entry = _entry(data)
+    store, transport, sleeps = _sdk_store(
+        [_xml_error("ServiceUnavailable", 503), _xml_error("SlowDown", 503), "object"], data
+    )
+    report = materialize(tmp_path, [entry], None, [store])
+    assert report.ok, report.failed
+    assert (tmp_path / entry.path).read_bytes() == data
+    assert len(transport.requests) == 3 and len(sleeps.calls) == 2
+
+
+def test_the_sdk_read_client_resumes_a_broken_body_with_a_range_request(tmp_path: Path) -> None:
+    data = bytes(range(256)) * 40
+    entry = _entry(data)
+    store, transport, _sleeps = _sdk_store([("break", 3000), "object"], data)
+    report = materialize(tmp_path, [entry], None, [store])
+    assert report.ok, report.failed
+    assert (tmp_path / entry.path).read_bytes() == data
+    assert [rng for _method, rng in transport.requests] == [None, "bytes=3000-"]
+
+
+def test_the_sdk_head_retries_429_and_counts_requests() -> None:
+    data = b"present"
+    client = make_r2_client(R2_CONFIG, sdk_retries=False)
+    transport = Transport(client, data, [(429, b"", {}), (429, b"", {}), "object"])
+    policy, _sleeps = _policy(attempts=4)
+    assert _store(client, policy).has(_sha(data), len(data))
+    assert [method for method, _rng in transport.requests] == ["HEAD"] * 3
+
+
+def test_the_write_client_keeps_botocore_retries_and_the_transport_counts_them(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Control: the transport sees SDK retries, so the read tests above count them too."""
+    monkeypatch.setattr("botocore.retries.standard.ExponentialBackoff.delay_amount", lambda self, context: 0)
+    client = make_r2_client(R2_CONFIG)
+    transport = Transport(client, b"", [_xml_error("ServiceUnavailable", 503)])
+    with pytest.raises(ClientError):
+        client.get_object(Bucket="axiom-corpus", Key="objects/sha256/00/0")
+    assert len(transport.requests) == 6
+
+
+def test_from_environment_reads_without_sdk_retries_and_writes_with_them(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr("axiom_corpus.corpus.r2.load_r2_config", lambda: R2_CONFIG)
+    monkeypatch.setattr(R2ObjectStore, "from_environment", _FROM_ENVIRONMENT)
+    store = R2ObjectStore.from_environment(workers=2)
+    assert store.client.meta.config.retries == {"total_max_attempts": 1, "mode": "standard"}
+    assert store.write_client.meta.config.retries == {"mode": "standard", "total_max_attempts": 6}
+    assert store.write_client is not store.client
+    data = b"refused"
+    transport = Transport(store.client, data, [_xml_error("ServiceUnavailable", 503)])
+    store.retry = _policy(attempts=3)[0]
+    with pytest.raises(R2UnavailableError, match="gave up after 3 attempts"):
+        store.has(_sha(data))
+    assert len(transport.requests) == 3
+
+
+@settings(max_examples=40, deadline=None, suppress_health_check=[HealthCheck.function_scoped_fixture])
+@given(
+    data=st.binary(min_size=1, max_size=2000),
+    answers=st.lists(
+        st.one_of(
+            st.sampled_from([429, 500, 502, 503, 504]).map(lambda status: _xml_error("ServiceUnavailable", status)),
+            st.just(ConnectionClosedError(endpoint_url="https://r2.invalid")),
+            st.integers(min_value=0, max_value=2000).map(lambda n: ("break", n)),
+        ),
+        max_size=8,
+    ),
+    attempts=st.integers(min_value=1, max_value=6),
+)
+def test_over_the_real_sdk_requests_never_exceed_the_budget_and_bytes_are_exact(
+    tmp_path_factory: pytest.TempPathFactory, data: bytes, answers: list[Any], attempts: int
+) -> None:
+    """Invariants 1 and 2 at the HTTP layer."""
+    entry = _entry(data)
+    store, transport, _sleeps = _sdk_store([*answers, "object"], data, attempts=attempts)
+    repo = tmp_path_factory.mktemp("repo")
+    report = materialize(repo, [entry], None, [store])
+    assert len(transport.requests) <= attempts
+    target = repo / entry.path
+    if report.ok:
+        assert target.read_bytes() == data
+    else:
+        assert not target.exists() and "gave up after" in report.failed[entry.path]
+
+
+class _InterruptingBody(_Body):
+    def close(self) -> None:
+        raise KeyboardInterrupt
+
+
+def test_an_interrupted_close_still_frees_the_read_slot() -> None:
+    data = b"interrupted"
+    entry = _entry(data)
+    policy, _sleeps = _policy()
+
+    class Client(ScriptedR2):
+        def get_object(self, **kwargs: Any) -> dict[str, Any]:
+            response = super().get_object(**kwargs)
+            if len(self.gets) == 1:
+                response["Body"] = _InterruptingBody(data)
+            return response
+
+    store = _store(Client({content_key(entry.sha256): data}), policy)
+    stream = store.open(entry)
+    with pytest.raises(KeyboardInterrupt):
+        stream.close()
+    stream.close()
+    _open_within(store, entry).close()
+
+
+def test_put_uses_the_write_client_and_reads_use_the_read_client(tmp_path: Path) -> None:
+    data = b"uploaded once"
+    path = tmp_path / "object.bin"
+    path.write_bytes(data)
+    reads, writes = ScriptedR2({}), _UploadableR2({})
+    store = R2ObjectStore(bucket="axiom-corpus", client=reads, write_client_factory=lambda: writes,
+                          legacy_path_keys=False, retry=_policy()[0])
+    assert store.put(path, sha256=_sha(data), size=len(data))
+    assert writes.objects == {content_key(_sha(data)): data} and not reads.gets
+    reads.objects = dict(writes.objects)
+    assert store.has(_sha(data), len(data)) and reads.heads and not writes.heads
+
+
+class _UploadableR2(ScriptedR2):
+    """ScriptedR2 plus R2's conditional PutObject."""
+
+    def put_object(self, **kwargs: Any) -> dict[str, Any]:
+        body = kwargs["Body"]
+        payload = body.read() if hasattr(body, "read") else bytes(body)
+        if kwargs.get("IfNoneMatch") == "*" and kwargs["Key"] in self.objects:
+            raise _client_error("PreconditionFailed", 412, "PutObject")
+        self.objects[kwargs["Key"]] = payload
+        return {}

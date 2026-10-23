@@ -219,8 +219,9 @@ def _spread(entries: Iterable[LockEntry]) -> list[LockEntry]:
     Every CI job, and every pull request's run, walks the same sorted lock
     entries; in that order they ask R2 for the same object at the same moment,
     as do a successor scope and the predecessor whose files it repeats, and R2
-    throttles simultaneous reads of one object. Nothing else depends on the
-    order: each entry is fetched, verified and reported on its own.
+    has refused such reads ("Reduce your rate of simultaneous reads on the same
+    object"). Nothing else depends on the order: each entry is fetched,
+    verified and reported on its own.
     """
     spread = list(entries)
     random.shuffle(spread)

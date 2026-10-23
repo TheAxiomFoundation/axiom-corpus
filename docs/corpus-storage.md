@@ -183,36 +183,42 @@ fetches missing files again once, and then fails.
 
 ### Transient R2 errors
 
-R2 throttles simultaneous reads of one object (`ServiceUnavailable: Reduce
-your rate of simultaneous reads on the same object`), rate-limits requests
-(`429`), and drops connections. Every R2 read (`R2ObjectStore`: `GetObject`
-for fetch and resolve, `HeadObject` for `verify --remote` and `push`) retries
-these under a `RetryPolicy`:
+R2 has answered corpus reads with `ServiceUnavailable: Reduce your rate of
+simultaneous reads on the same object` (`GetObject`), `429 Too Many Requests`
+(`HeadObject`), and other `5xx` errors, and connections drop. Reads through
+`R2ObjectStore` (`GetObject` for fetch and resolve, `HeadObject` for
+`verify --remote` and `push`) retry these under a `RetryPolicy`:
 
 - transient means throttling (`429`, `SlowDown`, `ServiceUnavailable`), other
   `5xx` answers, timeouts, and dropped or reset connections. A missing object
-  (`404`), a refused request (`400`, `403`, `416`), a TLS failure, and bytes
-  that do not hash to the lock are never retried: they fail at once, as before;
-- up to 8 requests per object, the first included. After failure `n` the read
-  waits a random time between half and all of `min(30 s, 2^(n-1) s)`, or the
-  `Retry-After` R2 sent (at most 30 s) plus up to a second, so parallel
-  readers spread out instead of retrying in step;
+  (`404`, or a `NoSuchKey` whatever its status), a refused request (`400`,
+  `403`, `416`), a TLS failure, and bytes that do not hash to the lock are
+  never retried: they fail at once, as before;
+- up to 8 HTTP requests per object, the first included. These are the only
+  retries on reads: `R2ObjectStore.from_environment` gives reads a client with
+  botocore's own retries off (`make_r2_client(..., sdk_retries=False)`). After
+  failure `n` the read waits a random time between half and all of
+  `min(30 s, 2^(n-1) s)`, or the `Retry-After` R2 sent (at most 30 s) plus up
+  to a second, so parallel readers spread out instead of retrying in step;
 - a connection that breaks mid-body is resumed with a ranged `GetObject` from
   the first byte not yet read, under the same 8-request budget. The reader
   still hashes every byte it receives, so a wrong resumed tail is refused like
   any other wrong bytes; a response that does not start at the requested byte
   fails the read;
-- at most one read of a given key runs at a time in one process. Successor
-  scopes repeat many of their predecessors' files (on 2026-10-23, 68,126 lock
-  entries named 55,447 distinct objects), so one fetch meets the same key
-  several times;
+- at most one read of a given key runs at a time through one store, and each
+  command uses one store for all its workers. Successor scopes repeat many of
+  their predecessors' files (on 2026-10-23, 68,126 lock entries named 55,447
+  distinct objects), so one fetch meets the same key several times;
 - `corpus fetch`, `corpus verify --remote` and `corpus push` read entries in
   a random order. In sorted order every CI job, and every pull request's run,
   would ask for the same object at the same moment.
 
 A read that exhausts its budget fails with `R2UnavailableError`, whose message
-names the last R2 error and the number of attempts. The `CI` workflow also
-cancels a pull request's superseded run when a new push arrives.
+names the last R2 error and the number of attempts; the fetch then fails as
+before. `push` uploads and their readbacks (`R2ObjectStore.put`) use a second
+client that keeps botocore's standard retries and are not covered by this
+policy. The `CI` workflow also cancels a pull request's superseded run when a
+new push arrives.
 
 ### Resolver
 
