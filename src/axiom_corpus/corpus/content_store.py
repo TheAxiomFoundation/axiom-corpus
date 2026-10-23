@@ -618,9 +618,10 @@ def _botocore_errors() -> tuple[tuple[type[BaseException], ...], tuple[type[Base
 def is_transient(exc: BaseException) -> bool:
     """True for an R2 read error that a later identical request may not repeat.
 
-    Throttling (HTTP 429, ``SlowDown``, ``ServiceUnavailable``), other 5xx
-    answers, timeouts and dropped or reset connections, during the request or
-    while its body streams. A missing object, a refused request (400, 403,
+    HTTP 429, 500, 502, 503 or 504, an error code in
+    ``_TRANSIENT_ERROR_CODES`` (``SlowDown``, ``ServiceUnavailable``, ...),
+    timeouts and dropped or reset connections, during the request or while its
+    body streams. A missing object, a refused request (400, 403,
     416), a TLS failure and bytes that fail verification are never transient.
     """
     if isinstance(exc, ContentStoreError) or (isinstance(exc, Exception) and _is_missing(exc)):
@@ -667,8 +668,8 @@ class RetryPolicy:
     jitter, so parallel readers spread out instead of retrying in step. When
     R2 sent ``Retry-After`` it waits that long instead (at most
     ``max_delay``), plus up to ``base_delay`` of jitter. ``attempts`` counts
-    every request for one object, the first included; resuming a body after
-    a mid-stream error draws on the same budget.
+    every request for one key in one read, the first included; resuming a
+    body after a mid-stream error draws on the same budget.
     """
 
     attempts: int = 8
@@ -750,13 +751,14 @@ class R2ObjectStore:
     Reads (``open``, ``has``) retry transient errors (``is_transient``) under
     ``retry``, and they are the only retries: ``from_environment`` gives them
     a client without botocore's own, so ``retry.attempts`` bounds the HTTP
-    requests for one object. A missing object or any other error is never
+    requests for one key in one read. A missing object or any other error is never
     retried. ``put`` uses ``write_client``, which keeps botocore's retries.
-    At most ``reads_per_object`` reads of one key run at once through this
-    store: R2 refuses simultaneous reads of one object ("Reduce your rate of
-    simultaneous reads on the same object"), and successor scopes repeat many
-    of their predecessors' files, so one fetch meets the same key several
-    times.
+    At most ``reads_per_object`` ``open`` reads of one key (from the request
+    to the end of the body) run at once through this store; ``has`` probes
+    are not gated. R2 has refused simultaneous reads of one object ("Reduce
+    your rate of simultaneous reads on the same object"), and successor scopes
+    repeat many of their predecessors' files, so one fetch meets the same key
+    several times.
     """
 
     name = "r2"
