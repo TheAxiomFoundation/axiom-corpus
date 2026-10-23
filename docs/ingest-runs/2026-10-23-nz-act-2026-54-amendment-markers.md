@@ -3,10 +3,12 @@
 The successor scope is `nz/statute/2026-10-23-rulespec-nz-pco`.
 Its 26 provision rows retain every predecessor field except the scope-identity
 fields `version` and `source_path`, and additive `metadata`. The document
-row gains `document_type: amendment_act` and `amends:
-[nz/statute/act/public/2018/0032]`; 22 amending rows gain XML-bound Part and
+row and all 21 body-bearing rows gain `document_type: amendment_act` and
+`amends: [nz/statute/act/public/2018/0032]`; 22 amending rows gain XML-bound Part and
 commencement metadata. Sections 5, 8 and 9 insert new provisions and have no
-target. Preliminary sections 1–3 receive only the scope-identity changes.
+target. Preliminary sections 1–3 receive the document markers without target
+or commencement fields. The encoder discards null-body rows, so each surviving
+section and inserted Schedule clause carries its own amendment markers.
 No RuleSpec content is produced.
 
 The selector `nz-rulespec-2026-10-23-amendment-markers` replaces exactly the
@@ -14,8 +16,8 @@ The selector `nz-rulespec-2026-10-23-amendment-markers` replaces exactly the
 scope objects and order are unchanged. This is a **publish-only pin release
 for rulespec-nz; never activate it**. No selected scope is withdrawn under
 `manifests/withdrawn-scopes.yaml`. Nothing was signed, locked, uploaded or
-published by the extraction itself; the scope is signed and locked as described under
-"Signing and publication".
+published by the extraction itself. The hub signed the preceding output;
+this regeneration needs re-signing as described under "Signing and publication".
 
 ## Retained official evidence
 
@@ -69,7 +71,10 @@ the target's official provision ID, and those table clause labels. It is the
 single `amendment_target` today.
 
 If a later extraction splits the table into clause rows, section 15 must list
-the replaced clauses as `amendment_targets`. Discovery from a principal
+the replaced clauses as `amendment_targets`. That split also requires the overlay
+validator to check replacement coverage across the targets: `_check_target`
+currently requires each target, on its own, to contain every replaced clause.
+Discovery from a principal
 citation reads every listed target; only the direct amending-section route
 blocks on multiple targets, as specified by the encoder contract. This build
 does not change the table extraction.
@@ -87,8 +92,9 @@ an application is made, or a grant decision is made. It also covers the
 specified cases of payments not yet commenced, suspended, not payable, or not
 received. The spec's summary omitted decision timing and these payment-status
 cases. A plain dated Accommodation Supplement version requires no grandfathering.
-No application-condition metadata is added. These clauses receive only the
-same four routing/Part fields as the rest of their schedule families.
+No application-condition metadata is added. These clauses receive the same
+four routing/Part fields as the rest of their schedule families, plus the two
+document markers carried by all body-bearing rows.
 
 The inherited `metadata.stage: in-force` is the existing extractor default,
 not evidence of commencement; it is retained. Commencement is established by
@@ -174,15 +180,15 @@ reports **zero errors and zero warnings** under the same existing
 `ReleaseGatePolicy.empty()`. The isolated check exercises the existing scope
 validators without signing or weakening their version/source boundaries.
 
-The focused marker, selector and locked-install suite passes: **101 passed in
-74.58 seconds** (68 marker tests, 11 selector tests and 22 locked-install tests).
+Before this fix round, the focused marker, selector and locked-install suite
+passed: **101 passed** (68 marker tests, 11 selector tests and 22 locked-install tests).
 Ruff passes, mypy reports no issues in 105 corpus source files, and
 `towncrier check` exits zero. The existing NZ converter/legislation quartet
-reproduces round 1's result: **68 passed, one failed in 126.51 seconds**. The
+reproduced round 1's result: **68 passed, one failed**. The
 unchanged `test_nz_release_has_one_exact_row_for_every_current_pco_provision`
 hits its 60-second timeout while parsing the full retained release. It also needs
 the June regulation scope, which the partial checkout used here did not fetch. The selected release-policy/withdrawn checks
-pass: **76 passed in 44.57 seconds**, with the same four exclusions as round 1
+passed: **76 passed**, with the same four exclusions as round 1
 (one git-writing test and three groups needing unrelated unfetched scopes).
 CI runs the full suite.
 
@@ -190,15 +196,53 @@ Checks ran on GIL CPython 3.14.7 with at most four workers. The reproducer and
 selector commands both exit zero.
 
 Direct checks of the persisted output verify 26 identical bodies and 26
-non-identity provision and inventory mappings, 23 additive metadata changes,
-and all four unchanged predecessor lock hashes. The four successor artifacts total 303,194 bytes. Coverage
+non-identity provision and inventory mappings, 26 additive metadata changes,
+and all four unchanged predecessor lock hashes. Coverage
 differs from the predecessor only in its scope version. No protected corpus
 bytes are tracked in git.
 
+## Fix-round verification
+
+The corpus-side encoder contract checks both in-memory and persisted output:
+all 21 body-bearing rows carry both document markers; all 19 rows declaring a
+target point to an existing provision inside the principal document; and
+insertion sections 5, 8 and 9 carry commencement evidence without a target.
+The six new cases bring the focused marker, selector and locked-install suite
+to **107 passed**. The bounded NZ adapter quartet reports **68 passed, one
+deselected** (the previously timed-out full-release scan); the selected
+release-policy tests report **76 passed, 55 deselected** with the exclusions
+described above. Ruff, mypy (105 source files) and Towncrier pass.
+
+The new contract assertions reject **94 deliberate output mutations**:
+44 missing marker fields, 38 foreign or nonexistent principal targets, and
+12 missing commencement fields or invented insertion targets. Baseline
+contracts pass before and after these in-memory mutations.
+
+The external integration probe AST-extracts the actual encoder functions at
+`81ddc09ac1d5c9d55a262d25ae8f91064227dc61`; it is not a repository test.
+Before regeneration, 0 of 21 body-bearing rows satisfy its amendment marker
+predicate, and both principal requests attach no amendment evidence. At that
+encoder head, direct sections 5 and 9 already classify by their text, while
+section 8 bypasses amendment routing. After regeneration, all 21 rows satisfy
+the marker predicate. Principal section 20 attaches section 4's exact body,
+and the `clause/lms118453` table attaches section 15's exact body. Direct
+sections 5, 8 and 9 all classify as amendments, and the actual routing function
+rejects each for a missing `metadata.amendment_target`.
+
+The regenerated selector validates all nine scopes with **zero errors and
+zero warnings**, retaining one existing baselined guidance notice. All 26
+bodies remain byte-identical, and only `metadata`, `version` and `source_path`
+differ from the predecessor. The four successor artifacts total 304,895 bytes;
+only the provisions file differs from the prior successor lock. Its SHA-256
+is `d2bfab06f4f699010567547e4b47acc3e9d6eb9f9593d33b526ec3e9b4476d9a`
+(128,580 bytes). Source, inventory, coverage and selector bytes remain unchanged.
+
 ## Signing and publication
 
-The scope is signed and locked with `sign-ingest-manifest --lock --push`, which
-records the generator commit and pins the corpus bytes outside git. The release
+The hub signed and locked the preceding generator output with
+`sign-ingest-manifest --lock --push`, which records the generator commit and
+pins the corpus bytes outside git. The regenerated provisions from this fix
+round need a new hub signature and lock; this round performs no signing or upload. The release
 selector is publish-only: dispatch `publish.yml`, then `mirror-release.yml`. Never
 activate it.
 

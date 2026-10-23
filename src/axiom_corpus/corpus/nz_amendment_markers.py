@@ -293,6 +293,15 @@ def enrich_amendment_rows(
     for citation in by_path:
         if citation not in additions and citation not in {f"{path}/section/{n}" for n in (1, 2, 3)}:
             _fail(citation, "row has no verified amendment Part binding")
+    # The encoder drops bodyless rows and checks amendment status on each
+    # surviving row. Apply document markers after checking Part bindings so
+    # an unexpected body-bearing row cannot bypass completeness validation.
+    document_markers = additions[path]
+    for row in rows:
+        if row.body is not None:
+            additions[row.citation_path] = {
+                **additions.get(row.citation_path, {}), **document_markers
+            }
     return [
         replace(row, metadata={**(row.metadata or {}), **additions[row.citation_path]})
         if row.citation_path in additions

@@ -117,12 +117,14 @@ def test_enrichment_changes_only_metadata_and_does_not_mutate_inputs(
             added_keys = {"part", "commencement_date", "commencement_citation_path"}
             if new.citation_path not in {f"{DOCUMENT}/section/{number}" for number in (5, 8, 9)}:
                 added_keys.add("amendment_target")
+        if new.body is not None:
+            added_keys.update({"document_type", "amends"})
         assert set(new.metadata or {}) - set(old.metadata or {}) == added_keys
         if old.metadata != new.metadata:
             changed.append(old.citation_path)
-    assert len(changed) == 23
+    assert len(changed) == 26
     assert DOCUMENT in changed
-    assert all(f"{DOCUMENT}/section/{number}" not in changed for number in (1, 2, 3))
+    assert all(f"{DOCUMENT}/section/{number}" in changed for number in (1, 2, 3))
 
 
 def test_document_marker_resolves_xml_principal_id_to_existing_document(
@@ -210,7 +212,10 @@ def test_application_clauses_add_no_special_encoding_metadata(
 ):
     before = _by_path(original_rows)
     after = _by_path(enrich_amendment_rows(official_xml, original_rows, principal_rows, overlay))
-    additions = {"amendment_target", "commencement_date", "commencement_citation_path", "part"}
+    additions = {
+        "document_type", "amends", "amendment_target", "commencement_date",
+        "commencement_citation_path", "part",
+    }
     for suffix in ("schedule/1/part/16/clause/125", "schedule/2/part/18/clause/132"):
         path = f"{DOCUMENT}/{suffix}"
         assert set(after[path].metadata or {}) - set(before[path].metadata or {}) == additions
@@ -465,6 +470,71 @@ def successor_scope(tmp_path_factory) -> Path:
         temp_root=temporary / "reextract",
     )
     return output
+
+
+@pytest.fixture(params=["memory", "persisted"])
+def contract_rows(request, official_xml, original_rows, principal_rows, overlay, successor_scope):
+    if request.param == "memory":
+        return enrich_amendment_rows(official_xml, original_rows, principal_rows, overlay)
+    return _read_rows(successor_scope / "provisions/nz/statute" / f"{NEW_VERSION}.jsonl")
+
+
+def _encoder_recognizes_amendment(row: ProvisionRecord) -> bool:
+    """Mirror axiom-encode 81ddc09ac1's row-local _is_amendment_row contract."""
+    metadata = row.metadata or {}
+    if "amends" in metadata:
+        return True
+    document_type = metadata.get("document_type")
+    return isinstance(document_type, str) and "amendment" in document_type.casefold()
+
+
+def test_all_body_bearing_rows_keep_encoder_amendment_markers(contract_rows):
+    # The resolver discards null-body rows; a marked document cannot supply
+    # the marker to its surviving sections or inserted Schedule provisions.
+    body_rows = [row for row in contract_rows if row.body is not None]
+    assert len(body_rows) == 21
+    assert {row.citation_path for row in body_rows if row.kind == "section"} == {
+        f"{DOCUMENT}/section/{number}" for number in range(1, 16)
+    }
+    assert all(_encoder_recognizes_amendment(row) for row in body_rows)
+    document = _by_path(contract_rows)[DOCUMENT]
+    assert document.body is None
+    for row in [document, *body_rows]:
+        assert (row.metadata or {})["document_type"] == "amendment_act", row.citation_path
+        assert (row.metadata or {})["amends"] == [PRINCIPAL], row.citation_path
+
+
+def test_amending_targets_stay_in_declared_principal(contract_rows, principal_rows):
+    principal_paths = set(_by_path(principal_rows))
+    targeted = []
+    for row in contract_rows:
+        metadata = row.metadata or {}
+        assert not {"amendment_target", "amendment_targets"} <= metadata.keys()
+        targets = (
+            [metadata["amendment_target"]] if "amendment_target" in metadata
+            else metadata.get("amendment_targets", [])
+        )
+        for target in targets:
+            assert target.startswith(f"{PRINCIPAL}/"), row.citation_path
+            assert target in principal_paths, row.citation_path
+        if targets:
+            targeted.append(row.citation_path)
+    assert len(targeted) == 19
+
+
+def test_insertions_are_marked_with_commencement_and_no_target(contract_rows):
+    rows = _by_path(contract_rows)
+    for number in (5, 8, 9):
+        row = rows[f"{DOCUMENT}/section/{number}"]
+        metadata = row.metadata or {}
+        assert _encoder_recognizes_amendment(row)
+        assert metadata["document_type"] == "amendment_act"
+        assert metadata["amends"] == [PRINCIPAL]
+        assert metadata["part"] == "1"
+        assert metadata["commencement_date"] == "2026-11-02"
+        assert metadata["commencement_citation_path"] == f"{DOCUMENT}/section/2"
+        assert "amendment_target" not in metadata
+        assert "amendment_targets" not in metadata
 
 
 def test_successor_identity_passes_existing_release_gates(successor_scope):
