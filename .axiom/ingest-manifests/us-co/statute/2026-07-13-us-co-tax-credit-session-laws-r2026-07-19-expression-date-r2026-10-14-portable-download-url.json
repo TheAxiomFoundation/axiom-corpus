@@ -1,0 +1,70 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url.json",
+      "sha256": "140c2ba480ea16c9dbf8a3fc096f475f45560f7ebdc72246c719b2e100266d09"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url.json",
+      "sha256": "94885d4030a42f7b2bcdb163dd52dc4d6ef229e551d2a27900302dfdaab8dee2"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "41fe01e6fcdf2eae284843c47b1478597dcf6f51fe3e240fde4a80ef95cae9eb"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url/official-documents/us-co-hb24-1134-signed-act-2024.pdf",
+      "sha256": "835e807d5da1fa6986f976345b7221a98c3a49b7715917f6d10d360ba6a61f1e"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url/official-documents/us-co-hb24-1311-signed-act-2024.pdf",
+      "sha256": "6b388535d46a1f1fb653ea16c2096c66db186cf861cb22448661aa8136b45fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url/provenance/us-co-hb24-1134-signed-act-2024.provenance.json",
+      "sha256": "1d8039ebbe9c35ce6ab120ed930034305e1d908ed71b01a5ae9ffe5a135616fd"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url/provenance/us-co-hb24-1311-signed-act-2024.provenance.json",
+      "sha256": "47ce5e1e63cf359d490273aca915d82611cbc6bc45cfffef6b1b92261bc83ee8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py rewrite --scope us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date --tag r2026-10-14-portable-download-url (successor of us-co/statute/2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-us.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-23T15:10:00.471957+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-us-audit.json",
+      "sha256": "47c73fbb6e3f83852149577a6fd6537563bf0d5509fd19c6e133d30853254f0a"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-us.md",
+      "sha256": "078846e7cd0da5a769061184f720b0fd79f3a0d7b0d5ddc6ad906d1750135221"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BnHA8yqnEDbkdp7503SUQr9ovG7/W4nqDFvNzOrBO8RJkM0MrI9G51pqzI5pJZpG/tid3i9T4twov8f5PgEbAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date-r2026-10-14-portable-download-url"
+}
