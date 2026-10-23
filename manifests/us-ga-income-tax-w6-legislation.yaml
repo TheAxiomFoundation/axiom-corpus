@@ -1,0 +1,70 @@
+version: 2026-10-06-w6-income-tax-legislation-ga
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Georgia
+documents:
+- source_id: us-ga-w6-session-laws-2022-hb1437
+  jurisdiction: us-ga
+  document_class: statute
+  title: House Bill 1437 (2022), Tax Reduction and Reform Act of 2022 (as passed, signed legislation)
+  source_url: https://gov.georgia.gov/document/2022-signed-legislation/hb-1437/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ga/statute/session-laws/2022/hb1437
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Office of the Governor of Georgia
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 22 HB 1437/AP House Bill 1437 (AS PASSED HOUSE AND SENATE)
+    wave6_work_order_rows:
+    - 339
+- source_id: us-ga-w6-session-laws-2023-hb162
+  jurisdiction: us-ga
+  document_class: statute
+  title: House Bill 162 (2023), one-time refund of 2021 income taxes (as passed, signed legislation)
+  source_url: https://gov.georgia.gov/document/2023-signed-legislation/hb-162/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ga/statute/session-laws/2023/hb162
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Office of the Governor of Georgia
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 23 LC 43 2563-EC/AP House Bill 162 (AS PASSED HOUSE AND SENATE)
+    wave6_work_order_rows:
+    - 340
+- source_id: us-ga-w6-session-laws-2024-hb1015
+  jurisdiction: us-ga
+  document_class: statute
+  title: House Bill 1015 (2024), flat income tax rate (as passed, signed legislation)
+  source_url: https://gov.georgia.gov/document/2024-signed-legislation/hb-1015/download
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ga/statute/session-laws/2024/hb1015
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Office of the Governor of Georgia
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: 24 LC 50 0620-EC/AP House Bill 1015 (AS PASSED HOUSE AND SENATE)
+    wave6_work_order_rows:
+    - 343

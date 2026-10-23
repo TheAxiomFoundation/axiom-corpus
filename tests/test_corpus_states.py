@@ -2135,3 +2135,29 @@ def test_extract_cic_state_odt_cli(tmp_path, capsys):
     assert exit_code == 0
     assert '"jurisdiction": "us-va"' in output
     assert '"provisions_written": 3' in output
+
+
+def test_texas_duplicate_section_variant_uses_grammar_separator():
+    """A repeated Texas section number joins its variant with `--`, never `@` (citation grammar)."""
+    from axiom_corpus.corpus.states import _texas_section_variant, _TexasSection
+
+    variant = _texas_section_variant("NOTIFICATION OF FAMILY VIOLENCE CALLS", 2)
+    section = _TexasSection(
+        code="HR",
+        section="42.0448",
+        variant=variant,
+        marker="Sec.",
+        heading="NOTIFICATION OF FAMILY VIOLENCE CALLS",
+        body="text",
+        source_id="42.0448",
+        source_url="https://statutes.capitol.texas.gov/Docs/HR/htm/HR.42.htm#42.0448",
+        source_document_id="HR.42",
+        parent_citation_path="us-tx/statute/hr/title-2/subtitle-d/chapter-42",
+        level=4,
+        ordinal=1,
+        references_to=(),
+        anchors=("42.0448",),
+    )
+    assert "@" not in section.citation_path
+    assert section.citation_path == f"us-tx/statute/hr/42.0448--{variant}"
+    assert _texas_section_variant("HEADING", 1) is None

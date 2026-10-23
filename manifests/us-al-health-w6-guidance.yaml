@@ -1,0 +1,23 @@
+version: 2026-10-06-w6-health-guidance-al
+documents:
+- source_id: us-al-w6-health-adph-infant-mortality-reduction-plan-2018
+  jurisdiction: us-al
+  document_class: guidance
+  title: 'State of Alabama Infant Mortality Reduction Plan: Children''s Cabinet Recommendations and Report (June 2018)'
+  source_url: https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2018-06-01'
+  citation_path: us-al/guidance/adph/infant-mortality-reduction-plan-2018
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Public Health (Children's Cabinet report)
+    program: CHIP
+    document_subtype: state_plan_report_pdf
+    source_discovery_group: us-al/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 2
+    bundle_url: https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf

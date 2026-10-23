@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/statute/2026-10-06-w6-income-tax-statute-ms.json",
+      "sha256": "3475b6a27a5b3f1d1e92830695f90332dfadad4d16a3698f4e3cdacae20b885f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/statute/2026-10-06-w6-income-tax-statute-ms.json",
+      "sha256": "5989d797e0ac7e885635acd2606940ba3437397b97637df4b77ea2eaaf2471a8"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/statute/2026-10-06-w6-income-tax-statute-ms.jsonl",
+      "sha256": "90b03b5dab796ff31695137b9ceccfd96296e85232fb5c40e492e6c367ba0e19"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-10-06-w6-income-tax-statute-ms/official-documents/us-ms-statute-session-laws-2017-sb2311.pdf",
+      "sha256": "be3a24889aba848d55e7fbf3a7eef58692631ed6ef54d405228b8391bead2732"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/statute/2026-10-06-w6-income-tax-statute-ms/official-documents/us-ms-statute-session-laws-2023-hb1671.pdf",
+      "sha256": "5c8f4a06133d257accdbd6056cb80f1cd4043b33c529e712bc3087a1f85892df"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:54:46.583170+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "X2NrsvqC6xr4gyq0TdAfxEEpW0XaV+FynHZxvl9DfzCbD5hSwBDbqi7hzvXeqUvdwQwRK4Z/aAJE2dc/rM3ODQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ms"
+}

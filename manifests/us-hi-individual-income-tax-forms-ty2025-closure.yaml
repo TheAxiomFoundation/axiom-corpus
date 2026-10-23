@@ -1,0 +1,70 @@
+version: '2026-09-15'
+documents:
+- source_id: us-hi-dotax-form-n-11-ty2025
+  jurisdiction: us-hi
+  document_class: form
+  title: Form N-11 Hawaii Individual Income Tax Return, Resident (Rev. 2025)
+  source_url: https://files.hawaii.gov/tax/forms/current/n11_i.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-hi/form/dotax/ty2025/form-n-11
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.hawaii.gov/forms/a1_b1_1income/
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.hawaii.gov/forms/a1_b1_1income/
+      (read 2026-09-14)
+    page_count_at_research: 4
+    first_page_first_line: STATE OF HAWAII - DEPARTMENT OF TAXATION FORM N-11
+    source_note: files.hawaii.gov/tax/forms/current/ is not year-stamped; the Rev. 2025 edition was taken on 2026-09-15.
+- source_id: us-hi-dotax-form-n-11-instructions-ty2025
+  jurisdiction: us-hi
+  document_class: form
+  title: 2025 N-11 Instructions, Hawaii Resident Income Tax (Rev. 2025)
+  source_url: https://files.hawaii.gov/tax/forms/current/n11ins.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-hi/form/dotax/ty2025/form-n-11-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.hawaii.gov/forms/a1_b1_1income/
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.hawaii.gov/forms/a1_b1_1income/
+      (read 2026-09-14)
+    page_count_at_research: 52
+    first_page_first_line: 2025 N-11 STATE OF HAWAII - DEPARTMENT OF TAXATION
+- source_id: us-hi-dotax-tax-tables-ty2025
+  jurisdiction: us-hi
+  document_class: form
+  title: 2025 Tax Tables, taxable income of less than $100,000 (from the N-11 booklet)
+  source_url: https://files.hawaii.gov/tax/forms/2025/25table-on.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-hi/form/dotax/ty2025/tax-tables
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Taxation
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.hawaii.gov/forms/d_25table-on/
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.hawaii.gov/forms/d_25table-on/
+      (read 2026-09-14)
+    page_count_at_research: 14
+    first_page_first_line: 2025 TAX TABLES

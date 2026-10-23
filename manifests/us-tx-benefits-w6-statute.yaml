@@ -1,0 +1,21 @@
+version: 2026-10-06-w6-benefits-statute-tx
+documents:
+- source_id: us-tx-statute-session-laws-88r-hb1287
+  jurisdiction: us-tx
+  document_class: statute
+  title: Texas H.B. No. 1287 (88th Legislature, Regular Session), enrolled version
+  source_url: https://capitol.texas.gov/tlodocs/88R/billtext/html/HB01287F.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2023-05-28'
+  citation_path: us-tx/statute/session-laws/88r/hb1287
+  metadata:
+    primary_source: true
+    source_authority: Texas Legislature Online
+    document_subtype: enrolled_bill
+    program: SNAP; TANF
+    expression_date_note: publisher Last-Modified of the enrolled text (2023-05-28)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 226)
+    wave6_rows:
+    - 226
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

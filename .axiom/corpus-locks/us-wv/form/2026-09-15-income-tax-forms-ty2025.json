@@ -1,0 +1,14 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-wv",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-wv/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "aa2274a5a3c91b75540ee822fc95fdaf071a6bdc510dc2f64531ec2225106a95", "size": 330},
+    {"path": "data/corpus/inventory/us-wv/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "92a6bdb097ff00ac8ed1c326cb92d8b1e3a3aedc5aec9269a937b90fa0b0795d", "size": 8629},
+    {"path": "data/corpus/provisions/us-wv/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "f2363ef7c76ff59400c961486bf66a10a13acc84ed4a2908822869661cf77f32", "size": 266163},
+    {"path": "data/corpus/sources/us-wv/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-wv-tax-it-140-forms-and-instructions-ty2025.pdf", "sha256": "6383bf9748fde18c0469b0eb1b836f4ff6999a2c541bf4e909502a8b3132e0b0", "size": 1175763},
+    {"path": "data/corpus/sources/us-wv/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-wv-tax-it-140-tax-rate-schedules-ty2025.pdf", "sha256": "858b44ba5a17bb9805b45208df1029e1f3965c85dd89d30f88ba2b99f364825d", "size": 194086},
+    {"path": "data/corpus/sources/us-wv/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-wv-tax-it-140-tax-table-ty2025.pdf", "sha256": "428d272dd7a2aaa8be937c23d2660072efaffd47ea3ae224327e97fa05454347", "size": 223323}
+  ]
+}

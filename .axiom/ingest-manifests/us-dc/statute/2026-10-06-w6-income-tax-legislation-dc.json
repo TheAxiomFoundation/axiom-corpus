@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/statute/2026-10-06-w6-income-tax-legislation-dc.json",
+      "sha256": "bb561cb8c7ee36185ba3932cf6b7e72a052ccd4b814c2ec02e3f4881202008f7"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/statute/2026-10-06-w6-income-tax-legislation-dc.json",
+      "sha256": "a22020e2e6e37f92a5eaa8800f6f0f6ff49c83d0440271cdcc0cbb2cb8d3e678"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/statute/2026-10-06-w6-income-tax-legislation-dc.jsonl",
+      "sha256": "f8c77e70ece3625f77401ae74273f427afd7dc010500ed47b6963435d04153ea"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/statute/2026-10-06-w6-income-tax-legislation-dc/official-documents/us-dc-w6-session-laws-acts-26-214.html",
+      "sha256": "cd1800d4476797bb4f9b7982055a97e6e72926624743bc1374e5ad32d94f20fd"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/statute/2026-10-06-w6-income-tax-legislation-dc/official-documents/us-dc-w6-session-laws-laws-23-149.html",
+      "sha256": "7cb24ec0726d2cf9d27cbcea1fd7a1359b533a5a8e3150efef5174726892beae"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/statute/2026-10-06-w6-income-tax-legislation-dc/official-documents/us-dc-w6-session-laws-laws-24-301.html",
+      "sha256": "1823aa66c0853669a422be037c9ea23e5654fdbee37794d31acb53febbe35a26"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 107,
+    "missing_count": 0,
+    "provision_count": 107,
+    "source_count": 107
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:50:22.331615+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0uwasUrIPHLmWgUGSFjDqxmRBFWtZQ3Wusf0SoHgeK0qcPGNJOkoFfK46WpI3NUrMztvrwekS7fsl9z1zHLKCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-legislation-dc"
+}

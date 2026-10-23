@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/statute/2026-10-06-w6-income-tax-statute-mi.json",
+      "sha256": "f7372d794232742d04480e14c193891e287e11f05e02f7e19c6aa081be7e2e0b"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/statute/2026-10-06-w6-income-tax-statute-mi.json",
+      "sha256": "1ee6961b531cf7ed114015cced2b4b768036ee21833a4af5ab6b2dd2f95cc631"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/statute/2026-10-06-w6-income-tax-statute-mi.jsonl",
+      "sha256": "bc93779ef522f3c2f84f191927e8efd50ff1a870326f1ddc94fa93df97e8bca5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-10-06-w6-income-tax-statute-mi/official-documents/us-mi-statute-session-laws-2025-hb4961.html",
+      "sha256": "1b75c6dbdc7227bcf07b757fa3344ecd2b666467f2f2c03a7352177331cc576d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:53:48.910302+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5cxQ53ztgi41zFTjUcEO603MSoMppEjsJ17uwtoEh0Dic3ZgTrOYeagchn6GGsckmcj78KM8KVX1TJD1BcVGBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-mi"
+}

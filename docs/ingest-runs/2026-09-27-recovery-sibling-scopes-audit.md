@@ -18,7 +18,7 @@ activated, and no tracked selector is added or edited.
 | `us-me/statute/2026-07-13-recovery` | 13 | 12 | `us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36` (all of §5111's table); that scope drops lettered paragraphs, which #754 restores | no | drop it; add the chapter scope, or #754's successor once merged |
 | `us-mn/statute/2026-07-13-recovery` | 125 | 35 | `us-mn/statute/2026-09-14-income-tax-chapter-us-mn-title-290`: all 250 legal-text lines | no | drop it; add the three MN chapter scopes |
 | `us-ut/statute/2026-07-13-recovery` | 3 | 0 (all 3 wrap the text in page chrome) | `us-ut/statute/2026-09-14-income-tax-chapter-title-59`: same words | no | drop it; add the chapter scope |
-| `us-sc/statute/2026-07-13-recovery` | 3 | 3 | **nothing**: no scope carries §12-6-520 | **yes** | swap it for the successor |
+| `us-sc/statute/2026-07-13-recovery` | 3 | 3 | **nothing**: no scope carried §12-6-520 at this audit (#760 adds one) | **yes** | swap it and the Act 110 scope for the successor |
 | `us-mi/statute/2026-07-13-recovery` | 15 | 2 | `us-mi/statute/2026-09-14-income-tax-chapter-us-mi-chapter-206`: §206.272 as captured; §§206.30 and 206.51 in their later, amended text | no | drop it; add the chapter scope |
 | `us-mt/regulation/2026-07-13-recovery` | 1 | 0 (the rule wrapped in page chrome) | **nothing**: ARM 37.78.420 is only here | **yes** | swap it for the successor |
 | `us-co/regulation/2026-07-13-recovery` | 192 | 4 | its own successor `…-r2026-09-11-tanf-consolidated`, which also replaces the wrong §3.606.x rows | no | swap it for the consolidated successor |
@@ -165,8 +165,8 @@ from §12-6-520. The section's own text is in the page, outside any node the
 extractor reads. `2026-07-16-pit-central-us-sc-title-12-chapter-6` carried
 `us-sc/statute/12-6-520` as extracted (bb44b3e53). The next day "Deduplicate PIT
 release citations" (fbc9f07da) removed that row in favour of this scope's empty
-root, and the Act 110 overlay (`2026-07-24-sc-act110-…`) was built without it. No
-scope on `main` carries §12-6-520's text. The SC adapter's own parser
+root, and the Act 110 overlay (`2026-07-24-sc-act110-…`) was built without it. At
+this audit no scope on `main` carried §12-6-520's text. The SC adapter's own parser
 (`parse_south_carolina_chapter_html`) reads it from this scope's retained page,
 which is byte for byte the chapter page the pit-central and Act 110 scopes
 retain. The section it reads equals the removed row's heading and body.
@@ -309,11 +309,26 @@ audited scope alone with strict warnings and no issue
 This run adds no selector-freeze guard like the CA audit's: which lines take
 these swaps, and when, is queued for Max.
 
+Since #847, after the 2026-10-03 swap decision, `manifests/withdrawn-scopes.yaml`
+withdraws every scope the decision takes out (and `us-id/statute`, which no key
+line selects). `validate_release` refuses each in a new cut and grandfathers the
+selectors that already carry it; the three scopes this audit keeps pass with
+their recorded content findings as notices
+(`test_the_release_gate_refuses_each_withdrawn_scope_and_passes_the_kept_ones`).
+
 ## Follow-ups
 
 1. **SC successor.** A signed scope carrying `us-sc/statute/12-6-520` extracted by
    the SC adapter from the retained chapter page, and the Act 110 overlay applied
    to it if Act 110 touches it. Then swap it in for this scope in every line.
+
+   Done in #760 (2026-10-10):
+   `us-sc/statute/2026-09-27-sc-act110-with-12-6-520-us-sc-title-12-chapter-6`, the
+   Act 110 scope extracted again without its exclusion of the section. Act 110 does
+   not amend §12-6-520. The swap drops **both** this scope and
+   `2026-07-24-sc-act110-us-sc-title-12-chapter-6`: the successor carries all 158
+   Act 110 paths, so keeping that scope beside it is 158 duplicate citations. See
+   `2026-09-27-us-sc-12-6-520-successor.md`.
 2. **MT successor.** ARM 37.78.420 without the page chrome, from the retained page
    or the rule's PDF.
 3. **CO 8 CCR 1403-1.** Split the rulebook into sections so `3.111` resolves to
@@ -327,6 +342,13 @@ these swaps, and when, is queued for Max.
 6. **Release gate.** The CA audit's follow-up 3 (a content check for chrome,
    empty roots at section paths and landing pages, and a withdrawn-scope list)
    would catch every defect here.
+
+   Done in #847 (2026-10-13). The withdrawal registry covers every scope the
+   swap decision takes out; MT waits for its successor (#761), and this audit
+   keeps us/guidance and the CO consolidated scope. The content check flags
+   none of the rows this audit found to carry text, and finds 64 of the others;
+   `test_the_content_check_agrees_with_the_audit` pins the table. See
+   `docs/release-gate-policy.md`.
 
 ## Checks
 

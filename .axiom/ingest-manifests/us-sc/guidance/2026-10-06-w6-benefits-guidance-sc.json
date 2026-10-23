@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc.json",
+      "sha256": "ca6282cf85a3bd76be48a6c90a8c38879a6a548c65fb9ab1f090b5ed86e0eafd"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc.json",
+      "sha256": "f5c1ae0b78e290e30d62a9fac38bd28f7e8d471068edb3f2ad013f467879c52c"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc.jsonl",
+      "sha256": "435dcf7a83e30634e7988b3dff108e52013623e72d55be4c84630420f9a800cd"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc/official-documents/us-sc-guidance-scdhhs-communications-optional-state-supplementation-oss-rate-increases-0.html",
+      "sha256": "2a4d6d4d622528e12be15204a40409e5b84d1e9d9949185292eb273b529f0221"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc/official-documents/us-sc-guidance-scdhhs-communications-optional-state-supplementation-oss-rate-increases.html",
+      "sha256": "382f1ea1f33e503a93ff9b5759479ed441fd91c7d2da72b9213b0a6eca29bc9b"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc/official-documents/us-sc-guidance-scdhhs-communications-social-security-and-supplemental-security-income-cost-living-adjustment-increases-0.html",
+      "sha256": "e2d3a6597224bb92fb6200185f98b938327c61c2eb25415d82814547191dfe66"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc/official-documents/us-sc-guidance-scdhhs-communications-social-security-and-supplemental-security-income-cost-living-adjustment-increases.html",
+      "sha256": "13ca6cedc3a1fc247eaf50ecec4636fdb2adad34504d18fbc48563db7d4e355d"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-10-06-w6-benefits-guidance-sc/official-documents/us-sc-guidance-scdhhs-communications-social-security-and-supplemental-security-income-ssi-cost-living-adjustment-cola.html",
+      "sha256": "a4e33689397fb37889e47c6dabcf4300ee2a08317280cfa31561a7e56f14998f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:58:28.210837+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "l8g53N/L0AHiTIkegH9u1pR4Ar9jo5yLX+yL0huBS3gKfCsEmEJRirykyYIbbn9ZbfzhvL6muNMLy5HXuVJ8AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-sc"
+}

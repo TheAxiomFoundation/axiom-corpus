@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/statute/2026-10-06-w6-income-tax-statute-ny-r2.json",
+      "sha256": "2b75ad9e8fcaa0bcd4cddaba5dc673c7f6d27be7457aec1437547cb590b817a7"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/statute/2026-10-06-w6-income-tax-statute-ny-r2.json",
+      "sha256": "48ef6c4d84958fca65cf5bfc9c8a0f56542c7f94c3a157a263c0069021c4c9c3"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/statute/2026-10-06-w6-income-tax-statute-ny-r2.jsonl",
+      "sha256": "db3b67074b526da372222b7a9772cb5fde7ecc35af6b8f1936916bcf98c63833"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-10-06-w6-income-tax-statute-ny-r2/official-documents/us-ny-statute-bills-2025-s3009.html",
+      "sha256": "934b4fcef25cab9d19a6d094dc1b5f2b5768b1b4fea6b0d64bf71094124f9244"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:56:50.083718+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NxQPa2hdj1xI6hvzy3RitJr01I4XpV2A2zVMtesjaP1fx6rJF3J1fSgWDxLeS9pkbcJt6LgjBpKDuHJvzkKVAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ny-r2"
+}

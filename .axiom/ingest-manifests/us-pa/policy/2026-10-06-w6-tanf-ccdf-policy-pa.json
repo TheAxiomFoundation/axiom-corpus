@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/policy/2026-10-06-w6-tanf-ccdf-policy-pa.json",
+      "sha256": "8c6d3e24049c6eb62ed3893417df3ee9696a2289e7251619d8990cc57d54a59c"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/policy/2026-10-06-w6-tanf-ccdf-policy-pa.json",
+      "sha256": "740f9cf30146cd65b4963c620cf2b396a6e70024e3f9c759343c5b972d5ab5ce"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/policy/2026-10-06-w6-tanf-ccdf-policy-pa.jsonl",
+      "sha256": "458e7351bfecef2698eba243ddccd8ad1c1ddf73422085a820034999a0f09c80"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-10-06-w6-tanf-ccdf-policy-pa/official-documents/us-pa-w6-ccdf-rate-schedules-mcca-rates-by-region-2023-03-01.pdf",
+      "sha256": "11d87f3337c77f725d49f3019a23e7974d7c513aa504425d2cc6821a76a6a268"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:57:57.583909+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fZrXB8cnRGRhe/L8LSaqzOBGdGh1McZtHEGtFDhNluiqfRByEnFKt+6en3dt5kJEIETSsvxpQ/r7WLM3VwKcBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-pa"
+}
