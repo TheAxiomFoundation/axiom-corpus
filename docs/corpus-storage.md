@@ -210,11 +210,15 @@ separate command (`axiom_corpus.corpus.resolver`):
   fetches it first, never after its writes).
 - `build_release_content` and `scripts/publish_corpus.py` fetch the selected
   scopes before hashing.
-- The one-off reproductions that read retained corpus files
-  (`scripts/repro/*.py`, `scripts/repro_us_cfr_416_deeming_slice.py`) call
+- Eighteen one-off reproductions that read retained corpus files (17 in
+  `scripts/repro/` plus `scripts/repro_us_cfr_416_deeming_slice.py`) call
   `ensure_corpus_inputs()` first in `main()`, which fetches the locked files
   the script reads: its retained sources and any other scope it compares
-  against. An input-root override outside the checkout fetches nothing.
+  against. `scripts/repro/us_hts_rev15_chapter50_edition.py`, added later,
+  still reads its retained source directly, without the helper. An
+  input-root override outside the checkout skips fetching the overridden
+  source files, but the CalFresh and full-schedule scripts still fetch the
+  repository comparison inputs they read from the checkout.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
   `require_materialized` are the building blocks.
 
