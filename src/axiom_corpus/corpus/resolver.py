@@ -17,6 +17,7 @@ import stat
 import subprocess
 import sys
 import threading
+import time
 from collections.abc import Iterable, Sequence
 from pathlib import Path
 from typing import Any
@@ -323,6 +324,17 @@ def _symlinked_error(rel: str, target: Path) -> CorpusNotMaterializedError:
     )
 
 
+# A bulk fetch of a release selector asks an object store for tens of thousands of
+# objects at high concurrency, and a small random subset can fail on throttling or a
+# dropped connection. `materialize` reports a per-entry failure instead of raising,
+# so without this the whole call failed on the first flake: CI saw 22 objects fail,
+# then 6 wholly different ones on the re-run, with the corpus itself intact. Each
+# retry re-asks only the entries that failed, and at a quarter of the concurrency,
+# because reducing pressure is what clears throttling. A deterministic failure (an
+# object the store does not hold, or a symlink on the path) is not retried.
+FETCH_RETRY_DELAYS: tuple[float, ...] = (1.0, 4.0, 10.0)
+
+
 class CorpusResolver:
     """Materialize locked corpus files into one worktree on demand."""
 
@@ -500,6 +512,8 @@ class CorpusResolver:
             )
             report.present[:0] = in_place["present"]
             report.modified[:0] = in_place["modified"]
+            if report.failed and absent:
+                report = self._retry_transient(report, absent, verify=verify)
             if report.failed:
                 first, reason = next(iter(sorted(report.failed.items())))
                 hint = (
@@ -526,6 +540,35 @@ class CorpusResolver:
             f"{len(pending)} locked corpus file(s) disappeared while being fetched "
             f"(first: {pending[0].path}); another process may be removing them."
         )
+
+    def _retry_transient(
+        self, report: FetchReport, absent: Sequence[LockEntry], *, verify: bool = False
+    ) -> FetchReport:
+        """Re-ask the object store for the entries that failed, at lower concurrency.
+
+        Returns a report whose ``failed`` holds only what still fails after
+        ``FETCH_RETRY_DELAYS`` attempts. A failure that cannot be transient is
+        returned untouched, so a genuinely absent object still fails fast.
+        """
+        for delay in FETCH_RETRY_DELAYS:
+            if not report.failed:
+                return report
+            if any(_symlink_on_path(self.repo, path) is not None for path in report.failed):
+                return report
+            retry_entries = [entry for entry in absent if entry.path in report.failed]
+            if not retry_entries:
+                return report
+            time.sleep(delay)
+            retry = materialize(
+                self.repo,
+                retry_entries,
+                self.cache,
+                self.sources,
+                verify=verify,
+                workers=max(1, self.workers // 4),
+            )
+            report = _absorb_retry(report, retry)
+        return report
 
     def ensure_paths(self, paths: Iterable[str | Path], *, verify: bool = False) -> FetchReport:
         return self.ensure(self.entries_for_paths(paths), verify=verify)
@@ -1192,6 +1235,21 @@ def _place_owned(plan: _Plan, batches: Sequence[tuple[CorpusResolver, list[LockE
     if unplaced:
         raise _unfetchable_error(unplaced)
     return reports
+
+
+def _absorb_retry(first: FetchReport, retry: FetchReport) -> FetchReport:
+    """``first`` with ``retry``'s outcome folded in; ``failed`` becomes what still fails."""
+    first.present.extend(retry.present)
+    first.materialized.extend(retry.materialized)
+    first.modified.extend(retry.modified)
+    first.rolled_back.extend(retry.rolled_back)
+    for name, count in retry.sources.items():
+        first.sources[name] = first.sources.get(name, 0) + count
+    for name, count in retry.methods.items():
+        first.methods[name] = first.methods.get(name, 0) + count
+    first.bytes_materialized += retry.bytes_materialized
+    first.failed = dict(retry.failed)
+    return first
 
 
 def _merged(reports: Iterable[FetchReport]) -> FetchReport:
