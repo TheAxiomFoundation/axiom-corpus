@@ -1,0 +1,65 @@
+{
+  "fix": "https://github.com/TheAxiomFoundation/axiom-corpus/pull/878",
+  "group": "bomz",
+  "jurisdiction_owner": "Max Ghenis (bo BolMod and mz MozMod tranche 1 ingests)",
+  "schema": "axiom-corpus/local-file-url-repair-audit/v1",
+  "scopes": [
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope bo/regulation/2026-07-23-bo-bolmod-t1-regulations --manifest manifests/bo-bolmod-t1-regulations-official-documents.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 4
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.bja.gob.bo/images/gmapfp/documentsPDF/DECRETO%20SUPREMO%20066%20DE%203%20DE%20ABRIL%20DE%202009%20QUE%20INSTITUYE%20E.pdf": "https://www.bja.gob.bo/images/gmapfp/documentsPDF/DECRETO%20SUPREMO%20066%20DE%203%20DE%20ABRIL%20DE%202009%20QUE%20INSTITUYE%20E.pdf"
+      },
+      "inventory_rows": 4,
+      "manifest": "manifests/bo-bolmod-t1-regulations-official-documents.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 4,
+      "repaired_rows": 4,
+      "repaired_scope": "bo/regulation/2026-07-23-bo-bolmod-t1-regulations-r2026-10-14-portable-download-url",
+      "scope": "bo/regulation/2026-07-23-bo-bolmod-t1-regulations",
+      "selectors_naming_old_scope": [
+        "bo-rulespec-2026-07-23",
+        "bo-rulespec-2026-07-24-r2",
+        "bo-rulespec-2026-07-24"
+      ],
+      "source_files": {
+        "official-documents/bo-ds-0066-2009-bono-juana-azurduy.pdf": "657fd970901c2a50c7bd6802c7a6d7cb52b963c2e15115031afbf1ebb50fb606",
+        "official-documents/bo-ds-28899-2006-bono-juancito-pinto.pdf": "67f62ef553fd75b81f1396591ce40ff42dfc950093eb737ef2024d29c40215d9"
+      }
+    },
+    {
+      "command": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope mz/statute/2026-07-23-mz-mozmod-t1-statutes --manifest manifests/mz-mozmod-t1-statutes-official-documents.yaml --tag r2026-10-14-portable-download-url",
+      "content_types": {
+        "application/pdf": 12
+      },
+      "coverage_complete": true,
+      "download_urls_by_source_url": {
+        "https://www.at.gov.mz/por/content/download/1318/10264/version/1/file/Lei+n%C2%BA+3-2012.pdf": "https://www.at.gov.mz/por/content/download/1318/10264/version/1/file/Lei+n%C2%BA+3-2012.pdf",
+        "https://www.at.gov.mz/por/content/download/1385/10635/version/1/file/Lei+n%C2%BA+20-2013-IRPS.pdf.pdf": "https://www.at.gov.mz/por/content/download/1385/10635/version/1/file/Lei+n%C2%BA+20-2013-IRPS.pdf.pdf",
+        "https://www.at.gov.mz/por/content/download/2130/16304/version/1/file/Lei+n%C2%BA+4+-+2009+de+12+de+janeiro.pdf": "https://www.at.gov.mz/por/content/download/2130/16304/version/1/file/Lei+n%C2%BA+4+-+2009+de+12+de+janeiro.pdf"
+      },
+      "inventory_rows": 8,
+      "manifest": "manifests/mz-mozmod-t1-statutes-official-documents.yaml",
+      "mode": "reextract",
+      "problems": [],
+      "provision_rows": 8,
+      "repaired_rows": 12,
+      "repaired_scope": "mz/statute/2026-07-23-mz-mozmod-t1-statutes-r2026-10-14-portable-download-url",
+      "scope": "mz/statute/2026-07-23-mz-mozmod-t1-statutes",
+      "selectors_naming_old_scope": [
+        "mz-rulespec-2026-07-23"
+      ],
+      "source_files": {
+        "official-documents/mz-lei-20-2013-irps-revisao.pdf": "e9971b37fe1c1c7355bea7d80101c6f891a74f898bacee214994feea88175b13",
+        "official-documents/mz-lei-3-2012-iva-revisao.pdf": "1189fa3d8c4aa74ad48e15ac6dbd28e94066e063ed872cc1aa90974756d23e5a",
+        "official-documents/mz-lei-4-2007-proteccao-social.pdf": "68f1d60568179e1adee8b24353bb98bdd5db68b0b16353024bc0dd01c1d0ef4e",
+        "official-documents/mz-lei-5-2009-ispc.pdf": "fda4c1a0056842dc882013fa422fa77fba5f8fe2d70e205ffa1e00cce30bbacf"
+      }
+    }
+  ],
+  "tag": "r2026-10-14-portable-download-url"
+}
