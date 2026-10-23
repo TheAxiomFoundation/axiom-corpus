@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "5a83e8cde14256e552c7e9304de349ae267f902b1b68b7cdfc4c6fbeb663ca5f"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "882ccdaeac6837e534ea1471043eee8e850900b2c8f3ca9b8499d4461e5162f9"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "c7fc2ba12a3fba747d531eafd78bd11780a04c378c4f2e9f89cced270e0c5f39"
+    },
+    {
+      "path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-form-1040me-general-instructions-ty2025.pdf",
+      "sha256": "00f731e053a19cc464595fbf38d61e11daa1e3e5a7bed525708a12d9b426051d"
+    },
+    {
+      "path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-form-1040me-ty2025.pdf",
+      "sha256": "6692450e683dc565a1f6605ce76eebb9244cbee7f02151943f603391593be197"
+    },
+    {
+      "path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-tax-rate-schedules-ty2025.pdf",
+      "sha256": "af76db2b2f358f8c19baa35d61d8a0b383613a2503982cd60e519ce393e1ec5e"
+    },
+    {
+      "path": "data/corpus/sources/us-me/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-me-mrs-tax-tables-ty2025.pdf",
+      "sha256": "c65c00399a99d92149ad6f558f6493660af2f5c97ea863970e699d1a74128b24"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:38.304482+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bchCgav07wcNbKKWhjYGr+r4ePBSkzw/IbCP1siKzJPcumLFtDMYUc8mq5IkuS707hicMyDBvHgPumV+YDm/Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

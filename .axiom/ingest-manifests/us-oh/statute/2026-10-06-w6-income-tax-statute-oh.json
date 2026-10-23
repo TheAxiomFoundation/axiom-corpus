@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/statute/2026-10-06-w6-income-tax-statute-oh.json",
+      "sha256": "f29d78244c78ecb74fa286f533efd67c62d34ef093ca1787df8abb2f8e8a5b7b"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/statute/2026-10-06-w6-income-tax-statute-oh.json",
+      "sha256": "9b8ddcd9d395ca1f5f881b200bd7656c867cdb3ee2527d650de49d09cc93eccf"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/statute/2026-10-06-w6-income-tax-statute-oh.jsonl",
+      "sha256": "b64f4fba194dfdb20c1bce815285b2a1ff04dffad65c16cd96368d4af1aefbae"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/statute/2026-10-06-w6-income-tax-statute-oh/official-documents/us-oh-statute-session-laws-134th-ga-hb45.pdf",
+      "sha256": "fff32884b1edd0fa21f61a47bccca25f446b6f4b637a390e7df624e2fe4e86ba"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/statute/2026-10-06-w6-income-tax-statute-oh/official-documents/us-oh-statute-session-laws-136th-ga-hb96.pdf",
+      "sha256": "017afcd3fef334845f743dbc6ea0c7a64ef5638b1888f7f94ad48d084ea2cacc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:57:06.133449+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ItISYmikuH05o4lIUb9QJGSLpRu9PLBgYcVOM5+yvFXuEv1WPLljfi2qbksAMBTmm+a9uV52ec1E10/lTxGHDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-oh"
+}

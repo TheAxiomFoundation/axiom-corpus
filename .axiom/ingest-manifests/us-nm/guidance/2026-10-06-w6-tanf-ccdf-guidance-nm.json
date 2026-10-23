@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm.json",
+      "sha256": "b9bf8624aa89dea78c9802165c3488e67b0b5bcfda5b59e1dddbcffd436fd768"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm.json",
+      "sha256": "e9657d91cf582057677aa658a2cdfcf649d9a7a281014a6b30e86192bb167b0b"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm.jsonl",
+      "sha256": "0af40a9fc4197806ffc07c4530964d01b5737d2c0da2aa958ba7d8109c9a039d"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-ececd-parents-guide-to-selecting-quality-child-care-2024-12.pdf",
+      "sha256": "4540e6346b99dcbbbcd0c5d0c21b0ecabe45cd393f0ade9e511e0f8b1e2bcf2e"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-ececd-universal-child-care.html",
+      "sha256": "75404b56ea9614b0cfbc1d06d6ccd480106ca75d565995a6c8c52dd8cd7d1b69"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-hca-news-2023-01-10-pass-through-more-money-to-low-income-families.html",
+      "sha256": "bbcbd240d9981c50a3e24a8acbf26e4a44de6fa982281779fc4b9e45d19b2c29"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-hca-news-2023-09-01-23-percent-increase-in-cash-assistance.html",
+      "sha256": "b2c1234783e9e571525242bdf06bd55e2b310b5e39b203023f6a0e751dbebeb5"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-hca-temporary-assistance-for-needy-families.html",
+      "sha256": "824943fcf97ab1d0cda0eb9f6f652098910cf0c36932a4140daf8a05bb686cdb"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-hsd-tanf-new-mexico-works-fact-sheet-2017-01-20.pdf",
+      "sha256": "4c4b6c37bd9658f7acc92ffa521a14f738df338670f8e0aecb1ab3ab988c72d6"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-legislature-session-dates.pdf",
+      "sha256": "a4f05479bd8068ce330553352dad4b644ca25b1c42d6eb6b90e6dadc5c7a748e"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/guidance/2026-10-06-w6-tanf-ccdf-guidance-nm/official-documents/us-nm-w6-lfc-2025-12-09-childcare-assistance-policy-brief.pdf",
+      "sha256": "87ee238864fa16281cc6a52a6941e7138b078aacd688d8f38ae3589985764e12"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 136,
+    "missing_count": 0,
+    "provision_count": 136,
+    "source_count": 136
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:18.828706+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BqgJQmAyc2hND1URnEdLz3CIUci/1AlPKmcDgxxrhQanWR9FENTEnEgme/o8W+6s0/nuX3e/roK4kmj7poRlAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-nm"
+}

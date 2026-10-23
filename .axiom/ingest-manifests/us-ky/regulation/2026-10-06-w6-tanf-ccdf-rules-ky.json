@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky.json",
+      "sha256": "ba55d664a58f45ffe31cfa33d42c345d5dc1c97ff65ef725c8202cdebcffc121"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky.json",
+      "sha256": "2ee9553010645cd8535dd9679741838e9f477054fc7f94cd0db7efe8affccce7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky.jsonl",
+      "sha256": "bff6d7aa60fcae0faeb48af2b96d2140230e83d5535beb029e3501b704b42bc0"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky/official-documents/us-ky-w6-kar-921-002-016-version-10142.html",
+      "sha256": "4940b6162c600af5f66979813f9b0ca8865fc769ff2a5ec6f9713724aa0c61e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky/official-documents/us-ky-w6-kar-921-002-016.html",
+      "sha256": "037a55114888179ae1c2436ea6bfcc93197f1c441eda9ea00ff465484da90421"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky/official-documents/us-ky-w6-kar-922-002-160-document-10239.pdf",
+      "sha256": "02ce31abb990068e7d98d76f73e6ab1e77391bcaabb1f6af3b7f0c0f8d98618e"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky/official-documents/us-ky-w6-kar-922-002-160-document-13685.pdf",
+      "sha256": "7136f67f83d4004e160606754bc14ff05b1b0620140d76d97e9c5baf9d193bde"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky/official-documents/us-ky-w6-kar-922-002-160-document-15544.pdf",
+      "sha256": "071278d5abd23fb1736b047b6d4d350f9af79ea8a3db7f846574dc11e35ed668"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-10-06-w6-tanf-ccdf-rules-ky/official-documents/us-ky-w6-register-49-02-august-2022.pdf",
+      "sha256": "4e78d3750744289e34e51a61e28a2aea9ab6600583dddb17816d5bd8de1c4c51"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 370,
+    "missing_count": 0,
+    "provision_count": 370,
+    "source_count": 370
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:52:29.639957+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HjBsH020CITIKr2lK2vcosJtreDO1+fdQqkqo9sTPFAQmZcU88HWdxAlPDFOaztWU9qJQ8/LLShBhPnxDTkLBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-ky"
+}

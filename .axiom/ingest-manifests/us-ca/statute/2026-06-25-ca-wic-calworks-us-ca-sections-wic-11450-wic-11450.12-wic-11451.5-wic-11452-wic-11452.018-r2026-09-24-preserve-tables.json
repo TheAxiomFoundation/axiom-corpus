@@ -1,0 +1,70 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables.json",
+      "sha256": "cfdb9019f288f4941bfa327dd4438a67975ae966a4e2a9de03288c9b0692f3c1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables.json",
+      "sha256": "a7ca18db8bb733a43c222531bd0cae45a60edf6880e62fbbc43fe3cad4ad0330"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables.jsonl",
+      "sha256": "f753a20cef8c61e7704671a639761a363b31b82fcd898780e0c47c72c7cdd894"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables/california-leginfo-sections/WIC-11450.12.html",
+      "sha256": "4853db8d234fe44bb8c630443f12a113e3ce7aa37b73639ec15085a54c11700e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables/california-leginfo-sections/WIC-11450.html",
+      "sha256": "852c0ee150d6ed362689502d0b97c9637290ddb61dc892b56c94201c4df5ba5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables/california-leginfo-sections/WIC-11451.5.html",
+      "sha256": "f5b08e4dc4337cb915ea657cf0e54106cebe93d62cba8b4d3e5a08e31651e178"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables/california-leginfo-sections/WIC-11452.018.html",
+      "sha256": "c7b74d9b0157162624fc7a7bdd7c9d749cae60ccf8e8cf7b6002c5bbec7364cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables/california-leginfo-sections/WIC-11452.html",
+      "sha256": "90b9bd3db3c3a9958c55caa309a76bd6ea970d58d295c7558314f9d03621698f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ceb434a381626d3ee397dad6c56babdf88128514",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_ca_leginfo_preserve_tables_successors.py --base data/corpus (run note: docs/ingest-runs/2026-09-24-ca-leginfo-preserve-tables-successors.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-24T20:13:53.508232+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-24-ca-leginfo-preserve-tables-successors.md",
+      "sha256": "68f038c0fd5da617d969c54ae34906137997c97d4b215f3252374c7dc9cafa39"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eOZ45NePjt5ZQTtOdYBt4aROnP1JADFUjSx3FrkLdxk2KWcdCQrKRz10f8dJ9BmG25OyeT+mkRMHW9AfFpcOCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018-r2026-09-24-preserve-tables"
+}

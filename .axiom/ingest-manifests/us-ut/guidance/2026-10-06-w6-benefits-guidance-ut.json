@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/guidance/2026-10-06-w6-benefits-guidance-ut.json",
+      "sha256": "54a8683c5d6191316a5846221a7cff2d77017dcaadb324ca66058fee8e3f4f35"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/guidance/2026-10-06-w6-benefits-guidance-ut.json",
+      "sha256": "dd07bef33588f018a4e014496605bb76f96e4d107220074abce307ff9a86f007"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/guidance/2026-10-06-w6-benefits-guidance-ut.jsonl",
+      "sha256": "b1a9d4a1ecc4c69ec0190d21ad6e306ec7bef7c69bc8519f5076bc213385961e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-benefits-guidance-ut/official-documents/us-ut-guidance-dws-ui-benefit-calculation.pdf",
+      "sha256": "89e78664823ab5041775de98004d14907cbd7cb9e79e1521bede0cb471b0aed5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/guidance/2026-10-06-w6-benefits-guidance-ut/official-documents/us-ut-guidance-dws-ui-claimant-guide.pdf",
+      "sha256": "8e824129b5914675a02c350207a215a88f3f7126ea5a6ff7a9c25108bf74161d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:59:15.175821+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "M/TyFWAStooNsRjrIKpQRnnvC0GUh3Nz6AqN1xGzINwht/TVdy8gTr+28FOnONJ7Xgp435wXSp2QUPybV74jDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-guidance-ut"
+}

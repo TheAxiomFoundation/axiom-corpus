@@ -16,14 +16,25 @@ from __future__ import annotations
 import importlib.util
 import json
 import re
+from itertools import chain
 from pathlib import Path
 from uuid import NAMESPACE_URL, uuid5
 
 import pytest
+from hypothesis import Phase, given, settings
+from hypothesis import strategies as st
+
+from tests.corpus_scan import corpus_scan
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMA_PATH = REPO_ROOT / "schema" / "citation-path.v1.json"
 PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
+
+# The module-scoped `result` fixture parses the whole corpus, and pytest-timeout
+# charges that setup to whichever test first requests it. Under CI's flat 60 s a
+# slow scan errored all eight corpus tests (axiom-corpus#736), so the corpus-sized
+# budget covers the whole module, including its fast tmp_path tests.
+pytestmark = corpus_scan
 
 _spec = importlib.util.spec_from_file_location(
     "validate_citation_paths", REPO_ROOT / "scripts" / "validate_citation_paths.py"
@@ -254,3 +265,34 @@ def test_positive_multitoken_local_authority_jurisdiction_is_accepted(tmp_path, 
     assert res["pattern_failures"] == []
     assert res["jurisdiction_mismatches"] == []
     assert res["ok"] is True
+
+
+@settings(phases=(Phase.generate,), max_examples=12, deadline=None)
+@given(data=st.data())
+def test_merged_uppercase_ceiling_ignores_version_duplicates_and_order(result, schema, data):
+    # Reuse the real corpus scan's merged population size, then vary immutable
+    # version multiplicity and order without parsing the corpus again.
+    count = result["irregular_live_counts"]["uppercase_segments"]
+    assert count > 0, "The real corpus must contain uppercase citation paths."
+    paths = tuple(f"us/statute/ratchet-{index}/A" for index in range(count))
+    duplicate_indices = data.draw(
+        st.lists(st.integers(min_value=0, max_value=count - 1), min_size=1, max_size=64),
+        label="immutable version duplicates",
+    )
+    rotation = data.draw(st.integers(min_value=0, max_value=count - 1), label="rotation")
+    reverse = data.draw(st.booleans(), label="reverse order")
+    ordered = paths[::-1] if reverse else paths
+
+    def records(_provisions_dir):
+        for path in chain(
+            ordered[rotation:], ordered[:rotation], (paths[index] for index in duplicate_indices)
+        ):
+            yield {"citation_path": path}
+
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        monkeypatch.setattr(validate_mod, "iter_records", records)
+        res = validate_mod.validate(PROVISIONS_DIR, schema)
+
+    assert res["record_count"] == count + len(duplicate_indices)
+    assert res["irregular_live_counts"]["uppercase_segments"] == count
+    assert res["ok"], res["ratchet_regressions"]

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "b63e14cfe7a1d519ec833aace9535981f9e34c15818494bc5976f7e605fbf38c"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "a2d4e1d50278afd86660277797c00b3685df126c786515befa25472f6ca5e0c9"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "25c1d294c0f4d7fe214c4487eb8b9d0620d498f9485294780a32994b8b3220bd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-09-15-medicaid-1115-stc/official-documents/us-pa-cms-1115-stc-former-foster-care-youth-sud.pdf",
+      "sha256": "3d0e72802eb12cc4fa130285ce4f585605ac854ae080dfafa12c2036d3834feb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/policy/2026-09-15-medicaid-1115-stc/official-documents/us-pa-cms-1115-stc-keystones-of-health.pdf",
+      "sha256": "2aa802b2a6ca5820859072ef54870347b9b0363c7baef674bc9c50dee3bb00cd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 120,
+    "missing_count": 0,
+    "provision_count": 120,
+    "source_count": 120
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:08.626826+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VmOcgo8af9MTth3vIVcKzLWpOmdg8Lkb2ZL3IcpXQYTjz0NGDPY9yfBKQCBsXa7QYRXjUVIWIRfV8HnqkOICAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/regulation/2026-10-06-w6-benefits-regulation-al.json",
+      "sha256": "ce1137dd9e9d1248870fd7ed7d3b71b83ca58274b9b15ef236bba70e033f03a5"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/regulation/2026-10-06-w6-benefits-regulation-al.json",
+      "sha256": "b43760e78497e4bae8455d31502efe00d6f3620ded7c86e929ae1e8e755d433a"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/regulation/2026-10-06-w6-benefits-regulation-al.jsonl",
+      "sha256": "7f1dae87c655603c9f5b0008c08b46cefbb69b29430993a1301ab05409bccf07"
+    },
+    {
+      "path": "data/corpus/sources/us-al/regulation/2026-10-06-w6-benefits-regulation-al/official-documents/us-al-regulation-alabama-administrative-code-480-4-3.pdf",
+      "sha256": "737d15656371e6dc3abca97e5ddff435551e20f7949ae5e100e2f182b33b4e30"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 46,
+    "missing_count": 0,
+    "provision_count": 46,
+    "source_count": 46
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:48:18.665397+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZhWOFKYqOaCwc1UDXsPtpmqgzwpHMd6dZjw19KMsnx0x0TX7Gc5gyzkGiSZbfSnu1KAMAf3ElBEyf70hc4rGAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-regulation-al"
+}

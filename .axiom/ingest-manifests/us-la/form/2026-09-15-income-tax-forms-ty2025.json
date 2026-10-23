@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "4d207cfc702d5f776c3aee9be543ac0bbcb78dd12bc9df4d3b524881f9edfb10"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "f13ce4d2efd984087e4855c899734bb0e1f174dbd63b6c69b009047d2e1c6fc3"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "a077edb5ddd19bff6aee9c199c5c9eaf96c67e8b8e58797eee43441460d52cbb"
+    },
+    {
+      "path": "data/corpus/sources/us-la/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-la-ldr-form-it-540-instructions-ty2025.pdf",
+      "sha256": "b301af5be15b42c50f92c8849f36ab251ed84ca509858927775857f84967fbe2"
+    },
+    {
+      "path": "data/corpus/sources/us-la/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-la-ldr-form-it-540-ty2025.pdf",
+      "sha256": "e6b029c3a113b55f308c4b58fc1d67b5f4eb26079b2247290483fa9673a0cd09"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:31.991535+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xN/SKXg7FYlJIECTEdINObXQ/nqUBWlor+HeJoKMM1vq8e/A/Be0pPdb/5umcuneArceW0jOU+6rWqfzH/ihCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

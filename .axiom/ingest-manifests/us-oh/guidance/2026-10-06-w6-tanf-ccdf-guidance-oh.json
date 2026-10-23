@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/guidance/2026-10-06-w6-tanf-ccdf-guidance-oh.json",
+      "sha256": "3a34a72b8e30bcae612ff1129827712991d191f6854472329d0721c12293a905"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/guidance/2026-10-06-w6-tanf-ccdf-guidance-oh.json",
+      "sha256": "e7845f6b7475ec417507f6ac3ea2fa0d45de29b31a5c9446b1d96447d68f6cc9"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/guidance/2026-10-06-w6-tanf-ccdf-guidance-oh.jsonl",
+      "sha256": "abc0c7818007af96b1d6767e92ece998b8241cbd09c76ed97c343e68a34d1dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-10-06-w6-tanf-ccdf-guidance-oh/official-documents/us-oh-w6-dcy-procedure-letter-21-2025-08-29.pdf",
+      "sha256": "27094dd73b8fed5d7eb24cd8c5129a5217075e77c864c05b7877a01c6386bad4"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-10-06-w6-tanf-ccdf-guidance-oh/official-documents/us-oh-w6-odjfs-cash-assistance-manual-actl-297.pdf",
+      "sha256": "6bb2b49f853865b824b4994ae1961604fb0b7dfdd21855529f3ae548f50127c7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:00.029772+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "R+mTGgNGXocms8SqwLjWCn9VkXtRicspRhtOuYkIv2V14NRAdjY2Z5N5hx0mIYYeT0AopaMnkBKvMV1T1FdmBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-guidance-oh"
+}
