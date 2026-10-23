@@ -1,0 +1,1 @@
+The Texas TCAS adapter now joins a repeated section number with the citation grammar's `--` variant separator instead of `@` (for example `us-tx/statute/hr/42.0448--notification-of-family-violence-calls-2`); wave-6 benefits manifests, generator and decisions for the state SNAP, WIC, SSI state supplement, LIHEAP and unemployment insurance documents of the program bundles.

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "b97f7488e639f7e640241932a24145707ab8ba444874d2abf1b38704423f7c0a"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "31ab19b3cdae0c81d69a2e8945fdf1b7a150ce39877e4f703f5a7e2f2323fdd0"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "6ef057b92a17e5983c7ec1e714300531f939de711ed38db74e8f38612073c404"
+    },
+    {
+      "path": "data/corpus/sources/us-va/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-va-tax-form-760-instructions-ty2025.pdf",
+      "sha256": "d557ee51d6e1e572d3db05624d2882db0093b6f85ef1075140754a845653ec18"
+    },
+    {
+      "path": "data/corpus/sources/us-va/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-va-tax-form-760-ty2025.pdf",
+      "sha256": "bb271a15f9ad173ed900bb23dc7d154c0cb2056bdd05957fb25e5faedbc27575"
+    },
+    {
+      "path": "data/corpus/sources/us-va/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-va-tax-tax-table-ty2025.pdf",
+      "sha256": "0d596f4107df528fb3c43cfc07051e450b41bf101f6a39268dc0df5064d879b6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:59:31.806931+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "do0b/iY8QTmai//JktsYyEjycHhFINsANkBLipDQIW0ko1UKnr2XBu6X6InRYQO8rDXr49sXwkD4uXnvOjlMBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

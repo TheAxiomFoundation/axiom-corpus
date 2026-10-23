@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/form/2026-10-06-w6-income-tax-forms-ma.json",
+      "sha256": "d13d9a46bfabe94ec7797c695bcf280310deb8368fa6118ba9e8dfa6998c9d26"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/form/2026-10-06-w6-income-tax-forms-ma.json",
+      "sha256": "986b1882028974a8ef8be8b71edc6ba48c32ba9e8a7b7c322c79747830d43d69"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/form/2026-10-06-w6-income-tax-forms-ma.jsonl",
+      "sha256": "0edbea3cda3ef4547eaf6d68a908db43bd04a27ceb945982f861099c406c43e0"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-10-06-w6-income-tax-forms-ma/official-documents/us-ma-form-dor-ty2022-form-1.pdf",
+      "sha256": "3dbbd8223befd2fede4a721e55ac4317730a114d367fcd53f0b5f44061128c23"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-10-06-w6-income-tax-forms-ma/official-documents/us-ma-form-dor-ty2022-schedule-cb.pdf",
+      "sha256": "f585e673b000acf40dd2dd08b1a796edb74f242a8259708fa47bab5a26e493a6"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-10-06-w6-income-tax-forms-ma/official-documents/us-ma-form-dor-ty2023-form-1-instructions.pdf",
+      "sha256": "9c220e87530aae4032b2231a65907cd1816f1d4028aaddcaf9160c275dd178a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-10-06-w6-income-tax-forms-ma/official-documents/us-ma-form-dor-ty2023-schedule-cb.pdf",
+      "sha256": "c1a02b0e8d32c12cfc675b017f16d15c77867d542459741f4d21f438bda6d125"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-10-06-w6-income-tax-forms-ma/official-documents/us-ma-form-dor-ty2024-form-1-instructions.pdf",
+      "sha256": "b276bb1899422e587da1dbd64144672eab88b02f9392247609a82e9166ac4cdc"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-10-06-w6-income-tax-forms-ma/official-documents/us-ma-form-dor-ty2025-schedule-cb.pdf",
+      "sha256": "d7681c445119c30ea7a163ecfb7a56ffcb2899ef1e9adfc441be88c13b1ffa71"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:52:48.114199+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pDzqh3dPVIV4krI1s4oCGMCzut3zC6UcNZhDbFybzlbWChMYX7gdLn/W4rPsJ4ouIbU+/6NCFPHmYi3PX4QmAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-ma"
+}

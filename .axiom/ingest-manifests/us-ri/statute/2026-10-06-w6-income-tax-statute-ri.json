@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/statute/2026-10-06-w6-income-tax-statute-ri.json",
+      "sha256": "d39ed6cde3567cc519196d61743052daa7c174903cab34568b762d7dfd708236"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/statute/2026-10-06-w6-income-tax-statute-ri.json",
+      "sha256": "52be0e69a70ee18a1ebeb0ee9106748cfa921e86df68993be8bb832201df8b6d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/statute/2026-10-06-w6-income-tax-statute-ri.jsonl",
+      "sha256": "273a4cacde4fa18adba698f65e39bbdf5aff8a79408af184e23e3a62d47f21a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/statute/2026-10-06-w6-income-tax-statute-ri/official-documents/us-ri-statute-44-33-3.html",
+      "sha256": "7a215ae31ba33b1c7493bce2e81c3219a88f3c5268fc47048083e9ebd227c979"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/statute/2026-10-06-w6-income-tax-statute-ri/official-documents/us-ri-statute-44-33-9.html",
+      "sha256": "cefb54ccd4bfdbec1fdbe7ec647a4eea500b635411ec3caf6fc19a1685f82785"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/statute/2026-10-06-w6-income-tax-statute-ri/official-documents/us-ri-statute-bills-2022-h7123-sub-a-aa-child-tax-rebates.pdf",
+      "sha256": "2b01013cfd54d7b729088f173226245c8c452b8fa3503d0634b848b411648b0c"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/statute/2026-10-06-w6-income-tax-statute-ri/official-documents/us-ri-statute-bills-2026-h7127-sub-a-aa.html",
+      "sha256": "c95b59b885db70d98282a867908aa99da148d29c7563b90ea9da41e11b8929ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 174,
+    "missing_count": 0,
+    "provision_count": 174,
+    "source_count": 174
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:58:16.755647+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qmJ0wpOWnc/2VZ9vLD7nt9HHjbsEU/0wK/O8Zmcy/H0GW4e39A6lpjqO47cl6fkeFP0OrTQzDgrj3k5Acp6YCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-ri"
+}

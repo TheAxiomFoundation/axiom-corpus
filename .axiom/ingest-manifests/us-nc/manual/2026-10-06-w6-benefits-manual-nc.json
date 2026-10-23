@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/manual/2026-10-06-w6-benefits-manual-nc.json",
+      "sha256": "2326bb4762433bcaed094adde272d7363e58a90989b77c37dff3e42dfd2869fc"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/manual/2026-10-06-w6-benefits-manual-nc.json",
+      "sha256": "24ce976db85f1fafe1b4ee009e2e40cededd70cd73bcd3a113b3fa5c412a7adf"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/manual/2026-10-06-w6-benefits-manual-nc.jsonl",
+      "sha256": "123644b9bdc3085a0470ce9f84ddef85e7cb4f701c9f3af3a85b27b0927c9e57"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-benefits-manual-nc/official-documents/us-nc-manual-dss-energy-programs-ep-150.pdf",
+      "sha256": "4318a3f901c5774e4ac5c51afa18e507439f7479310af570e0f0e75482e1beb4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-benefits-manual-nc/official-documents/us-nc-manual-dss-energy-programs-ep-175.pdf",
+      "sha256": "1f7d0e350d7bb750518c89520774c4d0e873c3b39f1ea52313c3f82c028f6a87"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-10-06-w6-benefits-manual-nc/official-documents/us-nc-manual-dss-energy-programs-ep-cn-03-2026.pdf",
+      "sha256": "4eaa274a0af28c50955fea54fe0e4304c6756c1a7a2912f1af463ff857edaa99"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:55:06.940706+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2xjF6VfsMYGLcrmayGahqJKm+v4V78JTOB8kFqr/NeN4uFgjkkPDlJnwVo+uYF2Omop2UNI+Y467e2CS5RhuBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-manual-nc"
+}

@@ -1,0 +1,40 @@
+version: 2026-10-06-w6-benefits-guidance-pa
+documents:
+- source_id: us-pa-guidance-dli-uc-law
+  jurisdiction: us-pa
+  document_class: guidance
+  title: Pennsylvania Unemployment Compensation Law (Department of Labor & Industry compilation)
+  source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/uc_law.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-08-15'
+  citation_path: us-pa/guidance/dli/uc-law
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Labor & Industry
+    document_subtype: agency_statute_compilation
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the compilation (2024-08-15)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 212)
+    wave6_rows:
+    - 212
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-pa-guidance-dli-ucp-1-claimant-handbook
+  jurisdiction: us-pa
+  document_class: guidance
+  title: UCP-1 Unemployment Compensation Handbook (claimant handbook)
+  source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2024-08-15'
+  citation_path: us-pa/guidance/dli/ucp-1-claimant-handbook
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Labor & Industry
+    document_subtype: claimant_handbook
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the handbook (2024-08-15)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 213)
+    wave6_rows:
+    - 213
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

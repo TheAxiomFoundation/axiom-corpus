@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/guidance/2026-10-06-w6-health-guidance-dc.json",
+      "sha256": "f4d7a91d39c901315d0dc40b778718ff54efd32babe996be39aa554147c983e4"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/guidance/2026-10-06-w6-health-guidance-dc.json",
+      "sha256": "e9d9a76deb72c9e7f0f4f3b35c84712e04947d21935facf9a02e627d2bb7fc7f"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/guidance/2026-10-06-w6-health-guidance-dc.jsonl",
+      "sha256": "d225a262bda70e761803c29801b0ac3a6f1096eae6a9fb1835ed43c9f671f28c"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/guidance/2026-10-06-w6-health-guidance-dc/official-documents/us-dc-w6-health-hbx-proposed-extension-loss-of-medicaid-sep-2025-11.pdf",
+      "sha256": "60d70fe115b80bc94489b30b020c067b339e24109efc772ee67ae55175a99cfe"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:16.791476+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4SCv3NCTnad/35Za8WjoFf5VN/25rZz17WuV+tWEtGT/xi1N5mAbpNe4viBU6TtAp7+BzDe6ONHMt/A+LeR5Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-dc"
+}

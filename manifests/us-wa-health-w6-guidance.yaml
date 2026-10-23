@@ -1,0 +1,44 @@
+version: 2026-10-06-w6-health-guidance-wa
+documents:
+- source_id: us-wa-w6-health-hca-apple-health-expansion
+  jurisdiction: us-wa
+  document_class: guidance
+  title: 'Washington HCA: Apple Health Expansion'
+  source_url: https://www.hca.wa.gov/about-hca/programs-and-initiatives/apple-health-medicaid/apple-health-expansion
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-wa/guidance/hca/apple-health-expansion
+  extraction:
+    html_content_selector: div.region-content
+  metadata:
+    primary_source: true
+    source_authority: Washington State Health Care Authority (HCA)
+    program: MEDICAID
+    document_subtype: agency_program_page
+    source_discovery_group: us-wa/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 123
+    bundle_url: https://www.hca.wa.gov/about-hca/programs-and-initiatives/apple-health-medicaid/apple-health-expansion
+- source_id: us-wa-w6-health-hca-children
+  jurisdiction: us-wa
+  document_class: guidance
+  title: 'Washington HCA: Apple Health for Children'
+  source_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-wa/guidance/hca/children
+  extraction:
+    html_content_selector: div.region-content
+  metadata:
+    primary_source: true
+    source_authority: Washington State Health Care Authority (HCA)
+    program: CHIP
+    document_subtype: agency_program_page
+    source_discovery_group: us-wa/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 124
+    bundle_url: https://www.hca.wa.gov/free-or-low-cost-health-care/i-need-medical-dental-or-vision-care/children

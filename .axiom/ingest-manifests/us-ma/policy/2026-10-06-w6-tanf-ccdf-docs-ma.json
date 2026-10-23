@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma.json",
+      "sha256": "5b6b9950235fd1324baa55873f88b1f9c3ee0d866c0d6ebc377cd354f6957b6c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma.json",
+      "sha256": "078dee7b53f2542c4773b10453f5ea06ca4eeff70cdfb5e2e09a8353e6975303"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma.jsonl",
+      "sha256": "51746433f88a8f4954a3c59c62200c51746b13e5d805395b030ea1aaef11f4cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-board-vote-improves-access-to-ccfa.html",
+      "sha256": "f8c6ed42b1b129d0737b4f60797f8d19af142c60f346d424b08e86720d5be13a"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-eec-ccfa-2026-04-income-eligible-consolidated-policies-2026-05-06.html",
+      "sha256": "b04fe1497f97d4c897d9c9476f7b22d8cc48846875cab9ef40e59291c9562b3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-financial-assistance-policy-guide-2022-02-01.html",
+      "sha256": "4859cdaab34c770b3e75dc8a6bc4f8bbe59c99a6e1bb0a3635ac7503b2887773"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-financial-assistance-procedures-manual-for-subsidy-administrators.html",
+      "sha256": "0da1aa2999ca67e9305d4f57edc3266437d1757c6fa693a92dc5e26a5e3b38ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-policy-advisory-field-operations-2023-4-ccfa.html",
+      "sha256": "f499b2936ace80526ccc068e6bc6a5442d00527df8c156175bf1c6555c13123c"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-policy-advisory-field-operations-2024-6-ccfa-enrollment-and-attendance-codes.html",
+      "sha256": "dad73d2c8aba6f83cce6c40c370957a3abee95a59694492403b8ca497911433b"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-policy-advisory-field-operations-7-ccfa-updated-policy-guidance.html",
+      "sha256": "36e822cb3e95b598ccc9fe7a1551e6f71a939eb1da5a879f014b0a792bae2964"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-10-06-w6-tanf-ccdf-docs-ma/official-documents/us-ma-w6-eec-ccdf-policy-advisory-interim-income-eligible-state-library-copy.pdf",
+      "sha256": "7feda7a35b4f1aea44e2387b606529e06ca6fb7f1a546422eeed372dc73f33dc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 27,
+    "missing_count": 0,
+    "provision_count": 27,
+    "source_count": 27
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:52:53.722589+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1JETi9Vq8Fbh6/OVDB2ioxywReBPJp5wjgplBA/sPzkexnjY6LchCfHS2d8Bh320428wG3iZJfO9Y2jnYHcXAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-ma"
+}

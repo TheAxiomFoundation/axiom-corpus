@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/manual/2026-10-06-w6-tanf-ccdf-manual-nv.json",
+      "sha256": "07340165bedb84f68b82fe42b805cea36ff70dfdeefc7612e10f4cec5305d99c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/manual/2026-10-06-w6-tanf-ccdf-manual-nv.json",
+      "sha256": "68ca524856b3fae2b5facc54f98953dea2df60e6cd8b1e43d2560ec8ff917d3c"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/manual/2026-10-06-w6-tanf-ccdf-manual-nv.jsonl",
+      "sha256": "4a6523e4444d4b8d1a7e26e0eeb317458a94a4cf77c50cb7b3c55f72f25cf95e"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/manual/2026-10-06-w6-tanf-ccdf-manual-nv/official-documents/us-nv-w6-dwss-child-care-policy-manual-2024-07.pdf",
+      "sha256": "dcd3d6a923933556b3a5f3fde291afd90f661fdb0ef9b697a35ab1047b15a9f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/manual/2026-10-06-w6-tanf-ccdf-manual-nv/official-documents/us-nv-w6-dwss-eligibility-payments-a-1000-2015-12-15.pdf",
+      "sha256": "a950c4de70140af55a2ac217ad0ca7e3d815b71c78dcac75798413edd00524ec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 168,
+    "missing_count": 0,
+    "provision_count": 168,
+    "source_count": 168
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:56:35.725601+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+/xnkGi1MvBCCHtOA6QRCjL4Yxg6gKKk2D5XVdfdRn0wnb3jvQ/ggzmpS+2pqFmD2rVxzWZ13zx8Vle6vrtOAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-manual-nv"
+}

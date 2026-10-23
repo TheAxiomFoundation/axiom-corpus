@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/policy/2026-10-06-w6-tanf-ccdf-policy-wy.json",
+      "sha256": "596dedd873f6a66ceb673cd8f9ce455f5b33ab58cfbbab0b7d4f154b4f836b7f"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/policy/2026-10-06-w6-tanf-ccdf-policy-wy.json",
+      "sha256": "ffdc3365d9a4c4170dc13da38adc5a48b813f7990700395e7a98ec2a694de2d6"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/policy/2026-10-06-w6-tanf-ccdf-policy-wy.jsonl",
+      "sha256": "1b940966cf769789256fedce19c1854023c026d0f176e2954d920e78f871d5f1"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-10-06-w6-tanf-ccdf-policy-wy/official-documents/us-wy-w6-ccdf-rate-schedules-child-care-sliding-fee-scale-tblicc-2024-04-01.pdf",
+      "sha256": "d19681bf15c5e7d2bf54b9f68440fefe347e35c14dbf198daf38750a29707d7b"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-10-06-w6-tanf-ccdf-policy-wy/official-documents/us-wy-w6-ccdf-rate-schedules-child-care-sliding-fee-scale-tblicc-2025-04-01.pdf",
+      "sha256": "c160d3fe23d1e67b6b522773385ebd56ab1f2c1ee716baf9bcd5ebe938403f85"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/policy/2026-10-06-w6-tanf-ccdf-policy-wy/official-documents/us-wy-w6-ccdf-rate-schedules-child-care-sliding-fee-scale-tblicc-2026-04-01.pdf",
+      "sha256": "fc6d8b3b06a50b35528c6be04d5e037fd1ef2272aa995020e9b38592c4a6517d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T18:01:24.354544+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "np58dlLgnlq45dSw0cUghHaR68jRdAalgqTcaCGq6Y5ozAzmQ+mGLOJY+s6gXvdhvc+YcoAPxBLEpLmTZeRACg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-policy-wy"
+}

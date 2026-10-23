@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/guidance/2026-10-06-w6-income-tax-guidance-la.json",
+      "sha256": "d74cbfb803bfff2db049254fd16d821fff644f424cabbb77ca2519ad893c177c"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/guidance/2026-10-06-w6-income-tax-guidance-la.json",
+      "sha256": "9456c621ac5c7e37d473e81b4afc84569a41ca7793acadb284098b2dd1a11470"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/guidance/2026-10-06-w6-income-tax-guidance-la.jsonl",
+      "sha256": "291947631c7af0a19c91340f64f6cb032728fc7b65e303bd3ae6a35d77120eb2"
+    },
+    {
+      "path": "data/corpus/sources/us-la/guidance/2026-10-06-w6-income-tax-guidance-la/official-documents/us-la-guidance-ldr-faqs-income-tax-reform-individual-income-tax-rates-and-brackets.html",
+      "sha256": "b8a3d639a70da24517598051f17232776e5ae073d447873ab33f236bed3fbeec"
+    },
+    {
+      "path": "data/corpus/sources/us-la/guidance/2026-10-06-w6-income-tax-guidance-la/official-documents/us-la-guidance-ldr-rib-26-019.pdf",
+      "sha256": "f22663cde2ebdf56eed6688779d25583e1c8fb86feaa773c8454b8735dd71067"
+    },
+    {
+      "path": "data/corpus/sources/us-la/guidance/2026-10-06-w6-income-tax-guidance-la/official-documents/us-la-guidance-ldr-school-readiness-credit.html",
+      "sha256": "b82f27a4264e05002fa01d7f1c138c211b4a2a3c436b4c85253edd376f3bf465"
+    },
+    {
+      "path": "data/corpus/sources/us-la/guidance/2026-10-06-w6-income-tax-guidance-la/official-documents/us-la-guidance-losfa-start-faqs.html",
+      "sha256": "c2618b8b44fd0eac33ee1defe1ebe4b8acb9c1ca54b1fa3a9f9b092d25dd73f5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 68,
+    "missing_count": 0,
+    "provision_count": 68,
+    "source_count": 68
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:52:37.037565+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AMf/+XPddM85J2ltlkY2rlbW8JivQRhPbVwCqhqaUS65QbLBmIA3CAWeBr0dD6qSMyP/LdVwRg4yjfj0oZW/CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-la"
+}
