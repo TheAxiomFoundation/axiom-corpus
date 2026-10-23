@@ -55,6 +55,20 @@ def test_the_added_scope_is_locked_and_not_withdrawn() -> None:
     assert not {key for key in _keys(RELEASE) if key in withdrawn} - set(_keys(BASE_RELEASE))
 
 
+KEPT_WITHDRAWN = {"us-me", "us-mi", "us-mn"}  # 2026-07-13 recovery scopes, until rulespec-us#1365
+
+
+def test_every_withdrawn_scope_it_keeps_has_its_own_exception() -> None:
+    """Allowances don't carry forward: each kept withdrawn scope needs an exception for this selector."""
+    withdrawn = load_withdrawn_scopes(ROOT / WITHDRAWN_SCOPES_PATH)
+    release = ReleaseManifest.load(RELEASE_DIR / f"{RELEASE}.json")
+    kept = [key for key in _keys(RELEASE) if key in withdrawn]
+    assert {key[0] for key in kept} == KEPT_WITHDRAWN
+    for key in kept:
+        allowance = withdrawn[key].allowance_for(release)
+        assert allowance is not None and allowance.is_exception, key
+
+
 def test_selector_loads_and_keeps_the_quality_profile() -> None:
     release = ReleaseManifest.load(RELEASE_DIR / f"{RELEASE}.json")
     base = json.loads((RELEASE_DIR / f"{BASE_RELEASE}.json").read_text(encoding="utf-8"))

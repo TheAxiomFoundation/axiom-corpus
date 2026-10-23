@@ -22,10 +22,11 @@ DESCRIPTION = (
     f"Successor to {BASE_RELEASE}, rulespec-us's corpus pin. It preserves every prior "
     "scope and adds the California LegInfo concurrent-versions scope from axiom-corpus#752: "
     "each current version of WIC 11450, WIC 11451.5, R&TC 17552.3 and R&TC 17563.5 at its own "
-    "<section>--<slug> variant path, including WIC 11450's later version "
-    "(us-ca/statute/wic/11450--operative-2024-07-01), which governs CalWORKs maximum aid "
-    "payments. Plain section paths keep their existing carriers. It is a publish-only pin "
-    "release for rulespec-us; do not activate it."
+    "<section>--<slug> variant path, including WIC 11450's later conditional version "
+    "(us-ca/statute/wic/11450--operative-2024-07-01). Plain section paths keep their existing "
+    "carriers. It keeps the pin's three withdrawn ME, MI and MN 2026-07-13 recovery scopes under "
+    "exceptions recorded for this selector. It is a publish-only pin release for rulespec-us; "
+    "do not activate it."
 )
 
 
