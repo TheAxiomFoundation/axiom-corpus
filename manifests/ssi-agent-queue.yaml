@@ -1755,8 +1755,13 @@ states:
     Your support ID is ...''), no page content. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client,
     same failure: connection reset by peer after 0.1 s, no response. Durable block: the same failure from two networks (the
     2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available
-    rather than pending.'
-  index_families: no index inventory possible (publisher blocked; see notes)
+    rather than pending. Re-probed 2026-10-20T18:58Z (wave 8 New York unblock, docs/ingest-runs/2026-10-20-w8-ny-unblock.md):
+    still blocked. A wave-8 probe report of a working chrome120 fingerprint did not reproduce. https://otda.ny.gov/programs/ssp/
+    answers HTTP 200 to curl-cffi chrome120 and resets the plain client, but the chrome120 body is the same 6.6 KB F5/Shape
+    TSPD JavaScript challenge (window[''bobcmn'']) with no page content; the challenge was not solved or worked around. No
+    index inventory possible, so no SSP payment-standard or eligibility document could be confirmed on the publisher''s own
+    index.'
+  index_families: no index inventory possible (publisher serves a JavaScript bot challenge; see notes)
 - jurisdiction: us-oh
   name: Ohio
   lead_counts: {}
