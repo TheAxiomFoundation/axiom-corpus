@@ -30,6 +30,7 @@ from axiom_corpus.corpus.content_store import (
     R2ObjectStore,
     destination_state,
     materialize,
+    materialize_resilient,
 )
 from axiom_corpus.corpus.corpus_locks import (
     CORPUS_BASE,
@@ -487,13 +488,21 @@ class CorpusResolver:
                 else:
                     absent.append(entry)
             report = (
-                materialize(
+                materialize_resilient(
                     self.repo,
                     absent,
                     self.cache,
                     self.sources,
                     verify=verify,
                     workers=self.workers,
+                    # A symlink on the path is deterministic, so retrying it only
+                    # delays the refusal the caller needs.
+                    retriable=lambda failed: all(
+                        _symlink_on_path(self.repo, path) is None for path in failed
+                    ),
+                    # Call this module's `materialize`, which existing tests patch
+                    # to simulate files vanishing mid-fetch.
+                    fetch=materialize,
                 )
                 if absent
                 else FetchReport()
