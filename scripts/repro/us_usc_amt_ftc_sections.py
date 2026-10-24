@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from axiom_corpus.corpus.cli import main as corpus_cli
+from axiom_corpus.corpus.resolver import ensure_corpus_paths
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RETAINED_BASE = REPO_ROOT / "data/corpus"
@@ -237,6 +238,17 @@ def reproduce(base: Path) -> None:
     )
 
 
+def ensure_corpus_inputs(*, repo: Path = REPO_ROOT) -> None:
+    """Fetch the locked corpus files this reproduction reads; a no-op without lock files."""
+    ensure_corpus_paths(
+        [
+            Path("data/corpus") / relative_path
+            for relative_path in (RETAINED_STATUTE_ZIP, RETAINED_STATUTE_XML)
+        ],
+        repo=repo,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -246,6 +258,7 @@ def main() -> int:
         help="Corpus output base; retained official inputs are copied here.",
     )
     args = parser.parse_args()
+    ensure_corpus_inputs()
     reproduce(args.base)
     return 0
 

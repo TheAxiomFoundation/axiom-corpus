@@ -14,7 +14,7 @@ import unicodedata
 import warnings
 import zipfile
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from io import BytesIO, StringIO
 from json import dumps as json_dumps
@@ -34,6 +34,11 @@ from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.citation_segment import citation_segment
+from axiom_corpus.corpus.content_quality import (
+    PageNavigation,
+    is_navigation_block,
+    page_navigation,
+)
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -54,6 +59,19 @@ _REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
 _RANGE_FETCH_CHUNK_SIZE_BYTES = 1024 * 1024
 _CONTENT_RANGE_RE = re.compile(r"^bytes (?P<start>\d+)-(?P<end>\d+)/(?P<total>\d+|\*)$")
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
+# Media types recorded for a manifest ``local_path`` copy, which has no HTTP
+# response to report one. Keys are the source formats ``_extract_blocks`` reads.
+_SOURCE_FORMAT_CONTENT_TYPES = {
+    "csv": "text/csv",
+    "doc": "application/msword",
+    "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "html": "text/html",
+    "javascript": "text/javascript",
+    "json": "application/json",
+    "pdf": "application/pdf",
+    "xls": "application/vnd.ms-excel",
+    "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+}
 _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
@@ -129,19 +147,23 @@ class OfficialDocumentManifest:
 
     @classmethod
     def load(cls, path: str | Path) -> Self:
-        data = yaml.safe_load(Path(path).read_text())
+        """Load a manifest; a relative ``local_path`` is relative to the manifest file."""
+        manifest_path = Path(path)
+        data = yaml.safe_load(manifest_path.read_text())
         if not isinstance(data, dict):
             raise ValueError("official document manifest must be a YAML mapping")
         documents = data.get("documents")
         if not isinstance(documents, list):
             raise ValueError("official document manifest must contain a documents list")
-        return cls(
-            documents=tuple(
-                OfficialDocumentSource.from_mapping(row)
-                for row in documents
-                if isinstance(row, dict)
-            )
-        )
+        sources = []
+        for row in documents:
+            if not isinstance(row, dict):
+                continue
+            source = OfficialDocumentSource.from_mapping(row)
+            if source.local_path and not Path(source.local_path).is_absolute():
+                source = replace(source, local_path=str(manifest_path.parent / source.local_path))
+            sources.append(source)
+        return cls(documents=tuple(sources))
 
     def require_unique_sources(self) -> None:
         seen: set[str] = set()
@@ -341,22 +363,30 @@ def _single_scope(documents: tuple[OfficialDocumentSource, ...]) -> tuple[str, s
     return next(iter(jurisdictions)), next(iter(document_classes))
 
 
+def _official_download_url(source: OfficialDocumentSource) -> str:
+    return source.download_url or google_drive_download_url(source.source_url) or source.source_url
+
+
 def _download_document(
     source: OfficialDocumentSource,
     *,
     session: requests.Session,
 ) -> _DownloadedDocument:
     if source.local_path:
-        path = Path(source.local_path)
-        return _DownloadedDocument(
+        # A retained copy stands in for the official download. Rows record the
+        # official URL the manifest names, never the extracting machine's path,
+        # and the media type of the declared or detected source format.
+        downloaded = _DownloadedDocument(
             source=source,
-            content=path.read_bytes(),
+            content=Path(source.local_path).read_bytes(),
             content_type=None,
-            final_url=path.as_uri(),
+            final_url=_official_download_url(source),
         )
-    download_url = (
-        source.download_url or google_drive_download_url(source.source_url) or source.source_url
-    )
+        return replace(
+            downloaded,
+            content_type=_SOURCE_FORMAT_CONTENT_TYPES.get(_infer_source_format(source, downloaded)),
+        )
+    download_url = _official_download_url(source)
     request_config = source.request or {}
     verify = bool(request_config.get("verify_tls", True))
     request_headers = _request_headers_from_config(request_config)
@@ -851,6 +881,8 @@ def _extract_blocks(
     title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    if source_format not in {"html", "json"}:
+        _reject_declared_navigation(extraction or {}, f"reads {source_format}")
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
     if (extraction or {}).get("section_citation_suffix_replacements") is not None:
@@ -1260,77 +1292,88 @@ def _pdf_page_layered_text(
     every page. The characters are the ones ``page.get_text("text")`` prints
     (same text flags), and a line ends in a newline exactly where that printer
     ends it with one: when the line printed a character and that character is
-    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters removed,
-    is the default page text. ``sort_blocks`` orders text blocks top to bottom
-    (PyMuPDF block sort), which places a boxed note drawn last in the content
-    stream where it appears on the page, and keeps the same characters.
+    neither a newline nor NUL. Without ``sort_blocks`` the text, delimiters
+    removed, is the default page text. ``sort_blocks`` orders text blocks top to
+    bottom (PyMuPDF block sort), which places a boxed note drawn last in the
+    content stream where it appears on the page, and keeps the same characters.
     ``_pdf_check_layered_page_text`` checks both on every page.
+
+    The page is read from PyMuPDF's ``rawdict``. Where that reading does not
+    match the default text, because ``rawdict`` left out glyphs the printer
+    prints, it is read again with those glyphs (``_pdf_page_character_blocks``).
     """
     sort_blocks = extraction.get("sort_blocks") is True
-    raw = page.get_text(
-        "rawdict",
-        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
-        sort=sort_blocks,
-    )
+    flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
+    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
     rules, thick_rules = _pdf_horizontal_rules(page) if markup is not None else ((), ())
-    chars: list[str] = []
-    states: list[str | None] = []
     near_threshold: list[list[float]] = []
     thick_rule_hits: list[list[float]] = []
-    for block in raw.get("blocks", ()):
-        if block.get("type") != 0:
-            continue
-        for line in block.get("lines", ()):
-            spans = line.get("spans", ())
-            reference = _pdf_line_reference(spans)
-            last_character = ""
-            for span in spans:
-                span_size = float(span.get("size") or 0.0)
-                for char in span.get("chars", ()):
-                    character = str(char.get("c", ""))
-                    state = None
-                    if reference is not None and not character.isspace():
-                        references = [reference]
-                        if span_size > 0:
-                            references.append((float(char["origin"][1]), span_size))
-                        if rules:
-                            offsets = _pdf_rule_offsets(char, references=references, rules=rules)
-                            state = _pdf_char_amendment_state(
-                                char, offsets=offsets, page_number=page_number
-                            )
-                            near = [
-                                offset
-                                for _rule, offset in offsets
-                                if _pdf_offset_near_threshold(offset)
-                            ]
-                            if near:
-                                near_threshold.append(near)
-                        if thick_rules:
-                            thick = [
-                                rule.thickness
-                                for rule, offset in _pdf_rule_offsets(
-                                    char, references=references, rules=thick_rules
+
+    def read(blocks: Any) -> tuple[str, list[str | None]]:
+        chars: list[str] = []
+        states: list[str | None] = []
+        near_threshold.clear()
+        thick_rule_hits.clear()
+        for block in blocks:
+            if block.get("type") != 0:
+                continue
+            for line in block.get("lines", ()):
+                spans = line.get("spans", ())
+                reference = _pdf_layered_line_reference(spans)
+                last_character = ""
+                for span in spans:
+                    span_size = float(span.get("size") or 0.0)
+                    for char in span.get("chars", ()):
+                        character = str(char.get("c", ""))
+                        state = None
+                        if reference is not None and not character.isspace():
+                            references = [reference]
+                            if span_size > 0:
+                                references.append((float(char["origin"][1]), span_size))
+                            if rules:
+                                offsets = _pdf_rule_offsets(
+                                    char, references=references, rules=rules
                                 )
-                                if _pdf_offset_amendment_state(offset) is not None
-                            ]
-                            if thick:
-                                thick_rule_hits.append(thick)
-                    chars.append(character)
-                    states.append(state)
-                    last_character = character
-            # PyMuPDF's plain-text printer ends a line with a newline only when the
-            # line printed a character that is neither a newline nor NUL.
-            if last_character not in ("", "\n", "\x00"):
-                chars.append("\n")
-                states.append(None)
-    raw_text = "".join(chars)
+                                state = _pdf_char_amendment_state(
+                                    char, offsets=offsets, page_number=page_number
+                                )
+                                near = [
+                                    offset
+                                    for _rule, offset in offsets
+                                    if _pdf_offset_near_threshold(offset)
+                                ]
+                                if near:
+                                    near_threshold.append(near)
+                            if thick_rules:
+                                thick = [
+                                    rule.thickness
+                                    for rule, offset in _pdf_rule_offsets(
+                                        char, references=references, rules=thick_rules
+                                    )
+                                    if _pdf_offset_amendment_state(offset) is not None
+                                ]
+                                if thick:
+                                    thick_rule_hits.append(thick)
+                        chars.append(character)
+                        states.append(state)
+                        last_character = character
+                # PyMuPDF's plain-text printer ends a line with a newline only when the
+                # line printed a character that is neither a newline nor NUL.
+                if last_character not in ("", "\n", "\x00"):
+                    chars.append("\n")
+                    states.append(None)
+        return "".join(chars), states
+
+    raw = page.get_text("rawdict", flags=flags, sort=sort_blocks)
+    raw_text, states = read(raw.get("blocks", ()))
     plain_text = _normalize_text(raw_text)
+    if _pdf_layered_text_difference(plain_text, default_text, sort_blocks=sort_blocks):
+        raw_text, states = read(
+            _pdf_page_character_blocks(page, flags=flags, sort=sort_blocks, page_number=page_number)
+        )
+        plain_text = _normalize_text(raw_text)
     _pdf_check_layered_page_text(
-        page,
-        plain_text,
-        extraction=extraction,
-        sort_blocks=sort_blocks,
-        page_number=page_number,
+        plain_text, default_text, sort_blocks=sort_blocks, page_number=page_number
     )
     if markup is None:
         return plain_text, None
@@ -1371,30 +1414,276 @@ def _pdf_page_layered_text(
     return rendered.text, metadata
 
 
-def _pdf_check_layered_page_text(
-    page: Any,
-    layered_text: str,
-    *,
-    extraction: dict[str, Any],
-    sort_blocks: bool,
-    page_number: int,
-) -> None:
-    """Check layered page text against the default page text.
+# MuPDF's rectangle conventions (fitz/geometry.h), on (x0, y0, x1, y1) tuples. A
+# rectangle is empty when it has no area and valid when its corners are ordered,
+# so a zero-width glyph's box is empty but valid. Each comparison is written as
+# MuPDF writes it, so NaN coordinates compare as they do there.
+_PDF_EMPTY_RECT = (
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+)
+_PDF_INFINITE_RECT = (
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MIN_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+    float(fitz.FZ_MAX_INF_RECT),
+)
+_PdfRect = tuple[float, float, float, float]
+
+
+def _pdf_rect(rect: Any) -> _PdfRect:
+    return (float(rect.x0), float(rect.y0), float(rect.x1), float(rect.y1))
+
+
+def _pdf_rect_is_empty(rect: _PdfRect) -> bool:
+    return rect[0] >= rect[2] or rect[1] >= rect[3]
+
+
+def _pdf_rect_is_valid(rect: _PdfRect) -> bool:
+    return rect[0] <= rect[2] and rect[1] <= rect[3]
+
+
+def _pdf_rects_overlap(a: _PdfRect, b: _PdfRect) -> bool:
+    """PyMuPDF's ``JM_rects_overlap``: strict, so a zero-width box inside ``a`` overlaps it."""
+    return not (a[0] >= b[2] or a[1] >= b[3] or a[2] <= b[0] or a[3] <= b[1])
+
+
+def _pdf_intersect_rect(a: _PdfRect, b: _PdfRect) -> _PdfRect:
+    """MuPDF's ``fz_intersect_rect``."""
+    if b == _PDF_INFINITE_RECT:
+        return a
+    if a == _PDF_INFINITE_RECT:
+        return b
+    return (
+        b[0] if a[0] < b[0] else a[0],
+        b[1] if a[1] < b[1] else a[1],
+        b[2] if a[2] > b[2] else a[2],
+        b[3] if a[3] > b[3] else a[3],
+    )
+
+
+def _pdf_union_rect(a: _PdfRect, b: _PdfRect) -> _PdfRect:
+    """MuPDF's ``fz_union_rect``: an invalid box adds nothing, an empty valid one does."""
+    if not _pdf_rect_is_valid(b):
+        return a
+    if not _pdf_rect_is_valid(a):
+        return b
+    if a == _PDF_INFINITE_RECT:
+        return a
+    if b == _PDF_INFINITE_RECT:
+        return b
+    return (
+        b[0] if a[0] > b[0] else a[0],
+        b[1] if a[1] > b[1] else a[1],
+        b[2] if a[2] < b[2] else a[2],
+        b[3] if a[3] < b[3] else a[3],
+    )
+
+
+def _pdf_same_rect(a: Any, b: Any) -> bool:
+    """Compare boxes or points value by value, NaN equal to NaN."""
+    return len(a) == len(b) and all(
+        x == y or (x != x and y != y) for x, y in zip(a, b, strict=True)
+    )
+
+
+def _pdf_page_character_blocks(
+    page: Any, *, flags: int, sort: bool, page_number: int
+) -> list[dict[str, Any]]:
+    """Return the page's rawdict blocks with the glyphs rawdict leaves out added.
+
+    The blocks have rawdict's shape and hold the lines and characters that
+    ``page.get_text("text")`` prints with the same flags, in the same order.
+
+    PyMuPDF's plain-text printer (``JM_print_stext_page_as_text``) prints a
+    character when its box overlaps the page, using a strict test that a
+    zero-width box inside the page passes. rawdict (``JM_make_textpage_dict``)
+    applies the same test to each character, but it also skips a block whose box
+    does not overlap the page, a line whose box clipped to the page has no area,
+    and the last span of a line when that span's box has no area. A zero-advance
+    period, a combining mark or a private-use glyph drawn with no width can make
+    such a line or span, and rawdict then leaves it out.
+
+    So the page's text page is built once and read twice: rawdict for its spans,
+    and a walk over the same text page (PyMuPDF's low-level bindings) that
+    applies the printer's test and rawdict's block and line tests side by side,
+    as PyMuPDF writes them from 1.26.6. Every character rawdict keeps must line
+    up with the walk, and so must the fields the layered path reads (a span's
+    size and origin, a block's box), or extraction stops. The characters rawdict
+    leaves out are added where the printer prints them, marked ``added``: a
+    skipped last span as one span, a skipped line as one span per run of one font
+    size, both with only ``size``, ``origin`` and ``chars``. Each character is
+    given as the printer prints it, so a lone surrogate code point, which
+    rawdict passes through, reads as U+FFFD.
+
+    ``sort`` orders the blocks as ``get_text("rawdict", sort=True)`` does, by the
+    bottom and then the left edge of each block's box, keeping their order on
+    ties. A block keeps rawdict's box, so added characters never move a block
+    whose text rawdict read. Only a block rawdict read no character of takes the
+    box around its added characters that print, so that it sorts where they
+    appear; one whose added characters are all spaces or characters
+    ``_normalize_text`` drops keeps rawdict's empty box and sorts first, as
+    rawdict sorts it, adding no blank line between other blocks. A space-only
+    line added inside a block keeps its place there, where the printer's own
+    text has the same line break.
+    """
+    textpage = page.get_textpage(flags=flags)
+    raw_blocks = iter(textpage.extractRAWDICT()["blocks"])
+    stext_page = textpage.this
+    page_rect = _pdf_rect(stext_page.m_internal.mediabox)
+    unclipped = page_rect == _PDF_INFINITE_RECT
+
+    def mismatch(detail: str) -> RuntimeError:
+        return RuntimeError(
+            f"PDF page {page_number}: PyMuPDF's rawdict does not line up with its text page "
+            f"({detail}); keep the page out of the amendment_markup page range, or extract "
+            "this PDF without amendment_markup and sort_blocks"
+        )
+
+    blocks: list[dict[str, Any]] = []
+    for stext_block in stext_page:
+        block_type = stext_block.m_internal.type
+        if block_type != fitz.mupdf.FZ_STEXT_BLOCK_TEXT:
+            # Text flags without images, vectors, structure or table hunting
+            # give only text blocks.
+            raise mismatch(f"text page block of type {block_type}")
+        raw_block: dict[str, Any] | None = None
+        if unclipped or _pdf_rects_overlap(page_rect, _pdf_rect(stext_block.m_internal.bbox)):
+            raw_block = next(raw_blocks, None)
+            if raw_block is None or raw_block.get("type") != 0:
+                raise mismatch("a text block is missing from rawdict")
+        raw_lines = iter(raw_block["lines"] if raw_block is not None else ())
+        lines: list[dict[str, Any]] = []
+        kept_box: _PdfRect = _PDF_EMPTY_RECT
+        kept_any = False
+        added_box: _PdfRect = _PDF_EMPTY_RECT
+        for stext_line in stext_block:
+            printed: list[dict[str, Any]] = []
+            sizes: list[float] = []
+            for stext_char in stext_line:
+                # PyMuPDF's C++ JM_char_bbox, the box rawdict and the printer test.
+                bbox = _pdf_rect(fitz.extra.JM_char_bbox(stext_line, stext_char))
+                if unclipped or _pdf_rects_overlap(page_rect, bbox):
+                    char = stext_char.m_internal
+                    printed.append(
+                        {"c": chr(char.c), "origin": (char.origin.x, char.origin.y), "bbox": bbox}
+                    )
+                    sizes.append(float(char.size))
+            raw_line: dict[str, Any] | None = None
+            if raw_block is not None and (
+                unclipped
+                or not _pdf_rect_is_empty(
+                    _pdf_intersect_rect(page_rect, _pdf_rect(stext_line.m_internal.bbox))
+                )
+            ):
+                raw_line = next(raw_lines, None)
+                if raw_line is None:
+                    raise mismatch("a line is missing from rawdict")
+            if raw_line is None:
+                if printed:
+                    lines.append({"spans": _pdf_added_spans(printed, sizes), "added": True})
+                    added_box = _pdf_printing_box(added_box, printed)
+                continue
+            spans = list(raw_line.get("spans", ()))
+            position = 0
+            for span in spans:
+                chars = span.get("chars", ())
+                if not chars or position + len(chars) > len(printed):
+                    raise mismatch(
+                        "rawdict holds a character the plain-text printer does not print"
+                    )
+                if not _pdf_same_rect(span["origin"], printed[position]["origin"]):
+                    raise mismatch("a span's origin is not its first character's")
+                for char in chars:
+                    walked = printed[position]
+                    if not (
+                        char["c"] == walked["c"]
+                        and _pdf_same_rect(char["origin"], walked["origin"])
+                        and _pdf_same_rect(char["bbox"], walked["bbox"])
+                    ):
+                        raise mismatch(
+                            "rawdict holds a character the plain-text printer does not print"
+                        )
+                    if not _pdf_same_rect((float(span["size"]),), (sizes[position],)):
+                        raise mismatch("a span's size is not its characters'")
+                    kept_box = _pdf_union_rect(kept_box, walked["bbox"])
+                    kept_any = True
+                    position += 1
+            dropped = printed[position:]
+            if dropped:
+                dropped_box = dropped[0]["bbox"]
+                for char in dropped[1:]:
+                    dropped_box = _pdf_union_rect(dropped_box, char["bbox"])
+                if len(set(sizes[position:])) != 1 or not _pdf_rect_is_empty(dropped_box):
+                    raise mismatch("rawdict leaves out characters that are not a last empty span")
+                raw_line = {
+                    **raw_line,
+                    "spans": [*spans, *_pdf_added_spans(dropped, sizes[position:])],
+                }
+                added_box = _pdf_printing_box(added_box, dropped)
+            lines.append(raw_line)
+        if next(raw_lines, None) is not None:
+            raise mismatch("rawdict holds a line the text page does not")
+        if raw_block is None:
+            if lines:
+                blocks.append({"type": 0, "bbox": added_box, "lines": lines, "added": True})
+            continue
+        if not _pdf_same_rect(raw_block.get("bbox", ()), kept_box):
+            raise mismatch("a block's box is not the box around its characters")
+        block = {**raw_block, "lines": lines}
+        if added_box != _PDF_EMPTY_RECT and not kept_any:
+            block["bbox"] = added_box
+        blocks.append(block)
+    if next(raw_blocks, None) is not None:
+        raise mismatch("rawdict holds a block the text page does not")
+    # The printer (JM_append_rune) prints a lone surrogate code point, which
+    # rawdict passes through, as U+FFFD.
+    for block in blocks:
+        for line in block["lines"]:
+            for span in line.get("spans", ()):
+                for char in span.get("chars", ()):
+                    if "\ud800" <= char["c"] <= "\udfff":
+                        char["c"] = "\ufffd"
+    if sort:
+        blocks.sort(key=lambda block: (block["bbox"][3], block["bbox"][0]))
+    return blocks
+
+
+def _pdf_printing_box(box: _PdfRect, chars: list[dict[str, Any]]) -> _PdfRect:
+    """Add to ``box`` the boxes of the characters that print in normalized text."""
+    for char in chars:
+        if not char["c"].isspace() and char["c"] not in {"\u200b", "\ufeff"}:
+            box = _pdf_union_rect(box, char["bbox"])
+    return box
+
+
+def _pdf_added_spans(chars: list[dict[str, Any]], sizes: list[float]) -> list[dict[str, Any]]:
+    """Group characters rawdict left out into spans, one per run of one font size."""
+    spans: list[dict[str, Any]] = []
+    for char, size in zip(chars, sizes, strict=True):
+        if not spans or spans[-1]["size"] != size:
+            spans.append({"size": size, "origin": char["origin"], "chars": [], "added": True})
+        spans[-1]["chars"].append(char)
+    return spans
+
+
+def _pdf_layered_text_difference(
+    layered_text: str, default_text: str, *, sort_blocks: bool
+) -> str | None:
+    """Say how layered page text differs from the default page text, or return None.
 
     Without ``sort_blocks`` the two must be equal; with it they must hold the
-    same non-space characters. They differ where PyMuPDF's character layer
-    (``rawdict``) leaves out a glyph its plain-text printer keeps: it drops a
-    glyph of zero width, such as a combining mark or a zero-advance period, so
-    no markup of that page could strip back to the default text.
+    same non-space characters.
     """
-    default_text = _normalize_text(_pdf_page_text(page, extraction=extraction))
     if sort_blocks:
         default_chars = Counter(char for char in default_text if not char.isspace())
         layered_chars = Counter(char for char in layered_text if not char.isspace())
         if default_chars == layered_chars:
-            return
+            return None
     elif layered_text == default_text:
-        return
+        return None
     else:
         default_chars = Counter(default_text)
         layered_chars = Counter(layered_text)
@@ -1405,12 +1694,27 @@ def _pdf_check_layered_page_text(
         for label, chars in (("missing", missing), ("extra", extra))
         if chars
     ]
+    return "; ".join(details) or "same characters, different text"
+
+
+def _pdf_check_layered_page_text(
+    layered_text: str, default_text: str, *, sort_blocks: bool, page_number: int
+) -> None:
+    """Check layered page text against the default page text.
+
+    ``_pdf_page_layered_text`` reads the characters the plain-text printer
+    prints, so a difference means PyMuPDF's printer and its character layer
+    disagree in some new way, and no markup of that page could strip back to the
+    default text.
+    """
+    difference = _pdf_layered_text_difference(layered_text, default_text, sort_blocks=sort_blocks)
+    if difference is None:
+        return
     raise ValueError(
         f"PDF page {page_number}: the character layer that amendment_markup and "
-        "sort_blocks read differs from the page's default text "
-        f"({'; '.join(details) or 'same characters, different text'}). PyMuPDF leaves "
-        "zero-width glyphs out of the character layer; keep the page out of the "
-        "amendment_markup page range, or extract this PDF without these keys"
+        f"sort_blocks read differs from the page's default text ({difference}); keep "
+        "the page out of the amendment_markup page range, or extract this PDF without "
+        "these keys"
     )
 
 
@@ -1536,6 +1840,18 @@ def _pdf_line_reference(spans: Any) -> tuple[float, float] | None:
     if best is None:
         return None
     return (best[2], best[0])
+
+
+def _pdf_layered_line_reference(spans: Any) -> tuple[float, float] | None:
+    """Return ``_pdf_line_reference`` of the spans rawdict read, if they have one.
+
+    Spans ``_pdf_page_character_blocks`` added count only on a line whose rawdict
+    spans have no visible characters, so glyphs rawdict left out never change
+    how the rest of the line is classified.
+    """
+    return _pdf_line_reference(
+        [span for span in spans if not span.get("added")]
+    ) or _pdf_line_reference(spans)
 
 
 def _pdf_rule_offsets(
@@ -3062,7 +3378,27 @@ def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     if not extraction.get("ocr") or not _pdf_page_needs_ocr(page, str(text)):
         return _replace_text(str(text), text_replacements)
     ocr_text = _ocr_pdf_page_text(page, extraction=extraction)
-    return _replace_text(_with_unread_layer_lines(ocr_text, str(text)), text_replacements)
+    layer_text = str(text)
+    if _normalize_text(ocr_text):
+        span_lines = _pdf_layer_lines(page, extraction=extraction)
+        layer_lines = None
+        if _same_layer_characters(span_lines, layer_text):
+            marked = _with_layer_marks(span_lines, layer_text)
+            if marked is not None:
+                # Decoded after the marks are placed, against the text output as printed.
+                marked = _pdf_decoded_span_lines(
+                    page, marked, extraction=extraction, ocr_text=ocr_text
+                )
+                layer_lines = _without_garbled_spans(marked)
+        if layer_lines is None:
+            # The dict output does not hold the text output's characters (or its marks
+            # can't be placed): use the text output's lines, all counted as painted, so no
+            # line without a control character can go missing.
+            # They are split at newlines only, so a garbled line keeps its control
+            # characters (splitlines() also breaks at U+001C to U+001E and U+0085).
+            layer_lines = [(line, True) for line in layer_text.split("\n")]
+        layer_text = "\n".join(_without_failed_recognition_lines(layer_lines, ocr_text))
+    return _replace_text(_with_unread_layer_lines(ocr_text, layer_text), text_replacements)
 
 
 # A scanned page can carry a thin text layer over its page image: a filing stamp, or the
@@ -3145,42 +3481,1448 @@ def _rect_union_area(rects: list[Any]) -> float:
     return area
 
 
-# Punctuation stripped from the ends of a token before OCR and text-layer tokens are
-# compared, so "$1,234," and "($1,234)." both compare as "$1,234". A leading currency
-# sign or minus and a trailing percent sign are kept.
-_VALUE_TOKEN_EDGES = re.compile(r"^[^\w$\u20ac\u00a3%-]+|[^\w%]+$")
+# Punctuation at the ends of an OCR token that a text-layer line may begin after or end
+# before, so the layer's "$1,234" is read by OCR's "($1,234)." A leading currency sign or
+# minus and a trailing percent sign belong to the value and are never skipped.
+_OCR_TOKEN_LEAD = re.compile(r"^[^\w$\u20ac\u00a3%-]+")
+_OCR_TOKEN_TRAIL = re.compile(r"[^\w%]+$")
+# Quote and dash variants compared as one character: OCR prints "Children’s" where a
+# layer has "Children's". One character for one, so offsets are unchanged.
+_OCR_TYPOGRAPHIC_FOLD = str.maketrans(
+    {
+        **dict.fromkeys("\u2018\u2019\u201a\u201b\u2032", "'"),
+        **dict.fromkeys("\u201c\u201d\u201e\u201f\u2033", '"'),
+        **dict.fromkeys("\u2010\u2011\u2012\u2013\u2014\u2015\u2212", "-"),
+    }
+)
 
 
-def _value_tokens(text: str) -> list[str]:
-    tokens = (_VALUE_TOKEN_EDGES.sub("", token) for token in text.split())
-    return [token for token in tokens if token]
+def _spacing_folded(tokens: list[str]) -> tuple[str, list[int]]:
+    """``tokens`` joined for comparison, and each token's offset in the joined text.
+
+    A text layer and OCR break words differently ("EffectiveDate" for "Effective Date",
+    "of39" for "of 39"), so a gap with a letter on either side is dropped. Any other gap
+    is kept as one space: between digits and punctuation the spacing is part of the value
+    ("1 2" is not "12", and "3. 1" is not "3.1").
+    """
+    parts: list[str] = []
+    offsets: list[int] = []
+    length = 0
+    previous = ""
+    for token in tokens:
+        if previous and not (previous[-1].isalpha() or token[0].isalpha()):
+            parts.append(" ")
+            length += 1
+        offsets.append(length)
+        parts.append(token)
+        length += len(token)
+        previous = token
+    return "".join(parts), offsets
+
+
+def _ocr_reading(ocr_text: str) -> tuple[str, frozenset[int], frozenset[int]]:
+    """The OCR text folded for comparison, and where a text-layer line may start and end.
+
+    A line may start where an OCR token starts, or after any of the punctuation that
+    leads the token (``_OCR_TOKEN_LEAD``); it may end where the token ends, or before any
+    of the punctuation that trails it (``_OCR_TOKEN_TRAIL``). It can never start or end
+    among a token's letters and digits, so "24" is not read by "2024".
+    """
+    tokens = ocr_text.translate(_OCR_TYPOGRAPHIC_FOLD).split()
+    folded, offsets = _spacing_folded(tokens)
+    starts: set[int] = set()
+    ends: set[int] = set()
+    for token, offset in zip(tokens, offsets, strict=True):
+        lead = _OCR_TOKEN_LEAD.match(token)
+        trail = _OCR_TOKEN_TRAIL.search(token)
+        core_start = lead.end() if lead else 0
+        core_end = trail.start() if trail else len(token)
+        if core_start >= core_end:
+            # Punctuation only: the token is taken whole or not at all.
+            core_start, core_end = 0, len(token)
+        starts.update(range(offset, offset + core_start + 1))
+        ends.update(range(offset + core_end, offset + len(token) + 1))
+    return folded, frozenset(starts), frozenset(ends)
+
+
+def _ocr_read_line(line: str, reading: tuple[str, frozenset[int], frozenset[int]]) -> bool:
+    """Whether the OCR text holds ``line``: the same characters in the same order, as whole
+    tokens, whatever the spacing next to a letter (quote and dash variants compare equal)."""
+    folded, starts, ends = reading
+    needle, _ = _spacing_folded(line.translate(_OCR_TYPOGRAPHIC_FOLD).split())
+    index = folded.find(needle)
+    while index != -1:
+        if index in starts and index + len(needle) in ends:
+            return True
+        index = folded.find(needle, index + 1)
+    return False
 
 
 def _with_unread_layer_lines(ocr_text: str, layer_text: str) -> str:
-    """OCR text, followed by the text-layer lines whose typed values OCR did not read.
+    """OCR text, followed by the text-layer lines OCR did not read.
 
-    A scanned form's text layer holds exact typed values (transmittal numbers, dates,
-    amounts) that OCR may misread. A layer line is kept, after the OCR text, when one of
-    its tokens with a digit is not among the OCR text's tokens (compared whole, so "24" is
-    not read by "2024"). Lines without a digit add nothing OCR lacks, and lines holding
-    control characters (Unicode category Cc) are font-encoding garbage, so neither is kept.
-    The kept lines follow as a paragraph of their own. With no OCR text the layer is
-    returned as it is.
+    A scanned page's text layer holds what was typed onto the scan: dates, transmittal
+    numbers, amounts, and the name and title of the signing official. OCR can misread any
+    of it, or skip it. A layer line is kept, after the OCR text, unless the OCR text
+    already holds the whole line (``_ocr_read_line``): the same characters in the same
+    order, as whole tokens. Only spacing next to a letter, and quote and dash variants, are
+    not compared, because layers and OCR break words differently. Two kinds of line are
+    never kept: a line holding a control character (Unicode category Cc) is font-encoding
+    garbage, and a line with no letter or digit is not text. Each kept line appears once, in layer order, and the kept
+    lines follow as a paragraph of their own. With no OCR text the layer is returned as it
+    is.
+
+    A layer line that is not garbage by those two tests is always in the result. The
+    caller removes the lines of an invisible recognition layer that are not worth keeping
+    first (``_without_failed_recognition_lines``).
     """
     if not _normalize_text(ocr_text):
         return layer_text
-    read = set(_value_tokens(ocr_text))
-    kept: list[str] = []
+    reading = _ocr_reading(ocr_text)
+    kept: dict[str, None] = {}
     for raw in layer_text.splitlines():
         line = " ".join(raw.split())
-        if not line or line in kept or any(unicodedata.category(char) == "Cc" for char in line):
+        if line in kept or not any(char.isalnum() for char in line):
             continue
-        values = [token for token in _value_tokens(line) if any(char.isdigit() for char in token)]
-        if any(token not in read for token in values):
-            kept.append(line)
+        if any(unicodedata.category(char) == "Cc" for char in line):
+            continue
+        if not _ocr_read_line(line, reading):
+            kept[line] = None
     if not kept:
         return ocr_text
     return ocr_text.rstrip("\n") + "\n\n" + "\n".join(kept)
+
+
+# A span's characters are painted when they are filled or stroked (MuPDF's FZ_STEXT_FILLED
+# and FZ_STEXT_STROKED in its ``char_flags``). Text render mode 3 does neither: that is how
+# a scanner or OCR program lays an invisible recognition layer over a page image.
+_PDF_TEXT_PAINTED = 16 | 32
+# MuPDF's FZ_STEXT_UNICODE_IS_CID and FZ_STEXT_UNICODE_IS_GID: the font gave no Unicode
+# for the glyph, and its CID or glyph id stands in for one.
+_PDF_TEXT_UNICODE_GUESSED = 128 | 256
+# An invisible line with fewer letters than this and no digit is a fragment.
+_RECOGNITION_FRAGMENT_LETTERS = 3
+# A recognition layer is judged by its distinct words of _RECOGNITION_WORD_LETTERS or more
+# letters, and only when it has at least _RECOGNITION_MIN_WORDS of them. It has failed when
+# fewer than a third of them occur in the OCR text. A word of _RECOGNITION_RUN_LETTERS or
+# more letters also occurs when it is in OCR's letters run together, since recognition
+# layers often run words together ("EffectiveDate").
+_RECOGNITION_WORD_LETTERS = 3
+_RECOGNITION_MIN_WORDS = 5
+_RECOGNITION_RUN_LETTERS = 6
+# Control characters a text layer uses as ordinary whitespace. Any other (Unicode category
+# Cc) marks a garbled font. Python's split() and splitlines() treat some of those as
+# separators (U+001C to U+001F, U+0085), so a line is judged before it is split.
+_ORDINARY_CONTROL_CHARACTERS = frozenset("\t\n\r\x0b\x0c")
+
+
+def _pdf_span_painted(span: dict[str, Any]) -> bool:
+    """Whether a text span is drawn visibly: filled or stroked, and not fully transparent.
+
+    A PyMuPDF too old to report ``char_flags`` gives no answer, and the span counts as
+    painted, so nothing is filtered.
+    """
+    flags = span.get("char_flags")
+    if flags is None:
+        return True
+    return bool(int(flags) & _PDF_TEXT_PAINTED) and int(span.get("alpha", 255)) > 0
+
+
+def _pdf_layer_lines(
+    page: Any, *, extraction: dict[str, Any]
+) -> list[list[tuple[str, bool, str, bool | None]]]:
+    """The page's text-layer lines, each as its spans' (text, painted, font name, mapped).
+
+    The lines and spans of the ``dict`` output, with the text flags and sort of
+    ``_pdf_page_text``, unsplit, so a garbled font's control characters are still in its
+    spans (``_pdf_span_painted`` gives the paint; under PyMuPDF before 1.27 a Type3 font's
+    spans count as painted, ``_pdf_type3_font_names``). ``mapped`` is where the span's
+    characters come from (``_pdf_span_mapped``). Without ``sort_text`` the lines' text
+    joined with newlines is the text output; with it, that output rebuilds lines from
+    words by position, but the characters are the same (``_same_layer_characters``).
+    """
+    data = page.get_text(
+        "dict",
+        sort=bool(extraction.get("sort_text")),
+        flags=_pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT),
+    )
+    type3 = _pdf_type3_font_names(page)
+    lines: list[list[tuple[str, bool, str, bool | None]]] = []
+    for block in data.get("blocks", ()):
+        for line in block.get("lines", ()):
+            spans = []
+            for span in line.get("spans", ()):
+                font = str(span.get("font", ""))
+                painted = (_PDF_TYPE3_PAINT_UNREPORTED and font in type3) or _pdf_span_painted(span)
+                mapped = None if font in type3 else _pdf_span_mapped(span)
+                spans.append((str(span.get("text", "")), painted, font, mapped))
+            lines.append(spans)
+    return lines
+
+
+def _pdf_span_mapped(span: dict[str, Any]) -> bool | None:
+    """Whether a span's characters come from its font's own Unicode map.
+
+    True when PyMuPDF reports the span's characters (a fill or stroke flag is set) and
+    neither of MuPDF's flags for a glyph without Unicode is: every glyph of the span has
+    Unicode from the font. False when one of those flags is set: MuPDF had no Unicode for a
+    glyph of the span or for an earlier glyph of the same text-showing operation (MuPDF's
+    ``do_extract`` keeps the flag set for the rest of the operation), so a False span can
+    hold glyphs that have Unicode. None when PyMuPDF reports no flags for the span (an older
+    PyMuPDF, or invisible text under 1.26). A span splits where these flags change, so they
+    hold for all its characters. ``_pdf_layer_lines`` gives None for a Type3 font: its glyph
+    names are its map, and a shifted Type3 font's names are wrong ("OPQRPST" under PyMuPDF
+    1.28).
+    """
+    flags = span.get("char_flags")
+    if flags is None:
+        return None
+    if int(flags) & _PDF_TEXT_UNICODE_GUESSED:
+        return False
+    return True if int(flags) & _PDF_TEXT_PAINTED else None
+
+
+# PyMuPDF before 1.27 reports filled Type3 glyphs as neither filled nor stroked, the same
+# as invisible text; 1.27 and later report Type3 paint correctly.
+_PDF_TYPE3_PAINT_UNREPORTED = tuple(fitz.pymupdf_version_tuple[:2]) < (1, 27)
+_PDF_NAME_ESCAPE = re.compile(rb"#([0-9A-Fa-f]{2})")
+
+
+def _pdf_type3_font_names(page: Any) -> frozenset[str]:
+    """The span font names of the page's Type3 fonts.
+
+    Under PyMuPDF before 1.27 (this repository locks 1.26) a span in a Type3 font counts
+    as painted, since filled and invisible Type3 text look alike there; every Type3 span on
+    the 1,041 overlay pages measured is filled under 1.28.2. Under 1.27 and later the paint
+    is read from the span. On every version a Type3 span's characters are not taken as
+    mapped (``_pdf_span_mapped``). A font without a name has its spans named "Unnamed-T3"
+    before 1.27 and "Type3 (<object number> 0 R)" in 1.28; both are listed. Text in
+    annotation and widget appearance streams is extracted too, and ``get_fonts`` does not
+    list their fonts, so those are found as well (``_pdf_appearance_type3_font_names``).
+    """
+    names = _pdf_appearance_type3_font_names(page)
+    for font in page.get_fonts(full=True):
+        if font[2] != "Type3":
+            continue
+        name = _pdf_type3_span_name(page, font)
+        names.add(name)
+        if name == "Unnamed-T3":
+            names.add(f"Type3 ({font[0]} 0 R)")
+    return frozenset(names)
+
+
+_PDF_OBJECT_REFERENCE = re.compile(r"(\d+) \d+ R")
+_PDF_APPEARANCE_STREAMS = 256
+_PDF_DELIMITERS = frozenset("()<>[]{}/%")
+
+
+def _pdf_appearance_type3_font_names(page: Any) -> set[str]:
+    """The span font names of the Type3 fonts in the page's annotation and widget appearance
+    streams and the forms they draw (``get_fonts`` lists only the page's own resources).
+
+    The appearance streams are reached through the page's /Annots and each annotation's
+    /AP /N (a stream, or a dictionary of appearance states, direct or not); resource
+    dictionaries are read from their printed form (``_pdf_dict_entries``), so no name is
+    used as a lookup path. A reference to a missing object, or anything else that can't be
+    read, is skipped: this only finds fonts, and must never fail a page.
+    """
+    document = page.parent
+    count = document.xref_length()
+
+    def references(text: str) -> list[int]:
+        return [n for n in map(int, _PDF_OBJECT_REFERENCE.findall(text)) if 0 < n < count]
+
+    def resolved(kind: str, value: str) -> str:
+        if kind == "xref":
+            numbers = references(value)
+            return document.xref_object(numbers[0]) if numbers else ""
+        return value if kind == "dict" else ""
+
+    holders: list[int] = []
+    try:
+        annots = resolved(*document.xref_get_key(page.xref, "Annots")) or str(
+            document.xref_get_key(page.xref, "Annots")[1]
+        )
+    except Exception:
+        annots = ""
+    for annot in references(annots):
+        try:
+            kind, value = document.xref_get_key(annot, "AP/N")
+            if kind == "xref":
+                numbers = references(value)
+                if numbers and not document.xref_is_stream(numbers[0]):
+                    value = document.xref_object(numbers[0])  # a dictionary of states
+            holders.extend(references(value) if kind in ("xref", "dict") else [])
+        except Exception:
+            continue
+    names: set[str] = set()
+    seen: set[int] = set()
+    while holders and len(seen) < _PDF_APPEARANCE_STREAMS:
+        holder = holders.pop()
+        if holder in seen:
+            continue
+        seen.add(holder)
+        try:
+            resources = _pdf_dict_entries(resolved(*document.xref_get_key(holder, "Resources")))
+            fonts = _pdf_dict_entries(_pdf_entry_text(document, resources.get("Font", ""), count))
+            for value in fonts.values():
+                if value.startswith("<<"):
+                    entries = _pdf_dict_entries(value)
+                    if entries.get("Subtype") == "/Type3":
+                        name = _pdf_entry_text(document, entries.get("Name", ""), count)
+                        inline = _pdf_span_font_name(_pdf_printed_name(name.strip()))
+                        names.add(inline)
+                        if inline == "Unnamed-T3":
+                            names.add("Type3 (0 0 R)")
+                    continue
+                for font in references(value):
+                    if document.xref_get_key(font, "Subtype") == ("name", "/Type3"):
+                        named = _pdf_type3_span_name(page, (font, "", "Type3", "", "", "", 0))
+                        names.add(named)
+                        if named == "Unnamed-T3":
+                            names.add(f"Type3 ({font} 0 R)")
+            xobjects = _pdf_dict_entries(
+                _pdf_entry_text(document, resources.get("XObject", ""), count)
+            )
+            for value in xobjects.values():
+                holders.extend(references(value))
+        except Exception:
+            continue
+    return names
+
+
+def _pdf_entry_text(document: Any, value: str, count: int) -> str:
+    """A dictionary entry's printed value, an indirect one's object printed in its place."""
+    match = _PDF_OBJECT_REFERENCE.fullmatch(value.strip())
+    if match and 0 < int(match.group(1)) < count:
+        return str(document.xref_object(int(match.group(1))))
+    return value
+
+
+def _pdf_dict_entries(text: str) -> dict[str, str]:
+    """The top-level entries of a printed PDF dictionary, key (as printed, #xx escapes in
+    place) to value text; {} for anything else. Nested dictionaries, arrays and strings are
+    skipped whole."""
+    text = text.strip()
+    if not text.startswith("<<"):
+        return {}
+    entries: dict[str, str] = {}
+    i = 2
+    while i < len(text):
+        while i < len(text) and text[i].isspace():
+            i += 1
+        if i >= len(text) or text.startswith(">>", i) or text[i] != "/":
+            break
+        j = i + 1
+        while j < len(text) and not text[j].isspace() and text[j] not in _PDF_DELIMITERS:
+            j += 1
+        key = text[i + 1 : j]
+        while j < len(text) and text[j].isspace():
+            j += 1
+        end = _pdf_value_end(text, j)
+        entries[key] = text[j:end].strip()
+        i = end
+    return entries
+
+
+def _pdf_value_end(text: str, i: int) -> int:
+    """Where the printed PDF value starting at ``i`` ends."""
+    if text.startswith("<<", i) or text.startswith("[", i):
+        depth = 0
+        while i < len(text):
+            if text.startswith("<<", i) or text[i] == "[":
+                depth += 1
+                i += 2 if text[i] == "<" else 1
+            elif text.startswith(">>", i) or text[i] == "]":
+                depth -= 1
+                i += 2 if text[i] == ">" else 1
+                if depth == 0:
+                    return i
+            elif text[i] == "(":
+                i = _pdf_value_end(text, i)
+            elif text[i] == "<":
+                close = text.find(">", i)
+                i = len(text) if close < 0 else close + 1
+            else:
+                i += 1
+        return i
+    if text.startswith("(", i):
+        depth = 0
+        while i < len(text):
+            if text[i] == "\\":
+                i += 2
+                continue
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+            if depth == 0:
+                return i
+        return i
+    if text.startswith("<", i):
+        close = text.find(">", i)
+        return len(text) if close < 0 else close + 1
+    if text.startswith("/", i):
+        i += 1
+        while i < len(text) and not text[i].isspace() and text[i] not in _PDF_DELIMITERS:
+            i += 1
+        return i
+    while i < len(text) and text[i] not in "/<>[](":
+        i += 1
+    return i
+
+
+def _pdf_printed_name(value: str) -> bytes:
+    """A printed PDF name's bytes, its #xx escapes undone ("" for anything but a name)."""
+    if not value.startswith("/"):
+        return b""
+    data = value[1:].encode("utf-8", "surrogateescape")
+    return _PDF_NAME_ESCAPE.sub(lambda match: bytes.fromhex(match.group(1).decode()), data)
+
+
+def _pdf_span_font_name(name: bytes) -> str:
+    """The name MuPDF 1.26 gives a Type3 font's spans from its /Name bytes: read as Latin-1,
+    less any six characters before a "+", or "Unnamed-T3" when there are none."""
+    text = name.decode("latin-1")
+    if not text:
+        return "Unnamed-T3"
+    return text[7:] if text.find("+") == 6 else text
+
+
+def _pdf_type3_span_name(page: Any, font: tuple[Any, ...]) -> str:
+    """The name MuPDF 1.26 gives the spans of a Type3 font ``get_fonts(full=True)`` lists.
+
+    It is the font's /Name (an indirect one resolved), its bytes read as Latin-1, less any
+    six characters before a "+" (a subset prefix), or "Unnamed-T3" without one. A font
+    written inline in a resource dictionary has no object number; its /Name is read through
+    the resources of the page or form that uses it. If the name can't be read (an inline
+    font whose resource name has a "/" or a byte that isn't UTF-8 can't be addressed), the
+    name ``get_fonts`` lists is used: the /Name, or a /BaseFont, which a Type3 font does not
+    normally have, ahead of it.
+    """
+    document = page.parent
+    try:
+        if font[0]:
+            kind, value = document.xref_get_key(font[0], "Name")
+        else:
+            kind, value = _pdf_inline_font_key(document, font[6] or page.xref, str(font[4]))
+        if kind == "xref":
+            # An indirect name is printed as PDF writes it, its #xx escapes in place.
+            data = _pdf_printed_name(document.xref_object(int(value.split()[0])).strip())
+        elif kind == "name":
+            # A direct one has its escapes undone and its bytes given as UTF-8, any byte that
+            # isn't UTF-8 as a surrogate.
+            data = value[1:].encode("utf-8", "surrogateescape")
+        else:
+            data = b""
+    except Exception:  # MuPDF and its bindings raise several types; only a name is at stake
+        data = str(font[3]).encode("latin-1", "replace")
+    return _pdf_span_font_name(data)
+
+
+def _pdf_inline_font_key(document: Any, holder: int, resource: str) -> tuple[str, str]:
+    """The /Name of the inline font ``resource`` in the resources of object ``holder``, or
+    of the page-tree nodes it inherits them from when it has none. Raises LookupError when
+    the name has a "/" (the lookup path would split at it, the only character it splits
+    at, and could reach another dictionary: "F/Resources" is font F's resources) or when
+    the font is not in those resources, so a font that is not found is told apart from
+    one without a /Name."""
+    if "/" in resource:
+        raise LookupError(resource)  # the lookup path would split at it
+    for _ in range(64):
+        if document.xref_get_key(holder, "Resources")[0] != "null":
+            path = f"Resources/Font/{resource}"
+            if document.xref_get_key(holder, path)[0] == "null":
+                raise LookupError(resource)  # not where get_fonts' referencer points
+            kind, value = document.xref_get_key(holder, path + "/Name")
+            return str(kind), str(value)
+        kind, parent = document.xref_get_key(holder, "Parent")
+        if kind != "xref":
+            break
+        holder = int(parent.split()[0])
+    return "null", "null"
+
+
+def _layer_characters(text: str) -> Counter[str]:
+    return Counter(
+        char
+        for char in text
+        if not char.isspace() and unicodedata.category(char) not in ("Cc", "Mn")
+    )
+
+
+def _same_layer_characters(
+    span_lines: list[list[tuple[str, bool, str, bool | None]]], layer_text: str
+) -> bool:
+    """Whether the spans hold the text output's characters, whitespace, control characters
+    and combining marks aside (the sorted text output drops a garbled font's control
+    "spaces"; PyMuPDF 1.28 prints combining marks on WV-23-0001 that its spans lack: those
+    are restored by ``_with_layer_marks``)."""
+    spans = "".join(span[0] for spans in span_lines for span in spans)
+    return _layer_characters(spans) == _layer_characters(layer_text)
+
+
+def _with_layer_marks(
+    span_lines: list[list[tuple[str, bool, str, bool | None]]], layer_text: str
+) -> list[list[tuple[str, bool, str, bool | None]]] | None:
+    """``span_lines`` with the combining marks the text output holds and the spans lack, or
+    None when they can't be placed.
+
+    Without ``sort_text`` the text output is the dict lines joined by newlines, so each
+    text-output line is its dict line's characters, with any marks the spans lack. Each
+    such mark goes into the span of the character before it (or the line's first span),
+    so its line, span, paint and font are the ones that character has. A line whose spans'
+    characters are not its text-output line's with only combining marks taken out is left
+    as it is when its text-output line holds a control character, or when its spans do and
+    the text-output line has no mark they lack; otherwise no mark can be placed: None, and
+    the text output's lines are used. That is how the mark of a garbled line is kept when
+    ``sort_text``, which rebuilds the lines, drops the garbled font's control "spaces"
+    from the text output. Limit: a line left as it is keeps its spans in other fonts
+    without such a mark (on the text output's lines the whole line would go); that takes a
+    text-output line with a control character and a lacking mark, which ``sort_text``
+    leaves only for controls above U+0020.
+    """
+    missing = Counter(char for char in layer_text if unicodedata.category(char) == "Mn") - Counter(
+        char
+        for spans in span_lines
+        for span in spans
+        for char in span[0]
+        if unicodedata.category(char) == "Mn"
+    )
+    if not missing:
+        return span_lines
+    text_lines = layer_text.split("\n")
+    if text_lines and text_lines[-1] == "":
+        text_lines.pop()
+    if len(text_lines) != len(span_lines):
+        return None
+    placed: list[list[tuple[str, bool, str, bool | None]]] = []
+    for text_line, spans in zip(text_lines, span_lines, strict=True):
+        texts = _with_line_marks(text_line, [span[0] for span in spans])
+        if texts is None:
+            lacking = Counter(c for c in text_line if unicodedata.category(c) == "Mn") - Counter(
+                c for span in spans for c in span[0] if unicodedata.category(c) == "Mn"
+            )
+            if _has_control_character(text_line) or (
+                not lacking and any(_has_control_character(span[0]) for span in spans)
+            ):
+                placed.append(spans)
+                continue
+            return None
+        placed.append([(text, *span[1:]) for text, span in zip(texts, spans, strict=True)])
+    return placed
+
+
+def _with_line_marks(text_line: str, span_texts: list[str]) -> list[str] | None:
+    """The span texts of a line with the combining marks of ``text_line`` they lack, each put
+    in the span of the character before it, or None when the spans' characters are not the
+    line's with only combining marks taken out."""
+    chars = [(index, char) for index, text in enumerate(span_texts) for char in text]
+    out = [""] * len(span_texts)
+    at = 0  # the span the last character went to
+    position = 0
+    for char in text_line:
+        if position < len(chars) and chars[position][1] == char:
+            at = chars[position][0]
+            out[at] += char
+            position += 1
+        elif unicodedata.category(char) == "Mn" and span_texts:
+            out[at] += char
+        else:
+            return None
+    return out if position == len(chars) else None
+
+
+def _without_garbled_spans(
+    span_lines: list[list[tuple[str, bool, str, bool | None]]],
+) -> list[tuple[str, bool]]:
+    """Each layer line's text without its garbled font's spans, with whether it is painted.
+
+    A span holding a control character other than ordinary whitespace
+    (``_has_control_character``) is a garbled font's, and so is every other span on the
+    same line in a font of that name (CA-25-0037's "5678", "9C<:"): the font gives that
+    line's codes wrong characters, some of them control characters. Those spans are left
+    out whole, before anything splits them. The exception is a span whose characters come
+    from the font's own Unicode map (mapped True) when every control-character span of its
+    font on the line is flagged as lacking Unicode (mapped False): the garbage is the codes
+    the map leaves out, and the mapped span's characters are the ones the font's own map
+    gives (NV-20-0002 page 3's "3" in "March 13, 2020"). "Mapped" is not "right": a font
+    whose map gives wrong characters for some codes and none for others keeps its mapped
+    garbage (WV-23-0001's screenshot shards). The flag can also cover glyphs that have Unicode (after one without,
+    in the same text-showing operation), so a span flagged so is left out even when its
+    text came from the map, and a font whose map gives a control character after such a
+    glyph passes the test. Spans in other fonts, such as a date typed beside a garbled label, stay. The
+    runs of kept spans between left-out ones are joined by one space. The line is painted
+    when any kept span with visible characters is. A line left with no visible character
+    is dropped.
+    """
+    lines: list[tuple[str, bool]] = []
+    for spans in span_lines:
+        unmapped: dict[str, bool] = {}
+        for text, _, font, mapped in spans:
+            if _has_control_character(text):
+                unmapped[font] = unmapped.get(font, True) and mapped is False
+        runs: list[str] = []
+        run = ""
+        painted = False
+        for text, span_painted, font, mapped in spans:
+            if _has_control_character(text) or (
+                font in unmapped and not (unmapped[font] and mapped is True)
+            ):
+                runs.append(run)
+                run = ""
+                continue
+            run += text
+            painted = painted or (span_painted and bool(text.strip()))
+        runs.append(run)
+        line = " ".join(run for run in runs if run)
+        if line.strip():
+            lines.append((line, painted))
+    return lines
+
+
+def _has_control_character(text: str) -> bool:
+    """Whether ``text`` holds a control character other than ordinary whitespace."""
+    return any(
+        unicodedata.category(char) == "Cc" and char not in _ORDINARY_CONTROL_CHARACTERS
+        for char in text
+    )
+
+
+# A layer line's characters, each with its font's name when it is an unmapped character
+# that may be decoded, and None otherwise. A font's characters in a line may be decoded
+# only when every one of them there is unmapped (``_pdf_unmapped_status``), MuPDF's own
+# spaces (U+0020) aside, and the font is not one ``_pdf_undecodable_fonts`` refuses for the
+# whole page. (For a Type 3 font, which is never decoded, MuPDF prints a printable code
+# whose glyph name it does not know as itself, as if mapped, so only the line's control
+# codes show as unmapped.) A line is decoded whole or not at all
+# (``_pdf_decoded_span_lines``).
+_LayerChars = list[tuple[str, str | None]]
+
+
+def _pdf_decoded_span_lines[Span: tuple[Any, ...]](
+    page: Any,
+    span_lines: list[list[Span]],
+    *,
+    extraction: dict[str, Any],
+    ocr_text: str,
+) -> list[list[Span]]:
+    """``span_lines`` (``_pdf_layer_lines``: each span's text, then its paint and font
+    name, and whatever else it records) with the codes of shifted fonts decoded.
+
+    The characters MuPDF has no Unicode for (``_pdf_unmapped_characters``) are decoded in
+    each font whose codes the OCR text shows to be a constant shift from ASCII
+    (``_pdf_font_code_shifts``), so the font's spans no longer hold control characters
+    and ``_without_garbled_spans`` keeps them. Only the fonts ``_pdf_undecodable_fonts``
+    leaves are tried. A line is decoded only when every unmapped (or unmatched) character
+    in it can be, into printable ASCII, and no span of it still holds a control character
+    once decoded (a mapped font's, whose map gives one): one value can run across fonts
+    and spans (AL-20-0004 page 4 writes "03/01/2020" as "0" and "/01/2020" in one font and
+    "3" in another), and decoding part of it would leave a fragment, as would
+    ``_without_garbled_spans`` leaving out a span that still holds a control character. Every other line, and every
+    span's paint and font, is unchanged (only a span's text is replaced), and so is every
+    line of a page with no such font. ``_pdf_page_text`` decodes after
+    ``_with_layer_marks`` has placed the marks the spans lack, since it places them against
+    the text output as printed. The characters are read from the ``rawdict`` output, which
+    has the ``dict`` output's lines and spans; if it does not (or a mark has been put into
+    a span), nothing is decoded.
+    """
+    sort = bool(extraction.get("sort_text"))
+    flags = _pdf_text_flags(extraction, default=fitz.TEXTFLAGS_TEXT)
+    unflagged = _pdf_unmapped_characters(page, sort=sort, flags=flags)
+    if not any(any(at_origin) for at_origin in unflagged.values()):
+        return span_lines
+    data = page.get_text("rawdict", sort=sort, flags=flags)
+    raw_lines = [
+        [list(span.get("chars", ())) for span in line.get("spans", ())]
+        for block in data.get("blocks", ())
+        for line in block.get("lines", ())
+    ]
+    if [["".join(str(c["c"]) for c in chars) for chars in line] for line in raw_lines] != [
+        [span[0] for span in spans] for spans in span_lines
+    ]:
+        return span_lines
+    drawn: Counter[tuple[float, float]] = Counter(
+        (float(char["origin"][0]), float(char["origin"][1]))
+        for line in raw_lines
+        for chars in line
+        for char in chars
+    )
+    seen: Counter[tuple[float, float]] = Counter()
+    values: list[list[list[tuple[str, str, bool | None]]]] = []
+    for line, spans in zip(raw_lines, span_lines, strict=True):
+        line_values: list[list[tuple[str, str, bool | None]]] = []
+        for chars, span in zip(line, spans, strict=True):
+            font = str(span[2])
+            span_values: list[tuple[str, str, bool | None]] = []
+            for char in chars:
+                origin = (float(char["origin"][0]), float(char["origin"][1]))
+                occurrence = seen[origin]
+                seen[origin] += 1
+                value = str(char["c"])
+                status = _pdf_unmapped_status(
+                    value, unflagged.get(origin), drawn[origin], occurrence
+                )
+                span_values.append((value, font, status))
+            line_values.append(span_values)
+        values.append(line_values)
+    refused = _pdf_undecodable_fonts(page, values)
+    lines: list[list[_LayerChars]] = []
+    line_statuses: list[list[bool | None]] = []
+    for line_values in values:
+        undecoded = refused | {
+            font
+            for span in line_values
+            for value, font, status in span
+            if status is None or (not status and value != " ")
+        }
+        lines.append(
+            [
+                [
+                    (value, font if status and font not in undecoded else None)
+                    for value, font, status in span
+                ]
+                for span in line_values
+            ]
+        )
+        line_statuses.append([status for span in line_values for _, _, status in span])
+    shifts = _pdf_font_code_shifts(
+        [[char for span in line for char in span] for line in lines], ocr_text
+    )
+    if not shifts:
+        return span_lines
+    decoded_lines: list[list[Span]] = []
+    for line_spans, statuses, spans in zip(lines, line_statuses, span_lines, strict=True):
+        texts = [_pdf_decoded_layer_line(chars, shifts) for chars in line_spans]
+        if (
+            not any(font in shifts for chars in line_spans for _, font in chars)
+            or any(
+                status is not False and (font is None or font not in shifts)
+                for (_, font), status in zip(
+                    (char for chars in line_spans for char in chars), statuses, strict=True
+                )
+            )
+            or any(text is None for text in texts)
+            or any(_has_control_character(str(text)) for text in texts)
+        ):
+            decoded_lines.append(spans)
+            continue
+        decoded_lines.append(
+            [cast(Span, (text, *span[1:])) for text, span in zip(texts, spans, strict=True)]
+        )
+    return decoded_lines
+
+
+def _pdf_undecodable_fonts(
+    page: Any, values: list[list[list[tuple[str, str, bool | None]]]]
+) -> set[str]:
+    """The span font names whose unmapped characters on the page are not decoded at all.
+
+    ``values`` holds each line's spans' characters, with font name and unmapped status
+    (``_pdf_unmapped_status``). A font with unmapped characters is decoded only when:
+
+    - its name is not "", and exactly one font object the page's text can be drawn in
+      carries it (``_pdf_font_objects``): two unmapped fonts of one name can number their
+      glyphs differently, and MuPDF names "" the text of a font it can't load and text drawn
+      with no font, which have no font object to count;
+    - that object is a Type0 font, whose codes are CIDs, and its /W array
+      (``_pdf_cid_font_widths``) gives a width for every code it draws unmapped on the page,
+      and leaves some code between the least and the greatest of those without one. A font
+      that numbers its glyphs in the order a document first uses them has a glyph for every
+      code in that range; a font whose codes keep the glyph order of the font it was cut
+      from (every shifted font found: Minion Pro, Arial, Times New Roman) lacks the glyphs
+      its subset left out there.
+    """
+    unmapped: dict[str, set[str]] = {}
+    for line in values:
+        for span in line:
+            for value, font, status in span:
+                if status:
+                    unmapped.setdefault(font, set()).add(value)
+    if not unmapped:
+        return set()
+    objects = _pdf_font_objects(page)
+    refused: set[str] = set()
+    for font, chars in unmapped.items():
+        xrefs = (objects or {}).get(font, set())
+        if not font or len(xrefs) != 1 or any(len(char) != 1 for char in chars):
+            refused.add(font)
+            continue
+        widths = _pdf_cid_font_widths(page.parent, next(iter(xrefs)))
+        codes = sorted(ord(char) for char in chars)
+        if (
+            widths is None
+            or not all(any(first <= code <= last for first, last in widths) for code in codes)
+            or any(first <= codes[0] and codes[-1] <= last for first, last in widths)
+        ):
+            refused.add(font)
+    return refused
+
+
+def _pdf_unmapped_characters(
+    page: Any, *, sort: bool, flags: int
+) -> dict[tuple[float, float], tuple[bool, ...]]:
+    """For each origin (x, y) where the layer draws a character, whether each character
+    drawn there, in drawing order, is one MuPDF has no Unicode for.
+
+    With TEXT_CID_FOR_UNKNOWN_UNICODE (in ``fitz.TEXTFLAGS_TEXT``) MuPDF prints such a
+    character as its character code; without the flag it prints U+FFFD. This is the read
+    without the flag. The two reads can break the same characters into different spans and
+    lines, so characters are matched by where they are drawn (``_pdf_unmapped_status``).
+    Without the flag in ``flags`` no code is printed as a character, and nothing is
+    unmapped.
+    """
+    cid_flag = int(fitz.TEXT_CID_FOR_UNKNOWN_UNICODE)
+    if not flags & cid_flag:
+        return {}
+    data = page.get_text("rawdict", sort=sort, flags=flags & ~cid_flag)
+    at: dict[tuple[float, float], list[bool]] = {}
+    for block in data.get("blocks", ()):
+        for line in block.get("lines", ()):
+            for span in line.get("spans", ()):
+                for char in span.get("chars", ()):
+                    origin = (float(char["origin"][0]), float(char["origin"][1]))
+                    at.setdefault(origin, []).append(char["c"] == "\ufffd")
+    return {origin: tuple(unmapped) for origin, unmapped in at.items()}
+
+
+def _pdf_unmapped_status(
+    value: str, at_origin: tuple[bool, ...] | None, drawn: int, occurrence: int
+) -> bool | None:
+    """Whether a character of the read with TEXT_CID_FOR_UNKNOWN_UNICODE is unmapped.
+
+    ``at_origin`` is what ``_pdf_unmapped_characters`` gives for its origin, ``drawn`` how
+    many characters this read draws there, and ``occurrence`` which of them it is. False
+    when the other read draws nothing there (MuPDF's own spacing). None when the reads draw
+    a different number of characters there, or both mapped and unmapped ones, whose order
+    they need not share: which is which is unknown. A character printed as U+FFFD with the
+    flag is not a code, so it is never unmapped.
+    """
+    if at_origin is None:
+        return False
+    if len(at_origin) != drawn or len(set(at_origin)) > 1:
+        return None
+    return at_origin[occurrence] and value != "\ufffd"
+
+
+def _pdf_font_objects(page: Any) -> dict[str, set[int]] | None:
+    """Each span font name with the font objects on the page that can carry it, or None
+    when that is not known for certain.
+
+    The fonts are those the page's text can be drawn in (``_pdf_drawn_font_xrefs``) and
+    those ``page.get_fonts(full=True)`` lists, each under the names MuPDF can give its
+    spans (``_pdf_font_names``). None when a font is written inline, can't be named or
+    can't be read, or the fonts can't all be found: then no name has one object, and
+    nothing is decoded.
+    """
+    try:
+        drawn = _pdf_drawn_font_xrefs(page)
+        if drawn is None:
+            return None
+        for font in page.get_fonts(full=True):
+            if not font[0]:
+                return None  # written inline, without an object number
+            drawn.add(int(font[0]))
+        objects: dict[str, set[int]] = {}
+        for xref in sorted(drawn):
+            names = _pdf_font_names(page, xref)
+            if names is None:
+                return None
+            for name in names:
+                objects.setdefault(name, set()).add(xref)
+        return objects
+    except Exception:  # MuPDF and its bindings raise several types; only decoding is at stake
+        return None
+
+
+def _pdf_font_span_name_counts(page: Any) -> Counter[str]:
+    """How many font objects on the page can carry each span font name
+    (``_pdf_font_objects``); empty when that is not known."""
+    objects = _pdf_font_objects(page)
+    if objects is None:
+        return Counter()
+    return Counter({name: len(xrefs) for name, xrefs in objects.items()})
+
+
+# The font types MuPDF loads by their /Subtype, rather than guessing.
+_PDF_NAMED_SUBTYPES = frozenset({"/Type0", "/Type1", "/MMType1", "/TrueType", "/Type3"})
+
+
+def _pdf_font_names(page: Any, xref: int) -> set[str] | None:
+    """The names MuPDF can give the spans of font object ``xref``, or None when its
+    dictionary does not say: a /Subtype or /BaseFont, or a Type0 font's descendant, that is
+    not written as a name in it, or a /Subtype other than /Type0, /Type1, /MMType1,
+    /TrueType and /Type3. MuPDF guesses the type of any other font, from /CharProcs (Type3)
+    or /DescendantFonts (Type0), and names its spans as it names that type's.
+
+    A font's span name is its /BaseFont, a Type0 font's that of its descendant (not the
+    Type0 font's own, which can end in -Identity-H), and a Type3 font's its /Name (an
+    indirect one resolved): MuPDF keeps the first 31 bytes and PyMuPDF reads them as
+    Latin-1, less a six-letter subset prefix (``_pdf_mupdf_font_name``), which can leave
+    "" ("/ABCDEF+", or "/"). A Type3 font with no /Name at all is "Unnamed-T3" under
+    PyMuPDF 1.26 and "Type3 (<n> 0 R)" under 1.28; both are given. (Checked on built
+    PDFs under both versions.)
+    """
+    document = page.parent
+    kind, subtype = document.xref_get_key(xref, "Subtype")
+    if kind != "name" or subtype not in _PDF_NAMED_SUBTYPES:
+        return None
+    if subtype == "/Type3":
+        kind, value = document.xref_get_key(xref, "Name")
+        if kind == "name":
+            name = _pdf_mupdf_font_name(value[1:].encode("utf-8", "surrogateescape"))
+        elif kind == "xref":
+            printed = str(document.xref_object(_pdf_reference(document, value))).strip()
+            if not printed.startswith("/"):
+                return None
+            name = _pdf_mupdf_font_name(_pdf_printed_name(printed))
+        elif kind == "null":
+            return {"Unnamed-T3", f"Type3 ({xref} 0 R)"}
+        else:
+            return None
+        return {name}
+    if subtype == "/Type0":
+        descendant = _pdf_descendant(document, xref)
+        if descendant is None:
+            return None
+        xref = descendant
+    kind, base = document.xref_get_key(xref, "BaseFont")
+    if kind != "name":
+        return None
+    return {_pdf_mupdf_font_name(base[1:].encode("utf-8", "surrogateescape"))}
+
+
+def _pdf_mupdf_font_name(name: bytes) -> str:
+    """The span name PyMuPDF gives a font whose name (escapes undone) is ``name``: MuPDF
+    keeps 31 bytes, read as Latin-1, less any six characters before a "+"."""
+    text = name[:31].decode("latin-1")
+    return text[7:] if text.find("+") == 6 else text
+
+
+_PDF_GENERATION_REFERENCE = re.compile(r"(\d+)\s+(\d+)\s+R")
+# The most resource holders (the page, forms, patterns, soft-mask groups and appearance
+# streams) and graphics-state objects ``_pdf_drawn_font_xrefs`` walks on a page.
+_PDF_RESOURCE_WALK = 4096
+
+
+def _pdf_object_references(text: str) -> list[int] | None:
+    """The object numbers ``text`` (a PDF object as PyMuPDF prints it) refers to, or None
+    when a reference is printed with a generation other than 0, which a lookup by number
+    may not reach."""
+    references = _PDF_GENERATION_REFERENCE.findall(text)
+    if any(generation != "0" for _, generation in references):
+        return None
+    return [int(number) for number, _ in references]
+
+
+_PDF_SOLE_REFERENCE = re.compile(r"\[\s*(\d+)\s+0\s+R\s*\]")
+
+
+def _pdf_descendant(document: Any, font: int) -> int | None:
+    """The object number of a Type0 font's descendant, or None when /DescendantFonts is not
+    an array of exactly one reference (a descendant written inline, say)."""
+    kind, value = document.xref_get_key(font, "DescendantFonts")
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value)))
+    elif kind != "array":
+        return None
+    match = _PDF_SOLE_REFERENCE.fullmatch(value.strip())
+    if match is None or not 0 < int(match.group(1)) < document.xref_length():
+        return None
+    return int(match.group(1))
+
+
+# A graphics state's /Font entry: [font size], written in it (the font, group 1) or as an
+# object of its own (the array's reference, group 2).
+_PDF_STATE_FONT = re.compile(r"/Font\s*(?:\[\s*(<<|\d+\s+\d+\s+R)|(\d+\s+\d+\s+R))")
+# The font of such an array object.
+_PDF_STATE_FONT_ARRAY = re.compile(r"\[\s*(<<|\d+\s+\d+\s+R)")
+
+
+def _pdf_reference(document: Any, value: str) -> int:
+    """The object number of the single reference ``value``; LookupError when it is not one
+    reference of generation 0 to an object of the file."""
+    references = _pdf_object_references(value)
+    if references is None or len(references) != 1 or not 0 < references[0] < document.xref_length():
+        raise LookupError(value)
+    return references[0]
+
+
+def _pdf_drawn_font_xrefs(page: Any) -> set[int] | None:
+    """The font objects the page's text can be drawn in, by object number, or None when
+    they can't all be found.
+
+    The walk starts from the page's resources (those of the nearest page-tree node that has
+    them) and from the appearance streams of every annotation in the page's /Annots,
+    whatever its subtype. From each resource holder it takes the fonts in Resources/Font
+    and walks on into the forms in Resources/XObject and the tiling patterns in
+    Resources/Pattern. From Resources/ExtGState it follows every reference, and in every
+    object it reaches, a stream's dictionary included, it takes the font a /Font entry
+    names (the array written there or as an object of its own). A stream (a soft-mask
+    group, say) is walked as a holder too, and every object's references are followed in
+    turn (a soft-mask dictionary written as a stream holds its group in /G), whatever the
+    object looks like. MuPDF draws text only in the fonts a /Tf name selects from a
+    holder's Resources/Font and a graphics state's /Font entry selects, whatever their
+    /Type, and extracts text drawn in all of those holders; ``get_fonts`` lists fonts of
+    the page and its forms only.
+
+    None when a font or an annotation is written inline, without an object number; when
+    an annotation other than a Link or Popup (its /Subtype resolved once) has no stored
+    appearance MuPDF uses (``_pdf_stored_appearance``), or is a signature widget MuPDF reads
+    as unsigned (``_pdf_unsigned_signature``), or the form's /NeedAppearances is anything
+    but absent or false, since MuPDF then draws an appearance it makes itself, in fonts no
+    object carries; when a
+    reference is not one of generation 0 to an object of the file; when something can't
+    be read; when the page tree is deeper than 64 nodes above the page without resources;
+    or when there are more than _PDF_RESOURCE_WALK distinct holders and graphics-state
+    objects to walk.
+    """
+    try:
+        return _pdf_walk_drawn_fonts(page)
+    except Exception:  # MuPDF and its bindings raise several types; only decoding is at stake
+        return None
+
+
+def _pdf_walk_drawn_fonts(page: Any) -> set[int] | None:
+    document = page.parent
+    count = document.xref_length()
+
+    def text_of(kind: str, value: str) -> str:
+        if kind == "xref":
+            return str(document.xref_object(_pdf_reference(document, value)))
+        return value if kind in ("dict", "array") else ""
+
+    def references(text: str) -> list[int]:
+        found = _pdf_object_references(text)
+        if found is None or any(not 0 < number < count for number in found):
+            raise LookupError(text)
+        return found
+
+    holders: list[int] = []
+    holder: int | None = page.xref
+    for _ in range(64):  # resources inherited from the page tree
+        if document.xref_get_key(holder, "Resources")[0] != "null":
+            break
+        kind, parent = document.xref_get_key(holder, "Parent")
+        if kind != "xref":
+            holder = None  # no resources on the page or above it
+            break
+        holder = _pdf_reference(document, parent)
+    else:
+        return None  # a page tree deeper than the walk follows
+    if holder is not None:
+        holders.append(holder)
+    annotations = text_of(*document.xref_get_key(page.xref, "Annots"))
+    if "<<" in annotations:
+        return None  # an annotation written inline
+    kind, value = document.xref_get_key(document.pdf_catalog(), "AcroForm/NeedAppearances")
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value))).strip()
+    # Appearances MuPDF may make anew (1.28 remakes widgets'): anything but an absent or
+    # false /NeedAppearances, a chain of references included, which MuPDF reads as false.
+    remade = value not in ("null", "false")
+    for annotation in references(annotations):
+        kind, subtype = document.xref_get_key(annotation, "Subtype")
+        if kind == "xref":  # MuPDF resolves an indirect /Subtype
+            subtype = str(document.xref_object(_pdf_reference(document, subtype))).strip()
+        if subtype not in ("/Link", "/Popup") and (
+            remade
+            or not _pdf_stored_appearance(document, annotation)
+            or (subtype == "/Widget" and _pdf_unsigned_signature(document, annotation))
+        ):
+            return None  # MuPDF draws an appearance it makes itself, in fonts it chooses
+        for appearance in references(text_of(*document.xref_get_key(annotation, "AP"))):
+            if document.xref_is_stream(appearance):
+                holders.append(appearance)
+            else:  # a dictionary of appearance states
+                holders.extend(references(str(document.xref_object(appearance))))
+    fonts: set[int] = set()
+    walked: set[int] = set()  # resource holders
+    followed: set[int] = set()  # objects a graphics state reaches
+    distinct: set[int] = set()  # either, for the limit
+
+    def visit(number: int) -> bool:
+        """Whether the walk may take one more distinct object."""
+        if number not in distinct and len(distinct) >= _PDF_RESOURCE_WALK:
+            return False
+        distinct.add(number)
+        return True
+
+    def state_fonts(text: str) -> None:
+        """Take the fonts a graphics state's /Font entries in ``text`` name."""
+        for entry, array in _PDF_STATE_FONT.findall(text):
+            if array:
+                printed = str(document.xref_object(_pdf_reference(document, array))).strip()
+                match = _PDF_STATE_FONT_ARRAY.match(printed)
+                if match is None:
+                    continue  # not an array, by which MuPDF selects no font
+                entry = match.group(1)
+            if entry == "<<":
+                raise LookupError(text)  # a font written inline
+            fonts.update(references(entry))
+
+    states: list[int] = []
+    while holders or states:
+        if states:  # an object a graphics state refers to
+            state = states.pop()
+            if state in followed:
+                continue
+            if not visit(state):
+                return None
+            followed.add(state)
+            text = str(document.xref_object(state))  # a stream's dictionary
+            if document.xref_is_stream(state):
+                holders.append(state)  # a soft-mask group, say: walked as a holder too
+            state_fonts(text)  # a graphics state written as a stream as well
+            states.extend(references(text))
+            continue
+        holder = holders.pop()
+        if holder in walked:
+            continue
+        if not visit(holder):
+            return None
+        walked.add(holder)
+        kind, value = document.xref_get_key(holder, "Resources")
+        if kind == "xref":
+            base, prefix = _pdf_reference(document, value), ""
+        elif kind == "dict":
+            base, prefix = holder, "Resources/"
+        else:
+            continue
+        for key in ("Font", "XObject", "Pattern", "ExtGState"):
+            text = text_of(*document.xref_get_key(base, prefix + key))
+            if key == "Font":
+                if "<<" in text[2:]:
+                    return None  # a font written inline
+                fonts.update(references(text))
+            elif key == "ExtGState":
+                state_fonts(text)
+                states.extend(references(text))
+            else:  # forms and tiling patterns; images and shadings have no resources
+                holders.extend(references(text))
+    return fonts
+
+
+def _pdf_stored_appearance(document: Any, annotation: int) -> bool:
+    """Whether MuPDF draws annotation ``annotation`` from an appearance stream the file
+    stores: its /AP /N is a stream, or a dictionary whose entry under the annotation's /AS
+    is one. Otherwise MuPDF makes an appearance itself (a FreeText, Stamp, captioned Line or
+    text-field Widget annotation's, with text), in base-14 fonts or others it chooses, which
+    no font object in the file carries. Checked under PyMuPDF 1.26.7 and 1.28.2."""
+    kind, value = document.xref_get_key(annotation, "AP/N")
+    if kind == "xref" and document.xref_is_stream(_pdf_reference(document, value)):
+        return True
+    if kind not in ("xref", "dict"):
+        return False
+    kind, state = document.xref_get_key(annotation, "AS")
+    if kind != "name" or not re.fullmatch(r"/[A-Za-z0-9_.+-]+", state):
+        return False
+    kind, value = document.xref_get_key(annotation, "AP/N/" + state[1:])
+    return kind == "xref" and bool(document.xref_is_stream(_pdf_reference(document, value)))
+
+
+def _pdf_field_entry(document: Any, field: int, key: str) -> tuple[int, str, str] | None:
+    """Form field ``field``'s entry ``key``, inherited through /Parent as MuPDF reads it:
+    the object that holds it, and the entry's kind and value as PyMuPDF prints them
+    (("null", "null") when no node holds it). None when the chain is longer than 64 nodes
+    or not a chain of references."""
+    node = field
+    for _ in range(64):
+        kind, value = document.xref_get_key(node, key)
+        if kind != "null":
+            return node, kind, value
+        kind, parent = document.xref_get_key(node, "Parent")
+        if kind == "null":
+            return node, "null", "null"
+        if kind != "xref":
+            return None
+        node = _pdf_reference(document, parent)
+    return None
+
+
+def _pdf_unsigned_signature(document: Any, widget: int) -> bool:
+    """Whether widget ``widget`` is a signature field MuPDF reads as unsigned, whose
+    appearance it then makes itself ("SIGN" in NimbusSans-Regular), whatever is stored:
+    its field type, inherited through /Parent, is /Sig, and its value, inherited likewise,
+    is not a dictionary whose /Type is absent or /Sig. A chain that can't be followed counts
+    as unsigned. A /Sig field type written as an object of its own, which MuPDF does not
+    read as a signature, is resolved and judged by its value like a direct one: signed, the
+    page is decoded, as MuPDF draws the stored appearance; unsigned, it counts as unsigned,
+    which only refuses more. Checked under PyMuPDF 1.26.7 and 1.28.2."""
+    field_type = _pdf_field_entry(document, widget, "FT")
+    if field_type is None:
+        return True
+    _, kind, value = field_type
+    if kind == "xref":
+        value = str(document.xref_object(_pdf_reference(document, value))).strip()
+    elif kind != "name":
+        return False
+    if value != "/Sig":
+        return False
+    signature = _pdf_field_entry(document, widget, "V")
+    if signature is None:
+        return True
+    node, kind, value = signature
+    if kind == "xref":
+        node, kind = _pdf_reference(document, value), "object"
+        if not str(document.xref_object(node)).strip().startswith("<<"):
+            return True
+        kind, value = document.xref_get_key(node, "Type")
+    elif kind == "dict":
+        kind, value = document.xref_get_key(node, "V/Type")
+    else:
+        return True
+    return not (kind == "null" or (kind, value) == ("name", "/Sig"))
+
+
+def _pdf_cid_font_widths(document: Any, font: int) -> list[tuple[int, int]] | None:
+    """The code ranges a Type0 font's descendant gives widths for in its /W array, or None
+    when the font is not a Type0 font or its /W is missing or not read."""
+    try:
+        if document.xref_get_key(font, "Subtype") != ("name", "/Type0"):
+            return None
+        descendant = _pdf_descendant(document, font)
+        if descendant is None:
+            return None
+        kind, value = document.xref_get_key(descendant, "W")
+        if kind == "xref":
+            value = document.xref_object(_pdf_reference(document, value))
+        elif kind != "array":
+            return None
+        return _pdf_width_ranges(value)
+    except Exception:  # MuPDF and its bindings raise several types; only decoding is at stake
+        return None
+
+
+_PDF_WIDTH_TOKEN = re.compile(r"\[|\]|[-+]?(?:\d+\.?\d*|\.\d+)|\S")
+
+
+def _pdf_width_ranges(text: str) -> list[tuple[int, int]] | None:
+    """The code ranges a CIDFont /W array (as PyMuPDF prints it) gives widths for, merged
+    where they meet: each "c [w1 ... wn]" covers c to c + n - 1 and each "first last w"
+    first to last. None when the array is not of that form (an indirect width, say) or
+    covers a code outside 0 to 0xFFFF, beyond any two-byte CID."""
+    tokens = _PDF_WIDTH_TOKEN.findall(text.strip())
+    if len(tokens) < 2 or tokens[0] != "[" or tokens[-1] != "]":
+        return None
+    tokens = tokens[1:-1]
+    ranges: list[tuple[int, int]] = []
+    index = 0
+    try:
+        while index < len(tokens):
+            first = int(tokens[index])
+            if tokens[index + 1] == "[":
+                end = tokens.index("]", index + 2)
+                widths = tokens[index + 2 : end]
+                if any(token == "[" for token in widths):
+                    return None
+                for width in widths:
+                    float(width)
+                last = first + len(widths) - 1
+                index = end + 1
+            else:
+                last = int(tokens[index + 1])
+                float(tokens[index + 2])
+                index += 3
+            if not 0 <= first <= last <= 0xFFFF:
+                return None
+            ranges.append((first, last))
+    except (IndexError, ValueError):
+        return None
+    merged: list[tuple[int, int]] = []
+    for first, last in sorted(ranges):
+        if merged and first <= merged[-1][1] + 1:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], last))
+        else:
+            merged.append((first, last))
+    return merged
+
+
+# A Type0 font with Identity-H codes (glyph ids) and no ToUnicode map can leave MuPDF with
+# no Unicode for its characters, and their codes are printed instead. On the CMS
+# state-plan forms that typed dates and names in such fonts, the codes are a constant shift
+# from ASCII: Minion Pro's (CFF) are 31 below it ("\x01" for a space, "\x17\x10\x13\x15"
+# for "6/24"), Arial's and Times New Roman's (TrueType) 29 below. A shift decodes only into
+# printable ASCII, _PDF_SHIFT_FIRST to _PDF_SHIFT_LAST. A font's shift needs evidence that
+# chance does not give: decoded lines the OCR text reads, each with at least
+# _PDF_SHIFT_LINE_LETTERS decoded letters or digits, together at least _PDF_SHIFT_LETTERS,
+# holding at least _PDF_SHIFT_GLYPHS distinct ones from at least two of digits, capitals
+# and small letters. The classes keep a short run of codes numbered in order of use
+# ("1234", or "1122" at codes 0 to 3) from passing for a shift; but a font that numbers its
+# glyphs in the order a document first uses them can still fit one shift wherever its
+# evidence glyphs were first used in steps that match their ASCII distances ("89:;<=>?@AB"
+# first used in that order), and the shift is then wrong for every other glyph. Such fonts
+# are not decoded at all (``_pdf_undecodable_fonts``: only Type0 fonts whose /W leaves a
+# gap). On the 1,041 overlay pages of the 2026-10-13 OCR sweep (328 retained PDFs), every
+# right shift found has evidence from two or more classes; the weakest has five distinct
+# glyphs on two lines of four (WA-14-0003's "10 P & I" and "12 P & I").
+_PDF_SHIFT_FIRST = 0x20
+_PDF_SHIFT_LAST = 0x7E
+_PDF_SHIFT_LINE_LETTERS = 4
+_PDF_SHIFT_LETTERS = 8
+_PDF_SHIFT_GLYPHS = 4
+_PDF_SHIFT_CLASSES = 2
+
+
+def _pdf_shift_letters(chars: _LayerChars, shift: int) -> int:
+    """How many of the line's unmapped characters ``shift`` decodes to a letter or digit."""
+    return sum(1 for char, font in chars if font is not None and chr(ord(char) + shift).isalnum())
+
+
+def _pdf_glyph_class(char: str) -> str:
+    return "digit" if char.isdigit() else "capital" if char.isupper() else "small"
+
+
+def _pdf_font_code_shifts(lines: list[_LayerChars], ocr_text: str) -> dict[str, int]:
+    """Each font's code shift, for the fonts whose unmapped characters the OCR text decodes.
+
+    ``lines`` holds each layer line's characters (``_LayerChars``). A shift k reads code c
+    as chr(c + k). Evidence for font f and shift k is a line whose unmapped characters are
+    all f's and all decode by k into printable ASCII, which so decoded is a line the OCR
+    text reads (``_ocr_read_line``), with at least _PDF_SHIFT_LINE_LETTERS letters or
+    digits among the decoded characters. Font f's shift is k when no other shift has
+    evidence for f, and k's distinct evidence lines (each counted once, at the most letters
+    or digits any line decoding to it has) hold at least _PDF_SHIFT_LETTERS decoded letters
+    or digits, at least _PDF_SHIFT_GLYPHS distinct ones, from at least _PDF_SHIFT_CLASSES
+    of digits, capitals and small letters. A shift of 0 (the codes are the text) counts as
+    a shift, so it makes any other ambiguous, but it is not returned: such a font is left
+    as it is.
+    """
+    reading = _ocr_reading(ocr_text)
+    evidence: dict[str, dict[int, dict[str, int]]] = {}
+    glyphs: dict[tuple[str, int], set[str]] = {}
+    for chars in lines:
+        fonts = {font for _, font in chars if font is not None}
+        if len(fonts) != 1:
+            continue
+        (font,) = fonts
+        codes = [ord(char) for char, char_font in chars if char_font is not None]
+        for shift in range(_PDF_SHIFT_FIRST - min(codes), _PDF_SHIFT_LAST - max(codes) + 1):
+            letters = _pdf_shift_letters(chars, shift)
+            if letters < _PDF_SHIFT_LINE_LETTERS:
+                continue
+            decoded = _pdf_decoded_layer_line(chars, {font: shift}) or ""
+            if _ocr_read_line(decoded, reading):
+                line = " ".join(decoded.split())
+                read = evidence.setdefault(font, {}).setdefault(shift, {})
+                read[line] = max(read.get(line, 0), letters)
+                glyphs.setdefault((font, shift), set()).update(
+                    decoded_char
+                    for char, char_font in chars
+                    if char_font is not None
+                    and (decoded_char := chr(ord(char) + shift)).isalnum()
+                )
+    shifts: dict[str, int] = {}
+    for font, by_shift in evidence.items():
+        if len(by_shift) != 1:
+            continue
+        ((shift, read_lines),) = by_shift.items()
+        seen = glyphs[(font, shift)]
+        if (
+            shift
+            and sum(read_lines.values()) >= _PDF_SHIFT_LETTERS
+            and len(seen) >= _PDF_SHIFT_GLYPHS
+            and len({_pdf_glyph_class(char) for char in seen}) >= _PDF_SHIFT_CLASSES
+        ):
+            shifts[font] = shift
+    return shifts
+
+
+def _pdf_decoded_layer_line(chars: _LayerChars, shifts: dict[str, int]) -> str | None:
+    """The text of a line's or span's characters (``_LayerChars``) with each unmapped
+    character of a font in ``shifts`` decoded, one for one; every other character is kept
+    as it is. None when one of those characters does not decode into printable ASCII: its
+    font's codes are known not to be text, so the text is garbled.
+    """
+    text: list[str] = []
+    for char, font in chars:
+        shift = shifts.get(font) if font is not None else None
+        if not shift:
+            text.append(char)
+            continue
+        code = ord(char) + shift
+        if not _PDF_SHIFT_FIRST <= code <= _PDF_SHIFT_LAST:
+            return None
+        text.append(chr(code))
+    return "".join(text)
+
+
+def _letter_runs(text: str) -> list[str]:
+    """Maximal runs of letters (``str.isalpha``) after NFKC, not yet lower-cased
+    (lower-casing can lengthen a run: "\u0130" becomes two characters), so lengths are
+    counted on these."""
+    runs: list[str] = []
+    run = ""
+    for char in unicodedata.normalize("NFKC", text):
+        if char.isalpha():
+            run += char
+            continue
+        if run:
+            runs.append(run)
+        run = ""
+    if run:
+        runs.append(run)
+    return runs
+
+
+def _recognition_layer_failed(invisible_lines: list[str], ocr_text: str) -> bool:
+    """Whether an invisible recognition layer disagrees with the OCR text almost everywhere.
+
+    True when the layer has at least _RECOGNITION_MIN_WORDS distinct words (letter runs of
+    _RECOGNITION_WORD_LETTERS or more, then lower-cased) and fewer than a third of them occur in
+    the OCR text: as one of its letter runs, or, at _RECOGNITION_RUN_LETTERS or more
+    letters, inside its letters run together. Lines with a control character
+    (``_has_control_character``) do not count.
+    """
+    # Each word with its most letters before lower-casing ("\u0130" lower-cases to two).
+    words: dict[str, int] = {}
+    for line in invisible_lines:
+        if _has_control_character(line):
+            continue
+        for run in _letter_runs(line):
+            if len(run) >= _RECOGNITION_WORD_LETTERS:
+                words[run.lower()] = max(words.get(run.lower(), 0), len(run))
+    if len(words) < _RECOGNITION_MIN_WORDS:
+        return False
+    ocr_runs = [run.lower() for run in _letter_runs(ocr_text)]
+    ocr_words = set(ocr_runs)
+    ocr_letters = "".join(ocr_runs)
+    found = sum(
+        1
+        for word, letters in words.items()
+        if word in ocr_words or (letters >= _RECOGNITION_RUN_LETTERS and word in ocr_letters)
+    )
+    return found * 3 < len(words)
+
+
+def _without_failed_recognition_lines(
+    lines: list[tuple[str, bool]], ocr_text: str
+) -> list[str]:
+    """The text-layer lines worth merging into ``ocr_text``, from (text, painted) pairs.
+
+    A line holding a control character (``_has_control_character``) is a garbled font's
+    and is dropped (``_pdf_page_text`` has already left garbled spans out of the PDF's
+    lines). Other painted lines were typed onto the scan, and every one is kept. Invisible lines are a recognition
+    layer, an earlier OCR of the same image, and two more kinds are dropped: a fragment
+    (fewer than _RECOGNITION_FRAGMENT_LETTERS letters and no digit, counted after NFKC
+    normalization, such as "cc:" or a stray "L"), and every invisible line of a failed
+    layer (``_recognition_layer_failed``), such as a sideways slide read as "Ckm" and "rML",
+    or a signature string written one code above ASCII ("Ejhjubmmz!tjhofe!cz" for "Digitally
+    signed by"). The lines kept stay in order.
+    """
+    invisible = [text for text, painted in lines if not painted]
+    failed = _recognition_layer_failed(invisible, ocr_text)
+    kept: list[str] = []
+    for text, painted in lines:
+        if _has_control_character(text):
+            continue
+        if not painted:
+            letters = sum(len(run) for run in _letter_runs(text))
+            fragment = letters < _RECOGNITION_FRAGMENT_LETTERS and not any(
+                char.isdigit() for char in unicodedata.normalize("NFKC", text)
+            )
+            if failed or fragment:
+                continue
+        kept.append(text)
+    return kept
 
 
 def _pdf_ocr_dpi(extraction: dict[str, Any]) -> int:
@@ -3330,7 +5072,45 @@ def _extract_html_blocks(
     source_url: str,
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
+    drop_navigation: bool = True,
 ) -> tuple[_DocumentBlock, ...]:
+    """Segment an HTML page into blocks.
+
+    A positional block (``block-N``, from the heading walk, a WebWorks page or the
+    whole-root fallback) that is the page's navigation is dropped
+    (``content_quality.is_navigation_block``, read against the navigation strings
+    of ``content`` itself, the bytes the scope retains). Its ordinal is used up, so
+    the blocks after it keep the paths an unfiltered extraction gives them. Nothing
+    is dropped from a page whose manifest declares its sections
+    (``segmentation: labeled_sections`` or ``anchor_range``), even when it is read
+    as a WebWorks page. ``html_keep_navigation_blocks: true`` keeps every block the
+    filter would drop. A caller whose ``content`` is not the retained source turns
+    the filter off, so the filter drops only rows the release content check, which
+    reads the retained source, would flag: ``_extract_json_html_blocks`` passes
+    ``drop_navigation=False`` for an HTML field inside a JSON file, and
+    ``scripts/recover_ingest_batch.py`` passes ``html_keep_navigation_blocks`` when
+    it re-encodes the bytes before extracting.
+
+    A manifest can also name a publisher's navigation (``_DeclaredNavigation``):
+    ``html_navigation_selectors`` for elements such as tab or jump links, and
+    ``html_navigation_heading_selectors`` for headings that start a link list.
+    The positional blocks they make up are dropped the same way, ordinal used up,
+    whether or not the check would flag them. Unlike ``html_drop_selectors``,
+    which removes elements before the blocks are numbered (so a block they empty
+    renumbers every block after it), they drop only whole blocks. They are
+    independent of the filter: ``html_keep_navigation_blocks: true`` keeps the
+    blocks the filter would drop and still drops the declared ones.
+    """
+    config = extraction or {}
+    if config.get("segmentation") in {"labeled_sections", "anchor_range"}:
+        _reject_declared_navigation(config, "declares its sections")
+    navigation = (
+        page_navigation(content)
+        if drop_navigation
+        and not config.get("html_keep_navigation_blocks")
+        and config.get("segmentation") not in {"labeled_sections", "anchor_range"}
+        else None
+    )
     soup = _html_soup(content, parser=(extraction or {}).get("html_parser"))
     kept_default_drops = set(_html_keep_default_drop_selectors(extraction))
     drop_selectors = [
@@ -3353,8 +5133,16 @@ def _extract_html_blocks(
             source_url=source_url,
             extraction=extraction or {},
         )
-    webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
-    if webworks_blocks:
+    declared = _DeclaredNavigation(root, extraction)
+    webworks_blocks = _extract_webworks_html_blocks(
+        root,
+        title=title,
+        source_url=source_url,
+        navigation=navigation,
+        label_title=fallback_title,
+        declared=declared,
+    )
+    if webworks_blocks is not None:
         return webworks_blocks
     if (extraction or {}).get("segmentation") == "labeled_sections":
         return _extract_labeled_html_section_blocks(
@@ -3363,24 +5151,23 @@ def _extract_html_blocks(
             source_url=source_url,
             extraction=extraction or {},
         )
-    blocks: list[_DocumentBlock] = []
+    blocks = _PositionalBlocks(
+        source_url=source_url, navigation=navigation, label_title=fallback_title
+    )
     heading = title
+    heading_node: Tag | None = None
     parts: list[str] = []
+    nodes: list[Tag] = []
 
     def flush() -> None:
-        nonlocal parts
-        body = _normalize_text("\n\n".join(parts))
-        if body:
-            blocks.append(
-                _DocumentBlock(
-                    kind="block",
-                    ordinal=len(blocks) + 1,
-                    heading=heading,
-                    body=body,
-                    metadata={"source_url": source_url},
-                )
-            )
+        nonlocal parts, nodes
+        blocks.add(
+            heading,
+            _normalize_text("\n\n".join(parts)),
+            declared=declared.drops(heading_node, nodes),
+        )
         parts = []
+        nodes = []
 
     # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
     # lines with a space). The Maryland StatuteText page separates its subsections with
@@ -3402,23 +5189,146 @@ def _extract_html_blocks(
         if node.name in _HEADING_TAGS:
             flush()
             heading = " ".join(text.split())
+            heading_node = node
             continue
         parts.append(text)
+        nodes.append(node)
     flush()
-    if blocks:
-        return tuple(blocks)
-    fallback = _normalize_text(root.get_text(" ", strip=True))
-    if not fallback:
-        return ()
-    return (
-        _DocumentBlock(
-            kind="block",
-            ordinal=1,
-            heading=title,
-            body=fallback,
-            metadata={"source_url": source_url},
-        ),
+    if blocks.position:
+        return blocks.kept()
+    blocks.add(
+        title,
+        _normalize_text(root.get_text(" ", strip=True)),
+        declared=declared.drops(None, [root]),
     )
+    return blocks.kept()
+
+
+class _DeclaredNavigation:
+    """The navigation a manifest names on a publisher's pages.
+
+    ``html_navigation_selectors`` match navigation elements: a positional block
+    whose every string lies inside one is dropped (a tab or jump link, alone or
+    joined to another by "and", in an element the selector matches whole).
+    ``html_navigation_heading_selectors`` match headings: the positional block a
+    matched heading starts is dropped (a "Related Policy" heading over its link
+    list). Each takes a CSS selector or a list of them, read on the content root
+    after the drop selectors ran. Matched elements stay in the tree, so the walk
+    sees the headings and block boundaries an unfiltered extraction sees, and a
+    block with any other text keeps its whole body. Matched elements are known
+    by ``id``; the instance holds them, so no other object can take their ids
+    while it is in use.
+    """
+
+    def __init__(self, root: Tag, extraction: dict[str, Any] | None) -> None:
+        self._matched = (
+            _selected(root, _html_selectors(extraction, "html_navigation_selectors")),
+            _selected(root, _html_selectors(extraction, "html_navigation_heading_selectors")),
+        )
+        self._elements = frozenset(id(node) for node in self._matched[0])
+        self._headings = frozenset(id(node) for node in self._matched[1])
+
+    def drops(self, heading: Tag | None, body: list[Tag]) -> bool:
+        """Whether the block under ``heading`` (a node, or ``None`` for the page title)
+        whose body text nodes are ``body`` is declared navigation."""
+        if heading is not None and _within(heading, self._headings):
+            return True
+        return bool(self._elements) and bool(body) and all(self._holds(node) for node in body)
+
+    def _holds(self, node: Tag) -> bool:
+        if _within(node, self._elements):
+            return True
+        return all(
+            _within(string, self._elements) for string in node.strings if string.strip()
+        )
+
+
+def _html_selectors(extraction: dict[str, Any] | None, key: str) -> tuple[str, ...]:
+    selectors = (extraction or {}).get(key)
+    if not selectors:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
+
+
+def _selected(root: Tag, selectors: tuple[str, ...]) -> tuple[Tag, ...]:
+    return tuple(node for selector in selectors for node in root.select(selector))
+
+
+_DECLARED_NAVIGATION_KEYS = ("html_navigation_selectors", "html_navigation_heading_selectors")
+
+
+def _reject_declared_navigation(extraction: dict[str, Any], reason: str) -> None:
+    """Raise when a manifest declares navigation for a page that has no positional blocks."""
+    declared = [key for key in _DECLARED_NAVIGATION_KEYS if extraction.get(key)]
+    if declared:
+        raise ValueError(
+            f"{', '.join(declared)} drop positional blocks; a manifest that {reason} has none"
+        )
+
+
+def _within(element: Any, ids: frozenset[int]) -> bool:
+    """Whether ``element`` (a tag or a string) is, or lies inside, an element in ``ids``."""
+    if not ids:
+        return False
+    if id(element) in ids:
+        return True
+    return any(id(parent) in ids for parent in element.parents)
+
+
+class _PositionalBlocks:
+    """Number a page's ``block-N`` blocks and drop the ones that are its navigation.
+
+    A block is navigation when the manifest declares it (``_DeclaredNavigation``)
+    or ``is_navigation_block`` holds. Every non-empty body takes the next
+    ordinal, kept or not, so dropping a navigation block never renumbers the
+    blocks after it: their citation paths are those an unfiltered extraction of
+    the same page gives. A block's
+    ``citation_label`` will be ``"<title> <ordinal>"`` (``_provision_records``),
+    so the navigation test sees the label the release content check sees.
+    """
+
+    def __init__(
+        self,
+        *,
+        source_url: str,
+        navigation: PageNavigation | None,
+        label_title: str | None,
+    ) -> None:
+        self.source_url = source_url
+        self.navigation = navigation
+        self.label_title = label_title
+        self.position = 0
+        self._kept: list[_DocumentBlock] = []
+
+    def add(self, heading: str | None, body: str, *, declared: bool = False) -> None:
+        """Number a non-empty block; drop it when ``declared`` (the manifest names it
+        navigation, ``_DeclaredNavigation``) or when it is the page's navigation."""
+        if not body:
+            return
+        self.position += 1
+        if declared:
+            return
+        if self.navigation and is_navigation_block(
+            body,
+            self.navigation,
+            heading=heading,
+            label=f"{self.label_title} {self.position}",
+        ):
+            return
+        self._kept.append(
+            _DocumentBlock(
+                kind="block",
+                ordinal=self.position,
+                heading=heading,
+                body=body,
+                metadata={"source_url": self.source_url},
+            )
+        )
+
+    def kept(self) -> tuple[_DocumentBlock, ...]:
+        return tuple(self._kept)
 
 
 def _extract_json_html_blocks(
@@ -3428,6 +5338,11 @@ def _extract_json_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    config = extraction or {}
+    if config.get("segmentation") in {"source_only", "records"}:
+        _reject_declared_navigation(config, f"reads JSON as {config['segmentation']}")
+    if config.get("json_html_as_single_block"):
+        _reject_declared_navigation(config, "reads its HTML as a single block")
     if (extraction or {}).get("segmentation") == "source_only":
         json_loads(content.decode("utf-8-sig"))
         return ()
@@ -3468,6 +5383,7 @@ def _extract_json_html_blocks(
         source_url=source_url,
         fallback_title=fallback_title,
         extraction=extraction,
+        drop_navigation=False,
     )
 
 
@@ -4100,32 +6016,38 @@ def _extract_webworks_html_blocks(
     *,
     title: str | None,
     source_url: str,
-) -> tuple[_DocumentBlock, ...]:
+    navigation: PageNavigation | None = None,
+    label_title: str | None = None,
+    declared: _DeclaredNavigation | None = None,
+) -> tuple[_DocumentBlock, ...] | None:
+    """Blocks of a WebWorks page, or ``None`` when ``root`` is not one or has no text.
+
+    An empty tuple means every block of the page was navigation.
+    """
     page = root.select_one("#page_content")
     if not isinstance(page, Tag):
-        return ()
+        return None
     for selector in (".WebWorks_MiniTOC", ".ww_skin_page_globalization"):
         for node in page.select(selector):
             node.decompose()
 
-    blocks: list[_DocumentBlock] = []
+    blocks = _PositionalBlocks(
+        source_url=source_url, navigation=navigation, label_title=label_title
+    )
     heading = title
+    heading_node: Tag | None = None
     parts: list[str] = []
+    nodes: list[Tag] = []
 
     def flush() -> None:
-        nonlocal parts
-        body = _normalize_text("\n\n".join(parts))
-        if body:
-            blocks.append(
-                _DocumentBlock(
-                    kind="block",
-                    ordinal=len(blocks) + 1,
-                    heading=heading,
-                    body=body,
-                    metadata={"source_url": source_url},
-                )
-            )
+        nonlocal parts, nodes
+        blocks.add(
+            heading,
+            _normalize_text("\n\n".join(parts)),
+            declared=declared is not None and declared.drops(heading_node, nodes),
+        )
         parts = []
+        nodes = []
 
     for node in page.find_all(_is_webworks_content_node):
         text = _normalize_text(node.get_text(" ", strip=True))
@@ -4134,10 +6056,12 @@ def _extract_webworks_html_blocks(
         if _has_webworks_heading_class(node):
             flush()
             heading = text
+            heading_node = node
             continue
         parts.append(text)
+        nodes.append(node)
     flush()
-    return tuple(blocks)
+    return blocks.kept() if blocks.position else None
 
 
 def _is_webworks_content_node(node: Tag) -> bool:
