@@ -302,7 +302,6 @@ def _open(
         raise
     finally:
         opened.clear()  # each response refers back to the adapter
-        adapter.close_failures.clear()  # and each failure to the frame that raised it
     return response
 
 

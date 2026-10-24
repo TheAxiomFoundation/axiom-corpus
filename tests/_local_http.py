@@ -59,23 +59,39 @@ def warnings_as_errors[Result](function: Callable[..., Result]) -> Callable[...,
 
 
 class RunningCount[Result]:
-    """Wrap ``function`` to count, across threads, the calls started and the most running at once."""
+    """Wrap ``function`` to count, across threads, the calls started and the most running at once.
 
-    def __init__(self, function: Callable[..., Result]) -> None:
+    The first ``hold`` calls, once ``function`` returns or raises, wait until
+    ``release`` is called, or ``held_for`` seconds have passed, before they
+    return: they keep running, and keep whatever they hold, till then.
+    """
+
+    def __init__(
+        self, function: Callable[..., Result], *, hold: int = 0, held_for: float = 10.0
+    ) -> None:
         self._function = function
+        self._hold = hold
+        self._held_for = held_for
+        self._released = threading.Event()
         self._lock = threading.Lock()
         self.started = 0
         self.running = 0
         self.most_running = 0
 
+    def release(self) -> None:
+        self._released.set()
+
     def __call__(self, *args: Any, **kwargs: Any) -> Result:
         with self._lock:
             self.started += 1
+            held = self.started <= self._hold
             self.running += 1
             self.most_running = max(self.most_running, self.running)
         try:
             return self._function(*args, **kwargs)
         finally:
+            if held:
+                self._released.wait(self._held_for)
             with self._lock:
                 self.running -= 1
 

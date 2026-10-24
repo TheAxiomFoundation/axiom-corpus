@@ -16,6 +16,7 @@ import subprocess
 import sys
 import threading
 import time
+import urllib.parse
 import weakref
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
@@ -356,13 +357,22 @@ def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
         assert result is not None  # still kept
 
 
+@pytest.mark.parametrize(
+    "pools_fail_to_close", [False, True], ids=["pools-close", "two-pools-fail-to-close"]
+)
 @pytest.mark.parametrize("ending", ["http-error", "redirect-loop"])
-def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(ending, slots):
+def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(
+    ending, pools_fail_to_close, slots, monkeypatch
+):
     """A chain across more hosts than the adapter caches pools for (ten) leaves none open.
 
     Each host keeps its redirect's connection alive, so it waits idle in its
     pool, and the error is kept, as discovery keeps it. Pools the cache
-    evicts are closed then and there; the rest when the session closes.
+    evicts are closed then and there; the rest when the session closes. When
+    the first host's pool (evicted mid-chain) and the sixth's (closed with
+    the session) fail to close, the chain goes on, every other pool is closed
+    all the same, and the failures are noted on the error, or fail the
+    attempt when nothing else did.
     """
     hosts = 12
     # targets[i] is where host i redirects to; filled in once every host has
@@ -385,13 +395,25 @@ def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(ending, slots):
     servers.append(LocalHttpServer([last]))
     targets.extend(server.url for server in servers[1:])
     targets.append(servers[0].url)
+    if pools_fail_to_close:
+        _make_connections_fail_to_close(monkeypatch, servers[0].url, servers[5].url)
     with contextlib.ExitStack() as stack:
         for server in servers:
             stack.enter_context(server)
         _, error = _elapsed(
             lambda: get_bytes(servers[0].url, connect_timeout=1, read_timeout=2, deadline=5)
         )
-        assert isinstance(error, outcome)
+        if not pools_fail_to_close:
+            assert isinstance(error, outcome)
+        elif ending == "http-error":
+            # The 500 is never checked: the session's pools failed to close first.
+            assert type(error) is requests.RequestException
+            assert repr(error.__cause__) == "OSError('close failed')"
+            assert error.__cause__.__notes__ == [_POOL_CLOSE_FAILED_NOTE]
+        else:
+            assert type(error) is requests.TooManyRedirects
+            assert error.__notes__
+            assert set(error.__notes__) == {_POOL_CLOSE_FAILED_NOTE}
         assert wait_until(lambda: slots.used == 0)
 
         assert wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
@@ -448,6 +470,7 @@ class _Abort(BaseException):
 
 
 _CLOSE_FAILED_NOTE = "closing the answer also failed: OSError('close failed')"
+_POOL_CLOSE_FAILED_NOTE = "closing a connection pool also failed: OSError('close failed')"
 
 
 def _make_answers_fail_to_close(monkeypatch):
@@ -459,6 +482,19 @@ def _make_answers_fail_to_close(monkeypatch):
         raise OSError("close failed")
 
     monkeypatch.setattr(urllib3.response.HTTPResponse, "close", close_then_fail)
+
+
+def _make_connections_fail_to_close(monkeypatch, *urls):
+    """Make each urllib3 connection to ``urls`` close, then report a failure."""
+    ports = {urllib.parse.urlsplit(url).port for url in urls}
+    close = urllib3.connection.HTTPConnection.close
+
+    def close_then_fail(self):
+        close(self)
+        if self.port in ports:
+            raise OSError("close failed")
+
+    monkeypatch.setattr(urllib3.connection.HTTPConnection, "close", close_then_fail)
 
 
 @pytest.mark.parametrize("close_fails", [False, True], ids=["closes", "close-fails"])
@@ -515,6 +551,85 @@ def test_get_bytes_retries_an_http_error_whose_answer_fails_to_close(slots, monk
         )
 
 
+@pytest.mark.parametrize("ending", ["ok", "http-error", "interrupt"])
+def test_get_bytes_fails_an_attempt_whose_connection_pool_fails_to_close(
+    ending, slots, monkeypatch
+):
+    """A pool that fails to close with the session fails the attempt, or is noted on an interrupt.
+
+    The first host redirects to the second and keeps its connection alive, so
+    the connection waits idle in its pool until the session closes it. The
+    failure never takes the place of an interrupt, and it is retried, and
+    reported, as a failed fetch, whatever the second host answered.
+    """
+    status = "503 Service Unavailable" if ending == "http-error" else "200 OK"
+    with (
+        LocalHttpServer([until_client_closes(respond(b"body", status=status))]) as target,
+        LocalHttpServer([redirect(target.url, keep_alive=True)]) as source,
+    ):
+        _make_connections_fail_to_close(monkeypatch, source.url)
+        if ending == "interrupt":
+            extract = requests.sessions.extract_cookies_to_jar
+
+            def interrupt_at_the_target(jar, request, response):
+                if request.url == target.url:
+                    raise _Abort
+                extract(jar, request, response)
+
+            monkeypatch.setattr(
+                requests.sessions, "extract_cookies_to_jar", interrupt_at_the_target
+            )
+        with pytest.raises(BaseException) as excinfo:
+            get_bytes(source.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        if ending == "interrupt":
+            assert type(excinfo.value) is _Abort
+            assert excinfo.value.__notes__ == [_POOL_CLOSE_FAILED_NOTE]
+            assert len(source.requests) + len(target.requests) == 2  # not retried
+        else:
+            assert type(excinfo.value) is requests.RequestException
+            assert repr(excinfo.value.__cause__) == "OSError('close failed')"
+            assert len(source.requests) + len(target.requests) == 4  # retried
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: source.open_connections + target.open_connections == 0), (
+            f"{source.open_connections + target.open_connections} connection(s) still open"
+        )
+        assert excinfo.value is not None  # still kept
+
+
+@pytest.mark.parametrize("failure_type", [OSError, _Abort], ids=["os-error", "interrupt"])
+def test_get_bytes_fails_an_attempt_whose_answer_fails_to_close_after_its_body(
+    failure_type, slots, monkeypatch
+):
+    """A response that fails to close once its whole body is read fails the attempt.
+
+    A failure is retried as a failed fetch, as any failure after an answer is,
+    and an interrupt is raised unchanged.
+    """
+    close = requests.models.Response.close
+
+    def close_then_fail(self):
+        close(self)
+        raise failure_type("close failed")
+
+    monkeypatch.setattr(requests.models.Response, "close", close_then_fail)
+    with LocalHttpServer([until_client_closes(respond(b"ok"))]) as server:
+        with pytest.raises(BaseException) as excinfo:
+            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        if failure_type is OSError:
+            assert type(excinfo.value) is requests.RequestException
+            assert repr(excinfo.value.__cause__) == "OSError('close failed')"
+            assert len(server.requests) == 2  # retried
+        else:
+            assert type(excinfo.value) is _Abort
+            assert len(server.requests) == 1  # not retried
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: server.open_connections == 0), (
+            f"{server.open_connections} connection(s) still open"
+        )
+
+
 class _Closable:
     def __init__(self, failure: BaseException | None) -> None:
         self.failure = failure
@@ -544,11 +659,42 @@ def test_an_interrupt_while_closing_an_answer_is_raised_in_place_of_the_error():
     assert excinfo.value is interrupt
 
 
-def test_a_failure_to_close_is_dropped_when_the_error_cannot_take_notes():
+class _UnnoteableError(RuntimeError):
+    """An error whose ``add_note`` raises ``failure``."""
+
+    def __init__(self, failure: BaseException) -> None:
+        super().__init__("original")
+        self.failure = failure
+
+    def add_note(self, note: str) -> None:
+        raise self.failure
+
+
+def _with_fixed_notes() -> RuntimeError:
     error = RuntimeError("original")
     error.__notes__ = ("fixed",)  # add_note raises TypeError for anything not a list
+    return error
+
+
+@pytest.mark.parametrize(
+    "unnoteable",
+    [_with_fixed_notes, lambda: _UnnoteableError(MemoryError())],
+    ids=["notes-not-a-list", "noting-fails"],
+)
+def test_a_failure_to_close_is_dropped_when_the_error_cannot_take_notes(unnoteable):
+    error = unnoteable()
+    notes = getattr(error, "__notes__", None)
     bounded_http._close_noting_failure(_Closable(OSError("socket")), error)
-    assert error.__notes__ == ("fixed",)
+    assert getattr(error, "__notes__", None) == notes
+
+
+def test_an_interrupt_while_noting_a_failure_to_close_is_raised_in_place_of_the_error():
+    interrupt = _Abort()
+    with pytest.raises(_Abort) as excinfo:
+        bounded_http._close_noting_failure(
+            _Closable(OSError("socket")), _UnnoteableError(interrupt)
+        )
+    assert excinfo.value is interrupt
 
 
 def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch):
@@ -677,28 +823,32 @@ def test_get_bytes_deadline_ends_a_server_that_trickles_its_body(slots):
 def test_get_bytes_caps_workers_left_open_by_a_trickling_server(slots, monkeypatch):
     """Timed-out calls cannot pile up open workers: with every slot held, a call does not start.
 
-    A worker left reading the trickle ends at its read timeout, cut to the
-    0.3 s deadline, if the machine stalls that long between two bytes, and a
-    later call can then take its slot. So the test counts the workers running
-    at once, in the workers themselves, rather than requests.
+    A worker left reading the trickle would end at its read timeout, cut to
+    the 0.3 s deadline, if the machine stalled that long between two bytes,
+    and a later call could then take its slot. So the first three workers are
+    also held, in the worker, until the calls are done: every slot stays
+    taken whatever the machine does, and the other five calls are refused.
+    Workers are counted in the workers themselves.
     """
-    workers = RunningCount(bounded_http._get_with_retries)
+    workers = RunningCount(bounded_http._get_with_retries, hold=3)
     monkeypatch.setattr(bounded_http, "_get_with_retries", workers)
     with LocalHttpServer([trickle_headers(0.02)]) as server:
         errors = []
-        for _ in range(8):
-            elapsed, error = _elapsed(
-                lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
-            )
-            errors.append(error)
-            assert elapsed < 0.3 + _SLACK_SECONDS
+        try:
+            for _ in range(8):
+                elapsed, error = _elapsed(
+                    lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
+                )
+                errors.append(error)
+                assert elapsed < 0.3 + _SLACK_SECONDS
+        finally:
+            workers.release()
         refused = [error for error in errors if "fetch threads stayed busy" in str(error)]
 
         assert all(isinstance(error, requests.Timeout) for error in errors)
-        # A call is refused only while workers left behind hold every slot.
-        assert refused
+        assert len(refused) == 5
         assert all("0.3s deadline" in str(error) for error in refused)
-        assert wait_until(lambda: workers.started == len(errors) - len(refused))
+        assert wait_until(lambda: workers.started == 3)
         assert workers.most_running <= 3
 
         url = server.url
@@ -711,8 +861,12 @@ def test_get_bytes_caps_workers_left_open_by_a_trickling_server(slots, monkeypat
 
 
 def test_get_bytes_caps_workers_left_open_by_concurrent_callers(slots, monkeypatch):
-    """Eight callers trying 40 URLs on a trickling server run at most 3 workers at once."""
-    workers = RunningCount(bounded_http._get_with_retries)
+    """Eight callers trying 40 URLs on a trickling server run at most 3 workers at once.
+
+    The first three workers are held until the calls are done, as in the
+    test above, so the other 37 calls are refused.
+    """
+    workers = RunningCount(bounded_http._get_with_retries, hold=3)
     monkeypatch.setattr(bounded_http, "_get_with_retries", workers)
     # The server closes before the callers are joined, so a get_bytes that
     # failed to return at its deadline fails this test instead of hanging it.
@@ -720,21 +874,26 @@ def test_get_bytes_caps_workers_left_open_by_concurrent_callers(slots, monkeypat
         ThreadPoolExecutor(max_workers=8) as callers,
         LocalHttpServer([trickle_headers(0.02)]) as server,
     ):
-        errors = list(
-            callers.map(
-                lambda _: _elapsed(
-                    lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
-                )[1],
-                range(40),
-                timeout=30,
+        try:
+            errors = list(
+                callers.map(
+                    lambda _: _elapsed(
+                        lambda: get_bytes(
+                            server.url, connect_timeout=1, read_timeout=2, deadline=0.3
+                        )
+                    )[1],
+                    range(40),
+                    timeout=30,
+                )
             )
-        )
+        finally:
+            workers.release()
 
         refused = [error for error in errors if "fetch threads stayed busy" in str(error)]
 
         assert all(isinstance(error, requests.Timeout) for error in errors)
-        assert refused
-        assert wait_until(lambda: workers.started == len(errors) - len(refused))
+        assert len(refused) == 37
+        assert wait_until(lambda: workers.started == 3)
         assert workers.most_running <= 3
 
     assert wait_until(lambda: slots.used == 0)
