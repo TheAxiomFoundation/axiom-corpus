@@ -264,7 +264,8 @@ def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots):
             0.3,
             requests.Timeout,
         ),
-        # requests raises TooManyRedirects with the last response, unclosed.
+        # requests raises TooManyRedirects with the last response attached,
+        # its body read and its kept-alive connection back in the pool.
         ([respond(b"wrong")], {"/": redirect("/", keep_alive=True)}, 5, requests.TooManyRedirects),
     ],
     ids=[

@@ -20,16 +20,16 @@ the server does.
 At the deadline the caller raises ``requests.Timeout`` and leaves the worker
 behind. A worker stops at its next socket timeout, at the next body chunk after
 the deadline, before the next request (a redirect's) after it, or when the
-server closes the connection, but a server that keeps trickling bytes, or a DNS
-lookup that hangs, can hold it open longer. Every response a worker opens is
-closed when it ends, however it ends. So workers are capped process-wide (``MAX_FETCH_THREADS``): a call
-takes a slot before it starts its worker, and the worker gives the slot back
-when it ends. While every slot is taken, a call waits for one within its own
-deadline and otherwise raises ``requests.Timeout`` without making a request.
-However many URLs are tried, and whatever the servers do, at most
-``MAX_FETCH_THREADS`` workers are making requests at once. A call interrupted
-(Ctrl-C) while starting its worker gives the slot back itself, and the worker
-then makes no request.
+server closes the connection. Every response and connection it opens is closed
+by the time it ends, however it ends. But a server that keeps trickling bytes,
+or a DNS lookup that hangs, can hold a worker open longer, so workers are
+capped process-wide (``MAX_FETCH_THREADS``): a call takes a slot before it
+starts its worker, and the worker gives the slot back when it ends. While every
+slot is taken, a call waits for one within its own deadline and otherwise
+raises ``requests.Timeout`` without making a request. However many URLs are
+tried, and whatever the servers do, at most ``MAX_FETCH_THREADS`` workers are
+making requests at once. A call interrupted (Ctrl-C) while starting its worker
+gives the slot back itself, and the worker then makes no request.
 """
 
 from __future__ import annotations
@@ -243,15 +243,7 @@ def _open(
     with requests.Session() as session:
         session.mount("http://", adapter)
         session.mount("https://", adapter)
-        try:
-            return session.get(url, headers=headers, timeout=timeout, stream=True)
-        except requests.RequestException as error:
-            # requests attaches the last response to some errors without closing
-            # it (TooManyRedirects, after reading its body); a kept error would
-            # then keep its connection open.
-            if error.response is not None:
-                error.response.close()
-            raise
+        return session.get(url, headers=headers, timeout=timeout, stream=True)
 
 
 class _DeadlineAdapter(HTTPAdapter):
