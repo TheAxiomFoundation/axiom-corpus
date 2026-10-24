@@ -503,7 +503,7 @@ def test_oregon_download_page_success_and_retry_failure(monkeypatch):
         assert_calls["count"] += 1
         return _FakeResponse(b"ok")
 
-    monkeypatch.setattr(requests, "get", ok_get)
+    monkeypatch.setattr(bounded_http, "_open", ok_get)
     assert oregon_adapter._download_oregon_page("https://example.test/ors090.html") == b"ok"
     assert assert_calls["count"] == 1
 
@@ -511,7 +511,7 @@ def test_oregon_download_page_success_and_retry_failure(monkeypatch):
         assert_calls["count"] += 1
         raise requests.RequestException("boom")
 
-    monkeypatch.setattr(requests, "get", bad_get)
+    monkeypatch.setattr(bounded_http, "_open", bad_get)
     # Skip the pause between attempts, in the fetch module only.
     monkeypatch.setattr(
         bounded_http, "time", SimpleNamespace(monotonic=time.monotonic, sleep=lambda seconds: None)
@@ -557,7 +557,7 @@ class _VirtualClock:
 
 
 class _DeadOregonHost:
-    """``requests.get`` for an Oregon site that serves ``pages`` and hangs on the rest.
+    """``bounded_http._open`` for an Oregon site that serves ``pages`` and hangs on the rest.
 
     A hanging request waits out, on the virtual clock, the timeout it was
     given: the connect timeout for a host that drops connection attempts
@@ -594,7 +594,7 @@ def _install_dead_oregon_host(monkeypatch, *, hang, pages=None):
     monkeypatch.setattr(
         bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
     )
-    monkeypatch.setattr(requests, "get", host.get)
+    monkeypatch.setattr(bounded_http, "_open", host.get)
     return clock, host
 
 

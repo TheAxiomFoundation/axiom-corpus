@@ -9,18 +9,20 @@ On 2026-10-24 two 30-second connect timeouts to www.oregonlegislature.gov
 real-source smoke test that skips when its source cannot be fetched failed the
 required ``test`` job instead (axiom-corpus CI run 40042942746).
 
-``get_bytes`` gives each attempt explicit connect and read timeouts, cut to the
-time left, and gives the whole call (every attempt, the pauses between them,
-redirects, the DNS lookup, the headers and the body) one deadline. The attempts
-run on a daemon worker thread that the caller waits on for at most the
-deadline, so the call returns the body or raises by then whatever the server
-does.
+``get_bytes`` gives each request explicit connect and read timeouts, cut to the
+time left when it is sent, and gives the whole call (every attempt, the pauses
+between them, redirects, the DNS lookup, the headers and the body) one
+deadline. No request, a redirect's included, is sent once the deadline has
+passed. The attempts run on a daemon worker thread that the caller waits on for
+at most the deadline, so the call returns the body or raises by then whatever
+the server does.
 
 At the deadline the caller raises ``requests.Timeout`` and leaves the worker
-behind. A worker stops at its next socket timeout, at the next body chunk or
-redirect after the deadline, or when the server closes the connection, but a
-server that keeps trickling bytes, or a DNS lookup that hangs, can hold it open
-longer. So workers are capped process-wide (``MAX_FETCH_THREADS``): a call
+behind. A worker stops at its next socket timeout, at the next body chunk after
+the deadline, before the next request (a redirect's) after it, or when the
+server closes the connection, but a server that keeps trickling bytes, or a DNS
+lookup that hangs, can hold it open longer. Every response a worker opens is
+closed when it ends, however it ends. So workers are capped process-wide (``MAX_FETCH_THREADS``): a call
 takes a slot before it starts its worker, and the worker gives the slot back
 when it ends. While every slot is taken, a call waits for one within its own
 deadline and otherwise raises ``requests.Timeout`` without making a request.
@@ -38,6 +40,7 @@ import time
 from collections.abc import Mapping
 
 import requests
+from requests.adapters import HTTPAdapter
 
 # Fetch threads, process-wide, that may be making requests at once, counting
 # those still open after the call that started them gave up.
@@ -90,10 +93,12 @@ def get_bytes(
 ) -> bytes:
     """Return the body of a successful GET of ``url`` within ``deadline`` seconds.
 
-    Makes up to ``attempts`` requests, pausing ``retry_delay`` seconds after a
+    Makes up to ``attempts`` attempts, pausing ``retry_delay`` seconds after a
     failed one, and retries every ``requests.RequestException``, an HTTP error
-    status included, while time is left after the pause. No attempt starts,
-    and no redirect is followed, once the deadline has passed. A network or HTTP failure raises the last attempt's
+    status included, while time is left after the pause. An attempt makes one
+    request, and one more for each redirect it follows. No request, a
+    redirect's included, is sent once the deadline has passed. A network or
+    HTTP failure raises the last attempt's
     ``requests.RequestException``, or ``requests.Timeout`` when the deadline
     passes first or no fetch slot comes free in time. A request that
     ``requests`` cannot make at all (a malformed URL, say) raises what
@@ -211,21 +216,7 @@ def _get_once(
     timeout: tuple[float, float],
     give_up_at: float,
 ) -> bytes:
-    def stop_redirects_at_the_deadline(
-        response: requests.Response, *args: object, **kwargs: object
-    ) -> requests.Response:
-        # requests runs this hook on every response before it follows a redirect.
-        if response.is_redirect and time.monotonic() >= give_up_at:
-            raise requests.Timeout(f"no complete response from {url} before the deadline")
-        return response
-
-    with requests.get(
-        url,
-        headers=headers,
-        timeout=timeout,
-        stream=True,
-        hooks={"response": stop_redirects_at_the_deadline},
-    ) as response:
+    with _open(url, headers=headers, timeout=timeout, give_up_at=give_up_at) as response:
         response.raise_for_status()
         chunks: list[bytes] = []
         for chunk in response.iter_content(chunk_size=_CHUNK_BYTES):
@@ -233,3 +224,61 @@ def _get_once(
                 raise requests.Timeout(f"no complete response from {url} before the deadline")
             chunks.append(chunk)
         return b"".join(chunks)
+
+
+def _open(
+    url: str,
+    *,
+    headers: dict[str, str],
+    timeout: tuple[float, float],
+    give_up_at: float,
+) -> requests.Response:
+    """Start a streaming GET of ``url``, as ``requests.get`` does, through ``_DeadlineAdapter``.
+
+    Like ``requests.get``, it uses a session of its own, closed on return; the
+    streaming response keeps its connection until it is closed.
+    """
+    adapter = _DeadlineAdapter(url, give_up_at)
+    with requests.Session() as session:
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
+        return session.get(url, headers=headers, timeout=timeout, stream=True)
+
+
+class _DeadlineAdapter(HTTPAdapter):
+    """Sends no request once ``give_up_at`` has passed, and cuts each one's timeouts to the time left.
+
+    ``requests`` sends every request of a session through its adapter, each
+    redirect it follows included, and closes the response before a redirect
+    first, so this check comes right before each request goes out and leaves
+    no response open when it refuses one.
+    """
+
+    def __init__(self, url: str, give_up_at: float) -> None:
+        super().__init__()
+        self._url = url
+        self._give_up_at = give_up_at
+
+    def send(
+        self,
+        request: requests.PreparedRequest,
+        stream: bool = False,
+        timeout: None | float | tuple[float, float] | tuple[float, None] = None,
+        verify: bool | str = True,
+        cert: None | bytes | str | tuple[bytes | str, bytes | str] = None,
+        proxies: Mapping[str, str] | None = None,
+    ) -> requests.Response:
+        read = timeout[1] if isinstance(timeout, tuple) else None
+        if not isinstance(timeout, tuple) or read is None:
+            raise TypeError(f"expected (connect, read) timeouts, not {timeout!r}")
+        remaining = self._give_up_at - time.monotonic()
+        if remaining <= 0:
+            raise requests.Timeout(f"no complete response from {self._url} before the deadline")
+        return super().send(
+            request,
+            stream=stream,
+            timeout=(min(timeout[0], remaining), min(read, remaining)),
+            verify=verify,
+            cert=cert,
+            proxies=proxies,
+        )

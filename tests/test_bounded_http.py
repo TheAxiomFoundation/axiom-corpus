@@ -27,12 +27,14 @@ from axiom_corpus.corpus.bounded_http import get_bytes
 from tests._local_http import (
     LocalHttpServer,
     drop_connection,
+    held_headers,
     never_answer,
     redirect,
     respond,
-    slow_headers,
+    stream_body,
     trickle_body,
     trickle_headers,
+    until_client_closes,
 )
 
 # Slack for thread start-up and scheduling on a loaded CI runner. Every
@@ -161,11 +163,115 @@ def test_get_bytes_follows_no_redirect_after_the_deadline(slots):
         )
         assert isinstance(error, requests.Timeout)
         assert elapsed < 0.3 + _SLACK_SECONDS
-        # The worker ends when the redirect arrives, without following it.
+        # The worker ends when the redirect arrives, without following it. A
+        # followed redirect would have reached the server before the worker
+        # got its answer and ended.
         assert _wait_until(lambda: slots.used == 0)
-        time.sleep(0.2)  # time for a followed redirect to reach the server
 
         assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
+
+
+def test_get_bytes_sends_no_redirect_whose_body_ends_after_the_deadline(slots):
+    # The redirect's headers arrive at once, inside the deadline, and its body
+    # a byte at a time until 0.6 s, after it. requests reads that body before
+    # it follows the redirect, so the deadline is checked again just before
+    # the next request is sent.
+    routes = {"/": redirect("/moved", body_slowly_for=0.6), "/moved": respond(b"too late")}
+    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        elapsed, error = _elapsed(
+            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
+        )
+        assert isinstance(error, requests.Timeout)
+        assert elapsed < 0.3 + _SLACK_SECONDS
+        assert _wait_until(lambda: slots.used == 0)
+
+        assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
+
+
+def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots):
+    # The redirect arrives 1.5 s into a 2 s deadline and points at a server
+    # that never answers. Its request may wait only the 0.5 s left, not the
+    # 2 s the attempt started with (nor the 10 s read timeout), so the worker
+    # ends with the caller rather than 1.5 s after it.
+    routes = {"/": redirect("/hang", slowly_for=1.5), "/hang": never_answer}
+    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        elapsed, error = _elapsed(
+            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=10, deadline=2.0)
+        )
+        assert isinstance(error, requests.Timeout)
+        assert elapsed < 2.0 + _SLACK_SECONDS
+        assert _wait_until(lambda: slots.used == 0, within=_SLACK_SECONDS)
+
+        assert [request.split(b" ")[1] for request in server.requests] == [b"/", b"/hang"]
+
+
+@pytest.mark.parametrize(
+    "behaviours, routes, deadline, outcome",
+    [
+        ([until_client_closes(respond(b"ok"))], {}, 5, bytes),
+        (
+            [until_client_closes(respond(b"missing", status="404 Not Found"))],
+            {},
+            5,
+            requests.HTTPError,
+        ),
+        (
+            [respond(b"wrong")],
+            {
+                "/": until_client_closes(redirect("/moved")),
+                "/moved": until_client_closes(respond(b"moved")),
+            },
+            5,
+            bytes,
+        ),
+        (
+            [respond(b"wrong")],
+            {
+                "/": until_client_closes(redirect("/moved", slowly_for=0.6)),
+                "/moved": respond(b"too late"),
+            },
+            0.3,
+            requests.Timeout,
+        ),
+        ([stream_body(64 * 1024, 0.02)], {}, 0.3, requests.Timeout),
+    ],
+    ids=["body", "http-error", "followed-redirect", "late-redirect", "body-cut-at-the-deadline"],
+)
+def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
+    behaviours, routes, deadline, outcome, slots
+):
+    """Every response a worker opens is closed when it ends, even while its error is still held.
+
+    The result is kept, as discovery's finished futures keep theirs. A
+    caller's exception reaches the worker's error through its traceback, and
+    that error's traceback reaches every frame and response of the attempt, so
+    a response left open would keep its connection open for as long as the
+    result is kept, whatever the garbage collector does.
+    """
+    with LocalHttpServer(behaviours, routes=routes) as server:
+        _, result = _elapsed(
+            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=deadline)
+        )
+        assert isinstance(result, outcome)
+        assert _wait_until(lambda: slots.used == 0)
+
+        assert _wait_until(lambda: server.open_connections == 0), (
+            f"{server.open_connections} connection(s) still open"
+        )
+        assert result is not None  # still kept
+
+
+def test_get_bytes_deadline_stops_a_worker_reading_a_body_that_keeps_arriving(slots):
+    # 64 KiB every 20 ms of a body declared as 1 TiB: the worker checks the
+    # deadline at each chunk, so it stops just after it, while the server is
+    # still sending.
+    with LocalHttpServer([stream_body(64 * 1024, 0.02)]) as server:
+        elapsed, error = _elapsed(
+            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
+        )
+        assert isinstance(error, requests.Timeout)
+        assert elapsed < 0.3 + _SLACK_SECONDS
+        assert _wait_until(lambda: slots.used == 0, within=_SLACK_SECONDS)
 
 
 def test_get_bytes_read_timeout_ends_a_server_that_never_answers(slots):
@@ -270,8 +376,27 @@ def test_get_bytes_caps_workers_left_open_by_concurrent_callers(slots):
     assert _wait_until(lambda: slots.used == 0)
 
 
-def test_get_bytes_never_exceeds_the_cap_under_heavy_thread_switching(slots):
-    """Sixteen callers on four slots: never more than four requests at once, no slot lost."""
+def test_get_bytes_never_exceeds_the_cap_under_heavy_thread_switching(monkeypatch, slots):
+    """Sixteen callers on four slots: never more than four workers at once, no slot lost."""
+    # Counted in the workers themselves, between taking over a slot and giving
+    # it back, so a connection the server has yet to tidy up is not counted.
+    running = 0
+    most_running = 0
+    count_lock = threading.Lock()
+    attempts = bounded_http._get_with_retries
+
+    def counted_attempts(*args, **kwargs):
+        nonlocal running, most_running
+        with count_lock:
+            running += 1
+            most_running = max(most_running, running)
+        try:
+            return attempts(*args, **kwargs)
+        finally:
+            with count_lock:
+                running -= 1
+
+    monkeypatch.setattr(bounded_http, "_get_with_retries", counted_attempts)
     switch_interval = sys.getswitchinterval()
     sys.setswitchinterval(1e-6)  # switch threads as often as the interpreter allows
     try:
@@ -288,10 +413,10 @@ def test_get_bytes_never_exceeds_the_cap_under_heavy_thread_switching(slots):
                 )
             )
             assert _wait_until(lambda: slots.used == 0)
-            assert server.max_concurrent <= 4
     finally:
         sys.setswitchinterval(switch_interval)
 
+    assert 1 <= most_running <= 4
     assert bodies == [b"ok"] * 160
     assert len(server.requests) == 160
 
@@ -312,35 +437,44 @@ def test_get_bytes_waits_within_its_deadline_for_a_slot(monkeypatch):
     assert cap.used == 0
 
 
+def _callers_waiting_for_a_slot(cap) -> int:
+    # threading.Condition keeps one lock per waiting thread in _waiters.
+    return len(cap.changed._waiters)
+
+
 def test_a_finishing_worker_wakes_the_callers_waiting_for_its_slot(monkeypatch):
     """The slot a left-behind worker gives back goes to waiting callers, whatever their deadlines."""
     cap = bounded_http._Slots(1)
     monkeypatch.setattr(bounded_http, "_SLOTS", cap)
-    # The first request's headers take 0.6 s; every later one is answered at once.
-    with LocalHttpServer([slow_headers(0.6, b"slow"), respond(b"fast")]) as server:
+    first_answer = threading.Event()
+    # The first request's headers trickle in until first_answer is set; every
+    # later request is answered at once.
+    with LocalHttpServer([held_headers(first_answer, b"slow"), respond(b"fast")]) as server:
         elapsed, error = _elapsed(
-            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.2)
+            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=1.0)
         )
         assert isinstance(error, requests.Timeout)
         assert cap.used == 1  # the first worker still holds the only slot
 
-        started = time.monotonic()
         with ThreadPoolExecutor(max_workers=2) as callers:
             waiting = [
                 callers.submit(
                     lambda deadline=deadline: (
                         get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=deadline),
-                        time.monotonic() - started,
+                        time.monotonic(),
                     )
                 )
-                for deadline in (4.0, 3.0)
+                for deadline in (10.0, 8.0)
             ]
+            assert _wait_until(lambda: _callers_waiting_for_a_slot(cap) == 2)
+            released = time.monotonic()
+            first_answer.set()  # the first worker ends and gives its slot back
             results = [future.result(timeout=30) for future in waiting]
 
-    # Both waited for the first worker (about 0.4 s more), then took the slot
-    # in turn, long before either deadline.
+    # Both took the slot in turn as soon as it came back, long before either
+    # deadline; without a wake-up each would wait until its deadline.
     assert [body for body, _ in results] == [b"fast", b"fast"]
-    assert all(finished < 0.4 + _SLACK_SECONDS for _, finished in results)
+    assert all(finished - released < 2 * _SLACK_SECONDS for _, finished in results)
     assert len(server.requests) == 3
     assert cap.used == 0
 
@@ -353,16 +487,19 @@ def _patch_worker_threads(monkeypatch, thread_class):
     )
 
 
-def test_get_bytes_gives_the_slot_back_when_interrupted_before_the_worker_starts(
-    monkeypatch, slots
-):
-    class InterruptedStart(threading.Thread):
+@pytest.mark.parametrize(
+    "failure",
+    [KeyboardInterrupt(), RuntimeError("can't start new thread")],
+    ids=["ctrl-c", "out-of-threads"],
+)
+def test_get_bytes_gives_the_slot_back_when_its_worker_does_not_start(monkeypatch, slots, failure):
+    class FailedStart(threading.Thread):
         def start(self) -> None:
-            raise KeyboardInterrupt  # Ctrl-C before the thread exists
+            raise failure  # Ctrl-C, or no thread to be had, before the thread exists
 
-    _patch_worker_threads(monkeypatch, InterruptedStart)
+    _patch_worker_threads(monkeypatch, FailedStart)
     with LocalHttpServer([respond(b"ok")]) as server:
-        with pytest.raises(KeyboardInterrupt):
+        with pytest.raises(type(failure)):
             get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=5)
 
         assert slots.used == 0
@@ -406,11 +543,13 @@ def test_get_bytes_leaves_the_slot_to_a_worker_that_took_it_before_the_interrupt
             raise KeyboardInterrupt
 
     _patch_worker_threads(monkeypatch, InterruptedAfterRequest)
-    with LocalHttpServer([respond(b"ok", after=0.2)]) as server:
+    answer = threading.Event()
+    with LocalHttpServer([respond(b"ok", gate=answer)]) as server:
         with pytest.raises(KeyboardInterrupt):
-            get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=5)
-        assert slots.used == 1  # still the worker's
+            get_bytes(server.url, connect_timeout=1, read_timeout=5, deadline=10)
+        assert slots.used == 1  # still the worker's, which is waiting for its answer
 
+        answer.set()
         assert _wait_until(lambda: slots.used == 0)  # it gives it back when it ends
         assert len(server.requests) == 1
 
@@ -426,12 +565,16 @@ def test_get_bytes_interrupted_while_waiting_leaves_the_slot_to_the_worker(monke
             self.finished = InterruptedWait()
 
     monkeypatch.setattr(bounded_http, "_Call", Call)
-    with LocalHttpServer([respond(b"ok", after=0.2)]) as server:
+    answer = threading.Event()
+    with LocalHttpServer([respond(b"ok", gate=answer)]) as server:
         with pytest.raises(KeyboardInterrupt):
-            get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=5)
+            get_bytes(server.url, connect_timeout=1, read_timeout=5, deadline=10)
+        assert _wait_until(lambda: len(server.requests) == 1)
+        assert slots.used == 1  # the worker's, which is waiting for its answer
 
-        assert _wait_until(lambda: slots.used == 0)
-        assert len(server.requests) == 1
+        answer.set()
+        assert _wait_until(lambda: _open_workers(server.url) == 0)
+        assert slots.used == 0  # given back once, by the worker
 
 
 def test_get_bytes_connect_timeout_ends_a_host_that_drops_connection_attempts(monkeypatch, slots):
@@ -570,7 +713,7 @@ _outcomes = st.one_of(
 
 
 class _VirtualTransport:
-    """``requests.get`` on the virtual clock: waits out exactly what each outcome needs."""
+    """``bounded_http._open`` on the virtual clock: waits out exactly what each outcome needs."""
 
     def __init__(self, clock: _VirtualClock, outcomes, give_up_at: float) -> None:
         self.clock = clock
@@ -578,8 +721,8 @@ class _VirtualTransport:
         self.give_up_at = give_up_at
         self.calls: list[dict[str, float]] = []
 
-    def get(self, url, *, headers=None, timeout=None, stream=False, **kwargs):
-        assert stream, "the body must stream so the deadline is checked as it arrives"
+    def open(self, url, *, headers=None, timeout=None, give_up_at=None):
+        assert give_up_at == self.give_up_at
         connect, read = timeout
         self.calls.append(
             {"connect": connect, "read": read, "remaining": self.give_up_at - self.clock.now}
@@ -610,7 +753,7 @@ def _run_retries(monkeypatch, transport, **budget):
     monkeypatch.setattr(
         bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic, sleep=clock.pause)
     )
-    monkeypatch.setattr(bounded_http.requests, "get", transport.get)
+    monkeypatch.setattr(bounded_http, "_open", transport.open)
     try:
         return bounded_http._get_with_retries(
             "https://www.oregonlegislature.gov/bills_laws/ors/ors316.html",

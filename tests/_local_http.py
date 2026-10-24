@@ -6,6 +6,11 @@ last one repeats), so a test can make a fetcher meet a server that never
 answers, sends its headers or body a byte at a time, redirects, drops the
 connection, or answers normally. Every behaviour returns when the server
 closes, so no test leaves a thread blocked on a socket.
+
+The server closes each connection when its behaviour returns, so a client that
+leaves a connection open is invisible unless the behaviour waits for the
+client's close (``until_client_closes``); ``open_connections`` then counts the
+connections a client has not yet closed.
 """
 
 from __future__ import annotations
@@ -23,8 +28,9 @@ class LocalHttpServer:
     """Serve connections on 127.0.0.1 with ``behaviours``, one per connection in turn.
 
     A request whose path is a key of ``routes`` gets that behaviour instead.
-    ``requests`` holds every request head received, and ``max_concurrent`` the
-    most connections served at once.
+    ``requests`` holds every request head received, ``max_concurrent`` the
+    most connections served at once, and ``open_connections`` those being
+    served now.
     """
 
     def __init__(
@@ -50,6 +56,11 @@ class LocalHttpServer:
         self._connections: list[socket.socket] = []
         self._threads: list[threading.Thread] = []
         self._acceptor = threading.Thread(target=self._accept, daemon=True)
+
+    @property
+    def open_connections(self) -> int:
+        with self._lock:
+            return self._serving
 
     def __enter__(self) -> LocalHttpServer:
         self._acceptor.start()
@@ -131,6 +142,22 @@ def drop_connection(connection: socket.socket, closing: threading.Event) -> None
     """Close the connection without a response."""
 
 
+def until_client_closes(behaviour: Behaviour) -> Behaviour:
+    """Run ``behaviour``, then keep the connection until the client closes it."""
+
+    def waiting(connection: socket.socket, closing: threading.Event) -> None:
+        behaviour(connection, closing)
+        connection.settimeout(0.05)
+        while not closing.is_set():
+            try:
+                if not connection.recv(4096):
+                    return
+            except TimeoutError:
+                continue
+
+    return waiting
+
+
 def respond(
     body: bytes,
     *,
@@ -138,12 +165,19 @@ def respond(
     gzip_encoded: bool = False,
     chunked: bool = False,
     after: float = 0.0,
+    gate: threading.Event | None = None,
 ) -> Behaviour:
-    """Answer with ``body`` after ``after`` seconds, optionally gzip-encoded or chunked."""
+    """Answer with ``body`` after ``after`` seconds, and once ``gate`` is set, if given.
+
+    The body is optionally gzip-encoded or chunked.
+    """
 
     def behaviour(connection: socket.socket, closing: threading.Event) -> None:
         if closing.wait(after):
             return
+        while gate is not None and not gate.wait(0.05):
+            if closing.is_set():
+                return
         payload = gzip.compress(body) if gzip_encoded else body
         headers = [f"HTTP/1.1 {status}", "Connection: close"]
         if gzip_encoded:
@@ -192,34 +226,71 @@ def trickle_body(interval: float, *, declared_length: int = 10_000_000) -> Behav
     return behaviour
 
 
-def redirect(location: str, *, slowly_for: float = 0.0, interval: float = 0.02) -> Behaviour:
-    """Answer ``302 Found`` to ``location``, trickling its headers for ``slowly_for`` seconds first."""
+def redirect(
+    location: str,
+    *,
+    slowly_for: float = 0.0,
+    body_slowly_for: float = 0.0,
+    interval: float = 0.02,
+) -> Behaviour:
+    """Answer ``302 Found`` to ``location``.
+
+    Its headers trickle in for ``slowly_for`` seconds first. Its body is empty,
+    or, with ``body_slowly_for``, a chunked body sent a byte at a time for that
+    long.
+    """
 
     def behaviour(connection: socket.socket, closing: threading.Event) -> None:
-        rest = (
-            b"Connection: close\r\nContent-Length: 0\r\n" + f"Location: {location}\r\n\r\n".encode()
-        )
+        framing = b"Transfer-Encoding: chunked\r\n" if body_slowly_for else b"Content-Length: 0\r\n"
+        rest = b"Connection: close\r\n" + framing + f"Location: {location}\r\n\r\n".encode()
         if not slowly_for:
             connection.sendall(b"HTTP/1.1 302 Found\r\n" + rest)
-            return
-        connection.sendall(b"HTTP/1.1 302 Found\r\nX-Slow: ")
-        if _trickle(connection, closing, seconds=slowly_for, interval=interval):
+        else:
+            connection.sendall(b"HTTP/1.1 302 Found\r\nX-Slow: ")
+            if not _trickle(connection, closing, seconds=slowly_for, interval=interval):
+                return
             connection.sendall(b"\r\n" + rest)
+        if body_slowly_for:
+            finish_at = time.monotonic() + body_slowly_for
+            while time.monotonic() < finish_at:
+                if closing.wait(interval):
+                    return
+                connection.sendall(b"1\r\na\r\n")
+            connection.sendall(b"0\r\n\r\n")
 
     return behaviour
 
 
-def slow_headers(seconds: float, body: bytes, *, interval: float = 0.02) -> Behaviour:
-    """Trickle one header byte every ``interval`` seconds for ``seconds``, then answer ``body``."""
+def stream_body(chunk: int, interval: float, *, declared_length: int = 1 << 40) -> Behaviour:
+    """Send complete headers, then ``chunk`` body bytes every ``interval`` seconds.
+
+    It sends until the server closes or the client does, far short of the
+    declared length, so the body is still arriving whenever a reader stops.
+    """
+
+    def behaviour(connection: socket.socket, closing: threading.Event) -> None:
+        connection.sendall(
+            b"HTTP/1.1 200 OK\r\nConnection: close\r\n"
+            + f"Content-Length: {declared_length}\r\n\r\n".encode()
+        )
+        while not closing.wait(interval):
+            connection.sendall(b"a" * chunk)
+
+    return behaviour
+
+
+def held_headers(gate: threading.Event, body: bytes, *, interval: float = 0.02) -> Behaviour:
+    """Trickle one header byte every ``interval`` seconds until ``gate`` is set, then answer ``body``."""
 
     def behaviour(connection: socket.socket, closing: threading.Event) -> None:
         connection.sendall(b"HTTP/1.1 200 OK\r\nX-Slow: ")
-        if _trickle(connection, closing, seconds=seconds, interval=interval):
-            connection.sendall(
-                b"\r\nConnection: close\r\n"
-                + f"Content-Length: {len(body)}\r\n\r\n".encode()
-                + body
-            )
+        while not gate.wait(interval):
+            if closing.is_set():
+                return
+            connection.sendall(b"a")
+        connection.sendall(
+            b"\r\nConnection: close\r\n" + f"Content-Length: {len(body)}\r\n\r\n".encode() + body
+        )
 
     return behaviour
 
