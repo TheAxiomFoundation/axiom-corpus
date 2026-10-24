@@ -181,6 +181,59 @@ that check and the removal is the one case not covered. A caller whose fetch suc
 are still there, because another process's rollback may have removed some. It
 fetches missing files again once, and then fails.
 
+### Transient R2 errors
+
+R2 has answered corpus reads with `ServiceUnavailable: Reduce your rate of
+simultaneous reads on the same object` (`GetObject`), `429 Too Many Requests`
+(`HeadObject`), and `500` errors, and connections drop. Reads through
+`R2ObjectStore` (`GetObject` for fetch and resolve, `HeadObject` for
+`verify --remote` and `push`) retry these under a `RetryPolicy`:
+
+- transient means HTTP `429`, `500`, `502`, `503` or `504`; the error codes
+  `SlowDown`, `ServiceUnavailable`, `Throttling`, `ThrottlingException`,
+  `TooManyRequests`, `TooManyRequestsException`, `RequestLimitExceeded`,
+  `RequestThrottled`, `RequestTimeout`, `RequestTimeoutException`,
+  `InternalError`, `InternalServerError`, `BadGateway` and `GatewayTimeout`;
+  timeouts; and dropped or reset connections. Any other answer (`501`, for
+  instance) is not transient. A missing object
+  (`404`, or a `NoSuchKey` whatever its status), a refused request (`400`,
+  `403`, `416`), a TLS failure, and bytes that do not hash to the lock are
+  never retried: they fail at once, as before;
+- up to 8 HTTP requests for each key a read tries, the first included: a
+  `GetObject` read tries the content key, then (if R2 has no object there) the
+  legacy path key, each with its own budget, and each lock entry is read on
+  its own, so entries that share bytes each spend one. These are the only
+  retries inside a read: `R2ObjectStore.from_environment` gives reads a client
+  with botocore's own retries off (`make_r2_client(..., sdk_retries=False)`).
+  Above the store, `corpus fetch` and the resolver call `materialize_resilient`,
+  which re-asks entries that still failed up to three more times (1, 4 and 10 s
+  later, at a quarter of the concurrency), so an entry that keeps failing is
+  read in at most 4 passes before the fetch fails. After
+  failure `n` the read waits a random time between half and all of
+  `min(30 s, 2^(n-1) s)`, or the `Retry-After` R2 sent (at most 30 s) plus up
+  to a second, so parallel readers spread out instead of retrying in step;
+- a connection that breaks mid-body is resumed with a ranged `GetObject` from
+  the first byte not yet read, under the same 8-request budget. The reader
+  still hashes every byte it receives, so a wrong resumed tail is refused like
+  any other wrong bytes; a response that does not start at the requested byte
+  fails the read;
+- at most one `GetObject` of a given key, from the request to the end of its
+  body, runs at a time through one store, and each command uses one store for
+  all its workers. `HeadObject` probes are not gated: `verify --remote` and
+  `push` probe each distinct object once. Successor scopes repeat many of
+  their predecessors' files (on 2026-10-23, 68,126 lock entries named 55,447
+  distinct objects), so one fetch meets the same key several times;
+- `corpus fetch`, `corpus verify --remote` and `corpus push` read entries in
+  a random order. In sorted order every CI job, and every pull request's run,
+  would ask for the same object at the same moment.
+
+A read that exhausts its budget fails with `R2UnavailableError`, whose message
+names the last R2 error and the number of attempts; the fetch then fails as
+before. `push` uploads and their readbacks (`R2ObjectStore.put`) use a second
+client that keeps botocore's standard retries and are not covered by this
+policy. The `CI` workflow also cancels a pull request's superseded run when a
+new push arrives.
+
 ### Resolver
 
 Code that reads `data/corpus` paths gets the same guarantee without a
@@ -211,6 +264,15 @@ separate command (`axiom_corpus.corpus.resolver`):
   fetches it first, never after its writes).
 - `build_release_content` and `scripts/publish_corpus.py` fetch the selected
   scopes before hashing.
+- Eighteen one-off reproductions that read retained corpus files (17 in
+  `scripts/repro/` plus `scripts/repro_us_cfr_416_deeming_slice.py`) call
+  `ensure_corpus_inputs()` first in `main()`, which fetches the locked files
+  the script reads: its retained sources and any other scope it compares
+  against. `scripts/repro/us_hts_rev15_chapter50_edition.py`, added later,
+  still reads its retained source directly, without the helper. An
+  input-root override outside the checkout skips fetching the overridden
+  source files, but the CalFresh and full-schedule scripts still fetch the
+  repository comparison inputs they read from the checkout.
 - `ensure_corpus_paths`, `ensure_corpus_scopes`, `resolve_corpus_path` and
   `require_materialized` are the building blocks. Each checks each path in
   the checkout that names it (below), whatever the working directory, and
