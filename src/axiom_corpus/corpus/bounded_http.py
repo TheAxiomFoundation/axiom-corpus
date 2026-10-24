@@ -247,11 +247,11 @@ def _get_once(
             _close_noting_failure(response, error)
             raise
         response.close()
+        return b"".join(chunks)
     except requests.RequestException:
         raise
     except Exception as error:
         raise _failed_attempt(url, error) from error
-    return b"".join(chunks)
 
 
 def _open(
@@ -292,7 +292,7 @@ def _open(
         _close_noting_failure(session, error, what="the session")
         for failure in adapter.close_failures:
             if failure is not error:
-                _note(error, f"closing a connection pool also failed: {failure!r}")
+                _note_close_failure(error, "a connection pool", failure)
         if (
             adapter.answered
             and isinstance(error, Exception)
@@ -325,7 +325,7 @@ class _DeadlineAdapter(HTTPAdapter):
     reached its pool, as a kept error's traceback can. A closed pool closes
     its idle connections, and any connection still in use when it is given
     back. A pool that fails to close is added to ``close_failures``, and the
-    others are closed all the same.
+    others are closed all the same (see ``_PoolCloser``).
     """
 
     def __init__(self, url: str, give_up_at: float, opened: list[requests.Response]) -> None:
@@ -333,19 +333,31 @@ class _DeadlineAdapter(HTTPAdapter):
         self._give_up_at = give_up_at
         self._opened = opened
         self.answered = False
-        self.close_failures: list[Exception] = []
+        self._pool_closer = _PoolCloser()
+        self.close_failures = self._pool_closer.failures
         super().__init__()
 
     def init_poolmanager(
         self, connections: int, maxsize: int, block: bool = False, **pool_kwargs: Any
     ) -> None:
         super().init_poolmanager(connections, maxsize, block=block, **pool_kwargs)  # type: ignore[no-untyped-call]  # untyped in the requests stubs
-        _close_the_pools_it_drops(self.poolmanager, self.close_failures)
+        self.poolmanager.pools.dispose_func = self._pool_closer
 
     def proxy_manager_for(self, proxy: str, **proxy_kwargs: Any) -> PoolManager:
         manager: PoolManager = super().proxy_manager_for(proxy, **proxy_kwargs)  # type: ignore[no-untyped-call]  # untyped in the requests stubs
-        _close_the_pools_it_drops(manager, self.close_failures)
+        manager.pools.dispose_func = self._pool_closer
         return manager
+
+    def close(self) -> None:
+        closer = self._pool_closer
+        closer.holding = True
+        try:
+            super().close()  # type: ignore[no-untyped-call]  # untyped in the requests stubs
+        finally:
+            closer.holding = False
+            held, closer.held = closer.held, []
+        if held:
+            raise held[0]
 
     def send(
         self,
@@ -386,19 +398,38 @@ class _DeadlineAdapter(HTTPAdapter):
         return response
 
 
-def _close_the_pools_it_drops(manager: PoolManager, failures: list[Exception]) -> None:
-    def close(pool: HTTPConnectionPool) -> None:
+class _PoolCloser:
+    """Closes each connection pool a ``_DeadlineAdapter``'s pool managers drop.
+
+    A pool that fails to close is added to ``failures``. An interrupt while
+    one closes is raised at once when a request evicted it, which stops that
+    request. But while the adapter closes (``holding``) it is held until the
+    other pools are closed, since urllib3 takes every pool out of a manager
+    before it closes the first; the first held is then raised. Not the
+    adapter's own method, which would keep the adapter in a reference cycle.
+    """
+
+    def __init__(self) -> None:
+        self.failures: list[Exception] = []
+        self.holding = False
+        self.held: list[BaseException] = []
+
+    def __call__(self, pool: HTTPConnectionPool) -> None:
         try:
             pool.close()
         except Exception as error:  # the other pools are closed all the same
-            failures.append(error)
-
-    manager.pools.dispose_func = close
+            self.failures.append(error)
+        except BaseException as interrupt:
+            if not self.holding:
+                raise
+            self.held.append(interrupt)
 
 
 def _failed_attempt(url: str, error: Exception) -> requests.RequestException:
     """The failure of an attempt at ``url`` that ``error`` ended after an answer arrived."""
-    return requests.RequestException(f"fetching {url} failed after an answer arrived: {error!r}")
+    return requests.RequestException(
+        f"fetching {url} failed after an answer arrived: {_described(error)}"
+    )
 
 
 def _close_noting_failure(
@@ -414,10 +445,21 @@ def _close_noting_failure(
     try:
         closable.close()
     except Exception as close_error:
-        _note(error, f"closing {what} also failed: {close_error!r}")
+        _note_close_failure(error, what, close_error)
 
 
-def _note(error: BaseException, note: str) -> None:
-    """Add ``note`` to ``error``'s notes, or drop it if they cannot take it; an interrupt is raised."""
+def _note_close_failure(error: BaseException, what: str, failure: Exception) -> None:
+    """Note on ``error`` that closing ``what`` failed with ``failure``.
+
+    The note is dropped if ``error``'s notes cannot take it; an interrupt is raised.
+    """
     with contextlib.suppress(Exception):  # __notes__ set to something not a list, say
-        error.add_note(note)
+        error.add_note(f"closing {what} also failed: {_described(failure)}")
+
+
+def _described(error: BaseException) -> str:
+    """``repr(error)``, or, if its ``__repr__`` fails, the default one; an interrupt is raised."""
+    try:
+        return repr(error)
+    except Exception:
+        return object.__repr__(error)
