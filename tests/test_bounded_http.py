@@ -20,7 +20,7 @@ from types import SimpleNamespace
 import pytest
 import requests
 import urllib3.util.connection
-from hypothesis import given, settings
+from hypothesis import example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus import bounded_http
@@ -936,6 +936,16 @@ def _run_retries(monkeypatch, transport, **budget):
     retry_delay=st.floats(min_value=0, max_value=5),
     oversleep=st.one_of(st.just(0.0), st.floats(min_value=0, max_value=2)),
     outcomes=st.lists(_outcomes, min_size=1, max_size=4),
+)
+# A pause that returns past the deadline: the next attempt must not be made
+# with the time left, now below zero, as its timeouts.
+@example(
+    connect_timeout=10,
+    read_timeout=20,
+    deadline=1.0,
+    retry_delay=0.5,
+    oversleep=2.0,
+    outcomes=[("status", 503), ("answer", 0)],
 )
 def test_retry_budget_properties(
     connect_timeout, read_timeout, deadline, retry_delay, oversleep, outcomes
