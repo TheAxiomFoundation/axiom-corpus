@@ -171,6 +171,19 @@ def test_get_bytes_follows_no_redirect_after_the_deadline(slots):
         assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
 
 
+def test_no_request_is_sent_once_the_deadline_has_passed():
+    # Past the deadline the adapter raises requests.Timeout, which the retry
+    # loop and the Oregon fetcher handle. Without its check, requests would
+    # reject the timeouts, cut to zero or less, with a ValueError that neither
+    # catches, and a caller still waiting would get that instead.
+    with LocalHttpServer([respond(b"too late")]) as server:
+        with pytest.raises(requests.Timeout):
+            bounded_http._open(
+                server.url, headers={}, timeout=(1.0, 1.0), give_up_at=time.monotonic()
+            )
+        assert server.requests == []
+
+
 def test_get_bytes_sends_no_redirect_whose_body_ends_after_the_deadline(slots):
     # The redirect's headers arrive at once, inside the deadline, and its body
     # a byte at a time until 0.6 s, after it. requests reads that body before
@@ -234,8 +247,36 @@ def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots):
             requests.Timeout,
         ),
         ([stream_body(64 * 1024, 0.02)], {}, 0.3, requests.Timeout),
+        # Kept-alive connections go back to the session's pool, so these also
+        # need the session closed.
+        (
+            [respond(b"wrong")],
+            {
+                "/": redirect("/moved", keep_alive=True),
+                "/moved": until_client_closes(respond(b"moved")),
+            },
+            5,
+            bytes,
+        ),
+        (
+            [respond(b"wrong")],
+            {"/": redirect("/moved", slowly_for=0.6, keep_alive=True), "/moved": respond(b"late")},
+            0.3,
+            requests.Timeout,
+        ),
+        # requests raises TooManyRedirects with the last response, unclosed.
+        ([respond(b"wrong")], {"/": redirect("/", keep_alive=True)}, 5, requests.TooManyRedirects),
     ],
-    ids=["body", "http-error", "followed-redirect", "late-redirect", "body-cut-at-the-deadline"],
+    ids=[
+        "body",
+        "http-error",
+        "followed-redirect",
+        "late-redirect",
+        "body-cut-at-the-deadline",
+        "followed-keep-alive-redirect",
+        "late-keep-alive-redirect",
+        "redirect-loop",
+    ],
 )
 def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
     behaviours, routes, deadline, outcome, slots

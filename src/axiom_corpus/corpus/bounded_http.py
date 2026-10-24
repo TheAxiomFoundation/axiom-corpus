@@ -41,6 +41,7 @@ from collections.abc import Mapping
 
 import requests
 from requests.adapters import HTTPAdapter
+from urllib3 import PoolManager
 
 # Fetch threads, process-wide, that may be making requests at once, counting
 # those still open after the call that started them gave up.
@@ -242,7 +243,15 @@ def _open(
     with requests.Session() as session:
         session.mount("http://", adapter)
         session.mount("https://", adapter)
-        return session.get(url, headers=headers, timeout=timeout, stream=True)
+        try:
+            return session.get(url, headers=headers, timeout=timeout, stream=True)
+        except requests.RequestException as error:
+            # requests attaches the last response to some errors without closing
+            # it (TooManyRedirects, after reading its body); a kept error would
+            # then keep its connection open.
+            if error.response is not None:
+                error.response.close()
+            raise
 
 
 class _DeadlineAdapter(HTTPAdapter):
@@ -258,6 +267,19 @@ class _DeadlineAdapter(HTTPAdapter):
         super().__init__()
         self._url = url
         self._give_up_at = give_up_at
+
+    def close(self) -> None:
+        # urllib3 2's PoolManager.clear() forgets its pools without closing
+        # them, so a kept-alive connection would stay open for as long as
+        # anything still reaches its pool, as a kept error's traceback can.
+        # A closed pool closes its idle connections, and closes any connection
+        # still in use when that is given back.
+        managers: list[PoolManager] = [self.poolmanager, *self.proxy_manager.values()]
+        for manager in managers:
+            # The pools' container refuses plain iteration; keys() is a copy.
+            for key in manager.pools.keys():  # noqa: SIM118
+                manager.pools[key].close()
+        super().close()  # type: ignore[no-untyped-call]  # untyped in the requests stubs
 
     def send(
         self,

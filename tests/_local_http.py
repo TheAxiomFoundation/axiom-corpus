@@ -7,10 +7,12 @@ answers, sends its headers or body a byte at a time, redirects, drops the
 connection, or answers normally. Every behaviour returns when the server
 closes, so no test leaves a thread blocked on a socket.
 
-The server closes each connection when its behaviour returns, so a client that
-leaves a connection open is invisible unless the behaviour waits for the
-client's close (``until_client_closes``); ``open_connections`` then counts the
-connections a client has not yet closed.
+The server closes each connection when its behaviour returns, unless the
+behaviour returns True to keep it alive for the client's next request, as
+``redirect(..., keep_alive=True)`` does. A client that leaves a connection
+open is invisible unless the behaviour waits for the client's close
+(``until_client_closes``) or keeps the connection alive; ``open_connections``
+then counts the connections a client has not yet closed.
 """
 
 from __future__ import annotations
@@ -21,7 +23,9 @@ import threading
 import time
 from collections.abc import Callable, Mapping, Sequence
 
-Behaviour = Callable[[socket.socket, threading.Event], None]
+# A behaviour answers one request on a connection. It returns True to keep the
+# connection for the client's next request, and None or False to close it.
+Behaviour = Callable[[socket.socket, threading.Event], bool | None]
 
 
 class LocalHttpServer:
@@ -97,18 +101,20 @@ class LocalHttpServer:
             self._serving += 1
             self.max_concurrent = max(self.max_concurrent, self._serving)
         try:
-            request = _read_request_head(connection, self._closing)
-            if request is None:
-                return
-            path = request.split(b" ", 2)[1].decode("latin-1")
-            with self._lock:
-                self.requests.append(request)
-                behaviour = self._routes.get(path)
-                if behaviour is None:
-                    index = min(self._next_behaviour, len(self._behaviours) - 1)
-                    behaviour = self._behaviours[index]
-                    self._next_behaviour += 1
-            behaviour(connection, self._closing)
+            keep_alive = True
+            while keep_alive:
+                request = _read_request_head(connection, self._closing)
+                if request is None:
+                    return
+                path = request.split(b" ", 2)[1].decode("latin-1")
+                with self._lock:
+                    self.requests.append(request)
+                    behaviour = self._routes.get(path)
+                    if behaviour is None:
+                        index = min(self._next_behaviour, len(self._behaviours) - 1)
+                        behaviour = self._behaviours[index]
+                        self._next_behaviour += 1
+                keep_alive = bool(behaviour(connection, self._closing))
         except OSError:
             pass
         finally:
@@ -146,7 +152,8 @@ def until_client_closes(behaviour: Behaviour) -> Behaviour:
     """Run ``behaviour``, then keep the connection until the client closes it."""
 
     def waiting(connection: socket.socket, closing: threading.Event) -> None:
-        behaviour(connection, closing)
+        if behaviour(connection, closing):
+            raise ValueError("until_client_closes needs a behaviour that closes its connection")
         connection.settimeout(0.05)
         while not closing.is_set():
             try:
@@ -232,31 +239,35 @@ def redirect(
     slowly_for: float = 0.0,
     body_slowly_for: float = 0.0,
     interval: float = 0.02,
+    keep_alive: bool = False,
 ) -> Behaviour:
     """Answer ``302 Found`` to ``location``.
 
     Its headers trickle in for ``slowly_for`` seconds first. Its body is empty,
     or, with ``body_slowly_for``, a chunked body sent a byte at a time for that
-    long.
+    long. With ``keep_alive`` it keeps the connection for the client's next
+    request instead of closing it.
     """
 
-    def behaviour(connection: socket.socket, closing: threading.Event) -> None:
+    def behaviour(connection: socket.socket, closing: threading.Event) -> bool:
         framing = b"Transfer-Encoding: chunked\r\n" if body_slowly_for else b"Content-Length: 0\r\n"
-        rest = b"Connection: close\r\n" + framing + f"Location: {location}\r\n\r\n".encode()
+        persistence = b"" if keep_alive else b"Connection: close\r\n"
+        rest = persistence + framing + f"Location: {location}\r\n\r\n".encode()
         if not slowly_for:
             connection.sendall(b"HTTP/1.1 302 Found\r\n" + rest)
         else:
             connection.sendall(b"HTTP/1.1 302 Found\r\nX-Slow: ")
             if not _trickle(connection, closing, seconds=slowly_for, interval=interval):
-                return
+                return False
             connection.sendall(b"\r\n" + rest)
         if body_slowly_for:
             finish_at = time.monotonic() + body_slowly_for
             while time.monotonic() < finish_at:
                 if closing.wait(interval):
-                    return
+                    return False
                 connection.sendall(b"1\r\na\r\n")
             connection.sendall(b"0\r\n\r\n")
+        return keep_alive
 
     return behaviour
 
