@@ -357,12 +357,70 @@ def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
         assert result is not None  # still kept
 
 
+class _Abort(BaseException):
+    """Stands in for ``KeyboardInterrupt`` or ``SystemExit`` raised mid-request."""
+
+
+class _UnprintableError(ValueError):
+    """An error whose ``repr`` raises ``repr_failure``, as a third-party one's can."""
+
+    def __init__(self, message: str, repr_failure: BaseException | None = None) -> None:
+        super().__init__(message)
+        self.repr_failure = repr_failure or RuntimeError("no repr")
+
+    def __repr__(self) -> str:
+        raise self.repr_failure
+
+
+def _shown(failure: BaseException) -> str:
+    """How a note or a failed attempt's message shows ``failure``."""
+    return object.__repr__(failure) if isinstance(failure, _UnprintableError) else repr(failure)
+
+
+def _pool_close_failed_note(failure: BaseException) -> str:
+    return f"closing a connection pool also failed: {_shown(failure)}"
+
+
+def _assert_failed_attempt(error: BaseException, url: str, failure: BaseException) -> None:
+    """``error`` is the failed attempt at ``url`` that ``failure`` ended after an answer arrived."""
+    assert type(error) is requests.RequestException
+    assert error.__cause__ is failure
+    assert str(error) == f"fetching {url} failed after an answer arrived: {_shown(failure)}"
+
+
+def _redirect_chain(hosts: int, last=None) -> list[LocalHttpServer]:
+    """``hosts`` servers, each redirecting to the next and keeping its connection alive.
+
+    The last runs ``last``, or redirects back to the first, round and round.
+    The adapter caches pools for ten hosts, so a longer chain evicts the
+    first host's pool when it reaches the eleventh, and the session closes
+    the rest.
+    """
+    # targets[i] is where host i redirects to; filled in once every host has
+    # its address.
+    targets: list[str] = []
+
+    def redirect_onwards(index):
+        def behaviour(connection, closing):
+            return redirect(targets[index], keep_alive=True)(connection, closing)
+
+        return behaviour
+
+    servers = [LocalHttpServer([redirect_onwards(index)]) for index in range(hosts - 1)]
+    servers.append(LocalHttpServer([last or redirect_onwards(hosts - 1)]))
+    targets.extend(server.url for server in servers[1:])
+    targets.append(servers[0].url)
+    return servers
+
+
 @pytest.mark.parametrize(
-    "pools_fail_to_close", [False, True], ids=["pools-close", "two-pools-fail-to-close"]
+    "pool_failure",
+    [None, OSError, ValueError, _UnprintableError],
+    ids=["pools-close", "two-pools-fail-to-close", "other-error", "unprintable-error"],
 )
 @pytest.mark.parametrize("ending", ["http-error", "redirect-loop"])
 def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(
-    ending, pools_fail_to_close, slots, monkeypatch
+    ending, pool_failure, slots, monkeypatch
 ):
     """A chain across more hosts than the adapter caches pools for (ten) leaves none open.
 
@@ -374,46 +432,37 @@ def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(
     all the same, and the failures are noted on the error, or fail the
     attempt when nothing else did.
     """
-    hosts = 12
-    # targets[i] is where host i redirects to; filled in once every host has
-    # its address.
-    targets: list[str] = []
-
-    def redirect_onwards(index):
-        def behaviour(connection, closing):
-            return redirect(targets[index], keep_alive=True)(connection, closing)
-
-        return behaviour
-
     if ending == "http-error":
         last = until_client_closes(respond(b"broken", status="500 Internal Server Error"))
         outcome: type[Exception] = requests.HTTPError
     else:
-        last = redirect_onwards(hosts - 1)  # back to the first host, round and round
+        last = None
         outcome = requests.TooManyRedirects
-    servers = [LocalHttpServer([redirect_onwards(index)]) for index in range(hosts - 1)]
-    servers.append(LocalHttpServer([last]))
-    targets.extend(server.url for server in servers[1:])
-    targets.append(servers[0].url)
-    if pools_fail_to_close:
-        _make_connections_fail_to_close(monkeypatch, servers[0].url, servers[5].url)
+    servers = _redirect_chain(12, last)
+    raised: list[BaseException] = []
+    if pool_failure is not None:
+        _make_connections_fail_to_close(
+            monkeypatch, servers[0].url, servers[5].url, failure_type=pool_failure, raised=raised
+        )
     with contextlib.ExitStack() as stack:
         for server in servers:
             stack.enter_context(server)
         _, error = _elapsed(
             lambda: get_bytes(servers[0].url, connect_timeout=1, read_timeout=2, deadline=5)
         )
-        if not pools_fail_to_close:
+        if pool_failure is None:
             assert isinstance(error, outcome)
         elif ending == "http-error":
             # The 500 is never checked: the session's pools failed to close first.
             assert type(error) is requests.RequestException
-            assert repr(error.__cause__) == "OSError('close failed')"
-            assert error.__cause__.__notes__ == [_POOL_CLOSE_FAILED_NOTE]
+            assert len(raised) == 2
+            assert error.__cause__ is raised[0]
+            assert error.__cause__.__notes__ == [_pool_close_failed_note(raised[1])]
         else:
+            # Round and round, each host's pool is evicted again and again.
             assert type(error) is requests.TooManyRedirects
-            assert error.__notes__
-            assert set(error.__notes__) == {_POOL_CLOSE_FAILED_NOTE}
+            assert len(raised) > 2
+            assert error.__notes__ == [_pool_close_failed_note(failure) for failure in raised]
         assert wait_until(lambda: slots.used == 0)
 
         assert wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
@@ -465,12 +514,7 @@ def test_get_bytes_closes_an_answer_whose_response_requests_fails_to_build(hop, 
         assert excinfo.value is not None  # still kept
 
 
-class _Abort(BaseException):
-    """Stands in for ``KeyboardInterrupt`` or ``SystemExit`` raised mid-request."""
-
-
 _CLOSE_FAILED_NOTE = "closing the answer also failed: OSError('close failed')"
-_POOL_CLOSE_FAILED_NOTE = "closing a connection pool also failed: OSError('close failed')"
 
 
 def _make_answers_fail_to_close(monkeypatch):
@@ -484,15 +528,22 @@ def _make_answers_fail_to_close(monkeypatch):
     monkeypatch.setattr(urllib3.response.HTTPResponse, "close", close_then_fail)
 
 
-def _make_connections_fail_to_close(monkeypatch, *urls):
-    """Make each urllib3 connection to ``urls`` close, then report a failure."""
+def _make_connections_fail_to_close(monkeypatch, *urls, failure_type=OSError, raised=None):
+    """Make each urllib3 connection to ``urls`` close, then raise ``failure_type("close failed")``.
+
+    Each failure raised is added to ``raised``, if given. Called again, it
+    adds more failing hosts.
+    """
     ports = {urllib.parse.urlsplit(url).port for url in urls}
     close = urllib3.connection.HTTPConnection.close
 
     def close_then_fail(self):
         close(self)
         if self.port in ports:
-            raise OSError("close failed")
+            failure = failure_type("close failed")
+            if raised is not None:
+                raised.append(failure)
+            raise failure
 
     monkeypatch.setattr(urllib3.connection.HTTPConnection, "close", close_then_fail)
 
@@ -551,9 +602,14 @@ def test_get_bytes_retries_an_http_error_whose_answer_fails_to_close(slots, monk
         )
 
 
+@pytest.mark.parametrize(
+    "failure_type",
+    [OSError, ValueError, _UnprintableError],
+    ids=["os-error", "other-error", "unprintable-error"],
+)
 @pytest.mark.parametrize("ending", ["ok", "http-error", "interrupt"])
 def test_get_bytes_fails_an_attempt_whose_connection_pool_fails_to_close(
-    ending, slots, monkeypatch
+    ending, failure_type, slots, monkeypatch
 ):
     """A pool that fails to close with the session fails the attempt, or is noted on an interrupt.
 
@@ -567,7 +623,10 @@ def test_get_bytes_fails_an_attempt_whose_connection_pool_fails_to_close(
         LocalHttpServer([until_client_closes(respond(b"body", status=status))]) as target,
         LocalHttpServer([redirect(target.url, keep_alive=True)]) as source,
     ):
-        _make_connections_fail_to_close(monkeypatch, source.url)
+        raised: list[BaseException] = []
+        _make_connections_fail_to_close(
+            monkeypatch, source.url, failure_type=failure_type, raised=raised
+        )
         if ending == "interrupt":
             extract = requests.sessions.extract_cookies_to_jar
 
@@ -583,11 +642,12 @@ def test_get_bytes_fails_an_attempt_whose_connection_pool_fails_to_close(
             get_bytes(source.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
         if ending == "interrupt":
             assert type(excinfo.value) is _Abort
-            assert excinfo.value.__notes__ == [_POOL_CLOSE_FAILED_NOTE]
+            assert len(raised) == 1
+            assert excinfo.value.__notes__ == [_pool_close_failed_note(raised[0])]
             assert len(source.requests) + len(target.requests) == 2  # not retried
         else:
-            assert type(excinfo.value) is requests.RequestException
-            assert repr(excinfo.value.__cause__) == "OSError('close failed')"
+            assert len(raised) == 2
+            _assert_failed_attempt(excinfo.value, source.url, raised[1])
             assert len(source.requests) + len(target.requests) == 4  # retried
         assert wait_until(lambda: slots.used == 0)
 
@@ -597,7 +657,11 @@ def test_get_bytes_fails_an_attempt_whose_connection_pool_fails_to_close(
         assert excinfo.value is not None  # still kept
 
 
-@pytest.mark.parametrize("failure_type", [OSError, _Abort], ids=["os-error", "interrupt"])
+@pytest.mark.parametrize(
+    "failure_type",
+    [OSError, ValueError, _UnprintableError, _Abort],
+    ids=["os-error", "other-error", "unprintable-error", "interrupt"],
+)
 def test_get_bytes_fails_an_attempt_whose_answer_fails_to_close_after_its_body(
     failure_type, slots, monkeypatch
 ):
@@ -607,27 +671,106 @@ def test_get_bytes_fails_an_attempt_whose_answer_fails_to_close_after_its_body(
     and an interrupt is raised unchanged.
     """
     close = requests.models.Response.close
+    raised: list[BaseException] = []
 
     def close_then_fail(self):
         close(self)
-        raise failure_type("close failed")
+        raised.append(failure_type("close failed"))
+        raise raised[-1]
 
     monkeypatch.setattr(requests.models.Response, "close", close_then_fail)
     with LocalHttpServer([until_client_closes(respond(b"ok"))]) as server:
         with pytest.raises(BaseException) as excinfo:
             get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
-        if failure_type is OSError:
-            assert type(excinfo.value) is requests.RequestException
-            assert repr(excinfo.value.__cause__) == "OSError('close failed')"
-            assert len(server.requests) == 2  # retried
-        else:
-            assert type(excinfo.value) is _Abort
+        if failure_type is _Abort:
+            assert excinfo.value is raised[-1]
             assert len(server.requests) == 1  # not retried
+        else:
+            _assert_failed_attempt(excinfo.value, server.url, raised[-1])
+            assert len(server.requests) == 2  # retried
         assert wait_until(lambda: slots.used == 0)
 
         assert wait_until(lambda: server.open_connections == 0), (
             f"{server.open_connections} connection(s) still open"
         )
+
+
+def test_get_bytes_fails_an_attempt_whose_body_cannot_be_put_together(slots, monkeypatch):
+    """Putting the body together comes after the answer, so a failure there fails the attempt.
+
+    A chunk that is not bytes stands in for running out of memory there.
+    """
+
+    def not_bytes(self, chunk_size=1, decode_unicode=False):
+        yield "not bytes"
+
+    monkeypatch.setattr(requests.models.Response, "iter_content", not_bytes)
+    with LocalHttpServer([until_client_closes(respond(b"ok"))]) as server:
+        with pytest.raises(requests.RequestException) as excinfo:
+            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        assert type(excinfo.value) is requests.RequestException
+        assert type(excinfo.value.__cause__) is TypeError
+        assert len(server.requests) == 2  # retried
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: server.open_connections == 0), (
+            f"{server.open_connections} connection(s) still open"
+        )
+
+
+def test_get_bytes_stops_at_once_when_a_pool_it_evicts_raises_an_interrupt(slots, monkeypatch):
+    """The first host's pool is evicted on the way to the eleventh, which is never asked.
+
+    The interrupt is raised unchanged, and every other pool is closed with the session.
+    """
+    servers = _redirect_chain(12, until_client_closes(respond(b"ok")))
+    raised: list[BaseException] = []
+    _make_connections_fail_to_close(monkeypatch, servers[0].url, failure_type=_Abort, raised=raised)
+    with contextlib.ExitStack() as stack:
+        for server in servers:
+            stack.enter_context(server)
+        with pytest.raises(_Abort) as excinfo:
+            get_bytes(servers[0].url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        assert len(raised) == 1
+        assert excinfo.value is raised[0]
+        assert [len(server.requests) for server in servers] == [1] * 10 + [0, 0]
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
+            server.open_connections for server in servers
+        ]
+
+
+def test_get_bytes_closes_every_other_pool_before_raising_an_interrupt_from_one(slots, monkeypatch):
+    """urllib3 takes every pool out before it closes the first, so an interrupt waits for the rest.
+
+    The session closes the pools of the last ten hosts in the order they were
+    first used. The sixth's and the eighth's raise interrupts, and the
+    tenth's fails: every pool is still closed, the first interrupt is raised,
+    and the failure is noted on it.
+    """
+    servers = _redirect_chain(12, until_client_closes(respond(b"ok")))
+    aborts: list[BaseException] = []
+    failures: list[BaseException] = []
+    _make_connections_fail_to_close(
+        monkeypatch, servers[5].url, servers[7].url, failure_type=_Abort, raised=aborts
+    )
+    _make_connections_fail_to_close(monkeypatch, servers[9].url, raised=failures)
+    with contextlib.ExitStack() as stack:
+        for server in servers:
+            stack.enter_context(server)
+        with pytest.raises(_Abort) as excinfo:
+            get_bytes(servers[0].url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        assert len(aborts) == 2
+        assert excinfo.value is aborts[0]
+        assert len(failures) == 1
+        assert excinfo.value.__notes__ == [_pool_close_failed_note(failures[0])]
+        assert [len(server.requests) for server in servers] == [1] * 12  # not retried
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
+            server.open_connections for server in servers
+        ]
 
 
 class _Closable:
@@ -697,18 +840,49 @@ def test_an_interrupt_while_noting_a_failure_to_close_is_raised_in_place_of_the_
     assert excinfo.value is interrupt
 
 
+@pytest.mark.parametrize(
+    "repr_failure", [RuntimeError("no repr"), MemoryError()], ids=["error", "out-of-memory"]
+)
+def test_a_failure_to_close_whose_repr_fails_is_noted_by_its_default_repr(repr_failure):
+    error = _Abort("original")
+    failure = _UnprintableError("close failed", repr_failure)
+    bounded_http._close_noting_failure(_Closable(failure), error)
+    assert error.__notes__ == [f"closing the answer also failed: {object.__repr__(failure)}"]
+
+
+def test_an_interrupt_while_showing_a_failure_to_close_is_raised_in_place_of_the_error():
+    interrupt = _Abort()
+    failure = _UnprintableError("close failed", interrupt)
+    with pytest.raises(_Abort) as excinfo:
+        bounded_http._close_noting_failure(_Closable(failure), RuntimeError("original"))
+    assert excinfo.value is interrupt
+
+
+@pytest.mark.parametrize(
+    "repr_failure", [RuntimeError("no repr"), MemoryError()], ids=["error", "out-of-memory"]
+)
+def test_a_failed_attempt_whose_error_repr_fails_shows_its_default_repr(repr_failure):
+    error = _UnprintableError("boom", repr_failure)
+    failed = bounded_http._failed_attempt("http://example.test/", error)
+    assert type(failed) is requests.RequestException
+    assert str(failed) == (
+        f"fetching http://example.test/ failed after an answer arrived: {object.__repr__(error)}"
+    )
+
+
 def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch):
-    """Every response a call builds is freed when it returns, with the cycle collector off.
+    """Every response a call builds, and its adapter, is freed when it returns, with the cycle collector off.
 
     Each response refers to the adapter that built it, which keeps a list of
-    the responses it built.
+    the responses it built, and the caches of its pool managers close the
+    pools they drop through an object the adapter keeps.
     """
     built = []
     build_response = bounded_http._DeadlineAdapter.build_response
 
     def recording(self, req, resp):
         response = build_response(self, req, resp)
-        built.append(weakref.ref(response))
+        built.extend((weakref.ref(response), weakref.ref(self)))
         return response
 
     monkeypatch.setattr(bounded_http._DeadlineAdapter, "build_response", recording)
@@ -719,7 +893,7 @@ def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch
         try:
             assert get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5) == b"moved"
             assert wait_until(lambda: slots.used == 0)
-            assert len(built) == 2
+            assert len(built) == 4
             assert wait_until(lambda: all(ref() is None for ref in built)), [ref() for ref in built]
         finally:
             if collecting:
