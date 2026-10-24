@@ -167,6 +167,33 @@ the same part grammar (`Appendix A to Part 60-300` is
 sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
 `manifests/releases/` carried title 41 then.
 
+A section may be numbered for a part other than the eCFR part that holds it. Title 43
+groups BLM rules in parts such as 3800, whose subparts carry their own numbers: subpart
+3809 of part 3800 holds 43 CFR 3809.1, and eCFR has no part 3809. A 2026-10-08 census
+observed 2,976 such sections in 82 title-43 parts, plus five misnumbered sections elsewhere,
+such as § 1735.9 in 7 CFR part 1739. Such a section keeps the path of its citation,
+`us/regulation/43/3809/1`, which is how the app and the encoder resolve "43 CFR 3809.1".
+It belongs to the part that holds it:
+
+- its parent is `us/regulation/43/3800/subpart-3809`;
+- `--only-part 3800` includes it, and `--section 3809.1` selects it;
+- its source URL is on part 3800's eCFR page;
+- `metadata.enclosing_part` is `3800`.
+
+Within one eCFR run, two provisions never share a citation path. An inventory that would
+put two items under one path fails, and so does a retained XML (`--source-xml`) whose
+selector names two sections. XML that holds two elements under one selected path is a
+fatal validation error, even with complete cached provisions or `--allow-incomplete`.
+A rejected retained-XML rebuild preserves the previous run's artifacts, including its
+source snapshot. In the XML, a section numbered for another part is read only from an
+identifier the structure grammar reads whole, so an identifier that merely contains
+one (`19-3809.1`) cannot take its path.
+
+Before 2026-10-12, a part-scoped run dropped these sections. A whole-title inventory gave
+them the parent `us/regulation/43/3809/subpart-3809`, which no inventory holds, and a link
+to a part-3809 page that eCFR does not serve. As of 2026-10-12, no release selector under
+`manifests/releases/` carried title 43 or the five other parts.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
