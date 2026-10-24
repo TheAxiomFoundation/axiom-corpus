@@ -437,8 +437,17 @@ such PDFs. Without them extraction is unchanged.
   `typographic_underlines` list. Each marked page row carries
   `metadata.amendment_markup`: the notation and its counts of deleted and
   inserted runs.
-  - Removing the four delimiters gives back exactly the page text extracted
-    without the option. Every marked page is checked against that text.
+  - Removing the delimiters gives back exactly the page text extracted without
+    the option. Every marked page is checked against that text.
+  - Read the delimiters left to right: outside a run only an opener (`[-` or
+    `{+`) is a delimiter, and inside a run only that run's closer (`-]` or
+    `+}`) is, the first one ending the run. Do not remove every occurrence of
+    the four tokens. A struck run that ends in a literal `[` is written
+    `[-[-]`, and an underlined run that ends in `{` is written `{+{+}`.
+    Maryland prints a deletion in brackets and strikes the brackets where an
+    amendment struck it, so 2025 ch. 604 reads
+    `the budget bill [-[-]shall[-] MAY-] specify`: the brackets and "MAY" are
+    struck and "shall" is not.
   - Limit the page range to the amended text, so that ordinary emphasis
     underlines elsewhere are not marked.
   - List in `typographic_underlines` any exact phrase whose underline is
@@ -479,7 +488,10 @@ an error naming the page if the walk and `rawdict` do not line up, or if the
 result still differs from the default text. This needs PyMuPDF 1.26.6 or later.
 `amendment_markup` also fails if a page's own text already contains one of the
 delimiters, if a character is both struck through and underlined, or if
-`start_page` is past the last page.
+`start_page` is past the last page. It fails too if the text spells a delimiter
+once its zero-width characters are dropped (`[`, U+200B, `-`) and both
+characters sit in the same run or the same plain text, so that no written
+delimiter separates them.
 
 The strike and underline classifier is geometric. A visible horizontal rule at
 most 1.5 pt thick (a rectangle's height plus its stroke width when stroked, or a
