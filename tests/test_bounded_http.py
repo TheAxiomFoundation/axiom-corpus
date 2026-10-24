@@ -31,6 +31,7 @@ from axiom_corpus.corpus.bounded_http import get_bytes
 from tests._local_http import (
     OVERFLOWING_COOKIE,
     LocalHttpServer,
+    RunningCount,
     drop_connection,
     held_headers,
     never_answer,
@@ -40,6 +41,7 @@ from tests._local_http import (
     trickle_body,
     trickle_headers,
     until_client_closes,
+    wait_until,
     warnings_as_errors,
 )
 
@@ -60,15 +62,6 @@ def _elapsed(call):
 
 def _open_workers(url: str) -> int:
     return sum(1 for thread in threading.enumerate() if thread.name == f"get_bytes {url}")
-
-
-def _wait_until(condition, *, within: float = 5.0) -> bool:
-    give_up_at = time.monotonic() + within
-    while time.monotonic() < give_up_at:
-        if condition():
-            return True
-        time.sleep(0.01)
-    return condition()
 
 
 @pytest.fixture
@@ -172,7 +165,7 @@ def test_get_bytes_follows_no_redirect_after_the_deadline(slots):
         # The worker ends when the redirect arrives, without following it. A
         # followed redirect would have reached the server before the worker
         # got its answer and ended.
-        assert _wait_until(lambda: slots.used == 0)
+        assert wait_until(lambda: slots.used == 0)
 
         assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
 
@@ -241,7 +234,7 @@ def test_get_bytes_sends_no_redirect_whose_body_ends_after_the_deadline(slots):
         )
         assert isinstance(error, requests.Timeout)
         assert elapsed < 0.3 + _SLACK_SECONDS
-        assert _wait_until(lambda: slots.used == 0)
+        assert wait_until(lambda: slots.used == 0)
 
         assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
 
@@ -355,9 +348,9 @@ def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
             lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=deadline)
         )
         assert isinstance(result, outcome)
-        assert _wait_until(lambda: slots.used == 0)
+        assert wait_until(lambda: slots.used == 0)
 
-        assert _wait_until(lambda: server.open_connections == 0), (
+        assert wait_until(lambda: server.open_connections == 0), (
             f"{server.open_connections} connection(s) still open"
         )
         assert result is not None  # still kept
@@ -399,9 +392,9 @@ def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(ending, slots):
             lambda: get_bytes(servers[0].url, connect_timeout=1, read_timeout=2, deadline=5)
         )
         assert isinstance(error, outcome)
-        assert _wait_until(lambda: slots.used == 0)
+        assert wait_until(lambda: slots.used == 0)
 
-        assert _wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
+        assert wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
             server.open_connections for server in servers
         ]
         assert error is not None  # still kept
@@ -421,9 +414,9 @@ def test_get_bytes_leaves_no_proxy_connection_open_while_its_error_is_kept(slots
         )
         assert isinstance(error, requests.TooManyRedirects)
         assert proxy.requests[0].startswith(b"GET http://proxied.test/ ")
-        assert _wait_until(lambda: slots.used == 0)
+        assert wait_until(lambda: slots.used == 0)
 
-        assert _wait_until(lambda: proxy.open_connections == 0), (
+        assert wait_until(lambda: proxy.open_connections == 0), (
             f"{proxy.open_connections} connection(s) still open"
         )
         assert error is not None  # still kept
@@ -442,9 +435,9 @@ def test_get_bytes_closes_an_answer_whose_response_requests_fails_to_build(hop, 
         with pytest.raises(requests.RequestException) as excinfo:
             get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5)
         assert isinstance(excinfo.value.__cause__, UserWarning)
-        assert _wait_until(lambda: slots.used == 0)
+        assert wait_until(lambda: slots.used == 0)
 
-        assert _wait_until(lambda: server.open_connections == 0), (
+        assert wait_until(lambda: server.open_connections == 0), (
             f"{server.open_connections} connection(s) still open"
         )
         assert excinfo.value is not None  # still kept
@@ -454,30 +447,42 @@ class _Abort(BaseException):
     """Stands in for ``KeyboardInterrupt`` or ``SystemExit`` raised mid-request."""
 
 
+_CLOSE_FAILED_NOTE = "closing the answer also failed: OSError('close failed')"
+
+
+def _make_answers_fail_to_close(monkeypatch):
+    """Make each urllib3 answer close, then report a failure, as a socket's close can."""
+    close = urllib3.response.HTTPResponse.close
+
+    def close_then_fail(self):
+        close(self)
+        raise OSError("close failed")
+
+    monkeypatch.setattr(urllib3.response.HTTPResponse, "close", close_then_fail)
+
+
 @pytest.mark.parametrize("close_fails", [False, True], ids=["closes", "close-fails"])
 @pytest.mark.parametrize(
-    "module",
-    ["requests.adapters", "requests.sessions"],
-    ids=["while-building-the-response", "after-the-response"],
+    "target",
+    [
+        "requests.adapters.extract_cookies_to_jar",
+        "requests.sessions.extract_cookies_to_jar",
+        "requests.models.Response.iter_content",
+    ],
+    ids=["while-building-the-response", "after-the-response", "while-reading-the-body"],
 )
 def test_get_bytes_raises_an_interrupt_after_an_answer_unchanged_and_closes_the_answer(
-    module, close_fails, slots, monkeypatch
+    target, close_fails, slots, monkeypatch
 ):
     # requests stores an answer's cookies twice: in requests.adapters while it
     # builds the Response, and in requests.sessions once the adapter returns it.
-    def interrupt(*args):
+    # get_bytes then reads the body with iter_content.
+    def interrupt(*args, **kwargs):
         raise _Abort
 
-    monkeypatch.setattr(f"{module}.extract_cookies_to_jar", interrupt)
+    monkeypatch.setattr(target, interrupt)
     if close_fails:
-        # The answer closes, then reports a failure, as a socket's close can.
-        close = urllib3.response.HTTPResponse.close
-
-        def close_then_fail(self):
-            close(self)
-            raise OSError("close failed")
-
-        monkeypatch.setattr(urllib3.response.HTTPResponse, "close", close_then_fail)
+        _make_answers_fail_to_close(monkeypatch)
     with LocalHttpServer(
         [respond(b"wrong")], routes={"/": until_client_closes(respond(b"ok"))}
     ) as server:
@@ -486,15 +491,64 @@ def test_get_bytes_raises_an_interrupt_after_an_answer_unchanged_and_closes_the_
         assert type(excinfo.value) is _Abort
         assert len(server.requests) == 1  # not retried
         if close_fails:
-            assert excinfo.value.__notes__ == [
-                "closing the answer also failed: OSError('close failed')"
-            ]
-        assert _wait_until(lambda: slots.used == 0)
+            assert excinfo.value.__notes__ == [_CLOSE_FAILED_NOTE]
+        assert wait_until(lambda: slots.used == 0)
 
-        assert _wait_until(lambda: server.open_connections == 0), (
+        assert wait_until(lambda: server.open_connections == 0), (
             f"{server.open_connections} connection(s) still open"
         )
         assert excinfo.value is not None  # still kept
+
+
+def test_get_bytes_retries_an_http_error_whose_answer_fails_to_close(slots, monkeypatch):
+    _make_answers_fail_to_close(monkeypatch)
+    routes = {"/": until_client_closes(respond(b"busy", status="503 Service Unavailable"))}
+    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        with pytest.raises(requests.HTTPError) as excinfo:
+            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        assert len(server.requests) == 2  # retried, as an HTTP error is
+        assert excinfo.value.__notes__ == [_CLOSE_FAILED_NOTE]
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: server.open_connections == 0), (
+            f"{server.open_connections} connection(s) still open"
+        )
+
+
+class _Closable:
+    def __init__(self, failure: BaseException | None) -> None:
+        self.failure = failure
+        self.closed = False
+
+    def close(self) -> None:
+        self.closed = True
+        if self.failure is not None:
+            raise self.failure
+
+
+@pytest.mark.parametrize("failure_type", [OSError, ValueError], ids=["os-error", "other-error"])
+@pytest.mark.parametrize("error_type", [_Abort, RuntimeError], ids=["interrupt", "ordinary-error"])
+def test_a_failure_to_close_an_answer_is_noted_on_the_error_being_raised(error_type, failure_type):
+    error = error_type("original")
+    failure = failure_type("close failed")
+    answer = _Closable(failure)
+    bounded_http._close_noting_failure(answer, error)
+    assert answer.closed
+    assert error.__notes__ == [f"closing the answer also failed: {failure!r}"]
+
+
+def test_an_interrupt_while_closing_an_answer_is_raised_in_place_of_the_error():
+    interrupt = _Abort()
+    with pytest.raises(_Abort) as excinfo:
+        bounded_http._close_noting_failure(_Closable(interrupt), RuntimeError("original"))
+    assert excinfo.value is interrupt
+
+
+def test_a_failure_to_close_is_dropped_when_the_error_cannot_take_notes():
+    error = RuntimeError("original")
+    error.__notes__ = ("fixed",)  # add_note raises TypeError for anything not a list
+    bounded_http._close_noting_failure(_Closable(OSError("socket")), error)
+    assert error.__notes__ == ("fixed",)
 
 
 def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch):
@@ -518,11 +572,9 @@ def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch
         gc.disable()
         try:
             assert get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5) == b"moved"
-            assert _wait_until(lambda: slots.used == 0)
+            assert wait_until(lambda: slots.used == 0)
             assert len(built) == 2
-            assert _wait_until(lambda: all(ref() is None for ref in built)), [
-                ref() for ref in built
-            ]
+            assert wait_until(lambda: all(ref() is None for ref in built)), [ref() for ref in built]
         finally:
             if collecting:
                 gc.enable()
@@ -548,12 +600,16 @@ def test_get_bytes_raises_what_requests_raises_for_a_first_request_it_cannot_mak
         get_bytes("https://127.0.0.1:1/", connect_timeout=1, read_timeout=1, deadline=5, attempts=2)
     assert type(excinfo.value) is OSError  # a RequestException is an OSError too
     assert len(attempts) == 1
-    assert _wait_until(lambda: slots.used == 0)
+    assert wait_until(lambda: slots.used == 0)
 
 
 def test_bounded_http_imports_without_what_urllib3_1_lacks():
     # requests allows urllib3 from 1.21.1, and urllib3 1 has no BaseHTTPResponse.
-    code = "import urllib3\ndel urllib3.BaseHTTPResponse\nimport axiom_corpus.corpus.bounded_http\n"
+    code = (
+        "import urllib3\n"
+        "vars(urllib3).pop('BaseHTTPResponse', None)\n"
+        "import axiom_corpus.corpus.bounded_http\n"
+    )
     subprocess.run([sys.executable, "-c", code], check=True, timeout=60)
 
 
@@ -567,7 +623,7 @@ def test_get_bytes_deadline_stops_a_worker_reading_a_body_that_keeps_arriving(sl
         )
         assert isinstance(error, requests.Timeout)
         assert elapsed < 0.3 + _SLACK_SECONDS
-        assert _wait_until(lambda: slots.used == 0, within=_SLACK_SECONDS)
+        assert wait_until(lambda: slots.used == 0, within=_SLACK_SECONDS)
 
 
 def test_get_bytes_read_timeout_ends_a_server_that_never_answers(slots):
@@ -603,7 +659,7 @@ def test_get_bytes_deadline_ends_a_server_that_trickles_its_headers(slots):
     assert "within 0.6s" in str(error)
     assert 0.6 <= elapsed < 0.6 + _SLACK_SECONDS
     # Closing the connection ends the worker, which gives its slot back.
-    assert _wait_until(lambda: slots.used == 0)
+    assert wait_until(lambda: slots.used == 0)
 
 
 def test_get_bytes_deadline_ends_a_server_that_trickles_its_body(slots):
@@ -615,11 +671,19 @@ def test_get_bytes_deadline_ends_a_server_that_trickles_its_body(slots):
 
     assert isinstance(error, requests.Timeout)
     assert 0.6 <= elapsed < 0.6 + _SLACK_SECONDS
-    assert _wait_until(lambda: slots.used == 0)
+    assert wait_until(lambda: slots.used == 0)
 
 
-def test_get_bytes_caps_workers_left_open_by_a_trickling_server(slots):
-    """Timed-out calls cannot pile up open workers: with every slot held, a call does not start."""
+def test_get_bytes_caps_workers_left_open_by_a_trickling_server(slots, monkeypatch):
+    """Timed-out calls cannot pile up open workers: with every slot held, a call does not start.
+
+    A worker left reading the trickle ends at its read timeout, cut to the
+    0.3 s deadline, if the machine stalls that long between two bytes, and a
+    later call can then take its slot. So the test counts the workers running
+    at once, in the workers themselves, rather than requests.
+    """
+    workers = RunningCount(bounded_http._get_with_retries)
+    monkeypatch.setattr(bounded_http, "_get_with_retries", workers)
     with LocalHttpServer([trickle_headers(0.02)]) as server:
         errors = []
         for _ in range(8):
@@ -628,25 +692,28 @@ def test_get_bytes_caps_workers_left_open_by_a_trickling_server(slots):
             )
             errors.append(error)
             assert elapsed < 0.3 + _SLACK_SECONDS
+        refused = [error for error in errors if "fetch threads stayed busy" in str(error)]
 
-        # Checked while the server is still trickling, so nothing has ended them.
-        assert slots.used == 3
-        assert _open_workers(server.url) == 3
-        assert len(server.requests) == 3
         assert all(isinstance(error, requests.Timeout) for error in errors)
-        assert all("fetch threads stayed busy" in str(error) for error in errors[3:])
-        assert all("0.3s deadline" in str(error) for error in errors[3:])
+        # A call is refused only while workers left behind hold every slot.
+        assert refused
+        assert all("0.3s deadline" in str(error) for error in refused)
+        assert wait_until(lambda: workers.started == len(errors) - len(refused))
+        assert workers.most_running <= 3
 
         url = server.url
 
-    assert _wait_until(lambda: slots.used == 0)
-    assert _wait_until(lambda: _open_workers(url) == 0)
+    assert wait_until(lambda: slots.used == 0)
+    assert wait_until(lambda: _open_workers(url) == 0)
+    assert workers.running == 0
     with LocalHttpServer([respond(b"recovered")]) as server:
         assert get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=5) == b"recovered"
 
 
-def test_get_bytes_caps_workers_left_open_by_concurrent_callers(slots):
-    """Eight callers trying 40 URLs on a trickling server leave at most 3 workers open."""
+def test_get_bytes_caps_workers_left_open_by_concurrent_callers(slots, monkeypatch):
+    """Eight callers trying 40 URLs on a trickling server run at most 3 workers at once."""
+    workers = RunningCount(bounded_http._get_with_retries)
+    monkeypatch.setattr(bounded_http, "_get_with_retries", workers)
     # The server closes before the callers are joined, so a get_bytes that
     # failed to return at its deadline fails this test instead of hanging it.
     with (
@@ -663,36 +730,22 @@ def test_get_bytes_caps_workers_left_open_by_concurrent_callers(slots):
             )
         )
 
-        assert all(isinstance(error, requests.Timeout) for error in errors)
-        assert _open_workers(server.url) == 3
-        assert len(server.requests) == 3
-        assert server.max_concurrent == 3
-        assert slots.used == 3
+        refused = [error for error in errors if "fetch threads stayed busy" in str(error)]
 
-    assert _wait_until(lambda: slots.used == 0)
+        assert all(isinstance(error, requests.Timeout) for error in errors)
+        assert refused
+        assert wait_until(lambda: workers.started == len(errors) - len(refused))
+        assert workers.most_running <= 3
+
+    assert wait_until(lambda: slots.used == 0)
 
 
 def test_get_bytes_never_exceeds_the_cap_under_heavy_thread_switching(monkeypatch, slots):
     """Sixteen callers on four slots: never more than four workers at once, no slot lost."""
     # Counted in the workers themselves, between taking over a slot and giving
     # it back, so a connection the server has yet to tidy up is not counted.
-    running = 0
-    most_running = 0
-    count_lock = threading.Lock()
-    attempts = bounded_http._get_with_retries
-
-    def counted_attempts(*args, **kwargs):
-        nonlocal running, most_running
-        with count_lock:
-            running += 1
-            most_running = max(most_running, running)
-        try:
-            return attempts(*args, **kwargs)
-        finally:
-            with count_lock:
-                running -= 1
-
-    monkeypatch.setattr(bounded_http, "_get_with_retries", counted_attempts)
+    workers = RunningCount(bounded_http._get_with_retries)
+    monkeypatch.setattr(bounded_http, "_get_with_retries", workers)
     switch_interval = sys.getswitchinterval()
     sys.setswitchinterval(1e-6)  # switch threads as often as the interpreter allows
     try:
@@ -708,11 +761,11 @@ def test_get_bytes_never_exceeds_the_cap_under_heavy_thread_switching(monkeypatc
                     timeout=60,
                 )
             )
-            assert _wait_until(lambda: slots.used == 0)
+            assert wait_until(lambda: slots.used == 0)
     finally:
         sys.setswitchinterval(switch_interval)
 
-    assert 1 <= most_running <= 4
+    assert 1 <= workers.most_running <= 4
     assert bodies == [b"ok"] * 160
     assert len(server.requests) == 160
 
@@ -762,7 +815,7 @@ def test_a_finishing_worker_wakes_the_callers_waiting_for_its_slot(monkeypatch):
                 )
                 for deadline in (10.0, 8.0)
             ]
-            assert _wait_until(lambda: _callers_waiting_for_a_slot(cap) == 2)
+            assert wait_until(lambda: _callers_waiting_for_a_slot(cap) == 2)
             released = time.monotonic()
             first_answer.set()  # the first worker ends and gives its slot back
             results = [future.result(timeout=30) for future in waiting]
@@ -823,7 +876,7 @@ def test_get_bytes_cancels_a_worker_interrupted_before_it_takes_its_slot(monkeyp
         assert slots.used == 0  # given back by the interrupted caller
 
         Gated.gate.set()  # the worker now runs, finds itself cancelled, and stops
-        assert _wait_until(lambda: _open_workers(server.url) == 0)
+        assert wait_until(lambda: _open_workers(server.url) == 0)
         assert server.requests == []
         assert slots.used == 0
 
@@ -835,7 +888,7 @@ def test_get_bytes_leaves_the_slot_to_a_worker_that_took_it_before_the_interrupt
         def start(self) -> None:
             super().start()
             # Ctrl-C after the worker took the slot and sent its request.
-            assert _wait_until(lambda: len(server.requests) == 1)
+            assert wait_until(lambda: len(server.requests) == 1)
             raise KeyboardInterrupt
 
     _patch_worker_threads(monkeypatch, InterruptedAfterRequest)
@@ -846,7 +899,7 @@ def test_get_bytes_leaves_the_slot_to_a_worker_that_took_it_before_the_interrupt
         assert slots.used == 1  # still the worker's, which is waiting for its answer
 
         answer.set()
-        assert _wait_until(lambda: slots.used == 0)  # it gives it back when it ends
+        assert wait_until(lambda: slots.used == 0)  # it gives it back when it ends
         assert len(server.requests) == 1
 
 
@@ -865,11 +918,11 @@ def test_get_bytes_interrupted_while_waiting_leaves_the_slot_to_the_worker(monke
     with LocalHttpServer([respond(b"ok", gate=answer)]) as server:
         with pytest.raises(KeyboardInterrupt):
             get_bytes(server.url, connect_timeout=1, read_timeout=5, deadline=10)
-        assert _wait_until(lambda: len(server.requests) == 1)
+        assert wait_until(lambda: len(server.requests) == 1)
         assert slots.used == 1  # the worker's, which is waiting for its answer
 
         answer.set()
-        assert _wait_until(lambda: _open_workers(server.url) == 0)
+        assert wait_until(lambda: _open_workers(server.url) == 0)
         assert slots.used == 0  # given back once, by the worker
 
 
@@ -916,7 +969,7 @@ def test_get_bytes_cuts_each_attempt_to_the_time_left(monkeypatch, slots):
     elapsed, error = _elapsed(
         lambda: get_bytes(url, connect_timeout=0.4, read_timeout=1, deadline=1.0, attempts=5)
     )
-    assert _wait_until(lambda: _open_workers(url) == 0)
+    assert wait_until(lambda: _open_workers(url) == 0)
 
     assert isinstance(error, (requests.ConnectTimeout, requests.Timeout))
     assert timeouts
@@ -980,10 +1033,7 @@ class _VirtualResponse:
         self._body = body
         self._status_error = status_error
 
-    def __enter__(self) -> _VirtualResponse:
-        return self
-
-    def __exit__(self, *exc_info: object) -> None:
+    def close(self) -> None:
         return None
 
     def raise_for_status(self) -> None:

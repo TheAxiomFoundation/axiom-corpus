@@ -43,6 +43,11 @@ def warnings_as_errors[Result](function: Callable[..., Result]) -> Callable[...,
     A filter set with ``warnings.catch_warnings`` in a test reaches a worker
     thread only while filters are process-wide or a new thread inherits its
     starter's context, which depends on how Python was built and started.
+
+    Where filters are process-wide, the filter applies to every thread while
+    ``function`` runs, and two calls that overlap can restore each other's
+    filters out of order. So wrap only work that ends before the next wrapped
+    call starts, as a ``get_bytes`` worker that ends before its call returns does.
     """
 
     def wrapped(*args: Any, **kwargs: Any) -> Result:
@@ -51,6 +56,38 @@ def warnings_as_errors[Result](function: Callable[..., Result]) -> Callable[...,
             return function(*args, **kwargs)
 
     return wrapped
+
+
+class RunningCount[Result]:
+    """Wrap ``function`` to count, across threads, the calls started and the most running at once."""
+
+    def __init__(self, function: Callable[..., Result]) -> None:
+        self._function = function
+        self._lock = threading.Lock()
+        self.started = 0
+        self.running = 0
+        self.most_running = 0
+
+    def __call__(self, *args: Any, **kwargs: Any) -> Result:
+        with self._lock:
+            self.started += 1
+            self.running += 1
+            self.most_running = max(self.most_running, self.running)
+        try:
+            return self._function(*args, **kwargs)
+        finally:
+            with self._lock:
+                self.running -= 1
+
+
+def wait_until(condition: Callable[[], bool], *, within: float = 5.0) -> bool:
+    """Whether ``condition`` holds within ``within`` seconds, checked every 10 ms."""
+    give_up_at = time.monotonic() + within
+    while time.monotonic() < give_up_at:
+        if condition():
+            return True
+        time.sleep(0.01)
+    return condition()
 
 
 class LocalHttpServer:

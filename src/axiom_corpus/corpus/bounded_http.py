@@ -22,9 +22,10 @@ At the deadline the caller raises ``requests.Timeout`` and leaves the worker
 behind. A worker stops at its next socket timeout, at the next body chunk after
 the deadline, before the next request (a redirect's) after it, or when the
 server closes the connection. Every response and connection it opens is closed
-by the time it ends, however it ends. But a server that keeps trickling bytes,
-or a DNS lookup that hangs, can hold a worker open longer, so workers are
-capped process-wide (``MAX_FETCH_THREADS``): a call takes a slot before it
+by the time it ends, however it ends, unless closing one fails: a failure to
+close is noted on the error being raised. But a server that keeps trickling
+bytes, or a DNS lookup that hangs, can hold a worker open longer, so workers
+are capped process-wide (``MAX_FETCH_THREADS``): a call takes a slot before it
 starts its worker, and the worker gives the slot back when it ends. While every
 slot is taken, a call waits for one within its own deadline and otherwise
 raises ``requests.Timeout`` without making a request. However many URLs are
@@ -35,6 +36,7 @@ gives the slot back itself, and the worker then makes no request.
 
 from __future__ import annotations
 
+import contextlib
 import math
 import threading
 import time
@@ -108,9 +110,10 @@ def get_bytes(
     Location is not UTF-8, say), raises the last attempt's
     ``requests.RequestException``, or ``requests.Timeout`` when the deadline
     passes first or no fetch slot comes free in time. A first request that
-    ``requests`` cannot make at all (a malformed URL, say) raises what
-    ``requests`` raises for it; a redirect to one is an answer ``requests``
-    cannot handle.
+    ``requests`` cannot make fails with what ``requests`` raises for it: a
+    ``requests.RequestException`` (an invalid URL, say) is retried like any
+    other, and anything else (a missing CA bundle's ``OSError``, say) is raised
+    at once. A redirect to such a URL is an answer ``requests`` cannot handle.
     """
     if attempts < 1:
         raise ValueError(f"attempts must be at least 1, not {attempts}")
@@ -224,14 +227,19 @@ def _get_once(
     timeout: tuple[float, float],
     give_up_at: float,
 ) -> bytes:
-    with _open(url, headers=headers, timeout=timeout, give_up_at=give_up_at) as response:
+    response = _open(url, headers=headers, timeout=timeout, give_up_at=give_up_at)
+    try:
         response.raise_for_status()
         chunks: list[bytes] = []
         for chunk in response.iter_content(chunk_size=_CHUNK_BYTES):
             if time.monotonic() >= give_up_at:
                 raise requests.Timeout(f"no complete response from {url} before the deadline")
             chunks.append(chunk)
-        return b"".join(chunks)
+    except BaseException as error:
+        _close_noting_failure(response, error)
+        raise
+    response.close()
+    return b"".join(chunks)
 
 
 def _open(
@@ -363,8 +371,13 @@ def _close_the_pools_it_drops(manager: PoolManager) -> None:
 def _close_noting_failure(
     answer: requests.Response | BaseHTTPResponse, error: BaseException
 ) -> None:
-    """Close ``answer`` while ``error`` is raised, adding a failure to close it to ``error``'s notes."""
+    """Close ``answer`` while ``error`` is raised, adding a failure to close it to ``error``'s notes.
+
+    The failure is dropped if ``error`` cannot take notes. An interrupt while
+    closing is raised in place of ``error``.
+    """
     try:
         answer.close()
     except Exception as close_error:
-        error.add_note(f"closing the answer also failed: {close_error!r}")
+        with contextlib.suppress(Exception):  # __notes__ set to something not a list
+            error.add_note(f"closing the answer also failed: {close_error!r}")

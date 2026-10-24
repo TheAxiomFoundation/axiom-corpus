@@ -24,10 +24,12 @@ from axiom_corpus.corpus.state_adapters.oregon import (
 from tests._local_http import (
     OVERFLOWING_COOKIE,
     LocalHttpServer,
+    RunningCount,
     never_answer,
     redirect,
     respond,
     trickle_headers,
+    wait_until,
     warnings_as_errors,
 )
 
@@ -741,12 +743,17 @@ def test_oregon_chapter_discovery_on_a_trickling_site_holds_few_threads_and_drop
     a site that trickles its headers gives up at the deadline, and its fetch
     thread keeps reading and keeps its slot; once the slots are taken, the
     other probes are refused. Every candidate comes back as unchecked, none as
-    absent, since any of them may exist.
+    absent, since any of them may exist. A fetch thread also ends at its read
+    timeout (cut to the 0.3 s deadline) if the machine stalls that long between
+    two bytes, freeing its slot for another probe, so the test counts fetch
+    threads running at once rather than requests.
     """
     monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
     monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 2.0)
     monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 0.3)
     monkeypatch.setattr(bounded_http, "_SLOTS", bounded_http._Slots(3))
+    fetches = RunningCount(bounded_http._get_with_retries)
+    monkeypatch.setattr(bounded_http, "_get_with_retries", fetches)
     titles = (
         OregonOrsTitle(
             number="1", heading="Courts", start_chapter="001", end_chapter="008", ordinal=1
@@ -767,20 +774,22 @@ def test_oregon_chapter_discovery_on_a_trickling_site_holds_few_threads_and_drop
             ),
         )
         elapsed = time.monotonic() - started
-        # Counted while the server still trickles, so nothing has ended them.
         open_fetches = [
             thread
             for thread in threading.enumerate()
             if thread.name.startswith(f"get_bytes {server.url}")
         ]
+        refused = sum("fetch threads stayed busy" in item.error for item in unchecked)
 
         assert len(candidates) == 29
         assert found == ()
         assert [item.chapter.chapter for item in unchecked] == candidates
         assert all("failed to fetch Oregon source page" in item.error for item in unchecked)
-        assert sum("fetch threads stayed busy" in item.error for item in unchecked) == 26
-        assert len(open_fetches) == 3
-        assert len(server.requests) == 3
+        # A probe is refused only while fetch threads left behind hold every slot.
+        assert refused
+        assert wait_until(lambda: fetches.started == len(candidates) - refused)
+        assert fetches.most_running <= 3
+        assert len(open_fetches) <= 3
         # Each round of eight probes ends at the 0.3 s deadline.
         assert elapsed < (len(candidates) / workers + 1) * 0.3 + 1.5
 
