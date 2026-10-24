@@ -12,10 +12,10 @@ from __future__ import annotations
 
 import contextlib
 import gc
+import subprocess
 import sys
 import threading
 import time
-import warnings
 import weakref
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
@@ -40,6 +40,7 @@ from tests._local_http import (
     trickle_body,
     trickle_headers,
     until_client_closes,
+    warnings_as_errors,
 )
 
 # Slack for thread start-up and scheduling on a loaded CI runner. Every
@@ -429,17 +430,17 @@ def test_get_bytes_leaves_no_proxy_connection_open_while_its_error_is_kept(slots
 
 
 @pytest.mark.parametrize("hop", ["first", "redirected"])
-def test_get_bytes_closes_an_answer_whose_response_requests_fails_to_build(hop, slots):
+def test_get_bytes_closes_an_answer_whose_response_requests_fails_to_build(hop, slots, monkeypatch):
+    monkeypatch.setattr(
+        bounded_http, "_get_with_retries", warnings_as_errors(bounded_http._get_with_retries)
+    )
     answer = until_client_closes(respond(b"oops", headers=[OVERFLOWING_COOKIE]))
     routes = {"/": answer}
     if hop == "redirected":
         routes = {"/": until_client_closes(redirect("/moved")), "/moved": answer}
     with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
-        # The worker thread starts inside this block, so it runs under the filter too.
-        with warnings.catch_warnings():
-            warnings.simplefilter("error", UserWarning)
-            with pytest.raises(requests.RequestException) as excinfo:
-                get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5)
+        with pytest.raises(requests.RequestException) as excinfo:
+            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5)
         assert isinstance(excinfo.value.__cause__, UserWarning)
         assert _wait_until(lambda: slots.used == 0)
 
@@ -453,13 +454,14 @@ class _Abort(BaseException):
     """Stands in for ``KeyboardInterrupt`` or ``SystemExit`` raised mid-request."""
 
 
+@pytest.mark.parametrize("close_fails", [False, True], ids=["closes", "close-fails"])
 @pytest.mark.parametrize(
     "module",
     ["requests.adapters", "requests.sessions"],
     ids=["while-building-the-response", "after-the-response"],
 )
 def test_get_bytes_raises_an_interrupt_after_an_answer_unchanged_and_closes_the_answer(
-    module, slots, monkeypatch
+    module, close_fails, slots, monkeypatch
 ):
     # requests stores an answer's cookies twice: in requests.adapters while it
     # builds the Response, and in requests.sessions once the adapter returns it.
@@ -467,10 +469,26 @@ def test_get_bytes_raises_an_interrupt_after_an_answer_unchanged_and_closes_the_
         raise _Abort
 
     monkeypatch.setattr(f"{module}.extract_cookies_to_jar", interrupt)
-    with LocalHttpServer([until_client_closes(respond(b"ok"))]) as server:
+    if close_fails:
+        # The answer closes, then reports a failure, as a socket's close can.
+        close = urllib3.response.HTTPResponse.close
+
+        def close_then_fail(self):
+            close(self)
+            raise OSError("close failed")
+
+        monkeypatch.setattr(urllib3.response.HTTPResponse, "close", close_then_fail)
+    with LocalHttpServer(
+        [respond(b"wrong")], routes={"/": until_client_closes(respond(b"ok"))}
+    ) as server:
         with pytest.raises(_Abort) as excinfo:
-            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5)
+            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
         assert type(excinfo.value) is _Abort
+        assert len(server.requests) == 1  # not retried
+        if close_fails:
+            assert excinfo.value.__notes__ == [
+                "closing the answer also failed: OSError('close failed')"
+            ]
         assert _wait_until(lambda: slots.used == 0)
 
         assert _wait_until(lambda: server.open_connections == 0), (
@@ -496,6 +514,7 @@ def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch
     monkeypatch.setattr(bounded_http._DeadlineAdapter, "build_response", recording)
     routes = {"/": until_client_closes(redirect("/moved")), "/moved": respond(b"moved")}
     with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        collecting = gc.isenabled()
         gc.disable()
         try:
             assert get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5) == b"moved"
@@ -505,7 +524,37 @@ def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch
                 ref() for ref in built
             ]
         finally:
-            gc.enable()
+            if collecting:
+                gc.enable()
+
+
+def test_get_bytes_raises_what_requests_raises_for_a_first_request_it_cannot_make(
+    slots, monkeypatch
+):
+    # requests looks for the CA bundle before it connects, so this fails before
+    # any answer arrives: it is not an answer requests cannot handle, and it is
+    # not retried.
+    monkeypatch.setenv("REQUESTS_CA_BUNDLE", "/nonexistent/ca-bundle.pem")
+    monkeypatch.setenv("NO_PROXY", "*")
+    attempts = []
+    get_once = bounded_http._get_once
+
+    def counting(*args, **kwargs):
+        attempts.append(args)
+        return get_once(*args, **kwargs)
+
+    monkeypatch.setattr(bounded_http, "_get_once", counting)
+    with pytest.raises(OSError, match="CA certificate bundle") as excinfo:
+        get_bytes("https://127.0.0.1:1/", connect_timeout=1, read_timeout=1, deadline=5, attempts=2)
+    assert type(excinfo.value) is OSError  # a RequestException is an OSError too
+    assert len(attempts) == 1
+    assert _wait_until(lambda: slots.used == 0)
+
+
+def test_bounded_http_imports_without_what_urllib3_1_lacks():
+    # requests allows urllib3 from 1.21.1, and urllib3 1 has no BaseHTTPResponse.
+    code = "import urllib3\ndel urllib3.BaseHTTPResponse\nimport axiom_corpus.corpus.bounded_http\n"
+    subprocess.run([sys.executable, "-c", code], check=True, timeout=60)
 
 
 def test_get_bytes_deadline_stops_a_worker_reading_a_body_that_keeps_arriving(slots):

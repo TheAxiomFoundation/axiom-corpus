@@ -21,7 +21,9 @@ import gzip
 import socket
 import threading
 import time
+import warnings
 from collections.abc import Callable, Mapping, Sequence
+from typing import Any
 
 # A behaviour answers one request on a connection. It returns True to keep the
 # connection for the client's next request, and None or False to close it.
@@ -33,6 +35,22 @@ Behaviour = Callable[[socket.socket, threading.Event], bool | None]
 # warnings-as-errors policy the warning is raised while requests builds the
 # response.
 OVERFLOWING_COOKIE = "Set-Cookie: broken=yes; Max-Age=" + "9" * 400
+
+
+def warnings_as_errors[Result](function: Callable[..., Result]) -> Callable[..., Result]:
+    """Wrap ``function`` to raise each ``UserWarning`` as an error, in the thread that calls it.
+
+    A filter set with ``warnings.catch_warnings`` in a test reaches a worker
+    thread only while filters are process-wide or a new thread inherits its
+    starter's context, which depends on how Python was built and started.
+    """
+
+    def wrapped(*args: Any, **kwargs: Any) -> Result:
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", UserWarning)
+            return function(*args, **kwargs)
+
+    return wrapped
 
 
 class LocalHttpServer:
@@ -185,7 +203,7 @@ def respond(
     """Answer with ``body`` after ``after`` seconds, and once ``gate`` is set, if given.
 
     The body is optionally gzip-encoded or chunked. ``headers`` are extra
-    header lines.
+    header lines, sent as Latin-1 as HTTP headers are.
     """
 
     def behaviour(connection: socket.socket, closing: threading.Event) -> None:
@@ -208,7 +226,7 @@ def respond(
             payload = framed + b"0\r\n\r\n"
         else:
             lines.append(f"Content-Length: {len(payload)}")
-        connection.sendall(("\r\n".join(lines) + "\r\n\r\n").encode() + payload)
+        connection.sendall(("\r\n".join(lines) + "\r\n\r\n").encode("latin-1") + payload)
 
     return behaviour
 

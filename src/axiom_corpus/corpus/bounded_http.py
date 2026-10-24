@@ -39,11 +39,14 @@ import math
 import threading
 import time
 from collections.abc import Mapping
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import requests
 from requests.adapters import HTTPAdapter
-from urllib3 import BaseHTTPResponse, PoolManager
+
+if TYPE_CHECKING:
+    # requests allows urllib3 1, which has no BaseHTTPResponse.
+    from urllib3 import BaseHTTPResponse, PoolManager
 
 # Fetch threads, process-wide, that may be making requests at once, counting
 # those still open after the call that started them gave up.
@@ -104,9 +107,10 @@ def get_bytes(
     HTTP failure, or an answer ``requests`` cannot handle (a redirect whose
     Location is not UTF-8, say), raises the last attempt's
     ``requests.RequestException``, or ``requests.Timeout`` when the deadline
-    passes first or no fetch slot comes free in time. A request that
+    passes first or no fetch slot comes free in time. A first request that
     ``requests`` cannot make at all (a malformed URL, say) raises what
-    ``requests`` raises for it.
+    ``requests`` raises for it; a redirect to one is an answer ``requests``
+    cannot handle.
     """
     if attempts < 1:
         raise ValueError(f"attempts must be at least 1, not {attempts}")
@@ -243,7 +247,8 @@ def _open(
     streaming response keeps its connection until it is closed. If ``requests``
     fails after an answer has arrived, every answer is closed, and an
     ``Exception`` that is not a ``requests.RequestException`` is raised as one;
-    a ``BaseException`` such as ``KeyboardInterrupt`` is raised unchanged.
+    a ``BaseException`` such as ``KeyboardInterrupt`` is raised unchanged. An
+    answer that fails to close is noted on the error, not raised in its place.
     """
     opened: list[requests.Response] = []
     adapter = _DeadlineAdapter(url, give_up_at, opened)
@@ -258,7 +263,7 @@ def _open(
             # redirect whose Location is not UTF-8 raises UnicodeDecodeError
             # before its body is read.
             for response in opened:
-                response.close()
+                _close_noting_failure(response, error)
             if (
                 adapter.answered
                 and isinstance(error, Exception)
@@ -342,10 +347,10 @@ class _DeadlineAdapter(HTTPAdapter):
         self.answered = True
         try:
             response = super().build_response(req, resp)
-        except BaseException:
+        except BaseException as error:
             # requests stores the answer's cookies here, and http.cookiejar's
             # warning about a malformed one is raised under warnings-as-errors.
-            resp.close()
+            _close_noting_failure(resp, error)
             raise
         self._opened.append(response)
         return response
@@ -353,3 +358,13 @@ class _DeadlineAdapter(HTTPAdapter):
 
 def _close_the_pools_it_drops(manager: PoolManager) -> None:
     manager.pools.dispose_func = lambda pool: pool.close()
+
+
+def _close_noting_failure(
+    answer: requests.Response | BaseHTTPResponse, error: BaseException
+) -> None:
+    """Close ``answer`` while ``error`` is raised, adding a failure to close it to ``error``'s notes."""
+    try:
+        answer.close()
+    except Exception as close_error:
+        error.add_note(f"closing the answer also failed: {close_error!r}")

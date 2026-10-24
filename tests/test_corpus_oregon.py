@@ -1,6 +1,5 @@
 import threading
 import time
-import warnings
 from datetime import date
 from pathlib import Path
 from types import SimpleNamespace
@@ -29,6 +28,7 @@ from tests._local_http import (
     redirect,
     respond,
     trickle_headers,
+    warnings_as_errors,
 )
 
 SAMPLE_OREGON_LANDING = """<!doctype html>
@@ -554,13 +554,16 @@ def test_oregon_download_tells_a_missing_page_from_a_failed_fetch(status, not_fo
     ],
     ids=["location-not-utf-8", "cookie-warning-as-error"],
 )
-def test_oregon_download_reports_an_answer_it_cannot_handle_as_a_failed_fetch(answer, cause):
+def test_oregon_download_reports_an_answer_it_cannot_handle_as_a_failed_fetch(
+    answer, cause, monkeypatch
+):
     # Either reaches the caller as a failed fetch, like any other bad answer.
+    monkeypatch.setattr(
+        bounded_http, "_get_with_retries", warnings_as_errors(bounded_http._get_with_retries)
+    )
     with LocalHttpServer([answer]) as server:
-        with warnings.catch_warnings():
-            warnings.simplefilter("error", UserWarning)
-            with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
-                oregon_adapter._download_oregon_page(server.url + "ors/ors316.html")
+        with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
+            oregon_adapter._download_oregon_page(server.url + "ors/ors316.html")
 
     assert not isinstance(excinfo.value, oregon_adapter._OregonPageNotFoundError)
     assert isinstance(excinfo.value.__cause__, requests.RequestException)
