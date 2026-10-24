@@ -24,13 +24,13 @@ the deadline, before the next request (a redirect's) after it, or when the
 server closes the connection. Every response, connection and connection pool
 it opens is closed by the time it ends, however it ends, unless closing one
 fails: a failure to close one is noted on the error being raised, or, if
-nothing else failed, fails the attempt. Once an answer has arrived, any
-failure but an interrupt fails the attempt as a ``requests.RequestException``.
-But a server that keeps trickling bytes, or a DNS lookup that hangs, can hold
-a worker open longer, so workers
-are capped process-wide (``MAX_FETCH_THREADS``): a call takes a slot before it
-starts its worker, and the worker gives the slot back when it ends. While every
-slot is taken, a call waits for one within its own deadline and otherwise
+nothing else failed, fails the attempt, and an interrupt while closing one is
+raised once the others are closed. Once an answer has arrived, any failure
+but an interrupt fails the attempt as a ``requests.RequestException``. But a
+server that keeps trickling bytes, or a DNS lookup that hangs, can hold a
+worker open longer, so workers are capped process-wide
+(``MAX_FETCH_THREADS``): a call takes a slot before it starts its worker, and
+the worker gives the slot back when it ends. While every slot is taken, a call waits for one within its own deadline and otherwise
 raises ``requests.Timeout`` without making a request. However many URLs are
 tried, and whatever the servers do, at most ``MAX_FETCH_THREADS`` workers are
 making requests at once. A call interrupted (Ctrl-C) while starting its worker,
