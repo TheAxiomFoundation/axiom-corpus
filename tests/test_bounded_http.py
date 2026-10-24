@@ -11,9 +11,12 @@ given, so no assertion there depends on how the machine schedules threads.
 from __future__ import annotations
 
 import contextlib
+import gc
 import sys
 import threading
 import time
+import warnings
+import weakref
 from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
 
@@ -26,6 +29,7 @@ from hypothesis import strategies as st
 from axiom_corpus.corpus import bounded_http
 from axiom_corpus.corpus.bounded_http import get_bytes
 from tests._local_http import (
+    OVERFLOWING_COOKIE,
     LocalHttpServer,
     drop_connection,
     held_headers,
@@ -422,6 +426,86 @@ def test_get_bytes_leaves_no_proxy_connection_open_while_its_error_is_kept(slots
             f"{proxy.open_connections} connection(s) still open"
         )
         assert error is not None  # still kept
+
+
+@pytest.mark.parametrize("hop", ["first", "redirected"])
+def test_get_bytes_closes_an_answer_whose_response_requests_fails_to_build(hop, slots):
+    answer = until_client_closes(respond(b"oops", headers=[OVERFLOWING_COOKIE]))
+    routes = {"/": answer}
+    if hop == "redirected":
+        routes = {"/": until_client_closes(redirect("/moved")), "/moved": answer}
+    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        # The worker thread starts inside this block, so it runs under the filter too.
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", UserWarning)
+            with pytest.raises(requests.RequestException) as excinfo:
+                get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5)
+        assert isinstance(excinfo.value.__cause__, UserWarning)
+        assert _wait_until(lambda: slots.used == 0)
+
+        assert _wait_until(lambda: server.open_connections == 0), (
+            f"{server.open_connections} connection(s) still open"
+        )
+        assert excinfo.value is not None  # still kept
+
+
+class _Abort(BaseException):
+    """Stands in for ``KeyboardInterrupt`` or ``SystemExit`` raised mid-request."""
+
+
+@pytest.mark.parametrize(
+    "module",
+    ["requests.adapters", "requests.sessions"],
+    ids=["while-building-the-response", "after-the-response"],
+)
+def test_get_bytes_raises_an_interrupt_after_an_answer_unchanged_and_closes_the_answer(
+    module, slots, monkeypatch
+):
+    # requests stores an answer's cookies twice: in requests.adapters while it
+    # builds the Response, and in requests.sessions once the adapter returns it.
+    def interrupt(*args):
+        raise _Abort
+
+    monkeypatch.setattr(f"{module}.extract_cookies_to_jar", interrupt)
+    with LocalHttpServer([until_client_closes(respond(b"ok"))]) as server:
+        with pytest.raises(_Abort) as excinfo:
+            get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5)
+        assert type(excinfo.value) is _Abort
+        assert _wait_until(lambda: slots.used == 0)
+
+        assert _wait_until(lambda: server.open_connections == 0), (
+            f"{server.open_connections} connection(s) still open"
+        )
+        assert excinfo.value is not None  # still kept
+
+
+def test_get_bytes_leaves_no_response_for_the_cycle_collector(slots, monkeypatch):
+    """Every response a call builds is freed when it returns, with the cycle collector off.
+
+    Each response refers to the adapter that built it, which keeps a list of
+    the responses it built.
+    """
+    built = []
+    build_response = bounded_http._DeadlineAdapter.build_response
+
+    def recording(self, req, resp):
+        response = build_response(self, req, resp)
+        built.append(weakref.ref(response))
+        return response
+
+    monkeypatch.setattr(bounded_http._DeadlineAdapter, "build_response", recording)
+    routes = {"/": until_client_closes(redirect("/moved")), "/moved": respond(b"moved")}
+    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        gc.disable()
+        try:
+            assert get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=5) == b"moved"
+            assert _wait_until(lambda: slots.used == 0)
+            assert len(built) == 2
+            assert _wait_until(lambda: all(ref() is None for ref in built)), [
+                ref() for ref in built
+            ]
+        finally:
+            gc.enable()
 
 
 def test_get_bytes_deadline_stops_a_worker_reading_a_body_that_keeps_arriving(slots):

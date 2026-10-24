@@ -43,7 +43,7 @@ from typing import Any
 
 import requests
 from requests.adapters import HTTPAdapter
-from urllib3 import PoolManager
+from urllib3 import BaseHTTPResponse, PoolManager
 
 # Fetch threads, process-wide, that may be making requests at once, counting
 # those still open after the call that started them gave up.
@@ -241,8 +241,9 @@ def _open(
 
     Like ``requests.get``, it uses a session of its own, closed on return; the
     streaming response keeps its connection until it is closed. If ``requests``
-    fails after an answer has arrived, every response opened is closed, and a
-    failure that is not a ``requests.RequestException`` is raised as one.
+    fails after an answer has arrived, every answer is closed, and an
+    ``Exception`` that is not a ``requests.RequestException`` is raised as one;
+    a ``BaseException`` such as ``KeyboardInterrupt`` is raised unchanged.
     """
     opened: list[requests.Response] = []
     adapter = _DeadlineAdapter(url, give_up_at, opened)
@@ -258,9 +259,8 @@ def _open(
             # before its body is read.
             for response in opened:
                 response.close()
-            answered = bool(opened)
             if (
-                answered
+                adapter.answered
                 and isinstance(error, Exception)
                 and not isinstance(error, requests.RequestException)
             ):
@@ -279,8 +279,10 @@ class _DeadlineAdapter(HTTPAdapter):
     redirect it follows included, and closes the response before a redirect
     first, so this check comes right before each request is started and leaves
     no response open when it refuses one. A DNS lookup, which has no timeout,
-    can still hold a request it started past the deadline. Each response it
-    returns is added to ``opened``.
+    can still hold a request it started past the deadline. ``answered`` says
+    whether an answer has arrived, and each response built from one is added
+    to ``opened``. An answer whose response ``requests`` fails to build is
+    closed here, since nothing else can reach it.
 
     The adapter is one call's, used by one thread, so it closes every
     connection pool it drops: when its pool manager's cache (ten pools; a
@@ -296,6 +298,7 @@ class _DeadlineAdapter(HTTPAdapter):
         self._url = url
         self._give_up_at = give_up_at
         self._opened = opened
+        self.answered = False
         super().__init__()
 
     def init_poolmanager(
@@ -324,7 +327,7 @@ class _DeadlineAdapter(HTTPAdapter):
         remaining = self._give_up_at - time.monotonic()
         if remaining <= 0:
             raise requests.Timeout(f"no complete response from {self._url} before the deadline")
-        response = super().send(
+        return super().send(
             request,
             stream=stream,
             timeout=(min(timeout[0], remaining), min(read, remaining)),
@@ -332,6 +335,18 @@ class _DeadlineAdapter(HTTPAdapter):
             cert=cert,
             proxies=proxies,
         )
+
+    def build_response(
+        self, req: requests.PreparedRequest, resp: BaseHTTPResponse
+    ) -> requests.Response:
+        self.answered = True
+        try:
+            response = super().build_response(req, resp)
+        except BaseException:
+            # requests stores the answer's cookies here, and http.cookiejar's
+            # warning about a malformed one is raised under warnings-as-errors.
+            resp.close()
+            raise
         self._opened.append(response)
         return response
 

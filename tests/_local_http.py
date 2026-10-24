@@ -28,6 +28,13 @@ from collections.abc import Callable, Mapping, Sequence
 Behaviour = Callable[[socket.socket, threading.Event], bool | None]
 
 
+# A Set-Cookie header line whose Max-Age is too large for a float. http.cookiejar
+# warns about it (a UserWarning) and ignores the cookie; under a
+# warnings-as-errors policy the warning is raised while requests builds the
+# response.
+OVERFLOWING_COOKIE = "Set-Cookie: broken=yes; Max-Age=" + "9" * 400
+
+
 class LocalHttpServer:
     """Serve connections on 127.0.0.1 with ``behaviours``, one per connection in turn.
 
@@ -173,10 +180,12 @@ def respond(
     chunked: bool = False,
     after: float = 0.0,
     gate: threading.Event | None = None,
+    headers: Sequence[str] = (),
 ) -> Behaviour:
     """Answer with ``body`` after ``after`` seconds, and once ``gate`` is set, if given.
 
-    The body is optionally gzip-encoded or chunked.
+    The body is optionally gzip-encoded or chunked. ``headers`` are extra
+    header lines.
     """
 
     def behaviour(connection: socket.socket, closing: threading.Event) -> None:
@@ -186,11 +195,11 @@ def respond(
             if closing.is_set():
                 return
         payload = gzip.compress(body) if gzip_encoded else body
-        headers = [f"HTTP/1.1 {status}", "Connection: close"]
+        lines = [f"HTTP/1.1 {status}", "Connection: close", *headers]
         if gzip_encoded:
-            headers.append("Content-Encoding: gzip")
+            lines.append("Content-Encoding: gzip")
         if chunked:
-            headers.append("Transfer-Encoding: chunked")
+            lines.append("Transfer-Encoding: chunked")
             middle = len(payload) // 2
             parts = [payload[:middle], payload[middle:]]
             framed = b"".join(
@@ -198,8 +207,8 @@ def respond(
             )
             payload = framed + b"0\r\n\r\n"
         else:
-            headers.append(f"Content-Length: {len(payload)}")
-        connection.sendall(("\r\n".join(headers) + "\r\n\r\n").encode() + payload)
+            lines.append(f"Content-Length: {len(payload)}")
+        connection.sendall(("\r\n".join(lines) + "\r\n\r\n").encode() + payload)
 
     return behaviour
 
