@@ -10,6 +10,7 @@ given, so no assertion there depends on how the machine schedules threads.
 
 from __future__ import annotations
 
+import contextlib
 import sys
 import threading
 import time
@@ -171,17 +172,56 @@ def test_get_bytes_follows_no_redirect_after_the_deadline(slots):
         assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
 
 
-def test_no_request_is_sent_once_the_deadline_has_passed():
+@pytest.mark.parametrize("scheme", ["http", "https"])
+def test_no_request_is_sent_once_the_deadline_has_passed(scheme):
     # Past the deadline the adapter raises requests.Timeout, which the retry
     # loop and the Oregon fetcher handle. Without its check, requests would
     # reject the timeouts, cut to zero or less, with a ValueError that neither
-    # catches, and a caller still waiting would get that instead.
+    # catches, and a caller still waiting would get that instead. An https URL
+    # goes through the adapter too: requests' own adapter would connect.
     with LocalHttpServer([respond(b"too late")]) as server:
+        url = server.url.replace("http://", f"{scheme}://")
         with pytest.raises(requests.Timeout):
-            bounded_http._open(
-                server.url, headers={}, timeout=(1.0, 1.0), give_up_at=time.monotonic()
-            )
-        assert server.requests == []
+            bounded_http._open(url, headers={}, timeout=(1.0, 1.0), give_up_at=time.monotonic())
+        assert server.max_concurrent == 0  # not even a connection
+
+
+@settings(max_examples=300, deadline=None)
+@given(
+    connect=st.floats(min_value=0.001, max_value=100),
+    read=st.floats(min_value=0.001, max_value=100),
+    left=st.floats(min_value=-10, max_value=100),
+)
+def test_the_adapter_starts_no_request_after_the_deadline_and_cuts_each_to_the_time_left(
+    connect, read, left
+):
+    clock = _VirtualClock()
+    clock.now = 1_000.0
+    give_up_at = clock.now + left
+    handed = []
+
+    def transport(self, request, **kwargs):
+        handed.append(kwargs["timeout"])
+        return requests.Response()
+
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        monkeypatch.setattr(bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic))
+        monkeypatch.setattr(requests.adapters.HTTPAdapter, "send", transport)
+        adapter = bounded_http._DeadlineAdapter("http://example.test/", give_up_at, [])
+        request = requests.Request("GET", "http://example.test/").prepare()
+        try:
+            adapter.send(request, timeout=(connect, read))
+            refused = False
+        except requests.Timeout:
+            refused = True
+
+    remaining = give_up_at - clock.now
+    if remaining <= 0:
+        assert refused
+        assert handed == []
+    else:
+        assert not refused
+        assert handed == [(min(connect, remaining), min(read, remaining))]
 
 
 def test_get_bytes_sends_no_redirect_whose_body_ends_after_the_deadline(slots):
@@ -201,21 +241,27 @@ def test_get_bytes_sends_no_redirect_whose_body_ends_after_the_deadline(slots):
         assert [request.split(b" ")[1] for request in server.requests] == [b"/"]
 
 
-def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots):
-    # The redirect arrives 1.5 s into a 2 s deadline and points at a server
-    # that never answers. Its request may wait only the 0.5 s left, not the
-    # 2 s the attempt started with (nor the 10 s read timeout), so the worker
-    # ends with the caller rather than 1.5 s after it.
-    routes = {"/": redirect("/hang", slowly_for=1.5), "/hang": never_answer}
-    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
-        elapsed, error = _elapsed(
-            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=10, deadline=2.0)
-        )
-        assert isinstance(error, requests.Timeout)
-        assert elapsed < 2.0 + _SLACK_SECONDS
-        assert _wait_until(lambda: slots.used == 0, within=_SLACK_SECONDS)
+def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots, monkeypatch):
+    # With timeouts far above the deadline, each request's are cut to the time
+    # left when it starts, which only shrinks, so the redirect's are below the
+    # first request's. Without the cut, the redirect would get the attempt's.
+    handed = []
+    send = requests.adapters.HTTPAdapter.send
 
-        assert [request.split(b" ")[1] for request in server.requests] == [b"/", b"/hang"]
+    def recording_send(self, request, **kwargs):
+        handed.append((request.path_url, kwargs["timeout"]))
+        return send(self, request, **kwargs)
+
+    monkeypatch.setattr(requests.adapters.HTTPAdapter, "send", recording_send)
+    routes = {"/": redirect("/moved"), "/moved": respond(b"moved")}
+    with LocalHttpServer([respond(b"wrong")], routes=routes) as server:
+        body = get_bytes(server.url, connect_timeout=30, read_timeout=30, deadline=5)
+
+    assert body == b"moved"
+    (first_path, first), (second_path, second) = handed
+    assert (first_path, second_path) == ("/", "/moved")
+    assert first[0] == first[1] <= 5
+    assert second[0] == second[1] < first[1]
 
 
 @pytest.mark.parametrize(
@@ -267,6 +313,14 @@ def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots):
         # requests raises TooManyRedirects with the last response attached,
         # its body read and its kept-alive connection back in the pool.
         ([respond(b"wrong")], {"/": redirect("/", keep_alive=True)}, 5, requests.TooManyRedirects),
+        # requests raises UnicodeDecodeError for this Location before it reads
+        # the body, with the response, and its connection, still open.
+        (
+            [respond(b"wrong")],
+            {"/": until_client_closes(redirect("/\xff", body=b"oops"))},
+            5,
+            requests.RequestException,
+        ),
     ],
     ids=[
         "body",
@@ -277,6 +331,7 @@ def test_get_bytes_cuts_a_redirects_timeouts_to_the_time_left(slots):
         "followed-keep-alive-redirect",
         "late-keep-alive-redirect",
         "redirect-loop",
+        "location-not-utf-8",
     ],
 )
 def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
@@ -301,6 +356,72 @@ def test_get_bytes_leaves_no_connection_open_while_its_result_is_kept(
             f"{server.open_connections} connection(s) still open"
         )
         assert result is not None  # still kept
+
+
+@pytest.mark.parametrize("ending", ["http-error", "redirect-loop"])
+def test_get_bytes_closes_the_pools_a_long_redirect_chain_drops(ending, slots):
+    """A chain across more hosts than the adapter caches pools for (ten) leaves none open.
+
+    Each host keeps its redirect's connection alive, so it waits idle in its
+    pool, and the error is kept, as discovery keeps it. Pools the cache
+    evicts are closed then and there; the rest when the session closes.
+    """
+    hosts = 12
+    # targets[i] is where host i redirects to; filled in once every host has
+    # its address.
+    targets: list[str] = []
+
+    def redirect_onwards(index):
+        def behaviour(connection, closing):
+            return redirect(targets[index], keep_alive=True)(connection, closing)
+
+        return behaviour
+
+    if ending == "http-error":
+        last = until_client_closes(respond(b"broken", status="500 Internal Server Error"))
+        outcome: type[Exception] = requests.HTTPError
+    else:
+        last = redirect_onwards(hosts - 1)  # back to the first host, round and round
+        outcome = requests.TooManyRedirects
+    servers = [LocalHttpServer([redirect_onwards(index)]) for index in range(hosts - 1)]
+    servers.append(LocalHttpServer([last]))
+    targets.extend(server.url for server in servers[1:])
+    targets.append(servers[0].url)
+    with contextlib.ExitStack() as stack:
+        for server in servers:
+            stack.enter_context(server)
+        _, error = _elapsed(
+            lambda: get_bytes(servers[0].url, connect_timeout=1, read_timeout=2, deadline=5)
+        )
+        assert isinstance(error, outcome)
+        assert _wait_until(lambda: slots.used == 0)
+
+        assert _wait_until(lambda: sum(server.open_connections for server in servers) == 0), [
+            server.open_connections for server in servers
+        ]
+        assert error is not None  # still kept
+
+
+def test_get_bytes_leaves_no_proxy_connection_open_while_its_error_is_kept(slots, monkeypatch):
+    # The proxy keeps its connection alive through a redirect loop, so the
+    # connection waits idle in the proxy manager's pool when requests gives up.
+    for name in ("no_proxy", "NO_PROXY", "all_proxy", "ALL_PROXY"):
+        monkeypatch.delenv(name, raising=False)
+    target = "http://proxied.test/"
+    with LocalHttpServer([redirect(target, keep_alive=True)]) as proxy:
+        for name in ("http_proxy", "HTTP_PROXY"):
+            monkeypatch.setenv(name, proxy.url)
+        _, error = _elapsed(
+            lambda: get_bytes(target, connect_timeout=1, read_timeout=2, deadline=5)
+        )
+        assert isinstance(error, requests.TooManyRedirects)
+        assert proxy.requests[0].startswith(b"GET http://proxied.test/ ")
+        assert _wait_until(lambda: slots.used == 0)
+
+        assert _wait_until(lambda: proxy.open_connections == 0), (
+            f"{proxy.open_connections} connection(s) still open"
+        )
+        assert error is not None  # still kept
 
 
 def test_get_bytes_deadline_stops_a_worker_reading_a_body_that_keeps_arriving(slots):

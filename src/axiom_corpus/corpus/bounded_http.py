@@ -10,12 +10,13 @@ real-source smoke test that skips when its source cannot be fetched failed the
 required ``test`` job instead (axiom-corpus CI run 40042942746).
 
 ``get_bytes`` gives each request explicit connect and read timeouts, cut to the
-time left when it is sent, and gives the whole call (every attempt, the pauses
-between them, redirects, the DNS lookup, the headers and the body) one
-deadline. No request, a redirect's included, is sent once the deadline has
-passed. The attempts run on a daemon worker thread that the caller waits on for
-at most the deadline, so the call returns the body or raises by then whatever
-the server does.
+time left when it is started, and gives the whole call (every attempt, the
+pauses between them, redirects, the DNS lookup, the headers and the body) one
+deadline. No request, a redirect's included, is started once the deadline has
+passed; one started just before it can still go out after it if its DNS lookup,
+which has no timeout, returns late. The attempts run on a daemon worker thread
+that the caller waits on for at most the deadline, so the call returns the body
+or raises by then whatever the server does.
 
 At the deadline the caller raises ``requests.Timeout`` and leaves the worker
 behind. A worker stops at its next socket timeout, at the next body chunk after
@@ -38,6 +39,7 @@ import math
 import threading
 import time
 from collections.abc import Mapping
+from typing import Any
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -98,8 +100,9 @@ def get_bytes(
     failed one, and retries every ``requests.RequestException``, an HTTP error
     status included, while time is left after the pause. An attempt makes one
     request, and one more for each redirect it follows. No request, a
-    redirect's included, is sent once the deadline has passed. A network or
-    HTTP failure raises the last attempt's
+    redirect's included, is started once the deadline has passed. A network or
+    HTTP failure, or an answer ``requests`` cannot handle (a redirect whose
+    Location is not UTF-8, say), raises the last attempt's
     ``requests.RequestException``, or ``requests.Timeout`` when the deadline
     passes first or no fetch slot comes free in time. A request that
     ``requests`` cannot make at all (a malformed URL, say) raises what
@@ -237,41 +240,74 @@ def _open(
     """Start a streaming GET of ``url``, as ``requests.get`` does, through ``_DeadlineAdapter``.
 
     Like ``requests.get``, it uses a session of its own, closed on return; the
-    streaming response keeps its connection until it is closed.
+    streaming response keeps its connection until it is closed. If ``requests``
+    fails after an answer has arrived, every response opened is closed, and a
+    failure that is not a ``requests.RequestException`` is raised as one.
     """
-    adapter = _DeadlineAdapter(url, give_up_at)
+    opened: list[requests.Response] = []
+    adapter = _DeadlineAdapter(url, give_up_at, opened)
     with requests.Session() as session:
         session.mount("http://", adapter)
         session.mount("https://", adapter)
-        return session.get(url, headers=headers, timeout=timeout, stream=True)
+        try:
+            return session.get(url, headers=headers, timeout=timeout, stream=True)
+        except BaseException as error:
+            # requests can fail after a response arrives and before it hands
+            # that response back, which then still holds its connection: a
+            # redirect whose Location is not UTF-8 raises UnicodeDecodeError
+            # before its body is read.
+            for response in opened:
+                response.close()
+            answered = bool(opened)
+            if (
+                answered
+                and isinstance(error, Exception)
+                and not isinstance(error, requests.RequestException)
+            ):
+                raise requests.RequestException(
+                    f"could not handle the answer from {url}: {error!r}"
+                ) from error
+            raise
+        finally:
+            opened.clear()  # each response refers back to the adapter
 
 
 class _DeadlineAdapter(HTTPAdapter):
-    """Sends no request once ``give_up_at`` has passed, and cuts each one's timeouts to the time left.
+    """Starts no request once ``give_up_at`` has passed, and cuts each one's timeouts to the time left.
 
     ``requests`` sends every request of a session through its adapter, each
     redirect it follows included, and closes the response before a redirect
-    first, so this check comes right before each request goes out and leaves
-    no response open when it refuses one.
+    first, so this check comes right before each request is started and leaves
+    no response open when it refuses one. A DNS lookup, which has no timeout,
+    can still hold a request it started past the deadline. Each response it
+    returns is added to ``opened``.
+
+    The adapter is one call's, used by one thread, so it closes every
+    connection pool it drops: when its pool manager's cache (ten pools; a
+    redirect chain across hosts can pass that) evicts one, and when the
+    session closes it. urllib3 2 leaves both to the garbage collector, so a
+    connection a server kept alive stayed open for as long as anything still
+    reached its pool, as a kept error's traceback can. A closed pool closes
+    its idle connections, and any connection still in use when it is given
+    back.
     """
 
-    def __init__(self, url: str, give_up_at: float) -> None:
-        super().__init__()
+    def __init__(self, url: str, give_up_at: float, opened: list[requests.Response]) -> None:
         self._url = url
         self._give_up_at = give_up_at
+        self._opened = opened
+        super().__init__()
 
-    def close(self) -> None:
-        # urllib3 2's PoolManager.clear() forgets its pools without closing
-        # them, so a kept-alive connection would stay open for as long as
-        # anything still reaches its pool, as a kept error's traceback can.
-        # A closed pool closes its idle connections, and closes any connection
-        # still in use when that is given back.
-        managers: list[PoolManager] = [self.poolmanager, *self.proxy_manager.values()]
-        for manager in managers:
-            # The pools' container refuses plain iteration; keys() is a copy.
-            for key in manager.pools.keys():  # noqa: SIM118
-                manager.pools[key].close()
-        super().close()  # type: ignore[no-untyped-call]  # untyped in the requests stubs
+    def init_poolmanager(
+        self, connections: int, maxsize: int, block: bool = False, **pool_kwargs: Any
+    ) -> None:
+        super().init_poolmanager(connections, maxsize, block=block, **pool_kwargs)  # type: ignore[no-untyped-call]  # untyped in the requests stubs
+        _close_the_pools_it_drops(self.poolmanager)
+
+    def proxy_manager_for(self, proxy: str, **proxy_kwargs: Any) -> PoolManager:
+        manager: PoolManager = super().proxy_manager_for(proxy, **proxy_kwargs)  # type: ignore[no-untyped-call]  # untyped in the requests stubs
+        _close_the_pools_it_drops(manager)
+        return manager
 
     def send(
         self,
@@ -288,7 +324,7 @@ class _DeadlineAdapter(HTTPAdapter):
         remaining = self._give_up_at - time.monotonic()
         if remaining <= 0:
             raise requests.Timeout(f"no complete response from {self._url} before the deadline")
-        return super().send(
+        response = super().send(
             request,
             stream=stream,
             timeout=(min(timeout[0], remaining), min(read, remaining)),
@@ -296,3 +332,9 @@ class _DeadlineAdapter(HTTPAdapter):
             cert=cert,
             proxies=proxies,
         )
+        self._opened.append(response)
+        return response
+
+
+def _close_the_pools_it_drops(manager: PoolManager) -> None:
+    manager.pools.dispose_func = lambda pool: pool.close()

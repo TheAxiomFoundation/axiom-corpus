@@ -21,7 +21,13 @@ from axiom_corpus.corpus.state_adapters.oregon import (
     parse_oregon_chapter_html,
     parse_oregon_ors_landing_html,
 )
-from tests._local_http import LocalHttpServer, never_answer, respond, trickle_headers
+from tests._local_http import (
+    LocalHttpServer,
+    never_answer,
+    redirect,
+    respond,
+    trickle_headers,
+)
 
 SAMPLE_OREGON_LANDING = """<!doctype html>
 <html><body>
@@ -532,6 +538,20 @@ def test_oregon_download_tells_a_missing_page_from_a_failed_fetch(status, not_fo
 
     assert isinstance(excinfo.value, oregon_adapter._OregonPageNotFoundError) is not_found
     assert len(server.requests) == 2  # the bounded retry, for every status
+
+
+def test_oregon_download_reports_an_answer_it_cannot_handle_as_a_failed_fetch():
+    # requests raises UnicodeDecodeError for a redirect whose Location is not
+    # UTF-8: a ValueError, but without the text the smoke test skips on. It
+    # now reaches the caller as a failed fetch, like any other bad answer.
+    with LocalHttpServer([redirect("/\xff", body=b"oops")]) as server:
+        with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
+            oregon_adapter._download_oregon_page(server.url + "ors/ors316.html")
+
+    assert not isinstance(excinfo.value, oregon_adapter._OregonPageNotFoundError)
+    assert isinstance(excinfo.value.__cause__, requests.RequestException)
+    assert isinstance(excinfo.value.__cause__.__cause__, UnicodeDecodeError)
+    assert len(server.requests) == 2  # retried like any failed fetch
 
 
 # The most one page fetch may take when the Oregon site does not answer. The

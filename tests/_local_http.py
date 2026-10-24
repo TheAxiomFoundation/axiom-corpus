@@ -236,23 +236,30 @@ def trickle_body(interval: float, *, declared_length: int = 10_000_000) -> Behav
 def redirect(
     location: str,
     *,
+    body: bytes = b"",
     slowly_for: float = 0.0,
     body_slowly_for: float = 0.0,
     interval: float = 0.02,
     keep_alive: bool = False,
 ) -> Behaviour:
-    """Answer ``302 Found`` to ``location``.
+    """Answer ``302 Found`` to ``location``, sent as Latin-1 as HTTP headers are.
 
-    Its headers trickle in for ``slowly_for`` seconds first. Its body is empty,
-    or, with ``body_slowly_for``, a chunked body sent a byte at a time for that
-    long. With ``keep_alive`` it keeps the connection for the client's next
-    request instead of closing it.
+    Its headers trickle in for ``slowly_for`` seconds first. Its body is
+    ``body``, or, with ``body_slowly_for``, a chunked body sent a byte at a
+    time for that long. With ``keep_alive`` it keeps the connection for the
+    client's next request instead of closing it.
     """
 
     def behaviour(connection: socket.socket, closing: threading.Event) -> bool:
-        framing = b"Transfer-Encoding: chunked\r\n" if body_slowly_for else b"Content-Length: 0\r\n"
+        framing = (
+            b"Transfer-Encoding: chunked\r\n"
+            if body_slowly_for
+            else f"Content-Length: {len(body)}\r\n".encode()
+        )
         persistence = b"" if keep_alive else b"Connection: close\r\n"
-        rest = persistence + framing + f"Location: {location}\r\n\r\n".encode()
+        rest = persistence + framing + f"Location: {location}\r\n\r\n".encode("latin-1")
+        if not body_slowly_for:
+            rest += body
         if not slowly_for:
             connection.sendall(b"HTTP/1.1 302 Found\r\n" + rest)
         else:
