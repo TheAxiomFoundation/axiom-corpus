@@ -43,7 +43,7 @@ Verification: every scope reports `coverage.complete: true` with 0 missing, 0 ex
 duplicate citation paths; every citation path matches `^[a-z0-9./-]+$`; no empty body. The
 draft selector `docs/ingest-runs/2026-09-13-acf-state-plans-draft.selector.json` (the
 2026-09-13 follow-up draft of 556 scopes plus these 103) validates with
-`uv run axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus --release <draft> --ignore-r2-missing --max-issues 50`:
+`uv run axiom-corpus-ingest validate-release --base <main-checkout>/data/corpus --release <draft> --ignore-r2-missing --max-issues 50`:
 `ok: true`, 0 errors, 546 warnings (all the pre-existing `missing_parent_id` warnings of the
 released `us-ca/regulation/2026-07-13-recovery` scope). The same check after the CCDF batch
 alone (623 scopes) also passed with 0 errors.
@@ -379,7 +379,7 @@ uv run python scripts/build_ccdf_state_plan_manifests.py --family amendments
 uv run python scripts/build_ccdf_state_plan_manifests.py --family rate-schedules
 uv run python scripts/build_tanf_state_plan_manifests.py
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/tanf-state-plan-ca-bundle.pem
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<main-checkout>/data/corpus
 for m in manifests/us-*-ccdf-state-plan-appendix-fy2025-2027.yaml; do
   uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-13-ccdf-state-plan-appendices --manifest $m --source-as-of 2026-09-13 --expression-date 2024-10-01; done
 for m in manifests/us-*-ccdf-state-plan-amendments-fy2025-2027.yaml; do

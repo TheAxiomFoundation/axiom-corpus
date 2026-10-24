@@ -92,7 +92,7 @@
 # treats either shape as superseded, so this whole constituent must use
 # --allow-superseded even though amendment acts are not superseded LBKs.
 #
-#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#   UV_CACHE_DIR=<uv-cache> uv run --no-sync \
 #     axiom-corpus-ingest extract-eli-documents --base data/corpus \
 #     --version 2026-08-04-dk-full-parity-tier1-amendments \
 #     --manifest manifests/dk-full-parity-tier1-amendments-eli.yaml \

@@ -1,0 +1,56 @@
+# Records that hold a path on the machine that wrote them, grandfathered because an
+# ingest manifest attests their bytes in reasoning_logs (axiom-corpus#896).
+#
+# Run notes (docs/ingest-runs/), closure work (docs/coverage/), reasoning logs
+# (.axiom/reasoning-logs/) and source manifests (manifests/) are public. A path
+# such as /Users/<name>/..., /private/tmp/... or ~/... reaches no reader and
+# publishes the operator's account name and directory layout. Records name
+# repository files by their repository-relative path and directories on the
+# machine by a placeholder such as <main-checkout>, <worktrees>/<name>,
+# <rulespec-us>, <axiom-cache> or <scratchpad>.
+#
+# tests/test_record_local_paths.py fails when a record holds a local path and is
+# not listed here. This list only shrinks:
+# - each entry pins the record's bytes (sha256 of the file), so a record that
+#   changes must lose its paths and its entry together;
+# - each entry names exactly the ingest manifests whose reasoning_logs attest
+#   those bytes; a record no manifest attests is scrubbed, not listed;
+# - an entry whose record no longer holds a local path fails as stale;
+# - an entry whose path and sha256 are not a pair grandfathered on 2026-10-20
+#   (GRANDFATHERED in the test) fails, so no entry can be added.
+#
+# Scrubbing an attested record changes bytes a signed manifest attests, so every
+# manifest in its attested_by must be signed again with the new sha256: the
+# hub's to do, with the corpus ingest key and the repository's signing flow
+# (merge commits only, never a rebase). Agents never read the key.
+
+schema_version: axiom-corpus/record-local-paths/v1
+records:
+  - path: .axiom/reasoning-logs/us-co-regulation-2026-06-19-co-oap-9-ccr-2503-5.md
+    sha256: a9640fa2f2f6c276e8fedb44b1dbef32842ab5f627370ebe4a2fe3fc230ceeb5
+    attested_by:
+      - .axiom/ingest-manifests/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.json
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: docs/ingest-runs/2026-07-03-dc-code-title-4-refresh.md
+    sha256: a77162479d6c753d6836a0c3a60df92b4aed0acf938a3fd8a07955741f6d2b0b
+    attested_by:
+      - .axiom/ingest-manifests/us-dc/statute/2026-05-19-title-4.json
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: docs/ingest-runs/2026-07-04-be-wallonia-aviq-family-benefit-plafonds-2025.md
+    sha256: d12702294775e77329fe01c569c0180c4b92058c7ec6c928938560d6ed62dc4e
+    attested_by:
+      - .axiom/ingest-manifests/be-wal/guidance/2026-07-04-be-wallonia-family-benefit-amount-scale-2025.json
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: docs/ingest-runs/2026-07-21-co-snap-policy.md
+    sha256: e2f804fd6b5bdd2ab2c812da9651d0ed146fdb6995dee49eef8cfdc8523149bb
+    attested_by:
+      - .axiom/ingest-manifests/us-co/policy/2026-04-30.json
+      - .axiom/ingest-manifests/us-co/policy/2026-07-21-co-snap-policy.json
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: docs/ingest-runs/2026-07-21-wv-snap-manual.md
+    sha256: 925ebb25d65477fbcedfa3f4d203de0216fe9e7336aac026d0e72aefb70b8746
+    attested_by:
+      - .axiom/ingest-manifests/us-wv/manual/2026-05-27-wv-manuals.json
+      - .axiom/ingest-manifests/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json
+      - .axiom/ingest-manifests/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896

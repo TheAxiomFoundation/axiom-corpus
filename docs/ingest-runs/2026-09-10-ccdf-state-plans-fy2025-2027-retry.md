@@ -204,7 +204,7 @@ certificate changes (`data/certs/ccdf-ca-bundle.pem` remains generated and ignor
 uv run python scripts/build_ccdf_state_plan_manifests.py
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/ccdf-ca-bundle.pem
 for m in manifests/us-{me,ms,pa}-ccdf-state-plan-fy2025-2027.yaml; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base <main-checkout>/data/corpus \
     --version 2026-09-10-ccdf-plan-fy2025-2027 \
     --manifest $m --source-as-of 2026-09-10 --expression-date 2024-10-01
 done

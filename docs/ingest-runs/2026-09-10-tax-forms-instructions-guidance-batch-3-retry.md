@@ -127,8 +127,8 @@ Rebuild:
 
 ```bash
 uv run python scripts/build_tax_forms_manifests.py --verify   # probe every URL
-AXIOM_CORPUS_BASE=/Users/pavelmakarchuk/axiom-corpus/data/corpus uv run python scripts/build_tax_forms_manifests.py
-BASE=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+AXIOM_CORPUS_BASE=<main-checkout>/data/corpus uv run python scripts/build_tax_forms_manifests.py
+BASE=<main-checkout>/data/corpus
 for j in co in ut; do
   uv run axiom-corpus-ingest extract-official-documents --base $BASE \
     --version 2026-09-10-tax-state-forms-ty2025 --manifest manifests/us-$j-individual-income-tax-forms-ty2025.yaml

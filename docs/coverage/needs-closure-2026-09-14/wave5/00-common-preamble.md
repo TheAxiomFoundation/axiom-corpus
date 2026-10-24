@@ -1,7 +1,7 @@
 # Wave 5 — common rules for every agent (read fully before starting)
 
 Wave 5 closes what the 2026-09-14 needs-closure recount (`docs/coverage/needs-closure-2026-09-14/README.md` on branch
-`analysis/needs-closure-2026-09-14`, worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/closure-r6`) still marks
+`analysis/needs-closure-2026-09-14`, worktree `<worktrees>/closure-r6`) still marks
 EXTRACTABLE, and turns the REVIEW column into decisions. SNAP and WIC crawling is exhausted (1% extractable); the bulk of
 wave 5 is the tax, Medicaid, LIHEAP and CCDF families plus seven federal documents, and a reading pass.
 
@@ -9,7 +9,7 @@ wave 5 is the tax, Medicaid, LIHEAP and CCDF families plus seven federal documen
 
 - Your worktree and branch are named in your brief. It is a **sparse worktree** (`data/corpus/` excluded). Never symlink
   `data/corpus`; never `git sparse-checkout` anything else. Every extraction writes to the main checkout's corpus root:
-  `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`. Artifacts there stay **uncommitted** (they are signed and
+  `--base <main-checkout>/data/corpus`. Artifacts there stay **uncommitted** (they are signed and
   committed later by the release step — not your job).
 - Python: `uv run --extra dev ...` inside your worktree (a bare `pytest` resolves to the Anaconda one and fails collection).
   First command: `uv sync --extra dev` (one time, ~1 min).
@@ -37,14 +37,14 @@ wave 5 is the tax, Medicaid, LIHEAP and CCDF families plus seven federal documen
 
 Your target lists (built from the recount matrices; absolute paths, read-only):
 
-- `/Users/pavelmakarchuk/axiom-corpus-worktrees/closure-r6/docs/coverage/needs-closure-2026-09-14/wave5/<group>-extractable.csv`
+- `<worktrees>/closure-r6/docs/coverage/needs-closure-2026-09-14/wave5/<group>-extractable.csv`
   — one row per EXTRACTABLE cell: program, jurisdiction (`us` = federal element, inherited by all 51), element, level,
   family, note. The note names the publisher index or URL the 09-11/09-14 check found.
 - `.../wave5/<group>-review.csv` — one row per state-level REVIEW cell: program, jurisdiction, element, family,
   scope_version, citation_path, note (why it is only a candidate).
 - Element definitions: `.../needs-closure-2026-09-14/<program>-schema.yaml`; the matrices `<program>-matrix.csv`; the
   reports `<program>.md`.
-- Provision rows to read: `/Users/pavelmakarchuk/axiom-corpus/data/corpus/provisions/<jurisdiction>/<document_class>/<version>.jsonl`
+- Provision rows to read: `<main-checkout>/data/corpus/provisions/<jurisdiction>/<document_class>/<version>.jsonl`
   (one JSON object per line: `citation_path`, `heading`, `body`, `kind`, `metadata`). The `scope_version` column is either
   the bare version (look up the class from the citation_path's second segment) or `jur/class/version`.
 

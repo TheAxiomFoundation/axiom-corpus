@@ -16,7 +16,7 @@ source_versions:
     manifest: manifests/dk-full-parity-tier1-amendments-eli.yaml
     allow_superseded: true
 compose_command:
-  - UV_CACHE_DIR=/private/tmp/axiom-uv-cache
+  - UV_CACHE_DIR=<uv-cache>
   - uv
   - run
   - --no-sync
