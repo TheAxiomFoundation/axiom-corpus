@@ -1,18 +1,36 @@
+import threading
+import time
 from datetime import date
 from pathlib import Path
+from types import SimpleNamespace
 from urllib.parse import urljoin
 
 import pytest
 import requests
 
+from axiom_corpus.corpus import bounded_http
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.cli import _state_statute_report_success
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters import oregon as oregon_adapter
 from axiom_corpus.corpus.state_adapters.oregon import (
     OREGON_ORS_BASE_URL,
+    OREGON_ORS_LANDING_RELATIVE,
+    OregonOrsTitle,
     extract_oregon_ors,
     parse_oregon_chapter_html,
     parse_oregon_ors_landing_html,
+)
+from tests._local_http import (
+    OVERFLOWING_COOKIE,
+    LocalHttpServer,
+    RunningCount,
+    never_answer,
+    redirect,
+    respond,
+    trickle_headers,
+    wait_until,
+    warnings_as_errors,
 )
 
 SAMPLE_OREGON_LANDING = """<!doctype html>
@@ -286,6 +304,9 @@ def test_extract_oregon_ors_filters_title_and_reports_invalid_inputs(tmp_path):
 
 
 def test_extract_oregon_ors_real_source_smoke(tmp_path):
+    # Live, and skipped when the Oregon site cannot be fetched. Each of the two
+    # pages it reads gives up within OREGON_FETCH_DEADLINE_SECONDS, so a dead or
+    # slow site reaches the skip inside CI's 60-second per-test limit.
     store = CorpusArtifactStore(tmp_path / "corpus")
     try:
         report = extract_oregon_ors(
@@ -345,14 +366,25 @@ def test_oregon_live_discovery_and_helper_edges(monkeypatch, tmp_path):
 
     class FakeFetcher:
         def fetch_chapter(self, token: str):
-            if token not in {"001", "001A"}:
-                raise ValueError(token)
+            if token == "001A":
+                raise ValueError(f"failed to fetch Oregon source page ors{token}.html: timed out")
+            if token != "001":
+                raise oregon_adapter._OregonPageNotFoundError(token)
             return object()
 
-    discovered = oregon_adapter._discover_live_chapters((title,), fetcher=FakeFetcher(), workers=1)
-    assert [chapter.chapter for chapter in discovered] == ["001", "001A"]
+    discovered, unchecked = oregon_adapter._discover_live_chapters(
+        (title,), fetcher=FakeFetcher(), workers=1
+    )
+    assert [chapter.chapter for chapter in discovered] == ["001"]
+    # A failure other than "not found" leaves the chapter unchecked, not absent.
+    assert [(item.chapter.chapter, item.error) for item in unchecked] == [
+        ("001A", "failed to fetch Oregon source page ors001A.html: timed out")
+    ]
+    assert unchecked[0].chapter.title_number == "1"
     assert oregon_adapter._live_chapter_exists(FakeFetcher(), "001") is True
     assert oregon_adapter._live_chapter_exists(FakeFetcher(), "001B") is False
+    with pytest.raises(ValueError, match="timed out"):
+        oregon_adapter._live_chapter_exists(FakeFetcher(), "001A")
     with pytest.raises(ValueError, match="landing page"):
         oregon_adapter._discover_live_chapters((), fetcher=FakeFetcher(), workers=1)
 
@@ -363,7 +395,16 @@ def test_oregon_live_discovery_and_helper_edges(monkeypatch, tmp_path):
         chapter_filter="001",
         fetcher=FakeFetcher(),
         workers=1,
-    ) == ()
+    ) == ((), ())
+    # A title filter applies to the unchecked candidates too.
+    assert oregon_adapter._selected_chapters(
+        source_root=None,
+        titles=(title,),
+        title_filter="2",
+        chapter_filter=None,
+        fetcher=FakeFetcher(),
+        workers=1,
+    ) == ((), ())
     assert oregon_adapter._candidate_alpha_suffixes(
         2,
         start_number=1,
@@ -442,30 +483,393 @@ def test_oregon_landing_fallback_and_parser_edge_cases():
     assert oregon_adapter._date_text(date(2026, 5, 6), "fallback") == "2026-05-06"
 
 
+class _FakeResponse:
+    """A complete 200 response, for a fetcher that reads ``.content`` or streams it."""
+
+    def __init__(self, content: bytes) -> None:
+        self.content = content
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc_info):
+        return None
+
+    def close(self):
+        return None
+
+    def raise_for_status(self):
+        return None
+
+    def iter_content(self, chunk_size=1):
+        for start in range(0, len(self.content), chunk_size):
+            yield self.content[start : start + chunk_size]
+
+
 def test_oregon_download_page_success_and_retry_failure(monkeypatch):
-    class OkResponse:
-        content = b"ok"
-
-        def raise_for_status(self):
-            return None
-
     assert_calls = {"count": 0}
 
     def ok_get(*args, **kwargs):
         assert_calls["count"] += 1
-        return OkResponse()
+        return _FakeResponse(b"ok")
 
-    monkeypatch.setattr(oregon_adapter.requests, "get", ok_get)
+    monkeypatch.setattr(bounded_http, "_open", ok_get)
     assert oregon_adapter._download_oregon_page("https://example.test/ors090.html") == b"ok"
     assert assert_calls["count"] == 1
 
     def bad_get(*args, **kwargs):
+        assert_calls["count"] += 1
         raise requests.RequestException("boom")
 
-    monkeypatch.setattr(oregon_adapter.requests, "get", bad_get)
-    monkeypatch.setattr(oregon_adapter.time, "sleep", lambda seconds: None)
-    with pytest.raises(ValueError, match="failed to fetch Oregon source page"):
+    monkeypatch.setattr(bounded_http, "_open", bad_get)
+    # Skip the pause between attempts, in the fetch module only.
+    monkeypatch.setattr(
+        bounded_http, "time", SimpleNamespace(monotonic=time.monotonic, sleep=lambda seconds: None)
+    )
+    with pytest.raises(ValueError, match="failed to fetch Oregon source page .*: boom"):
         oregon_adapter._download_oregon_page("https://example.test/ors091.html")
+    assert assert_calls["count"] == 3
+
+
+@pytest.mark.parametrize(
+    "status, not_found",
+    [("404 Not Found", True), ("410 Gone", True), ("503 Service Unavailable", False)],
+)
+def test_oregon_download_tells_a_missing_page_from_a_failed_fetch(status, not_found):
+    with LocalHttpServer([respond(b"", status=status)]) as server:
+        with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
+            oregon_adapter._download_oregon_page(server.url + "ors/ors001A.html")
+
+    assert isinstance(excinfo.value, oregon_adapter._OregonPageNotFoundError) is not_found
+    assert len(server.requests) == 2  # the bounded retry, for every status
+
+
+@pytest.mark.parametrize(
+    "answer, cause",
+    [
+        # requests raises UnicodeDecodeError for a redirect whose Location is
+        # not UTF-8: a ValueError, but without the text the smoke test skips on.
+        (redirect("/\xff", body=b"oops"), UnicodeDecodeError),
+        # Under warnings-as-errors, http.cookiejar's warning about a Max-Age too
+        # large for a float is raised while requests builds the response.
+        (respond(b"oops", headers=[OVERFLOWING_COOKIE]), UserWarning),
+    ],
+    ids=["location-not-utf-8", "cookie-warning-as-error"],
+)
+def test_oregon_download_reports_an_answer_it_cannot_handle_as_a_failed_fetch(
+    answer, cause, monkeypatch
+):
+    # Either reaches the caller as a failed fetch, like any other bad answer.
+    monkeypatch.setattr(
+        bounded_http, "_get_with_retries", warnings_as_errors(bounded_http._get_with_retries)
+    )
+    with LocalHttpServer([answer]) as server:
+        with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
+            oregon_adapter._download_oregon_page(server.url + "ors/ors316.html")
+
+    assert not isinstance(excinfo.value, oregon_adapter._OregonPageNotFoundError)
+    assert isinstance(excinfo.value.__cause__, requests.RequestException)
+    assert isinstance(excinfo.value.__cause__.__cause__, cause)
+    assert len(server.requests) == 2  # retried like any failed fetch
+
+
+# The most one page fetch may take when the Oregon site does not answer. The
+# real-source smoke test fetches two pages (the ORS landing page, then chapter
+# 316) under CI's 60-second per-test limit (pytest --timeout=60), and it skips
+# only when a fetch fails with "failed to fetch Oregon source page". Two
+# 30-second connect timeouts (CI run 40042942746) spent the whole limit on the
+# first page.
+_OREGON_PAGE_GIVE_UP_SECONDS = 25.0
+
+
+class _VirtualClock:
+    """``time.monotonic`` and ``time.sleep`` on a clock that moves only when slept on."""
+
+    def __init__(self) -> None:
+        self.now = 1_000.0
+
+    def monotonic(self) -> float:
+        return self.now
+
+    def sleep(self, seconds: float) -> None:
+        self.now += max(0.0, seconds)
+
+
+class _DeadOregonHost:
+    """``bounded_http._open`` for an Oregon site that serves ``pages`` and hangs on the rest.
+
+    A hanging request waits out, on the virtual clock, the timeout it was
+    given: the connect timeout for a host that drops connection attempts
+    (``hang="connect"``), the read timeout for one that accepts and never
+    answers (``hang="read"``). It then raises what ``requests`` raises.
+    """
+
+    def __init__(self, clock: _VirtualClock, *, hang: str, pages: dict[str, bytes] | None = None):
+        self.clock = clock
+        self.hang = hang
+        self.pages = pages or {}
+        self.timeouts: list[tuple[float, float]] = []
+
+    def get(self, url, *args, timeout=None, **kwargs):
+        for suffix, content in self.pages.items():
+            if url.endswith(suffix):
+                return _FakeResponse(content)
+        assert timeout is not None, f"live request to {url} without a timeout"
+        connect, read = timeout if isinstance(timeout, tuple) else (timeout, timeout)
+        self.timeouts.append((connect, read))
+        if self.hang == "connect":
+            self.clock.sleep(connect)
+            raise requests.ConnectTimeout(f"connect to {url} timed out after {connect}s")
+        self.clock.sleep(read)
+        raise requests.ReadTimeout(f"read from {url} timed out after {read}s")
+
+
+def _install_dead_oregon_host(monkeypatch, *, hang, pages=None):
+    # Only the fetch module sees the virtual clock, so no other thread or test
+    # does. The caller's wait for the worker is a real wait, cut short when the
+    # worker finishes, which it does at once on this clock.
+    clock = _VirtualClock()
+    host = _DeadOregonHost(clock, hang=hang, pages=pages)
+    monkeypatch.setattr(
+        bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
+    )
+    monkeypatch.setattr(bounded_http, "_open", host.get)
+    return clock, host
+
+
+@pytest.mark.parametrize("hang", ["connect", "read"])
+def test_oregon_download_gives_up_on_a_dead_host_well_inside_the_test_limit(monkeypatch, hang):
+    clock, host = _install_dead_oregon_host(monkeypatch, hang=hang)
+    started = clock.now
+
+    with pytest.raises(ValueError, match="failed to fetch Oregon source page"):
+        oregon_adapter._download_oregon_page(urljoin(OREGON_ORS_BASE_URL, "ors/ors316.html"))
+
+    assert clock.now - started <= _OREGON_PAGE_GIVE_UP_SECONDS
+    # The bounded retry is kept, and every request has explicit connect and
+    # read timeouts no longer than 10 and 20 seconds.
+    assert len(host.timeouts) == 2
+    assert all(0 < connect <= 10 and 0 < read <= 20 for connect, read in host.timeouts)
+
+
+@pytest.mark.parametrize("hang", ["connect", "read"])
+@pytest.mark.parametrize("landing", ["answers", "hangs"])
+def test_extract_oregon_ors_live_fetch_failure_reaches_the_smoke_test_skip(
+    tmp_path, monkeypatch, hang, landing
+):
+    """Whichever page hangs, extraction fails fast with the message the smoke test skips on."""
+    pages = {}
+    if landing == "answers":
+        pages[OREGON_ORS_LANDING_RELATIVE] = SAMPLE_OREGON_LANDING.encode()
+    clock, host = _install_dead_oregon_host(monkeypatch, hang=hang, pages=pages)
+    started = clock.now
+
+    with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
+        extract_oregon_ors(
+            CorpusArtifactStore(tmp_path / "corpus"),
+            version="2026-05-05",
+            only_chapter="316",
+            download_dir=tmp_path / "download",
+        )
+
+    hung_page = "ors/ors316.html" if landing == "answers" else OREGON_ORS_LANDING_RELATIVE
+    assert urljoin(OREGON_ORS_BASE_URL, hung_page) in str(excinfo.value)
+    assert clock.now - started <= _OREGON_PAGE_GIVE_UP_SECONDS
+    assert not (tmp_path / "download" / "oregon-ors-html" / "ors316.html").exists()
+
+
+def test_extract_oregon_ors_against_a_local_server_that_never_answers(tmp_path, monkeypatch):
+    """The real requests stack, end to end, with the budget shrunk to fit a unit test."""
+    monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
+    monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 0.2)
+    # Room for both attempts and the pause however slow the runner, so the
+    # request count below does not depend on scheduling.
+    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 3.0)
+    landing = respond(SAMPLE_OREGON_LANDING.encode())
+    with LocalHttpServer([landing, never_answer]) as server:
+        started = time.monotonic()
+        with pytest.raises(
+            ValueError,
+            match=(
+                "no Oregon ORS provisions extracted; "
+                "chapter 316: failed to fetch Oregon source page .*ors316.html"
+            ),
+        ):
+            extract_oregon_ors(
+                CorpusArtifactStore(tmp_path / "corpus"),
+                version="2026-05-05",
+                only_chapter="316",
+                base_url=server.url,
+            )
+        elapsed = time.monotonic() - started
+
+    # The landing page, then two tries at ors316.html: 0.2 s, the 0.5 s pause,
+    # then 0.2 s more. A read the timeout failed to end would run to the 3 s
+    # deadline, and one nothing bounded would run until pytest-timeout.
+    assert len(server.requests) == 3
+    assert elapsed < 0.2 + 0.5 + 0.2 + 1.5
+
+
+def _finishes_within(seconds, call):
+    """Return ``call()``, run on its own thread, or fail the test if it outlives ``seconds``.
+
+    A fetch that failed to give up at its deadline then fails the test instead
+    of hanging it: the local server closes as the test unwinds, which ends the
+    fetch.
+    """
+    outcome = {}
+
+    def run():
+        try:
+            outcome["result"] = call()
+        except BaseException as exc:  # raised again on the test's thread
+            outcome["error"] = exc
+
+    thread = threading.Thread(target=run, daemon=True)
+    thread.start()
+    thread.join(timeout=seconds)
+    assert not thread.is_alive(), f"did not finish within {seconds}s"
+    if "error" in outcome:
+        raise outcome["error"]
+    return outcome["result"]
+
+
+def test_oregon_chapter_discovery_on_a_trickling_site_holds_few_threads_and_drops_no_chapter(
+    monkeypatch,
+):
+    """Probing every candidate chapter of a trickling site holds at most the cap of threads open.
+
+    Discovery probes each candidate chapter URL with eight workers. A probe of
+    a site that trickles its headers gives up at the deadline, and its fetch
+    thread keeps reading and keeps its slot; once the slots are taken, the
+    other probes are refused. Every candidate comes back as unchecked, none as
+    absent, since any of them may exist. A fetch thread would also end at its
+    read timeout (cut to the 0.3 s deadline) if the machine stalled that long
+    between two bytes, freeing its slot for another probe, so the first three
+    fetch threads are also held until discovery is done, and fetch threads
+    are counted running at once rather than as requests.
+    """
+    monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
+    monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 2.0)
+    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 0.3)
+    monkeypatch.setattr(bounded_http, "_SLOTS", bounded_http._Slots(3))
+    fetches = RunningCount(bounded_http._get_with_retries, hold=3)
+    monkeypatch.setattr(bounded_http, "_get_with_retries", fetches)
+    titles = (
+        OregonOrsTitle(
+            number="1", heading="Courts", start_chapter="001", end_chapter="008", ordinal=1
+        ),
+    )
+    candidates = list(oregon_adapter._candidate_chapter_tokens("001", "008"))
+    workers = 8
+
+    with LocalHttpServer([trickle_headers(0.02)]) as server:
+        fetcher = oregon_adapter._OregonFetcher(
+            base_url=server.url, source_dir=None, download_dir=None
+        )
+        started = time.monotonic()
+        try:
+            found, unchecked = _finishes_within(
+                30,
+                lambda: oregon_adapter._discover_live_chapters(
+                    titles, fetcher=fetcher, workers=workers
+                ),
+            )
+            elapsed = time.monotonic() - started
+            open_fetches = [
+                thread
+                for thread in threading.enumerate()
+                if thread.name.startswith(f"get_bytes {server.url}")
+            ]
+        finally:
+            fetches.release()
+        refused = sum("fetch threads stayed busy" in item.error for item in unchecked)
+
+        assert len(candidates) == 29
+        assert found == ()
+        assert [item.chapter.chapter for item in unchecked] == candidates
+        assert all("failed to fetch Oregon source page" in item.error for item in unchecked)
+        assert refused == len(candidates) - 3
+        assert wait_until(lambda: fetches.started == 3)
+        assert fetches.most_running <= 3
+        assert len(open_fetches) <= 3
+        # Each round of eight probes ends at the 0.3 s deadline.
+        assert elapsed < (len(candidates) / workers + 1) * 0.3 + 1.5
+
+
+_SMALL_OREGON_LANDING = (
+    '<html><body><tbody groupString="%3B%2303%20-%20Landlord-Tenant%2C%20Domestic%20Relations'
+    "%2C%20Probate%20-%20Chapters%2090-13010.%20Property%20Rights%20and%20Transactions%20-%20"
+    'Chapters%2090-91%3B%23"></tbody></body></html>'
+)
+
+
+def test_extract_oregon_ors_reports_a_chapter_it_could_not_check_instead_of_dropping_it(
+    tmp_path, monkeypatch
+):
+    """A mixed outage: one chapter answers, one trickles, the other candidates are not found.
+
+    The trickling chapter may exist, so the run reports it as skipped with its
+    cause, and the run does not count as a success. Only the 404s count as
+    absent.
+    """
+    monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
+    monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 2.0)
+    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 2.0)
+    assert [
+        token
+        for title in parse_oregon_ors_landing_html(_SMALL_OREGON_LANDING)
+        for token in oregon_adapter._candidate_chapter_tokens(title.start_chapter, title.end_chapter)
+    ] == ["090", "090A", "090B", "090C", "091"]
+    routes = {
+        "/" + OREGON_ORS_LANDING_RELATIVE: respond(_SMALL_OREGON_LANDING.encode()),
+        "/ors/ors090.html": respond(SAMPLE_OREGON_CHAPTER_90.encode()),
+        "/ors/ors091.html": trickle_headers(0.02),
+    }
+    with LocalHttpServer([respond(b"not found", status="404 Not Found")], routes=routes) as server:
+        report = _finishes_within(
+            30,
+            lambda: extract_oregon_ors(
+                CorpusArtifactStore(tmp_path / "corpus"),
+                version="2026-05-05",
+                base_url=server.url,
+            ),
+        )
+
+    assert report.section_count > 0
+    assert report.skipped_source_count == 1
+    assert len(report.errors) == 1
+    assert report.errors[0].startswith(
+        "chapter 091: could not check whether it exists: failed to fetch Oregon source page "
+    )
+    assert "ors091.html" in report.errors[0]
+    assert not _state_statute_report_success(report)
+
+
+def test_extract_oregon_ors_names_the_unchecked_chapters_when_none_was_found(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
+    monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 0.2)
+    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 3.0)
+    routes = {"/" + OREGON_ORS_LANDING_RELATIVE: respond(_SMALL_OREGON_LANDING.encode())}
+    with LocalHttpServer([respond(b"busy", status="503 Service Unavailable")], routes=routes) as server:
+        with pytest.raises(
+            ValueError,
+            match=(
+                "no Oregon ORS chapters selected for filters: None, None; "
+                "chapter 090: could not check whether it exists: "
+                "failed to fetch Oregon source page .*503"
+            ),
+        ):
+            _finishes_within(
+                30,
+                lambda: extract_oregon_ors(
+                    CorpusArtifactStore(tmp_path / "corpus"),
+                    version="2026-05-05",
+                    base_url=server.url,
+                ),
+            )
 
 
 def test_oregon_extract_without_landing_and_error_edges(tmp_path):
@@ -506,7 +910,7 @@ def test_oregon_extract_without_landing_and_error_edges(tmp_path):
     class FakeFetcher:
         def fetch_chapter(self, token: str):
             if token != "001":
-                raise ValueError(token)
+                raise oregon_adapter._OregonPageNotFoundError(token)
             return object()
 
     title = oregon_adapter.OregonOrsTitle(
@@ -516,7 +920,7 @@ def test_oregon_extract_without_landing_and_error_edges(tmp_path):
         end_chapter="001A",
         ordinal=0,
     )
-    selected = oregon_adapter._selected_chapters(
+    selected, unchecked = oregon_adapter._selected_chapters(
         source_root=None,
         titles=(title,),
         title_filter=None,
@@ -525,3 +929,4 @@ def test_oregon_extract_without_landing_and_error_edges(tmp_path):
         workers=1,
     )
     assert [chapter.chapter for chapter in selected] == ["001"]
+    assert unchecked == ()
