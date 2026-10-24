@@ -270,7 +270,8 @@ def _open(
     that is not a ``requests.RequestException`` is raised as one; a
     ``BaseException`` such as ``KeyboardInterrupt`` is raised unchanged. An
     answer, session or pool that fails to close while an error is raised is
-    noted on the error, not raised in its place.
+    noted on the error, not raised in its place; an interrupt while closing
+    one is raised in its place once the others are closed.
     """
     opened: list[requests.Response] = []
     adapter = _DeadlineAdapter(url, give_up_at, opened)
@@ -287,9 +288,9 @@ def _open(
         # that response back, which then still holds its connection: a
         # redirect whose Location is not UTF-8 raises UnicodeDecodeError
         # before its body is read.
-        for answer in opened:
-            _close_noting_failure(answer, error)
-        _close_noting_failure(session, error, what="the session")
+        _close_all_noting_failures(
+            [*((answer, "the answer") for answer in opened), (session, "the session")], error
+        )
         for failure in adapter.close_failures:
             if failure is not error:
                 _note_close_failure(error, "a connection pool", failure)
@@ -446,6 +447,25 @@ def _close_noting_failure(
         closable.close()
     except Exception as close_error:
         _note_close_failure(error, what, close_error)
+
+
+def _close_all_noting_failures(
+    closables: list[tuple[requests.Response | requests.Session, str]], error: BaseException
+) -> None:
+    """Close each ``(closable, what)`` while ``error`` is raised, as ``_close_noting_failure`` does.
+
+    An interrupt while closing one, or noting a failure to, is raised in place
+    of ``error`` once the others are closed; the first, if there are more.
+    """
+    interrupt: BaseException | None = None
+    for closable, what in closables:
+        try:
+            _close_noting_failure(closable, error, what=what)
+        except BaseException as raised:
+            if interrupt is None:
+                interrupt = raised
+    if interrupt is not None:
+        raise interrupt
 
 
 def _note_close_failure(error: BaseException, what: str, failure: Exception) -> None:

@@ -657,6 +657,47 @@ def test_get_bytes_fails_an_attempt_whose_connection_pool_fails_to_close(
         assert excinfo.value is not None  # still kept
 
 
+def test_get_bytes_closes_the_session_when_closing_an_answer_is_interrupted(slots, monkeypatch):
+    """An interrupt while closing the last answer is raised once the session has closed its pools.
+
+    The first host redirects to the second and keeps its connection alive, so
+    the connection waits idle in its pool. An interrupt is raised once the
+    second answer arrives, and closing that answer raises another, which is
+    raised in its place.
+    """
+    with (
+        LocalHttpServer([until_client_closes(respond(b"body"))]) as target,
+        LocalHttpServer([redirect(target.url, keep_alive=True)]) as source,
+    ):
+        extract = requests.sessions.extract_cookies_to_jar
+        close = requests.models.Response.close
+        raised: list[BaseException] = []
+
+        def interrupt_at_the_target(jar, request, response):
+            if request.url == target.url:
+                raise _Abort("answered")
+            extract(jar, request, response)
+
+        def close_then_interrupt(self):
+            close(self)
+            if self.url == target.url:
+                raised.append(_Abort("closing"))
+                raise raised[-1]
+
+        monkeypatch.setattr(requests.sessions, "extract_cookies_to_jar", interrupt_at_the_target)
+        monkeypatch.setattr(requests.models.Response, "close", close_then_interrupt)
+        with pytest.raises(_Abort) as excinfo:
+            get_bytes(source.url, connect_timeout=1, read_timeout=2, deadline=5, attempts=2)
+        assert len(raised) == 1
+        assert excinfo.value is raised[0]
+        assert len(source.requests) + len(target.requests) == 2  # not retried
+        assert wait_until(lambda: slots.used == 0)
+
+        assert wait_until(lambda: source.open_connections + target.open_connections == 0), (
+            f"{source.open_connections + target.open_connections} connection(s) still open"
+        )
+
+
 @pytest.mark.parametrize(
     "failure_type",
     [OSError, ValueError, _UnprintableError, _Abort],
@@ -793,6 +834,19 @@ def test_a_failure_to_close_an_answer_is_noted_on_the_error_being_raised(error_t
     bounded_http._close_noting_failure(answer, error)
     assert answer.closed
     assert error.__notes__ == [f"closing the answer also failed: {failure!r}"]
+
+
+def test_closing_everything_raises_the_first_interrupt_once_the_rest_are_closed():
+    first, second = _Abort("first"), _Abort("second")
+    closables = [_Closable(first), _Closable(None), _Closable(OSError("socket")), _Closable(second)]
+    error = RuntimeError("original")
+    with pytest.raises(_Abort) as excinfo:
+        bounded_http._close_all_noting_failures(
+            [(closable, "the answer") for closable in closables], error
+        )
+    assert excinfo.value is first
+    assert all(closable.closed for closable in closables)
+    assert error.__notes__ == ["closing the answer also failed: OSError('socket')"]
 
 
 def test_an_interrupt_while_closing_an_answer_is_raised_in_place_of_the_error():
