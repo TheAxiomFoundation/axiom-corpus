@@ -21,17 +21,21 @@ or raises by then whatever the server does.
 At the deadline the caller raises ``requests.Timeout`` and leaves the worker
 behind. A worker stops at its next socket timeout, at the next body chunk after
 the deadline, before the next request (a redirect's) after it, or when the
-server closes the connection. Every response and connection it opens is closed
-by the time it ends, however it ends, unless closing one fails: a failure to
-close is noted on the error being raised. But a server that keeps trickling
-bytes, or a DNS lookup that hangs, can hold a worker open longer, so workers
+server closes the connection. Every response, connection and connection pool
+it opens is closed by the time it ends, however it ends, unless closing one
+fails: a failure to close one is noted on the error being raised, or, if
+nothing else failed, fails the attempt. Once an answer has arrived, any
+failure but an interrupt fails the attempt as a ``requests.RequestException``.
+But a server that keeps trickling bytes, or a DNS lookup that hangs, can hold
+a worker open longer, so workers
 are capped process-wide (``MAX_FETCH_THREADS``): a call takes a slot before it
 starts its worker, and the worker gives the slot back when it ends. While every
 slot is taken, a call waits for one within its own deadline and otherwise
 raises ``requests.Timeout`` without making a request. However many URLs are
 tried, and whatever the servers do, at most ``MAX_FETCH_THREADS`` workers are
-making requests at once. A call interrupted (Ctrl-C) while starting its worker
-gives the slot back itself, and the worker then makes no request.
+making requests at once. A call interrupted (Ctrl-C) while starting its worker,
+before the worker takes over its slot, gives the slot back itself, and the
+worker then makes no request.
 """
 
 from __future__ import annotations
@@ -48,7 +52,7 @@ from requests.adapters import HTTPAdapter
 
 if TYPE_CHECKING:
     # requests allows urllib3 1, which has no BaseHTTPResponse.
-    from urllib3 import BaseHTTPResponse, PoolManager
+    from urllib3 import BaseHTTPResponse, HTTPConnectionPool, PoolManager
 
 # Fetch threads, process-wide, that may be making requests at once, counting
 # those still open after the call that started them gave up.
@@ -106,9 +110,10 @@ def get_bytes(
     status included, while time is left after the pause. An attempt makes one
     request, and one more for each redirect it follows. No request, a
     redirect's included, is started once the deadline has passed. A network or
-    HTTP failure, or an answer ``requests`` cannot handle (a redirect whose
-    Location is not UTF-8, say), raises the last attempt's
-    ``requests.RequestException``, or ``requests.Timeout`` when the deadline
+    HTTP failure, an answer ``requests`` cannot handle (a redirect whose
+    Location is not UTF-8, say), or a failure to close what an attempt opened
+    raises the last attempt's ``requests.RequestException``, or
+    ``requests.Timeout`` when the deadline
     passes first or no fetch slot comes free in time. A first request that
     ``requests`` cannot make fails with what ``requests`` raises for it: a
     ``requests.RequestException`` (an invalid URL, say) is retried like any
@@ -228,17 +233,24 @@ def _get_once(
     give_up_at: float,
 ) -> bytes:
     response = _open(url, headers=headers, timeout=timeout, give_up_at=give_up_at)
+    # An answer has arrived, so whatever fails from here on, closing the
+    # response included, fails this attempt.
     try:
-        response.raise_for_status()
-        chunks: list[bytes] = []
-        for chunk in response.iter_content(chunk_size=_CHUNK_BYTES):
-            if time.monotonic() >= give_up_at:
-                raise requests.Timeout(f"no complete response from {url} before the deadline")
-            chunks.append(chunk)
-    except BaseException as error:
-        _close_noting_failure(response, error)
+        try:
+            response.raise_for_status()
+            chunks: list[bytes] = []
+            for chunk in response.iter_content(chunk_size=_CHUNK_BYTES):
+                if time.monotonic() >= give_up_at:
+                    raise requests.Timeout(f"no complete response from {url} before the deadline")
+                chunks.append(chunk)
+        except BaseException as error:
+            _close_noting_failure(response, error)
+            raise
+        response.close()
+    except requests.RequestException:
         raise
-    response.close()
+    except Exception as error:
+        raise _failed_attempt(url, error) from error
     return b"".join(chunks)
 
 
@@ -253,36 +265,45 @@ def _open(
 
     Like ``requests.get``, it uses a session of its own, closed on return; the
     streaming response keeps its connection until it is closed. If ``requests``
-    fails after an answer has arrived, every answer is closed, and an
-    ``Exception`` that is not a ``requests.RequestException`` is raised as one;
-    a ``BaseException`` such as ``KeyboardInterrupt`` is raised unchanged. An
-    answer that fails to close is noted on the error, not raised in its place.
+    fails after an answer has arrived, or closing the session fails to close
+    one of its connection pools, every answer is closed, and an ``Exception``
+    that is not a ``requests.RequestException`` is raised as one; a
+    ``BaseException`` such as ``KeyboardInterrupt`` is raised unchanged. An
+    answer, session or pool that fails to close while an error is raised is
+    noted on the error, not raised in its place.
     """
     opened: list[requests.Response] = []
     adapter = _DeadlineAdapter(url, give_up_at, opened)
-    with requests.Session() as session:
-        session.mount("http://", adapter)
-        session.mount("https://", adapter)
-        try:
-            return session.get(url, headers=headers, timeout=timeout, stream=True)
-        except BaseException as error:
-            # requests can fail after a response arrives and before it hands
-            # that response back, which then still holds its connection: a
-            # redirect whose Location is not UTF-8 raises UnicodeDecodeError
-            # before its body is read.
-            for response in opened:
-                _close_noting_failure(response, error)
-            if (
-                adapter.answered
-                and isinstance(error, Exception)
-                and not isinstance(error, requests.RequestException)
-            ):
-                raise requests.RequestException(
-                    f"could not handle the answer from {url}: {error!r}"
-                ) from error
-            raise
-        finally:
-            opened.clear()  # each response refers back to the adapter
+    session = requests.Session()
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    try:
+        response = session.get(url, headers=headers, timeout=timeout, stream=True)
+        session.close()
+        if adapter.close_failures:
+            raise adapter.close_failures[0]
+    except BaseException as error:
+        # requests can fail after a response arrives and before it hands
+        # that response back, which then still holds its connection: a
+        # redirect whose Location is not UTF-8 raises UnicodeDecodeError
+        # before its body is read.
+        for answer in opened:
+            _close_noting_failure(answer, error)
+        _close_noting_failure(session, error, what="the session")
+        for failure in adapter.close_failures:
+            if failure is not error:
+                _note(error, f"closing a connection pool also failed: {failure!r}")
+        if (
+            adapter.answered
+            and isinstance(error, Exception)
+            and not isinstance(error, requests.RequestException)
+        ):
+            raise _failed_attempt(url, error) from error
+        raise
+    finally:
+        opened.clear()  # each response refers back to the adapter
+        adapter.close_failures.clear()  # and each failure to the frame that raised it
+    return response
 
 
 class _DeadlineAdapter(HTTPAdapter):
@@ -304,7 +325,8 @@ class _DeadlineAdapter(HTTPAdapter):
     connection a server kept alive stayed open for as long as anything still
     reached its pool, as a kept error's traceback can. A closed pool closes
     its idle connections, and any connection still in use when it is given
-    back.
+    back. A pool that fails to close is added to ``close_failures``, and the
+    others are closed all the same.
     """
 
     def __init__(self, url: str, give_up_at: float, opened: list[requests.Response]) -> None:
@@ -312,17 +334,18 @@ class _DeadlineAdapter(HTTPAdapter):
         self._give_up_at = give_up_at
         self._opened = opened
         self.answered = False
+        self.close_failures: list[Exception] = []
         super().__init__()
 
     def init_poolmanager(
         self, connections: int, maxsize: int, block: bool = False, **pool_kwargs: Any
     ) -> None:
         super().init_poolmanager(connections, maxsize, block=block, **pool_kwargs)  # type: ignore[no-untyped-call]  # untyped in the requests stubs
-        _close_the_pools_it_drops(self.poolmanager)
+        _close_the_pools_it_drops(self.poolmanager, self.close_failures)
 
     def proxy_manager_for(self, proxy: str, **proxy_kwargs: Any) -> PoolManager:
         manager: PoolManager = super().proxy_manager_for(proxy, **proxy_kwargs)  # type: ignore[no-untyped-call]  # untyped in the requests stubs
-        _close_the_pools_it_drops(manager)
+        _close_the_pools_it_drops(manager, self.close_failures)
         return manager
 
     def send(
@@ -364,20 +387,38 @@ class _DeadlineAdapter(HTTPAdapter):
         return response
 
 
-def _close_the_pools_it_drops(manager: PoolManager) -> None:
-    manager.pools.dispose_func = lambda pool: pool.close()
+def _close_the_pools_it_drops(manager: PoolManager, failures: list[Exception]) -> None:
+    def close(pool: HTTPConnectionPool) -> None:
+        try:
+            pool.close()
+        except Exception as error:  # the other pools are closed all the same
+            failures.append(error)
+
+    manager.pools.dispose_func = close
+
+
+def _failed_attempt(url: str, error: Exception) -> requests.RequestException:
+    """The failure of an attempt at ``url`` that ``error`` ended after an answer arrived."""
+    return requests.RequestException(f"fetching {url} failed after an answer arrived: {error!r}")
 
 
 def _close_noting_failure(
-    answer: requests.Response | BaseHTTPResponse, error: BaseException
+    closable: requests.Response | requests.Session | BaseHTTPResponse,
+    error: BaseException,
+    *,
+    what: str = "the answer",
 ) -> None:
-    """Close ``answer`` while ``error`` is raised, adding a failure to close it to ``error``'s notes.
+    """Close ``closable`` while ``error`` is raised, adding a failure to close it to ``error``'s notes.
 
-    The failure is dropped if ``error`` cannot take notes. An interrupt while
-    closing is raised in place of ``error``.
+    An interrupt while closing is raised in place of ``error``.
     """
     try:
-        answer.close()
+        closable.close()
     except Exception as close_error:
-        with contextlib.suppress(Exception):  # __notes__ set to something not a list
-            error.add_note(f"closing the answer also failed: {close_error!r}")
+        _note(error, f"closing {what} also failed: {close_error!r}")
+
+
+def _note(error: BaseException, note: str) -> None:
+    """Add ``note`` to ``error``'s notes, or drop it if they cannot take it; an interrupt is raised."""
+    with contextlib.suppress(Exception):  # __notes__ set to something not a list, say
+        error.add_note(note)
