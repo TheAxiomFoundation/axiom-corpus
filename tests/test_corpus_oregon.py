@@ -1,22 +1,26 @@
+import threading
 import time
 from datetime import date
 from pathlib import Path
+from types import SimpleNamespace
 from urllib.parse import urljoin
 
 import pytest
 import requests
 
+from axiom_corpus.corpus import bounded_http
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters import oregon as oregon_adapter
 from axiom_corpus.corpus.state_adapters.oregon import (
     OREGON_ORS_BASE_URL,
     OREGON_ORS_LANDING_RELATIVE,
+    OregonOrsTitle,
     extract_oregon_ors,
     parse_oregon_chapter_html,
     parse_oregon_ors_landing_html,
 )
-from tests._local_http import LocalHttpServer, never_answer, respond
+from tests._local_http import LocalHttpServer, never_answer, respond, trickle_headers
 
 SAMPLE_OREGON_LANDING = """<!doctype html>
 <html><body>
@@ -487,7 +491,10 @@ def test_oregon_download_page_success_and_retry_failure(monkeypatch):
         raise requests.RequestException("boom")
 
     monkeypatch.setattr(requests, "get", bad_get)
-    monkeypatch.setattr(time, "sleep", lambda seconds: None)
+    # Skip the pause between attempts, in the fetch module only.
+    monkeypatch.setattr(
+        bounded_http, "time", SimpleNamespace(monotonic=time.monotonic, sleep=lambda seconds: None)
+    )
     with pytest.raises(ValueError, match="failed to fetch Oregon source page .*: boom"):
         oregon_adapter._download_oregon_page("https://example.test/ors091.html")
     assert assert_calls["count"] == 3
@@ -545,10 +552,14 @@ class _DeadOregonHost:
 
 
 def _install_dead_oregon_host(monkeypatch, *, hang, pages=None):
+    # Only the fetch module sees the virtual clock, so no other thread or test
+    # does. The caller's wait for the worker is a real wait, cut short when the
+    # worker finishes, which it does at once on this clock.
     clock = _VirtualClock()
     host = _DeadOregonHost(clock, hang=hang, pages=pages)
-    monkeypatch.setattr(time, "monotonic", clock.monotonic)
-    monkeypatch.setattr(time, "sleep", clock.sleep)
+    monkeypatch.setattr(
+        bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
+    )
     monkeypatch.setattr(requests, "get", host.get)
     return clock, host
 
@@ -598,7 +609,9 @@ def test_extract_oregon_ors_against_a_local_server_that_never_answers(tmp_path, 
     """The real requests stack, end to end, with the budget shrunk to fit a unit test."""
     monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
     monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 0.2)
-    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 1.0)
+    # Room for both attempts and the pause however slow the runner, so the
+    # request count below does not depend on scheduling.
+    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 3.0)
     landing = respond(SAMPLE_OREGON_LANDING.encode())
     with LocalHttpServer([landing, never_answer]) as server:
         started = time.monotonic()
@@ -618,9 +631,67 @@ def test_extract_oregon_ors_against_a_local_server_that_never_answers(tmp_path, 
         elapsed = time.monotonic() - started
 
     # The landing page, then two tries at ors316.html: 0.2 s, the 0.5 s pause,
-    # then 0.2 s more, inside the 1 s deadline.
+    # then 0.2 s more. A read the timeout failed to end would run to the 3 s
+    # deadline, and one nothing bounded would run until pytest-timeout.
     assert len(server.requests) == 3
-    assert elapsed < 1.0 + 2.0
+    assert elapsed < 0.2 + 0.5 + 0.2 + 1.5
+
+
+def test_oregon_chapter_discovery_against_a_trickling_server_holds_few_threads_open(
+    monkeypatch,
+):
+    """Probing every candidate chapter of a trickling site leaves at most cap + workers threads.
+
+    Discovery probes each candidate chapter URL with eight workers. Each probe
+    of a site that trickles its headers gives up at the deadline and leaves
+    its fetch thread reading; without the straggler cap, every candidate would
+    leave one open (29 here, hundreds for the whole ORS).
+    """
+    monkeypatch.setattr(oregon_adapter, "OREGON_CONNECT_TIMEOUT_SECONDS", 0.2)
+    monkeypatch.setattr(oregon_adapter, "OREGON_READ_TIMEOUT_SECONDS", 2.0)
+    monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 0.3)
+    monkeypatch.setattr(bounded_http, "_STRAGGLERS", bounded_http._Stragglers(3))
+    titles = (
+        OregonOrsTitle(
+            number="1", heading="Courts", start_chapter="001", end_chapter="008", ordinal=1
+        ),
+    )
+    candidates = list(oregon_adapter._candidate_chapter_tokens("001", "008"))
+    workers = 8
+
+    with LocalHttpServer([trickle_headers(0.02)]) as server:
+        fetcher = oregon_adapter._OregonFetcher(
+            base_url=server.url, source_dir=None, download_dir=None
+        )
+        discovery: dict[str, object] = {}
+
+        def discover():
+            discovery["found"] = oregon_adapter._discover_live_chapters(
+                titles, fetcher=fetcher, workers=workers
+            )
+
+        # On its own thread, so a probe that failed to return at its deadline
+        # fails this test (the server then closes and ends it) instead of hanging it.
+        started = time.monotonic()
+        prober = threading.Thread(target=discover, daemon=True)
+        prober.start()
+        prober.join(timeout=30)
+        elapsed = time.monotonic() - started
+        assert not prober.is_alive(), "chapter discovery outlived its probes' deadlines"
+        found = discovery["found"]
+        # Counted while the server still trickles, so nothing has ended them.
+        open_fetches = [
+            thread
+            for thread in threading.enumerate()
+            if thread.name.startswith(f"get_bytes {server.url}")
+        ]
+
+        assert found == ()
+        assert len(candidates) == 29
+        assert len(open_fetches) <= 3 + workers
+        assert len(server.requests) <= 3 + workers
+        # Each round of eight probes ends at the 0.3 s deadline.
+        assert elapsed < (len(candidates) / workers + 1) * 0.3 + 1.5
 
 
 def test_oregon_extract_without_landing_and_error_edges(tmp_path):

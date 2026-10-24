@@ -3,15 +3,17 @@
 The example tests run the real ``requests``/``urllib3`` stack against local
 servers that never answer, trickle their headers or body, drop connections or
 answer normally, with budgets of a fraction of a second. The property tests
-drive the retry and budget logic on a virtual clock with a transport that waits
-out exactly the timeouts it is given.
+drive the retry and budget logic (``_get_with_retries``) synchronously on a
+virtual clock, with a transport that waits out exactly the timeouts it is
+given, so no assertion there depends on how the machine schedules threads.
 """
 
 from __future__ import annotations
 
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from types import SimpleNamespace
-from unittest import mock
 
 import pytest
 import requests
@@ -45,12 +47,34 @@ def _elapsed(call):
     return time.monotonic() - started, result
 
 
-def test_get_bytes_returns_the_body():
+def _open_workers(url: str) -> int:
+    return sum(1 for thread in threading.enumerate() if thread.name == f"get_bytes {url}")
+
+
+def _wait_until(condition, *, within: float = 5.0) -> bool:
+    give_up_at = time.monotonic() + within
+    while time.monotonic() < give_up_at:
+        if condition():
+            return True
+        time.sleep(0.01)
+    return condition()
+
+
+@pytest.fixture
+def stragglers(monkeypatch):
+    """A fresh straggler cap of 3, so tests neither see nor leave other tests' stragglers."""
+    cap = bounded_http._Stragglers(3)
+    monkeypatch.setattr(bounded_http, "_STRAGGLERS", cap)
+    return cap
+
+
+def test_get_bytes_returns_the_body(stragglers):
     with LocalHttpServer([respond(b"ORS chapter 316")]) as server:
         body = get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=5)
 
     assert body == b"ORS chapter 316"
     assert len(server.requests) == 1
+    assert stragglers.count == 0
 
 
 @pytest.mark.parametrize(
@@ -113,7 +137,7 @@ def test_get_bytes_raises_an_http_error_status_after_its_attempts():
     assert len(server.requests) == 2
 
 
-def test_get_bytes_read_timeout_ends_a_server_that_never_answers():
+def test_get_bytes_read_timeout_ends_a_server_that_never_answers(stragglers):
     with LocalHttpServer([never_answer]) as server:
         elapsed, error = _elapsed(
             lambda: get_bytes(
@@ -129,22 +153,28 @@ def test_get_bytes_read_timeout_ends_a_server_that_never_answers():
     assert isinstance(error, requests.ReadTimeout)
     assert len(server.requests) == 2
     assert elapsed < 0.3 + 0.05 + 0.3 + _SLACK_SECONDS
+    assert stragglers.count == 0  # the read timeouts ended the worker before the deadline
 
 
-def test_get_bytes_deadline_ends_a_server_that_trickles_its_headers():
+def test_get_bytes_deadline_ends_a_server_that_trickles_its_headers(stragglers):
     # One header byte every 50 ms never trips the 2 s read timeout; requests
-    # alone would wait until the header line passed http.client's 64 KiB limit.
+    # alone would wait until the header line passed http.client's 64 KiB limit,
+    # about 55 minutes at this rate.
     with LocalHttpServer([trickle_headers(0.05)]) as server:
         elapsed, error = _elapsed(
             lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.6)
         )
+        assert stragglers.count == 1  # the worker is still reading
 
     assert isinstance(error, requests.Timeout)
     assert "within 0.6s" in str(error)
     assert 0.6 <= elapsed < 0.6 + _SLACK_SECONDS
+    # Closing the connection ends the worker and frees its place.
+    assert _wait_until(lambda: stragglers.count == 0)
 
 
-def test_get_bytes_deadline_ends_a_server_that_trickles_its_body():
+def test_get_bytes_deadline_ends_a_server_that_trickles_its_body(stragglers):
+    # A declared 10 MB at one byte every 20 ms would take about 55 hours.
     with LocalHttpServer([trickle_body(0.02)]) as server:
         elapsed, error = _elapsed(
             lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.6)
@@ -152,6 +182,79 @@ def test_get_bytes_deadline_ends_a_server_that_trickles_its_body():
 
     assert isinstance(error, requests.Timeout)
     assert 0.6 <= elapsed < 0.6 + _SLACK_SECONDS
+    assert _wait_until(lambda: stragglers.count == 0)
+
+
+def test_get_bytes_caps_workers_left_open_by_a_trickling_server(stragglers):
+    """Timed-out calls cannot pile up open workers: past the cap, a call does not start."""
+    with LocalHttpServer([trickle_headers(0.02)]) as server:
+        errors = []
+        for _ in range(8):
+            elapsed, error = _elapsed(
+                lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
+            )
+            errors.append(error)
+            assert elapsed < 0.3 + _SLACK_SECONDS
+
+        # Checked while the server is still trickling, so nothing has ended them.
+        assert stragglers.count == 3
+        assert _open_workers(server.url) == 3
+        assert len(server.requests) == 3
+        assert all(isinstance(error, requests.Timeout) for error in errors)
+        assert all("still open past their deadlines" in str(error) for error in errors[3:])
+
+        url = server.url
+
+    assert _wait_until(lambda: stragglers.count == 0)
+    assert _wait_until(lambda: _open_workers(url) == 0)
+    with LocalHttpServer([respond(b"recovered")]) as server:
+        assert get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=5) == b"recovered"
+
+
+def test_get_bytes_caps_workers_left_open_by_concurrent_callers(stragglers):
+    """Eight callers trying 40 URLs on a trickling server leave at most cap + 8 workers open."""
+    # The server closes before the callers are joined, so a get_bytes that
+    # failed to return at its deadline fails this test instead of hanging it.
+    with (
+        ThreadPoolExecutor(max_workers=8) as callers,
+        LocalHttpServer([trickle_headers(0.02)]) as server,
+    ):
+        errors = list(
+            callers.map(
+                lambda _: _elapsed(
+                    lambda: get_bytes(server.url, connect_timeout=1, read_timeout=2, deadline=0.3)
+                )[1],
+                range(40),
+                timeout=30,
+            )
+        )
+
+        assert all(isinstance(error, requests.Timeout) for error in errors)
+        assert _open_workers(server.url) <= 3 + 8
+        assert len(server.requests) <= 3 + 8
+        assert stragglers.count <= 3 + 8
+
+    assert _wait_until(lambda: stragglers.count == 0)
+
+
+def test_get_bytes_waits_within_its_deadline_for_a_straggler_to_finish(monkeypatch):
+    cap = bounded_http._Stragglers(1)
+    monkeypatch.setattr(bounded_http, "_STRAGGLERS", cap)
+    cap.count = 1  # one worker still open from an earlier call
+
+    def straggler_finishes():
+        with cap.changed:
+            cap.count -= 1
+            cap.changed.notify_all()
+
+    with LocalHttpServer([respond(b"ok")]) as server:
+        threading.Timer(0.2, straggler_finishes).start()
+        elapsed, body = _elapsed(
+            lambda: get_bytes(server.url, connect_timeout=1, read_timeout=1, deadline=3)
+        )
+
+    assert body == b"ok"
+    assert 0.2 <= elapsed < 0.2 + _SLACK_SECONDS
 
 
 def test_get_bytes_connect_timeout_ends_a_host_that_drops_connection_attempts(monkeypatch):
@@ -183,41 +286,44 @@ def test_get_bytes_connect_timeout_ends_a_host_that_drops_connection_attempts(mo
     assert elapsed < 0.2 + 0.05 + 0.2 + _SLACK_SECONDS
 
 
-def test_get_bytes_cuts_the_last_attempt_to_the_time_left(monkeypatch):
-    connect_timeouts: list[float] = []
+def test_get_bytes_cuts_each_attempt_to_the_time_left(monkeypatch, stragglers):
+    timeouts: list[float] = []
 
     def black_hole(address, timeout=None, *args, **kwargs):
-        connect_timeouts.append(timeout)
+        timeouts.append(timeout)
         time.sleep(timeout)
         raise TimeoutError("timed out")
 
     monkeypatch.setattr(urllib3.util.connection, "create_connection", black_hole)
+    url = "http://oregon.invalid/ors316.html"
 
     elapsed, error = _elapsed(
-        lambda: get_bytes(
-            "http://oregon.invalid/ors316.html",
-            connect_timeout=0.4,
-            read_timeout=1,
-            deadline=0.6,
-            attempts=3,
-        )
+        lambda: get_bytes(url, connect_timeout=0.4, read_timeout=1, deadline=1.0, attempts=5)
     )
+    assert _wait_until(lambda: _open_workers(url) == 0)
 
     assert isinstance(error, (requests.ConnectTimeout, requests.Timeout))
-    assert connect_timeouts[0] == 0.4
-    assert len(connect_timeouts) == 2
-    assert connect_timeouts[1] <= 0.2 + 0.05
-    assert elapsed < 0.6 + _SLACK_SECONDS
+    assert timeouts
+    assert all(0 < timeout <= 0.4 for timeout in timeouts)
+    # Each attempt starts after the last one waited out its whole timeout, and
+    # may take only what is left, so the timeouts sum to at most the deadline
+    # however the threads were scheduled. Uncut, five attempts would sum to 2 s.
+    assert sum(timeouts) <= 1.0 + 1e-6
+    assert elapsed < 1.0 + _SLACK_SECONDS
 
 
 @pytest.mark.parametrize(
     "kwargs, message",
     [
         ({"attempts": 0}, "attempts must be at least 1"),
-        ({"connect_timeout": 0}, "must be positive"),
-        ({"read_timeout": -1}, "must be positive"),
-        ({"deadline": 0}, "must be positive"),
-        ({"retry_delay": -0.1}, "must not be negative"),
+        ({"connect_timeout": 0}, "connect_timeout must be a positive finite number"),
+        ({"read_timeout": -1}, "read_timeout must be a positive finite number"),
+        ({"deadline": 0}, "deadline must be a positive finite number"),
+        ({"deadline": float("inf")}, "deadline must be a positive finite number"),
+        ({"deadline": float("nan")}, "deadline must be a positive finite number"),
+        ({"connect_timeout": float("nan")}, "connect_timeout must be a positive finite"),
+        ({"retry_delay": -0.1}, "retry_delay must be a non-negative finite number"),
+        ({"retry_delay": float("inf")}, "retry_delay must be a non-negative finite number"),
     ],
 )
 def test_get_bytes_rejects_budgets_that_cannot_bound_a_request(kwargs, message):
@@ -226,7 +332,7 @@ def test_get_bytes_rejects_budgets_that_cannot_bound_a_request(kwargs, message):
         get_bytes("http://oregon.invalid/", **budget)
 
 
-# Property tests: the retry and budget logic on a virtual clock.
+# Property tests: the retry and budget logic, synchronously, on a virtual clock.
 
 
 class _VirtualClock:
@@ -310,6 +416,23 @@ class _VirtualTransport:
         return _VirtualResponse(_BODY)
 
 
+def _run_retries(monkeypatch, transport, **budget):
+    clock = transport.clock
+    monkeypatch.setattr(
+        bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
+    )
+    monkeypatch.setattr(bounded_http.requests, "get", transport.get)
+    try:
+        return bounded_http._get_with_retries(
+            "https://www.oregonlegislature.gov/bills_laws/ors/ors316.html",
+            headers={},
+            give_up_at=transport.give_up_at,
+            **budget,
+        )
+    except requests.RequestException as exc:
+        return exc
+
+
 @settings(max_examples=300, deadline=None)
 @given(
     connect_timeout=st.floats(min_value=0.01, max_value=15),
@@ -318,38 +441,29 @@ class _VirtualTransport:
     retry_delay=st.floats(min_value=0, max_value=5),
     outcomes=st.lists(_outcomes, min_size=1, max_size=4),
 )
-def test_get_bytes_budget_properties(
-    connect_timeout, read_timeout, deadline, retry_delay, outcomes
-):
+def test_retry_budget_properties(connect_timeout, read_timeout, deadline, retry_delay, outcomes):
     """For every budget and every sequence of server behaviours:
 
     1. no request goes out without a connect and a read timeout, and neither
        exceeds its configured value or the time left before the deadline;
-    2. the call never spends more than ``deadline`` (virtual) seconds;
+    2. the attempts never spend more than ``deadline`` (virtual) seconds;
     3. at most ``attempts`` requests are made;
     4. a returned body is the whole body, from an attempt that answered;
-    5. a raised error is a ``requests.RequestException``, and the call stops
+    5. a raised error is a ``requests.RequestException``, and the retries stop
        early (fewer requests than ``attempts``) only once the deadline passed.
     """
     attempts = len(outcomes)
     clock = _VirtualClock()
     transport = _VirtualTransport(clock, outcomes, give_up_at=deadline)
-    fake_time = SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
-    with (
-        mock.patch.object(bounded_http, "time", fake_time),
-        mock.patch.object(bounded_http.requests, "get", transport.get),
-    ):
-        try:
-            result: bytes | BaseException = get_bytes(
-                "https://www.oregonlegislature.gov/bills_laws/ors/ors316.html",
-                connect_timeout=connect_timeout,
-                read_timeout=read_timeout,
-                deadline=deadline,
-                attempts=attempts,
-                retry_delay=retry_delay,
-            )
-        except requests.RequestException as exc:
-            result = exc
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        result = _run_retries(
+            monkeypatch,
+            transport,
+            connect_timeout=connect_timeout,
+            read_timeout=read_timeout,
+            attempts=attempts,
+            retry_delay=retry_delay,
+        )
 
     for call in transport.calls:
         assert 0 < call["connect"] <= min(connect_timeout, call["remaining"])
@@ -369,31 +483,29 @@ def test_get_bytes_budget_properties(
 
 @settings(max_examples=100, deadline=None)
 @given(
-    deadline=st.floats(min_value=0.5, max_value=60),
-    silence=st.floats(min_value=0, max_value=20),
+    deadline=st.floats(min_value=0.01, max_value=60),
+    silence=st.floats(min_value=0, max_value=40),
 )
-def test_get_bytes_first_answer_is_returned_without_a_retry(deadline, silence):
+def test_first_answer_is_returned_without_a_retry(deadline, silence):
     clock = _VirtualClock()
     transport = _VirtualTransport(clock, [("answer", silence), ("answer", 0)], give_up_at=deadline)
-    fake_time = SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
-    with (
-        mock.patch.object(bounded_http, "time", fake_time),
-        mock.patch.object(bounded_http.requests, "get", transport.get),
-    ):
-        try:
-            result: bytes | BaseException = get_bytes(
-                "https://www.oregonlegislature.gov/bills_laws/ors/ors316.html",
-                connect_timeout=10,
-                read_timeout=20,
-                deadline=deadline,
-                attempts=2,
-                retry_delay=0.5,
-            )
-        except requests.RequestException as exc:
-            result = exc
+    with pytest.MonkeyPatch.context() as monkeypatch:
+        result = _run_retries(
+            monkeypatch,
+            transport,
+            connect_timeout=10,
+            read_timeout=20,
+            attempts=2,
+            retry_delay=0.5,
+        )
 
-    if silence <= min(20, deadline) and silence < deadline:
+    if silence <= 20 and silence < deadline:
         assert result == _BODY
         assert len(transport.calls) == 1
+    elif isinstance(result, bytes):
+        # The first attempt timed out, and the second, which answers at once,
+        # still had time left.
+        assert result == _BODY
+        assert len(transport.calls) == 2
     else:
         assert isinstance(result, requests.RequestException)
