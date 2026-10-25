@@ -47,6 +47,9 @@ this selector needs no withdrawn-scope exception.
 
 1. Dispatch `publish.yml`, then `mirror-release.yml`. **Publish only. Do not activate it.** It is a
    pin release for rulespec-uk; see `docs/named-release-publication.md`.
-2. Re-pin rulespec-uk to this release: `.axiom/toolchain.toml` (`axiom_corpus_release` and
-   `axiom_corpus_release_content_sha256`) and `.axiom/workflow-toolchain.toml` (`axiom_corpus_ref`).
+2. Re-pin rulespec-uk to this release. Four files name the corpus: `.axiom/toolchain.toml`
+   (`axiom_corpus_release` and `axiom_corpus_release_content_sha256`),
+   `.axiom/workflow-toolchain.toml` (`axiom_corpus_ref`), and the corpus commit in
+   `.github/workflows/repository-checks.yml` (`axiom-corpus-ref`) and
+   `.github/workflows/bulk-encode.yml` (`AXIOM_CORPUS_REF`).
 3. The encodings each need a signed-encoder dispatch.

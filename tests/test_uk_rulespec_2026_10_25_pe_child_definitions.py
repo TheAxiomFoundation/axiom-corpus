@@ -44,16 +44,24 @@ def test_reproducer_matches_committed_selector(tmp_path: Path) -> None:
     assert generated.read_bytes() == (RELEASE_DIR / f"{RELEASE}.json").read_bytes()
 
 
+# Written out, not taken from the reproducer, so a wrong addition there fails here.
+EXPECTED_ADDITIONS = {
+    ("uk", "regulation", "2026-09-28-uk-pe-child-definitions"),
+    ("uk", "statute", "2026-09-28-uk-pe-child-definitions"),
+}
+
+
 def test_selector_is_the_pin_plus_exactly_the_two_scopes() -> None:
     base, release = _keys(BASE_RELEASE), _keys(RELEASE)
-    assert set(release) == set(base) | {_key(scope) for scope in ADDITIONS}
+    assert {_key(scope) for scope in ADDITIONS} == EXPECTED_ADDITIONS
+    assert set(release) == set(base) | EXPECTED_ADDITIONS
     assert len(release) == len(base) + 2 == 193
     assert release == sorted(release)
 
 
 @pytest.mark.parametrize("scope", ADDITIONS, ids=lambda scope: scope["document_class"])
 def test_each_added_scope_is_locked_and_not_withdrawn(scope: dict[str, str]) -> None:
-    assert _lock(scope).is_file(), f"{_key(scope)} must be signed and locked"
+    assert _lock(scope).is_file(), f"{_key(scope)} must be locked"
     assert _key(scope) not in load_withdrawn_scopes(ROOT / WITHDRAWN_SCOPES_PATH)
 
 
