@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c8e941fb04e3a2d4f36fa99bcce5923f6b26093f",
+    "commit": "d0edb68f42198cb1c23a6a9d4e44ca5bbd4636f2",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "Restore the PDF source the rows name and finish the run-id rename (axiom-corpus#873): uv run --extra dev python scripts/restore_unlocked_pdf_sources.py --from 59b6999d1b9e51ebe920e00899d9aab066d69f1227ea83b0a3e9f16fd8137e33=$HOME/TheAxiomFoundation/_worktrees/axiom-corpus-snap-fy2024/data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf (the sha256 the scope inventory records); version and source_path now name 2026-07-08-snap-qc-fy2024-technical-documentation instead of the extractor run id. Evidence: docs/ingest-runs/2026-10-13-restore-unlocked-pdf-sources.md"
+    "text": "uv run --extra dev python scripts/restore_unlocked_pdf_sources.py --from 59b6999d1b9e51ebe920e00899d9aab066d69f1227ea83b0a3e9f16fd8137e33=data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf"
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 201
   },
   "document_class": "guidance",
-  "generated_at": "2026-10-13T22:45:56.722315+00:00",
+  "generated_at": "2026-10-25T09:32:53.011942+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HSgACc8HnZcQL0QXdfB6sucCIppdjaHjbOLYIVkAqaU4R5/niox9pfwJcLd1ugL+fQcWVSiynBMlOS39FheHDA=="
+    "value": "NFOS2SNxnyMfkRkNyOv/iLiA8/CqWLyCi9baJuFwsPrBrBt90K7Mfx9aNK4gA3sOONX3EGubap9X7niYA2ufDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-08-snap-qc-fy2024-technical-documentation"
