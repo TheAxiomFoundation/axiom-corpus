@@ -33,35 +33,50 @@ This run ingests the first two and cuts a pin-line selector that adds all four s
 
 ## ARM 42.15.524 (regulation scope)
 
-**Source.** The rule's official page was
-`https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524` (earlier captures are of the same gateway
-page on `mtrules.org`). That URL
-now redirects to the rules.mt.gov search application (`/search?query=42.15.524`), which serves no
-rule text to an HTTP client. The Internet Archive CDX index lists these 200 captures:
+**Source.** rules.mt.gov keeps every dated version of a rule in its policy library. Its public
+API record of ARM 42.15.524 (collection `aec52c46-128e-4279-9068-8af5d5432d74`, policy
+`1223c9d6-74a1-4199-83e9-1f46a6cc8993`) marks the rule INEFFECTIVE and lists its versions:
 
-| Host | Captures | Payload digest (SHA-1, base32) |
-| --- | --- | --- |
-| rules.mt.gov | 20220701053000, 20220812182325, 20231003110140, 20240521045002, 20240611163609 | `76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX` |
-| mtrules.org | 20171002103641, 20191206060408, 20201030190413 | `WU5PTJCQQMBR2FZXM6MONOFMAYJ7WUP6` |
+| Version | Start | End | Accessible HTML (SHA-256) |
+| --- | --- | --- | --- |
+| 30622 (`908d23f8-9eb7-473d-b812-9cffe9caa986`) | 2010-04-30 | 2025-01-24 | `9064d3790b481f208c10c7a2cb985a4b75f44dbcc8b5342afc52471ac6232074` |
+| REP 42-1088 (`011eb6b8-6f8c-41fc-b03c-50c156cd5267`) | 2025-01-25 | none | the repeal notice |
 
-`download_url` is the 20231003110140 capture, taken during tax year 2023. Its bytes (14,442) have
-SHA-1 base32 `76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX`, matching the CDX record, and SHA-256
-`d856d16f35e6737df9cac3155bcc58aaf9c52d7be78c8a38fd220f2bef449411`. The extractor stored the same
-bytes (same SHA-256). The page's history table lists MAR notice 42-2-820, effective from 4/30/2010,
-as current. The 20201030190413 mtrules.org capture carries the same rule text and the same 2010
-history, so the text was the same from tax year 2021.
+The repeal version's history ends "REP, 2025 MAR, Notice No. 42-1088, Eff. 1/25/25". Version
+30622 therefore covers tax years 2021 through 2023. Its API document URL (version document
+`46345c20-386c-420b-8b13-d273c1320d38`) redirects to
+`https://rules.mt.gov/policy-library-documents/text/html/9064d379…`, whose last segment is the
+document's SHA-256 as the record's `contentHashSha256` gives it. That URL is `download_url`.
+Fetched on 2026-10-25, it returned 7,282 bytes with that SHA-256, and the extractor stored the
+same bytes. `source_url` is the rule's browse page on rules.mt.gov.
 
-**Rows.** `html_content_selector: '#RuleContent'` keeps the rule text and its history line and drops
-the page chrome (header table, favourites link, MAR notice table). Two rows:
+**Why no scope had it.** The 42.15 scope (`2026-09-14-income-tax-regulations-title-42-section-42-15`)
+was taken with the Montana rules extractor, which keeps only a section's child policies whose
+`effectiveStatus` is `EFFECTIVE` unless it is told to include the others. The repealed 42.15.524
+is INEFFECTIVE, so that scope has no subchapter 5 rules.
+
+**Corroboration.** The rule's former gateway page,
+`https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524` (earlier `mtrules.org`), now redirects
+to the rules.mt.gov search application. The Internet Archive's status-200 captures of it from
+20171002103641 on have two payload digests: `WU5PTJCQQMBR2FZXM6MONOFMAYJ7WUP6` (mtrules.org,
+20171002103641, 20191206060408 and 20201030190413) and `76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX`
+(rules.mt.gov, 20220701053000 to 20240611163609). Earlier captures have other digests. The
+20231003110140 capture (14,442 bytes, SHA-256
+`d856d16f35e6737df9cac3155bcc58aaf9c52d7be78c8a38fd220f2bef449411`) carries the same words in
+(1) through (5) as version 30622 and a history ending with the 2010 amendment. The manifest
+records it under `archive_corroboration_*`; the corpus does not store it.
+
+**Rows.** `html_content_selector: '#documentBody'` keeps the rule, its authorizing and
+implementing statutes and its history. Two rows:
 
 - `us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524--effective-2010-04-30`:
   the document row, no body.
-- `…/block-1`: the rule, 1,994 characters, (1) through (5) and the history.
+- `…/block-1`: the rule, (1) through (5), the statutes and the history.
 
 **Path.** schema/citation-path.v1.md section 4.0: a version other than the one at a section's plain
 path is a sibling `<section>--<slug>` with `metadata.variant` and `metadata.canonical_citation_path`.
-Montana's MCA editions already use this (`15-30-2131--mca-2021`, whose plain path holds the
-repealed section). The plain path stays free for the rule's current page. The subchapter segment
+Montana's MCA editions already use this path form (`15-30-2131--mca-2021`, whose plain path
+holds the repealed section), though that row carries no variant metadata. The plain path stays free for the rule's current page. The subchapter segment
 follows the 42.15 scope (`subchapter-42-15-1` for 42.15.1xx).
 
 **Citation-path ratchet.** The extractor carries each unsegmented page in one `block-1` leaf, as it
@@ -71,11 +86,10 @@ that baseline from 105417 to 105419 and records why; the CI scan of the merged t
 105419. Segmenting by subsection instead would collide on the MCA page, which prints (1) through
 (5) twice (the temporary text and the text effective January 1, 2024).
 
-**Dates.** `expression_date` and `metadata.effective_start` are 2010-04-30, the effective date of the
-last amendment the page lists. `source_as_of` is 2023-10-03, the capture date. Archive provenance is
-in `archived_official_source`, `archive_url`, `archive_timestamp`, `archive_payload_sha1_base32`,
-`archive_payload_sha256` and `archive_capture_note`, as in
-`docs/ingest-runs/2026-10-09-az-des-snap-ece-dated-authority.md`.
+**Dates.** `expression_date` and `metadata.effective_start` are 2010-04-30 and
+`metadata.effective_end` is 2025-01-24, version 30622's start and end dates. `source_as_of` is
+2026-10-25, the retrieval date. `metadata.repeal_note` records the repeal, and the policy,
+version and document ids are in `metadata`.
 
 ## MCA 2021 15-30-2602 (statute scope)
 
@@ -84,6 +98,11 @@ in `archived_official_source`, `archive_url`, `archive_timestamp`, `archive_payl
 `15-30-2131--mca-2021`. The 15-30-2602 page answered HTTP 200 on 2026-10-25. Its header reads
 "Montana Code Annotated 2021", and it prints the temporary text and the text effective January 1,
 2024. The temporary (2) reads, in part, "may, at the taxpayer's option, file a joint return".
+The 2023 edition (`/bills/2023/mca/...`, fetched the same day) prints only the text effective
+January 1, 2024, with its history ending "amd. Sec. 7, Ch. 563, L. 2023", so it is no source for
+tax year 2023. That year rests on the 2021 edition's temporary text, which held until the later
+text took effect on January 1, 2024, and on the 2023 Form 2 instructions, which still give
+couples the choice of filing jointly or separately.
 
 **Rows.** `html_content_selector: body`, as for `15-30-2131--mca-2021`. Two rows:
 `us-mt/statute/15-30-2602--mca-2021` (document, no body) and `…/block-1` (6,040 characters, both

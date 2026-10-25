@@ -30,6 +30,7 @@ EXPECTED_ADDITIONS = {
 }
 ARM_PATH = "us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524--effective-2010-04-30"
 MCA_PATH = "us-mt/statute/15-30-2602--mca-2021"
+OFFICIAL_SHA256 = "9064d3790b481f208c10c7a2cb985a4b75f44dbcc8b5342afc52471ac6232074"
 
 
 def _key(scope: dict[str, str]) -> tuple[str, str, str]:
@@ -121,6 +122,10 @@ def test_montana_scopes_share_no_citation_path() -> None:
         if key[0] != "us-mt":
             continue
         for row in _rows(key):
+            assert row["citation_path"].startswith(f"{key[0]}/{key[1]}/"), (
+                row["citation_path"],
+                key,
+            )
             assert row["citation_path"] not in seen, (
                 row["citation_path"],
                 seen.get(row["citation_path"]),
@@ -153,19 +158,32 @@ def test_dated_rows_are_variants_of_the_plain_path(
         assert row["citation_path"].startswith(f"{canonical}--{variant}")
 
 
-def test_arm_source_is_the_archived_capture() -> None:
+def test_arm_source_is_the_official_2010_version() -> None:
+    """The stored source is rules.mt.gov's accessible HTML of version 30622, whose download URL
+    ends in its own SHA-256."""
     row = _row(("us-mt", "regulation", DATED), f"{ARM_PATH}/block-1")
     source = (ROOT / "data/corpus" / row["source_path"]).read_bytes()
     metadata = row["metadata"]
-    assert hashlib.sha256(source).hexdigest() == metadata["archive_payload_sha256"]
+    digest = hashlib.sha256(source).hexdigest()
+    assert digest == metadata["official_document_sha256"] == OFFICIAL_SHA256
+    assert metadata["download_url"] == (
+        f"https://rules.mt.gov/policy-library-documents/text/html/{OFFICIAL_SHA256}"
+    )
+    assert metadata["policy_version_uuid"] == "908d23f8-9eb7-473d-b812-9cffe9caa986"
+    assert metadata["version_number"] == "30622"
     assert row["expression_date"] == metadata["effective_start"] == "2010-04-30"
-    assert row["source_as_of"] == "2023-10-03"
-    assert f"/{metadata['archive_timestamp']}id_/" in metadata["download_url"]
+    assert metadata["effective_end"] == "2025-01-24"
+    assert row["source_as_of"] == "2026-10-25"
 
 
 def test_dated_rows_hold_the_separate_filing_texts() -> None:
     arm = _row(("us-mt", "regulation", DATED), f"{ARM_PATH}/block-1")["body"]
     assert "If one spouse files separately and itemizes deductions, then both must do so." in arm
+    assert (
+        "If a married taxpayer files a separate Montana return, the following rules apply if the "
+        "taxpayer filed a joint federal income tax return with the taxpayer's spouse or did not "
+        "file a federal income tax return:"
+    ) in arm
     assert (
         "if the spouses file a separate return on the same form, an itemized deduction not "
         "clearly attributable to one spouse may be divided as provided on the form;"
@@ -173,6 +191,19 @@ def test_dated_rows_hold_the_separate_filing_texts() -> None:
     mca = _row(("us-mt", "statute", DATED), f"{MCA_PATH}/block-1")["body"]
     assert mca.startswith("15-30-2602 . (Temporary)")
     assert "may, at the taxpayer's option, file a joint return with the husband or wife" in mca
+
+
+def test_build_release_refuses_a_base_with_a_duplicate_scope(tmp_path: Path) -> None:
+    scope = {"document_class": "statute", "jurisdiction": "us-ny", "version": "2026-01-01-a"}
+    base = {
+        "description": "base",
+        "name": BASE_RELEASE,
+        "quality_profile": "q",
+        "scopes": [scope, scope],
+    }
+    (tmp_path / f"{BASE_RELEASE}.json").write_text(json.dumps(base), encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate scopes"):
+        build_release(release_dir=tmp_path)
 
 
 _SCOPE = st.fixed_dictionaries(

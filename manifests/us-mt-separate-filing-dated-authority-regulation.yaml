@@ -2,11 +2,13 @@
 #
 # ARM 42.15.524 (itemized deductions of married taxpayers) governed how spouses who filed
 # separate Montana returns divided itemized deductions until Montana tied its filing status
-# to the federal one from tax year 2024. No locked scope carries the rule: the 42.15 scope
-# taken from the current rules.mt.gov collection has no subchapter 5 rules. The old gateway
-# URL now redirects to the rules.mt.gov search application, so the text comes from the
-# Internet Archive capture of the official page taken in October 2023, which lists the
-# 4/30/2010 amendment as current.
+# to the federal one from tax year 2024. The rule was repealed effective 1/25/2025 (MAR
+# Notice No. 42-1088). No locked scope carries it: the 42.15 scope taken from the current
+# rules.mt.gov collection selects effective rules only, so it has no subchapter 5 rules.
+# rules.mt.gov still serves every dated version of the rule. The text here is its official
+# accessible HTML for version 30622, in effect from 4/30/2010 through 1/24/2025, which
+# covers tax years 2021 through 2023. An Internet Archive capture of the former gateway page
+# from October 2023 carries the same text and history and is recorded as corroboration.
 #
 # The row sits at a variant path, the sibling form schema/citation-path.v1.md section 4.0
 # gives a dated version, so that a later ingest of the rule's current page keeps the plain
@@ -19,14 +21,14 @@ documents:
   jurisdiction: us-mt
   document_class: regulation
   citation_path: us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524--effective-2010-04-30
-  title: ARM 42.15.524, Itemized deductions of married taxpayers (effective 4/30/2010)
-  source_url: https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
-  download_url: https://web.archive.org/web/20231003110140id_/https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
+  title: ARM 42.15.524, Itemized deductions of married taxpayers (effective 4/30/2010 through 1/24/2025)
+  source_url: https://rules.mt.gov/browse/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/1223c9d6-74a1-4199-83e9-1f46a6cc8993
+  download_url: https://rules.mt.gov/policy-library-documents/text/html/9064d3790b481f208c10c7a2cb985a4b75f44dbcc8b5342afc52471ac6232074
   source_format: html
-  source_as_of: '2023-10-03'
+  source_as_of: '2026-10-25'
   expression_date: '2010-04-30'
   extraction:
-    html_content_selector: '#RuleContent'
+    html_content_selector: '#documentBody'
   metadata:
     primary_source: true
     source_authority: Montana Department of Revenue
@@ -36,22 +38,29 @@ documents:
     variant: effective-2010-04-30
     canonical_citation_path: us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524
     effective_start: '2010-04-30'
-    effective_basis: The page's history table lists MAR notice 42-2-820, effective from
-      4/30/2010, as current (2010 MAR p. 1088).
-    expression_date_note: expression_date is the effective date of the 2010 amendment,
-      the last one the page lists. source_as_of is the Internet Archive capture date.
-    archived_official_source: true
-    archive_url: https://web.archive.org/web/20231003110140/https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
-    archive_timestamp: '20231003110140'
-    archive_payload_sha1_base32: 76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX
-    archive_payload_sha256: d856d16f35e6737df9cac3155bcc58aaf9c52d7be78c8a38fd220f2bef449411
-    archive_capture_note: Every Internet Archive capture of the rules.mt.gov page from
-      20220701053000 to 20240611163609 has this payload digest. The earlier mtrules.org
-      captures from 20171002103641 to 20201030190413 share another digest and carry the
-      same rule text and 2010 history.
-    source_access_note: The official gateway URL now redirects to the rules.mt.gov search
-      application, which serves no rule text to an HTTP client; download_url is the
-      Internet Archive capture of the official page, whose payload digest matches the
-      archive's CDX record.
+    effective_end: '2025-01-24'
+    effective_basis: The rules.mt.gov record of the rule gives version 30622 a start date of
+      2010-04-30 and an end date of 2025-01-24. Its history ends with the 2010 amendment
+      (2010 MAR p. 1088, Eff. 4/30/10).
+    repeal_note: The rule was repealed effective 1/25/2025 (REP, 2025 MAR, Notice No.
+      42-1088). The rules.mt.gov record lists the repeal as version 011eb6b8-6f8c-41fc-b03c-50c156cd5267,
+      starting 2025-01-25, and marks the rule INEFFECTIVE.
+    expression_date_note: expression_date is the start date of version 30622. source_as_of
+      is the retrieval date.
+    collection_uuid: aec52c46-128e-4279-9068-8af5d5432d74
+    policy_uuid: 1223c9d6-74a1-4199-83e9-1f46a6cc8993
+    policy_version_uuid: 908d23f8-9eb7-473d-b812-9cffe9caa986
+    version_number: '30622'
+    official_document_api_url: https://rules.mt.gov/api/policy-library-public/collections/aec52c46-128e-4279-9068-8af5d5432d74/policies/1223c9d6-74a1-4199-83e9-1f46a6cc8993/document/46345c20-386c-420b-8b13-d273c1320d38
+    official_document_sha256: 9064d3790b481f208c10c7a2cb985a4b75f44dbcc8b5342afc52471ac6232074
+    official_document_note: The API document URL redirects to download_url, whose last
+      segment is the document's SHA-256, as the policy record's contentHashSha256 gives it.
+    archive_corroboration_url: https://web.archive.org/web/20231003110140/https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
+    archive_corroboration_timestamp: '20231003110140'
+    archive_corroboration_payload_sha1_base32: 76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX
+    archive_corroboration_payload_sha256: d856d16f35e6737df9cac3155bcc58aaf9c52d7be78c8a38fd220f2bef449411
+    archive_corroboration_note: The Internet Archive capture of the former official gateway
+      page, taken during tax year 2023, carries the same rule text, (1) through (5), and the
+      same history ending with the 2010 amendment.
     discovered_via: TheAxiomFoundation/rulespec-us household-choices register, Montana
       separate filing on the same form for tax years 2021-2023 (rulespec-us#1844)
