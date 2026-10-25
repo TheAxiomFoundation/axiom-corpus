@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/statute/2026-09-28-uk-pe-child-definitions.jsonl",
-      "sha256": "03a70693e95d68c17e887fdf6290497ca3b96e2e1288657b29339030ca2cddfe"
+      "sha256": "5a6df8e14946bbf07c178f73e4ac76f20e21967a110574801ecc41bc249ce9a9"
     },
     {
       "path": "data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/1992/4/section-137.xml",
@@ -54,13 +54,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2237f1a1b94b800c8ab950816851031f46532c5a",
+    "commit": "745ea7cb1a2940e5155ab4e8c591100d95a8a066",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-28-uk-pe-child-definitions --source clml --citation ukpga/1992/4/section/137 --citation ukpga/2002/16/section/4 --citation ukpga/2002/16/section/5 --citation ukpga/2002/16/section/17 --citation ukpga/2002/21/section/3 --citation ukpga/2002/21/section/8 --citation ukpga/2007/3/section/55C --citation ukpga/2014/28/section/3 --citation ukpga/2014/28/section/6 --citation ukpga/2016/5/section/1 --source-as-of 2026-09-28 --expression-date 2026-04-06"
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-28-uk-pe-child-definitions --source clml --source-as-of 2026-09-28 --expression-date 2026-04-06 --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/1992/4/section-137.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/16/section-17.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/16/section-4.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/16/section-5.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/21/section-3.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2002/21/section-8.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2007/3/section-55C.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2014/28/section-3.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2014/28/section-6.xml --source-xml data/corpus/sources/uk/statute/2026-09-28-uk-pe-child-definitions/ukpga/2016/5/section-1.xml  # 2026-10-23 regeneration: replay of this scope's archived signed CLML captures after the CLML parser fix (RestrictExtent inheritance, positional MathML); see the run note's 'Regeneration (2026-10-23)' section"
   },
   "coverage": {
     "complete": true,
@@ -71,19 +71,19 @@
     "source_count": 10
   },
   "document_class": "statute",
-  "generated_at": "2026-09-28T18:54:27.160351+00:00",
+  "generated_at": "2026-10-25T02:51:38.919479+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-uk-pe-child-definitions.md",
-      "sha256": "20f373b0792e6e924b9735dea939b3d216ecaca375fc06713b4f2eb6cd1ffcda"
+      "sha256": "07e13b9710956bed51506277b5e6423c26a9bef96db9eb1be5f44157dde07bbf"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "9cj+d5Z9eUsE8Wc0QyuSP036/NS6DnZfGiB2oUlABZ4BnEKS7u4c+jOdDEaxJi1v9S7fohsI75hjJk2ExSl+BQ=="
+    "value": "kVLRU1r7kgWE1CxyeEZX4B/5KimEZKqRe6B4Gji3rSxQMWjRaDw0Os+elt6W+Ngd1enPIwXXxVAiyOuH26aKDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-uk-pe-child-definitions"
