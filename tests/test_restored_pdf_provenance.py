@@ -38,7 +38,9 @@ def test_restored_manifest_records_a_runnable_portable_command(scope: str) -> No
 @settings(deadline=None)
 @given(
     scope=st.sampled_from(SCOPES),
-    checkout=st.lists(st.from_regex(r"[a-z][a-z0-9_-]{0,15}", fullmatch=True), min_size=1, max_size=5),
+    checkout=st.lists(
+        st.from_regex(r"[a-z][a-z0-9_-]{0,15}", fullmatch=True), min_size=1, max_size=5
+    ),
 )
 def test_replay_keeps_the_original_source_hash_in_any_checkout(
     scope: str, checkout: list[str]
