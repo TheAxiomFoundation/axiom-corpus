@@ -25,8 +25,8 @@ edited. Which lines take the swap, and when, is queued for Max.
 | `id` | legacy path-only uuid | `deterministic_provision_id(path, version)`, as the loader computes anyway |
 
 **Why the row has no parent.** Release validation checks parents within the scope
-(`release_quality.py:767-777`) and citation paths across the whole release
-(`:235-246`). The 42-15 income-tax scope, which the wave4 lines also select,
+(`missing_parent_citation`, in `_validate_provision_record` of `release_quality.py`)
+and citation paths across the whole release (`_check_release_citation_uniqueness`). The 42-15 income-tax scope, which the wave4 lines also select,
 already emits the `us-mt/regulation` root. So a successor that emitted the
 adapter's root would collide there. One that emitted `title-37` under that root
 would lack its parent. The old row had no parent either. Navigation links a
@@ -311,13 +311,15 @@ raw-DOM oracle. The successor builder independently compares all raw PDF-page
 DOM text with its reconstruction in character order, apart from whitespace
 and inserted table separators, before checking the retained renditions.
 
-## Parent-validation clarification (2026-10-25)
+## Parent validation over time (2026-10-25)
 
-The scope-local parent-validation explanation under "Why the row has no
-parent" is historical and does not describe the current validator.
-`release_quality._release_citation_paths` collects citation paths from all
-locally available scopes selected for the release, and `validate_release`
-passes that set to each scope's validation. A parent can therefore be supplied
-by another selected scope; it need not appear in the child's own scope.
-This does not change release-wide citation-uniqueness checks or the successor's
-parentless row and artifacts.
+An earlier version of this section said the scope-local explanation under
+"Why the row has no parent" was historical. That described the validator this
+branch had before it merged `main` at `8af7f911a`, where
+`release_quality._release_citation_paths` let a parent come from any scope the
+release selects. `main` has since made parent integrity scope-local again,
+because Supabase derives versioned parent UUIDs, so a parent found only in
+another scope cannot satisfy a scope's foreign key. At this head the
+explanation above describes the current validator. Neither version changes the
+successor's parentless row, its artifacts, or the release-wide citation
+uniqueness check.
