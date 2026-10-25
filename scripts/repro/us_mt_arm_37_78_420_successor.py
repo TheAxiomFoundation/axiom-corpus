@@ -38,6 +38,7 @@ from typing import Any
 
 import fitz
 import requests
+from bs4 import BeautifulSoup
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -51,7 +52,6 @@ from axiom_corpus.corpus.montana_rule_page import (
     montana_rule_record,
     parse_montana_rule_document,
     parse_montana_rule_page_chrome,
-    text_layer_lines,
 )
 
 JURISDICTION = "us-mt"
@@ -337,6 +337,8 @@ def check_against_verification_sources(
       links to, with the same number, start date and history, and declares the
       hash of each rendition file.
     * The version's PDF carries exactly the characters of the page's text layer.
+    * All raw PDF-page DOM text survives the reconstruction in order, apart
+      from whitespace and inserted table separators, independently of the parser.
     * The version's accessible HTML, rendered line by line, equals the rule
       rebuilt from the text layer.
     """
@@ -365,7 +367,12 @@ def check_against_verification_sources(
     if version_field(version, "history") != document.history:
         raise ValueError("policy JSON and text layer disagree on the history note")
 
-    layer = "".join(segment.text for line in text_layer_lines(raw) for segment in line.segments)
+    layer = "".join(
+        page.get_text() for page in BeautifulSoup(raw, "html.parser").select("div.react-pdf__Page")
+    )
+    rendered = "".join(document.document_lines()).replace(" | ", "")
+    if re.sub(r"\s+", "", layer) != re.sub(r"\s+", "", rendered):
+        raise ValueError("text-layer reconstruction does not preserve the raw DOM text in order")
     if non_space_characters(pdf_text(verification[VERSION_PDF_LEAF])) != non_space_characters(
         layer
     ):

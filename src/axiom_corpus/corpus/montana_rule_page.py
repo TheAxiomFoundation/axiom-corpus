@@ -27,9 +27,12 @@ attached to a letter or digit joins the next word directly (``Post-`` +
 and inside a table cell a break inside a numeral joins directly (``$ 37`` +
 ``5``): a word processor breaks a numeral only when it does not fit the cell.
 
-The chrome is read separately, for metadata only. The parser rejects mixed
-nested span text, ambiguous table columns, a table without labelled rows and
-a heading without an ARM number with ``MontanaRulePageError``.
+The chrome outside ``div.react-pdf__Page`` (navigation, accordions and the
+version list) is read separately, for metadata only. Within a PDF page no text
+is ignored as chrome: every non-whitespace text node must be consumed by an
+accepted positioned span. The parser rejects unconsumed text, mixed nested
+span text, ambiguous table columns, a table without labelled rows and a heading
+without an ARM number with ``MontanaRulePageError``.
 """
 
 from __future__ import annotations
@@ -218,6 +221,7 @@ def text_layer_lines(html: bytes) -> tuple[TextLayerLine, ...]:
         if layer is None:
             raise MontanaRulePageError(f"page {number} has no text layer")
         by_top: dict[float, list[TextLayerSegment]] = {}
+        consumed: set[int] = set()
         for span in layer.find_all("span"):
             if not isinstance(span, Tag):
                 continue
@@ -241,6 +245,14 @@ def text_layer_lines(html: bytes) -> tuple[TextLayerLine, ...]:
             by_top.setdefault(float(match["top"]), []).append(
                 TextLayerSegment(left=float(match["left"]), text=text)
             )
+            consumed.update(id(node) for node in span.strings)
+        # Check the DOM independently of span selection, including siblings of
+        # the text layer. Text in unsupported containers must never disappear.
+        for node in page.find_all(string=True):
+            if str(node).strip() and id(node) not in consumed:
+                raise MontanaRulePageError(
+                    f"page {number}: text outside an accepted positioned span: {str(node)!r}"
+                )
         for top in sorted(by_top):
             segments = tuple(sorted(by_top[top], key=lambda segment: segment.left))
             if any(segment.text.strip() for segment in segments):

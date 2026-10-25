@@ -19,7 +19,7 @@ from html import escape
 
 import pytest
 from bs4 import BeautifulSoup
-from hypothesis import given, settings
+from hypothesis import example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.corpus.montana_rule_page import (
@@ -377,6 +377,47 @@ def _paragraph_page(content: str) -> bytes:
     ).encode()
 
 
+@pytest.mark.parametrize(
+    "unpositioned",
+    [
+        "DO NOT ",
+        '<div style="left:15%; top:8%;">DO NOT </div>',
+        "<p>DO NOT </p>",
+        "<em>DO NOT </em>",
+    ],
+    ids=["direct-layer-text", "positioned-div", "paragraph", "emphasis"],
+)
+def test_parser_rejects_text_outside_positioned_spans(unpositioned: str) -> None:
+    html = _paragraph_page(unpositioned + '<span style="left:15%; top:8%;">pay.</span>')
+    with pytest.raises(MontanaRulePageError, match="text outside.*positioned span"):
+        parse_montana_rule_document(html)
+
+
+def test_parser_rejects_text_outside_the_first_text_layer() -> None:
+    html = _paragraph_page('<span style="left:15%; top:8%;">pay.</span>')
+    html = html.replace(b"</div></div>", b"</div><p>DO NOT</p></div>")
+    with pytest.raises(MontanaRulePageError, match="text outside.*positioned span"):
+        parse_montana_rule_document(html)
+
+
+def test_parser_keeps_text_inside_nonspan_descendants_of_a_positioned_span() -> None:
+    html = _paragraph_page('<span style="left:15%; top:8%;">DO <em>NOT</em> pay.</span>')
+    assert parse_montana_rule_document(html).body_lines == ("(1) DO NOT pay.",)
+
+
+def test_parser_ignores_browser_chrome_outside_pdf_pages() -> None:
+    html = (
+        b"<nav>Montana SOS Skip to main content</nav>"
+        + _paragraph_page('<span style="left:15%; top:8%;">DO NOT pay.</span>')
+        + b"<aside><h2>Rule Version</h2><p>Active Version 33678</p></aside>"
+    )
+    assert "Active Version" in BeautifulSoup(html, "html.parser").get_text()
+    assert parse_montana_rule_document(html).document_lines() == (
+        "37.78.420 RULE",
+        "(1) DO NOT pay.",
+    )
+
+
 @pytest.mark.parametrize("direct_text_after_child", [False, True])
 def test_parser_rejects_nested_positioned_spans_with_direct_text(
     direct_text_after_child: bool,
@@ -420,28 +461,36 @@ def test_parser_rejects_unexpected_continuation_columns(
     child=st.text(alphabet="pay ab12.,-&<>\u00a0", min_size=1, max_size=30),
     after=st.text(alphabet="ab12.,-&<>\u00a0", max_size=30),
     nested=st.booleans(),
+    container=st.sampled_from(["span", "layer", "div", "p", "em"]),
 )
+@example(before="DO NOT ", child="pay.", after="", nested=True, container="layer")
+@example(before="DO NOT ", child="pay.", after="", nested=True, container="div")
 def test_parser_preserves_raw_dom_text_in_order_or_rejects(
     before: str,
     child: str,
     after: str,
     nested: bool,
+    container: str,
 ) -> None:
     inner = f'<span style="left:15%; top:8%;">{escape(child)}</span>' if nested else escape(child)
-    html = _paragraph_page(
-        f'<span style="left:15%; top:8%;">{escape(before)}{inner}{escape(after)}</span>'
-    )
-    # Read raw DOM strings directly: using text_layer_lines here would share
-    # the parser's old bug of skipping parent text around a nested span.
+    content = f"{escape(before)}{inner}{escape(after)}"
+    if container != "layer":
+        content = f'<{container} style="left:15%; top:8%;">{content}</{container}>'
+    html = _paragraph_page(content)
+    # Read every visible PDF-page DOM string directly: using text_layer_lines
+    # here would share the parser's omissions of unsupported containers.
     soup = BeautifulSoup(html, "html.parser")
-    layer = soup.select_one(".react-pdf__Page__textContent")
-    assert layer is not None
-    raw_text = _non_space(layer.get_text())
+    page = soup.select_one("div.react-pdf__Page")
+    assert page is not None
+    raw_text = _non_space(page.get_text())
     try:
         document = parse_montana_rule_document(html)
     except MontanaRulePageError:
-        # This generated grammar permits rejection only for mixed nested text
-        # or an entirely whitespace paragraph; valid flat text must still work.
-        assert (nested and _non_space(before + after)) or not _non_space(before + child + after)
+        # Every visible node participates in the oracle, including direct
+        # layer text and non-span containers. Fully consumed text must work.
+        outside_span = before + after if nested else before + child + after
+        assert ((nested or container != "span") and _non_space(outside_span)) or not _non_space(
+            before + child + after
+        )
         return
     assert _non_space("".join(document.document_lines())) == raw_text

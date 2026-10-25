@@ -12,6 +12,7 @@ from pathlib import Path
 
 import fitz
 import pytest
+from bs4 import BeautifulSoup
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
@@ -43,6 +44,7 @@ from scripts.repro.us_mt_arm_37_78_420_successor import (
     VERSION_RENDITIONS,
     VERSION_UUID,
     build_scope,
+    check_against_verification_sources,
     non_space_characters,
     pdf_text,
     policy_version,
@@ -116,6 +118,43 @@ def test_build_reproduces_the_committed_scope_byte_for_byte(tmp_path: Path) -> N
     )
     for leaf in committed:
         assert (built_sources / leaf).read_bytes() == (NEW_SOURCES / leaf).read_bytes(), leaf
+
+
+@pytest.mark.parametrize("injection", ["direct", "nonspan", "reordered"])
+def test_verification_rejects_unconsumed_or_reordered_raw_dom_text(injection: str) -> None:
+    soup = BeautifulSoup(_retained(), "html.parser")
+    layer = soup.select_one(".react-pdf__Page__textContent")
+    assert layer is not None
+    if injection == "direct":
+        layer.insert(0, "DO NOT ")
+    elif injection == "nonspan":
+        container = soup.new_tag("div", style="left:15%; top:8%;")
+        container.string = "DO NOT "
+        layer.insert(0, container)
+    else:
+        span = layer.find("span")
+        assert span is not None and span.string is not None
+        span.string.replace_with(str(span.string)[::-1])
+    verification = {
+        leaf: (NEW_SOURCES / leaf).read_bytes()
+        for leaf in (
+            POLICY_LEAF,
+            POLICY_PROVENANCE_LEAF,
+            VERSION_HTML_LEAF,
+            VERSION_HTML_PROVENANCE_LEAF,
+            VERSION_PDF_LEAF,
+            VERSION_PDF_PROVENANCE_LEAF,
+        )
+    }
+    # Supply the genuine reconstruction deliberately: this gate must read the
+    # raw DOM independently, even if its caller's parser silently loses text.
+    with pytest.raises(ValueError, match="does not preserve the raw DOM text in order"):
+        check_against_verification_sources(
+            str(soup).encode(),
+            _document(),
+            parse_montana_rule_page_chrome(_retained()),
+            verification,
+        )
 
 
 def _copy_build_sources(base: Path) -> Path:

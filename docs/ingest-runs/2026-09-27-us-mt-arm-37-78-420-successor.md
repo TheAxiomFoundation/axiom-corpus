@@ -293,3 +293,20 @@ limits; the review repair adds explicit rejection and independent DOM-text
 conservation coverage for these cases.
 Hypothesis is available in the current dev dependencies and supplies the new
 DOM-conservation and policy-version mismatch properties.
+
+## Further correction (2026-10-24)
+
+Version 33678's retained policy history ends with the 2011 amendment. The
+2026 amendment suffix quoted above belongs to AMD 2026-529, not version 33678;
+the retained policy does record version 33678's end date as 2026-09-25.
+Also, `range(0, 400, 7)` supplies 58 synthetic conservation cases, not 57.
+
+The second review found that direct text and text in non-span containers could
+still disappear. The reader now rejects every non-whitespace text node within
+a react-pdf page that an accepted positioned span does not consume. It ignores
+no text as chrome within those pages; browser navigation, accordions and the
+version list remain outside the PDF document. The paragraph conservation
+property now includes direct text and non-span containers in its independent
+raw-DOM oracle. The successor builder independently compares all raw PDF-page
+DOM text with its reconstruction in character order, apart from whitespace
+and inserted table separators, before checking the retained renditions.
