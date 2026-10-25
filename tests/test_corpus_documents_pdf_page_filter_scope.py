@@ -35,7 +35,8 @@ from axiom_corpus.corpus.documents import (
 
 REPO = Path(__file__).resolve().parents[1]
 
-# A valid value for each page filter, all of which keep pages 2 and 3.
+# A valid value for each page filter, all of which keep pages 2 and 3. The fixture has four
+# pages, so the upper bounds (``end_page`` and ``page_windows``) have a page to drop.
 VALID_FILTERS: dict[str, Any] = {
     "page_windows": [{"start_page": 2, "end_page": 3}],
     "start_page": 2,
@@ -47,7 +48,7 @@ VALID_FILTERS: dict[str, Any] = {
 }
 
 
-def _pdf(pages: int = 3) -> bytes:
+def _pdf(pages: int = 4) -> bytes:
     document = fitz.open()
     for number in range(1, pages + 1):
         document.new_page().insert_text(
@@ -123,7 +124,7 @@ def test_a_filter_set_to_none_is_not_set() -> None:
     extraction = dict.fromkeys(_SINGLE_BLOCK_PDF_FILTER_KEYS)
 
     assert _blocks(extraction) == _blocks(None)
-    assert [block[2] for block in _blocks(extraction)] == ["Page 1", "Page 2", "Page 3"]
+    assert [block[2] for block in _blocks(extraction)] == ["Page 1", "Page 2", "Page 3", "Page 4"]
 
 
 def test_sort_blocks_does_not_lift_the_rule() -> None:
@@ -140,7 +141,7 @@ def test_the_amendment_markup_page_range_is_not_a_page_filter() -> None:
         PDF, extraction={"amendment_markup": {"start_page": 2, "end_page": 3}}
     )
 
-    assert [block.metadata["page_number"] for block in blocks] == [1, 2, 3]
+    assert [block.metadata["page_number"] for block in blocks] == [1, 2, 3, 4]
 
 
 @pytest.mark.parametrize("value", [True, 2.5, "3", 0, -1], ids=repr)
@@ -192,6 +193,8 @@ def test_supported_segmentations_still_read_each_filter(segmentation: str, key: 
     assert "Body text 3." in text
     if key in {"page_windows", "start_page", "start_after_pattern"}:
         assert "Body text 1." not in text
+    if key in {"page_windows", "end_page"}:
+        assert "Body text 4." not in text
     if key in {"drop_lines", "drop_line_patterns", "page_header_patterns"}:
         assert "Running header" not in text
 
