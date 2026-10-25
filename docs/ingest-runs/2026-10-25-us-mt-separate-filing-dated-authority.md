@@ -1,0 +1,172 @@
+# Montana separate-filing authority for tax years 2021-2023, and the pin cut that carries it
+
+Date: 2026-10-25. Branch `ingest/us-mt-2021-2023-separate-filing-authority`, cut from #932's head
+`bf1391948` (itself on `origin/main` 4d879d5b2).
+
+- Scopes: `us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority` and
+  `us-mt/statute/2026-10-25-mt-separate-filing-dated-authority`.
+- Manifests: `manifests/us-mt-separate-filing-dated-authority-regulation.yaml` and
+  `manifests/us-mt-separate-filing-dated-authority-statute.yaml`.
+- Selector: `manifests/releases/us-rulespec-2026-10-25-mt-separate-filing.json`, built by
+  `scripts/repro/us_rulespec_2026_10_25_mt_separate_filing.py` and checked by
+  `tests/test_us_rulespec_2026_10_25_mt_separate_filing.py`.
+
+## Why
+
+From tax year 2021 through 2023, Montana let married couples file jointly or separately: on the
+same form (Filing Status 2a), on separate forms (2b), or with the spouse not filing (2c). From tax
+year 2024 they must use their federal filing status (Form 2 instructions for 2023). rulespec-us's
+household-choices register records
+the choices this leaves to the couple: separate or joint filing, and how a couple filing
+separately on the same form divides deductions and exemptions. rulespec-us#1844 left the Montana
+entries out because the pinned release, `us-rulespec-2026-10-25-ssi-poms-public-laws`, carries
+none of their texts:
+
+| Text | Where it was |
+| --- | --- |
+| ARM 42.15.524 as in effect from 4/30/2010 | In no scope. The 42.15 scope taken from the current rules.mt.gov collection (`2026-09-14-income-tax-regulations-title-42-section-42-15`) has no subchapter 5 rules. |
+| MCA 2021 15-30-2602 (Temporary), whose (2) gives the joint-return option | In no scope. The pin's `us-mt/statute/15-30-2602` (in `2026-07-16-pit-central-us-mt-title-15`) is the current text, which has no such option. |
+| MCA 2021 15-30-2131, whose (1)(c)(vi) covers the dependent care deduction on the same form | `us-mt/statute/15-30-2131--mca-2021` in `us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2`, signed and locked on 2026-10-07 but not on the pin line. |
+| Form 2 instructions for 2021, 2022 and 2023 | `us-mt/form/mtdor/ty202{1,2,3}/form-2-instructions` in `us-mt/form/2026-10-06-w6-income-tax-forms-mt`, signed and locked on 2026-10-07 but not on the pin line. |
+
+This run ingests the first two and cuts a pin-line selector that adds all four scopes.
+
+## ARM 42.15.524 (regulation scope)
+
+**Source.** The rule's official page was
+`https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524` (earlier captures are of the same gateway
+page on `mtrules.org`). That URL
+now redirects to the rules.mt.gov search application (`/search?query=42.15.524`), which serves no
+rule text to an HTTP client. The Internet Archive CDX index lists these 200 captures:
+
+| Host | Captures | Payload digest (SHA-1, base32) |
+| --- | --- | --- |
+| rules.mt.gov | 20220701053000, 20220812182325, 20231003110140, 20240521045002, 20240611163609 | `76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX` |
+| mtrules.org | 20171002103641, 20191206060408, 20201030190413 | `WU5PTJCQQMBR2FZXM6MONOFMAYJ7WUP6` |
+
+`download_url` is the 20231003110140 capture, taken during tax year 2023. Its bytes (14,442) have
+SHA-1 base32 `76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX`, matching the CDX record, and SHA-256
+`d856d16f35e6737df9cac3155bcc58aaf9c52d7be78c8a38fd220f2bef449411`. The extractor stored the same
+bytes (same SHA-256). The page's history table lists MAR notice 42-2-820, effective from 4/30/2010,
+as current. The 20201030190413 mtrules.org capture carries the same rule text and the same 2010
+history, so the text was the same from tax year 2021.
+
+**Rows.** `html_content_selector: '#RuleContent'` keeps the rule text and its history line and drops
+the page chrome (header table, favourites link, MAR notice table). Two rows:
+
+- `us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524--effective-2010-04-30`:
+  the document row, no body.
+- `…/block-1`: the rule, 1,994 characters, (1) through (5) and the history.
+
+**Path.** schema/citation-path.v1.md section 4.0: a version other than the one at a section's plain
+path is a sibling `<section>--<slug>` with `metadata.variant` and `metadata.canonical_citation_path`.
+Montana's MCA editions already use this (`15-30-2131--mca-2021`, whose plain path holds the
+repealed section). The plain path stays free for the rule's current page. The subchapter segment
+follows the 42.15 scope (`subchapter-42-15-1` for 42.15.1xx).
+
+**Dates.** `expression_date` and `metadata.effective_start` are 2010-04-30, the effective date of the
+last amendment the page lists. `source_as_of` is 2023-10-03, the capture date. Archive provenance is
+in `archived_official_source`, `archive_url`, `archive_timestamp`, `archive_payload_sha1_base32`,
+`archive_payload_sha256` and `archive_capture_note`, as in
+`docs/ingest-runs/2026-10-09-az-des-snap-ece-dated-authority.md`.
+
+## MCA 2021 15-30-2602 (statute scope)
+
+**Source.** The Legislature still serves the Montana Code Annotated 2021 edition at
+`https://mca.legmt.gov/bills/2022/mca/...`, the source family the w6 scope used for
+`15-30-2131--mca-2021`. The 15-30-2602 page answered HTTP 200 on 2026-10-25. Its header reads
+"Montana Code Annotated 2021", and it prints the temporary text and the text effective January 1,
+2024. The temporary (2) reads, in part, "may, at the taxpayer's option, file a joint return".
+
+**Rows.** `html_content_selector: body`, as for `15-30-2131--mca-2021`. Two rows:
+`us-mt/statute/15-30-2602--mca-2021` (document, no body) and `…/block-1` (6,040 characters, both
+texts and the history). `metadata.variant` is `mca-2021` and `metadata.canonical_citation_path` is
+`us-mt/statute/15-30-2602`.
+
+**Dates.** The page has no date of its own. `expression_date` and `source_as_of` are 2026-10-25, the
+retrieval date, as the w6 scope did for `15-30-2131--mca-2021`. `metadata.code_edition` and
+`metadata.expression_date_note` say so.
+
+## Signing and objects
+
+Both scopes have 2 inventory items and 2 provisions, with coverage complete (0 missing, 0 extra), and
+`content-check` reports no findings. Each signed manifest names the manifest commit `114ba7752` with
+`dirty_tracked: false`. `corpus push` uploaded the 8 new objects (60,835 bytes); a dry run afterwards
+reports all 8 in R2. No release was published or activated, and nothing was loaded into Supabase.
+
+## Selector
+
+`us-rulespec-2026-10-25-mt-separate-filing` = #932's `us-rulespec-2026-10-25-nyc-ch127-title-52`
+(272 scopes) plus:
+
+- `us-mt/form/2026-10-06-w6-income-tax-forms-mt`;
+- `us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority`;
+- `us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2`;
+- `us-mt/statute/2026-10-25-mt-separate-filing-dated-authority`.
+
+That makes 276 scopes. None of the four is withdrawn. The base selected no `us-mt/form` scope. The
+added rows' 38 citation paths are distinct and meet none of the 2,395 paths of the us-mt statute and
+regulation scopes the base selects. The w6 statute scope also brings the MCA 2019 text of 15-30-2131,
+2021 SB 399 (enrolled and version 3) and 2023 HB 192 and HB 222, and the forms scope brings Form 2 for
+2021-2024, the 2024 instructions (and their 2024-12-03 revision), Schedule 2EC for 2024 and Form
+2441-M for 2022. No rulespec-us module on `main` cites any of these paths, so adding them moves no
+module's validation.
+
+It keeps the base's three withdrawn scopes, `us-me`, `us-mi` and `us-mn` `statute/2026-07-13-recovery`.
+Allowances do not carry forward, so `manifests/withdrawn-scopes.yaml` records an exception for this
+selector on each, pinned to its digest (`642d9a8d…`), with the same reason as #932's.
+
+## Checks
+
+`tests/test_us_rulespec_2026_10_25_mt_separate_filing.py` (16 tests):
+
+- the reproducer's output is byte-identical to the committed selector;
+- the delta against the base is the four scopes, given as literals in the test;
+- each added scope is locked and not withdrawn, and the selector adds no withdrawn scope;
+- each kept withdrawn scope has its own exception, and the quality profile is unchanged;
+- the selected us-mt scopes share no citation path (`duplicate_release_citation`);
+- both dated rows sit at `<plain path>--<variant>` with matching variant metadata;
+- the ARM source file's SHA-256 is the archive payload SHA-256, and its dates are as above;
+- the dated rows hold the texts rulespec-us will cite;
+- a Hypothesis property of the build rule: for any duplicate-free base without an addition, the
+  output is the base plus the additions, sorted, with nothing dropped; any other base is refused
+  with "already selects".
+
+Mutation checks, each run under an RSS cap of 2 GB: dropping the dated statute scope from the selector
+fails 4 tests; removing the "already selects" refusal fails the property; a row at an
+already-selected path in the dated statute scope fails 2 tests; sorting the selector by version only
+fails 2 tests.
+
+`scripts/publish_corpus.py --release us-rulespec-2026-10-25-mt-separate-filing --dry-run` ran on a
+fully fetched tree; its result is recorded in the pull request.
+
+## Release line
+
+#932 cuts `us-rulespec-2026-10-25-nyc-ch127-title-52`, and this selector is built on it, so it carries
+#932's NYC Administrative Code swap and Title 52 scope as well. Merge #932 first. If both merge before
+#932's release is published, publishing only this release would save rulespec-us one re-pin; either
+way the re-pin that takes this release brings #932's NYC validation changes with it unless
+rulespec-us has already taken #932's. #926 (Kansas LIHEAP) is still cut on an older pin and must be
+rebuilt on the last pin-line selector to merge, as #932's run note describes.
+
+## After merge
+
+1. Dispatch `publish.yml` with this release, then `mirror-release.yml`. **Publish only. Do not
+   activate it.** It is a pin release for rulespec-us; see `docs/named-release-publication.md`.
+2. Re-pin rulespec-us to this release with the published `content_sha256`, then add the Montana
+   household-choices entries that cite these paths.
+
+## Commands
+
+```bash
+axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-25-mt-separate-filing-dated-authority --manifest manifests/us-mt-separate-filing-dated-authority-regulation.yaml
+axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-25-mt-separate-filing-dated-authority --manifest manifests/us-mt-separate-filing-dated-authority-statute.yaml
+axiom-corpus-ingest sign-ingest-manifest --repo . --base data/corpus --jurisdiction us-mt --document-class <regulation|statute> --version 2026-10-25-mt-separate-filing-dated-authority --command '<the extract command>' --lock
+axiom-corpus-ingest content-check us-mt/<regulation|statute>/2026-10-25-mt-separate-filing-dated-authority
+axiom-corpus-ingest corpus push us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority us-mt/statute/2026-10-25-mt-separate-filing-dated-authority
+python scripts/repro/us_rulespec_2026_10_25_mt_separate_filing.py
+```
+
+The CDX index was queried at `https://web.archive.org/cdx/search/cdx`. Captures were fetched with
+`curl` from the `id_` URLs. Digests were computed with `shasum -a 256`, and SHA-1 base32 with Python's
+`hashlib` and `base64`.
