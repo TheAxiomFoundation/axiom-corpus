@@ -264,30 +264,40 @@ def test_a_picker_that_changes_mid_capture_raises(tmp_path, monkeypatch):
         _extract(tmp_path, "WIC:11450@all")
 
 
+@pytest.mark.parametrize(
+    ("old", "new", "message"),
+    [
+        (b"selectFromMultiples:j_idt139:1:j_idt141", b"unknown:version", "exactly one command key"),
+        # The second anchor keeps its row-indexed command but loses its submission fields.
+        (b",'op_statues':'2026','op_chapter':'310','op_section':'2'", b"", "missing op_statues"),
+    ],
+    ids=["unknown-command", "command-only"],
+)
 @pytest.mark.parametrize("source", ["initial", "refresh", "cache"])
 def test_a_malformed_second_picker_anchor_cannot_produce_complete_coverage(
-    tmp_path, monkeypatch, source
+    tmp_path, monkeypatch, source, old, new, message
 ):
     fake = FakeLegInfo(_two_versions())
     _install(monkeypatch, fake)
     cache = tmp_path / "cache" if source == "cache" else None
-    prefix = b"selectFromMultiples:j_idt139:1:j_idt141"
     if cache is not None:
         _extract(tmp_path, "WIC:11450@all", cache=cache, base="valid")
         picker = cache / "california-leginfo-pickers/WIC-11450.html"
-        picker.write_bytes(picker.read_bytes().replace(prefix, b"unknown:version"))
+        assert old in picker.read_bytes()
+        picker.write_bytes(picker.read_bytes().replace(old, new))
         fake.log.clear()
     else:
         original_picker = fake.picker
 
         def malformed_picker(token, versions):
             content = original_picker(token, versions)
+            assert old in content
             if source == "initial" or fake.issued >= 2:
-                return content.replace(prefix, b"unknown:version")
+                return content.replace(old, new)
             return content
 
         monkeypatch.setattr(fake, "picker", malformed_picker)
-    with pytest.raises(CaliforniaVersionError, match="exactly one command key"):
+    with pytest.raises(CaliforniaVersionError, match=message):
         _extract(tmp_path, "WIC:11450@all", cache=cache, base="malformed")
     assert not list((tmp_path / "malformed").rglob("*.json"))
     assert not list((tmp_path / "malformed").rglob("*.jsonl"))
