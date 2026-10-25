@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt.json",
+      "sha256": "6da7b117d690967c6a3ef9fe22f29531c053f6d0f920aff67328a27e3b835f63"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt.json",
+      "sha256": "f1e5d4ec87a0d2e89ff59fc9b521c8de5ff1105e3990df4d01ff350ca9fb8359"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt.jsonl",
+      "sha256": "916da9305738ce4dd246ecf524e56b85ee82d1822b8f1355cd5d3a8671a2ed9c"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt/official-documents/us-vt-w6-33-1103.html",
+      "sha256": "f65b8cc71e04ec07d6cfdbb76d65d76e79c7fe10d264018c0a247fdb509f8019"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt/official-documents/us-vt-w6-33-3512.html",
+      "sha256": "09657b17c6766284814910d920f8c84731873c3cf54f31a5ad66cb12d3f04ec1"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt/official-documents/us-vt-w6-33-chapter-11.html",
+      "sha256": "ba357aaa59d878aa2a7759f0a7f5222b0e55d3c711156e1cb9875fc628ca5359"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt/official-documents/us-vt-w6-session-laws-2022-act-133.pdf",
+      "sha256": "89d31cd3238abd1c4a3413df7077a603fcfffe58d5e1d0d8e9f1a050f59783a0"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/statute/2026-10-06-w6-tanf-ccdf-statute-vt/official-documents/us-vt-w6-session-laws-2023-act-76.pdf",
+      "sha256": "869082fd6443d7d885d5b8f1766893992b3ed37c737d325e81142fb2b1ddbf97"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 123,
+    "missing_count": 0,
+    "provision_count": 123,
+    "source_count": 123
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T18:00:06.243985+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pOpM8ek2GD/Re8yjeQItv1Dhihy5j+hGO4N6ftlD0ZLT0UPFhrW7KkVAt/guTkJfqeiY+3TGJHJGW23GFmOhCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statute-vt"
+}

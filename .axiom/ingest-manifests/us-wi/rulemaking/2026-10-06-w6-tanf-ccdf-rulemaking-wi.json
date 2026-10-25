@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wi.json",
+      "sha256": "e1d16b3228ee6ed47550623e70fe8a64cfe8809478bae96cdc571887a5b072b2"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wi.json",
+      "sha256": "1a0d5fd0e23caba23db6db06b78da903b98ab48ad5ac32d8966c4de4fe73c3d7"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wi.jsonl",
+      "sha256": "dd57d4b163c060854e4872f47005455458d27930e3002327da257a213eaef893"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/rulemaking/2026-10-06-w6-tanf-ccdf-rulemaking-wi/official-documents/us-wi-w6-dcf-dcf-201-child-care-subsidy-copayments-and-provider-fees.pdf",
+      "sha256": "912894732165748462af23b1897ecd57dd9b65b5b3d786441b1f2014cdac5ae3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-nh-wy.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T18:00:58.227754+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OcVW7yNXZbjfDAsG1RHxLIv1x4N4Jf5qiUNunqU19DKxmeKaEj2v8GcE9s3G4TC3zTPbOzRezaJ44K0hhOEXBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rulemaking-wi"
+}

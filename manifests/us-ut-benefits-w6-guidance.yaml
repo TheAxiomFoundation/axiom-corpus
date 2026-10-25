@@ -1,0 +1,40 @@
+version: 2026-10-06-w6-benefits-guidance-ut
+documents:
+- source_id: us-ut-guidance-dws-ui-benefit-calculation
+  jurisdiction: us-ut
+  document_class: guidance
+  title: Unemployment Insurance Benefit Calculation (Utah DWS)
+  source_url: https://jobs.utah.gov/ui/UIShared/PDFs/BenefitCalculation.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-09-25'
+  citation_path: us-ut/guidance/dws/ui/benefit-calculation
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services
+    document_subtype: benefit_calculation_sheet
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the served file (2026-09-25)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 230)
+    wave6_rows:
+    - 230
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md
+- source_id: us-ut-guidance-dws-ui-claimant-guide
+  jurisdiction: us-ut
+  document_class: guidance
+  title: Unemployment Insurance Claimant Guide (Utah DWS)
+  source_url: https://jobs.utah.gov/ui/jobseeker/claimantguide.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2025-03-13'
+  citation_path: us-ut/guidance/dws/ui/claimant-guide
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Workforce Services
+    document_subtype: claimant_handbook
+    program: Unemployment insurance
+    expression_date_note: publisher Last-Modified of the served file (2025-03-13)
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 231)
+    wave6_rows:
+    - 231
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

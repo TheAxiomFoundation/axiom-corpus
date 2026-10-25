@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "db2324cc94a5a1dd1929218b752321aa0a93111cb4d1084966bd7171b708736e"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "7f54f705699a15d0e31950480b9604acb7cf9be168d938eed6d32e989262696b"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "02bcc00c1c4e23498af1364643e281ce678de6173660ec1aa566c29e9e5a0e05"
+    },
+    {
+      "path": "data/corpus/sources/us-or/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-or-dor-form-or-40-instructions-ty2025.pdf",
+      "sha256": "4ee45bad719499e2b69977b0db15de75ed063ac631b151fdefe3db081fa1eaeb"
+    },
+    {
+      "path": "data/corpus/sources/us-or/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-or-dor-form-or-40-ty2025.pdf",
+      "sha256": "eaa5ca450083c7717e46846ce69d1b71ea64bcc58ae48d7f9c25ed9c8e9a56e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:57:24.540270+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "568boUiGsUywgPIS49C1QGcBMZFnrp/bz0l1ADwUN8Z1qQNyHp2uUdMd9yxwtb1GufDwgQhzctHz8IkWZ+tRBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

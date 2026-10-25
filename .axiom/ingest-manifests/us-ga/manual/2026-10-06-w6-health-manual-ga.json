@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-10-06-w6-health-manual-ga.json",
+      "sha256": "6b40a5eab8fff1b74ebbccd7a28be4e068a00ca1adc22c9c7ca99f2d4e195d7e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-10-06-w6-health-manual-ga.json",
+      "sha256": "bb6629d0cb7ddda6f7b8df144ff100d6d7eb2ba680a126a2f4d332fc5cd64145"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-10-06-w6-health-manual-ga.jsonl",
+      "sha256": "e9496d0aa11a1eeff7f1e08fd51ca1730018bd687051cc49319a900b3bd9cc1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-10-06-w6-health-manual-ga/official-documents/us-ga-w6-health-dfcs-medicaid-appendix-a2-2026-family-limits.html",
+      "sha256": "310d7e11694067ea591ad085aeb1ba526f92f085b472edf95922612fab17b377"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-07T17:50:46.823466+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gtkbBELygdY8yRpONgwFBZTdazJO8un5gP0IHY+PEnhgqr6CbcsGvKiS/3aZdKaVr5Bt3ufj2DwxdhH5eE1jBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-manual-ga"
+}

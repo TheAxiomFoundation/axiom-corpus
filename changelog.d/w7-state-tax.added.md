@@ -1,0 +1,1 @@
+Wave 7 state-tax: manifests for five Indiana income tax forms (forms.in.gov query-routed ids) and the 2025 Virginia Appropriation Act as chaptered (HB 1600, Chapter 725, from the State Budget Portal), with the decisions file for the 16-row work order.

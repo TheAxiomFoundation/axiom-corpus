@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc.json",
+      "sha256": "f10057ff28add3b04f1d4501542108fc4f326f800e88be5df4a2ec5637af1806"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc.json",
+      "sha256": "ca183f8727c2f73b4d8708e188124d73793b2e6f3c09a08795743b7405354147"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc.jsonl",
+      "sha256": "18da80134848a4e0e0232f284f4c19de0106170829c065ca109cec5ab014be06"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc/official-documents/us-dc-w6-dhs-tanf-tanf-state-plan-for-comment-2020-01-07.pdf",
+      "sha256": "7c5c5cbb721b1d7c84a07baa864b4b0216e4a63848f9b4a03bea95c797f82144"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc/official-documents/us-dc-w6-dhs-tanf-temporary-cash-assistance-for-needy-families.html",
+      "sha256": "eb921664de3178ad90b4e50d39e4d954fc852ff564a51e2b36eccced7c225392"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc/official-documents/us-dc-w6-osse-ccdf-dc-child-care-subsidy-program.html",
+      "sha256": "c20b6053b30742e3c6916e5126c81582dd74b21ca3179acac06a43899babfd42"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc/official-documents/us-dc-w6-osse-ccdf-final-rulemaking-licensing-of-child-development-facilities.pdf",
+      "sha256": "c82e8a1a862418c8fc038aa7b7c85a221cbbf686f4ac7cd3f24989651c30bce6"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/policy/2026-10-06-w6-tanf-ccdf-docs-dc/official-documents/us-dc-w6-osse-ccdf-sliding-fee-scale-2024-10-25.pdf",
+      "sha256": "2daa79173938295470a7cbd496ef409a417a92e905d201b89fca42328586c5c7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 235,
+    "missing_count": 0,
+    "provision_count": 235,
+    "source_count": 235
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-07T17:50:20.434546+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oafmXskcTYIHDGdIQ11/gwQDUTqbakeHGXutJ+x024nF0onVUU+gbraOurhbkoiwwXa6qgjJwaJh0MPCKdI2Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-docs-dc"
+}

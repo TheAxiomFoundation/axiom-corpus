@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct.json",
+      "sha256": "835299f7a09486f343ebc7371cb3fd70fe09c91ab6f018348d116feb1b4af74f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct.json",
+      "sha256": "e4ce7b15ef389082e937ed329383452230ad0382834b5518310e14b0465f8adf"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct.jsonl",
+      "sha256": "f9caf826f737d5bda07dbd5e31d1b31dcb1e96791ac7b7fd1de923a503828d58"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct/official-documents/us-ct-w6-drs-child-tax-rebate-overview.html",
+      "sha256": "be27148acaf50a22134784858f3e41cccd93f0ec50ec6bbb669c29dfd9e05f26"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct/official-documents/us-ct-w6-drs-state-tax-developments-2025-income-tax.html",
+      "sha256": "0a31af5485d802f309362283c471f5d15bdc55c2832385c528792688a78d3e2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/guidance/2026-10-06-w6-income-tax-guidance-ct/official-documents/us-ct-w6-drs-tssb-2022-5.pdf",
+      "sha256": "61491284e06fa258eb7141655fd8f7079c481858a8f51cb0140d3f483c6c0449"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:50:04.682872+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KK0VFz7WcjSiwaSsNBlgHAc24iOjjCuHmq4AVVSpvDs/uGbYSAR37mBLgQQjR3nAHO18ktxOk9x5ceFJ24FmAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ct"
+}

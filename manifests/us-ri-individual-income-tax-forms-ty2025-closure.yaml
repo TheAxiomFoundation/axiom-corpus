@@ -1,0 +1,91 @@
+version: '2026-09-15'
+documents:
+- source_id: us-ri-tax-ri-1040-ty2025
+  jurisdiction: us-ri
+  document_class: form
+  title: 2025 Form RI-1040 Resident Individual Income Tax Return
+  source_url: https://tax.ri.gov/sites/g/files/xkgbur541/files/2026-01/2025_1040WE_w.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ri/form/tax/ty2025/ri-1040
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Division of Taxation
+    document_subtype: return_form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 5
+    first_page_first_line: State of Rhode Island Division of Taxation 2025 Form RI-1040 Resident Individual Income Tax Return
+- source_id: us-ri-tax-ri-1040-instructions-ty2025
+  jurisdiction: us-ri
+  document_class: form
+  title: 2025 Instructions for Filing RI-1040 (full year Rhode Island residents)
+  source_url: https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-12/2025%201040R%20Instructions%20122025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ri/form/tax/ty2025/ri-1040-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Division of Taxation
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 13
+    first_page_first_line: 2025 INSTRUCTIONS FOR FILING RI-1040
+- source_id: us-ri-tax-tax-tables-ty2025
+  jurisdiction: us-ri
+  document_class: form
+  title: 2025 Rhode Island Tax Tables (with the 2025 tax rate schedule)
+  source_url: https://tax.ri.gov/sites/g/files/xkgbur541/files/2026-01/2025%20RI%20Tax%20Tables_Full.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ri/form/tax/ty2025/tax-tables
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Division of Taxation
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 7
+    first_page_first_line: RHODE ISLAND TAX RATE SCHEDULE 2025
+- source_id: us-ri-tax-tax-rate-schedule-and-worksheets-ty2025
+  jurisdiction: us-ri
+  document_class: form
+  title: 2025 Rhode Island Tax Rate Schedule and Worksheets
+  source_url: https://tax.ri.gov/sites/g/files/xkgbur541/files/2026-01/2025%20Tax%20Rate%20and%20Worksheets.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2025-01-01'
+  citation_path: us-ri/form/tax/ty2025/tax-rate-schedule-and-worksheets
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Division of Taxation
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_family: state-income-tax-forms-ty2025-closure-2026-09-15
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    discovered_via: manual-review:needs-closure-2026-09-14 tax-extractable.csv; index https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+      (read 2026-09-14)
+    page_count_at_research: 1
+    first_page_first_line: 2025 RHODE ISLAND TAX RATE SCHEDULE AND WORKSHEETS

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/statute/2026-10-06-w6-benefits-statute-ok.json",
+      "sha256": "81dfbe0352561419857f53af66579635833534afe71e6e641a068118aa27ce25"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/statute/2026-10-06-w6-benefits-statute-ok.json",
+      "sha256": "40ae7f58aa011611a477bdbfa326581514378d6364e69bc424fb2e44b4e09bd2"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/statute/2026-10-06-w6-benefits-statute-ok.jsonl",
+      "sha256": "a3adbe10dece1682764a09394bb4345390e136822179ab1a7e8c8549498efc0e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/statute/2026-10-06-w6-benefits-statute-ok/official-documents/us-ok-statute-session-laws-2021-hb1933.pdf",
+      "sha256": "175123976b64575f0a4353a225cf14c94c3f840c935bdbcba56ed651c94140d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/statute/2026-10-06-w6-benefits-statute-ok/official-documents/us-ok-statute-title-40-pdf.pdf",
+      "sha256": "99c3cd84c755f1360fbd28b330246925f238271a3c498945e26441f7f5851d86"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 347,
+    "missing_count": 0,
+    "provision_count": 347,
+    "source_count": 347
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:57:20.542125+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "t9juPCm+pAlhqVG5A7NMqFIm7DF1C54IMnYK3YicOYuxqRzBG46iXWsG4Np5TpOcD6gm5GSmVUX/4Hf5M+axCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-statute-ok"
+}

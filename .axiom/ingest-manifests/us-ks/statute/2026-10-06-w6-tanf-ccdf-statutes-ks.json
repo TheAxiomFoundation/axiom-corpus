@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/statute/2026-10-06-w6-tanf-ccdf-statutes-ks.json",
+      "sha256": "3c714cd064f003c6b99dfd885fe1d66f2e437a36ffd7115183bd6d96b92652a8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/statute/2026-10-06-w6-tanf-ccdf-statutes-ks.json",
+      "sha256": "ad7a849696acdc03937efe635efbe5c71ffae148b2e967459eb3f8a35de4da03"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/statute/2026-10-06-w6-tanf-ccdf-statutes-ks.jsonl",
+      "sha256": "4161fa61f18c91cac3a04b111a035dbd0f089ed4e101dc8326770a7ed058cfea"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/statute/2026-10-06-w6-tanf-ccdf-statutes-ks/official-documents/us-ks-w6-39-709.html",
+      "sha256": "95626c8d89c5377ae78d65142fe7fc0980049a63b7198b696bfb5aabe51c4b59"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:52:18.532508+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Q6cA3xos4ROVT/dI9R2HLN2YhQJA0TMj6VofpG8HBhOdf0Vs7wHhB7TtL79YpclUgU6vSzSFM18UjIn97a8fDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-statutes-ks"
+}
