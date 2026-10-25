@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-09-28-uk-pe-child-definitions.jsonl",
-      "sha256": "e5b824162aad96da4f5cd2acfe44506cbe6680624de41327d61481f4acd97556"
+      "sha256": "7a7dac84c79167dea00093c001254b6ad610de42048223f19f88a7c478d0f989"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/1987/1967/regulation-14.xml",
@@ -122,13 +122,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2237f1a1b94b800c8ab950816851031f46532c5a",
+    "commit": "b62e938edbad77a63882ead34175782eb507152e",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-28-uk-pe-child-definitions --source clml --citation uksi/2013/376/regulation/3 --citation uksi/2013/376/regulation/8 --citation uksi/2006/213/regulation/2 --citation uksi/2006/213/regulation/13D --citation uksi/2006/213/regulation/19 --citation uksi/2006/213/regulation/75CA --citation uksi/2002/1792/regulation/4A --citation uksi/2002/2007/regulation/2 --citation uksi/2002/2007/regulation/3 --citation uksi/2002/2007/regulation/5 --citation uksi/2002/2005/regulation/4 --citation uksi/2002/2005/regulation/9 --citation uksi/2002/2005/regulation/11 --citation uksi/2002/2005/regulation/12 --citation uksi/2002/2005/regulation/14 --citation uksi/2002/2005/regulation/17 --citation uksi/2015/448/regulation/3 --citation uksi/2015/448/regulation/9 --citation uksi/2006/223/regulation/3 --citation uksi/1987/1967/regulation/2 --citation uksi/1987/1967/regulation/14 --citation uksi/1987/1967/schedule/2/paragraph/1 --citation uksi/2022/1134/regulation/14 --citation uksi/2022/1134/regulation/15 --citation uksi/2011/1986/regulation/42 --citation uksi/2011/1986/regulation/45 --citation uksi/2011/1986/regulation/46 --source-as-of 2026-09-28 --expression-date 2026-04-06"
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-09-28-uk-pe-child-definitions --source clml --source-as-of 2026-09-28 --expression-date 2026-04-06 --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/1987/1967/regulation-14.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/1987/1967/regulation-2.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/1987/1967/schedule-2-paragraph-1.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/1792/regulation-4A.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2005/regulation-11.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2005/regulation-12.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2005/regulation-14.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2005/regulation-17.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2005/regulation-4.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2005/regulation-9.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2007/regulation-2.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2007/regulation-3.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2002/2007/regulation-5.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2006/213/regulation-13D.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2006/213/regulation-19.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2006/213/regulation-2.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2006/213/regulation-75CA.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2006/223/regulation-3.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2011/1986/regulation-42.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2011/1986/regulation-45.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2011/1986/regulation-46.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2013/376/regulation-3.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2013/376/regulation-8.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2015/448/regulation-3.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2015/448/regulation-9.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2022/1134/regulation-14.xml --source-xml data/corpus/sources/uk/regulation/2026-09-28-uk-pe-child-definitions/uksi/2022/1134/regulation-15.xml  # 2026-10-23 regeneration: replay of this scope's archived signed CLML captures after the CLML parser fix (RestrictExtent inheritance, positional MathML); see the run note's 'Regeneration (2026-10-23)' section"
   },
   "coverage": {
     "complete": true,
@@ -139,19 +139,19 @@
     "source_count": 27
   },
   "document_class": "regulation",
-  "generated_at": "2026-09-28T18:54:28.121933+00:00",
+  "generated_at": "2026-10-25T02:51:55.661725+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-09-28-uk-pe-child-definitions.md",
-      "sha256": "20f373b0792e6e924b9735dea939b3d216ecaca375fc06713b4f2eb6cd1ffcda"
+      "sha256": "07e13b9710956bed51506277b5e6423c26a9bef96db9eb1be5f44157dde07bbf"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "n7VswlkX7NrBggG/VLd2Y0c/+i6jGZVdVuZehhS6lwsiJvVbQ+nQUa7JFMycLlvNP+gH6BNH6n1HglBmR1H2DQ=="
+    "value": "0pDR1vaI37se4n/82lVvN1cjNmT1U23nQn6u70wfVFC1JNo03tNfrEjDYQ5Ce+DmhRWyVMg1EtuPXiLZ2w+YBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-09-28-uk-pe-child-definitions"
