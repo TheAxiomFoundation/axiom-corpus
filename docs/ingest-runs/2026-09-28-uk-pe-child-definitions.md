@@ -137,3 +137,20 @@ in this scope.
   `ok: true`, 0 errors, 0 warnings.
 - No `key-<32 hex>` editorial anchors and no 32+ character hex runs in the
   source captures.
+
+
+## Regeneration (2026-10-23)
+
+Replayed only the statute (10 rows) and regulation (27 rows) scopes from their
+unchanged archived, signed CLML captures with `extract-uk-legislation
+--source-xml`, preserving source-as-of 2026-09-28 and expression date 2026-04-06.
+Provision extent now follows the nearest enclosing `RestrictExtent`, correcting
+SSCBA 1992 section 137 to England, Wales and Scotland. Operative MathML is
+retained at its position in the prose, restoring both `M x W` and `M × W`
+threshold formulas in Tax-Free Childcare Regulations 2015 regulation 9. Only
+those two normalized rows changed; source, inventory and coverage bytes and all
+37 citation identities remain unchanged. The regenerated provision SHA256s are
+`5a6df8e14946bbf07c178f73e4ac76f20e21967a110574801ecc41bc249ce9a9` (statute) and `7a7dac84c79167dea00093c001254b6ad610de42048223f19f88a7c478d0f989` (regulation). The historical
+run text above is preserved. The regenerated rows and this appended note need
+fresh ingest attestations after the generator changes are committed; no new
+signatures or publication were produced in this regeneration.
