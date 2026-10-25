@@ -44,6 +44,8 @@ from axiom_corpus.corpus.content_store import (
     ContentStoreError,
     GitBlobSource,
     R2ObjectStore,
+    R2UnavailableError,
+    RetryPolicy,
     clone_file,
     content_key,
     ensure_cached,
@@ -403,6 +405,74 @@ def test_fetch_falls_back_to_a_verified_legacy_path_key(tmp_path: Path) -> None:
     assert fake.gets == [content_key(entry.sha256), "provisions/nz/statute/v1.jsonl"]
 
 
+def test_r2_get_retries_temporary_service_unavailability() -> None:
+    data = b"locked bytes"
+    entry = LockEntry("data/corpus/provisions/nz/statute/v1.jsonl", _sha(data), len(data))
+
+    class TemporarilyUnavailable(FakeR2):
+        failures_left = 2
+
+        def get_object(self, **kwargs):
+            if self.failures_left:
+                self.failures_left -= 1
+                raise ClientError(
+                    {
+                        "Error": {"Code": "ServiceUnavailable"},
+                        "ResponseMetadata": {"HTTPStatusCode": 503},
+                    },
+                    "GetObject",
+                )
+            return super().get_object(**kwargs)
+
+    delays: list[float] = []
+    client = TemporarilyUnavailable({content_key(entry.sha256): data})
+    # Jitter at its maximum: after failure n the wait is the whole 2**(n-1) s.
+    remote = R2ObjectStore(
+        bucket="axiom-corpus",
+        client=client,
+        retry=RetryPolicy(sleep=delays.append, jitter=lambda: 1.0),
+    )
+
+    assert b"".join(remote.open(entry) or ()) == data
+    assert delays == [1.0, 2.0]
+    assert client.gets == [content_key(entry.sha256)]
+
+
+@pytest.mark.parametrize("code,status", [("ServiceUnavailable", 503), ("AccessDenied", 403)])
+def test_r2_get_retries_only_temporary_errors_and_preserves_final_error(
+    code: str, status: int
+) -> None:
+    class AlwaysFails:
+        calls = 0
+
+        def get_object(self, **_kwargs):
+            self.calls += 1
+            raise ClientError(
+                {"Error": {"Code": code}, "ResponseMetadata": {"HTTPStatusCode": status}},
+                "GetObject",
+            )
+
+    delays: list[float] = []
+    client = AlwaysFails()
+    remote = R2ObjectStore(
+        bucket="axiom-corpus",
+        client=client,
+        legacy_path_keys=False,
+        retry=RetryPolicy(attempts=5, sleep=delays.append, jitter=lambda: 1.0),
+    )
+    entry = LockEntry("data/corpus/provisions/nz/statute/v1.jsonl", "0" * 64, 1)
+
+    # A temporary error that never clears gives up after the budget, keeping
+    # R2's final error as the cause; any other error is raised at once.
+    expected = R2UnavailableError if status == 503 else ClientError
+    with pytest.raises(expected, match=code) as raised:
+        remote.open(entry)
+    if status == 503:
+        assert isinstance(raised.value.__cause__, ClientError)
+    assert client.calls == (5 if status == 503 else 1)
+    assert delays == ([1.0, 2.0, 4.0, 8.0] if status == 503 else [])
+
+
 def test_fetch_never_overwrites_modified_files_without_force(tmp_path: Path) -> None:
     lock = _scope_lock()
     remote, _fake = _remote({content_key(_sha(d)): d for d in SCOPE_FILES.values()})
@@ -577,6 +647,77 @@ def test_resolver_raises_when_bytes_are_unavailable(tmp_path: Path) -> None:
     resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[remote])
     with pytest.raises(CorpusNotMaterializedError, match="could not be fetched"):
         resolver.ensure_scopes([SCOPE])
+
+
+def test_repro_script_fetches_the_locked_inputs_it_reads_and_not_its_outputs(
+    tmp_path: Path, monkeypatch
+) -> None:
+    from axiom_corpus.corpus import resolver as corpus_resolver
+    from scripts.repro import us_ny_tax_article_22_line_structure as repro
+
+    released = f"us-ny/statute/{repro.SOURCE_VERSION}"
+    successor = f"us-ny/statute/{repro.VERSION}"
+    # The reproduction reads the released scope's sources, inventory and provisions.
+    inputs = {
+        f"data/corpus/sources/{released}/official-documents/601.html": b"<html>601</html>",
+        f"data/corpus/sources/{released}/official-documents/606.html": b"<html>606</html>",
+        f"data/corpus/inventory/{released}.json": b'{"items": []}\n',
+        f"data/corpus/provisions/{released}.jsonl": b'{"citation_path": "a"}\n',
+    }
+    # It never reads the released coverage, and it writes the successor scope,
+    # whose version starts with the released one.
+    others = {
+        f"data/corpus/coverage/{released}.json": b'{"complete": true}\n',
+        f"data/corpus/sources/{successor}/official-documents/601.html": b"<html>new</html>",
+        f"data/corpus/inventory/{successor}.json": b'{"items": [1]}\n',
+        f"data/corpus/provisions/{successor}.jsonl": b'{"citation_path": "b"}\n',
+        f"data/corpus/coverage/{successor}.json": b'{"complete": false}\n',
+    }
+    files = {**inputs, **others}
+    repo = _init_repo(tmp_path / "repo")
+    remote, _fake = _remote({content_key(_sha(d)): d for d in files.values()})
+    monkeypatch.delenv("AXIOM_CORPUS_NO_FETCH", raising=False)
+
+    def use_fresh_resolver() -> None:
+        resolver = CorpusResolver(repo, cache=ContentCache(tmp_path / "cache"), sources=[remote])
+        monkeypatch.setitem(corpus_resolver._RESOLVERS, repo.resolve(), resolver)
+
+    def present() -> set[str]:
+        root = repo / "data" / "corpus"
+        return {p.relative_to(repo).as_posix() for p in root.rglob("*") if p.is_file()}
+
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo)
+    assert not (repo / "data").exists()
+
+    for scope in {scope_for_path(path) for path in files}:
+        write_lock(repo, _scope_lock({p: d for p, d in files.items() if scope_for_path(p) == scope}, scope))
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo, source_base=tmp_path / "elsewhere")
+    assert not (repo / "data").exists()
+
+    repro.ensure_corpus_inputs(repo=repo)
+    assert present() == set(inputs)
+    assert all((repo / path).read_bytes() == data for path, data in inputs.items())
+
+    # main() always passes --source-base (default data/corpus), which the helper
+    # resolves; a symlinked spelling of the checkout resolves to the same files.
+    (tmp_path / "link").symlink_to(repo)
+    for source_base in (repo / "data" / "corpus", tmp_path / "link" / "data" / "corpus"):
+        for path in inputs:
+            (repo / path).unlink()
+        use_fresh_resolver()
+        repro.ensure_corpus_inputs(repo=repo, source_base=source_base)
+        assert present() == set(inputs)
+
+    # From another directory, a relative --source-base names <cwd>/data/corpus,
+    # which is what the script reads; that is outside the checkout.
+    for path in inputs:
+        (repo / path).unlink()
+    monkeypatch.chdir(tmp_path)
+    use_fresh_resolver()
+    repro.ensure_corpus_inputs(repo=repo, source_base=Path("data/corpus"))
+    assert present() == set()
 
 
 def test_cli_inputs_name_paths_selectors_and_optional_scopes(tmp_path: Path, monkeypatch) -> None:

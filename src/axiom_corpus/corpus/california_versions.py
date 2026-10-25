@@ -74,6 +74,12 @@ _REPEALED_CLAUSE = re.compile(rf"\brepealed {_ON}{_DATE}", re.IGNORECASE)
 _OPERATIVE_CLAUSE = re.compile(rf"(?<![A-Za-z])operative {_ON}{_DATE}", re.IGNORECASE)
 PICKER_COMMAND_PREFIX = "selectFromMultiples:"
 VIEW_STATE_FIELD = "javax.faces.ViewState"
+# A submission field name, or a row-indexed picker command such as
+# ``selectFromMultiples:j_idt139:1:j_idt141`` (one per listed version). The picker's
+# navigation commands, such as ``selectFromMultiples:addMyFavTitle``, have no row index.
+_VERSION_MARKER_RE = re.compile(
+    rf"op_(?:statues|chapter|section)|{re.escape(PICKER_COMMAND_PREFIX)}(?:[\w-]+:)+\d+:"
+)
 
 
 @dataclass(frozen=True)
@@ -262,11 +268,22 @@ def validate_leginfo_selector(value: str) -> str:
     )
 
 
+def _names_a_version(anchor: Tag) -> bool:
+    if "portletNav" in (anchor.get("class") or ()):
+        return True
+    return any(
+        _VERSION_MARKER_RE.search(" ".join(value) if isinstance(value, list) else str(value))
+        for value in anchor.attrs.values()
+    )
+
+
 def parse_leginfo_picker(html_bytes: bytes) -> LegInfoPicker | None:
     """Parse a LegInfo picker, returning ``None`` for a non-picker page.
 
-    Malformed version links raise rather than silently shortening the list of
-    versions. The picker's unrelated navigation links are ignored.
+    An anchor is a version link when it has LegInfo's ``portletNav`` class or
+    any of its attributes names a submission field or a row-indexed picker
+    command. Malformed version links raise rather than silently shortening the
+    list of versions. The picker's unrelated navigation links are ignored.
     """
     soup = BeautifulSoup(html_bytes, "html.parser")
     form = soup.find("form", id="selectFromMultiples")
@@ -285,12 +302,9 @@ def parse_leginfo_picker(html_bytes: bytes) -> LegInfoPicker | None:
     )
     links: list[LegInfoPickerLink] = []
     for anchor in form.find_all("a"):
-        onclick = anchor.get("onclick")
-        is_version_link = "portletNav" in (anchor.get("class") or ()) or (
-            isinstance(onclick, str) and re.search(r"op_(?:statues|chapter|section)", onclick)
-        )
-        if not is_version_link:
+        if not _names_a_version(anchor):
             continue
+        onclick = anchor.get("onclick")
         if not isinstance(onclick, str):
             raise ValueError("LegInfo picker version link has no onclick handler")
         params = tuple(_ONCLICK_PARAM_RE.findall(onclick))
