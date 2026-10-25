@@ -1125,3 +1125,15 @@ def test_released_scope_reuse_verifies_each_prior_object_once(monkeypatch) -> No
     changed["artifacts"][0]["sha256"] = "different"
     with pytest.raises(ReleaseManifestError, match="immutable released scope differs"):
         publish._require_safe_released_scope_reuse(changed, released, public_keys=("k",))
+
+
+def test_publication_requires_the_release_policy_in_a_locked_checkout(tmp_path: Path) -> None:
+    """A checkout that keeps corpus locks must carry the withdrawn-scope list and baseline."""
+    from axiom_corpus.corpus.corpus_locks import LOCK_ROOT
+    from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, ReleasePolicyError
+
+    assert publish._release_gate_policy(tmp_path) == ReleaseGatePolicy(source=str(tmp_path))
+    (tmp_path / LOCK_ROOT).mkdir(parents=True)
+    with pytest.raises(ReleasePolicyError, match="release policy files are missing"):
+        publish._release_gate_policy(tmp_path)
+    assert publish._release_gate_policy(REPO_ROOT).withdrawn
