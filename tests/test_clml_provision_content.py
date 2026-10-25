@@ -122,7 +122,7 @@ def _nested_restrictions(draw):
 @given(case=_nested_restrictions())
 def test_every_extracted_extent_matches_ancestor_and_is_subset_of_root(case):
     root_extent, captures = case
-    with TemporaryDirectory(prefix="hub-axiom-corpus-765-clml-", dir="/private/tmp") as temp:
+    with TemporaryDirectory(prefix="clml-extent-") as temp:
         base = Path(temp)
         source_paths = []
         expected = {}
