@@ -1,0 +1,57 @@
+# Dated Montana authority for married taxpayers filing separately, tax years 2021-2023.
+#
+# ARM 42.15.524 (itemized deductions of married taxpayers) governed how spouses who filed
+# separate Montana returns divided itemized deductions until Montana tied its filing status
+# to the federal one from tax year 2024. No locked scope carries the rule: the 42.15 scope
+# taken from the current rules.mt.gov collection has no subchapter 5 rules. The old gateway
+# URL now redirects to the rules.mt.gov search application, so the text comes from the
+# Internet Archive capture of the official page taken in October 2023, which lists the
+# 4/30/2010 amendment as current.
+#
+# The row sits at a variant path, the sibling form schema/citation-path.v1.md section 4.0
+# gives a dated version, so that a later ingest of the rule's current page keeps the plain
+# path.
+#
+# Version is set on the command line; this key is documentation only:
+version: 2026-10-25-mt-separate-filing-dated-authority
+documents:
+- source_id: us-mt-arm-42-15-524--effective-2010-04-30
+  jurisdiction: us-mt
+  document_class: regulation
+  citation_path: us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524--effective-2010-04-30
+  title: ARM 42.15.524, Itemized deductions of married taxpayers (effective 4/30/2010)
+  source_url: https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
+  download_url: https://web.archive.org/web/20231003110140id_/https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
+  source_format: html
+  source_as_of: '2023-10-03'
+  expression_date: '2010-04-30'
+  extraction:
+    html_content_selector: '#RuleContent'
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Revenue
+    publisher: Montana Secretary of State, Administrative Rules of Montana
+    document_subtype: administrative_rule_historical_text
+    program: individual_income_tax
+    variant: effective-2010-04-30
+    canonical_citation_path: us-mt/regulation/title-42/chapter-42-15/subchapter-42-15-5/rule-42-15-524
+    effective_start: '2010-04-30'
+    effective_basis: The page's history table lists MAR notice 42-2-820, effective from
+      4/30/2010, as current (2010 MAR p. 1088).
+    expression_date_note: expression_date is the effective date of the 2010 amendment,
+      the last one the page lists. source_as_of is the Internet Archive capture date.
+    archived_official_source: true
+    archive_url: https://web.archive.org/web/20231003110140/https://rules.mt.gov/gateway/ruleno.asp?RN=42.15.524
+    archive_timestamp: '20231003110140'
+    archive_payload_sha1_base32: 76DU6CPDVYM7ZVKJMKACM5EESQ2OATLX
+    archive_payload_sha256: d856d16f35e6737df9cac3155bcc58aaf9c52d7be78c8a38fd220f2bef449411
+    archive_capture_note: Every Internet Archive capture of the rules.mt.gov page from
+      20220701053000 to 20240611163609 has this payload digest. The earlier mtrules.org
+      captures from 20171002103641 to 20201030190413 share another digest and carry the
+      same rule text and 2010 history.
+    source_access_note: The official gateway URL now redirects to the rules.mt.gov search
+      application, which serves no rule text to an HTTP client; download_url is the
+      Internet Archive capture of the official page, whose payload digest matches the
+      archive's CDX record.
+    discovered_via: TheAxiomFoundation/rulespec-us household-choices register, Montana
+      separate filing on the same form for tax years 2021-2023 (rulespec-us#1844)
