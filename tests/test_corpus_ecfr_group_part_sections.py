@@ -1325,7 +1325,12 @@ def test_property_retained_extraction_writes_the_one_element_that_claims_the_pat
 ):
     """extract_ecfr on a retained part XML completes exactly when one element claims the
     selected section's path, and then writes that element's body; a section numbered for
-    another part is claimed only by the element that publishes the selector."""
+    another part is claimed only by the element that publishes the selector.
+
+    The production selection helper supplies selectors and expected claimants here;
+    this property checks extraction, duplicate rejection, and writes against that
+    selection, rather than independently verifying the helper's parsing grammar.
+    """
     import tempfile
 
     xml = (f'<ECFR><DIV5 N="{part}" TYPE="PART"><HEAD>PART {part}</HEAD>' + "".join(

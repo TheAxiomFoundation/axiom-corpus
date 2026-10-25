@@ -169,10 +169,9 @@ sections and the XML pass read `60-20.1` as part 20, section 1; no release selec
 
 A section may be numbered for a part other than the eCFR part that holds it. Title 43
 groups BLM rules in parts such as 3800, whose subparts carry their own numbers: subpart
-3809 of part 3800 holds 43 CFR 3809.1, and eCFR has no part 3809. A 2026-10-08 census
-observed 2,976 such sections in 82 title-43 parts, plus five misnumbered sections elsewhere,
-such as § 1735.9 in 7 CFR part 1739. Such a section keeps the path of its citation,
-`us/regulation/43/3809/1`, which is how the app and the encoder resolve "43 CFR 3809.1".
+3809 of part 3800 holds 43 CFR 3809.1, and eCFR has no part 3809. Such a section keeps
+the path of its citation, `us/regulation/43/3809/1`, which is how the app and the encoder
+resolve "43 CFR 3809.1".
 It belongs to the part that holds it:
 
 - its parent is `us/regulation/43/3800/subpart-3809`;
@@ -189,10 +188,9 @@ source snapshot. In the XML, a section numbered for another part is read only fr
 identifier the structure grammar reads whole, so an identifier that merely contains
 one (`19-3809.1`) cannot take its path.
 
-Before 2026-10-12, a part-scoped run dropped these sections. A whole-title inventory gave
-them the parent `us/regulation/43/3809/subpart-3809`, which no inventory holds, and a link
-to a part-3809 page that eCFR does not serve. As of 2026-10-12, no release selector under
-`manifests/releases/` carried title 43 or the five other parts.
+Source XML and graphic writes wait until every pending title has passed fatal
+validation. An ordinary resume reuses cached provisions only when their source
+bytes match the inventory's pinned hashes; missing or changed snapshots are reparsed.
 
 Targeted rebuilds are scoped and do not certify the whole source:
 

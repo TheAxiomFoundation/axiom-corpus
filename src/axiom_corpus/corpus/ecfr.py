@@ -21,7 +21,7 @@ from xml.etree import ElementTree as ET
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory_references
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -79,6 +79,7 @@ class _EcfrTitleResult:
     transcription_evidence: Mapping[str, Mapping[str, str]] | None = None
     source_sha256: str | None = None
     error: str | None = None
+    pending_source_writes: tuple[tuple[Path, bytes], ...] = ()
 
 
 def ecfr_run_id(
@@ -1829,22 +1830,40 @@ def extract_ecfr(
         for record in load_provisions(store.provisions_path("us", DocumentClass.REGULATION, run_id))
         if record.citation_path in allowed_citation_paths
     }
+    inventory_path = store.inventory_path("us", DocumentClass.REGULATION, run_id)
+    cached_sources = {
+        item.citation_path: (item.source_path, item.sha256)
+        for item in load_source_inventory_references(inventory_path)
+    } if inventory_path.exists() else {}
     title_paths: dict[int, set[str]] = {}
     for citation_path in allowed_citation_paths:
         title_paths.setdefault(_title_from_citation_path(citation_path), set()).add(citation_path)
 
     pending_titles: list[tuple[int, tuple[EcfrPartTarget, ...], set[str]]] = []
+    revalidating_cached_titles: set[int] = set()
     for structure in structures:
         title = int(structure["identifier"])
         paths = title_paths.get(title, set())
         if not paths:
             continue
         if (
-            paths <= set(existing_records)
+            paths.intersection(existing_records)
             and not graphic_transcriptions
             and not only_sections
         ):
-            continue
+            source_key = _ecfr_source_key(run_id, title, only_part)
+            source_path = store.root / source_key
+            source_sha256 = sha256_bytes(source_path.read_bytes()) if source_path.exists() else None
+            if source_sha256 is not None and all(
+                cached_sources.get(path) == (source_key, source_sha256) for path in paths
+            ):
+                # Reuse the verified digest; never rehash skipped cached rows
+                # against bytes that were not checked with their inventory.
+                if paths <= set(existing_records):
+                    source_sha256_by_title[title] = source_sha256
+                    continue
+            else:
+                revalidating_cached_titles.add(title)
         targets = tuple(
             target
             for target in part_targets_from_structure(structure)
@@ -1878,6 +1897,15 @@ def extract_ecfr(
             include_appendices=include_appendices,
         )
     )
+    # Workers stage XML and graphics, including resumable error downloads.
+    # No title may change a source until every pending title has passed fatal
+    # validation. A failed cache revalidation must also leave its old pins intact.
+    for result in title_results:
+        if result.title in revalidating_cached_titles and result.error is not None:
+            raise ValueError(f"cannot revalidate cached eCFR provisions: {result.error}")
+    for result in title_results:
+        for path, content in result.pending_source_writes:
+            store.write_bytes(path, content)
     if not only_sections and source_xml is None:
         for structure in structures:
             title = int(structure["identifier"])
@@ -1912,6 +1940,10 @@ def extract_ecfr(
         for result in title_results:
             if result.error is not None:
                 continue
+            # A reparse replaces the title, including sections now absent from
+            # its XML. Missing bodies become structure-only placeholders below.
+            for citation_path in title_paths[result.title]:
+                existing_records.pop(citation_path, None)
             transcription_evidence.update(result.transcription_evidence or {})
             for record in result.provisions:
                 existing_records[record.citation_path] = record
@@ -2018,6 +2050,7 @@ def _capture_ecfr_math_graphics(
     title: int,
     allowed_citation_paths: set[str] | None,
     include_appendices: bool = False,
+    pending_source_writes: dict[Path, bytes] | None = None,
 ) -> tuple[
     tuple[Path, ...],
     dict[str, str],
@@ -2075,7 +2108,10 @@ def _capture_ecfr_math_graphics(
                 f"eCFR graphic {identifier}",
                 partial(fetch_ecfr_graphic, identifier),
             )
-            store.write_bytes(graphic_path, content)
+            if pending_source_writes is None:
+                store.write_bytes(graphic_path, content)
+            else:
+                pending_source_writes[graphic_path] = content
         if not content.startswith(b"\x89PNG\r\n\x1a\n"):
             raise ValueError(f"eCFR graphic is not a PNG: {identifier}")
 
@@ -2194,6 +2230,7 @@ def _extract_one_title(
         allowed_citation_paths=allowed_citation_paths,
         include_appendices=include_appendices,
     )
+    pending_source_writes: dict[Path, bytes] = {}
     try:
         provisions = tuple(parse_provisions())
     except ET.ParseError as exc:
@@ -2209,8 +2246,11 @@ def _extract_one_title(
                 ) from exc
             # Fresh malformed downloads remain resumable, without binding saved
             # provisions to replacement bytes whose identities were not validated.
-            store.write_text(source_path, xml_content)
-        return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
+            pending_source_writes[source_path] = xml_content.encode("utf-8")
+        return _EcfrTitleResult(
+            title=title, error=f"{title} CFR: {exc}",
+            pending_source_writes=tuple(pending_source_writes.items()),
+        )
     # Validate every selected identity before graphics can write or fail. Other
     # provision validation errors also propagate before any source is replaced.
     _reject_repeated_citation_paths(provisions)
@@ -2225,6 +2265,7 @@ def _extract_one_title(
                 title=title,
                 allowed_citation_paths=allowed_citation_paths,
                 include_appendices=include_appendices,
+                pending_source_writes=pending_source_writes,
             )
         )
         if used_transcriptions:
@@ -2240,14 +2281,18 @@ def _extract_one_title(
     ) as exc:
         # Only XML with validated identities can reach a resumable graphic error.
         if not source_path.exists():
-            store.write_text(source_path, xml_content)
-        return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
+            pending_source_writes[source_path] = xml_content.encode("utf-8")
+        return _EcfrTitleResult(
+            title=title, error=f"{title} CFR: {exc}",
+            pending_source_writes=tuple(pending_source_writes.items()),
+        )
     if not source_path.exists():
-        store.write_text(source_path, xml_content)
+        pending_source_writes[source_path] = xml_content.encode("utf-8")
     return _EcfrTitleResult(
         title=title,
         provisions=provisions,
         source_paths=(source_path, *graphic_paths),
         transcription_evidence=transcription_evidence,
         source_sha256=source_sha256,
+        pending_source_writes=tuple(pending_source_writes.items()),
     )
