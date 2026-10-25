@@ -116,6 +116,29 @@ IsoPlan ePlan platform most NZ councils publish on. The US analogue (municipal
 zoning ordinances) is expected to reuse this issuer-scoped shape under a sibling
 per-family class name.
 
+### 4.0 Same-number variants
+
+When a publisher prints more than one version of one section number, each
+version other than the one at the section's plain path is a sibling segment
+`<section>--<slug>` (`citation_segment.VARIANT_SEPARATOR`,
+`citation_segment.variant_segment`), never a child segment. A child
+(`<section>/<slug>`) would read as a subdivision of the plain row, and `@` is
+outside the segment alphabet. Variant rows carry `metadata.variant` and
+`metadata.canonical_citation_path` (the plain path). The slug is the
+adapter's, for example:
+
+| adapter | slug | example |
+|---|---|---|
+| New Mexico, Vermont, Delaware | effective date or note | `us-nm/statute/7-1-6.21--effective-2027-07-01` |
+| New Jersey | occurrence | `us-nj/statute/34:16-43--variant-2` |
+| Alabama | publisher node id | `us-al/statute/40-21-123--code-28957` |
+| California (LegInfo concurrent versions) | the version's dated clause, else its act | `us-ca/statute/wic/11450--operative-2024-07-01`, `us-ca/statute/rtc/17552.3--stats-2002-ch-35-sec-22` |
+
+California gives every concurrent LegInfo version a variant path, including the
+one its carrier scope holds at the plain path, because LegInfo's picker makes
+the plain path's version depend on the capture session (see
+`docs/ingest-runs/2026-09-26-us-ca-leginfo-concurrent-versions.md`).
+
 ### 4.1 Corpus namespace vs rulespec module namespace (do not confuse)
 
 The corpus citation_path for a federal regulation is
