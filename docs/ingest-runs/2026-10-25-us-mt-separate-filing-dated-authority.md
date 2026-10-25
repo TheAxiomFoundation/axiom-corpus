@@ -100,9 +100,9 @@ version and document ids are in `metadata`.
 2024. The temporary (2) reads, in part, "may, at the taxpayer's option, file a joint return".
 The 2023 edition (`/bills/2023/mca/...`, fetched the same day) prints only the text effective
 January 1, 2024, with its history ending "amd. Sec. 7, Ch. 563, L. 2023", so it is no source for
-tax year 2023. That year rests on the 2021 edition's temporary text, which held until the later
-text took effect on January 1, 2024, and on the 2023 Form 2 instructions, which still give
-couples the choice of filing jointly or separately.
+tax year 2023. That year rests on the 2021 edition's temporary text, which the edition's own
+labels replace with the later text from January 1, 2024, and on the 2023 Form 2 instructions,
+which still give couples the choice of filing jointly or separately.
 
 **Rows.** `html_content_selector: body`, as for `15-30-2131--mca-2021`. Two rows:
 `us-mt/statute/15-30-2602--mca-2021` (document, no body) and `…/block-1` (6,040 characters, both
@@ -182,8 +182,8 @@ fully fetched tree; its result is recorded in the pull request.
 ## Release line
 
 #932 cuts `us-rulespec-2026-10-25-nyc-ch127-title-52`, and this selector is built on it, so it carries
-#932's NYC Administrative Code swap and Title 52 scope as well. Merge #932 first. If both merge before
-#932's release is published, publishing only this release would save rulespec-us one re-pin; either
+#932's NYC Administrative Code swap and Title 52 scope as well. #932 merged first (`ff8c11076`). If
+this merges before #932's release is published, publishing only this release would save rulespec-us one re-pin; either
 way the re-pin that takes this release brings #932's NYC validation changes with it unless
 rulespec-us has already taken #932's. #926 (Kansas LIHEAP) is still cut on an older pin and must be
 rebuilt on the last pin-line selector to merge, as #932's run note describes.

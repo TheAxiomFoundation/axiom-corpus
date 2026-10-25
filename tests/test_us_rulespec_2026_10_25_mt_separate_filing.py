@@ -115,8 +115,10 @@ def test_selector_loads_and_keeps_the_quality_profile() -> None:
 
 
 def test_montana_scopes_share_no_citation_path() -> None:
-    """One release cannot hold two rows at one path (duplicate_release_citation). A path
-    starts with its jurisdiction and class, so only the selected us-mt scopes can collide."""
+    """One release cannot hold two rows at one path. Here: every row of a selected us-mt
+    scope carries its scope's jurisdiction and class, and no two share a path. That another
+    jurisdiction's scope holds no us-mt path is left to release validation, whose
+    duplicate_release_citation check covers the whole release."""
     seen: dict[str, tuple[str, str, str]] = {}
     for key in _keys(RELEASE):
         if key[0] != "us-mt":
