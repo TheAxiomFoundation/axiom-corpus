@@ -1,0 +1,251 @@
+# Ingest run — Canada United States Surtax Order (2026), 2026-09-04
+
+Scope version: `2026-09-04-us-surtax-orders`
+Jurisdiction: `ca` · Document class: `rulemaking`
+
+## What was ingested
+
+The two Orders in Council that impose Canada's counter-tariffs on U.S. goods,
+both made **2026-09-04** and in force **2026-09-08**:
+
+| P.C. | Title | Enabling authority |
+|---|---|---|
+| 2026-0785 | United States Surtax Order (2026) | Customs Tariff s. 53(2), para. 79(a), s. 115 |
+| 2026-0786 | Order Amending the United States Surtax Order (Steel and Aluminum 2025) | Customs Tariff s. 53(2), para. 79(a) |
+
+These supersede the announcement-stage sources ingested under
+`2026-08-25-us-countermeasures` (PR #637) as the citable authority. That scope
+remains valid as the Finance announcement record; this one carries the law.
+
+## Sources and capture
+
+| File | Bytes | SHA-256 |
+|---|---|---|
+| `2026-09-04-pc-2026-0785-us-surtax-order-2026.html` | 57,589 | `d9eab33ccd0e8e9ee16e31898f5d735c2931c8170088b06e1303e4b1ab4106b6` |
+| `2026-09-04-pc-2026-0786-order-amending-steel-aluminum-2025.html` | 43,413 | `9be01707d7f62c6305be0b8a89749e2465f1577b11dbb6ec0d4559c24e82befd` |
+
+- URLs: `https://orders-in-council.canada.ca/attachment.php?attach=48943&lang=en`
+  and `…attach=48944&lang=en`
+- Captured 2026-09-17 by HTTPS GET with a browser User-Agent.
+- **Both were fetched twice and were byte-identical**, so these digests pin a
+  stable document identity — unlike `www.canada.ca` pages, which embed
+  per-request nonces and cannot be re-hashed to the same value.
+
+## Extraction
+
+Each attachment is bilingual in a single document: English preamble, French
+preamble, English Order, French Order. The builder takes the English preamble
+plus every visible English paragraph from the English Order title up to the
+French Order title.
+
+The OIC markup leaves `<p>` tags unclosed, so `html.parser` nests them and an
+ancestor `<p>` repeats all of its descendants' text; the builder therefore reads
+**leaf paragraphs only**. Visible text is normalized by the standard corpus
+whitespace normalizer.
+
+Block kinds: `paragraph` for operative text, `schedule` for schedule headings,
+`tariff-item` for each 8-digit tariff item. Schedule membership, surtax rate,
+and (for the amending Order) the metal are carried in block metadata.
+
+## Scope census
+
+- Documents: 2 · Provisions: **743** · Coverage: complete, no missing/extra/duplicate
+- Tariff-item provisions: 643 = **629 rate-bearing** + 14 Chapter 98/99 items
+
+United States Surtax Order (2026):
+
+| Schedule | Meaning | Items |
+|---|---|---|
+| 1 | 15% surtax | 21 |
+| 2 | 25% surtax | 172 |
+| 3 | 50% surtax | 142 |
+| 4 | Ch. 98/99 items that remain subject despite the para. 2(a) exemption | 14 |
+
+Order Amending (Steel and Aluminum 2025) — replaces SOR/2025-95 Schedules 1–2:
+
+| Schedule | Meaning | Items |
+|---|---|---|
+| 1 | aluminum, 25% | 2 |
+| 1.1 | aluminum, 50% | 27 |
+| 2 | steel, 25% | 21 |
+| 2.1 | steel, 50% | 244 |
+
+The amending Order's 294 items are exclusively HS chapters 72 (134), 73 (131)
+and 76 (29). The builder asserts this.
+
+## Cross-check against the Finance product list
+
+The builder reconciles its rate-bearing items against the pinned 2026-08-25
+Finance product list (`--finance-tsv`) and **fails the run** on any difference:
+
+```
+orders_count      629
+finance_count     629
+matched           629
+only_in_orders    []
+only_in_finance   []
+rate_mismatches   {}
+```
+
+Rate tiers agree exactly: 15% = 21, 25% = 195, 50% = 413.
+
+## Reproduction
+
+```bash
+PYTHONPATH=src .venv/bin/python \
+  <path>/build_ca_surtax_orders.py \
+  --base data/corpus \
+  --finance-tsv <path>/pins/2026-08-25-finance-product-list-extracted.tsv
+```
+
+Run twice; generated artifact hashes were identical both times. Current
+artifacts, rebuilt 2026-09-27 for the Gazette provenance update below:
+
+| Artifact | SHA-256 |
+|---|---|
+| `coverage/ca/rulemaking/2026-09-04-us-surtax-orders.json` | `ef5af7c89244b7cff225479a0200bcb4d152f55bc5763fe9d73c64f91b9225ba` |
+| `inventory/ca/rulemaking/2026-09-04-us-surtax-orders.json` | `d51774e9a688d0e8f804323ede425eb0dc51c160726311690d2a519f03c1b133` |
+| `provisions/ca/rulemaking/2026-09-04-us-surtax-orders.jsonl` | `40892f30f491cddafc476a20696caaabe20cb02e3bb5c7544166d6fa50eb30e0` |
+
+Earlier builds, for the record:
+- 2026-09-17 original ingest: inventory `cc0a9740…`, provisions `fc250521…`.
+- 2026-09-19 confirmed-SOR rebuild: inventory `283e204d…`, provisions
+  `185d3a73…`.
+- Coverage has been `ef5af7c8…` throughout.
+
+Before the 2026-09-27 edit, the unmodified builder reproduced the 2026-09-19
+artifacts on origin/main (`f1916d73`) byte for byte.
+
+The builder verifies its own output before writing: 2 documents, 643
+tariff-item rows, 629 rate-bearing items in the expected tiers, 14 Chapter
+98/99 items, amending-Order items restricted to HS 72/73/76, and complete
+coverage.
+
+## Gazette publication — 2026-09-23 (recorded 2026-09-27)
+
+Both Orders appear in **Canada Gazette, Part II, Vol. 160, No. 19**, dated
+2026-09-23:
+
+| Gazetted header | P.C. |
+|---|---|
+| "Registration SOR/2026-186 September 4, 2026" | 2026-785 |
+| "Registration SOR/2026-187 September 4, 2026" | 2026-786 |
+
+The registration numbers now rest on the gazetted face of each instrument, not
+only on the PCO registry field.
+
+- **Official PDF version**:
+  `https://gazette.gc.ca/rp-pr/p2/2026/2026-09-23/pdf/g2-16019.pdf`
+  (84 pages, 1,050,883 bytes, SHA-256
+  `d840cec7f243347257415351dfd399f82930cc051fae9bff867874edd89d72bb`).
+  - Its notice to readers says the PDF has been the official version since
+    April 1, 2003, and the HTML is an alternate format.
+  - SOR/2026-186 and its Regulatory Impact Analysis Statement are on PDF pages
+    5–26; SOR/2026-187 is on pages 27–37.
+- **HTML alternate format**: `…/2026-09-23/html/sor-dors186-eng.html` (56,969
+  bytes, `1fc326e7…`) and `…/sor-dors187-eng.html` (28,829 bytes,
+  `17c40e37…`), plus the `-fra` pages.
+- All files were captured 2026-09-24 and re-fetched byte-identical on
+  2026-09-27.
+
+**The gazetted text matches the ingested Order in Council text.** Two
+independent comparisons against this scope on origin/main `f1916d73` both
+found no substantive difference:
+- a block comparator;
+- a separate word-level and number-token comparison, which caught all five
+  edits injected to test it.
+
+The checks covered:
+- operative text;
+- every schedule's membership and order: 186 Schedules 1–4 = 21/172/142/14,
+  187 Schedules 1/1.1/2/2.1 = 2/27/21/244;
+- every rate;
+- SOR, P.C. and date metadata.
+
+The official PDF agrees independently: each of the 643 tariff items appears
+exactly twice (EN and FR columns), and the sets equal the ingested schedules.
+
+The only differences are editorial:
+- footnote-marker placement: the OIC page's "(2025)1" vs the Gazette's
+  footnote link;
+- footnote bodies inline (OIC) vs a separate block (Gazette);
+- footnotes a–d, which the Gazette adds to cite the enabling statutes;
+- "1(1)" vs "1 (1)";
+- the Gazette's "N.B." pointer on SOR/2026-187 to the RIAS.
+
+The RIAS is not part of either Order and is not ingested.
+
+**What this update changes.** Every provision's `registration_status` now
+records the Gazette publication. It replaces the 2026-09-19 note "Not yet
+carried in the Canada Gazette Part II as of 2026-09-19".
+
+`coming_into_force` on the 331 P.C. 2026-0786 rows had copied the P.C.
+2026-0785 wording. It now follows section 4 of the amending Order: "on the day
+on which the United States Surtax Order (2026) comes into force", with the
+same registered-after proviso. Both Orders were registered 2026-09-04, so the
+date is unchanged: 2026-09-08.
+
+No provision text, schedule, tariff item or rate changes, and coverage is
+byte-identical.
+
+The same Gazette edition carries an **erratum to SOR/2026-154**, the 2026-07-01
+*Order Amending the United States Surtax Remission Order (2025)*. It adds a
+missing paragraph (a) to the French version of section 89 (art. 44.161). It
+does not affect this scope, which does not ingest SOR/2026-154.
+
+## Registration status — CONFIRMED 2026-09-19
+
+**SOR/2026-186** = P.C. 2026-0785, *United States Surtax Order (2026)*.
+**SOR/2026-187** = P.C. 2026-0786, *Order Amending the United States Surtax
+Order (Steel and Aluminum 2025)*. Both stamped for Canada Gazette Part II
+publication **2026-09-23**.
+
+Confirmed from the **Privy Council Office Orders in Council registration
+field**, which renders `Registration: SOR/2026-0186` against P.C. 2026-0785 and
+`Registration: SOR/2026-0187` against P.C. 2026-0786. That is a government
+registry field naming each instrument's registration number — independent of
+the CBSA surtax codes the original inference rested on. Reproduced by three
+searches (per-`pcNumber`, and an `act="Customs Tariff"` date-range query
+returning both rows) and re-run independently from a fresh session. The serial
+reading is fixed by monotonicity rather than by assuming a 4-digit pad, since
+the registry pads inconsistently: 2026-06-19→135, 2026-07-31→0169,
+2026-08-06→0173, 2026-09-04→0186 and 0187 form one coherent 2026 run.
+
+**SOR/2026-187** additionally appears in prose nine times in CBSA Customs
+Notice 25-11 (`DORS/2026-187` nine times in the French edition), parenthetically
+after the instrument's full short title. CN 26-23 — the notice for the 2026
+Order itself — carries no SOR, DORS or P.C. number at all.
+
+Two caveats carried forward: this is the PCO registration database, not the
+gazetted face of the instrument (neither Order's text prints its own
+registration number), so Gazette Part II Vol. 160 No. 19 of 2026-09-23 remains
+the documentary close-out (resolved 2026-09-27; see the Gazette section
+above); and the CN 25-11 citation is not new — that file is
+byte-identical to its 2026-09-17 pin, so the number was already in pinned bytes
+and simply had not been extracted.
+
+Two premises in the original note were also wrong and are corrected here: no US
+surtax order has ever been published in a Gazette **Extra** edition (all went in
+regular editions — SOR/2025-66, -95, -118/-119, -122, -267), so the absence of a
+2026 Extra was never a signal; and the surtax-code convention is now 6-for-6,
+since CN 25-11 carries both `26187A–D` and `SOR/2026-187` in the same document.
+
+Evidence pinned at
+`PolicyEngine/_tariff-p5/ca-countermeasures/pins/PINS.md` §5.
+
+Consequence for the ingest: none of the provision text depends on the SOR
+number. Coming into force is fixed by s. 10 of the Order itself, and CBSA
+published effective-date guidance on 2026-09-07.
+
+## Related instruments (referenced, not ingested here)
+
+- **SOR/2025-122** United States Surtax Remission Order (2025) — amended in
+  place by ss. 3–8 of the 2026 Order to extend every head of remission to the
+  new surtax. No separate new remission order was made.
+- **SOR/2025-267** Steel Derivative Goods Surtax Order — s. 9 adds the 2026
+  Order to its anti-stacking list; the two surtaxes are not cumulative.
+- **SOR/2025-95** United States Surtax Order (Steel and Aluminum 2025) — the
+  order amended by P.C. 2026-0786.
+- **SOR/2025-118** United States Surtax Order (Motor Vehicles 2025) — unchanged
+  and still in force; its 19 HS-87 lines at 25% are why Finance's consolidated
+  page shows 648 entries for Sept 8 rather than 629.

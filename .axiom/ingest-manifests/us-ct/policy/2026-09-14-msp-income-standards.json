@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/policy/2026-09-14-msp-income-standards.json",
+      "sha256": "a5845ae0165e2e42bce429497268067af1f1085d9b83a84d9d8f1de4ddc9ee84"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/policy/2026-09-14-msp-income-standards.json",
+      "sha256": "97070c19a2d97353a4eadfb7d17513193e7dbbb68eea4de45bffdf3a6c93124d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/policy/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "9495c5f8326670016abc6d509530e628022cbdd4ace9031942b76ccc7a859722"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-09-14-msp-income-standards/official-documents/us-ct-dss-msp-eligibility-2026-03-01.html",
+      "sha256": "68188b95254881865f47bc8061ba9c758ad5a89430f857e9e425f1bf02a54e4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-09-14-msp-income-standards/official-documents/us-ct-dss-program-standards-chart-2026-07-01.pdf",
+      "sha256": "9359f411347eeae2ab616e4b0a96fb42156480483b529c924b16c8f9b4768d89"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ct-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T16:17:15.614978+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "SWqpfDlvd6rTyXsSEycvS2s19zNp6cxtMSJ6mutMKT8guGKQYSFfQKK4bDEDeF8Tx0rkc+KLnHWyc0h+19VRAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

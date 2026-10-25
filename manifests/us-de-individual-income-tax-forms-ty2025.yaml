@@ -1,0 +1,63 @@
+version: '2026-09-10'
+documents:
+- source_id: us-de-dor-pit-res-ty2025
+  jurisdiction: us-de
+  document_class: form
+  title: Form PIT-RES, Delaware Individual Resident and Amended Income Tax Return (2025)
+  source_url: https://revenuefiles.delaware.gov/2025/PITForms_Instructions/PIT-RES_2025-01_PaperInteractiveIPM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-de/form/dor/ty2025/pit-res
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-de/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.delaware.gov/personal-income-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.delaware.gov/personal-income-tax-forms/
+- source_id: us-de-dor-pit-res-instructions-ty2025
+  jurisdiction: us-de
+  document_class: form
+  title: Form PIT-RES Instructions, Delaware Individual Resident Income Tax Return (2025)
+  source_url: https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-de/form/dor/ty2025/pit-res-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-de/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.delaware.gov/personal-income-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.delaware.gov/personal-income-tax-forms/
+- source_id: us-de-dor-income-tax-table-ty2025
+  jurisdiction: us-de
+  document_class: form
+  title: Delaware 2025 Income Tax Table
+  source_url: https://revenuefiles.delaware.gov/2025/TY25_taxtable.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-de/form/dor/ty2025/income-tax-table
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Delaware Division of Revenue
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-de/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://revenue.delaware.gov/personal-income-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.delaware.gov/personal-income-tax-forms/

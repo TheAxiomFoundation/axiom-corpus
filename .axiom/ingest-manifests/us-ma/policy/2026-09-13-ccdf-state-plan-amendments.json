@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/policy/2026-09-13-ccdf-state-plan-amendments.json",
+      "sha256": "2749451ce08d0f4644fe2701de71c1ad79e6d6b35a928028192a279e1df55a15"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/policy/2026-09-13-ccdf-state-plan-amendments.json",
+      "sha256": "cdad68de66b12cfd3d7e9bc80ac58c6b2d059c218618d7811369ef86c9ab6297"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/policy/2026-09-13-ccdf-state-plan-amendments.jsonl",
+      "sha256": "d89959b0fc0b682571e411d1611c90986ab637baa335041fbe6b632132d1f9b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-ma-acf-ccdf-plan-fy2025-2027-amendment-1.pdf",
+      "sha256": "e5e380d76cfaf9987f6f3e8c57436ee6a56ae325669281b5a278f6b9dbbf4d29"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/policy/2026-09-13-ccdf-state-plan-amendments/official-documents/us-ma-acf-ccdf-plan-fy2025-2027-amendment-2.pdf",
+      "sha256": "4f9cda1e74aa5ee33fa55fd5c2d5ed61299e4073bec6de7bb58bd6867cc01715"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-amendments (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 84,
+    "missing_count": 0,
+    "provision_count": 84,
+    "source_count": 84
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:36:38.638857+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/evL/YCvwodELqZcy9FHqRoKrnpKIkSYbSY4aPLWcqI1Z/iCbVoAfrngzNpPRGavTdb1Bop923c7d8MgnSl9Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-amendments"
+}

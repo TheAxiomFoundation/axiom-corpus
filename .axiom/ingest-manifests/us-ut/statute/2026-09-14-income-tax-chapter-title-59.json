@@ -1,0 +1,2933 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/statute/2026-09-14-income-tax-chapter-title-59.json",
+      "sha256": "a5cc644cedaecaff18420b667832aa602c812ddbbe3ba0d8ac5df46e46ea53ee"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/statute/2026-09-14-income-tax-chapter-title-59.json",
+      "sha256": "d80de78f392cb62435e7567d091d91915ec60feb6d0e326a33f514c55d38881e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/statute/2026-09-14-income-tax-chapter-title-59.jsonl",
+      "sha256": "4488986561b6c652b89867678d0721a48d998a74783171750590d14ec572be4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/C_1800010118000101.html",
+      "sha256": "a876f6bfcf4a8fb52bb5a199a437e10e397aa7b8642d6c50a1fc39530327f98e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/59.html",
+      "sha256": "b3c1d428169fea5925aea4396cecf7c4633bbf3908e8b51b3d6a793f473ba3b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/C59_1800010118000101.html",
+      "sha256": "9857cd6e5f663479fd226da3eb1b3b0bfd0c2f13da655e3e485c8e77405fc5c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P10_1800010118000101.html",
+      "sha256": "855428da4663e23a15c5f8c41b2735c0bdfdea8d605d7981df844a6eb0f12fd5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P11_1800010118000101.html",
+      "sha256": "c0ff6e664dea2357e6359c20d6f65c389cab9aacabafe6106f808c1047f55076"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P13_1800010118000101.html",
+      "sha256": "beb0d6342d294e6682c2c46a91a989dbc462f01a29e50ab62f00d82b5548579d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P14_1800010118000101.html",
+      "sha256": "0c3879e07ed3b03907ea2c13c3457b95853347e1687d4696fe623bab5337d763"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P15_1800010118000101.html",
+      "sha256": "1a2857a41a53f8fbd6c85bb47e44bd3e72268d932da270d027fffe93d74cdc2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P16_2014040320140513.html",
+      "sha256": "9fa5af04aaa72e9a30191cb879df5f7d5428b443605de1b16487385a36880a99"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P17_2016051020170101.html",
+      "sha256": "1513c2651c21970d7df8a649fb698c51680b3ec3765df3787f0fc62e4e74da17"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P18_2026010120250507.html",
+      "sha256": "5187751de875b7e22194bdbe47d828ab2b31881ea7be2a1eb90e94e63215a331"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P19_2026050620260506.html",
+      "sha256": "ba1ab8fd12498f665d9688479b087bb424ed5e9826d4185fd33c3646f1e4d2b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P1_1800010118000101.html",
+      "sha256": "a5c26fa052131b2e160bdb77c8e165baa335e97248ab284c96439212b4cea3d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P2_1800010118000101.html",
+      "sha256": "3bb039a8a67a95b6e1d8babf0d717b261e4330c717b30fbd02a13312aa7c4104"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P3_1800010118000101.html",
+      "sha256": "94c8616f5a91e8af5a0713f3677e425d70e91e4b2fe2c7abe4d40b63e5bd5332"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P4_1800010118000101.html",
+      "sha256": "ecfd5ee38b9d46feddc5193ef50d0bf7cbed89c0207c5bc91d85cde924ffb328"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P5_1800010118000101.html",
+      "sha256": "a9bb72c9f1cbfb1aa7b3ecf92a708d4803a72c57b79f08b4e3913738dd441146"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P6_1800010118000101.html",
+      "sha256": "6d638edda2db8d70abc0e02c0fac77a0747dc6de59bfbe4588108b446ce80f74"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P7_1800010118000101.html",
+      "sha256": "67ec46984d4776a461d0a3ecdaa30cd24eee7c607ad6e3f7e92ed9e394f2be11"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1-P8_1800010118000101.html",
+      "sha256": "cf8b037af1256d1357aae9725b3d23e9da1744b08f5cfb2afc4471551162fa7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter1/C59-1_1800010118000101.html",
+      "sha256": "ae3e227692213408c6f1a1068d627ed1d61b6a9fc63b65cfdf5f81e7f7fae117"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P10_1800010118000101.html",
+      "sha256": "df6d396fd91f2bc8456ec7e2a4808a8c2e2c6fcc44a71bc18f133defe07d3b71"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P11_1800010118000101.html",
+      "sha256": "ee7d7ad52221beabe7ce760afe32607dd9ee330dc2adf26de05e4ae92ce66458"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P13_1800010118000101.html",
+      "sha256": "e989a10f8bc8b4a81ab85c6e653c450cba2373524dfd7c6d223eefce118dd7b1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P14_1800010118000101.html",
+      "sha256": "11f1cd18d8b3e3b9e5beee64d08d5bf15e5c508427b58a928817fa7254fd7d25"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P1_1800010118000101.html",
+      "sha256": "c5a4455562791c4be34fe3af64877313e9f09aad4e25c13f32b8e72caacbcb44"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P2_1800010118000101.html",
+      "sha256": "8eee68f5a58cfe9aba0a300305b6af0128cf6859dcec0da33c929602d311bcc7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P4_1800010118000101.html",
+      "sha256": "52c082db5eb923c721ed8adfaca32c884dc8d70ba062787052cdfe55dd38ea3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10-P5_1800010118000101.html",
+      "sha256": "26d12ce95b32ffacd3a7eacc7598be572ca6192ed214d436d00385d442c5526c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter10/C59-10_1800010118000101.html",
+      "sha256": "fd3053373543372e26b6e17a245d6535bd9fa136124fa7d099cb0d5ae02c787c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P11_1800010118000101.html",
+      "sha256": "d540a411e85e7a045f48c57d365f63fea22cfaddff34daedc8efe7d1a5799432"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P12_1800010118000101.html",
+      "sha256": "5018554580a5b1b6f9ff5b95b1d791553521748469458e342a14008c1d968694"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P13_1800010118000101.html",
+      "sha256": "cf1cbf6001402b0aadd31bc941cb07263c2928386b65238649aa34489fa53d5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P14_1800010118000101.html",
+      "sha256": "cd96394311d1dd581ab82ef73839f4affb37a9ee5ab1f2a5601585ffa9fb2767"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P18_1800010118000101.html",
+      "sha256": "cd1f22ad2fddf5f730603b9d8a60a188db46322300d222cbe3214c18fb9a886e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P1_1800010118000101.html",
+      "sha256": "5d0d8eb8f495827b4f5d71cfbfba3fb9a1bb36c7495d851f9601507efdf335de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P20_1800010118000101.html",
+      "sha256": "ab681cb7bfb0780682e247f715046bb075b3eb888fdb7c6752664e6608c8d7de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P21_1800010118000101.html",
+      "sha256": "4863dc385cdb6734995fca25c51d9a4057685308b1fc35d1ade4847f2b3a0015"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P22_1800010118000101.html",
+      "sha256": "12574e062062df068253043b98ebe3711f0587b6758ad529b483e5bd669a1d71"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P24_2025101420251206.html",
+      "sha256": "87329500ec49bc36fde3d9925371b91f8ae74e40ea4f9c315030cc0d4fcca7d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P2_1800010118000101.html",
+      "sha256": "d1c9218a776c70afb47ba93a317d568ae85c4e29c3cc129beaa14d42983fe765"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P3_1800010118000101.html",
+      "sha256": "4a62fc532effccf6899dac7d24bcacd41f3be2910c07baf1a8a15b21329c8a66"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P3a_1800010118000101.html",
+      "sha256": "0e3ff7309885ad8673c2df9ec3ce868382a343105be5208d2ec5cbee28ba5499"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P4_2015051220150512.html",
+      "sha256": "89dedc376ab20e3365154441e3dc981dbcc5c8b363d8d8de7e220e65e701065d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P6_1800010118000101.html",
+      "sha256": "d0e9d73058572e61194697dca81f138c72799e06b05d1dd41641e5d9d414d70f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P7_1800010118000101.html",
+      "sha256": "ea1df0f6d27010e23f3bb2fe32f1ab6fb04ddd3d70813c9e6e64c00df8ee0496"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12-P8_1800010118000101.html",
+      "sha256": "3bd767aad45fedf4eea1519d648f905a05777ba44e8245aafc9314a1081cfbee"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter12/C59-12_1800010118000101.html",
+      "sha256": "90486eeedab715ce61239751a4900c9a7f6c64d5dbb830c015556afe75d5d0ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter13/C59-13-P1_1800010118000101.html",
+      "sha256": "ccdde461b4ed12293c9aeccd6a2ecc8ee9854daf65191c2d45d6e7a0b704772e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter13/C59-13-P2_1800010118000101.html",
+      "sha256": "60cb4c55552f31dc73ce571cc84f13cb82673d4a45480dd53804162901b6f1a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter13/C59-13-P3_1800010118000101.html",
+      "sha256": "687d8ac51ae11f68f3c36c744c76d2b3323a0a48aaf10004b5233749eca1e43a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter13/C59-13-P4_1800010118000101.html",
+      "sha256": "7a1aa0278ce1fa3148bd2857521937b76bca658d24f0fbb70a596868bfc77c17"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter13/C59-13-P5_1800010118000101.html",
+      "sha256": "0446212d4a2e0489b4942227e060415a3f71f59ccde4fd84ed09c71aea892b5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter13/C59-13_1800010118000101.html",
+      "sha256": "8a224a561727b06953e5b274aa053e12f3207ba9d3a6cbf741cb20376385b23d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P1_1800010118000101.html",
+      "sha256": "6c0b035278b4693cf378a280639f316d6b66159725a60783a6df52e662fd60a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P2_1800010118000101.html",
+      "sha256": "15e61ee4cb3ca78c3d91fb8bc49ef5996fca30e5041b5c9ebadc0bc52737e04f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P3_1800010118000101.html",
+      "sha256": "da315da2afeaffc7470c0709e0b70f958f97af1dbc7553c6f2cf8af3a23df3b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P4_1800010118000101.html",
+      "sha256": "0557594292fa024bd97b461e5dcd936c689fa1c86f37fec2fba14308c9cfe1fb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P5_1800010118000101.html",
+      "sha256": "89e0be4b8226affa46f3401f99fdc2f7350f443e7427431213a0327504565bf3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P6_1800010118000101.html",
+      "sha256": "bbe09fc9a149a1d3ec565640427249ea8a4141b9c602da8326f863fc0862f61e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P7_1800010118000101.html",
+      "sha256": "81c8b83527d36591f91032704fca05a7a1d24e4fec8179ee1f31b4a1d2eab1d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14-P8_2020051220200701.html",
+      "sha256": "d9d992aba2b71c69290784fc9edbf406de716fd8d7d170ea663893b3de6d80b4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter14/C59-14_1800010118000101.html",
+      "sha256": "f37be73985ef09be7b599df5aa8e1851f6f9f2854083c9a9362823fba7c9ebef"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter15/C59-15_1800010118000101.html",
+      "sha256": "6a08ee3823d690d9a1b15a0624c12ea43159bfb0fdd59bd5c0f0f5cb94688415"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter18/C59-18_1800010118000101.html",
+      "sha256": "539f0df243b0b0290a3291ec2d24ce9b5adeabd81dabf61341e73c4d6237b710"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P10_1800010118000101.html",
+      "sha256": "ef04678efc03b71ea418729c68511f228870fb9f112c6382585ac9e1f67175a6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P11_2023050320230503.html",
+      "sha256": "16d4e9c443a3dd980ebc45da6dba7cc46371a1626eed8fea01195ce71c075530"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P13_1800010118000101.html",
+      "sha256": "21b55ce184994ee3175714b43715b5e522dd9044f3afa4d4569c393b9285f8db"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P15_1800010118000101.html",
+      "sha256": "4397db1a4eb395cea79c8c5278cd6c3d116159996b71b17fe185715cbcce6713"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P16_1800010118000101.html",
+      "sha256": "eeaec6b5c77b6a9f9ecf01ea079f4a3bef8c0d5309405933c7803498fc1482df"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P17_1800010118000101.html",
+      "sha256": "fcd587764088ac027080527028bb19d0357370e48963855fe0dc3c371a1a71eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P1_1800010118000101.html",
+      "sha256": "b263c7842bffc75892fb7baf149ee7febc0bc1d372b374b7d51cf5ce92161a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P20_2026010120250507.html",
+      "sha256": "a81a99fb25dfd35a9d2bbc3ef7a8eee5f9e2d4fe49739abe294748913720ff4d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P2_1800010118000101.html",
+      "sha256": "821da2896a58f32f28ba419e8e317148c9ad5116bc072a71baf21abed801e458"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P3_1800010118000101.html",
+      "sha256": "c4c5079e4eda3027547d36771903e2916f941554ae5be6594d2c939a49c98a27"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P4_2018050820190101.html",
+      "sha256": "42498ee459d716dea9afafb2785c3465a812d26a0491bfe8bf60fc598097a157"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P5_1800010118000101.html",
+      "sha256": "ac4c036d4605055440e45cb5cb36ce7c21bc3491250b877b161e86c5b95426f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P7_1800010118000101.html",
+      "sha256": "cb2ef12e66f2a1c4c421bf33f132b3a5aa524361fba66d546802000784ff5507"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P8_1800010118000101.html",
+      "sha256": "030bc9deb0cbaebff72d08d9fef4a00e60ad84d3b1eac6ee2d3dadcf34e0b557"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2-P9_1800010118000101.html",
+      "sha256": "bdc8f189b47101480c66345bb7c4b73f3dd998abcedccd9509ef326eb22fa04a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2/C59-2_1800010118000101.html",
+      "sha256": "ee4c2be4d317dff95248cc08e312176f9420b7428eca4854f41f0aad6bd03302"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter21/C59-21_1800010118000101.html",
+      "sha256": "baf3b820a1aaa9ad40316bdb244739e8c98d8d138d18e1993230760e3aab106c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter22/C59-22-P1_1800010118000101.html",
+      "sha256": "8012fb27efff0d298e3c67d62a0227c3b3e559c380a40328e20f084dc5cc8d35"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter22/C59-22-P2_1800010118000101.html",
+      "sha256": "686ac619bc6673612455dd22503ee9cc9dbc12a9913c1b87f84c77911490fe75"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter22/C59-22-P3_1800010118000101.html",
+      "sha256": "9e7f97eb2f4c5496f436e2ef475b2f3a2ba71f0ad82163afc4ebba5f4811f5a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter22/C59-22-P4_1800010118000101.html",
+      "sha256": "f859013233863610399204c04010619c719b396d9bdd31a81e8aa64dde9676e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter22/C59-22_1800010118000101.html",
+      "sha256": "c06deafde24b69d850352160eb46381dc3c9b2f08721b16466d79d1a99201fe5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter23/C59-23_1800010118000101.html",
+      "sha256": "69eb2e5938be93a236f6a2a41ce24ffe844c8ee09c1362252bd940868a0661bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter24/C59-24_1800010118000101.html",
+      "sha256": "dd5c07d2f8aa36e13aa370b63a75b8dc46e6dfa42fe97a3741800f83dcaf80ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter26/C59-26_1800010118000101.html",
+      "sha256": "dcae0134a7aca7cc874837fe656b4c261f30f3fd54e842856e5277fb662677c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter27/C59-27_1800010118000101.html",
+      "sha256": "6d0b1df7e7b3a29169e096f170295f8802ae2f1717ec12e846ac854b6ab88014"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter28/C59-28_2017050920180101.html",
+      "sha256": "9486f8b016acbf43c6393043cb19365e5d4716ab4d9a2bb108d5ebe4717f4b5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P1_2026010120250507.html",
+      "sha256": "83b301a309822036bb3f49d0e0ef28dd09a3571cc0d75b4c5e5e36a1d6316ba5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P2_2026010120250507.html",
+      "sha256": "4305216ec11f29899e8df91602e69b127e59adf3b41be4c9f2e1c7247cabd910"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P3_2026010120250507.html",
+      "sha256": "3227cdbcbb9f5711fd9c9e7dadf00c6613e230db82fb757aaa7fe6473170eab0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P4_2026010120250507.html",
+      "sha256": "6b9b18a04bbe19bd48ba779f95e583798161ca6adc98d5152c3ecd9649e8fdf4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P5_2026010120250507.html",
+      "sha256": "694ec8bdee095c2e8658d94deaeb1b0ac0a5db672fab66de12c7e4f9f2644075"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P6_2026010120250507.html",
+      "sha256": "d23f8b8756dbbbb188ba6aedde6c05bece17b20d56fe01f3cdc04786f1fba3ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P7_2026010120250507.html",
+      "sha256": "b57dbc872bc67a7c8c528ced856f0d88d5dea284f00b6edaa205c41ca93181bc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P8_2026010120250507.html",
+      "sha256": "ff8969cb936b9e817cf40afae740d04fa2a137727acb4c70ed2e8b4d79e1f987"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a-P9_2026010120250507.html",
+      "sha256": "70a75b75ee6586d1b717d2464e4c781de37577c032acacc37136ac5018e1e7d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter2A/C59-2a_2026010120250507.html",
+      "sha256": "a04eda2649c9825cee27d8b6ff9d4ec3ff91eb50d98fc136c154fbeece3fe792"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter3/C59-3_1800010118000101.html",
+      "sha256": "c0b0e45fe6c47afaf86b8b5993391b37118e606adf5a88fa19e41b0be48bb1c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter30/C59-30-P1_2023050320240101.html",
+      "sha256": "eab035a8a91cbd6b0a818d423058ce6aceb9eedca2d3d96cd389a54889bc82d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter30/C59-30_2023050320240101.html",
+      "sha256": "9a75cedf1c5588ca0460652e15a20113c355c0e99f89505c9e7bc0264f649b2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter31/C59-31-P1_2025010120240501.html",
+      "sha256": "613d57a54c93409e770068dbc386813ca8cf4d352da7265220c6bf0174c6a80c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter31/C59-31-P2_2025010120240501.html",
+      "sha256": "398090aacc8368b4b13b54624f6395661b0108b470d98c64917ce6001be91ac7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter31/C59-31-P3_2025010120240501.html",
+      "sha256": "b1a2cb955844513b811882f0d4d29658093df48974e76e4ba93d01d32202ca9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter31/C59-31-P4_2025010120240501.html",
+      "sha256": "07286f078f976c049c67e5b097170a183de2f5d15c449298076af47dbcb509af"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter31/C59-31_2025010120240501.html",
+      "sha256": "59b2bff8a80e3bf4462172b980961863bb8119028941853c095f936204712624"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter32/C59-32_2025050720250507.html",
+      "sha256": "e3fdf0744495e7234ad04382eb9c97e217e2978d982e1e705d7d16cd1a2adbac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter33/C59-33-P1_2026010120250507.html",
+      "sha256": "1f45befbc7aac32834115a9ef17a15ab723e858a23a9b80890aec7b33a11b2b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter33/C59-33-P2_2026010120250507.html",
+      "sha256": "7fcd1a8f06f57beede55554e6102e261490d64c814c2969c22c34ebd3e24e83b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter33/C59-33-P3_2026010120250507.html",
+      "sha256": "584a001a6fbb52884b55ef83bcb1908d5bcda8f08484a47db760bfaa31be0049"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter33/C59-33_2026010120250507.html",
+      "sha256": "408971d21f09ce4a6e167381916c5282e6d5820489eb5a13dd67bcfcdaf52e81"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter34/C59-34-P1_2026010120250507.html",
+      "sha256": "ed12990f7040df0dc3ad8d11b463aefeff0620897cc69ee646117b968a9fda2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter34/C59-34_2026010120250507.html",
+      "sha256": "50c040a9fa5099c54a112e8407531273b4417871bb5e45a9340ed22475c2934e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter35/C59-35-P1_2026050620260506.html",
+      "sha256": "6dc11408cd47e6ba3a506302d6d6943c495fbf813eeb3b82288e73212794b04a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter35/C59-35-P2_2026050620260506.html",
+      "sha256": "6147148d2ca4a1ea977245289d73a8ee96af754224f3cd5b84274e217c96af1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter35/C59-35_2026050620260506.html",
+      "sha256": "bdda2cce10ad216098371f9fbc5d40145b711a36e2054c93243d168deb8c111d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter36/C59-36-P1_2026050620260506.html",
+      "sha256": "58cda17dc4fb8b96491bc6e791b8908bb0e34b36a2188b6513f5543d1d26204b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter36/C59-36-P2_2026050620260506.html",
+      "sha256": "2009517a13083e859923dc8b701b6b76db4bf4acd3b80c18ff809229ae7cc725"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter36/C59-36-P3_2026050620260506.html",
+      "sha256": "b7d2d6d63c615256128674aa79b7cd25e9dd6f51c74d2382fa8791055f656937"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter36/C59-36_2026050620260506.html",
+      "sha256": "5a1cf93344dcd098470cd1a51dac22cb2cfce3b79df09820af65c834c63ffc4c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter37/C59-37-P1_2026050620260506.html",
+      "sha256": "82a2736deb3a2dc83a7b73ef42b78062145357a03815cdffe88635f4fe9ffee2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter37/C59-37-P2_2026050620260506.html",
+      "sha256": "d75a2411466260aef0cb4c76dee3149f6491d4ead4b1923127791c3a584c593e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter37/C59-37-P3_2026050620260506.html",
+      "sha256": "e8541cc65c1ebbacd26f1a7db9bd40bd87a406d518ebb88d0e6472ff47a44818"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter37/C59-37_2026050620260506.html",
+      "sha256": "7d20e7a02dd3c052210157adc61843534e49e3abb128e96c2f7210ec4bf6d73a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter4/C59-4_1800010118000101.html",
+      "sha256": "c4d01be401b7ed673592fbe196990c1047de1c543dc0bf79598b07a69a9a6641"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter5/C59-5-P1_1800010118000101.html",
+      "sha256": "12fe07c2d9ba681083ebba157aeda0ac826d5c9fbc1dde4725cc72bd29018c4d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter5/C59-5-P2_1800010118000101.html",
+      "sha256": "bc9cc3f905b20e91ecc5696d18a9b7bbbcbc42b291e89f6545b8a4f286c2eb56"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter5/C59-5-P3_2025010120250507.html",
+      "sha256": "7b788db29ce82edcc3f0cf5fe0a3834e2b1ed10b8a96bafaee433845cda4051c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter5/C59-5_1800010118000101.html",
+      "sha256": "f2d6a6f42c3510dea0b16b5be7f48e434d045fc58a830042285470a2c57d1296"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter6/C59-6_1800010118000101.html",
+      "sha256": "912b92dee668a33416019279af317cb1272f7eb0f3bbc30207226bcc44e72ed4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P1_1800010118000101.html",
+      "sha256": "c2fd92655841e70696aa1508e25f15d3a1a69c3351e7b7a7a6da91fe98c904e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P2_1800010118000101.html",
+      "sha256": "e2ccdc91692d82830336bf6a338834d2234f22b18902bc5570ac9f6795124cbc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P3_1800010118000101.html",
+      "sha256": "a60fd207a89cf8af76ad453227acb63f8e5a6e32121799989a552476bfb88a22"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P4_1800010118000101.html",
+      "sha256": "058e85c6307e8192fc8c90d0c5f81ab963c2d8549e91374291da4bcd0761f95c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P5_1800010118000101.html",
+      "sha256": "3938c5ebb2142ceba65b542925d3fc0fdcb6eb485d8103ff5953d63c1c17010c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P6_1800010118000101.html",
+      "sha256": "9000915c1eba07da081e94d497ba2ad38a333ee40e82bdb862900da659300d86"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P7_1800010118000101.html",
+      "sha256": "c5c8ff8614edfbdcbb93ea172d1845f57b6b0966917b8df84fd57cb651f438d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P8_1800010118000101.html",
+      "sha256": "c4a17cecc0acac8dcdcde05a3bea899f31da01142f92a6bfb3e43f9a5b9de4b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7-P9_2014040320150101.html",
+      "sha256": "e4288ac0bd6542bc079e3f50ba9b30a325779bb2eeadf014813ace8c0b4b87aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter7/C59-7_1800010118000101.html",
+      "sha256": "4739e9857b4c5e01700fc0360a8245cab5ee0186e7d1eb0940a3d010350f1817"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter8/C59-8_1800010118000101.html",
+      "sha256": "8bc09e0b09572fc045dff3451310aac0cbfa38c28c270c101fd87b39c141f8ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-html/Title59/Chapter9/C59-9_1800010118000101.html",
+      "sha256": "7b73aab8c25a76c39529d3a4745ec7ac56136b7d3d9965bb17a409be68892e2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/C_1800010118000101.xml",
+      "sha256": "6cd3bf5a0bfcf3439c3d6009e6a1570e758a1cc677fe733b5e0786ed5d22a597"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1002_2025050720250507.xml",
+      "sha256": "d179355b83882f13251e3080477d4f915cf6566f844930ebf506e4060e45ccdd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1004_2025050720250507.xml",
+      "sha256": "4d7bc5f2950982044b944a7d2ddec33c4ebdddc408f4a288028a57061cac8ef9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S103_2025070120250507.xml",
+      "sha256": "b3405dbadba8e05e2e2eea936d0c424891ee2b44fec50250978195c0bbb3418d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1101_2021050520210701.xml",
+      "sha256": "bf2be19aff34906013918560dc0e638c6459167e90e589c132ea399f416b31b5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1102_2021050520210701.xml",
+      "sha256": "e6b2824b8da61227c389b9303098a7c32ed0771100e68989c6d1b9c164483bfe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1402_2020051220210101.xml",
+      "sha256": "b88a55ea740a0001b54da0a248314703ded7d84cb4f07d99aa3ba78b946926f4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1409_2019051420190514.xml",
+      "sha256": "731739d3651ff893a1b35e7d8fd3714b4423ce90dce3c7ace0b7cacee13b5208"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1410_2026050620260506.xml",
+      "sha256": "93c0955b281a07e5b9a6fa70dac683874f6dd05ea71a72d6426fa84ee3a2216d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1413_2026050620260506.xml",
+      "sha256": "45950d6e51ccc316cb51881c2e54e1f5aa811814ca3e0f02607867db97b0390a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1420_2023050320230503.xml",
+      "sha256": "31b0afc176d7424c17a0307074e39b39e27b04783afd539dbd80a7cd4bb6eccf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1502_2024050120240501.xml",
+      "sha256": "0ae5480c496257ad2f1538aa0a313195b608ac483cb66855e6c7e9f609a3796f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1602_2014040320140513.xml",
+      "sha256": "1809e17440529158169ce9af773e5bd8cda951a7ff2f3661df6fbbfca31cbe7c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1603_2014040320140513.xml",
+      "sha256": "e7906c61d9da0dd840480c3c9ae9320aeba68114bd82a21c7b9b12b29ea806d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1604_2016051020160510.xml",
+      "sha256": "423741c21c9a3adcc65e172878fdbb549a2912f9e6fc884899eafd343b691cef"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1605_2016051020160510.xml",
+      "sha256": "c38410cf2fcbdc0ba870d65f64c25a350dd3ea8f222dfe30f3b63fc7d379315f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1702_2016051020170101.xml",
+      "sha256": "cf4ac3c790c8163b9f47a236b63b841aae3f15b90d14e6d0cf086914f02e27eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1703_2016051020170101.xml",
+      "sha256": "4e7578e38459d926b08f1fa5977d2eefaed02a86227326d14ff65aea00803cb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1704_2016051020170101.xml",
+      "sha256": "72b7a19c66faa7065df10e0a0d08d5abbf8b22afddce886712c69208b5db7f82"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1705_2016051020170101.xml",
+      "sha256": "2f7c03296a2108e65591a9d01bd0fc9a85d097a6e28a1b629e4455b5124df940"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1706_2016051020170101.xml",
+      "sha256": "4ddb0c2175b271599098617beab5537c05934c152b7b38d1fe9253ffbc41a606"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1707_2016051020170101.xml",
+      "sha256": "8666958d18ca88d8433d6199ad7ca212c62885fd4a017523940217de160a17f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1708_2016051020170101.xml",
+      "sha256": "94f88c045fae4bc17ce34681f4ec3b4caf5b3d30cbbcaa9772c123a20179f5aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1709_2016051020170101.xml",
+      "sha256": "53f5c66b1fda902e3d124955bf1656a273f74e04e65e4768bacbbb259c9ee8a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1710_2016051020170101.xml",
+      "sha256": "01a08a59c4749d7efa7a7a0cb770d3812596b5d3d752488d9f71a86e052ad811"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1711_2016051020170101.xml",
+      "sha256": "9d6eaee67ad0ce0658ae5ef49638b92f2d375b440d7c7a23802e2ccad6353670"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1712_2016051020170101.xml",
+      "sha256": "afcf2682dac908be7ed61c93c27e3a6fe4259c1090eabf676a2bd3d77a5bcbb9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1713_2016051020170101.xml",
+      "sha256": "82a1fab0ec31847a742eec724c8f9836cae29a419288f6cf342273b708ca3f5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1714_2016051020170101.xml",
+      "sha256": "563e223f5152e82417181c38c9974dc29e043aa7f852e3e4efbf0e62f9f685ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1715_2016051020170101.xml",
+      "sha256": "9ce5291c56747a158be418c5e196f17869b077151785eda326b39e32f2081e5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1716_2016051020170101.xml",
+      "sha256": "4a80a7409b552b4646543195917d6f09828e6e8274a016ff91550054d05c4407"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1717_2016051020170101.xml",
+      "sha256": "b0e2d76f453e9fbaf59eb50e1e5b87b2f0591ac3da2c89ce2d6e60ff86de87cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1801_2026010120250507.xml",
+      "sha256": "1544ea861cf7f645fb0670805abeecc101576fc3418063245a7f795b6dc2db87"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1802_2026010120250507.xml",
+      "sha256": "7b44a531026cb44625b50d5794e88e0b2d92d0b78f28452b0b4b1124eb300834"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1901_2026050620260506.xml",
+      "sha256": "c50d67da164967a6a1790d5850e82445b4e0454b1613e2a5d2a977d904108c46"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S1902_2026050620260506.xml",
+      "sha256": "a61bbd728d047fe1bb68d8f31015e2f3ee7d9481c3a2334db4b15d26bb068af0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S201_2024050120240501.xml",
+      "sha256": "981bb6a938069a3c2145606d9382c9c05890c33d196194359c9570e68ad08e96"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S202_2014040320140513.xml",
+      "sha256": "50e8b63f6e1aeb76f6e9f924d8d032106ce34d0e35f681bc3564cd880d2e8c61"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S203_2020051220210101.xml",
+      "sha256": "280ba9cbb75298c986b146dfa6bcd992116440c970510ce01377b4dbbb746be6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S205_2025050720250507.xml",
+      "sha256": "a1c0f6cda7d13cd37f1c7137f89544a82174f872fa8173c8b9f7c1c64ba917d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S206.1_2018050820180508.xml",
+      "sha256": "b97273aa93fb3086c03c2035b93781c053934013a555eda50398a0151971c913"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S206_2021050520210701.xml",
+      "sha256": "8a5d32744b42ae6089793fb8f230aec609e63c44ca9c26ed8635b6068ba6a4ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S210_2025050720250507.xml",
+      "sha256": "ff46c27a55d4d3b535b2f6e51e07cb976df0c73a065fd0d644dcc4eecaeaf996"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S213.1_2017050920170509.xml",
+      "sha256": "5c8016bdcb83f9713c54e1aa7310ff9c3561f3cc3651d6251ea4f5819ead3a91"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S213_2026050620260506.xml",
+      "sha256": "c5c7af6b6aefac25c137e4b23654e9c2ccf215a3053ad6745ae78a58adfdfe0b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S214_2026050620260506.xml",
+      "sha256": "10301791b40083b54cf45eb43eef24ad8deb95f4376aadf5a91744e48b934ca3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S304_2016051020160510.xml",
+      "sha256": "bd4479247379703abab7b10240ea1ea00f15ed84c0e225bf0c34e8d82ee63572"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S306_2026050620260506.xml",
+      "sha256": "b732fef4a69cce05e4bfa58df83e78d1d5a25e99e7b829cabddaed25eaf8fb99"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S401_2026050620260506.xml",
+      "sha256": "96181933a7ba0e5996da038623ee4a8fd1dac2aec042960a1e2d2d48162e7777"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S402_2026010120250507.xml",
+      "sha256": "d400a453ffdebc705b7306fd20a76f6e0e0950d97f9c2b43c7bf11c1e15d59c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S403.1_2021050520210701.xml",
+      "sha256": "6eee1c69f177bf60eccc2caed7a261047e42a379b69e00526bb0ec376a73ffe9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S403_2026050620260701.xml",
+      "sha256": "e91880dd050c32a092ff404590db6931617576fa2fee7d83a9b06ba9d3a76218"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S404_2025031220250507.xml",
+      "sha256": "2a64d0b0d91848db8e209774445b31498c8cff28f6c55b2af7fb495737842f6f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S405_2017050920170509.xml",
+      "sha256": "01681d9c374ad60e4070cebc966557f105fd3f43087a819657fa24421ac74a79"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S501_2024010120240501.xml",
+      "sha256": "f5905becb0d6410b8ade40bf67393339a05c2636c7f20bb31d4be523a216462a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S502.5_2019051420190514.xml",
+      "sha256": "a7346ebfbca937c6a36e3d9fd1d009f4bc2dfab9ee7dd94fe1cef575d71e1a3a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S612_2019051420190514.xml",
+      "sha256": "d6ea1e6865d13e9892bf39e3b48ecd04482ed9a6a3f22aa8fbc9f45be373a34d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S613_2025010120240501.xml",
+      "sha256": "6b0916f4e6f996a05020fcc6fbbcad352cd8e6cd42a27e11642518ca9b3da948"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S701_2025050720250507.xml",
+      "sha256": "7ec2fef06a4c38dfbd5c07f76205331bbaf3345ce6f07c258ab6a6785aa57d04"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S707_2025050720250507.xml",
+      "sha256": "26fb6576e80c8508b4e481189578ecbdc08de415eed9845831c0d1850fd48c87"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter1/C59-1-S809_2014040320140701.xml",
+      "sha256": "5ad00747e66603da4c4874271f57c0f3c08a6730f5c5e302de558fdd38d4c9a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1002.1_2016051020160510.xml",
+      "sha256": "1cdde8efd0c42494d615b4c017c6c453b079d7c1581a6165b6067c8ba8e7df1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1002.2_2025010120250507.xml",
+      "sha256": "c0833a7e03ff39de81f1de50213439b69488dfc0493f0122694cecadeb35a9f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1002_2020051220200512.xml",
+      "sha256": "9af97a3197d52f6b04fa053b113f73dffbb7ab1c7b5abb905ab6c644cc79c03a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1004_2023050320230503.xml",
+      "sha256": "d6a1633f4ac85d8fc7d2b682fbff15fbcd97d1cb6beacbdf0423b4d39c70c477"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1005_2026050620260506.xml",
+      "sha256": "c65bea7952828f0aa5efabe810c7a1a84d823be3044df3e27f12997a2663a45b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1006_2023050320230701.xml",
+      "sha256": "249af2bfb5f3b650c3943b5458bcec44fbe6c58249a8816d6856c75a3c730840"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1007_2024123120241231.xml",
+      "sha256": "132464014a2de000386aeae0849ddba68683cfdb53a0564bbc89141d69d58bd2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1010_2026050620260506.xml",
+      "sha256": "7714de68eb7bc88a6333182e64dd9588b3c5d188bd0845435735b0fea73fa103"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1012_2016071320160717.xml",
+      "sha256": "6832a97d284b0544bdd2f092a0de91d6f8704941110250afe54a80fa8b4c5744"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1014_2025010120250507.xml",
+      "sha256": "83eabcb7117bec7d193b5d0968e13e93ed25c8667f44a45154d0aabc5db02040"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1017_2025101420251206.xml",
+      "sha256": "3996a204e3e3b24d4987982dd27d0f94b190723cff168bfb1b68ddcc7be3f953"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1018_2026050620260506.xml",
+      "sha256": "2314360ff678b044595d38bb5f9c947500fb8c229610e46d8b39d13d0d49ea92"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1019_2022032320220323.xml",
+      "sha256": "c56cf59fd3136c3a915d27f5d2171cf7d4e7fa38221677d25f69c91bce9eade6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1022_2021050520210505.xml",
+      "sha256": "00cf4bfe77fc9e3af732d35ba3402836dc795517de1f0c14a01a515a5e71f856"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1023_2021050520210505.xml",
+      "sha256": "29b579c13a4ca14d3868fd2f16b12b95b95b166d53f3e1c1fa9bc4d51e4765c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1025_2026050620260506.xml",
+      "sha256": "74ff5c14a92f8aa427a15d433247241f5d21bbd60fb8f25b1a69e82d16edbe7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1027_2021050520210505.xml",
+      "sha256": "b99b43ec8822b287a25c6ef619211cee9ae1295499b3a5af0cf7803b6da396a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1028_2026050620260506.xml",
+      "sha256": "190c34279eaf4f6ee4ccffe38fca76a768d034e4d2d2237e295f61e1c3019ba1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S103.1_2026050620260506.xml",
+      "sha256": "14fda9bf50c4ad1d4092768e1d85bf4c5c01e77f1adc1814e7cebaf497783c1b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1032_2014040320150101.xml",
+      "sha256": "cbbee44de2099702caf96e16100c5a43a5dc46b7b541e634c12f5fbaa4f661a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1033.1_2021050520210505.xml",
+      "sha256": "1b5b414046f2c77696e9cadbe9484018aa8915a7f8b95bf92239c8c99ac885cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1034_2025010120250507.xml",
+      "sha256": "7c68eef7b958bc3c6b7ff467971193ff835b5092d47feacff6e46dd5557c15eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1035_2021050520210505.xml",
+      "sha256": "ef23c9f5689f4be694c8a19e06e65f2841ef26bc3ee4b530c3e9f86f9c47faed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1036_2021050520210505.xml",
+      "sha256": "2cb7392a7c64534946014eca139349857c6650eec9a1ee869e115d4acfb1d202"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1037_2026050620260506.xml",
+      "sha256": "f5430785ea4b27261d69b2804162b9b3ab012c9beed5fb8d190abfe7e7ddab0d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1038_2026050620260506.xml",
+      "sha256": "48c4fe858b75836f3a8cae146ddc850e5f87bc67d456b7dd9ce07941eab81e75"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S103_2025050720250507.xml",
+      "sha256": "bec35fd71834d9019c9bd82897c709896b2dec6e8bf1232b276ba53b8807388a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S104.1_2026010120250507.xml",
+      "sha256": "8d5714780ed0320b3220ab9467595ed9e030bbde3297fde9870f0012178d0944"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1041_2026050620260506.xml",
+      "sha256": "a19cfafa9a03c577bccef746c7082fff162d1e35b269efe8e745cd2e8a884a61"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1042_2026010120250507.xml",
+      "sha256": "784015f18f48153fadb92269983dc1a67196ba948f3468d291d8678677202783"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1043_2022032320220323.xml",
+      "sha256": "0c8e6575e0b606b09fac2cc898f8a5dee266dd09cca10fe3218f09adfa1bd49f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1044_2023050320230503.xml",
+      "sha256": "0f2abbfc70d1b034feb32b24a53552384ed87c1edaa05b699e92ce1cb0361fce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1045_2025010120260101.xml",
+      "sha256": "94ad36ea8201b9bbbb703b32ff152389bcb2756deade523b7080d2f6999a25b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1046_2023050320230503.xml",
+      "sha256": "879a819744d1ea524ca5a3342a777286679fdd63eb9951694c39cea2c1e6c063"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1047_2026050620260506.xml",
+      "sha256": "76aee7de44ff2e2f7b23ab89eb38ed1e4f591067571f751f111b8e3986167b11"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1048_2026050620260506.xml",
+      "sha256": "0bfd6f049c5afcd0d1d6e2c8676ef14b4e71aece53a5b94ed76559cc2e333f5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S104_2026050620260506.xml",
+      "sha256": "8e59530b6768cec62248b0469648fda589b11b2e6c6b87e82a4f93d9ae8522e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1102.1_2023050320230503.xml",
+      "sha256": "fa4d1383dd4afcba012efdb3631abb1e71fbb48d4c6db38a0e61d5aa5280b32a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1102.2_2025010120250507.xml",
+      "sha256": "8d1a742a4b1d4bec7cc67c95348149cae8a316b42dfb6b56d4683a3bb8beba18"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1103_2022032320220323.xml",
+      "sha256": "395a33dec0481c41475346d261526cbbdaa125b432b5c68f3013f99aa1b5a0e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1105_2022032420220324.xml",
+      "sha256": "6909085acb39376821d1e4d1e50a410d3891d8ff264a71474e37ffb61b9bb375"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1106_2026050620260506.xml",
+      "sha256": "83e159d54257ba5dc91b620bb3725b02d724bbe21347d6bc51ccbb49d9c3422b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1107_2026050620260506.xml",
+      "sha256": "f3f1e78fd07c27156da418f0ef929a08a11d0ba893479da1166a394148ed346e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1108_2026050620260506.xml",
+      "sha256": "3fd19020316f9c841cb313c89b0b312610a2d8b2ceda6466c7afee614afe20ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1111_2022050420220504.xml",
+      "sha256": "c9150c1474137b4f6090245292fdebcffef3b73aa86fb6d02858743b4942c729"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1113_2022050420220504.xml",
+      "sha256": "0a7db3590e262f8a1e611b88f5f81d1bffb93de14d9e53590f86c3f6e656d0ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1114_2023050320230503.xml",
+      "sha256": "3e875e5314b313b7f065401e84badf6ba37693408b39512d2cc61003998ac6a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S114_2025101420251206.xml",
+      "sha256": "d6a426dc04d70831e3305718338219b95cbccd0e44881ee05d6507c2d4ea1f4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S115_2016051020160510.xml",
+      "sha256": "1d72f8422853da665d8b420d9014366b52961789b3b946af6791b1f824d79ac3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S116.1_2014040320140513.xml",
+      "sha256": "4b9daa68995f2829b9088a03b7b1d2fde42edf9cf0bb992bd1b8fa4e4e8ee0e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S116_2022050420230101.xml",
+      "sha256": "2b3f12a4db654acf16f3b56bb797137dee581e9f03ee95d135d19b80e51bff8b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S117.5_2022050420230101.xml",
+      "sha256": "4725ba8b4911102872fc4ff2b570674b5e2f4d04f85e73df7f96922c36c45d70"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S117_2022050420230101.xml",
+      "sha256": "bf46f14b519c7fd2f1c5b3d6a258a0969b177e7da58256dc0e6e2f6c2740a815"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S118_2020051220200512.xml",
+      "sha256": "7f4cb46733c45aef65d422e8a3173488427938647e6d0191b40621d69cb893cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1304_2026050620260506.xml",
+      "sha256": "594f119e5563ab7b5f56afbe831d83e44f9efb94ecc31dfb8fd21a7b743e09e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1306_2021050520210701.xml",
+      "sha256": "eee4ecc8d0d5e3f1c5b01f52fd7030024427cb85567d5725cb30cef4c61402f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1307_2018032220180322.xml",
+      "sha256": "48374a39461985facabd688b9165c0d93e5e1b0aca33c1540c27180274789ff9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1308_2023050320230503.xml",
+      "sha256": "56816164eabd3a9946000cefcf4d54b8c3a96dfa8babc999fb592f66c009ff32"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1312_2022050420220504.xml",
+      "sha256": "7be98a2a56c8d7db61347090bbc4e8239b4ece04c8614e59c030ce6a6911c463"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1313_2025101420251206.xml",
+      "sha256": "707756127907c75a51732d49a5d10166225b5844b9e08555938e91c310b30245"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1319_2023050320240101.xml",
+      "sha256": "7848c451b6a49e675c9eb00a8a636385ce3ebcfad7b5e59b3b1c09dc2eba18ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1320_2023050320230503.xml",
+      "sha256": "252027c8df9debcd3b5aed3c541d4e4cc575e2e91aa11c0729a1fa8c3497b853"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1321_2025050720250507.xml",
+      "sha256": "b4ca01b48da7e416f87dbba2a17f16ffe6a1fcce4a72df650376bc142cf95440"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1322_2025010120250507.xml",
+      "sha256": "3bda19fd9b5f731a6869811f6d891640bd7d3ca04850d369306fd95e5f18d5d4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1323_2025050720250507.xml",
+      "sha256": "ab4f9d2f20fdadc1f25f2b056e9b3d4d201e3d61ebbebf0ce22b5a0021a348f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1324_2026050620260506.xml",
+      "sha256": "7f0eafba828eb5765e570384248fce721b7b78b0f05e88d7f773c4fdc903c531"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1325_2026050620260506.xml",
+      "sha256": "e906342c0b1b4314e9949aace032788c580da27c2b9cfd811396591aedf51deb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S136_2025101420251206.xml",
+      "sha256": "1b01afcd149fbe5bbed5877914b71c67893cf238f9ac95209a607b93c1e68d59"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S137_2026050620260506.xml",
+      "sha256": "482589fc3d1b72f4b5d4e38be3de03952c0aacac43324ac29a25d2d1e84e91ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1402_2023050320230503.xml",
+      "sha256": "ce75c64e891d9831db4929c55f0d9a1d4a9eae9cff1fedcd855284105cd3de4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1403.2_2026050620260506.xml",
+      "sha256": "aa366eb11ae36cc36200ac80920a227ad17ffe8eec865b8073cff18782b78816"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1403.3_2026050620260506.xml",
+      "sha256": "47c42c3cb3967c6810b9cacdcd2d7993bd607cc53f9b9b6e26f6f95fac63dbac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S1403_2024010120240501.xml",
+      "sha256": "3c7696cee08d6a262fbc3554c3dde26dc73dc4f3101e447c0b7783a0c6d586e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S201_2025101420251206.xml",
+      "sha256": "6ece5aacaf9e0f9c20458a0b538b61da129aa3c40e43bc99242648ca600b5d7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S202_2026050620260506.xml",
+      "sha256": "b40fa10769ed737cd3a297e0f101eed8cd570f1fca37262bb75bce662a9cb617"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S210_2024123120241231.xml",
+      "sha256": "4d77ac7f39d3de158e589e9314740f2ccf28c2a0ca6b07ce943e77be9bf72772"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S402_2022050420230101.xml",
+      "sha256": "b6088e391d89d722ed42ba73c765db5865ff197b17cbf30e2003ba7c4d2b32b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S403_2014040320140513.xml",
+      "sha256": "7077ff26c4bd75cae3491ead0fd2faf758331d88a19fe6d05bd8f13d134f491d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S405.5_2022050420230101.xml",
+      "sha256": "8784278311e42c7f49542a38280b16cb8f5fc5420c1727b56fa9eb15ae4d663e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S406_2023050320230503.xml",
+      "sha256": "636f21e4572168476862f0698c38baea287cc774cfc6d34d9779c5144bfd66d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S507_2021050520210505.xml",
+      "sha256": "2685acb878e5b41becadb139dba408533a38a8146edd5ca8829d1b3e1bb600cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S510_2026010120250507.xml",
+      "sha256": "e4b2aa123a885b66d9ddb777891b78074f7d6beea5e983dc8e27bc204e802d77"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S512_2025050720250507.xml",
+      "sha256": "0c3fb752ae14f75426fe51aee6239a1b43b64ddeb0604efaf7a529e181415c6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S514_2021050520210505.xml",
+      "sha256": "10e7d0aae8ede838ab6ba175e076ce3b516c68642797068aac851663d7303f16"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S516_2021050520210505.xml",
+      "sha256": "29047863a5c07bc9dfc3eeb74c90c44aa24d3b10a50366152413a59d4361fce2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S518_2016051020160510.xml",
+      "sha256": "b06021afe73668e7ca0a0e92747a139065d5b64a2a75b18253a8905e1de7c05a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S522_2021050520210505.xml",
+      "sha256": "7adbbbad51fb251454d1bc4aead5385525fa50f12c28f73600c41508e941f282"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S529.1_2016010120160101.xml",
+      "sha256": "a5095bf42bf6cd88c4ed6334795ceb9af36a740a623c9c4f27ab3f6469b59ac5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S529_2023050320230503.xml",
+      "sha256": "723eaba65d8293399b0bbad5795b3fa8e731f670d0a6decece1a1bfd76a652cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S544_2022032420220324.xml",
+      "sha256": "d753b16f2675511742a479e6d5926b4a99838327b187e6f4e7fc3208b4c67c2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter10/C59-10-S552_2024050120240501.xml",
+      "sha256": "9d5075a08b2249cda2895a648e7f84b515812f59139d45bf11e8131310e0d221"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S102_2026050620260701.xml",
+      "sha256": "7c9ded0018c4ac3644387fb5a957b1d53c20c61ec173df43d5a188f14965d65a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S103_2026050620260701.xml",
+      "sha256": "8e51748005ae831025f0ef07c084d791af1898871d60f141d45062a2c3000f92"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S104.10_2023050320230503.xml",
+      "sha256": "c972f62e7dc82197396de8efda4a0d11e69e658ff3bce61d3c8fd6c906c63633"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S104.11_2025101420251206.xml",
+      "sha256": "693747652f1d59dc5e630a0a7774bf993a9819c31098dcf4ab77501d2c1c382c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S104.1_2026050620260506.xml",
+      "sha256": "ce1366204fea79fbcf823bbfa28b22b5393de617551332788a514d7457325919"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S104.2_2026070120250507.xml",
+      "sha256": "0749e0d42177c83f3e15ff444990098fc67baebee74817dbe39e752d5dca0a5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S104.5_2018051620190101.xml",
+      "sha256": "c6af3a10dddb1330f451651d4300e615de62245594d0fcf15d51327892483a29"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S104_2026050620260701.xml",
+      "sha256": "2fb1df2f2a719a44984fa714df848eaa0a00a2dfaf61928062f89431a2e195de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S106_2023050320230503.xml",
+      "sha256": "6aca14d943d157d46089738d4da7b0617cefb8572840a3332d8c6072c63bfabb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S107.6_2025070120250507.xml",
+      "sha256": "39f10861d0f0fa035fb286da1cbe947c310bc69a5550a27b72fb88965f857c37"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S107_2025070120250507.xml",
+      "sha256": "6ce7f34787c3a576fd962d3315394be5c429fed2433032e7309aec814fb1cd7a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S108_2020051220210101.xml",
+      "sha256": "ea9bcd5e758f1b77b483d619383f1ad8fb9982755ca0e8fbb3af25517eeeec25"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S1102_2026050620260506.xml",
+      "sha256": "7c1a3babd1b4ffa0bcdbda3cafd933ff4486b2c1671d69af759d19f3dc7f6b41"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S112_2025050720250507.xml",
+      "sha256": "b9b33e1d92557bf67aacf611300c24ba0c51175ba18fcff162ccead4163ec97f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S118_2021032220210322.xml",
+      "sha256": "524a82d1105493dccbe625559ca10a620c03adb07971bc5a933853cf888165cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S1201_2026050620260701.xml",
+      "sha256": "29ac41f639fdfa2de3826fbd0337cc1ea1c87a4af989dc1f8f4f6d5c4afb63b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S125_2025050720250507.xml",
+      "sha256": "74bda6a013b17d1460f7e4105a965d9086a6ec13f4acfd9880f8094da49efd18"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S128_2020051220210101.xml",
+      "sha256": "a95e2c9f6d497ac949145d4ef5af303d7749f4486b4cf3b9d51621b08f575fb6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S1302_2025050720250507.xml",
+      "sha256": "7c61d4dc0a587b9d341b4022b0657de40d4ae1641ca1c280ea7fde325e456b01"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S1401_2025110620251206.xml",
+      "sha256": "1690ebc913e8a1511e9cb49f074c7ead4a5454dedd38480bba3a4b395a7583dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S1402_2026050620260701.xml",
+      "sha256": "26376203b5bb6778aa1a5f21bde5e9b4a7be57d9a808dffa543fa7778aa47a1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S1803_2025050720250507.xml",
+      "sha256": "44847db7e6cdfde5e56e6e909d29500b7b27d3260397f67557eaad53cff279b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2003_2017050920170509.xml",
+      "sha256": "2c90fc3ca21d644a7ae72229e7dad4db942a26a67e2dc6411fe6c7a092d42aa8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S202_2025050720250507.xml",
+      "sha256": "9c719c8fa2db9725ae28aeafa0f2cf03fa29c13da211f53e5078c1041e38f4f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S203_2026050620260701.xml",
+      "sha256": "eaa7612e948949cf0735ac2244b044867ce7f800974e1401cd1d8ad9aef2735d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S204_2014040320140513.xml",
+      "sha256": "277c07df634cc0c7813d1776cc12ebc2120f736e9ae51c940726302becb4488f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S205_2026050620260506.xml",
+      "sha256": "9a34902ac81f99e01d55fb28a0fa2c128e4db37270db2a1abb6249c695230dbf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S208.1_2025110620251206.xml",
+      "sha256": "ce86f8e7ce2de62fde91b89b1c21206b8e9b56d82f543e0b882ded8f3549b64c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S209_2021050520210505.xml",
+      "sha256": "f5297f1e176ec66a731046ec074b07d1729201aa77103f356308b94c9be9576c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2102_2025050720250507.xml",
+      "sha256": "8b34db350582fb726ded60094d77f767b09fcb6c4b74e31f0d967b98f02de9c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2103_2025031220250507.xml",
+      "sha256": "5ec90cf9cf13416d328dea1da959494a9cd9e95512a0d3c7b66e7a271d9bbd5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S210_2021050520210505.xml",
+      "sha256": "f2819a5e1f695fe55248b282a6ef95ce2a4da43115006996cbdcadffb5698981"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S211.1_2018051620190101.xml",
+      "sha256": "7bd49a0b6605c39438ec1871465f04da22c276adbcd18899bc7c83928bd67382"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S211_2018051620190101.xml",
+      "sha256": "2f27942965dc0dac80aa9b024715d86205aa61965bdce664d319f6b8eb1210c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S212_2023050320230503.xml",
+      "sha256": "a5b7b66d5e966a031a07d7b043c39b6783ccaa27b1d1749599a7aff33ffaf330"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S213_2020051220200512.xml",
+      "sha256": "8888a1f68d2f22530df9e70454c6ff7efa6986cfcdb89163e513e78d3f945a5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2202_2025110620251206.xml",
+      "sha256": "c180845c2be7ee048afd6ed89e5e4ce4c815fc6db9b30441d4bbc0f9b5761fd1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2203_2019051420190701.xml",
+      "sha256": "2a502b34ab790fc8347c7d1590414cf9948f186efacdaff4acaab5978f2d9ada"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2204_2017050920170509.xml",
+      "sha256": "7440df820f193d2437f40c9c91122f7a308947dc722308d0551657c129ea3a3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2206_2026050620260506.xml",
+      "sha256": "769663db53927f37630d716709e3a9390f99083049ebd1bfdd0e6d4bff64c88d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2208_2023050320230503.xml",
+      "sha256": "d73eb56c389ea858fe22c5745bc9e03807421be624ef1a0dedce4ee752fb178c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2212.2_2025050720250507.xml",
+      "sha256": "aa993bba820e4c1e76398150d9bf86aadbf50bc1556266b19c65af5f985078fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2214_2026050620260506.xml",
+      "sha256": "6e5a37471d22b0eb9bd81da60a2cbc12e402a0d02464f0600bfcc8283e87e208"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2215_2020051220200512.xml",
+      "sha256": "3ce57faff224234a48d502239e5d635e0f7399f8eba0d58d95059b5076df4390"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2216_2024070120240501.xml",
+      "sha256": "e8cbbb72de339d921c84e7552def3d9147a3b75feeacb2c67d6965deeac4e2dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2217_2025031220250507.xml",
+      "sha256": "6927ead3411e67e8b3e779652cc4e27b8418f6be64575f4c823ee5b1f795ac3a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2218_2019051420190701.xml",
+      "sha256": "11eaf7aad28be76b90222ec43a449462ba3462f63febc732a98496b9ba08ef48"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2219_2025070120250507.xml",
+      "sha256": "cbeae6bcc334d9df25e4a63a329c31f78b3011b3bb44839538eae6a713e553e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2220_2026050620260701.xml",
+      "sha256": "d097f7cf268f4e4cbc23db56a247d15650d833061b4a8439c24f6fe0a9558649"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2401_2026050620260506.xml",
+      "sha256": "ab102c639fad3c2be6d12b10461adb3b3bcc8d53f1c2ce902f2cfc309b26aa12"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2402_2025101420251206.xml",
+      "sha256": "b9dd9126151848334b3a3c784a1c0a48f5d13807cb7349e544ac73d4f5ae620e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2403_2026050620260701.xml",
+      "sha256": "b841fd8fde40fcb4e4278675dfd303741ef5e527975322fead55b53642cdd5f4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2404_2025101420251206.xml",
+      "sha256": "ae35a810b95bad9cf7b555c589f6900d1f445f37f478b0d53c5b07bbce434a84"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2405_2025101420251206.xml",
+      "sha256": "9d959b69e67d93f3c2b7c2d503b46152217f9aa9484cc4879619b63bbde59a53"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S2406_2025101420251206.xml",
+      "sha256": "e0f2a2e39a62265545f20397efcb1b51358c5d40bcd1b568bc12036e8cbdc4ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S301_2025110620251206.xml",
+      "sha256": "9b2e78c64ce9add67e7b6f062830b9dc59c82b3da3c98dd9ccff37559055fc82"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S302_2025050720250507.xml",
+      "sha256": "e096d656fb5b4db176e41c099fc5412fbfa2b76237fd995cf12c30295f6da464"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S352_2026010120250507.xml",
+      "sha256": "ccb46466e3e53afdd8b00c9b589b5bedf301573f01ccfaf9fa7f6cf170ed0efb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S353_2020051220200512.xml",
+      "sha256": "0e3e1799ddd934858a17937db1462c5cefb1ab34feaf60b6a47bd83626427336"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S354_2026010120250507.xml",
+      "sha256": "cd5b782a7cebca4f23b3cc43ed24039b292226b40c5700f385757a9e45498506"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S355_2025050720250507.xml",
+      "sha256": "19b99fc961fd804d6e57010148eca6caf89ea6ea1a1d72c512987480faf2bb92"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S401_2026010120250507.xml",
+      "sha256": "ffdfc9049fe1c78e74e829f35b250c25146a0be5f75d7da57dfd18db47faa92a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S402.1_2026050620260506.xml",
+      "sha256": "74725eb4a6985e1dc0f07fc9201db22e822b004f468896422324613c9f5ab094"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S402.5_2026050620260506.xml",
+      "sha256": "400a30fbe8fcc4e5e615119b490dd36bb8df9d9f324a1ab01725ea152b8549be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S402_2026010120250507.xml",
+      "sha256": "652c45046d636dd3fe691d86d92229e9652fb83c8dd8f9060367670aa3efb178"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S403_2025050720250507.xml",
+      "sha256": "a62b3b6a789b09e0c671feef76d2b086f28971b43aa20ae15c69b5fd99b75461"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S405_2026010120250507.xml",
+      "sha256": "76913622415903579932ed0a745ef41406de2dd9ad7bbcb37de6ae5e5e1b523e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S602_2026010120250507.xml",
+      "sha256": "dcf6bf2276458aef784e2b365189e2d2683b59456729223b1fb59ab8430911f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S603_2026050620260701.xml",
+      "sha256": "43b6f0bf803ed1a4d8e3115a69d1d813f1c205b609696e6c30273aa7049f5b00"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S701_2025050720250507.xml",
+      "sha256": "269244dcb1c51abd644a33b84cea015909770740e4a20388f072acfd59fca659"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S702_2025101420251206.xml",
+      "sha256": "160091eb990f976bce2a61bb490da6704ddf9f0895fcdd3bb3a47b612470d68a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S703_2026050620260701.xml",
+      "sha256": "7f014cfe1e0fb07d90a3a04569045b055e00724f38c26f032cc9084ab3b6eb9d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S704_2025050720250507.xml",
+      "sha256": "bcd34b942811ce5e9bb9579ea8d9fc2f04c9ef3d9b80074f97b534c1bf2c977a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S801_2025110620251206.xml",
+      "sha256": "97871c42f8e909b1dcbb0f22e7eaec191965b949f60ccc3206d6cc2ca4befc25"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S802_2025101420251206.xml",
+      "sha256": "9007926dfb496f6e6ae29d4d72f5916fbe8e77a8cd91532bfab593416a5d0dd6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S804_2025050720250507.xml",
+      "sha256": "a0811ca35d394572adc31b5d7b75ba9e7310e0ed713f0723e9cb4a66f6abf165"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S805_2014040320140513.xml",
+      "sha256": "5ad439a93c310d878347e812c3b8324cb8a334e7a4ced7baa6bffab3f1bfcb60"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter12/C59-12-S806_2026050620260701.xml",
+      "sha256": "a33bf5f205b010f350c781d957e327514a8ab10834777ecf7ec412ce9f33f8af"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S102_2026050620260506.xml",
+      "sha256": "1d5d3e78b5af16f6d5635e266f0c8a920897850eaf7078327af49d944d4d3e69"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S103_2024050120240501.xml",
+      "sha256": "db2c9e6f37ac7183ef8f67466c0c6f7e5886c783463f2b1b2d8d9fdf4d42085f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S201_2026050620260506.xml",
+      "sha256": "54827e407767739636fbd3723a7da93e0dd3084fc870dca9edbce1654792e527"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S202_2026050620260506.xml",
+      "sha256": "9608cf391dbbce4fca6adb5afef1d8cf842afaa8045f4509c20294f5638a766b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S301_2026050620260506.xml",
+      "sha256": "b187acc9b323e2216cae018146f81814799888a5db714a2765dc5344c48d0942"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S320.5_2026050620260506.xml",
+      "sha256": "0a09eea48c952203cee8d6462c550bc0210b66b59da1bccf245ba6802accd101"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S402_2019051420190514.xml",
+      "sha256": "bdc7ae20d7188e6dce1bf25aecd57c6f3e38ef8b90427b4fb309d6caaf93d1e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter13/C59-13-S403_2019051420190514.xml",
+      "sha256": "c23957e3caae8bcecc64254fb540c23f049eb1362ab2c3d5a5427fa6e0832953"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S102_2026050620260701.xml",
+      "sha256": "4ca1963d6fbc288356b8b9fd411bbb15b0bcab8095a891033ebe61140985bde7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S104_2020051220200701.xml",
+      "sha256": "b578f324c02ebccc7688aa8041e7d9182d3c7b1c266120de734cdc95018f2a77"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S105_2024070120240501.xml",
+      "sha256": "2ceb0d2691705e8319cac79d2e0b18d35d32a12f7720f2e2dcb4099a0f4c8c85"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S106_2026050620260506.xml",
+      "sha256": "bc64a71fa6b895ebb24f0780be5ba8715820e76c20b74d468b71c056f26b5c1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S201_2018050820180701.xml",
+      "sha256": "1fd5f3fdddd3470c63381bf6517b7977fa7bd891ad06287569566186f995281c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S204_2026050620260701.xml",
+      "sha256": "1de50609cff58e2aea75024e1c703ced1cf85d66ec67c2efff03d8687e5f36c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S212_2021050520210505.xml",
+      "sha256": "8e428f3252d79d4f2d4b62a5126193e370a24a82d81afc4736f0d51d3ddba8fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S215_2026050620260701.xml",
+      "sha256": "2ad6425ee045f954a9f8e8de34328330c5b209d4868f5a516ffe6cd3d700a73e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S302_2020051220200701.xml",
+      "sha256": "56c4e0734f570eaacf6474ed5c1f559b90e0c1cb31819ec8d15c6b9923595ebd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S501.5_2025050720250507.xml",
+      "sha256": "21b8f8a8bfb496205cb7d36a7f93c563b743c2d4f661d2dd1df541de723401e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S507_2025050720250507.xml",
+      "sha256": "1bdccbb728a4014a84815cf396a7c01beca67d4f24fe00cbfeb3bdf2b5bbfd19"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S509_2023050320230503.xml",
+      "sha256": "518683692fc586c5388667de6dda9eef63047f59d0a8f8aa47678e9037426854"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S601_2026050620260506.xml",
+      "sha256": "6f0ca5a1d93499149b13c5ff4abf438bd6798e4e37539a1ce35bfbbc01be7180"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S608_2023050320230503.xml",
+      "sha256": "0bb82ae9036b8ccc44fb4828d946913f3148550791063f0c3803f3aac1da174a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S703_2020051220200701.xml",
+      "sha256": "9f0c2a3e3ac7f5eb4ec0548a49949ce9da7737fa62908f3f79a17106a8410748"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S802_2026050620260701.xml",
+      "sha256": "3f66322d5a0bdcd4e1de55575daaabad098740452ae76b9e64d8ce81b416738b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S803.5_2024070120240501.xml",
+      "sha256": "bd8f8888e3eb4a6fe2f29795265ca678424158c28eaa9c5588620f5167cb9949"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S803_2026050620260701.xml",
+      "sha256": "e2a6fc4d0627cc3565c31f9fe11de3e94556f72853dc1817026d5316487d826b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S804_2026050620260701.xml",
+      "sha256": "3c3b357b7dbcdecfad5fe50e6d48afb72291da591aacfa3ab287f1461551e54f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S805_2026050620260701.xml",
+      "sha256": "883196397577b5854bcbebef0e3f631a9e2802322ff0a498d3798d36b96bb39f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S806_2026050620260701.xml",
+      "sha256": "65afe90ab5e9b9d9ad83d86f7664dd6ffad299e77a46b3164ec1c84f6fc5827a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S807_2026050620260701.xml",
+      "sha256": "df007189c9a8deb21d975c6bb6a31a5dadd09c367a4238089823f23c592f745c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S808_2023050320230503.xml",
+      "sha256": "ae200d25b7c7ae65ca3b2c572fb32f5e3edc4090d32ef4ecc5c4fbe2a4e23238"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S809_2026050620260701.xml",
+      "sha256": "82fa0161247fff5d3778e57496f1aea9448437fb06b311150d254de0830d98ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S810_2026050620260701.xml",
+      "sha256": "0abac93a1116f0bac594028f201c45966c20cc585eeaba19a9c0ebf36a39a5df"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter14/C59-14-S811_2024070120240501.xml",
+      "sha256": "1831fbb5c488c9d431bbd7e57184e631137400d8c36b5105fedc48631a70554b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter15/C59-15-S101_2024050120240501.xml",
+      "sha256": "4c60bd8cc8f7de94667c7fd8a6fc36eef399354d89f8481c0591c13818122098"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter15/C59-15-S108_2022050420220601.xml",
+      "sha256": "35c3e39022c9c9dfd372c8c9f181923d6414db49040ce6f7bb08541d530863ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter15/C59-15-S109_2025050720250507.xml",
+      "sha256": "de7d0e61db3607f64eaee3690f4ffc893ffbfb4288574db6ee4927c97d8c91c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter18/C59-18-S104_2025050720250507.xml",
+      "sha256": "846f1b64480f3de4ae2c9be65b7ddf5d9a17f020c6a673bf68faa1cb985c8e1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter18/C59-18-S105_2025050720250507.xml",
+      "sha256": "4376fe53b387d45e21dbfcf4cc070671048c8219d61610da495a73e7057b4e49"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter18/C59-18-S108_2025050720250507.xml",
+      "sha256": "11012a9494d5f364ef593bdb95a6881a0e7fad251f3392a83db25c4eaefb74aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1001_2026010120250507.xml",
+      "sha256": "e5203acc9fc412732efb7837271d1ab052e0e75329e427566ab14459969998a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1004.1_2026010120250507.xml",
+      "sha256": "4e6e19ca6fdbc6fc5ddba91f58b4fc882d40d8472a1f50998cf11e5fc422c61f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1004.5_2019031320190313.xml",
+      "sha256": "07142e33905deaf8cc83d379231fc855bccac5e273ac3e60c44d5e12ce483f9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1004_2026010120250507.xml",
+      "sha256": "160e934dd88bbabc782fa22645cbd2706d203533e9be54da017e72c2f85c028c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1005_2024010120240501.xml",
+      "sha256": "976de1e2d55e6d20d2f9cc2c0ae3412996d90c4dc0140256c76c22958ef9c4cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1006_2026010120250507.xml",
+      "sha256": "3b7bd822a960b36cf08af5a3784a62592543ee872f10780220bed1da0329dbb3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1007_2021050520210505.xml",
+      "sha256": "982881e099209e78c5ef91c2ab6bc37dd1650199f68ecde6a40868556b799930"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1008_2024010120240501.xml",
+      "sha256": "135929759cdad58fb9340d8e312fe859402151eb31acd73bb116b70fb7af0048"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1017_2016051020160510.xml",
+      "sha256": "bd9e8451540f0dd8479fc37e7f9b5f2652e2030dd63d1b12071a07c01ffeaf90"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1018_2026010120250507.xml",
+      "sha256": "2f89b8cb543ac199eb359be26459d5e3bfdb56e82c58dcb6ceb959773b1da91e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S102_2026050620260506.xml",
+      "sha256": "597c00a9873358ffbd52ded74b0f01d6ebf1d96ea95776556517d899c32c5455"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S103.5_2026050620260701.xml",
+      "sha256": "470aa0e063458f7a403a5900fbc58b48d06cd893bc7b087e12a583c074e690f7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S103_2025070120250507.xml",
+      "sha256": "e7608e0a71756cdfeddbe7b348beaaa9a9c99161198807bf045631a00fb8ff59"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S109.1_2026010120250507.xml",
+      "sha256": "a5ca68a53c8132bf52e5198453d77ead98520e12b937595efc1e8a941dda3faa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S109_2024010120240501.xml",
+      "sha256": "c3eb6f2f91ef365998f101485a6310403a12d608aaac0e606f47cf65d034d51a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1101_2026050620260701.xml",
+      "sha256": "19ebfd2ce514163193df73c181fea92e656652f5184e58d3782c8e4d3dae216d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1102_2024010120240501.xml",
+      "sha256": "5cb650fb36bf61f7b2611bb54a78a2957b4d45f84f9301d45781010a66e01a26"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S110_2020051220200512.xml",
+      "sha256": "8bdcab608d1859707836f5cd835aa91b3d618a95824048af34e57e94b7aa2c32"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1115_2022050420230101.xml",
+      "sha256": "9fe28ad2a8640a4f1852c459792ce14a3dcde2a6afbbc8c5ee8445ec69555f8a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1301.5_2018050820180508.xml",
+      "sha256": "ee443cb5fdfcc2c6c35869102fa7e9a72d9a14f93461f45ddae60a9db81a1fee"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1302_2025110620251206.xml",
+      "sha256": "dd2c9b6fdc5d8817d7bd2b59261522746a54f22ca1c32baa82a048556f2d5422"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1303_2025110620251206.xml",
+      "sha256": "4f50e735597b5e29470eff50e7a1a968ba2344ee420c39e25acc401aef5e7c9f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1304_2025110620251206.xml",
+      "sha256": "4a2a9def47673b7b86b71ba780cc2dc586acffabe24c533b678703a18c735107"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1305_2025110620251206.xml",
+      "sha256": "8c6de707815b3b742b5d9b099dc036ec271444e6832893a10b4a02d33b0eba80"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1306_2026050620260506.xml",
+      "sha256": "9b9c90cdde666286658c6f30aa1362bf70b132534cfb4b44180c776c32acd3aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1308.5_2016051020160510.xml",
+      "sha256": "24dfe1715caebf1a703399a335d72c6f56a86711aab7472b2e51fd616ae9c778"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1317_2026050620260506.xml",
+      "sha256": "43022ced76e9e6f77cd403f4b7b199afce9e8cd2200ce84c01e6f13df996b137"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1323_2018050820180508.xml",
+      "sha256": "66e0fffa750e1912760025f9e64ee1a60277c3839959d4341bf25647ae533585"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1324_2018050820180508.xml",
+      "sha256": "f034b13d58e96493f2d9708c224e690571bf7bbd77f17e141d62de03d68e4367"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1325_2025110620251206.xml",
+      "sha256": "2991b810ffe9049f3011d96ffb839c4bceaf47476a1ee131e7866a3a2d8e5e20"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1326_2018050820180508.xml",
+      "sha256": "7abc8dcd60e25a802abe5eefe57cf8dcb2828cd4ba8213da282c6db838b7a2e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1327_2018050820180508.xml",
+      "sha256": "52b09d8bf6378298b96954ee9441865f345716bd952750097d0f63e9b5ecd984"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1328_2024010120240501.xml",
+      "sha256": "5877347455083e3234ea1eb0e171c174bc52f82d2964cecfabdd52bb22794abe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1330_2026050620260506.xml",
+      "sha256": "ba9d22b59d882841867e6e5137a67a1064a45ffee9e3a27b2a31c0aaa276cd22"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1331.5_2016051020160510.xml",
+      "sha256": "8e0837268919881555abf42643e698fe7e8e6612d261662130372efbfa2c4f89"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1331_2026010120250507.xml",
+      "sha256": "da4f6c845ed219c27e00b8282ed0c50fd600b60138857583e54e18e851b26c78"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1332.5_2018050820180508.xml",
+      "sha256": "cd32a5014d9c1b43af347ec4d3d3e2cbf8f08102b6d693974cc1ba3c28b9c888"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1332_2018050820180508.xml",
+      "sha256": "04394cdf577afb5e8f103290e19abda49ca16ba6a7252336d63d88050efda653"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1333_2018050820180508.xml",
+      "sha256": "abc81e41b9ddbf84c80e1d08a2d39c0eb1fdd357d5518030491a7444417d0260"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1335_2018050820180508.xml",
+      "sha256": "ffb648a463c3c0bd4a8b1a82e71171e1ff7bb3e75688619d421a627ec04039cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1338_2018050820180508.xml",
+      "sha256": "5bbd571e29954961dba5e4b7f70f3ce1d308321b6375d6723cfd0b8e338f0ff4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1339_2018050820180508.xml",
+      "sha256": "12983a30f963abf7816a2b854387b0980be2c3339ff284ed6b231e408477edae"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1342_2018050820180508.xml",
+      "sha256": "ff03c88e94619ad2173542b876f11e85e87f203c904e81306ac2b87782b6a411"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1343_2026010120250507.xml",
+      "sha256": "27aa899f16819f6ff90e34dc4dcc35cf6f7deb36766b788c01fc64fa64409dc9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1345_2018050820180508.xml",
+      "sha256": "5219866b59b905d025557ba6eb1bfbc176fb0bcd41eceec13a85605a7ffb439a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1346_2022050420220504.xml",
+      "sha256": "63d0ded880e0fa81f82ba43227859d698aba59f96c607d5ef9ce9c66ce367f6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1347_2020051220200512.xml",
+      "sha256": "615a0e9047c6d7ee3be9b9019570b706437a532d5407518dc543a55a1c8833e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1349_2018050820180508.xml",
+      "sha256": "43e1ba48ce5550e0b3c40cae380f9ac1d12f31a9405750cf7257bcdbc4e1dd61"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1351.1_2018050820180508.xml",
+      "sha256": "dfc7bce7ba2ee7171441c4e9d0ef4c01f19acd1568a0d103ae5656c16e12e8ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1351.5_2018050820180508.xml",
+      "sha256": "0add0888a400fb74ea9787cf4ee66d7923ec08d6e780a83831d5465f6d22b4e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1351_2023031320230313.xml",
+      "sha256": "f96835fff333a8445538964159e32f7c715ae0f6d0198cf00e3a08952616b1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1352_2018050820180508.xml",
+      "sha256": "fd9e4d89b85aff80c4684a9369a56157cda03d75311235e0df0168748af0c259"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1353_2018050820180508.xml",
+      "sha256": "5fd7855a7f5f19c2a81680f015a3b6dd7a16e9b000e255d5846692336a9ffa71"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1355_2018050820180508.xml",
+      "sha256": "e9be5fae61c578d3b7a4c6a0f27c841ca3a13479c4aa80cdb0d310e88ccf87a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1358_2018050820180508.xml",
+      "sha256": "8c032024ffe21b4aeeaadc341880d86f5ab029d9cd0643eb2492aada4b4daaba"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1359_2018050820180508.xml",
+      "sha256": "487df8a2f5d48765bca78fd0efc04276a656de5f266366da02f44fbce74f4d77"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1360_2018050820180508.xml",
+      "sha256": "4d09937c3bec7c4982b588903c61d8178911bf3cdd3f14de0c3d0f1c2ec06857"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1361_2018050820180508.xml",
+      "sha256": "757d3d7f271c7183820d4e413f4507b06d61d41e73f67c11ef16828fa6790320"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1362_2018050820180508.xml",
+      "sha256": "0415540d2b7a856c7b3ea550bd0100d0e836654b39334b7e88f2edc49441e0cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1363_2018050820180508.xml",
+      "sha256": "67ca6fc11af6e2ab204ec0f7bcd7cf0c822ff8657dfe4d47af1d7e303d0da87e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1365_2018050820180508.xml",
+      "sha256": "9570fd8d5b4494f0aa58a26ad4d0f7e945f204339fe0b2d1841e231963bdde5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1366_2018050820180508.xml",
+      "sha256": "033ba56691406ad337fd9474b16d8cd09084b65636cbe4fcd1d47975bc3b8fb2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1372_2018050820180508.xml",
+      "sha256": "476b9eca839e63328e360a5027047cf3d1dfde1a8de56bc73646d53de72f050a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1601_2026050620260506.xml",
+      "sha256": "8789301994a6dd6990f2d1f6b4b559fc568e6f3020a1c6f54020e85623e20dcb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1602_2026050620260506.xml",
+      "sha256": "4b071b95f8a341217530717201552088dd2a2992b4c1c29f97867b744851fd1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1605_2026050620260506.xml",
+      "sha256": "bea022f0e65219e8f4eb6d1ea548abf2d96c74a3ceaee1112f5db7cf6b45db67"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1606_2026050620260506.xml",
+      "sha256": "760942afeba01ccdb3c9e4b5c50c4fb7ed3724d66873b27ec71d6a733e1bcf28"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1702_2025010120250507.xml",
+      "sha256": "a355b5e9365d9317be03bfe25f7a46d73aacf0bf066454caff576a816f683228"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1703_2025010120250507.xml",
+      "sha256": "d4f04335c9631cd2de261b57202e66d8ef5f072323e4052a49fe93e6840dc8c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1704_2025010120250507.xml",
+      "sha256": "e4fefa7bc1c09e811f0c2206ac3c4492a39bd7ad5e5578d83b566a3021f1ccc4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1705_2025050720250507.xml",
+      "sha256": "71b0e389e2f190ec0e07ce4deeb7b7b182ee77b8c19778d21b32638dbe0e1078"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1706_2025010120250507.xml",
+      "sha256": "0e689c9e7706cf7523cdc11d5b8b73ebd86c9cae5bfab8bc4fe9c0c34f4e45d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1707_2025010120250507.xml",
+      "sha256": "3614dd80160a69feb1d1dc11bf7c39d27c86a00bc6fc0619081289644eeadb15"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1708_2025050720250507.xml",
+      "sha256": "a57e4b8c1661285af769c69c937ab4f48166d3f126522697d0fb32753cc9844a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1710_2025110620251206.xml",
+      "sha256": "6d77d9d90198b00c8b578d32fd6df7fcaeea4afc3b4c10ef50c23300ab4bfde6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1713_2025010120240501.xml",
+      "sha256": "884d5a32a222f30c4292d3ec18e66b0ad224538425eb4432f285ffc56a4373ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S1714_2023050320230503.xml",
+      "sha256": "cc360a3bfd47550bb6f34ebceadbbf1b9fea8a58fdcc7a5ece4dc50346a0cc5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S2001_2026050620260506.xml",
+      "sha256": "a9794da40efe37fa4f783c9b5d8bab125e1326ce098136901f729fac6ba86e53"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S2002_2026050620260506.xml",
+      "sha256": "51492d67780feb27974c967ff1230eb79dbd5e7d624a00100f54e81f58756f2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S201_2025010120240501.xml",
+      "sha256": "747e6e7b610c3d0dd6b7a183532ae075dccf745136049e6d77db238ac0d2e400"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S202_2025010120240501.xml",
+      "sha256": "48d195d9e5f2a6ce6d64d9d460c8a487e6dcc33fc7063428e3661e8b1db6a944"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S204_2025010120240501.xml",
+      "sha256": "b4793ebc368860b8651c8cf2772a027e4f3260c72032b619a76317293f64a7db"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S208_2026050620260506.xml",
+      "sha256": "7ae10dc43d07b1e6d654688d3f70894ce2676c0f34bd83d5ba42a41e6fd6de12"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.1_2026050620260506.xml",
+      "sha256": "91e4ef1f44108241ab594e376adc4b65cc935c371239cf4e42241ad6ae7890d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.2_2025110620251206.xml",
+      "sha256": "c43f8d77512907f32de6937d459f46e0b6cb9ef382f7ead4b9dcdf82dff137d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.3_2022050420230101.xml",
+      "sha256": "a362c1c274d47a364b27d8d8470e541b0c6068e9bdf4f8bfb0a179578e777358"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.5_2023050320230701.xml",
+      "sha256": "129abe90f3fbd541fef53aa5ff79d63f1de6e29e1813a20fa286e22014828086"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.6_2025110620251206.xml",
+      "sha256": "a36e75dc624a0d7160df817d5cb118f4fa5eeceabc6a20ae3cb8c354ba442568"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.7_2016010120160101.xml",
+      "sha256": "c882a68641350efb473ac55fb5418b72324e44dee0faef1c28b426de8dc784a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.8_2020051220210101.xml",
+      "sha256": "fd396457c9d5f9c579435a40887a66e5cbe8b8c944edebb4c2b4564f031b3825"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S301.9_2022050420230101.xml",
+      "sha256": "b349139e6e9ea730ee93a18b08de404aee734c642facf0883ed715c2c084ff3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S303.1_2025050720250507.xml",
+      "sha256": "1a8439b28930a9c014d1f83ac35684b45a131d5d794294d59e258d4647ad7e3b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S303.2_2021032220210322.xml",
+      "sha256": "35372e627bb98ae9ab3e2ad967292aa83005874b7dc97acc2026edbc441064a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S303.3_2026050620260506.xml",
+      "sha256": "c9bbde48b004731af4456e9e3bcfa19ea4c814e3172502032418a34f7867df56"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S303_2024010120240501.xml",
+      "sha256": "601cf2fbbe0666c1d4ca803fa29080897503d9030638788522398a9354bfc0cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S305.5_2025110620251206.xml",
+      "sha256": "deec2772493c11bb751910d2e679f0feeaa1b2d5c53108ff242011979c7791dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S306.5_2026050620260506.xml",
+      "sha256": "8f49350a4cb9d5ae101adaeadd5e9fdc364e80d44eb0c93b364dd9a9f1bba875"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S306_2024010120240501.xml",
+      "sha256": "c08e0d67e73f3a0ad2f096d8327e422115cbe46a0e049ab002b6b85337f55d60"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S307_2026050620260506.xml",
+      "sha256": "5dade4b3a5e0080482338237d227d8d12cc551e94be1a7c4e654b2ad51034297"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S308_2026050620260506.xml",
+      "sha256": "79ac4fedaeeb518d4eb75f3a73a68502c71afe1b1386409ec0c37db6f0f8b61c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S311_2026010120250507.xml",
+      "sha256": "49cf74762a3d906a4162d1877eb3865570c05ce8411e7fd4b3776fe22cd8d909"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S313.1_2023050320230503.xml",
+      "sha256": "ff8e12dbc6aa99a840a1a230685c983688c6713f9acc1729f004ec73ebae8e6c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S314_2025050720250507.xml",
+      "sha256": "e3c26d5e2836dc2f0faa3bbc23e6079d2ec9b6c4244673b5366f479ab432d263"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S315_2025050720250507.xml",
+      "sha256": "12cab498c83f311bbf8ebf1768d4f41529cd7f0e52b9acd32348cd662cf32d3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S325_2022050420220504.xml",
+      "sha256": "4d783b99af7cc3f4f1b2883d72cc30b86e20327d5a6c643d92cca16c111334cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S326_2025050720250507.xml",
+      "sha256": "7cd6d5b58b0c86d3ca0b7b4d20e49c64f359bee183a401f92ad08a2fc65c349c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S327_2014040320140513.xml",
+      "sha256": "78aac8b45ec38af58b0d643c5684c1f782fb0b0028c9090cc0516de8387eee27"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S331_2025050720250507.xml",
+      "sha256": "2299b90dcb28cb5ec7d76aafc3ff7c1b66030bec5b7dc6f082cc11447962b5e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S402_2026050620260506.xml",
+      "sha256": "8add83c9e14cb236154613920e5dbc86d1d44ab34b6f05965396599fb75ed220"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S405.1_2026010120250507.xml",
+      "sha256": "6ea20b6a5bc13ab78641da3aba833a2b0a9d6eb7c4acf6170bff9054ace29db2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S405.2_2026010120250507.xml",
+      "sha256": "25a92037d6a61bdae6a4071f03fdf04ce51e90b9d9c0093cc93dbdf0df70ac75"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S405.3_2018050820190101.xml",
+      "sha256": "7d229f4ab5b0a80ba25687f56736cf1a17b745457d52827d964f2731bc790cf3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S405_2026010120250507.xml",
+      "sha256": "0fb64327bc052918e5eafa5ac049a2d7937f877d66a5b3f216a89164cf1557d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S407_2026050620260701.xml",
+      "sha256": "b3bb511d1a5d511186e7adbeaac72b43020803a33aba13a902f479fcfb928ba8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S502_2025110620251206.xml",
+      "sha256": "9b5845bb4000d9c50bd83b8d23623cb61273854acf36b4e2e05a362525eb8fe9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S503_2025010120250507.xml",
+      "sha256": "f85f5b9a53d3010f176c732de1e6d55768ad105ea3ede2db169e1e495f6a5f66"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S506_2025050720250507.xml",
+      "sha256": "8667b161f9605479f64f1539afecc27dbfd05f904330cee150e0922e42c3575d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S507_2025110620251206.xml",
+      "sha256": "faecce18368d146cebe37c4d0dd804810732dc22a1172cde1425334409a86dfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S508_2017050920170509.xml",
+      "sha256": "a8b2a7145d2b1543995765bc4eac702dfa492bc55d99e426946f9d9805570f91"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S509_2025050720250507.xml",
+      "sha256": "49ac94805bec67bf994d69959886f5240bb97bf5e75281ccfc7109876b459e50"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S511_2025110620251206.xml",
+      "sha256": "48724a06ecffb3111d509f82a2dd8551e4e89659a9efa558d5eb0462f123ce59"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S516_2025010120240501.xml",
+      "sha256": "8a33975ce0c759d0ce0b0102408e035eb0c05facea325dd638b3cfcc364c9a72"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S701_2025110620251206.xml",
+      "sha256": "81e374097e8f7ec45dbea75b0093689c9660a60fddaecec73310c52eb22fd278"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S702.5_2025050720250507.xml",
+      "sha256": "292eff8b5e149232dd470f03baf927a743eb9f6ab124eaf8555ffb367c83456d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S702_2018050820180508.xml",
+      "sha256": "f15c7059c4d6a43fff2fbd09b119a555b0c35ce1c209d0bf97ff79057dd0ff38"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S703_2025050720250507.xml",
+      "sha256": "b429830c993056862f45f3cab833bdd9d7c16c0102e2b5831d55614551a2513e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S704_2026050620260506.xml",
+      "sha256": "29f0502c7e192d7cfa29641eeecc4396ee6d3559f42c5e98561a839e0396ad51"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S801_2025070120250507.xml",
+      "sha256": "bd134e9b7ddd7e1edda63505a700438db2bd77b7e86d0bee9c9fb4ac8c9061cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S802_2015051220160101.xml",
+      "sha256": "7361ecf8b71e86d105c81fb56f40cf4ff246e2c8a4707344e580652d40bfdac5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S803_2015051220160101.xml",
+      "sha256": "de5f44e653767e796b70f600c0482f75b81f835790af9ca85fda013300b3b4cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S804_2025070120250507.xml",
+      "sha256": "e26aa89710b9e2914778a52f1290c9caad59368f83ec8ffd8a5ed58ed820348c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S911_2025110620251206.xml",
+      "sha256": "90a7ce060f11a5841ebecef5d98d7d0fd3ccc863dc80c86d8de0ff383703b914"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S913_2018050820180508.xml",
+      "sha256": "fcf7c6fd326e1343f19518e82d03fe3fbca4000a2e923b7734fe5226c6e41c44"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S918.5_2026050620260506.xml",
+      "sha256": "f36922406e6ac431474bc6b16ee8544cf6590abdbe5875ffcf5b24f9ee088055"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S918.6_2018032220180322.xml",
+      "sha256": "69fe5e52bbfa0d421e5711d1931c59e060e77d082b333fc99ebc20fee1546648"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S919.1_2026050620260701.xml",
+      "sha256": "d5354c20ebe83278ef72633ae9cd2e6e31c00ddf488f101698233d09fd3e48a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S919.2_2025050720250507.xml",
+      "sha256": "22bcd61e4fbae198981f5fe43c57ef3a978029df70d40ddf47ba09768875ff88"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S919_2026050620260506.xml",
+      "sha256": "d9843fc56ac00a8c5fa944ed32492f1432f39ffcb2f6abeb1c81f2cf2f1398b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S920_2019051420190514.xml",
+      "sha256": "990e50f43b91fd33063e509fae75d23e263f12659771931d11d65ff3c3eb5ae2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S923_2026050620260506.xml",
+      "sha256": "14213fc31f9ca178db1bcc6701264d5b692fb27b71808f23fc2f5066311191d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S924.1_2014040320140513.xml",
+      "sha256": "f94f49a5c5e6d13763d63539e4a0975c90a57903ba36f27fa58dacce62f80ebe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S924.2_2026050620260506.xml",
+      "sha256": "b636f953a8a1dad049933bb4c3a7bd34c043e7efbea1a4888cdc65a0d032cb32"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S924.5_2026010120250507.xml",
+      "sha256": "000533a88775534c09688ac7a60061aef692913e50961f910609f6f96cf4aaa2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S924_2026050620260506.xml",
+      "sha256": "d4c9cb58c450967a22a01d8b783cf4d04f3cb4f259c8108218ced493ff894bfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2/C59-2-S926_2026050620260701.xml",
+      "sha256": "56ad2ebc5eb23b65940c3d3d16511e94f1248c9f16b3a1e210871e16a1ce0bb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter21/C59-21-S1_2026050620260701.xml",
+      "sha256": "7d7247c7d3600a4e60fc2cd916d8ca52dad14e6dec20b099386a88621029956c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter21/C59-21-S2_2026050620260701.xml",
+      "sha256": "7f0e0c3037cf56d1059d99eb9324a2dfa2d45daa7e8527f64f05b433e00cad95"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter22/C59-22-S202_2024010120240216.xml",
+      "sha256": "60f4c045f34c0c511e79440a06d70ed5f2f1819ae11908bbcfe5f18f07243de1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter23/C59-23-S4_2026050620260701.xml",
+      "sha256": "394103f1bdf1545991ebcc78d41856c556d230cdbce08f1c09d662d71f6dcf2d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter24/C59-24-S102_2025070120250507.xml",
+      "sha256": "07bcc3f7e860e2dcfa89b173b1dc11401d0d50bf10270c0f3caaa8bf61492a54"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter24/C59-24-S103.5_2025070120250507.xml",
+      "sha256": "f4b5aeee243bda16b1fc3301bf0dbd27f2297693e214887275cdcaf54a22c3c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter24/C59-24-S103.7_2019051420190514.xml",
+      "sha256": "59e967fe222d1c74604faf88a580772ac1f1d9d1cdb8d10d9b8d7c669e0291a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter24/C59-24-S104_2025070120250507.xml",
+      "sha256": "a283645fa1f01466261d2c2f8e0c414940224503bab89800e86ae083481a9d6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter24/C59-24-S105_2026010120250507.xml",
+      "sha256": "c2eed44998673c81ba2262deda345a05f236d45e6596da9e19890797e1695392"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter26/C59-26-S104_2020051220200512.xml",
+      "sha256": "a169776374b9749bd977defdc97f428e87002b83ce6339ee57212681bb3a6c93"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter27/C59-27-S105_2025050720250507.xml",
+      "sha256": "49766a020a29ff87ca95c208a55746ee63aa503860e19f276e9dc036b7123295"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S102_2025070120250507.xml",
+      "sha256": "c38f3c6a99819858caeb03afce10c944d2beb88d6c7a64c8f64dca42e3cd8182"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S103_2025070120250507.xml",
+      "sha256": "b718054cd9e79eec8050211e84db78fef9fd86272eb40e300ed04fa0cf8b1740"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S104_2017050920180101.xml",
+      "sha256": "594faa132abb643bb2911d7314c1a72b0a9c3bdb2fd7c1bd06a0cfd2cd7aa544"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S105_2017050920180101.xml",
+      "sha256": "2d0f48fcde09cc2748ac560c384b0fa1800a9902b91183de1ff4b0cbb997009d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S106_2017050920180101.xml",
+      "sha256": "d6391d640277551aa67c590587910a5abfb6da1da9878f42a5d583c306ad28f2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S107_2017050920180101.xml",
+      "sha256": "32b3bd2ae58262cd83c370945605d6dfb2a531e858b28b23fd3bfc5d13b68b2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter28/C59-28-S108_2018050820180508.xml",
+      "sha256": "4570ac72fa2d2d14a8230591437a7e4281188bb5607b72522a435cc71a02a34a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S101_2026050620260506.xml",
+      "sha256": "ac93d32212ebec13ca29997f77e0e8e08d06a48977a9ce7b622e050d2ba317f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S102_2026010120250507.xml",
+      "sha256": "dfb57e3325f6ba3808daeda905b43fb412959c94bbe048ee93604c0708569038"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S103_2026010120250507.xml",
+      "sha256": "adea527d34272387503df1bd7277396e2c96a431bddb9ea874f9835b08326bd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S104_2026010120250507.xml",
+      "sha256": "46ef10a86a2886c6557fb355fd9cb6adc0fcf689ca26c53d7ef52f0d0f04393a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S105_2026010120250507.xml",
+      "sha256": "fc0e8253970586ee4ae161043cdf46314a3501e2d01cf1f375f5ac66783f28ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S106_2026050620260506.xml",
+      "sha256": "d7af0315aabdd1322f673c00dfc432cbefa01b70ef8457c0189c4c6a8b640a7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S107_2026010120250507.xml",
+      "sha256": "655cdd8fe52f623db825e18c490dc685306efefc6bc46cdbaafdbbd42df3dd33"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S108_2026010120250507.xml",
+      "sha256": "e01eb942942285b28d39d24cc3bd689f13f56105257ec6edd3a0195493bde3b7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S109_2026010120250507.xml",
+      "sha256": "f47c0510d2e07e058b3db44cdaea19fa2a32a8485caa1b83ff9a79eaa47fd48f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S110_2026010120250507.xml",
+      "sha256": "dbe522b6a51c887e32932cad6e959b82cbfc90e5b5803d21140efb33e49123c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S111_2026010120250507.xml",
+      "sha256": "4e560dfa15032b39b51fd0374fb9e37d65fcca5430d1767b1ed62df2dedec1ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S201_2026010120250507.xml",
+      "sha256": "11dcf4c549088cbcb0afe74fa934abceb7aa623eec33efb0dad986c29d745bc3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S202_2026010120250507.xml",
+      "sha256": "b47587052fbf64140f5c268d9010bc11d100019e86b6a2ecf4c4f5119f68606a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S203_2026010120250507.xml",
+      "sha256": "890786f7f6fea2b9ce8664163c0831df8d5e27603cf81f8a5a9206e2b1abcb1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S204_2026010120250507.xml",
+      "sha256": "6c45fd3ecd836ad3747c06959d0c1cbce67d59a641af1b01a62814e9dd333ec3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S205_2026010120250507.xml",
+      "sha256": "26b407d99a7d64008109020253c08d00b38a8fd9dd9d1545e3a0c1245eb16f0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S206_2026010120250507.xml",
+      "sha256": "2311848e4716787fd2dfe2cbf46d442280cf5f073b2379170f319ba91df2968e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S301_2026010120250507.xml",
+      "sha256": "abcd946f5bb20ed7972827b09621173770545165c5d696054abe560902c0f8d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S302_2026010120250507.xml",
+      "sha256": "3c3dc272335e9d2f6e8ef5d9f411627a6137038dff29f49d79e1c81bd0160bf9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S303_2026010120250507.xml",
+      "sha256": "186c399f4991232d3fc7f6d3e38928ae4afa7c9106c9f2cfe85f1490dc04d9d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S304_2026010120250507.xml",
+      "sha256": "d3a55b79d31ec5c9caae04a072c03683180ab67627d165a3e6105747f8242a6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S305_2026010120250507.xml",
+      "sha256": "ebf88d7eb8b3e09679158bd7d6174bb0b62df74614bd45d69a9217cff719b579"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S401_2026010120250507.xml",
+      "sha256": "e1da8b7f1f52ea6144441c5802a3d3849cfa7d52d9071a64e331ad1a2d0bdf16"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S402_2026010120250507.xml",
+      "sha256": "47698dccb599c06a51df0826d4b5159dedcb8a2c35f1c885c7696f946d27bf89"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S501_2026010120250507.xml",
+      "sha256": "9916edd9b39424bd11303e770b0d863c5d63898d9a9f10345185b0e7e4b1bd44"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S502_2026010120250507.xml",
+      "sha256": "9ed33a8ef325a6cb47421f172540df929b56c31942d6a4417f17d0d937d3e860"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S601_2026010120250507.xml",
+      "sha256": "945713c89cb8454f9aea1b6405af1a5fce829a9cc19ec0c81c9407b81049f5fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S602_2026010120250507.xml",
+      "sha256": "74ddc0c05fd9c7c65a1262cf6ff556c22ac4c31a2d4cce4959b455e8b7816c1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S701_2026010120250507.xml",
+      "sha256": "023430b67d876a595f1cee65210d3cdc306a57a1fb4eff763fd6373160d22557"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S702_2026010120250507.xml",
+      "sha256": "7b040cd5a03ee9e3bd94f49815cadc98e16caa1bbcf51110708b132cfbb0da01"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S801_2026010120250507.xml",
+      "sha256": "c9bb3f9cbce998df8f3fadd5c611a56523751b2ecefb4dd4ea1b8289aa893285"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S802_2026010120250507.xml",
+      "sha256": "a088880096fafa2b6082869f5da0223a1ad3eea26c6f7f4388eac0ebd6f92d48"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S901_2026010120250507.xml",
+      "sha256": "404591417dc33830964ee441877b7979dd1dc791fe60f4d87b98b32cb185c46c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S902_2026010120250507.xml",
+      "sha256": "fbfab0d8ec19f220dc75ce76dda76716bcc4a8772b1c179d5ce1a2b90a7162ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter2A/C59-2a-S903_2026010120250507.xml",
+      "sha256": "7443fa96fbe67a6e6c9318222212b57a4d0d52fb672d28efd12ec748c5905d81"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter30/C59-30-S101_2023050320240101.xml",
+      "sha256": "e23c414ee6bfdd42fd30d70e120622f8d669fe8ca43bee6aff9c99759fcc15ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter30/C59-30-S102_2023050320240101.xml",
+      "sha256": "e8c505477e6b146b0e3907f818322c5a3c6902f31b730d3acf25c8ea9611b684"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter30/C59-30-S103_2023050320240101.xml",
+      "sha256": "547969ec35348151c2ec840e225b606a1f67e8bd47cebdc54697a7f0c3fae040"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S101_2025010120240501.xml",
+      "sha256": "6d32352d2f95070f5f96728bff848daa2198adfaa1b7eb34bbc933bdb97a34ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S201_2025010120240501.xml",
+      "sha256": "242111578c493417423dd4aa23a8a5a023aa9c63e6f4f047d59cd0725e184f5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S202_2025010120240501.xml",
+      "sha256": "5c9eb9aefd007c3a1d7dfe36cda425e7f9bc7393378129fce8b2017583082dc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S203_2025010120240501.xml",
+      "sha256": "28e0923d0767fac534b77d52030ae561bc092cd45f1b8240d90877fcdad6a1a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S301_2025010120240501.xml",
+      "sha256": "062114b443b266890acf350b6df5ce1623b40fce878771711ddad860408108e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S302_2025010120240501.xml",
+      "sha256": "82a67722a2adcfb244f891d722cb8281fffb39a306f4d70ac357c84aa3029c1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S401_2025010120240501.xml",
+      "sha256": "53a88af78535f51fbb198beee01a399b3421e42c9a0670b3b09da85759927011"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter31/C59-31-S402_2025010120240501.xml",
+      "sha256": "bf7e4d8359952658a5b776e4aa76ec231894fd1ecfa2d957e2ffb7f44439327d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter32/C59-32-S101_2026050620260506.xml",
+      "sha256": "7e14478e6fb5aba39192dd9bd4a69dfde08ee7c0909b3a00d3aadd82b8ee3d93"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter32/C59-32-S102_2025050720250507.xml",
+      "sha256": "99e2e772547c927cc73b160b48290a09bbf7f07818df5ffdd4147dc331febb5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter32/C59-32-S103_2025050720250507.xml",
+      "sha256": "66d70921036a233318857207ef658e8b7429ba23e8026fb8d23c2723cdf67556"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter32/C59-32-S104_2025050720250507.xml",
+      "sha256": "ef91e241282e96141bd73d8d26e7e6a4bd547f9bcace07c4b2137bf220367c7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter33/C59-33-S101_2026010120250507.xml",
+      "sha256": "a5c5797aa24169050156272fde795a4ef453c6d0d4bdbbd3098d8f89349448bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter33/C59-33-S201_2026010120250507.xml",
+      "sha256": "365e09bbf1bfc56246210401539d2acb0256857ae10b8c51700837cc86b59cdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter33/C59-33-S301_2026010120250507.xml",
+      "sha256": "65b92ae93e6b5cff46445c63f664b73bbfef32ef5b23496ff7165dfc0295a62f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter33/C59-33-S302_2026010120250507.xml",
+      "sha256": "2ffca70b15b59a01feddf012d115611da54c787700cb45279d931a4deb97cd6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter34/C59-34-S101_2026010120250507.xml",
+      "sha256": "de6db87c6ab921a11694e8e1e1f65c43591ea8a0ebaf062aa360b011c3d710de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter34/C59-34-S102_2026010120250507.xml",
+      "sha256": "e33bc4f9c445015a650ddfee7d81cd5e57d933289572fc0e1cdcb292e25f8b77"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter34/C59-34-S103_2026010120250507.xml",
+      "sha256": "8317abd21c8130e2aabf4edc2ee3d3d8e0d717dce5c8058d9ab626eb6f599a8e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter34/C59-34-S104_2026010120250507.xml",
+      "sha256": "9496000424de355931dbecf1f54b83e056b3b689801a68f6c05ac8189b736503"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter35/C59-35-S101_2026050620260506.xml",
+      "sha256": "4de8504ffc9bbe20e847f300869b8ef797da7f0d7acc87d0cbd4cc3b135054e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter35/C59-35-S201_2026050620260506.xml",
+      "sha256": "8a31fbb392c34f32a26283eadd2b7cbf44d69b8bca43a936f338c854a613c3af"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter35/C59-35-S202_2026050620260506.xml",
+      "sha256": "1621d688e9952a923279b66f20ea7ca9055dcfafc15580d0b2a9df3fccaa37aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter35/C59-35-S203_2026050620260506.xml",
+      "sha256": "ecd04b565973c022d44752d8e0dfce1f4d7b03133ad96928a502e756f6f010c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S101_2026050620260506.xml",
+      "sha256": "211ae591e2cadb5d9cffa70f02294eb86f2258eed5c0bbf1f9859f7dc110bacf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S201_2026050620260506.xml",
+      "sha256": "3ace12713627dc14a7e27e4e3e9b1b6b84ff3826995f0300e4b0e464932e7b2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S202_2026050620260506.xml",
+      "sha256": "2effb871f0d8cdc0bdb239101560606c1b4b13004e3c89e986b33603995690fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S203_2026050620260506.xml",
+      "sha256": "663a3ea41e5e237cf3b727f6d30009336b0b697cb14e1e38e023024aacafe688"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S204_2026050620260506.xml",
+      "sha256": "dae833e1160b79c9e0b5b5d72be1f38527ae60aaf50bd2ae6b48a1a39445a6c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S301_2026050620260506.xml",
+      "sha256": "b1bf195ce1ba42f7805f265d5ef3c6457535318c3fea28154624c4aaccbab601"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter36/C59-36-S302_2026050620260506.xml",
+      "sha256": "9bd458990eaf183d47a6a8779ebba5eef6590a0ac8aded6eee6809f1f1999e4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter37/C59-37-S101_2026050620260506.xml",
+      "sha256": "4b0663bcbecb8f637d8c8ed22b9659ca269f5a7b2d9e6e08134914fc9195c6cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter37/C59-37-S201_2026050620260506.xml",
+      "sha256": "13635032f3b081e8ff528d731dbfa8d6ec3d5e7aa2e204ea7d587fc33036a952"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter37/C59-37-S202_2026050620260506.xml",
+      "sha256": "2c0c452c2964d83c8f8ab20bd679f47757a9a4249048f7641bbbfc52b40591db"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter37/C59-37-S301_2026050620260506.xml",
+      "sha256": "34c6b72ef1086ccea3a45e88bbb23524468525e2684cec7f984002e3b499531e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter4/C59-4-S101_2026050620260506.xml",
+      "sha256": "66cbceb2d5bf26a2f8a680f22fc27468868fb123eca332948547f41ee52af033"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter4/C59-4-S103_2026050620260506.xml",
+      "sha256": "e2e2f2c7d7fa4e6b1e3072f1c3be0e2f2727f358e93301ea363e52bfe62ab1f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S101_2025010120250507.xml",
+      "sha256": "db4267b28708af5c33c9ee809438f4341fe0768e718e9d7930ae2aa317686e4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S102_2025010120250507.xml",
+      "sha256": "69d6439ce2b3a53cfe5ddb47fe74b3994260d0d4c12c0abbb4205e86f76898ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S103.1_2016032820160328.xml",
+      "sha256": "e32cf919bc39843d7907baf478534ac694f0b1c65ef1abe8802df61f02ccca54"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S104_2026050620260701.xml",
+      "sha256": "f6f8b1f560af2b31626a1d5da7b144a095e316e9dd7baa82cb6d3ce6339e8966"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S115_2026050620260506.xml",
+      "sha256": "8e3097e17a41316d60eebf9bd13feb65065d2a612c0fbb8b93e7d38d572d9cb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S116_2026050620260701.xml",
+      "sha256": "d5612c9891bc84671a1e0d4e058473a542a952301b611d3ed748d1856f7bb861"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S119_2026050620260701.xml",
+      "sha256": "9248f869abd032ca721538236dd7774d143551aa5686822f05d5fb8c938e5661"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S120_2016051020160510.xml",
+      "sha256": "f32724d234b8b9f158b0ca25a1eaf6e2bd191c9213a8ebd019f30f527e0a6962"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S121_2025050720250507.xml",
+      "sha256": "595b96df8798a8fbbeceed67806e5ec381a1e4dbf234c6154234e3c5f20cab11"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S202_2026050620260506.xml",
+      "sha256": "3c104b7b9f1d22102a9de4a97dbd3a94980f43c11458cd9e7e0aef3c2d58b571"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S203_2025050720250507.xml",
+      "sha256": "150a6d79287a4b8405ac0bacaf62b2aff27613a1ede7bd77466a0522026adc5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S204_2026050620260701.xml",
+      "sha256": "1666e2148e24187b8d5ab2b6e0f02eed434514fef3a1cccee8011efc6fb26e14"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S207_2026050620260506.xml",
+      "sha256": "2803d9de189cc3d54936c0a1854b8a54574b7d058993ca790ed35daf91a126e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S215_2026050620260506.xml",
+      "sha256": "526d91e2ccbded42a0adf4ae3ecdd9084a056fb42c9e91e57092a929854d1c3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S301_2025010120250507.xml",
+      "sha256": "2e44064d31c516f0429f7e226c7b6ace411a28cfb1816d565120f84a7fd433d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S302_2025010120250507.xml",
+      "sha256": "6f5170cb5cb92cb0f15ba56dc81807bedc93ee2959a5fb60924ac720e5992dd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S303_2025010120250507.xml",
+      "sha256": "1864e7f2f40fddd5ee2b684b773cfb8e2e77fb7dd5ce5ed62e22d0712590b47a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S304_2025010120250507.xml",
+      "sha256": "e275aab2ae97ceae26bd254f0c90c3639e92f5d3990c0e9bdb5dadb2471f1e50"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter5/C59-5-S305_2025010120250507.xml",
+      "sha256": "b8987a23d04761f7e81eb1117e8fc8324dd6c1083c6fc229b27c5aae1fe44687"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter6/C59-6-S103_2026050620260506.xml",
+      "sha256": "362b140dcd5fbf9b6059ceab123db483180e0f1266a2a899e2d59a74fce8d01d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S101_2021050520210505.xml",
+      "sha256": "a3607a70a85c0abf35fc8680771d97263c2f64f56ea0be9e02e8cc8fc978ae13"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S102_2017050920170509.xml",
+      "sha256": "a9d981735d745bc3e2794908803db7fdf651ecdc256017512ebe21b9a52987cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S104_2026050620260506.xml",
+      "sha256": "ad958a2932cc7553ca0fe9c15f29f51630053be8f056af54f8cbc3b952d15a06"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S105_2025101420251206.xml",
+      "sha256": "6773cca84f45cc1607e30567177167bf05cc8ae9525d21e7c75b3ce4d02028bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S106_2025101420251206.xml",
+      "sha256": "85832a5594a567080f2e904767cf8d408982b9cf2cdcac899d55837f08e1ff4a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S109.1_2024010120240501.xml",
+      "sha256": "8122d7621d11477a66ad6bc5c61f4fba934bbd7b8d29dc55666fc44108cf6552"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S110_2023050320230503.xml",
+      "sha256": "c7039717556b446cdf55ee7ae857c0aa2cc01c1789b888c319bc15b96f167d14"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S118_2021050520210505.xml",
+      "sha256": "3455b3afa0e9350b3568e453a8a69ec1a8b6c13f099e84a59b327c2fe4f0bb19"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S159_2026050620260506.xml",
+      "sha256": "2edb23c8f6f5d03094e943aee7f199fe715cd3c522b2db6f366556be7da80a55"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S201_2026050620260506.xml",
+      "sha256": "7243ab6f719b5cd388f636b68a05f939bab7705b50c85775c19bd6af3ead251b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S302_2025070120250507.xml",
+      "sha256": "5d2a7082ad0e89383ec4a6bfceef5bba877de3e1fb8e81f896b4c585bc9cd253"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S303_2022050420220504.xml",
+      "sha256": "e84a3328b90aebf13b74d80f35f1b3653be61ac65fb80150d2dda320ccf000f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S311_2018050820190101.xml",
+      "sha256": "0c8f6c58f00100551045c6b3fb4ff5068a75ce36161f537387458d16c5d1205f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S312_2018050820190101.xml",
+      "sha256": "3d929a526d8c1352fd0b5f71cf4b19d9414acb22a983251290942fdece3d81a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S315_2018050820190101.xml",
+      "sha256": "5b29859be9751e5dc23d4c6efb82d846cddfbb16d76466404c2b63c1deb2f5e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S317_2026010120250507.xml",
+      "sha256": "85d715cb03e376fdccaf3ff78e1d6da29168bea80fddca028061e85e484c3a5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S319_2019051420190514.xml",
+      "sha256": "32a58f776d15de41b6a54828353b17c583a7e372080f5446d6bf84014931e6fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S402_2021050520210505.xml",
+      "sha256": "26b1e5514777e9230949dd77a3143bce67e5caf0677be3e5fccd949368b40ffc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S404.5_2014040320140513.xml",
+      "sha256": "c0779a48f68505480695c09fa9c2e1000e8cb48113b46557a9968af1d1819a1e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S504_2021050520210505.xml",
+      "sha256": "1291ae39b1c1da191f23c0f0835f0a8b5148b99297ef97cedc36b1b8c249d2d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S505_2024010120240501.xml",
+      "sha256": "a479112e7a45ac80aa1e4b35c7435e6ee756380dd31feb7d1cd3ec5b8766909c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S507_2021050520210505.xml",
+      "sha256": "a307c3176dd1cfd717dbd62d85aa0c520edfad6bc7ac1d1548fad2bcf3e1f19e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S522_2018051620180721.xml",
+      "sha256": "d10a8d0df873ce3402cf5640b6af34234f959e014dec3e542d02be68230ed858"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S532_2022032420220324.xml",
+      "sha256": "0a40e6dc8211a9ca5649b9447748f2ce4f7130fab685a8d0faefd2aa839eafb1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S538_2024050120240501.xml",
+      "sha256": "be524c5ac10335691a85374e62181a49787fcc2a57c9549bd1e0c15fe8101974"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S607_2026050620260506.xml",
+      "sha256": "bc246fce018e07e90bbb2c943d001131885e6e4aa04964eb8a41001e917f2cec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S609_2023050320230701.xml",
+      "sha256": "45ae58255422dda3fad7ce0cd261e55c0e40930883f42e0a11d5e02124b067a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S610_2024123120241231.xml",
+      "sha256": "42a0dd1ce296a3167952453b5ba6626165a9da27307b057531d03c40d0524bec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S612_2016071320160717.xml",
+      "sha256": "f1897ca619fa91703c0e398a1cadf8f8b6dfd95b594afae223afe2aa8b52ed42"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S614.10_2026050620260506.xml",
+      "sha256": "4e97899609a2b2c52be0304f53c63471f04c56b639479f365920204154c84a2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S614.1_2022032420220324.xml",
+      "sha256": "c6701e97f4fa7f04345c2cf2632c2f68e7a67e6fe2886a164aafe8a845ba73dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S614.2_2026050620260506.xml",
+      "sha256": "52732192bc23e8f546fbbecd66d120023ede9389609c00f5feca1f127356d9a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S614.5_2026050620260506.xml",
+      "sha256": "92279f39d521db076d9461b70ec9be10591128cea3ddd4a7b938f20aecf4a49c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S614_2026010120250507.xml",
+      "sha256": "417a1aeb18820d70c1eba648f24a080aa53a14773afee65b32ff4339724ee310"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S618.1_2021050520210505.xml",
+      "sha256": "bf140f56556539747041f4c2384258cddf0d87f874107db876268afa819dd670"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S619_2025010120250507.xml",
+      "sha256": "2c485405b08791b94f026d29e7aaf8e07992eccba062f5f22e2a62c5f281015d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S621_2026050620260506.xml",
+      "sha256": "9e6d47c6372dc63632e2abfa70081392aa6dcc8bb2800d1b70036c6bc4d7345f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S623_2018050820190101.xml",
+      "sha256": "0ee950013cef77bdf0d37f339175c0d6a34ef622d21d10a68b83964b9179cfa7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S625_2026050620260506.xml",
+      "sha256": "9fb616687cd62b85c7204a3fce2318fc58627ea653da741951625d4bf7e47137"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S626_2021050520220101.xml",
+      "sha256": "f5e9c4994e7a3231702638133afa7d29f05bc025bd2258daf0e7e7b86dfa500b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S627_2026050620260506.xml",
+      "sha256": "f24471aea27338c95540d078eed7aab51981bbdb91b433b0fbcedeef25d432c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S701_2016051020160510.xml",
+      "sha256": "5c5a8c6448b4ccd402e55a201c91702f60db76fe197d0d3424c9864bb30c1a1f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S801_2026050620260506.xml",
+      "sha256": "6b4fe7a117526ebc4de4cdc0aee023347f02c24f392885cfbcc0e0cc2193347d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S902_2014040320140513.xml",
+      "sha256": "cdea63ac277d140e890a2f6b27dd8b91ead09d47a93d7d7a831b595767223982"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter7/C59-7-S903_2016051020160510.xml",
+      "sha256": "827f92575d44528b063aa3caffe46b6b9b6b5898bf227a59f38b537404f5d0dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter9/C59-9-S101_2026050620260701.xml",
+      "sha256": "c3316f7243b14a2721f05aedca427a3c47176f8b37cd838dbff65bb9498f226f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter9/C59-9-S102.5_2025101420251206.xml",
+      "sha256": "94b8698ea15905fc2e39bae0e8c83383908d13be66e38a7cea74f74427a689e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/statute/2026-09-14-income-tax-chapter-title-59/utah-code-xml/Title59/Chapter9/C59-9-S108_2023050320230503.xml",
+      "sha256": "04c279596aa2959fcba0cbb5ec4c562cb92c2c6ffb8915a9f9d74d6125ce202d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-title-59 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1226,
+    "missing_count": 0,
+    "provision_count": 1226,
+    "source_count": 1226
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T18:15:19.967322+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jSr1gCIFFW0OcgXcpdmHV56VBd03j6+no3bujHH/FAEtLiFLyxHCAljvV7OX4IwsfM11gXvdnHRSEch7pBlXDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-title-59"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "749333e2969b2a00a7e7d71b5cbb57fd73bd09bcc4f0eb95c3527ab9df10543f"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "a7393df7f53b55c45245f6a6d95ad7fc70b2cd36bda0975ff9490f2a551f6633"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "2355386275129d4514ee51f4e579e6c7e69e89efc53126490f1a1d420c794eaf"
+    },
+    {
+      "path": "data/corpus/sources/us-al/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-al-ador-form-40es-instructions-ty2026.pdf",
+      "sha256": "8ca79c2f6bcb59b5b3f0db7e011850bc15594a6aa0b331d1fa217da8fc42bf5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-al-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T16:09:59.176754+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gFUvslJ+cqMLmk2yaXs8wuG/1roOxYafvhO1uo4vJ+YDV7iUb95wqV9STKZLHCSUmj53Vt4F8WWVvNaqTb2DDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

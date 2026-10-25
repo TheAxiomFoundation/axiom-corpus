@@ -1,0 +1,486 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-in-medicaid-ihcppm-chapter-1000
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 1000 Introduction to IHCPPM'
+  source_url: https://www.in.gov/dA/7e89cc3dcc/Medicaid_PM_1000.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-1000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '1000'
+- source_id: us-in-medicaid-ihcppm-chapter-1200
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 1200 General Program Information'
+  source_url: https://www.in.gov/dA/f9053fef97/Medicaid_PM_1200.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-1200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '1200'
+- source_id: us-in-medicaid-ihcppm-chapter-1400
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 1400 Administrative Policy'
+  source_url: https://www.in.gov/dA/666aff8d87/Medicaid_PM_1400.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-1400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '1400'
+- source_id: us-in-medicaid-ihcppm-chapter-1600
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 1600 Categories of Assistance'
+  source_url: https://www.in.gov/dA/4fd9875d6b/Medicaid_PM_1600.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-1600
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '1600'
+- source_id: us-in-medicaid-ihcppm-chapter-1800
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 1800 Application Registration'
+  source_url: https://www.in.gov/dA/37fb9a1832/Medicaid_PM_1800.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-1800
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '1800'
+- source_id: us-in-medicaid-ihcppm-chapter-2000
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 2000 Application Processing'
+  source_url: https://www.in.gov/dA/a5ba6ec6c2/Medicaid_PM_2000.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-2000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '2000'
+- source_id: us-in-medicaid-ihcppm-chapter-2200
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 2200 Continuing Case Processing'
+  source_url: https://www.in.gov/dA/d46e1798fc/Medicaid_PM_2200.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-2200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '2200'
+- source_id: us-in-medicaid-ihcppm-chapter-2400
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 2400 Nonfinancial Eligibility Requirements'
+  source_url: https://www.in.gov/dA/6a5ed4bfaf/Medicaid_PM_2400.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-2400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '2400'
+- source_id: us-in-medicaid-ihcppm-chapter-2600
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 2600 Resources'
+  source_url: https://www.in.gov/dA/ec2cb4f552/Medicaid_PM_2600.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-2600
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '2600'
+- source_id: us-in-medicaid-ihcppm-chapter-2800
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 2800 Income'
+  source_url: https://www.in.gov/dA/0080ff1385/Medicaid_PM_2800.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-2800
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '2800'
+- source_id: us-in-medicaid-ihcppm-chapter-3000
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3000 Eligibility Standards'
+  source_url: https://www.in.gov/dA/a7e1fb7d7d/Medicaid_PM_3000.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3000'
+- source_id: us-in-medicaid-ihcppm-chapter-3200
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3200 Assistance Groups'
+  source_url: https://www.in.gov/dA/9fcd49126c/Medicaid_PM_3200.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3200'
+- source_id: us-in-medicaid-ihcppm-chapter-3300
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3300 Medicaid Waivers'
+  source_url: https://www.in.gov/dA/9b7af2ae22/Medicaid_PM_3300.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3300
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3300'
+- source_id: us-in-medicaid-ihcppm-chapter-3400
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3400 Budgeting and Benefit Calculation'
+  source_url: https://www.in.gov/dA/e334693d7c/Medicaid_PM_3400.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3400
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3400'
+- source_id: us-in-medicaid-ihcppm-chapter-3500
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3500 Healthy Indiana Plan'
+  source_url: https://www.in.gov/dA/0ca2b535d9/Medicaid_PM_3500.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3500
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3500'
+- source_id: us-in-medicaid-ihcppm-chapter-3600
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3600 Benefit Issuance'
+  source_url: https://www.in.gov/dA/fa1e02685a/Medicaid_PM_3600.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3600
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3600'
+- source_id: us-in-medicaid-ihcppm-chapter-3800
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 3800 Transitional Medical Assistance'
+  source_url: https://www.in.gov/dA/b74cefa119/Medicaid_PM_3800.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-3800
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '3800'
+- source_id: us-in-medicaid-ihcppm-chapter-4200
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 4200 Appeals and Hearings'
+  source_url: https://www.in.gov/dA/eeb09a40bf/Medicaid_PM_4200.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-4200
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '4200'
+- source_id: us-in-medicaid-ihcppm-chapter-4600
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 4600 Benefit Recovery'
+  source_url: https://www.in.gov/dA/b377525a44/Medicaid_PM_4600.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-4600
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '4600'
+- source_id: us-in-medicaid-ihcppm-chapter-4700
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 4700 Estate Recovery'
+  source_url: https://www.in.gov/dA/cf98242e89/Medicaid_PM_4700.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-4700
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '4700'
+- source_id: us-in-medicaid-ihcppm-chapter-4800
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 4800 Burial Provisions'
+  source_url: https://www.in.gov/dA/9db99bdb62/Medicaid_PM_4800.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-4800
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '4800'
+- source_id: us-in-medicaid-ihcppm-chapter-5000
+  jurisdiction: us-in
+  document_class: manual
+  title: 'Indiana Health Coverage Program Policy Manual (IHCPPM): Chapter 5000 Supplemental Assistance for Personal Needs'
+  source_url: https://www.in.gov/dA/0433c44103/Medicaid_PM_5000.pdf?language_id=1
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-in/manual/fssa/medicaid/ihcppm-chapter-5000
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Indiana Health Coverage Program Policy Manual (IHCPPM)
+    manual_index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    source_discovery_group: us-in/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
+    extraction_granularity: pdf_page
+    manual_chapter: '5000'

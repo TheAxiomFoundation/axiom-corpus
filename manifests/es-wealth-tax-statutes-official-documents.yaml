@@ -1,0 +1,99 @@
+# Spain national wealth-tax authorities used by the IARIW 2026 replication.
+# Consolidated BOE pages preserve the operative text and historical redactions;
+# RuleSpec proof atoms must cite the provision blocks produced here, not this
+# manifest commentary.
+documents:
+  - source_id: es-ley-19-1991-impuesto-patrimonio-consolidado
+    jurisdiction: es
+    document_class: statute
+    citation_path: es/statute/ley-19-1991/impuesto-sobre-el-patrimonio
+    title: Ley 19/1991, de 6 de junio, del Impuesto sobre el Patrimonio (texto consolidado)
+    source_url: 'https://www.boe.es/buscar/act.php?id=BOE-A-1991-14392&p=20221228&tn=1'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-12-28'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>\d+)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+    metadata:
+      primary_source: true
+      source_authority: Agencia Estatal Boletín Oficial del Estado
+      publisher: Jefatura del Estado
+      legal_identifier: BOE-A-1991-14392
+      source_family: wealth-tax/impuesto-sobre-el-patrimonio
+      source_note: >-
+        Articles 4.Nueve, 28, 30 and 31 govern the main-residence exemption,
+        state minimum exemption, state scale, and joint IP-IRPF quota limit.
+        Extraction targets numeric top-level articles needed for this scope;
+        separately suffixed articles are not asserted as independently sliced.
+        BOE labels the consolidation informative; the linked original BOE
+        publications remain the official legal acts.
+  - source_id: es-ley-38-2022-itsgf-consolidado
+    jurisdiction: es
+    document_class: statute
+    citation_path: es/statute/ley-38-2022/impuesto-temporal-solidaridad-grandes-fortunas
+    title: Ley 38/2022, de 27 de diciembre, artículo 3 (texto consolidado)
+    source_url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2022-22684&p=20221228&tn=1'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-12-28'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>3)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+      stop_text_pattern: '^Artículo\s+4\.'
+    metadata:
+      primary_source: true
+      source_authority: Agencia Estatal Boletín Oficial del Estado
+      publisher: Jefatura del Estado
+      legal_identifier: BOE-A-2022-22684
+      source_family: wealth-tax/itsgf
+      source_note: >-
+        Extraction retains Article 3 and stops before Article 4. Article 3
+        creates the ITSGF. Its sections Nueve, Diez, Once and Quince
+        govern the exemption, 31 December accrual, progressive scale and IP
+        quota credit. Extraction targets numeric top-level articles needed for
+        this scope; separately suffixed articles are not asserted as
+        independently sliced. The law was published 28 December 2022 and
+        entered into force 29 December 2022, before the first 31 December
+        accrual. This original text limited the 700,000 euro reduction to
+        personal-obligation taxpayers; the retroactive amendment is captured
+        separately below.
+  - source_id: es-rdl-8-2023-itsgf-exemption-amendment
+    jurisdiction: es
+    document_class: statute
+    citation_path: es/statute/real-decreto-ley-8-2023/itsgf-exemption-amendment
+    title: Real Decreto-ley 8/2023, de 27 de diciembre, artículo 17
+    source_url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2023-26452&p=20231228&tn=1'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-12-29'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>17)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+      stop_text_pattern: '^Artículo\s+18\.'
+    metadata:
+      primary_source: true
+      source_authority: Agencia Estatal Boletín Oficial del Estado
+      publisher: Jefatura del Estado
+      legal_identifier: BOE-A-2023-26452
+      source_family: wealth-tax/itsgf
+      source_note: >-
+        Extraction starts at Article 17 and stops before Article 18 so the
+        retroactive expression date cannot attach to unrelated provisions.
+        Article 17 removes the personal-obligation qualifier from Ley 38/2022
+        article 3.Nueve and says the 700,000 euro minimum exemption applies
+        with effect from Ley 38/2022's entry into force. BOE published the
+        amending act on 28 December 2023; its retroactive expression date is
+        therefore recorded separately from publication.

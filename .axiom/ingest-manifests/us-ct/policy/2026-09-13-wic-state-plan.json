@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "06ab8701055180838df95d298ab44580fd033d5d2c9c33d6c2f1d126c77431cb"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/policy/2026-09-13-wic-state-plan.json",
+      "sha256": "9cf9321e271effba25a5ca98ed892f1a07d58165f4cab8730529664bb870862d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/policy/2026-09-13-wic-state-plan.jsonl",
+      "sha256": "75daf4d118a7aa7fe7e25efa05d24af31a59726f19bba5dfe7a87bf8971102e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-09-13-wic-state-plan/official-documents/ct-wic-state-plan-bf-peer-counseling-update-fy2026.pdf",
+      "sha256": "c3480a9cfb7e44737cce79caed3f63c5a0ca24b42d231e307d858f04d89e16a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-09-13-wic-state-plan/official-documents/ct-wic-state-plan-section-1-program-operations-fy2025.pdf",
+      "sha256": "766374f05f4ca9ef9085add2c47af0f8bb9f050fcf988af5c1bf069df7ca8d63"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-wic-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 106,
+    "missing_count": 0,
+    "provision_count": 106,
+    "source_count": 106
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:16:24.136367+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+mqDUjdDqmkfrrSgaAPKuuuRH1GciPCl97B1kcBTRZcwTrmYC9JJH3d3g4c91tWlyIwhY/Jx1EmF8HQccbaAAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-wic-state-plan"
+}

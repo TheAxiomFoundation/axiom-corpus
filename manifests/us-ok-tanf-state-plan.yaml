@@ -1,0 +1,28 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-ok-tanf-state-plan-2023
+  jurisdiction: us-ok
+  document_class: policy
+  title: Oklahoma TANF State Plan (2023 renewal, August 2024 print)
+  source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/okdhs-pdf-library/adult-and-family-services/OklahomaTANFPlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-12-01'
+  citation_path: us-ok/policy/acf/tanf-plan/2023
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Human Services (Adult and Family Services)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: TANF State Plan (2023 renewal effective December 1, 2023, with the August 1, 2024 transmittal letter to ACF
+      OFA)
+    publisher_index_url: https://oklahoma.gov/okdhs/services/tanf/tanfhome.html
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-ok/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://oklahoma.gov/okdhs/services/tanf/tanfhome.html
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

@@ -632,7 +632,7 @@ def test_staging_signed_release_object_records_publication_without_moving_servin
             cursor.execute(
                 "SELECT content_sha256, release_object, "
                 "to_char(created_at AT TIME ZONE 'UTC', "
-                "'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
+                '\'YYYY-MM-DD"T"HH24:MI:SS"Z"\') '
                 "FROM corpus.release_objects WHERE release_name = %s",
                 (release_object["release"],),
             )
@@ -667,7 +667,7 @@ def test_release_object_trigger_enforces_signed_publication_time_for_every_write
                 "(release_name, content_sha256, release_object, created_at) "
                 "VALUES (%s, %s, %s, '2099-01-01T00:00:00Z') "
                 "RETURNING to_char(created_at AT TIME ZONE 'UTC', "
-                "'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')",
+                '\'YYYY-MM-DD"T"HH24:MI:SS"Z"\')',
                 (
                     release_object["release"],
                     release_object["content_sha256"],
@@ -703,7 +703,7 @@ def test_exact_release_object_replay_repairs_legacy_publication_time(
         with connection.cursor() as cursor:
             cursor.execute(
                 "SELECT to_char(created_at AT TIME ZONE 'UTC', "
-                "'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"') "
+                '\'YYYY-MM-DD"T"HH24:MI:SS"Z"\') '
                 "FROM corpus.release_objects WHERE release_name = %s",
                 (release_object["release"],),
             )
@@ -806,9 +806,7 @@ def test_staging_and_activation_cannot_race_on_one_immutable_release_name(
 
     assert not thread.is_alive()
     assert len(errors_out) == 1
-    assert "immutable corpus release name already exists with another digest" in str(
-        errors_out[0]
-    )
+    assert "immutable corpus release name already exists with another digest" in str(errors_out[0])
     with closing(psycopg2.connect(clean_postgres)) as check:
         with check.cursor() as cursor:
             cursor.execute(
@@ -1783,19 +1781,22 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
             "preview-contract-release", _scope_evidence(connection, identity)
         )
         with connection.cursor() as cursor:
+            # Exactly the statement the wrapper sends: timeout reset first, the
+            # release identity inlined as a dollar-quoted jsonb literal.
             cursor.execute(
-                f"PREPARE preview_contract (jsonb) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
-            )
-            cursor.execute(
-                "EXECUTE preview_contract(%s)",
-                (
-                    Json(
-                        {
-                            "release": release_object["release"],
-                            "content": {"scopes": release_object["content"]["scopes"]},
-                        }
+                supabase.unbounded_statement(
+                    supabase.PREVIEW_ACTIVATION_QUERY,
+                    release_identity=supabase.sql_jsonb_literal(
+                        json.dumps(
+                            {
+                                "release": release_object["release"],
+                                "content": {"scopes": release_object["content"]["scopes"]},
+                            },
+                            separators=(",", ":"),
+                            sort_keys=True,
+                        )
                     ),
-                ),
+                )
             )
             columns = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
@@ -1833,18 +1834,16 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
                     raw,
                 ),
             )
+            # Exactly the statement the wrapper sends: timeout reset first, the
+            # four values inlined as validated plain literals.
             cursor.execute(
-                f"PREPARE activation_contract (text, text, text, text) AS "
-                f"{supabase.ACTIVATE_RELEASE_QUERY}"
-            )
-            cursor.execute(
-                "EXECUTE activation_contract(%s, %s, %s, %s)",
-                (
-                    upload_id,
-                    release_object["release"],
-                    release_object["content_sha256"],
-                    object_sha256,
-                ),
+                supabase.unbounded_statement(
+                    supabase.ACTIVATE_RELEASE_QUERY,
+                    upload_id=supabase.sql_text_literal(upload_id),
+                    release=supabase.sql_text_literal(release_object["release"]),
+                    content_sha256=supabase.sql_text_literal(release_object["content_sha256"]),
+                    object_sha256=supabase.sql_text_literal(object_sha256),
+                )
             )
             result = cursor.fetchone()[0]
         assert result["active"] is True

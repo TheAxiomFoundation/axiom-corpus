@@ -1,0 +1,43 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: al-adph-allkids-income-guidelines
+  jurisdiction: us-al
+  document_class: manual
+  title: 'ADPH ALL Kids: Income Guidelines (effective 2/1/2026)'
+  source_url: https://www.alabamapublichealth.gov/allkids/income.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-02-01'
+  citation_path: us-al/manual/adph/chip/income-guidelines
+  request: &id001
+    browser_impersonation: true
+  extraction:
+    html_content_selector: div.col-sidebar-content
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Public Health, ALL Kids
+    document_subtype: agency_eligibility_policy_page
+    program: CHIP
+    source_discovery_group: us-al/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: ALL Kids
+- source_id: al-adph-allkids-premiums-and-copays
+  jurisdiction: us-al
+  document_class: manual
+  title: 'ADPH ALL Kids: Premiums and Copays'
+  source_url: https://www.alabamapublichealth.gov/allkids/premiums-and-copays.html
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-01-01'
+  citation_path: us-al/manual/adph/chip/premiums-and-copays
+  request: *id001
+  extraction:
+    html_content_selector: div.col-sidebar-content
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Public Health, ALL Kids
+    document_subtype: agency_eligibility_policy_page
+    program: CHIP
+    source_discovery_group: us-al/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: ALL Kids

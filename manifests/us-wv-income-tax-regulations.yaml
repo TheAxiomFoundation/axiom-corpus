@@ -1,0 +1,136 @@
+version: '2026-09-14'
+documents:
+- source_id: wv-sos-csr-110-21
+  jurisdiction: us-wv
+  document_class: regulation
+  citation_path: us-wv/regulation/110-csr/21
+  title: 'West Virginia Code of State Rules 110-21: Personal Income Tax'
+  source_url: https://apps.sos.wv.gov/adlaw/csr/readfile.aspx?DocId=21111&Format=PDF
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '1990-04-02'
+  extraction:
+    ocr: true
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    official_publisher: West Virginia Secretary of State, Code of State Rules
+    document_subtype: code_of_state_rules_series
+    program: individual_income_tax
+    source_discovery_group: us-wv/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
+    csr_series: 110-21
+    sos_document_id: 21111
+- source_id: wv-sos-csr-110-21a
+  jurisdiction: us-wv
+  document_class: regulation
+  citation_path: us-wv/regulation/110-csr/21a
+  title: 'West Virginia Code of State Rules 110-21A: Personal Income Tax Low Income Exclusion'
+  source_url: https://apps.sos.wv.gov/adlaw/csr/readfile.aspx?DocId=21132&Format=PDF
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '1997-06-01'
+  extraction:
+    ocr: true
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    official_publisher: West Virginia Secretary of State, Code of State Rules
+    document_subtype: code_of_state_rules_series
+    program: individual_income_tax
+    source_discovery_group: us-wv/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
+    csr_series: 110-21A
+    sos_document_id: 21132
+- source_id: wv-sos-csr-110-21b
+  jurisdiction: us-wv
+  document_class: regulation
+  citation_path: us-wv/regulation/110-csr/21b
+  title: 'West Virginia Code of State Rules 110-21B: Citizen Tax Credit for Property Taxes Paid'
+  source_url: https://apps.sos.wv.gov/adlaw/csr/readfile.aspx?DocId=57149&Format=PDF
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2024-04-30'
+  extraction:
+    ocr: true
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    official_publisher: West Virginia Secretary of State, Code of State Rules
+    document_subtype: code_of_state_rules_series
+    program: individual_income_tax
+    source_discovery_group: us-wv/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
+    csr_series: 110-21B
+    sos_document_id: 57149
+- source_id: wv-sos-csr-110-21c
+  jurisdiction: us-wv
+  document_class: regulation
+  citation_path: us-wv/regulation/110-csr/21c
+  title: 'West Virginia Code of State Rules 110-21C: Method of Claiming the Qualified Rehabilitated Buildings Investment
+    Credit'
+  source_url: https://apps.sos.wv.gov/adlaw/csr/readfile.aspx?DocId=50936&Format=PDF
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2018-12-31'
+  extraction:
+    ocr: true
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    official_publisher: West Virginia Secretary of State, Code of State Rules
+    document_subtype: code_of_state_rules_series
+    program: individual_income_tax
+    source_discovery_group: us-wv/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
+    csr_series: 110-21C
+    sos_document_id: 50936
+- source_id: wv-sos-csr-110-21g
+  jurisdiction: us-wv
+  document_class: regulation
+  citation_path: us-wv/regulation/110-csr/21g
+  title: 'West Virginia Code of State Rules 110-21G: Income Tax Paid at the Entity Level by Electing Pass-Through
+    Entities'
+  source_url: https://apps.sos.wv.gov/adlaw/csr/readfile.aspx?DocId=57151&Format=PDF
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2024-04-30'
+  extraction:
+    ocr: true
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    official_publisher: West Virginia Secretary of State, Code of State Rules
+    document_subtype: code_of_state_rules_series
+    program: individual_income_tax
+    source_discovery_group: us-wv/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
+    csr_series: 110-21G
+    sos_document_id: 57151
+- source_id: wv-sos-csr-110-21h
+  jurisdiction: us-wv
+  document_class: regulation
+  citation_path: us-wv/regulation/110-csr/21h
+  title: 'West Virginia Code of State Rules 110-21H: Income Tax Credits for Property Taxes Paid'
+  source_url: https://apps.sos.wv.gov/adlaw/csr/readfile.aspx?DocId=58905&Format=PDF
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-28'
+  extraction:
+    ocr: true
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: West Virginia Tax Division
+    official_publisher: West Virginia Secretary of State, Code of State Rules
+    document_subtype: code_of_state_rules_series
+    program: individual_income_tax
+    source_discovery_group: us-wv/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.sos.wv.gov/adlaw/csr/rule.aspx?rule=110-21
+    csr_series: 110-21H
+    sos_document_id: 58905

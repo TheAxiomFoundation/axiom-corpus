@@ -1,0 +1,23 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-vt-dcf-3squaresvt-3100-tables-release-25-4
+  jurisdiction: us-vt
+  document_class: manual
+  title: '3SquaresVT Program Manual, 3100 Tables (Release # 25-4, effective 10/01/2025)'
+  source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/3000_Tables.htm
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-vt/manual/dcf/3squaresvt/3100-tables-release-25-4
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division (3SquaresVT Program Manual)
+    program: SNAP
+    source_discovery_group: us-vt/manual
+    index_url: https://dcf.vermont.gov/esd/laws-rules/procedures
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: manual_tables
+    document_number: Release 25-4
+    fiscal_year: '2026'

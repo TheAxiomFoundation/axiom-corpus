@@ -21,6 +21,7 @@ from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_USER_AGENT,
     OfficialDocumentManifest,
     OfficialDocumentSource,
+    _browser_impersonation_headers,
     _date_text,
     _download_document,
     _download_document_by_browser_impersonation,
@@ -36,6 +37,7 @@ from axiom_corpus.corpus.documents import (
     _extract_labeled_html_section_blocks,
     _extract_plain_text_blocks,
     _get_with_retries,
+    _html_soup,
     _infer_source_format,
     _legacy_word_document_text,
     _normalize_text,
@@ -53,7 +55,7 @@ from axiom_corpus.corpus.documents import (
     google_drive_download_url,
     official_documents_run_id,
 )
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 
 
 def test_google_drive_download_url_converts_file_view():
@@ -655,6 +657,22 @@ def test_extract_json_record_blocks_rejects_bad_label_filters(
         )
 
 
+def test_html_soup_parser_option_selects_html_parser_and_rejects_unknown() -> None:
+    content = b"<html><body><main><p>Body text</p></main></body></html>"
+    assert _html_soup(content, parser="html.parser").builder.NAME == "html.parser"
+    assert _html_soup(content).builder.NAME in {"lxml", "html.parser"}
+    with pytest.raises(ValueError, match="unsupported html_parser"):
+        _html_soup(content, parser="html5lib")
+    blocks = _extract_blocks(
+        content,
+        source_format="html",
+        source_url="https://example.test/page",
+        title="Page",
+        extraction={"html_parser": "html.parser"},
+    )
+    assert [block.body for block in blocks] == ["Body text"]
+
+
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
     assert (
         _extract_json_html_blocks(
@@ -1182,6 +1200,23 @@ def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(
             "impersonate": OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
         }
     ]
+
+
+def test_browser_impersonation_headers_follow_the_impersonated_profile():
+    chrome_headers = _browser_impersonation_headers(None, impersonate="chrome120")
+    explicit = _browser_impersonation_headers(
+        {"User-Agent": "custom", "Accept": "text/html"}, impersonate="chrome131"
+    )
+    safari_headers = _browser_impersonation_headers(
+        {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT, "Accept": "text/html"},
+        impersonate="safari17_0",
+    )
+    firefox_headers = _browser_impersonation_headers(None, impersonate="firefox133")
+
+    assert chrome_headers == {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
+    assert explicit == {"User-Agent": "custom", "Accept": "text/html"}
+    assert safari_headers == {"Accept": "text/html"}
+    assert firefox_headers == {}
 
 
 def test_download_document_can_use_browser_impersonation_directly(monkeypatch):
@@ -2597,6 +2632,223 @@ def test_pdf_page_windows_reject_invalid_configs(tmp_path: Path) -> None:
         )
     with pytest.raises(ValueError, match="non-empty list"):
         documents_module._filtered_pdf_lines(pdf_content, extraction={"page_windows": []})
+
+
+def test_page_header_drop_removes_only_a_matching_prefix_of_each_page() -> None:
+    """Exhaustive over every page of up to six lines drawn from four line kinds."""
+    import itertools
+    import re
+
+    patterns = tuple(re.compile(p) for p in (r"^TITLE$", r"^SUBTITLE$", r"^\d{1,3}$"))
+    alphabet = ("TITLE", "SUBTITLE", "7", "Body text.")
+    checked = 0
+    for length in range(7):
+        for words in itertools.product(alphabet, repeat=length):
+            page = tuple((word, index) for index, word in enumerate(words))
+            kept = documents_module._without_page_header(page, patterns)
+            dropped = len(page) - len(kept)
+            # Only a prefix goes, styles travel with their lines, and nothing
+            # below the header's length can be touched.
+            assert kept == page[dropped:]
+            assert dropped <= len(patterns)
+            # Every dropped line matches the header line in its position...
+            assert all(patterns[i].fullmatch(page[i][0]) for i in range(dropped))
+            # ...and the header ends at the first line that does not.
+            if dropped < min(len(page), len(patterns)):
+                assert patterns[dropped].fullmatch(page[dropped][0]) is None
+            assert documents_module._without_page_header(page, ()) == page
+            checked += 1
+    assert checked == sum(len(alphabet) ** n for n in range(7))
+
+
+def test_labeled_pdf_sections_drop_page_headers_by_position(tmp_path: Path) -> None:
+    """A bare page number goes; the same number printed as a table cell stays."""
+    pdf_path = tmp_path / "rulebook.pdf"
+    document = fitz.open()
+    pages = [
+        ["RULEBOOK", "1", "1.100 FIRST RULE", "Family Size", "1", "$10", "2", "$20"],
+        ["RULEBOOK", "2", "3", "$30", "1.200 SECOND RULE", "Text of the second rule."],
+        ["2", "Body line that is not a header.", "RULEBOOK", "3", "More text."],
+    ]
+    for lines in pages:
+        document.new_page().insert_text((72, 72), "\n".join(lines))
+    document.save(pdf_path)
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>1\.\d00)\s+(?P<heading>[A-Z ]+)$",
+        "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+    }
+
+    blocks = documents_module._extract_pdf_blocks(pdf_path.read_bytes(), extraction=extraction)
+
+    assert [block.heading for block in blocks] == ["1.100 FIRST RULE", "1.200 SECOND RULE"]
+    assert blocks[0].body == "Family Size 1 $10 2 $20 3 $30"
+    # Page 3 does not open with the header, so nothing on it is dropped.
+    assert blocks[1].body == (
+        "Text of the second rule. 2 Body line that is not a header. RULEBOOK 3 More text."
+    )
+    # A content-blind numeric drop would have eaten the table's first column.
+    blind = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            **{k: v for k, v in extraction.items() if k != "page_header_patterns"},
+            "drop_lines": ["RULEBOOK"],
+            "drop_line_patterns": [r"^\d{1,3}$"],
+        },
+    )
+    assert blind[0].body == "Family Size $10 $20 $30"
+
+    windowed = documents_module._filtered_pdf_lines(
+        pdf_path.read_bytes(),
+        extraction={
+            "page_windows": [{"start_page": 2, "end_page": 2}],
+            "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+        },
+    )
+    assert [line for line, _page in windowed] == [
+        "3",
+        "$30",
+        "1.200 SECOND RULE",
+        "Text of the second rule.",
+    ]
+    single = documents_module._extract_pdf_blocks(
+        pdf_path.read_bytes(),
+        extraction={
+            "segmentation": "single_block",
+            "page_header_patterns": [r"^RULEBOOK$", r"^\d{1,3}$"],
+        },
+    )
+    assert "RULEBOOK\n1" not in single[0].body
+    assert single[0].body.startswith("1.100 FIRST RULE")
+
+
+@pytest.mark.parametrize("value", ["^RULEBOOK$", [], [""], [3], {"a": "b"}])
+def test_page_header_patterns_reject_invalid_configs(value: object) -> None:
+    pdf_bytes_document = fitz.open()
+    pdf_bytes_document.new_page().insert_text((72, 72), "RULEBOOK")
+    pdf_content = pdf_bytes_document.tobytes()
+    pdf_bytes_document.close()
+
+    with pytest.raises(ValueError, match="page_header_patterns must be a non-empty list"):
+        documents_module._filtered_pdf_lines(
+            pdf_content, extraction={"page_header_patterns": value}
+        )
+    # An empty list must not quietly move single_block onto the filtered path.
+    with pytest.raises(ValueError, match="page_header_patterns must be a non-empty list"):
+        documents_module._extract_pdf_blocks(
+            pdf_content,
+            extraction={"segmentation": "single_block", "page_header_patterns": value},
+        )
+
+
+def test_labeled_pdf_sections_can_slug_a_label_in_the_path_only(tmp_path: Path) -> None:
+    """The path takes the slug; the heading and section_label keep the publisher's words."""
+    document = fitz.open()
+    document.new_page().insert_text(
+        (72, 72),
+        "\n".join(
+            ["1.100 FIRST RULE", "Rule text.", "Editor's Notes", "History", "Adopted in 2023."]
+        ),
+    )
+    content = document.tobytes()
+    document.close()
+    extraction = {
+        "segmentation": "labeled_sections",
+        "section_heading_pattern": r"^(?P<label>1\.\d00)\s+(?P<heading>[A-Z ]+)$",
+        "section_label_pattern": r"^(?P<label>Editor's Notes)$",
+        "label_only_heading_pattern": r"^History$",
+        "label_only_requires_heading": True,
+    }
+
+    path_only = documents_module._extract_pdf_blocks(
+        content,
+        extraction={
+            **extraction,
+            "section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"},
+        },
+    )
+    assert [
+        (b.heading, b.metadata["citation_suffix"], b.metadata["section_label"]) for b in path_only
+    ] == [
+        ("1.100 FIRST RULE", "1.100", "1.100"),
+        ("Editor's Notes History", "editors-notes", "Editor's Notes"),
+    ]
+    assert path_only[1].body == "Adopted in 2023."
+    # section_label_replacements rewrites the label itself, so the heading loses the words.
+    everywhere = documents_module._extract_pdf_blocks(
+        content,
+        extraction={
+            **extraction,
+            "section_label_replacements": {"Editor's Notes": "editors-notes"},
+        },
+    )
+    assert everywhere[1].heading == "editors-notes History"
+    assert everywhere[1].metadata["section_label"] == "editors-notes"
+    # Without either key the label is used as it is.
+    plain = documents_module._extract_pdf_blocks(content, extraction=extraction)
+    assert plain[1].metadata["citation_suffix"] == "Editor's Notes"
+    for bad in (["a"], {"Editor's Notes": ""}, {"Editor's Notes": 3}, {"": "x"}):
+        with pytest.raises(ValueError, match="section_citation_suffix_replacements must map"):
+            documents_module._extract_pdf_blocks(
+                content, extraction={**extraction, "section_citation_suffix_replacements": bad}
+            )
+    # Two labels with one suffix would merge two sections; a key that matches
+    # no label would be a silent no-op. Both are refused.
+    with pytest.raises(ValueError, match="must map labels to distinct suffixes"):
+        documents_module._extract_pdf_blocks(
+            content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editor's Notes": "x", "1.100": "x"},
+            },
+        )
+    with pytest.raises(ValueError, match="matched no section label: 'Editors Notes'"):
+        documents_module._extract_pdf_blocks(
+            content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editors Notes": "editors-notes"},
+            },
+        )
+    # A label that never opens a section has not used its replacement either:
+    # with no heading line after it, "Editor's Notes" is folded into the body.
+    headless = fitz.open()
+    headless.new_page().insert_text(
+        (72, 72),
+        "\n".join(["1.100 FIRST RULE", "Rule text.", "Editor's Notes", "adopted in 2023."]),
+    )
+    headless_content = headless.tobytes()
+    headless.close()
+    assert [
+        (block.heading, block.body)
+        for block in documents_module._extract_pdf_blocks(headless_content, extraction=extraction)
+    ] == [("1.100 FIRST RULE", "Rule text. Editor's Notes adopted in 2023.")]
+    with pytest.raises(ValueError, match="matched no section label: \"Editor's Notes\""):
+        documents_module._extract_pdf_blocks(
+            headless_content,
+            extraction={
+                **extraction,
+                "section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"},
+            },
+        )
+    # Only the PDF labeled_sections segmenter reads the key; the others refuse it.
+    key = {"section_citation_suffix_replacements": {"Editor's Notes": "editors-notes"}}
+    scope = "supports only PDF labeled_sections"
+    with pytest.raises(ValueError, match=scope):
+        documents_module._extract_pdf_blocks(
+            content, extraction={"segmentation": "single_block", **key}
+        )
+    with pytest.raises(ValueError, match=scope):
+        documents_module._extract_pdf_blocks(content, extraction=key)
+    with pytest.raises(ValueError, match=scope):
+        _extract_blocks(
+            b"<html><body><main><h1>Rule</h1><p>Text.</p></main></body></html>",
+            "html",
+            source_url="https://example.test/rule.html",
+            title="Rule",
+            extraction={"segmentation": "labeled_sections", **key},
+        )
 
 
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:
@@ -4372,3 +4624,81 @@ documents:
     ]
     assert records[1].heading == "9001 Legal Base"
     assert "9060 [273.10(d)(7)] Continuation text." in (records[3].body or "")
+
+
+def test_labeled_sections_slugify_publisher_section_ids_into_grammar_safe_paths(
+    tmp_path: Path,
+) -> None:
+    """Parenthesised and dashed publisher labels become grammar-safe segments.
+
+    The publisher label is kept verbatim in ``section_label`` and, when the
+    path segment had to change, in ``publisher_section_id``.
+    """
+    html_path = tmp_path / "rcsa-income-tax.html"
+    html_path.write_text(
+        """
+<html><body><div class="content">
+  <p>Sec. 12-701(a)(1)-1. Resident of this state.</p>
+  <p>Definition body.</p>
+  <p>Sec. 12-740(a)-1. Returns; who must file.</p>
+  <p>Filing body.</p>
+  <p>Sec. 12-742-1. Plain section.</p>
+  <p>Plain body.</p>
+  <p>Sec. 12-743–1. Dashed section.</p>
+  <p>Dashed body.</p>
+</div></body></html>
+"""
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        rf"""
+documents:
+  - source_id: rcsa-income-tax
+    jurisdiction: us-ct
+    document_class: regulation
+    title: RCSA Title 12 Income Tax
+    source_url: https://example.test/rcsa-income-tax.html
+    citation_path: us-ct/regulation/rcsa/12/income-tax
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: .content
+      segmentation: labeled_sections
+      normalize_citation_segment_dashes: true
+      section_heading_pattern: '^Sec\.\s*(?P<label>12-7\d\d[^\s]*?[-–]\d+)\.\s*(?P<heading>.*)$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-09-14-slug-test",
+    )
+
+    records = load_provisions(report.provisions_path)
+    sections = [record for record in records if record.kind == "section"]
+    assert [record.citation_path for record in sections] == [
+        "us-ct/regulation/rcsa/12/income-tax/12-701-a-1-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-740-a-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-742-1",
+        "us-ct/regulation/rcsa/12/income-tax/12-743-1",
+    ]
+    assert [record.metadata["section_label"] for record in sections] == [
+        "12-701(a)(1)-1",
+        "12-740(a)-1",
+        "12-742-1",
+        "12-743–1",
+    ]
+    assert [record.metadata.get("publisher_section_id") for record in sections] == [
+        "12-701(a)(1)-1",
+        "12-740(a)-1",
+        None,
+        "12-743–1",
+    ]
+    assert all(record.parent_citation_path == records[0].citation_path for record in sections)
+    inventory = load_source_inventory(report.inventory_path)
+    assert [item.citation_path for item in inventory[1:]] == [
+        record.citation_path for record in sections
+    ]
+    assert inventory[2].metadata["publisher_section_id"] == "12-740(a)-1"

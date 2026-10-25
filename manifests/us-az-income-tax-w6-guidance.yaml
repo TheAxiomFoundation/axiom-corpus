@@ -1,0 +1,104 @@
+version: 2026-10-06-w6-income-tax-guidance-az
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Arizona
+documents:
+- source_id: us-az-w6-azdor-arizona-families-tax-rebate
+  jurisdiction: us-az
+  document_class: guidance
+  title: Arizona Families Tax Rebate (ADOR page)
+  source_url: https://azdor.gov/individuals/arizona-families-tax-rebate
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/guidance/azdor/arizona-families-tax-rebate
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: agency_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Arizona Families Tax Rebate | Arizona Department of Revenue
+    wave6_work_order_rows:
+    - 139
+- source_id: us-az-w6-azdor-credits-contributions-qcos-and-qfcos
+  jurisdiction: us-az
+  document_class: guidance
+  title: Credits for Contributions to QCOs and QFCOs (ADOR page)
+  source_url: https://azdor.gov/tax-credits/credits-contributions-qcos-and-qfcos
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/guidance/azdor/credits-contributions-qcos-and-qfcos
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: agency_page
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Credits for Contributions to QCOs and QFCOs
+    wave6_work_order_rows:
+    - 147
+- source_id: us-az-w6-azdor-rulings-itr-12-1
+  jurisdiction: us-az
+  document_class: guidance
+  title: Income Tax Ruling ITR 12-1, Property Tax Credit Household Income
+  source_url: https://azdor.gov/sites/default/files/2023-03/RULINGS_INDV_2012_itr12-1.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/guidance/azdor/rulings/itr-12-1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    document_subtype: ruling
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: STATE OF ARIZONA Department of Revenue ... ITR 12-1
+    wave6_work_order_rows:
+    - 141
+- source_id: us-az-w6-governor-executive-orders-2025-15
+  jurisdiction: us-az
+  document_class: guidance
+  title: Arizona Executive Order 2025-15
+  source_url: https://azgovernor.gov/office-arizona-governor/executive-order/2025-15
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/guidance/governor/executive-orders/2025-15
+  metadata:
+    primary_source: true
+    source_authority: Office of the Arizona Governor
+    document_subtype: executive_order
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: Executive Order 2025-15 | Office of the Arizona Governor
+    wave6_work_order_rows:
+    - 148
+- source_id: us-az-w6-senate-fact-sheets-55leg-1r-sb1828
+  jurisdiction: us-az
+  document_class: guidance
+  title: Arizona State Senate Fact Sheet for S.B. 1828 (55th Legislature, First Regular Session)
+  source_url: https://www.azleg.gov/legtext/55leg/1R/summary/S.1828APPROP.DOCX.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-az/guidance/senate/fact-sheets/55leg-1r/sb1828
+  metadata:
+    primary_source: true
+    source_authority: Arizona State Legislature
+    document_subtype: fact_sheet
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-guidance
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: SB1828 - 551R - Senate Fact Sheet
+    wave6_work_order_rows:
+    - 154

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "08fb3be29e196551902f9e362e04f4d57b5a6b5779fc2bb729fb9960eb2772f8"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "c53f0a996cd7e9343d3ad041f69181c85b9fecab326d3f8af79323c2406d0a5d"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "4bd469ab99784a04aed510e91000cf28abd93af660e52b99c19d91287bb9f4fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-nc-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "9fa2f3c7b0a12754f575a0d66902bc1643a98b35f66fb28e7a9ab5e9dbda8159"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:52:07.060018+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Hpx/SP3S7/2pMDWExOWbtzRYzAad2VzfFU+NSwi5u/mJgpd1Y4ngRvXfm0WWGf5Qa7QKQRJhicxTNk9Qxt/nCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

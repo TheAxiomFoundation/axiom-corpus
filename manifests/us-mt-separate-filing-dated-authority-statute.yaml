@@ -1,0 +1,38 @@
+# Dated Montana authority for married taxpayers filing separately, tax years 2021-2023.
+#
+# MCA 2021 15-30-2602 (Temporary), subsection (2), lets a married taxpayer file a joint
+# return, at the taxpayer's option and in accordance with the department's instructions.
+# The pinned scope us-mt/statute/2026-07-16-pit-central-us-mt-title-15 holds the section
+# at its plain path in its current text, which has no such option. This
+# scope adds the Montana Code Annotated 2021 edition at a variant path, in the form and
+# from the same official edition as us-mt/statute/15-30-2131--mca-2021
+# (us-mt/statute/2026-10-06-w6-income-tax-statute-mt-r2).
+#
+# Version is set on the command line; this key is documentation only:
+version: 2026-10-25-mt-separate-filing-dated-authority
+documents:
+- source_id: us-mt-statute-15-30-2602--mca-2021
+  jurisdiction: us-mt
+  document_class: statute
+  citation_path: us-mt/statute/15-30-2602--mca-2021
+  title: MCA 15-30-2602, Returns and payment of tax -- penalty and interest -- refunds --
+    credits -- inflation adjustment (Montana Code Annotated 2021)
+  source_url: https://mca.legmt.gov/bills/2022/mca/title_0150/chapter_0300/part_0260/section_0020/0150-0300-0260-0020.html
+  source_format: html
+  source_as_of: '2026-10-25'
+  expression_date: '2026-10-25'
+  extraction:
+    html_content_selector: body
+  metadata:
+    primary_source: true
+    source_authority: Montana Legislative Services Division
+    document_subtype: statute_section_historical_edition
+    program: individual_income_tax
+    code_edition: Montana Code Annotated 2021
+    variant: mca-2021
+    canonical_citation_path: us-mt/statute/15-30-2602
+    expression_date_note: The page prints the Montana Code Annotated 2021 edition, with
+      the temporary text and the text effective January 1, 2024, and no date of its own.
+      expression_date is the retrieval date, as for us-mt/statute/15-30-2131--mca-2021.
+    discovered_via: TheAxiomFoundation/rulespec-us household-choices register, Montana
+      separate filing on the same form for tax years 2021-2023 (rulespec-us#1844)

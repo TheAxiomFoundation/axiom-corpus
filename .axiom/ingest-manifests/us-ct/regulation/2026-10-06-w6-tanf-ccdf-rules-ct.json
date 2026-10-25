@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct.json",
+      "sha256": "731f543fe922a92f2782936f63795914fad876c7815f8e738fc66502081ae444"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct.json",
+      "sha256": "4cb14dac95a1cb09f096a9e86fde7f3c574c58712bae857932669abbda71fc91"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct.jsonl",
+      "sha256": "fbf0ce19d652558b872ad43a23809c86e4c8fb9ecd756cb3777d608414668309"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct/official-documents/us-ct-w6-rcsa-17b-17b-749-17b-749-04.pdf",
+      "sha256": "d24cc1f209a7a269e59ea4dd7bea92288f2628f1cc62188e2240264b20a16d67"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct/official-documents/us-ct-w6-rcsa-17b-17b-749-17b-749-05.pdf",
+      "sha256": "0a1f2551978ffc0bc0cc3cf87f50912f1b37b487764758b7056583fc068651a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/regulation/2026-10-06-w6-tanf-ccdf-rules-ct/official-documents/us-ct-w6-rcsa-17b-17b-749-17b-749-13.pdf",
+      "sha256": "e30705ac56a60c09821843223d5aba3f4b9d2394fe3655826c939d9bb25c91f7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:50:09.212100+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "epVjcFhCKI5TnjgWEnnH9u74KaHWgYEC6yaeAqX3z12YHJRbGIpY1403skq34xCb+Cv+6apZoDWv1rVySw69AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-ct"
+}

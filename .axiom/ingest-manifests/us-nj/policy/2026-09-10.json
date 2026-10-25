@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/policy/2026-09-10.json",
+      "sha256": "658b1508f296969501964d92e2061e4fb91825fb93a14be6b77fd191efea49c3"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/policy/2026-09-10.json",
+      "sha256": "c863a914dfdebd37d4f126154bc0488a87696541d136cf33d774c922a912f665"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/policy/2026-09-10.jsonl",
+      "sha256": "3948f68ad78a76a9c7e21e1be50e3fe800fb831109d12f96007088a3629753bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/policy/2026-09-10/official-documents/us-nj-acf-liheap-plan-fy2026.pdf",
+      "sha256": "1cfcbb238f81669c570c66bc6fdab43d56b4f21a262ef5de1aeaffc4cbb127e1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10 --manifest manifests/us-nj-liheap-state-plan-fy2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T22:18:58.502258+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "J+B/SWzgXhC9bI6o6vsecRyjJEQ19HdLWNkMgakf2pUpf8HqqpgrWaasv4sGx15H7g3EvQjh4Uao9Wry8/17Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10"
+}

@@ -1,0 +1,482 @@
+version: '2026-09-14'
+documents:
+- source_id: nm-srca-nmac-3-3-1
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/1
+  title: '3.3.1 NMAC: General Provisions'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0001.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*1\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.1.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-2
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/2
+  title: '3.3.2 NMAC: Part 2'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0002.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*2\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.2.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-3
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/3
+  title: '3.3.3 NMAC: Imposition And Levy Of Tax'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0003.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*3\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.3.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-4
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/4
+  title: '3.3.4 NMAC: Exemptions'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0004.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*4\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.4.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-5
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/5
+  title: '3.3.5 NMAC: Part 5'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0005.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*5\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.5.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-7
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/7
+  title: '3.3.7 NMAC: Individual Income Tax'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0007.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*7\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.7.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-11
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/11
+  title: '3.3.11 NMAC: Part 11'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0011.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*11\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.11.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-12
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/12
+  title: '3.3.12 NMAC: Taxpayer Returns; Payment Of Tax'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0012.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*12\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.12.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-13
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/13
+  title: '3.3.13 NMAC: Tax Rebates And Credits'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0013.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*13\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.13.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-14
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/14
+  title: '3.3.14 NMAC: Part 14'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0014.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*14\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.14.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-20
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/20
+  title: '3.3.20 NMAC: Rents And Royalties'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0020.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*20\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.20.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-28
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/28
+  title: '3.3.28 NMAC: Part 28'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0028.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*28\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.28.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-29
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/29
+  title: '3.3.29 NMAC: Part 29'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0029.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*29\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.29.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-30
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/30
+  title: '3.3.30 NMAC: Part 30'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0030.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*30\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.30.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-32
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/32
+  title: '3.3.32 NMAC: Part 32'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0032.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*32\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.32.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-33
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/33
+  title: '3.3.33 NMAC: Part 33'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0033.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*33\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.33.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-34
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/34
+  title: '3.3.34 NMAC: Part 34'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0034.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*34\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.34.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-35
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/35
+  title: '3.3.35 NMAC: Part 35'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0035.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*35\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.35.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-36
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/36
+  title: '3.3.36 NMAC: Part 36'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0036.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*36\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.36.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/
+- source_id: nm-srca-nmac-3-3-37
+  jurisdiction: us-nm
+  document_class: regulation
+  citation_path: us-nm/regulation/nmac/3/3/37
+  title: '3.3.37 NMAC: Part 37'
+  source_url: https://www.srca.nm.gov/parts/title03/03.003.0037.html
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    html_content_selector: .WordSection1, .Section1, body
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\s*\.\s*3\s*\.\s*37\s*\.\s*(?P<num>\d+(?:\s*-\s*\d+)?))\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-–—,'&]{0,180})(?:\s+(?P<body>.*))?$
+    section_label_template: 3.3.37.{num}
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico Taxation and Revenue Department
+    official_publisher: New Mexico Commission of Public Records, State Records Center and Archives
+    document_subtype: administrative_code_part
+    program: individual_income_tax
+    source_discovery_group: us-nm/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.srca.nm.gov/nmac-home/nmac-titles/title-3-taxation/chapter-3-personal-income-taxes/

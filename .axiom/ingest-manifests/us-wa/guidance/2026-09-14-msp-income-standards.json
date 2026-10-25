@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "22e51ef2560356dec97a50dc91a783e2036474537d68e1ba2fe09642230756b5"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "f4cfce5edfe109b5735257a6bacd44a67503c1d3840db827ddd3f3ae6a000a80"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "8ede6d27365ce744975a4d962dd88fe12a9fa8786c654e7587476ed4b81df48a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/guidance/2026-09-14-msp-income-standards/official-documents/us-wa-hca-income-and-resource-standards-2026-07-01.pdf",
+      "sha256": "81be5e705358fc61f8d228dbb2b2fc46f53ee78ce794abd91c0f3124f6d92cda"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-wa-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:31:31.331437+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dsa7blp+6SLh7kiQY1MI6HmOEw6yETGi+B/GemlZzVSjZZYjp9uOrKHARwZn44NFojMP/YTy3wB302QziipAAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

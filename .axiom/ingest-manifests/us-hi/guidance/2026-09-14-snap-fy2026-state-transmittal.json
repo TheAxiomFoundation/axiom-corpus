@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "bb5aab89461114957082e8dc8224f8fe6b0f5b69bb02ce7040d5e80ca89922b6"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/guidance/2026-09-14-snap-fy2026-state-transmittal.json",
+      "sha256": "0e197c6f76356ba206ccce90d97ac044ac7dafeeaab2c56e0ac7bb072470a0db"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/guidance/2026-09-14-snap-fy2026-state-transmittal.jsonl",
+      "sha256": "d50733ebbf0948f119720c63008cd894565bac2d6c5be7cfcb266f25c10e2d37"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/guidance/2026-09-14-snap-fy2026-state-transmittal/official-documents/us-hi-bessd-snap-income-eligibility-standards-fy2026.html",
+      "sha256": "d604bf908dd303a07a1fa5764a4c1952ec153ddb02bfb67114e3dda14e9d7289"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-snap-fy2026-state-transmittal --manifest manifests/us-hi-snap-fy2026-state-transmittal.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:26:09.232841+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lq7wh5w+IaMexOeZ2ibts9YDDPiWvAJM1zizlLsTbeJZlfxs69aPplnxBd+0nj5jkjGYOyIVEmQ4Pl+nYHd5BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-snap-fy2026-state-transmittal"
+}

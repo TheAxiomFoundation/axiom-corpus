@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "50018b9c2c8ea80d74959712e3c3ceda7ef50f92d86cb0e71812fb00a3f4472f"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "e201d8bdeb8da16053e6c57afc7cb3b53f7c2184ad5e2cef141e7b063cdb489f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "7594e98ad29b3a889fa6900439df7e9b8abf6da44cb80bcb512624affb75622a"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/regulation/2026-09-10-ssi-state-supplement/official-documents/ky-lrc-921-kar-2-015.html",
+      "sha256": "c7c6d58569b7cebaea1c1676031afe45f9dff27126130f5d5d89b70a7b7c19f7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-ky-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:53:07.859174+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cMVWW41jU3r4etG6sAYJsA5RXO4F3KdOYKmTEtHnD8D/sv3z5hOgSbYsUJzK/w3fqVM/U2sv68OaO6JZLQiIBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

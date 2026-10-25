@@ -1,0 +1,307 @@
+version: 2026-09-13-medicare-cms-iom-100-18
+documents:
+- source_id: us-cms-iom-100-18-chapter-5
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 5 - Benefits and Beneficiary Protection
+  source_url: https://www.cms.gov/files/document/chapter-5-benefits-and-beneficiary-protection-v92011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-09-30'
+  citation_path: us/manual/cms/iom/100-18/chapter-5
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ 3\ \-\ MA\ Regions$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 5
+    chapter_title: Benefits and Beneficiary Protection
+    latest_transmittal: Rev. 14, issued 2011-09-30
+    expression_date_source: TOC header '(Rev. 14, 09-30-11)'
+    pdf_page_count: 76
+    body_start_page: 6
+    toc_section_count: 85
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    http_last_modified: Fri, 12 Apr 2024 16:45:09 GMT
+    chapter_page_version_tag: v9.20.11
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
+- source_id: us-cms-iom-100-18-chapter-6
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 6 - Part D Drugs and Formulary Requirements
+  source_url: https://www.cms.gov/medicare/prescription-drug-coverage/prescriptiondrugcovcontra/downloads/part-d-benefits-manual-chapter-6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2016-01-15'
+  citation_path: us/manual/cms/iom/100-18/chapter-6
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ E\ –\ Sample\ Transition\ Supply\ Scenarios\ and\ Eligibility$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 6
+    chapter_title: Part D Drugs and Formulary Requirements
+    latest_transmittal: Rev. 18, issued 2016-01-15
+    expression_date_source: TOC header '(Rev. 18, 01-15-16)'
+    pdf_page_count: 83
+    body_start_page: 4
+    toc_section_count: 78
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    http_last_modified: Tue, 01 Jul 2025 11:42:39 GMT
+    chapter_page_version_tag: v.01.19.16
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
+- source_id: us-cms-iom-100-18-chapter-7
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 7 - Medication Therapy Management and Quality Improvement
+    Program
+  source_url: https://www.cms.gov/medicare/prescription-drug-coverage/prescriptiondrugcovcontra/downloads/dwnlds/chapter7pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-02-19'
+  citation_path: us/manual/cms/iom/100-18/chapter-7
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ A\ –\ Chapter\ 7\ Related\ Web\ Sites$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 7
+    chapter_title: Medication Therapy Management and Quality Improvement Program
+    latest_transmittal: Rev. 11, issued 2010-02-19
+    expression_date_source: TOC header '(Rev. 11, 02-19-10)'
+    pdf_page_count: 34
+    body_start_page: 3
+    toc_section_count: 42
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter_page_version_tag: v02.19.10
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
+- source_id: us-cms-iom-100-18-chapter-9
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 9 - Compliance Program Guidelines
+  source_url: https://www.cms.gov/medicare/prescription-drug-coverage/prescriptiondrugcovcontra/downloads/chapter9.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-01-11'
+  citation_path: us/manual/cms/iom/100-18/chapter-9
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Appendix\ B:\ Laws\ and\ Regulations\ to\ Consider\ in\ Standards\ of\ Conduct\ and/or\ Training$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 9
+    chapter_title: Compliance Program Guidelines
+    latest_transmittal: Rev. 16, issued 2013-01-11
+    expression_date_source: TOC header '(Chapter 9 - Rev. 16, 01-11-13)'
+    pdf_page_count: 55
+    body_start_page: 3
+    toc_section_count: 45
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    http_last_modified: Fri, 13 Sep 2019 21:25:10 GMT
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
+- source_id: us-cms-iom-100-18-chapter-12
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 12 - Employer/Union Sponsored Group Health Plans
+  source_url: https://www.cms.gov/regulations-and-guidance/guidance/transmittals/downloads/dwnlds/r6pdbpdfpdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2008-11-07'
+  citation_path: us/manual/cms/iom/100-18/chapter-12
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Waiver/Modification\ of\ Requirements$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 12
+    chapter_title: Employer/Union Sponsored Group Health Plans
+    latest_transmittal: Rev. 6, issued 2008-11-07
+    expression_date_source: TOC header '(Rev.6, 11-07-08)'
+    pdf_page_count: 39
+    body_start_page: 4
+    toc_section_count: 55
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter_page_version_tag: v11.10.08
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
+    toc_header_rule: Table of Contents line (no Transmittals for Chapter line)
+- source_id: us-cms-iom-100-18-chapter-13
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 13 - Premium and Cost-Sharing Subsidies for Low-Income
+    Individuals
+  source_url: https://www.cms.gov/medicare/prescription-drug-coverage/prescriptiondrugcovcontra/downloads/chapter-13-premium-and-cost-sharing-subsidies-for-low-income-individuals-v09-14-2018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us/manual/cms/iom/100-18/chapter-13
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    text_replacements:
+      30.1- Partial Subsidy Eligible Individuals: 30.2 - Partial Subsidy Eligible Individuals
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^Note:\ This\ chapter\ is\ subject\ to\ both\ periodic\ and\ annual\ updates\.$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 13
+    chapter_title: Premium and Cost-Sharing Subsidies for Low-Income Individuals
+    latest_transmittal: Rev. 14, issued 2018-10-01
+    expression_date_source: TOC header '(Rev. 14, 10-01-18)'
+    pdf_page_count: 56
+    body_start_page: 3
+    toc_section_count: 66
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_override: the body prints section 30.2 as '30.1- Partial Subsidy Eligible Individuals' (the label of the preceding
+      section repeated; the TOC and the section text are 30.2)
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    http_last_modified: Fri, 15 Nov 2019 03:02:40 GMT
+    chapter_page_version_tag: v09 14 2018
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)
+- source_id: us-cms-iom-100-18-chapter-14
+  jurisdiction: us
+  document_class: manual
+  title: CMS Pub 100-18 Medicare Prescription Drug Benefit Manual, Chapter 14 - Coordination of Benefits
+  source_url: https://www.cms.gov/medicare/prescription-drug-coverage/prescriptiondrugcovcontra/downloads/chapter-14-coordination-of-benefits-v09-17-2018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-09-17'
+  citation_path: us/manual/cms/iom/100-18/chapter-14
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>\d{2,3}(?:\.\d+)*)(?:\s*[-–—]+\s*|\s+)(?P<heading>(?!C\.?\s?F\.?\s?R\.?\b)[A-Z(].*)$
+    section_heading_requires_bold: true
+    heading_continuation_pattern: ^(?P<heading>(?!\(Rev\b)(?!\(Chapter\b)(?!\d{1,3}(?:\.\d+)*(?:\s*[-–—]|\s+[A-Z]))(?![A-Z][.)\-–]\s)(?!NOTE\b)(?![A-Z]+:?$)(?![A-Z][A-Z
+      ]+$)(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*)(?:\s+(?:\(?[A-Z0-9][^\s]*|[-–—]|(?:a|an|and|as|at|by|for|from|in|of|on|or|the|to|under|with|is|are|now|than|that|who|whom|which|when|where|not|yet|available)\b[^\s]*))*)$
+    start_after_pattern: ^8$
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services
+    document_subtype: internet_only_manual_chapter
+    program: MEDICARE
+    publication: 100-18
+    publication_title: Medicare Prescription Drug Benefit Manual
+    publication_page: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    chapter: 14
+    chapter_title: Coordination of Benefits
+    latest_transmittal: Rev. 18, issued 2018-09-17
+    expression_date_source: TOC header '(Rev. 18, 09-17-18)'
+    pdf_page_count: 107
+    body_start_page: 8
+    toc_section_count: 63
+    body_start_rule: first repeated label
+    toc_lists_single_digit_sections: false
+    heading_label_form: two to three digit top label
+    extraction_granularity: numbered_section
+    source_discovery_group: us/manual/cms-iom-100-18
+    discovered_via: manual-review:medicare-agent-queue; index https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms;
+      publication page https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050485
+    http_last_modified: Sat, 14 Sep 2019 03:34:50 GMT
+    chapter_page_version_tag: v.09 17 2018
+    chapter_page: https://www.cms.gov/medicare/coverage/prescription-drug-coverage-contracting/prescription-drug-benefit-manual
+    chapter_page_note: CMS Prescription Drug Benefit Manual page (the publisher's chapter listing; the IOM publication page
+      cms050485 links only the table of contents PDF)

@@ -1,0 +1,36 @@
+version: 2026-09-13-snap-et-state-plan
+documents:
+- source_id: ar-snap-et-state-plan-ffy2026
+  jurisdiction: us-ar
+  document_class: policy
+  title: Arkansas SNAP E&T State Plan FFY 2026 (original submission)
+  source_url: https://humanservices.arkansas.gov/wp-content/uploads/StatePlan_AR_2026_Original-Submission_126.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ar/policy/snap-et-state-plan/ffy2026
+  request:
+    browser_impersonation: safari17_0
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Human Services, Division of County Operations
+    document_subtype: state_plan
+    program: SNAP
+    topic: employment_and_training
+    fiscal_year: '2026'
+    effective_start: '2025-10-01'
+    effective_end: '2026-09-30'
+    source_status: current
+    policy_status: current
+    extraction_granularity: pdf_page
+    publisher_index_url: https://humanservices.arkansas.gov/wp-json/wp/v2/media?search=State%20Plan&per_page=50
+    publisher_page_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/snap-employment-and-training/
+    source_discovery_group: us-ar/policy/snap-et-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; not on the FNA index; DHS media library (wp-json/wp/v2/media,
+      search 'State Plan') item uploaded 2026-01-20, title 'StatePlan_AR_2026_Original Submission_126'
+    closure_element: snap_s31
+    media_library_uploaded: '2026-01-20'
+    tls_note: humanservices.arkansas.gov (Cloudflare) answers 403 to the plain client and the Chrome fingerprint;
+      the Safari 17 fingerprint is served. curl_cffi needs CURL_CA_BUNDLE or SSL_CERT_FILE pointed at certifi on
+      this machine.

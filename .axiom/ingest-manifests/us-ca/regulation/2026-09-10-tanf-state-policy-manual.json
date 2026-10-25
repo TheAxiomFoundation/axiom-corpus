@@ -1,0 +1,97 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "3e39233bf1ba9477ae94c207dc8245883bde2ac82795e18d9fd7389a18b52d7e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "964f1cbeca7225ffdae9e5d9bc6b2b0bee23df079c247bc4b3b9ea104ea87f5c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/regulation/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "f0757c27f154b2baeedcf0c6e06f4188b3907c0eac9457332770d75e5cf95625"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-1.docx",
+      "sha256": "10a643da1cbefd45f8883e9fc18be706020fabc85e6afd53b3959c6fab44951e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-10.docx",
+      "sha256": "6cae95fd8950b0c75b04035e53d8168e302d12995e632502b146e196d4018503"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-11.docx",
+      "sha256": "fd5c9750a4833f6b43fe5dd41598161e924e2a4396f34b5cc44edb1ce3e61900"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-12.docx",
+      "sha256": "e3ad016e6fcc53a6858c60f1d6ef139f3b5f9fc20ff0504c58c402a54813c22c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-13.docx",
+      "sha256": "0e638860752f110d13359b3f8bd46c1a8c580c5fa2e200154fd7eb9f08465c85"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-2.docx",
+      "sha256": "74b1ef56775ea45294698ed9e423b8611731cf8d633ff80dad06f837aa419a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-3.docx",
+      "sha256": "04e9cc93081d6905557345292fcd02e3c16cae3ffdeb509f2f16800a67bb0a6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-4.docx",
+      "sha256": "c700d91bf07204f23ee24071dce069ff360045147968dd4fcfbc749a203bbfcc"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-5.docx",
+      "sha256": "4a20e70d50f94987fe0f60817a1ab25b58fdf5133dec8780f170216c00c6f47b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-6.docx",
+      "sha256": "97a02c3db2efe00c35ff71c31e2a23cb97c354b66c32113ef57ce72963dcef5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-7.docx",
+      "sha256": "bac0af3270f51c14afa3889f1aa0c6c3ebdd0ebdb0002380cf019f63eb95204b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-8.docx",
+      "sha256": "23bdb9c56f84fb425f460cff36602f2eb1ce24c9897ed8c3b0a4a193e979a605"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ca-cdss-mpp-eas-9.docx",
+      "sha256": "5fec2d0f587dd935213303b64792a3089f30571679521b2df51bb289e125100a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 315,
+    "missing_count": 0,
+    "provision_count": 315,
+    "source_count": 315
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:36:20.235613+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "50O8XvoTMNVEdBD3Ogycst3Me5ySlj2EtY5j9oNnOFXIRhFfNthHhvQJW0AdASQAw05Mt9xfdqfYim8oNiD8AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

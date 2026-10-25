@@ -1,0 +1,22 @@
+version: 2026-10-06-w6-benefits-manual-ky
+documents:
+- source_id: us-ky-manual-dcbs-dfs-volume-v-state-supplementation
+  jurisdiction: us-ky
+  document_class: manual
+  title: Division of Family Support Operation Manual Volume V, State Supplementation (OMTL 714, R. 10/1/26)
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLV.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-01'
+  citation_path: us-ky/manual/dcbs/dfs/volume-v-state-supplementation
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Cabinet for Health and Family Services, DCBS Division of Family Support
+    document_subtype: operations_manual_volume
+    program: SSI state supplement
+    expression_date_note: the date the document prints
+    discovered_via: axiom.org program-bundle gap list 2026-10-06 (wave 6, group benefits, row 109)
+    latest_omtl: OMTL-714
+    wave6_rows:
+    - 109
+    run_note: docs/ingest-runs/2026-10-06-w6-benefits.md

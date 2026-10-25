@@ -1,0 +1,53 @@
+version: 2026-10-06-w6-income-tax-guidance-id
+documents:
+- source_id: us-id-guidance-istc-irc-conformity
+  jurisdiction: us-id
+  document_class: guidance
+  title: Conformity to Federal Internal Revenue Code (IRC) (Idaho State Tax Commission)
+  source_url: https://tax.idaho.gov/governance/statutes/irc/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-id/guidance/istc/irc-conformity
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-id-guidance-istc-press-releases-2026-02-17-filing-2025-income-taxes-conformity
+  jurisdiction: us-id
+  document_class: guidance
+  title: Update on filing 2025 Idaho income taxes now that conformity is law (press release, 2026-02-17)
+  source_url: https://tax.idaho.gov/pressrelease/update-on-filing-2025-idaho-income-taxes-now-that-conformity-is-law/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-id/guidance/istc/press-releases/2026-02-17-filing-2025-income-taxes-conformity
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: press_release
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+- source_id: us-id-guidance-istc-ideal-college-savings-program
+  jurisdiction: us-id
+  document_class: guidance
+  title: IDeal Idaho College Savings Program (popular credits and deductions)
+  source_url: https://tax.idaho.gov/taxes/income-tax/individual-income/popular-credits-and-deductions/ideal-college-savings-program/
+  source_format: html
+  source_as_of: '2026-10-06'
+  citation_path: us-id/guidance/istc/ideal-college-savings-program
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: guidance
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-guidance
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06

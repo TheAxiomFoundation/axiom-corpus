@@ -1,0 +1,61 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ok-oac-317-35-6-soonercare-children-families
+  jurisdiction: us-ok
+  document_class: regulation
+  title: Oklahoma Administrative Code Title 317 Chapter 35 Subchapter 6 SoonerCare for Pregnant Women and Families with Children
+  source_url: https://rules.ok.gov/home
+  source_format: json
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ok/regulation/oac/317/35
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: records
+    json_record_text_field: text
+    json_record_text_is_html: true
+    json_record_label_field: sectionNum
+    json_record_heading_field: description
+    json_record_kind_field: name
+    json_record_status_field: statusName
+    json_record_exclude_statuses:
+    - Revoked
+    - Reserved
+    json_record_include_label_prefixes:
+    - 317:35-6-
+    json_record_metadata_fields:
+    - id
+    - parentId
+    - name
+    - titleNum
+    - chapterNum
+    - subChapterNum
+    - partNum
+    - sectionNum
+    - appendixNum
+    - description
+    - statusName
+    - segmentStatusId
+    - segmentTypeId
+    - recordStatus
+    - effectiveDate
+    - filingId
+    - hasEmergency
+    - segmentNotes
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Health Care Authority (OAC Title 317), published by the Oklahoma Secretary of State Office
+      of Administrative Rules
+    document_subtype: administrative_code_subchapter
+    program: CHIP
+    source_discovery_group: us-ok/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    official_publisher: Oklahoma Secretary of State Office of Administrative Rules
+    rules_landing_page: https://rules.ok.gov/home
+    rules_api_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=317&chapterNum=35
+    agency_policy_site_index: https://oklahoma.gov/ohca/policies-and-rules/xpolicy/medical-assistance-for-adults-and-children-eligibility/soonercare-for-pregnant-women-and-families-with-children.html
+    legal_identifier: OAC 317:35-6
+    state_program: SoonerCare (Medicaid-expansion CHIP for children)
+    expression_date_note: chapter compilation as served on source_as_of; per-section effectiveDate kept in record metadata
+  download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=317&chapterNum=35

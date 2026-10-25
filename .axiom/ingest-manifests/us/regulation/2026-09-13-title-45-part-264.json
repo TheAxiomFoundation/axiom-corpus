@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-45-part-264.json",
+      "sha256": "5449fd9e929253f9b8a0437f9bde2164cc493a37405a5555ad05726358713f18"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-45-part-264.json",
+      "sha256": "5ea4a9c8e9448f2efb715c0262ad93d8c3662b257542292df8095cb65025fe04"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-45-part-264.jsonl",
+      "sha256": "0ba8efb0a6eeb263e0d2044c4866a73b85feb27d56da837f6a91faf454e6cffd"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-45-part-264/ecfr/title-45-part-264.xml",
+      "sha256": "4a28c659105a2fe84462f1efe5738ff09bd20fa971956e335607a543ac8fa84c"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-45-part-264/ecfr/title-45.structure.json",
+      "sha256": "9ee8b602c32b892fcd5a2780ed1cd9e14e8ec7f4d96bbc6477cc11a776905a81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-45-part-264 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 30,
+    "missing_count": 0,
+    "provision_count": 30,
+    "source_count": 30
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:46:27.413973+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pXgCnjgOnZa1B1Y17I1H8jpBKu7YV1j+5SoDuINRrxzxLP0bwU88NdcJ7HHEjeGfPq0YrUsLwQk/40F+8129Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-45-part-264"
+}

@@ -1,0 +1,30 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-al-ador-individual-income-tax-filing-information-ty2026
+  jurisdiction: us-al
+  document_class: guidance
+  title: 'Individual Income Tax: General Information for Individuals (rates and personal exemptions)'
+  source_url: https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-al/guidance/ador/ty2026/individual-income-tax-filing-information
+  extraction:
+    html_content_selector: div.elementor-element-32825a90
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Revenue
+    document_subtype: department_web_page
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: null
+    amounts_carried:
+    - rate schedule (2%/4%/5%)
+    - personal exemption ($1,500/$3,000)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/individual-corporate/individual-income-tax-filing-information/
+      (read 2026-09-13)
+    source_note: Undated current page; Alabama does not index and the page states the statutory rates and exemptions in force
+      for 2026.

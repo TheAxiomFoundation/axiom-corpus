@@ -1,0 +1,52 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: vt-ahs-hbee-part-2
+  jurisdiction: us-vt
+  document_class: regulation
+  title: Health Benefits Eligibility and Enrollment Rules, Part 2 Eligibility Standards
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-2-Eligibility-Standards.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-01-01'
+  citation_path: us-vt/regulation/ahs/hbee/part-2
+  extraction: &id001
+    segmentation: labeled_sections
+    start_page: 3
+    section_heading_pattern: ^\s*(?P<label>\d{1,2}\.\d\d)\s+(?P<heading>[A-Z].*?)\s*\(\d\d/\d\d/\d{4}, GCR [\d-]+\)\s*$
+    section_label_template: '{label}'
+    heading_continuation_pattern: (?!)
+    drop_line_patterns:
+    - ^\s*Agency of Human Services\s*$
+    - ^\s*Health Benefits Eligibility and Enrollment\s*$
+    - ^\s*(?:Eligibility Standards|Financial Methodologies)\s*$
+    - ^\s*Part \d – Page \d+ \(Sec\.[^)]*\)\s*$
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services (Health Benefits Eligibility and Enrollment Rules)
+    document_subtype: adopted_administrative_rule_part
+    program: CHIP
+    source_discovery_group: us-vt/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    legal_identifier: HBEE Part 2
+    state_program: Dr. Dynasaur
+    latest_gcr_effective: '2026-01-01'
+- source_id: vt-ahs-hbee-part-5
+  jurisdiction: us-vt
+  document_class: regulation
+  title: Health Benefits Eligibility and Enrollment Rules, Part 5 Financial Methodologies
+  source_url: https://humanservices.vermont.gov/sites/ahsnew/files/documents/HBEE-Part-5-Financial-Methodologies.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-01-01'
+  citation_path: us-vt/regulation/ahs/hbee/part-5
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Vermont Agency of Human Services (Health Benefits Eligibility and Enrollment Rules)
+    document_subtype: adopted_administrative_rule_part
+    program: CHIP
+    source_discovery_group: us-vt/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    legal_identifier: HBEE Part 5
+    state_program: Dr. Dynasaur
+    latest_gcr_effective: '2026-01-01'

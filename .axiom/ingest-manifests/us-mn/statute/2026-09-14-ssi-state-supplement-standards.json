@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/statute/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "a154eaca7148467ce7ddc8bca2c9f0b5071618a05e88b8b299a8dff44ba76a69"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/statute/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "9b5b34b5c60877b42df03d61c489488026e68eb9ab3514c6bdce8b9c6993a7d8"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/statute/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "176cda69b8bf70657f2cd33141a962688b74eee769e6fc0758b35ee77c789c44"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-09-14-ssi-state-supplement-standards/official-documents/us-mn-statute-256d-44.html",
+      "sha256": "e45fa2a9ccd185384a45f9ca2214296f78aeff1f08b0ce0bff13af12320cc8ea"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-mn-ssi-state-supplement-standards-statute.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T17:00:34.564489+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zwtBbUJS3+ZYIFvNAfCQhHEp1d1oNoETjnh8nwd1nu0PuNqzgW9OC1JQHqJSNuk2sXI1Ihd1xmEdhdW/csa0Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

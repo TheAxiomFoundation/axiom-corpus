@@ -1,0 +1,3920 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ut-dhhs-chip-100-general-provisions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 100 General Provisions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/100_General_Provisions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/100-general-provisions
+  extraction: &id001
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '100'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-101-enrollee-rights
+  jurisdiction: us-ut
+  document_class: manual
+  title: 101 Enrollee Rights
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/101_Enrollee_Rights.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/101-enrollee-rights
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '101'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-102-enrollee-responsibilities
+  jurisdiction: us-ut
+  document_class: manual
+  title: 102 Enrollee Responsibilities
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/102_Enrollee_Responsibilities.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/102-enrollee-responsibilities
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '102'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-102-1-completion-of-an-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 102-1 Completion of an Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/102-1_Completion_of_an_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/102-1-completion-of-an-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 102-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-102-2-verification
+  jurisdiction: us-ut
+  document_class: manual
+  title: 102-2 Verification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/102-2_Verification.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/102-2-verification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 102-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-102-3-report-changes
+  jurisdiction: us-ut
+  document_class: manual
+  title: 102-3 Report Changes
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/102-3_Report_Changes.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/102-3-report-changes
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 102-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-102-5-cooperate-with-quality-reviews
+  jurisdiction: us-ut
+  document_class: manual
+  title: 102-5 Cooperate with Quality Reviews
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/102-5_Cooperate_with_Quality_Reviews.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/102-5-cooperate-with-quality-reviews
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 102-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-103-worker-responsibilities
+  jurisdiction: us-ut
+  document_class: manual
+  title: 103 Worker Responsibilities
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/103_Worker_Responsibilities.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/103-worker-responsibilities
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '103'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-103-1-prohibited-action
+  jurisdiction: us-ut
+  document_class: manual
+  title: 103-1 Prohibited Action
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/103-1_Prohibited_Action.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/103-1-prohibited-action
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 103-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-104-authority-of-the-office-director
+  jurisdiction: us-ut
+  document_class: manual
+  title: 104 Authority of the Office Director
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/104_Authority_of_the_Office_Director.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/104-authority-of-the-office-director
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '104'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-110-safeguarding-information
+  jurisdiction: us-ut
+  document_class: manual
+  title: 110 Safeguarding Information
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/110_Safeguarding_Information.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/110-safeguarding-information
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '110'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-110-1-safeguards-of-income-match-data
+  jurisdiction: us-ut
+  document_class: manual
+  title: 110-1 Safeguards of Income Match Data
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/110-1_Safeguards_of_Income_Match_Data.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/110-1-safeguards-of-income-match-data
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 110-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-101-2-special-safeguards-for-irs-income-match-data
+  jurisdiction: us-ut
+  document_class: manual
+  title: 110-2 Special Safeguards for IRS Income Match Data
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/101-2_Special_Safeguards_for_IRS_Income_Match_Data.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/101-2-special-safeguards-for-irs-income-match-data
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 110-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-101-3-who-may-have-access-to-income-match-records
+  jurisdiction: us-ut
+  document_class: manual
+  title: 110-3 Who May Have Access to Income Match Records
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/101-3_Who_May_Have_Access_to_Income_Match_Records.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/101-3-who-may-have-access-to-income-match-records
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 110-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-111-confidential-information
+  jurisdiction: us-ut
+  document_class: manual
+  title: 111 Confidential Information
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/111_Confidential_Information.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/111-confidential-information
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '111'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-111-1-releasing-information-to-the-enrollee
+  jurisdiction: us-ut
+  document_class: manual
+  title: 111-1 Releasing Information to the Enrollee
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/111-1_Releasing_Information_to_the_Enrollee.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/111-1-releasing-information-to-the-enrollee
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 111-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-111-2-use-of-confidential-information
+  jurisdiction: us-ut
+  document_class: manual
+  title: 111-2 Use of Confidential Information
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/111-2_Use_of_Confidential_Information.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/111-2-use-of-confidential-information
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 111-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-111-3-releasing-information-to-others
+  jurisdiction: us-ut
+  document_class: manual
+  title: 111-3 Releasing Information to Others
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/111-3_Releasing_Information_to_Others.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/111-3-releasing-information-to-others
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 111-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-complaints
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120 Complaints
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120_Complaints.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-complaints
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '120'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-1-agency-conferences
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-1 Agency Conferences
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-1_Agency_Conferences.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-1-agency-conferences
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-2-fair-hearings
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-2 Fair Hearings
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-2_Fair_Hearings.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-2-fair-hearings
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-3-fair-hearing-requests
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-3 Fair Hearing Requests
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-3_Fair_Hearing_Requests.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-3-fair-hearing-requests
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-4-the-hearing
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-4 The Hearing
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-4_The_Hearing.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-4-the-hearing
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-5-benefits-pending-a-hearing-decision
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-5 Benefits Pending A Hearing Decision
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-5_Benefits_Pending_A_Hearing_Decision.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-5-benefits-pending-a-hearing-decision
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-6-what-happens-during-a-fair-hearing
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-6 What Happens During a Fair Hearing
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-6_What_Happens_During_a_Fair_Hearing.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-6-what-happens-during-a-fair-hearing
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-8-fair-hearing-decisions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-8 Fair Hearing Decisions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-8_Fair_Hearing_Decisions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-8-fair-hearing-decisions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-8
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-120-9-how-to-appeal-a-decision
+  jurisdiction: us-ut
+  document_class: manual
+  title: 120-9 What Records Are Kept of Hearing Decisions and Who Can See Them
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/120-9_How_to_Appeal_A_Decision.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/120-9-how-to-appeal-a-decision
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 120-9
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-130-hipaa-health-insurance-portability-and-accountability-act-of-1996
+  jurisdiction: us-ut
+  document_class: manual
+  title: 130 HIPAA (Health Insurance Portability and Accountability Act of 1996)
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/100_General_Provisions/130_HIPAA_(Health_Insurance_Portability_and_Accountability_Act_of_1996).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/130-hipaa-health-insurance-portability-and-accountability-act-of-1996
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '130'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-200-program-standards
+  jurisdiction: us-ut
+  document_class: manual
+  title: 200 Program Standards
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/200_Program_Standards.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/200-program-standards
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '200'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-201-medicaid-eligibility
+  jurisdiction: us-ut
+  document_class: manual
+  title: 201 Medicaid Eligibility
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/201_Medicaid_Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/201-medicaid-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '201'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-201-1-screening-for-medicaid-eligibility
+  jurisdiction: us-ut
+  document_class: manual
+  title: 201-1 Screening for Medicaid Eligibility
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/201-1_Screening_for_Medicaid_Eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/201-1-screening-for-medicaid-eligibility
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 201-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-202-citizenship-and-non-citizen-status-requirements
+  jurisdiction: us-ut
+  document_class: manual
+  title: 202 Citizenship and Non-Citizen Status Requirements
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/202_Citizenship_and_Non-Citizen_Status_Requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/202-citizenship-and-non-citizen-status-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '202'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-202-1-u-s-citizens
+  jurisdiction: us-ut
+  document_class: manual
+  title: 202-1 U.S. Citizens
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/202-1_U.S._Citizens.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/202-1-u-s-citizens
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 202-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-202-2-qulaified-non-citizen
+  jurisdiction: us-ut
+  document_class: manual
+  title: 202-2 Qualified Non-Citizen
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/202-2_Qulaified_Non-Citizen.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/202-2-qulaified-non-citizen
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 202-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-202-2-1-lawfully-present-children
+  jurisdiction: us-ut
+  document_class: manual
+  title: 202-2.1 Lawfully Present Children
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/202-2.1_Lawfully_Present_Children.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/202-2-1-lawfully-present-children
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 202-2.1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-202-3-verification-of-non-citizen-status
+  jurisdiction: us-ut
+  document_class: manual
+  title: 202-3 Verification of Non-Citizen Status
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/202-3_Verification_of_Non-Citizen_Status.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/202-3-verification-of-non-citizen-status
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 202-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-202-4-sponsored-non-citizens
+  jurisdiction: us-ut
+  document_class: manual
+  title: 202-4 Sponsored Non-Citizens
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/202-4_Sponsored_Non-Citizens.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/202-4-sponsored-non-citizens
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 202-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-203-utah-residence
+  jurisdiction: us-ut
+  document_class: manual
+  title: 203 Utah Residence
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/203_Utah_Residence.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/203-utah-residence
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '203'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-203-1-determining-residency
+  jurisdiction: us-ut
+  document_class: manual
+  title: 203-1 Determining Residency
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/203-1_Determining_Residency.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/203-1-determining-residency
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 203-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-203-2-who-is-capable-of-expressing-intent
+  jurisdiction: us-ut
+  document_class: manual
+  title: 203-2 Who is Capable of Expressing Intent?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/203-2_Who_is_Capable_of_Expressing_Intent_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/203-2-who-is-capable-of-expressing-intent
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 203-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-203-4-determining-residency-for-individuals-under-21
+  jurisdiction: us-ut
+  document_class: manual
+  title: 203-4 Determining Residency for Individuals Under 21
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/203-4_Determining_Residency_for_Individuals_Under_21.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/203-4-determining-residency-for-individuals-under-21
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 203-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-203-5-factors-indicating-no-intent-to-reside-in-utah
+  jurisdiction: us-ut
+  document_class: manual
+  title: 203-5 Factors Indicating No Intent to Reside in Utah
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/203-5_Factors_Indicating_No_Intent_to_Reside_in_Utah.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/203-5-factors-indicating-no-intent-to-reside-in-utah
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 203-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-203-6-moving-from-state-to-state
+  jurisdiction: us-ut
+  document_class: manual
+  title: 203-6 Moving From State to State
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/203-6_Moving_From_State_to_State.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/203-6-moving-from-state-to-state
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 203-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-204-residents-of-institutions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 204 Residents of Institutions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/204_Residents_of_Institutions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/204-residents-of-institutions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '204'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-204-1-what-is-an-institution
+  jurisdiction: us-ut
+  document_class: manual
+  title: 204-1 What is an Institution?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/204-1_What_is_an_Institution_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/204-1-what-is-an-institution
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 204-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-204-2-what-is-a-public-non-medical-institution
+  jurisdiction: us-ut
+  document_class: manual
+  title: 204-2 What is a Public Non-Medical Institution?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/204-2_What_is_a_Public_Non-Medical_Institution_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/204-2-what-is-a-public-non-medical-institution
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 204-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-204-3-who-is-a-resident-of-a-household
+  jurisdiction: us-ut
+  document_class: manual
+  title: 204-3 Who is a “Resident” of a Household?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/204-3_Who_is_a_Resident_of_a_Household_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/204-3-who-is-a-resident-of-a-household
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 204-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-204-4-who-is-a-resident-of-an-institution
+  jurisdiction: us-ut
+  document_class: manual
+  title: 204-4 Who is a “Resident” of an Institution?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/204-4_Who_is_a_Resident_of_an_Institution_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/204-4-who-is-a-resident-of-an-institution
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 204-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-210-age-of-a-child
+  jurisdiction: us-ut
+  document_class: manual
+  title: 210 Age of a Child
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/210_Age_of_a_Child.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/210-age-of-a-child
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '210'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-211-social-security-numbers-ssn
+  jurisdiction: us-ut
+  document_class: manual
+  title: 211 Social Security Numbers (SSN)
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/211_Social_Security_Numbers_(SSN).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/211-social-security-numbers-ssn
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '211'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-211-1-verifying-social-security-numbers
+  jurisdiction: us-ut
+  document_class: manual
+  title: 211-1 Verifying Social Security Numbers
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/211-1_Verifying_Social_Security_Numbers.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/211-1-verifying-social-security-numbers
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 211-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-211-2-applying-for-a-social-security-number
+  jurisdiction: us-ut
+  document_class: manual
+  title: 211-2 Applying for a Social Security Number
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/211-2_Applying_for_a_Social_Security_Number.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/211-2-applying-for-a-social-security-number
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 211-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-211-3-who-does-not-have-to-provide-a-social-security-number
+  jurisdiction: us-ut
+  document_class: manual
+  title: 211-3 Who Does Not Have to Provide a Social Security Number
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/211-3_Who_Does_Not_Have_to_Provide_a_Social_Security_Number.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/211-3-who-does-not-have-to-provide-a-social-security-number
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 211-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-211-4-good-cause-for-not-applying-for-the-ssn-card
+  jurisdiction: us-ut
+  document_class: manual
+  title: 211-4 Good Cause for Not Applying For the SSN Card
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/211-4_Good_Cause_for_Not_Applying_For_the_SSN_Card.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/211-4-good-cause-for-not-applying-for-the-ssn-card
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 211-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-215-relationship
+  jurisdiction: us-ut
+  document_class: manual
+  title: 215 Relationship
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/215_Relationship.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/215-relationship
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '215'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-215-1-parent
+  jurisdiction: us-ut
+  document_class: manual
+  title: 215-1 Parent
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/215-1_Parent.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/215-1-parent
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 215-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-215-3-when-unrelated-adults-live-in-the-home
+  jurisdiction: us-ut
+  document_class: manual
+  title: 215-3 When Unrelated Adults Live in the Home.
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/215-3_When_Unrelated_Adults_Live_in_the_Home..htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/215-3-when-unrelated-adults-live-in-the-home
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 215-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-health-insurance-coverage
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220 Health Insurance
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220_Health_Insurance_Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-health-insurance-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '220'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-1-definitions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-1 Definitions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-1_Definitions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-1-definitions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-2-coverage-under-a-health-insurance-plan
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-2 Coverage Under a Health Insurance Plan
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-2_Coverage_Under_a_Health_Insurance_Plan.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-2-coverage-under-a-health-insurance-plan
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-3-coverage-only-under-a-limited-coverage-plan
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-3 Coverage Only Under a Limited Coverage Plan
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-3_Coverage_Only_Under_a_Limited_Coverage_Plan.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-3-coverage-only-under-a-limited-coverage-plan
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-4-access-to-employer-sponsored-health-insurance
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-4 Access to Employer-Sponsored Health Insurance
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-4_Access_to_Employer-Sponsored_Health_Insurance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-4-access-to-employer-sponsored-health-insurance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-5-health-insurance-coverage-through-a-non-custodial-parent
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-5 Health Insurance Coverage through a Non-Custodial Parent
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-5_Health_Insurance_Coverage_through_a_Non-Custodial_Parent.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-5-health-insurance-coverage-through-a-non-custodial-parent
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-6-coverage-or-access-to-coverage-under-a-state-employees-group-health-plan
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-6 Coverage or Access to Coverage Under a State Employee’s Group Health Plan
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-6_Coverage_or_Access_to_Coverage_Under_a_State_Employees_Group_Health_Plan.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-6-coverage-or-access-to-coverage-under-a-state-employees-group-health-plan
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-7-coverage-under-indian-health-services
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-7 Coverage Under Indian Health Services
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-7_Coverage_Under_Indian_Health_Services.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-7-coverage-under-indian-health-services
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-7
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-8-termination-of-health-insurance-coverage
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-8 Termination of Health Insurance Coverage
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-8_Termination_of_Health_Insurance_Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-8-termination-of-health-insurance-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-8
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-220-9-coordination-with-the-federally-facilitated-marketplace-ffm
+  jurisdiction: us-ut
+  document_class: manual
+  title: 220-9 Coordination With the Federally Facilitated Marketplace (FFM)
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/220-9_Coordination_With_the_Federally_Facilitated_Marketplace_(FFM).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/220-9-coordination-with-the-federally-facilitated-marketplace-ffm
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 220-9
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-222-pregnancy-and-postpartum
+  jurisdiction: us-ut
+  document_class: manual
+  title: 222 Pregnancy and Postpartum
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/222_Pregnancy_and_Postpartum.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/222-pregnancy-and-postpartum
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '222'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-222-1-deemed-newborn
+  jurisdiction: us-ut
+  document_class: manual
+  title: 222-1 Deemed Newborn
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/222-1_Deemed_Newborn.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/222-1-deemed-newborn
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 222-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-245-child-support-services
+  jurisdiction: us-ut
+  document_class: manual
+  title: 245 Child Support Services
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/200_Program_Standards/245_Child_Support_Services.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/245-child-support-services
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '245'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-400-income-standards-and-household-composition
+  jurisdiction: us-ut
+  document_class: manual
+  title: 400 Income Standards and Household Composition
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/400_Income_Standards_and_Household_Composition.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/400-income-standards-and-household-composition
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '400'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-400-1-joint-custody-and-temporary-absence
+  jurisdiction: us-ut
+  document_class: manual
+  title: 400-1 Joint Custody and Temporary Absence
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/400-1_Joint_Custody_and_Temporary_Absence.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/400-1-joint-custody-and-temporary-absence
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 400-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-401-magi-household-composition
+  jurisdiction: us-ut
+  document_class: manual
+  title: 401 MAGI Household Composition
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/401_MAGI_Household_Composition.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/401-magi-household-composition
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '401'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-401-1-the-magi-household
+  jurisdiction: us-ut
+  document_class: manual
+  title: 401-1 The MAGI Household
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/401-1_The_MAGI_Household.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/401-1-the-magi-household
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 401-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-401-2-tax-filer-s-magi-household
+  jurisdiction: us-ut
+  document_class: manual
+  title: 401-2 Tax Filer's MAGI Household
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/401-2_Tax_Filer_s_MAGI_Household.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/401-2-tax-filer-s-magi-household
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 401-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-401-3-non-tax-filer-s-magi-household
+  jurisdiction: us-ut
+  document_class: manual
+  title: 401-3 Non-Tax Filer’s MAGI Household
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/401-3_Non-Tax_Filer’s_MAGI_Household.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/401-3-non-tax-filer-s-magi-household
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 401-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-413-introduction-to-types-of-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 413 Introduction to Types of Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/413_Introduction_to_Types_of_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/413-introduction-to-types-of-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '413'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-413-1-what-is-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 413-1 What is Income?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/413-1_What_is_Income_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/413-1-what-is-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 413-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-413-4-ownership-of-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 413-4 Ownership of Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/413-4_Ownership_of_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/413-4-ownership-of-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 413-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-413-5-deposits-to-joint-checking-and-or-savings-accounts
+  jurisdiction: us-ut
+  document_class: manual
+  title: 413-5 Deposits to Joint Checking and/ or Savings Accounts
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/413-5_Deposits_to_Joint_Checking_and__or_Savings_Accounts.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/413-5-deposits-to-joint-checking-and-or-savings-accounts
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 413-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-413-6-what-is-not-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 413-6 What is Not Income?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/413-6_What_is_Not_Income_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/413-6-what-is-not-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 413-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-unearned-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415 Unearned Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415_Unearned_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-unearned-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '415'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-1-examples-of-unearned-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-1 Examples of Unearned Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-1_Examples_of_Unearned_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-1-examples-of-unearned-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-2-veterans-administration-benefits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-2 Veterans Administration Benefits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-2_Veterans_Administration_Benefits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-2-veterans-administration-benefits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-3-when-the-entitlement-amount-differs-from-the-payment-amount
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-3 When the Entitlement Amount Differs from the Payment Amount
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-3_When_the_Entitlement_Amount_Differs_from_the_Payment_Amount.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-3-when-the-entitlement-amount-differs-from-the-payment-amount
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-4-income-from-rental-property
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-4 Income from Rental Property
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-4_Income_from_Rental_Property.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-4-income-from-rental-property
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-5-child-support-payments
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-5 Child Support Payments
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-5_Child_Support_Payments.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-5-child-support-payments
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-6-educational-assistance
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-6 Educational Assistance
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-6_Educational_Assistance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-6-educational-assistance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-7-certain-interest-or-dividend-income-irregular-and-infrequent-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-7 Certain Interest or Dividend Income, Irregular and Infrequent Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-7_Certain_Interest_or_Dividend_Income,_Irregular_and_Infrequent_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-7-certain-interest-or-dividend-income-irregular-and-infrequent-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-7
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-8-sales-contracts
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-8 Sales Contracts
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-8_Sales_Contracts.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-8-sales-contracts
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-8
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-9-payments-to-replace-or-repair-lost-stolen-or-damaged-property
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-9 Payments to Replace or Repair Lost, Stolen, or Damaged Property
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-9_Payments_to_Replace_or_Repair_Lost,_Stolen,_or_Damaged_Property.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-9-payments-to-replace-or-repair-lost-stolen-or-damaged-property
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-9
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-12-personal-injury-and-tpl-settlements
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-12 Personal Injury and TPL Settlements
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-12_Personal_Injury_and_TPL_Settlements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-12-personal-injury-and-tpl-settlements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-12
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-415-13-countable-payments-to-american-indians-alaska-natives
+  jurisdiction: us-ut
+  document_class: manual
+  title: 415-13 Countable Payments to American Indians/Alaska Natives
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/415-13_Countable_Payments_to_American_Indians_Alaska_Natives.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/415-13-countable-payments-to-american-indians-alaska-natives
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 415-13
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-unearned-income-exclusions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417 Unearned Income Exclusions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417_Unearned_Income_Exclusions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-unearned-income-exclusions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '417'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-1-rental-subsidies-and-relocation-assistance
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-1 Rental Subsidies and Relocation Assistance
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-1_Rental_Subsidies_and_Relocation_Assistance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-1-rental-subsidies-and-relocation-assistance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-2-trust-funds
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-2 Trust Funds
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-2_Trust_Funds.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-2-trust-funds
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-3-tax-refunds-and-tax-credits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-3 Tax Refunds and Tax Credits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-3_Tax_Refunds_and_Tax_Credits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-3-tax-refunds-and-tax-credits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-4-transportation-tickets-for-domestic-travel
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-4 Transportation Tickets for Domestic Travel
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-4_Transportation_Tickets_for_Domestic_Travel.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-4-transportation-tickets-for-domestic-travel
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-6-death-benefits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-6 Death Benefits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-6_Death_Benefits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-6-death-benefits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-7-credit-life-and-credit-disability-insurance-benefits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-7 Credit Life and Credit Disability Insurance Benefits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-7_Credit_Life_and_Credit_Disability_Insurance_Benefits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-7-credit-life-and-credit-disability-insurance-benefits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-7
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-8-payments-under-the-national-flood-insurance-program
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-8 Payments under the National Flood Insurance Program
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-8_Payments_under_the_National_Flood_Insurance_Program.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-8-payments-under-the-national-flood-insurance-program
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-8
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-9-payments-for-clinical-trial-participation
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-9 Payments for Clinical Trial Participation
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-9_Payments_for_Clinical_Trial_Participation.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-9-payments-for-clinical-trial-participation
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-9
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-10-income-excluded-under-a-pass-plan
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-10 Income Excluded Under a PASS Plan
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-10_Income_Excluded_Under_a_PASS_Plan.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-10-income-excluded-under-a-pass-plan
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-10
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-11-home-produce-for-consumption
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-11 Home Produce for Consumption
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-11_Home_Produce_for_Consumption.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-11-home-produce-for-consumption
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-11
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-12-proceeds-from-a-bona-fide-loan
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-12 Proceeds from a Bona Fide Loan
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-12_Proceeds_from_a_Bona_Fide_Loan.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-12-proceeds-from-a-bona-fide-loan
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-12
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-14-payments-to-american-indians-alaska-natives
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-14 Payments to American Indians/Alaska Natives
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-14_Payments_to_American_Indians_Alaska_Natives.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-14-payments-to-american-indians-alaska-natives
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-14
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-15-gifts-made-to-a-child-with-a-life-threatening-disease-by-non-profit-organizations
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-15 Gifts Made to a Child with a Life-Threatening Disease by Non-profit Organizations
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-15_Gifts_Made_to_a_Child_with_a_Life-Threatening_Disease_by_Non-profit_Organizations.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-15-gifts-made-to-a-child-with-a-life-threatening-disease-by-non-profit-organizations
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-15
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-16-income-from-assets
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-16 Income from Assets
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-16_Income_from_Assets.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-16-income-from-assets
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-16
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-17-public-assistance-exclusions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-17 Public Assistance Exclusions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-17_Public_Assistance_Exclusions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-17-public-assistance-exclusions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-17
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-18-employment-and-volunteer-program-payments
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-18 Employment and Volunteer Program Payments
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-18_Employment_and_Volunteer_Program_Payments.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-18-employment-and-volunteer-program-payments
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-18
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-19-reparations-payments
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-19 Reparations Payments
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-19_Reparations_Payments.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-19-reparations-payments
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-19
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-20-settlements-disaster-relief-payments
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-20 Settlements/Disaster Relief Payments
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-20_Settlements_Disaster_Relief_Payments.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-20-settlements-disaster-relief-payments
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-20
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-417-21-covid-19-recovery-rebate-payments
+  jurisdiction: us-ut
+  document_class: manual
+  title: 417-21 COVID 19 Recovery Rebate Payments
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/417-21_COVID_19_Recovery_Rebate_Payments.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/417-21-covid-19-recovery-rebate-payments
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 417-21
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-419-earned-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 419 Earned Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/419_Earned_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/419-earned-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '419'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-419-1-sources-of-earned-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 419-1 Sources of Earned Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/419-1_Sources_of_Earned_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/419-1-sources-of-earned-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 419-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-419-2-income-received-from-a-business
+  jurisdiction: us-ut
+  document_class: manual
+  title: 419-2 Income Received from a Business
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/419-2_Income_Received_from_a_Business.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/419-2-income-received-from-a-business
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 419-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-419-3-self-employment-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 419-3 Self-Employment Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/419-3_Self-Employment_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/419-3-self-employment-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 419-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-419-4-self-employment-expenses
+  jurisdiction: us-ut
+  document_class: manual
+  title: 419-4 Self-Employment Expenses
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/419-4_Self-Employment_Expenses.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/419-4-self-employment-expenses
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 419-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-419-5-earned-income-exclusions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 419-5 Earned Income Exclusions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/419-5_Earned_Income_Exclusions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/419-5-earned-income-exclusions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 419-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-421-lump-sum-payments
+  jurisdiction: us-ut
+  document_class: manual
+  title: 421 Lump Sum Payments
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/421_Lump_Sum_Payments.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/421-lump-sum-payments
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '421'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-425-2-deeming-from-a-non-citizen-s-sponsor
+  jurisdiction: us-ut
+  document_class: manual
+  title: 425-2 Deeming from a Non-Citizen’s Sponsor
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/425-2_Deeming_from_a_Non-Citizen’s_Sponsor.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/425-2-deeming-from-a-non-citizen-s-sponsor
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 425-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-435-budgeting-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 435 Budgeting Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/435_Budgeting_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/435-budgeting-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '435'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-435-1-definitions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 435-1 Definitions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/435-1_Definitions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/435-1-definitions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 435-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-435-2-determine-a-best-estimate-of-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 435-2 Determine a Best Estimate of Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/435-2_Determine_a_Best_Estimate_of_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/435-2-determine-a-best-estimate-of-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 435-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-determine-countable-income
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440 Determine Countable Income
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440_Determine_Countable_Income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-determine-countable-income
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '440'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-1-magi-methodology-general-rules
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440-1 MAGI Methodology General Rules
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440-1_MAGI_Methodology_General_Rules.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-1-magi-methodology-general-rules
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 440-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-2-magi-based-income-requirements
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440-2 MAGI-Based Income Requirements
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440-2_MAGI-Based_Income_Requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-2-magi-based-income-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 440-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-3-income-for-magi-methodology
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440-3 Income for MAGI Methodology
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440-3_Income_for_MAGI_Methodology.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-3-income-for-magi-methodology
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 440-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-4-specific-treatment-of-income-for-magi-based-programs
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440-4 Specific Treatment of Income for MAGI-Based Programs
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440-4_Specific_Treatment_of_Income_for_MAGI-Based_Programs.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-4-specific-treatment-of-income-for-magi-based-programs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 440-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-5-calculating-income-for-magi-based-programs
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440-5 Calculating Income for MAGI-Based Programs
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440-5_Calculating_Income_for_MAGI-Based_Programs.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-5-calculating-income-for-magi-based-programs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 440-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-440-6-whose-income-counts-for-magi-household
+  jurisdiction: us-ut
+  document_class: manual
+  title: 440-6 Whose Income Counts for MAGI Household?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/400_Income_Standards_and_Household_Composition/440-6_Whose_Income_Counts_for_MAGI_Household_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/440-6-whose-income-counts-for-magi-household
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 440-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-600-program-benefits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 600 Program Benefits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/600_Program_Benefits/600_Program_Benefits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/600-program-benefits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '600'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-601-health-plan-selections-and-education
+  jurisdiction: us-ut
+  document_class: manual
+  title: 601 Health Plan Selection and Education
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/600_Program_Benefits/601_Health_Plan_Selections_and_Education.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/601-health-plan-selections-and-education
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '601'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-602-cost-sharing-requirements
+  jurisdiction: us-ut
+  document_class: manual
+  title: 602 Cost Sharing Requirements
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/600_Program_Benefits/602_Cost_Sharing_Requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/602-cost-sharing-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '602'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-603-chip-member-id-cards
+  jurisdiction: us-ut
+  document_class: manual
+  title: 603 CHIP Member ID Cards
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/600_Program_Benefits/603_CHIP_Member_ID_Cards.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/603-chip-member-id-cards
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '603'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-604-suspension-of-benefits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 604 Suspension of Benefits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/600_Program_Benefits/604_Suspension_of_Benefits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/604-suspension-of-benefits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '604'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-700-eligibility-determination-and-redetermination
+  jurisdiction: us-ut
+  document_class: manual
+  title: 700 Eligibility Determination and Redetermination
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/700_Eligibility_Determination_and_Redetermination.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/700-eligibility-determination-and-redetermination
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '700'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701 Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '701'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-1-what-is-an-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701-1 What is an Application?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701-1_What_is_an_Application_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-1-what-is-an-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 701-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-2-date-of-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701-2 Date of Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701-2_Date_of_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-2-date-of-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 701-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-3-effective-dates-of-certification
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701-3 Effective Dates of Certification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701-3_Effective_Dates_of_Certification.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-3-effective-dates-of-certification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 701-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-4-what-to-do-with-an-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701-4 What to do with an Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701-4_What_to_do_with_an_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-4-what-to-do-with-an-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 701-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-5-eligibility-decisions
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701-5 Eligibility Decisions
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701-5_Eligibility_Decisions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-5-eligibility-decisions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 701-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-701-6-incarcerated-individuals-in-jail-or-prison
+  jurisdiction: us-ut
+  document_class: manual
+  title: 701-6 Incarcerated Individuals in Jail or Prison
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/701-6_Incarcerated_Individuals_in_Jail_or_Prison.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/701-6-incarcerated-individuals-in-jail-or-prison
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 701-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-702-re-opening-chip
+  jurisdiction: us-ut
+  document_class: manual
+  title: 702 Re-Opening CHIP
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/702_Re-Opening_CHIP.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/702-re-opening-chip
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '702'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-702-1-transitions-between-chip-upp-and-medicaid
+  jurisdiction: us-ut
+  document_class: manual
+  title: 702-1 Transitions Between CHIP, UPP and Medicaid
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/702-1_Transitions_Between_CHIP,_UPP_and_Medicaid.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/702-1-transitions-between-chip-upp-and-medicaid
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 702-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-703-certification-period
+  jurisdiction: us-ut
+  document_class: manual
+  title: 703 Certification Period
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/703_Certification_Period.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/703-certification-period
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '703'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-703-1-length-of-the-certification-period
+  jurisdiction: us-ut
+  document_class: manual
+  title: 703-1 Length of the Certification Period
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/703-1_Length_of_the_Certification_Period.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/703-1-length-of-the-certification-period
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 703-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-704-eligibility-review
+  jurisdiction: us-ut
+  document_class: manual
+  title: 704 Eligibility Review
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/704_Eligibility_Review.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/704-eligibility-review
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '704'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-704-1-ex-parte-reviews-reviews-not-requiring-member-participation
+  jurisdiction: us-ut
+  document_class: manual
+  title: 704-1 Ex Parte Reviews (Reviews Not requiring Member Participation)
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/704-1_Ex_Parte_Reviews_(Reviews_Not_requiring_Member_Participation).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/704-1-ex-parte-reviews-reviews-not-requiring-member-participation
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 704-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-704-2-reviews-requiring-member-participation
+  jurisdiction: us-ut
+  document_class: manual
+  title: 704-2 Reviews Requiring Member Participation
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/704-2_Reviews_Requiring_Member_Participation.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/704-2-reviews-requiring-member-participation
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 704-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-705-verification
+  jurisdiction: us-ut
+  document_class: manual
+  title: 705 Verification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/705_Verification.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/705-verification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '705'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-705-2-what-is-acceptable-verification
+  jurisdiction: us-ut
+  document_class: manual
+  title: 705-2 What is Acceptable Verification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/705-2_What_is_Acceptable_Verification_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/705-2-what-is-acceptable-verification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 705-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-705-4-verification-from-collateral-contacts
+  jurisdiction: us-ut
+  document_class: manual
+  title: 705-4 Verification from Collateral Contacts
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/705-4_Verification_from_Collateral_Contacts.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/705-4-verification-from-collateral-contacts
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 705-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-705-6-verification-of-ssa-benefits
+  jurisdiction: us-ut
+  document_class: manual
+  title: 705-6 Verification of SSA Benefits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/705-6_Verification_of_SSA_Benefits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/705-6-verification-of-ssa-benefits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 705-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-income-match
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706 Income Match
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706_Income_Match.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-income-match
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '706'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-1-sources-of-ievs-data
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706-1 Sources of IEVS Data
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706-1_Sources_of_IEVS_Data.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-1-sources-of-ievs-data
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 706-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-2-special-rules-for-income-matches-when-enrollees-apply
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706-2 Special Rules for Income Matches When Enrollees Apply
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706-2_Special_Rules_for_Income_Matches_When_Enrollees_Apply.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-2-special-rules-for-income-matches-when-enrollees-apply
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 706-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-3-what-to-do-with-match-reports
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706-3 What to Do With Match Reports
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706-3_What_to_Do_With_Match_Reports.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-3-what-to-do-with-match-reports
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 706-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-4-taking-actions-on-responses
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706-4 Taking Actions on Responses
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706-4_Taking_Actions_on_Responses.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-4-taking-actions-on-responses
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 706-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-5-what-to-do-with-an-ineligible-case
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706-5 What To Do With An Ineligible Case
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706-5_What_To_Do_With_An_Ineligible_Case.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-5-what-to-do-with-an-ineligible-case
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 706-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-706-6-special-rule-for-the-irs-match
+  jurisdiction: us-ut
+  document_class: manual
+  title: 706-6 Special Rule for the IRS Match
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/700_Eligibility_Determination_and_Redetermination/706-6_Special_Rule_for_the_IRS_Match.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/706-6-special-rule-for-the-irs-match
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 706-6
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-800-records-and-case-management
+  jurisdiction: us-ut
+  document_class: manual
+  title: 800 Records and Case Management
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/800_Records_and_Case_Management.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/800-records-and-case-management
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '800'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-801-case-records
+  jurisdiction: us-ut
+  document_class: manual
+  title: 801 Case Records
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/801_Case_Records.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/801-case-records
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '801'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-801-1-creating-and-maintaining-case-records
+  jurisdiction: us-ut
+  document_class: manual
+  title: 801-1 Creating and Maintaining Case Records
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/801-1_Creating_and_Maintaining_Case_Records.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/801-1-creating-and-maintaining-case-records
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 801-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-801-2-removing-old-material-from-the-case-record
+  jurisdiction: us-ut
+  document_class: manual
+  title: 801-2 Removing Old Material From the Case Record
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/801-2_Removing_Old_Material_From_the_Case_Record.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/801-2-removing-old-material-from-the-case-record
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 801-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-802-case-numbers-and-member-identification-numbers
+  jurisdiction: us-ut
+  document_class: manual
+  title: 802 Case Numbers and Member Identification Numbers
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/802_Case_Numbers_and_Member_Identification_Numbers.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/802-case-numbers-and-member-identification-numbers
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '802'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-803-notification
+  jurisdiction: us-ut
+  document_class: manual
+  title: 803 Notification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/803_Notification.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/803-notification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '803'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-803-2-returned-mail
+  jurisdiction: us-ut
+  document_class: manual
+  title: 803-2 Returned Mail
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/803-2_Returned_Mail.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/803-2-returned-mail
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 803-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-804-changes
+  jurisdiction: us-ut
+  document_class: manual
+  title: 804 Changes
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/804_Changes.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/804-changes
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '804'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-804-1-change-of-address
+  jurisdiction: us-ut
+  document_class: manual
+  title: 804-1 Change of Address
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/804-1_Change_of_Address.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/804-1-change-of-address
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 804-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-804-2-change-in-access-to-health-insurance
+  jurisdiction: us-ut
+  document_class: manual
+  title: 804-2 Change in Access to Health Insurance
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/804-2_Change_in_Access_to_Health_Insurance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/804-2-change-in-access-to-health-insurance
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 804-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-804-3-adding-eligible-children-to-open-chip-cases
+  jurisdiction: us-ut
+  document_class: manual
+  title: 804-3 Adding Eligible Children to Open CHIP Cases
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/804-3_Adding_Eligible_Children_to_Open_CHIP_Cases.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/804-3-adding-eligible-children-to-open-chip-cases
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 804-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-804-4-removing-children-from-chip
+  jurisdiction: us-ut
+  document_class: manual
+  title: 804-4 Removing Children From CHIP
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/804-4_Removing_Children_From_CHIP.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/804-4-removing-children-from-chip
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 804-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-804-5-income-changes
+  jurisdiction: us-ut
+  document_class: manual
+  title: 804-5 Income Changes
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/804-5_Income_Changes.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/804-5-income-changes
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 804-5
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-805-case-closure
+  jurisdiction: us-ut
+  document_class: manual
+  title: 805 Case Closure
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/805_Case_Closure.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/805-case-closure
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '805'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-806-improper-chip-coverage
+  jurisdiction: us-ut
+  document_class: manual
+  title: 806 Improper CHIP Coverage
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/806_Improper_CHIP_Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/806-improper-chip-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '806'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-806-1-causes-of-improper-chip-coverage
+  jurisdiction: us-ut
+  document_class: manual
+  title: 806-1 Causes of Improper CHIP Coverage
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/806-1_Causes_of_Improper_CHIP_Coverage.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/806-1-causes-of-improper-chip-coverage
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 806-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-806-2-what-to-do-when-improper-chip-coverage-occurs
+  jurisdiction: us-ut
+  document_class: manual
+  title: 806-2 What to do When Improper CHIP Coverage Occurs
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/800_Records_and_Case_Management/806-2_What_to_do_When_Improper_CHIP_Coverage_Occurs.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/806-2-what-to-do-when-improper-chip-coverage-occurs
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 806-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1000-state-children-s-health-insurance-program-chip
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1000 State Children's Health Insurance Program (CHIP)
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1000_State_Children_s_Health_Insurance_Program_(CHIP).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1000-state-children-s-health-insurance-program-chip
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1000'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1200-program-standards
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1200 Program Standards
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1200_Program_Standards.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1200-program-standards
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1200'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1202-citizenship-status-requirements
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1202 Citizenship Status Requirements
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1202_Citizenship_Status_Requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1202-citizenship-status-requirements
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1202'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1203-utah-residence
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1203 Utah Residence
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1203_Utah_Residence.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1203-utah-residence
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1203'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1203-1-verification-of-utah-residence
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1203-1 Verification of Utah Residence
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1203-1_Verification_of_Utah_Residence.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1203-1-verification-of-utah-residence
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 1203-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1211-social-security-numbers
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1211 Social Security Numbers
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1211_Social_Security_Numbers.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1211-social-security-numbers
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1211'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1230-employment-requirement
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1230 Employment Requirement
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1230_Employment_Requirement.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1230-employment-requirement
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1230'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1250-open-enrollment-periods
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1250 Open Enrollment Periods
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1250_Open_Enrollment_Periods.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1250-open-enrollment-periods
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1250'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1700-eligibility-determination-and-redetermination
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1700 Eligibility Determination and Redetermination
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1700_Eligibility_Determination_and_Redetermination.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1700-eligibility-determination-and-redetermination
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1700'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1701-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1701 Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1701_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1701-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1701'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1701-1-what-is-an-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1701-1 What is an Application?
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1701-1_What_is_an_Application_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1701-1-what-is-an-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 1701-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1701-2-date-of-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1701-2 Date of Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1701-2_Date_of_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1701-2-date-of-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 1701-2
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1701-3-effective-dates-of-certification
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1701-3 Effective Dates of Certification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1701-3_Effective_Dates_of_Certification.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1701-3-effective-dates-of-certification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 1701-3
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1701-4-what-to-do-with-an-application
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1701-4 What to do with an Application
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1701-4_What_to_do_with_an_Application.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1701-4-what-to-do-with-an-application
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 1701-4
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1702-re-opening-state-chip
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1702 Re-Opening State CHIP
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1702_Re-Opening_State_CHIP.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1702-re-opening-state-chip
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: '1702'
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-1702-1-transitions-between-state-chip-and-upp
+  jurisdiction: us-ut
+  document_class: manual
+  title: 1702-1 Transitions Between State CHIP and UPP
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/1000_State_Children_s_Health_Insurance_Program_(CHIP)/1702-1_Transitions_Between_State_CHIP_and_UPP.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/1702-1-transitions-between-state-chip-and-upp
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: 1702-1
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-i-income-limits
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table I - Income Limits
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_I_-_Income_Limits.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-i-income-limits
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-i-a-5-federal-poverty-level-deduction-amount
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table I-A - 5% Federal Poverty Level Deduction Amount
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_I-A_-_5__Federal_Poverty_Level_Deduction_Amount.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-i-a-5-federal-poverty-level-deduction-amount
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-i-b-state-chip-maximum-out-of-pocket
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table I-B - State CHIP Maximum Out of Pocket
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_I-B_-_State_CHIP_Maximum_Out_of_Pocket.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-i-b-state-chip-maximum-out-of-pocket
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-iii-172-hour-rule
+  jurisdiction: us-ut
+  document_class: manual
+  title: TABLE III - 172 Hour Rule
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/TABLE_III_-_172_Hour_Rule.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-iii-172-hour-rule
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: TABLE
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-iv-proof-of-u-s-citizenship-and-identification
+  jurisdiction: us-ut
+  document_class: manual
+  title: TABLE IV - Proof of U.S. Citizenship and Identification
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/TABLE_IV_-_Proof_of_U.S._Citizenship_and_Identification.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-iv-proof-of-u-s-citizenship-and-identification
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: TABLE
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-v-telephone-numbers
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table V - Telephone Numbers
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_V_-_Telephone_Numbers.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-v-telephone-numbers
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-vi-verification-and-interface-match
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table VI - Verification and Interface Match
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_VI_-_Verification_and_Interface_Match.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-vi-verification-and-interface-match
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-vii-approved-halfway-houses
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table VII - Approved Halfway Houses
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_VII_-_Approved_Halfway_Houses.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-vii-approved-halfway-houses
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-vii-a
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table VII-A Participating Facilities and Organizations for Pre-Release Services
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_VII-A.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-vii-a
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-vii-b-facilities-reporting-data-to-ccjj
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table VII-B Facilities Reporting Data to CCJJ
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_VII-B_Facilities_Reporting_Data_to_CCJJ.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-vii-b-facilities-reporting-data-to-ccjj
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'
+- source_id: ut-dhhs-chip-table-viii-data-retention
+  jurisdiction: us-ut
+  document_class: manual
+  title: Table VIII Data Retention
+  source_url: https://oepmanuals-chip.dhhs.utah.gov/Tables/Table_VIII__Data_Retention.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ut/manual/dhhs/chip/table-viii-data-retention
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Utah Department of Health and Human Services, Office of Eligibility Policy (CHIP Policy Manual)
+    document_subtype: agency_eligibility_manual_topic
+    program: CHIP
+    source_discovery_group: us-ut/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    manual_section: Table
+    manual_effective_date: '2024-05-01'

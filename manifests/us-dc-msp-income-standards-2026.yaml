@@ -1,0 +1,27 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-dc-dhcf-qmb-income-limits-2026
+  jurisdiction: us-dc
+  document_class: guidance
+  title: 'Full Duals and Qualified Medicare Beneficiary (QMB) Only: 2026 income limits (DHCF service page)'
+  source_url: https://dhcf.dc.gov/service/qualified-Medicare-beneficiary-qmb
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-16'
+  citation_path: us-dc/guidance/dhcf/qmb-income-limits/2026
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Health Care Finance (DHCF)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-dc/guidance
+    index_url: https://dhcf.dc.gov/service/qualified-Medicare-beneficiary-qmb
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    page_updated: '2026-01-16'
+    msp_groups: 'QMB only (300% FPL); resource test: none'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+    - MED-ST-4

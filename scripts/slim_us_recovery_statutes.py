@@ -12,11 +12,13 @@ from pathlib import Path
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import ensure_corpus_scopes
 from axiom_corpus.corpus.usc import (
+    _build_usc_inventory,
+    _iter_usc_provisions,
     _source_artifact_bytes,
-    build_usc_inventory_from_xml,
     decode_uslm_bytes,
-    iter_usc_title_provisions,
+    parse_uslm_title,
 )
 
 REPO = Path(__file__).parents[1]
@@ -40,6 +42,9 @@ def _load_rows(path: Path) -> list[ProvisionRecord]:
 
 
 def main() -> int:
+    # Corpus bytes may live outside git: fetch the scope before rewriting it,
+    # never after (a later fetch would restore files this run removes).
+    ensure_corpus_scopes([SCOPE], repo=REPO)
     store = CorpusArtifactStore(BASE)
     plan = json.loads(PLAN.read_text())
     entries = {
@@ -93,20 +98,19 @@ def main() -> int:
             generated_sources.add(excerpt_path)
             source_key = excerpt_path.relative_to(BASE).as_posix()
             url = str(provenance["url"])
-            excerpt_inventory = build_usc_inventory_from_xml(
-                decode_uslm_bytes(excerpt),
-                title=title,
+            excerpt_document = parse_uslm_title(decode_uslm_bytes(excerpt), title=title)
+            excerpt_inventory = _build_usc_inventory(
+                excerpt_document,
                 source_sha256=excerpt_sha,
                 source_download_url=url,
                 allowed_citation_paths=allowed,
             )
             excerpt_items = [replace(row, source_path=source_key) for row in excerpt_inventory.items]
             excerpt_records = list(
-                iter_usc_title_provisions(
-                    decode_uslm_bytes(excerpt),
+                _iter_usc_provisions(
+                    excerpt_document,
                     version=VERSION,
                     source_path=source_key,
-                    title=title,
                     source_as_of="2026-07-13",
                     expression_date="2026-07-13",
                     source_download_url=url,

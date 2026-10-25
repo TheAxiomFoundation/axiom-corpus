@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "1919da105ac38aac35eae86ce1cea08182b9aea368411ca43be77a7be7d614eb"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/regulation/2026-09-10-ssi-state-supplement.json",
+      "sha256": "7327bb5cfe4034f6163ae7e58204f2803976ae5455790e65e5694e92ee197fe2"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/regulation/2026-09-10-ssi-state-supplement.jsonl",
+      "sha256": "c5b3dfdeedef16c4f7fdfa3f57822e7d22c0019805f37add8b595bf9670db8f0"
+    },
+    {
+      "path": "data/corpus/sources/us-sd/regulation/2026-09-10-ssi-state-supplement/official-documents/sd-lrc-arsd-67-12-14.json",
+      "sha256": "4417af84f870ba30b8f57df7c4ed2f5bd0cdcf73c41c6957ac4bf38583f28ef7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ssi-state-supplement --manifest manifests/us-sd-ssi-state-supplement.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-12T12:50:38.860997+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2h1EWRYRW0IK9+rvH/77U+NtB9p+rDmnvCV05/tGCbVg3MnYU8qz1R0QIhRb9poJ7mnIzuORwID438j4zslbCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ssi-state-supplement"
+}

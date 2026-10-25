@@ -1,0 +1,23 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ok-otc-form-511-packet-ty2025
+  jurisdiction: us-ok
+  document_class: form
+  title: 2025 Form 511, Oklahoma Resident Individual Income Tax Forms Packet and Instructions
+  source_url: https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ok/form/otc/ty2025/form-511-packet
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Oklahoma Tax Commission
+    document_subtype: forms_and_instructions_packet
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ok/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://oklahoma.gov/tax/forms.html
+    discovered_via: manual-review:tax-agent-queue; index https://oklahoma.gov/tax/forms.html

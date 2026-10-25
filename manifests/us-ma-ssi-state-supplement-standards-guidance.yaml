@@ -1,0 +1,30 @@
+version: 2026-09-14-ssi-state-supplement-standards
+documents:
+- source_id: us-ma-guidance-dta-ssp-payment-levels-cy2026
+  jurisdiction: us-ma
+  document_class: guidance
+  title: 'Massachusetts State Supplement Program: Federal and State Payment Levels for Calendar Year 2026'
+  source_url: https://www.mass.gov/doc/federal-and-state-payment-levels-for-calendar-year-cy-2026/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ma/guidance/dta/ssp-payment-levels/cy2026
+  request:
+    browser_impersonation: chrome120
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: annual_payment_standards_chart_pdf
+    program: ssi_state_supplement
+    federal_program: SSI
+    state: MA
+    closure_elements:
+    - SSI-ST-4
+    index_url: https://www.mass.gov/info-details/learn-about-massachusetts-state-supplement-program-eligibility-and-payments
+    source_discovery_group: us-ma/guidance/ssi-state-supplement-standards
+    discovered_via: manual-review:ssi-agent-queue (needs-closure-2026-09-11 SSI-ST-4 review); publisher index https://www.mass.gov/info-details/learn-about-massachusetts-state-supplement-program-eligibility-and-payments
+    extraction_granularity: pdf_page
+    expression_date_note: Calendar Year 2026 payment levels
+    access_note: mass.gov HTTP 403 to plain and Chrome-UA clients and HTTP 200 to a chrome120 TLS fingerprint on 2026-09-14;
+      fetched with the extractor's browser_impersonation option, TLS verification on
+    page_count: 1

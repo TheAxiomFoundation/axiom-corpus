@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "51dfc98a8ca4e39f6aa5922e685970c3c4f7756732a06809e3dc635eb59fccab"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/guidance/2026-09-14-ssi-state-supplement-standards.json",
+      "sha256": "3b2762d3931735b4af2d4e4960b04a656e72f2079bfb9919c28942007b67c6a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/guidance/2026-09-14-ssi-state-supplement-standards.jsonl",
+      "sha256": "b10e8c63ded2d807ab6335acda76d335931c714b00a41279b223095621c7e578"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/guidance/2026-09-14-ssi-state-supplement-standards/official-documents/us-sc-guidance-scdhhs-program-eligibility-and-income-limits.html",
+      "sha256": "ea053a1c1ab89de2871e5474c1883a73b2a80a411cf790c1bb3fbeeb1e95b50a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ssi-state-supplement-standards --manifest manifests/us-sc-ssi-state-supplement-standards-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 72,
+    "missing_count": 0,
+    "provision_count": 72,
+    "source_count": 72
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:03:07.392346+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xweYuJk6gywyT2WxMjlhRys7rdY/yM3eMN6XMPc01mxErP9MvaGnATO/RFdBfFd60MAu3X0XXKn7KKoxd1pEBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ssi-state-supplement-standards"
+}

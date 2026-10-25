@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/regulation/2026-10-06-w6-health-regulation-la.json",
+      "sha256": "b9167c52da55c69877df7a9d051cecf369f4a23b6618e827c68125dacd1e97a3"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/regulation/2026-10-06-w6-health-regulation-la.json",
+      "sha256": "78cc5badaae3d5e2c713fa878f5039f50387d654a80768c23ff56c1157b5acfe"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/regulation/2026-10-06-w6-health-regulation-la.jsonl",
+      "sha256": "599e6cacccebc28d5c10301161a05aa205531f9a325bb4eb9b2ff4afd87d287f"
+    },
+    {
+      "path": "data/corpus/sources/us-la/regulation/2026-10-06-w6-health-regulation-la/official-documents/us-la-w6-health-lac-50-iii.docx",
+      "sha256": "cf72e3cb54fcf1386bf74aab7072119a20d4edf71daf383d0100e64e46a00602"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 46,
+    "missing_count": 0,
+    "provision_count": 46,
+    "source_count": 46
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:52:42.549242+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uY7EBohDdZz9oNxctu/CF9F6SQaC6tupMCzsgB0B+omhZTwX3pglqnryoCRaip62tOh0slyrRXdgs6+6Flu0DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-regulation-la"
+}

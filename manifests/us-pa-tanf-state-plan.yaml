@@ -1,0 +1,27 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-pa-tanf-state-plan-2024
+  jurisdiction: us-pa
+  document_class: policy
+  title: Pennsylvania TANF State Plan, effective October 1, 2024
+  source_url: https://www.pa.gov/content/dam/copapwp-pagov/en/dhs/documents/services/assistance/documents/tanf/tanf-state-plan-effective-october-1-2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-pa/policy/acf/tanf-plan/2024
+  metadata:
+    primary_source: true
+    source_authority: Pennsylvania Department of Human Services
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: 2024 Pennsylvania TANF State Plan, effective October 1, 2024 (submitted to HHS December 2024)
+    publisher_index_url: https://www.pa.gov/agencies/dhs/resources/cash-assistance/tanf/tanf-state-plan
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-pa/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.pa.gov/agencies/dhs/resources/cash-assistance/tanf/tanf-state-plan
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

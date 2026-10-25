@@ -1,0 +1,150 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: de-dhss-dssm-14000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 14000: 14000 Medicaid General Eligibility Requirements'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/14000/6364e167-8775-458a-a3e9-ccbf77467652
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-14000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16
+- source_id: de-dhss-dssm-15000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 15000: 15000 Family and Community Medicaid Eligibility Groups'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/15000/0ab208e3-1407-4c99-9c54-9d95456b95fa
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-15000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16
+- source_id: de-dhss-dssm-16000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 16000: 16000 Financial Methodologies - Application of Modified Adjusted
+    Gross Income (MAGI) Methodology (MAGI) Methodology'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/16000/4cf697a1-7b5e-4884-a242-de4d0f30322f
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-16000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16
+- source_id: de-dhss-dssm-17000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 17000: 17000 SSI Related Programs'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/17000/086180de-8207-4668-98f2-e9f0407e3518
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-17000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16
+- source_id: de-dhss-dssm-20000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 20000: 20000 Medicaid Long Term Care'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/20000/61c317a6-5b56-4745-83ff-60107295dd03
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-20000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16
+- source_id: de-dhss-dssm-25000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 25000: 25000 Children’s Community Alternative Disability Program (CCADP)'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/25000/0b793772-9a07-4e1c-858b-29b361cf80f6
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-25000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16
+- source_id: de-dhss-dssm-60000
+  jurisdiction: us-de
+  document_class: manual
+  title: 'Delaware Administrative Code Title 16 DSSM 60000: 60000 Incarcerated Individuals Medicaid Program'
+  source_url: https://regulations.delaware.gov/api/AdminCode/title16/60000/e23e936d-cb55-4723-b7a2-b6c85ec64e70
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-de/manual/dss/medicaid/dssm-60000
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of Social Services
+    document_subtype: medicaid_eligibility_chapter_pdf
+    program: MEDICAID
+    manual: Delaware Social Services Manual (DSSM), Medicaid eligibility chapters (DAC Title 16)
+    manual_index_url: https://regulations.delaware.gov/AdminCode/title16
+    source_discovery_group: us-de/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://regulations.delaware.gov/AdminCode/title16

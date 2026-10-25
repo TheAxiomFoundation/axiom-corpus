@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "d3a326b5aa3a3cd9d1803193973d9f4c2422c38852311085e4ecd59e63c62e54"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "1583554eb6a9ce2fd2003a42338cfeb3bd6503b6cda6c3f44c4e7a8b4c89f4ae"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "5d46009b281284bd40baeda977dbb10632a939a2955f668cf29dca72c44c181b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/ne-dhhs-title-477-chapter-19.pdf",
+      "sha256": "bc7cb52d64c7dd47e4a6b273865299a3d22712895a7fb4c4e49ae84d32d3d0e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ne-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 43,
+    "missing_count": 0,
+    "provision_count": 43,
+    "source_count": 43
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:13:14.316699+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "0rNRyFMpp1JbtM2DjFmhJh2n9CI7aNtGrRBalAKQ4P1qKiD0njmJxjm/etUeyQvxagZ+TYAP3iVU7nLx+ZhEBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

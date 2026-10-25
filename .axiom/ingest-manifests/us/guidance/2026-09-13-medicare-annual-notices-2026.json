@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-13-medicare-annual-notices-2026.json",
+      "sha256": "af604ceb934a825be5b59ce33dc627eabea0225bc051a9d73669046d7a5142a3"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-13-medicare-annual-notices-2026.json",
+      "sha256": "1919f4fd8df64a6114d4c734f76fd37ff402839f5d03f280222707a604ca9f7e"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-13-medicare-annual-notices-2026.jsonl",
+      "sha256": "2972f0d55b93f7ec9333729308b75548758f072aff89e46ee48297340306a41f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-2026-ma-part-d-rate-announcement.pdf",
+      "sha256": "0c2baac47b08be34887cf952f3603306e005aac81beb4de3625dc8b6f9647a8c"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-2026-part-d-bid-information-fact-sheet.html",
+      "sha256": "190b5d3ac250d5a9d4d5752a81246fd9db1c885dff33f6539fd34c8946f3625f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-2026-part-d-national-average-bid-announcement.pdf",
+      "sha256": "ac967dcd3c5e7a7047017abaea5c6b76a84adcd938c49148010047467e968d6d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-2026-parts-a-b-premiums-deductibles-fact-sheet.html",
+      "sha256": "351b5d99ca8be9384562fe39f29ece4295f8811f4e0445cc0bc7daf558ac4b5d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-cy2026-c-d-enrollment-disenrollment-guidance.pdf",
+      "sha256": "82a2f42873b445a7783a04b7bde556f5c3b259bb570a6686bbd495f80e481702"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-cy2026-lis-resource-limits-memo.pdf",
+      "sha256": "d0e19604575af33f82f52fa010e2c265eaa6e5011c5e60015015ec7b2bdc0996"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-cy2026-part-a-deductible-coinsurance-notice.html",
+      "sha256": "14af9e5ba28ea64cc9c47b8fdfdbcd292fdf3f612d441c008d7b8c65f24f1e08"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-cy2026-part-a-premiums-notice.html",
+      "sha256": "6989eca012c8047d7f3f704afc108dbe618b47d1d17c2bd81c8a6f35a68cc16d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-13-medicare-annual-notices-2026/official-documents/us-cms-cy2026-part-b-premium-deductible-notice.html",
+      "sha256": "529325bd9353a73dce3e6b97cb43fc710e1e25aeaab28f4ea25cf4c0e7cbb35e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-medicare-annual-notices-2026 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 330,
+    "missing_count": 0,
+    "provision_count": 330,
+    "source_count": 330
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-13T20:36:36.750567+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4s27t4ppU3eS7rlcct4JNOvEuTo2K6/FR6GbbI03AfnpYddxua6/D+Rvw/wOAhrAVgKs0bKIj8FOG0Wfc1I3Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-medicare-annual-notices-2026"
+}

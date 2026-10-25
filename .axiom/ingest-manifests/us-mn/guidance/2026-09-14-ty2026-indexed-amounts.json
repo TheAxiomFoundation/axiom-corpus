@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "d387cb9e84128c4a4ddf83179b5a713925bd3cfa053a3d9011df6242b26b08e5"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "239d0c438e46f98f4faa529c66fc16483f47e22e98fe1e39b02094a163b8a60b"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "2c41dc44cd6369a4a310276192187099fd337104ab617efbbba7373040c3f4c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-mn-department-of-revenue-income-tax-rates-and-brackets-ty2026.html",
+      "sha256": "145bf2c711f4b231c6cb7b549c4584b1eb4cda1fed307c007dba35d1d7cf96ef"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-mn-department-of-revenue-inflation-adjusted-amounts-ty2026.pdf",
+      "sha256": "db216e8d9c0db86bb381cd4fbe3e338b933eae66e833e9dbe57b27c483557b8b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-mn-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:54:38.924616+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mhuY50NfkocH7+MF/APkfAH6ZCUOn7ENQoDkCi0Hm27DleKPogr1Cmtd+e9Sp1ChsWA84Q036l7okOuRaGE3BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

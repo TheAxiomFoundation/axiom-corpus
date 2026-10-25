@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/guidance/2026-10-06-w6-health-guidance-ks.json",
+      "sha256": "f7b964af29e599435baa64f8e7ef5df900736f8bcc2489981a2811a35a798976"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/guidance/2026-10-06-w6-health-guidance-ks.json",
+      "sha256": "661488a7616e06ffa248f047571635038bdb613e23153d7dbe209094a797a16f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/guidance/2026-10-06-w6-health-guidance-ks.jsonl",
+      "sha256": "85d2b364545abbe74e081b61725bb6cf83638c4d67cc2535b8b745a2bfcba61f"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-10-06-w6-health-guidance-ks/official-documents/us-ks-w6-health-klrd-briefing-book-2026-childrens-eligibility-chip-mchip-medicaid-hcbs.html",
+      "sha256": "8a726cae1a653bb2e432f04bf955bfc0bb28d94e8746961e5305bf3f63380000"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:52:09.172509+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sPnrx4hKZCdCkuttqDRHAzPKvbOAazaJRxR1Yg+YUbXDJiXzrDaDj2GTaiAjV+VYBNwFjaOxbDe0rLlfYPcHAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-ks"
+}

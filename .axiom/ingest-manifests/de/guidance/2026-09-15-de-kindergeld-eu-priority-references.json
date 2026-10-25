@@ -1,0 +1,78 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-15-de-kindergeld-eu-priority-references.json",
+      "sha256": "5db92b6b75b14c44fa887946c53570e18441f2e3a7d3c0516cd30feca84f0725"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-15-de-kindergeld-eu-priority-references.json",
+      "sha256": "23a2503915eb4097f39b2a194f5a05e264c6e47346612a2e834cd9fa8240b4c7"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-15-de-kindergeld-eu-priority-references.jsonl",
+      "sha256": "f5db3cbd0a173a36d38555970ba4c332803706a2fcd3aabb8c9d6cf744f10a6e"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-153-03-2005-07-07.html",
+      "sha256": "1c4a0a6cd76c508ed0e99b0fe3d472c6497228e8128f345dae2b105024d72acc"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-16-09-2010-10-14.html",
+      "sha256": "eec627c3aabcb6f84666ca666aba0b24937b9e0e073a09c624e7157947f1102e"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-177-12-2013-10-24.html",
+      "sha256": "bad324ba4b7f2ce216b7f43118dc9ffa69788cd0b74e87d366e6e478a1652170"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-245-94-c-312-94-1996-10-10.html",
+      "sha256": "514fbf97756a101f2425c85388909456733c59ed2ed338b3ba8f83bca4e8b890"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-363-08-2009-11-26.html",
+      "sha256": "aebbc584b2e5c0b93dfc8b711e11ba1e5a64b3b11ff070e7e94a397b02d11a4f"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-543-03-2005-06-07.html",
+      "sha256": "4f575350ed8d0ebd35b713e7ac360b327150ab9aad835b326b515b497fed8bf5"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-15-de-kindergeld-eu-priority-references/official-documents/cjeu-c-85-99-2001-03-15.html",
+      "sha256": "1f8ffd55e45919a86f6fe653e3de1bdee0c0bcdd28e99f4a5cf028b3137992ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "147198c3be6e52d3079818a37f4e4973e81573fc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-15-de-kindergeld-eu-priority-references --manifest manifests/de-kindergeld-eu-priority-references.yaml (exact receipted local_path runtime variant; see capture audit)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-15T18:40:44.909034+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-15-de-kindergeld-eu-priority-references-audit.json",
+      "sha256": "5161d7a629c8ffc5e5f4ed86fe9ce39d5cbb9d683ead522abd8fa0cdccf497d6"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "566Pp5Y6LJu/cjDTQ3fwKB3tRQzvnXSu6d6wKj/FlHi3n4b0FAwGSdB1Lm1i+RN0k5pMWlk1E3y7iT6fyvg8Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-de-kindergeld-eu-priority-references"
+}

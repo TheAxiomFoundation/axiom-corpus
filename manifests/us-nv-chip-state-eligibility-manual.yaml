@@ -1,0 +1,42 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: nv-dwss-mam-b-100
+  jurisdiction: us-nv
+  document_class: manual
+  title: Nevada DWSS Medical Assistance Manual B-100 Modified Adjusted Gross Income (MAGI) Medical Categories
+  source_url: https://dwss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/B-100%20MAGI%20Medical%20Categories%20Mar%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2017-03-01'
+  citation_path: us-nv/manual/dwss/chip/mam-b-100
+  extraction: &id001
+    page_citation_prefix: page
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Welfare and Supportive Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: CHIP
+    source_discovery_group: us-nv/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    state_program: Nevada Check Up
+    manual_section: B-100
+    chip_section: B-120.2
+- source_id: nv-dwss-mam-appendix-a
+  jurisdiction: us-nv
+  document_class: manual
+  title: Nevada DWSS Medical Assistance Manual Appendix A MAGI Income Charts
+  source_url: https://dwss.nv.gov/uploadedFiles/dwssnvgov/content/Medical/Appendix%20A%20MAGI%20Income%20Charts%20ADA%20Nov%20-%2024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-11-01'
+  citation_path: us-nv/manual/dwss/chip/mam-appendix-a
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Nevada Division of Welfare and Supportive Services
+    document_subtype: income_standards_chart_pdf
+    program: CHIP
+    source_discovery_group: us-nv/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 3; publisher index confirmed by agent 2026-09-10
+    state_program: Nevada Check Up
+    manual_section: Appendix A

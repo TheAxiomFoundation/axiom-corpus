@@ -1,0 +1,26 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-or-odhs-medicare-savings-programs-2026
+  jurisdiction: us-or
+  document_class: guidance
+  title: 'ODHS Aging and Disability Services: Help Paying Medicare Costs (Medicare Savings Programs), 2026 income limits'
+  source_url: https://www.oregon.gov/odhs/aging-disability-services/pages/medicare-savings-programs.aspx
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-or/guidance/odhs/medicare-savings-programs/2026
+  metadata:
+    primary_source: true
+    source_authority: Oregon Department of Human Services, Aging and People with Disabilities
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-or/guidance
+    index_url: https://www.oregon.gov/odhs/aging-disability-services/pages/medicare-savings-programs.aspx
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    pointer: OAR 461-155-0290, -0291, -0295 in us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461
+    closure_elements_extra:
+    - MED-ST-1
+    - MED-ST-2
+    - MED-ST-3

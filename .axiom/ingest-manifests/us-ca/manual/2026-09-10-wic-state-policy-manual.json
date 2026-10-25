@@ -1,0 +1,597 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "0fe7f629f33bde0ad5e7730a3680a8a6a2b5bb5bb8d6e5de6bb8932aaefb0392"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "c8d1fd072479a8e5da0e3ef2470e85c4c95452515c5f934bbc23a192edeb55fe"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "a2790ebdaf2be067831e82bf451e34f41fe441d42f7f3433f7ee1da5bb6fe54c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-100-01.pdf",
+      "sha256": "fd78c65e4e581fec762abd0c976e32264bd12f9bf08a04ba4366d47b3114e83b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-100-02.pdf",
+      "sha256": "4afbf55d44cf5c97f342fecd4aded854758a3da2975c5310955710419cd29383"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-06.pdf",
+      "sha256": "873bedf31afa6962c711e45f964a694f8f33b7d78dee7a7e807e24e7d6255291"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-120.pdf",
+      "sha256": "cdb1064f205accd1c94b3829a3be2d988bc6f752a5d4c4b738f616da6f7fd0f7"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-130.pdf",
+      "sha256": "6bb3974bf4c55b6e541eaa181601b45cd0a9f4d480301e6a551aff5be8279405"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-140.pdf",
+      "sha256": "7a83e8ee91994cfbe87fb59da98ac4e4dd19ae03dbaf95e22ca66a0628a73d8b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-30.pdf",
+      "sha256": "588c48300f5258a3a93a3341ebe28e8ec70d5c18c1d24854abfbfd4eb2bae075"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-40.pdf",
+      "sha256": "c32bf1e5ea1766ad7cce44c5103ca887484f0ed856e3905b0b72fdf2b2479da7"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-50-2.pdf",
+      "sha256": "d572a46dc5095288ed39341f7c22184c9ce98bed9dee38c0322c675ec16e761c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-50.pdf",
+      "sha256": "2b98357ba5ed608516fcafaafd26698256d71dfb3176bf62013358bffef76d6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-70.pdf",
+      "sha256": "e138b93295ad9d79e4ca8517a4ee9a7c833fdabffc8701c54ab36a303278f7d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-80.pdf",
+      "sha256": "d3f6dff3e92ab5ea8306da299833f08156ea9a6ecb8cc5ea2807c30c009171e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-1000-90.pdf",
+      "sha256": "7103a034b76824e2e72a5681f7c45be9421c6e1759222b2ee3642306f017e836"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-110-10.pdf",
+      "sha256": "c5a7f5dbf0fead59296959f31cb7f8496094709c968780baf9f51a9beaa2988e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-110-20.pdf",
+      "sha256": "5e34f6ace19ec88328fc411fbe6faab6397490bce6a65f6838fdc4f51a9c85e0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-110-30.pdf",
+      "sha256": "ac1fade933a57faad1e500e7c17e06a4a313f200015c5c0eed721736a77f3ffa"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-120-10.pdf",
+      "sha256": "5a49c733a4e784ffeb9a3ae9032bc98f87ab1913ea5fb34059ee1c12b8ef2a6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-120-20.pdf",
+      "sha256": "1a5fa8478bd30abfd666dc54804d18ad9101b84a8f99a43409235635a773cacd"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-120-30.pdf",
+      "sha256": "e8578530b6afe8425bc05f89deea0f1ba93d4cf7bf58e567001943e7b84f0e2d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-00.pdf",
+      "sha256": "ed11c70f293d6aa8df9f87374936cf2590402be797e706e5e7fa712e1cf491d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-10.pdf",
+      "sha256": "d37c11a665851c97febabe5c02788a1fd6c6ac3811b34fa73c6d433f6a28821b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-100.pdf",
+      "sha256": "fa92e28e6bba5b9e53100c798892fae0d4eeac7af98f90ed2e1a33e3817ed29a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-20.pdf",
+      "sha256": "88a63dc836bd91b96cfe48b37cdf11ebfe4a119f759dd13662afcb65eb8b995f"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-30.pdf",
+      "sha256": "ecdeefca4547b30a2066c009e44f6a7285c973b2a025616e536c93981e37da75"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-40.pdf",
+      "sha256": "f55916f8c51917376adbbdcf9f6e0ee374f1572fc15f248396c50c5169601a86"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-50.pdf",
+      "sha256": "a2c5c4e0c68e69b4dc4f41ce9f4336eddcccc9e1fc0bdf08ca13c1a503921a49"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-60.pdf",
+      "sha256": "dcc7452955610fd55cce69194937dbb8b5578fad90f659e0e710fd00937250cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-70.pdf",
+      "sha256": "ae5424e6aee7339d2ac77f53ee894a51b7fdacd12746951a2eebef4dd29da023"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-80.pdf",
+      "sha256": "3412b1a7ef584db93cd5cf294570e544664349a1efefb02bc252257c2e572c8c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-130-90.pdf",
+      "sha256": "8ce6c20b77702a53e1027b64dd0683a27a652ab9ce52e21941ca9a0bb2f54110"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-140-10.pdf",
+      "sha256": "7aa6060041f3bbc0de17af6e0a3d36142ebee0e5709b34229e2e4315ea3ab68d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-140-20.pdf",
+      "sha256": "bcdb7c451592c436337d9c0788b0253c2a57db9f8030253b382f8dd5ba6a3e25"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-150-10.pdf",
+      "sha256": "fc724e2609f5ee685fec87a0b10df8a331f09bb9cbd39515d4dae1ca9bd5e429"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-160-10.pdf",
+      "sha256": "5930a7c1fab33ab7743e01fc1ed17be4fe1c809d8f95d7c5ed4817c7aa6872a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-160-20.pdf",
+      "sha256": "1d648ebc0e452e8736c7e7d397eed90ebc8e60c115e3c226812229332520a801"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-170-10.pdf",
+      "sha256": "c537e312ac50bfe52b9590bef5758111e2af194c77d56e28c665975acc925a08"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-190-00.pdf",
+      "sha256": "57a2d483710c8c4d9c80923da66bf1b95dbd31b59a2e391c0bd88f0efa4e6ebf"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-190-10.pdf",
+      "sha256": "d4d891fdc767851fad34b48e038b79f249419527781650cb718dbe0e4ec16f09"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-190-20.pdf",
+      "sha256": "a6db832b16677288c8b93a744cb2e8b7604cdd0fcc8d6014e4a5b46fc8dce33c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-190-30.pdf",
+      "sha256": "3a6a7455961e7d08e18a77553fe1c95013c5efcc4c413d1e915206ea843c7d44"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-190-40.pdf",
+      "sha256": "726d68ef308c84f93f22497bba4e4391ec06c4bd4369da99b5a74ccc31cf655e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-200-00.pdf",
+      "sha256": "51bd40cbc342258a754714acea6e17e367b24570b9c138fc6138d533763fc3af"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-200-000.pdf",
+      "sha256": "d18593c8de28246c1920cdecdd4fffa9cd78891c4fe41ba567424a8c9d3fe055"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-200-01.pdf",
+      "sha256": "542eaf925e80aba103be248007bd4114ff39261ed1d713fd34c628afb7178306"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-02-2.pdf",
+      "sha256": "4adb2ae43a7eeb9b693c24f4ee8e8e7daaf4ac1a46763777d22664b1a7492a13"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-02.pdf",
+      "sha256": "cd28c9375d4962308ddde165fe381ecc2804f03c409af04490b7b2b435d45524"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-03.pdf",
+      "sha256": "a41b7c69d362bcf9b19675ec6898a9819e45f56cf3dc24b04a54309b5e538514"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-04.pdf",
+      "sha256": "f5fc07edf3d2d06e120172c0286800ee91d86017a010b7a3c017baa01147a703"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-06.pdf",
+      "sha256": "41800b794664e617e0c0472e8a74a0514bb1a1387fe6ea25be5daaa0b744cbd9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-07.pdf",
+      "sha256": "ec36af183710464b5edc6c086ed3635f27a94533b932fe8d45bd6fdfb39c3279"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-08.pdf",
+      "sha256": "07ac46a272b4a289bf59c137a351facb981044db1985ed7b4fecbb8ee9ca605b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-09.pdf",
+      "sha256": "65c43ff08a488c2dd9b4069e4af69596521e004b12b453807d04cd1ee173b593"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-10.pdf",
+      "sha256": "860262cadfec0784b29f63cf299b7a646a4b5c53f1766b9cfc200c2b0617cddb"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-11.pdf",
+      "sha256": "74d3f0d65b6893b53adeed5e246ef1c6eb7757b9d35e0df367dfcc51b663a32a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-12.pdf",
+      "sha256": "3ca08a9a67ac4a8917599f3aabfb250f1a295b209f762eadf37df5ab927a3469"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-13.pdf",
+      "sha256": "84db2524bf4b91d08382a10af92024bd944b040fab8220754809b16785f072a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-15.pdf",
+      "sha256": "ac7662d56282ac1d20467ce3b4b2141da0732380fe0247f2c364f27c4d28c69b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-210-16.pdf",
+      "sha256": "6697542e67c9db8ba5bc1acba45b97a27c1f416ee769db691d47485b35086db0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-220-10.pdf",
+      "sha256": "6c6a1de7b253773ceb587310ba47d566efc9ae32eb4d7d675c15f08385f826a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-220-20.pdf",
+      "sha256": "1be9090216b0247644b925362e0d02f5419a80b8cd0aaf53d6c81d00b124dd3a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-220-30.pdf",
+      "sha256": "79f81394ebfbc5290085d5e70425518ad4e868c32e8285c3eccbaffcd0f4b9b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-230-10.pdf",
+      "sha256": "12ba28c389aceaae12538f0d5cbd6f472d7e4f83c5f7839f6685ac613a70e3cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-230-20.pdf",
+      "sha256": "587aaa66782af2dee1928313f6396838a1637bc072866cce1496a78ebc8a724d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-240-10.pdf",
+      "sha256": "f3975e873c0ff15e6ba088f500832c261451eb10c25c52c1f5a950af1f421e69"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-240-20.pdf",
+      "sha256": "f89613333444f59c04d782e2c76f0fcd57ea398243c786b0752a1e5a3c7f755b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-240-30.pdf",
+      "sha256": "5fbd347c934f7376e63096c5ad2e49f120a0fbd340947739562bab58e662f964"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-250-10.pdf",
+      "sha256": "0938a5083658610e5f46b69888b08babb90646d75bee9f7fac24f1bf35e44c0a"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-260-40.pdf",
+      "sha256": "45efe42b4fb3dcf8fe69a746cf925c3ee4fb29854f30d0cadbc0ca2a0d92ca79"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-270-20.pdf",
+      "sha256": "6a8a2ce5d34f4e15b425834e349ff5268d041e4eea9bce90247060baf4934b93"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-270-40.pdf",
+      "sha256": "6d57bdcef3614203e282feff3996a1cc2529e4e4d51560fbf2e8f6c5fe6bc8bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-280-30.pdf",
+      "sha256": "11fe7db9d0c4ab0974af2ce8a27a089d52d6a81b7946da785d2d81b2ba8b64e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-290-00.pdf",
+      "sha256": "a63e16e5564c1de5d07053631b967d973d06dc18777e88d29f14c2e2b473ac63"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-290-10.pdf",
+      "sha256": "c64e8afd9e0edc6ae34fa1bdd48e5b7b6e862ad3aa18a38edb6264d58e51ccf9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-310-10.pdf",
+      "sha256": "416dffa62b082810a7d53235f414486b56c7563fb7ab344bcf012c694a5a275d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-320-10.pdf",
+      "sha256": "926cc963d0f2cadf7d30e9eae3bf0bfbf5552fc4c0b69e682e2da7aada976db0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-330-00.pdf",
+      "sha256": "d11ea19707c4a8a581d177a8f1c5a477e8c4794d316ea83a613f1fc147d47897"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-330-10.pdf",
+      "sha256": "b79752caa7b435d0bf67ef235fef14f59cc7d06df42f3c1654a2146693132ec2"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-330-20.pdf",
+      "sha256": "cc15999b4f9e8cc383af4cdffda5a9efdcd40d50d52bcd525996607a6f591e0e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-330-30.pdf",
+      "sha256": "2c0e062439315ad5c98d9ddbbb7aae230d24364506c9ff440430c394add30cc5"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-330-40.pdf",
+      "sha256": "d19466e51a79dfdec181dc79e0fd3d85701459da667e11d816ede31b2e5bdd03"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-390-10.pdf",
+      "sha256": "c34da5399f9ffc353d8eaa52e1aa61f37aab7687d55d8b947d5a598afd26bda6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-390-20.pdf",
+      "sha256": "7992149c429d6b5909fd09d45ed59dbee50d9978db9eaeb2fa5241f227cd448e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-390-30.pdf",
+      "sha256": "23190c7955f235ecab329c60a97bab3ca9c4761936fe2ea8f0975a1bc111cfd3"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-00.pdf",
+      "sha256": "0caa4ea6eba8ceb51facd74199d0c699ec68d16073d02111534a749b3643f57e"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-01.pdf",
+      "sha256": "74ad8ad175b1c6ac2ce483542b53cb6465f14b76c4da1d75abcb30f38e2a1314"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-02.pdf",
+      "sha256": "27cde77e4e4303d3b921a4be7b74b12c3e020be673f2ee068e5d9e8f509722db"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-03.pdf",
+      "sha256": "bb87b6e28b922276e62e881ce9e1179d2b97cef4df2ba338d1193ee4fccfae4c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-04.pdf",
+      "sha256": "a9d37e2ac5561e59938951a75c6f8c0164d4450626a9775103b365b110e3bab1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-05.pdf",
+      "sha256": "c86b116100a9081349e1da443f2d17198f6d8c1feb95731fc4619f73555d08b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-06.pdf",
+      "sha256": "62879150cc658b22775250d65e52e2c45dc0696a273b9579587039096a2c1483"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-07.pdf",
+      "sha256": "159440f2ec4e21d5987414fcdd212d71a2df2d27880481edf0b9adffc9c826a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-08.pdf",
+      "sha256": "9cea80872f3a5fd5181de60745b614fdac6846eaae9428564e5c52ccad71ad4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-09.pdf",
+      "sha256": "d64e648833524a47e2acf086140d982a236b4c18621702f4875beab38c160088"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-10.pdf",
+      "sha256": "7d4096aa297138141221c44d647aee389da8e1fe2cb150ca5ee8fba135f4b4df"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-12.pdf",
+      "sha256": "e6e0e1fc256b94db845d4bf9b62ec242a636956a5d34562243c8654731067ea6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-400-13.pdf",
+      "sha256": "5bc365c775b070264a19412d41ba191bb875a5969befe67eb7c8df30663ce607"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-510-10.pdf",
+      "sha256": "161b47c9ea254aca5a7348b8bbee6422b28f882eb653cb34cc379a8dd380aeb1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-510-20.pdf",
+      "sha256": "03bb7e22ba87e14036447ddeb4b37d478e3ef6e97b9ec032adbfe0f642d980dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-510-30.pdf",
+      "sha256": "9fc0a6115f198271e66f3bf6185097569f85c0d9109fb40b34d014eae49cf5da"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-510-40.pdf",
+      "sha256": "9acfdd16f62f6aa742f0822a8caa05dba2d6658d51bd71ea722da856948580d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-510-50.pdf",
+      "sha256": "be1dbc953968c99ffec7d6f5339dc85e4f6be5d03d421650d4cb1d247c0f3949"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-510-60.pdf",
+      "sha256": "3f0ff2b5af44f5a8d804921c2f796e819bb0cfa6559cdfe61166bf01d7679adc"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-520-10.pdf",
+      "sha256": "7cfdd38dcbd799321ec6fdb49f1f304244765f5b782e9932779ad405a6111f2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-600-00.pdf",
+      "sha256": "3930613bb1244d0781ff3b42f2b5e91a1a0f0a3b3b7507e0bf00e312d204acae"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-600-10.pdf",
+      "sha256": "e42d12bc4063ee4d206447511bc88f1ef85b8cebac646eaf45f31b0c03675b1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-600-20.pdf",
+      "sha256": "8fec9c8a955790210dae8416ea8095658ab557416b49cd203923d2480359f200"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-600-30.pdf",
+      "sha256": "3a365c7e1aad20f99cc107bb08d701819dd36395019e7494782bd6e0f673f9cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-620-10.pdf",
+      "sha256": "6d07534cf36ccde0fa205e5c80f07a53bad0b3d15956c76f282b169bea85c922"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-620-20.pdf",
+      "sha256": "e7016984b250d1ef5b51b6951ce1c06a5686b94e176832bb5359823544f157c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-620-30.pdf",
+      "sha256": "1f8042ec74f04b7280227c08764ff9b17cc79fc718d231463449f1e27111def1"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-630-10.pdf",
+      "sha256": "223e038605f8bc16335044e6cac2a84edbee87ab45ab27bcf63554c33526506b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-630-11.pdf",
+      "sha256": "52f800b81e854572d31528a4e0378654f26770a3679c9b22a1cbb9f9625465e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-630-12.pdf",
+      "sha256": "0a037f5ac67497dd00edd18894d72e281531ef54a0d3678f99d725c86392bfab"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-630-13.pdf",
+      "sha256": "a1c4e01cc979996c85e3eda3f2766dd700e0131c31776c99af80588bbbfc9330"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-630-14.pdf",
+      "sha256": "31330e9a8185c5f33b6f9205a026f315156629a5ea9f2bf08b5ab958038879e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-630-15.pdf",
+      "sha256": "79bb798a531cb82d77ee1037d891738b3f826169e9129d63d28a9c6baedd7375"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-700-01.pdf",
+      "sha256": "66239e9000837c0a3f31431fea2dd81c3142391165501cf25c23438f4702c005"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-700-02.pdf",
+      "sha256": "f726c9369a9e7b0da8a06f12d677105645c6297b7311c653c8d1b824e3b8bc06"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-700-06.pdf",
+      "sha256": "39a5cbd52332ddd139b3a69bd6ff1e32e6993df9b7a22970a9ca88ddf9b911f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-700-07.pdf",
+      "sha256": "558bcac4d816e43f1f6ecdd0e94285cfb7ffbc0edc4bb0b7686f70180ab0c14b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-700-08.pdf",
+      "sha256": "54d5dd33a074f95cea726d191bc8fbb87286aadf00e2a452d3c59fb66b0574ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-00.pdf",
+      "sha256": "eebf9ac95b6c07c5aca8b3d65a167bef61fff0fd5c4c928b817be11edcd504fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-10.pdf",
+      "sha256": "8cadaecf56a7c2c33e7d787f532c1c9772e540abbfe595019645809fc89b79b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-20.pdf",
+      "sha256": "eebe5d8ce52d665c55088936e6b462c2e4e1458c5918ce4447edac3ef40baa51"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-30.pdf",
+      "sha256": "351faa50f1f8a0a0e3bc2a693c864f7b91d96d1fd5adcd9b2803c000b9e5f619"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-41.pdf",
+      "sha256": "da98e9935de50a50a7b4b574ce2fa0fc1b4761e10a3431ab2d9054259583c4e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-43.pdf",
+      "sha256": "42196870c7a49ffaf5981391a275214a96086b621516ff8b1143bc49cb89dd39"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-800-50.pdf",
+      "sha256": "6adffcceb3981b749d455fdd2152327d35f8fbc07c5c7a951a2227b2511a9e32"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-960-01.pdf",
+      "sha256": "cc31e0e043ba104f046f49b5447fabc97e9d8daf6fc71d72c8a59cd191e739c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-970-10.pdf",
+      "sha256": "aabe9a8118ddc4582849554373267d049d010c7810ce3aa989635f5cca96ee62"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-970-100.pdf",
+      "sha256": "dc1aa382af7f99544184d5b1a7a621ec56e903cd8ead64a9b7a063e97533a888"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-970-80.pdf",
+      "sha256": "9acfd3f97b2060aaebba6cea077b02bfa44d3f2853ac1b2fab934b464081cce9"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-980-1060-es.pdf",
+      "sha256": "d6837c4c2e2ae5da77ad375db29a8809e317e61222bcc3c8ca3c6af91f0d2ff8"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-980-1060.pdf",
+      "sha256": "4eafde9512330d9ce1a56340d874868b38890bd1de18e03df784a2d3b55ec440"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-980-1065-es.pdf",
+      "sha256": "c6fe8310e3b24450b03e9dd28db31612baa4a41490b2ba9e51c5f8e4b36b7491"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-980-1065.pdf",
+      "sha256": "e60afc3c06c54dd04414d65c8e9c923cb2ce02c55abee574c32856b0795eee42"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-980-1070.pdf",
+      "sha256": "56f203d3889e0a2d12c4ce03061ae79b747ef9939f8879e07be3865680853122"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ca-wic-manual-980-1090.pdf",
+      "sha256": "9e61e47795074a1e26e6ced7ab0bca19d1585de60e09565158425f085c0c78b3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-ca-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 276,
+    "missing_count": 0,
+    "provision_count": 276,
+    "source_count": 276
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:35:34.841988+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uWWEZ18i7zEEbyppcDbKG8b2mdVk0RJmppqWo04EO0M0tMMkW2XQOUE0xHKd6n1wo+qdb99iwbOz4VRl/ZQzCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

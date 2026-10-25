@@ -1,0 +1,29 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-nj-taxation-nj-1040-es-instructions-ty2026
+  jurisdiction: us-nj
+  document_class: form
+  title: 2026 NJ-1040-ES Instructions (Declaration of Estimated Tax)
+  source_url: https://www.nj.gov/treasury/taxation/pdf/current/1040esi.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-nj/form/taxation/ty2026/nj-1040-es-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Division of Taxation
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-10-27'
+    amounts_carried:
+    - personal exemptions ($1,000/$1,500/$6,000)
+    - filing thresholds
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.nj.gov/treasury/taxation/prntgit.shtml
+    discovered_via: manual-review:tax-agent-queue; index https://www.nj.gov/treasury/taxation/prntgit.shtml (read 2026-09-13)
+    source_note: The instructions do not reprint the rate schedule; the Division publishes its rate schedule as '2020 and
+      After', not as a 2026-labelled document.

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "ee67c2e253a71e3b937aa3b800230e4dc6bf110711a2ad5a3a84bd7189c80e1b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "6262c51e319f1299cb434504e9d112fba211b7aa6d242d114cb7aa95b050d631"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-09-10-ccdf-plan-fy2025-2027.jsonl",
+      "sha256": "d4201b4660b5d5cb9071a151e3584f053713e98fe5020e2cc6e6bbd20fa6504c"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-09-10-ccdf-plan-fy2025-2027/official-documents/us-ks-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "f571df51ccbdf2dac035bb687c5ab1507023c351e93377511a9e333c08663843"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ccdf-plan-fy2025-2027 --manifest manifests/us-ks-ccdf-state-plan-fy2025-2027.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T21:50:31.624344+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9I0jS6FIRUd9rV+1zSQXzfSa/PLhYTJC6F3emvTxJ/3iECN/oNK9VFonbCCaO4m+UBoSVtr3QW/EbsiP69orAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ccdf-plan-fy2025-2027"
+}

@@ -1,0 +1,34 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-de-liheap-dhss-deap-policies-and-procedures-manual
+  jurisdiction: us-de
+  document_class: manual
+  title: Delaware Energy Assistance Program (LIHEAP) Policies and Procedures Manual
+  source_url: https://bidcondocs.delaware.gov/HSS/HSS_15027Liheap_MAN.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2015-04-22'
+  citation_path: us-de/manual/dhss/deap-policies-and-procedures-manual
+  metadata:
+    primary_source: true
+    source_authority: Delaware Department of Health and Social Services, Division of State Service Centers
+    hosting_authority: Delaware bid and contract documents server (bidcondocs.delaware.gov), a state.delaware.gov service
+    document_subtype: policy_manual_pdf
+    program: LIHEAP
+    state: DE
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://bidcondocs.delaware.gov/HSS/
+    on_clearinghouse_index: true
+    source_discovery_group: us-de/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://bidcondocs.delaware.gov/HSS/
+    extraction_granularity: pdf_page
+    expression_date_note: PDF ModDate 2015-04-22; the manual prints no effective date (posted as a solicitation attachment)
+    access_note: bidcondocs.delaware.gov HTTP 200 to the plain client (2,514,551 bytes)
+    page_count: 102
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

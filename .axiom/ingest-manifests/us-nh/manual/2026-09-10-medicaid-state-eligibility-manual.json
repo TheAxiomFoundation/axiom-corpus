@@ -1,0 +1,2449 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "1127653f95356bb09ac5355e53442f969b7fd48d4764807ecd98dbdc791dc39a"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "3083561d4ac8eed13013a48bf9d93549cbffa19e488406fe6fc653c04b675ddd"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "4b0e88c5525f65f56fbcdcee9dab48290c1a5897732b373334cbfb61ef224ede"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-100-case-processing-mam.html",
+      "sha256": "447b37964c85f4b06736787d537d08f0b4713513ca9915b2a0b3d554cae16bf3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-101-01-individual-rights-mam.html",
+      "sha256": "1269686a1161cb6b7f01f951feb23d8ae8f857a716f52167607dc57fbf7879bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-101-03-individual-responsibilities-mam.html",
+      "sha256": "c465a62cb22b353b73d87bf3d0264b1dc2c4dd0343e1448cc0bcf24d9ef7c5b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-101-individual-rights-and-responsibilities-mam.html",
+      "sha256": "d93ca5ab0b2ef02b2dd5d6a15edc94c305d7c457e12f26d7ad252debc3e6c573"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-103-01-racial-and-ethnic-heritage-data-mam.html",
+      "sha256": "3086efaf2d4d2a40bb76bb2e962da989fe1f9954ab624b410cc918e2548b2fc3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-103-03-primary-language-data-collection-mam.html",
+      "sha256": "3d512984656fcf1466909ebd2f6b4a14e3340c0514006df4c821722a5da68129"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-103-nondiscrimination-mam.html",
+      "sha256": "a33c104c331c14584a9cd4df39b96b2ad94f942c23eba710b84ae50a05517dca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-105-01-eligibility-determinations-mam.html",
+      "sha256": "35f9898a3b17a7ee889abc1055109ac10a3f9c95cfd14f6b66d1a69d8dbc4a3e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-105-03-eligibility-reviews-mam.html",
+      "sha256": "8146e96f8df6f08b9408ddd784899524834e629eb7a8f5f9b162884310335b75"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-105-05-failure-to-cooperate-mam.html",
+      "sha256": "427ac591d3a89987de21ad7b81a3f5b3cc7f80082beb44070c9884be175a9cc0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-105-07-willful-withholding-of-information-mam.html",
+      "sha256": "4a588de2b3130e7fd637d93e2875cf41ba28123a0f96d1446efecacce3514b50"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-105-compliance-with-requirements-mam.html",
+      "sha256": "a316d4508913de242faa4ab80cea68b4339ed642200d4715a9b1e57e7c151d91"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-107-providing-verification-mam.html",
+      "sha256": "add0fe11149ce26dd28ad0c3086f8e3fbf8d30ef4656afa108b8c01839240d9a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-01-filing-an-application-mam.html",
+      "sha256": "835873e6436605b0b96413d3d317de182234d7c7cce09ef44261a975b1ee301a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-03-processing-a-filed-application-mam.html",
+      "sha256": "64787ae8c363bd08dacb7a7338624b3152860d977e95da0296662e17cd999af9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-05-withdrawal-of-a-request-for-assistance-mam.html",
+      "sha256": "0c6c958e38c387ca80ede1b315287e36acaf65478829cb3312880207a4216438"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-07-reuse-of-an-application-after-denial-or-closing-mam.html",
+      "sha256": "2d4a7586ac851dd31afb031a8d6db3c27ccf3ed9a33c3366a321f5a59c0f9074"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-09-application-for-retroactive-medical-assistance-mam.html",
+      "sha256": "8dc085a2b5fb04fe2fb458d6f721822888c480f5120de1cf0349f0a61cb9447c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-11-choice-of-medical-assistance-mam.html",
+      "sha256": "3f742fe24d80064006454412c668260572c77583a535a24727e4b202d8b3d148"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-13-concurrent-receipt-of-medical-assistance-mam.html",
+      "sha256": "a8b2882f8c1dcefa814009311ee4b6cf44f69ae60b5acd94cb925a1d0a5d5c92"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-109-application-process-mam.html",
+      "sha256": "8479df66d2a79aa17cda20cdc51df3ae8af51456343f8e354baa1e47a9f97eff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-111-01-authorized-representative-ar-acting-in-place-of-the-individual-mam.html",
+      "sha256": "fc84cfd0f108468b475135b7acd22814b082577a6ce262581bc4833f79e87b65"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-111-03-authorized-representative-ar-signature-required-mam.html",
+      "sha256": "628c33b955504858540228d0dd875f7428f2534ccb702d7adec48e9304088f32"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-111-05-authorized-representative-ar-documentation-required-mam.html",
+      "sha256": "3d06d66e3a57e6953d97042978a298f169aa2104239df7d6919cb8b2d95828ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-111-07-abuse-by-an-authorized-representative-ar-or-failure-of-an-ar-to-perform-their-duties-mam.html",
+      "sha256": "3be729482621ac3eb45fb60af17a11f648843582ac1adba01dd141e3dad85a7d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-111-authorized-representatives-ar-mam.html",
+      "sha256": "578d06f220d2972b19e264309226b65c2d4ebcb581e7b5b2a5a416c00fa4e4f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-113-application-processing-time-frames-mam.html",
+      "sha256": "e50e80a2cced0255794d77112bbf89e9895c3ceb3f95eebadee88b5c8de21b95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-115-joint-applications-mam.html",
+      "sha256": "ca4332ac27d98cca27c94c9e69c66596971aca26613d8eab5fc7190a7427a19f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-121-01-initiation-of-qmb-qdwi-slmb-and-slmb135-mam.html",
+      "sha256": "d462a9333f4f3a7b2b6a004ceac3469911b5843b8056c9bc7767f06d81ab4239"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-121-initiation-of-medical-assistance-mam.html",
+      "sha256": "3833cc037014c8844c2976a8ef587ec56bcd3076aec6f8756b145cac60d3a46e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-123-01-interview-sites-mam.html",
+      "sha256": "d26ca2f714d26143436ff2af5a2ef7d708aaa3a122aa23c041f5d98e760b65b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-123-03-failure-to-appear-for-an-interview-mam.html",
+      "sha256": "a6a18185e0138bb402a2ca1189c260288de27eb88190ef56305a69ed4bda96ba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-123-interviews-mam.html",
+      "sha256": "29af598ba3e7ddf2c9c67a4aeffb9e85ac0d867baf08ff3dbf879c768fc68491"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-127-pending-information-mam.html",
+      "sha256": "bc0235eef9b3dca93a5f0e490ee2b9c8eaf232e421aa61e91a2fe69531e1bcf4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-129-01-presumptive-eligibility-mam.html",
+      "sha256": "a96a597a8888fa7c0d38c028a992eb569349df1712afa4d1102016c166957584"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-129-eligibility-determinations-mam.html",
+      "sha256": "0c5cc0e695bdaf2c693afa596321377099a41b498f528c5db1ab4fb9cf2d86f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-131-length-of-eligibility-mam.html",
+      "sha256": "c7fe3ed1d26f1409338711afd92bd116ed5a5790a3c0d5ad07dcd17bc0b577d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-133-providing-notices-to-individuals-mam.html",
+      "sha256": "62146831cb9e50c0b80ea31eb452a2cb21ad39181f872a1e1fdf9f1f224290db"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-135-notices-of-decision-nod-mam.html",
+      "sha256": "63aad69f72bbf2cd60ad85be60f2a775fdff7998fe1d02edeac713d4df612580"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-137-01-administrative-appeal-requests-and-the-anp-mam.html",
+      "sha256": "78c3a1cd564c0e1911e72595cc43540d601af99e149f7fc5b2ac50960db7b77b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-137-03-no-advance-notice-period-anp-required-mam.html",
+      "sha256": "de4319bfd3c7e1cc7178501b6ad5ae6191c5dee1495052f5e5a5fbeec3833e78"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-137-05-five-day-advance-notice-period-anp-mam.html",
+      "sha256": "1ac73d709c1be5e387c581649acf7e8b6376b1d82cd383e12a37f6875f9ad6b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-137-07-30-day-advance-notice-period-anp-mam.html",
+      "sha256": "1b9ef73a75717d47c8b0acc617cfb23011bc9ac100764c894dd16297f1ec9639"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-137-advance-notice-period-anp-mam.html",
+      "sha256": "0a144b9f239272e628d64f2a7f6b690e868d704da83b3fa8a0ca8cbee2e74af4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-139-complaints-and-administrative-appeals-mam.html",
+      "sha256": "686fd42593925e007a9c92c902f8ee247f89f52f5a7650b5c55a72bd6ba039ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-141-01-reporting-requirements-mam.html",
+      "sha256": "6fea12e65dbf5055646994b275984ddb87ca66d418af0d02a8c83099a3291bc5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-141-03-what-to-report-mam.html",
+      "sha256": "f9a28d5ac6df7bf5f3052d990935c4473c3723e36708ab0f2ba9e55ca8b55f0d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-141-05-how-to-report-mam.html",
+      "sha256": "cbb5a9f9b257b22a5a31ae695a0a5bd0d92df28d1519c08cb00ebf17ddb8f301"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-141-07-when-to-report-mam.html",
+      "sha256": "5f1538f09f3f003a2fba851b98a9303a873b4efb5318c6c0b5a22f2bbf468558"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-141-09-notifying-individuals-of-reporting-requirements-mam.html",
+      "sha256": "a254584cbd4e211b3686fed0532107c40488ea3495200f5b043cf6c73c8a6d44"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-141-changes-mam.html",
+      "sha256": "8ee3717ac46fd72cd0b3edcf788d4c9505108187502809cc10fb267082027349"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-143-actions-on-changes-mam.html",
+      "sha256": "d3852d3f627210f09d4d9c1351e686573fb93739a3994a34cf513052e5752b9b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-145-changes-that-increase-benefits-mam.html",
+      "sha256": "af3914da1bfe3a495dbf7d8d7aacd309c0b11b8573431703c65be2b45c169373"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-147-changes-that-decrease-benefits-mam.html",
+      "sha256": "5373581335438c9bd1da1616549eae6fc2099605e463da4f1767b1bc7aba86d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-149-mass-changes-mam.html",
+      "sha256": "ff2c855699411da47de4a46b26890b0d1edfd574009fc69ad1653d5978a2ac57"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-151-addition-of-an-individual-mam.html",
+      "sha256": "21c952103f86a2d9477917d9762af51f1894ac739dc80e8ebe4b56548aa4bc3c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-153-failure-to-report-a-change-mam.html",
+      "sha256": "2ef4ecccdd420cab3527c1926eaa1baa745fe9630d2633ec331ad8c34aac28c4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-155-desk-reviews-mam.html",
+      "sha256": "9392a7f0659d5fd0e8467b20c2c571048474755f60012860a007eeee3dc9fbab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-157-01-timely-notice-mam.html",
+      "sha256": "28d8603ee99c8ec11857850798a656b1e31a41e821f30c950849f59db7978337"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-157-03-required-verification-for-redeterminations-mam.html",
+      "sha256": "5bbad8d1e630b60c080ccc42d1fcf025b7aa3966c8acacc81877b7f3e86a9ebc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-157-05-processing-redeterminations-mam.html",
+      "sha256": "b741d66531db223a4acec7eb940cfde6e9a9e64d8d2b0c268d3b4a1eb6ff2056"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-157-07-redetermination-of-assistance-for-individuals-discharged-from-nh-hospital-nhh-mam.html",
+      "sha256": "3027b4d399d38559344a79fc7fcf803a8f05b488295e384cf4e9bd5d7597c003"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-157-09-termination-at-redetermination-mam.html",
+      "sha256": "45bad03641bed291d36d57ef03ed58e3d378bfeea804f8e74908a26e955329d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-157-redetermination-mam.html",
+      "sha256": "cbde2e9d42ce1184114a8648acad1aac7b729fcdc54c2fc8c6121a224e0c0c80"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-159-01-termination-of-medical-assistance-mam.html",
+      "sha256": "93f46dd16e8631c72616b5167f7710da17d4866a2673259d5b8da36d479b0cb4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-159-termination-of-assistance-mam.html",
+      "sha256": "a349d45a2fa8b910ab247a1bebb2bb3c369747ab08e45437d3a3eedc30e2c01b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-161-01-cola-income-deduction-mam.html",
+      "sha256": "7c27684687526f841a4d5ec955e56e7ad55fa3ff719544c766f36f44d349fc64"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-161-03-cola-adjustments-since-1977-mam.html",
+      "sha256": "b5d88c801ff9239fe6fc92dead179dc561e422216620f01b206d1671853a3c80"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-161-05-losing-pickle-status-mam.html",
+      "sha256": "f361f9f3cc057de5d3e03ac5e44de01b2f9189663794404f542e8c9808f4210c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-161-extended-medical-assistance-due-to-the-pickle-amendment-mam.html",
+      "sha256": "c1db041204bb9c4eb33f109a2b5d0681dd92d5873dcf5d836ad4d8bd2c0fa754"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-163-01-determining-the-four-month-coverage-period-mam.html",
+      "sha256": "047d4f719d0e6e9cc93f9346c09369f0c2ffc088ab9eb0422ca67e398dde9913"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-163-03-changes-during-the-four-month-coverage-period-mam.html",
+      "sha256": "da0cc514d9dc081f555eda581b6a4315f5f2f6474c52ba1740762b3cf364fc69"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-163-05-redetermination-of-eligibility-during-the-four-month-coverage-period-mam.html",
+      "sha256": "42c440d6162b2cbc58872fa1ba15104f1776d764e75dad34a8b604c462856d26"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-163-extended-medical-assistance-due-to-increased-child-or-spousal-support-mam.html",
+      "sha256": "f03da0f5cdd4e21c0bd335191b6b5fdaefe63743d24467fb87969c2ef1afe354"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-165-01-determining-the-coverage-period-mam.html",
+      "sha256": "0b48460b84adb3e9b6dc2572b505fb2d99e6ea445c85ca672bcd3d5393397552"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-165-03-termination-due-to-employment-of-an-incapacitated-parent-mam.html",
+      "sha256": "c92468a8a4eb58c3cbcf7dd1ef661b19e903af87367c689684c1affc79e507c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-165-extended-medical-assistance-due-to-employment-mam.html",
+      "sha256": "936814fa41bee02465d94f346d78cc19d0202906b7dcd0197e5d6838657152fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-01-definition-of-a-complete-dfa-form-890-mam.html",
+      "sha256": "2986dea4f250097c8b008871af3ecdace323ac51bcd45e431f8ee72ff4f74f36"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-03-financial-eligibility-mam.html",
+      "sha256": "40eac02c864f167d2c707b7c364ef90b1c14a6d72231ae0e0c845538de73eb2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-05-ineligibility-reasons-mam.html",
+      "sha256": "8eff5b8441475d91dd6383bc1ce94897bdc3d3f338b92469f8a25ef90cb99fb3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-07-determining-good-cause-mam.html",
+      "sha256": "e7a887c62d2cd26ea698b88274717734afb42abf2fe5353f43ad2ac90a762db3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-09-reinstatement-after-termination-mam.html",
+      "sha256": "62538c62b491d8b7c71168bc2b84a8bb73a820e9a441896e7a92743a9bc2a7d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-11-changes-during-the-12-month-coverage-period-mam.html",
+      "sha256": "7dcce33712981fd10e9b1b48100849db821607b76d8021fa9825fe7d87b4cd37"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-13-changes-in-assistance-group-composition-mam.html",
+      "sha256": "37855e78a98aba297704fae38ac0f19e853011f26a5797f415a8e6e4fa214467"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-15-scheduled-redeterminations-of-eligibility-mam.html",
+      "sha256": "0b6a80243834fec42c1eb4d8682f218462f5f3e8cfbcbdecb741ff46465b05f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-17-required-verification-for-12-month-coverage-mam.html",
+      "sha256": "bce66f6cbc11d6953e161d5d0ebd92cbd68b6703375834c39bc301229d27ccbe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-167-eligibility-criteria-for-12-month-coverage-mam.html",
+      "sha256": "0427f563ebc3f9ed68790a90a0ce3a59fa66aafb54e152992db28e7e1d548611"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-169-01-open-individuals-who-report-new-or-increased-earnings-mam.html",
+      "sha256": "4651ae3dbc14e0912a371b82de3698f0f9fd8077b9f7621fae6b7ffebc0f2181"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-169-03-individuals-who-request-assistance-due-to-section-1619-status-mam.html",
+      "sha256": "15cc529150ab2bcbbd1e9ecb5519725ac9fcc9044d66a886314df6147aaa7db8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-169-extended-medical-assistance-due-to-section-1619-status-mam.html",
+      "sha256": "1905559f3958a763aa8014269c1a229c9ed50d92259bbebacbc11e25d8a3ef9b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-171-temporary-adjustment-period-aptd-mam.html",
+      "sha256": "5d5520ab896ae426cf18d826731e5241878527e980cae720dfd3aefeb1399c6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-173-temporary-adjustment-period-anb-mam.html",
+      "sha256": "e49dc080b97ae0900f096bdea69b96a7a835e929647551daf6605f7f9cb70b8e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-175-01-inmates-with-an-approaching-release-date-mam.html",
+      "sha256": "eded156bd8f1e087ba58c3ea5d0e8235f506e0341ef718000660578212229579"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-175-03-inmates-who-become-inpatients-in-a-medical-facility-while-incarcerated-mam.html",
+      "sha256": "63b9c5feac0158571d28ba82b8186bf1cbf898f29adf6abeb2709598d89a1f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-175-05-adult-community-reentry.html",
+      "sha256": "bdffe9aace038bfad880a59b19975f6c3c6c0c6558c4c39c6e7501a8c9325650"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-175-07-youth-community-reentry.html",
+      "sha256": "8a57ad87d33e344a3c5ebc8403319c4eb2a662bf10e915a8d980e956f862a0f1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-175-medical-assistance-for-inmates-mam.html",
+      "sha256": "3ba5cf46fcf336895cf39bb29e6284cf705427f98de054f83cb7c0a2467a4952"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-177-01-magi-related-coverage-groups-eligible-for-pe-mam.html",
+      "sha256": "85810278c1fb972e059279bdd3cb89303cda6add1db59d887a53e295c3c14d8f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-177-03-pe-determination-process-mam.html",
+      "sha256": "9149e1d2d9705b0eb54f0a2c1cfd1125dcb2e5916a8c2dafe2a626c9a058b473"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-177-05-length-of-pe-period-mam.html",
+      "sha256": "a72f37d1c119e2795446493f8dc0eedc12ffe85c7712e97ffd622f55a1682669"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-177-07-certification-process-to-determine-pe-mam.html",
+      "sha256": "bd855c10586c80d3fd0b00f4294df167be36dafb9442a98bb3da9ca625596dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-177-09-maintaining-qh-qe-certification-to-determine-pe-mam.html",
+      "sha256": "5198fbaff76cf450887bf80aa0b8b5cf43e83fba2546768c13d683efba838370"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-177-presumptive-eligibility-pe-mam.html",
+      "sha256": "51473f318db1f25dbd7cf40261ea36d0c4d253ee395ca9124eaa2dd359e9abf6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-200-program-criteria-mam.html",
+      "sha256": "a96a8fb4007c79e081563ef441ee884c26fadba8baff561b5b9b52f97355d39a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-201-general-information-mam.html",
+      "sha256": "f559d19511058af95452d9c4b8ade1bef3af3526147f004ded6a78e34fd8f22d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-203-categorical-requirements-mam.html",
+      "sha256": "d430bbba3fe2fa4c61283fa01899532d80e778cfccdbee6809b0d9b14476fdc4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-205-01-verification-oaa-mam.html",
+      "sha256": "310e335aa820d7067fca8606e8fa85f220c2d3371f4c8898d3bc8b13dd82abcb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-205-old-age-assistance-oaa-mam.html",
+      "sha256": "b8f2a6224db1f751b53ef43c463f6a968574b735bc447bd41cac9391b136062d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-207-01-verification-anb-mam.html",
+      "sha256": "e39f7a527679aa13c60a9c01b938cfd9505c7e7de7df569cf4c3e62639b07555"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-207-aid-to-the-needy-blind-anb-mam.html",
+      "sha256": "d027b5bd2a63bdee7787376602e2eab4a4183e82e9614c6449657ed2aae8e62e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-209-01-verification-aptd-mam.html",
+      "sha256": "10aa045d428f3d2f3f1ffb14f8d523de577f20cdaf3efa87b8254aeb3ea225cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-209-03-sga-adjustments-since-2000-mam.html",
+      "sha256": "f752e4e45dca1429ea7851883184becc53fd917d71f170ebc9bc8d6e9a1690b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-209-aid-to-the-permanently-and-totally-disabled-aptd-mam.html",
+      "sha256": "8cea5eaf550647005bcd41573639da80803af29e19965c0dfeb6558513bd825c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-01-mead-medical-criteria-mam.html",
+      "sha256": "94dece6ee4ae9f8ae81cc9be1039d34961fb522a12ddb425fd5abfb33046e631"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-03-mead-employment-related-requirements-mam.html",
+      "sha256": "eae4dcb1d6b2047c4096f18204770c1e0f01523ba216105b01988b90d59b5aac"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-05-mead-good-cause-for-loss-of-employment-mam.html",
+      "sha256": "d827740bb9597c4852e07490307f7de194bc6cf068ee9f89ccd51a37a32b1607"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-07-mead-income-requirements-mam.html",
+      "sha256": "ee759868c692b039f17bc9ef5ad63b2cd437a6094cf5dba373e094f854c98298"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-09-mead-resource-requirements-and-treatments-mam.html",
+      "sha256": "5e5a36d17326588fce2684388d29c9b78c8245664aa6b4101664bbf5ccf44a72"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-11-mead-specific-resources-mam.html",
+      "sha256": "b9537f99a9bdf020588d9b7caf0f8f0d6218e4cbdfd68f55b261963d7b839dc4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-13-mead-premium-requirements-mam.html",
+      "sha256": "0ce3bf33caf9faf37f3a3ca650dc0f60997b589c06ef003b183301b18da10cb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-15-good-cause-for-non-payment-of-mead-premiums-mam.html",
+      "sha256": "ef78b3b91be2e5c368fa6f65d68a03b2c99432322bc9509ef5a6e1c9fab63105"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-17-extensions-of-mead-coverage-due-to-unemployment-mam.html",
+      "sha256": "3191a9c0b4bae5a952d6b6ce66721f6a2d5b491749d016bdf56e1250ea0385a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-19-termination-of-mead-mam.html",
+      "sha256": "17c027ea7bf108aee841e127728f32c776e29e31162220bc9170ba662eb92f0d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-211-medicaid-for-employed-adults-with-disabilities-mead-mam.html",
+      "sha256": "e0f9659803381ccf29e02e3a6b85d8aa1fa5c0725fe24a508ac03d3e90019c3c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-213-01-verification-qmb-mam.html",
+      "sha256": "394e75a09fafc471785ba9760954397243f0fc3d678c86aa83ec8375145aa20c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-213-qualified-medicare-beneficiary-qmb-mam.html",
+      "sha256": "a11589c7fc41ec4bff1a81041c96bbd61c3d4a5b11c7a649c121a937a74b775c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-215-01-verification-qdwi-mam.html",
+      "sha256": "60a913f8803423577259e98a7449683d4c1dea8fc0754346ed295bcd712e9bf4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-215-qualified-disabled-and-working-individual-qdwi-mam.html",
+      "sha256": "875507dc24fca5c9a01e324638cc7e14b33332152a44497df2b338b15b032765"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-217-01-verification-slmb-and-slmb135-mam.html",
+      "sha256": "7d684c78fa05ab131905c32ab8937f62264f75c3e33c52af11c2f20db4fe5437"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-217-specified-low-income-medicare-beneficiary-and-slmb135-slmb-slmb135-mam.html",
+      "sha256": "58d9ddcfad9e5e4f2ac9ee0473136f7ddd88a707fbc14b803df157ca12e7dde2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-219-01-new-hampshire-employment-program-nhep-mam.html",
+      "sha256": "c60ba8c70b1eb93bbd1409fe6ed248d64892e7e6886d2712e08dd4e50b5ef5aa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-219-03-family-assistance-program-fap-mam.html",
+      "sha256": "6ac21dcce97041203e92745174ec725c5e43ad01c82b74fe25fb582d45ed60bc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-219-05-families-with-older-children-fwoc-mam.html",
+      "sha256": "6b6ed646645d2c51c05bb2fbd2b0d3832ad24af48e5d4f0b29718b5199b0f01e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-219-07-interim-disabled-parent-idp-mam.html",
+      "sha256": "a9762c58bd49956c7e796fdee1421923b2da9dc3098b673f3af6b96a2c222761"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-219-09-unemployed-parent-up-mam.html",
+      "sha256": "bb800f624be0756f81166acbe7a66a4641884caeca2a5136b806f62ba9541d2e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-219-financial-assistance-to-needy-families-fanf-mam.html",
+      "sha256": "ce0cf252867de2726db3f7e43d8b3256fee9d7fd143dedb0efc73c768b4cf0ee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-221-01-verification-former-foster-care-child-ma-mam.html",
+      "sha256": "b89fcba506a6acf6c03d421bfd31ac868f365fd80654da87da200793a07914d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-221-03-pregnant-women-mam.html",
+      "sha256": "e02fe522176e18538caed9468901389c846808492647c858053189741b393146"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-221-05-severely-disabled-children-mam.html",
+      "sha256": "fbc1471bfe89d894bb8eb0ef1cc5aafa41d9fd3d1f839712931411f5cbcffd3e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-221-former-foster-care-child-medical-assistance-mam.html",
+      "sha256": "b0bf5ef92fed3dd33c31a671e52ac899c03ac205d98325541be7ed5d3c55d29c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-223-01-verification-cm-and-expanded-cm-mam.html",
+      "sha256": "0636b7b4532ba4ee79be4a47efbbc1da23a21840a4dd9d791d134f1bb4b9d727"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-223-02-continuous-eligibility-for-children-s-and-newborn-s-medical.html",
+      "sha256": "a15ed44008161a900a1f938bc275624e0d2f4aac8af52c29aa4bc56e20383290"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-223-childrens-medicaid-and-expanded-childrens-medicaid-mam.html",
+      "sha256": "e09a445d07f60e2f70e3deb8904f7f2d592ca41703f8f674dcd730351ae02767"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-225-01-continuation-of-medical-assistance-following-pregnancy-mam.html",
+      "sha256": "48e1b77a60f67c67f1aecbb9f0b53f10ecea90070ea7d5581c8a56eaddcacde9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-225-03-required-verification-mam.html",
+      "sha256": "303a8b3e8b39d2364e27f35e44c3a2ef1d289ead1bffb634206d323d38730f68"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-225-pregnant-women-medical-assistance-mam.html",
+      "sha256": "26cf2d36629d094b54b652dd6d0c12a126e059238ed27aadf0198f16e2b1ab9a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-01-family-planning-ma-eligibility-criteria-mam.html",
+      "sha256": "8818200392f49f0cf24700cbed4b8bc0f6549da893c20274360ff68ae5c6d8f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-03-family-planning-ma-application-process-mam.html",
+      "sha256": "dfa3d573afeebe0a33f4ebd7954d9decc3783c9b948ebdd1f17b51e41104f0ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-05-family-planning-ma-income-requirements-mam.html",
+      "sha256": "9217fffcbabeab0abd84fe80c59a766be45703c8ce8265929cb427ae49a95454"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-07-family-planning-ma-resource-requirements-mam.html",
+      "sha256": "05ebbaf05b4dd86482aab42f3b693e0f175064712a63973b1a49c1d06d3076c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-09-family-planning-ma-allowable-deductions-mam.html",
+      "sha256": "0a7e7c9610e7b74705fb40e748d11fadb7f25fc268bfe11403fc2207253e728b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-11-family-planning-ma-covered-and-non-covered-services-mam.html",
+      "sha256": "2c08ca84a7bd406b3f9b15aa0f1b0a237e41b835f3b5d86ebe8706ae43ece8e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-13-family-planning-ma-retroactive-medical-assistance-mam.html",
+      "sha256": "60a58b05d3f4efbdc219252e9f411b24562244729c613f9aca4ad2c399f52a46"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-15-family-planning-ma-in-and-out-medical-assistance-mam.html",
+      "sha256": "443c7b3d1501c58daf6ca8de66255719a1906863f6fd5f4a8d6103f9e6346172"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-17-family-planning-ma-third-party-liability-tpl-mam.html",
+      "sha256": "38624daeab6732f99369f348bab3b01b5f2d3b053f348f92106ecdb91a851756"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-19-family-planning-ma-length-of-eligibility-mam.html",
+      "sha256": "9157518166bb0e032fc00d9f4f20e0959f4e2dd22b781f8ff8801e0a00114bbc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-21-family-planning-ma-determining-presumptive-eligibility-pe-mam.html",
+      "sha256": "310f88dadc74257319c8f51aa6c95845428576cb4f5ef32e70a8e13c01cd1f72"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-23-family-planning-ma-required-verification-mam.html",
+      "sha256": "75ba232e8138da0b27e62fda7bb340385e0a6fef297ef6929d138dd741080783"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-227-family-planning-medical-assistance-fpma-mam.html",
+      "sha256": "cf6e01308e30845562e68fd7e0dd8648ded6169adfbc58fb665e9a5b2b768d89"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-229-01-required-verification-csd-mam.html",
+      "sha256": "597f2ff10579e53b61d72003664d0908476d3395233382cc0abbf771cd0d6dcd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-229-03-three-month-temporary-adjustment-period-mam.html",
+      "sha256": "feeed37eb7cdee0e30e01d0f1de43496c283552b70f6051d3ca218fbc939e7d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-229-05-csd-children-turning-18-years-old-mam.html",
+      "sha256": "5101ceac8082954ad8af0d2eccec9dc76642acf73a2cd36aa45802de806c56dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-229-children-with-severe-disabilities-csd-mam.html",
+      "sha256": "f4d41a5c695ad40e78f2f9adee4ac0389cee58bd269e64c57bc30ae0a798a390"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-01-granite-advantage-eligibility-criteria-mam.html",
+      "sha256": "a1fc71687ed8439c207d6d5f3d50a9f9ad273bdc06e7cec8ccd2aa99e65bc552"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-03-granite-advantage-community-engagement-requirement-mam.html",
+      "sha256": "b8b065610b530fcb53561257ad96fa98451d574bb1fe83038e8947bd6e4ff08e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-05-granite-advantage-community-engagement-requirement-75-day-notice-period-mam.html",
+      "sha256": "bdafbdc19a2ca6f8474608d1a16fb2e6ca44b46cc57c25bdb81c742148ba066f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-07-granite-advantage-community-engagement-requirement-exemptions-mam.html",
+      "sha256": "29d5dfb9a12ed468f9e6897c1bc9b79d2faacc9f44fd2dd00b264a6c68ab2139"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-basic-education-mam.html",
+      "sha256": "b505f0d8c12cc84820af030ebe038580c6c8195c34c4721ff2b33c5a54299fa9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-caregiving-mam.html",
+      "sha256": "61df42fa4c771ed1355f246bd32a704d9842db5562adcf882a1e5f8efaf6176a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-college-or-university-mam.html",
+      "sha256": "4e5551bd38db9ca55b56a6799f01b1a4d74d8deff1e7c7720a00ee8ea37004bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-community-public-or-volunteer-service-mam.html",
+      "sha256": "027a5db5f168f823dc03431c40e191164f2f83711ff45d431cb2441f825b16b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-education-related-to-employment-mam.html",
+      "sha256": "23800c68d984e4ea060331b8ba3bc0176a8409b3ad3114c9a6e2cb1bc26b15a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-employment-mam.html",
+      "sha256": "a9e9ebe1351a8922e2ae569f112bad43d31a5794b7f2c0b450bfe78257f9d8da"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-granite-advantage-community-engagement-activities-mam.html",
+      "sha256": "391518ed1c087b58b30ffa26fcfe3cd373054c1f8e68c67177e95da57f02a738"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-job-search-job-readiness-mam.html",
+      "sha256": "d884cad0345bb3879ba2b9b09cfcb32496ef4c72ce8e8fff2f86460301d7fa95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-job-skills-training-related-to-employment-mam.html",
+      "sha256": "b94a7f6c503a4f06796bc149803dedc933135919c02925c73f25ecbd599071ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-participation-in-tanf-snap-or-orr-work-requirements-mam.html",
+      "sha256": "3a75c4cfbc41b1cce3ede49c01ca8a021430eab54aa301cdfc92351a8df28499"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-self-employment-mam.html",
+      "sha256": "21a7ed2798d221961586df9dc77c2718e25639932111c3f302601b4071bd1b4f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-substance-use-disorder-treatment-mam.html",
+      "sha256": "468419549ccb10466305fb492634df18310edac3829cf3fefe78ff2ad2abf044"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-09-vocational-training-mam.html",
+      "sha256": "d403ddcffaafb8fbd8ed434b4bb21ab9d359017bf8e21fcd6912b131d435883b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-birth-or-death-of-a-family-member-mam.html",
+      "sha256": "29d9d47df972bc287e32f6042550748316223e31d18f159dd611d6c5c65de27f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-disability-mam.html",
+      "sha256": "eba977c57742bed7bdd6c623b354374926fcf9b5d3ec4a091e533ff44ef7944a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-disability-of-an-immediate-family-member-mam.html",
+      "sha256": "71f1e36cb289d16235edc640886d36f514c34ccacb4eec0d99248b9320b46ce7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-family-emergency-mam.html",
+      "sha256": "413a0898feddca20b2566ca6988183471512aa6a93a2ebe5a604d0ac8dd48f3b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-family-or-domestic-violence-mam.html",
+      "sha256": "91cee0c81e85864703af26fdccd695e3933863367c3eb41ed5f09be50e121f72"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-good-cause-for-not-complying-with-community-engagement-requirement-mam.html",
+      "sha256": "ef26d62200c679aa2e0e3ec4c19bd55ca8cd69dccfbb900b96ae1835b61bd8a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-homelessness-or-unstable-housing-mam.html",
+      "sha256": "870e4c65870d6e313fec42052bbe5e2f1bd20bf9b87d1dd7f97919cdf85b2856"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-hospitalization-mam.html",
+      "sha256": "5eb5d33156ef1aa6c5669766ea2b4cf23aeb00f40f5598943fa6aa5904bbd04b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-hospitalization-or-illness-of-an-immediate-family-member-mam.html",
+      "sha256": "ddc16482e776c31e4ea8001ca74676a60e94d6b541e7e75d14c1e53e6e1f0cc2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-inclement-weather-mam.html",
+      "sha256": "2d05e4e016f752430a686673171798b78a33a738eb3e8b4b637d0243f31e477b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-lack-of-child-care-mam.html",
+      "sha256": "a0e9ba63ad88449dff552c8c046767424d9de885f683a6cb33f6cf1c7a903ed8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-11-other-circumstances-beyond-the-recipients-control-mam.html",
+      "sha256": "0954c3f45a8cf090094869dffa821a9a89e2612b7febde973a7d728e7e770983"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-13-verification-granite-advantage-mam.html",
+      "sha256": "00494c3d836c8fc6a8eaff5a39a6acd570dd938a952779cca7003b3b413ff0fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-15-termination-of-granite-advantage-mam.html",
+      "sha256": "3066df84874cf9f5544aa4fcbe3b93c1bdddc7cebd8c4fb8230eed7f3ea559e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-17-reasonable-modification-of-community-engagement-requirement-mam.html",
+      "sha256": "7625556cd7a46e43ff0cd5b47ca8ed22ad6c73ec577f3a8027b79a7827e8cf2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-230-granite-advantage-mam.html",
+      "sha256": "b097fd59b8897cfa85b6ad58529139bcdf7b39cc759e2f27ff2f78d0e79526e1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-231-01-medical-assistance-group-composition-mam.html",
+      "sha256": "716542e800662aecd78339a7e997ed194ad4d6f29e32a417b9cf3895a050f0c1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-231-03-required-verification-hc-csd-mam.html",
+      "sha256": "62429157552e8e27b2d9338fdccf455bcb5ba9d993fcfd4978506be4d6579e96"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-231-05-three-month-temporary-adjustment-period-mam.html",
+      "sha256": "d401abb43305a7d285b73eb86902bc2001f53868e78ed70fed57a40cd27cf413"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-231-07-hc-csd-children-turning-18-years-old-mam.html",
+      "sha256": "f5831863d8f326715099564a5d251e3ca45af87537b020ca35a3130d8d72492d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-231-home-care-for-children-with-severe-disabilities-hc-csd-mam.html",
+      "sha256": "88d19a817a6d547e4cbba35b59d4560967a8382262a0de233003906d3d13f0d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-233-01-residential-care-facility-payment-mam.html",
+      "sha256": "120663efb2f5cb3bf00786752c3bdb444f92dec124c812f4e4c6765c80dca6df"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-233-03-verification-rcf-mam.html",
+      "sha256": "f384cdd1b83166a09d73a2e1bd65ab6dc9878b5bbb3298db9a62ffe61957e268"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-233-residential-care-facility-mam.html",
+      "sha256": "74d581a2c20f1f249382a87d79f8a1f1652a318ca9650424db1d0d0142ba5d73"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-235-01-community-residence-payment-mam.html",
+      "sha256": "46bdb149380b70ec7ed18cae25eff443eb13ce619f463f23c664466905ccc03a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-235-03-verification-community-residence-mam.html",
+      "sha256": "aa9f8db29e0f876a52e6b149dc6d96f6413649b66fc112de4e30aedf10bfd948"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-235-community-residence-mam.html",
+      "sha256": "7bd06c38c7e3c0e3f201009c2ec9fcb4819e280fba70ba95286ea737fb90aa22"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-237-01-verification-nursing-facility-mam.html",
+      "sha256": "13bafb5728eecab2de5b473e4d17c46503d22923898b2923906ae052e1e32c38"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-237-nursing-facility-mam.html",
+      "sha256": "96d6be7df27cf7a58441a5f9595ad460caf38627cbfbf7df65eb315db863adb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-239-01-verification-hcbc-cfi-mam.html",
+      "sha256": "8d9af003519d2689d700dfa5de312451a6c66af20bb72bfb1ba1627ba0ee16f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-239-home-and-community-based-care-choices-for-independence-hcbc-cfi-mam.html",
+      "sha256": "7274612d49e4ffb17077811eb76b74947e6dd5368aa7ffcebabde0fd0557aa38"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-241-01-verification-hcbc-ihs-mam.html",
+      "sha256": "a8d416d4f97cd3b8b37a186e3243dd042c6ded490a7d5915efcb744580ea607e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-241-home-and-community-based-care-for-in-home-supports-hcbc-ihs-mam.html",
+      "sha256": "d283c5390e10c73ddb91b3b39a56a0572e33caafb7b2b061843941d92363bf08"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-243-01-verification-hcbc-dd-mam.html",
+      "sha256": "46eb00b70c61760ee428a23a187e70be3a8a2b0e32a602cff59bc52058aa8819"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-243-home-and-community-based-care-for-the-developmentally-disabled-hcbc-dd-mam.html",
+      "sha256": "e065b4911d01645533d41a60e8084791a7e23d5234330a465fad5b6be68a327e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-245-01-verification-hcbc-abd-mam.html",
+      "sha256": "de6ffd1bfb7225f52ac567b86d68b2373d56344ae953fec6c4d752ad132cdf42"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-245-home-and-community-based-care-for-individuals-with-an-acquired-brain-disorder-hcbc-abd-mam.html",
+      "sha256": "afb30b39576ebfa6dfb04d1fe132083adf7946c0c9648cc3120fc61f08ea8f6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-247-01-disqualified-individuals-mam.html",
+      "sha256": "461cb5e6d2dcb0128b5cb0d38cc43e6382dc3ca899107d14f3ad25d5128dd8e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-247-assistance-group-mam.html",
+      "sha256": "41ff46b88c6400af6684bd992846552af08ef7b6d911516a99d25d8353949a87"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-249-01-assistance-group-size-for-oaa-anb-or-aptd-independent-living-mam.html",
+      "sha256": "b10553fabbaa6af0e35b675423fcdaa8d9fd35af73d3670f6d6321517d828435"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-249-assistance-group-composition-for-oaa-anb-or-aptd-independent-living-mam.html",
+      "sha256": "7e4552f3269e2f99cbf49bb9180e686e90bcace1714ab2352edd462568c558ed"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-251-assistance-group-composition-for-group-living-mam.html",
+      "sha256": "34d28f0bf896781efe9e7d443640a8f02513cbb12f79f3b04cdf04efc8246ea8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-253-assistance-group-composition-for-hcbc-dd-abd-ihs-mam.html",
+      "sha256": "0a5abd5afdc88bf32843324bd826e5f3520712d6fc0934f7892de86874006113"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-255-01-hcbc-cfi-financial-assistance-mam.html",
+      "sha256": "63639ff6ef3322e1fe7138fa76c37f0d7325d6803bb72a281ea81bb9954165bf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-255-03-hcbc-cfi-medical-assistance-mam.html",
+      "sha256": "b7660ce81d3db588b284ee0e23648d15f01cf5326221628a1d1beca5261fd483"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-255-assistance-group-composition-for-hcbc-cfi-mam.html",
+      "sha256": "5960da2eeba0e486969ad9ed85ff21296e2f7aa131e3df425f58ec41ea6fe89a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-257-assistance-group-composition-for-qmb-qdwi-slmb-or-slmb135-mam.html",
+      "sha256": "7b4bc77854843a8b5d74519de984f1f5dee666ceb51dae2bbf7d8ff642b23d10"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-259-01-determining-tax-filing-status-for-magi-mam.html",
+      "sha256": "8783607849c3d39b9c4353e9218370bcfb24b679fcf38cf5d0a47247d878aaed"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-259-03-tax-filer-rules-and-non-filer-rules-for-magi-mam.html",
+      "sha256": "f590553aebb1e85eb85f71f1a6ad0b5426557393b2131b2488b2e6f5b4d0100e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-259-05-tax-dependent-exceptions-for-magi-mam.html",
+      "sha256": "cd467bafdd70a323efd5eff86e4c950d8cc983599350b2d2289c552489970c4f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-259-07-magi-whose-income-counts-mam.html",
+      "sha256": "37f87c96fb05a2f7449d2694448912b4c2544d6a0006d1eab4c3489721449fef"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-259-composition-of-magi-assistance-groups-mam.html",
+      "sha256": "de9cf6ccc9d4634b53478f9059e05b5d15c2757fe97e9f024baefd4c6712d6e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-261-assistance-group-verification-mam.html",
+      "sha256": "310a2a516cb3f6665528daa7cee183968fa143813193dc6b75b6a5791809db6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-01-rma-application-process-mam.html",
+      "sha256": "57e8700b10d783ea54d4f5adef2ec6982ffd98168f82d40cd633a806281cb181"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-03-completing-an-application-for-rma-mam.html",
+      "sha256": "d79139de4f91d3c505881682194fb079c6cd7fa41fcde984d376010b6e2cd7f7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-05-rma-application-processing-time-frame-mam.html",
+      "sha256": "4f6c8c1f6a3511364ce7a6f91b2fdf8ba7bbce8eb667f5976d941e8017272315"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-07-rma-eligibility-criteria-mam.html",
+      "sha256": "628d684742adf5e612d8322d861e92a4c33790df188248ef5d41bb1e784a7136"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-09-who-is-not-eligible-for-rma-mam.html",
+      "sha256": "d114950929d669d128c53c0a4b7ff910b7adbe1269f5277299e309e62df43fdb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-11-rma-length-of-eligibility-mam.html",
+      "sha256": "6004d6ae688e419fa53489c38009baf3079b691be8e7b200422d9a535d7045e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-13-changes-during-the-rma-eligibility-period-mam.html",
+      "sha256": "d4a9d12d2ae0a029dd1a20ce28567bdcb94a4e363987a72b113827c9c7ca3788"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-15-treatment-of-grants-received-by-rma-applicants-mam.html",
+      "sha256": "798436db5079646695a43ab3b534dd4dd9621c2f54f808ceccfece3ac2dc910b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-17-work-requirements-of-rma-recipients-mam.html",
+      "sha256": "e110318c41c337c790a8d04bafdb5ab62b5e44bcc23dcd9775060000064af024"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-19-termination-of-rma-mam.html",
+      "sha256": "3455ebb8e559e2428bf42a17ee6bb5e42b501cacacb0bb10f7d5f2418cf78fa0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-263-refugee-medical-assistance-rma-mam.html",
+      "sha256": "f40e874c56810aa9155c9ee5b2d2d9917527ac119ccda0e752710151bc603bc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-265-medically-needy-medical-assistance-mam.html",
+      "sha256": "022affccbc92a6e3c887c9c5f0e682974366ee7629b61f3171579adfb060f66e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-300-non-financial-criteria-mam.html",
+      "sha256": "379111d4df35c51d4a4f7560a3efa54a61d513853848b9c694f0abe15e1a0fdf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-01-individuals-incapable-of-indicating-intent-of-residency-mam.html",
+      "sha256": "1fe981d610b6cb2522699ca2e8d3cc6044e00afa6a41683dad6f47daca49d99f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-03-how-to-determine-residency-for-medical-assistance-mam.html",
+      "sha256": "77245cb458625556b29a40ac0601f17a98398b3d1c6ca700db728def2325ea17"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-05-absence-from-new-hampshire-mam.html",
+      "sha256": "93cf00a15b5c16228cbe80e520bf642b7eb5ae6ace28556e6435876deb94e89f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-07-out-of-state-recipient-moves-into-new-hampshire-mam.html",
+      "sha256": "d291388e8f400b0ef573321399b5cbab01805191bc61d566ca660f30aab5022b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-09-medicaid-only-residency-individuals-placed-out-of-state-mam.html",
+      "sha256": "cc2a3a9a689a13bb7e5c0409418b267144e24ce429ed939ea1d0199c2d4ff4cd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-11-medicaid-only-residency-transient-individuals-mam.html",
+      "sha256": "81a4f9e495f06c308723ec34fd4c695191525671dbbf8775f0fdc3dde48b227f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-13-verification-of-residency-mam.html",
+      "sha256": "513d704d5b01661ca8a4fac291ae3e904ac9e6b2611fac0245a43ba0b28b8927"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-301-residency-mam.html",
+      "sha256": "88c679e69a6e5099d7c940215269a52f9495a3673462017a1bf9bad6861a7b25"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-01-declaration-of-citizenship-or-non-citizen-status-mam.html",
+      "sha256": "f73290111140b14ff46c22d2329b71eac24a3b6d26c8da9b184f796b24e218f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-03-definition-of-us-citizen-mam.html",
+      "sha256": "7d560ee5cd5e458b775273bf6da347f76300b4069adfc0cad5c9569905adf4a7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-05-verification-of-citizenship-and-identity-mam.html",
+      "sha256": "36a34976a03abe820425f2520549a59c72131ef71b31e60089f74dfd735b95f2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-07-determining-qualified-alien-status-mam.html",
+      "sha256": "15a419168497e039e33eb742ee10e3c925c7a52e9d9fef9569d2dce2f06ee199"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-09-eligibility-for-certain-qualified-aliens-mam.html",
+      "sha256": "22d5f8f4cb5b8982f2e0965dbea65d8e762b60956be975298d44086d1d622891"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-11-qualified-aliens-eligible-without-restriction-mam.html",
+      "sha256": "00a55560e5ca1490def1a83e651201b6d6f3fdbd8df683a1b40632bd0bec5a14"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-13-qualified-aliens-with-restricted-eligibility-based-on-date-of-entry-into-the-us-mam.html",
+      "sha256": "89c278d0e0f3d25d7994ad34d611313b842b6321ced8ce4c99ba893f0bddcb9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-15-ineligible-sponsored-non-citizens-mam.html",
+      "sha256": "1daf2188b55e496ebe1b4eab37a8f02bc317fd46e05f2ae0a2e8c43a65d37a73"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-17-crediting-ssa-work-quarters-for-fanf-and-fanf-related-ma-mam.html",
+      "sha256": "d06513a72df32bcb908f915a82d38fdd2b2ab577b390c5aab65f216555ee2431"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-19-documentation-of-bcis-status-mam.html",
+      "sha256": "350e97ee7441ac13a2c750e25b28d3a29f5e4c53d24329d7145d0b386238bd12"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-21-verification-of-qualified-alien-status-mam.html",
+      "sha256": "745b842405b9b7212188be0e46cea4c324bc6bd35b94bfb029d01a45a93b8b6a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-23-when-bcis-responds-late-mam.html",
+      "sha256": "1b72ea89a7a0bd80fd34c73a11a83cd6e54a2704e5867d6c92e63bfa97e85fb0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-25-administrative-appeals-based-on-vis-verification-mam.html",
+      "sha256": "b8cc853517f977e3a7ab7ef47508bc91bc176b6324252c52bd6e5cf6b0189d94"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-27-reporting-illegal-non-citizens-to-bcis-mam.html",
+      "sha256": "1e5fadfc134768f66464f4d803426f243a75cec900b27a788d1aade291022e1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-303-citizenship-mam.html",
+      "sha256": "8267117e038ad98415779ce63f44a3339f50b8031e0d1893fc89adde8f46e4e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-305-01-individuals-in-designated-receiving-facilities-mam.html",
+      "sha256": "65d5ed109616ce4d348b383d42a7c59703299c4b83f36a863d89c9c77ec3ccec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-305-03-medical-assistance-institutions-for-tuberculosis-or-mental-emotional-disorders-mam.html",
+      "sha256": "7cf049dde48e45c9ac63463235230214663a439805493db31988355f34264c6d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-305-05-medical-assistance-public-institutions-new-hampshire-hospital-mam.html",
+      "sha256": "cf2b06f8cabf2ce8ceb54b27a8d4c28d6f2166f30d00466e4ec33eedaa6d9dc4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-305-07-medical-assistance-inmates-mam.html",
+      "sha256": "cd54b001f83f875073addea2495912f0350a2bef59099d04d4c34ced44d0566b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-305-09-verification-mam.html",
+      "sha256": "74513286fae2b21463dc2cb2bf968a4ce328de65f4d06fb48421603d545c1864"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-305-institutions-mam.html",
+      "sha256": "205919a976a12aedc20d5ce024e7f7dff96867937cd1cc11cccc398567959811"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-307-01-ssn-eligibility-and-applicant-notification-requirement-mam.html",
+      "sha256": "619b247373f09e0db54111aadda9221fde1cc26cffa57c8f9121008aa57c74c9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-307-03-completing-an-application-for-an-ssn-mam.html",
+      "sha256": "9113e12e6d8b710c72f6a75946678dd7bba1fd81a16be77c29a4c5e4a522caf0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-307-05-verification-mam.html",
+      "sha256": "ecb3c2330df1eb7f97b8e450628e2ac0bd5cc1ea824fa9231442e34091c6ede0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-307-07-good-cause-for-failure-to-provide-an-ssn-mam.html",
+      "sha256": "56cd9f9e9258e667dcef4706cc3c4da587987f3173d0beb689a8aadd9aecdd83"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-307-social-security-numbers-ssn-mam.html",
+      "sha256": "621af85032211b9aa92924e4eccd46c29ad78b130b10f97eb235e55c540fa3f2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-309-01-fiduciary-responsibilities-for-support-mam.html",
+      "sha256": "8039baa5c963622fa3deee96a10dd0aa97c92a91e44700b012dc95a7e13087c4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-309-03-responsibilities-of-an-individual-receiving-a-transfer-of-assets-mam.html",
+      "sha256": "d65165a013711a004eeb0b301cee6d8dd54a92a52002a97c228d38ecd105f03d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-309-05-responsibility-of-the-individual-controlling-the-income-of-a-resident-in-an-ltc-facility-mam.html",
+      "sha256": "be0b85edaa7bf57c058f2fb8f4392211dd6a8548b5c7ddd165429bffda286640"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-309-liability-for-support-for-residents-of-nursing-and-assisted-living-facilities-mam.html",
+      "sha256": "377a8e13593d994432a966a4663f9f7e99d6093a474f173568ad63f6679b71b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-311-01-legal-liability-of-counties-mam.html",
+      "sha256": "2e929fa3282d6b89accfa2112276200879bd8b052bf209d5e59dea9b6b8de509"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-311-03-verification-mam.html",
+      "sha256": "2b5ec932233c347a5dadcf8c5378c7b7acc641dc3f5bb931ee4595961c6cdfca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-311-05-liability-for-support-relatives-ability-to-contribute-mam.html",
+      "sha256": "d71148fedd7afcd3ebe06d97de3c81de6bb77ebf6acba6d5a7c7c86907449b2c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-311-legal-liability-mam.html",
+      "sha256": "f6d75753e9e605c1ef34d5cbf3ee5694b14e962c95a0cbe9066b46c1f2386472"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-313-assignment-of-child-spousal-medical-support-rights-mam.html",
+      "sha256": "bf51484b29ef593f395b6cc60e987ff436c96e960c3dacceef31a1b746539136"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-315-01-requirements-for-developing-potential-sources-of-income-mam.html",
+      "sha256": "f5bcde84888183719d24ac53d7e069c67bb44d59d8c15165f0ac9334f4d1c06f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-315-03-application-requirements-for-developing-potential-sources-of-income-mam.html",
+      "sha256": "e23c73315ca7fe21df315a9b15d937800013a7266653d4d2cedbb4e5eecc0fcd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-315-05-cooperation-requirements-for-developing-potential-sources-of-income-mam.html",
+      "sha256": "4c98b7db60056a84b65fbc59a0bc7ec4e8d8a6557000ec9c1b3d46029c94ee31"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-315-07-good-cause-for-not-developing-potential-sources-of-income-mam.html",
+      "sha256": "b5d349b4196f59b375cd16987ca5a4ea856c659e93c549783c3c287a256aa5e2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-315-09-denial-or-termination-of-assistance-mam.html",
+      "sha256": "e265da1445ac19c97c2062d9c4cfc5b91a1a59f40f15a9c169a31b76d1a054d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-315-developing-potential-sources-of-income-mam.html",
+      "sha256": "2b1a720a5d623ef56ff6f371dea72c43ac4e45c2e31d93373911a0c02088bebd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-01-reimbursement-medical-assistance-for-non-institutionalized-individuals-mam.html",
+      "sha256": "1a77e8b0d11f5f65b65ba861d265b7588969a260b6a4940cf051b75c0e8973ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-03-reimbursement-medical-assistance-provided-to-permanent-residents-of-medical-institutions-mam.html",
+      "sha256": "b172122959b39ea7294ddb153240dfd30e0ad90baf9fdca9ecfbf1805c1d078f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-05-verification-mam.html",
+      "sha256": "1a6bffce1ba08068b26d0ea7d36836d84837d06fb07f583dacd4ea632a21555b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-07-disposal-of-property-and-conflict-of-interest-mam.html",
+      "sha256": "d92116c87b39a1a27c3af758f29fa53a0f82dc7ecfb31c2a48aab8cf25d34c77"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-09-fire-insurance-mam.html",
+      "sha256": "8fbdf8f19fd5bbc6bbf712b4b6f3f05ac0211733bd98713a3cea2724784eb4fd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-11-tax-sale-mam.html",
+      "sha256": "247dd589724e6a20ddc32967eb2258d4505cdce6f8e9ac1cdc06a82fd6446bb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-13-death-of-recipient-and-reimbursements-mam.html",
+      "sha256": "ba07dc4c469ac2767082feea0361fd24caa315671991fa46dd21bda72b5ce837"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-15-release-of-liens-mam.html",
+      "sha256": "bb891c4e9fe5c5998cb40eef74d64b6d582f337311f4b27dbd85d53b1c684a35"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-17-recovery-distribution-mam.html",
+      "sha256": "d4efef0898c77a7e2c43d12e4fb918c0bb6e15d2834560399964cfb4571285d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-19-recovery-for-medical-assistance-provided-estates-mam.html",
+      "sha256": "b0c6795a632d8b00d418eeee1247c384964055b032caa260b4f28459dd9b3ccd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-317-reimbursement-mam.html",
+      "sha256": "6054720b716ec437821f1cf484fa444a433e94d3e3df4701bb7e2ad4ca8048eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-400-resources-mam.html",
+      "sha256": "89712aa2041258f07218151ca2dea9eae684b250a528d3af801a3ce34e321443"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-401-general-information-mam.html",
+      "sha256": "778298e69b84376fd99ad2b47996fcd97f42c2d9822137e2daed3d70083178b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-403-whose-resources-count-mam.html",
+      "sha256": "ffff0565d9ed3aac60eef41dae056047212f5f6dc91c111e66712e3fe1626ec4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-405-treatment-of-resources-mam.html",
+      "sha256": "3d640279aad174d1f405006ed205ac3172199afb9118082aa74b32a2013008ee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-407-01-categorically-needy-medical-assistance-mam.html",
+      "sha256": "84fe00731479d164a91d2e155f4b69e3b8c640714febc449f721ccd5d958e9e8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-407-03-medically-needy-medical-assistance-mam.html",
+      "sha256": "62cd3f8c4a2ab6eee862875dcde775b275d0d113cc55258e8fb2aa82194f3b31"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-407-05-qdwi-resource-limits-mam.html",
+      "sha256": "7cd16d7b7b522c9dfc894a62096633050d35a69519c91b381aa7ebd2f0970f7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-407-07-qmb-slmb-and-slmb-135-resource-limits-mam.html",
+      "sha256": "f0310c65f2a2140308637acbaf2cf4a347ffd29e993f82f3fa059b8e5929212e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-407-resource-limits-mam.html",
+      "sha256": "c060b0cfa8ec068fefd509c1f4261378421f80d0e4a210a214c1682cb97f5667"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-409-verification-mam.html",
+      "sha256": "b28fd0c0ee7fef09ea0595bd80bb6b01a4655f0719efcd8c30910a6048027768"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-410-reasonable-compatibility-of-resources.html",
+      "sha256": "07254f89fe461880760b7054b16ca43826ed697088a1007574b03260f231b919"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-alien-sponsors-resources-mam.html",
+      "sha256": "3f912800c08f7e8e4258c9e5d43159191ac59402bfaf969d93ba74323559713d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-annuities-mam.html",
+      "sha256": "503a843544ec440cd47e4524a15638e7083e95452bf612bc64180ea9c375aa0b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-bank-accounts-mam.html",
+      "sha256": "40315549383aa4533b7dab08ddc6a707a0e01a6998c598da9d7dcf2b4006e10b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-burial-fund-exclusion-mam.html",
+      "sha256": "0cc7517b53ec2e6eff04d4ebec967511660f745c979a05c6e5c3b27f1c8fbb5e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-burial-fund-mam.html",
+      "sha256": "9b64e886356d81ef533d12bd4fd754b2788387571321541bd6b076d16a7757be"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-burial-plot-mam.html",
+      "sha256": "d7360fb05e6074b6bb0bd5396dffef7207fec2d2743763dc241e10f638b4b773"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-certificates-of-deposit-mam.html",
+      "sha256": "63c9d4d421ada3f055faf23b20c28db2ca801971b3cff5fbaf9214c9531ba60f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-common-types-of-resources-mam.html",
+      "sha256": "394eb204814ef9b52d16b22fac2adc3d3d1c31ee971a83d3c72a34906ff6ad7c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-corrective-payments-mam.html",
+      "sha256": "d44da2a9824e7c04e1bd9cf1e52ebc49d2183ae0fdb3d1caab2b358aeb8afb06"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-dividends-and-interest-resource-mam.html",
+      "sha256": "a8779efb699ebbbfbe6f0a8c0aef0d10570e92ec049fe9a01c31052b0c216496"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-household-items-and-possessions-mam.html",
+      "sha256": "68aac9bff6ef721168f838670701c04f281e212299541c170787a2c34bbb1d3a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-inaccessible-resource-mam.html",
+      "sha256": "547bf57dc6f0249bd3765374d5b06e71786514888976d1d945689909fa80c400"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-individual-retirement-account-ira-mam.html",
+      "sha256": "b51253188a147d2cde4665cc0595ea8de01b0adb852280d8c23b1253dd353d4e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-jointly-owned-personal-property-mam.html",
+      "sha256": "a14d4b5ce7c3744f045e06613b32a931b2d3eedcee00922a365d14a98d4071a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-keogh-plan-mam.html",
+      "sha256": "a04ecba0635bf8557a509838d7a52f9b6bf413d31bf0b66dc019c9a340a5668a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-life-estate-mam.html",
+      "sha256": "dab9f6d34c9da3e42557eb6a0a9bee9a3f30c4e2a625f9a65bda52529340746d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-life-insurance-mam.html",
+      "sha256": "885262c3bd38b5dbdd23e14bc02865a08ab0b5e10119cd72ec47d1ac4483fe1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-life-insurance-offset-mam.html",
+      "sha256": "6a25d51726bec57b107f6d627a3ccc786a5b4ca5f5d77beb4e64f77b1b2c3255"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-loans-resource-mam.html",
+      "sha256": "569951e972a43f4d65dad096e1070a96063cde7057a724f71d02ee9762347086"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-lump-sum-death-benefits-resource-mam.html",
+      "sha256": "7da8121a0e95a62d2fc30a6f1cd021cce6e310819c28e4f33d2db1f1ba11b50b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-lump-sum-earned-income-resource-mam.html",
+      "sha256": "563f5bd9abc6695220660bc507245ed37afad49bc6eec1ee1c984a85585ee0fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-lump-sum-payment-nonrecurring-resource-mam.html",
+      "sha256": "3ead4ae4d9c4317e8169d495611de9c4e0905b213c2dc0d2d9580b4f3bdaab03"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-medicaid-qualifying-trust-mam.html",
+      "sha256": "d7d2ed9fe8e40af3a67f64f1a310c1e215eb59c12d8125126087b3d8ba2c81a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-plan-for-achieving-self-support-pass-resource-mam.html",
+      "sha256": "edf65e5e656506aea0832b77c0ea4f0f6149b1908d883c12e564f3849f045104"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-real-property-mam.html",
+      "sha256": "d709d189f2b62d0c32b77a8b4509f47ef89fedfaed5663b0f08e158d17961399"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-special-needs-trusts-mam.html",
+      "sha256": "2000f312208833e3edbade65fd3b91e9ebcd233e7e72dd6617039f5e264f8b06"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-stocks-mam.html",
+      "sha256": "b7f3f45cb3eaeccffc7239b784e998cc0ad352de735642ca6efc78238f294a5c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-trusts-resource-mam.html",
+      "sha256": "28e09ca97dda2a53f0859f4cc4e0aac7db22485a5b48c05523976cba9790a521"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-trusts-using-the-assets-of-other-parties-mam.html",
+      "sha256": "5ba122f94ea8b8cde31b56b198bb6e21f94ba617307dd66f7a920e47ac6e651d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-trusts-using-the-assets-of-the-individual-or-spouse-mam.html",
+      "sha256": "1d5c5e0de47e5421419953fb8550977d878336eb294c761fe2de2446edf6ff07"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-411-vehicles-mam.html",
+      "sha256": "22974c16719fe9b2c26e7ffd3a8c785b8da3f023dbad076869d4e2ab6f013310"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-able-stable-nh-accounts-mam.html",
+      "sha256": "946688a1b892ce2b8a3705b31d9f872ee17be9e483981f07ce908527f0a0efb9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-continuing-care-retirement-communities-ccrc-mam.html",
+      "sha256": "f09e60b1ef134742e0702b56ebba41c5cfe9ad42f1d11d726a5e61ae8e2c6ea5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-disaster-relief-emergency-assistance-mam.html",
+      "sha256": "6b8a7ebb4e37aba45ceed4a8f6c6f9c148a7738a7d0efff870f337fe559b8e58"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-farm-machinery-livestock-tools-and-equipment-mam.html",
+      "sha256": "ab86b343de67578327e045e4060cf3dec9c3216fefb1af024e5974da12d9b85c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-individual-development-account-ida-mam.html",
+      "sha256": "86e1c59aaef399a2deb20c492cce3dcc5eb32ed68eb9437a2373369a3ba06783"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-less-common-types-of-resources-mam.html",
+      "sha256": "1fa4b6489a7930b0fd026a4ece3a52dcc3efa62e9079945295cb655b94f9188f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-mead-protected-earned-income-ei-resources-mam.html",
+      "sha256": "df5e983b2672ad5271d1e510a4a1d54bb7c685683028d5708262ab98bf48e872"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-resources-excluded-by-federal-mandate-mam.html",
+      "sha256": "ab4565e5fe7562e24d456a32caf6c33b25c16fbb2700717e7fae59bb978f40eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-susan-walker-v-bayer-corporation-et-al-96c-5024-nd-iii-payments-mam.html",
+      "sha256": "7bfab800f908f73c7aa3ce9af91da8e08d1f179966a553647c3efde3a32a288f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-413-tax-refund-mam.html",
+      "sha256": "142e7859292129fbc1739709e7ad9d11ba2374c08853a9267c5ef1011fdc186f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-01-what-is-an-asset-transfer-mam.html",
+      "sha256": "014fa2b4cf8e35b28782ec191651137a69778fa7fd8a2564e7257b84fc0adf62"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-03-look-back-period-for-transfers-of-assets-mam.html",
+      "sha256": "0d2986b9ab4d4209faead5a456521d690615f4c65ef0620d6edd80fa9cfccafa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-05-transfers-by-financial-assistance-applicants-or-recipients-mam.html",
+      "sha256": "b370974125b276a2ccfda1c9af8a1da3b91935fb7f30d6359eb0820dc19e22c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-07-transfers-by-an-institutionalized-individual-mam.html",
+      "sha256": "2b65ec402376e1d652a2ee00312d1d386fc482900daa3b94cceb5865f407e61d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-09-transfers-by-the-community-spouse-of-an-institutionalized-individual-mam.html",
+      "sha256": "3935e099808a36eb6f04fe636610fd8454ba5dd3edfee6982002fd5a6e8c81a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-11-evaluation-of-transfers-mam.html",
+      "sha256": "f9440d1fc0f33efb6e724323f755182fbd5c58b66609fdda4d29bc91f6b037ff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-13-reasons-for-transfers-mam.html",
+      "sha256": "ebfa41c2a23dd1fd81fa33298589b616b4cdddff9dc28350d6611ed9b3c9a95e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-15-allowable-property-transfers-mam.html",
+      "sha256": "93456b5719a270537b39bd2bfd6017f99ec0663deeaffb039ac34f585590fd6a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-17-transfer-of-assets-into-a-life-estate-mam.html",
+      "sha256": "72bbca8fd7294b6c688ee413ded1429f33c5d3dacbe2e2f9a66cec4b2a85c4b5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-19-transfer-of-assets-into-an-annuity-mam.html",
+      "sha256": "ce456d6e982375375871f1b0da95d7d6d5b0e41c15f1e8e5de7dc9eefaf83192"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-21-penalty-for-transferring-assets-financial-assistance-mam.html",
+      "sha256": "1d307b36692a048685937826ca51b2e4a74f51d79bf216a170e0a3f0c2b0eeda"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-23-penalty-period-for-transferring-assets-medical-assistance-mam.html",
+      "sha256": "8430f1707b361b7aa94dd3f5e26589a793e9d39d5d31bfe3156aaaa2e1b30603"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-25-determining-and-applying-the-penalty-period-mam.html",
+      "sha256": "785f3408320ed1d2435332f8e0abd8f20abe216712809758cf9e6a80db186a8c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-27-when-a-penalty-period-for-transferring-assets-is-not-assessed-mam.html",
+      "sha256": "e4ed76bc96a59e98f064383290c6f3332ffab4eb4c9b019d740adbcfb2a70145"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-29-undue-hardship-mam.html",
+      "sha256": "1acf473ac1c0b5ecc79996d16cd1f7a709060113b4ba0fee3061dc487c70962e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-31-required-documentation-for-an-undue-hardship-waiver-application-mam.html",
+      "sha256": "42da9d9a7a197f8ff827b2c93d5748f503f589f53ef69dd98248b756e1254fb5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-33-verification-of-asset-transfers-mam.html",
+      "sha256": "36509436a7fab072da3eb433c64cfe32b4c85ba0cf0f1e852b9450e3888368df"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-415-transfer-of-assets-mam.html",
+      "sha256": "065ae5c3f50f72872ff972986ca9d526a9c24b9f8203d20f3efdfb05c197b9af"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-01-entitlement-to-a-resource-assessment-mam.html",
+      "sha256": "ab16308b341f2b3ed15d14860386e81d4c4bed1bf3d48c885fea32744eead0b8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-03-requirements-of-the-resource-assessment-mam.html",
+      "sha256": "25faa1236a161c98c4a15a7b46db3b3b3f53ae4f6ea49013404f627e805018e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-05-verification-requirement-mam.html",
+      "sha256": "381eb26eff39a468ef9d3665ff422cd4356ec383b398f6c021b26017464b7b7b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-07-resource-assessment-procedures-mam.html",
+      "sha256": "4141d193ae6db3800fe8b8fb3f739d28c7a30aa7ea0a72415a4a01aac4178e84"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-09-administrative-appeal-mam.html",
+      "sha256": "1ee62baa051b8e207c33c5782715b184c8d2326f0972ed14053fba71b6910557"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-11-spenddown-of-excess-resources-mam.html",
+      "sha256": "73ed46e97dfd0a1b171c0547761436aeafc474df008d0633949d46f961bd4ce6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-417-resource-assessment-mam.html",
+      "sha256": "62e0c3456e3aec164d2053a14ee775e7ee406a613ec8332ce839613dcda7213e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-01-entitlement-to-protection-of-resources-mam.html",
+      "sha256": "ece9f1d8892cf99047aa87da75408eda7b145a04b7b4826e069fcdb27b12fa7e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-03-determining-the-protected-resource-amount-mam.html",
+      "sha256": "633af6d88767be4b7a3b3e5b6c16b6ad3f7cbc727f15c0483a0c7127d147e658"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-05-procedures-for-protection-of-resources-mam.html",
+      "sha256": "099a2abc43ee02c92cd9b336b0feda96e8b232d28202cfe7a3f0613b1235f2fb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-07-resource-increases-during-the-first-year-of-eligibility-mam.html",
+      "sha256": "a68f193ef1b89a239b044bf8a48dc70092f44d5fb2fc16401912f75cb058dcb4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-09-revision-of-protected-resources-spousal-share-and-spousal-allowance-mam.html",
+      "sha256": "5a4afb4067c9d2c753363d260eb3e09867146865b0e980675dd9c18d7f4d6c51"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-11-verification-requirement-mam.html",
+      "sha256": "67f502294aa0967efc646e9cb81b0b08e82d7a8541b5ec91f79800dab7f4a982"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-419-protection-of-resources-mam.html",
+      "sha256": "1f5d87a874b677da52fd017019b31d81db1585f4b44431b75e36597e3efd055d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-420-life-estate-tables-mam.html",
+      "sha256": "7966b3e60845bcb17cf7ecb3a2e098e6c3cd288fdf423cb3543886d77b557108"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-420-resource-tables-mam.html",
+      "sha256": "165091197350f77c927f1cefbac16b4db15bab3cd3ce830e95117ffefeffebf1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-420-ssa-life-expectancy-tables-female-mam.html",
+      "sha256": "e90d05dfcdc1c48d812e4cfcd12e537f8beee1e3b6d2f6f38f6645ee384be768"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-420-ssa-life-expectancy-tables-male-mam.html",
+      "sha256": "23e93e9982987eaf39170ef9a5541465f08c18046152bf2b9a8f710645b6c002"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-421-01-entitlement-to-an-ltc-insurance-resource-disregard-mam.html",
+      "sha256": "7ba211378ca1e0a7bf4adcf5bb8eda38e2ad715239582b9d466ae546d2b3ceba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-421-03-procedures-for-applying-the-ltc-insurance-resource-disregard-mam.html",
+      "sha256": "7e6e8ca30792b1b977895f29e5fdec2d41c843ad88d1a06a72d93256adfbfd2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-421-05-applying-the-ltc-insurance-resource-disregard-at-redetermination-mam.html",
+      "sha256": "e53ff86d3b4f3423419dccd145983bfa8e9a7e2804241ec493f32abcfaaa328f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-421-07-ltc-insurance-resource-disregard-verification-requirement-mam.html",
+      "sha256": "394c1f12f3fcad28cc3988049a3a3d1ea45e6cc9665d533058efa901a557949b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-421-ltc-insurance-resource-disregard-mam.html",
+      "sha256": "5c2b5555ac282b456c477954a874a2f251fb8bcdca358068a74d4875e04d8803"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-500-income-mam.html",
+      "sha256": "d95519edc5791ebc7d6614308ae78665849285bdd1f0e3c4f905353659c6ba1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-501-general-information-mam.html",
+      "sha256": "c3ab76898a550b6d7f2705f0839603db0c297b9631c1f4ce0f6f6fa15002cb37"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-503-available-income-mam.html",
+      "sha256": "62d04ed745386a7f595b594a64a054b344a3f4df944093f92d474a10b4c533b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-505-whose-income-counts-mam.html",
+      "sha256": "5f77b62eabcfeb3983efbe7e2b6b75e05be5d8c9f1c61704219cdba5a92962a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-507-treatment-of-income-mam.html",
+      "sha256": "06e29b47733363b1493783cf8a30d5f3ce1660db25a6cc4c68e06e4fa763eb4f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-509-01-countable-income-mam.html",
+      "sha256": "50e4fc9eba608935e6515564331b7b0e37b0d0c33d99b0b861ceaa41465e7c3f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-509-03-excluded-income-mam.html",
+      "sha256": "a5105b4185d9fe1ad9c29848d9c97f5748c0cd1d1cd4a6468bd2ec23e58543cd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-509-05-self-employment-income-mam.html",
+      "sha256": "6aa4b24bc10e0108af109cdc2df3596d2addc8461564300313ad6b306639e548"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-509-07-lump-sum-income-mam.html",
+      "sha256": "7073ebbf2bddcec896580f149a50695e820c02a58be61851ebd0d6fd4a26cfb9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-509-verification-mam.html",
+      "sha256": "315ce7e1ba6d390d982698ca1f0fa4f4aed75e3ac63a76a6e95234b3df89e951"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-510-reasonable-compatibility-standard-for-income.html",
+      "sha256": "e08a42b0cc5a9f94ac1fc5b6ec7ef9ff1952f6432687577f14468fc00b2e2ef0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-adoption-subsidies-mam.html",
+      "sha256": "721709d569c76ada4a384ba8f999153c9fea96a9aca9f94c1fb784db27c2aeb7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-alien-sponsors-income-mam.html",
+      "sha256": "868d2d869a30a42131a1e0f83edc2e1f6f6ce2f73751f000f3b768dd85ef6ea2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-alimony-mam.html",
+      "sha256": "3abf74b381c210bea6ca9825f66834fe1445d3a135ff83bbb4d3a4e3c95d17a3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-allocated-income-mam.html",
+      "sha256": "b8aede044749ac196b98070867eff8c08841309772ee18cf24c966ed951a312e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-americorps-mam.html",
+      "sha256": "156f5e517f575b818d592bc562ff136c408173a15cfb148d4397cf416bc2b57d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-assistance-payment-mam.html",
+      "sha256": "e8c221837395d699825f5697a92a7bc4812b57df260986f13cd7bfb6aab513b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-benefits-mam.html",
+      "sha256": "f98905c51db1d160cd99653cfd0078fc9700509095a2e53e289eb4f3cb7f630d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-boarder-income-mam.html",
+      "sha256": "afb1ea5c1a41b08f1678145ae747de34afd4b0c8f60d722395acfdad631ea22b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-child-care-income-mam.html",
+      "sha256": "b2d90d12640051b337f893b103843d4f2ca797fa20620b2c1dfd99ccb47c9f89"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-child-support-mam.html",
+      "sha256": "f166a5a59fb4b5b2555f27346c749a378795514092000b1725b012a0df26a5a7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-contract-income-mam.html",
+      "sha256": "9c7fa2d688b5ef5486ce07221a579b7de720f8ac78a44894454d74303d78a082"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-contributions-mam.html",
+      "sha256": "a38baa934f0012b0b1cb2e8d81a5c1f145ab4ad89640de88e0a1c5b9ed76b815"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-deemed-income-mam.html",
+      "sha256": "005f9af865be0efefad6bba8d2bdbac2438f6849b58505096eb74a95c4c3024f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-direct-relief-mam.html",
+      "sha256": "55fe8469a9172bf9b0c31efe543a496dfc53660418aa53c95907253bde103d4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-disqualified-members-income-mam.html",
+      "sha256": "4142e914786569f859346df1234001f3bd0ebe44815f2928ccdb4986a7920143"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-dividends-and-interest-income-mam.html",
+      "sha256": "99818ed373c0b6d683a72ee0ec4ba0c148b8d62775f921abcf5d9dcbf5876c26"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-earned-income-tax-credit-income-mam.html",
+      "sha256": "2fdc37c27a6a59b94539affbec4a630471927dd03a15355e4b1e187c7e532ffd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-earnings-mam.html",
+      "sha256": "ae676f3fb1b6d1e612cff9113c6316d8f4015e3f31053422e859db17eb0326c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-earnings-of-children-who-are-students-mam.html",
+      "sha256": "4843eab4cb1018299b174401f86cd556f86daad4b9da9299391d399cd517285a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-educational-income-mam.html",
+      "sha256": "b4151abee818b3afa622d0bce8a8922564cb2eff9161401b4987bf4ae7a49e17"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-federal-fuel-assistance-mam.html",
+      "sha256": "c9de4869b00dc033b5f07d541a781ea1ebeb67ec8bf8b6e5a976dcd0c69057b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-federal-work-and-training-programs-mam.html",
+      "sha256": "db675ec2c28739ee3fd685da180e753a631ca61615b2005b6f66bc302a5d4092"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-food-stamps-mam.html",
+      "sha256": "8dcc997d8b24d9290b5477bc87d80d41265d5667be169cb66551621d8dd09fda"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-foster-care-mam.html",
+      "sha256": "9c1bf690dd57a8710b9dadbe17dfb5bcdb0c971e64381293d7ab10010b162a85"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-income-in-kind-mam.html",
+      "sha256": "295a1f3dd4e10d7237aa63357fcb7d85376bd53c26beccb0dcd0d15ade922c3b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-income-types-mam.html",
+      "sha256": "46b8d31a1d98a8820dde19c896e5e6b5451c2220d65f47f03cf1197348509e3e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-loans-income-mam.html",
+      "sha256": "5f78c219e92a6c0f0a884a4b4bfe53f04fdb8ccbaaf7f6cc2c7fcd894bd5e53e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-lump-sum-earned-income-income-mam.html",
+      "sha256": "073495bbb5fd1a78b1a5f70f4f1f64be68346efdb15aa4a8246bff4bc57973a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-lump-sum-unearned-income-income-mam.html",
+      "sha256": "e4961481b0875fb4af2bde0241d12410c4b6373f2840cacf07d6a7216f4d30ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-plan-for-achieving-self-support-pass-income-mam.html",
+      "sha256": "78d6b73bd77a5a4df4d5cbfe8da56d063d6dd7ccee54ce073de6bf267fa6f601"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-rental-income-mam.html",
+      "sha256": "372b55c7d80b2e0fb53d9968744bcdf693e2eb7261110abae200630b37c330a6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-retired-senior-volunteer-program-rsvp-mam.html",
+      "sha256": "81574ce2fcc24b695b5ff8431561d7eae0a57c016cdf38c60b3b51a9f58a1027"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-roomer-income-mam.html",
+      "sha256": "2367b40e4cbb642e14ae16d26c51521f8462c18d48bca4bef4635a705bb0bd90"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-self-employment-mam.html",
+      "sha256": "29d52ba83b999323ed76f723b7be9f2946079f4aa9ce51b0e1b529ba190cf9d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-senior-citizen-community-service-employment-income-mam.html",
+      "sha256": "e7076a00656f72a0b4a7f3f13726459f9e7863aff6337f3e60ca5e9d58730bde"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-social-security-administration-ssa-benefits-mam.html",
+      "sha256": "daf7accef6d6d1069a931a8e7e2d6d7f1fa904b0107f76b0b98bc7bf12717873"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-social-security-disability-insurance-ssdi-benefits-mam.html",
+      "sha256": "e10de4d9fcfad680baba420dbb59509a5c71c7ff72be29f953e38f445bcfeb62"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-supplemental-security-income-ssi-benefits-mam.html",
+      "sha256": "948b715f77c072081a251076ef25de5e50c488d1e9284b0e2fc343a5a4ed5fc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-tax-refunds-mam.html",
+      "sha256": "3825e704463ff5b9402c30babc004dc96e5a1b6fabcd9f6d08512a7cc1914c48"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-trust-disbursements-mam.html",
+      "sha256": "ce146ec1374fe4c50a84823ce8276cbf6b4f520ac0f85f08832157ffbedf23f0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-va-90-nursing-facility-pension-mam.html",
+      "sha256": "cdb5ea93b069cb1eb3409abab97de826030a91a99806eeb00e779954ddc81c92"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-va-aid-and-attendance-allowance-mam.html",
+      "sha256": "b32666515887dfb327892eeec190c17492cba86d4f886a2412524cd167ee55ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-va-benefits-mam.html",
+      "sha256": "6e11cc853e4c20bdbfb6587a77d897091867964db91f82c0f20c3ec2b516b19b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-vendor-payments-mam.html",
+      "sha256": "4bd0d1802f4dbfc26f19c73e09acf20d91afe0391ba1a6651e21e507d1c32284"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-511-volunteers-in-service-to-america-vista-mam.html",
+      "sha256": "3247ab903c902087b98cb82666b9efe9e6178fe10c7f983b94d5a54a8976ed41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-agent-orange-settlement-mam.html",
+      "sha256": "0a7f43e76e90cc55f6a16bffbc7ff679b8bc8ae5376c1e2e403dce9c5ad9e7fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-alaskan-natives-mam.html",
+      "sha256": "4ce6b457ece56bc7c23c6aefa8108327cae6580aafefaaafa0d033d0f0a2aa02"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-aleutian-and-pribilof-islanders-mam.html",
+      "sha256": "44f7aad77c1a2e7cd4ad61f3608282e7e35f1e3bf6fac65fa580b73306c1e86a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-american-indians-mam.html",
+      "sha256": "309a51ede633452360327fc67d151d7d225905a858a2ff5698ebbb336eafddd4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-census-income-mam.html",
+      "sha256": "96827467a1c4bfd91cc664f0d39b34f961eac753f8443f3c95edf10dedbcc9ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-donated-foods-mam.html",
+      "sha256": "0d4668af354d8e0c8ff2714e713bfcc89cea1d6ea10d7eb228a960755663df2d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-earned-income-tax-credit-resource-mam.html",
+      "sha256": "9f27ae16988a80c4fa10c933b322c9bd509e9f28dc5e2683acbbf4fc8ff80720"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-earnings-of-clergy-members-or-religious-workers-mam.html",
+      "sha256": "c10005f36316a115dfcbe369a0a036baf26733a8638b71480ab05f6b685be5e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-german-reparation-payments-mam.html",
+      "sha256": "68f270906122f7d9bcc72b1d4e2ae198ba551559d115e5b6010d33003c4cb9f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-home-produced-food-mam.html",
+      "sha256": "88757b1653523d773e8896dc4ef92486b86836a45f3f332babe5b796366da27f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-ida-withdrawals-mam.html",
+      "sha256": "82ad0ad494235f699d2c307d7b66f5af9df84edd19dc6ec93b2a79b95f863849"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-less-common-income-types-mam.html",
+      "sha256": "9694072c1c4a41acb141019a1c56d518343e44e1d045a6f016abc08e27276472"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-military-pay-and-allowances-mam.html",
+      "sha256": "d2567f8606341fccb6cbc7f0a10d9d2599265ae77b32a60ce61b98797ff77027"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-nutrition-program-for-the-elderly-mam.html",
+      "sha256": "31b74f3c6e57f2942d274cf1422e762600235ce53d35cf78d723dad132b8f4a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-radiation-exposure-compensation-mam.html",
+      "sha256": "2da35243ee6bc2af4d8b911e39dee51c4b1af4714b2cccdb778886df39a3f581"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-relocation-assistance-mam.html",
+      "sha256": "d04843b3e74460c73812bec8142e117a8c89a51d1e001b5901f931e3e49711f4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-supplemental-food-assistance-mam.html",
+      "sha256": "c0ed41bcaa5154021dfc8b96b8383c4504e265d63035025b82276ce516d92f01"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-us-citizens-of-japanese-ancestry-mam.html",
+      "sha256": "d9b0a70590116c53d9e29b971fda3d616117cdf34cea506c92d3c363f90cd01e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-513-youth-employment-program-mam.html",
+      "sha256": "a1d0e168e85b4e536b4b3b5119d54ba665973ffc881fa3e4787bda3ffbaf9746"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-600-standards-and-budgets-mam.html",
+      "sha256": "c44794a0b9ce832ecd306bcc17f0c9e3285b3f0c6e4968032f673be412fda30e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-income-limits-mam.html",
+      "sha256": "a1842b5c18a8765fa5f77d181efadfaa67a419b1f4bed25c72305879fae6c071"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-a-income-limits-mam.html",
+      "sha256": "bf34f6d0cb323090e7ba42c0eac4aebfc10ca872d1668c6cee390c1f40774d75"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-b-special-income-limits-for-cfi-and-hcbs-individuals-mam.html",
+      "sha256": "3bd433b2b924750892351d6eb03d4ccdfac979f7ba4f046eba4053f183809a1e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-c-qualified-medicare-beneficiary-qmb-mam.html",
+      "sha256": "6aeb1c3a3fb9674116341f510b35757757e636c77f349c7e0c0067aef6ce5677"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-d-specified-low-income-medicare-beneficiary-slmb-and-slmb135-mam.html",
+      "sha256": "e3d5c46602fa623451efbf9d222a0e1f9d7dce197ed9fd8ddab42d42dcc494a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-e-qualified-disabled-and-working-individual-qdwi-mam.html",
+      "sha256": "929ab6ff49bf00dfa78d2e14a4795db717848b0259a763055876ada3d568356a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-f-medicaid-for-employed-adults-with-disabilities-mead-mam.html",
+      "sha256": "ca5606343432e68e67ac317403c64d0f29c57f4a96572148f5f716397a467eee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-g-pil-granite-advantage-ema-cm-csd-pregnant-women-ma-fpec-ma-and-expanded-cm-mam.html",
+      "sha256": "0fd897a1b571e53fcb080b114f3845e9b49823b518c2dd11c2ae0de5cb8caef1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-h-federal-information-taxes-income-ceilings-and-minimum-wage-standards-mam.html",
+      "sha256": "2e991c0dfb9d6b758ca4699186a4efed4f255f8845faf5eaafb5c69dfad15fc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-i-parents-caretaker-relatives-income-limit-mam.html",
+      "sha256": "14553ebd9b90e706aef4d5752c38c9b7dc9574a6912952d486a1b51f5bd1ff20"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-j-5-magi-deduction-mam.html",
+      "sha256": "b88c13f1cf62e49489a0557911840959ba56e4155765482e2a7c5b3a784d64ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-601-table-k-federal-tax-filing-requirement-thresholds-mam.html",
+      "sha256": "eeacd9f9b11dfcbae49398ba0c8dc3c32b79b106018f17aac47ff2023d90c125"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-603-01-earned-income-disregard-eid-mam.html",
+      "sha256": "8559f8c4350f7d1c4855000af1d77cf58021f437fd503e6bcea0bf5538824279"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-603-03-employment-expense-disregard-eed-mam.html",
+      "sha256": "89b1e07858e844a24f1219b2eb1264ee60f716bb9203b92e923dde70be09bf5d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-603-05-adult-standard-disregard-mam.html",
+      "sha256": "c90cf2b0741ebd1cc303fa7996b601f88f4f433542860bacf8f28d1e6007c77b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-603-07-verification-of-disregards-mam.html",
+      "sha256": "893385699b6aa87dcdb8b5df456a75e1b752e0cd4ffcbff836150b2c0513d003"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-603-disregards-mam.html",
+      "sha256": "c675a6194a8bb8cf453b3f7694643530bddaf760dfcad646fdad87858d7893d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-605-01-verification-of-deductions-mam.html",
+      "sha256": "6a25a1ff6b688acecf4f17a2dd8ae3a23b952c3be8fa32c46f252c065d978e05"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-605-03-children-with-severe-disabilities-csd-medically-needy-resource-deduction-table-mam.html",
+      "sha256": "ac7ce3fe812d54d11dc029dd87fb9bfad16005bec9e308459289cfc5709c537d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-605-income-and-resource-deductions-mam.html",
+      "sha256": "581930a135a0dcd5892bf2914e8d7095e3cde8a169ba8f4d6e893b6aacf5808d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-607-budgeting-overview-mam.html",
+      "sha256": "56613b0a5a6018c7bf95fac666cb376f84a5df8a3b3d55069f711581cc843eb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-609-conversion-to-monthly-amounts-mam.html",
+      "sha256": "eefebe46300c3771e3090a10ea91584c17e06f888e8f37047eb9369de74d7760"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-611-01-averaging-fluctuating-income-mam.html",
+      "sha256": "5a7655a7453234c37d72dbba3630f2ffd79677a16d0bc6464ea59048b3d9e303"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-611-03-time-frames-for-using-averaged-fluctuating-income-mam.html",
+      "sha256": "a03fd7c9b98fc1ba34021cf46c4843c56f2c7ac9b724347792e3fc745cb2153a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-611-fluctuating-income-mam.html",
+      "sha256": "838016bef4175d9ec6cd4abfaefd16e5769a3a84aab760354145e54af15fd42c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-613-computing-eligibility-mam.html",
+      "sha256": "281a79bab9d8442fbe060c67c8e60aae4288b776343ec5cdc0cfc7e547382d11"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-615-budgeting-independent-living-rcf-cr-qmb-qdwi-slmb-and-slmb135-mam.html",
+      "sha256": "c1b30417228276258c750af87536e7ba0a365d90db0be9db7d94a77069b51a57"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-617-budgeting-magi-mam.html",
+      "sha256": "1dcd8d88735eacf1c9d6140403c214664eab28cf72a1cf89fe2fcaf285894c31"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-619-01-cost-of-care-nursing-facility-mam.html",
+      "sha256": "9e13ac9016cfbf90a9f2bb560f03b1f3ecede63ef4d1b27ab4c097e53db37173"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-619-budgeting-nursing-facility-mam.html",
+      "sha256": "d27d2b1276c657fd575c18d54f5847033184cc356e682615b9532f35afd76373"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-621-01-hcbc-cfi-financial-assistance-mam.html",
+      "sha256": "0b3dfd1f8321e7e4f0f853e6d3d7c53cbaffb3479a5ef98ed0741383c73c8fb3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-621-03-hcbc-cfi-medical-assistance-mam.html",
+      "sha256": "67bee0f90f2d2744ed5b1ca9523f2e4dac600846f75aab97ceb9ae4a1158e8a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-621-05-cost-of-care-hcbc-cfi-medical-assistance-mam.html",
+      "sha256": "d3b50dbe5dc2547631742884dcbfcde75a5a417e0c39f6a36d1121950ccee9c1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-621-07-payment-for-cost-of-care-hcbc-cfi-medical-assistance-mam.html",
+      "sha256": "3c5a2cc43ee30daa7b59d9295ccb91aa11cdbd57c72887573f9a04c0a1911fa7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-621-budgeting-hcbc-cfi-mam.html",
+      "sha256": "e2b7ebc08b14d64456c160a44ac2ad97ed00d1142c27bbe2a2935bc8aae75118"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-622-01-hcbc-ihs-financial-assistance-mam.html",
+      "sha256": "7b03335c8ebf2b1950f86fdcb446aff7b5246577c7ee29115a0cb205a140f1a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-622-03-hcbc-ihs-medical-assistance-mam.html",
+      "sha256": "ae6aba06497a96aa2ab2be760af4073fc23060340831e190745a7e5774c4de99"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-622-05-cost-of-care-hcbc-ihs-medical-assistance-mam.html",
+      "sha256": "3b9fdb703cd170effe1c204538ea6df90b3067da92909815884d074d3bf9899e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-622-07-payment-for-cost-of-care-hcbc-ihs-medical-assistance-mam.html",
+      "sha256": "a5e9d8c2317d32afa36bb42821425200ec8b122b353540969d7aece02f5f7467"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-622-budgeting-hcbc-ihs-mam.html",
+      "sha256": "0acba1d3f3ff1d9c4c19b5848a5ae3a030373a98240ba0c801bb1fc68a214469"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-623-01-hcbc-dd-financial-assistance-mam.html",
+      "sha256": "bd7a0a53e28a2529d7ce1cb6925bf2d8c15b55d03e8ac86fbe2471ae666323fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-623-03-hcbc-dd-medical-assistance-mam.html",
+      "sha256": "8401b782b65d4029a6453e4b1a8ac7f82cfb53dbd29b11ab54c239d47a30a8eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-623-05-cost-of-care-hcbc-dd-medical-assistance-mam.html",
+      "sha256": "084da8772a031b8a43bfa3a7364f304476fa7e0dfd9572c9234ba1ed9cc20607"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-623-07-payment-for-cost-of-care-hcbc-dd-medical-assistance-mam.html",
+      "sha256": "5c305d00131a89f30a24cb05c6ee00f4d4e0cc8c60352d0569cba6c5ac73884c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-623-budgeting-hcbc-dd-mam.html",
+      "sha256": "43cced541b8d484b12707eb092ec5c5a5049b6bfab2d76eb33e5368adf057489"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-624-01-hcbc-abd-financial-assistance-mam.html",
+      "sha256": "34927ce71c38a4d056de2dc85a15363209beab97ad6c38820e2be3503ba776ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-624-03-hcbc-abd-medical-assistance-mam.html",
+      "sha256": "97fe5b25e38fdbba5b384ee5e5fbee9ceadae7ed1ac33461ec3608065f857acb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-624-05-cost-of-care-hcbc-abd-medical-assistance-mam.html",
+      "sha256": "a1091adf78eb56955006dc9fb4035f87a474ce3cc806e3fcef3ca271a79a6a41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-624-07-payment-for-cost-of-care-hcbc-abd-medical-assistance-mam.html",
+      "sha256": "63254e955019ac769544e74041c32e630dccb974c8f1678df068670c45e1c859"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-624-budgeting-hcbc-abd-mam.html",
+      "sha256": "e42fc2a8d183c5cf46acc70c29610ece2aa2dafed3f4e9ac40d290534f9676ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-625-01-one-month-spenddown-mam.html",
+      "sha256": "fff640f1af9aceb2bb7519e5d34d319bd51eecda94f4ca9a0c9f7c9225cd5d12"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-625-03-six-month-spenddown-mam.html",
+      "sha256": "6477d3ad4a4fd579ddad8065985285434fc9b3ccc47292f9ce2d1539287fff52"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-625-05-allowable-medical-expenses-mam.html",
+      "sha256": "3c6bbf41ffd4c4dbc5a5625832b23a9e3d352bf6b05da89522dc77dce6eb2160"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-625-07-offsetting-the-spenddown-mam.html",
+      "sha256": "3645b3c0a250df747fc20edb74ef87cd593c1ca4ba0d16dac9a4b8ecbb822193"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-625-in-and-out-medical-assistance-mam.html",
+      "sha256": "2acde796f186284a596fd8cd4e43d609be32aea5ed3a2d35a110149b5ced0eb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-01-allocation-to-dependents-mam.html",
+      "sha256": "dd78cd1e82d75f0eff439e612fa4b146e7b52635432a008f90a922fb63ca43dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-03-allocation-to-a-community-spouse-mam.html",
+      "sha256": "c9c6ba304cf49cfe263b58790f976a290820b70297dd19b2198d645b3c5465f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-04-criteria-for-increased-income-allocation-due-to-significant-financial-duress-mam.html",
+      "sha256": "82c76744454629898b0c214f60a1e9399332c79a4a0b68fd3e8dabf921ca5a16"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-05-allocation-to-dependents-who-reside-with-the-community-spouse-mam.html",
+      "sha256": "138d0413b749347205dc6d57d8cc2a9d6ad325319d4196b2f292d42c9421e7f2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-07-allocation-for-expenses-incurred-outside-of-the-nursing-facility-mam.html",
+      "sha256": "a31c7c9e10a2b72059812e5ee22b1a1b6393f3ff3060c707ed2544f770369e77"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-09-allocation-to-maintain-the-home-mam.html",
+      "sha256": "1fd8fbf1deca6279955e25d2df7f2564f9446c7b426222b11ff5bd4e10ae3c48"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-11-verification-allocated-income-mam.html",
+      "sha256": "b229b8720b3dd5e2884f5ccde1be13933652010940fde526c87cf4a065dd23e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-627-allocation-of-income-mam.html",
+      "sha256": "8de1aa033e3a7b9e97d452da56ca7a2ae12a7cd9d32700738d9ec44ba18d7f8a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-633-recoupment-of-medical-assistance-mam.html",
+      "sha256": "abe6dafeebbdf334bde1a10e8938df0f2ef67bc296ff8a446a406ffa933d57ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-635-recoupment-legal-action-mam.html",
+      "sha256": "bba68889cac469b648ad8fd988d81835d26649ddd08fdceb6f92aefe24bf5cb0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-700-miscellaneous-mam.html",
+      "sha256": "85efbb301838b4a8f66008f55b527a9ceed262403bec1dc1cc11852177009660"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-701-01-exchange-of-information-with-the-federally-facilitated-marketplace-ffm-mam.html",
+      "sha256": "d21aa17b9b84033c575d5161c81f92f012608cb7edc7016fb898d9fd7f6b67ed"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-701-federally-facilitated-marketplace-ffm-mam.html",
+      "sha256": "ac3485056405a87c221ba58fce02f7d3ae7148aaa8653864af62ea20f15ca50c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-707-01-issuing-medical-assistance-benefits-mam.html",
+      "sha256": "ab718469b59bb1d68140f4b64b1da3c368b2b457a9edad426f62f07f64aad0c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-707-03-mailing-addresses-mam.html",
+      "sha256": "ffc4ea509c0ac15711c4d0d2f840b9bd4d14d4e716de334eda1a9cb9333be452"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-707-issuing-benefits-mam.html",
+      "sha256": "1ab5a44f5793dc850557c8a9d087718fdcdc95293932dd0701b618dc15287853"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-01-medical-assistance-fraud-mam.html",
+      "sha256": "8e02543f3a3dd6a60ff5c407514f4ca5be10ee082a76cc094151d5d649cbe1a9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-03-medical-assistance-fraud-penalties-mam.html",
+      "sha256": "d3ba0c4fb9a861c245a8483e32196535acf68855ee8f9da8fdff814e4805293b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-05-court-of-appropriate-jurisdiction-for-medical-assistance-fraud-mam.html",
+      "sha256": "f633c437e3f3293030c1c1663d2e52c736f0b5dcdec469df0c04a35e01feae85"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-07-calculating-the-amount-of-repayment-for-medical-assistance-fraud-mam.html",
+      "sha256": "1c7c22ebb47b102d93137152bf381ec5319f71e6c23d2f3344e671948040b2c9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-09-recovering-overpayments-due-to-medical-assistance-fraud-collections-mam.html",
+      "sha256": "3c0f75237af6bd97d4292483a95be8d2bb2b5afa5eda293ff59464c454a9dff1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-11-court-adjudicated-claims-mam.html",
+      "sha256": "b61a0056c120b4b8d8c06d5813d64f296d8dd2bb1df385d4d6ce6bf7de8a6fa3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-13-medical-assistance-fraud-at-the-federal-level-mam.html",
+      "sha256": "d3da2f0800e5ebdbbd7f7a3c81a00dfade0571885bf8d763b105c04f19a78640"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-15-federal-penalties-for-medical-assistance-fraud-mam.html",
+      "sha256": "84738bffdf3cd52165215bdce1fb51f18c0ac7ff5ad847c42c0aad52874d7ba6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-713-medical-assistance-fraud-mam.html",
+      "sha256": "ca0ff457cda51e4329ddbd91d771f9dfa1a9c49b681a2a59a21a3b018d68387b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-01-definition-of-medicare-mam.html",
+      "sha256": "fe600441ef66a0af577fdf756fbef011b14e4cf9d50d1aded4fe71642f0effc6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-03-definition-of-buy-in-of-medicare-part-a-qmb-and-qdwi-mam.html",
+      "sha256": "482ae8af98eb96e701d08877774af2a3f06b13d8413f07b263525c96b2f1b296"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-05-who-is-eligible-for-medicare-part-a-buy-in-mam.html",
+      "sha256": "d2811b489831f176373b729013107d04756494b299f88380ce9565e1db047491"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-07-when-is-part-a-buy-in-effective-mam.html",
+      "sha256": "bc731edbcecfc1869b1611e109591fda39151823972003a43578350798c6c3fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-09-how-is-part-a-buy-in-terminated-mam.html",
+      "sha256": "ebd6fe5ebe77e598f9d0595775da74b5bccf9981745fdc68be365549c3219bae"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-11-medicare-part-b-eligibility-mam.html",
+      "sha256": "0e3263bfd85db8c88a77a9a190334fb087993fc2640ead0ba1da2d10849884dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-13-definition-of-buy-in-of-medicare-part-b-mam.html",
+      "sha256": "234433538bee8023933b2ce422d53de8b4726e52f44ba33c333c6a6e39637bed"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-15-who-is-eligible-for-part-b-buy-in-mam.html",
+      "sha256": "be33227c85f0919ef4e7e459cff2b5bda28e1ffad0e225cad35ebbe4a9ee5dac"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-17-when-is-part-b-buy-in-effective-mam.html",
+      "sha256": "39c1f50e092389b9ae84f965d2ff5e0aff61a39850502cf1567e3cf15afa16f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-19-how-is-part-b-buy-in-terminated-mam.html",
+      "sha256": "6c36981ffd9faea73456ca8a8ee128e6e6344219bc4c4867a8925fdd9c89e3d8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-715-buy-in-of-medicare-mam.html",
+      "sha256": "80ebe9633c06c19e90167c6346c34b14033d4d009211ef4ceaf7dbc6fb80a89b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-a-words-mam.html",
+      "sha256": "7845303732b7c49b077a53d6c96118498eb60a8d8f56341f07006682f89400e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-b-words-mam.html",
+      "sha256": "e750084414a1826a6a94b4380c7485f43ad505194c4c4ed258a929462d4d287a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-c-words-mam.html",
+      "sha256": "bab8c29dfd18fb1e40390e834f036129dbe06adf1ce5a2b2ebd7c59ed95c6088"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-d-words-mam.html",
+      "sha256": "6c2c3f0154a6ae7356906c2d0eece8e40998babcc8593c583a0c505cf7747564"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-e-words-mam.html",
+      "sha256": "2d8e7e16e86e4080768b9be139a4b0c9ec93781717c83bd941056e5f4179f40c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-f-words-mam.html",
+      "sha256": "80928284d43ecb2fe4bebccc5818ec6d03d1d88f81b7bd0161e55fe723b9c855"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-g-words-mam.html",
+      "sha256": "7481ff4a5a1a1f617fc303b98dad4bda55ef97e60fcd699137e9e5e6d46c079b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-h-words-mam.html",
+      "sha256": "4c7f0cdbe002e921b0b92b6dd9cfa568d62ecb9779380edfeccd5094803e4f36"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-i-words-mam.html",
+      "sha256": "5eef85394773e1f4b9229c8f4e865db793a8fa3f37a4b314554d1c6c5fcf0e86"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-j-words-mam.html",
+      "sha256": "b8508b1816825d4bf50a803d06b02f66d4a1642eb6e685fb43a0a5c3e137d891"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-k-words-mam.html",
+      "sha256": "bbcd291c817b7d384ac180b9a8bb8c82f12af7e2c2e78b31bec1d15ba1655230"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-l-words-mam.html",
+      "sha256": "321b448c48c5ca952552750202ebf3bc351a29b27721fe0a7c6440504f700ef7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-m-words-mam.html",
+      "sha256": "29651c9f32f58cdfac4004cc414c5d94f787a32e568f9f7c89589a67ca99d540"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-mam.html",
+      "sha256": "3494188a03225ac590ce198c22ad7621419d340e6849362b639e07923d498fd1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-n-words-mam.html",
+      "sha256": "745c8bb780dc5c4496eb415a9635ead2c7df61bb3a08cddecb9de44fd23e9b4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-o-words-mam.html",
+      "sha256": "e097c6f108647c4d95c22338a91e31191b1de538b6683f5210373de11eecc699"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-p-words-mam.html",
+      "sha256": "d0216f46aab08075d9f9787695ea52f6bd750327591efcda01d954198751b63f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-q-words-mam.html",
+      "sha256": "593379d8527a8d7688a407d7279d2ff722c0f16a281cf776b00473a9463c46b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-r-words-mam.html",
+      "sha256": "9f5622712b04b2caf118ab68233311229fd8f251b2ca426da475194a6705aea7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-s-words-mam.html",
+      "sha256": "c44c68cd5f16f144048d63c7b4e80f959aba682e34cf67fba6b60c232a1b02ec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-t-words-mam.html",
+      "sha256": "8e0a72cf6f7f0a8b8937f4518efa7a895d4099c8f42345dbda92ec4406483ab8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-u-words-mam.html",
+      "sha256": "8d2d51b38db167d73cce3b42c2763d45d2a55c77184ac709b23cf96da4a539c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-v-words-mam.html",
+      "sha256": "55bffd146903a7e255ed7bb7f73cf8fc22dd48c744417bc98459788c3f28be4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-w-words-mam.html",
+      "sha256": "9307df316aec1f98b7873f3240b2f9b4d1c7cab27e557429e49bafea83f0ba9d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-x-words-mam.html",
+      "sha256": "5f538aae1f36421dbc3352b73572ec7a1f9b93c45148e14cb3a30e21167c8556"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-y-words-mam.html",
+      "sha256": "1d0664c6a63161ca1f0877086f08aa0b5323cb8b9323f06c793dd2eac8f3d1d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-glossary-z-words-mam.html",
+      "sha256": "47f92d73c93419ca861fd4f6e5815895f7d76b2ca8b88da611fb513f7637f1b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-introduction-how-this-manual-is-updated-mam.html",
+      "sha256": "822db57697096459e6a425178059f67cc27678b59f4b1175103bb7a285d34877"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-introduction-how-to-use-this-manual-mam.html",
+      "sha256": "e83a18fef2a51a76c56a969d6ac42c6831dbd304583c154af503c094a3af31f5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-introduction-mam.html",
+      "sha256": "80be23d3e8a6f098ce5466af4896b751e9ffe6527b57876614c61479760d53b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-introduction-navigating-the-medical-assistance-manual-mam.html",
+      "sha256": "20ba5a119a65b727b99212c9e3a4625510175dcb91f2c80031d97340f6f17f59"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-introduction-srs-retained-mam.html",
+      "sha256": "1cd37198496dc024c163dd6869b669efdbd36a40855988b66d9806506c658045"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-irregular-income.html",
+      "sha256": "6df4481a9aea5ab9897ee4b146ae4500acb9ad3df4b58860637c6ae91b0e6b1c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-panhandling.html",
+      "sha256": "41d64bf019e977c5cbff5277fbf211cc078606ed1b50e1996c9e0b459242946a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/nh-dhhs-mam-table-f-a-medicaid-for-employed-older-adults-with-disabilities.html",
+      "sha256": "6e7fb046f3afca6b603d29b1840c3c131e18839278b51e1f3ca736dc18edb953"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-nh-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1202,
+    "missing_count": 0,
+    "provision_count": 1202,
+    "source_count": 1202
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:15:00.435250+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Xqqk0dnCFjSX3shaJk9+2AI8FWO8vRxveDNuaVI2k0QDfQcgR+msLvx2coLoNNd/C1y0R2XFKqEa3+k0FPrQAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

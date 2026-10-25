@@ -1,0 +1,1335 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "chip",
+ "folders": [
+  "gov/hhs/chip",
+  "gov/hhs/fpg"
+ ],
+ "state_folders": "chip|chp|cchip",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 95,
+ "references": [
+  {
+   "url": "https://ccf.georgetown.edu/2024/10/15/more-states-expanding-medicaid-chip-for-pregnant-women-including-immigrants/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "More States Expanding Medicaid/CHIP for Pregnant Women, Including Immigrants | Georgetown University Center for Children and Families"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/al_statewide.yaml"
+   ]
+  },
+  {
+   "url": "https://data.medicaid.gov/dataset/d7e4cccb-1c56-5b5d-acce-5e7744c6d3b4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Eligibility Levels as of April, 2018",
+    "Medicaid and CHIP Eligibility Levels"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/child/income_limit.yaml",
+    "parameters/gov/hhs/chip/pregnant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://dch.georgia.gov/announcement/2024-08-13/peachcare-kidsr-co-payments-and-premiums-resume-oct-1-2024",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Georgia DCH PeachCare for Kids premiums and copays resume October 1, 2024"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ga/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/ga/hhs/chip/ga_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://dhss.delaware.gov/dmma/dhcpflyer/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Delaware Healthy Children Program flyer"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/hhs/chip/premium.yaml",
+    "variables/gov/states/de/hhs/chip/de_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://downloads.cms.gov/cmsgov/archived-downloads/smdl/downloads/sho10006.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS SHO #10-006, Medicaid and CHIP Coverage of Lawfully Residing Children and Pregnant Women"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/chip/lawfully_residing/pregnant.yaml",
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dssmanuals.mo.gov/wp-content/uploads/2019/05/appendix-e.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS Appendix E IM-4(PRM) - CHIP Premium Chart",
+    "Missouri DSS Appendix E IM-4(PRM) - CHIP Premium Schedule"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/hhs/chip/premium/fpl_floor/tier_1.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/fpl_floor/tier_2.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/fpl_floor/tier_3.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_1.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_2.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_3.yaml",
+    "variables/gov/states/mo/hhs/chip/mo_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF and Georgetown CCF, Medicaid and CHIP Eligibility, Enrollment, and Renewal Policies as of January 2023, Table 3"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-Enrollment-and-Renewal-Policies-as-States-Prepare-for-the-Unwinding-of-the-Pandemic-Era-Continuous-Enrollment-Provision.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF and Georgetown CCF, Medicaid and CHIP Eligibility, Enrollment, and Renewal Policies as of January 2023, Table 3 and footnote 7"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://files.kff.org/attachment/Table-3-Medicaid-and-CHIP-Eligibility-and-Enrollment-Policies-as-of-January-2022.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF and Georgetown CCF, Medicaid and CHIP Eligibility and Enrollment Policies as of January 2022, Table 3"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/chip/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://floridakidcare.org/docs/cost/florida_kidcare_income_guidelines.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Florida KidCare 2025 Annual Income Guidelines"
+   ],
+   "states": [
+    "fl"
+   ],
+   "files": [
+    "parameters/gov/states/fl/hhs/chip/premium.yaml",
+    "variables/gov/states/fl/hhs/chip/fl_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://hcpf.colorado.gov/child-health-plan-plus",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Child Health Plan Plus (CHP+) | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/hcpf/chp/copays/ambulance.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/er_visit.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/imaging.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/inpatient.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/lab.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/outpatient.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/physician_services.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/prescription.yaml",
+    "parameters/gov/states/co/hcpf/chp/copays/urgent_care.yaml",
+    "parameters/gov/states/co/hcpf/chp/expenses.yaml",
+    "parameters/gov/states/co/hcpf/chp/out_of_pocket.yaml"
+   ]
+  },
+  {
+   "url": "https://hcpf.colorado.gov/sites/hcpf/files/April%202022%20CHP%2B%20Income%20Chart.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Monthly Maximum Income Guidelines | CHILD HEALTH PLAN PLUS"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/hcpf/chp/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://hcpf.colorado.gov/sites/hcpf/files/April%202023%20CHP%2B%20Income%20Chart%20_.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Monthly Maximum Income Guidelines | CHILD HEALTH PLAN PLUS"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/hcpf/chp/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://hfs.illinois.gov/medicalprograms/allkids/income.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois HFS All Kids income and premium information"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/il/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/il/hhs/chip/il_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://hhs.iowa.gov/media/10189/download?inline=",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Iowa Hawki 2025 Income Guidelines"
+   ],
+   "states": [
+    "ia"
+   ],
+   "files": [
+    "parameters/gov/states/ia/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ia/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/ia/hhs/chip/ia_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://info.nystateofhealth.ny.gov/sites/default/files/2026%20Income%20Levels_for%20Medicaid,%20CHPlus%20&%20EP.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 Income Levels for Medicaid, Child Health Plus and Essential Plan (CHPlus bands unchanged; the 223 percent column is the Medicaid pregnant women and under-1 limit)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://klrd.gov/2026/03/02/briefing-book-2026-childrens-eligibility-for-chip-mchip-medicaid-and-hcbs-including-information-on-premium-requirements-for-chip/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas Legislative Research Department Briefing Book 2026 - Children's Eligibility"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/hhs/chip/premium.yaml",
+    "variables/gov/states/ks/hhs/chip/ks_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://ldh.la.gov/faq/category/19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Louisiana Department of Health - LaCHIP Affordable Plan FAQ"
+   ],
+   "states": [
+    "la"
+   ],
+   "files": [
+    "parameters/gov/states/la/hhs/chip/premium.yaml",
+    "variables/gov/states/la/hhs/chip/la_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15833.",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_fcep_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15834.",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_fcep_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.1.",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "variables/gov/states/ca/dhcs/cchip/ca_cchip_eligible.py"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=15850.5.",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Cal. Welf. & Inst. Code § 15850.5(c), CCHIP enrollment freeze, the department shall not approve any additional applicant other than those participating as of March 23, 2010 (does not name the counties)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/counties.yaml"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=WIC&division=9.&title=&part=3.3.&chapter=3.&article=",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Cal. Welf. & Inst. Code § 15853(a)(1), CCHIP covers children with family income at or below 317 percent of the federal poverty level before MAGI conversion who do not qualify for the optional targeted low-income children group or no-cost Medi-Cal"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/income_limit.yaml",
+    "variables/gov/states/ca/dhcs/cchip/ca_cchip_eligible.py"
+   ]
+  },
+  {
+   "url": "https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY25/NY%20CY25%20CHPlus%20Rate%20Presentation%20-%202024.11.08.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Child Health Plus CY 2025 Rate Development, CY 2025 Rate Summary"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://mmcor.phpcoalition.org/docs/Rate%20Setting%20Documents/CY26/NY%20CY26%20CHPlus%20Rate%20Presentation%20-%202025.11.10_FINAL.pdf#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Child Health Plus CY 2026 Rate Development, CY 2026 Rate Summary"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://mydss.mo.gov/childrens-health-insurance-program-chip-premium-chart",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Missouri DSS CHIP Premium Chart"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/hhs/chip/premium/tier_1.yaml",
+    "variables/gov/states/mo/hhs/chip/mo_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://nashp.org/delaware-chip-fact-sheet/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "NASHP Delaware CHIP Fact Sheet"
+   ],
+   "states": [
+    "de"
+   ],
+   "files": [
+    "parameters/gov/states/de/hhs/chip/premium.yaml"
+   ]
+  },
+  {
+   "url": "https://pamms.dhs.ga.gov/dfcs/medicaid/2194/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Georgia DFCS Medicaid Manual 2194, Premiums"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ga/hhs/chip/premium/min_age.yaml",
+    "parameters/gov/states/ga/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/-/media/hh/pdf/husky-health-monthly-income-chart-march-1-2025.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut HUSKY Health Monthly Income Chart (effective March 1, 2025)"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ct/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/ct/hhs/chip/ct_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://portal.ct.gov/dss/knowledge-base/articles/healthcare-coverage/husky-b",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Connecticut HUSKY B program overview"
+   ],
+   "states": [
+    "ct"
+   ],
+   "files": [
+    "parameters/gov/states/ct/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://revisor.mo.gov/main/OneSection.aspx?section=208.640",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "RSMo 208.640"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/hhs/chip/premium/fpl_floor/tier_1.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/fpl_floor/tier_2.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/fpl_floor/tier_3.yaml"
+   ]
+  },
+  {
+   "url": "https://stgenssa.sccgov.org/debs/program_handbooks/medi-cal/assets/35StCtyAdminHealthIns/CCHIP.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Santa Clara County Medi-Cal Handbook, County Children's Health Initiative Program (CCHIP)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/counties.yaml",
+    "variables/gov/states/ca/dhcs/cchip/ca_cchip_eligible.py"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20200118155511/https://www.health.ny.gov/health_care/child_health_plus/eligibility_and_cost.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Child Health Plus page captured January 2020 (pre-restructuring schedule with $27 cap at 160-222 percent FPL)",
+    "Child Health Plus page captured January 2020 (pre-restructuring schedule with $9 tier at 160-222 percent FPL)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20210226122055/https://dssmanuals.mo.gov/wp-content/uploads/2019/05/appendix-e.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Appendix E (04-20), effective April 1, 2020"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/hhs/chip/premium/tier_1.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_2.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_3.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20230207084107/https://www.health.ny.gov/health_care/child_health_plus/eligibility_and_cost.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Child Health Plus page captured February 2023 (documents the restructured schedule)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20240227134117if_/https://www.alabamapublichealth.gov/allbabies/assets/allbabies-map.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama Department of Public Health, \"ALL Babies Eligible Counties, August 2023\" county map (enumerates the 36 eligible counties; archived February 27, 2024)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/al_counties.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250202220119/https://dssmanuals.mo.gov/wp-content/uploads/2019/05/appendix-e.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IM-4(PRM) (07-24), effective July 1, 2024"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/hhs/chip/premium/tier_1.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_2.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_3.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250623210133/https://dssmanuals.mo.gov/wp-content/uploads/2019/05/appendix-e.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IM-4(PRM) (07-25), effective July 1, 2025"
+   ],
+   "states": [
+    "mo"
+   ],
+   "files": [
+    "parameters/gov/states/mo/hhs/chip/premium/tier_1.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_2.yaml",
+    "parameters/gov/states/mo/hhs/chip/premium/tier_3.yaml"
+   ]
+  },
+  {
+   "url": "https://www.alabamapublichealth.gov/allkids/income.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama ALL Kids Income Guidelines"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/hhs/chip/enrollment_fee/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.alabamapublichealth.gov/allkids/premiums-and-copays.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Alabama ALL Kids Premiums and Copays"
+   ],
+   "states": [
+    "al"
+   ],
+   "files": [
+    "parameters/gov/states/al/hhs/chip/enrollment_fee/family_cap.yaml",
+    "parameters/gov/states/al/hhs/chip/enrollment_fee/per_child.yaml",
+    "variables/gov/states/al/hhs/chip/al_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.alabamapublichealth.gov/perinatal/assets/al-im-reduction-plan.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State of Alabama Infant Mortality Reduction Plan (ALL Babies pilot in Macon, Montgomery, and Russell counties, effective October 1, 2018)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/al_counties.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/medi-cal-resources/medi-cal-eligibility-division/all-county-welfare-directors-medi-cal-eligibility-division-information-letters/program-descriptions-by-fpl-enclosure-3/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DHCS Medi-Cal Program Descriptions by Federal Poverty Level (CCHIP 266 to 322 percent FPL, Santa Clara, San Francisco, and San Mateo counties)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/23-03.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DHCS ACWDL 23-03, 2023 Federal Poverty Levels, Enclosure 3, Program Descriptions by FPL, \"Above 266% to 322% FPL = County Children's Health Initiative Program (C-CHIP)\""
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DHCS ACWDL 25-01, 2025 Federal Poverty Levels, \"C-CHIP is available in San Francisco, Santa Clara, and San Mateo counties only\""
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/counties.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/services/medi-cal/eligibility/letters/Documents/25-01.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DHCS ACWDL 25-01, 2025 Federal Poverty Levels, Enclosure 3, Program Descriptions by FPL, \"Above 266% to 322% FPL = County Children's Health Initiative Program (C-CHIP)\""
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Title XXI CHIP State Plan (SPA CA-24-0012), Section 1.1, Population 1 County Children's Health Initiative Programs (CCHIP), above 261 percent of the FPL up to and including 317 percent of the FPL"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.dhcs.ca.gov/wp-content/uploads/2025/10/SPA-24-0012-Approval.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Title XXI CHIP State Plan (SPA CA-24-0012), Section 2, Population 1/CCHIP, \"Only available in Santa Clara, San Francisco, and San Mateo counties\""
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/counties.yaml",
+    "variables/gov/states/ca/dhcs/cchip/ca_cchip_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-D/part-457/subpart-E/section-457.560",
+   "kind": "regulation",
+   "citation": "us/regulation/42/457/560",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/part-457/section-457.560",
+   "kind": "regulation",
+   "citation": "us/regulation/42/457/560",
+   "titles": [
+    "42 CFR 457.560(a)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/cost_sharing/cap/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/section-457.310#p-457.310(b)(2)",
+   "kind": "regulation",
+   "citation": "us/regulation/42/457/310/b/2",
+   "titles": [
+    "42 CFR § 457.310(b)(2) - Health benefits coverage"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/disqualifying_health_coverage.yaml",
+    "variables/gov/hhs/chip/has_chip_disqualifying_health_coverage.py"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-42/section-457.320#p-457.320(b)(5)",
+   "kind": "regulation",
+   "citation": "us/regulation/42/457/320/b/5",
+   "titles": [
+    "42 CFR § 457.320(b)(5) - Other eligibility standards"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/disqualifying_health_coverage.yaml",
+    "variables/gov/hhs/chip/has_chip_disqualifying_health_coverage.py"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-45/section-146.113#p-146.113(a)(1)",
+   "kind": "regulation",
+   "citation": "us/regulation/45/146/113/a/1",
+   "titles": [
+    "45 CFR § 146.113(a)(1) - Excepted benefits"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/disqualifying_health_coverage.yaml",
+    "variables/gov/hhs/chip/has_chip_disqualifying_health_coverage.py"
+   ]
+  },
+  {
+   "url": "https://www.emhandbooks.wisconsin.gov/bcplus/policyfiles/6/48.1.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Wisconsin BadgerCare Plus Eligibility Handbook 48.1 - Premiums for Children"
+   ],
+   "states": [
+    "wi"
+   ],
+   "files": [
+    "parameters/gov/states/wi/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/wi/hhs/chip/wi_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.health.ny.gov/health_care/child_health_plus/eligibility_and_cost.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York State Department of Health - Child Health Plus Eligibility and Cost (current)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/ny/hhs/chip/ny_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_eligible_child.py"
+   ]
+  },
+  {
+   "url": "https://www.hhs.texas.gov/handbooks/texas-works-handbook/d-1820-enrollment-fees",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Texas Works Handbook, D-1820 Enrollment Fees"
+   ],
+   "states": [
+    "tx"
+   ],
+   "files": [
+    "parameters/gov/states/tx/hhs/chip/enrollment_fee.yaml",
+    "variables/gov/states/tx/hhs/chip/tx_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Texas Uniform Managed Care Manual, Chapter 6.3 CHIP Cost Sharing"
+   ],
+   "states": [
+    "tx"
+   ],
+   "files": [
+    "parameters/gov/states/tx/hhs/chip/enrollment_fee.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/medicaid/members/member-programs/hhw-package-c-medworks-premium/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana Medicaid Hoosier Healthwise Package C Premium Information"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/hhs/chip/premium/rate_one_child.yaml",
+    "parameters/gov/states/in/hhs/chip/premium/rate_two_or_more_children.yaml",
+    "variables/gov/states/in/hhs/chip/in_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/affordable-care-act/state-indicator/medicaid-and-chip-income-eligibility-limits-for-pregnant-women-as-a-percent-of-the-federal-poverty-level",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip_category.py",
+    "variables/gov/hhs/chip/is_chip_eligible_pregnant.py",
+    "variables/gov/hhs/chip/is_chip_fcep_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/affordable-care-act/state-indicator/medicaid-and-chip-income-eligibility-limits-for-pregnant-women-as-a-percent-of-the-federal-poverty-level/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid and CHIP Income Eligibility Limits for Pregnant Women as a Percent of the Federal Poverty Level | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/income_limit.yaml",
+    "parameters/gov/hhs/chip/pregnant/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/medicaid-and-chip-eligibility-enrollment-and-renewal-policies-as-states-prepare-for-major-medicaid-policy-changes/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KFF, Medicaid and CHIP Eligibility, Enrollment, and Renewal Policies as States Prepare for Major Medicaid Policy Changes (January 2026)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.kff.org/medicaid/state-indicator/separate-childrens-health-insurance-program-chip-income-eligibility-limits-for-children/?currentTimeframe=0&selectedDistributions=january-2018--january-2021--january-2025&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Separate Children's Health Insurance Program (CHIP) Income Eligibility Limits for Children, 2000-2025 | KFF State Health Facts"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/child/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/42/457.10",
+   "kind": "regulation",
+   "citation": "us/regulation/42/457/10",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_fcep_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/cfr/text/45/155.20",
+   "kind": "regulation",
+   "citation": "us/regulation/45/155/20",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/california/10-CCR-2699.200",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_fcep_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/regulations/massachusetts/130-CMR-506-011",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "130 CMR 506.011 - MassHealth Premium Formulas and Monthly Premiums"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ma/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/ma/hhs/chip/ma_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1397ee#b",
+   "kind": "statute",
+   "citation": "us/statute/42/1397ee/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip_federal_cost.py",
+    "variables/gov/hhs/chip/chip_federal_share.py",
+    "variables/gov/hhs/chip/chip_state_cost.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1397gg#e_1_Q",
+   "kind": "statute",
+   "citation": "us/statute/42/1397gg/e/1/Q",
+   "titles": [
+    "42 U.S.C. 1397gg(e)(1)(Q)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/chip/lawfully_residing/pregnant.yaml",
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1397gg#e_1_R",
+   "kind": "statute",
+   "citation": "us/statute/42/1397gg/e/1/R",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/1397jj#c_1",
+   "kind": "statute",
+   "citation": "us/statute/42/1397jj/c/1",
+   "titles": [
+    "42 U.S.C. 1397jj(c)(1), definition of child"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/child/max_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/42/chapter-7/subchapter-XXI",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip_enrolled.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/8/1611#a",
+   "kind": "statute",
+   "citation": "us/statute/8/1611/a",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py",
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/8/1613",
+   "kind": "statute",
+   "citation": "us/statute/8/1613",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/8/1641#b",
+   "kind": "statute",
+   "citation": "us/statute/8/1641/b",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py"
+   ]
+  },
+  {
+   "url": "https://www.macpac.gov/publication/chip-spending-by-state/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip.py",
+    "variables/gov/hhs/chip/chip_gross.py",
+    "variables/gov/hhs/chip/per_capita_chip.py",
+    "variables/gov/hhs/chip/per_capita_chip_gross.py"
+   ]
+  },
+  {
+   "url": "https://www.macpac.gov/publication/medicaid-and-chip-income-eligibility-levels-as-a-percentage-of-the-federal-poverty-level-for-children-and-pregnant-women-by-state/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MACStats Medicaid and CHIP Data Book, Exhibit 35 | MACPAC"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/CHIP/Downloads/AL-24-0031-FCEP%20and%20AL-24-0031-ABSC.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS Alabama CHIP State Plan Amendment AL-24-0031-FCEP and AL-24-0031-ABSC (statewide From-Conception-to-End-of-Pregnancy coverage)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/al_statewide.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/CHIP/Downloads/ID/IDCurrentFactsheet.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Idaho CHIP Title XXI State Plan fact sheet (CMS)"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/hhs/chip/premium/per_child.yaml",
+    "variables/gov/states/id/hhs/chip/id_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/CHIP/Downloads/NY-22-0033-CHIP.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CHIP State Plan Amendment NY-22-0033, eliminating the 9 dollar tier and extending free coverage to 222 percent FPL, effective October 1, 2022"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ny/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/chip/chip-eligibility-enrollment",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_fcep_eligible_person.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/SHO-12-002.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho-12-002.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "variables/gov/states/ca/dhcs/cchip/ca_cchip_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf#page=28",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/federal-policy-guidance/downloads/sho26001.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/is_chip_immigration_status_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid-spa/2023-11-22/156086",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Georgia State Plan Amendment GA-23-0002"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/enrollment-strategies/medicaid-and-chip-coverage-lawfully-residing-children-pregnant-individuals",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Medicaid and CHIP Coverage of Lawfully Residing Children and Pregnant Individuals (updated April 2, 2026)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/child.yaml",
+    "parameters/gov/hhs/chip/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/financial-management/state-expenditure-reporting-for-medicaid-chip/expenditure-reports-mbescbes",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip_gross.py",
+    "variables/gov/hhs/chip/per_capita_chip_gross.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels as of December 2023 | CMS",
+    "Medicaid, Children's Health Insurance Program, & Basic Health Program Eligibility Levels | CMS"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/child/income_limit.yaml",
+    "parameters/gov/hhs/chip/fcep/income_limit.yaml",
+    "parameters/gov/hhs/chip/pregnant/income_limit.yaml",
+    "variables/gov/hhs/chip/chip_category.py",
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_pregnant.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/2023-04/AL-23-0026-RIM2.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS Alabama CHIP State Plan Amendment AL-23-0026-RIM2 (ALL Babies expansion to 36 counties, effective May 1, 2023)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/fcep/al_counties.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/2023-04/RI-22-0025.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS, Rhode Island CHIP State Plan Amendment RI-22-0025, approval letter"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/chip/lawfully_residing/pregnant.yaml"
+   ]
+  },
+  {
+   "url": "https://www.medicaid.gov/sites/default/files/CHIP/Downloads/CA/CA-CHIPSPA-20.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "CMS approval of California CHIP State Plan Amendment 20, CCHIP population in Santa Clara, San Francisco, and San Mateo counties effective January 1, 2014",
+    "CMS approval of California CHIP State Plan Amendment 20, CCHIP population above 261 percent up to and including 317 percent FPL effective January 1, 2014"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/dhcs/cchip/counties.yaml",
+    "parameters/gov/states/ca/dhcs/cchip/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-program-general-information",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Michigan MDHHS MIChild program general information"
+   ],
+   "states": [
+    "mi"
+   ],
+   "files": [
+    "parameters/gov/states/mi/hhs/chip/premium.yaml",
+    "variables/gov/states/mi/hhs/chip/mi_chip_premium.py"
+   ]
+  },
+  {
+   "url": "https://www.mmis.georgia.gov/portal/Portals/0/StaticContent/Public/ALL/NOTICES/Covid-19-%20Spring%20Medicaid%20Fair%202021%2020210325165058.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Georgia DCH COVID-19 operations update (Spring 2021 Medicaid Fair), waiving all PeachCare for Kids premiums for the duration of the federal emergency"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/hhs/chip/premium/family_cap.yaml",
+    "parameters/gov/states/ga/hhs/chip/premium/per_child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10703&fileName=10%20CCR%202505-10%208.100#page=56",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "MEDICAL ASSISTANCE - SECTION 8.100 Eligibility, Provider Screening, NPI - 8.100.4.D."
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/hcpf/chp/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10779#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Medical Services Board | DEPARTMENT OF HEALTH CARE POLICY AND FINANCING"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/hcpf/chp/child.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ssa.gov/OP_Home/ssact/title21/2110.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/hhs/chip/chip_category.py",
+    "variables/gov/hhs/chip/is_chip_eligible_child.py",
+    "variables/gov/hhs/chip/is_chip_eligible_pregnant.py",
+    "variables/gov/hhs/chip/is_chip_eligible_standard_pregnant_person.py"
+   ]
+  }
+ ]
+}

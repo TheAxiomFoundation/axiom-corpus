@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/statute/2026-10-12-w7-state-benefits-statute-fl.json",
+      "sha256": "dacdbc8264dacec2c9e14e7590fcd316c8513267dd384efbe2699088d32c71be"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/statute/2026-10-12-w7-state-benefits-statute-fl.json",
+      "sha256": "286dce343c3e4562a1b6ce94f570955ac521af9631b500ce3693bee36d60c639"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/statute/2026-10-12-w7-state-benefits-statute-fl.jsonl",
+      "sha256": "3fd51d1a9bb8780d46e5d7b5e8b99c16706008e3c51eb78e690c0e586d84f1c7"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/statute/2026-10-12-w7-state-benefits-statute-fl/official-documents/us-fl-statute-title-xxx-chapter-414-section-414-095.html",
+      "sha256": "c7f9e7b883ea264a2a5dac372f57ef316f0411ab037ba40050c0617bde8aa8e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-13T12:06:00.506328+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LwacHFz2iZZLyG2gPu9ZZSKBHMoaQSXhIGVLMDziuosMtKNRIXvkU9CFOH64B1wDeRKCOFlTn46M48mQKaNoBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-statute-fl"
+}

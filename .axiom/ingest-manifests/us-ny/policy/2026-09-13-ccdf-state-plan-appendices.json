@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "831814608477a4a9967a6ad0dfb32eae2901b7c8b94a7ddc0bfca3df89a128ed"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "b468ac8b411083dd466b52ecd820e4e086335a2bd86553e3a6ac7ea58760b394"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "f8d1e5b8a52f9dc0fee02cd2d58537c66ed63afbc947b89e55ee3cdd20d5b251"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-ny-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "26327cac8d834338cc658c8a0cae36fc3eb59896ac69587dd188526750985a24"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:03:40.126715+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Jabse16tPlATFGzc9lnnN+Hf1nzW94Gn7DJ18909EQQuuvIjLXwP8DdXAH4ALR/z57pDQoYyQ1TlpT+Ep5nVDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

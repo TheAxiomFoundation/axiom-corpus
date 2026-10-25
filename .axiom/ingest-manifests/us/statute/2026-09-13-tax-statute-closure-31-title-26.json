@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-tax-statute-closure-31-title-26.json",
+      "sha256": "0c8451ab436eccacce2372a66e3c65e0d0437e545a6a1573c5c33b83054ab533"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-tax-statute-closure-31-title-26.json",
+      "sha256": "6aa4e4b2dd5e8ac5f4eeec5b0dccf5378bf6fd2cb32b26598e5cbe21adbc7452"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-tax-statute-closure-31-title-26.jsonl",
+      "sha256": "56e00b4f8a6744d94fb9de241c123701009228e426f0d4a41486272b7793e9e8"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-tax-statute-closure-31-title-26/olrc/xml_usc26@119-103.zip",
+      "sha256": "285b9862808f26055c3eed16c2aca1d8de1fae96b581f44a55cfedb907a46eff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tax-statute-closure-31-title-26 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4299,
+    "missing_count": 0,
+    "provision_count": 4299,
+    "source_count": 4299
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:58:21.954864+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "paCOXAV9nOYqqSogh/eIzoCT2ZWAVbNeVkY+FBWMAArv8G8SJE0zF6uz8BmOQgsPpNXRylQYela3F9PT+PGVAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tax-statute-closure-31-title-26"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "94083e363c7d0a12bde8c72f0b140b297cf61d98833f52fb17895872066f0e80"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "efb9be32f1b35d6167e876efc94bbb09c1226cdefd532f25a0183b710d826790"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "4f5fcc5157d893093372ce51bdc96f96f57657776a265c8fb626ce008b8c6c66"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/tn-tenncare-rules-1200-13-21-coverkids.pdf",
+      "sha256": "29a7a366209487a9d5e36a814ddb070feb870ac432fab8680b574a161c1dde16"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-tn-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-12T12:53:30.647789+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hIhiJE4vsSMXbBBc8w+6+IdfApJbBAmQWOWW9oZI0Bi9aqdZhEQ9SaMDag15ruI5lJMs7q5bpuOeTM7L6UKXCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

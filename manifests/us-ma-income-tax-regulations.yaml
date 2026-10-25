@@ -1,0 +1,404 @@
+version: '2026-09-14'
+documents:
+- source_id: ma-dor-830-cmr-62-3-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.3.1
+  title: '830 CMR 62.3.1: Rent Deduction'
+  source_url: https://www.mass.gov/regulations/830-CMR-6231-rent-deduction
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-3-2
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.3.2
+  title: '830 CMR 62.3.2: Charitable Contribution Deduction'
+  source_url: https://www.mass.gov/regulations/830-CMR-6232-charitable-contribution-deduction
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-5a-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.5a.1
+  title: '830 CMR 62.5A.1: Non-Resident Income Tax'
+  source_url: https://www.mass.gov/regulations/830-CMR-625a1-non-resident-income-tax
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-5a-2
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.5a.2
+  title: '830 CMR 62.5A.2: Compensation Received by Non-Resident Professional Team Athletes'
+  source_url: https://www.mass.gov/regulations/830-CMR-625a2-compensation-received-by-non-resident-professional-team-athletes
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-5a-3
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.5a.3
+  title: '830 CMR 62.5A.3: Massachusetts Source Income of Non-Residents Telecommuting due to the COVID-19 Pandemic'
+  source_url: https://www.mass.gov/regulations/830-CMR-625a3-massachusetts-source-income-of-non-residents-telecommuting-due-to-the-covid-19-pandemic
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-6-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.6.1
+  title: '830 CMR 62.6.1: Residential Energy Credit'
+  source_url: https://www.mass.gov/regulations/830-CMR-6261-residential-energy-credit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-6-3
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.6.3
+  title: '830 CMR 62.6.3: Lead Paint Removal Credit'
+  source_url: https://www.mass.gov/regulations/830-CMR-6263-lead-paint-removal-credit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-6-4
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.6.4
+  title: '830 CMR 62.6.4: Conservation Land Tax Credit'
+  source_url: https://www.mass.gov/regulations/830-CMR-6264-conservation-land-tax-credit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-6-5
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.6.5
+  title: '830 CMR 62.6.5: Angel Investor Tax Credit'
+  source_url: https://www.mass.gov/regulations/830-CMR-6265-angel-investor-tax-credit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-6m-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.6m.1
+  title: '830 CMR 62.6M.1: Community Investment Tax Credit'
+  source_url: https://www.mass.gov/regulations/830-CMR-626m1-community-investment-tax-credit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-6w-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.6w.1
+  title: '830 CMR 62.6W.1: Cranberry Bog Renovation Credit'
+  source_url: https://www.mass.gov/regulations/830-CMR-626w1-cranberry-bog-renovation-credit
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-17a-2
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.17a.2
+  title: '830 CMR 62.17A.2: Restatement of Massachusetts Taxation of S Corporations and Their Shareholders'
+  source_url: https://www.mass.gov/regulations/830-CMR-6217a2-restatement-of-massachusetts-taxation-of-s-corporations-and-their-shareholders
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62-63-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62.63.1
+  title: '830 CMR 62.63.1: Installment Transactions'
+  source_url: https://www.mass.gov/regulations/830-CMR-62631-installment-transactions
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62b-2-1
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62b.2.1
+  title: '830 CMR 62B.2.1: Withholding of Taxes on Wages and Other Payments'
+  source_url: https://www.mass.gov/regulations/830-CMR-62b21-withholding-of-taxes-on-wages-and-other-payments
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62b-2-2
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62b.2.2
+  title: '830 CMR 62B.2.2: Pass-Through Entity Withholding'
+  source_url: https://www.mass.gov/regulations/830-CMR-62b22-pass-through-entity-withholding
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62b-2-3
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62b.2.3
+  title: '830 CMR 62B.2.3: Motion Picture Production Company Withholding'
+  source_url: https://www.mass.gov/regulations/830-CMR-62b23-motion-picture-production-company-withholding
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations
+- source_id: ma-dor-830-cmr-62b-2-4
+  jurisdiction: us-ma
+  document_class: regulation
+  citation_path: us-ma/regulation/830-cmr/62b.2.4
+  title: '830 CMR 62B.2.4: Withholding on Sales of Massachusetts Real Estate'
+  source_url: https://www.mass.gov/regulations/830-CMR-62b24-withholding-on-sales-of-massachusetts-real-estate
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: main
+    segmentation: labeled_sections
+    section_heading_pattern: ^\((?P<num>\d+)\)\s+(?P<heading>[A-Z][A-Za-z0-9 ,'/():-]{2,100})$
+    section_label_template: '{num}'
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Revenue
+    official_publisher: Massachusetts Department of Revenue (mass.gov regulations)
+    document_subtype: administrative_regulation
+    program: individual_income_tax
+    source_discovery_group: us-ma/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.mass.gov/lists/dor-regulations

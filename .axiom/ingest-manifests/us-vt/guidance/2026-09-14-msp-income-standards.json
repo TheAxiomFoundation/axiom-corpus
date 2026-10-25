@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-vt/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "2d520029de58d596f7697b788c03cd7800b5a54c3d87875a505ea566cd693653"
+    },
+    {
+      "path": "data/corpus/inventory/us-vt/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "f673ac1adb065224f85a935b80c1410a9730f0e109f78d8658af796b1fc6e006"
+    },
+    {
+      "path": "data/corpus/provisions/us-vt/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "a4cf3b31efe58f2d1d6103c4dee8a5d8a058aae3f9035d68e852fe1f0b3f3f08"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-09-14-msp-income-standards/official-documents/us-vt-dvha-mabd-pil-fpl-income-chart-2026.pdf",
+      "sha256": "606dd4e221bffbcc2d134aaf19f810d0e7443478be203014446ed2d4a4756779"
+    },
+    {
+      "path": "data/corpus/sources/us-vt/guidance/2026-09-14-msp-income-standards/official-documents/us-vt-dvha-standards-change-for-healthcare-2026.pdf",
+      "sha256": "9b8a0f3cba1c27b3e517611da7f29caa18629ab979131c333acea571929c3d49"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-vt-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:26:16.456017+00:00",
+  "jurisdiction": "us-vt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HBpNBT8lOFc8v5l9jasAknTSxz5/F+cwRXqFeiH0Q9LHCG6ppfzCpaG7J6gUmh6uaGpLsUrAq6HuF+Ag05kYDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

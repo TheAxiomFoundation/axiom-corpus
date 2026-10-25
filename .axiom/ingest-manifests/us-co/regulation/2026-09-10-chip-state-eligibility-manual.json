@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "0083926774d16bbabead841697d9b31f6cc388599451ed993e469896fe18909e"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "9b42708434f931030f8ba6c1afdad145d5e3c217e9d58e31727bd33872410e4d"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "45862f475ea769b1c24eda3ead2a11f9e7c66c6bbe298416de9230baceea0a89"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-09-10-chip-state-eligibility-manual/official-documents/co-hcpf-10-ccr-2505-3.pdf",
+      "sha256": "392b7f5988251dbec37b6fdc1d6e5605dca7a330c0115f36a7725a7246c4abed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-co-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 26,
+    "missing_count": 0,
+    "provision_count": 26,
+    "source_count": 26
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T21:38:04.568162+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vcl89rQZyizqygBZRz4nPZqje5GhvESKzm50BcnO1aI4w9Zpd/E9N69xuf2H5j3mS1S38GNqNlh/lcxaRensDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

@@ -1,0 +1,41 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-nj-liheap-dca-liheap-fy2026
+  jurisdiction: us-nj
+  document_class: policy
+  title: New Jersey DCA FY 2026 LIHEAP Benefit Matrix (benefit grids for deliverables, electric, gas and renters)
+  source_url: https://www.nj.gov/dca/dhcr/offices/docs/FY2026%20Benefit%20Matrix.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-nj/policy/dca/liheap/fy2026
+  extraction:
+    ocr: true
+    ocr_dpi: 300
+  metadata:
+    primary_source: true
+    source_authority: New Jersey Department of Community Affairs, Division of Housing and Community Resources
+    document_subtype: plan_attachment_benefit_matrix_pdf
+    program: LIHEAP
+    state: NJ
+    closure_elements:
+    - LIHEAP-ST-09
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://www.nj.gov/dca/dhcr/offices/liheap.shtml
+    on_clearinghouse_index: true
+    source_discovery_group: us-nj/policy/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://www.nj.gov/dca/dhcr/offices/liheap.shtml
+    extraction_granularity: pdf_page
+    expression_date_note: FY 2026 grid (PDF dated 2025-08-07); the DCA pages now link the FY 2027 grid as a PNG image with
+      the same values
+    access_note: nj.gov HTTP 200 to the plain client (419,963 bytes)
+    page_count: 1
+    benefit_matrix_pdf_pages: '1'
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+    ocr_note: image-only PDF (one 428x700 image); read with tesseract at 300 dpi
+    clearinghouse_copy_url: https://liheapch.acf.gov/docs/2026/benefits-matricies/NJ_BenefitMatrix_2026.pdf
+    clearinghouse_copy_note: byte-identical (md5 8db15e890cab0a0bfb2879ac439bda4f)
+    index_note: not linked from the DCA LIHEAP/USF pages on 2026-09-13, which link the FY2027 Benefit Matrix.png; the FY 2026
+      PDF is the publisher's own file in the same docs directory

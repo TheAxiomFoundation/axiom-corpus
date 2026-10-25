@@ -1,0 +1,46 @@
+version: 2026-09-13-ccdf-rate-schedules
+documents:
+- source_id: us-tn-ccdf-rate-schedule-income-eligibility-limits-and-copay-fees-2025-10-01
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee: Child Care Certificate Program Income Eligibility Limits and Parent Co-Pay Fees, effective October 1,
+    2025'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/Income%20Eligibility%20Limits%20and%20CoPay%20Chart%2010.1.25.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-tn/policy/ccdf/rate-schedules/income-eligibility-limits-and-copay-fees-2025-10-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services, Child Care Certificate Program
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
+    source_discovery_group: us-tn/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
+    closure_elements:
+    - ccdf-s30
+- source_id: us-tn-ccdf-rate-schedule-provider-reimbursement-rates-2026-01-01
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'Tennessee: Child Care Certificate Program Provider Weekly Reimbursement Rates including QRIS Scorecard Bonus Payments,
+    effective January 1, 2026'
+  source_url: https://www.tn.gov/content/dam/tn/human-services/documents/Reimbursement_Rate_Chart_1.1.26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-01-01'
+  citation_path: us-tn/policy/ccdf/rate-schedules/provider-reimbursement-rates-2026-01-01
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Human Services, Child Care Certificate Program
+    document_subtype: rate_or_copay_schedule
+    program: CCDF
+    publisher_index_url: https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
+    source_discovery_group: us-tn/policy/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families; index https://www.tn.gov/humanservices/information-and-resources/tdhs-reports-and-information.html
+    closure_elements:
+    - ccdf-s30

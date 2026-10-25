@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "34fff53147252e7d80a1e99e247cc940f4d8e24f5649f80dcc077dc7e9df89d6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "b11417bc590248f0ca62cff38d7ed051eca7e3147fb2b1f5f0d1ac49a7489a2d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "ef5be9cb9f5fb207e2b7dc513ab0571a56948f1fae7c73f483daf9e8fab201f4"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-ri-tax-ri-1040es-ty2026.pdf",
+      "sha256": "d643f8f49f33b171b40850146b52a89ad48fcd234af5a2a413d58998e98442ce"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-ri-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T17:57:25.525088+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zgP3XFm+cuW7clvvRlud6v66mNxNc/n3obtAu/6xKVocfqYyj1mQ4akmiB/WFRZItNLqbq73+49W+1YRD8bbDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

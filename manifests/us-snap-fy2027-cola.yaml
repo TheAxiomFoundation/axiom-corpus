@@ -1,0 +1,47 @@
+version: 2026-09-24-snap-fy2027-cola
+# USDA FNS memorandum "SNAP - Fiscal Year 2027 Cost-of-Living Adjustments",
+# dated August 21, 2026 and posted 2026-08-28 as the embedded PDF behind the FNA
+# landing page. One full-memorandum document, split into page rows, following
+# the released FY 2024 memo scope us/guidance/2026-07-08-snap-fy2024-cola
+# (cited by the rulespec-us fy-2024-cola modules) and the FY 2026 memo source
+# snap-fy2026-cola-memo in manifests/us-snap-fns-guidance-2026-09-13.yaml.
+# The citation path takes the plain -cola slug (the FY 2026 memo took -memo
+# only because snap-fy2026-cola already named the two-page tables PDF).
+documents:
+- source_id: snap-fy2027-cola
+  jurisdiction: us
+  document_class: guidance
+  title: SNAP - Fiscal Year 2027 Cost-of-Living Adjustments (memorandum)
+  source_url: https://www.fna.usda.gov/snap/allotment/cola/fy27
+  download_url: https://www.usda.gov/sites/default/files/guidance-documents/fna.snap-cola2027.pdf
+  source_format: pdf
+  source_as_of: '2026-09-24'
+  expression_date: '2026-10-01'
+  citation_path: us/guidance/usda/fns/snap-fy2027-cola
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: USDA Food and Nutrition Service (Food and Nutrition Administration since 2026-06-01)
+    program: SNAP
+    source_discovery_group: us/guidance/usda/fns
+    discovered_via: manual-review 2026-09-24; PolicyBench adds202609 scenario_112 (FY 2027 SNAP allotments, deductions and income limits)
+    document_subtype: cola_guidance
+    memo_date: '2026-08-21'
+    fiscal_year: '2027'
+    effective_start: '2026-10-01'
+    effective_end: '2027-09-30'
+    index_url: https://www.fna.usda.gov/snap/allotment/cola
+    access_note: The FNA page carries only an embedded PDF from the USDA guidance portal (www.usda.gov/sites/default/files/guidance-documents/),
+      which answers HTTP 403 to plain clients and serves the file to a browser-impersonated client; downloaded with browser
+      impersonation.
+    source_note: The USDA guidance portal lists this document at https://www.usda.gov/guidance-documents/snap/fna/snap-fiscal-year-2027-cost-living-adjustments
+      with issued date August 21, 2026; the FNA landing page prints "Page updated August 28, 2026" and the portal file's
+      Last-Modified header is 2026-08-28. As of 2026-09-24 the FNA COLA index still lists only FY 2026 print-version
+      tables, so this memorandum (pages 3-7) is the only official FY 2027 source for the income eligibility standards,
+      maximum and minimum allotments, deductions, asset limits and change-reporting threshold.
+    expression_date_note: the memorandum prints DATE August 21, 2026 (memo_date); its COLAs are effective October 1, 2026,
+      the same convention as the released FY 2024 memo and FY 2026 tables scopes
+    related_released_scope: us/guidance/2026-07-08-snap-fy2024-cola (the FY 2024 memorandum) and the snap-fy2026-cola-memo
+      source of us/guidance/2026-09-13-snap-fns-guidance (the FY 2026 memorandum)

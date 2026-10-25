@@ -1,0 +1,138 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: ne-dhhs-title-469-chapter-1
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 469 NAC Chapter 1: General Background'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/469%20NAC%201%20%2806-06-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-06-06'
+  citation_path: us-ne/regulation/title-469/chapter-1
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (469 NAC), filed with the Secretary of State
+    document_subtype: filed_administrative_regulation_chapter
+    program: ssi_state_supplement
+    state_program: Assistance to the Aged, Blind, or Disabled (AABD) payment program; State Disability Program
+    federal_program: SSI
+    state: NE
+    nac_title: '469'
+    nac_title_name: ASSISTANCE TO THE AGED, BLIND, OR DISABLED PROGRAM
+    nac_chapter: '1'
+    effective_date_api: '2022-06-06'
+    pdf_blob_name: 469 NAC 1 (06-06-2022).pdf
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    source_discovery_group: us-ne/regulation/title-469
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    tls_note: rules.nebraska.gov omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; extract with REQUESTS_CA_BUNDLE=data/certs/rules-nebraska-gov-ca-bundle.pem
+      (certifi + the publisher's public intermediate); verification not disabled
+- source_id: ne-dhhs-title-469-chapter-2
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 469 NAC Chapter 2: Eligibility Requirements'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/469%20NAC%202%20%2806-06-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-06-06'
+  citation_path: us-ne/regulation/title-469/chapter-2
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (469 NAC), filed with the Secretary of State
+    document_subtype: filed_administrative_regulation_chapter
+    program: ssi_state_supplement
+    state_program: Assistance to the Aged, Blind, or Disabled (AABD) payment program; State Disability Program
+    federal_program: SSI
+    state: NE
+    nac_title: '469'
+    nac_title_name: ASSISTANCE TO THE AGED, BLIND, OR DISABLED PROGRAM
+    nac_chapter: '2'
+    effective_date_api: '2022-06-06'
+    pdf_blob_name: 469 NAC 2 (06-06-2022).pdf
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    source_discovery_group: us-ne/regulation/title-469
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    tls_note: rules.nebraska.gov omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; extract with REQUESTS_CA_BUNDLE=data/certs/rules-nebraska-gov-ca-bundle.pem
+      (certifi + the publisher's public intermediate); verification not disabled
+- source_id: ne-dhhs-title-469-chapter-3
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 469 NAC Chapter 3: Determination Of Benefits'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/469%20NAC%203%20%2806-06-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-06-06'
+  citation_path: us-ne/regulation/title-469/chapter-3
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (469 NAC), filed with the Secretary of State
+    document_subtype: filed_administrative_regulation_chapter
+    program: ssi_state_supplement
+    state_program: Assistance to the Aged, Blind, or Disabled (AABD) payment program; State Disability Program
+    federal_program: SSI
+    state: NE
+    nac_title: '469'
+    nac_title_name: ASSISTANCE TO THE AGED, BLIND, OR DISABLED PROGRAM
+    nac_chapter: '3'
+    effective_date_api: '2022-06-06'
+    pdf_blob_name: 469 NAC 3 (06-06-2022).pdf
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    source_discovery_group: us-ne/regulation/title-469
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    tls_note: rules.nebraska.gov omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; extract with REQUESTS_CA_BUNDLE=data/certs/rules-nebraska-gov-ca-bundle.pem
+      (certifi + the publisher's public intermediate); verification not disabled
+- source_id: ne-dhhs-title-469-chapter-4
+  jurisdiction: us-ne
+  document_class: regulation
+  title: 'Nebraska Title 469 NAC Chapter 4: State Disability Program – Medical'
+  source_url: https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/469%20NAC%204%20%2806-06-2022%29.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-06-06'
+  citation_path: us-ne/regulation/title-469/chapter-4
+  extraction:
+    segmentation: labeled_sections
+    normalize_parenthetical_label_components: true
+    section_heading_pattern: ^(?P<label>0\d{2}(?:\.\d{1,2})?(?:\([A-Za-z0-9]+\))*)\.?\s+(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+    heading_continuation_pattern: ^(?P<heading>[A-Z][A-Z0-9 ’'&,/()\-–‑§$]+?(?:\.(?=\s|$)|$))(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services (469 NAC), filed with the Secretary of State
+    document_subtype: filed_administrative_regulation_chapter
+    program: ssi_state_supplement
+    state_program: Assistance to the Aged, Blind, or Disabled (AABD) payment program; State Disability Program
+    federal_program: SSI
+    state: NE
+    nac_title: '469'
+    nac_title_name: ASSISTANCE TO THE AGED, BLIND, OR DISABLED PROGRAM
+    nac_chapter: '4'
+    effective_date_api: '2022-06-06'
+    pdf_blob_name: 469 NAC 4 (06-06-2022).pdf
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    index_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=224
+    source_discovery_group: us-ne/regulation/title-469
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://rules.nebraska.gov/api/chapter/GetByTitleId/224
+    tls_note: rules.nebraska.gov omits the DigiCert Global G2 TLS RSA SHA256 2020 CA1 intermediate; extract with REQUESTS_CA_BUNDLE=data/certs/rules-nebraska-gov-ca-bundle.pem
+      (certifi + the publisher's public intermediate); verification not disabled

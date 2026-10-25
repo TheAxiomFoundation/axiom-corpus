@@ -1,0 +1,443 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-va-medicaid-m000-table-of-contents
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Table of Contents'
+  source_url: https://www.dmas.virginia.gov/media/4824/m000-table-of-contents-7-2022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m000-table-of-contents
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m00-appendix-income-charts
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M00 Appendix - Income Charts'
+  source_url: https://www.dmas.virginia.gov/media/ff1bdyne/chapter-m00-appendix-income-charts-2026-07-01.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m00-appendix-income-charts
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m01
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M01 Application for Medical Assistance'
+  source_url: https://www.dmas.virginia.gov/media/mcfnnjfb/m01-1-1-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m01
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m02
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M02 Nonfinancial Eligibility Requirements'
+  source_url: https://www.dmas.virginia.gov/media/se4eaas5/m02-10-1-25.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m02
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m03
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M03 Covered Groups Requirements'
+  source_url: https://www.dmas.virginia.gov/media/h4zmrctu/m03-4-1-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m03
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m04
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M04 Modified Adjusted Gross Income (MAGI)'
+  source_url: https://www.dmas.virginia.gov/media/0aynyhxk/m04-1-1-26a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m04
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m05
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M05 Medicaid Assistance Unit'
+  source_url: https://www.dmas.virginia.gov/media/mghpujpo/m05-1-1-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m05
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m06
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M06 Families and Children Resources'
+  source_url: https://www.dmas.virginia.gov/media/w0wf2wm5/m06-10-1-24.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m06
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m07
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M07 Families and Children Income'
+  source_url: https://www.dmas.virginia.gov/media/xwseehc2/m07-7-1-25.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m07
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m08
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M08 ABD Income'
+  source_url: https://www.dmas.virginia.gov/media/bzbpogf5/m08-1-1-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m08
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m11
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M11 ABD Resources'
+  source_url: https://www.dmas.virginia.gov/media/sg5m1q3j/m11-abd-resources-1-1-26a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m11
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m13
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M13 Spenddown'
+  source_url: https://www.dmas.virginia.gov/media/eqyfiboa/m13-10-1-24.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m13
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m14
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M14 Long Term Care'
+  source_url: https://www.dmas.virginia.gov/media/hksogjdf/chapter-m14-long-term-care.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m14
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m15
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M15 Entitlement Policy and Procedures'
+  source_url: https://www.dmas.virginia.gov/media/ggujh54e/chapter-m15-entitlement-policy-procedures.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m15
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m16
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M16 Appeal Process'
+  source_url: https://www.dmas.virginia.gov/media/43mpay4e/chapter-m16-appeals-process.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m16
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m17
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M17 Medicaid Fraud and Recovery'
+  source_url: https://www.dmas.virginia.gov/media/pzaj3ndn/chapter-m17-medicaid-fraud-and-non-fraud-recovery.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m17
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m18
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M18 Medical Services'
+  source_url: https://www.dmas.virginia.gov/media/berocjhx/chapter-m18-medical-services-04012026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m18
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m20
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M20 Extra Help Medicare Part D Low Income Subsidy'
+  source_url: https://www.dmas.virginia.gov/media/r5wlkmi2/chapter-m20-extra-help-medicare-part-d-low-income-subsidy.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m20
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m21
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M21 Family Access to Medical Security Insurance Plan (FAMIS)'
+  source_url: https://www.dmas.virginia.gov/media/jbcfd0hg/chapter-m21-famis.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m21
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m22
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M22 FAMIS Moms'
+  source_url: https://www.dmas.virginia.gov/media/tofpszdv/chapter-m22-famis-moms-2026-4-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m22
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page
+- source_id: us-va-medicaid-m23
+  jurisdiction: us-va
+  document_class: manual
+  title: 'Virginia Medical Assistance Eligibility Manual: Chapter M23 FAMIS Prenatal Coverage'
+  source_url: https://www.dmas.virginia.gov/media/2qapsay2/chapter-m23-famis-prenatal-coverage-2026-4-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-va/manual/dmas/medicaid/m23
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Virginia Department of Medical Assistance Services
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: Virginia Medical Assistance Eligibility Manual
+    manual_index_url: https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    source_discovery_group: us-va/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.dmas.virginia.gov/for-applicants/eligibility-guidance/eligibility-manual/
+    extraction_granularity: pdf_page

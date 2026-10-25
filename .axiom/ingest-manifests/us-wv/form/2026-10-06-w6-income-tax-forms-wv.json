@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/form/2026-10-06-w6-income-tax-forms-wv.json",
+      "sha256": "dc04510a2f37c83cc3f24be1044e83d7351cd183f926c667d9f5ac6bdd73b094"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/form/2026-10-06-w6-income-tax-forms-wv.json",
+      "sha256": "17dc83cc939b71b5ce925a7404b95dde672269414d2d03a1345830ff080d74a0"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/form/2026-10-06-w6-income-tax-forms-wv.jsonl",
+      "sha256": "c55bd65b6e380f64d97f1d3f4245eb93e4d697561e9937030d90ce8d40dab6a0"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/form/2026-10-06-w6-income-tax-forms-wv/official-documents/documents-pit-2022-personalincometaxformsandinstructions.2022-d40f261dce.pdf",
+      "sha256": "0b1bef3c4d541ddae0f5dff66df4eaddcaab966e2224c4af63fd20eec4990242"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/form/2026-10-06-w6-income-tax-forms-wv/official-documents/documents-pit-2023-it140.personalincometaxformsandinstructions.2023-065d2f35db.pdf",
+      "sha256": "ff24d20d69222708b62432749a7188ba68dfa70064a8447303cafdb1058d774c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/form/2026-10-06-w6-income-tax-forms-wv/official-documents/documents-pit-2024-it140.personalincometaxformsandinstructions.2024-58a5ef579e.pdf",
+      "sha256": "ecc89af2be267c39b612ecdcbf3087a54fc3928706b58be7d5345f677982a8d2"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/form/2026-10-06-w6-income-tax-forms-wv/official-documents/us-wv-form-tax-ty2020-it-140-booklet.pdf",
+      "sha256": "e4ecae736a477563f8ed3d6d780862597cb04f55a7291eb39edced8e493a2df9"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/form/2026-10-06-w6-income-tax-forms-wv/official-documents/us-wv-form-tax-ty2021-it-140-booklet.pdf",
+      "sha256": "8a45f12f6eb127995536d53bf1255259332aa86364f38c7683b18891d7047e4f"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/form/2026-10-06-w6-income-tax-forms-wv/official-documents/us-wv-form-tax-ty2021-it-140.pdf",
+      "sha256": "5909ceb264301f1b1411c9b00eab8031b763863eba6b56b1a18966a07f936e78"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T18:01:08.514876+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KNBuRSQKum/eXWX6mDMtJT1oSLY2rIBxAFL/r6QfI1pHs9am2WPwR5S3p6y3D/9aivbPAxxZ8MdEG1iBjIJ5AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-wv"
+}

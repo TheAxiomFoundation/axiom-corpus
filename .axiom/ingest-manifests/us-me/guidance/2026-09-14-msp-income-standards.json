@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "197f0a759c15b9e80d3676e85f93167a4183195685c5943ad0e57782efb8a55e"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "0a570d05e2d1a90e2343da29d68fc2b386ca16ee4c1128ac764150bedb68a667"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "f7ac0c3bba549daa0a7731d194e168a6879286de082238f583b8e922e3754476"
+    },
+    {
+      "path": "data/corpus/sources/us-me/guidance/2026-09-14-msp-income-standards/official-documents/us-me-ofi-mainecare-eligibility-guidelines-2026.pdf",
+      "sha256": "d9ee39dff0574cc4cb894362d66970c9c6d202b06cadf9411f68f5716a3ca98c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-me-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:46:53.477204+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "d6VB4Sqt47igQjyX3BfH63YqG6RRIHOCDQRgwmdv+aNi2nv4ZMPqzV2E/tGLTu1s5Lq03oWYN1yvtblbv1zKBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

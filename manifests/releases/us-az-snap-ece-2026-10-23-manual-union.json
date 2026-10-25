@@ -1,0 +1,42 @@
+{
+  "description": "Arizona DES manual-only successor for dated SNAP expanded categorical eligibility authority. Preserves every Arizona manual scope in the active W7 union and adds the signed 2026-10-09 ECE source scope. Other serving jurisdiction/document-class pairs are deliberately unchanged. Publication and activation remain separate gates.",
+  "name": "us-az-snap-ece-2026-10-23-manual-union",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-06-25-az-ccap"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-07-12-az-des-faa6-utility-amounts"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-07-17-faa5-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-09-10-medicaid-state-eligibility-manual"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-09-14-liheap-benefit-matrix"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-10-09-az-des-snap-ece-dated-authority"
+    }
+  ]
+}

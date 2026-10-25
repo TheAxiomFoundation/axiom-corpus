@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "f2d8b4bd4fbba9ec922718f97fa99999487d4a7c1853e181b8f6427b0026666d"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "abbb2bc5b4d328cc906bc54c0a1397461c6070b3742c5fcc02d9304c36efc188"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "7d93d52ab45046777f9d61a851f69a164d1e54621ea4f903374d9c679b16a17a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-co-cdor-dr-0104-book-ty2025.pdf",
+      "sha256": "69c80c89118eccd21dc18e564237539e647c623a361a7f0beebed99ef5b0c7f8"
+    },
+    {
+      "path": "data/corpus/sources/us-co/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-co-cdor-dr-0104-ty2025.pdf",
+      "sha256": "6deb6c181848797505c80ffc351ee973778cbb834ba18ea7007f78fa26ecb49c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T21:36:54.177464+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bIDxTsYPP1Dzp5YoVqyC9nxs7WpgNfbnGwXM0tNseKkS/r4ymZ/qysyWE9ENmp1ZnJIXfffxDMuEwTEg+JpZAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

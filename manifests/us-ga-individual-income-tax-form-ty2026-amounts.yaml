@@ -1,0 +1,31 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-ga-dor-500-es-ty2026
+  jurisdiction: us-ga
+  document_class: form
+  title: 2026 500-ES Estimated Tax for Individuals and Fiduciaries
+  source_url: https://dor.georgia.gov/document/document/2026-500-es-estimated-tax-individuals-and-fiduciaries/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ga/form/dor/ty2026/500-es
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-05-22'
+    amounts_carried:
+    - standard deduction ($12,000/$24,000)
+    - dependent exemption ($4,000, labelled tax year 2025)
+    - retirement exclusion
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://dor.georgia.gov/taxes/years-individual-income-tax-forms
+    discovered_via: manual-review:tax-agent-queue; index https://dor.georgia.gov/taxes/years-individual-income-tax-forms (read
+      2026-09-13)
+    source_note: The form defers the rate to the IT-511 booklet and labels the exemption 'tax year 2025'; no 2026 rate publication
+      exists on the publisher.

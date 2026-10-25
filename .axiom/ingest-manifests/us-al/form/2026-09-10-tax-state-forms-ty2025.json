@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "a42fcfe07f42e176571aeb12fdf5c69d93c1e0743b61fa53bd3c572313df2174"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "0efdb8b94a3ec1cc34526ebe4c4890e6e661435f56143bc3aa87358eb43fabfb"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "43880b53e0b81eab4c16e26314a3046d349d7a229113c1211e425ade1bd3b218"
+    },
+    {
+      "path": "data/corpus/sources/us-al/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-al-ador-form-40-instructions-ty2025.pdf",
+      "sha256": "7871a80bd580dff9bbfe0fd8252664bfd2394d3c51bd98199cdd5162a4b46699"
+    },
+    {
+      "path": "data/corpus/sources/us-al/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-al-ador-form-40-standard-deduction-chart-ty2025.pdf",
+      "sha256": "7739358471308fee80d3e2efc905b3077230f81e9e25b7bb229bc9e4da80e7e4"
+    },
+    {
+      "path": "data/corpus/sources/us-al/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-al-ador-form-40-tax-table-ty2025.pdf",
+      "sha256": "35ea587d11a3a29057c876e36f535b3cfa1e2bce60b037d65edcb52b39107e35"
+    },
+    {
+      "path": "data/corpus/sources/us-al/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-al-ador-form-40-ty2025.pdf",
+      "sha256": "c001efc5771c1c2ce1da95e57c6a4c4e82cdf529e75024adc6be6cc81927cfe8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T21:34:05.439156+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eU/HvTt+ZtOKFNtwnoRbHX9XguTzEEEalXKIpqII6ik3fnSuScPKRrIWI1tlpGukfks9Ck46QLg0OcMx3R2zBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

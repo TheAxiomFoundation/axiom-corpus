@@ -1,0 +1,29 @@
+version: '2026-09-14'
+documents:
+- source_id: ga-sos-560-7-income-tax-division
+  jurisdiction: us-ga
+  document_class: regulation
+  citation_path: us-ga/regulation/560-7
+  title: 'Rules and Regulations of the State of Georgia, Chapter 560-7: Income Tax Division'
+  source_url: https://rules.sos.ga.gov/Download_pdf.aspx?st=GASOS&year=2026&dept=Departments&pdf=Department%20560%20RULES%20OF%20DEPARTMENT%20OF%20REVENUE
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-02'
+  extraction:
+    segmentation: labeled_sections
+    page_windows:
+    - start_page: 389
+      end_page: 822
+    section_heading_pattern: ^Rule (?P<label>560-7-\d+-\.\d+)\.\s*(?P<heading>[A-Z][^.]{0,160}\.)\s*$
+    drop_line_patterns:
+    - ^Cite as Ga\. Comp\. R\. & Regs\..*$
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Revenue
+    official_publisher: Georgia Secretary of State, Rules and Regulations of the State of Georgia
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-ga/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.sos.ga.gov/gac/560-7
+    access_note: Rule pages on rules.sos.ga.gov render their text only through a session-bound POST (/loadthedata.aspx);
+      the Department 560 PDF download is the publisher's stable document and is page-windowed to Chapter 560-7.

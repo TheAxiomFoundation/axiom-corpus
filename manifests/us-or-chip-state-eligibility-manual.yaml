@@ -1,0 +1,27 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: or-oard-oar-410-division-200
+  jurisdiction: us-or
+  document_class: regulation
+  title: OAR Chapter 410 Division 200 Eligibility for Health Systems Division Medical Programs
+  source_url: https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=1742
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-03-01'
+  citation_path: us-or/regulation/chapter-410/division-200
+  extraction:
+    html_content_selector: '#content'
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>410-200-\d{4})\s+(?P<heading>[A-Z].*?)\.?$
+  metadata:
+    primary_source: true
+    source_authority: Oregon Health Authority, Health Systems Division (OAR 410), published by the Secretary of State Oregon
+      Administrative Rules Database
+    document_subtype: administrative_rule_division
+    program: CHIP
+    source_discovery_group: us-or/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 4 (US-network retry); publisher index confirmed by agent 2026-09-10
+    legal_identifier: OAR 410-200
+    chapter_id: '87'
+    division_id: '1742'
+    rule_count: 40
