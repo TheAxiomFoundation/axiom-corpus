@@ -337,7 +337,7 @@ def check_against_verification_sources(
       links to, with the same number, start date and history, and declares the
       hash of each rendition file.
     * The version's PDF carries exactly the characters of the page's text layer.
-    * All raw PDF-page DOM text survives the reconstruction in order, apart
+    * All raw PDF-Document DOM text survives the reconstruction in order, apart
       from whitespace and inserted table separators, independently of the parser.
     * The version's accessible HTML, rendered line by line, equals the rule
       rebuilt from the text layer.
@@ -367,8 +367,13 @@ def check_against_verification_sources(
     if version_field(version, "history") != document.history:
         raise ValueError("policy JSON and text layer disagree on the history note")
 
+    soup = BeautifulSoup(raw, "html.parser")
+    # Read containing Documents independently of the parser's span selection.
+    # Keep standalone Pages covered too, without counting contained Pages twice.
     layer = "".join(
-        page.get_text() for page in BeautifulSoup(raw, "html.parser").select("div.react-pdf__Page")
+        region.get_text()
+        for region in soup.select("div.react-pdf__Document, div.react-pdf__Page")
+        if region.find_parent("div", class_="react-pdf__Document") is None
     )
     rendered = "".join(document.document_lines()).replace(" | ", "")
     if re.sub(r"\s+", "", layer) != re.sub(r"\s+", "", rendered):

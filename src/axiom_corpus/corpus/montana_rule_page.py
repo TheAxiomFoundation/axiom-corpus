@@ -27,12 +27,13 @@ attached to a letter or digit joins the next word directly (``Post-`` +
 and inside a table cell a break inside a numeral joins directly (``$ 37`` +
 ``5``): a word processor breaks a numeral only when it does not fit the cell.
 
-The chrome outside ``div.react-pdf__Page`` (navigation, accordions and the
-version list) is read separately, for metadata only. Within a PDF page no text
-is ignored as chrome: every non-whitespace text node must be consumed by an
-accepted positioned span. The parser rejects unconsumed text, mixed nested
-span text, ambiguous table columns, a table without labelled rows and a heading
-without an ARM number with ``MontanaRulePageError``.
+The chrome outside ``div.react-pdf__Document`` (navigation, accordions and the
+version list) is read separately, for metadata only. Within a PDF Document,
+including its Page wrappers and siblings, no text is ignored as chrome: every
+non-whitespace text node must be consumed by an accepted positioned span.
+The parser rejects unconsumed text, mixed nested span text, ambiguous table
+columns, a table without labelled rows and a heading without an ARM number with
+``MontanaRulePageError``.
 """
 
 from __future__ import annotations
@@ -216,12 +217,12 @@ def text_layer_lines(html: bytes) -> tuple[TextLayerLine, ...]:
     if sorted(numbers) != list(range(1, len(numbers) + 1)):
         raise MontanaRulePageError(f"react-pdf page numbers are not 1..n: {numbers}")
     lines: list[TextLayerLine] = []
+    consumed: set[int] = set()
     for number, page in sorted(zip(numbers, pages, strict=True), key=lambda item: item[0]):
         layer = page.select_one("div.react-pdf__Page__textContent")
         if layer is None:
             raise MontanaRulePageError(f"page {number} has no text layer")
         by_top: dict[float, list[TextLayerSegment]] = {}
-        consumed: set[int] = set()
         for span in layer.find_all("span"):
             if not isinstance(span, Tag):
                 continue
@@ -257,6 +258,14 @@ def text_layer_lines(html: bytes) -> tuple[TextLayerLine, ...]:
             segments = tuple(sorted(by_top[top], key=lambda segment: segment.left))
             if any(segment.text.strip() for segment in segments):
                 lines.append(TextLayerLine(page=number, top=top, segments=segments))
+    # Page wrappers and siblings belong to the PDF document too. No text in
+    # this region is chrome; only text consumed from positioned spans is safe.
+    for document in soup.select("div.react-pdf__Document"):
+        for node in document.find_all(string=True):
+            if str(node).strip() and id(node) not in consumed:
+                raise MontanaRulePageError(
+                    f"react-pdf document: text outside an accepted positioned span: {str(node)!r}"
+                )
     if not lines:
         raise MontanaRulePageError("text layer is empty")
     return tuple(lines)

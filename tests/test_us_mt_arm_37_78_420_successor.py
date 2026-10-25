@@ -120,17 +120,42 @@ def test_build_reproduces_the_committed_scope_byte_for_byte(tmp_path: Path) -> N
         assert (built_sources / leaf).read_bytes() == (NEW_SOURCES / leaf).read_bytes(), leaf
 
 
-@pytest.mark.parametrize("injection", ["direct", "nonspan", "reordered"])
-def test_verification_rejects_unconsumed_or_reordered_raw_dom_text(injection: str) -> None:
+@pytest.mark.parametrize(
+    ("region", "injection"),
+    [
+        ("layer", "direct"),
+        ("layer", "nonspan"),
+        ("layer", "reordered"),
+        ("document", "direct"),
+        ("document", "nonspan"),
+        ("wrapper", "direct"),
+        ("wrapper", "nonspan"),
+    ],
+)
+def test_verification_rejects_unconsumed_or_reordered_raw_dom_text(
+    region: str, injection: str
+) -> None:
     soup = BeautifulSoup(_retained(), "html.parser")
     layer = soup.select_one(".react-pdf__Page__textContent")
     assert layer is not None
+    target = layer
+    if region == "document":
+        target = soup.select_one("div.react-pdf__Document")
+    elif region == "wrapper":
+        page = soup.select_one("div.react-pdf__Page")
+        assert page is not None
+        target = page.parent
+    assert target is not None
     if injection == "direct":
-        layer.insert(0, "DO NOT ")
+        target.insert(0, "DO NOT ")
     elif injection == "nonspan":
-        container = soup.new_tag("div", style="left:15%; top:8%;")
+        container = (
+            soup.new_tag("div", style="left:15%; top:8%;")
+            if region == "layer"
+            else soup.new_tag("p")
+        )
         container.string = "DO NOT "
-        layer.insert(0, container)
+        target.insert(0, container)
     else:
         span = layer.find("span")
         assert span is not None and span.string is not None

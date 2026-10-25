@@ -400,6 +400,33 @@ def test_parser_rejects_text_outside_the_first_text_layer() -> None:
         parse_montana_rule_document(html)
 
 
+@pytest.mark.parametrize("region", ["document", "wrapper"])
+@pytest.mark.parametrize("injection", ["DO NOT ", "<p>DO NOT </p>"])
+def test_parser_rejects_text_outside_pages_in_the_document(region: str, injection: str) -> None:
+    page = _paragraph_page('<span style="left:15%; top:8%;">pay.</span>').decode()
+    wrapper = f'<div class="page-wrapper">{injection if region == "wrapper" else ""}{page}</div>'
+    html = (
+        f'<div class="react-pdf__Document">'
+        f"{injection if region == 'document' else ''}{wrapper}</div>"
+    ).encode()
+    with pytest.raises(MontanaRulePageError, match="text outside.*positioned span"):
+        parse_montana_rule_document(html)
+
+
+def test_parser_accepts_whitespace_wrappers_and_chrome_outside_the_document() -> None:
+    html = (
+        b"<nav>Montana SOS Skip to main content</nav>"
+        b'<div class="react-pdf__Document">\n<div class="page-wrapper"> \n'
+        + _paragraph_page('<span style="left:15%; top:8%;">DO NOT pay.</span>')
+        + b"\n</div> \n</div>"
+        b"<aside><h2>Rule Version</h2><p>Active Version 33678</p></aside>"
+    )
+    assert parse_montana_rule_document(html).document_lines() == (
+        "37.78.420 RULE",
+        "(1) DO NOT pay.",
+    )
+
+
 def test_parser_keeps_text_inside_nonspan_descendants_of_a_positioned_span() -> None:
     html = _paragraph_page('<span style="left:15%; top:8%;">DO <em>NOT</em> pay.</span>')
     assert parse_montana_rule_document(html).body_lines == ("(1) DO NOT pay.",)
@@ -462,32 +489,52 @@ def test_parser_rejects_unexpected_continuation_columns(
     after=st.text(alphabet="ab12.,-&<>\u00a0", max_size=30),
     nested=st.booleans(),
     container=st.sampled_from(["span", "layer", "div", "p", "em"]),
+    region=st.sampled_from(["layer", "document", "wrapper"]),
 )
-@example(before="DO NOT ", child="pay.", after="", nested=True, container="layer")
-@example(before="DO NOT ", child="pay.", after="", nested=True, container="div")
+@example(before="DO NOT ", child="pay.", after="", nested=True, container="layer", region="layer")
+@example(before="DO NOT ", child="pay.", after="", nested=True, container="div", region="layer")
+@example(
+    before="DO NOT ", child="pay.", after="", nested=False, container="layer", region="document"
+)
+@example(before="DO NOT ", child="pay.", after="", nested=False, container="p", region="document")
+@example(
+    before="DO NOT ", child="pay.", after="", nested=False, container="layer", region="wrapper"
+)
+@example(before="DO NOT ", child="pay.", after="", nested=False, container="p", region="wrapper")
 def test_parser_preserves_raw_dom_text_in_order_or_rejects(
     before: str,
     child: str,
     after: str,
     nested: bool,
     container: str,
+    region: str,
 ) -> None:
     inner = f'<span style="left:15%; top:8%;">{escape(child)}</span>' if nested else escape(child)
     content = f"{escape(before)}{inner}{escape(after)}"
     if container != "layer":
         content = f'<{container} style="left:15%; top:8%;">{content}</{container}>'
-    html = _paragraph_page(content)
-    # Read every visible PDF-page DOM string directly: using text_layer_lines
+    page = _paragraph_page(
+        content if region == "layer" else '<span style="left:15%; top:8%;">pay.</span>'
+    ).decode()
+    wrapper = f'<div class="page-wrapper">{content if region == "wrapper" else ""}{page}</div>'
+    html = (
+        f'<div class="react-pdf__Document">{content if region == "document" else ""}{wrapper}</div>'
+    ).encode()
+    # Read every visible PDF-Document DOM string directly: using text_layer_lines
     # here would share the parser's omissions of unsupported containers.
     soup = BeautifulSoup(html, "html.parser")
-    page = soup.select_one("div.react-pdf__Page")
-    assert page is not None
-    raw_text = _non_space(page.get_text())
+    pdf_document = soup.select_one("div.react-pdf__Document")
+    assert pdf_document is not None
+    raw_text = _non_space(pdf_document.get_text())
     try:
         document = parse_montana_rule_document(html)
     except MontanaRulePageError:
         # Every visible node participates in the oracle, including direct
-        # layer text and non-span containers. Fully consumed text must work.
+        # layer text, Document/wrapper siblings and non-span containers.
+        # Fully consumed text must work.
+        if region != "layer":
+            assert _non_space(before + child + after)
+            return
         outside_span = before + after if nested else before + child + after
         assert ((nested or container != "span") and _non_space(outside_span)) or not _non_space(
             before + child + after

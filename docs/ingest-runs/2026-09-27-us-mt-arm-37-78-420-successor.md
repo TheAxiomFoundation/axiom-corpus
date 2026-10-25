@@ -310,3 +310,14 @@ property now includes direct text and non-span containers in its independent
 raw-DOM oracle. The successor builder independently compares all raw PDF-page
 DOM text with its reconstruction in character order, apart from whitespace
 and inserted table separators, before checking the retained renditions.
+
+## Parent-validation clarification (2026-10-25)
+
+The scope-local parent-validation explanation under "Why the row has no
+parent" is historical and does not describe the current validator.
+`release_quality._release_citation_paths` collects citation paths from all
+locally available scopes selected for the release, and `validate_release`
+passes that set to each scope's validation. A parent can therefore be supplied
+by another selected scope; it need not appear in the child's own scope.
+This does not change release-wide citation-uniqueness checks or the successor's
+parentless row and artifacts.
