@@ -87,7 +87,15 @@ uv run --extra dev python scripts/publish_corpus.py \
 
 # Check that every navigation_nodes scope has matching current_provisions
 uv run axiom-corpus-ingest verify-release-coverage
+
+# Content findings of a new scope (page navigation, chrome-prefixed bodies,
+# hollow document roots, version pickers); validation fails on unrecorded ones.
+# CI checks every locked scope against manifests/release-content-baseline.json.
+uv run axiom-corpus-ingest content-check <jurisdiction>/<document_class>/<version>
 ```
+
+A selector may not select a scope listed in `manifests/withdrawn-scopes.yaml`
+unless its entry grandfathers that selector; see `docs/release-gate-policy.md`.
 
 ## Named-release visibility model
 
