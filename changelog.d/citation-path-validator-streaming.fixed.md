@@ -1,0 +1,1 @@
+Stream provision rows through `scripts/validate_citation_paths.py` and keep only the five fields its checks read. Holding every full row peaked at 6.1 GB for the 577,545-row corpus and pushed the corpus-wide fixture in `tests/test_citation_path_grammar.py` past the 60-second CI test timeout; the streaming scan peaks at 0.16 GB and returns an identical result.

@@ -1,0 +1,27 @@
+{
+  "name": "dk-rulespec-2026-08-22",
+  "description": "Immutable Denmark RuleSpec corpus release: the 2026-08-07 Tier-1 full-parity statute scope (64 instruments, 1,922 paragraph-level provisions) plus the two subordinate-instrument scopes the børne- og ungeydelse certification frontier (CERTIFIED.md v3, axiom-oracles#504) requires before rulespec-dk can cite them — dk/regulation 2026-08-22-dk-child-benefit-bearing-regulations (BEK 1563/2013 + BEK 1015/2015, BEK 1063/2019 + BEK 58/2025; 45 provisions; #612) and dk/guidance 2026-08-22-dk-child-benefit-bearing-guidance (sixteen Ankestyrelsen principafgørelser/principmeddelelser, three convention vejledninger, principmeddelelse 11-21; 80 provisions via the LexDania prose shape; #613/#614), plus the dk/guidance addendum 2026-08-22-dk-child-benefit-bearing-guidance-lsr (Landsskatteretsafgørelse 9323/2011 via the Rubrica prose routing; 8 provisions; #616/#618).",
+  "scopes": [
+    {
+      "jurisdiction": "dk",
+      "document_class": "statute",
+      "version": "2026-08-04-dk-full-parity-tier1"
+    },
+    {
+      "jurisdiction": "dk",
+      "document_class": "regulation",
+      "version": "2026-08-22-dk-child-benefit-bearing-regulations"
+    },
+    {
+      "jurisdiction": "dk",
+      "document_class": "guidance",
+      "version": "2026-08-22-dk-child-benefit-bearing-guidance"
+    },
+    {
+      "jurisdiction": "dk",
+      "document_class": "guidance",
+      "version": "2026-08-22-dk-child-benefit-bearing-guidance-lsr"
+    }
+  ],
+  "quality_profile": "complete-expression-dates-v1"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "f094fbbf8702e8011034d947b70834adae2e4ef6dbc14ef3f70f2d3b962982bc"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "ccbad5e94d9066b46544bf7878f51bd000fbbe8abf2fdf15362e436e4c18545a"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "0ff0ba9cf6e7c04748da18e1fdc28620814bfe9c8c005b64caeb127ec7e08d4c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-chip-state-eligibility-manual/official-documents/wa-hca-apple-health-for-kids.html",
+      "sha256": "31617bd7e7c6466b6cc0ea797099b168a9081fba29c49eb44682a77ed2318d14"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-wa-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:05:39.206370+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nUuYTx1s3Pe9AZcsOi3QFk6o1n3BtZVAgfMxn4sL21PXTfz1ckXmHZXSmP/OC6oQvaTeqwOet+686xMuTmM/Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

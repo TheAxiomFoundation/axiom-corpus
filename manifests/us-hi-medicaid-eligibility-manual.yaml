@@ -1,0 +1,930 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: hi-dhs-har-17-1700-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1700.1 Definitions
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1700.1-060613-LA-LH-LA-LY-LB-EM-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1700-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1701
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1701 Availability and Cost of Department Program Manuals
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1701-Availability-Cost-of-Department-Program-Manuals.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1701
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1702
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1702 Confidentiality
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1702-Confidentiality.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1702
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1703-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1703.1 Administrative Appeals
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1703.1-APPEALS-1-05.21.13-Final-9-5-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1703-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1704
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1704 Fraud Provisions
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1704-Fraud-Provisions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1704
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1705
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1705 Medical Assistance Recovery
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1705-Medical-Assistance-Recovery.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1705
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1706
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1706 Income Tax Setoff Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1706-Income-Tax-Setoff-Program.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1706
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1711-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1711.1 Processing of Applications for Medical Assistance
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1711.1-APPLICATION-PROCESSING-REQUIREMENTS-AG-edits-9-4-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1711-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1712-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1712.1 Eligibility Re-determinations
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1712.1-ELIGIBILITY-REDETERMINATIONS-9-4-13-AG-edit.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1712-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1713-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1713.1 Notices
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1713.1-NOTICES-05.20.13-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1713-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1714-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1714.1 General Eligibility Requirements for Medical Assistance
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1714.1-GENERAL-ELIGIBILITY-REQUIREMENTS-kmn52813-lbey-9-5-13-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1714-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1715-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1715.1 Former Foster Care Children Group
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1715.1-FORMER-FOSTER-CARE-CHILDREN-GROUP-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1715-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1716
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1716 Pregnant Women Group
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2025/05/HAR-17-1716-Pregnant-Women-Group.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1716
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1717
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1717 Parent or Caretakers Relatives Group
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1717-PARENTCARETAKER-RELATIVE-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1717
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1717-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1717.1 Transitional Medical Assistance
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1717.1-TRANSITIONAL-MEDICAL-ASSISTANCE.lk_.ey-9-4-13-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1717-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1718
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1718 Adult Group
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1718-ADULT-GROUP-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1718
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1719
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1719 Aged, Blind and Disabled Group
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1719-AGED-BLIND-AND-DISABLED-GROUP-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1719
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1719-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1719.1 State Funded Aged, Blind, and Disabled Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2015/03/15-0125-Standard-HAR-17-1719.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1719-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1720
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1720 Benefits Package
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1720-BENEFITS-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1720
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1720-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1720.1 Freedom of Choice, Enrollment and Disenrollment
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1720.1-FREEDOM-OF-CHOICE-ENROLLMENT-DISENROLLMENT-Final-9-5-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1720-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1722
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1722 Special Medical Assistance and Coverage Programs
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1722-Special-Medical-Assistance-Coverage-Programs.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1722
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1723-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1723.1 Emergency Medical Assistance to Non-Citizens
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2015/03/HAR-17-1723.1-EMER-MED-ASST-TO-NON-CITIZENS.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1723-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1723-2
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1723.2 Refugee Medical Assistance
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1723.2-REFUGEE-MEDICAL-ASSISTANCE-ag-edits-6-4-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1723-2
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1723-3
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1723.3 Medical Assistance for Repatriates
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1723.3-MEDICAL-ASSISTANCE-FOR-REPATRIATES-5-28-13-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1723-3
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1724-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1724.1 Income for MAGI-Excepted Individuals
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2016/12/HAR-17-1724.1-INCOME-FOR-MAGI-EXCEPTED-Final-10-31-16-1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1724-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1725-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1725.1 Assets for MAGI-Excepted Individuals
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1725.1-ASSETS-FOR-MAGI-EXCEPTED-Final-Standard-LB090913-2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1725-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1730-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1730.1 Medically Need Spenddown
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1730.1-MEDICALLY-NEEDY-SPENDDOWN-06.06.13-Final-kmney.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1730-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1731
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1731 Premium Assistance Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2015/03/15-0125-Standard-HAR-17-1731.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1731
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1733-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1733.1 Coverage of Individuals with Breast and Cervical Cancer
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1733.1-BREAST-OR-CERVICAL-CANCER-05.21.13-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1733-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1734-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1734.1 State Funded Coverage of Individuals With Breast and Cervical Cancer
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1734.1-ST-FUNDED-COV-OF-INDIV-W-BREAST-CERVICAL-9-5-13-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1734-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1735-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1735.1 General Provisions for Fee for Service Medical Assistance
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1735.1-GENERAL-PROVISIONS-FOR-FFS-5.28.13.lykmn-Final.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1735-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1735-2
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1735.2 General Provisions for Participating Health Plans
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1735.2-GENERAL-PROVISIONS-FOR-PARTICIPATING-HEALTH-PLANS-Final-9-5-13.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1735-2
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1736
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1736 Provider Provisions
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1736-Provider-Provisions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1736
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1737
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1737 Scope and Contents of the Fee for Service Medical Assistance Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1737-Scope-Contents-of-the-fee-for-service-medical-assistant-program.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1737
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1738
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1738 Targeted Case Management Services
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1738-Targeted-Case-Management-Services.ey_.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1738
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1739
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1739 Authorization, Payment, and Claims in the Fee-For-Service Medical Assistance Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2015/09/17-1739.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1739
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1739-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1739.1 Authorization, Payment, and Claims in the Fee-For-Service Medical Assistance Program
+    For Non-Institutional Services
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1739.1-Auth.-Pymt-Claims-in-the-fee-4-service-med.-asst.-prgm-4-non-inst.-serv.ey_.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1739-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1739-2
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1739.2 Authorization, Payment, and Claims in the Fee-For-Service Medical Assistance Program
+    – Long Term Care Prospective Payment System
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1739.2-Auth.-Pymt-Claims-in-the-fee-4-serv.-med.-asst.-prgm-LTC-Prosp.-Pymt-Sys.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1739-2
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1740-1
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1740.1 Reimbursement of Federally Qualified Health Centers and Rural health Clinics
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1740.1-Reimbursement-of-Fed.-Qual.-Hlth-Ctrs-Rural-Hlth-Clinics.ey_.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1740-1
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1741
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1741 Utilization Control
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1741-Utilization-Control.ey_.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1741
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1744
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1744 Coverage of Medicare Premiums
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1744-Coverage-of-Medicare-Premiums.ey_.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1744
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1745
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1745 Death Payments Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2013/10/HAR-17-1745-Funeral-Payments-Program.ey_.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1745
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1746
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1746 PACE Hawaii Program
+  source_url: https://files.hawaii.gov/dhs/main/har/har_current/17-1746.PDF
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1746
+  request:
+    browser_impersonation: true
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+- source_id: hi-dhs-har-17-1747
+  jurisdiction: us-hi
+  document_class: regulation
+  title: HAR Title 17 Chapter 17-1747 Hawaii Child Wellness Care Program
+  source_url: https://humanservices.hawaii.gov/wp-content/uploads/2025/05/HAR-17-1747-Hawaii-Child-Wellness-Care-Program.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-hi/regulation/har/17/1747
+  extraction:
+    page_citation_prefix: page
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    document_subtype: medquest_chapter_pdf
+    program: MEDICAID
+    manual: Hawaii Administrative Rules Title 17, Department of Human Services (Med-QUEST medical assistance)
+    manual_index_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    source_discovery_group: us-hi/regulation/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/

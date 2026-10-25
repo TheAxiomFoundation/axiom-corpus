@@ -1,0 +1,88 @@
+# Denmark child/youth benefit — bearing executive orders (dk/regulation scope).
+#
+# The børne- og ungeydelse certification campaign's instrument frontier
+# (axiom-oracles conformance/closure/dk-boerne-og-ungeydelse.yaml, definition
+# CERTIFIED.md v3) classifies these bekendtgørelser as bearing on the computed
+# surface.  Encoding them is a precondition for dependency closure, and rule 7
+# of the agent-PR provenance regime requires the official source snapshot to
+# land in corpus before rulespec provisions may cite it.
+#
+#   - BEK 1563/2013 governs the optjeningsprincip fraction (§§ 1-15), the
+#     convention waivers and bar (§§ 16-18), and the § 23 death bar.  Its
+#     recital cites § 8, stk. 1, § 12 og § 13 of the act (LBK 964/2011
+#     numbering, as amended) as the issuing authority.
+#   - BEK 1015/2015 is its only amendment on the ELI graph (changed_by):
+#     it repeals the heading before § 12 and § 12 itself from 2015-09-01.
+#     Danish bekendtgørelser are not re-consolidated on Retsinformation, so
+#     the amendment must ride alongside the 2013 publication expression.
+#   - BEK 1063/2019 governs registration of pupil absence in the folkeskole,
+#     which the act's § 2, stk. 1, nr. 4 condition consumes.
+#   - BEK 58/2025 is its only amendment on the ELI graph (changed_by).
+#
+# All four expose LexDania XML manifestations (consolidation shape
+# Indledning+Afsnit for the base orders, centered-amendment shape for the
+# amendment orders).  Extract with:
+#
+#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#     axiom-corpus-ingest extract-eli-documents --base data/corpus \
+#     --version 2026-08-22-dk-child-benefit-bearing-regulations \
+#     --manifest manifests/dk-child-benefit-bearing-regulations-eli.yaml \
+#     --source-as-of 2026-08-22
+documents:
+  - source_id: dk-bek-1563-2013-boerne-og-ungeydelsen
+    eli_uri: https://retsinformation.dk/eli/lta/2013/1563
+    jurisdiction: dk
+    document_class: regulation
+    citation_path: dk/regulation/bek-1563-2013/boerne-og-ungeydelsen
+    title: Bekendtgørelse om børne- og ungeydelsen
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: BEK nr 1563 af 13/12/2013
+      document_type: bekendtgørelse (executive order)
+      source_family: child-benefit
+
+  - source_id: dk-bek-1015-2015-aendring-boerne-og-ungeydelsen
+    eli_uri: https://retsinformation.dk/eli/lta/2015/1015
+    jurisdiction: dk
+    document_class: regulation
+    citation_path: dk/regulation/bek-1015-2015/aendring-boerne-og-ungeydelsen
+    title: Bekendtgørelse om ændring af bekendtgørelse om børne- og ungeydelsen
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: BEK nr 1015 af 30/08/2015
+      document_type: ændringsbekendtgørelse (amendment order)
+      source_family: child-benefit
+
+  - source_id: dk-bek-1063-2019-elevers-fravaer-folkeskolen
+    eli_uri: https://retsinformation.dk/eli/lta/2019/1063
+    jurisdiction: dk
+    document_class: regulation
+    citation_path: dk/regulation/bek-1063-2019/elevers-fravaer-folkeskolen
+    title: Bekendtgørelse om elevers fravær fra undervisningen i folkeskolen
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: BEK nr 1063 af 24/10/2019
+      document_type: bekendtgørelse (executive order)
+      source_family: child-benefit
+
+  - source_id: dk-bek-58-2025-aendring-elevers-fravaer-folkeskolen
+    eli_uri: https://retsinformation.dk/eli/lta/2025/58
+    jurisdiction: dk
+    document_class: regulation
+    citation_path: dk/regulation/bek-58-2025/aendring-elevers-fravaer-folkeskolen
+    title: >-
+      Bekendtgørelse om ændring af bekendtgørelse om elevers fravær fra
+      undervisningen i folkeskolen
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: BEK nr 58 af 27/01/2025
+      document_type: ændringsbekendtgørelse (amendment order)
+      source_family: child-benefit

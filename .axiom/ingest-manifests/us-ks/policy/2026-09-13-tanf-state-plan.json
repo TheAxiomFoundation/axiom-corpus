@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "47179ab03fbf6bb2af3445f87c9a16632534fa3874af71baa3b9824b8de3b8c6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-09-13-tanf-state-plan.json",
+      "sha256": "8f5fa05d9ce1dcad3f7e426e015fa4fa8a71974926dd6019ae21c95bfe91b5ab"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-09-13-tanf-state-plan.jsonl",
+      "sha256": "a39c7083ac9f8fe51c134531635a030be760351f19a184658266c2ca18dd5a3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-09-13-tanf-state-plan/official-documents/us-ks-tanf-state-plan-fy2024-2026.pdf",
+      "sha256": "929c59b97cbc28fd83853fd6ad8913b9741f348c21649d21ade80fe008e04182"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 36,
+    "missing_count": 0,
+    "provision_count": 36,
+    "source_count": 36
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:33:26.241601+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZgZoUk7hnAk2zb1Mo8RIZIF6QhyOObbgBZz4vM2UnFyRXDwEUPdTLuI5FUaAcnfTN6upsIshbSWSnAuEv3GVAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-state-plan"
+}

@@ -1,0 +1,44 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-ar-medicaid-policy-manual
+  jurisdiction: us-ar
+  document_class: manual
+  title: Arkansas Medical Services Policy Manual
+  source_url: https://humanservices.arkansas.gov/wp-content/uploads/MS-Policy-9.26-New.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ar/manual/dco/medicaid/policy-manual
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Human Services, Division of County Operations
+    document_subtype: eligibility_manual_pdf
+    program: MEDICAID
+    manual: Arkansas Medical Services Policy Manual
+    manual_index_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/division-policies/
+    source_discovery_group: us-ar/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://humanservices.arkansas.gov/divisions-shared-services/county-operations/division-policies/
+    extraction_granularity: pdf_page
+- source_id: us-ar-medicaid-appendices
+  jurisdiction: us-ar
+  document_class: manual
+  title: 'Arkansas Medical Services Policy Manual: Appendices'
+  source_url: https://humanservices.arkansas.gov/wp-content/uploads/Medical-Services-Appendices-8-26.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ar/manual/dco/medicaid/appendices
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Human Services, Division of County Operations
+    document_subtype: eligibility_manual_pdf
+    program: MEDICAID
+    manual: Arkansas Medical Services Policy Manual
+    manual_index_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/division-policies/
+    source_discovery_group: us-ar/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://humanservices.arkansas.gov/divisions-shared-services/county-operations/division-policies/
+    extraction_granularity: pdf_page

@@ -1,0 +1,24 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-nd-hhs-snap-release-25-6
+  jurisdiction: us-nd
+  document_class: manual
+  title: SNAP Release 25.6, Effective October 1, 2025 (income levels, Thrifty Food Plan, SUA, standard deduction)
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+  download_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Policy%20Update%20Documentation/2025/SNAP%20Release%2025.6%20Effective%20October.1.2025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-nd/manual/hhs/snap/updates/release-25-6
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services (SNAP Policy Manual)
+    program: SNAP
+    source_discovery_group: us-nd/manual
+    index_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: manual_release
+    document_number: Release 25.6
+    fiscal_year: '2026'

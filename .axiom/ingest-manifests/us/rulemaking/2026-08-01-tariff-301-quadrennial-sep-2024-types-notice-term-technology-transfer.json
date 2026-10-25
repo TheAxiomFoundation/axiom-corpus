@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer.json",
+      "sha256": "de98ff64bd98e32f2a19cb965d75a3c45ec38703d540fc62e6dbd9707f95f93a"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer.json",
+      "sha256": "60babcd04b8afa69877430011b3fa122d0200d757dd1d0f0cf027d9bf16a1183"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer.jsonl",
+      "sha256": "64e89e26b1da36e294aedf8cdc616fa71279fa06a1b7af4951e547b5fd8e0778"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer/federal-register/api/documents-page-1.json",
+      "sha256": "4540083ac14dab715ef5b5c9da8e97dc9b03c84fc7a81ee6b54d8edda96a0d9d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer/federal-register/documents/2024-21217.json",
+      "sha256": "851052e3a8bbf46a6f3a7daf330a842405e96d8975f86050622754512d307a40"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer/federal-register/documents/2024-21217.txt",
+      "sha256": "1fecba23efb900ffaf12b35e0984e3e23cf5f9efb319df7ae67b87c899b782fd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9ca5291d639dcd68856feb86c933e6b216a6710",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-quadrennial-sep-2024 --start-date 2024-09-18 --document-type NOTICE --term '\"technology transfer\"' --source-as-of 2026-08-01 --expression-date 2024-09-18"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:33:07.768239+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HBrW52/IBR5P0HhuQ6j0ySHTttsZBDpPu5wOjFx5ZXXmrWyntELtQ3TM8DHdtDTTP70McMebcPHrp1NMqcCHAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-quadrennial-sep-2024-types-notice-term-technology-transfer"
+}

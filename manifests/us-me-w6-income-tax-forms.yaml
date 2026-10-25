@@ -1,0 +1,952 @@
+version: 2026-10-06-w6-income-tax-forms-me
+documents:
+- source_id: us-me-form-mrs-ty2013-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2013 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/13_1040_sched2_downloadable.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2013/schedule-2
+  expression_date: '2013-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2013'
+- source_id: us-me-form-mrs-ty2014-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2014 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/14_1040%20sched%202_download.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2014/schedule-2
+  expression_date: '2014-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2014'
+- source_id: us-me-form-mrs-ty2014-schedule-ptfc
+  jurisdiction: us-me
+  document_class: form
+  title: 2014 Schedule PTFC Property Tax Fairness Credit
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/14_1040_sched%20ptfc_download.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2014/schedule-ptfc
+  expression_date: '2014-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2014'
+- source_id: us-me-form-mrs-ty2015-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2015 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/15_1040%20sched%202_download.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2015/schedule-2
+  expression_date: '2015-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2015'
+- source_id: us-me-form-mrs-ty2016-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2016 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/16_1040%20sched%202_download.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2016/schedule-2
+  expression_date: '2016-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2016'
+- source_id: us-me-form-mrs-ty2016-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2016 Form 1040ME Individual Income Tax Instructions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/16_1040me_book_download.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2016/form-1040me-instructions
+  expression_date: '2016-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2016'
+- source_id: us-me-form-mrs-ty2017-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2017 Form 1040ME Individual Income Tax Instructions (September 2018 revision)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/17_1040me_book_dwnld_sept18.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2017/form-1040me-instructions
+  expression_date: '2017-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2017'
+- source_id: us-me-form-mrs-ty2017-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2017 Schedule 2 Itemized Deductions (September 2018 revision)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/17_1040me_sch2_d_sept18.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2017/schedule-2
+  expression_date: '2017-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2017'
+- source_id: us-me-form-mrs-ty2018-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2018 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/18_1040_2_d.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2018/schedule-2
+  expression_date: '2018-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2018'
+- source_id: us-me-form-mrs-ty2018-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2018 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/18_1040me_a_d.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2018/schedule-a
+  expression_date: '2018-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2018'
+- source_id: us-me-form-mrs-ty2018-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2018 Form 1040ME Individual Income Tax Instructions (with the conformity/nonconformity update page)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/18_1040me_book_noncon.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2018/form-1040me-instructions
+  expression_date: '2018-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2018'
+- source_id: us-me-form-mrs-ty2019-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2019 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/19_1040me_2_dwnldff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2019/schedule-2
+  expression_date: '2019-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2019'
+- source_id: us-me-form-mrs-ty2019-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2019 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/19_1040me_a_dwnldff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2019/schedule-a
+  expression_date: '2019-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2019'
+- source_id: us-me-form-mrs-ty2019-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2019 Form 1040ME Individual Income Tax Instructions (with the conformity/nonconformity update page)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/19_1040me_instr_noncon.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2019/form-1040me-instructions
+  expression_date: '2019-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2019'
+- source_id: us-me-form-mrs-ty2020-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2020 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/20_1040me_2_dwnldff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2020/schedule-2
+  expression_date: '2020-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2020'
+- source_id: us-me-form-mrs-ty2020-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2020 Form 1040ME Individual Income Tax Instructions (with the conformity update page)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/20_1040me_gen_instr.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2020/form-1040me-instructions
+  expression_date: '2020-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2020'
+- source_id: us-me-form-mrs-ty2020-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2020 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/20_1040me_sched_a_dwnloadff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2020/schedule-a
+  expression_date: '2020-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2020'
+- source_id: us-me-form-mrs-ty2021-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2021 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/21_1040me_2_dwnldff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2021/schedule-2
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-me-form-mrs-ty2021-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2021 Form 1040ME Individual Income Tax Instructions (revised May 2022)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/21_1040me_book_gen_instr_revMay2022.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2021/form-1040me-instructions
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-me-form-mrs-ty2021-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2021 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/21_1040me_sched_a_dwnldff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2021/schedule-a
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-me-form-mrs-ty2021-schedule-pstfc
+  jurisdiction: us-me
+  document_class: form
+  title: 2021 Schedule PS/TFC Property Tax Fairness Credit and Sales Tax Fairness Credit
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/21_1040me_sched_pstfc_dwnldff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2021/schedule-pstfc
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-me-form-mrs-ty2021-tax-tables
+  jurisdiction: us-me
+  document_class: form
+  title: 2021 Maine Income Tax Tables
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/21_1040me_tax_tables.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2021/tax-tables
+  expression_date: '2021-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2021'
+- source_id: us-me-form-mrs-ty2022-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Form 1040ME Individual Income Tax Instructions (revised February 2023)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_book_gen_instruc_revisedFeb23.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/form-1040me-instructions
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-form-1040me
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Form 1040ME Individual Income Tax Return
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_dwnld_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/form-1040me
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: return_form
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-schedule-1a
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Schedule 1A Income Additions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_sched_1a_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/schedule-1a
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-schedule-1s
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Schedule 1S Income Subtractions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_sched_1s_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/schedule-1s
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_sched_2_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/schedule-2
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_sched_a_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/schedule-a
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-schedule-pstfc
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Schedule PS/TFC Property Tax Fairness Credit and Sales Tax Fairness Credit
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_sched_pstfc_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/schedule-pstfc
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-tax-tables
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Maine Income Tax Tables
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_1040me_tax_tables.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/tax-tables
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-earned-income-tax-credit-worksheet
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Earned Income Tax Credit Worksheet
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_earned_income_cred_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/earned-income-tax-credit-worksheet
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2022-itemized-standard-deduction-phaseout-worksheet
+  jurisdiction: us-me
+  document_class: form
+  title: 2022 Estimated Tax Worksheet Line 6a, Phaseout of Itemized / Standard Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/22_item_stand_%20ded_phaseout_wksht.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2022/itemized-standard-deduction-phaseout-worksheet
+  expression_date: '2022-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2022'
+- source_id: us-me-form-mrs-ty2023-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Form 1040ME Individual Income Tax Instructions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_1040me_book_gen_instr.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/form-1040me-instructions
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2023-schedule-1s
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Schedule 1S Income Subtractions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_1040me_sched_1s.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/schedule-1s
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2023-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_1040me_sched_2_ff_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/schedule-2
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2023-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_1040me_sched_a_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/schedule-a
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2023-schedule-pstfc
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Schedule PS/TFC Property Tax Fairness Credit and Sales Tax Fairness Credit
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_1040me_sched_pstfc_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/schedule-pstfc
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2023-tax-tables
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Maine Income Tax Tables
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_1040me_tax_tables.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/tax-tables
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: tax_table
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2023-earned-income-tax-credit-worksheet
+  jurisdiction: us-me
+  document_class: form
+  title: 2023 Earned Income Tax Credit Worksheet
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/23_earned_income_cred_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2023/earned-income-tax-credit-worksheet
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2023'
+- source_id: us-me-form-mrs-ty2024-form-1040me-instructions
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Form 1040ME Individual Income Tax Instructions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_1040me_book_gen_instr.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/form-1040me-instructions
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2024-schedule-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Schedule 2 Itemized Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_1040me_sched_2%20_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/schedule-2
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2024-schedule-1s
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Schedule 1S Income Subtractions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form%201040ME_Sch%201S_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/schedule-1s
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2024-schedule-ptfc
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Schedule PTFC Property Tax Fairness Credit
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form%201040ME_Sch%20PTFC_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/schedule-ptfc
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2024-schedule-ptfc-2
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Schedule PTFC Property Tax Fairness Credit (second posted revision)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form%201040ME_Sch%20PTFC_ff_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/schedule-ptfc-2
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2024-schedule-a
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Schedule A Adjustments to Tax
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form1040me_Sch%20A_ff.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/schedule-a
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2024-earned-income-tax-credit-worksheet
+  jurisdiction: us-me
+  document_class: form
+  title: 2024 Earned Income Tax Credit Worksheet
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_earned_income_cred_ff_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/earned-income-tax-credit-worksheet
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'
+- source_id: us-me-form-mrs-ty2025-schedule-ptfc
+  jurisdiction: us-me
+  document_class: form
+  title: 2025 Schedule PTFC Property Tax Fairness Credit
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_ptfc_fillable.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2025/schedule-ptfc
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2025'
+- source_id: us-me-form-mrs-ty2026-personal-exemption-phaseout-worksheet
+  jurisdiction: us-me
+  document_class: form
+  title: 2026 Estimated Tax Worksheet Line 6b, Phaseout of Personal Exemption Deduction Amount
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_pers_exempt_phaseout_wksht.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2026/personal-exemption-phaseout-worksheet
+  expression_date: '2026-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2026'
+- source_id: us-me-form-mrs-ty2026-itemized-standard-deduction-phaseout-worksheet
+  jurisdiction: us-me
+  document_class: form
+  title: 2026 Estimated Tax Worksheet Line 6a, Phaseout of Itemized / Standard Deductions
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_item_stand_%20ded_phaseout_wksht_0.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2026/itemized-standard-deduction-phaseout-worksheet
+  expression_date: '2026-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: worksheet
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2026'
+- source_id: us-me-form-mrs-ty2024-tax-rate-schedules
+  jurisdiction: us-me
+  document_class: form
+  title: State of Maine Individual Income Tax 2024 Rates (Maine Revenue Services, 2023-09-15)
+  source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/ind_tax_rate_sched_2024.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  citation_path: us-me/form/mrs/ty2024/tax-rate-schedules
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Maine Revenue Services
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    source_family: w6-tax-ia-mi-income-tax-forms
+    discovered_via: wave-6 program-bundle gaps 2026-10-06 (tax-ia-mi.csv); fetched and read 2026-10-06
+    tax_year: '2024'

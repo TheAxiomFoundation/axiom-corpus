@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "9bd0de21463f2624277a450383b643637f20683b8dc702105d4d5c7d11c513d3"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/policy/2026-09-13-ccdf-state-plan-appendices.json",
+      "sha256": "800e7d03dd6861f5b401a75f8d303cf2be955600f33e222f0f4b74d83759fc54"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/policy/2026-09-13-ccdf-state-plan-appendices.jsonl",
+      "sha256": "ff07e3bd5f23f1c7b233da6e4f4ecb37a89c9b27c3273cceb5c0dd603fff67fa"
+    },
+    {
+      "path": "data/corpus/sources/us-il/policy/2026-09-13-ccdf-state-plan-appendices/official-documents/us-il-acf-ccdf-plan-fy2025-2027-appendix-1.pdf",
+      "sha256": "ff77e0e2e063c8bec2f5b5b44092315c6a8016ef709c3d4c06380bd9d5af55ad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-state-plan-appendices (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:29:43.394245+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oR9WBvDz19eF4Avs05juM0gMisEVaDMcCdNFKYF3XjL4brdXOhP3cH1ZCBQEWBJyni8tG62jKTnK2czT2uxWAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-state-plan-appendices"
+}

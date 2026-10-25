@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/am/statute/2026-08-30-am-rulespec-source-pack.json",
+      "sha256": "8cb2645ca25daa37ab6757764d0a8c57d9ae148e29edfac5ad75636a96d046b2"
+    },
+    {
+      "path": "data/corpus/inventory/am/statute/2026-08-30-am-rulespec-source-pack.json",
+      "sha256": "be6a1f9254792bf9223a77a628a1b4a0e8d1ee04f4c9417ea18284758bf3a8b3"
+    },
+    {
+      "path": "data/corpus/provisions/am/statute/2026-08-30-am-rulespec-source-pack.jsonl",
+      "sha256": "7d698f39f898ad91c2c53b1a215651359642b54dcdcadc7d97d4846f3acab2dc"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis/funded-pensions-183145-2023-10-13.html",
+      "sha256": "ecfe02ac1f23dc1d7b5ac24154e95bf13c34a5c4c61e532e30a6e48139cac514"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis/funded-pensions-191184-2024-03-27.html",
+      "sha256": "65a4540e28ff3c0120e4aeee73957b06fce56fc19b5aac9a27748317ed89a07b"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis/funded-pensions-194995-2024-07-09.html",
+      "sha256": "d715fbb324bc38f3f27b3652797c88860ed893fe3f575fd98f1abcffd2afbdee"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis/minimum-wage-172160-2022-12-23.html",
+      "sha256": "ee5bfa8fa589f2b2444c1fb2e4ffc5180f814e10f4d0d91d476ab484a2199e96"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis/tax-code-187950-2024-01-01.html",
+      "sha256": "8422d01122d0561f4311e3761fb7c13dc0e9b0ebccee884d3106188cd4176723"
+    },
+    {
+      "path": "data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis/tax-code-201213-2024-12-23.html",
+      "sha256": "d8113e16cf7aaf3277d45ef3a70cb84dfb2db0f962dcb253793b20ea608f7ab0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d95e1f8fba6361af123bcf43b8661caecefd6462",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-am-arlis --base data/corpus --version 2026-08-30-am-rulespec-source-pack --manifest manifests/am-rulespec-source-pack-arlis.yaml --source-dir data/corpus/sources/am/statute/2026-08-30-am-rulespec-source-pack/arlis"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1459,
+    "missing_count": 0,
+    "provision_count": 1459,
+    "source_count": 1459
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-30T12:31:47.417358+00:00",
+  "jurisdiction": "am",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ociARPnrLoJq1quX7ec9l0J84gEAec18R7TwrHk+0MCFhZbkZ9NRhbg7C4Jzxf3JeEkwr5B8EvzP/f7HvSfxDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-am-rulespec-source-pack"
+}

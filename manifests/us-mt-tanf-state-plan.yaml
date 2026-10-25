@@ -1,0 +1,30 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-mt-tanf-state-plan-2024-2026
+  jurisdiction: us-mt
+  document_class: policy
+  title: Montana TANF State Plan, January 1, 2024 to December 31, 2026
+  source_url: https://dphhs.mt.gov/assets/hcsd/TANF/TANFStatePlan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-mt/policy/acf/tanf-plan/2024-2026
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services, Human and Community Services Division
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: TANF State Plan 1/2024-12/2026 (effective January 1, 2024 to December 31, 2026), listed on the TANF Policy
+      Manual page
+    publisher_index_url: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-mt/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

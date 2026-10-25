@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-north-warwickshire/manual/2026-08-03-north-warwickshire-council-tax-reduction-2026-2027.json",
+      "sha256": "41d7a6f0617b9dc8e1fcfbf062579a4a5cd53acc9acad5cdb2496321f6b398bb"
+    },
+    {
+      "path": "data/corpus/inventory/uk-north-warwickshire/manual/2026-08-03-north-warwickshire-council-tax-reduction-2026-2027.json",
+      "sha256": "9e86e7e47c55d284138495e018601af1787780ac216d3c646f9298de76b9ff61"
+    },
+    {
+      "path": "data/corpus/provisions/uk-north-warwickshire/manual/2026-08-03-north-warwickshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "fa45473d76cb62b5400763fd0fde7e8125ddeab6ed399f9da514b7127d4e4374"
+    },
+    {
+      "path": "data/corpus/sources/uk-north-warwickshire/manual/2026-08-03-north-warwickshire-council-tax-reduction-2026-2027/official-documents/north-warwickshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "7ba9020bdea5b5e6d10d80aea9620977670efb3209c2e94d517b04415318e6ae"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-north-warwickshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-north-warwickshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 138,
+    "missing_count": 0,
+    "provision_count": 138,
+    "source_count": 138
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:38.595988+00:00",
+  "jurisdiction": "uk-north-warwickshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5Tr6KVxaTIKof431eFJVUPCI4Yk04fjmI5C/intM1LBVIwazsch6WP4l9RiYtIwNm2GdFFj9cRoBpVICJSv9DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-north-warwickshire-council-tax-reduction-2026-2027"
+}

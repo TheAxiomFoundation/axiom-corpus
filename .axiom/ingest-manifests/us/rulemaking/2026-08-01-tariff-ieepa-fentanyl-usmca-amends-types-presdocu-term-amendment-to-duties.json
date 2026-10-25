@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties.json",
+      "sha256": "28edf49e1dd2b744d316b15c11bf89d2434c77a41d25d2d32197279cf5ed1093"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties.json",
+      "sha256": "614637617d976c90f044e51e47945288da2e21d98dc9ba3125b5336b2a11a5a4"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties.jsonl",
+      "sha256": "60e93b1b0099934a460838e0302962dc90feb4092a325b2c230e57c2e702a115"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties/federal-register/api/documents-page-1.json",
+      "sha256": "2f3bcc1f330820bf45649aa9560e1c7999f43a1d003c657ec38c363625451f0b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties/federal-register/documents/2025-03990.json",
+      "sha256": "b9a9fa48eb34c3e73cc1f08640884428c2ac93d143b664436d162f2cc0f3d842"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties/federal-register/documents/2025-03990.txt",
+      "sha256": "c8fc1e5e3860b3bfca11a43b078eb676a3f47f15e6a9612b8926996974891c8d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties/federal-register/documents/2025-03991.json",
+      "sha256": "f21ba35a6a1354190c8ad252ad0506f4499a23eacd7e165bcd9f586fc4acaa2f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties/federal-register/documents/2025-03991.txt",
+      "sha256": "6b92f77c3836d195a17e60895d1a2e9356d84c9262e643f755166b66db2f0969"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-fentanyl-usmca-amends --start-date 2025-03-11 --document-type PRESDOCU --term \"amendment to duties\" --source-as-of 2026-08-01 --expression-date 2025-03-11"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:41.391350+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "h37vs8XlVbfJZoxgVu6mgLxq2MLK2vP5rj5JxDsFh541CweYq+MWMDaxiVck2GRrrPEIzi0cHR2W2l+vEbmxAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-fentanyl-usmca-amends-types-presdocu-term-amendment-to-duties"
+}

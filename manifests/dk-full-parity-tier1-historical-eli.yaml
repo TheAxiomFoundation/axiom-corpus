@@ -1,0 +1,103 @@
+# Denmark full-parity Tier-1, historical-expression/amendment constituent.
+#
+# Every row here trips the adapter's mechanical currency gate: LBK 724 is
+# consolidated by LBK 603; LOV 482 is incorporated into later consolidations;
+# and LOV 1642 is consolidated by lta/2026/662.  The adapter has no per-row
+# manifest switch.  This deliberately narrow manifest MUST therefore be run
+# with --allow-superseded.  The waiver is legally required for two time slices:
+# LBK 724 + LOV 482 evidence the DK_2025 § 1 a "mellemskat" expression, while
+# LOV 1642 is the post-LBK-603 amendment changing the rounding divisor to 24.
+#
+#   UV_CACHE_DIR=/private/tmp/axiom-uv-cache uv run --no-sync \
+#     axiom-corpus-ingest extract-eli-documents --base data/corpus \
+#     --version 2026-08-04-dk-full-parity-tier1-historical \
+#     --manifest manifests/dk-full-parity-tier1-historical-eli.yaml \
+#     --allow-superseded
+documents:
+  - source_id: dk-lbk-724-2022-boerne-og-ungeydelsesloven
+    eli_uri: https://retsinformation.dk/eli/lta/2022/724
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lbk-724-2022/boerne-og-ungeydelsesloven
+    title: Bekendtgørelse af lov om en børne- og ungeydelse
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LBK nr 724 af 25/05/2022
+      title_alternative: Børne- og ungeydelsesloven
+      document_type: lovbekendtgørelse (superseded consolidated act)
+      source_family: child-benefit/historical-expression
+      source_note: >-
+        Retained for the DK_2025 legal time slice; LOV 482 overlays its § 1 a.
+        LBK 603 § 1 a is the later 2026 expression.
+
+  - source_id: dk-lov-482-2024-personskattereform
+    eli_uri: https://retsinformation.dk/eli/lta/2024/482
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lov-482-2024/reform-af-personskat
+    title: Lov om ændring af personskatteloven, ligningsloven og forskellige andre love
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LOV nr 482 af 22/05/2024
+      document_type: ændringslov (amendment act)
+      amends: >-
+        Personskatteloven (act § 1), ligningsloven (act § 2), lov om en
+        børne- og ungeydelse (act § 4), and pensionsbeskatningsloven (act
+        § 7), plus five acts outside this Tier-1 scope. Act § 4 changes
+        "topskat" to "mellemskat" in børne- og ungeydelsesloven § 1 a,
+        stk. 1, 1. pkt., and stk. 2.
+      amendment_targets:
+        - dk/statute/lbk-1284-2021/personskatteloven
+        - dk/statute/lbk-1284-2021/personskatteloven/paragraf-5
+        - dk/statute/lbk-1284-2021/personskatteloven/paragraf-7
+        - dk/statute/lbk-1284-2021/personskatteloven/paragraf-7-a
+        - dk/statute/lbk-1284-2021/personskatteloven/paragraf-8
+        - dk/statute/lbk-1284-2021/personskatteloven/paragraf-13
+        - dk/statute/lbk-1284-2021/personskatteloven/paragraf-26
+        - dk/statute/lbk-1500-2025/ligningsloven
+        - dk/statute/lbk-1500-2025/ligningsloven/paragraf-9-j
+        - dk/statute/lbk-724-2022/boerne-og-ungeydelsesloven
+        - dk/statute/lbk-724-2022/boerne-og-ungeydelsesloven/paragraf-1-a
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven/paragraf-1-a
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven/paragraf-42-a
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven/paragraf-49-a
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven/paragraf-49-c
+      source_family: personal-income-tax/amending-acts
+
+  - source_id: dk-lov-1642-2025-aendringslov
+    eli_uri: https://retsinformation.dk/eli/lta/2025/1642
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lov-1642-2025/aendring-af-boerne-og-ungeydelsesloven-mv
+    title: Lov om ændring af lov om en børne- og ungeydelse, ligningsloven og forskellige andre love
+    language: da
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      title_short: LOV nr 1642 af 16/12/2025
+      document_type: ændringslov (amendment act)
+      amends: >-
+        Lov om en børne- og ungeydelse (act § 1), ligningsloven (act § 2),
+        pensionsbeskatningsloven (act § 6), and lov om aktiv socialpolitik
+        (act § 9), plus five acts outside this Tier-1 scope.
+      amendment_targets:
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven/paragraf-1
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven/paragraf-2
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven/paragraf-4
+        - dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven/paragraf-11
+        - dk/statute/lbk-1500-2025/ligningsloven
+        - dk/statute/lbk-1500-2025/ligningsloven/paragraf-7
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven/paragraf-38
+        - dk/statute/lbk-1243-2024/pensionsbeskatningsloven/paragraf-39
+        - dk/statute/lbk-1004-2025/aktivloven
+        - dk/statute/lbk-1004-2025/aktivloven/paragraf-14
+        - dk/statute/lbk-1004-2025/aktivloven/paragraf-33
+      source_family: tax-and-social-benefits/amending-acts

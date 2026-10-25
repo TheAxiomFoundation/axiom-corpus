@@ -1,0 +1,82 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-09-de-kindergeld-eu-articles.json",
+      "sha256": "41561ac8c71ae44a908a51280c1a84bb7216bbdc15c4e7a95f0f30116b405c4e"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-09-de-kindergeld-eu-articles.json",
+      "sha256": "9729eadd40744a601ab59b5301ac78969f50dca89254f9fba106ad2ed98a7691"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-09-de-kindergeld-eu-articles.jsonl",
+      "sha256": "3bbcd456d26ce4c130bc43ff761f4c40e18edef4176208c04659c6825b7ad59c"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-883-2004-article-1-z.pdf",
+      "sha256": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-883-2004-article-2.pdf",
+      "sha256": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-883-2004-article-3.pdf",
+      "sha256": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-883-2004-article-67.pdf",
+      "sha256": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-883-2004-article-68.pdf",
+      "sha256": "559bd731714cb77e2a5f7ad3e5e253fefca0134e7e0b44df8dbcf8636c846ce4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-987-2009-article-58.pdf",
+      "sha256": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-987-2009-article-59.pdf",
+      "sha256": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-09-de-kindergeld-eu-articles/official-documents/de-kindergeld-987-2009-article-60.pdf",
+      "sha256": "dce99b8e45bf018261b54f344b8d1d9346c35e4443ab02a8bc83fd9652bd01b0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2880556a7a2514ab3ad4a3b8dac1b55ab6747eb7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Native extract-official-documents with committed de-kindergeld-eu-articles manifest; byte-identical replay of two previously receipted German PDF sources through eight anchored article windows; no body or code edits."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-09T03:58:02.206882+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-09-de-kindergeld-eu-articles.md",
+      "sha256": "9c3c2acb7b9d8f232d608f7831b22f5d55e41f0483d91dea788cea5666fb44c5"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uThsKmYmeVUe3sgNtyIMtqdZdGkS3x3ZPvhfUbTp3xI5Mtd15RdNvUeB1RsYouOrP4t6nrHnWqsQsgjSiOzsCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-eu-articles"
+}

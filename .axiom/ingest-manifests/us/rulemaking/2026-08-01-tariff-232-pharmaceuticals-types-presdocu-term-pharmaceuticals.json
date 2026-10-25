@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals.json",
+      "sha256": "79aced2219263160aa670a1b6fa1dd688f1374dc4dc5dea7d20035fdb13a8d44"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals.json",
+      "sha256": "29d736c386b688ac094fe4371111944e7e78ba9200816a707c28d4ffdaa6cc63"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals.jsonl",
+      "sha256": "12252d63531bd3430fbdb84cc4dde80f93073e3561dfa969a50fd9e556c3dd3f"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals/federal-register/api/documents-page-1.json",
+      "sha256": "e8d9ae9b3dc236f81f08240bfb34c1a06465d6bfce4e6daf08dea45740556807"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals/federal-register/documents/2026-06956.json",
+      "sha256": "e4da258e75b8950bfa3fe7b0ea065d1996036813c72db48eb3b1612ca1f616a1"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals/federal-register/documents/2026-06956.txt",
+      "sha256": "f3027861f4a3efe3ba37a190569ed044989b5ddb0184a2db27016f05067ba1e5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-pharmaceuticals --start-date 2026-04-09 --document-type PRESDOCU --term \"pharmaceuticals\" --source-as-of 2026-08-01 --expression-date 2026-04-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:20.337762+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tGVW77wNcQUSemCx3kuB2qfg6JqDuQ13xLia2TbF0E/Luybzg0YbJ9+PfJ4iL6YbWMyVxVsTh/IeCFLb+sAtBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-pharmaceuticals-types-presdocu-term-pharmaceuticals"
+}

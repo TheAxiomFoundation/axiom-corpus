@@ -1,0 +1,78 @@
+{
+  "documents": [
+    {
+      "source_id": "de-bmf-2013-06-28-child-allowance-transfer",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/esth-2024/bmf-2013-06-28-child-allowance-transfer",
+      "title": "Übertragung der Freibeträge für Kinder; BMF 28.06.2013, EStH 2024",
+      "source_url": "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-19c/I/anhang-19c-I.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2026-09-09",
+      "language": "de",
+      "extraction": {
+        "html_content_selector": "main#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": "#Inhalt",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Finanzen, Amtliche Handbücher",
+        "edition": "2024",
+        "letter_date": "2013-06-28",
+        "source_note": "Full edition-specific handbook restatement, including its annotations. Capture expression date is not commencement; the letter identifies application from assessment year2012. No manual body edits.",
+        "snapshot_sha256": "c9cc5e7fff4cdcd13a82987a199ed502a4bea4bffe5f56268954bd06b00e7210"
+      }
+    },
+    {
+      "source_id": "de-bmf-2025-12-02-country-groups",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/bmf-2025-12-02-country-groups",
+      "title": "BMF 2. Dezember 2025 — Ländergruppeneinteilung ab Veranlagungszeitraum2025",
+      "source_url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Einkommensteuer/2025-12-02-beruecks-auslaendischer-verhaeltnisse.pdf?__blob=publicationFile&v=4",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2025-12-02",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Finanzen",
+        "document_type": "BMF letter",
+        "source_note": "Full four-page official PDF, including the country table and footnotes. The letter states replacement of the18December2023letter from assessment year2025. Its C328/20footnote concerns EStG32(6)S4 and33a(2)S2, not an indiscriminate exemption for every provision in the header. PDF pages1–4 visually reviewed; no table cells manually edited.",
+        "snapshot_sha256": "745c34ec78b01e23896a46ea9c6e6c6c7c0ae69186c920908c95aaff6d95e0a0"
+      }
+    },
+    {
+      "source_id": "de-cjeu-c-328-20",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/cjeu-c-328-20",
+      "title": "EuGH C-328/20, Kommission gegen Österreich, 16. Juni 2022, berichtigt am 6. September 2022, ECLI:EU:C:2022:468",
+      "source_url": "https://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:62020CJ0328",
+      "source_format": "pdf",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2022-09-06",
+      "language": "de",
+      "extraction": {
+        "segmentation": "single_block"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Court of Justice of the European Union; EUR-Lex",
+        "document_type": "court judgment",
+        "case_number": "C-328/20",
+        "celex": "62020CJ0328",
+        "ecli": "ECLI:EU:C:2022:468",
+        "judgment_date": "2022-06-16",
+        "source_note": "Full German judgment, with the header explicitly recording correction by order of6September2022. Expression date records that correction; judgment date is separate. Discovered through the official BMF2025country-group letter. BStBlII publication status has not been verified.",
+        "snapshot_sha256": "efdd53c5338484844376e54c8401a244a0578dd87d9e436dc22656eb6c8d937d"
+      }
+    }
+  ]
+}

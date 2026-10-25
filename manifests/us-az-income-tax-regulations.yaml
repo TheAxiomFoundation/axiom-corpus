@@ -1,0 +1,39 @@
+version: '2026-09-14'
+documents:
+- source_id: az-sos-aac-title-15-chapter-2-income-tax
+  jurisdiction: us-az
+  document_class: regulation
+  citation_path: us-az/regulation/aac/title-15/chapter-2
+  title: 'Arizona Administrative Code Title 15, Chapter 2: Department of Revenue, Income and Withholding Tax Section'
+  source_url: https://apps.azsos.gov/public_services/Title_15/15-02.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    section_label_pattern: ^\s*(?P<label>R15-2[A-Z]?-\d+)\.\s*$
+    section_heading_pattern: ^\s*(?P<label>R15-2[A-Z]?-\d+)\.\s+(?P<heading>[A-Z].+)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9,;:'’().\- /]+$
+    label_only_requires_heading: true
+    section_heading_requires_bold: true
+    drop_line_patterns:
+    - ^TITLE 15\. REVENUE$
+    - ^CHAPTER 2\. DEPARTMENT OF REVENUE.*$
+    - ^Title 15$
+    - ^15 A\.A\.C\. 2$
+    - ^Arizona Administrative Code$
+    - ^Supp\. [0-9-]+$
+    - ^Page [0-9]+$
+    - ^[A-Z][a-z]+ [0-9]{1,2}, [0-9]{4}$
+  metadata:
+    primary_source: true
+    source_authority: Arizona Department of Revenue
+    official_publisher: Arizona Secretary of State, Administrative Rules Division
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-az/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://apps.azsos.gov/public_services/Title_15/15-02.pdf
+    access_note: apps.azsos.gov answers the plain client with a Cloudflare challenge (HTTP 403); the PDF is served
+      to the browser-impersonation fetch.

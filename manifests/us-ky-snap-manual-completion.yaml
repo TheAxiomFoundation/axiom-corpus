@@ -1,0 +1,27 @@
+version: 2026-09-10-snap-state-manual-completion
+documents:
+- source_id: ky-dcbs-dfs-om-vol-i
+  jurisdiction: us-ky
+  document_class: manual
+  citation_path: us-ky/manual/dcbs/dfs/volume-i-general-administration
+  title: Kentucky DFS Manual Volume I - General Administration
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOL1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-08-01'
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department for Community Based Services Division of Family Support
+    document_subtype: policy_manual
+    program: SNAP
+    state_program: DFS Operation Manual general administration (all Family Support programs incl. SNAP)
+    federal_program: SNAP
+    manual_landing_page: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    manual_revision_date: '2026-08-01'
+    manual_toc_revision_date: '2025-01-15'
+    latest_omtl: '703'
+    pdf_page_count: 256
+    source_last_modified: Wed, 09 Sep 2026 15:28:30 GMT
+    source_discovery_group: us-ky/manual/snap
+    discovered_via: manual-review:snap-completion-agent-queue batch 2 (https://github.com/TheAxiomFoundation/axiom-corpus/issues/680);
+      publisher index https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx

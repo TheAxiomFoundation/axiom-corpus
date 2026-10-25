@@ -3,19 +3,22 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import os
 import re
 import shlex
 import sys
+import textwrap
 from collections.abc import Iterable
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
-from typing import Any
+from typing import Any, NamedTuple
 
 import yaml
 
+from axiom_corpus.corpus import corpus_cli
 from axiom_corpus.corpus.analytics import (
     build_analytics_report,
     load_provision_count_snapshot,
@@ -23,12 +26,14 @@ from axiom_corpus.corpus.analytics import (
 from axiom_corpus.corpus.anchors import (
     AnchorResolver,
     generate_anchors_for_provision,
+    generate_asserted_descendant_anchors,
     generate_stored_leaf_anchors,
     load_anchors,
     verify_anchors_against_provisions,
     write_anchors_jsonl,
 )
 from axiom_corpus.corpus.anchors_supabase import load_anchors_to_supabase
+from axiom_corpus.corpus.armenia_arlis import extract_armenia_arlis
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.belgium_eli import (
     BelgianELIExtractReport,
@@ -41,6 +46,9 @@ from axiom_corpus.corpus.california_mpp import (
     extract_california_mpp_calfresh,
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
+from axiom_corpus.corpus.content_check_cli import add_content_check_parser
+from axiom_corpus.corpus.content_store import ContentCache, ContentStoreError
+from axiom_corpus.corpus.corpus_locks import LockFormatError, scope_for_path
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.district_plan import (
     DistrictPlanExtractReport,
@@ -74,6 +82,7 @@ from axiom_corpus.corpus.ingest_manifests import (
     write_signed_ingest_manifest,
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.israel_openlaw import extract_israel_openlaw
 from axiom_corpus.corpus.maryland_comar import extract_maryland_comar
 from axiom_corpus.corpus.models import (
     CorpusManifest,
@@ -118,14 +127,24 @@ from axiom_corpus.corpus.r2 import (
     DEFAULT_RELEASE_ARTIFACT_PREFIXES,
     build_artifact_report,
     build_artifact_report_with_r2,
+    iter_local_artifacts,
     load_r2_config,
     sync_artifacts_to_r2,
 )
 from axiom_corpus.corpus.regulation_completion import (
     build_regulation_completion_report,
 )
-from axiom_corpus.corpus.release_quality import validate_release
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, ReleasePolicyError
+from axiom_corpus.corpus.release_quality import validate_release, validate_releases
 from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
+from axiom_corpus.corpus.resolver import (
+    CorpusNotMaterializedError,
+    _is_corpus_base,
+    cli_repo,
+    locked_entries_under,
+    materialize_cli_inputs,
+    require_materialized,
+)
 from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
     discover_encoded_paths,
@@ -277,6 +296,7 @@ from axiom_corpus.corpus.usc import (
     extract_usc,
     extract_usc_directory,
     infer_uslm_title,
+    read_uslm_zip,
     usc_run_id,
 )
 from axiom_corpus.corpus.virginia_vac import extract_virginia_vac
@@ -317,6 +337,21 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         applied_files = list(args.file)
     deleted_files: list[Path] = list(args.deleted_file or [])
     reasoning_logs: list[Path] = list(args.reasoning_log or [])
+    if args.lock:
+        # Check before signing, so a scope that cannot be locked (a hidden or
+        # leftover file, an unexplained absence) never gets a signed manifest.
+        try:
+            corpus_cli.check_lockable(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                deleted=[
+                    (path if path.is_absolute() else repo / path).resolve().relative_to(repo).as_posix()
+                    for path in deleted_files
+                ],
+            )
+        except (corpus_cli.LockRefusedError, OSError, ValueError) as exc:
+            print(f"corpus lock: {exc} (nothing was signed)", file=sys.stderr)
+            return 2
     manifest = build_ingest_manifest(
         repo=repo,
         base=args.base,
@@ -335,18 +370,42 @@ def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
         output=args.output,
         key_id=args.key_id,
     )
-    print(
-        json.dumps(
-            {
-                "manifest": str(manifest_path),
-                "applied_files": len(manifest["applied_files"]),
-                "reasoning_logs": len(manifest["reasoning_logs"]),
-            },
-            indent=2,
-            sort_keys=True,
-        )
-    )
-    return 0
+    summary: dict[str, Any] = {
+        "manifest": str(manifest_path),
+        "applied_files": len(manifest["applied_files"]),
+        "reasoning_logs": len(manifest["reasoning_logs"]),
+    }
+    status = 0
+    if args.lock:
+        # Signing reads a clean tracked tree, so the lock is written after it.
+        try:
+            written, pushed = corpus_cli.lock_scopes(
+                repo,
+                [(args.jurisdiction, args.document_class, args.version)],
+                cache=ContentCache(),
+                push=args.push,
+                # Exactly the deletions the signed manifest records.
+                deleted=[
+                    str(entry["path"])
+                    for entry in manifest["applied_files"]
+                    if entry.get("deleted") is True
+                ],
+            )
+        except (
+            corpus_cli.LockRefusedError,
+            LockFormatError,
+            ContentStoreError,
+            OSError,
+            ValueError,
+        ) as exc:
+            print(f"corpus lock: {exc}", file=sys.stderr)
+            return 2
+        summary["locks"] = written
+        summary["push"] = pushed
+        if pushed and pushed["failed"]:
+            status = 1
+    print(json.dumps(summary, indent=2, sort_keys=True))
+    return status
 
 
 def _cmd_guard_ingested(args: argparse.Namespace) -> int:
@@ -381,22 +440,35 @@ def _cmd_verify_scope_tracked(args: argparse.Namespace) -> int:
             f"{result.scopes_checked} inventory scopes."
         )
         return 0
+    for error in result.lock_errors:
+        print(f"invalid corpus lock: {error}")
+    if result.lock_errors:
+        return 1
     for path in result.missing_paths:
         print(path)
-    print(shlex.join(["git", "add", "-f", *result.missing_paths]))
+    if (args.repo / ".axiom" / "corpus-locks").is_dir():
+        print("Lock the scopes that write these files: axiom-corpus-ingest corpus lock <scope>")
+    else:
+        print(shlex.join(["git", "add", "-f", *result.missing_paths]))
     return 1
 
 
 def _cmd_inventory_ecfr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     run_id = ecfr_run_id(args.version, args.only_title, args.only_part, args.limit)
-    inventory = build_ecfr_inventory(
-        as_of=args.as_of,
-        only_title=args.only_title,
-        only_part=args.only_part,
-        limit=args.limit,
-        run_id=run_id,
-    )
+    try:
+        inventory = build_ecfr_inventory(
+            as_of=args.as_of,
+            only_title=args.only_title,
+            only_part=args.only_part,
+            only_sections=tuple(args.section or ()),
+            limit=args.limit,
+            run_id=run_id,
+            include_appendices=args.include_appendices,
+        )
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
     out = store.inventory_path("us", DocumentClass.REGULATION, run_id)
     store.write_inventory(out, inventory.items)
     print(
@@ -539,8 +611,9 @@ def _cmd_generate_anchors(args: argparse.Namespace) -> int:
     records = load_provisions(args.provisions)
     by_path = {record.citation_path: record for record in records}
     targets = list(args.target or [])
+    asserted_parents = list(args.asserted_parent or [])
     stored_leaves = list(args.stored_leaf or [])
-    if not targets and not stored_leaves:
+    if not targets and not asserted_parents and not stored_leaves:
         # Default: parse every provision in the file that has a body.
         targets = [r.citation_path for r in records if (r.body or "").strip()]
 
@@ -555,6 +628,23 @@ def _cmd_generate_anchors(args: argparse.Namespace) -> int:
             )
             return 2
         anchors.extend(generate_anchors_for_provision(record))
+    for citation_path in asserted_parents:
+        record = by_path.get(citation_path)
+        if record is None:
+            print(
+                f"error: asserted parent provision {citation_path!r} not found "
+                f"in {args.provisions}",
+                file=sys.stderr,
+            )
+            return 2
+        descendants = [
+            candidate
+            for candidate in records
+            if candidate.citation_path.startswith(f"{citation_path}/")
+        ]
+        anchors.extend(
+            generate_asserted_descendant_anchors(record, descendants)
+        )
     for citation_path in stored_leaves:
         record = by_path.get(citation_path)
         if record is None:
@@ -1202,24 +1292,31 @@ def _single_provision_scope(records: tuple[ProvisionRecord, ...]) -> tuple[str, 
 
 def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
-    expression_date = date.fromisoformat(args.expression_date or args.as_of)
-    graphic_transcriptions = (
-        load_ecfr_graphic_transcriptions(args.graphic_transcriptions)
-        if args.graphic_transcriptions
-        else None
-    )
-    report = extract_ecfr(
-        store,
-        version=args.version,
-        as_of=args.as_of,
-        expression_date=expression_date,
-        only_title=args.only_title,
-        only_part=args.only_part,
-        limit=args.limit,
-        workers=args.workers,
-        progress_stream=sys.stderr,
-        graphic_transcriptions=graphic_transcriptions,
-    )
+    try:
+        expression_date = date.fromisoformat(args.expression_date or args.as_of)
+        graphic_transcriptions = (
+            load_ecfr_graphic_transcriptions(args.graphic_transcriptions)
+            if args.graphic_transcriptions
+            else None
+        )
+        report = extract_ecfr(
+            store,
+            version=args.version,
+            as_of=args.as_of,
+            expression_date=expression_date,
+            source_xml=args.source_xml,
+            only_title=args.only_title,
+            only_part=args.only_part,
+            only_sections=tuple(args.section or ()),
+            limit=args.limit,
+            workers=args.workers,
+            progress_stream=sys.stderr,
+            graphic_transcriptions=graphic_transcriptions,
+            include_appendices=args.include_appendices,
+        )
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
     print(
         json.dumps(
             {
@@ -1255,9 +1352,18 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
 def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    if args.prior_release_point and not args.source_url:
+        print("--prior-release-point requires --source-url (the release point download URL)")
+        return 2
     try:
+        if args.title:
+            title = args.title
+        elif args.source_zip is not None:
+            title = infer_uslm_title(decode_uslm_bytes(read_uslm_zip(args.source_zip)[1]))
+        else:
+            title = infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes()))
         allowed_citation_paths = _usc_allowed_citation_paths(
-            args.title or infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes())),
+            title,
             sections=args.section,
             citation_paths=args.citation_path,
             include_title=args.include_title,
@@ -1269,12 +1375,14 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         store,
         version=args.version,
         source_xml=args.source_xml,
+        source_zip=args.source_zip,
         title=args.title,
         source_as_of=args.source_as_of,
         expression_date=expression_date,
         source_download_url=args.source_url,
         limit=args.limit,
         allowed_citation_paths=allowed_citation_paths,
+        prior_release_point=args.prior_release_point,
     )
     print(
         json.dumps(
@@ -1391,6 +1499,77 @@ def _uk_legislation_report_json(report: UKLegislationExtractReport) -> dict[str,
             for class_report in report.class_reports
         ],
     }
+
+
+def _cmd_extract_am_arlis(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_armenia_arlis(
+        store,
+        version=args.version,
+        manifest_path=args.manifest,
+        source_dir=args.source_dir,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "document_count": report.document_count,
+                "article_count": report.article_count,
+                "structural_count": report.structural_count,
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete else 2
+
+
+def _cmd_extract_il_openlaw(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_israel_openlaw(
+        store,
+        version=args.version,
+        manifest_path=args.manifest,
+        source_dir=args.source_dir,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "document_count": report.document_count,
+                "section_count": report.section_count,
+                "schedule_item_count": report.schedule_item_count,
+                "navigation_count": report.navigation_count,
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete else 2
 
 
 def _cmd_extract_nz_legislation(args: argparse.Namespace) -> int:
@@ -2473,6 +2652,7 @@ def _cmd_extract_california_code_sections(args: argparse.Namespace) -> int:
         request_delay_seconds=args.delay_seconds,
         timeout_seconds=args.timeout_seconds,
         request_attempts=args.request_attempts,
+        preserve_tables=args.preserve_tables,
     )
     print(
         json.dumps(
@@ -2883,6 +3063,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_chapter=only_title,
+            only_act=_optional_text(options.get("only_act")),
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
         )
@@ -2972,6 +3153,12 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
     if adapter == "massachusetts-general-laws":
+        raw_ma_sections = options.get("only_sections", ())
+        ma_sections = (
+            (str(raw_ma_sections),)
+            if isinstance(raw_ma_sections, str | int | float)
+            else tuple(str(item) for item in raw_ma_sections or ())
+        )
         return extract_massachusetts_general_laws(
             store,
             version=version,
@@ -2981,6 +3168,7 @@ def _extract_state_statute_source(
             only_part=_optional_text(options.get("only_part")),
             only_title=only_title,
             only_chapter=_optional_text(options.get("only_chapter")),
+            only_sections=ma_sections,
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
@@ -3167,6 +3355,10 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             workers=_optional_int(options.get("workers")) or 8,
+            include_subunits=_optional_bool(options.get("include_subunits"), default=False),
+            include_publication_note=_optional_bool(
+                options.get("include_publication_note"), default=True
+            ),
         )
     if adapter == "montana-code":
         return extract_montana_code(
@@ -4110,6 +4302,7 @@ def _cmd_extract_illinois_admin_code(args: argparse.Namespace) -> int:
         source_as_of=args.source_as_of,
         expression_date=expression_date,
         only_title=args.only_title,
+        only_part=args.only_part,
         limit=args.limit,
         workers=args.workers,
         progress_stream=sys.stderr,
@@ -5015,7 +5208,9 @@ def _cmd_section_provisions(args: argparse.Namespace) -> int:
 
 
 def _cmd_validate_release(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.release)
+    if len(args.release) > 1:
+        return _cmd_validate_releases(args)
+    release_path = resolve_release_manifest_path(args.release[0])
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
     if args.include_r2:
@@ -5040,6 +5235,18 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
             release_name=release.name,
             release_scopes=release.scope_keys,
         )
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
     report = validate_release(
         args.base,
         release,
@@ -5047,6 +5254,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         max_issues=args.max_issues,
         strict_warnings=args.strict_warnings,
         ignore_r2_missing=args.ignore_r2_missing,
+        policy=policy,
     )
     payload = report.to_mapping()
     payload["release_path"] = str(release_path)
@@ -5056,6 +5264,64 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         payload["written_to"] = str(args.output)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0 if report.ok else 2
+
+
+def _cmd_validate_releases(args: argparse.Namespace) -> int:
+    """Several selectors in one pass: each distinct scope is deep-checked once
+    (``validate_releases``) and the local corpus tree is walked once; each
+    selector's report equals its own ``validate-release`` run."""
+    if args.output:
+        raise SystemExit("validate-release: --output takes a single --release")
+    if args.include_r2:
+        raise SystemExit("validate-release: --include-r2 takes a single --release")
+    release_paths = [resolve_release_manifest_path(name) for name in args.release]
+    releases = [ReleaseManifest.load(path) for path in release_paths]
+    prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
+    walked = iter_local_artifacts(args.base, prefixes=prefixes)
+    artifact_reports = [
+        build_artifact_report(
+            args.base,
+            prefixes=prefixes,
+            supabase_counts_path=args.supabase_counts,
+            release_name=release.name,
+            release_scopes=release.scope_keys,
+            local_artifacts=walked,
+        )
+        for release in releases
+    ]
+    try:
+        policy = ReleaseGatePolicy.for_corpus(args.base)
+    except ReleasePolicyError as exc:
+        print(f"validate-release: {exc}", file=sys.stderr)
+        return 2
+    if policy.source is None:
+        print(
+            f"validate-release: {args.base} is not in an axiom-corpus checkout, so the "
+            "withdrawn-scope list and content baseline (docs/release-gate-policy.md) are "
+            "not applied; every content finding is reported as new",
+            file=sys.stderr,
+        )
+    reports = validate_releases(
+        args.base,
+        releases,
+        artifact_reports=artifact_reports,
+        max_issues=args.max_issues,
+        strict_warnings=args.strict_warnings,
+        ignore_r2_missing=args.ignore_r2_missing,
+        workers=args.workers,
+        policy=policy,
+    )
+    for report, release_path in zip(reports, release_paths, strict=True):
+        payload = report.to_mapping()
+        payload["release_path"] = str(release_path)
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    failed = [report.release_name for report in reports if not report.ok]
+    print(
+        f"validate-release: {len(reports)} selectors, {len(reports) - len(failed)} ok"
+        + (f"; failed: {', '.join(failed)}" if failed else ""),
+        file=sys.stderr,
+    )
+    return 2 if failed else 0
 
 
 def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
@@ -5350,9 +5616,229 @@ def _add_rulespec_args(sub_parser: argparse.ArgumentParser) -> None:
     )
 
 
+# Top-level help groups the flat subcommand set by pipeline stage (#471).
+# Canonical names only — argparse aliases render beside their canonical
+# command automatically. Every canonical subcommand must appear in exactly
+# one group;
+# tests/test_cli_help_groups.py enforces both directions, so adding a
+# command means adding it here too.
+_COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    (
+        "Ingest integrity and guards",
+        (
+            "validate-manifest",
+            "sign-ingest-manifest",
+            "guard-ingested",
+            "verify-scope-tracked",
+        ),
+    ),
+    (
+        "Corpus storage (bytes outside git)",
+        ("corpus",),
+    ),
+    (
+        "Source inventory and discovery",
+        (
+            "inventory-ecfr",
+            "inventory-usc",
+            "source-discovery",
+            "promote-source-discovery-group",
+            "policyengine-references",
+            "state-statute-completion",
+            "regulation-completion",
+            "download-nz-legislation-api",
+            "discover-belgian-moniteur",
+        ),
+    ),
+    (
+        "Extract: US federal",
+        (
+            "extract-ecfr",
+            "extract-usc",
+            "extract-usc-dir",
+            "extract-federal-register",
+            "extract-federal-register-cfr-sections",
+        ),
+    ),
+    (
+        "Extract: manifest-driven official documents (any jurisdiction)",
+        (
+            "extract-official-documents",
+        ),
+    ),
+    (
+        "Extract: US states and localities",
+        (
+            "extract-state-statutes",
+            "extract-california-codes",
+            "extract-california-code-sections",
+            "extract-california-mpp-calfresh",
+            "extract-cic-state-html",
+            "extract-cic-state-odt",
+            "extract-colorado-ccr",
+            "extract-colorado-docx",
+            "extract-dc-code",
+            "extract-delaware-code",
+            "extract-illinois-admin-code",
+            "extract-illinois-ilcs",
+            "extract-indiana-code",
+            "extract-maryland-comar",
+            "extract-minnesota-statutes",
+            "extract-montana-administrative-rules",
+            "extract-montana-code",
+            "extract-nebraska-revised-statutes",
+            "extract-nevada-nrs",
+            "extract-new-york-consolidated-laws",
+            "extract-new-york-openleg-api",
+            "extract-new-york-openleg-sections",
+            "extract-ny-state-register",
+            "extract-nyc-admin-code",
+            "extract-nycrr",
+            "extract-nycrr-parts",
+            "extract-ohio-administrative-code",
+            "extract-ohio-revised-code",
+            "extract-oregon-administrative-rules",
+            "extract-oregon-ors",
+            "extract-pennsylvania-code",
+            "extract-rhode-island-general-laws",
+            "extract-texas-tcas",
+            "extract-virginia-vac",
+            "extract-washington-rcw",
+            "extract-washington-wac",
+        ),
+    ),
+    (
+        "Extract: international",
+        (
+            "extract-am-arlis",
+            "extract-il-openlaw",
+            "extract-uk-legislation",
+            "extract-nz-legislation",
+            "extract-nz-district-plan",
+            "extract-belgian-eli",
+            "extract-de-gii",
+            "extract-canada-acts",
+            "extract-eli-documents",
+        ),
+    ),
+    (
+        "Stage and serve",
+        (
+            "load-supabase",
+            "export-supabase",
+            "generate-anchors",
+            "resolve-anchor",
+            "load-anchors-supabase",
+            "build-navigation-index",
+            "backfill-versions",
+            "sync-r2",
+        ),
+    ),
+    (
+        "Verify and report",
+        (
+            "coverage",
+            "verify-release-coverage",
+            "validate-release",
+            "content-check",
+            "snapshot-provision-counts",
+            "analytics",
+            "artifact-report",
+            "section-provisions",
+        ),
+    ),
+)
+
+
+# Grouped-epilog layout: two-space lead, a name column, and summaries wrapped
+# so no rendered line exceeds _EPILOG_WIDTH (test-enforced).
+_EPILOG_WIDTH = 100
+_EPILOG_NAME_COLUMN = 40
+
+
+class _CommandIndex(NamedTuple):
+    """Canonical command metadata captured before the flat listing is dropped."""
+
+    canonical: tuple[str, ...]
+    labels: dict[str, str]  # canonical -> render label ("name" or "name (alias)")
+    helps: dict[str, str]  # canonical -> add_parser(help=...) summary
+    aliases: dict[str, str]  # alias -> canonical
+
+
+def _build_command_index(
+    sub: argparse._SubParsersAction[argparse.ArgumentParser],
+) -> _CommandIndex:
+    labels: dict[str, str] = {}
+    helps: dict[str, str] = {}
+    for pseudo_action in getattr(sub, "_choices_actions", []):
+        name = getattr(pseudo_action, "dest", None)
+        if isinstance(name, str):
+            labels[name] = getattr(pseudo_action, "metavar", None) or name
+            helps[name] = getattr(pseudo_action, "help", None) or ""
+
+    # Aliases share their canonical command's parser object.
+    canonical_by_parser_id = {
+        id(sub.choices[name]): name for name in labels if name in sub.choices
+    }
+    canonical: list[str] = []
+    aliases: dict[str, str] = {}
+    for name, subparser in sub.choices.items():
+        resolved = canonical_by_parser_id.get(id(subparser), name)
+        if resolved == name:
+            canonical.append(name)
+        else:
+            aliases[name] = resolved
+    return _CommandIndex(tuple(canonical), labels, helps, aliases)
+
+
+def _render_command_group_epilog(index: _CommandIndex) -> str:
+    """Render the grouped command index for top-level ``--help``.
+
+    Help strings come from the same ``add_parser(help=...)`` calls that argparse
+    would have rendered as one flat alphabetical block; the flat block itself is
+    suppressed by the caller so the grouped index is the only listing. Aliased
+    commands render once, as ``canonical (alias)`` — argparse's own pseudo-action
+    metavar — under the canonical name's group.
+    """
+
+    registered = set(index.canonical)
+    grouped = {name for _, names in _COMMAND_GROUPS for name in names}
+    stray = [name for name in index.canonical if name not in grouped]
+    sections = list(_COMMAND_GROUPS)
+    if stray:
+        # Never hide a command at runtime; the companion test fails instead.
+        sections.append(("Ungrouped", tuple(stray)))
+
+    summary_width = _EPILOG_WIDTH - _EPILOG_NAME_COLUMN - 2
+    hang = " " * (_EPILOG_NAME_COLUMN + 2)
+    lines: list[str] = ["commands by pipeline stage:"]
+    for title, names in sections:
+        lines.append("")
+        lines.append(f"{title}:")
+        for name in names:
+            if name not in registered:
+                continue
+            label = index.labels.get(name, name)
+            summary = index.helps.get(name, "")
+            body = textwrap.wrap(summary, width=summary_width)
+            if body and len(label) <= _EPILOG_NAME_COLUMN - 2:
+                lines.append(f"  {label:<{_EPILOG_NAME_COLUMN}}{body[0]}")
+                lines.extend(hang + wrapped for wrapped in body[1:])
+            else:
+                lines.append(f"  {label}")
+                lines.extend(hang + wrapped for wrapped in body)
+    return "\n".join(lines)
+
+
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Source-first corpus pipeline tools.")
-    sub = parser.add_subparsers(dest="command", required=True)
+    parser = argparse.ArgumentParser(
+        description=(
+            "Source-first corpus pipeline tools. The axiom-corpus and\n"
+            "axiom-corpus-ingest entry points are the same CLI under two names."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    sub = parser.add_subparsers(dest="command", required=True, metavar="<command>")
 
     validate = sub.add_parser("validate-manifest", help="Validate a corpus manifest.")
     validate.add_argument("path", type=Path)
@@ -5392,6 +5878,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sign_ingest.add_argument("--output", type=Path)
     sign_ingest.add_argument("--key-id", default="axiom-corpus-ingest-v1")
+    sign_ingest.add_argument(
+        "--lock",
+        action="store_true",
+        help=(
+            "After signing, write the scope's corpus lock and cache its bytes "
+            "(corpus bytes live outside git; see docs/corpus-storage.md)."
+        ),
+    )
+    sign_ingest.add_argument(
+        "--push",
+        action="store_true",
+        help="With --lock, upload objects R2 lacks.",
+    )
     sign_ingest.set_defaults(func=_cmd_sign_ingest_manifest)
 
     guard_ingested = sub.add_parser(
@@ -5403,6 +5902,8 @@ def build_parser() -> argparse.ArgumentParser:
     guard_ingested.add_argument("--head-ref", default="HEAD")
     guard_ingested.add_argument("--json", action="store_true")
     guard_ingested.set_defaults(func=_cmd_guard_ingested)
+
+    corpus_cli.register(sub)
 
     verify_tracked = sub.add_parser(
         "verify-scope-tracked",
@@ -5423,6 +5924,17 @@ def build_parser() -> argparse.ArgumentParser:
     inventory_ecfr.add_argument("--as-of", required=True)
     inventory_ecfr.add_argument("--only-title", type=int)
     inventory_ecfr.add_argument("--only-part")
+    inventory_ecfr.add_argument(
+        "--include-appendices",
+        action="store_true",
+        help="Include supported part appendices; reject unsupported selected appendix shapes.",
+    )
+    inventory_ecfr.add_argument(
+        "--section",
+        action="append",
+        default=[],
+        help="Exact eCFR PART.SECTION identifier to include; repeatable.",
+    )
     inventory_ecfr.add_argument("--limit", type=int)
     inventory_ecfr.set_defaults(func=_cmd_inventory_ecfr)
 
@@ -5463,8 +5975,27 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ecfr_cmd.add_argument("--version", required=True)
     extract_ecfr_cmd.add_argument("--as-of", required=True)
     extract_ecfr_cmd.add_argument("--expression-date")
+    extract_ecfr_cmd.add_argument(
+        "--source-xml",
+        type=Path,
+        help=(
+            "Retained official eCFR part XML to regenerate a section-scoped "
+            "run locally; requires --only-title, --only-part, and --section."
+        ),
+    )
     extract_ecfr_cmd.add_argument("--only-title", type=int)
     extract_ecfr_cmd.add_argument("--only-part")
+    extract_ecfr_cmd.add_argument(
+        "--include-appendices",
+        action="store_true",
+        help="Include supported part appendices and their source images; reject unsupported shapes.",
+    )
+    extract_ecfr_cmd.add_argument(
+        "--section",
+        action="append",
+        default=[],
+        help="Exact eCFR PART.SECTION identifier to include; repeatable.",
+    )
     extract_ecfr_cmd.add_argument("--limit", type=int)
     extract_ecfr_cmd.add_argument("--workers", type=int, default=2)
     extract_ecfr_cmd.add_argument(
@@ -5484,7 +6015,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_usc_cmd.add_argument("--base", type=Path, required=True)
     extract_usc_cmd.add_argument("--version", required=True)
-    extract_usc_cmd.add_argument("--source-xml", type=Path, required=True)
+    extract_usc_source = extract_usc_cmd.add_mutually_exclusive_group(required=True)
+    extract_usc_source.add_argument("--source-xml", type=Path)
+    extract_usc_source.add_argument(
+        "--source-zip",
+        type=Path,
+        help=(
+            "Single-member OLRC USLM zip; retained byte-for-byte as the inventoried source "
+            "(under olrc/) instead of the extracted XML member."
+        ),
+    )
     extract_usc_cmd.add_argument("--title")
     extract_usc_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_usc_cmd.add_argument("--expression-date")
@@ -5506,6 +6046,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--include-title",
         action="store_true",
         help="Include the title-level provision when section filters are used.",
+    )
+    extract_usc_cmd.add_argument(
+        "--prior-release-point",
+        action="store_true",
+        help=(
+            "The source is a historical OLRC release point: set every row's source_url to "
+            "--source-url (the release point download) instead of the current prelim "
+            "reader page, which displays different text."
+        ),
     )
     extract_usc_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_cmd.set_defaults(func=_cmd_extract_usc)
@@ -5562,6 +6111,54 @@ def build_parser() -> argparse.ArgumentParser:
     extract_uk_cmd.add_argument("--expression-date")
     extract_uk_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_uk_cmd.set_defaults(func=_cmd_extract_uk_legislation)
+
+    extract_am_cmd = sub.add_parser(
+        "extract-am-arlis",
+        help="Extract hash-pinned Armenian legal acts from local ARLIS HTML snapshots.",
+        description=(
+            "Extract hash-pinned Armenian ARLIS statutes or regulations from local HTML "
+            "snapshots."
+        ),
+    )
+    extract_am_cmd.add_argument("--base", type=Path, required=True)
+    extract_am_cmd.add_argument("--version", required=True)
+    extract_am_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        required=True,
+        help="Manifest pinning Armenian ARLIS statutes or regulations and article counts.",
+    )
+    extract_am_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        required=True,
+        help="Directory containing the pinned local ARLIS HTML snapshots.",
+    )
+    extract_am_cmd.set_defaults(func=_cmd_extract_am_arlis)
+
+    extract_il_cmd = sub.add_parser(
+        "extract-il-openlaw",
+        help="Extract hash-pinned Israeli statutes from local ספר החוקים הפתוח HTML snapshots.",
+        description=(
+            "Extract hash-pinned Israeli consolidated statutes from local he.wikisource.org "
+            "OpenLaw HTML snapshots."
+        ),
+    )
+    extract_il_cmd.add_argument("--base", type=Path, required=True)
+    extract_il_cmd.add_argument("--version", required=True)
+    extract_il_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        required=True,
+        help="Manifest pinning Israeli statutes, expression dates, and structural counts.",
+    )
+    extract_il_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        required=True,
+        help="Directory containing the pinned local OpenLaw HTML snapshots.",
+    )
+    extract_il_cmd.set_defaults(func=_cmd_extract_il_openlaw)
 
     extract_nz_cmd = sub.add_parser(
         "extract-nz-legislation",
@@ -6168,7 +6765,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--section",
         action="append",
         required=True,
-        help="California section spec such as WIC:11450.12 or a LegInfo section URL.",
+        help=(
+            "California section spec such as WIC:11450.12 or a LegInfo section URL. Append "
+            "@all to capture every concurrent LegInfo version of a multi-version section, or "
+            "@<variant slug> (e.g. WIC:11450@operative-2024-07-01) for one; each version is "
+            "written at its <section>--<slug> variant path."
+        ),
     )
     extract_california_sections_cmd.add_argument("--download-dir", type=Path)
     extract_california_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
@@ -6176,6 +6778,14 @@ def build_parser() -> argparse.ArgumentParser:
     extract_california_sections_cmd.add_argument("--delay-seconds", type=float, default=0.25)
     extract_california_sections_cmd.add_argument("--timeout-seconds", type=float, default=60.0)
     extract_california_sections_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_california_sections_cmd.add_argument(
+        "--preserve-tables",
+        action="store_true",
+        help=(
+            "Render each table row as one 'cell | cell' line and keep repeated cells and "
+            "row labels. Off by default so existing scopes rerun unchanged."
+        ),
+    )
     extract_california_sections_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_california_sections_cmd.set_defaults(func=_cmd_extract_california_code_sections)
 
@@ -6286,6 +6896,10 @@ def build_parser() -> argparse.ArgumentParser:
     extract_illinois_admin_code_cmd.add_argument("--source-dir", type=Path)
     extract_illinois_admin_code_cmd.add_argument("--download-dir", type=Path)
     extract_illinois_admin_code_cmd.add_argument("--only-title")
+    extract_illinois_admin_code_cmd.add_argument(
+        "--only-part",
+        help="Part number or comma-separated part numbers within the selected title.",
+    )
     extract_illinois_admin_code_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_illinois_admin_code_cmd.add_argument("--expression-date")
     extract_illinois_admin_code_cmd.add_argument("--limit", type=int)
@@ -6655,6 +7269,16 @@ def build_parser() -> argparse.ArgumentParser:
             "numbered children. Repeatable."
         ),
     )
+    generate_anchors.add_argument(
+        "--asserted-parent",
+        action="append",
+        default=[],
+        help=(
+            "Citation path of an asserted parent whose publisher-identified "
+            "descendant provision rows should be emitted as machine_asserted "
+            "anchors. Repeatable."
+        ),
+    )
     generate_anchors.set_defaults(func=_cmd_generate_anchors)
 
     resolve_anchor = sub.add_parser(
@@ -6999,7 +7623,21 @@ def build_parser() -> argparse.ArgumentParser:
         help="Validate release artifacts, coverage, provision invariants, and optional R2/Supabase state.",
     )
     validate_release_cmd.add_argument("--base", type=Path, required=True)
-    validate_release_cmd.add_argument("--release", required=True)
+    validate_release_cmd.add_argument(
+        "--release",
+        action="append",
+        required=True,
+        help=(
+            "Release selector path or name; repeat to validate several selectors in one "
+            "pass, each distinct scope checked once (one report per selector)."
+        ),
+    )
+    validate_release_cmd.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Processes for the per-scope checks when several --release are given.",
+    )
     validate_release_cmd.add_argument("--supabase-counts", type=Path)
     validate_release_cmd.add_argument(
         "--prefix",
@@ -7024,6 +7662,8 @@ def build_parser() -> argparse.ArgumentParser:
     validate_release_cmd.add_argument("--max-issues", type=int, default=200)
     validate_release_cmd.add_argument("--output", type=Path)
     validate_release_cmd.set_defaults(func=_cmd_validate_release)
+
+    add_content_check_parser(sub)
 
     state_statute_completion = sub.add_parser(
         "state-statute-completion",
@@ -7219,12 +7859,124 @@ def build_parser() -> argparse.ArgumentParser:
     )
     policyengine_references.set_defaults(func=_cmd_policyengine_references)
 
+    command_index = _build_command_index(sub)
+    parser.epilog = _render_command_group_epilog(command_index)
+    # Introspection surface for tests (and anything else that wants the
+    # canonical/alias map after the flat listing is dropped below).
+    parser._axiom_command_index = command_index  # type: ignore[attr-defined]
+    # The grouped epilog replaces argparse's flat alphabetical listing; the
+    # choices themselves (parsing, errors, per-command --help) are untouched.
+    getattr(sub, "_choices_actions", []).clear()
+
+    # Mark every subcommand under a private attribute: a subcommand's own
+    # --command flag (sign-ingest-manifest) overwrites args.command.
+    for name, subparser in sub.choices.items():
+        if "_cli_command" not in subparser._defaults:
+            subparser.set_defaults(_cli_command=name)
     return parser
+
+
+# Commands that must see the worktree exactly as it is: signing and guarding
+# judge local files, and the corpus group manages fetching itself.
+_NO_AUTO_FETCH_COMMANDS = frozenset(
+    {
+        "corpus",
+        "guard-ingested",
+        "sign-ingest-manifest",
+        "sync-r2",
+        "validate-manifest",
+        "verify-scope-tracked",
+    }
+)
+# Read-only commands whose --jurisdiction/--document-class/--version name an
+# existing scope under --base data/corpus (for extractors they name the output).
+_SCOPE_INPUT_COMMANDS = frozenset(
+    {
+        "analytics",
+        "artifact-report",
+        "build-navigation-index",
+        "coverage",
+        "export-supabase",
+        "generate-anchors",
+        "section-provisions",
+        "snapshot-provision-counts",
+    }
+)
+
+
+# Reports that list whole artifact directories under --base. With corpus bytes
+# outside git they refuse to run on a partly fetched tree rather than report on
+# a subset.
+_CORPUS_WIDE_COMMANDS: dict[str, tuple[str, ...]] = {
+    "analytics": ("inventory", "provisions"),
+    "artifact-report": ("sources", "inventory", "provisions", "coverage"),
+    "snapshot-provision-counts": ("provisions",),
+}
+
+
+def _name_in(repo: Path, path: Path) -> str | None:
+    """``path`` relative to ``repo`` as spelled (through any links), if below it."""
+    try:
+        return path.relative_to(repo).as_posix()
+    except ValueError:
+        return None
+
+
+def _corpus_wide_prefixes(args: argparse.Namespace, command: str) -> list[Path]:
+    classes = _CORPUS_WIDE_COMMANDS.get(command)
+    base = getattr(args, "base", None)
+    repo = cli_repo(args)
+    if not classes or base is None or repo is None or not _is_corpus_base(repo, base):
+        return []
+    if getattr(args, "release", None) or getattr(args, "release_scope", None):
+        return []  # release scopes are fetched by materialize_cli_inputs
+    raw = getattr(args, "jurisdiction", None)
+    jurisdictions = [raw] if isinstance(raw, str) else list(raw or [])
+    if command == "analytics":
+        # Analytics reads one version (and its "<version>-*" parts) of the
+        # jurisdictions and classes it reports on; require exactly those files.
+        # Every lock that applies counts, such as a shared checkout's where a
+        # class directory links to it (docs/corpus-storage.md, invariant 11).
+        version = str(args.version)
+        document_classes = set(getattr(args, "document_class", None) or [])
+        return [
+            path
+            for path, entry in locked_entries_under(
+                [repo / "data" / "corpus" / artifact_class for artifact_class in classes], repo=repo
+            )
+            # The scope of the path analytics reads, which a link may give
+            # another name in the lock that names it.
+            if (scope := scope_for_path(_name_in(repo, path) or entry.path)) is not None
+            # analytics globs "<version>.json" and "<version>-*.json"
+            and (fnmatch.fnmatchcase(scope[2], version) or fnmatch.fnmatchcase(scope[2], f"{version}-*"))
+            and (not jurisdictions or scope[0] in jurisdictions)
+            and (not document_classes or scope[1] in document_classes)
+        ]
+    return [
+        repo / "data" / "corpus" / artifact_class / jurisdiction
+        for artifact_class in classes
+        for jurisdiction in (jurisdictions or [""])
+    ]
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+    # Some subcommands define their own --command flag, which overwrites
+    # args.command; the parser marks each subcommand under a private name.
+    command = getattr(args, "_cli_command", args.command)
+    if command not in _NO_AUTO_FETCH_COMMANDS:
+        try:
+            materialize_cli_inputs(
+                args,
+                include_scope=command in _SCOPE_INPUT_COMMANDS,
+            )
+            prefixes = _corpus_wide_prefixes(args, command)
+            if prefixes:
+                require_materialized(prefixes)
+        except CorpusNotMaterializedError as exc:
+            print(f"corpus: {exc}", file=sys.stderr)
+            return 2
     return int(args.func(args))
 
 

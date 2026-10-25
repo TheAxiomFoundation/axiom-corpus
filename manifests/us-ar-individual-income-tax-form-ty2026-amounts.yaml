@@ -1,0 +1,30 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-ar-dfa-ar1000es-instructions-ty2026
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000ES Individual Estimated Tax Vouchers and Instructions for Tax Year 2026
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2026_Final_AR1000ES_2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ar/form/dfa/ty2026/ar1000es-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-05-12'
+    amounts_carried:
+    - rate schedule (0%-3.7%)
+    - standard deduction ($2,470)
+    - personal credits ($29/$58)
+    - bracket-adjustment table
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/
+      (read 2026-09-13)

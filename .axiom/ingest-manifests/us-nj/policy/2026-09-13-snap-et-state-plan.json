@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "24c4e7db0f966064899a20449cf4faa1174914775e73e3658d6132c224913fb5"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "fb954c5abbb61f89d2adc319051e8ee4e077bc81213a92ab5ac7000e37907a69"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "7ad1be24edf6fb5c3858f6575f4a49706618b617ddd394ee80743613ce5178de"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/policy/2026-09-13-snap-et-state-plan/official-documents/nj-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "56bf9886c617098fe5b96e8030deda4f2b0bb8f2a9d5759d3da4a9c372d78ad9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 117,
+    "missing_count": 0,
+    "provision_count": 117,
+    "source_count": 117
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:59:35.064885+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "e37gSl07FOGNKOsL9cER4QWN77vLskKkrK87FP6gzttbG2UQvs5LTYJDbXq+cHXX3lXz1dwkvYdK4FeWk5gECQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

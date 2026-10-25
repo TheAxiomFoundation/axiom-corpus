@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229.json",
+      "sha256": "7d9adde3268efc0d2d9ee0d49fdfc11481804265c1e9de1701795287a2a0c252"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229.json",
+      "sha256": "588569bcde7fe5d0eeb8a63fce11e50d52b4b9a4b30bf5105c1662145dbe1ab7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229.jsonl",
+      "sha256": "05742c8970afd4b512b12d78a40037a95cd3472f7b4388d9520db3ba6db852f7"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229/connecticut-general-statutes-current-html/chapter-229.html",
+      "sha256": "9bda4ecdbbe3937466237f934178f2d1d478b74f586d49cafdca262844467d8a"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229/connecticut-general-statutes-current-html/title-12.html",
+      "sha256": "f77bf65752ad57beef8c055212f09bbe0c7bb19df41f557c44cca7952df9bbc7"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229/connecticut-general-statutes-current-html/titles.html",
+      "sha256": "f5ce9d0c8d1a8e3fc4be839304bbad2646fbce4d2807ff3cf42e0a546bfbb5ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229/connecticut-general-statutes-supplement-html/chapter-229.html",
+      "sha256": "2faa8eebcad4e951d01bfd563941ba74e4f8d7d2b0d29a84a631cf19f8752511"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229/connecticut-general-statutes-supplement-html/title-12.html",
+      "sha256": "67c9e082266962e9b146779dae1055d9914365bdb3fbe6c482a8240eb87d9724"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-09-14-income-tax-chapter-title-12-chapter-229/connecticut-general-statutes-supplement-html/titles.html",
+      "sha256": "1480549ffb51ab71157ca9b82da442369a2fe5735281eae2860f513cb6815cb9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-chapter-title-12-chapter-229 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 75,
+    "missing_count": 0,
+    "provision_count": 75,
+    "source_count": 75
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-14T16:19:27.542928+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZW0gbi9xMxkhrw16VEmtTlmwVZFyGxV+p/C2pwDyq6ThJsQQlMM4t2Whnz81ebJyhE6ujBervzcPYRkSHwJKAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-chapter-title-12-chapter-229"
+}

@@ -1,0 +1,51 @@
+documents:
+  - source_id: ch-zh-estv-kantonsblatt-wealth-tax-2026
+    jurisdiction: ch-zh
+    document_class: guidance
+    citation_path: ch-zh/guidance/estv/kantonsblatt/2026/wealth-tax
+    title: Kantonsblatt Zürich, Vermögenssteuer natürliche Personen
+    source_url: 'https://www.estv2.admin.ch/stp/kb/zh-de.pdf'
+    source_format: pdf
+    source_as_of: '2026-08-28'
+    expression_date: '2026-01-01'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 16
+          end_page: 16
+    metadata:
+      primary_source: true
+      source_authority: Eidgenössische Steuerverwaltung
+      source_family: wealth-tax/zurich-tariff
+      source_note: >-
+        Page 15 prints the section 47 StG ZH single and married basic tariffs
+        and explicitly states that this indexed edition is valid from tax
+        period 2026. It must not be represented as a 2022 tariff.
+  - source_id: ch-zh-city-financial-indicators-2023-tax-factor
+    jurisdiction: ch-zh
+    document_class: guidance
+    citation_path: ch-zh/guidance/city-zurich/rechnung-2023/steuerfuss-2020-2023
+    title: Rechnung 2023 der Stadt Zürich, Finanzkennzahlen
+    source_url: 'https://www.stadt-zuerich.ch/content/dam/web/de/aktuell/publikationen/2024/rechnung/20240326-rechnung-23-medienkonferenz.pdf'
+    source_format: pdf
+    source_as_of: '2026-08-28'
+    expression_date: '2023-12-31'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 36
+          end_page: 36
+    metadata:
+      primary_source: true
+      source_authority: Stadt Zürich
+      source_family: wealth-tax/tax-factor
+      source_note: >-
+        Physical PDF page 36 (printed page 36) gives the official city
+        financial-indicator table for 2020-2023. Its Steuerfuss row records
+        119 percent for both 2022 and 2023.

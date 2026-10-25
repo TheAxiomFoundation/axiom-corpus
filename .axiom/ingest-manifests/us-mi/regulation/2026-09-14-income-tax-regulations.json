@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "a1d78c9e116041573c67a6984216df6c48c2ef418bcfaeaefb9284bf39c2ba01"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "52b34e623a4b30a44afc2045eece145dd84d057ae926496f99b17e8c35f185b5"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "734f22a85aa16eaa9ac3e6693f8394b681ecd0d08556c17c79ab1da63d8f192b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/regulation/2026-09-14-income-tax-regulations/official-documents/mi-ars-r-206-income-tax.pdf",
+      "sha256": "5937bce48005ec89987452b786f2af2663acf0113ba35cd9261239871e5da23a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 33,
+    "missing_count": 0,
+    "provision_count": 33,
+    "source_count": 33
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:51:48.871774+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "akZ47Y1x/SLXQt4Hy5UgR3yiIspQN5u8HHCFK/WrpoaO4s5zi6Wegpl1xVZdPohrmCvEiP/W1uL7jkJQ6VCDDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

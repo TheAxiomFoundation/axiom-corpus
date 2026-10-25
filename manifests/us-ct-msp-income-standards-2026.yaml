@@ -1,0 +1,49 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ct-dss-program-standards-chart-2026-07-01
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'DSS Program Standards Chart: Income Limits and Standards for DSS Benefit Programs (As of 7/1/2026)'
+  source_url: https://portal.ct.gov/dss/knowledge-base/articles/fact-sheets-and-brochures-articles/income-tables-articles/dss-program-standards-chart
+  download_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/fact-sheets-and-issue-briefs/fact-sheets/dss-program-standards-chart-effective-070126.pdf?rev=d3d0a3b7ffa7403ab0e9b371e6a193b1&hash=CBB327624CDA9609DE31CD9DACE3CE39
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-07-01'
+  citation_path: us-ct/policy/dss/program-standards/2026-07-01
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services (DSS)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ct/policy
+    index_url: https://portal.ct.gov/dss/knowledge-base/articles/fact-sheets-and-brochures-articles/income-tables-articles/dss-program-standards-chart
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: program_standards_chart
+    msp_effective_date: '2026-03-01'
+    layout_note: single dense landscape page; column order is scrambled in the text layer
+    closure_elements_extra:
+    - MED-ST-2
+- source_id: us-ct-dss-msp-eligibility-2026-03-01
+  jurisdiction: us-ct
+  document_class: policy
+  title: 'Medicare Savings Program: Eligibility (monthly income limits effective March 1, 2026)'
+  source_url: https://portal.ct.gov/dss/health-and-home-care/medicare-savings-program/medicare-savings-program/eligibility
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ct/policy/dss/medicare-savings-program-eligibility/2026-03-01
+  metadata:
+    primary_source: true
+    source_authority: Connecticut Department of Social Services (DSS)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ct/policy
+    index_url: https://portal.ct.gov/dss/knowledge-base/articles/fact-sheets-and-brochures-articles/income-tables-articles/dss-program-standards-chart
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    effective_date: '2026-03-01'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

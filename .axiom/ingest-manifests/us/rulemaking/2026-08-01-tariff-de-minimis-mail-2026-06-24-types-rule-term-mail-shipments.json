@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments.json",
+      "sha256": "85b656ac0a90578254a754451685d1186f95b5ebb15c0e865985751e330de2cd"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments.json",
+      "sha256": "452d63b1e650b37578b12548ea46c64fae4cd54a40bd33e8070cf870b10a19ca"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments.jsonl",
+      "sha256": "1508f021381efc9a0d1269e77dfbd63aafcb14eeeb7abc2de7e943160c9548d6"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments/federal-register/api/documents-page-1.json",
+      "sha256": "14f458702f59fbec38a8e562b1065e56348ce6b3146a566962d44b067bf51b6c"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments/federal-register/documents/2026-12669.json",
+      "sha256": "edc934671962fdb4aaca91c30603daf24116eff01426d9f069f39c922fd0f5ba"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments/federal-register/documents/2026-12669.txt",
+      "sha256": "c6c95453c3379278b3a1617d4fcae7d73a6f3c063989a8c8082f58bb54839397"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments/federal-register/documents/2026-12670.json",
+      "sha256": "cccbd71ae7e28d8835e9333eec299027de39efb788e8022d20a8e9828d80d424"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments/federal-register/documents/2026-12670.txt",
+      "sha256": "8b0361f8302ed3a17a8daff818905d1e768ded4168a9067ae1cc5701b96ecbff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-de-minimis-mail --start-date 2026-06-24 --document-type RULE --term \"mail shipments\" --source-as-of 2026-08-01 --expression-date 2026-06-24"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T12:58:17.736822+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GK5Qiqx0PWrZLx1NiCZaUmIWn2/jfxUGYoRO6pm4JP0ttoWXWNC9eRSRpoMLhgXfpymbwYRveJG2oa/xjjsXBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-de-minimis-mail-2026-06-24-types-rule-term-mail-shipments"
+}

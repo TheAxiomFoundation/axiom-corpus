@@ -1,0 +1,24 @@
+version: 2026-09-14-snap-fy2026-state-transmittal
+documents:
+- source_id: us-oh-odjfs-fact-105
+  jurisdiction: us-oh
+  document_class: guidance
+  title: 'Food Assistance Change Transmittal No. 105: October 1, 2025 Mass Change'
+  source_url: https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/EBS/Programs%20Rules%20and%20Resources/Food%20Assistance/Food%20Assistance%20Change%20Letters/2025/FACT_105_-_October_1_2025_Mass_Change.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-10-01'
+  citation_path: us-oh/guidance/odjfs/fact/105
+  metadata:
+    primary_source: true
+    source_authority: Ohio Department of Job and Family Services, Office of Family Assistance
+    program: SNAP
+    source_discovery_group: us-oh/guidance
+    index_url: https://emanuals.jfs.ohio.gov/FoodAssistance/FACT/
+    closure_elements:
+    - snap_s20
+    discovered_via: manual-review; needs-closure-2026-09-11 snap_s20
+    document_subtype: change_transmittal
+    document_number: FACT 105
+    issue_date: '2025-08-29'
+    fiscal_year: '2026'

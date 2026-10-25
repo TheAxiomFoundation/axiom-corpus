@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "1c0daa5ccfa4018c85cddbeedab13cf5fe30adaee66913e2ae94a47f79ae6a3a"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "1a5194bea2c446670d75d23d5531a9fb1715e4f281fd17502770e9a9689549fb"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "56b579b138e1bb31c5f64e07c6bf255e7a3ddbb131a2bccfd8c1553246347510"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/policy/2026-09-13-snap-et-state-plan/official-documents/mi-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "b9257f3a5cdca3a36885ddc78681c3cc76a1ab7e3cfe7af8ca592b038c288493"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 182,
+    "missing_count": 0,
+    "provision_count": 182,
+    "source_count": 182
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:43:46.763342+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VE8ytdxq0V5cDiPRlfHdJF4ORFgpHGV9BdCqzGy1JMJQGpfMiTQiEggfuio1e+E3CYIWAvD90dshDAEeuzHsAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

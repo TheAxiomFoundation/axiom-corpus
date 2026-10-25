@@ -1,0 +1,27 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ms-mdhs-tanf-policy-manual
+  jurisdiction: us-ms
+  document_class: manual
+  title: Mississippi TANF Policy Manual (Title 18 Part 13, Volume III)
+  source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000330c.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-12-05'
+  citation_path: us-ms/manual/mdhs/tanf/volume-iii
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Mississippi Department of Human Services (published through the Mississippi Secretary of State administrative
+      code)
+    document_subtype: policy_manual
+    program: TANF
+    state_program: Mississippi TANF
+    federal_program: TANF
+    manual_landing_page: https://www.mdhs.ms.gov/help/tanf/
+    source_discovery_group: us-ms/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.mdhs.ms.gov/help/tanf/
+    source_last_modified: '2024-12-05'
+    extraction_granularity: pdf_page
+    extraction_note: page-level; the manual is paginated by chapter (1000-, 2000- ...) without machine-stable section labels

@@ -1,0 +1,38 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: sc-scdhhs-mppm-chapter-403
+  jurisdiction: us-sc
+  document_class: manual
+  title: 'South Carolina Medicaid Policy and Procedures Manual, Chapter 403: Optional State Supplementation (OSS)'
+  source_url: https://img1.scdhhs.gov/mppm/SCMPPM/Chapter_403.docx
+  source_format: docx
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-sc/manual/scdhhs/mppm/chapter-403
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: ^403\.12\s+Terminated SSI Benefits\s+\d+\s*$
+    section_heading_pattern: ^(?P<label>403\.\d{2}(?:\.\d{2}[A-Z]?)?)\s+(?P<heading>[A-Z][^\n]{2,120}?)\s*$
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Health and Human Services
+    hosting_authority: img1.scdhhs.gov (SCDHHS document host the MPPM page redirects to)
+    document_subtype: policy_manual_chapter_docx
+    program: ssi_state_supplement
+    state_program: Optional State Supplementation (OSS)
+    federal_program: SSI
+    state: SC
+    manual_chapter: '403'
+    mppm_index_url: https://www.scdhhs.gov/providers/manuals/sc-medicaid-policy-and-procedures-manual
+    program_page_url: https://www.scdhhs.gov/resources/programs-and-initiatives/long-term-living/optional-state-supplementation-oss
+    provider_manual_alternative: https://www.scdhhs.gov/providers/manuals/optional-state-supplementation-services-manual (OSS
+      Services provider manual; separate family, not taken)
+    index_url: https://www.scdhhs.gov/providers/manuals/sc-medicaid-policy-and-procedures-manual
+    source_discovery_group: us-sc/manual/scdhhs/mppm
+    discovered_via: manual-review:ssi-agent-queue batch 2 (state-administered supplements); publisher index https://www.scdhhs.gov/providers/manuals/sc-medicaid-policy-and-procedures-manual
+    extraction_granularity: labeled_sections (403.xx headings); the page-1 table of contents is skipped with start_after_pattern
+    expression_date_note: fetch date; each section prints its own Eff./Rev. date (latest 05/01/25)
+    tls_note: img1.scdhhs.gov omits the Go Daddy Secure Certificate Authority - G2 intermediate; extract with REQUESTS_CA_BUNDLE=data/certs/img1-scdhhs-gov-ca-bundle.pem
+      (certifi + the publisher's public intermediate); verification not disabled
+    retry_note: 'batch 1 (2026-09-10, non-US network): HTTP 403 to plain and chrome120 clients; retried 2026-09-10T21:38Z
+      from a US network: site answers, /resources/mppm is HTTP 404 (moved to /providers/manuals/sc-medicaid-policy-and-procedures-manual)'

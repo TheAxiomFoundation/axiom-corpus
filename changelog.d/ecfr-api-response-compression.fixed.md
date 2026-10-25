@@ -1,0 +1,1 @@
+Send `Accept-Encoding: gzip, deflate` on every eCFR Versioner API request and decode the compressed response: since September 2026 the full-XML endpoint answers `406 Not Acceptable` (support code 11, "This endpoint requires response compression") to the adapter's previous uncompressed requests, which made every `extract-ecfr` run fail with an empty scope.

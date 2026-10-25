@@ -1,0 +1,44 @@
+version: 2026-10-06-w6-health-guidance-ia
+documents:
+- source_id: us-ia-w6-health-hhs-hawki-income-guidelines-2026
+  jurisdiction: us-ia
+  document_class: guidance
+  title: Iowa HHS 2026 Hawki Income Guidelines
+  source_url: https://hhs.iowa.gov/media/10189/download?inline=
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ia/guidance/hhs/hawki-income-guidelines/2026
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Department of Health and Human Services
+    program: CHIP
+    document_subtype: income_standards_chart_pdf
+    source_discovery_group: us-ia/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 49
+    bundle_url: https://hhs.iowa.gov/media/10189/download?inline=
+- source_id: us-ia-w6-health-lsa-fiscal-note-sf-2251-postpartum-coverage
+  jurisdiction: us-ia
+  document_class: guidance
+  title: 'Iowa LSA Fiscal Note: SF 2251 - Postpartum Coverage, Medicaid (LSB5156SV.3), final action'
+  source_url: https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-ia/guidance/lsa/fiscal-note/sf-2251-postpartum-coverage
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Iowa Legislative Services Agency, Fiscal Services Division
+    program: MEDICAID
+    document_subtype: legislative_fiscal_note_pdf
+    source_discovery_group: us-ia/guidance/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 50
+    bundle_url: https://www.legis.iowa.gov/docs/publications/FN/1449063.pdf

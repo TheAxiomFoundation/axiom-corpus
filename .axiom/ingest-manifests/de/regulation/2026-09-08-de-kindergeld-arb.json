@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-09-08-de-kindergeld-arb.json",
+      "sha256": "801a82f184655034e88c989e02d164ca9592720a8cd5dfa62492d97780881171"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-09-08-de-kindergeld-arb.json",
+      "sha256": "b9e58ff44fa50d050a8f4680d9ea28e44ccabeb6ea0b4f5d54c9eaeba6f51df2"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-09-08-de-kindergeld-arb.jsonl",
+      "sha256": "29b5ec6c5e7f75349e3bcf8b15e752b9ab67163b70912f79f7270651a7eb60df"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-09-08-de-kindergeld-arb/official-documents/de-kindergeld-arb-3-80.pdf",
+      "sha256": "00fa5e09d753d67f45421529161f5ce11b115e02a681ee64d7a02cd3266f10f8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e24820e5250f459b3383a5a3e2bb220870ed3022",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld primary-source capture tranche PR #647; existing extract-de-gii and extract-official-documents; exact manifests and capture audit committed with source receipts"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-08T14:21:47.271874+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-frontier.md",
+      "sha256": "8efdf57bf0d74962e386ae1f529989741f6320e82e99392392cd6dd806da0910"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n2U8AuOV/oobVTYXVMbnLN2c+NYTGoHvn1RIO+AYnu3JsTLdbDR81I3NHQfPq+DwMRO+VR9cFr+qT5XYPk5eBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-arb"
+}

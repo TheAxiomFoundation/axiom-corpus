@@ -1,0 +1,2305 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "3bcc8bc45a480ddc4d2d85a272a2eed1566cfc7caf0583b18e8c1ae2c6803ed9"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "8fb27ac8b644bb855b04573a70698cb4ca97cf7f6ca920af046f11e6cdd230f3"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "bb06cc7842f09f138f3743f3e868ccf367abbbcce246ff0f0d9e2702ade1fb8a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1800-000-00-1800-005-00.html",
+      "sha256": "79b573e6f683f5eae90e50a54e6c829e3480f9b4fe17c38e215590ebeb2e9d3f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1800-000-00.html",
+      "sha256": "d68e09d54ea822d52f057a7c06a59077f967e4d7e0221b5e64cced124a5fd2cf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00-1801-005-00.html",
+      "sha256": "6a58c782667b20f979ebf155e353bfd47ab96aa6418ae4c4a33dbcf16ff64c2f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00-1801-010-00-1801-010-10.html",
+      "sha256": "e4e256a0c79cc04a2254cf99d28d9b06cbc1a3ee2333974a503a5b89f4c1afd5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00-1801-010-00-1801-010-20.html",
+      "sha256": "ab0aecc3f6cf774e85b3dde5fb12b3b58e04f9ca7f6ea54056ca44d4b9a99dae"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00-1801-010-00.html",
+      "sha256": "a7190b1c777bc9b749c765a108455dd61636e3b0f6c469331e8869e19a57ca1a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00-1801-020-00.html",
+      "sha256": "3b86b7f367fd71b78c8fcc8595f62061ac8fb419adbcd34df16e832bba50bc7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00-1801-030-00.html",
+      "sha256": "b920352a6c869261ecd2e1b7b47454cf7268bf4332b314161cec9e21e8bde1bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1801-000-00.html",
+      "sha256": "409135e5785454ebc29cd7d303a80d7ec610f1df66b7e4c0a9ac39cd614c3e61"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-005-00.html",
+      "sha256": "91c5b5fbe811646bd41061b3f553bbc8e3d65b7d481e750a014e3f3b7ade7656"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-010-00-1802-010-80-1802-010-80-05.html",
+      "sha256": "18b538f9dca39c26cc23b7f87bd16d2db2172ef1197559dcdaca30622f0a33a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-010-00-1802-010-80-1802-010-80-10.html",
+      "sha256": "558d9a15391585c0833d0142a5e2cd563605a4f1c831fb62b7ebfde23ebe24fb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-010-00-1802-010-80-1802-010-80-15.html",
+      "sha256": "49d60f1a611f378597a77802abc2216439081c4e30a39f96aa0e15ef955fbebe"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-010-00-1802-010-80.html",
+      "sha256": "070a2b49d0cef6cbc29c98f5258397861da3828b5d99a46b371bd8ba28ef865e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-010-00.html",
+      "sha256": "b8f188c65df35052cf33c62bf334334ec24950adbaea3c037d2bd4381d7ad34d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-05.html",
+      "sha256": "cb1a6526589a2fd867dc0b79e0ac7233cca08bbe93acdf9de11c4db838d2d934"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-10.html",
+      "sha256": "6ff4992014cb67b4211c0aa8c32df01bfd2357ae53d9c6365173710920fc0e1d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-15.html",
+      "sha256": "c9a117ae8ac2f912bf95ffda628519b9d7f1c5f51da38528fb467a3038b84a97"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-20.html",
+      "sha256": "036b6dc606cdf1d52add93c36675d6dfc490c27c081fcd6cd76104dfc6a726dd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-30.html",
+      "sha256": "e9c35e7cc37173fe6c6f8c65073a6d2fb53e453875c4092f83c7af08d0b92766"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-35.html",
+      "sha256": "2732d333e85c67d939f0800743ac43ef898975c398aca36b922a9cbe1cf21253"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-40.html",
+      "sha256": "b8a0188a2539998b0839d938d1995c56a80ba1405d7455362b20645251febc7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-45-1802-020-45-05.html",
+      "sha256": "ec539497eee974b1defceb4dab35b0949e5bdcc5368acfa93e798b3dc88ff52e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-45-1802-020-45-10.html",
+      "sha256": "174ec18dd071e1084a4d336562cb4c6064ec6ae0f4063865d376eefdaf4ced43"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-45-1802-020-45-15-absence-from-the-home-at-application.html",
+      "sha256": "38f9f04ba37ac27495a0239997ebae5a324c7b53b409c41521701808253c78e4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00-1802-020-45.html",
+      "sha256": "234204440599c6dbb10c6afdd291b7a969b34e088752b9c43ab42434adf40bb0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-020-00.html",
+      "sha256": "a3261a628ae54e40ee9aa1d21e327202490827eb7a2d31c3b06f1c7aef92fab1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-030-00.html",
+      "sha256": "db30ed4a5aebd49d329b4dffaba1426bf0e584d27a49b283cb7ad40be98c8daf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-050-00-1802-050-10.html",
+      "sha256": "27ec64221cd359d1c42e4d3b011bdaacd5b1a51745b68272c36a1487051dceca"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00-1802-050-00.html",
+      "sha256": "219925f289e646468bf6c1e825413cab04b3685eab592c283a2b45cddd7ee1a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1802-000-00.html",
+      "sha256": "21a41c06de2573282e0ca6ad5df08d2a753342ad537b3e838b75f9b9ba75fc17"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-000-02.html",
+      "sha256": "c5e6d4fb0801c0cfe39a389adf86644f528d870c8f1b3da81445cdb9ee52b549"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-000-05.html",
+      "sha256": "e648cc8c0610da671e8d11a882a9fff38f5edf7feb2698e4850993b1d0ff4667"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-005-00.html",
+      "sha256": "5c095701cccf2a5c7da682d0a20ad40c0addeed21b47ad9fd672e7d85cfc1a18"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-010-00.html",
+      "sha256": "9c4e5c9dfe0a9683ef2fdb2adf98768dc7cd06bd4de0af799d8a4d8f00c4e168"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-015-00-1805-015-05.html",
+      "sha256": "4d312b3c8c1d2382ea80bd08a817f9d0e627cbb6e20eed2fbeac50a96e373b17"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-015-00.html",
+      "sha256": "5f17211fdfea9135f84984d662321c163ab9798d8548dacf5c889e6baadb9596"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-05-1805-020-05-05.html",
+      "sha256": "2bb9a4c3daba43b3f4e3cbcae93edffcf15ed2a665209f6abbab33f9c96df211"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-05.html",
+      "sha256": "e15812493c753078f0fa2ba3c4e184710ff86cbd897a68c5c2ad62dc83f0abc8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10-1805-020-10-05.html",
+      "sha256": "96397f6af814c825c29b5cf6391247001f7b21cd34150c07f63e03def4e4dc9c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10-1805-020-10-10-1805-020-10-10-05.html",
+      "sha256": "0e3bf2a9873ffbb3ea6f025c574f6e67316e45104ed7bc5c01123b9a31d3f3cf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10-1805-020-10-10-1805-020-10-10-10.html",
+      "sha256": "1b12b0036951f9fbb037a484e3675a3ce476cce5971a35c6613307ed1fcdc57c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10-1805-020-10-10.html",
+      "sha256": "17e2d79f725f087422ee74088ffd8d2c668ae98e6fc30650cbef3bd412611a12"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10-1805-020-10-15.html",
+      "sha256": "5cf3a7fef9b7707a163d32e99477638f2da20ace7f01798c615fdbaccb136d0a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10-1805-020-10-20.html",
+      "sha256": "601d4522ab6ae58ede5eed1d1269ec9b78e1c5d267fd7d1d92e2e7ae3648b2f9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-10.html",
+      "sha256": "2ef3c6bf5d6f2aba83cfb030b8e9274bad02856fdb7eb1e45d8b11f379c6ebdd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00-1805-020-15.html",
+      "sha256": "727a0b7977868fc476d9d691a30ca395540a6fec1d802afac2b1340e238962b9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-020-00.html",
+      "sha256": "b9eb9989eccc1e4c54b201e784a404a1a0c6e0ac977b11227e4ea21b5e243a2f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-025-00.html",
+      "sha256": "6db76f957b32dc1f044ad6dddee6a10fdaa9ef21a80ed292fc2e77c619aca4c3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-05.html",
+      "sha256": "294077c92ce0364de8be34b0d03ce029f035feff4f0906e7ef57df2dd9741290"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-05.html",
+      "sha256": "240696df088c77b6f290b232364c9a7178b9fb9b0d2b51c3629a423d156f1c58"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-07.html",
+      "sha256": "16f739762426c8be58031a3a677e96caa9711878ba378a0640cbac6e4126b72d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-10.html",
+      "sha256": "10a318b1b2b35eda03caf96f5e0f9774a72aa27d8926c94e52017f68dc461b48"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-15.html",
+      "sha256": "ff0aea8baa6a75893b50078bbab324a43a3813cc2ceacf92828334be09a5dead"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-20-1805-030-10-20-05.html",
+      "sha256": "552224df1629f770643efbd02bc857b6a7e3af1490822b42ee6bbeddd7d6b733"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-20.html",
+      "sha256": "3b7fad1cb6e630ac460d64d14d743a885a7a88e060a09427eaa46e0dfa728c20"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10-1805-030-10-25.html",
+      "sha256": "7b84e367a641be2d31cc6c0fc0e024f00b37939eacbe4ac640f252c4dd2ebbea"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-10.html",
+      "sha256": "3a7036797d37b317f66d0602eba13931bc668593f2a0a1f53bd503aa6fddd28c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-15-1805-030-15-10.html",
+      "sha256": "9497c5e37375fce292c457cbbeb635d11aa20a21a84aaeb7173825dca24444b1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-15.html",
+      "sha256": "64d9356be26bf72c3c208e3b3cef21a344630e506e9385067b43f6e3f223d763"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-20-1805-030-20-05.html",
+      "sha256": "0a1914212ee0defe81462a9df3bf12d899ab83e555ba2d4ee68659073bac03ec"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-20-1805-030-20-10.html",
+      "sha256": "b038caa1ce46c69795c4e3a8f2b957f2100af9ceed6351217be06df524797388"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-20-1805-030-20-15.html",
+      "sha256": "7cc2b0e905e53aabcb80cde810b4b22fae55b2cbd6939c132e61ad141b5ec599"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-20-1805-030-20-20-1805-030-20-20-05.html",
+      "sha256": "8ba80eadc3410bcca0946fad3bada20ccff8c843de675e923cf1d278ef888ff5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-20-1805-030-20-20.html",
+      "sha256": "b442b4534236dd21e0525ec863915d5e3b27944259b20ee482d5f9e35fae4f39"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-20.html",
+      "sha256": "21b90c60e48a84ee2b713894e0e51d2dcec940a23b7fb2b589d658b5ed53f75c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-25-1805-030-25-05.html",
+      "sha256": "a09211d61b6f0664e6c69b48398562b832f5377e74133adc375d2a29a62213e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-25-1805-030-25-10.html",
+      "sha256": "9e9c70a0137e4db6298fe4c9b8567c598b2e8e8076e85bf30c272a6304b18760"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-25-1805-030-25-15.html",
+      "sha256": "a22d2d00e0cd378e5680cb98ea201fabfbf97403ea6eba3dae46a6f3b962a38b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00-1805-030-25.html",
+      "sha256": "415495e6296b065e54528cdc89e3cd95d31a2f3257fae3fb075e329a0d7c105c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-030-00.html",
+      "sha256": "6692ab190ba40325141a1f8eb2dc12bc37704742ff4bd3735c6148d6db9ea8d6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-035-00.html",
+      "sha256": "5c6e20e13420052ecbdcdf25a5d72bdca07be1d5091c0f505bf89cb98a82c754"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-05.html",
+      "sha256": "c199464db6a3fb90a7f9333c073cd80a3defbabf6f3b299fe4bcd4cb72b9d1e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-05.html",
+      "sha256": "cfe1e016d15a4507ddb9d1b4f020c681bb5f4fae63676ca8121ce84db808847a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-10.html",
+      "sha256": "00c1d0be80757af02f57c1cff18d8bd51d4ec241f935e5cf7d444881c9125b65"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-15-1805-040-10-15-05.html",
+      "sha256": "bc67735fc3e8ad68b4096c3f7ef6f72503b361278d0e2784dc322c2d126b1c90"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-15-1805-040-10-15-10.html",
+      "sha256": "90fa4ba1cb2a982c3c152a4bb66c5eead6b192dfd34781d3e251881af247eca6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-15.html",
+      "sha256": "dcc44864d2488c2a5875ba7c167c20b3d535d0fffdfb1ddb59f6b96b6945e735"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-20.html",
+      "sha256": "1dbf863218694a4dd901416cfe9988753cfd033e4bc9c439353ebb069e66637e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10-1805-040-10-25.html",
+      "sha256": "f78d162e772d7fe0b3498fbedc83b6d7223bca0bab0e98381b07e58efef0f4f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00-1805-040-10.html",
+      "sha256": "9e7b7cbc45735ad410935aa90db4cf1b155af0f21b0dbb947234a4f950a31793"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-040-00.html",
+      "sha256": "3565fcb7c332c5f2dfaf60ab032ba9577549d119086012a5773d2d04b18a1eb2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-045-00.html",
+      "sha256": "8ae3e73132ee335c4e71a1d86ca3b7734db84232b73d35215294fb8352cff22d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-050-00.html",
+      "sha256": "83f098dc9f2d2c779a4a7e627775a6bb8fc760a8440fd4f7c7edd6c801b583a6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-060-00.html",
+      "sha256": "7f6fc9bd1ded401420784a00b5ebe61669f613292970b4d5e5ee8bb41464be7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-065-00.html",
+      "sha256": "dfa1d2bdcc5cac58b8700a3aa0a35591dd8ccfdc78d5a8f72c4090f2a18ce8f2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00-1805-070-00.html",
+      "sha256": "63e540847e5ac2c8ae4e540a960f2b50fd468c1a8da5a75e7c484e0d67f38043"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1805-000-00.html",
+      "sha256": "b2ae0cad43c589c71a087960f3f473fd9277d2093a8944c08555e9b2bfe7e2c5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-010-00.html",
+      "sha256": "ae408c361c5d7619f48a9f44df79d9418baa481e004e72d9c35225b21c8b9ac5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-020-00-1810-020-10.html",
+      "sha256": "170261ae1b7705cec60b49e27dca84a6ca3a81e88a4f4bb75e23b66b4b67a169"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-020-00-1810-020-20-1810-020-20-10.html",
+      "sha256": "1c4c2d97ab698b110c0bfaa16c0d43744c684c326d3fbb30c50d5a1d2bfbe42b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-020-00-1810-020-20-1810-020-20-20.html",
+      "sha256": "29becf43a414c9effed77b795a2b9052b9e7e2abaf8bedaea54dec6fdbf2a5ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-020-00-1810-020-20.html",
+      "sha256": "9436d095be3f7259ba87968d1afe61d475bf6e9b6a88cece83efd1ca7a4f3f91"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-020-00.html",
+      "sha256": "c4b8a0efa2746bede71c80450a879f5fd1a199ac5bdbf2bdf4b26840cf0536ff"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-030-00-1810-030-10.html",
+      "sha256": "0a260cd11c8f68834bf68feef3a54799cd69e0f3615873c94d19e50c55cd522a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-030-00-1810-030-20.html",
+      "sha256": "9892e07c16f50b323a5f64845a7550bb8e6f24fdce937a33f3caca169f47881c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-030-00.html",
+      "sha256": "647995c1c3348209d6cc60735fba0ce87f7079b214ee9a42ed8eaaff4d7d4658"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00-1810-040-00.html",
+      "sha256": "61f7f1de1d5920ccb7b69a55f6905dc93cc5d3bbad075649bcde01bc0860f7e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1810-000-00.html",
+      "sha256": "bb78902e4884eb8e9b83adbe09662f18f158e45be9f965a55875065df10e0eed"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-010-00.html",
+      "sha256": "02279dc55858afa929aa3d0c0408e90300789a867c9ce37add16e540162823bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-015-00.html",
+      "sha256": "b5294f10cde216ab2f0b4fa3305050a0fab90a9857301dd0ed69f8121c243b3a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-020-00.html",
+      "sha256": "a5e4bca46fddacbfed70b099943e1df72cbe5af0ed025191aa6ade4438efacc2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00-1820-030-10.html",
+      "sha256": "231a3a188c7b57d2956743b59a4f8c74e232b48ab3260522831e3dc2106e0de9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00-1820-030-20.html",
+      "sha256": "417c3288938c4b02e05df50ec631dea82b4ba8d4b97682e30efec531f2c26dc2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00-1820-030-30.html",
+      "sha256": "ded3cbcb36169fe682f57667c1c91a58dac98c3c0cadc535b7c4c78de57493f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00-1820-030-40.html",
+      "sha256": "2d4a05fef62eab9b9dca57b603271093583ae811eeb3b28a8f6798b748679e1f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00-1820-030-50.html",
+      "sha256": "a754d6f78fb9dcb71919bb97b59b4ec6a445992af8dea838eb4abbd8e1ee7109"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00-1820-030-60.html",
+      "sha256": "63cee58f759b0cc5841f838cabccb2228890d710215d78ab93fd563c8bb47b61"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-030-00.html",
+      "sha256": "5837ef50485235063d1339423e9232f4642896bafa90db03ebabc832fb030e7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-040-00-1820-040-10.html",
+      "sha256": "9f4257e659ab7ca646909d6354da7d824bbfca28928b3f4d8428e2d814c0bf18"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-040-00.html",
+      "sha256": "5e2f440970b2b038daabfd59f34ba8602224513ba61fd47d77eae4930d6be7f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00-1820-050-10.html",
+      "sha256": "e607852230ff6ab3777c2b88ad5ced0e80fb7f93497fbecd430b2489c5b80c23"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00-1820-050-20.html",
+      "sha256": "5e8835e52a77a8ac820a657aeaca86133e1967a26c9b987a143c8c75122529a9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00-1820-050-30-1820-050-30-10.html",
+      "sha256": "bb66f5b4c7822ce925b463d64dbeae6a7f022a1450273eed7d8452b559d5c78f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00-1820-050-30.html",
+      "sha256": "82b81b077e04e9f64fb9468d2135ab2e5184c8faf8b630ffd91f5fe8c8cd17ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00-1820-050-40-1820-050-40-10.html",
+      "sha256": "b8ac77d476ff3d1aa74809accc5977192aecf19c0497a02d4c0f067508c3cc94"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00-1820-050-40.html",
+      "sha256": "0fd5cb6375753c889208ad6c66522a19a428d209bdc9b8d233e4df5077f25428"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-050-00.html",
+      "sha256": "496dcb318b5cc0a7fe64ecfa34e1269e7eec12edb64884a286a9561b6f5cabe4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-060-00-1820-060-10-1820-060-10-10.html",
+      "sha256": "8d71dabb24786a88896e5a6d3e58751af8429fff33b4f000b951a98ac1103932"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-060-00-1820-060-10.html",
+      "sha256": "5a3a171f769f0d37a924ca5024543ac7bc988314864423d86d7cd8ffec671706"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00-1820-060-00.html",
+      "sha256": "cad9300fec561261ce1a8ba46352d1e63b2f0b3de10d8bec43a84299f666d7ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1820-000-00.html",
+      "sha256": "8e9abe41d2214a0a073cee79a86e5b7f03edd60e7d03cdb7d6289848f07faed6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-005-00.html",
+      "sha256": "ffd112b35300291006f763086ab136a24593c2f353022d6fb73c333b4ca967c6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-010-00-1830-010-05-1830-010-05-05.html",
+      "sha256": "dddb8ef24ba9d7f46ba3d8ff191b5cdc9b7f0d381abcf10fcf80a57c24c7d1e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-010-00-1830-010-05.html",
+      "sha256": "6833b1d974b9f69df828db050d3ef8bfba3f195b5e4bac165115747935bc01c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-010-00-1830-010-10.html",
+      "sha256": "0135d3275e52d6d41d2418b0a9770050289b93e0cb2e35c3f2fd8d5e269dc6ee"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-010-00.html",
+      "sha256": "fc6358743618bd0994044d036213b9618d4af8b916067a7bc700b3acaafc6422"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-015-00.html",
+      "sha256": "dd38569ee645f35daae9060b8eabc0238025e0f3f4d9c118b08f1b49f4cade4a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00-1830-020-00.html",
+      "sha256": "729c236ccaeef058086d020def79d2474f75c5e9e7cdef406fd4b76a3bc31cbb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1830-000-00.html",
+      "sha256": "e5e261158c525dab5cc28813ee7215b3b58ec4d070e503b624ae658e02ad75d0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-005-00.html",
+      "sha256": "d7b814843240158ebdd52fb1d26d97e212b0df16d5a9cfd5979f06cd57f23402"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-05.html",
+      "sha256": "2fb4643adc249b3b297255b4500e4a6367470a5a4cee98254e121e435996a808"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-10-1840-010-10-05.html",
+      "sha256": "b6e8134507c2a4c9d934009f8ea350790ca5d5e8e88dd4a7e48efb086c98a9ba"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-10.html",
+      "sha256": "9d40eab88b101cb0aa3d7f64b8a41edaf78f26837e523af56b8af4069eab9b13"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15-1840-010-15-05.html",
+      "sha256": "f35eacdadee45e82a78aa529fa5bb38ee91a8b11bf50e7587ddbec34fdab0f6e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15-1840-010-15-08.html",
+      "sha256": "7f1102b7dbefef2a64b20d26d6792ef8b1408d81d0d8c9cd0a60757a0faf099c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15-1840-010-15-10.html",
+      "sha256": "32e55d320b29d6218a98dea95566453132b271ffd6f55d5260251598563eb248"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15-1840-010-15-12.html",
+      "sha256": "e436051bc4d515c7c1a6576b4c2f782f4353ff98882d3f8c746f8e460f8cd0a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15-1840-010-15-15.html",
+      "sha256": "ce79b5632073741684c3f949b6681d8f527f8fe75d26ba897f1c70265259732a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15-1840-010-15-20.html",
+      "sha256": "1de9f0a7309855f1477ebeb06542d4abd71123e706a19e1ff88a424df21e90d9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00-1840-010-15.html",
+      "sha256": "b2a3731051e85ddf35259373d3a4bb096f007ba1ae33cd0f109bcc4c0dffab86"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-010-00.html",
+      "sha256": "35e094c656566108410ebd6efad31c30b965938fb27f2571018ab13160d6f194"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-020-00-1840-020-05.html",
+      "sha256": "ebf3a6b7db5d368fb2f5a07fa34d1fb8c4fab2d2a3869b00dcc3656838e8a871"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-020-00-1840-020-10-from-premium-to-no-premium.html",
+      "sha256": "e9aa5a8df8096a2b992c1348073f476c484bd2a240869ab10882ab538020375b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-020-00-1840-020-15.html",
+      "sha256": "b7c407ed7fa0d65957f9ebf9569e594b434d71d2631173e708bc8e1c416dd241"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-020-00-1840-020-20.html",
+      "sha256": "d0fc2b963df54b50765f7f0245554affe2ee268e7ebd053b588c97edeeadab89"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-020-00.html",
+      "sha256": "c0996c54c7ddf5eb613883382a88aeb0b2464d423af41cbf4c869b18b6be3835"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-025-00-1840-025-05.html",
+      "sha256": "512dd6daa308a3f5824eb7e72ee6d6363aaf6534921d31d3145999c1f2a2e7a4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-025-00-1840-025-10.html",
+      "sha256": "9e2655ca45e0e39eecd81106d63f6c0bfa2b5bf91b1d9da52844176d497004ed"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-025-00.html",
+      "sha256": "d0ee9547a2edce0f66b9cce62ec26edb6f0ce684e6ebcdad5917e7580909b297"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-030-00-1840-030-05.html",
+      "sha256": "051ab0ce3d2a4aacd0423ebbd038fc78086d5b35c7c41f597a7f201621c2c27d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-030-00-1840-030-10.html",
+      "sha256": "e6df8b451c14678c0edc16a88adce96d131c78ab260d0eef66bf162c3d20fb5a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-030-00-1840-030-15.html",
+      "sha256": "1e25477691508fd99fc6a9a9eeb2396ecb3ae09e4ecd68da3a11b4c2f4fe6737"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-030-00-1840-030-20.html",
+      "sha256": "868d6f9ea75eb41cd525c89c29ed519399ec807ede7bca7fa74a8bc9bf8d9375"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00-1840-030-00.html",
+      "sha256": "e5efa7085fc00277884b70310b0eaab3f245e029db79e5229ac060f734c239d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1840-000-00.html",
+      "sha256": "77862a1b9ee107246184d0795f4d3737c57496b8ee95f57d89f1d11ab748b69e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-010-00.html",
+      "sha256": "8b39096e9eb427f3748d81129434174df1c6101fa9ec35ef611f2fe7e3068992"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-020-00-1850-020-10.html",
+      "sha256": "a1cb27ba878ad92c75bccf7a11f4f54c25eee74772973d992f15468325d59e86"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-020-00-1850-020-20-1850-020-20-10.html",
+      "sha256": "63c4d1d7cf66c5f092b0cd4e7a11fa34bf77e9b4a6592d04d6668f1c2cd16bd2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-020-00-1850-020-20.html",
+      "sha256": "42f0d7a0d9be3c69a4ad48eb6f71d7d6611d201c3e87c36a240e58dd53ad6ba0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-020-00.html",
+      "sha256": "c41a0872552b32747f27437d677f070e0da4b94f2efffb0b023205ab25db2ac8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-030-00.html",
+      "sha256": "f43ac229e107520194669f36f82161a4adcb5a87c14c28e2311550beb44e4fc2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-040-00-1850-040-10.html",
+      "sha256": "181c375d265d514b0c75d9290563173e15e18adcdb73b980c9fdc244bb156f77"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-040-00-1850-040-20-1850-040-20-10.html",
+      "sha256": "c2b7487ab79c14027f47df39a7373137c9e1162e72c5a93e074ea0ce84faeec9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-040-00-1850-040-20.html",
+      "sha256": "a8be84dffe424cb149339a6c38db02ecaf7dc0dcc5bc824c9e73bad1435481cb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-040-00.html",
+      "sha256": "1e945f2ac3a31ccfda9167914b571610456b3aa4b2220266138e089bc3609217"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00-1850-050-00.html",
+      "sha256": "30e525cb3344c8aa0290c00f59ba77064237f07244d462ee10097378b580cfb0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1850-000-00.html",
+      "sha256": "e6111220ceab3cd31b7d6d3d4706aaa9717b252b7fc97f9a9586e722b6980cdb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-010-00.html",
+      "sha256": "b2e6643f410927efa7cd96e5b81456399707c6a729303a26cc01c9403a5aa15e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-10.html",
+      "sha256": "27048cca8408cc4fd1a588ff5565d8ec1f6ef2df4c05ebf7f7e855a21b2c2b1e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-20.html",
+      "sha256": "9389bab9bd9af93c70e84aaee00facf49eea4ca7dc841b9c4226d3367b17f4d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-30.html",
+      "sha256": "804c3ebe92841ee09c4e471b6577e4ce782c8a11c1159134e98f3a50269d8d69"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-40.html",
+      "sha256": "41aa54dcd664296d3aecb5785e189ec76c7ce68f64d68ad4b60a07e23a44fc4b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-50.html",
+      "sha256": "54f268d285e80171d391bd0e630fe2cd4243d711a14bea5445f5bbe9490122fb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-60.html",
+      "sha256": "11e5255f0bb95cccba19385388cff009159051e191c19ba83778637aaf62f5ae"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-70.html",
+      "sha256": "ef79853709add403213256cf0e4fc7a750f4bbeeeb86dad241a819b85c647430"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00-1855-020-80.html",
+      "sha256": "795b5e2afb12d015648d770a2922a14fcfa3de75b733f601260bfbb1fa08c19d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-020-00.html",
+      "sha256": "94ccc17eae61b2f27f558b5b0c3b1e7b23a5d8f746d48fe3835c9c272818ef3b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-030-00-1855-030-05.html",
+      "sha256": "3b20c4c6f9e4412926b1c74b1a1d44981c5c611f6f0872b6ffcd1bae717632de"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-030-00-1855-030-10.html",
+      "sha256": "ea9129cb15d1507e87c412648ac5fd7f98448a0c1b65d60b9a16378bb5a9e4ba"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-030-00-1855-030-15.html",
+      "sha256": "0827aa6362b066f3214b0bf8cd250f43242dd79802885ae917d266d70e177120"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00-1855-030-00.html",
+      "sha256": "7607301ef5c98816c1495b7f0e9f1e80a0ca1f4a47fda67c9ef9059d0d09641a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1855-000-00.html",
+      "sha256": "215cb39f837b19e0841487abdc780a23c80d69314619dbc8588891ab0fa272be"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-005-00.html",
+      "sha256": "38db440becdecc1a2ca620d9ea0e962f437fe4e6800d8586b8297aacc743fdef"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-010-00-1860-010-05.html",
+      "sha256": "6bcf59a827751c1b236e3d50de99f208070c8e1038fdb97e978f6db1a63ddeb2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-010-00-1860-010-10.html",
+      "sha256": "e6932e4f8fc028dbcabeb1d1402025ca42274a67eb21a23d5ba1b4fc4ce32892"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-010-00-1860-010-15.html",
+      "sha256": "8f0cca7ff0b3eaeba01b3b7fab139c9ec69d4044e07301cd4cc86ec4d0f45ee4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-010-00-1860-010-20.html",
+      "sha256": "84e5ead256c7f658aee965be33947121839d884ccea5e6a452ee4fcd73653ca7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-010-00.html",
+      "sha256": "a74b3a51f851f6682550ff6fe8dc5da23dd4a7f196031f619f7a1c9c7a8933cb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-015-00.html",
+      "sha256": "07fa9d17395459ae7ed3f0f9fdbcc968459dd3eb431798b3d0719fdc00bc0c20"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00-1860-020-00.html",
+      "sha256": "9503da1b705e29cc5ab59241de9ccedb0e2fb24f2c6ef6568e11247c6c679b45"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1860-000-00.html",
+      "sha256": "dec56cb412e929f6768c203d651ed52753b624fe131df52051831ba792715fc6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-010-00.html",
+      "sha256": "667577d7c463ab5da601be34ef3b13eec70dd9fe5729ff24a1173c4582cfc6ee"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-020-00.html",
+      "sha256": "df566e8d9740d2a02290945990fec79347725cd2baf33cd7f0536e21d7d067f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-030-00-1865-030-10.html",
+      "sha256": "17c1519355b96a8728b2f464c2e920fb2a7cef8018023d10211d23ddc2da4cec"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-030-00.html",
+      "sha256": "63b36c4bc624382fadb70a186d2ca1d5b7e8ee72666d8950197fad84071ec0ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-040-00-1865-040-10.html",
+      "sha256": "b5f6eccb3c8d4a871f93b5bc39bfa8f8e17cd7c3e6e3ab9c98628d824676e6e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-040-00.html",
+      "sha256": "4069fa1499f9dc2ffae089b5689391c8ff74860818ebfc8a2482f6330c806179"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00-1865-050-00.html",
+      "sha256": "9719065326ab182eb98e5373ac72a3d67f74a56da24cbe5052a0c6940cc86792"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1865-000-00.html",
+      "sha256": "69b10bf66eac9a2f20ebae56ea089d1c7ae5c0d98693e67825aa42b8965de619"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-005-00.html",
+      "sha256": "d4eca345818224a893239feabe7adf592e56840b363a30c37ec48fa94f5ba222"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-05.html",
+      "sha256": "5ecd4b5a39b6d7ec9f11d8fac9a5370dba88ddf876d24d60bf0bf8101d85335b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-10.html",
+      "sha256": "2314ed8a3a89b3d8e8b3914fa9f616d9e8c38033638ea6522fb5263d6bd84319"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-15.html",
+      "sha256": "89572dead10ef5af8933c1df65374f1108e0d06f3814c0d1aa8b7e24b64a6b8e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-20.html",
+      "sha256": "9765f36e0931aa2568ea4484738af30b0aae3c242e9c23b2a7d099f2ba5f958c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-25-1870-010-25-05.html",
+      "sha256": "c40bb32498b2696ddbdb64f666c4ed85bddfa7d63abd231aa7a036bfa35c8ba8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-25-1870-010-25-10.html",
+      "sha256": "3c50c04b6259f74fcc1f53edcedc1d7562b736f94faaee5b87a5758dbae4c8f6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-25.html",
+      "sha256": "54a95c844602f1616e17567d2afe56462928226fc3023fb7bbad4f68b796b4bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-30-1870-010-30-05.html",
+      "sha256": "3428b9222948e275beb8fbba89269de778947a0994205ebee365e807787b9f56"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-30-1870-010-30-10.html",
+      "sha256": "356b87e103315bdc6a9c667ef99972cc6144c901f359aa08c45181ef8d3ce488"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-30.html",
+      "sha256": "466c5e2ce02cc57cbb23c0ac346ec1bf13e3f98d0cc1dccd364b5ac29ad74845"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-35.html",
+      "sha256": "39f42ea74cfc34ff266f013c0f6529565a92d6047abea4e9dbfd77222715d05f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00-1870-010-40.html",
+      "sha256": "4bb88c15a9e7fdda53ef8e25e856ba79df7b5bfec7ea251351f2189331826fd3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-010-00.html",
+      "sha256": "7d6168ec5be6890cacd77e9cb58ce1d72721b686c3c9186b2c2815dcbf973d30"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-015-00-1870-015-05.html",
+      "sha256": "6b6528b282946e2dcc59402f40c0a39e9085fbe4f0c84195601fbfb23230adfc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-015-00.html",
+      "sha256": "8d8d87de7086bb2d22ebf6b239adfdc0e7f7122c6ac7136f88dd5e5f459dfdf8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-020-00.html",
+      "sha256": "de277e0c56dca39db614f17ff24a9c941616d4f63297cec380972b19321e2dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-025-00.html",
+      "sha256": "3cb185b65dd6975b183b17fc29b2e5dfb147976c9bce07b2dccc680f909453bc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-030-00.html",
+      "sha256": "a134aa3c7fa9360128a7a988a8d977830819332544158d250a8dc091f3311bcf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00-1870-035-00.html",
+      "sha256": "350e0dea5ae1aef4673df28427bed06c5c6b982f7ac6c0439b169768c7f32c50"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1870-000-00.html",
+      "sha256": "f38120083122bfb0aea2360f760a8f10295922a23a6cdc447a6aad0fabf67010"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1880-000-00-1880-005-00.html",
+      "sha256": "876d0f0f49331a1a787f1091e874b0e2b338d4503cbb3564b44b144469d5b600"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1880-000-00-1880-015-00.html",
+      "sha256": "f78d3582bcbea702f0659b1532de510fd8122267cdb0acbbc7818409da18a9ce"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1880-000-00-1880-020-00.html",
+      "sha256": "81996847340b5eb9536da6874911ffa4415d0aafa5d0c68ee8306517627a5c82"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1880-000-00-1880-025-00.html",
+      "sha256": "aa7d7987fedc6de151341bb58c6fb243e420f7423e9b173e419cfb1527ff943b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1880-000-00.html",
+      "sha256": "7624f2341085413700cfbdf96ca3ad0986d06472e4abe79a8dd19ede30ab971b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-005-00.html",
+      "sha256": "b7dd21589010989f68db9085703ca97ab8f4d25a83273298594247e5559de0f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-010-00.html",
+      "sha256": "7d077ef82691cf7ac12467a32a255e26ffb73c65b858590f231a429eae3619a4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-015-00.html",
+      "sha256": "e090df832d4d3a8cbffe820efd7c11fc760270a9486a4f71306b0b5ec092abcc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-020-00.html",
+      "sha256": "34d3a680791f7795e410865971127876eddf91840ed712fab24fc111f77fb049"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-025-00.html",
+      "sha256": "5f113e30cda90067959d1cd38889c36530a10fa55e5b80ea0600370933784d9a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-030-00.html",
+      "sha256": "e23dc397d773e96e6897bd8da2b9f776d0c4d49a4cc297ffce409211defd878f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-035-00-away-from-home.html",
+      "sha256": "d91e9793a71d23632d8e328686000b3e7636b69ba95ca84a99f928f3e11ef0c5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-040-00.html",
+      "sha256": "c58c259a5849c3773e63ba024c822df17c1dcee7c49b4a672dcbb5dc644e76aa"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00-1885-045-00.html",
+      "sha256": "9cd7f1daa8c436d8401fd585c427a7e3b0678dc123b839748bd2223df4764877"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1885-000-00.html",
+      "sha256": "7948472ffa14f9adbbe7bbc6507ff6f63b50d30c7a7418b0c48596644e7d7c21"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1890-000-00-1890-010-00-1890-010-10.html",
+      "sha256": "8d7a0bf19fee122aacaa2898c8ad3516301a8c4858654a47f7a9e0bd41a9a4a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1890-000-00-1890-010-00-1890-010-20.html",
+      "sha256": "b61a3ccf512507ef077b71e6a0834eaca31880821031c846507f581cdcc1dace"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1890-000-00-1890-010-00.html",
+      "sha256": "b5b19235a088881eba950be29a546a3bf9c49c7950fc26f9e7353af75847493d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1890-000-00.html",
+      "sha256": "69c43575510b33af0f64ce38bfa54c929aeaa4d17233c1aa4e4c3945b9f5a2c2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1895-000-00-1895-005-00.html",
+      "sha256": "2baf35384da85acdc088607794b8b355e08ba1e75c9718d08b63a7505136b516"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1895-000-00-1895-010-00.html",
+      "sha256": "e9963516da7bdd162dda559bccab3d3f19f4e91b7bc2c20b2fca768d2faca2c3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-1895-000-00.html",
+      "sha256": "9b7812291728226224edc61045c0bc91ae610fa4d472fb0b4dde0166d39c696b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-a.pdf",
+      "sha256": "d0bd0bfbd90a19559dcffd841f20e4b50ca7c0faf3673406227e85d05ec3e5bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-d.pdf",
+      "sha256": "b0f61c1b235b5fb0e2ab17163fcafd72bff1d79a453c23fb4cb17580f61af966"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-e.pdf",
+      "sha256": "fc65d9a6b09fce64ecdaef5b6515deee1ca6cc400b4d57c477b3821062a9597d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-f.pdf",
+      "sha256": "777937317c26680a0cf3278fc6f1ead1f799b0f297b8354d8fef59524146121f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-h.pdf",
+      "sha256": "fc4932df6e515d68dd9a7a919fdb530a4ee448aa22f3d6fcea25b5108db24da7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-i.pdf",
+      "sha256": "11c4aed68aa9d838323c5a63609c7d146cdd091d127edca6f729dae717e2144a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-appendix-j.pdf",
+      "sha256": "8e64b22348dd134fe0b2692e4ca54334a951b2f25e497c74790fd28517c36224"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi-magi-appendix-a.html",
+      "sha256": "ece01f62bc780e5ac518d30636d495f75756b340097fdc4a509d24201ede570e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-magi.html",
+      "sha256": "0b1ea88f48529f51f1f37bb13b214e156c60494e93902fda06ff056e89a833a7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0803-000-00.html",
+      "sha256": "e8096c7cc72e082dbb0cd8b57a9268957180f41e531d5c953cebf06c503f064c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0804-000-00-0804-005-00.html",
+      "sha256": "1e3d995035f9331dd96cb455c2eadd3717239e99bfb99db743164b91519c2ccd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0804-000-00-0804-010-00.html",
+      "sha256": "56807ae4f567240cd7528db18aa0df2780c9f6123ac2ecc3a6382b7398158fe7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0804-000-00-0804-015-00.html",
+      "sha256": "ff69a7ac6f37fa826645decbfe6d1fe8e7f5172448e024719b58630736c48f2d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0804-000-00-0804-020-00.html",
+      "sha256": "3ec54f190d599ba7bfb677e8dc58c56bdc11d9323b6d7b68e2dc7c9600cd0efc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0804-000-00-0804-025-00.html",
+      "sha256": "0c48bdae72d5ac5bfa68b9ae8eb999974924cda2d2e13b40712a1e02257a4cdc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0804-000-00.html",
+      "sha256": "7c6f01c7da1b321d9b6182d87a1f30e85804a038ee034ad52bff5618c2404707"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-005-00.html",
+      "sha256": "6fbef3a4aed47a3c67eca30d26fe5106361c64b766802aa60e63c9d63256c6f8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-05-0805-015-05-05.html",
+      "sha256": "2c6172e79a4bfafb8a03eb4219566035e3bd58d79e627e45cea53490f706ed71"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-05.html",
+      "sha256": "8e15919dfa0755abf64132d9da21676b717040c022d974a4b385b11e97de4c5d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-10-0805-015-10-05.html",
+      "sha256": "36f6034f3e048729df7d5a33d967256890d280b5e5954b95725a99534d161f5c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-10.html",
+      "sha256": "43e621f55cb1d9b4f6260cb93baff78d475c179cf4dcacd0a1f8687143926db6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-15.html",
+      "sha256": "409b189d3e3b33af312b4f5da98b1d3b4d8b8997633a261d6ad4afcd95e1247b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-20.html",
+      "sha256": "3ba66d05453dc2e0d6f3cc80cc98793a13adf0a6972034375c8dbb5b04366e38"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-25.html",
+      "sha256": "dab3106d7d48fbfa48bec0fd96a8f070c752dcf20283539e0422c28e1f1a41f2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-30.html",
+      "sha256": "2c5f97f6eb304ce4dd42fa3a75266b16a3069bda8be75bcc71ea7743b4491085"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-35.html",
+      "sha256": "790cb58a710dd71385abdf0d946bc43bf00bd817f619c59f334747689f80e217"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-40.html",
+      "sha256": "4182cdfdbd8c78da90af2e519d1de03253727f15ee8ecd5647a12df49d2adbaf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00-0805-015-45-income-maximum.html",
+      "sha256": "2afbdad001efe75df5223fdac1996ff35e95f9877e72490a47b186cf29faa95f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-015-00.html",
+      "sha256": "d7192c21c49b69095ed5559e4f4fac68e377aef092de8aed45ef74afe20c48c8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-020-00-0805-020-05-definition-of-living-with-a-parent.html",
+      "sha256": "3ee13a11ae861be4f2430d7636784d82cf10b09002bcb81ae17aed14d1304ab1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-020-00-0805-020-10.html",
+      "sha256": "ea1430823267bf1c122b46fc77aaefbf03d1897af76a3bdfceb3b16ea7a1fbe9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-020-00-0805-020-15.html",
+      "sha256": "ae61d4e583d7ecfd927e60829e77d7c34ca1e7a074308b48502cd92711017976"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00-0805-020-00.html",
+      "sha256": "2a2882655539cd6dfda83056327d84fb6f8a215f2e5dd661dc704e9bfc0b9ad6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0805-000-00.html",
+      "sha256": "331c3e5d9ce822ee1538c1638f082414c11c4fcdad0a9118007a0b328939be2e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-005-00.html",
+      "sha256": "f75224aac488bf6c126ffaf5354367ed7fa6be3297f860392b41a92a49855464"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-05.html",
+      "sha256": "679810283703a80eff2663e91520f1237f6700b4eaad7df4980c50b352b381b8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-10-0810-010-10-05.html",
+      "sha256": "90fd2315619ef9a66bf3ba8852878180d020912f443957505a51cf01d913a864"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-10.html",
+      "sha256": "d4e4f1e9610610253792947c7ff43865095886ea25fd0802a41a9ef73e071c7e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-01.html",
+      "sha256": "5041e6032c694a134acaf1416955fd378953c6900e9bfbcb58e7c676dd72f2e0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-02.html",
+      "sha256": "cbca06c3b14c541ff119bd86f4b572cb823a019f5e020369eedcfb12032f70eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-05.html",
+      "sha256": "29545b2eb9a4e7d08369d54c6869272534b6184f4ab734cb38256ba89c7a4225"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-10.html",
+      "sha256": "4f07e192f995816cf710444a8dd9bb0e14620bd403fa17ea53ca8edb0fb83871"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-15-0810-010-15-15-05.html",
+      "sha256": "5a129a375e2a4c86c77d512b506e5dcffab763d8dd9d7e8064d68f400ba1bec1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-15-0810-010-15-15-10.html",
+      "sha256": "ea254e80250c4ea9a3fc69c67bf26cc0ce1234fc036807aad21393316fee9235"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-15-0810-010-15-15-15.html",
+      "sha256": "6eb1ffdc6501e864123d5719ceb8cf79d316d7e915ba4295ad5ec9b476a58d7c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-15-0810-010-15-15-20.html",
+      "sha256": "28675d1c387dd8f32ff5751fd617d68746c5ffe1ce1a95cf6ec6f229bffa1c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-15-0810-010-15-15-25.html",
+      "sha256": "f7611f0db9fef3ae95855e5d21b7c6f5ed231a8d03c28d7fb10f2c1683f7ed32"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15-0810-010-15-15.html",
+      "sha256": "cdac14d6368087d543ab582d855ccdabc9cb6ca5e5f03b6e23e6c7bb76b43606"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-15.html",
+      "sha256": "8b4520b34972220ff347e4a57bd00c79f44c85335b762c2e23e1755234d00b21"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-20-0810-010-20-05.html",
+      "sha256": "9e8fccb3728940f68198091ee40f69a2d0497bc02cbe05fad3eb9fa366052e11"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-20-0810-010-20-10.html",
+      "sha256": "e344df3c2bce254ca80b9e37e01738327f4d093979610c483994d974b69d031f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-20-0810-010-20-15.html",
+      "sha256": "53582b1a5aa8eda1bced47f8d5830962bcdfceaf94382cc0c311887e9666621f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-20-0810-010-20-17.html",
+      "sha256": "32d1ac66ec7e4e0b38cf724f2271fd6cbd9e9765aad4eb88d643d0a78b76a889"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-20-0810-010-20-20.html",
+      "sha256": "31033646e51ed98cab22de0b3f5182281a6549f4f85058f9ec2759f90c720aa3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00-0810-010-20.html",
+      "sha256": "005243832ca1722a03b61d812477ce924e0c7589ee40df131eb6a0acff0a8ae4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-010-00.html",
+      "sha256": "54f958f9b85fcd58a8f7d26b84caf0223f184b9dc01e1de5d81cf1d7b34cf339"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-015-00-0810-015-05.html",
+      "sha256": "de2ac8ac08640b094e3b6e06ef3bfa537b2da3e7d50385c3810c40b3706bdeb1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-015-00-0810-015-10.html",
+      "sha256": "254060a0cb76dd29537804c0242cb9c1fb805216755ea9294053574c1b4552d0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-015-00.html",
+      "sha256": "411a2c80d33343101fd01cc35a0584fc22ed8b213c077cee22bbbedd9e029093"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-020-00.html",
+      "sha256": "2912ae9887a4c1b73666ab9d5a120234027edf1dbd9465f13b76637340f685f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-025-00.html",
+      "sha256": "c2d5e6a395d0ab293674f7c7411cb9aeba90b08a904b93a7139581049d746994"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-030-00.html",
+      "sha256": "bcc6aac4a168c3f4f94f1cfee9dc07280a7979778b3cd580d642b6e93ba85efb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00-0810-035-05.html",
+      "sha256": "0fd5465e8abb1f44036f60dc5482409aaebc82cc6e6955b4daf4b0ab46510ef9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00-0810-035-10.html",
+      "sha256": "57cabf1f26883d50d3ddc83dcfa2fc516ccbc32939800c8e51c55035e43698ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00-0810-035-15.html",
+      "sha256": "9d6da052a97b88513a48ba221396032886a31f745bf3cae54d06eaadb6fb6eb5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00-0810-035-20.html",
+      "sha256": "bf432bac41efc8934a6699e27e3015ff0a129e73dc77c166b7d05691ae44ba94"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00-0810-035-25.html",
+      "sha256": "405c8dfe585e37e8d11c661924c98b38f07b0fee185bd2fc66f564fe34b641a8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00-0810-035-30.html",
+      "sha256": "731bf8d33833f299ec8d572c1e2f698d678bb9fcd7a6f3033494f90527b8aa95"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-035-00.html",
+      "sha256": "1249d0c5528309444f5ff47b87f939b52b37cf7bf5ada91c998a75303ee4a360"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00-810-040-05.html",
+      "sha256": "eed749de55e0c8710c7de6e936e357077d631e64638056d0dc33a85cc5570e65"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00-810-040-10.html",
+      "sha256": "b38c604aa487dfeb560d5e993401b5af77a35a0237ac33d748de55e97863942d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00-810-040-15.html",
+      "sha256": "df25983bab1230de39b044736eb4646ba1ae36f2d0384cd1a1bd3611a06282d3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00-810-040-20.html",
+      "sha256": "a4a76950b93463dd4854fe56fc0f064c20e6f5b8cebe63c8046f869dadea3649"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00-810-040-25.html",
+      "sha256": "0a7569adc089601657cce1c49713029fa36a6c52df0178955d8e51290d231fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00-810-040-30.html",
+      "sha256": "90f03c8e7371de61e77a036e75300367d1957467dbe8899bd3259073e6bd3823"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-040-00.html",
+      "sha256": "b001ea02da212baa32c48d73c8558db23b56ca8115c5915fc52be39c88821b45"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-045-00-0810-045-05.html",
+      "sha256": "13f8fa7c70e92a8da6b3eedc86f0ece66aafb01ebcee76d9dac774ff238422d7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00-0810-045-00.html",
+      "sha256": "8032eb3893e7d2497402f2a562ae1b124052ec43d514818593dc36c43a44bcb9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0810-000-00.html",
+      "sha256": "97052d68e0c992e135c735c2eda5daec52d14cc6c26ab65cfbff7e5cdc9a9fec"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-000-05.html",
+      "sha256": "924c34a81246b9aebcaab834a3e1ca044d1df59e2d0ed6a52699e08bdf9bc36b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-000-10.html",
+      "sha256": "ee0c09a3fd743114998c2bf9092e0de188112d59a476e51d9f9c9b98d49c7260"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-005-00-0815-005-05.html",
+      "sha256": "338ce9411ec78afc38017361f8ff1cd210de6aafe1d8de01b14526352c3abfa0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-005-00-0815-005-10.html",
+      "sha256": "4514ecaae86afc2befd260e6cb5cf124838f4da5d87c46f965e9586a4d1c6a73"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-005-00.html",
+      "sha256": "360b329da615c660135c3ccd7a7659e2fbb6fdc0c75049a6fdc31236ed1cd67d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-010-00-0815-010-05.html",
+      "sha256": "27e473cbd3ba471c45f2e9d248661a78ac8668619a3e652b606ad6ee04d028d1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-010-00.html",
+      "sha256": "be4b788137709d64c97d8c3f5adf4033668353fc47e2d6e669de90a267ad0615"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-015-00-0815-015-05.html",
+      "sha256": "50dc6e5f19d124613025ed740c717afbb29ec28b211bad3a4536fc054cc0d993"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-015-00-0815-015-10.html",
+      "sha256": "db550b7369f71cf05ebe7215a0b398d6525b1d5273f49654a59d99d335988bc6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-015-00.html",
+      "sha256": "eac8cafbb9bbdd16b03542d3b178ac6241200dd78bfd8e2f0082b133ae620c13"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-020-00-0815-020-05.html",
+      "sha256": "23ba7580aa2560d3ecbfc61635fe5f9d2dc78029aff3959d7edf658f55b69518"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-020-00-0815-020-10.html",
+      "sha256": "4034d8cd5d99d98aa8c0d88c3c74c9958af88f83d46790a7741c6d06c4e8bb6b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-020-00-0815-020-15.html",
+      "sha256": "8a2be4e71c0fce0bbfa25b7d1221641df87cd4aad7870c035aa360925210e3df"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-020-00.html",
+      "sha256": "f90ce9e12f2da11e7d006d0c429e58d983a865928570a624c1826c7eb209d9ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-025-00-0815-025-05.html",
+      "sha256": "9a0999facd5922a6c68933a96f620a0e55464ca391b31b5386d8871f6467ee21"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-025-00-0815-025-10.html",
+      "sha256": "2d433f73eddbc2b1df2454e9ee6de6827f99952fc7312c1e1879a2a1798bfbe4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-025-00.html",
+      "sha256": "863c875740a073963c2e6b19661b5df294835df235baea34a9bd127c3457f169"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-05.html",
+      "sha256": "4571539db8c1d41934f5f56edf268b68388847ee3174e82f2b33d6cbd0a3e9c1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-05-0815-030-10-05-05.html",
+      "sha256": "e821838ab490313ade87959b488e236838c485e2f0570e348ac341b12795a1f8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-05.html",
+      "sha256": "12ad1bd68e9798e9ab856cba0e503d9870377b2e235e861b8d7de3b5be40fe88"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-10-0815-030-10-10-05.html",
+      "sha256": "70cde71d08c5d22c7b6c60d7c0d458011a7f84721a905f16a960ce50bbb37a9a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-10-0815-030-10-10-10.html",
+      "sha256": "368a9e4c22f9a4dd678077f6f8e7598a31dd28c4719c7892eaf521742ad1b9d3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-10-0815-030-10-10-15.html",
+      "sha256": "3e2cccc6bb740e209cf3ef3ba40ccd83d0d724e409e703e1baed572e831aa5c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-10-0815-030-10-10-20.html",
+      "sha256": "f5b7adc8c309a6f89b42835b88d95cc398d1c2df58e4b3b5c9f2906c61606932"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-10-0815-030-10-10-25.html",
+      "sha256": "6edb541183a7028e666ea290e9a453c0f9ebc88ab169cae421ee11202fcbeb23"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-10.html",
+      "sha256": "8827308cf3f4e9dde54a8341a1a9ab38e5d99d22aa4d5844d043aa2654e1cf77"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-15.html",
+      "sha256": "82ebc4a506a188c8bf22f756213ca8277aea3840a26de0f316bdaa20509f7417"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10-0815-030-10-20.html",
+      "sha256": "f02e4015c1db2d148833156212222a9111252bca56818a10258822e5971b3db8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-10.html",
+      "sha256": "2a7d30c2b2a2a78ca93a73195d794fe8bf55363de5509a03da48931621ca606d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-15.html",
+      "sha256": "17fd77a97e1f0c7df7bc3d743b31fd42c6e489a38961097cf97dee1bec31eee1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00-0815-030-20.html",
+      "sha256": "ec8548ec0d422a3fdb1d7269dc01ce444c667ccf57b5c4c60c65c86a5f951a73"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-030-00.html",
+      "sha256": "15d87cf74922a2c6c70764c7dc33ab18f2295e661ed566b349f113627244aad1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-035-00-0815-035-05.html",
+      "sha256": "7f2c2d85ce31da262a1346f42343ef350c330b3eb3eaa8f2a291a70eddab6f2f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-035-00-0815-035-10.html",
+      "sha256": "c6719de98e4018bc6592a32d433eee0de81dcb8c140601d79a14c549ab4cc1c8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-035-00-0815-035-15.html",
+      "sha256": "e35920103f54dff92e51fc25b5ea05b0e2489ef8cfdf4c6c52b60f94ea775fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-035-00.html",
+      "sha256": "3a14e115f61253e0e3ea99d675a68795538b17cebb2f8920cd69dd12771191f0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-040-00.html",
+      "sha256": "7e23534e74e2e30321f1b97b7b4e6ff2c850caeb13c9639f026ab28a8031fd37"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-045-00.html",
+      "sha256": "cf0088160209c74aba958991c7533f5e829380d430b53da2044cc0b6db12ca22"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-050-00-0815-050-05.html",
+      "sha256": "56d2239c5aa5fbb5340ca8611607023aa32445942cf65dc4edf7c284848cfce7"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-050-00.html",
+      "sha256": "a266087099bcef7e566dcb0e7445312495816f5088221a18e626f240a6458af6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-055-00-0815-055-05.html",
+      "sha256": "d7e3f297645babf39f3d2c0f27cf988d2aab9a401ef3f41da405a01b0b7d4bac"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-055-00-0815-055-10.html",
+      "sha256": "76a61215ee78c37492ba518bba8c5fb69d278634162b5df0254308318b297e69"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-055-00.html",
+      "sha256": "d46ae14af7490785948fe2f03f0f49da9de8014fb2834f208a2e53a3afeb95b8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-060-00.html",
+      "sha256": "b8149fb266b8176508bace4d8ebd030e4547c64b99524098e6b9242dc84e79e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-065-00.html",
+      "sha256": "99199c0e0481f6d3f90da92bda0eca5fef6d775e3706ccf174e25c2574b4059f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-070-00-0815-070-05.html",
+      "sha256": "317f86bf7a48dfbe4478308e2ac0883d2a8dab230cbecfc480b41be9bcb59c44"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-070-00-0815-070-10.html",
+      "sha256": "9cbb2bd29b4ea46e5ce36773ac1c7a975335d62e8015da2388ec8794f5de50c4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-070-00-0815-070-15.html",
+      "sha256": "6c90c6e2319637d966edc86d8375a13a7b3a96c545b275f07b547a822748c041"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-070-00.html",
+      "sha256": "3c4def4b9d696a78c0b505d0596a021a323012485216dc750729db648a63d17d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-075-00-0815-075-05.html",
+      "sha256": "b66ea853d7a9bf31b9db46d1628e145ef6e72468d418ac333e4dfc9dfdbd56c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-075-00-0815-075-10-nursing-facility-or-institution-for-the-intellectually-disabled-to-mental-hospital-0815-075-10-05.html",
+      "sha256": "3986f98b102796e4167390170f825ddf31b968fe70a09d5c332e8476eab76ce6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-075-00-0815-075-10-nursing-facility-or-institution-for-the-intellectually-disabled-to-mental-hospital-0815-075-10-10.html",
+      "sha256": "63cd7612f63564a102b3c23f01fe1aad7de2db72bad674d8c3aac8d752348ab9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-075-00-0815-075-10-nursing-facility-or-institution-for-the-intellectually-disabled-to-mental-hospital.html",
+      "sha256": "40f524e6036d2b52a7cf8a64c3f3d29dd05464dfd6be7721107bf431b1fb98af"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-075-00-0815-075-15.html",
+      "sha256": "7bc41dfd17c64beabf2a8b89ee9e8b1b667c579803588f01c2e9d0a019fcd409"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-075-00.html",
+      "sha256": "38fb9a2e05cda6cd61a83c44690a8449dd1f25ac3f36dd19f2a6ff86cf0f0908"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00-0815-080-00.html",
+      "sha256": "baa788d152282d62a5a66ae66bb818574cdcf2f9e96fe34d0a18b9a6efa35a03"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-000-00.html",
+      "sha256": "eefed49c78bd79af31a482f5d20e813f922bd6738155916111f2dea9f764c0de"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0815-appendix-a-vendor-nursing-facilities.html",
+      "sha256": "ac92ccdcfe0053e46d36b9bcbd8325eb5e5ecaf50a73327dcb4d64d8ddb9ca30"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-010-00.html",
+      "sha256": "2396b8661a65d4c04e2a7e9e2801ddcb471612f77aa322089d86ba6588a746a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-020-00-0820-020-05.html",
+      "sha256": "2c07440f03a0c0e6deadd81958446488e998e89e57f93466c2bc7b159a4addc1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-020-00.html",
+      "sha256": "b38f67b59420432b74db3811b4cfdfe9f808e9bb9ef062cc12eaa7afd9ba12e6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-05-0820-030-05-05.html",
+      "sha256": "13739764998328ccc1ca09f5b6b8a90ae6dc3364a0bfe75484519b5aea1e34b0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-05.html",
+      "sha256": "20442cc498fd7b2120f62a4539f5ea70887d920aa847af189eefbc1d1e9e2363"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-10-0820-030-10-05.html",
+      "sha256": "bea8464e8b73d8af4b8cb8d8daccf7307cec3823f540d8b9f25bf0326feced8b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-10.html",
+      "sha256": "ee21683c585650f2a24e96e8eb825a312f849c3269a06eeb459278b0b10debc5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-15-0820-030-15-05-0820-030-15-05-05.html",
+      "sha256": "e8ba67660c88f83442103981b7758a12f3bc81cf88c68802eae70c7422b1886b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-15-0820-030-15-05-0820-030-15-05-10.html",
+      "sha256": "3c8c34134cb75ef8403dc50d1e813944bb7ec3ea38048bbd0e7a040a94c51f11"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-15-0820-030-15-05.html",
+      "sha256": "91951fd2b1f880cdf3b831ad087d4c3359985fbad13b537b57b6588e8b9097fe"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-15.html",
+      "sha256": "9f21a7c82a1175ef0b80dad0363ea131d58ced1be472c3cfce9e8035159b8961"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-20-0820-030-20-05-0820-030-20-05-05.html",
+      "sha256": "decd79897c63a6faf44fb0310c064c0064f746dc3638cb3039e45890735f6798"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-20-0820-030-20-05-0820-030-20-05-10.html",
+      "sha256": "8415c6e3a6e6f73e5382b1555d970e722fe2a59685ea07f5221944ee6d1725d0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-20-0820-030-20-05.html",
+      "sha256": "5c4f0fd2f175c89859720e2fbee4b489e6b2d4eff96f176f307fbcfcb3c00d0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-20.html",
+      "sha256": "fee2eb3e1b170cc8ea4fbe80441a6ca994d6c76c04b034280c570a2b5d10d0e0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-25-00.html",
+      "sha256": "e0dfc46e011f16fd92933d1e7613d8878d15cb45c0a969fa879418098532fc92"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-30-00.html",
+      "sha256": "e3609ff1689d7f0f24bab595e44b51364f738f4e850d14085f41944877ce5a84"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-35-00.html",
+      "sha256": "2d3a3355b026bac84e49102b3fbac24a674cc7a2204924ebb3b3aa8b5ad69e11"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00-0820-030-40-00.html",
+      "sha256": "5e078751d6d22de4fe165cbfb8d324541e1079ba71c7af9e5fce17cc364fe642"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-030-00.html",
+      "sha256": "65561d56ec4318684225501668006ea4b4ea041ac22ccf94e9c101887f298f85"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-035-00.html",
+      "sha256": "34d36f49294719e6ec8aabb71359cbb81c1a309051f26d4b6e6eec2affe0067d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-040-00-0820-040-05.html",
+      "sha256": "8eecf788db51ee6baa755179ca8aa5a3dc6983468b2fc992d3206b09e0aa5c5d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-040-00.html",
+      "sha256": "21d642261b31e8d4484ef8e64892ab5c6914ddfcf28535ac1b55d9e0579f355b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00-0820-050-00.html",
+      "sha256": "1ba6f33ec23aaad5db21e56a3f2cca705781802bd54bbdb93447250ae8dc85c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0820-000-00.html",
+      "sha256": "045f479a59115920bd62ddfa0be46c797533159ad048a3702b13998182fae023"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-010-00.html",
+      "sha256": "dd39e62ab3b20c1190266be231a6f207032e09f28dcb1e596387d982d58f93f8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-020-00-0825-020-05.html",
+      "sha256": "dd9b6b8a0e2f5c1cf4d606da80daed09fb428cffdca3fe861f8e0ac2c4270313"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-020-00.html",
+      "sha256": "4c8e80d3ab1c0c6918722b13e56f4704ed7cd51e06a1fe0eab8d4ffa4494e5b6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-05.html",
+      "sha256": "c309af08a033f63d63c89f51bbc8f95095297777364650f7c3c297c5e16a5d7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-10.html",
+      "sha256": "ce67ec160bf5bf02a1fbf56f466cd24a9f6513b71b7527810791b7cf9365f476"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-15.html",
+      "sha256": "5d1715e72d331a6908f12572a700e6e2945791b7d7f686094e1184f34324fc7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-20.html",
+      "sha256": "194c1e110e0472b8449a7548032c6ce108e1e0405a646fe8caca35376ef06b17"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-25.html",
+      "sha256": "cb2be82509e2094779c0708a270602e81f3931feaf79bf4374293095a7bd8a8a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-30.html",
+      "sha256": "c56df705e392f2488c7288088dd491b108c70ea3a16f2ebed586d07e5cbbbe81"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-35.html",
+      "sha256": "5ed32e77d631c5311e9857ca2982a11c36f637e94c96754838b7b910b63976e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-40.html",
+      "sha256": "0a6d5a9cc334311eadcbdea3745461150cbe1fcec8cd095808416a1e7aa7e482"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-45.html",
+      "sha256": "20978ac1ef5a109aa235518738e8c3bdadb1bb0da9955e8fc2aa7052230e143f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00-0825-030-50.html",
+      "sha256": "3b2439d71edb1daefba924328fd1212a79cff8c32a45fc970dbeb32987369e45"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-030-00.html",
+      "sha256": "4b4770100cf7851dc74d477c0398eae4fd1500e4bd10d551c84bb173e29b177a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-040-00-0825-040-05.html",
+      "sha256": "eb7c751bd6279e0ba384c7bdc4d1f1c47a69e8fc2bb66ccf583a410dda34f1e0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00-0825-040-00.html",
+      "sha256": "f4dfa6fb04bdd26826a5ff2af45635997ee4bd8cbc3a395e766620f38ab00bbc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0825-000-00.html",
+      "sha256": "cd66430cfa68f1226fce9a620b3d0cfd9a11c9741cf1384de7e890bc566bd21e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-005-00-0840-005-00-05.html",
+      "sha256": "911215883ce2cebdf71e1d0f0d0606a147a0522e328cd24d47f9793d8198ad75"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-005-00-0840-005-05-reconsideration-period.html",
+      "sha256": "3db646115b428b541767cd27e4a1bd01caf8df2b3083503e308be2ca556ffce3"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-005-00.html",
+      "sha256": "07a88adbb63c4e7c90676828995871a5d240ae9302b281d314c70a7d3b7aa98a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00-0840-010-05.html",
+      "sha256": "ef1202fea991c4d2087a0d447c1e1b7b6ca3c4139917ab345792bb3786d7e3ef"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00-0840-010-10.html",
+      "sha256": "ebb4b10e721885109f2eeb096b30960f2acf6f548a626e2b19701bc1b10133cf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00-0840-010-25.html",
+      "sha256": "d1cde645d28f2784c7828d56889f39437c3227842474eedb95315f47704fcc73"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00-0840-010-30.html",
+      "sha256": "e4392e58f8308b0a8db546b9846244950f942249d232da0f6d92f4d85b6343b6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00-0840-010-35.html",
+      "sha256": "338be133a917adc2a24217ff9820de7a6c22611580ee13e2b469f2a97f430a23"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00-0840-010-40.html",
+      "sha256": "610a0cd2a5157300dac36c9bd9cf2073f0ceda5687e12d8765c9a86d630baf9b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-010-00.html",
+      "sha256": "fe668463a8c7b7773691b36407d6112abc9edc56702cc60d3ff60e5c8912e852"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-015-00-0840-015-05.html",
+      "sha256": "3157e24b9ff3c4204e8711983f2887951f17bcd74cf6043b62486ba2d75851d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-015-00-0840-015-10.html",
+      "sha256": "262fbd11be55cc19def077df949415203f3f6c4895533087fb830d35c9232686"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-015-00.html",
+      "sha256": "19651438f582de8029f50b0bd09563dca539c13f90955025ae74af550f43e04e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-020-00.html",
+      "sha256": "6e3aca4941524d92af47901e904694fb645d97c0f2b841ba99eb21e5ad3a0d05"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00-0840-025-00.html",
+      "sha256": "92bf17c779e17daa1fa33a9cc20db85d95b13df6bd62fc776bb8370502acbfe9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0840-000-00.html",
+      "sha256": "b0ea335dda39a37debd5b8620b2f42c00311a9104825dd29442bb7882cead1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0845-000-00-0845-005-00.html",
+      "sha256": "80ef7fd819a4f7cd48dcd75de4557fa4921c632dba78a0c8692c3116c9ce9706"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0845-000-00.html",
+      "sha256": "5da421035416263e28a037b7338f1253bf293aa8840add7c90e6ad131b061bab"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-005-00-0850-005-05.html",
+      "sha256": "b8caf7f657db2f1784fc9de94c118e7fa181c3448a91c2c6a7df986ecef878c9"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-005-00-0850-005-10.html",
+      "sha256": "5a4d879230f4cc3a4ac0973caa6a9e8f5370e93f25b5516ec1a11e7a19ccf2f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-005-00-0850-005-15.html",
+      "sha256": "ae7c74e09ce9f69181f7e76e46a744409d94fe5e4bc59d94d3e7bcb57e6f9651"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-005-00-0850-005-20.html",
+      "sha256": "a14b4d5c8c4a237521a2556b1e218c3cb56a368a86999965487366d86053dbef"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-005-00.html",
+      "sha256": "71b91e52adba208346e0ef9ca1398367d23b316f9e72e590c47b7921df409473"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-015-00.html",
+      "sha256": "40cbee8060d3aaac3775805fea5f1cbad124b0a50f7b4019c8699ec508820931"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00-0850-020-00.html",
+      "sha256": "05ba14f0ae9b140275519adeb7c7b51ce530b3ede5299f1b89125788ca21b047"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0850-000-00.html",
+      "sha256": "af8aa5ac7888a35da9fbe9d85ffc355e1278f47b63bc07958dace4c897147439"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-05.html",
+      "sha256": "ce684e26ebd9e9e2f465285fdc35957ca0f9bf2d491f5b6c17e7c37acfedc607"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-10.html",
+      "sha256": "dd419d9d8ba030691bb8833c04f0b8813c25750a87601fe1721fa6ddf67db839"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-15.html",
+      "sha256": "898d94573a5aa608194b8d4bad91ef522aefc7f11574c4a55e396414fa454d32"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-20.html",
+      "sha256": "312ae2943952f01648ee14cfe8d4c7c73fe7a4d9dfaa038973cf5cea62531199"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-25.html",
+      "sha256": "31c47262e01cd7d7928686fbbb4962d0e2a1148126cec4f6330883429951a6df"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-30.html",
+      "sha256": "7c99bf5bbaad7b641cb81f36865910ab94fbd3ef029ab3f1e3eddf866e6146fb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-35.html",
+      "sha256": "b7ae740f902c5c3ce9cea89177ff194964e00f1dee0d3042a9b8ed2595f31dd1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-40-0855-005-40-01.html",
+      "sha256": "acc4fd2227fcd61baa507a3645eaafea9fd6ae3d2b7ea0c3b4dfa6b44e6939a8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-40.html",
+      "sha256": "26ad337b9723a08f40d15336c063d36f6e11dd8bba029e849ec530409d166e1f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-45-0855-005-45-05.html",
+      "sha256": "5b273b7797ca9ee0c68eb9b122c92ea595d7d670e8b49ff022d3b46ce005cf47"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00-0855-005-45.html",
+      "sha256": "91c63757cf674a6d2201de55882463a0a184d02d7de2ed8014dba4ac2c6d199c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-005-00.html",
+      "sha256": "641638b54764ee0aaf02730dde9558511f89635017e660ab8a7d41b58541be78"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-010-00.html",
+      "sha256": "e56ac38b0605ac9ef63f62ff9b82d97b4549f105c99398e9a5f51be803d749ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-015-00-0855-015-05.html",
+      "sha256": "50db299a094ff35867cd61a7aaea4ebe3d63bd530c7da58ffee01a0d4e5ab625"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-015-00.html",
+      "sha256": "11673b20e6acf883743681ef0a6fe3e820a26524a9d9cfc42a3538e60e1b1ed2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-020-00.html",
+      "sha256": "89d6f32988e70b8fa76828bf68c978f23b0a6787e893bf244e83763ebf8f1520"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00-0855-025-00.html",
+      "sha256": "a5bd79b659eb9a065a44a1c53090ca50dc43d519299d31586fbc68afdd88642c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0855-000-00.html",
+      "sha256": "9da6a344ea2b633e9d65eaf14637bf29bded1548ccf06cfb3212e0580160a853"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-05.html",
+      "sha256": "e0d2cc8b46d87dddc341c78731dfd84c06b83b2d1e7cd40af9280f7edd9ecffa"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-10.html",
+      "sha256": "55999be1ba7221d7dfb56d8c711ed7259adac1e472e9d54226e32a2e8712272f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-15-0860-005-15-05.html",
+      "sha256": "da5e6193f5042d0c5036e6f40da88ee3eaaa2328e405f7f14bb59d642e4cd625"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-15-0860-005-15-10.html",
+      "sha256": "f395069efbf7e49b4b8e6475b93905292681e1bd4a98134136a79147de6cfb94"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-15.html",
+      "sha256": "0afb77a223cd2336c7bc93001b6e7e06e9e4d7ab565df0e4e85712677b2038cb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-20.html",
+      "sha256": "c742f4f0755496c19f0caf7e679f5226f4546f76a0da4c22130314da8266b635"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-25.html",
+      "sha256": "b64708b69e0682261a4cf100832357f59aacba950eba8fd8e676923f01bc44d8"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-30.html",
+      "sha256": "6916781d0b7434a37f506e4a0ba19009f2a0b1602bcd0b19f81516d8313f8e78"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-35.html",
+      "sha256": "012d6acb2ba9845fde90ef5cb953aac27fbd01a6763bec2ba69fd810e01c9f74"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00-0860-005-40.html",
+      "sha256": "0bcb7af0163d4f41e2b7bdd8aee12ddc142b8a28341c3228e88eda0aaaf50682"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-005-00.html",
+      "sha256": "8b85044ae2fa080f3464d4ea090757104978051e1e20069ac4797a710c773167"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00-0860-010-00.html",
+      "sha256": "518975ba04b79e4f619ab9bdc826b609c0cf625fef70c4e0e61e659999eec1a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0860-000-00.html",
+      "sha256": "d57d9eaad06f05eecdf84a3789da2f6bd175efc38ea21f15c1d60f9525d48ef6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-005-00.html",
+      "sha256": "e790c2da85ecde1dab2eef8ea1b5d7d42254b89c03e0f28808b63bc7b1e04fbd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-05-0865-010-05-05.html",
+      "sha256": "8a5561de5f19cd044b9a26e05f7c5d90ab39d014c848de55c3064fc492240aa1"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-05-0865-010-05-10.html",
+      "sha256": "18cf7ecf2eca091bbbc1b767196c315ac60e1e3a31265facb0a6d3638a3d45e4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-05-0865-010-05-15.html",
+      "sha256": "d2d9000f20b9699d065069221b8f3139f2b51f4a45b457dbfb045517b8d8f4fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-05-0865-010-05-20.html",
+      "sha256": "79e63aeb2ea14add309b32dfe9a703b505081add31829cb87bf36f6038294639"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-05.html",
+      "sha256": "affae0b175a3b616ddc37cb99c578439ce2d053e83f576b3050216ed4f19648c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-10-0865-010-10-05.html",
+      "sha256": "5b1540fb202f6c6e1276943f50c2e54f51e33a4ecd76ebb4e916a6703b3308c4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-10-0865-010-10-10.html",
+      "sha256": "f0a589c7402dac55499e62e8f7068613f6af8d7c887a7643f100ac3efd129178"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-10-0865-010-10-15.html",
+      "sha256": "067490e5626279db093d6450a42e812b625670b3c8e95e971166fd0ba579963a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-10-0865-010-10-20.html",
+      "sha256": "be8dcf8868e3b3b9e80fe5ea971fc9a05e43878001cc21158e2a3eb0fc879231"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-10-0865-010-10-25.html",
+      "sha256": "6209c84be2e0370205febed31aa7a6212793f842a027e4761f982147fc5faef2"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-10.html",
+      "sha256": "07b814a44b41fdae5a73eedc95089d420bd91605e993e28f5792a47bed29db5e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-15.html",
+      "sha256": "07f0c131e6a222356c536ea4e18664f57ead9f85519b2a2b16f7fb85d844701d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-20.html",
+      "sha256": "dc24c102ca844e36bb48d80bdcc9165b60aeea56131b36a53c9502887e5ec0ce"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-25.html",
+      "sha256": "dd118547fd200be3569e78faefbcb03225a85fc583bff0d4e1ec3a57e114f634"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00-0865-010-30.html",
+      "sha256": "120f20a750b24f7eb92f1b33f9b542307b5fdacbf870c5fe8935b0e26759746d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-010-00.html",
+      "sha256": "a2ec8fc889e3102f2514c1943f7254fa10d72e40017b4c9cf708daa0ce159174"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-015-00-0865-015-05.html",
+      "sha256": "b29908822790c5103e41b47f960fcd19b8255a468de55b94820fc5ba994b716a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-015-00-0865-015-10.html",
+      "sha256": "c9a46613436aae27fba8d11b20bdb70eb527077677816b4d4188882117c63442"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-015-00-0865-015-15.html",
+      "sha256": "79598419f53442ef9cee3658b5f5282be66ada402b1215dd96573df583757e20"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-015-00.html",
+      "sha256": "dd96dd39fa8cea1a11d4db3ca16a017f5d70a3028f8e41f209394d12b1349658"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-05.html",
+      "sha256": "ea73f3446eaa768177bdc151e15cce87f1d82599c77250d2fdeb4266fbe9fcfd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-10.html",
+      "sha256": "b1bce3fffdc20aa758c2fc4fbfe12f570fcb0e03212d03b52fc2d213b1fdb0eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-15-0865-020-15-05.html",
+      "sha256": "f4cbade023cec77eac66cc0981b69d9b936468b70ed38cf101a2e54070f56f0b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-15-0865-020-15-10.html",
+      "sha256": "6135a67e8d26ab64511d903224c71f3e6edeab81bc0e420daf20ba477f8e0f64"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-15-0865-020-15-15.html",
+      "sha256": "0b60b67feee32fd3d17b3d1000cec9c33df9ac556b79633e9a171bbeee3bb029"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-15-0865-020-15-20.html",
+      "sha256": "3a17a2361abc69882bbc3f0c123fce1a21e2ab2b2d8d3ab4bdfad66727373e0d"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00-0865-020-15.html",
+      "sha256": "8f5f7901589fb370becabff1dfc7feb44e101c8120a247f9074babee68011dd5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-020-00.html",
+      "sha256": "7e292d085be5553c1139eb360ec5251da6cfed2c21a301c30833b71602cb7748"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-025-00.html",
+      "sha256": "e55d0739ccf97242f4776ab1449eb63149bb0398a7eb27850b05f90bd0967c40"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-030-00-0865-030-05.html",
+      "sha256": "a1f555a2c4fca0cde75a3448d70951106e6e30a80d4661ea5cf4672042de2a8f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-030-00-0865-030-10.html",
+      "sha256": "167cd11eff24b64178538e6ce1f6335ca7548b8add7e0e9e333460fc7693dcdd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-030-00-0865-030-15.html",
+      "sha256": "2775c9078945716080b9e99de15adf1f82981bb93d39dad75d996fadc7d2a489"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-030-00-0865-030-20.html",
+      "sha256": "3e988b114b43bc7965cb832dd97b07028c89d6309d58c92ffe5719704bb980ae"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-030-00.html",
+      "sha256": "09bb651412ed0b54f0848062da197448e672bc7325d2fb98b17b67db4a564524"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-035-00-0865-035-05.html",
+      "sha256": "c21932a0d14e6653c24661bbebfd69754546fb9c0b4f25325298ec38a2d10d4f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-035-00-0865-035-10.html",
+      "sha256": "065937c1a6e4fde8ec7c67b641d5c8fd5184d1f72768dc7a2db6e5c523034b3b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-035-00-0865-035-15.html",
+      "sha256": "9bf8bdaf0b8200af02e3a2dc8d8594587fab4174e647f5b5929a733710d49992"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-035-00-0865-035-20.html",
+      "sha256": "be29e533fe3a08f2563a656fd48a6efd2f7268b914e80ac355daff834792ca3f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-035-00-0865-035-25.html",
+      "sha256": "9c90925268caa3eb6568a5a5892e28da4af5a96ee4fa862862733581a5059b69"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00-0865-035-00.html",
+      "sha256": "148605359926d099ab893299f370a3b3e344f2f92961792e93f2a4cf93a64b7c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0865-000-00.html",
+      "sha256": "812a928cf8af4fcdb67dd6b15eebfe6dd729c27b5f2a54911031abb6f1c83791"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-005-00.html",
+      "sha256": "9dd89b518ece6ffb1b8b8f8f54672bbed4dbf799f06bd5c4b1b539bd51424312"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-010-00-0870-010-05.html",
+      "sha256": "ba59309d1cd0753eb0de6acf71dd347b70c5bb0cd55191cc6db27cb99a2a3412"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-010-00-0870-010-10.html",
+      "sha256": "4d046993eb065eae45dd301599fd141ce7cc9c6ac7edf173f0a9926e03ec8706"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-010-00-0870-010-15.html",
+      "sha256": "2e64d6c5e7cf6c79e496aa055ea405228c3efd35b2270562d8cf83c6f7ea9573"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-010-00.html",
+      "sha256": "290bad9abd0a9c17be7f36c9b27a56f5248615f1a16800c803730c6642cafbfb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-015-00.html",
+      "sha256": "a2f7ed267de2d59f97fbac13c35ed72654674aac5c68b60595bf58fa80271c51"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-020-00-0870-020-05.html",
+      "sha256": "8cc8ec7b922236d2059222ec58fc2172b941aebadade954d60ce7729d58b2a2f"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-020-00-0870-020-10-0870-020-10-05.html",
+      "sha256": "7d08ae5564f504986e2b58be3317375761965c1189d45518904c3b04b10f2dfa"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-020-00-0870-020-10-0870-020-10-10.html",
+      "sha256": "8d0fea313b8126f9251cbe0e86b0496eb69b091ada1717985695ff887d295ba4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-020-00-0870-020-10.html",
+      "sha256": "a37d85283625fae94c39f228240addce73cccd7a0d908545126134d73e2d030e"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-020-00-0870-020-15.html",
+      "sha256": "8f71ae66ae10cc02561c16316381804b54f7f8292cbd21535323e0159c4ba8f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-020-00.html",
+      "sha256": "c07fa44a7c6a897fd6ab463fb0e0122cbf76d7b7a82a6fc455a9e62d9acf3320"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-025-00.html",
+      "sha256": "686020a5f2a085064f5ed40b9638d7628e00fec3af40508d8c292920cdfde805"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-030-00-0870-030-05.html",
+      "sha256": "4f67834e65edc59248d69f5536605e510f2c65d582b74b8ec95aa942738614cf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-030-00-0870-030-10.html",
+      "sha256": "d0aeb337fae50459fb330c7827f8392d6e979082868bea69fa772fa29fc9ef50"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-030-00-0870-030-15.html",
+      "sha256": "5b5231e77ecb706eef54643ee6aa694d0a404dc79ab5e66adf646601d845d888"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-030-00-0870-030-20.html",
+      "sha256": "794b55f0b0914aeca5ee506260cfe37e5cce5be069799accc06212cb88d18192"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-030-00-0870-030-25.html",
+      "sha256": "c5407961cefa079002fae7d899afdccaec7c2ca6c6f2ec94a667250893b94136"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-030-00.html",
+      "sha256": "f72b459e48fc42c887517e7b29341c842b738d2beb54a619797e1fb7e54795f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-035-00.html",
+      "sha256": "b358cbb8b8bd44c8087bb83ac7e8714ce0388fae67ee00e588b12df8f1c998fb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-040-00-2.html",
+      "sha256": "88b4b81fdb0cad7e4c5a552046823be100ec533f0c767f3e47b6de59341646b6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00-0870-045-00.html",
+      "sha256": "80eda3620e96cbf30d0d6b9946ea236e266bc4d8cf5b15689624d2f9f6561f8a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0870-000-00.html",
+      "sha256": "e82a542b1e98a5fe8f0ea67bc83cb679cc1d4bf7d6948df16ef856f73fc99e06"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0875-000-00.html",
+      "sha256": "b661f8357b1ebbbdffa9e360e66e699a78c1ede5d1d0b90358b324d085e44613"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0880-000-00-0880-005-00.html",
+      "sha256": "aa8698c297369d510190c44edde065a768b35dcd669d26351376a68cb947bc7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0880-000-00-0880-010-00.html",
+      "sha256": "d628afafa042e6811e31ef8f860d969c33a46e3a9d3dddcca5da8efb32976f0a"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0880-000-00-0880-015-00.html",
+      "sha256": "7b07d411f72df402ef7e77cf67a86a9a828089cb9be6c0788451c569328efc84"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0880-000-00-0880-020-00.html",
+      "sha256": "4afd5c109ef7dd81e9c20a661a30961e2b225f86a114173f99694fba09048da6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0880-000-00.html",
+      "sha256": "f3fd7043364eab82ff44e212b2f6ac66876e7282f7325a149101e7490a5941e4"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0890-000-00-0890-005-00.html",
+      "sha256": "f430f98b9f41372819c6c3c535aa7e84bc5b97a01692666a1cd3003680c59213"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0890-000-00-0890-010-00.html",
+      "sha256": "f2bdf1eeb92e02fa171125e209bee8699497c042e57fd4360a8042aacac867ff"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-0890-000-00.html",
+      "sha256": "082c342eebfea38b30d47ca4835e2eb8239113b7d0e7bd28487e9c522a5718ce"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-1-0.html",
+      "sha256": "2f73334dc62c4cc7505f8b2d47cc3fec5500e28ec28f931d844bc913d1a71b7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-1-10-legal-basis.html",
+      "sha256": "6f4eb4efc219e279b6f58d2b03fddb0a8a3ddcc15a60d925774a1fa3984de993"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-1-5.html",
+      "sha256": "d9efb99a9b10f24a447ebaf4b1bb6f5b78f4da7f02074059cae3d04efd3cbca6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-b-maintenance-standards-for-allotments.html",
+      "sha256": "44a306c6c392aaf5aa300afd7a931de02708c317cdaf86c4ff09263dc7b4be7c"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-c.pdf",
+      "sha256": "7616ddb11f1bce7573669a35111360e091bf53d866ffa5453cb835dc851194a6"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-d-july-1996-percentage-of-need-standard.html",
+      "sha256": "8c2b05d3084f20e0ff3a8829c15819cb69252308036f835c5419636115a6a1c5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-e-hcb-income-maximums.html",
+      "sha256": "300d84f16848295596075ddce84245ac6830c586ee006ebcd5d25c6237901fd5"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-h.pdf",
+      "sha256": "8a83337607f3d47c375d492c1c4bc55ed3f221823a7b47fd000c24c09364e165"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-j.pdf",
+      "sha256": "a96bf60704d021b2a9f83c0340487d41edfa64a8599c90602a57bea8e4b66c94"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-appendix-k.pdf",
+      "sha256": "f7e81c1774f6afc8a826b7520e87722dd4b682e2a01c21d42d21ef6ed0651fd0"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd-mo-healthnet-for-the-aged-blind-and-disabled-programs.html",
+      "sha256": "01860c42cf15fe45453722d705b6880aaa7acf8ab9a5a87f1942178c8e3eb0bb"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-mo-medicaid-mhabd.html",
+      "sha256": "feaceae5b48d2b7b295cd73855db36befdbaabdeb9b68cccfcf341bb7d5bab9b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-mo-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1190,
+    "missing_count": 0,
+    "provision_count": 1190,
+    "source_count": 1190
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:02:37.520710+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CcdFk0Axev7r1pHGWaMHUDSdoOfkSHLr9pQ7bRTR5RMGt1aYoPlD3i4BEgIDyu7kka06sMSy9z2tWoZvapjsDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

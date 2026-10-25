@@ -1,0 +1,2327 @@
+version: '2026-09-10'
+documents:
+- source_id: us-mt-dphhs-tanf-0-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 0-1: Table of Contents'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANFTOC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-12-01'
+  citation_path: us-mt/manual/dphhs/tanf/0-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 0-1
+    official_listing_title: Table of Contents
+    official_effective_date: 12/01/2025
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-0-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 0-2: Alpha Subject Index'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF0-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/0-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 0-2
+    official_listing_title: Alpha Subject Index
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-0-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 0-3: Introduction'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF0-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/0-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 0-3
+    official_listing_title: Introduction
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-0-4
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 0-4: Definitions'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF0-4April012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-04-01'
+  citation_path: us-mt/manual/dphhs/tanf/0-4
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 0-4
+    official_listing_title: Definitions
+    official_effective_date: 04/01/20
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-001
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 001: Monthly Income Standards'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-07-01'
+  citation_path: us-mt/manual/dphhs/tanf/001
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: '001'
+    official_listing_title: Monthly Income Standards
+    official_effective_date: 07/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-101-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 101-1: Confidentiality'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF101-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/101-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 101-1
+    official_listing_title: Confidentiality
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-102-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 102-1: Civil Rights'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF102-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/102-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 102-1
+    official_listing_title: Civil Rights
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-102-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 102-2: General Complaints'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF102-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/102-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 102-2
+    official_listing_title: General Complaints
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-102-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 102-3: Accommodations'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF102-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/102-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 102-3
+    official_listing_title: Accommodations
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-1: Application Processing'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1031052022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-06-02'
+  citation_path: us-mt/manual/dphhs/tanf/103-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-1
+    official_listing_title: Application Processing
+    official_effective_date: 06/02/22
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-2: Interviews'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF103-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/103-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-2
+    official_listing_title: Interviews
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-3: Rights and Responsibilities'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF103-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/103-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-3
+    official_listing_title: Rights and Responsibilities
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-4
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-4: Verification and Documentation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF103.4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-09-01'
+  citation_path: us-mt/manual/dphhs/tanf/103-4
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-4
+    official_listing_title: Verification and Documentation
+    official_effective_date: 09/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-5
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-5: Processing'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF103-5Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/103-5
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-5
+    official_listing_title: Processing
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-6
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-6: Voter Registration'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF103-6Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/103-6
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-6
+    official_listing_title: Voter Registration
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-103-7
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 103-7: Tribal TANF Plans'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF103-7July012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-07-01'
+  citation_path: us-mt/manual/dphhs/tanf/103-7
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 103-7
+    official_listing_title: Tribal TANF Plans
+    official_effective_date: 07/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-104-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 104-1: Failure/Refusal to Comply'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF104-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/104-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 104-1
+    official_listing_title: Failure/Refusal to Comply
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-104-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 104-2: Protective Payee'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF104-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/104-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 104-2
+    official_listing_title: Protective Payee
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-201-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 201-1: Filing/Assistance Unit'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF201107012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-07-01'
+  citation_path: us-mt/manual/dphhs/tanf/201-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 201-1
+    official_listing_title: Filing/Assistance Unit
+    official_effective_date: 07/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-201-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 201-2: Living Situation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF201-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/201-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 201-2
+    official_listing_title: Living Situation
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-201-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 201-3: Relationship'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF203.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/201-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 201-3
+    official_listing_title: Relationship
+    official_effective_date: 10/01/2024
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-201-4
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 201-4: Marital Status'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF201-4Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/201-4
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 201-4
+    official_listing_title: Marital Status
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-201-5
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 201-5: Joint Custody'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF201-5Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/201-5
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 201-5
+    official_listing_title: Joint Custody
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-202-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 202-1: Adding/Removing Household Members'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF2021April012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-04-01'
+  citation_path: us-mt/manual/dphhs/tanf/202-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 202-1
+    official_listing_title: Adding/Removing Household Members
+    official_effective_date: 04/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-301-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 301-1: Citizenship'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF301.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/301-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 301-1
+    official_listing_title: Citizenship
+    official_effective_date: 10/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-301-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 301-2: Alien Status'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF301.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-12-01'
+  citation_path: us-mt/manual/dphhs/tanf/301-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 301-2
+    official_listing_title: Alien Status
+    official_effective_date: 12/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-302-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 302-1: Residency'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF302-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/302-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 302-1
+    official_listing_title: Residency
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-302-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 302-2: Temporarily Absent'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF302208012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-08-01'
+  citation_path: us-mt/manual/dphhs/tanf/302-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 302-2
+    official_listing_title: Temporarily Absent
+    official_effective_date: 08/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-303-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 303-1: Furnishing A Social Security Number'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF303.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-12-01'
+  citation_path: us-mt/manual/dphhs/tanf/303-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 303-1
+    official_listing_title: Furnishing A Social Security Number
+    official_effective_date: 12/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-304-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 304-1: Teen/Minor Parent Living Arrangement'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF304-1April012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-04-01'
+  citation_path: us-mt/manual/dphhs/tanf/304-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 304-1
+    official_listing_title: Teen/Minor Parent Living Arrangement
+    official_effective_date: 04/01/20
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-305-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 305-1: Age of Minor Child/Student Status'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF305.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-09-01'
+  citation_path: us-mt/manual/dphhs/tanf/305-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 305-1
+    official_listing_title: Age of Minor Child/Student Status
+    official_effective_date: 09/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-306-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 306-1: Child Support Enforcement Referral'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF306.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/306-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 306-1
+    official_listing_title: Child Support Enforcement Referral
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-306-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 306-2: Child Support Good Cause Claim'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF306.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-12-01'
+  citation_path: us-mt/manual/dphhs/tanf/306-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 306-2
+    official_listing_title: Child Support Good Cause Claim
+    official_effective_date: 12/01/22
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-306-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 306-3: Child Support Payments and Collections'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF306.3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-07-01'
+  citation_path: us-mt/manual/dphhs/tanf/306-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 306-3
+    official_listing_title: Child Support Payments and Collections
+    official_effective_date: 07/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-401-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 401-1: Ownership/Accessibility/Equity Value'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF401-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/401-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 401-1
+    official_listing_title: Ownership/Accessibility/Equity Value
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-402-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 402-1: Countable & Excluded Resources'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF4021May012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/402-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 402-1
+    official_listing_title: Countable & Excluded Resources
+    official_effective_date: 05/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-402-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 402-2: Native American Resources'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF402-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/402-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 402-2
+    official_listing_title: Native American Resources
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-402-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 402-3: Trust Funds'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF402-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/402-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 402-3
+    official_listing_title: Trust Funds
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-403-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 403-1: Vehicles'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF403-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/403-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 403-1
+    official_listing_title: Vehicles
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-500
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 500: Income Overview'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF5003.23.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-04-01'
+  citation_path: us-mt/manual/dphhs/tanf/500
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: '500'
+    official_listing_title: Income Overview
+    official_effective_date: 04/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-501-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 501-1: Unearned Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF501.12.23.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-02-01'
+  citation_path: us-mt/manual/dphhs/tanf/501-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 501-1
+    official_listing_title: Unearned Income
+    official_effective_date: 02/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-501-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 501-2: Native American Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF501-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/501-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 501-2
+    official_listing_title: Native American Income
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-502-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 502-1: Earned Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF502.12.23.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-02-01'
+  citation_path: us-mt/manual/dphhs/tanf/502-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 502-1
+    official_listing_title: Earned Income
+    official_effective_date: 02/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-503-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 503-1: Self-Employment Income'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF503-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/503-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 503-1
+    official_listing_title: Self-Employment Income
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-601-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 601-1: Prospective Budgeting'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF601-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/601-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 601-1
+    official_listing_title: Prospective Budgeting
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-602-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 602-1: Income Disregards'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF602-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/602-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 602-1
+    official_listing_title: Income Disregards
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-603-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 603-1: Deeming'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF603.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-07-01'
+  citation_path: us-mt/manual/dphhs/tanf/603-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 603-1
+    official_listing_title: Deeming
+    official_effective_date: 07/01/22
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-604-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 604-1: Income Tests and Grant Calculation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF604-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/604-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 604-1
+    official_listing_title: Income Tests and Grant Calculation
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-604-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 604-2: Post-Employment Program'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF604.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/604-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 604-2
+    official_listing_title: Post-Employment Program
+    official_effective_date: 05/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-701-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 701-1: Referral and Enrollment/Intake'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF701-1Oct012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/701-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 701-1
+    official_listing_title: Referral and Enrollment/Intake
+    official_effective_date: 10/01/20
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-701-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 701-2: Introductory Period'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF701-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/701-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 701-2
+    official_listing_title: Introductory Period
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-702-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 702-1: Screening and Assessments'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF702-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/702-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 702-1
+    official_listing_title: Screening and Assessments
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-703-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 703-1: Brokering Services and Referrals'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF703109012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-09-01'
+  citation_path: us-mt/manual/dphhs/tanf/703-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 703-1
+    official_listing_title: Brokering Services and Referrals
+    official_effective_date: 09/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-704-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 704-1: Employability/Service Plan'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF704.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/704-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 704-1
+    official_listing_title: Employability/Service Plan
+    official_effective_date: 10/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-705-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 705-1: Participation Hours'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF705.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-06-01'
+  citation_path: us-mt/manual/dphhs/tanf/705-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 705-1
+    official_listing_title: Participation Hours
+    official_effective_date: 06/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-706-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 706-1: Employment and Training Activities'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF706.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/706-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 706-1
+    official_listing_title: Employment and Training Activities
+    official_effective_date: 10/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-706-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 706-2: Pathways Services'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF706.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-09-01'
+  citation_path: us-mt/manual/dphhs/tanf/706-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 706-2
+    official_listing_title: Pathways Services
+    official_effective_date: 09/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-707-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 707-1: Work Placement Requirements'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF707.14.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-06-01'
+  citation_path: us-mt/manual/dphhs/tanf/707-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 707-1
+    official_listing_title: Work Placement Requirements
+    official_effective_date: 06/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-708-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 708-1: Case File Documentation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF708.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/708-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 708-1
+    official_listing_title: Case File Documentation
+    official_effective_date: 10/01/22
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-709-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 709-1: Verification and Reconciliation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF709.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-08-01'
+  citation_path: us-mt/manual/dphhs/tanf/709-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 709-1
+    official_listing_title: Verification and Reconciliation
+    official_effective_date: 08/01/22
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-710-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 710-1: Sanction'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF710.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/710-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 710-1
+    official_listing_title: Sanction
+    official_effective_date: 05/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-711-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 711-1: Supportive Services'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF711.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/711-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 711-1
+    official_listing_title: Supportive Services
+    official_effective_date: 10/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-712-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 712-1: Supervisor Reviews'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF712-1Feb012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-02-01'
+  citation_path: us-mt/manual/dphhs/tanf/712-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 712-1
+    official_listing_title: Supervisor Reviews
+    official_effective_date: 02/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-801-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 801-1: Incrementing Time Clock'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF801-1May012020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2020-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/801-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 801-1
+    official_listing_title: Incrementing Time Clock
+    official_effective_date: 05/01/20
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-801-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 801-2: Out of State/Tribal TANF Months'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF801.2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/801-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 801-2
+    official_listing_title: Out of State/Tribal TANF Months
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-801-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 801-3: Time Clock Adjustment'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF801-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/801-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 801-3
+    official_listing_title: Time Clock Adjustment
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-802-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 802-1: Extended Benefits'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF802.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/802-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 802-1
+    official_listing_title: Extended Benefits
+    official_effective_date: 10/1/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-901-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 901-1: Payment Methods'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF901.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-04-17'
+  citation_path: us-mt/manual/dphhs/tanf/901-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 901-1
+    official_listing_title: Payment Methods
+    official_effective_date: 04/17/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-902-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 902-1: Replacement Warrants'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF902-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/902-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 902-1
+    official_listing_title: Replacement Warrants
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-903-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 903-1: EBT Benefit Expungement'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF903-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/903-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 903-1
+    official_listing_title: EBT Benefit Expungement
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1101-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1101-1: Child Care Assistance'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1101-1Feb012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-02-01'
+  citation_path: us-mt/manual/dphhs/tanf/1101-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1101-1
+    official_listing_title: Child Care Assistance
+    official_effective_date: 02/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1101-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1101-2: Working Caretaker Relative Childcare'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF11012May012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/1101-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1101-2
+    official_listing_title: Working Caretaker Relative Childcare
+    official_effective_date: 05/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1201-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1201-1: Emergency Assistance'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF12011May012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/1201-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1201-1
+    official_listing_title: Emergency Assistance
+    official_effective_date: 05/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1202-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1202-1: Matched Savings and Individual Development Accounts'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1202-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1202-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1202-1
+    official_listing_title: Matched Savings and Individual Development Accounts
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1501-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1501-1: Reporting Changes'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1501.13.23.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-04-01'
+  citation_path: us-mt/manual/dphhs/tanf/1501-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1501-1
+    official_listing_title: Reporting Changes
+    official_effective_date: 04/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1502-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1502-1: Redetermination'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF15021April012021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2021-04-01'
+  citation_path: us-mt/manual/dphhs/tanf/1502-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1502-1
+    official_listing_title: Redetermination
+    official_effective_date: 04/01/21
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1503-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1503-1: Notices/Adequate and Timely'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1503-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1503-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1503-1
+    official_listing_title: Notices/Adequate and Timely
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1504-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1504-1: Overpayments'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1504-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1504-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1504-1
+    official_listing_title: Overpayments
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1504-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1504-2: Underpayments'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1504-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1504-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1504-2
+    official_listing_title: Underpayments
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1504-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1504-3: Cash Management'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1504-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1504-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1504-3
+    official_listing_title: Cash Management
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1505-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1505-1: Intentional Program Violation/Fraud'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1505-1Nov012019.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2019-11-01'
+  citation_path: us-mt/manual/dphhs/tanf/1505-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1505-1
+    official_listing_title: Intentional Program Violation/Fraud
+    official_effective_date: 11/01/19
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1506-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1506-1: Requesting a Fair Hearing'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1506-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1506-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1506-1
+    official_listing_title: Requesting a Fair Hearing
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1506-2
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1506-2: Administrative Review'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1506-2Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1506-2
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1506-2
+    official_listing_title: Administrative Review
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1506-3
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1506-3: Fair Hearing Procedure'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1506-3Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1506-3
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1506-3
+    official_listing_title: Fair Hearing Procedure
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1506-4
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1506-4: Board of Public Assistance Appeal and Judicial Review'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/tanf1506-4jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1506-4
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1506-4
+    official_listing_title: Board of Public Assistance Appeal and Judicial Review
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1506-5
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1506-5: Fair Hearing Appeal/Benefit Continuation'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1506-5Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1506-5
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1506-5
+    official_listing_title: Fair Hearing Appeal/Benefit Continuation
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1507-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1507-1: Case/Person Notes'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1507.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2022-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/1507-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1507-1
+    official_listing_title: Case/Person Notes
+    official_effective_date: 10/01/22
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1508-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1508-1: Good Cause Criteria'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1508.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-05-01'
+  citation_path: us-mt/manual/dphhs/tanf/1508-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1508-1
+    official_listing_title: Good Cause Criteria
+    official_effective_date: 05/01/25
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1509-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1509-1: Case File Retention/Archive/Destruction'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1509.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2023-10-01'
+  citation_path: us-mt/manual/dphhs/tanf/1509-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1509-1
+    official_listing_title: Case File Retention/Archive/Destruction
+    official_effective_date: 10/01/23
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1510-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1510-1: Program Compliance Reviews'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1510-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1510-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1510-1
+    official_listing_title: Program Compliance Reviews
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1511-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1511-1: Case Transfer'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1511-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1511-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1511-1
+    official_listing_title: Case Transfer
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1701-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1701-1: Tribal and Indian Agency Offices'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1701-1Jan012018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2018-01-01'
+  citation_path: us-mt/manual/dphhs/tanf/1701-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1701-1
+    official_listing_title: Tribal and Indian Agency Offices
+    official_effective_date: 01/01/18
+    extraction_granularity: pdf_page
+- source_id: us-mt-dphhs-tanf-1702-1
+  jurisdiction: us-mt
+  document_class: manual
+  title: 'Montana TANF Policy Manual 1702-1: Pathways Operators'
+  source_url: https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF1702.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2024-07-01'
+  citation_path: us-mt/manual/dphhs/tanf/1702-1
+  request:
+    browser_impersonation: true
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Public Health and Human Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Montana TANF
+    federal_program: TANF
+    manual_landing_page: https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    source_discovery_group: us-mt/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphhs.mt.gov/hcsd/Manuals/TANFpolicymanual
+    official_section_number: 1702-1
+    official_listing_title: Pathways Operators
+    official_effective_date: 07/01/24
+    extraction_granularity: pdf_page

@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security.json",
+      "sha256": "f376a47743f708d7eb423d34994435f4941814b7fefa43a33dceeac94d2d629d"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security.json",
+      "sha256": "199066fe40789527cf9232893c482aa55b4cca32a7d1ee37b1e871935f48112d"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security.jsonl",
+      "sha256": "395ab8a897cacddb791004e426540849b9550519b3b8dd2a34ddf9af2a54ac95"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security/federal-register/api/documents-page-1.json",
+      "sha256": "ddf161468cd8351b28589276fd04e0f10185ababc6545c1bb850c7f417efdce3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security/federal-register/documents/2025-17507.json",
+      "sha256": "d3003cd522c60479deddb9b625294e15c0f78a531a66ded9731797119b709022"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security/federal-register/documents/2025-17507.txt",
+      "sha256": "44369d842cb4f65e9f545cb47227c62e7d1e866974f30898a4c28e26268cd1e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-framework-trade-security --start-date 2025-09-10 --document-type PRESDOCU --term \"trade and security\" --source-as-of 2026-08-01 --expression-date 2025-09-10"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:53.975674+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "g524ElUCBEsAfUB0Gskg4qYEQRwFkzVQO9bqHlvK5z6Bg7fVchh7oKfQQ3XXWHI7G2g6dRoGwqmci+44d0qhBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-framework-trade-security-types-presdocu-term-trade-and-security"
+}

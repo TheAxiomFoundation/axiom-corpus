@@ -1,0 +1,24 @@
+version: 2026-10-06-w6-health-policy-tn
+documents:
+- source_id: us-tn-w6-health-tenncare-state-plan-parents-and-other-caretaker-relatives
+  jurisdiction: us-tn
+  document_class: policy
+  title: 'TennCare Medicaid State Plan: Eligibility Groups - Mandatory Coverage - Parents and Other Caretaker Relatives (TN-21-0010,
+    approved 3/23/2022, effective 10/1/2021)'
+  source_url: https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2021-10-01'
+  citation_path: us-tn/policy/tenncare/state-plan/parents-and-other-caretaker-relatives
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: TennCare, Tennessee Division of TennCare
+    program: MEDICAID
+    document_subtype: medicaid_state_plan_page_pdf
+    source_discovery_group: us-tn/policy/w6-health
+    discovered_via: program-bundle-gaps-2026-10-06 wave 6 health; bundle address fetched from the official publisher
+    work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/health.csv (branch analysis/program-bundle-gaps-2026-10-06)
+    work_order_row: 112
+    bundle_url: https://www.tn.gov/content/dam/tn/tenncare/documents2/SSPPParentsAndOtherCaretakerRelatives.pdf

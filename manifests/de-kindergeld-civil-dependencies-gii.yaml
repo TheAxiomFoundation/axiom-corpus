@@ -1,0 +1,40 @@
+{
+  "documents": [
+    {
+      "source_id": "de-kindergeld-einigvtr",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "slug": "einigvtr",
+      "citation_path": "de/statute/einigvtr",
+      "title": "Einigungsvertrag",
+      "source_url": "https://www.gesetze-im-internet.de/einigvtr/xml.zip",
+      "source_format": "gesetze-im-internet.de-juris-xml",
+      "request": {
+        "browser_user_agent": true
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz (juris GmbH)",
+        "source_note": "Additive capture for Kindergeld: EStG 78(5) treaty territory and EStG 32 age/family-status dependencies. Current consolidation; historical applicability must be grounded separately. Existing immutable release scopes are not changed."
+      }
+    },
+    {
+      "source_id": "de-kindergeld-bgb",
+      "jurisdiction": "de",
+      "document_class": "statute",
+      "slug": "bgb",
+      "citation_path": "de/statute/bgb",
+      "title": "Bürgerliches Gesetzbuch",
+      "source_url": "https://www.gesetze-im-internet.de/bgb/xml.zip",
+      "source_format": "gesetze-im-internet.de-juris-xml",
+      "request": {
+        "browser_user_agent": true
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Justiz (juris GmbH)",
+        "source_note": "Additive capture for Kindergeld: EStG 78(5) treaty territory and EStG 32 age/family-status dependencies. Current consolidation; historical applicability must be grounded separately. Existing immutable release scopes are not changed."
+      }
+    }
+  ]
+}

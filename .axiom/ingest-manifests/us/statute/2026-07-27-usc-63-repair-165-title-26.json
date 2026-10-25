@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-27-usc-63-repair-165-title-26.json",
+      "sha256": "4f7fc692b9d572433bb88188b72f7377957a919fe7da05ed6a37081188480569"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-27-usc-63-repair-165-title-26.json",
+      "sha256": "4db559b49dc0b252eea3cf702b3d1f11a2be968da722de11bf87bc2985aadd81"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-27-usc-63-repair-165-title-26.jsonl",
+      "sha256": "d7c41106a0e6456e14efafc98df1b907697d954d710e5890322b9db185160f79"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-27-usc-63-repair-165-title-26/olrc/xml_usc26@119-102not101.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-27-usc-63-repair-165-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de6927635ca61db0cb54277cadc4b1f95db77408",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_63_repair_165.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 163,
+    "missing_count": 0,
+    "provision_count": 163,
+    "source_count": 163
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-28T03:51:26.110252+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sCYEdiAwSk4PfO86jRm8abKwnGXQCwAFgQl8+Z8eZDyOlpuj7x4qnsDaNTG57owFRljB602emeF0vnEfRCsFCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-27-usc-63-repair-165-title-26"
+}

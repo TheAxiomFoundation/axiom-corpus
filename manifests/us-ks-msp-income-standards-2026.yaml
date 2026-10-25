@@ -1,0 +1,30 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ks-kdhe-medical-assistance-standards-f-8-2026-07
+  jurisdiction: us-ks
+  document_class: guidance
+  title: 'Kansas Medical Assistance Standards F-8 (07-26): income and resource standards incl. QMB, LMB, ELMB, QWD'
+  source_url: https://www.kancare.ks.gov/providers/presumptive-eligibility
+  download_url: https://www.kancare.ks.gov/home/showpublisheddocument/4880/639165970250700000
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-04-01'
+  citation_path: us-ks/guidance/kdhe/medical-assistance-standards-f-8/2026-07
+  request:
+    browser_impersonation: true
+    browser_impersonation_direct: true
+  metadata:
+    primary_source: true
+    source_authority: Kansas Department of Health and Environment, Division of Health Care Finance (KanCare)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ks/guidance
+    index_url: https://www.kancare.ks.gov/providers/presumptive-eligibility
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: standards_appendix
+    document_number: F-8 (07-26)
+    msp_table_updated: '2026-04-01'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

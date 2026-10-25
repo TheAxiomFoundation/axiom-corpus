@@ -1,0 +1,30 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-il-tanf-state-plan-2023-2025
+  jurisdiction: us-il
+  document_class: policy
+  title: Illinois TANF State Plan, January 1, 2023 - June 30, 2025
+  source_url: https://www.dhs.state.il.us/page.aspx?item=172771
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-il/policy/acf/tanf-plan/2023-2025
+  extraction:
+    html_content_selector: '#ItemContentDiv'
+  metadata:
+    primary_source: true
+    source_authority: Illinois Department of Human Services
+    document_subtype: state_plan_html
+    program: TANF
+    federal_program: TANF
+    plan_status: TANF State Plan for January 1, 2023 - June 30, 2025, published as an HTML page (the newest approved plan;
+      the 01/01/2026 renewal is posted only as a public-comment draft PDF, not taken)
+    publisher_index_url: https://www.dhs.state.il.us/page.aspx?item=56061
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-il/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://www.dhs.state.il.us/page.aspx?item=56061
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: html_blocks

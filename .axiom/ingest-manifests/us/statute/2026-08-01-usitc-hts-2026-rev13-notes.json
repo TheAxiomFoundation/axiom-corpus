@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-01-usitc-hts-2026-rev13-notes.json",
+      "sha256": "9d4ef546c9a24bf17fd2b33e678a6ac5ea81ea2a7f39399d293dadac59ff4574"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-01-usitc-hts-2026-rev13-notes.json",
+      "sha256": "cd410cd8b0fb3647e4e0d100a1efd005073a591fc3f9bdf509ef769efc8d3909"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-01-usitc-hts-2026-rev13-notes.jsonl",
+      "sha256": "61d8b5ad13571b2fd579e29305c295eb186c0ee1cfc1702f151d4a5ac26c33cc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-01-usitc-hts-2026-rev13-notes/official-documents/usitc-hts-2026-rev13-chapter-99.pdf",
+      "sha256": "cff368d7d80724781afa3fd7ebe4ffbbf6dfd68b8e0a9c9c7c6ce54b95c9cecc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-01-usitc-hts-2026-rev13-notes/official-documents/usitc-hts-2026-rev13-general-note-3.pdf",
+      "sha256": "94e112478e146973ea15e63a2ada2ef1e55bc3ca13ef48bb99b13dbb545be04e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1f436d076d47f3ef4b2e32c48711d52a387a0888",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-01-usitc-hts-2026-rev13-notes --manifest manifests/us-usitc-hts-2026-rev13-notes.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 810,
+    "missing_count": 0,
+    "provision_count": 810,
+    "source_count": 810
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-01T23:36:12.210228+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YeVCCeyjv6weEq7pnfJMnfe6Cl6tXGbkp3oCDtICNI/3P6eqlQQI+9vEItMmLDbSgc/eVbBi0K47FvuxKIBjBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-usitc-hts-2026-rev13-notes"
+}

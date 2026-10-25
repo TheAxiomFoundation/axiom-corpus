@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-wood-types-presdocu-term-timber.json",
+      "sha256": "f090a271bdf19324215b2a259a75f08145bc3951911bcd213725e4a7cc9c5cb1"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-wood-types-presdocu-term-timber.json",
+      "sha256": "d351c4331668ec211675636e4720b5f37fb1fc175eb1aa3843a810b37419e285"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-wood-types-presdocu-term-timber.jsonl",
+      "sha256": "7191c4f72a4cc7f9b404d31b956f88c7a92b8aa5761abd5a892963129d4930ee"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-wood-types-presdocu-term-timber/federal-register/api/documents-page-1.json",
+      "sha256": "c762ebf827742ad5f354f75c0b3819fcb558c89878cffa19b1247c51377af444"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-wood-types-presdocu-term-timber/federal-register/documents/2025-19482.json",
+      "sha256": "abf390083a6f21c7e5092dac6f3895ddf537705824eb8eb0375528e8bd68ba15"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-wood-types-presdocu-term-timber/federal-register/documents/2025-19482.txt",
+      "sha256": "05ff331184f8705b07c3ffaa83ccbf1c411cf5a2f181890b607f66293d2757b7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-wood --start-date 2025-10-06 --document-type PRESDOCU --term \"timber\" --source-as-of 2026-08-01 --expression-date 2025-10-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:18.242289+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3wh/vyVLS4QI9noIeIMEC+7QZefSWI6x9T9ArSmg0SRN+cuApGtM/jF9jtWJ2nk34jkMrq66Rk5/YzsCdf0qAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-wood-types-presdocu-term-timber"
+}

@@ -1,0 +1,32 @@
+version: '2026-09-14'
+documents:
+- source_id: hi-dotax-har-18-235-income-tax-law
+  jurisdiction: us-hi
+  document_class: regulation
+  citation_path: us-hi/regulation/har/18/235
+  title: 'Hawaii Administrative Rules Title 18, Chapter 235: Income Tax Law'
+  source_url: https://files.hawaii.gov/tax/legal/har/har_235.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-12-31'
+  extraction:
+    segmentation: labeled_sections
+    section_label_pattern: ^§(?P<label>18-235-[0-9.]+(?:-[0-9]+)?[a-z]?)\s*$
+    label_only_heading_pattern: ^[A-Z“(][^.]{2,140}\.(?:\s|$)
+    label_only_requires_heading: true
+    page_windows:
+    - start_page: 7
+      end_page: 158
+    drop_line_patterns:
+    - ^INCOME TAX LAW\s*$
+    - ^235-\s*\d+\s+\(Unofficial Compilation.*$
+    - ^HAWAII ADMINISTRATIVE RULES\s*$
+    - ^\[THIS PAGE HAS BEEN INTENTIONALLY LEFT BLANK\.\]\s*$
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Taxation
+    official_publisher: Hawaii Department of Taxation
+    document_subtype: administrative_rules_chapter
+    program: individual_income_tax
+    source_discovery_group: us-hi/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://tax.hawaii.gov/legal/

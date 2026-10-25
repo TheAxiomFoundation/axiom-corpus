@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/guidance/2026-10-06-w6-income-tax-guidance-or.json",
+      "sha256": "229409e84e4d37a738fd8b763877d5cfc3dde35c1ab0f9ecad1d086d2776dec0"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/guidance/2026-10-06-w6-income-tax-guidance-or.json",
+      "sha256": "ae5f0e80992c70189f9df02325301885f0a7cd586b69bcb705a4d7b5f02a4c19"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/guidance/2026-10-06-w6-income-tax-guidance-or.jsonl",
+      "sha256": "31b07de6f2d52387b1cf7308db0a4048aa47f3f1ac97591deb99ab19c150dc12"
+    },
+    {
+      "path": "data/corpus/sources/us-or/guidance/2026-10-06-w6-income-tax-guidance-or/official-documents/us-or-guidance-dor-oregon-surplus-kicker.html",
+      "sha256": "9b87ad9ed0c47626298ee89052cc46768fd0b909838dfd16dceefc71baf133bb"
+    },
+    {
+      "path": "data/corpus/sources/us-or/guidance/2026-10-06-w6-income-tax-guidance-or/official-documents/us-or-guidance-dor-tax-benefits-for-families.html",
+      "sha256": "c4b8327ada45d6533bb439e217c0922e8f40a9985518f94071435e481101e3d6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:57:30.581361+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XDvMHbYyjozqd0UylQrbb+dtTNLUzmgJeY1LPIzvbB5gSNrct8sUO+FF7O66CaAFNP9DCaqEFYvfiYLhFsVoAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-or"
+}

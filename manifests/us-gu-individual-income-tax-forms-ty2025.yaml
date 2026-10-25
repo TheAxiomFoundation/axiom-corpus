@@ -1,0 +1,43 @@
+version: '2026-09-11'
+documents:
+- source_id: us-gu-drt-form-1040-guam-ty2025
+  jurisdiction: us-gu
+  document_class: form
+  title: Form 1040 Guam, Guam Individual Income Tax Return (2025)
+  source_url: https://www.guamtax.com/forms/2025GUAM1040TaxForm.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-gu/form/drt/ty2025/form-1040-guam
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Guam Department of Revenue and Taxation
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-gu/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.guamtax.com/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://www.guamtax.com/forms/
+- source_id: us-gu-drt-form-1040-sr-guam-ty2025
+  jurisdiction: us-gu
+  document_class: form
+  title: Form 1040-SR Guam, Guam Income Tax Return for Seniors (2025)
+  source_url: https://www.guamtax.com/forms/2025GUAM1040SRTaxForm.pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2025-01-01'
+  citation_path: us-gu/form/drt/ty2025/form-1040-sr-guam
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Guam Department of Revenue and Taxation
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-gu/form/individual-income-tax
+    source_family: territory-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.guamtax.com/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://www.guamtax.com/forms/

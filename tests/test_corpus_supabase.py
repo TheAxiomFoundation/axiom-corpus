@@ -1,9 +1,13 @@
 import hashlib
+import http.client
+import importlib.util
 import io
 import json
+import sys
 import urllib.error
 import urllib.parse
 from base64 import b64encode
+from pathlib import Path
 
 import pytest
 from cryptography.hazmat.primitives import serialization
@@ -16,8 +20,6 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.corpus.supabase import (
-    ACTIVATE_RELEASE_QUERY,
-    PREVIEW_ACTIVATION_QUERY,
     StagedScopeEvidence,
     activate_corpus_release,
     delete_supabase_provisions_scope,
@@ -139,6 +141,93 @@ def _signed_release_object() -> tuple[dict, str]:
         sign_release_object(build_unsigned_release_object(content), private_key=private_text),
         public_text,
     )
+
+
+def _load_stage_release_object_script():
+    path = Path(__file__).parents[1] / "scripts" / "stage_release_object.py"
+    spec = importlib.util.spec_from_file_location("stage_release_object", path)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_stage_release_object_registers_verified_identity_without_activation(
+    tmp_path, monkeypatch, capsys
+) -> None:
+    stage = _load_stage_release_object_script()
+    release_object, public_key = _signed_release_object()
+    release_path = tmp_path / "release-object.json"
+    release_path.write_text(json.dumps(release_object), encoding="utf-8")
+    monkeypatch.setenv("AXIOM_CORPUS_RELEASE_PUBLIC_KEY", public_key)
+    monkeypatch.setenv("SUPABASE_ACCESS_TOKEN", "management")
+    captured = {}
+
+    monkeypatch.setattr(
+        stage,
+        "_stage_release_activation_upload",
+        lambda release_object, **kwargs: ("upload-id", "f" * 64),
+    )
+
+    def fake_post(url, *, payload, access_token, timeout):
+        captured.update(
+            url=url,
+            payload=payload,
+            access_token=access_token,
+            timeout=timeout,
+        )
+        return [
+            {
+                "result": {
+                    "staged": True,
+                    "inserted": True,
+                    "release": release_object["release"],
+                    "content_sha256": release_object["content_sha256"],
+                    "scope_count": 1,
+                }
+            }
+        ]
+
+    monkeypatch.setattr(stage, "_management_api_post_json_with_curl", fake_post)
+    deleted = []
+    monkeypatch.setattr(
+        stage,
+        "_delete_release_activation_upload",
+        lambda upload_id, **kwargs: deleted.append(upload_id),
+    )
+
+    assert (
+        stage.main(
+            [
+                "--release-object",
+                str(release_path),
+                "--release",
+                release_object["release"],
+                "--content-sha",
+                release_object["content_sha256"],
+                "--supabase-url",
+                "https://example.supabase.co",
+                "--expected-project-ref",
+                "example",
+            ]
+        )
+        == 0
+    )
+    assert captured["payload"] == {
+        "query": stage.STAGE_RELEASE_OBJECT_QUERY,
+        "parameters": [
+            "upload-id",
+            release_object["release"],
+            release_object["content_sha256"],
+            "f" * 64,
+        ],
+        "read_only": False,
+    }
+    assert captured["access_token"] == "management"
+    assert captured["timeout"] == 600
+    assert deleted == ["upload-id"]
+    assert '"staged": true' in capsys.readouterr().out
 
 
 def test_supabase_projection_derives_stable_ids_and_parent_ids():
@@ -1480,6 +1569,225 @@ def test_fetch_staged_release_scope_evidence_requires_exact_rpc_surface(monkeypa
     assert captured["timeout"] == 600
 
 
+@pytest.mark.parametrize(
+    "value",
+    ["a" * 64, "us-rulespec-2026-09-13-federal-and-plans-union", "x.y:z@w+v"],
+)
+def test_sql_text_literal_quotes_plain_values(value):
+    import axiom_corpus.corpus.supabase as supabase
+
+    assert supabase.sql_text_literal(value) == f"'{value}'"
+
+
+@pytest.mark.parametrize("value", ["", "a'b", "a;b", "a b", "a$b", 42, None, "x" * 201])
+def test_sql_text_literal_refuses_anything_else(value):
+    import axiom_corpus.corpus.supabase as supabase
+
+    with pytest.raises(RuntimeError, match="plain identifier-like"):
+        supabase.sql_text_literal(value)
+
+
+def test_sql_jsonb_literal_dollar_quotes_and_refuses_its_own_tag():
+    import axiom_corpus.corpus.supabase as supabase
+
+    doc = json.dumps({"release": "r", "content": {"scopes": [{"a": "it's"}]}})
+    literal = supabase.sql_jsonb_literal(doc)
+    assert literal.startswith(supabase._SQL_JSONB_DOLLAR_TAG)
+    assert literal.endswith(supabase._SQL_JSONB_DOLLAR_TAG + "::jsonb")
+    assert doc in literal
+    with pytest.raises(RuntimeError, match="dollar-quoted"):
+        supabase.sql_jsonb_literal("x" + supabase._SQL_JSONB_DOLLAR_TAG + "y")
+
+
+def test_unbounded_statement_disables_the_session_timeout_first():
+    import axiom_corpus.corpus.supabase as supabase
+
+    statement = supabase.unbounded_statement(
+        "SELECT {value} AS v", value=supabase.sql_text_literal("abc")
+    )
+    assert statement == "SET statement_timeout = 0;\nSELECT 'abc' AS v"
+
+
+class _FakeDirectCursor:
+    def __init__(self, connection):
+        self.connection = connection
+        self.description = None
+        self._rows = []
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return None
+
+    def execute(self, statement, parameters=None):
+        self.connection.statements.append((statement, parameters))
+        self.description = None
+        self._rows = []
+        if statement.startswith("INSERT INTO corpus.release_activation_upload_chunks"):
+            self._rows = [(parameters[3],)]
+        elif "corpus.activate_corpus_release(" in statement:
+            self._rows = [(self.connection.activation_result,)]
+        elif "corpus.preview_corpus_release_activation(" in statement:
+            self.description = [
+                ("jurisdiction",),
+                ("document_class",),
+                ("current_release_name",),
+                ("current_content_sha256",),
+                ("changes",),
+            ]
+            self._rows = [("nz", "statute", None, None, True)]
+
+    def fetchone(self):
+        return self._rows[0] if self._rows else None
+
+    def fetchall(self):
+        return list(self._rows)
+
+
+class _FakeDirectConnection:
+    def __init__(self, activation_result):
+        self.statements = []
+        self.autocommit = False
+        self.closed = False
+        self.activation_result = activation_result
+
+    def cursor(self):
+        return _FakeDirectCursor(self)
+
+    def close(self):
+        self.closed = True
+
+
+def _install_fake_psycopg2(monkeypatch, connection):
+    import types
+
+    calls = []
+    fake = types.SimpleNamespace(connect=lambda url: calls.append(url) or connection)
+    monkeypatch.setitem(sys.modules, "psycopg2", fake)
+    return calls
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [
+        ("postgresql://postgres:pw@db.abcdefghijklmnop.supabase.co:5432/postgres", True),
+        (
+            "postgresql://postgres.abcdefghijklmnop:pw@aws-0-us-east-1.pooler.supabase.com:5432/postgres",
+            True,
+        ),
+        ("postgresql://postgres:pw@db.otherprojectref00.supabase.co:5432/postgres", False),
+        (
+            "postgresql://postgres.otherprojectref00:pw@aws-0.pooler.supabase.com:5432/postgres",
+            False,
+        ),
+    ],
+)
+def test_database_url_names_project(url, expected):
+    import axiom_corpus.corpus.supabase as supabase
+
+    assert supabase.database_url_names_project(url, "abcdefghijklmnop") is expected
+
+
+def test_activate_corpus_release_direct_runs_the_same_transaction_over_psycopg2(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    result = {
+        "active": True,
+        "release": release_object["release"],
+        "content_sha256": release_object["content_sha256"],
+        "scopes": [
+            {"jurisdiction": "nz", "document_class": "statute", "status": "activated"},
+        ],
+    }
+    connection = _FakeDirectConnection(result)
+    calls = _install_fake_psycopg2(monkeypatch, connection)
+    monkeypatch.setattr(supabase, "_require_complete_activation_scopes", lambda *a, **k: None)
+    monkeypatch.setattr(supabase.secrets, "token_hex", lambda _size: "b" * 64)
+
+    returned = supabase.activate_corpus_release_direct(
+        release_object,
+        database_url="postgresql://postgres.abcdefghijklmnop:pw@pooler.supabase.com:5432/postgres",
+        public_key=public_key,
+        expected_project_ref="abcdefghijklmnop",
+    )
+
+    assert returned == result
+    assert calls == ["postgresql://postgres.abcdefghijklmnop:pw@pooler.supabase.com:5432/postgres"]
+    assert connection.autocommit is True
+    assert connection.closed is True
+    statements = [statement for statement, _ in connection.statements]
+    assert statements[0] == "SET statement_timeout = 0"
+    assert statements[1].startswith("DELETE FROM corpus.release_activation_upload_chunks")
+    assert statements[2].startswith("INSERT INTO corpus.release_activation_upload_chunks")
+    assert "$1" not in statements[2] and "%s" in statements[2]
+    activation = next(
+        (stmt, params)
+        for stmt, params in connection.statements
+        if "corpus.activate_corpus_release(" in stmt
+    )
+    assert activation[1] == (
+        "b" * 64,
+        release_object["release"],
+        release_object["content_sha256"],
+        hashlib.sha256(canonical_json_bytes(release_object)).hexdigest(),
+    )
+    assert statements[-1].startswith("DELETE FROM corpus.release_activation_upload_chunks WHERE")
+
+
+def test_activate_corpus_release_direct_refuses_a_foreign_project_url(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    connection = _FakeDirectConnection({})
+    calls = _install_fake_psycopg2(monkeypatch, connection)
+
+    with pytest.raises(RuntimeError, match="does not name project"):
+        supabase.activate_corpus_release_direct(
+            release_object,
+            database_url="postgresql://postgres.zzzzzzzzzzzzzzzz:pw@pooler.supabase.com:5432/postgres",
+            public_key=public_key,
+            expected_project_ref="abcdefghijklmnop",
+        )
+    assert calls == []
+
+
+def test_preview_corpus_release_activation_direct_binds_the_identity(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    connection = _FakeDirectConnection({})
+    _install_fake_psycopg2(monkeypatch, connection)
+
+    rows = supabase.preview_corpus_release_activation_direct(
+        release_object,
+        database_url="postgresql://postgres:pw@db.abcdefghijklmnop.supabase.co:5432/postgres",
+        public_key=public_key,
+        expected_project_ref="abcdefghijklmnop",
+    )
+
+    assert rows == [
+        {
+            "jurisdiction": "nz",
+            "document_class": "statute",
+            "current_release_name": None,
+            "current_content_sha256": None,
+            "changes": True,
+        }
+    ]
+    preview = next(
+        (stmt, params)
+        for stmt, params in connection.statements
+        if "corpus.preview_corpus_release_activation(" in stmt
+    )
+    assert "%s::jsonb" in preview[0]
+    assert json.loads(preview[1][0]) == {
+        "release": release_object["release"],
+        "content": {"scopes": release_object["content"]["scopes"]},
+    }
+
+
 def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
@@ -1492,7 +1800,7 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
         query = payload["query"]
         if query == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
             response = [{"chunk_index": payload["parameters"][3]}]
-        elif query == ACTIVATE_RELEASE_QUERY:
+        elif "corpus.activate_corpus_release(" in query:
             response = [
                 {
                     "result": {
@@ -1501,9 +1809,7 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
                         "content_sha256": release_object["content_sha256"],
                         "scope_count": 1,
                         "scopes": {
-                            "activated": [
-                                {"jurisdiction": "nz", "document_class": "statute"}
-                            ],
+                            "activated": [{"jurisdiction": "nz", "document_class": "statute"}],
                             "reaffirmed": [],
                         },
                     }
@@ -1555,12 +1861,12 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     activation = next(
         payload
         for _command, payload, _capture, _check, _timeout in captured
-        if payload["query"] == ACTIVATE_RELEASE_QUERY
+        if "corpus.activate_corpus_release(" in payload["query"]
     )
-    assert activation["parameters"][1:3] == [
-        "nz-rulespec-v1",
-        release_object["content_sha256"],
-    ]
+    assert activation["query"].startswith(supabase.UNBOUNDED_STATEMENT_PREFIX)
+    assert "'nz-rulespec-v1'" in activation["query"]
+    assert f"'{release_object['content_sha256']}'" in activation["query"]
+    assert "parameters" not in activation
     assert activation["read_only"] is False
 
 
@@ -1581,23 +1887,32 @@ def test_preview_corpus_release_activation_sends_compact_verified_identity(monke
 
     monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
 
-    assert preview_corpus_release_activation(
-        release_object,
-        access_token="management",
-        public_key=public_key,
-        supabase_url="https://example.supabase.co",
-    ) == []
+    assert (
+        preview_corpus_release_activation(
+            release_object,
+            access_token="management",
+            public_key=public_key,
+            supabase_url="https://example.supabase.co",
+        )
+        == []
+    )
 
-    assert captured["payload"]["query"] == PREVIEW_ACTIVATION_QUERY
+    query = captured["payload"]["query"]
+    assert query.startswith(supabase.UNBOUNDED_STATEMENT_PREFIX)
+    assert "corpus.preview_corpus_release_activation(" in query
+    assert "parameters" not in captured["payload"]
     assert captured["payload"]["read_only"] is True
-    preview_object = json.loads(captured["payload"]["parameters"][0])
+    tag = supabase._SQL_JSONB_DOLLAR_TAG
+    start = query.index(tag) + len(tag)
+    end = query.index(tag, start)
+    preview_object = json.loads(query[start:end])
     assert preview_object == {
         "release": "nz-rulespec-v1",
         "content": {"scopes": release_object["content"]["scopes"]},
     }
     assert len(json.dumps(captured["payload"])) < 2_000
     assert captured["access_token"] == "management"
-    assert captured["timeout"] == 120
+    assert captured["timeout"] == 900
 
 
 def test_stage_release_activation_upload_bounds_every_management_request(monkeypatch):
@@ -1618,6 +1933,7 @@ def test_stage_release_activation_upload_bounds_every_management_request(monkeyp
 
     monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
     monkeypatch.setattr(supabase.secrets, "token_hex", lambda _size: "b" * 64)
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: None)
 
     upload_id, object_sha256 = supabase._stage_release_activation_upload(
         release_object,
@@ -1637,6 +1953,124 @@ def test_stage_release_activation_upload_bounds_every_management_request(monkeyp
     assert "".join(payload["parameters"][5] for payload in staged) == canonical_json_bytes(
         release_object
     ).decode("ascii")
+
+
+def test_management_api_post_waits_out_throttle_then_succeeds(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    attempts = []
+    sleeps = []
+
+    class Completed:
+        def __init__(self, returncode, stdout):
+            self.returncode = returncode
+            self.stdout = stdout
+            self.stderr = b""
+
+    def fake_run(command, **kwargs):
+        attempts.append(kwargs["input"])
+        if len(attempts) < 3:
+            return Completed(22, b'{"message":"ThrottlerException: Too Many Requests"}')
+        return Completed(0, b'[{"chunk_index": 0}]')
+
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: sleeps.append(seconds))
+
+    rows = supabase._management_api_post_json_with_curl(
+        "https://api.supabase.test/query",
+        payload={"query": "select 1"},
+        access_token="management",
+        timeout=30,
+    )
+
+    assert rows == [{"chunk_index": 0}]
+    assert len(attempts) == 3
+    assert sleeps == [15.0, 30.0]
+
+
+def test_management_api_post_gives_up_after_persistent_throttle(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    class Completed:
+        returncode = 22
+        stdout = b'{"message":"ThrottlerException: Too Many Requests"}'
+        stderr = b""
+
+    calls = []
+    monkeypatch.setattr(
+        supabase.subprocess, "run", lambda command, **kwargs: calls.append(1) or Completed()
+    )
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: None)
+
+    with pytest.raises(RuntimeError, match="Too Many Requests"):
+        supabase._management_api_post_json_with_curl(
+            "https://api.supabase.test/query",
+            payload={"query": "select 1"},
+            access_token="management",
+            timeout=30,
+        )
+    assert len(calls) == len(supabase._MANAGEMENT_API_THROTTLE_BACKOFF_SECONDS) + 1
+
+
+def test_management_api_post_does_not_retry_other_failures(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    class Completed:
+        returncode = 22
+        stdout = b'{"message":"permission denied"}'
+        stderr = b""
+
+    calls = []
+    monkeypatch.setattr(
+        supabase.subprocess, "run", lambda command, **kwargs: calls.append(1) or Completed()
+    )
+    monkeypatch.setattr(
+        supabase.time, "sleep", lambda seconds: pytest.fail("must not sleep on a hard error")
+    )
+
+    with pytest.raises(RuntimeError, match="permission denied"):
+        supabase._management_api_post_json_with_curl(
+            "https://api.supabase.test/query",
+            payload={"query": "select 1"},
+            access_token="management",
+            timeout=30,
+        )
+    assert calls == [1]
+
+
+def test_stage_release_activation_upload_paces_chunk_requests(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object = {
+        "release": "large-release",
+        "content_sha256": "a" * 64,
+        "content": {"artifacts": ["x" * 400_000]},
+    }
+    events = []
+
+    def fake_post(url, *, payload, access_token, timeout):
+        if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
+            events.append(("post", payload["parameters"][3]))
+            return [{"chunk_index": payload["parameters"][3]}]
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
+    monkeypatch.setattr(supabase.time, "sleep", lambda seconds: events.append(("sleep", seconds)))
+
+    supabase._stage_release_activation_upload(
+        release_object, endpoint="https://api.supabase.test/query", access_token="management"
+    )
+
+    pacing = supabase._RELEASE_ACTIVATION_CHUNK_PACING_SECONDS
+    assert events == [
+        ("post", 0),
+        ("sleep", pacing),
+        ("post", 1),
+        ("sleep", pacing),
+        ("post", 2),
+        ("sleep", pacing),
+        ("post", 3),
+    ]
 
 
 def test_apply_release_activation_upload_migration_uses_expected_project(monkeypatch):
@@ -1737,9 +2171,7 @@ def test_fetch_staged_scope_rows_retries_transient_server_error(monkeypatch):
         nonlocal calls
         calls += 1
         if calls == 1:
-            raise urllib.error.HTTPError(
-                req.full_url, 522, "origin timeout", {}, io.BytesIO()
-            )
+            raise urllib.error.HTTPError(req.full_url, 522, "origin timeout", {}, io.BytesIO())
         return _ReleasedRowsResponse([])
 
     monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
@@ -1785,245 +2217,338 @@ def test_fetch_staged_scope_rows_does_not_retry_client_error(monkeypatch):
     assert sleeps == []
 
 
-def _membership(scope: ReleaseScope) -> dict[str, str]:
+class _TableResponse:
+    def __init__(self, rows, *, content_range=None, body=None, cut_off=False):
+        self._body = body if body is not None else json.dumps(rows).encode()
+        self._cut_off = cut_off
+        self.headers = {"Content-Range": content_range} if content_range else {}
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return None
+
+    def read(self):
+        if self._cut_off:
+            raise http.client.IncompleteRead(self._body[:10])
+        return self._body
+
+
+class _ReleaseTables:
+    """A fake PostgREST for corpus.release_scopes and corpus.release_objects."""
+
+    def __init__(self, scope_rows, objects, *, page_cap=None, extra_scope_rows=()):
+        self.scope_rows = list(scope_rows)
+        self.objects = dict(objects)
+        self.page_cap = page_cap
+        self.extra_scope_rows = list(extra_scope_rows)
+        self.calls = []
+        self.timeouts = []
+        # Call number (from 1) to what answers that call instead of the
+        # tables: an exception to raise, or a response to return.
+        self.faults = {}
+
+    def urlopen(self, req, **kwargs):
+        parsed = urllib.parse.urlsplit(req.full_url)
+        table = parsed.path.rsplit("/", 1)[-1]
+        params = dict(urllib.parse.parse_qsl(parsed.query))
+        self.calls.append((table, params))
+        self.timeouts.append(kwargs.get("timeout"))
+        assert req.get_method() == "GET"
+        assert req.headers["Accept-profile"] == "corpus"
+        fault = self.faults.pop(len(self.calls), None)
+        if isinstance(fault, BaseException):
+            raise fault
+        if fault is not None:
+            return fault
+        if table == "release_scopes":
+            assert req.headers["Prefer"] == "count=exact"
+            versions = params["version"].removeprefix('in.("').removesuffix('")').split('","')
+            matched = (
+                sorted(
+                    (row for row in self.scope_rows if row["version"] in versions),
+                    key=lambda row: (
+                        row["release_name"],
+                        row["jurisdiction"],
+                        row["document_class"],
+                        row["version"],
+                    ),
+                )
+                + self.extra_scope_rows
+            )
+            offset, limit = int(params["offset"]), int(params["limit"])
+            page = matched[offset : offset + min(limit, self.page_cap or limit)]
+            span = f"{offset}-{offset + len(page) - 1}" if page else "*"
+            return _TableResponse(page, content_range=f"{span}/{len(matched)}")
+        assert table == "release_objects"
+        name = params["release_name"].removeprefix("eq.")
+        row = self.objects.get(name)
+        return _TableResponse([row] if row is not None else [])
+
+
+def _scope_row(release_name: str, scope: ReleaseScope) -> dict[str, str]:
     return {
+        "release_name": release_name,
         "jurisdiction": scope.jurisdiction,
         "document_class": scope.document_class,
         "version": scope.version,
     }
 
 
-def _object_set(
-    release_object: dict, release_name: str, scopes: tuple[ReleaseScope, ...]
-) -> dict[str, object]:
+def _object_row(release_object: dict, release_name: str) -> dict[str, object]:
     return {
         "release_name": release_name,
         "content_sha256": release_object["content_sha256"],
         "release_object": {**release_object, "release": release_name},
-        "scopes": [_membership(scope) for scope in scopes],
     }
 
 
-def _requested_scopes(req) -> list[dict[str, str]]:
-    return json.loads(req.data)["p_scopes"]
-
-
-def test_fetch_released_scope_objects_fetches_each_signed_object_once(monkeypatch):
+def _fetch(tables, monkeypatch, scopes):
     import axiom_corpus.corpus.supabase as supabase
 
-    release_object, _public_key = _signed_release_object()
-    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(55))
-    calls = []
-
-    def fake_urlopen(req, **kwargs):
-        calls.append(req)
-        return _ReleasedRowsResponse([_object_set(release_object, "nz-rulespec-v1", scopes)])
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=scopes),
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", tables.urlopen)
+    return fetch_released_scope_objects(
+        ReleaseManifest(name="nz-rulespec-v2", scopes=tuple(scopes)),
         service_key="service",
         supabase_url="https://example.supabase.co",
     )
 
-    assert len(calls) == 1
-    assert calls[0].method == "POST"
-    assert calls[0].full_url.endswith("/rpc/get_released_scope_object_sets")
-    assert len(_requested_scopes(calls[0])) == len(scopes)
+
+def test_fetch_released_scope_objects_reads_memberships_then_each_signed_object_once(
+    monkeypatch,
+):
+    release_object, _public_key = _signed_release_object()
+    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(55))
+    tables = _ReleaseTables(
+        [_scope_row("nz-rulespec-v1", scope) for scope in scopes],
+        {"nz-rulespec-v1": _object_row(release_object, "nz-rulespec-v1")},
+    )
+
+    rows = _fetch(tables, monkeypatch, scopes)
+
+    assert [table for table, _params in tables.calls] == ["release_scopes", "release_objects"]
+    assert tables.calls[0][1]["select"] == "release_name,jurisdiction,document_class,version"
+    assert tables.calls[1][1] == {
+        "select": "release_name,content_sha256,release_object",
+        "release_name": "eq.nz-rulespec-v1",
+    }
     assert set(rows) == {scope.key for scope in scopes}
     assert all(rows[scope.key][0].release_object == release_object for scope in scopes)
 
 
-def test_fetch_released_scope_objects_splits_rejected_server_batches(monkeypatch):
+def test_fetch_released_scope_objects_reads_versions_in_batches(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
+    monkeypatch.setattr(supabase, "_RELEASED_SCOPE_VERSION_BATCH", 2)
     scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(5))
-    requested_sizes = []
+    tables = _ReleaseTables([], {})
 
-    def fake_urlopen(req, **kwargs):
-        size = len(_requested_scopes(req))
-        requested_sizes.append(size)
-        if size > 2:
-            raise urllib.error.HTTPError(req.full_url, 520, "origin error", {}, io.BytesIO())
-        return _ReleasedRowsResponse([])
+    rows = _fetch(tables, monkeypatch, scopes)
 
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=scopes),
-        service_key="service",
-        supabase_url="https://example.supabase.co",
-    )
-
-    assert requested_sizes == [5, 2, 3, 1, 2]
+    assert [params["version"] for _table, params in tables.calls] == [
+        'in.("v0","v1")',
+        'in.("v2","v3")',
+        'in.("v4")',
+    ]
     assert all(rows[scope.key] == () for scope in scopes)
 
 
-def test_fetch_released_scope_objects_retries_single_scope_server_error(monkeypatch):
+def test_fetch_released_scope_objects_splits_a_batch_that_does_not_fit_one_page(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    monkeypatch.setattr(supabase, "_RELEASED_SCOPE_PAGE_SIZE", 3)
+    release_object, _public_key = _signed_release_object()
+    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(4))
+    names = ("nz-rulespec-v1a", "nz-rulespec-v1b")
+    tables = _ReleaseTables(
+        [_scope_row(name, scope) for name in names for scope in scopes],
+        {name: _object_row(release_object, name) for name in names},
+    )
+
+    rows = _fetch(tables, monkeypatch, scopes)
+
+    assert [params["version"] for table, params in tables.calls if table == "release_scopes"] == [
+        'in.("v0","v1","v2","v3")',
+        'in.("v0","v1")',
+        'in.("v0")',
+        'in.("v1")',
+        'in.("v2","v3")',
+        'in.("v2")',
+        'in.("v3")',
+    ]
+    assert all([item.release_name for item in rows[scope.key]] == list(names) for scope in scopes)
+
+
+def test_fetch_released_scope_objects_pages_one_version_and_trusts_only_the_count(monkeypatch):
+    # The server returns fewer rows than asked for: only the exact count shows the page is short.
+    release_object, _public_key = _signed_release_object()
+    scope = ReleaseScope("nz", "statute", "v1")
+    names = tuple(f"nz-rulespec-v1{letter}" for letter in "abcde")
+    tables = _ReleaseTables(
+        [_scope_row(name, scope) for name in names],
+        {name: _object_row(release_object, name) for name in names},
+        page_cap=2,
+    )
+
+    rows = _fetch(tables, monkeypatch, (scope,))
+
+    assert [params["offset"] for table, params in tables.calls if table == "release_scopes"] == [
+        "0",
+        "2",
+        "4",
+    ]
+    assert [item.release_name for item in rows[scope.key]] == list(names)
+
+
+def test_fetch_released_scope_objects_requires_an_exact_count(monkeypatch):
+    tables = _ReleaseTables([], {})
+    tables.faults = {1: _TableResponse([])}
+
+    with pytest.raises(RuntimeError, match="exact row count"):
+        _fetch(tables, monkeypatch, (ReleaseScope("nz", "statute", "v1"),))
+
+
+@pytest.mark.parametrize(
+    "fault",
+    [
+        urllib.error.HTTPError("https://example", 520, "origin error", {}, io.BytesIO()),
+        urllib.error.URLError("temporary network failure"),
+        ConnectionResetError("connection reset by peer"),
+        _TableResponse(None, body=b'[{"release_name": "nz-rul'),
+        _TableResponse([], cut_off=True),
+    ],
+    ids=["server-error", "url-error", "reset", "cut-off-json", "incomplete-read"],
+)
+def test_fetch_released_scope_objects_retries_transient_failures(monkeypatch, fault):
     import axiom_corpus.corpus.supabase as supabase
 
     release_object, _public_key = _signed_release_object()
     scope = ReleaseScope("nz", "statute", "v1")
-    calls = 0
-    sleeps = []
-
-    def fake_urlopen(req, **kwargs):
-        nonlocal calls
-        calls += 1
-        if calls == 1:
-            raise urllib.error.HTTPError(req.full_url, 520, "origin error", {}, io.BytesIO())
-        return _ReleasedRowsResponse(
-            [_object_set(release_object, "nz-rulespec-v1", (scope,))]
-        )
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
-        service_key="service",
-        supabase_url="https://example.supabase.co",
+    tables = _ReleaseTables(
+        [_scope_row("nz-rulespec-v1", scope)],
+        {"nz-rulespec-v1": _object_row(release_object, "nz-rulespec-v1")},
     )
+    tables.faults = {1: fault}
+    sleeps = []
+    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
 
-    assert calls == 2
+    rows = _fetch(tables, monkeypatch, (scope,))
+
+    assert [table for table, _params in tables.calls] == [
+        "release_scopes",
+        "release_scopes",
+        "release_objects",
+    ]
     assert sleeps == [supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS]
     assert rows[scope.key][0].release_name == "nz-rulespec-v1"
 
 
-@pytest.mark.parametrize(
-    "error",
-    [
-        urllib.error.URLError("temporary network failure"),
-        ConnectionResetError("connection reset by peer"),
-    ],
-)
-def test_fetch_released_scope_objects_retries_network_errors(monkeypatch, error):
-    import axiom_corpus.corpus.supabase as supabase
-
-    scope = ReleaseScope("nz", "statute", "v1")
-    calls = 0
-    sleeps = []
-
-    def fake_urlopen(req, **kwargs):
-        nonlocal calls
-        calls += 1
-        if calls == 1:
-            raise error
-        return _ReleasedRowsResponse([])
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
-        service_key="service",
-        supabase_url="https://example.supabase.co",
-    )
-
-    assert calls == 2
-    assert sleeps == [supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS]
-    assert rows[scope.key] == ()
-
-
-def test_fetch_released_scope_objects_splits_after_network_retries(monkeypatch):
-    import axiom_corpus.corpus.supabase as supabase
-
-    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(4))
-    requested_sizes = []
-    sleeps = []
-
-    def fake_urlopen(req, **kwargs):
-        size = len(_requested_scopes(req))
-        requested_sizes.append(size)
-        if size == len(scopes):
-            raise ConnectionResetError("connection reset by peer")
-        return _ReleasedRowsResponse([])
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=scopes),
-        service_key="service",
-        supabase_url="https://example.supabase.co",
-    )
-
-    assert requested_sizes == [4, 4, 4, 2, 2]
-    assert sleeps == [
-        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS,
-        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * 2,
-    ]
-    assert all(rows[scope.key] == () for scope in scopes)
-
-
-@pytest.mark.parametrize("status", [413, 414])
-def test_fetch_released_scope_objects_splits_oversized_requests(monkeypatch, status):
-    import axiom_corpus.corpus.supabase as supabase
-
-    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(5))
-    requested_sizes = []
-
-    def fake_urlopen(req, **kwargs):
-        size = len(_requested_scopes(req))
-        requested_sizes.append(size)
-        if size > 2:
-            raise urllib.error.HTTPError(req.full_url, status, "too large", {}, io.BytesIO())
-        return _ReleasedRowsResponse([])
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=scopes),
-        service_key="service",
-        supabase_url="https://example.supabase.co",
-    )
-
-    assert requested_sizes == [5, 2, 3, 1, 2]
-    assert all(rows[scope.key] == () for scope in scopes)
-
-
-def test_fetch_released_scope_objects_exhausts_network_retries(monkeypatch):
-    import axiom_corpus.corpus.supabase as supabase
-
-    scope = ReleaseScope("nz", "statute", "v1")
-    calls = 0
-    sleeps = []
-
-    def fake_urlopen(req, **kwargs):
-        nonlocal calls
-        calls += 1
-        raise TimeoutError("network timeout")
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
-    with pytest.raises(TimeoutError, match="network timeout"):
-        fetch_released_scope_objects(
-            ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
-            service_key="service",
-            supabase_url="https://example.supabase.co",
-        )
-
-    assert calls == supabase._RELEASED_SCOPE_FETCH_MAX_ATTEMPTS
-    assert sleeps == [
-        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS,
-        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * 2,
-    ]
-
-
-def test_fetch_released_scope_objects_mixed_released_and_unreleased(monkeypatch):
+def test_fetch_released_scope_objects_retries_a_cut_off_signed_object(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
     release_object, _public_key = _signed_release_object()
-    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(3))
-    object_sets = [
-        _object_set(release_object, "nz-rulespec-v1a", (scopes[0], scopes[2])),
-        _object_set(release_object, "nz-rulespec-v1b", (scopes[0],)),
+    scope = ReleaseScope("nz", "statute", "v1")
+    tables = _ReleaseTables(
+        [_scope_row("nz-rulespec-v1", scope)],
+        {"nz-rulespec-v1": _object_row(release_object, "nz-rulespec-v1")},
+    )
+    tables.faults = {2: _TableResponse(None, body=b'[{"release_object": {"scopes": [')}
+    sleeps = []
+    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
+
+    rows = _fetch(tables, monkeypatch, (scope,))
+
+    assert [table for table, _params in tables.calls] == [
+        "release_scopes",
+        "release_objects",
+        "release_objects",
+    ]
+    assert sleeps == [supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS]
+    assert rows[scope.key][0].release_object == release_object
+
+
+def test_fetch_released_scope_objects_logs_each_read_with_its_time(monkeypatch, capsys):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, _public_key = _signed_release_object()
+    scope = ReleaseScope("nz", "statute", "v1")
+    tables = _ReleaseTables(
+        [_scope_row("nz-rulespec-v1", scope)],
+        {"nz-rulespec-v1": _object_row(release_object, "nz-rulespec-v1")},
+    )
+    tables.faults = {
+        2: urllib.error.HTTPError("https://example", 520, "origin error", {}, io.BytesIO())
+    }
+    monkeypatch.setattr(supabase.time, "sleep", lambda _seconds: None)
+
+    _fetch(tables, monkeypatch, (scope,))
+
+    lines = capsys.readouterr().err.splitlines()
+    assert [line.split(" attempt=")[0] for line in lines] == [
+        "released-scope read release_scopes versions=1 offset=0",
+        "released-scope read release_objects nz-rulespec-v1",
+        "released-scope read release_objects nz-rulespec-v1",
+    ]
+    assert lines[0].endswith(" rows=1 bytes=" + lines[0].rsplit("bytes=", 1)[1])
+    assert " attempt=1 " in lines[1] and lines[1].endswith("failed: HTTPError")
+    assert " attempt=2 " in lines[2] and " rows=1 " in lines[2]
+    # Every read stops waiting after the bounded timeout, not the old ten minutes.
+    assert set(tables.timeouts) == {supabase._RELEASED_SCOPE_FETCH_TIMEOUT_SECONDS}
+    assert supabase._RELEASED_SCOPE_FETCH_TIMEOUT_SECONDS == 120
+
+
+def test_fetch_released_scope_objects_exhausts_retries(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    tables = _ReleaseTables([], {})
+    tables.faults = {call: TimeoutError("network timeout") for call in (1, 2, 3)}
+    sleeps = []
+    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
+
+    with pytest.raises(TimeoutError, match="network timeout"):
+        _fetch(tables, monkeypatch, (ReleaseScope("nz", "statute", "v1"),))
+
+    assert len(tables.calls) == 3
+    assert sleeps == [
+        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS,
+        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * 2,
     ]
 
-    def fake_urlopen(req, **kwargs):
-        return _ReleasedRowsResponse(object_sets)
 
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
-    rows = fetch_released_scope_objects(
-        ReleaseManifest(name="nz-rulespec-v2", scopes=scopes),
-        service_key="service",
-        supabase_url="https://example.supabase.co",
+def test_fetch_released_scope_objects_does_not_retry_client_errors(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    tables = _ReleaseTables([], {})
+    tables.faults = {
+        1: urllib.error.HTTPError("https://example", 403, "forbidden", {}, io.BytesIO())
+    }
+    sleeps = []
+    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
+
+    with pytest.raises(urllib.error.HTTPError, match="403"):
+        _fetch(tables, monkeypatch, (ReleaseScope("nz", "statute", "v1"),))
+
+    assert len(tables.calls) == 1
+    assert sleeps == []
+
+
+def test_fetch_released_scope_objects_mixed_released_and_unreleased(monkeypatch):
+    release_object, _public_key = _signed_release_object()
+    scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(3))
+    tables = _ReleaseTables(
+        [
+            _scope_row("nz-rulespec-v1a", scopes[0]),
+            _scope_row("nz-rulespec-v1a", scopes[2]),
+            _scope_row("nz-rulespec-v1b", scopes[0]),
+        ],
+        {
+            name: _object_row(release_object, name)
+            for name in ("nz-rulespec-v1a", "nz-rulespec-v1b")
+        },
     )
+
+    rows = _fetch(tables, monkeypatch, scopes)
 
     assert [item.release_name for item in rows[scopes[0].key]] == [
         "nz-rulespec-v1a",
@@ -2033,66 +2558,52 @@ def test_fetch_released_scope_objects_mixed_released_and_unreleased(monkeypatch)
     assert [item.release_name for item in rows[scopes[2].key]] == ["nz-rulespec-v1a"]
 
 
-def test_fetch_released_scope_objects_rejects_rows_outside_their_batch(monkeypatch):
-    import axiom_corpus.corpus.supabase as supabase
+def test_fetch_released_scope_objects_skips_other_scopes_of_the_same_version(monkeypatch):
+    scope = ReleaseScope("nz", "statute", "v1")
+    other = ReleaseScope("au", "statute", "v1")
+    tables = _ReleaseTables([_scope_row("au-rulespec-v1", other)], {})
 
+    rows = _fetch(tables, monkeypatch, (scope,))
+
+    # Only the scope read: the other jurisdiction's release is never fetched.
+    assert [table for table, _params in tables.calls] == ["release_scopes"]
+    assert rows[scope.key] == ()
+
+
+def test_fetch_released_scope_objects_rejects_rows_outside_their_batch(monkeypatch):
     scopes = tuple(ReleaseScope("nz", "statute", f"v{index}") for index in range(2))
     outside = ReleaseScope("nz", "statute", "outside")
-    release_object, _public_key = _signed_release_object()
+    tables = _ReleaseTables([], {}, extra_scope_rows=[_scope_row("nz-rulespec-v1", outside)])
 
-    def fake_urlopen(req, **kwargs):
-        return _ReleasedRowsResponse(
-            [_object_set(release_object, "nz-rulespec-v1", (outside,))]
-        )
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
     with pytest.raises(RuntimeError, match="unknown scope"):
-        fetch_released_scope_objects(
-            ReleaseManifest(name="nz-rulespec-v2", scopes=scopes),
-            service_key="service",
-            supabase_url="https://example.supabase.co",
-        )
+        _fetch(tables, monkeypatch, scopes)
 
 
-@pytest.mark.parametrize("fault", ["duplicate", "conflict", "identity", "empty_scopes"])
-def test_fetch_released_scope_objects_rejects_invalid_object_rows(monkeypatch, fault):
-    import axiom_corpus.corpus.supabase as supabase
-
+@pytest.mark.parametrize("fault", ["duplicate", "identity", "missing", "renamed", "name"])
+def test_fetch_released_scope_objects_rejects_invalid_rows(monkeypatch, fault):
     release_object, _public_key = _signed_release_object()
     scope = ReleaseScope("nz", "statute", "v1")
-    valid = _object_set(release_object, "nz-rulespec-v1", (scope,))
+    scope_rows = [_scope_row("nz-rulespec-v1", scope)]
+    signed = _object_row(release_object, "nz-rulespec-v1")
     if fault == "duplicate":
-        object_rows = [valid, valid]
+        scope_rows = scope_rows * 2
         message = "duplicate"
-    elif fault == "conflict":
-        conflicting = {
-            **valid,
-            "content_sha256": "f" * 64,
-            "release_object": {
-                **valid["release_object"],
-                "content_sha256": "f" * 64,
-            },
-            "scopes": [_membership(scope)],
-        }
-        object_rows = [valid, conflicting]
-        message = "conflicting objects"
     elif fault == "identity":
-        object_rows = [{**valid, "content_sha256": "f" * 64}]
+        signed = {**signed, "content_sha256": "f" * 64}
+        message = "inconsistent object identity"
+    elif fault == "missing":
+        signed = None
+        message = "no single signed object"
+    elif fault == "renamed":
+        signed = {**signed, "release_name": "nz-rulespec-v9"}
         message = "inconsistent object identity"
     else:
-        object_rows = [{**valid, "scopes": []}]
-        message = "malformed memberships"
+        scope_rows = [{**scope_rows[0], "release_name": "Not A Release"}]
+        message = "invalid release name"
+    tables = _ReleaseTables(scope_rows, {"nz-rulespec-v1": signed} if signed else {})
 
-    def fake_urlopen(req, **kwargs):
-        return _ReleasedRowsResponse(object_rows)
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
     with pytest.raises(RuntimeError, match=message):
-        fetch_released_scope_objects(
-            ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
-            service_key="service",
-            supabase_url="https://example.supabase.co",
-        )
+        _fetch(tables, monkeypatch, (scope,))
 
 
 def test_activate_rejects_invalid_signature_before_network(monkeypatch):
@@ -2196,6 +2707,145 @@ def test_fetch_staged_release_scope_evidence_rejects_malformed_rpc_rows(
         )
 
 
+def _staged_evidence_row(scope, count=1):
+    return {
+        "jurisdiction": scope.jurisdiction,
+        "document_class": scope.document_class,
+        "version": scope.version,
+        "provision_count": count,
+        "navigation_count": count,
+        "provision_projection_sha256": "a" * 64,
+        "navigation_projection_sha256": "b" * 64,
+    }
+
+
+class _StagedEvidenceResponse:
+    def __init__(self, rows):
+        self._rows = rows
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return None
+
+    def read(self):
+        return json.dumps(self._rows).encode()
+
+
+def _http_error(code):
+    import io
+
+    return urllib.error.HTTPError("https://example.supabase.co", code, "x", {}, io.BytesIO(b""))
+
+
+def test_fetch_staged_release_scope_evidence_chunks_large_releases(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    scopes = tuple(ReleaseScope("us", "statute", f"v{i:03d}") for i in range(70))
+    by_key = {scope.key: scope for scope in scopes}
+    payloads = []
+
+    def fake_urlopen(req, timeout):
+        payload = json.loads(req.data)["p_scopes"]
+        payloads.append(payload)
+        rows = [
+            _staged_evidence_row(by_key[(s["jurisdiction"], s["document_class"], s["version"])])
+            for s in payload
+        ]
+        return _StagedEvidenceResponse(rows)
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.time, "sleep", lambda *_: None)
+    release = ReleaseManifest(name="us-rulespec-v1", scopes=scopes)
+
+    evidence = fetch_staged_release_scope_evidence(
+        release, service_key="service", supabase_url="https://example.supabase.co"
+    )
+
+    assert set(evidence) == set(by_key)
+    assert [len(p) for p in payloads] == [32, 32, 6]
+    requested = [
+        (s["jurisdiction"], s["document_class"], s["version"]) for p in payloads for s in p
+    ]
+    assert requested == [scope.key for scope in scopes]
+
+
+def test_fetch_staged_release_scope_evidence_splits_chunk_on_gateway_timeout(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    scopes = tuple(ReleaseScope("us", "statute", f"v{i}") for i in range(8))
+    by_key = {scope.key: scope for scope in scopes}
+    sizes = []
+
+    def fake_urlopen(req, timeout):
+        payload = json.loads(req.data)["p_scopes"]
+        sizes.append(len(payload))
+        if len(payload) > 2:
+            raise _http_error(504)
+        return _StagedEvidenceResponse(
+            [
+                _staged_evidence_row(by_key[(s["jurisdiction"], s["document_class"], s["version"])])
+                for s in payload
+            ]
+        )
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.time, "sleep", lambda *_: None)
+    release = ReleaseManifest(name="us-rulespec-v1", scopes=scopes)
+
+    evidence = fetch_staged_release_scope_evidence(
+        release, service_key="service", supabase_url="https://example.supabase.co"
+    )
+
+    assert set(evidence) == set(by_key)
+    # 8 -> 4+4 -> 2+2+2+2: the gateway rejections split, never retried whole.
+    assert sizes == [8, 4, 2, 2, 4, 2, 2]
+
+
+def test_fetch_staged_release_scope_evidence_rejects_duplicate_rows_across_chunks(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    scopes = tuple(ReleaseScope("us", "statute", f"v{i}") for i in range(2))
+
+    def fake_urlopen(req, timeout):
+        # Every chunk answers with the first scope, so the second chunk repeats it.
+        return _StagedEvidenceResponse([_staged_evidence_row(scopes[0])])
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    release = ReleaseManifest(name="us-rulespec-v1", scopes=scopes)
+
+    with pytest.raises(RuntimeError, match="invalid staged release-evidence identity"):
+        fetch_staged_release_scope_evidence(
+            release,
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+            chunk_scopes=1,
+        )
+
+
+def test_fetch_staged_release_scope_evidence_client_errors_are_fatal(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    calls = []
+
+    def fake_urlopen(req, timeout):
+        calls.append(len(json.loads(req.data)["p_scopes"]))
+        raise _http_error(404)
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    release = ReleaseManifest(
+        name="us-rulespec-v1",
+        scopes=tuple(ReleaseScope("us", "statute", f"v{i}") for i in range(4)),
+    )
+
+    with pytest.raises(urllib.error.HTTPError):
+        fetch_staged_release_scope_evidence(
+            release, service_key="service", supabase_url="https://example.supabase.co"
+        )
+    assert calls == [4]
+
+
 @pytest.mark.parametrize(
     ("response", "message"),
     [
@@ -2241,7 +2891,7 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
         queries.append(payload["query"])
         if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
             return [{"chunk_index": payload["parameters"][3]}]
-        if payload["query"] == ACTIVATE_RELEASE_QUERY:
+        if "corpus.activate_corpus_release(" in payload["query"]:
             return response
         return []
 

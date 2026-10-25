@@ -1,0 +1,27 @@
+documents:
+  - source_id: ch-sthg-art-3-family-tax-unit
+    jurisdiction: ch
+    document_class: statute
+    citation_path: ch/statute/sthg/family-tax-unit
+    title: Bundesgesetz über die Harmonisierung der direkten Steuern der Kantone und Gemeinden (StHG)
+    source_url: 'https://www.fedlex.admin.ch/eli/cc/1991/1256_1256_1256/de'
+    download_url: 'https://www.fedlex.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1991/1256_1256_1256/20220101/de/html/fedlex-data-admin-ch-eli-cc-1991-1256_1256_1256-20220101-de-html.html'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-01-01'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Art\.\s*(?P<number>3)\s*(?P<heading>.*)$'
+      section_label_template: 'art-{number}'
+      stop_text_pattern: '^Art\.\s*4\b'
+    metadata:
+      primary_source: true
+      source_authority: Schweizerische Eidgenossenschaft / Fedlex
+      source_family: wealth-tax/family-unit
+      source_note: >-
+        Extraction starts at Article 3 and stops before Article 4. Article 3
+        paragraph 3 aggregates spouses and attributes minors to the holder of
+        parental authority, subject to its stated exceptions.

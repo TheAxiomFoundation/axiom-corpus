@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports.json",
+      "sha256": "e0b4f14b030dcc07f4004429bca4727be5533c149a70c119a0fbeb550607733a"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports.json",
+      "sha256": "213e529fdb0a962c4a9ecd62814bc6b4c306a940d7e39ce23ae0211c6cac663b"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports.jsonl",
+      "sha256": "246c00a9dcb15510d0f0cff02767fea296503e334b431139cde549ff6e64eeea"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports/federal-register/api/documents-page-1.json",
+      "sha256": "9fc5feb29f86df87acd0ce094e24039d2d877c3f4cc68c4699bfaf9fdf46e0a9"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports/federal-register/documents/2018-05477.json",
+      "sha256": "5c05d2086cd630c73897cc88035b25de856f934feff7f05882ce9f432eab5a77"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports/federal-register/documents/2018-05477.txt",
+      "sha256": "273ae7c8fdad2c6a509db58fb6bed593dca6f578948a02850ef4104b2182824c"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports/federal-register/documents/2018-05478.json",
+      "sha256": "c8e941d3bb2bc458682e80706c0b315e39313d2089a64168e5d4d8baa3bbc715"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports/federal-register/documents/2018-05478.txt",
+      "sha256": "cb38f284025d80c3efeba977ff193e97cdcc6a56b4498e55686a0400c50592e8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-originals-2018 --start-date 2018-03-15 --document-type PRESDOCU --term \"adjusting imports\" --source-as-of 2026-08-01 --expression-date 2018-03-15"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:11.022088+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UTRjDqwOj4zWyyJTLKGPNV6JzWE9tBWd5D9OXV3LbIwkQjNcDvI7/6pDYTWb44btv4FHhd6U+XlPgOdziCqnDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-originals-2018-types-presdocu-term-adjusting-imports"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "il-rulespec-2026-09-06",
+  "description": "Bounded Israel tax-benefit pilot for supervised RuleSpec-IL encoding: every section- and schedule-level provision that the captured he.wikisource.org OpenLaw pages render for three instruments, as captured on 2026-09-06 - the Income Tax Ordinance [New Version] (Knesset IsraelLawID 2000944), the National Insurance Law [Consolidated Version] 5755-1995 (2000198), and the Economic Efficiency Law (Legislative Amendments for Achieving the Budget Targets for the 2026 Budget Year) 5786-2026 (2242332), the amending act whose section 6 is the commencement of amendment 288 to the Ordinance. That is a reconciliation of a capture, not the complete statute as administered: 1,435 rows against 1,435 source-inventory entries, 0 missing and 0 extra. Seven of the amending act's twelve sections have no body because OpenLaw keeps their text only inside the instruments they amend ('the text was merged into ...'); those rows say so in metadata.text_merged_into, and release validation reports the five of them that also lack a heading as empty_provision_text warnings. The provision text is an OpenLaw consolidation, not an official gazette text, and the acts declare different tiers because the evidence differs: the Knesset National Legislation Database's 'to the full law' link was followed to the Wikisource page for the Ordinance (consolidation-knesset-linked), while that check is still pending for the National Insurance Law and the amending act (consolidation-wikisource). Every row carries its own tier. The Ordinance's full-page render is truncated by MediaWiki's post-expand include limit, so its sections 235-247 and its four schedules come from a hash-pinned supplement rendered from the same revision. Mixed numbers keep the boundary the page's typesetting carried ('2 1/2' with the Unicode fraction slash, never '21/2'), and table cells keep their column positions, empty cells included. It carries statute text only - no regulations, no Tax Authority or National Insurance Institute amount publications, and no gazette-verified amendment history beyond that one commencement section - and one transcription defect in the consolidation (ITO section 187 reads 'be-sa'if 59a(a)' where Nevo reads 159a(a)) is carried through unrepaired and recorded rather than corrected.",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "statute",
+      "jurisdiction": "il",
+      "version": "2026-09-06-il-taxben-pilot"
+    }
+  ]
+}

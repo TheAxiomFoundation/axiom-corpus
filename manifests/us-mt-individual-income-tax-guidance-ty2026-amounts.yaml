@@ -1,0 +1,28 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-mt-mtdor-publication-1-ty2026
+  jurisdiction: us-mt
+  document_class: guidance
+  title: '2026 Montana Publication 1: A Guide to Montana Tax Withholding and Estimated Payments (worksheets ESW, ESA, ESW-TMSI)'
+  source_url: https://revenuefiles.mt.gov/files/Forms/Publication-1/Publication-1-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-mt/guidance/mtdor/ty2026/publication-1
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Revenue
+    document_subtype: department_publication
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-11-20'
+    amounts_carried:
+    - 2026 and 2027 tax tables (4.7%/5.65%; 2027 5.4%)
+    - net long-term capital gains rates
+    - worksheet ESW/ESA 2026
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://revenue.mt.gov/publications/publication-1
+    discovered_via: manual-review:tax-agent-queue; index https://revenue.mt.gov/publications/publication-1 (read 2026-09-13)

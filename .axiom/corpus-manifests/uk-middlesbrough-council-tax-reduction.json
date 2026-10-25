@@ -1,0 +1,82 @@
+{
+  "documents": [
+    {
+      "source_id": "middlesbrough-council-tax-reduction-scheme-2026-2027",
+      "jurisdiction": "uk-middlesbrough",
+      "document_class": "manual",
+      "citation_path": "uk-middlesbrough/manual/council-tax-reduction-scheme-2026-2027",
+      "title": "Middlesbrough Council Council Tax Reduction Scheme 2026/27",
+      "source_url": "https://moderngov.middlesbrough.gov.uk/documents/s41727/Council%2018-2-26%20-%20Council%20Tax%20Reduction%20Scheme%2026-27%20-%20Appendix%201%20-%20Middlesbrough%20S13A%20202627%20Scheme.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-08-14",
+      "expression_date": "2026-04-01",
+      "metadata": {
+        "primary_source": true,
+        "program": "Council Tax Reduction",
+        "discovered_via": "axiom-296-council-expansion-w10-hunt",
+        "source_authority": "Middlesbrough",
+        "document_subtype": "council_tax_reduction_scheme",
+        "effective_scheme_year": "2026-2027",
+        "role": "scheme_text"
+      },
+      "request": {
+        "browser_impersonation": true
+      }
+    },
+    {
+      "source_id": "middlesbrough-council-minutes-2026-02-18",
+      "jurisdiction": "uk-middlesbrough",
+      "document_class": "manual",
+      "citation_path": "uk-middlesbrough/manual/council-minutes-2026-02-18",
+      "title": "Middlesbrough Council Printed Minutes, Council 18 February 2026",
+      "source_url": "https://moderngov.middlesbrough.gov.uk/documents/g10251/Printed%20minutes%2018th-Feb-2026%2019.00%20Council.pdf?T=1",
+      "source_format": "pdf",
+      "source_as_of": "2026-08-14",
+      "expression_date": "2026-04-01",
+      "metadata": {
+        "primary_source": true,
+        "program": "Council Tax Reduction",
+        "discovered_via": "axiom-296-council-expansion-w10-hunt",
+        "source_authority": "Middlesbrough",
+        "document_subtype": "adoption_minutes",
+        "role": "operative_adoption",
+        "adoption_body": "Full Council",
+        "adoption_date": "2026-02-18",
+        "effective_scheme_year": "2026-2027",
+        "identification": {
+          "classification": "ACCEPT-DERIVED",
+          "adopts": "middlesbrough-council-tax-reduction-scheme-2026-2027",
+          "carries_amendments": "retains the income-banded scheme introduced 2022/23 and uprates the household income ranges per the report",
+          "chain": "Full Council 18 February 2026 minute 25/105: recorded vote 41-0-0; 'On a vote being taken, it was ORDERED that Council approved the Council Tax Reduction Scheme for 2026/27.'"
+        }
+      },
+      "request": {
+        "browser_impersonation": true
+      }
+    },
+    {
+      "source_id": "middlesbrough-ctr-council-report-2026-27",
+      "jurisdiction": "uk-middlesbrough",
+      "document_class": "manual",
+      "citation_path": "uk-middlesbrough/manual/ctr-council-report-2026-27",
+      "title": "Middlesbrough Council Report: 2026/27 Council Tax Reduction Scheme (Council 18 February 2026)",
+      "source_url": "https://moderngov.middlesbrough.gov.uk/documents/s41726/Council%2018-2-26%20-%202026-27%20Council%20Tax%20Reduction%20Scheme.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-08-14",
+      "expression_date": "2026-04-01",
+      "metadata": {
+        "primary_source": true,
+        "program": "Council Tax Reduction",
+        "discovered_via": "axiom-296-council-expansion-w10-hunt",
+        "source_authority": "Middlesbrough",
+        "document_subtype": "adoption_report",
+        "role": "corroboration",
+        "corroboration_only": true,
+        "effective_scheme_year": "2026-2027"
+      },
+      "request": {
+        "browser_impersonation": true
+      }
+    }
+  ]
+}

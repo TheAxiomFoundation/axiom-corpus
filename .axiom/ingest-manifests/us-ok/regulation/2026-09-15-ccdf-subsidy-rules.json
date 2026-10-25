@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "f0cb5611e5258871efa2d8c850f6335d3a986969a6da41e77b66cb28314b6b90"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/regulation/2026-09-15-ccdf-subsidy-rules.json",
+      "sha256": "ce86dceb38df59f64c3cc8d0b72855a6e3a626b047e3503061630c851af1e486"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/regulation/2026-09-15-ccdf-subsidy-rules.jsonl",
+      "sha256": "3dea0c5ef756fb3216aa9d4d372a228be4c2e591255d148a3621a62877215f51"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/regulation/2026-09-15-ccdf-subsidy-rules/official-documents/us-ok-oac-340-40-child-care-subsidy-rules.json",
+      "sha256": "6dad28eb4daf96975471719c88b9d05945eec59a214daadf1c01861513573065"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tanf-ccdf.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 33,
+    "missing_count": 0,
+    "provision_count": 33,
+    "source_count": 33
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:57:18.544704+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "I2hFs/oGeCIP3ffYm9M8wB4+/7w4UPBPLG/XamFL0/f8VLEI+x48Kt+WYtainvnUvHBWhLBGoqkPglVtgqKGCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-ccdf-subsidy-rules"
+}

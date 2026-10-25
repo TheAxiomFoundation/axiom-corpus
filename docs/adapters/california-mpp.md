@@ -293,7 +293,7 @@ Per encoding playbook § 11 — don't trust a passing extract without these:
 
 ## Cross-references
 
-- Architecture viewer playbook: `https://axiom-architecture-one.vercel.app` → § Encoding playbook → § 14 (CA SNAP source inventory).
+- Architecture viewer playbook: `https://axiom.org/architecture` → § Encoding playbook → § 14 (CA SNAP source inventory).
 - Tracking issue: [#36](https://github.com/TheAxiomFoundation/axiom-corpus/issues/36)
 - Companion issues: [#37](https://github.com/TheAxiomFoundation/axiom-corpus/issues/37) (CalFresh ACL/ACIN), [#38](https://github.com/TheAxiomFoundation/axiom-corpus/issues/38) (uv.lock refresh)
 - Closest existing precedent: `src/axiom_corpus/corpus/nycrr.py` (NYCRR — NY SNAP regulations).

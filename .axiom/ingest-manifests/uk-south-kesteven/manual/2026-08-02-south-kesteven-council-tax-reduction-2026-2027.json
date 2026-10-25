@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-south-kesteven/manual/2026-08-02-south-kesteven-council-tax-reduction-2026-2027.json",
+      "sha256": "2b0150e1c74cde48065d62caa90b55cbe4e29fb1021b03c8487ab5e471e92c1e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-south-kesteven/manual/2026-08-02-south-kesteven-council-tax-reduction-2026-2027.json",
+      "sha256": "8dd655e8bfd8078a5e9cf2e1a93827b54a540acaed81626f5baabf5be26f1ad9"
+    },
+    {
+      "path": "data/corpus/provisions/uk-south-kesteven/manual/2026-08-02-south-kesteven-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "d415e6ecebe47c0d0e7329818aba6abf4f3d87bd8f3f1512a38536653977092a"
+    },
+    {
+      "path": "data/corpus/sources/uk-south-kesteven/manual/2026-08-02-south-kesteven-council-tax-reduction-2026-2027/official-documents/south-kesteven-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "ee73df8a7b2f6b8107bb925db28b9fc9b7ab55cbffd93f6effacf9dcbcd6448c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-south-kesteven-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-south-kesteven-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 299,
+    "missing_count": 0,
+    "provision_count": 299,
+    "source_count": 299
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:30.729643+00:00",
+  "jurisdiction": "uk-south-kesteven",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TmrnusUHfo88ssCluB8CAT/eTRguoGB0mr8AKdCn4V5Aa+I4mvzcfEHYDspHeEcOGvglG7DVq7u9zUG15NM8DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-south-kesteven-council-tax-reduction-2026-2027"
+}

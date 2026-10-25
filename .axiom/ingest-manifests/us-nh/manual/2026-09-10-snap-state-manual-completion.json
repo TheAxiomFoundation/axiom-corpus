@@ -1,0 +1,2053 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "08ff1c9284d10641518912d74e8cbd4957ad20db2974762bd380a058f1742394"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "c00aab6dfd5151913903d6e5347782ade7defd75153c8bf017292aa69dd4d237"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/manual/2026-09-10-snap-state-manual-completion.jsonl",
+      "sha256": "756918b99967f09cfe3f55184a78eccb49f62c74dd83ed7005048a77373e5909"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-100-case-processing-fsm.html",
+      "sha256": "9b47812caa24a53d5311bab6b29af6f426cb0dc82cadfefcfa2d71b6f98f0b57"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-101-01-individual-rights-fsm.html",
+      "sha256": "7806dd2cac08fd443959aca3858f3b8d17ff6b9aa45f6956ff4ad3d3fb0f01fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-101-03-individual-responsibilities-fsm.html",
+      "sha256": "442f121f17c4c5752e9d29827abc90a2a72aa546d317263e7fe2fbded9a7fb92"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-101-individual-rights-and-responsibilities-fsm.html",
+      "sha256": "181c5b344541b9246c58d4cd3a0fff861545c5ea926400744a139473c4764b1c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-103-01-racial-and-ethnic-heritage-data-fsm.html",
+      "sha256": "0a293b249688014493256c28aca830ea799644b557900cb04eab7602dff9f841"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-103-03-primary-language-data-collection-fsm.html",
+      "sha256": "dd6d9ebd68c064568eb8a0e0512c7bfb08b76daf53f343fb279efdd157b196ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-103-nondiscrimination-fsm.html",
+      "sha256": "3fc6249e68c146111a80f3db945b39bca64af45f13c1cfe747d9a36739fdb5bc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-105-01-eligibility-determinations-fsm.html",
+      "sha256": "749fb6499502b65a5b6aaa7e6353e454f7dd30f34bfb160a4f43bf0acb10826b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-105-03-eligibility-reviews-fsm.html",
+      "sha256": "17bf7c13bc79ae29b4254c4bbf8a2c312d3943fc77360e9c1f69522d78895a36"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-105-05-failure-to-cooperate-fsm.html",
+      "sha256": "de97351bb516bac72e20bd2459203972927d263cdd627e9be098e626bb6c7698"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-105-07-refusal-to-cooperate-fsm.html",
+      "sha256": "f8cc084c9f134222ecd5736d742b5151d6b12ce16d372aac60a0d235bc3700cb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-105-compliance-with-requirements-fsm.html",
+      "sha256": "678f2ebd6dfa2079d0575ee63eb9fcb91767d8b081bc6a2af90b2ea66ac1f1e2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-107-providing-verification-fsm.html",
+      "sha256": "bdd2c657d2bb0d4a277e47099bca4c47fd7972b6ee685b7077d1993236939761"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-109-01-filing-an-application-fsm.html",
+      "sha256": "4301d2677b4316066e918b7222b4f0c40c2fbd227720a009aa9f8f749e454488"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-109-03-when-the-application-is-filed-fsm.html",
+      "sha256": "f35e864f18b8189b74aabd528b69d81c372e796c3dc36df1fe59c9c24b5a37a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-109-05-withdrawal-of-a-request-for-assistance-fsm.html",
+      "sha256": "2cc8b86badd6b9d476c2d52762e5322483c9ae0d21e3411b5f6db6436ba9c39c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-109-07-reuse-of-forms-800-and-800hr-after-denial-or-closing-fsm.html",
+      "sha256": "9841fecd8c34f28e8e4e7edd9f72115ef4704f91b5998c6726afd9cb1212dd19"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-109-application-process-fsm.html",
+      "sha256": "d12300fcdbeddf6f2f6af27daa679be8bb7b1da0634b88f48918db643238ae0d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-01-ar-acting-in-place-of-the-individual-fsm.html",
+      "sha256": "869edb5738f1f84e794357d29855ffc14fe1a165292f83594f998834718194db"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-03-ar-signature-required-fsm.html",
+      "sha256": "169b246850d4dd5a895218a81e80e0c2152664b00039293640e80b47b7ce255b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-05-ar-receiving-or-using-food-stamps-fsm.html",
+      "sha256": "81d018a262893b56ddabcb49112624e45bdef6988c24d2e65171297cec89d49e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-07-ar-documentation-required-fsm.html",
+      "sha256": "684bb7fc4ed8dab4e57f097b739936d8c6e7f834cf324e43ec47362fbd5ae158"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-09-emergency-ar-fsm.html",
+      "sha256": "7b91aa9fbea64bffa8e3d1750260a74d0f9f5cd3ee68db5c19efdaf4660f4792"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-11-abuse-by-ar-or-failure-of-an-ar-to-perform-their-duties-fsm.html",
+      "sha256": "882159fb86f32bbe77c95a57f351d87f5417066f56f46eadcb497a45ccb881f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-13-residential-treatment-centers-as-ar-fsm.html",
+      "sha256": "50d2dd2ee109179e61b7ebd11641299e2bd162a4d278d148a1be45c058b54536"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-111-authorized-representatives-ar-fsm.html",
+      "sha256": "0ec99c902c94b33c0b7e91bd620386d379c3dca80c4b8b369ad92ae1a89bcab8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-117-application-processing-time-frames-fsm.html",
+      "sha256": "9024ddadfd57cd0dc70134df323eb9ccbb15db67de02849f131a5807f444fe19"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-119-01-when-eligibility-is-uncertain-fsm.html",
+      "sha256": "d097a2db0f646cb309acbd335e0e77113362aa75825994c821dbb6e8ce6b238e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-119-joint-applications-fsm.html",
+      "sha256": "097d7c6f7069852c42bdba1da23662321c1be3674e479eef4672bdd9791ced16"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-121-01-division-delay-fsm.html",
+      "sha256": "a8b5cc7cf995ebb0cee5c69ccba23e46483207f48e2a8cdf687bebb9c1964e67"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-121-03-applicant-delay-fsm.html",
+      "sha256": "56b0892f20e4f66226f63182e4df0be4f0155c3aef86be41396a450841178984"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-121-delay-in-processing-fsm.html",
+      "sha256": "3525d715dcae08675c82fc606575283dba04cc968d4f6f68a8d75a5e6e9b2aff"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-123-benefit-delivery-time-frames-fsm.html",
+      "sha256": "e444bfccba67e415d0774a45ab46312c11c2c972f14653a8e7d0fc29d2170b6f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-01-eligibility-criteria-for-expedited-service-fsm.html",
+      "sha256": "8b2b28a90167a124576b88039e9e883c8a257740337aedd2b49d2af8840ecc7d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-03-destitute-migrant-or-seasonal-farm-workers-fsm.html",
+      "sha256": "9c2903e0a567dcc15b8b3102fd934289cb5789eb176e1e472833ccc5edf85162"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-05-frequency-of-expedited-service-fsm.html",
+      "sha256": "c2798bca63420c310dbd16bf737169762385df79b93a3d501ec82aef5078699b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-07-how-to-determine-eligibility-for-expedited-service-fsm.html",
+      "sha256": "edb7acc5fa8dfc225da1fc42c945109c20ac9d7ad2abefb1408243a7842f8188"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-09-time-frames-for-expedited-service-fsm.html",
+      "sha256": "2af1d64264e65b3474a0f4570a5dd23ed57adcbe5794cc5548d86c980121d410"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-11-combined-allotments-fsm.html",
+      "sha256": "41da782357217a7fc7aa2aec77a8dce1afae2e8a974c38c907d662e833bd7ffb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-13-postponed-verification-fsm.html",
+      "sha256": "5f8188aeeb65c9ea0c83a302fbcdb7e8a870d2c92376e68d9d4d374fb8843e51"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-15-postponed-social-security-numbers-ssn-fsm.html",
+      "sha256": "a5c9ffd300848ed63298878869b6d7c482178f685bb360645f2908be00377c71"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-17-postponed-work-registration-fsm.html",
+      "sha256": "ca502e680a9e8f477f0577236c0ad342075237829f11784f602454ff300d2f23"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-19-postponed-citizenship-fsm.html",
+      "sha256": "992ed26e830771a7b28d185de234e036497227eb62d1d3e792a7e79c60c3a2d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-21-expedited-service-certification-periods-fsm.html",
+      "sha256": "64b531680e8a6fbf49227594a2dcbd75a5140833b3ed080ae8d2dc915e72aaa3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-125-expedited-service-fsm.html",
+      "sha256": "4b1d108664f2ad4dacf2804a35558b8990d877f8b8e03fa9c26b5f951530bbe3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-127-01-interview-sites-fsm.html",
+      "sha256": "c417918f5cde9589b239cc1dba76da3f6c2d3d5dd40797e8a061356663f36d66"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-127-03-failure-to-appear-for-an-interview-fsm.html",
+      "sha256": "a5dac7809088366026e80a5a7a3e9a1a679fe6a6f010d79aceb45bbe84b842b0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-127-05-food-stamp-identification-card-fsm.html",
+      "sha256": "f1ff22f600b7baefbcf60c73667e09a7fd34ff0d112c86adf39d0d39604ab4f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-127-interviews-fsm.html",
+      "sha256": "366656916beb9210aa7069c1ec3f95f79fcb95bb209ce6161f64469a95912b9e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-129-pending-information-fsm.html",
+      "sha256": "c6d9c1f3c86ecc982a4d7265d74ff7652a18f14f021665fbd56e395712571029"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-131-eligibility-determinations-fsm.html",
+      "sha256": "3fae7803ae6eccdf2c7c5e5c0f8ef79e416d01024c09d56942c635a56976c4ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-133-01-very-stable-households-fsm.html",
+      "sha256": "6adbe981ae79edeeb4ca2e73204267f719a71ccc9d94c4f09eb61c6cc82d7f3f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-133-07-public-assistance-households-fsm.html",
+      "sha256": "a5a087184cbedc14b661b66c13eaffe72df3a47cb1256cee399bc03309b35b67"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-133-09-certification-periods-fsm.html",
+      "sha256": "7392b68b1ed6b19188472dacea15b59f06138f5335ee7607891700e66fd13c5f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-133-length-of-eligibility-fsm.html",
+      "sha256": "a49569f29dce7e00198f22104e173bdff55b67d94589a9597c8458186a22a60d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-135-providing-notices-to-individuals-fsm.html",
+      "sha256": "2908c54ebc1ffd7770d0bb7bc6b760f70d3fcdb2c422dd43400c2f4cb11a3041"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-137-notifying-local-welfare-officers-fsm.html",
+      "sha256": "9941aeeda8e5abd2c35c0bc73c82f1b7fabe863d5f835bfbcb93cf07609ec36b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-139-notices-of-decision-nod-fsm.html",
+      "sha256": "e1a9ccba6a54c489feb100919297ad984885d99452958d35653a09190422eaf8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-141-01-fair-hearing-requests-and-the-anp-fsm.html",
+      "sha256": "a771a5fc24e29fa5cd89e077f0c4d5d8251b23d3a84ac4a20d03daa944e8b7d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-141-03-no-anp-required-fsm.html",
+      "sha256": "54c22e1b5a9015a4731a324d9fe2d68c1209dd0818306d61a4953e4e409698ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-141-07-30-day-anp-fsm.html",
+      "sha256": "68f38ba6a8b1e986a4add291d82b381b390ecfd6cc4a12fcef0af824b14915b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-141-advance-notice-period-anp-fsm.html",
+      "sha256": "87bd520847907501a549bef84a9697b4c69feebb093323477efdc3ff57f05698"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-143-complaints-and-fair-hearings-fsm.html",
+      "sha256": "e5853f556bc4b01ee84398f0627f688d83098c69414db442fe2c8096454a981d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-01-reporting-requirements-fsm.html",
+      "sha256": "6c601f943c492734e222626e63533e17e455c77069312efd714411a2a3cc45dc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-03-what-to-report-fsm.html",
+      "sha256": "78757894075be4ca1937bc94c8a1dd751334be67efbd7621e8f6dd975592c874"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-04-special-reporting-requirements-fsm.html",
+      "sha256": "14cf931bbeb0c531926d5eedb7144b10bcf0ae088089006d8094db95fbb224a7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-05-how-to-report-fsm.html",
+      "sha256": "1aa5a1994b6c1a50e2a427499525e72e742d4796a494cbafa9106053e1edb6b8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-07-when-to-report-fsm.html",
+      "sha256": "c5d730614a5e741c76656c1f121061daf940fbe864dde64786f626ce684439d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-09-notifying-individuals-of-reporting-requirements-fsm.html",
+      "sha256": "953bcce8e0a947aee0e733088410f55f0a945afbb22086e5e498cb800db4845e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-13-prison-match.html",
+      "sha256": "ba704e861e7b7011588b1836b265ce34de8ceab6ee63feb33d49e6d380757f3b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-15-death-match.html",
+      "sha256": "19af085c69fa1377236c247fc5066712d71afc5a231aaf0c901d35b3c52fca84"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-145-changes-fsm.html",
+      "sha256": "b766d588171f657fea464665ede77cc8e50aea281145ae8c78f7575b2ea9f7de"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-147-actions-on-changes-fsm.html",
+      "sha256": "80882a08d91dc06bc71419a2c902ba4dd1a33b6a06e61717db19c4adaae146e5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-149-mass-changes-fsm.html",
+      "sha256": "551936175a879dd6410439bf011adb5df35eee2814c1b16873f1c2b338c795bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-151-changes-that-increase-benefits-fsm.html",
+      "sha256": "d8c864a0e643173ad4c1d45356684522b320ed74ff722a651cc23b93339d1c95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-153-changes-that-decrease-benefits-fsm.html",
+      "sha256": "c0f5a1ad345f570279ea00b34a578000fc1c7984cbb03fc903d46b660ec4d39c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-155-addition-of-an-individual-fsm.html",
+      "sha256": "38e3567c05b7fde9aedfa8d728ad0529328f40a642ba25859cd40e6b3e8c3a71"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-157-failure-to-report-a-change-fsm.html",
+      "sha256": "310a670bbf6540c92aa076567d20d942ac339673694c72d6b847e82f23d2c418"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-159-changes-during-extended-food-stamp-efs-periods-fsm.html",
+      "sha256": "4670b0d9e836731d1a4234777948a5cd2a891a68e91cc0cfc404b783c900edb1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-161-01-timely-notice-fsm.html",
+      "sha256": "541c0f13d58d1201f7c23e21adb2e3052ffb56666fcce2cebb1d8a3e47056f17"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-161-03-required-verification-for-redetermination-recertification-fsm.html",
+      "sha256": "fb571bf7d576ec2abeb1d9fcd1b34d390b1d1bbdd442f7f77c81631db6767e6d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-161-05-processing-redeterminations-recertifications-fsm.html",
+      "sha256": "6fc92fcb491714e7705613ab034234a24ad36afd1e1c7e119807231edd3e4240"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-161-07-termination-at-redetermination-recertification-fsm.html",
+      "sha256": "281070046a3ef3add138544389dba5a74ce0f4f46638435ff30fb4fe2ddae7e0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-161-09-untimely-reapplication-fsm.html",
+      "sha256": "edbc949bc5f3ed140d659e6a60b4ead98eec8e2e58bb724da31cd67645fbfcd4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-161-redetermination-recertification-fsm.html",
+      "sha256": "d342b548bcc63c3a0f1f6653861ac0dc16958acfa53433a86a50c676c337b26f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-163-termination-of-assistance-fsm.html",
+      "sha256": "2e91f98105d39cae363566f1b46d919f6136915c73cd0660808baf57b0dba745"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-200-program-criteria-fsm.html",
+      "sha256": "fa442ce06dd6920ebbfe521d9f34099837e414c46ff85935acf9abcae4ab22fe"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-201-program-requirements-fsm.html",
+      "sha256": "d7b9231bda3b1bec35add7c0807a5a39f62d11c98178a5bf1d89851247e8d20a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-01-who-must-be-members-fsm.html",
+      "sha256": "98c2599eb0a0f2769ae912c4f9c913ee74e5f2ecb17492ee0e32762209d6476b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-03-disqualified-individuals-fsm.html",
+      "sha256": "242cb80a8d8a200460dfefaec830017c7c1d6837b43dbd2916da05c42cca2640"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-05-who-must-be-separate-fsm.html",
+      "sha256": "6b2a64d5dae62bfe805fd83a625f6bdf4d57f737a5c137b0ad2ae5d65dac461c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-07-food-stamp-household-composition-chart-fsm.html",
+      "sha256": "f9f9d95b9506718d7404a0b8d2408b5e14c3d064405ef42cb48596043636c753"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-09-who-may-be-members-fsm.html",
+      "sha256": "8358936da9c4275a28c701badac90531b816b1302ef007d3d19c4e710e95cac9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-11-who-is-not-a-member-fsm.html",
+      "sha256": "39eddbc3254cc3c8bf29d3df8edec39602879242e1aa3d7204cf9050b9565c4e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-13-shared-child-custody-situations.html",
+      "sha256": "e1484c99a145bb1bac0093532052c4273bf4aaa7044ac2c757e8e0e87ce0abc3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-211-composition-of-assistance-groups-fsm.html",
+      "sha256": "c791fafcecbb733676cbd7b78b58ff8aea96ac861e5cc0d44f3dd74b9219edb5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-213-required-verification-fsm.html",
+      "sha256": "fe264bb87b430e9fdcaca73ba3d6afa0158146eaabcc50c59374a9c63a758e3a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-227-01-individuals-not-considered-strikers-fsm.html",
+      "sha256": "58f1b81611b3ba042bb9e1957e5882de257869f316ccb0df4155a0a6ccc0ea72"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-227-03-striker-eligibility-fsm.html",
+      "sha256": "8a112852338259154516adbeb70a824743d3a9706f6f835dd06d2badbe604463"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-227-05-treatment-of-striker-income-fsm.html",
+      "sha256": "657fdd0bdbed85c71db628736324f4ddf3a3bad7160d93f76ccf69399e2805b3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-227-09-required-verification-fsm.html",
+      "sha256": "c801f06928793e7db3f23139393a4d76b2b839603d9abaa41abbb4eafe6af649"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-227-strikers-fsm.html",
+      "sha256": "5b886c2b769ad8d6b13ece1f65d022534add6ff89805451ab6de94e9553307ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-229-01-definition-of-elderly-fsm.html",
+      "sha256": "ffebe2b8caefc268b8f0ea5656086658b25fcae8cf11b8dc3ad15abe7135e8b6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-229-03-definition-of-disabled-fsm.html",
+      "sha256": "4144482711495d5114781d41b7345b665773c9774209fd308fc32545ca047c12"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-229-05-social-securitys-permanent-disability-criteria-fsm.html",
+      "sha256": "c62cbf47a13fb730623dba168d3098515fb8f2bbd7e65fb22796e8c0515f0d3d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-229-07-required-verification-fsm.html",
+      "sha256": "6b631517fa7ec13c5e8c8d6f92c701dcbbcd9b217bad2af25f9b6dd7b3a5669e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-229-target-population-fsm.html",
+      "sha256": "dfdb0b35d46beb911a1794b6965ff0977268ade8ca312113fee8b954720f3195"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-231-01-categorical-eligibility-criteria-fsm.html",
+      "sha256": "bd0ed605c0ca26864d3d6644cf164ad988cf10039e9adf08065e3e891a70c2e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-231-03-required-verification-fsm.html",
+      "sha256": "70fd2aca5dedc228616582af020d4fee212a53e3dea906f9ff54a8d91e9b3f40"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-231-05-expanded-categorical-eligibility-criteria-fsm.html",
+      "sha256": "608a43700f0900a0fd3599b86b7424f06d429658ac47a876adcf9ca830198855"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-231-categorically-eligible-households-fsm.html",
+      "sha256": "adff38ca71ab13d2faad8a9b5c2e6379b76fe72d1c659d55be7062163f8efa3b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-233-alcohol-or-drug-treatment-centers-fsm.html",
+      "sha256": "33aadcf087cf2dd9f31dca57111f0e7f947277701d70429af02689ea0f01ae7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-01-definition-of-group-living-arrangement-fsm.html",
+      "sha256": "e84af76b7bda1715b16c4b691b1f97c54c1be0b5e354b01ac57b7e4828639804"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-03-responsibilities-of-the-group-living-arrangement-fsm.html",
+      "sha256": "440c73c93019431f1fef0e25a67228ee406b859647ebb4790944331fcb0b2a86"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-05-when-residents-leave-the-group-living-arrangement-fsm.html",
+      "sha256": "d3f265a226583080eaf792608afcaa9b4b47bbd24e08ce50258cbd406eba4868"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-07-disqualified-group-living-arrangements-fsm.html",
+      "sha256": "9d63b4d11be8f374d0853d63cff69579d8bf7550ebf7e6bce5c4f89c02c42ed2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-09-decertified-group-living-arrangements-fsm.html",
+      "sha256": "129c374b30abebb109018d8c80df15e2beabc09e7160f0b0cf4bb6fea9b84367"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-11-required-verification-fsm.html",
+      "sha256": "0d78c165fc249ac4482e6ad68b9f42cca6a3eae2f2bce7a2153a070f44e9e920"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-235-group-living-arrangements-fsm.html",
+      "sha256": "7244c7bc058659714e76bf302adaed746de0d60e91bd1a1fa3c5356b0885fc45"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-237-01-approved-shelters-fsm.html",
+      "sha256": "cc4795da556c2b25ff8834d59c2313332ff970e05a281f35f439368693baaa5b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-237-03-buying-meals-fsm.html",
+      "sha256": "9cea4b5b7c0495547e36be4a26833c639788d74c8e04f2b521cd764036295a4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-237-05-two-issuances-in-the-same-month-fsm.html",
+      "sha256": "06f2600ef2d58689fc00952897fb748e914545c04dc871353247be540da9ff60"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-237-07-determining-eligibility-fsm.html",
+      "sha256": "41d457b23edefea6a376a91d52286a94d28f698e7ba1c22ee2d5c1263be72bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-237-09-required-verification-fsm.html",
+      "sha256": "2e78c65d08392991312f309c640a97b89d1012f49e5c3714e2fccea4ca75a320"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-237-shelters-for-battered-women-and-children-fsm.html",
+      "sha256": "6492c96048be90615b9d7887b1e4d9608f4b41af3229d4c2fc36b4c138ba9005"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-239-01-student-eligibility-fsm.html",
+      "sha256": "cd1cf8513278f273534ee0d69e9677f83c7b60b0c880723260decaf8ef44ef3f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-239-03-required-verification-fsm.html",
+      "sha256": "46009cac412a52b26f62be646b35b78cc30a6dde9f726a52476911d66f94cfea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-239-students-fsm.html",
+      "sha256": "02e67bb398b014c2e239255487c55100e3dcd7170e8b991d173bdb364c3c3f9f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-01-abawd-work-participation-requirements-vs-food-stamp-work-registration-requirements-fsm.html",
+      "sha256": "17c2c25e2c9922324bca04f2c3b333403741d96b0134e0428c07b64a62dbdf4c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-03-criteria-for-exemption-from-abawd-work-participation-fsm.html",
+      "sha256": "db0d28cc53dece18ad2ceaf54774d2158e64ace6ed448ce1127108304e69e31d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-05-abawd-work-participation-requirements-fsm.html",
+      "sha256": "0cfb193ba606249c5da1dcb8150ede7566f5f5f995dfeaf76d668db704b1c19e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-07-determining-the-36-month-clock-and-3-countable-months.html",
+      "sha256": "758a8e310f7f431084c3dbf47c53aeac7404661fac1f2e8d7eac98e4052a230c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-09-the-one-time-cure-reestablishing-eligibility-after-closing-for-failure-to-meet-abawd-requirem.html",
+      "sha256": "92f7360a657109e827b0826dd874fc9b673d8e962f7eb5dbc1f8efae8c21090a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-13-the-3-consecutive-month-cure-period-fsm.html",
+      "sha256": "5bf691c3d32d11b189bf701555174763d7cdb43418240c6f9568e96219617cb5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-15-verification-requirements-fsm.html",
+      "sha256": "b82533e2134a158bbedbbe08d3107fe06769aee0afee5a2bd775dfcc57d9016b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-245-able-bodied-adults-without-dependents-fsm.html",
+      "sha256": "b5e7afd1c9c936d58010177d7aee2effe0d304a4a44945d0f44c541bb233cbb3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-247-01-regaining-eligibility-after-substantial-winnings.html",
+      "sha256": "83810ee0daeb6afc91bc9bd4c1c340aa85f10ba643054ffdbdb427bac1b3efa8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-247-substantial-lottery-or-gambling-winnings.html",
+      "sha256": "d05f5c8d9e2f2ba4c6a8702a182913f4aa4d1da0b21dee2016c464032b89c4d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-01-who-is-eligible-for-extended-food-stamps-efs-fsm.html",
+      "sha256": "d97b1b983d1454b6fc9b9ee2d7875d19e298bb7a7fd5770b41be3c41b3d8ba50"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-03-who-is-not-eligible-for-extended-food-stamps-efs-fsm.html",
+      "sha256": "e9a550fd4659990b99dadf433346f33250720bd9a9018cfca776955e32f349e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-05-determining-the-extended-food-stamp-efs-benefit-allotment-fsm.html",
+      "sha256": "39b5d30d33696107fdbb343e284bd5587c771b9a4008c86d42fcc3a2e5e663ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-07-extended-food-stamp-efs-period-fsm.html",
+      "sha256": "679bb04e3ae3bcd1e251df4366868ed0a1de4affad00217e5981ecf8ad85a410"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-09-extended-food-stamp-efs-work-requirements-fsm.html",
+      "sha256": "6c19c4a1daefcff31dbb25d6470e00eefb9a0a1db22c7ff3c84d6e99f7efc72c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-11-changes-during-the-extended-food-stamp-efs-period-fsm.html",
+      "sha256": "c01513884c7c6bfafe9b244b6b23f68b2cf94f13c45a0c7958af2ed0badb1b63"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-13-terminating-extended-food-stamps-efs-fsm.html",
+      "sha256": "9f9ab8f9e9d0997c8c70ec0128366ffa4d85535e21707a529f6784adb8f5f801"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-249-extended-food-stamps-fsm.html",
+      "sha256": "9e1fb26fa0ed4574b70cb4d519a09eec8a46eff80a288d5c7fc837a3ac957fa4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-300-non-financial-criteria-fsm.html",
+      "sha256": "c610c74e32b4830ea95c5918bfe6ad9a5984c7b0cffa8f74d4b9875a581e4b6d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-301-01-application-fsm.html",
+      "sha256": "649c78cde3ebcb885dfcf7dda6de51428a530ef29e142f585537f388bb7b688d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-301-03-case-membership-changes-fsm.html",
+      "sha256": "364a8eaf34cf85490d93c43cf9fb7b5cb4ecaf9a12d29f9bcc2983d191a0e46c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-301-05-recertification-fsm.html",
+      "sha256": "4b977b2362f5a849bfbe0e43d456b20decddbe1f95d8be9c53007477ada2d928"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-301-07-how-to-verify-fsm.html",
+      "sha256": "ee5dc6fea250406176c5175811db210e1e8ab809a693c39410f198b2fd83f1c9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-301-identity-fsm.html",
+      "sha256": "a5e6cc2656157bf020d093b5b1a9a3b6d013d5732fed056272a6f33eeddd0f64"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-01-residence-for-eligibility-fsm.html",
+      "sha256": "f046330e253aee1c708a8369a476d9f1055d5b81a5cc22697e8e3b2971527781"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-03-when-to-verify-residency-fsm.html",
+      "sha256": "c24dfacead92491bd10268bb681dc8b585cc026b4b72df0423dfb191cee062dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-05-how-to-verify-residence-fsm.html",
+      "sha256": "11709e42b1c79c6b24ec3b9763d9ae23ab1a39cf6fafdef88f3b59907ab4918c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-07-moves-within-the-state-fsm.html",
+      "sha256": "c6342cdb5cc2bf0b4ce421f4d6982a1cefd2678abbbbd1f3150a6b46731ff726"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-09-out-of-state-recipient-moves-into-new-hampshire-fsm.html",
+      "sha256": "5f8a387c7d9bcde92c75858c71b69dbb6515f8dea1d8471dd48da0a87025094b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-11-absence-from-new-hampshire-temporary-fsm.html",
+      "sha256": "f3f5a924f003047ad9548f6ee2d3680b77e07ab537058cf661a5ccfd753ed50a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-13-absence-from-new-hampshire-permanent-fsm.html",
+      "sha256": "714d82ae624aa6aa7de9153ad06d83d414071cdbb5d642add8bd05152ea7faf5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-303-residency-fsm.html",
+      "sha256": "ec36938f9b91fef41dbe3449ac9b6b6f31d83f9fa5f3a2e7b80d7f0a26375acd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-01-definition-of-us-citizen-fsm.html",
+      "sha256": "d93af529fef249137e258aae3f56fbc53955970b71515faf40f44870615ad332"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-03-declaration-of-citizenship-fsm.html",
+      "sha256": "1b3477ae2f51a59545f2efbacf413e9dadaa0447ad6b71362f861da89b8edacf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-05-verification-of-citizenship-fsm.html",
+      "sha256": "d402a6158c588bfb88cccb9e66ebb99fc930a15fe0a3073cc9e55588f61d72a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-09-determining-qualified-alien-status-fsm.html",
+      "sha256": "aea14b387e0c4cd7917db03d268685e2a230b9b07b775ed7fd883d0cd77f96f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-10-alien-group-descriptions.html",
+      "sha256": "3da33cb7e67be8d36bdc049073e08ca5dc07ca8fe6a6d7ad022cd1bfed7a21f1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-11-eligibility-for-qualified-aliens-fsm.html",
+      "sha256": "806c0e3ee977ddf1c08065b6f7bab452c21ac9274eed89924c5898acdd91cde4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-13-qualified-aliens-eligible-without-restriction-fsm.html",
+      "sha256": "23348b5574b588f5e2a2b1a456ba34d90fcc2d5c48c53e0771da602e7221f946"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-14-special-category-non-citizens-eligible-without-restriction-fsm.html",
+      "sha256": "4d9a52de350d3ecad71809d0bccec02cbdfe7012062c3eb4fb66d5e344ec4f29"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-15-qualified-aliens-eligible-after-meeting-certain-criteria-fsm.html",
+      "sha256": "d091beace76f7ffe1b0d8504f5c78c4dd7ce90a5333d21e06a7963e982cda0eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-16-general-guide-to-alien-eligibility-status-in-the-food-stamp-program-fsm.html",
+      "sha256": "cb2cd51a64e7d84bab5fa0d5da105a6aee8fe75881663e77d2563d316f845f7d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-17-qualified-aliens-with-restricted-eligibility-based-on-date-of-entry-into-the-us-fsm.html",
+      "sha256": "d37bf98167409411f7c6ed72c4b52c0035f823e982a842f0d3f2287602da186b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-19-crediting-ssa-work-quarters-fsm.html",
+      "sha256": "818b94d84d5c94990f504c655bb68407736c36ee9143539ce35def21bb726577"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-21-documentation-of-bcis-status-fsm.html",
+      "sha256": "252e52ed0247bc00dee36ebe462f9b67a0b9be2a2267561a13fd9a8bf1940fb7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-23-verification-of-qualified-alien-status-fsm.html",
+      "sha256": "99580e7a84e6455baa0b4663762c6bebfbe3db9add6232d2a57726a5245b8bea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-25-when-ins-responds-late-fsm.html",
+      "sha256": "5dc2848116cdd3200391cb4b725840f1027d47f30f0dbdd0821105a55735e1e3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-27-administrative-appeals-fsm.html",
+      "sha256": "86a27ade8ccf627c280970be5863ec9689b2310eb27763b1ddbe1153f1d46f9e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-29-reporting-illegal-and-indigent-aliens-fsm.html",
+      "sha256": "8c3dfcab14aea1e4df60569be5918cc9ede4a63de282096994c637597fc5c2e7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-305-citizenship-fsm.html",
+      "sha256": "64ba1f1d4030d3674a79ba717734b197cd96d928ab70bf1b69a89048a8bcd852"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-307-01-eligibility-within-institutions-fsm.html",
+      "sha256": "ec98cb0170d71b3154838b381c48a3fa530c771f7544415b3ecb97e376f9630d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-307-09-how-to-verify-fsm.html",
+      "sha256": "dea846d00ce678b84f89f6c8c9dfce87f381dd21a8605f2b6d3cab06ad9de380"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-307-institutions-fsm.html",
+      "sha256": "419f241336650d52fd329bcfef83f1f6e7a7f23213658d07762529472d18f610"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-309-01-ssn-eligibility-and-applicant-notification-requirement-fsm.html",
+      "sha256": "7709d71c9665ffa1608a05231b207163c5fd739c19144cb3beb27a33582bb4ca"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-309-03-other-worker-action-at-application-fsm.html",
+      "sha256": "dc9386d3a5bf9c28c37fac2a156de5ad5ed766e2723d576cf9a5af1ada1b77c1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-309-05-completing-an-application-for-an-ssn-fsm.html",
+      "sha256": "33fe442898a20e02da301523eed670c379286bd4eabb24d38c2241498ced2cfa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-309-07-verification-fsm.html",
+      "sha256": "cb96ea5b5509f3e637f27b0add841f8dacf710f3fae6c7bd3a20be2b72f117c3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-309-social-security-numbers-fsm.html",
+      "sha256": "44246ed4a093864f146b4232ab8bd4a3f0a810e3b07e1764562edb164f18632e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-01-definition-of-voluntary-quit-fsm.html",
+      "sha256": "ff430986b7268de75b214b08dc208a9f16f2f6d16043ef41fa305ff5a77999c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-03-good-cause-for-voluntary-quit-fsm.html",
+      "sha256": "79d8752c0837bd49b33a71aac8b59822d424cb72732a442bd18ba45fdc2ddf6b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-05-sanctions-disqualifications-for-voluntary-quit-fsm.html",
+      "sha256": "a470960f5885a5feb09c38c79f3a649acc20bb934c183d43de177c8c34aee32c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-07-informing-the-household-about-voluntary-quit-fsm.html",
+      "sha256": "f9f6ad38879d0f3f279d52549be8b7e92ed5f1cda74b22b726c9e6d77592de72"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-09-fair-hearings-fsm.html",
+      "sha256": "2831d9675ae4a721c75d90a3382a5f6c3cee189fba2a975eaa3356efe9053d77"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-11-reapplication-reinstatement-after-voluntary-quit-fsm.html",
+      "sha256": "41511a9feb102aefabfc4910aba25eeb8a4cf665e2dbd6e3914b635f02eefb8b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-13-verification-fsm.html",
+      "sha256": "8d700992bb29b05b2acfae7a80faf8b54dd0e7f98cef81df463a552d92d53e48"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-315-voluntary-quit-fsm.html",
+      "sha256": "05d1bbe3bcd38ee2546720b30110dea61fcaabae3295ac6239efc41e3e3e21c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-319-01-probation-or-parole-violators.html",
+      "sha256": "6c854f8cd38108241dc874773da2e386a5478368b091ee9740034f38868685a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-319-03-fleeing-felons.html",
+      "sha256": "adb1d50c0f19e4e1ed872e718ec20b280fd7e7316c6ca786a870dffe682f7714"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-319-05-certain-convicted-felons.html",
+      "sha256": "48e5ef10cc0f1d0469a339fe1102edf26d42efdf4817213ec15a9d61a0dd07a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-319-fugitive-felons-and-violators-of-probation-or-parole-fsm.html",
+      "sha256": "017bc33361d89b7e93152dbbef545eeb829010d963ac0689ab9fdf79ec80d6ea"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-319-probation-or-parole-violators-fleeing-felons-and-certain-convicted-felons.html",
+      "sha256": "45f580f9d608298150e0de938effb1385f4d53e8755f4b3cd04fd7646e8ee3ba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-321-ineligibility-for-fraudulent-receipt-of-multiple-benefits-fsm.html",
+      "sha256": "3f35136a9b1c72aa5d52d904d38ba48eac619c3c1440c31ad7e0132cd496247b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-400-resources-fsm.html",
+      "sha256": "aa9c9fe6b54dd5f69655030befead2d49c5a3e397a2a5c204f1aeea56084adb7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-401-general-information-fsm.html",
+      "sha256": "8b8b993724d1d698d06dc487c9617b67553a09d74a46a536ddfe56a303c062ef"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-403-resource-limits-fsm.html",
+      "sha256": "6a646aa12dd4bf2baac2e5c5d20db10b3050d6093656087d2caac29af58c83ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-405-whose-resources-count-fsm.html",
+      "sha256": "98883f999c2e07ced760ff1538ed5e5baf25068a6421a135674c8cb9eb7a55c8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-407-treatment-of-resources-fsm.html",
+      "sha256": "bd8c746692992dab45f0d6c8c455154c65f175f2109f74cd42cbef32141bebc2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-alien-sponsors-resources-fsm.html",
+      "sha256": "3379821573c3ae90bc367168cdd92b857a63f5a907f2141fd5c303f48dbab40a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-assistance-payments-nhep-fap-oaa-anb-aptd-ssi-fsm.html",
+      "sha256": "9fcefbac353a4170f1391d3225ff18a6e51753ab46725406bb7c778b9e3f82c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-assistance-payments-tanf-nhep-fap-fsm.html",
+      "sha256": "846b2aface5730860d032a065031a925f4720949d7f9fc7fc663d5bc00e68da9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-automobile-fsm.html",
+      "sha256": "2b9f76e63488ca1b03bb6820db42c00c9456fa28b8c5511dfb2e6bf166d25dd3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-bank-accounts-fsm.html",
+      "sha256": "ccadb954c67ee4d6baa4c8dba5b6094fe673289fea250c2d4dca9ae0880353b9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-bonds-fsm.html",
+      "sha256": "a8c48844c3297096a30c31dd8fe66a77a1bad1466c8271206c87cdf63f5b84d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-borrowed-money-fsm.html",
+      "sha256": "58f8225836d561bc463f3176eea0bac1fec9fc91971204e7b4d7201c868d020b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-burial-fund-fsm.html",
+      "sha256": "163f0e6b3d5dfe9e7a51f3fd3943f14aa70517a322dd311fb3b072f7991e84ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-burial-plot-fsm.html",
+      "sha256": "675e3e5d4d89c62517d00b22dd22315a437608c3e1962bb28fc8e9113ca8d6b5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-certificates-of-deposit-fsm.html",
+      "sha256": "be72eaa0f8abc6f04e138e6b36beeec794f94a55490fbc1bb155abf1a84d8439"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-checking-accounts-fsm.html",
+      "sha256": "9afa2329f3aa03a16d4aa20274a9bd757d3c81275db1e7de997660cfc1671c2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-common-types-of-resources-fsm.html",
+      "sha256": "2e4194d2356b74c35e7930607fe880fc6ef7c6283a8087ea9be8b78abcc4db95"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-corrective-payments-fsm.html",
+      "sha256": "48309abf7e44a99d38b4fd4297a341bf3c2eb576a3222e787059bf0b0d2a1589"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-credit-union-accounts-fsm.html",
+      "sha256": "88321a03d1f0f02cf1f74a4e793ebb13a5af6ab59a4cab021de247a83f60e92b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-dividends-resources-fsm.html",
+      "sha256": "335fbdb6a341ff0f8eb0b0797e14dad7e6050cb438e53b9822a5ad0514e5ba27"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-earmarked-resources-fsm.html",
+      "sha256": "39d56f7593298250d6481b7892731f77cf0c3ff924c4009ed1ee851d4827d619"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-earned-income-tax-credit-resources-fsm.html",
+      "sha256": "bfdb2c88ad81b40a4c17bbb571fe662b2e14b14d9f17ab18c65172b7e77404b2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-employee-retirement-plans-fsm.html",
+      "sha256": "8084084195c8658548b3473ce098dd75874274edaf0d79bfe7b584c091cebf1e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-home-fsm.html",
+      "sha256": "7facb6cf2628dc3ebf46e256a643185e21f593553638cb199dea5b47d6a60f7e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-household-items-and-possessions-fsm.html",
+      "sha256": "b0799c1fef375535b71b93f2cbf27a149986f91c68412a8dcaa7728c15b7bda6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-inaccessible-resource-fsm.html",
+      "sha256": "632fac057066103d506117689f823b23d0c7a73c0d20f5a7d92020ebb64bb745"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-income-producing-property-fsm.html",
+      "sha256": "0b3b88a6fd49cd3a55a970d173029dd733277aefd20ba10c2077a4b1b7d88d39"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-individual-retirement-account-fsm.html",
+      "sha256": "2b1b8c5e77cbe892d2216c411e384732323498a54a69d8d9ff4b9bd8dc2afc35"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-interest-resources-fsm.html",
+      "sha256": "852906266ac1bd11a69e59ceae68284b9d73ab2a9257012c42b7e6102d66c071"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-jointly-owned-resources-fsm.html",
+      "sha256": "67c0e0c0b1a5145dc32cf05ab9eb3b957a9d0dc776e518eccbbdc60ffcb1d1bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-keogh-plan-fsm.html",
+      "sha256": "529077293ec163c1c7e88a37b2d8bd9741fbde3c2b40d4fc526db4d8879153d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-life-insurance-fsm.html",
+      "sha256": "0dc96f729a5505d0b9b818e1f8f1e04785a1b8dae581cd820d77ef5916c011d4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-loans-resources-fsm.html",
+      "sha256": "ce22cc4bf164f42b645a6ee1cfe591b026b05e44a57a1140811125cfe11b2709"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-lump-sum-earned-income-resource-fsm.html",
+      "sha256": "8d4aa56bf6be169357e482d8c9ad576af64a2f13a2590c84048f9fe6fc659c01"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-lump-sum-payment-nonrecurring-fsm.html",
+      "sha256": "468a3846e1aea74bd71a884194ef87fc60c77deea30f114bd92c78837774b293"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-prorated-income-fsm.html",
+      "sha256": "08d9792c3c83a7a1eeaea63762d96cb19f75f3eb098580aab51b35b66e77dd4b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-real-property-fsm.html",
+      "sha256": "c9b73c2f8e78a0e04454d5cd7ffef830c58a7b551302d5abe63b1005c32061d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-savings-accounts-fsm.html",
+      "sha256": "c3ca180262968bb108f065313d33fbff91c2693c419e570acefcc41991a53bfc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-stocks-fsm.html",
+      "sha256": "a5cfe40667b60d22666f93d35b4a1338e7aeddf8ae92a393d58f8e75181851b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-trusts-resources-fsm.html",
+      "sha256": "b9db4860b414acfdd308716195fc49e0112bf5da3ade89aca7d7054b2cf59392"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-unoccupied-property-fsm.html",
+      "sha256": "86c87fd11c10215467e8604c92c4fe89eae5a0b9621d4e7af4239aa1db493bb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-409-vehicles-fsm.html",
+      "sha256": "83f59e68c9e558e6300fc2a0d442e6f6a912bad73bad3a514762a226bf808fa3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-able-stable-nh-accounts-fsm.html",
+      "sha256": "fe10b141101305d763ad90e35e226f24a524584a0f7f05689af5d4985f9ef191"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-crowdfunding-fsm.html",
+      "sha256": "3c0ef4ab5d0805ddf029444dbdaad325144d76a8b30986d92f110620fc69f93c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-educational-savings-plans-fsm.html",
+      "sha256": "f9d957268b40136945909c947856de83a9eacaefc98921995c81a67d88184294"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-farm-machinery-livestock-tools-and-equipment-fsm.html",
+      "sha256": "ed64fbf33fef08e71c80c89ffc28de14de87fde3eb8de9fd1faa209074681975"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-individual-development-account-ida-fsm.html",
+      "sha256": "9999dfb8e5cf2127b7cca28808ecc78f0e9deee56d00ac2f56a216878a82bb03"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-less-common-types-of-resources-fsm.html",
+      "sha256": "06b3688244b65bd46cbda310b79b92fc509ef14be7445f0de1a3bb4c29d01256"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-resources-excluded-by-federal-mandate-fsm.html",
+      "sha256": "560f78ab3500d6c699152376291eaa298ced04d2f26d13753be38ba6ab762acb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-susan-walker-v-bayer-corporation-et-al-96-c-5024-nd-iii-payments-fsm.html",
+      "sha256": "a66dbb76d46ffcc6e22b85edcb39577a9f3bf080979a39d7f018679bc5b180a6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-411-tax-refund-fsm.html",
+      "sha256": "3bc963836b5d831dad895fdd524764031267ef15880647f78b2b9054ea31111d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-413-verification-of-resources-fsm.html",
+      "sha256": "728b0563325b26ad097193ec75cdf3ca20aa6c57c79d22b3807f1ece0bac3b48"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-01-what-is-a-property-transfer-fsm.html",
+      "sha256": "5f5311b3c19f73bf61d70cbfd18a5329d29ea0f53d60740899c246b45d6cc09c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-03-examples-of-property-transfers-fsm.html",
+      "sha256": "a99f523fc7172a31044010acf77f6559c6915f67cc8ee4586f1752b056bc6720"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-05-transfers-to-monitor-fsm.html",
+      "sha256": "cad91a04abacf67872d1a68f863b99148d5407cce3dd1df7f7237ec4dbfdc480"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-07-evaluation-of-transfers-fsm.html",
+      "sha256": "a9c8aadfbeca1a54a390acc2eb059382b574254050460c3a41a9c9a0f61699a1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-09-penalty-for-transferring-resources-fsm.html",
+      "sha256": "705a10cc47d9d7511b323efbbaa6bc8d561e23f94009cd31cc79ddf29eeb6adf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-11-notifying-the-household-fsm.html",
+      "sha256": "495817b529079d4815350fb700a42f38b8ca4011ff53636c65a8c065255d7a04"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-13-verification-of-property-transfers-fsm.html",
+      "sha256": "353e629d16a5704751f59d245575390c67cfac3b510a6025a73aafcc7344a785"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-415-transfer-of-property-fsm.html",
+      "sha256": "2e31b2db4719fd8a8e3772f428278cfb185853377661f112531c2d051c462605"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-500-income-fsm.html",
+      "sha256": "a008c2c3584d8a7770e7029b40a567f6da7c73febf00fd8baf3cbb3588a51b0b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-501-general-information-fsm.html",
+      "sha256": "6e852bab03dcadd52b0ab220767d13c19ac7343a14e2fe6c01dcc1fe44e2123c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-503-available-income-fsm.html",
+      "sha256": "e0b71953b19bdb21b4b387f263df451e1310499792856d2ff2b1863a1abd11e6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-505-whose-income-counts-fsm.html",
+      "sha256": "de3184a7539a1d19e5ed82a277964125568c8a04237a8d8ad5e1697b7b402013"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-507-treatment-of-income-fsm.html",
+      "sha256": "eee5a2359fa86f6b086d929fca29479dd78b244ab0b1a30f96daa622d909ce6b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-509-verification-fsm.html",
+      "sha256": "88d1c1fd028e6053eca867c65ae834f5530107dcff05e7c55c23931297c206ba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-active-corps-of-executives-ace-fsm.html",
+      "sha256": "a2dbc84283c7ecf60cd576fe2b0fa93b29445730fe4f6c26464a8ae9d2cd1086"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-adoption-subsidies-fsm.html",
+      "sha256": "0d7bf34088434288c02788eb163408dd935394e0a7258b4ddda0124529b68229"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-alien-sponsors-income-fsm.html",
+      "sha256": "197a0f2a80d21e970fe7cea6a1804e7d8f175abc277846833d0476609d2e2d33"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-alimony-fsm.html",
+      "sha256": "a33d6435a215f0ad7d2658abffd7e876503bd7e7353b325b6a5818de475bf6e9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-allocated-income-fsm.html",
+      "sha256": "4c51c4f92f0f90aca78506cc74b272438831e083ab29ae9ba12f99c3abda7905"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-american-association-of-retired-persons-aarp-fsm.html",
+      "sha256": "e9ff439509cb2fc27d062c87411debb93f0417660060328f45f85d6513520b35"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-americorps-fsm.html",
+      "sha256": "3e5680e9e540264001768c2b1f12ee1b3d84ceb75e8de38d69f434bef40d3f82"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-annuities-fsm.html",
+      "sha256": "86f0c0a831456f61fc7d531bc63ac39f1147df95961419417ac6bd6b31bacc8a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-assistance-payments-fsm.html",
+      "sha256": "5b4d7498463fb585b97e70abc6d4cd33d44f5e248d7ab51afecf6010f0a0bfe8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-benefits-fsm.html",
+      "sha256": "a49bdbe00355a1cf016c5c08349b09118a4f0f0dacc85b8a231a649cadff88ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-boarder-income-fsm.html",
+      "sha256": "a18d66254ba9bf1acf0d7a1fddd9dd49d89fd1fbfdefbd684180d154217d464f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-child-care-income-fsm.html",
+      "sha256": "24b1aa0a0e597b7528bea57f0c066c9c846f6b2aca876329eb1f256b79aa0660"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-child-support-fsm.html",
+      "sha256": "79b79afcd4c33a7436b7296dea849003564e2436a93604f234ba39e862063e1d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-commissions-fsm.html",
+      "sha256": "5bd98ae6dd4dd7f11b2276411eca754725eae7ea40ff3affcae7c315bf4fb5a2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-common-types-of-income-fsm.html",
+      "sha256": "30c49eeec9e8ab476b058b6575ad79499d7c79b592350ca8325f59b80a9a59aa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-contract-income-fsm.html",
+      "sha256": "1d6c50876c8f20d98597f031014bb7c4f709251ee7946c8bf77cdd1a5b00b92b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-contributions-fsm.html",
+      "sha256": "7cad005ad3dcdad4f1c33ec562519bd8d040299ceacdd9ed6f6e1ff2f4060854"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-deemed-income-fsm.html",
+      "sha256": "75f5978ee95509f37517126287d21b78d4ab61a90c4d16d4fb73fdf678efb02f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-department-of-resources-and-economic-development-dred-fsm.html",
+      "sha256": "3afffacead889dcaef1d12edd9d2a311025185cc8e2991fa60653c74e2a0b7db"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-direct-relief-fsm.html",
+      "sha256": "3d8c3346b8e9781e0c6514464a0c4e1f8482ec564fb3215ac0ff698966bb517d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-disqualified-excluded-members-income-fsm.html",
+      "sha256": "f64b697a8e5c7744d52636fae7c2a8c53bf936ee974c3acc69898825b13e2d1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-dividends-income-fsm.html",
+      "sha256": "8098e8402f75a5e0df32c557b3fa74facb74d076d3c2f6ba34eaafa57ff3498f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-earned-income-tax-credit-income-fsm.html",
+      "sha256": "232a10ac4237bf7413c233e63384bbf46e1a9a8f85cb077ac28316abf92a04d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-earnings-fsm.html",
+      "sha256": "cccdc2df3b295d62420b25d65ba4b54c2a76c24c509dbab16895db47e0fd9a7c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-earnings-of-children-fsm.html",
+      "sha256": "4005464d637718715a6f24379514cdefa1f089d30f38bbedac342cb3c21aa0af"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-earnings-of-children-who-are-students-fsm.html",
+      "sha256": "b9361a5a3a73bbd35b9840a38ba4d8f782d2ec249ca4a952e2ef61c93b8fcaaa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-educational-income-fsm.html",
+      "sha256": "de23397db776cc5a60f5003113cd201677114b2f78885167118d3fb7de9271af"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-farm-laborers-fsm.html",
+      "sha256": "ef46608bd22b95ac470e7447076730100697827db04eab15341ddfaf28abe4cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-federal-fuel-assistance-fsm.html",
+      "sha256": "c177c5f1bb0df417be95696815f92c7e26fa0f328a43e62a8eb3a62e305d1639"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-federal-work-and-training-programs-fsm.html",
+      "sha256": "5df64cc87017895fe946972b6cfdbe8806fbd18c47264ab9b5517c314142e2ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-food-stamps-fsm.html",
+      "sha256": "cd3062e38d07489515971d07485772ec4f65e5d06d90d8412b171394ee95d7e1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-foster-care-fsm.html",
+      "sha256": "d8904c1fcbd9cbaa3c3678636fd0b524c5e73e72fbd50bdcba73b1bcd98d2645"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-foster-grandparent-program-fgp-fsm.html",
+      "sha256": "445810e80494495433ffd07c74a8c98a5d75630382c6009b1f8309837d49d722"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-green-thumb-fsm.html",
+      "sha256": "2d4a75c35518b44d4f03947714862aa4db49b9dbd09a6324ca0f6d7679b558ee"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-income-in-kind-fsm.html",
+      "sha256": "ad20349ea0c9737406e820b747d1a2f676cb59cf40379437430871a9a31e12d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-interest-income-fsm.html",
+      "sha256": "b21139efe5f2120734458dabee8648006141ab36e74c7870a5c7947cb3238d01"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-job-training-earnings-fsm.html",
+      "sha256": "6d1eba97bba9cca73b052a6c7ebae82044c40c005a813e6e2f58d95ea311975a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-loans-income-fsm.html",
+      "sha256": "b85bba1efc238590dd5f28fbbff170d86c39e85e26ceed23aa0168ac492c1fb6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-lump-sum-income-income-fsm.html",
+      "sha256": "f38c41ad0947f69f9ffccd6324777a45d8c45f118f3118e316fc942fa4581074"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-older-americans-community-service-program-oascp-fsm.html",
+      "sha256": "f69dc37162f46126048a5e458f63366b4f6de6945a1eec15397273757522ff51"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-pensions-fsm.html",
+      "sha256": "ac78288543a86b137f5d4d7758effcf0f502c93124df4b900cdf9b0be8a99688"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-plan-for-achieving-self-support-pass-fsm-x.html",
+      "sha256": "19c36fdda6824d8053eb33819ba7b28268c021d02584614eb7699bead4858be6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-plan-for-achieving-self-support-pass-fsm.html",
+      "sha256": "d4ff8bb9f8d4737e93911b5dc517d0ff25e88de4ba9f88e45fd4efb5f0c1df70"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-reimbursements-fsm.html",
+      "sha256": "b545ff4fb30d5ed6caa8a14b2af927540973755d15e5cc4bfa8b5160c782f47a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-rental-income-fsm.html",
+      "sha256": "e3ffe1f196278994e65cdb2537a3373a8a97b7da1443852d845c9939efe48584"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-retired-senior-volunteer-program-rsvp-fsm.html",
+      "sha256": "dae308c95f5d93e12f8dc00a50b01314ad02c1f5c68b505218f4da850fc50895"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-roomer-income-fsm.html",
+      "sha256": "293830d3214bae407f61f7fb390f0067b45246aa6fd504b7fcce2b33be5bccc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-royalties-fsm.html",
+      "sha256": "2803d7c8f96b5d0ef799c49145bae60821c939e7701a9b9a811c52d6c2320337"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-salaries-fsm.html",
+      "sha256": "c9c648e009e8d4b7966fd217eaa175225d31c269fb9c756c05bc17032419f32d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-scholarships-fsm.html",
+      "sha256": "9e8959d92e9b23d142a979f5d13c71627351a36b637d21edabd32e7f1dceb8b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-self-employment-fsm.html",
+      "sha256": "79d1a9a2bc660d118cf4c69f6f9bb806b24f6e69cb2dec642e8a7cc1c7bece8c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-senior-citizen-community-service-employment-income-fsm.html",
+      "sha256": "70a4a1ae3763e9b5efb4b3903e2ac8cdd7f20e26f59a069be2a406b3c5dcc996"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-service-corps-of-retired-executives-score-fsm.html",
+      "sha256": "484071368d5508f806ad558c3c78e9f82bfb2e33453045b101762c26ce3e4961"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-social-security-administration-ssa-benefits-fsm.html",
+      "sha256": "72722a1d771d0ecdcdf381859a969f84770e6ced6c39249f9974fe1b76576bec"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-spousal-support-fsm.html",
+      "sha256": "6165594388cb2c8daed3ddf585afd5adad32c5366786f537519d8c51bb608ea8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-stipend-fsm.html",
+      "sha256": "80318b49c1c21653893bd23b75a5eff45e9ddecf4961c7e898a426e71d115d28"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-supplemental-security-income-ssi-benefits-fsm.html",
+      "sha256": "4d1934dd74524d6a84d690b68af0619369f17de819910a9dec873ad94253bdf7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-tax-refunds-fsm.html",
+      "sha256": "64b1b68e85dd33c0862a4d30b7490cc20d3a2c7fb07cb40c56a41d698f179770"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-tips-fsm.html",
+      "sha256": "78249b7ae2e16ec731b7ffc2e81eb57bcef90aea172c4b60568fdcac3a9fe791"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-trusts-income-fsm.html",
+      "sha256": "1aa42ba41f60da0ff4cc818acfc6574875e84aa5055a53c4d842b41d8328e4bb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-unemployment-compensation-fsm.html",
+      "sha256": "1f682f390f584265b9c0bb0619119904735b676b09e77bd6c526894de9a858f2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-va-aid-and-attendance-allowance-va-a-a-fsm.html",
+      "sha256": "29028e02409df225f7eee7b4adb73a124c615dfaa0e24eedc2535f2edb96726f"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-va-benefits-fsm.html",
+      "sha256": "547353550ae7e08b651c1d5b2f20c9a3f69ff7ce975910ce301f8b6c4689bdae"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-vendor-payments-fsm.html",
+      "sha256": "64085bbc5c79a8d7ea1238255572b33f438c8c7bb1b1be89d1cfed42ddad2a1a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-vendored-shelter-payments-to-homeless-households-fsm.html",
+      "sha256": "d9bd0fa673c2c6ebfdcebe097b4cb094c96d66692d76e4d8665f32b51a47f396"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-volunteers-fsm.html",
+      "sha256": "0500b4c487b226aa638b96b9a412f82477fd97d225eaa046cc96c51009ee5afa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-volunteers-in-service-to-america-vista-fsm.html",
+      "sha256": "936c4257e9dc905c53909a4455c2a6612cf84251f464fda06533499f05f810c2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-wages-fsm.html",
+      "sha256": "5eb73822a013f2f614f8f12e913391175e2c1631549fee5acb74e9cbeccccdba"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-work-study-fsm.html",
+      "sha256": "088476b28b01dc0f88fe00e738ea4a5dc03e0b1efd29909f1b784af1bd68df9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-workers-compensation-fsm.html",
+      "sha256": "bd21090ada58794962311abb6f5c22cc5e3932897a68d92474c9e0ee6cf15966"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-511-workfare-fsm.html",
+      "sha256": "33c8c8ed6679630c180ee65c36bef70594931acb25e444741129aa779f1456a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-agent-orange-settlement-fsm.html",
+      "sha256": "a145ffa82095bfde3fc7644892aa24bdc3ba30c5fa283f35cfbcacaa1b65980a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-alaskan-natives-fsm.html",
+      "sha256": "fabe4d90f57f6c22fdf7648f22c265c421897d8ca2a9c8ba8c05ceb14a4de988"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-aleutian-and-pribilof-islanders-fsm.html",
+      "sha256": "07e6c687d266846b15be24f4322ceac775abd8ef428f5d4560dd72fadea59105"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-american-indians-fsm.html",
+      "sha256": "b6b1b2ed4f3b7c05d56712fa71e906f72c1e11b70128282f2e34de57455c1a20"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-armed-services-basic-allowance-for-housing-bah-fsm.html",
+      "sha256": "6a8bcf5191cbc7b3aa90a0116393808de1f53017f0d7bf05a7765572012c27d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-census-income-fsm.html",
+      "sha256": "ab973d0cc50ce1013753a67167bbc3a00403ec82be12b733ef7a24475a69e836"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-child-care-fsm.html",
+      "sha256": "350cc2d600c0d4b1925a4efab34e3294ef631b3146ddb3ad0608a2ff0f9e321b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-disaster-relief-fsm.html",
+      "sha256": "d70728a1bb1a7a728a8f20d0113a7bfff972f08f20602f808f73e2dbbdc05282"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-home-produced-food-fsm.html",
+      "sha256": "5c449b978b9c676ae6269335eda922f5f377a8f6fcb788606e1af66a6545e995"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-ida-withdrawals-fsm.html",
+      "sha256": "c5d7ec2bd773c15c2bf9ae5f9cb0023bb0d1e8fe6c9fbcd87270a935d8744b57"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-irregular-income-fsm.html",
+      "sha256": "ebcf02522b8909f3efae50c5da741185f2ede731800418a98a85b51b4f5ebc66"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-less-common-types-of-income-fsm.html",
+      "sha256": "0471a39c005a822bb88fcf45ab113b8521b21f583d840080bf6174ede758c81e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-military-pay-and-allowances-fsm.html",
+      "sha256": "87b211d3ea627a5c2d313a8f3930629e432e015ce41c79794d462e5f797fd3a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-nonmembers-fsm.html",
+      "sha256": "782dc7c3c6cf3a1db20cf759ee642f7103fb6ef2e9f1aa95a9a64be8a1417301"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-radiation-exposure-compensation-fsm.html",
+      "sha256": "36738bff3d2bcd93fb04ccbc80888dddcd2c04a9c22e51253cfe02c74a254973"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-relocation-assistance-fsm.html",
+      "sha256": "d1caf3b5a467adfccfb638dc84c4cbf1a45256d2149fae030715e420bd728b8b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-summer-youth-program-fsm.html",
+      "sha256": "3560e3263b6693d15a3c326c8d8d81d90f87be406d49b7a5be2584a6593606fb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-supplemental-food-assistance-fsm.html",
+      "sha256": "365343524c3a66a9c7d9b4540c3077bebf6732f2e5ccf8e9386e94b470dfdc72"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-us-citizens-of-japanese-ancestry-fsm.html",
+      "sha256": "15aa991252af10b5b3be0dc2d554362b605ba3930607a338e1f081faac609cb4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-women-infants-and-children-wic-fsm.html",
+      "sha256": "f4924d9dfd116516e83d0abbc1e9405074bbd3798177668f42a7baa905273e32"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-youth-build-program-fsm.html",
+      "sha256": "be312a20ce1b8c3a882eb5e15d96e053136c6b54766f6c771539acd11cf8203e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-513-youth-employment-program-fsm.html",
+      "sha256": "7e7008f8610188a9c9793e4ba7e854f02491a9606ca471c7dfca8673cb2c4251"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-600-standards-and-budget-fsm.html",
+      "sha256": "78ac394c7423dfa7e370b51c40ec361733601b1a01f08124ebc31b2c28d2dba0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-income-limits-payment-standards-and-allotments-fsm.html",
+      "sha256": "bafc2a21a865a2ba30ee4b5f6329f17193eef7fdbc7797e9a06e321cf7312628"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-e-snap-maximum-monthly-income-limits-fsm.html",
+      "sha256": "82ec4aa3fa628496eff55dd65a948b7cfd277da1d67c0822a5a9634a206b3181"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-f-maximum-snap-allotments-fsm.html",
+      "sha256": "36ca04abc089976beaad534cb029300b70539ea626a909cbbe1573791c63e5d5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-g-determining-snap-allotments-fsm.html",
+      "sha256": "0f2b4137d56f91394cd65d0f0b4dbf6cc7442524affe60f80f2f72a17a81be08"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-g-food-stamp-coupon-allotments-by-household-size-1-6-fsm.html",
+      "sha256": "6f461a8b241632954310c02c73115571132a70f902e67eab8b1f85adda6b5fc3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-g-food-stamp-coupon-allotments-by-household-size-7-12-fsm.html",
+      "sha256": "e5ef32aab892bbb7dc5046f404b38e5514f515464f46bb1c040dc6750f2468d0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-h-federal-information-taxes-income-ceilings-and-minimum-wage-standards-fsm.html",
+      "sha256": "31fc51b5d3a7777c6afdcb365e534f2f35f0c40e515bb33815502099c7ac1f79"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-i-snap-deductions-fsm.html",
+      "sha256": "256f59750350f22f7e7570d8aacf5f0d68cd5744c7a77ea22bffd92cf0ba5593"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-601-table-j-shelter-treatment-fsm.html",
+      "sha256": "c70ae1f566e4ad38e8715852486174727d1af3fce87c1f810646b446e7d97252"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-01-earned-income-disregards-fsm.html",
+      "sha256": "c7e63320973e8f6de425bbeb1fc26faa1a96ea4648d63d50d6290673203fbf06"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-05-child-dependent-care-deduction-fsm.html",
+      "sha256": "a585a9134daeef4fc68b5b53c73009195ee537a71fe8eff98cbb118b075a078c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-court-ordered-child-support-payments-fsm.html",
+      "sha256": "b12db0ca303980b6f16fc45b55c9c3964d19b512fe61cf0d778efc5c60ee1549"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-medical-deduction-fsm.html",
+      "sha256": "977ea7e34c39f2ca80d79fcca5783b4e0a5f7e066faceb39061e495507a13f08"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-other-allowable-deductions-fsm.html",
+      "sha256": "c172b5fbf470afa25cfc5c9afbbc473f6e69e46b0510a35c0d69823a3899609b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-self-employment-expenses-fsm.html",
+      "sha256": "c7c5d444dd13fcd9d52b827da30c2c6b5b1d96268f90a2ad535e2e629213d315"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-shelter-deduction-fsm.html",
+      "sha256": "42e4c36dc23b23e4771a3bd423779afc8395dbcdc33c269c8aea8165baca36f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-standard-deduction-fsm.html",
+      "sha256": "a8c580ab4eb93592d65e243555d152407998d9cfaa1796d5b949f7992ab79cd8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-09-utility-standards-fsm.html",
+      "sha256": "7e3e8484e3fc2f5e07f5b3b0c6d9c5c33922aefe0d1cefe3581a84e36e7cda39"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-11-verification-of-deductions-fsm.html",
+      "sha256": "e3872b82dc4f894f523222a5d6c12e5af54eb62034e527c371f5d181a4a87466"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-603-deductions-and-disregards-fsm.html",
+      "sha256": "5dcbddbfb3fe9f6b77c6fd8d5a52fda0dca8cdfec5b941d96716c3d98aa7105a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-605-budgeting-overview-fsm.html",
+      "sha256": "b8260976f5f3dd1ee12e5543129b7cf75b5124834ccc94a8d1200b90a9c13215"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-607-conversion-to-monthly-amounts-fsm.html",
+      "sha256": "e3ae3d036a93c09001d7620fa7125476599c2f21a408f082afd3e1e21a88dcf3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-609-01-averaging-fluctuating-income-fsm.html",
+      "sha256": "df1e404e03cee52f5c10517232b814aa485ba1dedbf62f85f95d4366a11d02f8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-609-03-time-frames-for-using-averaged-fluctuating-income-fsm.html",
+      "sha256": "a087293bcab26667c85a70e9ffd6bc0fb4e68cb164ef3859d62d0768b147fbfd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-609-fluctuating-income-fsm.html",
+      "sha256": "21a8d42d0049952ccba5ecf2ff71b0982ad263e5226040c65649bec6557a5e29"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-611-01-computing-income-eligibility-fsm.html",
+      "sha256": "3fee73888fdf65930acb7c3fe138f187dcbacda7b75592e4261dad78d346d898"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-611-03-deeming-principles-fsm.html",
+      "sha256": "7d3aa46240af6e91c743d075e5e9e8dc1f741ef3c618b7a7d011f0d95f1ca8b4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-611-04-exceptions-to-the-sponsor-to-immigrant-deeming-principles-fsm.html",
+      "sha256": "3da6cd769fa9daf3d7dee15be5e998948379a85490513d3fd081582b847b0219"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-611-05-income-of-disqualified-and-excluded-individuals-fsm.html",
+      "sha256": "5dea98be18fa4d290deed192c5795a4cd30660e93207de3a28438cc096832d85"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-611-income-budgeting-fsm.html",
+      "sha256": "cbd5f841688dfb0b6b2c8902c52a4cf04e8caa176321c6419649105109a2f4dd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-613-rounding-procedures-fsm.html",
+      "sha256": "6154c714272bb4ec65d236714d709fe64fb8073d28d41a3305d10b7820e47031"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-615-benefits-frequency-and-issuance-fsm.html",
+      "sha256": "9620d29cc08488b1a0a1f2e6f435e4e8ddcbf2dd131db2bc06ad8b7bb41f0d00"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-619-01-determine-the-corrective-payment-or-supplemental-benefit-fsm.html",
+      "sha256": "adeb16bee6e51641d20c8e467186cb36204a67764014eb7f90f0266985ec325b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-619-corrective-payments-or-supplemental-benefits-fsm.html",
+      "sha256": "f29a715e98926b20c18f1e0f653c8eb314786c20d04a5123440d6fc017d7b27d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-01-determine-the-overpayment-or-overissuance-fsm.html",
+      "sha256": "03b49fea7808b0e97af4f39b99cdcb39eab38af04ca3631e1f1968220e3d66eb"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-03-rate-and-method-of-recoupment-fsm.html",
+      "sha256": "f43624b8866d20b923573cbd01c32d0c0df6edb97acb4340ec057440de96c395"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-05-when-the-household-fails-to-make-proper-payment-fsm.html",
+      "sha256": "ef54a32220e7b1dd06ee82b657c592a1a2817c65d47fa540b73e220fcfbeeb7a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-07-suspending-or-terminating-collection-action-fsm.html",
+      "sha256": "fd7bbcd2d9870b75dbf91c0833c0837af2dc3e86c83ef8d25dec1f234f3d1da9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-09-claims-discharged-through-bankruptcy-fsm.html",
+      "sha256": "241c2326b63a54b5d22245a96205e693de280020536e2d41f9bb2a92c18dd22d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-11-when-a-household-makes-an-overpayment-on-a-claim-fsm.html",
+      "sha256": "ab185f442bdfc14244c3a50cf4488d3cfc8aa3cf6383a141cdac60e089062bc8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-621-recoupment-repayment-of-assistance-fsm.html",
+      "sha256": "86812a14b4f84b3180ad057b80d8e8cf2b35a01bde1361e6f11ad06cfec2c318"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-700-miscellaneous-fsm.html",
+      "sha256": "6678c543d391ca35f1e4c353666c2cba3696425b3aaccd09dcf2fdc5d6447308"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-01-the-purpose-and-uses-for-food-stamp-benefits-fsm.html",
+      "sha256": "722bfaf1ade82b1fef4f4aac41d148a5a9f12c430dee07374d39398efd6a3dcc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-03-communal-dining-facilities-fsm.html",
+      "sha256": "76e4f31b366ae805c681d84bfbed3e9003c250b1a5e2f3ad60e3ca2e786376a0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-05-nonprofit-meal-delivery-services-fsm.html",
+      "sha256": "1a91afe3318ebbc3ac52e3c91c3f9c587cb5a25850372c727dbd446f666065d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-07-addicts-and-alcoholics-in-treatment-programs-fsm.html",
+      "sha256": "7a469059a5c0239b6d702eb950d653721023c55658d018e23d632e2812910535"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-09-community-mental-health-centers-fsm.html",
+      "sha256": "963e9d044e5c6c18c1434f296561f1e924a4931731720fce01b8f9617b3d7d8e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-11-group-living-arrangements-fsm.html",
+      "sha256": "d4627126c27164d8bde24af21cb89e50a77fd6fdbf9ca0c2fe93281dcae1679b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-13-shelters-for-battered-women-and-children-fsm.html",
+      "sha256": "34e9ab8e67594b34afae59e142f74fe594a57c885e271175edb7f58ae699c1a4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-701-purpose-of-food-stamps-fsm.html",
+      "sha256": "bccd5edf34882b1e31397261c3a315d23fe2defec1917e2d32f9dbdcfd60f0ae"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-707-01-mailing-addresses-fsm.html",
+      "sha256": "39cdf971233b55e59d21c86e62663c2b3f8b16105dcff5cb24227fe3fb3aa530"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-707-03-mailing-restrictions-fsm.html",
+      "sha256": "b8a03c8aa516fc8c785f177ad3db1d0120538d57df8ce7bf96fd2188fa74a132"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-707-05-alternative-delivery-of-food-coupons-fsm.html",
+      "sha256": "89663d7e9b759488e67060c03ea78d9da835689cccea4b4af2913eaccd0d3438"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-707-07-separation-of-duties-for-ebt-card-issuance-and-distribution-fsm.html",
+      "sha256": "f62d9887ecdf827ff1248979774f9c623adb17710148f9e640a4071f3e61d4c6"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-707-issuing-benefits-fsm.html",
+      "sha256": "06d040ae7b92bb8518a5a1d2f5d4320a1cfc788ff5b826c48dd0516db8d042b7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-01-what-benefits-may-be-replaced-fsm.html",
+      "sha256": "fbb71b57fc8cc3413ea1700f5755984b58bc94fbacc045ecacb105e812db9567"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-03-when-benefits-are-not-received-fsm.html",
+      "sha256": "21b40fb178cd2425345071e3bf7e975e7f3f19fc857862aabd2ac380da0870a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-04-cash-out-of-ebt-food-stamp-benefits-fsm.html",
+      "sha256": "8ec1ab4e97a0807371c609bd2ecea924921e18a2b967ea280b42ed8195c48450"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-05-replacing-undelivered-coupons-fsm.html",
+      "sha256": "0e8ae62df3717f99c708fdc07f1e711189135e75b3f4e2fae5c79dd1b2814004"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-07-replacing-coupons-totally-lost-or-stolen-prior-to-receipt-fsm.html",
+      "sha256": "279486bd90d8274c9ac2453f0c5c4ec9cfed8439ded5d1c5fc4a873dca93e8d7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-09-replacing-coupons-partially-lost-in-the-mail-fsm.html",
+      "sha256": "e4c518ee24e100bae9f186c35fca1e02d09fd60de31d3e7b33782f43f0d7e6c5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-11-replacing-coupons-lost-in-certified-mail-fsm.html",
+      "sha256": "86ee0968159b74e08bc7382922046b294bf893ce98d30fc24469270c99cd6d1e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-13-replacing-post-office-box-losses-fsm.html",
+      "sha256": "2f2891e62444b6ea3068db0adb14e34a6323d4e8ef2e3be05879245be8d6facf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-15-failure-to-cooperate-with-the-post-office-fsm.html",
+      "sha256": "bf56d6b32525999908a4a3617d2e2045ae2e6d584b688e9a1c7d5b5033d23dcf"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-17-replacing-food-destroyed-in-a-disaster-fsm.html",
+      "sha256": "0b3cd1dafb2ecd93a704423a25fb7f5f4cb007eab11b417cbbb71ea102d678c7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-19-time-frame-for-replacing-destroyed-food-fsm.html",
+      "sha256": "1d240800cddbbfa7b0b857f46449916694280e1b906f0780d1a443f6bafcf792"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-21-replacing-coupons-already-returned-to-inventory-fsm.html",
+      "sha256": "8a7f789c4c247f7ec5577823fa104bd7011cb9318a83b882c0ea496cb539e752"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-23-exchanging-coupons-fsm.html",
+      "sha256": "fe027355dd6dc1dddcc959810f50a0fae19779f21733a85d92f4ea763ce8b27b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-25-receipt-of-coupons-after-a-report-of-nonreceipt-fsm.html",
+      "sha256": "346c73b71fbd8f5984d0ad9ef9ac52aa2b8f28fdef920829fd787582134211da"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-27-replacing-electronic-stolen-benefits.html",
+      "sha256": "7a880e9e45393550f84790ca72a380e20bbd5cb53dd81d86b2458ea13d2a108c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-29-time-frame-for-electronic-stolen-benefits.html",
+      "sha256": "19296d1bfc333c118b53999cc3c4d9831fd13d1b3c7843e6234409d0affeff25"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-709-replacing-unreceived-benefits-fsm.html",
+      "sha256": "8f302fbd3dcb03fb4a31d6d8278308b120760a918721ffba121f739a75ee2d8a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-710-01-expungement-of-ebt-benefits-from-unused-ebt-acounts-fsm.html",
+      "sha256": "faee4647bb76222c2c5119e9f123db7637d6ccaa87e78360b0ccf23a95423f73"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-710-02-expungement-of-ebt-benefits-from-deceased-households-fsm.html",
+      "sha256": "044d6d4a8a97a39b592e187b6ea0da313c53d9c477daffdafbad2855ed2053f9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-710-benefit-expungement-fsm.html",
+      "sha256": "46e28964220a26a2966a7bc1328596603e1593d1a15b7d5b8d724f588e64cfdc"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-711-01-coupon-security-fsm.html",
+      "sha256": "64f1a8071f37e1ebfdbb2447f80d5a40746e9d20bed668d4357e275093067529"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-711-03-receiving-returned-coupons-fsm.html",
+      "sha256": "f3c54f4454f1b1100453f47229a5d22159d23d5183f0431ad129c4ade9cee1ce"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-711-05-returns-of-found-coupons-fsm.html",
+      "sha256": "0f6f0bc196f370c75ab9afce1fe6cab6fd509b45a38d7f218664cd4f51b5dde2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-711-07-returns-of-coupons-already-replaced-fsm.html",
+      "sha256": "dfd602b2479f573c835da4aab465f77658968ec93f1d580ae097114fb638620a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-711-09-how-to-send-unclaimed-coupons-back-to-bdm-fsm.html",
+      "sha256": "18807d7bc4c1253a8ef182d5efca556be6543a4a035574edb75e5d763d97bb79"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-711-coupons-in-the-district-office-fsm.html",
+      "sha256": "62361b29db49aecacb01aabb2122c1b3e1c5fe745a0bc43fd44a961864d27f1c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-01-intentional-program-violation-ipv-fsm.html",
+      "sha256": "96c9cdc559be6d83788f9d172f2ccdc9051c2af1a9433a72f99e7409ec862324"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-03-disqualification-periods-fsm.html",
+      "sha256": "e8ba1102a1871bc9980b920f6014e35b405869e872cafea17e00f0560c9b10b1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-05-ipv-court-of-appropriate-jurisdiction-fsm.html",
+      "sha256": "0336882be29860283a4d3068acb23906f6e797542d30e2246ddfde96d99e0d56"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-07-ipv-administrative-disqualification-hearing-fsm.html",
+      "sha256": "e43d085a327b8fa46672c0f328b1744d928491e6d5ecc993a4a352b8fd29272b"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-09-calculating-the-amount-of-repayment-for-an-intentional-program-violation-ipv-fsm.html",
+      "sha256": "ceaf857d89ee19b2803903e3ec9725258a303a8c19642bcc092e365ff1e2025d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-11-recovering-overpayments-overissuances-due-to-ipv-collections-fsm.html",
+      "sha256": "1602b5dcdbaa0f1c9bd81121c23226903baf75b7e1c7f88c864179c840c73eb5"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-13-court-adjudicated-claims-fsm.html",
+      "sha256": "2baf6f8b57ac78600db8ab77d4c00714ddf15fef52e58bdf1fc6710431fde6d9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-15-initiating-claims-fsm.html",
+      "sha256": "9e6d90c81b063bf45f75e8f92dbee87cbfb63960208c6c556420173c8a5409c0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-17-failure-to-respond-to-a-demand-letter-fsm.html",
+      "sha256": "daa1ba26e4ffc1fbd066f6acfe9720583d3ca9a959973cf07a56e7d30fdedee3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-19-when-a-household-member-leaves-during-collection-action-fsm.html",
+      "sha256": "c26a0eab108699fe66319c484e8b6a954d5bb3a4e79e5016176e843d92a6d7f0"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-21-methods-of-collection-fsm.html",
+      "sha256": "e772b4bd5879908ad1cbd20ba76d4b5dda6358a291abc71e1e2708599d2e605e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-23-when-the-household-fails-to-make-proper-payment-fsm.html",
+      "sha256": "594ee773a493a8d825e2aacad06a42ef8f6f974300e6a837a9f5ef73f6b83e41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-713-intentional-program-violations-ipv-fsm.html",
+      "sha256": "81e690e455cf032f460f4abdfe2501aaea61985d2292c8e449b3e4fef0ae361d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-715-nutritional-supplement-for-working-families-nswf-fsm.html",
+      "sha256": "dd4e04c09fa477bbb440fe3ec38bc23ec7073af27cdd52dd4061db69b1a7c5ad"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-800-training-education-and-employment-fsm.html",
+      "sha256": "9cad49b9f4924dd53c0d00cb2c4233ad2d3a80c62b5845a0e4a866a2c9fbf042"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-801-01-exemptions-from-snap-work-requirements.html",
+      "sha256": "802252de0a68c463a84073aabfcf696d6f881ea0ff74c92c28faf556218bf129"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-801-03-verification-of-exempt-status.html",
+      "sha256": "11cffafc8323b59f79d7aa24246272e746bcece7d367f4ebe471d6cebd2fb568"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-801-05-loss-of-exemption-from-snap-work-requirements.html",
+      "sha256": "4f65da85befb0c730fb4c00634e0a73dbd6d0e1f31fa345d05d0cbbef020ee8c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-801-purpose-and-long-term-goal-fsm.html",
+      "sha256": "1fde98c040a07103ef95e1c9719da043e57e1e7ff4edb0cf35ebe13b94bb4c94"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-803-notifications-at-application-fsm.html",
+      "sha256": "992028758191f261fe975eca05bedd1a838f50bc49206fa5b2da532244329b1d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-805-notifications-at-redetermination-fsm.html",
+      "sha256": "21504d70c1094855fc2ee94762f539f511f73d956d8be8c5b63784d889492d36"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-807-which-work-requirements-apply-fsm.html",
+      "sha256": "60c5e6465fb95129739808cb5d7738daa90f6178d2a899aa230cf3cee8859bc1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-809-exemptions-from-supplemental-nutritional-assistance-program-snap-work-requirements-fsm.html",
+      "sha256": "cf434f249b3bc9645ec35296a5c4071d25710cb3834fcc43e7bdf202eb47f880"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-817-determining-food-stamp-head-of-household-fsm.html",
+      "sha256": "f6c1ca0e215cda7c88198733c167cdc1c8082852ddcb8d56f379791e977b3588"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-819-01-support-services-for-food-stamp-job-search-fsm.html",
+      "sha256": "9f30a9492cfa99af95924ab2fc37ba5c94b102f2eea31c64361f14b78df8863a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-819-03-transportation-reimbursement-for-snap-employment-training.html",
+      "sha256": "f74e67f22f31f776f1428341e77bab29c478c0b4851208ec88654b08edfa4756"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-819-05-criteria-for-the-snap-employment-training-program.html",
+      "sha256": "756778acb4cacfd0ae059fc2fa2caea73ad6df199cb89be9e819a078e8f415bd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-819-food-stamp-job-search-activities-fsm.html",
+      "sha256": "35c94d99d6e2bac76e845094dbb4337cb30d2db69c107027625cde46544d021c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-821-responsibilities-of-the-individual-fsm.html",
+      "sha256": "311edce91f00ef8fdd30f838fed2048b549298075e6c1abe0a693c1aaced2d4e"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-823-good-cause-for-failure-to-participate-fsm.html",
+      "sha256": "8f5bae9352e88a7e8577257bf235170c1398120eb99f90a93a89cd5651abc509"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-827-01-length-of-disqualification-fsm.html",
+      "sha256": "b97f251d414646b116dadabae341b938d7a5dd42cdd6b093185204f4bcef9127"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-827-03-opening-and-closing-a-case-during-a-disqualification-period-fsm.html",
+      "sha256": "9e36f098ad5758fd3697bdda077fcb2a2003169c2562ca81349d93929f0b1ff4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-827-05-notices-to-individuals-fsm.html",
+      "sha256": "3576e2c470693f9042f39a831417ada84f4c91560c4d976628f275ebdea60f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-827-disqualification-penalties-fsm.html",
+      "sha256": "3d353ea79a905bc57be75c1ac0233af14f7d08cf35e2c342c77d8e1420bf1354"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-829-fair-hearings-fsm.html",
+      "sha256": "7516b7bb727f41bfcf4166f73480dc1f99dba4dcaa452eb40fa4483162a2aab9"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-a-words-fsm.html",
+      "sha256": "de2fbf04a82f554325484d72aba343be0d5f10ee9654973911fe1b69629c7e8a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-b-words-fsm.html",
+      "sha256": "ce2592834e14dfb3b72561c870b6346e750a0bda7721c6b0fe78e2fc4a91b47d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-c-words-fsm.html",
+      "sha256": "8edbf2f6c888a60ea7fe14a0ea060b7d7b00f3a14edc849f26d984467127b791"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-d-words-fsm.html",
+      "sha256": "d9f5c03e4e7176ea04e19d797580b25d75bbff99e9a918015ae77c21b6d1c839"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-e-words-fsm.html",
+      "sha256": "9d7ba5e559803a5f5220cfcd2aa5b75e0e7b2b314c4159be26e10c5e4bef33e3"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-f-words-fsm.html",
+      "sha256": "f14558195d7e3b0a008f89be46c061767bb2d5de3536d8f2204794ce68f9226a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-fsm.html",
+      "sha256": "e1721956745debdd5a38bef956a67eddab7cc5ff1310f59b62541c2285d007a8"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-g-words-fsm.html",
+      "sha256": "5f0c5a698da8f04fd2fec631925538d2191a52f29a8f6e6c3542935184bc46f1"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-h-words-fsm.html",
+      "sha256": "58aeaf2335b44acf1e363730775fb3af0f860f495581fa9c2185536e3cd6b408"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-i-words-fsm.html",
+      "sha256": "485dce3d45941b1393f3faee1f13383025a42056f446e7de08aa478798c0a138"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-l-words-fsm.html",
+      "sha256": "a01ade62b4073683f4270e0f6b2c43e1c2804f77c2cc1ddc64fee5bd3ed93100"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-n-words-fsm.html",
+      "sha256": "dbbdbcd1a1ee21d06e16951f0db926b6f8b58ef8b5ae9cc3acbed78c7ca7e85c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-o-words-fsm.html",
+      "sha256": "22e50e19b4f6f7d604680533cdb171374c49e795e85abf9df7df86ec9ef6349c"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-p-words-fsm.html",
+      "sha256": "b1a6776242533203414d3de270f06c0eb7197ac3600252def7822702d7bf69e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-q-words-fsm.html",
+      "sha256": "eba45e759ded54deed86eb1a41e2c78b56bd461e89691d031f6a178b73690409"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-r-words-fsm.html",
+      "sha256": "2a0d878c19032f81c456f13c418f6299b33603e0a9d743550f0ca7c5c1d89596"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-s-words-fsm.html",
+      "sha256": "eb08c763aba3a31b08bb036d96baced6944e7cbb182e184b6d477832ff952648"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-t-words-fsm.html",
+      "sha256": "c84f72c464a4c07ff36b35164d05b7b2cb176dd478ee20bfeb46c2acc619c72d"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-u-words-fsm.html",
+      "sha256": "2a9bb893e1b17f44e8865d354974f97b324c0ae50ff2f26d429e41a153b949fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-glossary-v-words-fsm.html",
+      "sha256": "4030aa37929fb568d405d524e3ab669cf1fd77bf4058dab702c02d1d7c9858a7"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-introduction-fsm.html",
+      "sha256": "66e3446f3040a37b22bb541e5019491e67ca041d0aa5a09f9fef2d87a8c5726a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-introduction-how-this-manual-is-updated-fsm.html",
+      "sha256": "b8f96955d9ef53274791e2697f92b9863e0fdc4fd1f1d473bc54eb9dc1ffb66a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-introduction-how-to-use-this-manual-fsm.html",
+      "sha256": "781e8c500faff444993e69d8bd3b3db1efe64bf6d2763be5460c009641ea0697"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-introduction-navigating-the-food-stamp-manual-fsm.html",
+      "sha256": "d41ae8eb7e1e34012b83a0b60249d3038732bf807423670fd3dc247b8c501b5a"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-panhandling.html",
+      "sha256": "789a78362d503a567b58f2a9abaa84f18aec39140239246077f40ff222cf24df"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/manual/2026-09-10-snap-state-manual-completion/official-documents/us-nh-dhhs-fsm-sr-retained-fsm.html",
+      "sha256": "6363cb46f8d87ed7853da6c254510c9294f399a5ea32308419b334a9660fb36c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-snap-state-manual-completion --manifest manifests/us-nh-snap-manual-completion.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1006,
+    "missing_count": 0,
+    "provision_count": 1006,
+    "source_count": 1006
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:15:22.204746+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zDDdEsmQsEypnf+eAAXqfMTwAxIJoofbG/6YQUVLyXSM9eituKR/Qb/NLO+5r6GVDE8URXvycl31DXOEx0i0DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-snap-state-manual-completion"
+}

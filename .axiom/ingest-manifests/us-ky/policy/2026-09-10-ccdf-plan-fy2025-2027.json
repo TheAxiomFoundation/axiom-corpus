@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "11d634c9375ad5329dbba815a9ed45c7671a22f852e0ceee5123df1193a4976e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "c853790f81e221863b1b68aa4bc27fd9f7cdefb094577ed99ba4216915af95f2"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/policy/2026-09-10-ccdf-plan-fy2025-2027.jsonl",
+      "sha256": "8a9f53fde4f4be1195c95e8f11fdc4ae571d1ae830f6a58156ee5d9da5acdd15"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/policy/2026-09-10-ccdf-plan-fy2025-2027/official-documents/us-ky-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "e6fe56b071a5d970c18395eb4a5173e8d57f65c204c67c3617210bc49ccd1cfd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ccdf-plan-fy2025-2027 --manifest manifests/us-ky-ccdf-state-plan-fy2025-2027.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T21:52:34.605276+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lWrlGOYBs2USwZiWWqVb+a0F3JJ91PNP1kIPUxbRxSA29rT8rMwzqs7NzlMPq5nV7W07BsVyZf8LniqSuhhpDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ccdf-plan-fy2025-2027"
+}

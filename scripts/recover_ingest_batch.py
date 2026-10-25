@@ -21,24 +21,25 @@ from bs4 import BeautifulSoup
 from axiom_corpus.corpus.anchors import generate_anchors_for_provision
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.california_mpp import _section_provision, _subsection_provision
+from axiom_corpus.corpus.content_quality import ScopeContentScanner
 from axiom_corpus.corpus.coverage import compare_provision_coverage
-from axiom_corpus.corpus.documents import (
-    OfficialDocumentSource,
-    _extract_blocks,
-    _inventory_items,
-    _provision_records,
-)
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from axiom_corpus.corpus.ingest_manifests import build_ingest_manifest, default_ingest_manifest_path
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
-    build_usc_inventory_from_xml,
+    _build_usc_inventory,
+    _iter_usc_provisions,
     decode_uslm_bytes,
-    iter_usc_title_provisions,
     parse_uslm_title,
 )
 from axiom_corpus.parsers.us_ca.regulations import extract_paragraphs, parse_mpp_sections
+
+if __package__:
+    from .recover_ingest import assert_ecfr_recovery_supported
+else:
+    from recover_ingest import assert_ecfr_recovery_supported
 
 REPO = Path(__file__).parents[1]
 FETCHED = REPO / "recovered-fetched"
@@ -128,39 +129,127 @@ def _normalized_citation_path(value: str) -> str:
     return re.sub(r"/+", "/", unquote(value).strip().strip("/"))
 
 
-def _all_ingested_citation_paths() -> tuple[set[str], dict[str, list[str]]]:
-    """Index every durable provision scope for the final offline recovery audit."""
-    exact: set[str] = set()
+ScopeKey = tuple[str, str, str]
+
+
+def _all_ingested_citation_paths() -> tuple[dict[str, frozenset[ScopeKey]], dict[str, list[str]]]:
+    """Index, for the final offline recovery audit, where each citation path carries text.
+
+    Returns each citation path that carries text in some durable provision
+    scope, with the scopes it carries text in, and the paths grouped by their
+    representation-normalized form. A path carries text where its row does by
+    the release content rules (``ScopeContentScanner.text_paths``): a body that
+    is neither page navigation nor taken from a version picker, or a bodyless
+    root with such a row below it. Indexing every path regardless of body let
+    the July 2026 batch count empty roots and LegInfo menus as recovered text
+    (docs/ingest-runs/2026-09-25-us-ca-statute-recovery-audit.md).
+    """
+    carriers: dict[str, set[ScopeKey]] = defaultdict(set)
     normalized: dict[str, list[str]] = defaultdict(list)
-    for path in sorted((BASE / "provisions").rglob("*.jsonl")):
+    # The text test reads each row's retained page: without the sources, every
+    # menu would read as text again.
+    require_materialized([BASE / "provisions", BASE / "sources"], fetch=True, repo=REPO)
+    provisions_root = BASE / "provisions"
+    for path in sorted(provisions_root.rglob("*.jsonl")):
+        parts = path.relative_to(provisions_root).with_suffix("").parts
+        if len(parts) != 3:
+            raise ValueError(f"provisions file outside jurisdiction/class/version: {path}")
+        scope: ScopeKey = (parts[0], parts[1], parts[2])
+        scanner = ScopeContentScanner(BASE)
         for line_number, line in enumerate(path.read_text().splitlines(), 1):
             if not line.strip():
                 continue
             try:
-                citation_path = str(json.loads(line)["citation_path"])
+                record = ProvisionRecord.from_mapping(json.loads(line))
             except (json.JSONDecodeError, KeyError, TypeError) as exc:
                 raise ValueError(f"invalid provision row at {path}:{line_number}") from exc
-            exact.add(citation_path)
-            normalized[_normalized_citation_path(citation_path)].append(citation_path)
-    return exact, normalized
+            scanner.add(record)
+        for citation_path in scanner.text_paths():
+            carriers[citation_path].add(scope)
+    for citation_path in sorted(carriers):
+        normalized[_normalized_citation_path(citation_path)].append(citation_path)
+    return {path: frozenset(scopes) for path, scopes in carriers.items()}, normalized
+
+
+def _planned_scope(entry: dict[str, Any]) -> ScopeKey | None:
+    """The scope a plan entry's document is recovered into, when the plan names one."""
+    values = (entry.get("jurisdiction"), entry.get("document_class"), entry.get("proposed_version"))
+    if not all(isinstance(value, str) and value for value in values):
+        return None
+    return (str(values[0]), str(values[1]), str(values[2]))
+
+
+def _own_scope_vouches(result: dict[str, Any]) -> bool:
+    """Whether a document's own planned scope may resolve its targets.
+
+    Only when the document's recorded result is parsed: parsed in this run, or
+    an earlier parse this run reuses or carries forward unchanged (a run limited
+    to one document, or one whose snapshot has left recovered-fetched). A
+    reparse that fails records an unparsed result, so its own scope no longer
+    vouches, in this run and every later one alike.
+    """
+    return bool(result.get("parsed"))
+
+
+def _carrier_kind(
+    citation_path: str,
+    carriers: dict[str, frozenset[ScopeKey]],
+    own_scope: ScopeKey | None,
+    include_own: bool,
+) -> str | None:
+    """``cross-scope`` if another scope carries text here, ``own-scope`` if only the target's own does."""
+    scopes = carriers.get(citation_path, frozenset())
+    if scopes - {own_scope}:
+        return "cross-scope"
+    if include_own and own_scope in scopes:
+        return "own-scope"
+    return None
 
 
 def _resolve_across_ingested_scopes(
-    target: str, exact: set[str], normalized: dict[str, list[str]]
+    target: str,
+    carriers: dict[str, frozenset[ScopeKey]],
+    normalized: dict[str, list[str]],
+    *,
+    own_scope: ScopeKey | None = None,
+    include_own: bool = True,
 ) -> dict[str, str] | None:
-    """Resolve exact, representation-only, and generic-document fallback paths."""
-    if target in exact:
-        return {"citation_path": target, "method": "exact-cross-scope"}
-    matches = sorted(set(normalized.get(_normalized_citation_path(target), [])))
+    """Resolve exact, representation-only, and generic-document fallback paths to text.
+
+    ``own_scope`` is the scope the target's own document was planned into. Its
+    rows count only with ``include_own``, which the caller sets when that
+    document was parsed: rows a scope holds for a page it did not parse prove
+    nothing about the target, so they must not resolve it.
+    """
+
+    def kind(path: str) -> str | None:
+        return _carrier_kind(path, carriers, own_scope, include_own)
+
+    exact = kind(target)
+    if exact:
+        return {"citation_path": target, "method": f"exact-{exact}"}
+    matches = sorted(
+        {
+            candidate
+            for candidate in normalized.get(_normalized_citation_path(target), [])
+            if kind(candidate)
+        }
+    )
     if len(matches) == 1:
-        return {"citation_path": matches[0], "method": "normalized-format-cross-scope"}
+        return {
+            "citation_path": matches[0],
+            "method": f"normalized-format-{kind(matches[0])}",
+        }
     document_matches = sorted(
         candidate
-        for candidate in exact
-        if re.fullmatch(re.escape(target) + r"/document-[0-9]+", candidate)
+        for candidate in carriers
+        if re.fullmatch(re.escape(target) + r"/document-[0-9]+", candidate) and kind(candidate)
     )
     if len(document_matches) == 1:
-        return {"citation_path": document_matches[0], "method": "document-fallback-cross-scope"}
+        return {
+            "citation_path": document_matches[0],
+            "method": f"document-fallback-{kind(document_matches[0])}",
+        }
     return None
 
 
@@ -347,7 +436,11 @@ def _targeted_state_html(
     targets = list(entry.get("covers_citation_paths") or [])
     if not text or len(text) < 200:
         raise ValueError("state statute page contains no parseable statutory text")
-    if len(targets) != 1:
+    if (
+        len(targets) != 1
+        or entry.get("parser") == "new:north-carolina-statutes-html"
+        or entry.get("version_aware_splitter") is not None
+    ):
         return _targeted_multi_section_html(entry, soup, text, provenance, source_key)
     target = targets[0]
     label = target.rsplit("/", 1)[-1]
@@ -391,7 +484,12 @@ def _targeted_multi_section_html(
     heading_starts: list[tuple[int, str]] = []
     search_start = 0
     for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "div"]):
-        classes = {str(value).lower() for value in tag.get("class", [])}
+        raw_classes = tag.get("class")
+        classes = (
+            {str(value).lower() for value in raw_classes}
+            if isinstance(raw_classes, list)
+            else set()
+        )
         if tag.name == "div" and "sectionhead" not in classes:
             continue
         heading = re.sub(r"\s+", " ", tag.get_text(" ", strip=True)).strip()
@@ -403,31 +501,115 @@ def _targeted_multi_section_html(
         heading_starts.append((start, heading))
         search_start = start + len(heading)
 
-    starts: list[tuple[int, str]] = []
-    for section_path in section_paths:
-        label = section_path.rsplit("/", 1)[-1]
-        pattern = re.compile(rf"^§+\s*{re.escape(label)}(?:\.|\s)", re.I)
-        matches = [start for start, heading in heading_starts if pattern.search(heading)]
-        if not matches:
-            raise ValueError(f"state statute page does not contain declared section {label}")
-        if len(matches) > 1:
+    splitter = entry.get("version_aware_splitter")
+    if splitter is not None and (
+        not isinstance(splitter, dict)
+        or splitter.get("kind") != "north-carolina-tax-year"
+        or entry.get("jurisdiction") != "us-nc"
+        or not isinstance(splitter.get("tax_year"), int)
+        or isinstance(splitter.get("tax_year"), bool)
+    ):
+        raise ValueError(
+            "version_aware_splitter must be a North Carolina tax-year selector "
+            "with an integer tax_year"
+        )
+
+    def rendition_end(start: int) -> int:
+        return next(
+            (heading_start for heading_start, _ in heading_starts if heading_start > start),
+            len(text),
+        )
+
+    def select_nc_tax_year_rendition(
+        label: str, matches: list[tuple[int, str]]
+    ) -> tuple[int, dict[str, Any]]:
+        if splitter is None:
             raise ValueError(
                 f"state statute page contains repeated planned section {label}; "
                 "configure an explicit version-aware splitter instead of the generic "
                 "multi-section splitter"
             )
-        starts.append((matches[0], section_path))
-    starts.sort()
+        tax_year = int(splitter["tax_year"])
+        renditions: list[dict[str, Any]] = []
+        selected: list[tuple[int, str]] = []
+        for start, heading in matches:
+            before = re.search(
+                r"\(Effective for taxable years beginning before January 1, (\d{4})\)",
+                heading,
+                re.I,
+            )
+            on_or_after = re.search(
+                r"\(Effective for taxable years beginning on or after January 1, (\d{4})\)",
+                heading,
+                re.I,
+            )
+            if bool(before) == bool(on_or_after):
+                raise ValueError(
+                    f"North Carolina section {label} has an unsupported or ambiguous "
+                    f"effective rendition heading: {heading}"
+                )
+            if before is not None:
+                boundary_year = int(before.group(1))
+                applies = tax_year < boundary_year
+                applicability = {"tax_year_before": boundary_year}
+            elif on_or_after is not None:
+                boundary_year = int(on_or_after.group(1))
+                applies = tax_year >= boundary_year
+                applicability = {"tax_year_on_or_after": boundary_year}
+            else:
+                raise AssertionError("effective-heading validation failed")
+            body = text[start : rendition_end(start)].strip()
+            renditions.append(
+                {
+                    "heading": heading,
+                    "applicability": applicability,
+                    "body_sha256": hashlib.sha256(body.encode()).hexdigest(),
+                    "selected": applies,
+                }
+            )
+            if applies:
+                selected.append((start, heading))
+        if len(selected) != 1:
+            raise ValueError(
+                f"North Carolina section {label} has {len(selected)} renditions "
+                f"applicable to tax year {tax_year}; expected exactly one"
+            )
+        selected_start, selected_heading = selected[0]
+        return selected_start, {
+            "kind": "north-carolina-tax-year",
+            "tax_year": tax_year,
+            "selected_heading": selected_heading,
+            "renditions": renditions,
+        }
+
+    starts: list[tuple[int, str, dict[str, Any] | None]] = []
+    for section_path in section_paths:
+        label = section_path.rsplit("/", 1)[-1]
+        pattern = re.compile(rf"^§+\s*{re.escape(label)}(?:\.|\s)", re.I)
+        matches = [
+            (start, heading) for start, heading in heading_starts if pattern.search(heading)
+        ]
+        if not matches:
+            raise ValueError(f"state statute page does not contain declared section {label}")
+        if len(matches) > 1:
+            start, selection = select_nc_tax_year_rendition(label, matches)
+            starts.append((start, section_path, selection))
+            continue
+        starts.append((matches[0][0], section_path, None))
+    starts.sort(key=lambda value: value[0])
     records: list[ProvisionRecord] = []
-    metadata = {"fetched_at": provenance["fetched_at"], "recovery_parser": entry["parser"]}
-    for index, (start, section_path) in enumerate(starts):
-        fallback_end = next(
-            (heading_start for heading_start, _ in heading_starts if heading_start > start),
-            len(text),
-        )
+    common_metadata = {
+        "fetched_at": provenance["fetched_at"],
+        "recovery_parser": entry["parser"],
+    }
+    for index, (start, section_path, record_selection) in enumerate(starts):
+        fallback_end = rendition_end(start)
         end = starts[index + 1][0] if index + 1 < len(starts) else fallback_end
         end = min(end, fallback_end)
         label = section_path.rsplit("/", 1)[-1]
+        metadata = dict(common_metadata)
+        if record_selection is not None:
+            metadata["version_selection"] = record_selection
         records.append(ProvisionRecord(
             id=deterministic_provision_id(section_path), jurisdiction=str(entry["jurisdiction"]),
             document_class=str(entry["document_class"]), citation_path=section_path,
@@ -535,6 +717,13 @@ def _california_mpp(
 def _generic(
     entry: dict[str, Any], path: Path, data: bytes, provenance: dict[str, Any], source_key: str
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    from axiom_corpus.corpus.documents import (
+        OfficialDocumentSource,
+        _extract_blocks,
+        _inventory_items,
+        _provision_records,
+    )
+
     source_format = _format(data)
     parser = str(entry["parser"])
     extract_data = data
@@ -595,7 +784,9 @@ def _generic(
         source_format,
         source_url=source.source_url,
         title=source.title,
-        extraction=None,
+        # The extractor drops navigation blocks by the release content check's
+        # reading of the retained bytes; re-encoded bytes can read differently.
+        extraction=None if extract_data == data else {"html_keep_navigation_blocks": True},
     )
     if not blocks or not any((block.body or "").strip() for block in blocks):
         raise ValueError("parser produced no non-empty text blocks")
@@ -855,6 +1046,7 @@ def _uslm_planned_descendants(
 def _parse(
     entry: dict[str, Any], path: Path, data: bytes, provenance: dict[str, Any], source_key: str
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    assert_ecfr_recovery_supported(entry)
     parser = str(entry["parser"])
     document_id = str(entry["document_id"])
     if document_id in ASSEMBLED_SCOPE_REPLACEMENTS:
@@ -917,15 +1109,14 @@ def _parse(
             raise ValueError(
                 "unrecoverable: official response is XHTML, not a USLM title snapshot"
             )
-        title = (
+        usc_title: int | None = (
             int(str(entry["document_id"]).removeprefix("uscode-title-"))
             if str(entry["document_id"]).startswith("uscode-title-")
             else None
         )
-        document = parse_uslm_title(xml, title=title)
-        inventory = build_usc_inventory_from_xml(
-            xml,
-            title=document.title,
+        document = parse_uslm_title(xml, title=usc_title)
+        inventory = _build_usc_inventory(
+            document,
             run_id=None,
             source_sha256=str(provenance["sha256"]),
             source_download_url=str(provenance["url"]),
@@ -936,11 +1127,10 @@ def _parse(
             mapping["source_path"] = source_key
             items.append(SourceInventoryItem.from_mapping(mapping))
         records = list(
-            iter_usc_title_provisions(
-                xml,
+            _iter_usc_provisions(
+                document,
                 version=str(entry["proposed_version"]),
                 source_path=source_key,
-                title=document.title,
                 source_as_of="2026-07-13",
                 expression_date="2026-07-13",
                 source_download_url=str(provenance["url"]),
@@ -987,6 +1177,11 @@ def main() -> int:
                 ignored_duplicates.append(path.name)
         else:
             files[document_id] = path
+
+    # Preflight the whole selected batch before any writes or reuse of a prior
+    # success report: appendix replay needs scope and graphics we cannot restore.
+    for document_id in files:
+        assert_ecfr_recovery_supported(entries[document_id], base=BASE)
 
     store = CorpusArtifactStore(BASE)
     scoped_items: dict[tuple[str, str, str], list[SourceInventoryItem]] = defaultdict(list)
@@ -1036,7 +1231,12 @@ def main() -> int:
             scoped_items[scope].extend(items)
             scoped_records[scope].extend(records)
             scoped_artifacts[scope].extend((source_path, provenance_path))
-            paths = {row.citation_path for row in records}
+            # A planned citation is resolved only by a row that carries text,
+            # read with the release content rules against the retained page.
+            scanner = ScopeContentScanner(BASE)
+            for row in records:
+                scanner.add(row)
+            paths = scanner.text_paths()
             resolved = sum(
                 target in paths
                 or any(candidate.startswith(target + "/document-") for candidate in paths)
@@ -1047,7 +1247,7 @@ def main() -> int:
             )
             if resolved != len(targets):
                 result["issues"].append(
-                    "not all planned citation paths resolve in this document's parsed rows"
+                    "not all planned citation paths resolve to text in this document's parsed rows"
                 )
         except Exception as exc:
             result["issues"].append(str(exc))
@@ -1134,6 +1334,21 @@ def main() -> int:
         }
     for document_id, entry in entries.items():
         if document_id not in results:
+            if document_id in previously_parsed or (
+                only_document_id
+                and document_id != only_document_id
+                and document_id in previous_results
+            ):
+                # A document this run did not parse keeps its earlier result when
+                # that result was a parse, or when the run was limited to another
+                # document: an unparsed stand-in would erase the parse from the
+                # report the next run reads its parsed documents from, or replace
+                # a recorded parse failure (and its provenance error) with a
+                # missing-snapshot result although the snapshot is still there.
+                # The document a run is limited to is answered afresh, as a full
+                # run would answer it.
+                results[document_id] = {**previous_results[document_id], "newly_ingested": False}
+                continue
             targets = list(entry.get("covers_citation_paths") or [])
             results[document_id] = {
                 "parsed": False,
@@ -1143,16 +1358,25 @@ def main() -> int:
                 "resolution_class": "awaiting-fetch",
             }
     # Final reconciliation is deliberately global: a citation is recovered when any
-    # ingested durable scope contains it, not only the document originally assigned
-    # by the fetch plan. This closes incremental-batch and document-id bookkeeping bugs.
-    all_paths, normalized_paths = _all_ingested_citation_paths()
+    # ingested durable scope carries text at it, not only the document originally
+    # assigned by the fetch plan. This closes incremental-batch and document-id
+    # bookkeeping bugs. A document's own planned scope counts only when the
+    # document was parsed: otherwise its leftover rows would vouch for themselves.
+    text_carriers, normalized_paths = _all_ingested_citation_paths()
     for document_id, entry in entries.items():
         targets = list(entry.get("covers_citation_paths") or [])
         result = results[document_id]
+        own_scope = _planned_scope(entry)
         resolved_citations: list[dict[str, str]] = []
         unresolved_citations: list[str] = []
         for target in targets:
-            match = _resolve_across_ingested_scopes(target, all_paths, normalized_paths)
+            match = _resolve_across_ingested_scopes(
+                target,
+                text_carriers,
+                normalized_paths,
+                own_scope=own_scope,
+                include_own=_own_scope_vouches(result),
+            )
             if match is None:
                 unresolved_citations.append(target)
             else:
@@ -1204,10 +1428,10 @@ def main() -> int:
             for key, value in results.items()
             if not key.startswith("_") and value.get("resolution_class") == class_name
         ]
+        # The class's remaining citations: its documents' unresolved targets,
+        # not every target of a document that is only partly resolved.
         remaining_classes[class_name] = {
-            "count": sum(
-                int(results[key]["citations_resolved"].split("/")[1]) for key in members
-            ),
+            "count": sum(len(results[key]["unresolved_citations"]) for key in members),
             "documents": members,
         }
         for key in members:

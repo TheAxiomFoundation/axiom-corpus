@@ -1,0 +1,42 @@
+version: "2026-09-23-income-tax-subunits"
+# Wisconsin Statutes chapter 71 (Income and franchise taxes) re-extracted from the
+# Legislature's official HTML with every numbered unit below the section emitted as
+# its own child provision (subsection, paragraph, subdivision, subdivision
+# paragraph), e.g. us-wi/statute/71.05/6/b/54m for Wis. Stat. 71.05(6)(b)54m.
+# The official page identifies each unit with a data-path and a data-cites
+# self-citation, so the child records mirror structure the source asserts.
+# The adapter appends "-chapter-71" to the version, so the scope on disk is
+# us-wi/statute/2026-09-23-income-tax-subunits-chapter-71. Section records keep
+# the same citation paths and bodies as us-wi/statute/2026-07-16-pit-west-chapter-71,
+# which this scope supersedes. Run note: docs/ingest-runs/2026-09-23-wi-chapter-71-subunits.md.
+sources:
+  - source_id: us-wi-statutes
+    jurisdiction: us-wi
+    document_class: statute
+    adapter: wisconsin-statutes
+    source_url: https://docs.legis.wisconsin.gov/statutes/prefaces/toc
+    version: "2026-09-23-income-tax-subunits"
+    options:
+      # The official pages retrieved 2026-09-23 read "2023-24 Wisconsin Statutes
+      # updated through 2025 Wis. Act 247 ... in effect on September 4, 2026
+      # ... (Published 9-4-26)".
+      source_as_of: "2026-09-04"
+      expression_date: "2026-09-04"
+      # download_dir is a local fetch cache (not committed). To replay the retained
+      # bytes rather than the live site, set
+      # source_dir: ../data/corpus/sources/us-wi/statute/2026-09-23-income-tax-subunits-chapter-71
+      download_dir: ../data/corpus/downloads/us-wi-statutes/2026-09-23-income-tax-subunits
+      base_url: https://docs.legis.wisconsin.gov
+      only_title: "71"
+      include_subunits: true
+      request_delay_seconds: 0.05
+      timeout_seconds: 90
+      request_attempts: 3
+      workers: 2
+    metadata:
+      source_authority: Wisconsin Legislative Reference Bureau
+      source_scope_note: >-
+        Updated 2023-24 Wisconsin Statutes chapter 71, Income and Franchise Taxes,
+        from the official Legislature HTML published September 4, 2026, with
+        subsection, paragraph, subdivision and subdivision-paragraph child
+        provisions.

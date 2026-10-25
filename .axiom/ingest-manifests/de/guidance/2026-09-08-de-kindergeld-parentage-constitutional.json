@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-08-de-kindergeld-parentage-constitutional.json",
+      "sha256": "4d3fb14c9a19c08885ca5b0054a922ef14ce38cb1d44738e1ffd1f48ac0b7716"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-08-de-kindergeld-parentage-constitutional.json",
+      "sha256": "f9d0947eecd1ea1e9ba1307ff52144c36cdf366165a7f465a73b4a386607cf28"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-08-de-kindergeld-parentage-constitutional.jsonl",
+      "sha256": "1d2cbaea3ad02547e1432d6024efbbeed2d7bf17bd242fe14230082285b8ab39"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-parentage-constitutional/official-documents/de-bverfg-parentage-2024-04-09.html",
+      "sha256": "eebdfa7cf82d1f5eeacf89b201aa79011086d4fcb68e67183076eabfb97b4857"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-parentage-constitutional/official-documents/de-bverfg-parentage-2025-06-03.html",
+      "sha256": "95823f0465486999c084bfb860f15e5abce598b454eb4a837f9164d31939d497"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dd9c9c02ef3e7597371f60411238e92bddd2fa4c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-08-de-kindergeld-parentage-constitutional --manifest manifests/de-kindergeld-parentage-constitutional.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T21:31:41.319670+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-constitutional-audit.json",
+      "sha256": "92611c1e6b9c3a95d67d85c6c38f1dc31d63382e711466f606fe5bdb74c7bbd4"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-parentage-constitutional.md",
+      "sha256": "321befaf19644420ee79e41ed009d21f4aef084a535eaa63849a798b60a47a9f"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "txu0zoGpuSNg4FwZfrWD/2rxDeJ0ssrZLLfn6JYhT032pw7xz0ml4gjLT3NRMGqtPwmGaOHJsfBVSGbLtnU3BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-parentage-constitutional"
+}

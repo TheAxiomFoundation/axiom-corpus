@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-redbridge/manual/2026-08-03-redbridge-council-tax-reduction-2026-2027.json",
+      "sha256": "01b3bb04080b392322a35e30070a2e545c5986a755c22787daa68f882535e4d2"
+    },
+    {
+      "path": "data/corpus/inventory/uk-redbridge/manual/2026-08-03-redbridge-council-tax-reduction-2026-2027.json",
+      "sha256": "8831491fd5c4dbf6fafeaf970277b7533339de99562dd0abf8a4f881773374e3"
+    },
+    {
+      "path": "data/corpus/provisions/uk-redbridge/manual/2026-08-03-redbridge-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "747758cb45f5257cfc75c3150c331aac9957e65688a9a359a0dd1e7dec9eeeec"
+    },
+    {
+      "path": "data/corpus/sources/uk-redbridge/manual/2026-08-03-redbridge-council-tax-reduction-2026-2027/official-documents/redbridge-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "e70997b3b157d07a39362b1ce92df2439ae1ada6bc0d3b9992b97b5b25230e23"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-redbridge-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-redbridge-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 159,
+    "missing_count": 0,
+    "provision_count": 159,
+    "source_count": 159
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:42.880058+00:00",
+  "jurisdiction": "uk-redbridge",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BveCe+ybzpucHm8PtfTFSkKO717miLrx20iaAX/HlySTnTUqMglyYnu/+srtb6dfL0I7nKXIDgDxWLD4Ka2+Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-redbridge-council-tax-reduction-2026-2027"
+}

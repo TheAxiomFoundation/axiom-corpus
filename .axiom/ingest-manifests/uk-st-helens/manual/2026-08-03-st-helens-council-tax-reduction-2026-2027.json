@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-st-helens/manual/2026-08-03-st-helens-council-tax-reduction-2026-2027.json",
+      "sha256": "ee4b454a8f279a7492fbcea53379ecc07cd843f395b073b91a95ff1390d4e767"
+    },
+    {
+      "path": "data/corpus/inventory/uk-st-helens/manual/2026-08-03-st-helens-council-tax-reduction-2026-2027.json",
+      "sha256": "2ff06aa9a8c34d8ceb0c9af3433f254c30b6cfe4c7f1fb120adfc5babae79dae"
+    },
+    {
+      "path": "data/corpus/provisions/uk-st-helens/manual/2026-08-03-st-helens-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "ad75ba1bc688aecf22db2ec934fb084016a0e9065152a45b70b6d13f5a7bc65f"
+    },
+    {
+      "path": "data/corpus/sources/uk-st-helens/manual/2026-08-03-st-helens-council-tax-reduction-2026-2027/official-documents/st-helens-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "f2882a74943623c20ef3996751567559f0cd730f9e34a1e6fbb68b93c220761f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-st-helens-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-st-helens-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 59,
+    "missing_count": 0,
+    "provision_count": 59,
+    "source_count": 59
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:58.353577+00:00",
+  "jurisdiction": "uk-st-helens",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uVYGS1g+lVTTdAbLaZT4nv+j8XlFQr9aIf848azCzMGzG3zqFZk6BW20dv5HEPePcMQsSsMRtDqPBXr7bvbBDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-st-helens-council-tax-reduction-2026-2027"
+}

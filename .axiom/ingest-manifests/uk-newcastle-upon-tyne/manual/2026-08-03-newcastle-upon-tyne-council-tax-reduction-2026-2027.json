@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-newcastle-upon-tyne/manual/2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027.json",
+      "sha256": "48624d629cf92fda90ee0205c4ce06b7ca874af42a65e1a9917a6f2da0e02fb7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-newcastle-upon-tyne/manual/2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027.json",
+      "sha256": "43aad709969e778f75ef94f0afb282679f33f2f39890a7c5b67e2a833931254b"
+    },
+    {
+      "path": "data/corpus/provisions/uk-newcastle-upon-tyne/manual/2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0b67432ea1e565d417dbfed32b834cf3707df6d8e59b5cf0675cccbc91bce9c4"
+    },
+    {
+      "path": "data/corpus/sources/uk-newcastle-upon-tyne/manual/2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027/official-documents/newcastle-upon-tyne-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "abb3c8232a2dd3043f44247b9849d819fdf01f919255510266218a5ceb390124"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-newcastle-upon-tyne-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 172,
+    "missing_count": 0,
+    "provision_count": 172,
+    "source_count": 172
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:36.572671+00:00",
+  "jurisdiction": "uk-newcastle-upon-tyne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "43THr6ZAzOmR42UhnDBNAHch5n8nyPexH0NztQpYNmNn380psp/50YPH/mq9Hm9aUVwNeZ7ExVzYeqKc+Yq6Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-newcastle-upon-tyne-council-tax-reduction-2026-2027"
+}

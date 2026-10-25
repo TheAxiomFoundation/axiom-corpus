@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-forest-of-dean/manual/2026-08-02-forest-of-dean-council-tax-reduction-2026-2027.json",
+      "sha256": "81e94f002f837b6f72db7f67f36bcac8fe78d1a698087d070fe850fa2ece2094"
+    },
+    {
+      "path": "data/corpus/inventory/uk-forest-of-dean/manual/2026-08-02-forest-of-dean-council-tax-reduction-2026-2027.json",
+      "sha256": "a33b0cc05285c34d245ed1774456e648f2fec1a01fea282a504a42034882debe"
+    },
+    {
+      "path": "data/corpus/provisions/uk-forest-of-dean/manual/2026-08-02-forest-of-dean-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "d5818b9e1620da2ba4dd66ce4c86a998cfcfc96cc264af8f356602cd74122b00"
+    },
+    {
+      "path": "data/corpus/sources/uk-forest-of-dean/manual/2026-08-02-forest-of-dean-council-tax-reduction-2026-2027/official-documents/forest-of-dean-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "383a90f6dd616b9ab8c1d641d92bb8936181e0ca1b4f102bdb2198cf2d4adf4f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-forest-of-dean-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-forest-of-dean-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 143,
+    "missing_count": 0,
+    "provision_count": 143,
+    "source_count": 143
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:01.078160+00:00",
+  "jurisdiction": "uk-forest-of-dean",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wlmlbi0NQg4WKUaRcGt4hWCCQU3kZUvJRw2fY28iVU4GWlo4mTIVvufPPSkegOuHoI+XiV6Cq+JltCxT5eG6Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-forest-of-dean-council-tax-reduction-2026-2027"
+}

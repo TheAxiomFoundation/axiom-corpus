@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-rother/manual/2026-09-05-rother-council-tax-reduction-2026-2027.json",
+      "sha256": "b629cf4eb9b2d111db0bbd36947daa3675ac07f2ac07d86f56e34d51e733d6cd"
+    },
+    {
+      "path": "data/corpus/inventory/uk-rother/manual/2026-09-05-rother-council-tax-reduction-2026-2027.json",
+      "sha256": "a63bfb33ed4633e2db947eba8a35f79e3cfaba0d4e8764fb81215bbb49f5be39"
+    },
+    {
+      "path": "data/corpus/provisions/uk-rother/manual/2026-09-05-rother-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "fef2564530dc7791728502b124d51006f17767f891b596dd66e4fb51a9a90ee4"
+    },
+    {
+      "path": "data/corpus/sources/uk-rother/manual/2026-09-05-rother-council-tax-reduction-2026-2027/official-documents/rother-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "ca53c8429da82f3417ca6feb80af386311d8b7c3be443cdeb5a195584c8e758d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3aa571d4672ebc68e619bc712e448b1662ac100f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-rother-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-rother-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 75,
+    "missing_count": 0,
+    "provision_count": 75,
+    "source_count": 75
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:32:24.761743+00:00",
+  "jurisdiction": "uk-rother",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VEzG5llZcHeEi+UO/uKulDmxegKd5niU+wctiQph2J27Qthor+S6GqYwAbaAs9UpQvGqcUPIV+3qH3nGMqmuDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-rother-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-south-derbyshire/manual/2026-08-02-south-derbyshire-council-tax-reduction-2026-2027.json",
+      "sha256": "7c107963491d098004e977b7b52f8ad008c6d61d35d269eb00c5d257047c3afd"
+    },
+    {
+      "path": "data/corpus/inventory/uk-south-derbyshire/manual/2026-08-02-south-derbyshire-council-tax-reduction-2026-2027.json",
+      "sha256": "676536459e4ac9d6a3e47c811e0c8d3febae8ffbfade38a66425835e747eeab7"
+    },
+    {
+      "path": "data/corpus/provisions/uk-south-derbyshire/manual/2026-08-02-south-derbyshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0a93911c7e044f5661819e9a34c9d11d4aaec82255efa4250051dbbf6b7b5c7c"
+    },
+    {
+      "path": "data/corpus/sources/uk-south-derbyshire/manual/2026-08-02-south-derbyshire-council-tax-reduction-2026-2027/official-documents/south-derbyshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "8e376c9f9ce17910e0528efced24d63c2f3527253527df4f0d44afb6f7755dd0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-south-derbyshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-south-derbyshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 56,
+    "missing_count": 0,
+    "provision_count": 56,
+    "source_count": 56
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:29.811803+00:00",
+  "jurisdiction": "uk-south-derbyshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fFzIAK7J+JqwBArDPIsrA9Bp+02ctSfgGVGRueX5JGM8wAhNlPRk+AGwEDIUY3o3o+ZO4NA6mjM0inKaeZbyBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-south-derbyshire-council-tax-reduction-2026-2027"
+}

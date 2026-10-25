@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bournemouth-christchurch-and-poole/manual/2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027.json",
+      "sha256": "7095d1201305223a9ed3b7484c6c0213356e3b3f9ade576a3c7d34e799ef326d"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bournemouth-christchurch-and-poole/manual/2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027.json",
+      "sha256": "ce0f9090ffdf923c787ef7762ae6a1ef3a63158e4f5234ac7794ceba5834663f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bournemouth-christchurch-and-poole/manual/2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f2f65580769ea7f697aa42e37fa9821211317c5c74f447e4acaf0ea57320204c"
+    },
+    {
+      "path": "data/corpus/sources/uk-bournemouth-christchurch-and-poole/manual/2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027/official-documents/bournemouth-christchurch-and-poole-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "d7082df59a110c051a0230bd2af90730e9c193522be0d9890ca4148245c1dcac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8571ba04c52b068ade4cab4dd5b5f44d9082b79c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bournemouth-christchurch-and-poole-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 187,
+    "missing_count": 0,
+    "provision_count": 187,
+    "source_count": 187
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:29:20.546790+00:00",
+  "jurisdiction": "uk-bournemouth-christchurch-and-poole",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ReVK37Z+X/qwYDGseWBJSdpluCdGHFGPrX7DHWCwUJg6wcDCRTjLjWmRGZDkdNwzfJLCvTmVOHpuaLoSWNY+Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-bournemouth-christchurch-and-poole-council-tax-reduction-2026-2027"
+}

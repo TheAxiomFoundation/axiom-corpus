@@ -1,0 +1,23 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: ny-doh-child-health-plus-eligibility-and-cost
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York State Department of Health: Child Health Plus Eligibility and Cost'
+  source_url: https://www.health.ny.gov/health_care/child_health_plus/eligibility_and_cost.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-02-17'
+  citation_path: us-ny/manual/doh/chip/child-health-plus-eligibility-and-cost
+  request:
+    browser_impersonation: true
+  extraction:
+    html_content_selector: '#content'
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: agency_eligibility_policy_page
+    program: CHIP
+    source_discovery_group: us-ny/manual/chip
+    discovered_via: manual-review:chip-agent-queue; publisher index confirmed by agent 2026-09-10
+    state_program: Child Health Plus

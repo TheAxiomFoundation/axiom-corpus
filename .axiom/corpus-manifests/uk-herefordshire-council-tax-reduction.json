@@ -1,0 +1,82 @@
+{
+ "documents": [
+  {
+   "source_id": "herefordshire-council-tax-reduction-scheme-2026-2027",
+   "jurisdiction": "uk-herefordshire",
+   "document_class": "manual",
+   "citation_path": "uk-herefordshire/manual/council-tax-reduction-scheme-2026-2027",
+   "title": "Herefordshire Council Council Tax Reduction Scheme 2026/27",
+   "source_url": "https://www.herefordshire.gov.uk/media/msihtjo2/council_tax_reduction_scheme.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-10",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w8-monday",
+    "source_authority": "Herefordshire",
+    "document_subtype": "council_tax_reduction_scheme",
+    "effective_scheme_year": "2026-2027",
+    "role": "scheme_text"
+   }
+  },
+  {
+   "source_id": "herefordshire-council-minutes-2026-02-13",
+   "jurisdiction": "uk-herefordshire",
+   "document_class": "manual",
+   "citation_path": "uk-herefordshire/manual/council-minutes-2026-02-13",
+   "title": "Herefordshire Council Minutes, Council 13 February 2026",
+   "source_url": "https://councillors.herefordshire.gov.uk/documents/g9726/Public%20minutes%20Friday%2013-Feb-2026%2010.00%20Council.pdf?T=11",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-10",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w8-monday",
+    "source_authority": "Herefordshire",
+    "document_subtype": "adoption_minutes",
+    "role": "operative_adoption",
+    "adoption_body": "Full Council",
+    "adoption_date": "2026-02-13",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "ACCEPT-DERIVED",
+     "adopts": "herefordshire-council-tax-reduction-scheme-2026-2027",
+     "carries_amendments": "none - same parameters as existing scheme per the report",
+     "chain": "Full Council 13 February 2026 item 45: named vote to agree the council tax reduction scheme for 2026/27 as set out in the report; carried unanimously (50-0-0)."
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  },
+  {
+   "source_id": "herefordshire-ctr-cabinet-decision-2026-27",
+   "jurisdiction": "uk-herefordshire",
+   "document_class": "manual",
+   "citation_path": "uk-herefordshire/manual/ctr-cabinet-decision-2026-27",
+   "title": "Herefordshire Council Printed Decision: 2026/27 Council Tax Reduction Scheme",
+   "source_url": "https://councillors.herefordshire.gov.uk/documents/d11031/Printed%20decision%20202627%20Council%20Tax%20Reduction%20Scheme.pdf?T=5",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-10",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w8-monday",
+    "source_authority": "Herefordshire",
+    "document_subtype": "decision_record",
+    "role": "adoption_context",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "corroboration-only",
+     "confirms": "herefordshire-council-minutes-2026-02-13"
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  }
+ ]
+}

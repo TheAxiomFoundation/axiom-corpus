@@ -1,0 +1,68 @@
+version: '2026-09-10'
+documents:
+- source_id: irs-notice-2026-10
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/notice-2026-10
+  title: Notice 2026-10, 2026 Standard Mileage Rates
+  source_url: https://www.irs.gov/irb/2026-04_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/n-26-10.pdf
+  source_format: pdf
+  source_as_of: '2026-01-20'
+  expression_date: '2026-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: notice
+    document_number: Notice 2026-10
+    irb_citation: 2026-04 IRB
+    irb_issue_date: '2026-01-20'
+    tax_year: '2026'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/internal-revenue-bulletins (2026 issues scanned
+      for inflation-adjustment items)
+- source_id: irs-rev-proc-2026-24
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/rev-proc-2026-24
+  title: Rev. Proc. 2026-24, 2027 inflation adjusted amounts for Health Savings Accounts
+  source_url: https://www.irs.gov/irb/2026-25_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/rp-26-24.pdf
+  source_format: pdf
+  source_as_of: '2026-06-15'
+  expression_date: '2027-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2026-24
+    irb_citation: 2026-25 IRB
+    irb_issue_date: '2026-06-15'
+    tax_year: '2027'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/internal-revenue-bulletins (2026 issues scanned
+      for inflation-adjustment items)
+- source_id: irs-rev-proc-2026-26
+  jurisdiction: us
+  document_class: guidance
+  citation_path: us/guidance/irs/rev-proc-2026-26
+  title: Rev. Proc. 2026-26, Section 36B applicable percentage table and required contribution percentage for 2027
+  source_url: https://www.irs.gov/irb/2026-31_IRB
+  download_url: https://www.irs.gov/pub/irs-drop/rp-26-26.pdf
+  source_format: pdf
+  source_as_of: '2026-07-27'
+  expression_date: '2027-01-01'
+  metadata:
+    primary_source: true
+    source_authority: Internal Revenue Service
+    document_subtype: revenue_procedure
+    document_number: Rev. Proc. 2026-26
+    irb_citation: 2026-31 IRB
+    irb_issue_date: '2026-07-27'
+    tax_year: '2027'
+    source_discovery_group: us/guidance/irs
+    index_url: https://www.irs.gov/internal-revenue-bulletins
+    discovered_via: manual-review:tax-agent-queue; index https://www.irs.gov/internal-revenue-bulletins (2026 issues scanned
+      for inflation-adjustment items)

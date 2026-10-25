@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-canterbury/manual/2026-09-05-canterbury-council-tax-reduction-2026-2027.json",
+      "sha256": "a45c32cdf490d63776b44f87486b6437d6d6305b09e4e68da4a5bd6ba8154b38"
+    },
+    {
+      "path": "data/corpus/inventory/uk-canterbury/manual/2026-09-05-canterbury-council-tax-reduction-2026-2027.json",
+      "sha256": "96565c2d06d146fab5124927c1abd57ba21922ddc52c90ce240277a297d15c84"
+    },
+    {
+      "path": "data/corpus/provisions/uk-canterbury/manual/2026-09-05-canterbury-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0ef8d99d9b15e5410f07ae2da3faee687e5f2ca4c6b78124904d1fa931ce6738"
+    },
+    {
+      "path": "data/corpus/sources/uk-canterbury/manual/2026-09-05-canterbury-council-tax-reduction-2026-2027/official-documents/canterbury-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2c36a81936c2047cfef770be7eda88a00af2cdb9684c2d5ca3f015bc9d884a47"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9d92c0708536b826f4a78201c38a581dcadf11b4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-canterbury-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-canterbury-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 98,
+    "missing_count": 0,
+    "provision_count": 98,
+    "source_count": 98
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:27:08.819365+00:00",
+  "jurisdiction": "uk-canterbury",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "T9VhiuLeaGZQDgJSGzA2JFCy/B2XmQEcMeMPkvOe/qtyAmNjII6ShVIKqrX6ca1RUJbGSL5jOfBnOkdsXOHCAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-canterbury-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-runnymede/manual/2026-08-03-runnymede-council-tax-reduction-2026-2027.json",
+      "sha256": "892020ed5287a3a7887ce907efb15743f54f39afc60f9296aea83ce27c2a4718"
+    },
+    {
+      "path": "data/corpus/inventory/uk-runnymede/manual/2026-08-03-runnymede-council-tax-reduction-2026-2027.json",
+      "sha256": "1a07ef402e1b200ac70d479173a50e2d70305eac1a8fc64501513f983d97b7ef"
+    },
+    {
+      "path": "data/corpus/provisions/uk-runnymede/manual/2026-08-03-runnymede-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "0fd49f73de7ef31248095caec3e6c7ec34cc6559038c242b0a88e5df707976fa"
+    },
+    {
+      "path": "data/corpus/sources/uk-runnymede/manual/2026-08-03-runnymede-council-tax-reduction-2026-2027/official-documents/runnymede-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "e852f24560860662efc2f253a459513f02f41aa8fce4a1e7fd4e59331ddfa0c6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-runnymede-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-runnymede-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 38,
+    "missing_count": 0,
+    "provision_count": 38,
+    "source_count": 38
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:46.256526+00:00",
+  "jurisdiction": "uk-runnymede",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gK4NHEDiqUyVsJgOrQSnmB34/3nKAlCd3qPNd1qPUkw/64yoxTjz9rcyebDMmDHAcmVqVQTcvXVdePLOoi3jCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-runnymede-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/guidance/2026-09-10-tax-state-guidance-ty2025.json",
+      "sha256": "75d30981a6ec22638e6512c64744a6aeb6e7b7b60668b451de53ec07090cc94c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/guidance/2026-09-10-tax-state-guidance-ty2025.json",
+      "sha256": "48615da0bb3f9a4eed442546ea4c0f45fdee3dc0e3c4a3e4eb6c27319c5ad12e"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/guidance/2026-09-10-tax-state-guidance-ty2025.jsonl",
+      "sha256": "37ed466ecbffb58aa6783ec748870edc18f52f6050b95d215a52947fd4a28fe2"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/guidance/2026-09-10-tax-state-guidance-ty2025/official-documents/us-nh-dra-tir-2025-001-ty2025.pdf",
+      "sha256": "5dbd44ced3ac2aeee2417e2e866836114a834f0faa4bad31a578b1296d02754d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-guidance-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-11T22:14:39.362628+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KeUmrWhmKX0czBrfBk1cizXlTxFKmELO7qKpxqN8rupwx+LcU0tTF9wBPIBsPkQQea3mWaojILDOcaoeAMWHDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-guidance-ty2025"
+}

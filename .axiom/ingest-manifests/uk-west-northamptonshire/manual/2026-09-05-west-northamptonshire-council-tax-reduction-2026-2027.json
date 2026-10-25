@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-west-northamptonshire/manual/2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027.json",
+      "sha256": "c88a9b1669c3a23700f46e632563b845b65f30780336cc6fbfdd58023cbad7fa"
+    },
+    {
+      "path": "data/corpus/inventory/uk-west-northamptonshire/manual/2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027.json",
+      "sha256": "b91b2e716f29d8a248e6eeaba08518394ff5b6a5bb8e23965e25d63a3b145cb7"
+    },
+    {
+      "path": "data/corpus/provisions/uk-west-northamptonshire/manual/2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "86578485d1df9eae6659a7dd3fe553656ffc44c9cb842f93703a5b9e01da8609"
+    },
+    {
+      "path": "data/corpus/sources/uk-west-northamptonshire/manual/2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027/official-documents/west-northamptonshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "329b28ce31bc4dac5cfade1650a3b9cc4cc59c26e22933fb3a170989fffa868c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8571ba04c52b068ade4cab4dd5b5f44d9082b79c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-west-northamptonshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 158,
+    "missing_count": 0,
+    "provision_count": 158,
+    "source_count": 158
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:29:29.903509+00:00",
+  "jurisdiction": "uk-west-northamptonshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3SvFlwsTn4xg5b9MsdsiRTuMVHOdKoEyFIT3gnSWMy/eeTrdUiYiIdaqdenk0IuQ1EM6L0gzdHwkAcHvz9MfDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-west-northamptonshire-council-tax-reduction-2026-2027"
+}

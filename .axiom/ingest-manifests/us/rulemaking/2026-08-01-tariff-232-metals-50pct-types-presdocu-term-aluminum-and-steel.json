@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel.json",
+      "sha256": "e2d21574056c0dfc32f7325b1cea770aa22f46209f0b3d969a8aac56f9b74a52"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel.json",
+      "sha256": "89a13793d1b540d4527e5ea62e9fa510a4e8a00cc4c9c3b62f393115c3e13583"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel.jsonl",
+      "sha256": "39a6a36681a077f11332c40f353a9565383873eca3ae24d8e0d30fc2388468c1"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel/federal-register/api/documents-page-1.json",
+      "sha256": "3f7b0f71462c2f1edcdab24acaac6b0485ea69caf1dd6150ba5afe87e493826b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel/federal-register/documents/2025-10524.json",
+      "sha256": "6ac4cf6589e8c668c02ca642e9d114dcbbae3c161f109eb18245e8fc01fa4263"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel/federal-register/documents/2025-10524.txt",
+      "sha256": "eccd300120a356d6e8eabc9f80794e3d28005356d261f6dc06f37b8767e017ad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-metals-50pct --start-date 2025-06-09 --document-type PRESDOCU --term \"aluminum and steel\" --source-as-of 2026-08-01 --expression-date 2025-06-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:14.067452+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "x1rXzdlScxbia8iyu2QEusAsHV/GMBVOIAtsr8yZ9m1/9+bXmP4ARiExs06mRnSizvBdujGotX97m6rw24pmAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-metals-50pct-types-presdocu-term-aluminum-and-steel"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "03d50fd456adbc45f9d777f016a9d5a4e071ee2564f7c4d3e25bf47eafc6d5b6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "2d59e58cc9abda85408844a79fd6395245a7db01d69b38efdf6b256f60567bfd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "ac391f24f2819e67751bd5b32d0a06cb9d365d55dae211189d01ca845e88c28b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/policy/2026-09-13-snap-et-state-plan/official-documents/ca-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "b737b948de159957a9f71fae267caac0a3e5c2c8ab5d1b84dd54f4a23fa4ffeb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 287,
+    "missing_count": 0,
+    "provision_count": 287,
+    "source_count": 287
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:12:03.577227+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gBw2HWLRj6ak185Pmo7AkjStEd3lmWabVMM9FNqC25ZzTAbrEzQGLkyWlWn/lS1P/L5vF647oBJxiuaSVoHmCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

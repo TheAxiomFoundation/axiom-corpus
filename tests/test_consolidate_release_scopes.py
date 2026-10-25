@@ -271,6 +271,98 @@ def test_drops_legacy_children_shadowed_by_successor_parents(tmp_path):
     )
 
 
+def test_restricts_one_source_to_explicit_successor_citations(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    root = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path="us/statute/hts",
+        body=None,
+    )
+    _write_scope(
+        store,
+        version="current-schedule",
+        records=(
+            root,
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class="statute",
+                citation_path="us/statute/hts/9903.85.67",
+                body="Current heading.",
+                parent_citation_path="us/statute/hts",
+            ),
+        ),
+    )
+    _write_scope(
+        store,
+        version="legacy-schedule",
+        records=(
+            root,
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class="statute",
+                citation_path="us/statute/hts/9903.85.02",
+                body="Legacy heading still cited by RuleSpec.",
+                parent_citation_path="us/statute/hts",
+            ),
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class="statute",
+                citation_path="us/statute/hts/obsolete",
+                body="Unrelated legacy heading.",
+                parent_citation_path="us/statute/hts",
+            ),
+        ),
+    )
+
+    consolidate_release_scopes(
+        base=store.root,
+        jurisdiction="us",
+        document_class="statute",
+        source_versions=("current-schedule", "legacy-schedule"),
+        target_version="rulespec-schedule",
+        included_citations_by_version={
+            "legacy-schedule": frozenset({"us/statute/hts/9903.85.02"})
+        },
+    )
+
+    records = load_provisions(store.provisions_path("us", "statute", "rulespec-schedule"))
+    assert [record.citation_path for record in records] == [
+        "us/statute/hts",
+        "us/statute/hts/9903.85.67",
+        "us/statute/hts/9903.85.02",
+    ]
+    assert "/legacy-schedule/" in records[-1].source_path
+
+
+def test_rejects_missing_explicit_successor_citation(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_scope(
+        store,
+        version="published-one",
+        records=(
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class="statute",
+                citation_path="us/statute/26/1",
+                body="Text.",
+            ),
+        ),
+    )
+
+    with pytest.raises(ValueError, match="included citations are absent"):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us",
+            document_class="statute",
+            source_versions=("published-one",),
+            target_version="published-two",
+            included_citations_by_version={
+                "published-one": frozenset({"us/statute/26/2"})
+            },
+        )
+
+
 def test_copy_failure_leaves_target_retryable(tmp_path, monkeypatch):
     store = CorpusArtifactStore(tmp_path / "corpus")
     for version, citation in (

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bracknell-forest/manual/2026-09-05-bracknell-forest-council-tax-reduction-2026-2027.json",
+      "sha256": "4852b4823e2d2d1c04e141865ab2c80bc067b48949d4d766b06c8f67befd8f5c"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bracknell-forest/manual/2026-09-05-bracknell-forest-council-tax-reduction-2026-2027.json",
+      "sha256": "13dea19c901f47cd5dcd708bc184938160f742e591495a8831474d86fccf95d3"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bracknell-forest/manual/2026-09-05-bracknell-forest-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "afa15300a624c5a35f42e29ed6860b54ee0ecb8fc7a134b56418f1b3b42a57b8"
+    },
+    {
+      "path": "data/corpus/sources/uk-bracknell-forest/manual/2026-09-05-bracknell-forest-council-tax-reduction-2026-2027/official-documents/bracknell-forest-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2e728b951edff9e0a0832b6100e175deae493a8212e27fa76dd88a6327773e99"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8571ba04c52b068ade4cab4dd5b5f44d9082b79c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-bracknell-forest-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bracknell-forest-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 115,
+    "missing_count": 0,
+    "provision_count": 115,
+    "source_count": 115
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:29:22.065737+00:00",
+  "jurisdiction": "uk-bracknell-forest",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+PDdn0SNaGy9XG2gISMW6jyP+XG4U0F/J4ioL3v6lxomQm/kvyCGPcNkFuL4Km9qpUljmp9F/HdwtqkXDAonDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-bracknell-forest-council-tax-reduction-2026-2027"
+}

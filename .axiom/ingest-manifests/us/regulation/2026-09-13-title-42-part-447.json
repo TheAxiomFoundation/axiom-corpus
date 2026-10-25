@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-42-part-447.json",
+      "sha256": "bd41cdf8ada1db37fd0004f288c484c1483ebdf0d27f45780eed1327d6a5a681"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-42-part-447.json",
+      "sha256": "369974f77d2b9abcc23307cdeaea7ccdfa97ddfe369087ef404c93392c8ac65f"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-42-part-447.jsonl",
+      "sha256": "ea467024cb780fe0addf0e48c99a3efc7fce8c73ce9f9e4f553874e14b71003a"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-42-part-447/ecfr/title-42-part-447.xml",
+      "sha256": "01ac3dae19141563320321aac4e4fcfd4afa05760870dd154875aec3eb1546aa"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-42-part-447/ecfr/title-42.structure.json",
+      "sha256": "e26fcf6a5b5d463b8402883ca8159ecfdbdc37f3c215fdfaef9efce4d0faf1ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-42-part-447 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 79,
+    "missing_count": 0,
+    "provision_count": 79,
+    "source_count": 79
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:43:46.083409+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VYo7HwCvDgFG+J39/7mBxGujyWG1Z9mLqw+m9EC5U41XzXF7OF7ZpJHzcn68ByeOvdfDCG+M2lcJn327eb0/Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-42-part-447"
+}

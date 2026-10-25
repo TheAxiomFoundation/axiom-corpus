@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-stevenage/manual/2026-08-03-stevenage-council-tax-reduction-2026-2027.json",
+      "sha256": "9b92ed3966743ae38eab50262720064718feadd4fe617a7198884195c2302e0b"
+    },
+    {
+      "path": "data/corpus/inventory/uk-stevenage/manual/2026-08-03-stevenage-council-tax-reduction-2026-2027.json",
+      "sha256": "664a47f836d8113963da7e4755dbb59499e795f47b07c0634252259c14506112"
+    },
+    {
+      "path": "data/corpus/provisions/uk-stevenage/manual/2026-08-03-stevenage-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "091536f50e16b288076f1190f6a1b7bd446af710f1cc922605810ed63603e2c8"
+    },
+    {
+      "path": "data/corpus/sources/uk-stevenage/manual/2026-08-03-stevenage-council-tax-reduction-2026-2027/official-documents/stevenage-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "c2b885b66795aff92dc07c19c84e1e9fe3530840b1ff4fb083c06a1d0d5605e7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-stevenage-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-stevenage-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 142,
+    "missing_count": 0,
+    "provision_count": 142,
+    "source_count": 142
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:59.912188+00:00",
+  "jurisdiction": "uk-stevenage",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NSBzHzad0AY3DjRTjqJ4abTEBLBhrPzYIStrD49ML0Ze+7wFsjXEVD1xB9aVNJ8zre0w1qEorWU06u15z3IsAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-stevenage-council-tax-reduction-2026-2027"
+}

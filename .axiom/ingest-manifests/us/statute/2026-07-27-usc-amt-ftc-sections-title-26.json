@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-27-usc-amt-ftc-sections-title-26.json",
+      "sha256": "e40f5f24236097db279ce42975bfad53d6a6537304c46db16df7f567d649dee0"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-27-usc-amt-ftc-sections-title-26.json",
+      "sha256": "de82b7579b32a189caf19df0ebd8d8ed5b1b916661ee78ecd41d0bf85aed705a"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-27-usc-amt-ftc-sections-title-26.jsonl",
+      "sha256": "c72f43dcf5cd1f8e53f1873f058bed0645fb02334cdb2a07ad37eff5f30f90c3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-27-usc-amt-ftc-sections-title-26/olrc/xml_usc26@119-102not101.zip",
+      "sha256": "d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-27-usc-amt-ftc-sections-title-26/uslm/usc26.xml",
+      "sha256": "d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c2f51414d0f94a0d7f9d895b01a4bb3c550bbc93",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_usc_amt_ftc_sections.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 552,
+    "missing_count": 0,
+    "provision_count": 552,
+    "source_count": 552
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-28T03:58:22.563696+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WHAkYnYGJRyz+lc2u5dw5v1ZX29NyOpO5sUNteSskZGFdWFie4OC+UTJJBtwjnwBF7FnRblBEpSxcxJvtywkBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-27-usc-amt-ftc-sections-title-26"
+}

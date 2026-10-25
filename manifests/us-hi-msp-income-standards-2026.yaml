@@ -1,0 +1,25 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-hi-medquest-income-standards-chart-2026
+  jurisdiction: us-hi
+  document_class: guidance
+  title: 2026 MAGI and MAGI-Excepted Income Standards Chart, Effective 01/13/2026
+  source_url: https://medquest.hawaii.gov/en/resources/rules-and-policy.html
+  download_url: https://medquest.hawaii.gov/content/dam/formsanddocuments/resources/magi-and-magi-excepted-income-standard-charts/2026%20PPDO%20MAGI%20and%20MAGI-Excepted%20Income%20Standards%20CHART.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-13'
+  citation_path: us-hi/guidance/med-quest/magi-and-magi-excepted-income-standards-chart/2026
+  metadata:
+    primary_source: true
+    source_authority: Hawaii Department of Human Services, Med-QUEST Division
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-hi/guidance
+    index_url: https://medquest.hawaii.gov/en/resources/rules-and-policy.html
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: income_standards_chart
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

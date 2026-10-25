@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/guidance/2026-10-06-w6-health-guidance-mi.json",
+      "sha256": "68d982e21fd0302634041e58aff6fb9d17c8f9b46717364b3efc295d97243633"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/guidance/2026-10-06-w6-health-guidance-mi.json",
+      "sha256": "be174fd485d122809e31a5be42142f48e12ec69c95f1bbdbe56ac83bc1b00579"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/guidance/2026-10-06-w6-health-guidance-mi.jsonl",
+      "sha256": "b59085af1d9ac59c6d5172ebcb71d594e1bf4784fcd6a1e9a37ad1281b097ba1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-health-guidance-mi/official-documents/us-mi-w6-health-mdhhs-healthy-michigan-plan-b-23-07-hmp-final.pdf",
+      "sha256": "5eb97b0cc416696e8c85aaddc962b37a261965bd2a4375fad66953b1f0118746"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-health-guidance-mi/official-documents/us-mi-w6-health-mdhhs-healthy-michigan-plan.html",
+      "sha256": "b4b4c6646e82bc048af38623eddc8e53f94c4294989276c227c56466b9d16451"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-health-guidance-mi/official-documents/us-mi-w6-health-mdhhs-medicaid-bulletin-mmp-24-20.pdf",
+      "sha256": "a6271b7d169b0ed1b2c64436a71a0f120fc5bd5f38e5ac4270496ec09a68e1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/guidance/2026-10-06-w6-health-guidance-mi/official-documents/us-mi-w6-health-mdhhs-michild-program-general-information.html",
+      "sha256": "9890d0d53f8467e646134c86e5252981bd6e9dbd832827b9a2788cd6ecca577b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:41.779910+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "02WDkXJVZgbnGrDHyoZR0o+Be5w5BMBiaOGIm0SSknCC7h9e+4OSa5SlrLTnQarApmanqX9iLOg2DrzDmdpwCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-guidance-mi"
+}

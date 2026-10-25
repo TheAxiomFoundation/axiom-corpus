@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic.json",
+      "sha256": "c2d44be481dbf7c432294f84ce0f4e45d45a2f721fbc1716eff536bd78b2311a"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic.json",
+      "sha256": "4a120776d5b121453af97028c766862f14aabfb7b3a5ee2f624e3fcd0556345e"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic.jsonl",
+      "sha256": "f5359e2595b28860e54c5ebe6069a21ab5298ca5cbb159acf7c4fff7a328aad3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic/federal-register/api/documents-page-1.json",
+      "sha256": "a5386df95b78b505ad2c087d66fd567a6c55eced11be54883c26905b4ee5aedf"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic/federal-register/documents/2018-01592.json",
+      "sha256": "c2aae5f2e66a35b7a43707af9ecd9776ec9bfe8344054b49a035b24f5b9d61e9"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic/federal-register/documents/2018-01592.txt",
+      "sha256": "f4d0db702a233ca4892e9de09e2f392c0b5f2ac4914cd9cbb0a1ecec2e7d129f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4f10129985f0490176e226077a96a8d7a5fb7f43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-201-solar-original --start-date 2018-01-25 --document-type PRESDOCU --term \"photovoltaic\" --source-as-of 2026-08-01 --expression-date 2018-01-25"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:47:31.210408+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Y8vw4CG7MSho+yqj3Bee8M4Qb8SjVzffEuuqhzqjRgfLrU/2GJH2Vh4ZUbl11A2tSAYU/7iurMHn5RQ8CsL1Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-201-solar-original-types-presdocu-term-photovoltaic"
+}

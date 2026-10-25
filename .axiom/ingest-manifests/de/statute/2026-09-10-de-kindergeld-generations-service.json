@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-10-de-kindergeld-generations-service.json",
+      "sha256": "5c3fa5ad41d934ac5fee5a57127ee758373a222785bbd3ec420c53d33f8c21fc"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-10-de-kindergeld-generations-service.json",
+      "sha256": "4c1a103349b74d5ef4211274a54be1caec625318677f10ec212ae4873e3f17f2"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-10-de-kindergeld-generations-service.jsonl",
+      "sha256": "e01cf228e16f051022d8fa6974beebeed25c293dc20c9e0e4d0df96fe91a79c0"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-generations-service/official-documents/de-bgb126-absatz-1.html",
+      "sha256": "bd09c0b1fd1b847706c8f0a69971cee5ff80c6a8b01d71f408018a0ca1b3bf4f"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-generations-service/official-documents/de-bgb126-absatz-2.html",
+      "sha256": "bd09c0b1fd1b847706c8f0a69971cee5ff80c6a8b01d71f408018a0ca1b3bf4f"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-10-de-kindergeld-generations-service/official-documents/de-sgbvii2-absatz-1a.html",
+      "sha256": "4ca1251cfefc85b3a7dc71ee6646d394fb60519d215b19f7e2138f4e1c904ea9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "66c4c498ec90c72b9dfd75c9b845270fc49ad0e5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-de-kindergeld-generations-service --manifest manifests/de-kindergeld-generations-service.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-10T21:19:58.589239+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-generations-service-audit.json",
+      "sha256": "ff2caafe09b10c03aee2ecd64ff3fb51b28acdcf0f695904e61a380fb39b65b1"
+    },
+    {
+      "path": "docs/ingest-runs/2026-09-10-de-kindergeld-generations-service.md",
+      "sha256": "def94c0a75e8497703fac543762f787c1bd3c4d776a0ce08140a0a080960e640"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZNEnRslGqLpaZgb52AQFvNPtWcqV7BSehsV+C15vb4i+3LEeyd1uFi7kQsI5NEWp8AZQdr8COcqBxKvZ8wQyCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-de-kindergeld-generations-service"
+}

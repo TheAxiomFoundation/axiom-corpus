@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu.json",
+      "sha256": "0ce299fd81671f2ca95028476484f3db48e89f77776387abaa5696931e68978e"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu.json",
+      "sha256": "2cdebc796ab44d8c05ae3fb7c185c8443b36d2d9e561bbd14b0caf2c4ab70ce4"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu.jsonl",
+      "sha256": "46893e2e98abdfb025391a9f2f7eb6df39f7165a645b96e6b2faaab50a5c6213"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/api/documents-page-1.json",
+      "sha256": "d7b6bd33441b92beeef8189d7b990b36904f5128fc9f549a38d8bbebc250ad70"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/documents/2026-03824.json",
+      "sha256": "d8552504a63a9635171a23a0e12bdfffd87c16a58d08211b0b030a02a772ce4a"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/documents/2026-03824.txt",
+      "sha256": "be9cc68392fdab9c69b082a4aaf53c262ca0d230147560c3e3fb8e5c34013b6b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/documents/2026-03829.json",
+      "sha256": "aca5fc2d1987468097a023a7da3262a24df2b6f6efc707b2574e83c79c2ef785"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/documents/2026-03829.txt",
+      "sha256": "022e9bd7e91278f35f1a3329e434df77d148926ae6d3416ee55eca7d10fba8d1"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/documents/2026-03832.json",
+      "sha256": "74add27bd6551008fc80828042420b35fad844226c16d15f9d84e2a10f52cea7"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-presdocu-2026-02-25-types-presdocu/federal-register/documents/2026-03832.txt",
+      "sha256": "942ef9764f00da661b8f29762479b11e1b8be6c503504be37cb74a5aebc1d886"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-presdocu --start-date 2026-02-25 --document-type PRESDOCU --source-as-of 2026-08-01 --expression-date 2026-02-25"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T12:58:15.869661+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wGvE/63fyTkL5xofD5fT69z0CjvCLnjJ2fq0uFNnlrQ0Xo7VTvfoPi3QU8S7JZE2zfeqBkTuZi6XSO5VoOysDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-presdocu-2026-02-25-types-presdocu"
+}

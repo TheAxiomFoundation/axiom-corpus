@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-marginal-employment-history.json",
+      "sha256": "763920efe6166af7e5b6b6bac5e27ff26fe73fd8b1df41949218612c00be8ef9"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-marginal-employment-history.json",
+      "sha256": "8b82e6de16963b2d1767d8d0d267a0c7d9c74a3e3758732e11e6690fc5fbac0c"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-marginal-employment-history.jsonl",
+      "sha256": "1c98710f91de6a03d65c49f1c60c97e8eb2795441514cb1e000ae14665fad91a"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-marginal-employment-history/official-documents/de-sgbiv8-2025-history.html",
+      "sha256": "886aef88aa54188995714b7b6e620a0f4ecd56dcd22985af7670c35f9e8996ab"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "959651acf7c7c03c942293ccce37effbdc351b6e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-09-09-de-kindergeld-marginal-employment-history --manifest manifests/de-kindergeld-marginal-employment-history.yaml (supported local_path replay of SHA-bound official snapshot)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-09T13:56:47.940444+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-09-de-kindergeld-marginal-employment-history.md",
+      "sha256": "67dedfab30f887e255ff6a7e333ced94b475b38ee977c73335de46089123d5f6"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yIaCXfj+p4tg1JkTyTv8hs2mBHtfaoTc4b0+3GSpaB+ex///k/WQ9KLg+SV6bnv4u31tW6Qw7Ri9Y9q2p/zNAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-marginal-employment-history"
+}

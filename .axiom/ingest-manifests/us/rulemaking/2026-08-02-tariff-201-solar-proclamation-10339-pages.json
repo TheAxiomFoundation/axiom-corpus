@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-02-tariff-201-solar-proclamation-10339-pages.json",
+      "sha256": "df3cdf0667e574ed47da40fa3575403adffeb6ef7476c9a28c05bb10b60a3039"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-02-tariff-201-solar-proclamation-10339-pages.json",
+      "sha256": "1786f90b8f0ee8c6af7f441da9510df16fc1e7bd6d45b7a0fe151b627b259cc4"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-02-tariff-201-solar-proclamation-10339-pages.jsonl",
+      "sha256": "8a68badb3cfeba5c15f4925a04c569ee710904fb0f21fce44a00652f3d874415"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-02-tariff-201-solar-proclamation-10339-pages/official-documents/fr-2022-02906-proc-10339.pdf",
+      "sha256": "fe4d4a4ea60e2affd41714b78cd9c400fdb3aff8d4ebd446044de9db14bccce8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a5a7a4304ffef9726092ab16dfb0235e266be74f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_proclamation_10339_pages.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-03T01:50:20.127427+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nQAoc0PrDbUspxhHQoBfQ/OEhLyJ5gwuk1zBNopU+49vTCl1659y4O5P3t74pJQvzJi5AvXTbLtUj1TBwyVdCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-tariff-201-solar-proclamation-10339-pages"
+}

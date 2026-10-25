@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-west-lindsey/manual/2026-09-05-west-lindsey-council-tax-reduction-2026-2027.json",
+      "sha256": "3aa67a69112ad1585e74ae9819e01a9bd78931a4bb72317225bb341851a0215c"
+    },
+    {
+      "path": "data/corpus/inventory/uk-west-lindsey/manual/2026-09-05-west-lindsey-council-tax-reduction-2026-2027.json",
+      "sha256": "70d3e6d7696dd2169380d5566a573422d3594d780f9ec5c444dc042939191b38"
+    },
+    {
+      "path": "data/corpus/provisions/uk-west-lindsey/manual/2026-09-05-west-lindsey-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "d0c90e2e36908ee20a65a71104d203a90219ca0fd00f93c007114f17061b8ab5"
+    },
+    {
+      "path": "data/corpus/sources/uk-west-lindsey/manual/2026-09-05-west-lindsey-council-tax-reduction-2026-2027/official-documents/west-lindsey-council-adoption-2026-27.pdf",
+      "sha256": "aafccc8e6e24a33a493d1e467072e2ac54115889f23fb4c264aeeb7dbafaea1c"
+    },
+    {
+      "path": "data/corpus/sources/uk-west-lindsey/manual/2026-09-05-west-lindsey-council-tax-reduction-2026-2027/official-documents/west-lindsey-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "0d905bb47259bc5944811a2b82cb812ddbea94958dab41605d2cc5812169e564"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "eb761642e72c234b3930ae4151cdec62715e1906",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-west-lindsey-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-west-lindsey-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 245,
+    "missing_count": 0,
+    "provision_count": 245,
+    "source_count": 245
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T22:14:29.710907+00:00",
+  "jurisdiction": "uk-west-lindsey",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nG/8T3kABcAy7I5JSZnENVlYYsHJwQECVlceetlucia5F5tz1/kKFKcyoLzqY3GaJWE+QJrk6Jg47OQik7H5Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-west-lindsey-council-tax-reduction-2026-2027"
+}
