@@ -62,6 +62,9 @@ selector_digests:
   us-rulespec-2026-10-20-fs-pilot-reg-e-f: 002113b75208226f3d57a2e52cdfd0836f5f311f0db3cab3014452a5ea1a3e7a
   us-rulespec-2026-10-22-ca-concurrent-versions: af8622c3960b7d9d693020fe6393cf9de5fa21608f49117d5417c55b8e1b24e7
   us-rulespec-2026-10-23-ks-liheap: 0a7bbd78608da08d9a1b3572719d2190f843bd3780d1b59c29b5989d82740793
+  us-rulespec-2026-10-25-mt-separate-filing: 642d9a8dcb84ad6cba16c75bb4adf005a99daac62d7805d6b9f29bd30dd8a9da
+  us-rulespec-2026-10-25-nyc-ch127-title-52: 51c4f297bfcce6f4e54b74c47a07ff8d438076d21f94d2b4ea8a357f0567f755
+  us-rulespec-2026-10-25-ssi-poms-public-laws: 4fce914c090b565ccc5eae0780050a04c299bb9dead043bc0f6edf0550ba9c92
   us-rulespec-ny-snap-2026-07-17: 7ff17ffafe5c61205dd9b8ee92d6580093d9fd30d1e4692eaab30893835ffb3c
   us-rulespec-snap-2026-07-21: 1d2cae04d8b83694e13756fe3302cda386272013b72818342dc0ccfb826a744a
 scopes:
@@ -469,6 +472,27 @@ scopes:
           rulespec-us#1365, which re-points those modules' citations, has not landed. The
           first cut in the line after #1365 lands drops the scope and selects its
           replacement scopes.
+      - selector: us-rulespec-2026-10-25-ssi-poms-public-laws
+        reason: >-
+          Release decision on axiom-corpus#928: this successor pin release in the same
+          line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-nyc-ch127-title-52
+        reason: >-
+          Release decision on axiom-corpus#932: this successor pin release in the same line
+          keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-mt-separate-filing
+        reason: >-
+          Release decision on axiom-corpus#933: this successor pin release in the same line
+          keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -531,6 +555,27 @@ scopes:
         reason: >-
           Release decision on axiom-corpus#918: this successor pin release in the same
           line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-ssi-poms-public-laws
+        reason: >-
+          Release decision on axiom-corpus#928: this successor pin release in the same
+          line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-nyc-ch127-title-52
+        reason: >-
+          Release decision on axiom-corpus#932: this successor pin release in the same line
+          keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-mt-separate-filing
+        reason: >-
+          Release decision on axiom-corpus#933: this successor pin release in the same line
+          keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
           rulespec-us#1365, which re-points those modules' citations, has not landed. The
           first cut in the line after #1365 lands drops the scope and selects its
           replacement scopes.
@@ -598,6 +643,27 @@ scopes:
         reason: >-
           Release decision on axiom-corpus#918: this successor pin release in the same
           line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-ssi-poms-public-laws
+        reason: >-
+          Release decision on axiom-corpus#928: this successor pin release in the same
+          line keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-nyc-ch127-title-52
+        reason: >-
+          Release decision on axiom-corpus#932: this successor pin release in the same line
+          keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
+          rulespec-us#1365, which re-points those modules' citations, has not landed. The
+          first cut in the line after #1365 lands drops the scope and selects its
+          replacement scopes.
+      - selector: us-rulespec-2026-10-25-mt-separate-filing
+        reason: >-
+          Release decision on axiom-corpus#933: this successor pin release in the same line
+          keeps the scope for the same reason as us-rulespec-2026-10-20-fs-pilot-reg-e-f.
           rulespec-us#1365, which re-points those modules' citations, has not landed. The
           first cut in the line after #1365 lands drops the scope and selects its
           replacement scopes.
