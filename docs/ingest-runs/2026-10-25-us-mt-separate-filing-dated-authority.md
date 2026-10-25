@@ -116,9 +116,12 @@ retrieval date, as the w6 scope did for `15-30-2131--mca-2021`. `metadata.code_e
 ## Signing and objects
 
 Both scopes have 2 inventory items and 2 provisions, with coverage complete (0 missing, 0 extra), and
-`content-check` reports no findings. Each signed manifest names the manifest commit `114ba7752` with
-`dirty_tracked: false`. `corpus push` uploaded the 8 new objects (60,835 bytes); a dry run afterwards
-reports all 8 in R2. No release was published or activated, and nothing was loaded into Supabase.
+`content-check` reports no findings. The statute scope's signed manifest names the manifest commit
+`114ba7752`. The regulation scope was first signed there from the archive capture, then re-extracted
+from the official rules.mt.gov document and re-signed against `7c14fad67`; both name
+`dirty_tracked: false`. `corpus push` uploaded the first 8 objects (60,835 bytes), then the
+regulation scope's 3 new ones (24,710 bytes). No release was published or activated, and nothing
+was loaded into Supabase.
 
 ## Selector
 
@@ -144,24 +147,34 @@ selector on each, pinned to its digest (`642d9a8d…`), with the same reason as 
 
 ## Checks
 
-`tests/test_us_rulespec_2026_10_25_mt_separate_filing.py` (16 tests):
+`tests/test_us_rulespec_2026_10_25_mt_separate_filing.py` (17 tests):
 
 - the reproducer's output is byte-identical to the committed selector;
 - the delta against the base is the four scopes, given as literals in the test;
 - each added scope is locked and not withdrawn, and the selector adds no withdrawn scope;
 - each kept withdrawn scope has its own exception, and the quality profile is unchanged;
-- the selected us-mt scopes share no citation path (`duplicate_release_citation`);
+- every row of a selected us-mt scope starts with its jurisdiction and class, and those scopes share
+  no citation path (`duplicate_release_citation`);
 - both dated rows sit at `<plain path>--<variant>` with matching variant metadata;
-- the ARM source file's SHA-256 is the archive payload SHA-256, and its dates are as above;
+- the ARM source file's SHA-256 is the official document's, its download URL is the
+  content-addressed rules.mt.gov URL, and its version, ids and dates are as above;
 - the dated rows hold the texts rulespec-us will cite;
 - a Hypothesis property of the build rule: for any duplicate-free base without an addition, the
   output is the base plus the additions, sorted, with nothing dropped; any other base is refused
-  with "already selects".
+  with "already selects", and a base that repeats a scope is refused with "duplicate scopes".
 
-Mutation checks, each run under an RSS cap of 2 GB: dropping the dated statute scope from the selector
-fails 4 tests; removing the "already selects" refusal fails the property; a row at an
-already-selected path in the dated statute scope fails 2 tests; sorting the selector by version only
-fails 2 tests.
+Mutation checks, each run under an RSS cap of 2 GB:
+
+| Mutant | Tests failed |
+| --- | --- |
+| Selector drops the dated statute scope | 4 |
+| Reproducer loses its "already selects" refusal | 1 |
+| A row at an already-selected path in the dated statute scope | 2 |
+| Selector sorted by version only | 2 |
+| Reproducer loses its "duplicate scopes" refusal | 1 |
+| Stored ARM source differs from the official document by one byte | 1 |
+| The ARM block row sits under the statute class | 4 |
+| The ARM rows' end date moves a day | 1 |
 
 `scripts/publish_corpus.py --release us-rulespec-2026-10-25-mt-separate-filing --dry-run` ran on a
 fully fetched tree; its result is recorded in the pull request.
