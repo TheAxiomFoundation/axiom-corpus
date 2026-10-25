@@ -18,6 +18,7 @@ which is not in the inventory.
 import json
 import re
 import tempfile
+import urllib.error
 import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
@@ -802,6 +803,172 @@ def test_remote_duplicate_xml_is_fatal_before_writing(tmp_path, monkeypatch, cap
 
     assert main(args) == 2
     assert "twice" in capsys.readouterr().err
+    assert not any(p.is_file() for p in store.root.rglob("*"))
+
+
+def _assert_remote_collision_precedes_graphics(
+    root, monkeypatch, capsys, *, failure, selected="3809.401(k)-1",
+    conflicting="3809.401-k-1", allow_incomplete=False, reverse=False,
+):
+    from axiom_corpus.corpus.cli import main
+
+    capsys.readouterr()
+    structure = {"type": "title", "identifier": "43", "children": [
+        {"type": "part", "identifier": "3800", "children": [
+            {"type": "section", "identifier": selected},
+        ]},
+    ]}
+    prefix = '<ECFR><DIV5 N="3800" TYPE="PART"><HEAD>Part 3800</HEAD>'
+    suffix = '</DIV5></ECFR>'
+    section = (
+        f'<DIV8 N="{selected}" TYPE="SECTION" NODE="good"><HEAD>Selected</HEAD>'
+        '<P>Saved body.</P></DIV8>'
+    )
+    xml = prefix + section + suffix
+    fetched_graphics = []
+
+    def fetch_graphic(identifier):
+        fetched_graphics.append(identifier)
+        if failure == "invalid_png":
+            return b"not a PNG"
+        if failure == "failed_download":
+            raise urllib.error.HTTPError("https://example.gov/graphic", 404, "missing", {}, None)
+        if failure == "timeout":
+            raise TimeoutError("graphic timed out")
+        raise urllib.error.URLError("graphic unavailable")
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda *args: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", fetch_graphic)
+    monkeypatch.setattr(ecfr.time, "sleep", lambda _: None)
+    store = CorpusArtifactStore(root / "corpus")
+    args = [
+        "extract-ecfr", "--base", str(store.root), "--version", "review",
+        "--as-of", "2026-10-08", "--only-title", "43", "--only-part", "3800",
+        "--section", selected, "--workers", "1",
+    ]
+    assert main(args) == 0
+    output = json.loads(capsys.readouterr().out)
+    assert output["coverage_complete"]
+    assert [r.body for r in load_provisions(Path(output["provisions_path"])) if r.kind == "section"] == [
+        "Saved body."
+    ]
+    # Resume with complete cached rows but no source: re-fetch must validate the
+    # new identities before any graphic failure can bind those rows to new bytes.
+    next((store.root / "sources").rglob("*.xml")).unlink()
+    before = {p.relative_to(store.root): p.read_bytes() for p in store.root.rglob("*") if p.is_file()}
+    replacement = section.replace("Saved body.", "Changed body.").replace(
+        "</DIV8>", '<MATH><IMG src="/graphics/ec05no91.090.gif"/></MATH></DIV8>'
+    )
+    other = (
+        f'<DIV8 N="{conflicting}" TYPE="SECTION" NODE="bad"><HEAD>Sibling</HEAD>'
+        '<P>Conflicting body.</P></DIV8>'
+    )
+    xml = prefix + (other + replacement if reverse else replacement + other) + suffix
+    if failure == "malformed_xml":
+        xml = xml.removesuffix("</ECFR>")
+    assert "Saved body." not in xml
+
+    assert main([*args, *(["--allow-incomplete"] if allow_incomplete else [])]) == 2
+    expected_error = "cannot validate replacement XML" if failure == "malformed_xml" else "twice"
+    assert expected_error in capsys.readouterr().err
+    assert fetched_graphics == []
+    assert {p.relative_to(store.root): p.read_bytes() for p in store.root.rglob("*") if p.is_file()} == before
+
+
+@pytest.mark.parametrize("failure", ["invalid_png", "failed_download"])
+@pytest.mark.parametrize("allow_incomplete", [False, True])
+def test_remote_duplicate_rebuild_precedes_graphics_errors(
+    tmp_path, monkeypatch, capsys, failure, allow_incomplete
+):
+    monkeypatch.chdir(tmp_path)
+    _assert_remote_collision_precedes_graphics(
+        tmp_path, monkeypatch, capsys, failure=failure, allow_incomplete=allow_incomplete,
+    )
+
+
+@pytest.mark.parametrize("allow_incomplete", [False, True])
+def test_remote_malformed_rebuild_is_fatal_and_preserves_run(
+    tmp_path, monkeypatch, capsys, allow_incomplete,
+):
+    monkeypatch.chdir(tmp_path)
+    _assert_remote_collision_precedes_graphics(
+        tmp_path, monkeypatch, capsys, failure="malformed_xml", allow_incomplete=allow_incomplete,
+    )
+
+
+@settings(
+    max_examples=30, deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(
+    number=st.integers(min_value=1, max_value=999),
+    failure=st.sampled_from(["invalid_png", "failed_download", "timeout", "url_error", "malformed_xml"]),
+    allow_incomplete=st.booleans(), reverse=st.booleans(),
+)
+def test_property_remote_collision_precedes_recoverable_graphics_errors(
+    tmp_path, monkeypatch, capsys, number, failure, allow_incomplete, reverse
+):
+    monkeypatch.chdir(tmp_path)
+    with tempfile.TemporaryDirectory(dir=tmp_path) as tmp, monkeypatch.context() as patch:
+        _assert_remote_collision_precedes_graphics(
+            Path(tmp), patch, capsys, failure=failure,
+            selected=f"3809.{number}(a)", conflicting=f"3809.{number}-a",
+            allow_incomplete=allow_incomplete, reverse=reverse,
+        )
+
+
+@pytest.mark.parametrize("appendix_first", [False, True])
+def test_remote_partial_provision_validation_fails_before_writing(
+    tmp_path, monkeypatch, appendix_first,
+):
+    # A renderer error before or after colliding sections must also fail closed.
+    # The structure selects appendix A, but the XML claims a contradictory part.
+    sections = (
+        '<DIV8 N="3809.1(a)" TYPE="SECTION"><P>Selected.</P></DIV8>'
+        '<DIV8 N="3809.1-a" TYPE="SECTION"><P>Conflicting.</P></DIV8>'
+    )
+    appendix = '<DIV9 N="Appendix A to Part 3801" TYPE="APPENDIX"><P>Appendix.</P></DIV9>'
+    xml = ('<ECFR><DIV5 N="3800" TYPE="PART"><HEAD>Part 3800</HEAD>'
+           + (appendix + sections if appendix_first else sections + appendix)
+           + '</DIV5></ECFR>')
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: xml)
+    monkeypatch.setattr(
+        ecfr, "fetch_ecfr_graphic", lambda _: pytest.fail("captured graphics before validation")
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    with pytest.raises(ValueError, match="conflicts with enclosing part|twice"):
+        ecfr._extract_one_title(
+            store, 43, (ecfr.EcfrPartTarget(title=43, part="3800"),), "review", "review",
+            "2026-10-08", "2026-10-08",
+            {"us/regulation/43/3800", "us/regulation/43/3809/1-a",
+             "us/regulation/43/3800/appendix-a"},
+            "3800", None, True,
+        )
+    assert not any(p.is_file() for p in store.root.rglob("*"))
+
+
+@pytest.mark.parametrize("failure", ["http_error", "url_error", "timeout"])
+def test_remote_xml_download_error_has_no_unvalidated_source(tmp_path, monkeypatch, failure):
+    def fetch(*args):
+        if failure == "http_error":
+            raise urllib.error.HTTPError("https://example.gov/xml", 404, "missing", {}, None)
+        if failure == "timeout":
+            raise TimeoutError("XML timed out")
+        raise urllib.error.URLError("XML unavailable")
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", fetch)
+    monkeypatch.setattr(ecfr.time, "sleep", lambda _: None)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    result = ecfr._extract_one_title(
+        store, 43, (ecfr.EcfrPartTarget(title=43, part="3800"),), "review", "review",
+        "2026-10-08", "2026-10-08", {"us/regulation/43/3809/1"}, "3800", None, False,
+    )
+
+    assert result.error is not None
+    assert result.provisions == ()
     assert not any(p.is_file() for p in store.root.rglob("*"))
 
 

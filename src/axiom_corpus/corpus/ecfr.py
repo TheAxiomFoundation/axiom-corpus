@@ -2158,7 +2158,6 @@ def _extract_one_title(
         run_id,
         source_relative_name,
     )
-    xml_content: str | None = None
     try:
         if source_path.exists():
             source_bytes = source_path.read_bytes()
@@ -2175,6 +2174,48 @@ def _extract_one_title(
                 ),
             )
             source_sha256 = sha256_bytes(xml_content.encode("utf-8"))
+    except (
+        TimeoutError,
+        ValueError,
+        urllib.error.HTTPError,
+        urllib.error.URLError,
+        ET.ParseError,
+    ) as exc:
+        return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
+
+    parse_provisions = partial(
+        iter_ecfr_title_provisions,
+        xml_content,
+        targets,
+        version=run_id,
+        source_path=_ecfr_source_key(run_id, title, only_part),
+        source_as_of=as_of,
+        expression_date=expression_date,
+        allowed_citation_paths=allowed_citation_paths,
+        include_appendices=include_appendices,
+    )
+    try:
+        provisions = tuple(parse_provisions())
+    except ET.ParseError as exc:
+        if not source_path.exists():
+            cached_path = store.provisions_path("us", DocumentClass.REGULATION, run_id)
+            if cached_path.exists() and any(
+                record.citation_path in allowed_citation_paths
+                and _title_from_citation_path(record.citation_path) == title
+                for record in load_provisions(cached_path)
+            ):
+                raise ValueError(
+                    f"{title} CFR: cannot validate replacement XML with cached provisions: {exc}"
+                ) from exc
+            # Fresh malformed downloads remain resumable, without binding saved
+            # provisions to replacement bytes whose identities were not validated.
+            store.write_text(source_path, xml_content)
+        return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
+    # Validate every selected identity before graphics can write or fail. Other
+    # provision validation errors also propagate before any source is replaced.
+    _reject_repeated_citation_paths(provisions)
+
+    try:
         graphic_paths, used_transcriptions, transcription_evidence = (
             _capture_ecfr_math_graphics(
                 store,
@@ -2186,19 +2227,10 @@ def _extract_one_title(
                 include_appendices=include_appendices,
             )
         )
-        provisions = tuple(
-            iter_ecfr_title_provisions(
-                xml_content,
-                targets,
-                version=run_id,
-                source_path=_ecfr_source_key(run_id, title, only_part),
-                source_as_of=as_of,
-                expression_date=expression_date,
-                allowed_citation_paths=allowed_citation_paths,
-                graphic_transcriptions=used_transcriptions,
-                include_appendices=include_appendices,
+        if used_transcriptions:
+            provisions = tuple(
+                parse_provisions(graphic_transcriptions=used_transcriptions)
             )
-        )
     except (
         TimeoutError,
         ValueError,
@@ -2206,13 +2238,10 @@ def _extract_one_title(
         urllib.error.URLError,
         ET.ParseError,
     ) as exc:
-        # Keep ordinary download/parse failures resumable from the fetched XML.
-        if xml_content is not None and not source_path.exists():
+        # Only XML with validated identities can reach a resumable graphic error.
+        if not source_path.exists():
             store.write_text(source_path, xml_content)
         return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
-    # Identity collisions are fatal validation failures, even if cached rows
-    # already cover the inventory or the CLI permits incomplete downloads.
-    _reject_repeated_citation_paths(provisions)
     if not source_path.exists():
         store.write_text(source_path, xml_content)
     return _EcfrTitleResult(
