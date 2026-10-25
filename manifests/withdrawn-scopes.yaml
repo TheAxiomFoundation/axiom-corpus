@@ -61,6 +61,7 @@ selector_digests:
   us-rulespec-2026-10-13-w7-bundle-gaps-union: c09b3bbc62b9134612eb2ec1bb8bb90042da57cd5f6058f61408701674e38620
   us-rulespec-2026-10-20-fs-pilot-reg-e-f: 002113b75208226f3d57a2e52cdfd0836f5f311f0db3cab3014452a5ea1a3e7a
   us-rulespec-2026-10-22-ca-concurrent-versions: af8622c3960b7d9d693020fe6393cf9de5fa21608f49117d5417c55b8e1b24e7
+  us-rulespec-2026-10-23-ks-liheap: 0a7bbd78608da08d9a1b3572719d2190f843bd3780d1b59c29b5989d82740793
   us-rulespec-2026-10-25-mt-separate-filing: 642d9a8dcb84ad6cba16c75bb4adf005a99daac62d7805d6b9f29bd30dd8a9da
   us-rulespec-2026-10-25-nyc-ch127-title-52: 51c4f297bfcce6f4e54b74c47a07ff8d438076d21f94d2b4ea8a357f0567f755
   us-rulespec-2026-10-25-ssi-poms-public-laws: 4fce914c090b565ccc5eae0780050a04c299bb9dead043bc0f6edf0550ba9c92
@@ -461,6 +462,9 @@ scopes:
           the re-pin. The exception stays with this immutable selector; the next cut in
           the line drops the scope and selects its replacement scopes, together with
           rulespec-us#1365.
+      - selector: us-rulespec-2026-10-23-ks-liheap
+        reason: >-
+          Kansas LIHEAP pin release decision recorded in docs/ingest-runs/2026-10-23-ks-liheap-release.md: retain this already-selected scope from us-rulespec-2026-10-22-ca-concurrent-versions so existing RuleSpec citations continue to resolve. rulespec-us#1365 remains open as checked on 2026-10-23. The first successor after that citation migration lands must drop this scope and select its replacements. No additional withdrawn scope is admitted.
       - selector: us-rulespec-2026-10-22-ca-concurrent-versions
         reason: >-
           Release decision on axiom-corpus#918: this successor pin release in the same
@@ -544,6 +548,9 @@ scopes:
           the re-pin. The exception stays with this immutable selector; the next cut in
           the line drops the scope and selects its replacement scopes, together with
           rulespec-us#1365.
+      - selector: us-rulespec-2026-10-23-ks-liheap
+        reason: >-
+          Kansas LIHEAP pin release decision recorded in docs/ingest-runs/2026-10-23-ks-liheap-release.md: retain this already-selected scope from us-rulespec-2026-10-22-ca-concurrent-versions so existing RuleSpec citations continue to resolve. rulespec-us#1365 remains open as checked on 2026-10-23. The first successor after that citation migration lands must drop this scope and select its replacements. No additional withdrawn scope is admitted.
       - selector: us-rulespec-2026-10-22-ca-concurrent-versions
         reason: >-
           Release decision on axiom-corpus#918: this successor pin release in the same
@@ -629,6 +636,9 @@ scopes:
           the re-pin. The exception stays with this immutable selector; the next cut in
           the line drops the scope and selects its replacement scopes, together with
           rulespec-us#1365.
+      - selector: us-rulespec-2026-10-23-ks-liheap
+        reason: >-
+          Kansas LIHEAP pin release decision recorded in docs/ingest-runs/2026-10-23-ks-liheap-release.md: retain this already-selected scope from us-rulespec-2026-10-22-ca-concurrent-versions so existing RuleSpec citations continue to resolve. rulespec-us#1365 remains open as checked on 2026-10-23. The first successor after that citation migration lands must drop this scope and select its replacements. No additional withdrawn scope is admitted.
       - selector: us-rulespec-2026-10-22-ca-concurrent-versions
         reason: >-
           Release decision on axiom-corpus#918: this successor pin release in the same
