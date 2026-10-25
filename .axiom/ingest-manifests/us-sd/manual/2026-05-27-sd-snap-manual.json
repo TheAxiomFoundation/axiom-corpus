@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "12e0411845d7fc3f11dd5ae1da91cbc75d9399e2",
+    "commit": "f24946d015c5ea382e42907b3e2ff5c57631780b",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "Restore the PDF source the rows name (axiom-corpus#873): uv run --extra dev python scripts/restore_unlocked_pdf_sources.py --from 9b2d299bf6637787306c3ba8571fb19aa5a64e2f24e42b265abb328bd5f3cba9=$HOME/TheAxiomFoundation/axiom-corpus-wave1/data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf (the file the 2026-05-27 ingest wrote). Evidence: docs/ingest-runs/2026-10-13-restore-unlocked-pdf-sources.md"
+    "text": "uv run --extra dev python scripts/restore_unlocked_pdf_sources.py --from 9b2d299bf6637787306c3ba8571fb19aa5a64e2f24e42b265abb328bd5f3cba9=data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf"
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 339
   },
   "document_class": "manual",
-  "generated_at": "2026-10-13T22:45:40.106225+00:00",
+  "generated_at": "2026-10-25T09:32:38.920968+00:00",
   "jurisdiction": "us-sd",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "t39KjC6h9m4aEfH30zTrho4F3Y8qRtWOiA24IRlvAB/T0J40LV2SQ++R1mpzCB734SDzP9iHcWLtsNTaZtmsCA=="
+    "value": "uM5ka/iUKW65t9K+/eYNP3yQQQAV2Qs/wTaHjB/OpcLR3ZLzdX9V8ZXzVWjxzN0ISdDQ0QCbRsCtLEI+RldXCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-sd-snap-manual"
