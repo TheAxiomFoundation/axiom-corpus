@@ -64,6 +64,13 @@ Montana's MCA editions already use this (`15-30-2131--mca-2021`, whose plain pat
 repealed section). The plain path stays free for the rule's current page. The subchapter segment
 follows the 42.15 scope (`subchapter-42-15-1` for 42.15.1xx).
 
+**Citation-path ratchet.** The extractor carries each unsegmented page in one `block-1` leaf, as it
+did for `15-30-2131--mca-2021/block-1`. The two leaves add 2 paths to the `block_n` irregular
+family, which `scripts/validate_citation_paths.py` caps. `schema/citation-path.v1.json` raises
+that baseline from 105417 to 105419 and records why; the CI scan of the merged tree measured
+105419. Segmenting by subsection instead would collide on the MCA page, which prints (1) through
+(5) twice (the temporary text and the text effective January 1, 2024).
+
 **Dates.** `expression_date` and `metadata.effective_start` are 2010-04-30, the effective date of the
 last amendment the page lists. `source_as_of` is 2023-10-03, the capture date. Archive provenance is
 in `archived_official_source`, `archive_url`, `archive_timestamp`, `archive_payload_sha1_base32`,
