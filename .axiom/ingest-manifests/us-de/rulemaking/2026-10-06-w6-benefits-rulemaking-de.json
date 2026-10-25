@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/rulemaking/2026-10-06-w6-benefits-rulemaking-de.json",
+      "sha256": "8dad36a2d6375f8df6343b9a6c357cf7792eba09d7b3df4d7792b2b99b234c40"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/rulemaking/2026-10-06-w6-benefits-rulemaking-de.json",
+      "sha256": "6ab9620c840ddf420089283d524701e5b1da335f64c8f1beaa8d8a5f001e028a"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/rulemaking/2026-10-06-w6-benefits-rulemaking-de.jsonl",
+      "sha256": "1b8619202b652538765ec78c9a43a252b4b8c8d495197e6a0ccc0170253d93b3"
+    },
+    {
+      "path": "data/corpus/sources/us-de/rulemaking/2026-10-06-w6-benefits-rulemaking-de/official-documents/us-de-rulemaking-delaware-register-2005-08-01-9-de-reg-168.html",
+      "sha256": "d59634c99bdbebe4451de9ab0e34dd4c6a95dd1351a8389b711df0086806d6b3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-10-07T17:50:29.853415+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1tod5p4Zbq3Gsvk5uX+mg1X+TK6sJt0RPbYbHemHvFT/IvFHEXicEiVIR7FbN6XpXQATQ39hlC43jfm7r/3aAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-benefits-rulemaking-de"
+}

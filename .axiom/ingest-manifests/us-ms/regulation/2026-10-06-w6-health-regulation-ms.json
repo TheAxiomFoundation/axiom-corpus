@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/regulation/2026-10-06-w6-health-regulation-ms.json",
+      "sha256": "3320770fd8b82f1741a30ccd76f7c3750310e35ca082891f24458bd2e20680af"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/regulation/2026-10-06-w6-health-regulation-ms.json",
+      "sha256": "cbf7499da5793adc0b27e8e7c095ae3cab004c3edfe660471393d877b0badcc8"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/regulation/2026-10-06-w6-health-regulation-ms.jsonl",
+      "sha256": "53aba8ff28545e98ebcf91840287088a4af48eeccef4079f1b9a153cf837f413"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/regulation/2026-10-06-w6-health-regulation-ms/official-documents/us-ms-w6-health-title-23-part-104.pdf",
+      "sha256": "c2024e625c13b51ab66518850dd5bb1fec51db5f330d4ad13438ba5c22eeaa17"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 98,
+    "missing_count": 0,
+    "provision_count": 98,
+    "source_count": 98
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:54:44.360819+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VPZFu/jAMwuvwECHsrZN75VF9nIDA7H2JR6dnY1XKh6/hSTtuQvisuNdxE8sjDds4YCu3CsHp7X7CG2ms5BZAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-regulation-ms"
+}

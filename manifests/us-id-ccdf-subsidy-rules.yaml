@@ -1,0 +1,50 @@
+version: 2026-09-15-ccdf-subsidy-rules
+documents:
+- source_id: us-id-dhw-idapa-16-06-12-iccp
+  jurisdiction: us-id
+  document_class: regulation
+  title: IDAPA 16.06.12 - Idaho Child Care Program
+  source_url: https://adminrules.idaho.gov/rules/current/16/160612.pdf
+  source_format: pdf
+  source_as_of: '2026-09-15'
+  expression_date: '2023-04-06'
+  citation_path: us-id/regulation/idapa/16/06/12
+  extraction:
+    segmentation: numbered_sections
+    start_page: 4
+    sort_text: true
+    drop_lines:
+    - IDAHO ADMINISTRATIVE CODE
+    - Department of Health and Welfare
+    drop_line_patterns:
+    - ^Section [0-9]+\s+Page [0-9]+.*$
+    - ^Page [0-9]+\s*$
+    - ^IDAHO ADMINISTRATIVE CODE\s+IDAPA 16\.06\.12$
+    - ^Department of Health and Welfare\s+Idaho Child Care Program \(ICCP\)$
+    - ^16\.06\.12 – IDAHO CHILD CARE PROGRAM \(ICCP\)$
+    - ^\d{3}\. -- \d{3}\.\s+\(RESERVED\)$
+    - ^\d{3}\.\s+\(RESERVED\)$
+  metadata:
+    primary_source: true
+    source_authority: Idaho Department of Health and Welfare
+    document_subtype: administrative_rules
+    program: CCDF
+    state_program: Idaho Child Care Program (ICCP)
+    federal_program: CCDF
+    manual_landing_page: https://adminrules.idaho.gov/current-rules/
+    source_discovery_group: us-id/regulation/ccdf
+    discovered_via: manual-review:ccdf-agent-queue additional_families (needs-closure-2026-09-14 ccdf-s29); index https://adminrules.idaho.gov/current-rules/
+    closure_elements:
+    - ccdf-s29
+    official_publisher: Idaho Office of the Administrative Rules Coordinator
+    idapa_chapter: 16.06.12
+    source_last_modified: '2026-07-30'
+    final_url: https://files.dfm.idaho.gov/dfm-admin-website/rules/current/16/160612.pdf
+    page_count: 23
+    rule_effective_marks:
+      3-17-22: 284
+      4-6-23: 23
+    expression_date_note: latest rule-history mark printed in the chapter (the 16.03.08 TAFI scope used the most frequent
+      mark)
+    extraction_note: numbered_sections like the IDAPA 16.03.08 TAFI scope; table of contents on pages 2-3 skipped with start_page
+      4

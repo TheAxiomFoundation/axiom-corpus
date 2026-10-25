@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "f872788eb3f3a4444d9cfaa410b4a4612e0d15a60582bcad7501f007127329d7"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "bb7e57bb4c115718ed74fb84dcdb50e5107f1e0767b31985641dd660ef2dad2e"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "d2121093d74ea53fe0bca6c3629ef8b20dc99639e366c0a8a36685e9b689f7eb"
+    },
+    {
+      "path": "data/corpus/sources/us-az/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-az-azdor-form-140-booklet-ty2025.pdf",
+      "sha256": "9a2ec97faf4358f199f7d6c5898732fd98bd217345aac52976919343c43b5ab1"
+    },
+    {
+      "path": "data/corpus/sources/us-az/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-az-azdor-form-140-instructions-ty2025.pdf",
+      "sha256": "fc5de97b82a807ea89296e4512985ff0a5b01bc9253682a3022c59d810fdfa04"
+    },
+    {
+      "path": "data/corpus/sources/us-az/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-az-azdor-form-140-ty2025.pdf",
+      "sha256": "91722910a79a8ec544b5b4aef87a56d2d1d2151fe96039dc02b681408db55778"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:48:43.953574+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Wq/R7ESGRXHc29+n25jLKFZJtaCpfrGawZT+QddzN89yibbq2DqPJrct2zIgmtK78E4P41SlQFhPno3q+u97DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

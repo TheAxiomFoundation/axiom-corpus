@@ -1,0 +1,2476 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "ctc",
+ "folders": [
+  "gov/irs/credits/ctc",
+  "gov/irs/credits/ctc_tax_liability_limit"
+ ],
+ "state_folders": "^tax/income/credits/(ctc|child_tax_credit|young_child)",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 175,
+ "references": [
+  {
+   "url": "https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=4f86a852-765a-489a-b554-66f6e7d5b065&nodeid=ABPAACAACAABAACABN&nodepath=%2fROOT%2fABP%2fABPAAC%2fABPAACAAC%2fABPAACAACAAB%2fABPAACAACAABAAC%2fABPAACAACAABAACABN&level=6&haschildren=&populated=false&title=39-22-129.+Child+tax+credit+-+legislative+declaration+-+definitions.&config=014FJAAyNGJkY2Y4Zi1mNjgyLTRkN2YtYmE4OS03NTYzNzYzOTg0OGEKAFBvZENhdGFsb2d592qv2Kywlf8caKqYROP5&pddocfullpath=%2fshared%2fdocument%2fstatutes-legislation%2furn%3acontentItem%3a633G-B1C3-GXJ9-30GW-00008-00&ecomp=7gf59kk&prid=2fe6fa8e-8df8-4d74-a340-c4fa9bc603d5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "C.R.S. 39-22-129. Child tax credit - legislative declaration - definitions."
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://assembly.state.ny.us/leg/?Text=Y&bn=S3009&default_fld=&leg_video=&term=2025",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Senate Bill S.3009-C, Part C, Section 2, Tax Law Section 606(c-1)(1-a)",
+    "New York Senate Bill S.3009-C, Empire State Child Credit updates",
+    "New York Senate Bill S.3009-C (Chapter 59 of 2025), Part C Section 2, Tax Law Section 606(c-1)(1-a)(C)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/amount.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/in_effect.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/phase_out/increment.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/phase_out/rate.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/phase_out/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "variables/gov/states/dc/tax/income/credits/ctc/dc_ctc.py",
+    "variables/gov/states/dc/tax/income/credits/ctc/dc_ctc_eligible_child.py"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17##(b)(2)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of the District of Columbia § 47–1806.17(b)(2)"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/ctc/phase_out/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17#(b)(1)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of the District of Columbia § 47-1806.17(b)(1)(A)",
+    "Code of the District of Columbia § 47-1806.17(b)(1)(B)"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/dc/tax/income/credits/ctc/child/age_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17#(b)(2)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of the District of Columbia § 47–1806.17(b)(2)"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/ctc/phase_out/increment.yaml"
+   ]
+  },
+  {
+   "url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17#(e)(5)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of the District of Columbia § 47-1806.17(e)(5)"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/tax/income/credits/ctc/income_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://files.tax.utah.gov/tax/forms/2024/tc-40inst.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Child Tax Credit"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/rate.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Utah TC-40 Instructions, Child Tax Credit Worksheet"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/rate.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://interactive.marylandtaxes.gov/Individuals/iFile_ChooseForm/PriorYearForms/Resident_Booklet_2022.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2022 Resident Tax Forms and Instructions"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/disabled.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/agi_cap.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/reduced_by_federal_credit.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=89",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 New Mexico personal income tax form packet - RC-11 - Table 4. 2025 Child Income Tax Credit Income Table"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/1afc56af-ea90-4d48-82e5-1f9aeb43255a/PITbook2022.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 New Mexico personal income tax form packet - absent"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/608063af-0c4c-4f28-ba42-cf40e04557ca/PITbook2021.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 New Mexico personal income tax form packet - absent"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/90560f4e-0ef0-4e52-a003-878b84f858bb/PITbook2023.pdf#page=88",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 New Mexico personal income tax form packet - RC-11 - Table 4. 2023 Child Income Tax Credit Income Table"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/97f27f33-5e23-4a25-ad68-0980a22b802d/PITbook2024.pdf#page=91",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 New Mexico personal income tax form packet - Page RC-11"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "variables/gov/states/co/tax/income/credits/ctc/co_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc_child_individual_maximum.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc_maximum.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_non_refundable_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_refundable_ctc.py"
+   ]
+  },
+  {
+   "url": "https://law.justia.com/codes/new-jersey/2022/title-54a/section-54a-4-17-1/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Jersey Statutes Title 54A:4-17.1(1)(a) Child tax credit, income limit."
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/nj/tax/income/credits/ctc/amount.yaml",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc.py",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 106 (Bill Text)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/Session/2026/bills/enrolled/HB0290.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah HB290 (2026) Enrolled Bill - Section 59-10-1047(4)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code §59-10-1047 (4)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/rate.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml",
+    "variables/gov/states/ut/tax/income/credits/child_tax_credit/ut_ctc_potential.py"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2023050320240101",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code §59-10-1047 (2)",
+    "Utah Code §59-10-1047 (1) (e)",
+    "Utah Code §59-10-1047 (4)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/rate.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/xcode/Title59/Chapter10/59-10-S1047.html?v=C59-10-S1047_2025010120240501",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah Code §59-10-1047 (2)",
+    "Utah Code §59-10-1047 (1) (e)",
+    "Utah Code §59-10-1047 (4)"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/rate.yaml",
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/~2025/bills/static/HB0106.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 106"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/child_age_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://le.utah.gov/~2026/bills/static/HB0290.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Utah HB290 (2026) - Child Tax Credit Amendments"
+   ],
+   "states": [
+    "ut"
+   ],
+   "files": [
+    "parameters/gov/states/ut/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "variables/gov/states/co/tax/income/credits/ctc/co_ctc_eligible_child.py",
+    "variables/gov/states/co/tax/income/credits/ctc/co_ctc_eligible_children_count.py"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 23-1112, Section 2, (1), (a)"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/eligible_child.yaml"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 23-1112, Section 2, (4.5), (a), (I)",
+    "House Bill 23-1112, Section 2, (3.5) / (4)",
+    "C.R.S. 39-22-129(2)(a)",
+    "C.R.S. 39-22-129(3.5)(a)"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/surviving_spouse.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/ctc_matched_federal_credit.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/eligible_child.yaml",
+    "variables/gov/states/co/tax/income/credits/ctc/co_ctc_qualifying_child.py"
+   ]
+  },
+  {
+   "url": "https://leg.colorado.gov/sites/default/files/2023a_1112_signed.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 23-1112, Section 2, (4.5), (a), (II)"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/joint.yaml"
+   ]
+  },
+  {
+   "url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17052.1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "California Legal code REVENUE AND TAXATION CODE, section 17052.1,(a)(2)(A)(i)",
+    "California Section 17052.1(c)",
+    "California Revenue and Taxation Code §17052.1(b)(1)(B)(ii)",
+    "California Section 17052.1(a)(2)(C)(i)"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/ineligible_age.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/increment.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/young_child/ca_yctc.py"
+   ]
+  },
+  {
+   "url": "https://legiscan.com/GA/text/HB136/id/3204611/Georgia-2025-HB136-Enrolled.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "House Bill 136"
+   ],
+   "states": [
+    "ga"
+   ],
+   "files": [
+    "parameters/gov/states/ga/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/ga/tax/income/credits/ctc/amount.yaml",
+    "variables/gov/states/ga/tax/income/credits/ctc/ga_ctc.py",
+    "variables/gov/states/ga/tax/income/credits/ctc/ga_ctc_potential.py"
+   ]
+  },
+  {
+   "url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "IDAHO STATUTES - TITLE 63 - 067 - SECTION 63-3029L (1)"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://legislature.vermont.gov/Documents/2026/Docs/BILLS/S-0051/S-0051%20As%20Passed%20by%20Both%20House%20and%20Senate%20Official.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "S.51 (2025) - Vermont tax credit package extends CTC to 6-year-olds"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://legislature.vermont.gov/statutes/section/32/151/05830f",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vt. Stat. tit. 32 § 5830f Section (a)",
+    "Vt. Stat. tit. 32 § 5830f Section (b)"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/increment.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/start.yaml",
+    "variables/gov/states/vt/tax/income/credits/ctc/vt_ctc.py"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf#page=168",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland House Bill 352 - Budget Reconciliation and Financing Act of 2025"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf#page=169",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland House Bill 352 - Budget Reconciliation and Financing Act of 2025"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/applies.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/increment.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/rate.yaml",
+    "variables/gov/states/md/tax/income/credits/ctc/md_ctc.py",
+    "variables/gov/states/md/tax/income/credits/ctc/md_ctc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Md. Code, Tax-Gen. § 10-751 (a)(2)(ii)(2)",
+    "Md. Code, Tax-Gen. § 10-751 (a)(2)(ii)(1)",
+    "Md. Code, Tax-Gen. § 10-751 (b)",
+    "Md. Code, Tax-Gen. § 10-751"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/disabled.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/main.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/agi_cap.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/reduced_by_federal_credit.yaml",
+    "variables/gov/states/md/tax/income/credits/ctc/md_ctc.py",
+    "variables/gov/states/md/tax/income/credits/ctc/md_ctc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-7202",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Nebraska Revised Statute | Chapter 77 | §7202 (1)"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/age_threshold.yaml",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc_eligible_child.py"
+   ]
+  },
+  {
+   "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-7203",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Nebraska Revised Statute | Chapter 77 | §7203 (2)",
+    "Nebraska Revised Statute | Chapter 77 | §7203 (1)(c)"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/amount.yaml",
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/fpg_fraction.yaml",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc.py",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc_income_eligible.py",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc_total_household_income.py"
+   ]
+  },
+  {
+   "url": "https://nmonesource.com/nmos/nmsa/en/item/4340/index.do#!fragment/zoupio-_Toc194323097/BQCwhgziBcwMYgK4DsDWszIQewE4BUBTADwBdoAvbRABwEtsBaAfX2zgEYBOAFgGYATHwAMXAOwBKADTJspQhACKiQrgCe0AOSapEQmFwJlqjdt37DIAMp5SAIQ0AlAKIAZZwDUAggDkAws5SpGAARtCk7BISQA",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Mexico Statutes, 7-2-18.34. Child income tax credit.",
+    "New Mexico Statutes, 7-2-18.34(D) - Inflation adjustment"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://nmonesource.com/nmos/nmsl/en/item/18775/index.do#!fragment/undefined/BQCwhgziBcwMYgK4DsDWsBGB7LqC2YATqgJIAm0cATAIw0QCcAlADTJYAuAphAIqJdCAT2gByUSwhciCfoJHjJ0wggDKWQhwBCIgEoBRADL6AagEEAcgGF9LDmAzQOWOEyZA",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New Mexico Session Laws, Laws 2023 - First Session, Fifty-Sixth Legislature, Chapter 211 Section 9 Laws 2023"
+   ],
+   "states": [
+    "nm"
+   ],
+   "files": [
+    "parameters/gov/states/nm/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023R1 House Bill 3235 Section 2 (3)(a)",
+    "2023R1 House Bill 3235 Section 2 (2)",
+    "2023R1 House Bill 3235 Section 2 (1)(a)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/child_limit.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/ineligible_age.yaml"
+   ]
+  },
+  {
+   "url": "https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023R1 House Bill 3235 Section 2 (4)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/width.yaml"
+   ]
+  },
+  {
+   "url": "https://olis.oregonlegislature.gov/liz/2023R1/Downloads/MeasureDocument/HB3235/Enrolled#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023R1 House Bill 3235 Section 11"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://oregon.public.law/statutes/ors_315.273",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon Revised Statutes Section 315.273(5) (cost-of-living adjustment)",
+    "Oregon Revised Statutes Section 315.273 (2023 c.538 §2)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://pub.njleg.state.nj.us/Bills/2026/S5000/4531_I1.HTM",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "P.L.2026, c.26 (S-4531), enacted 2026-06-30 - increases the child tax credit 25% for tax years 2026-2028 (bill passed unamended; introduced text linked as the chaptered PDF is not yet posted)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/businesses/child-care-tax-credit-act",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc.py",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc_eligible_child.py",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc_income_eligible.py",
+    "variables/gov/states/ne/tax/income/credits/ctc/refundable/ne_refundable_ctc_total_household_income.py"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Nebraska Individual Income Tax Booklet"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/age_threshold.yaml",
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/amount.yaml",
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/fpg_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf#page=19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Nebraska Individual Income Tax Booklet, Line 48"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/age_threshold.yaml",
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/amount.yaml",
+    "parameters/gov/states/ne/tax/income/credits/ctc/refundable/fpg_fraction.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/Book0104_2023.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Colorado Individual Tax Filing Guide 104 Book, Line 1"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Colorado Individual Tax Filing Guide 104 Book, Line 1",
+    "2025 Colorado Individual Tax Filing Guide 104 Book, Section B"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/surviving_spouse.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/ctc_matched_federal_credit.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/eligible_child.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR0104Book_2021_V3.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 Colorado Individual Income Tax Filing Guide"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Colorado Child Tax Credit, Applicable Percentage Table"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Colorado Child Tax Credit (DR 0104CN), line 4 instructions"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/federal_credit_limitation_after_worksheet_b.yaml",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_non_refundable_ctc.py"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2023.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Colorado Child Tax Credit, Applicable Percentage Table"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR0104CN_2024.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Colorado Child Tax Credit Instructions, Section B"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/amount/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Colorado Child Tax Credit",
+    "2022 Colorado Child Tax Credit (DR 0104CN), lines 4-6"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/federal_credit_limitation_after_worksheet_b.yaml",
+    "variables/gov/states/co/tax/income/credits/ctc/co_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc_child_individual_maximum.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc_maximum.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_non_refundable_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_refundable_ctc.py"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR_0104CN_2022.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Colorado Child Tax Credit, Applicable Percentage Table"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.colorado.gov/sites/tax/files/documents/DR_104_Book_2022.pdf#page=16",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Colorado Individual Income Tax Filing Guide - Instructions for Select Credits from the DR 0104CR - Line 1 Child Tax Credit",
+    "Colorado Individual Income Tax Filing Guide - Instructions for Select Credits from the DR 0104CR - Line 1 Child Tax Credit"
+   ],
+   "states": [
+    "co"
+   ],
+   "files": [
+    "parameters/gov/states/co/tax/income/credits/ctc/age_threshold.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/head_of_household.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/joint.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/separate.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/single.yaml",
+    "parameters/gov/states/co/tax/income/credits/ctc/rate/surviving_spouse.yaml",
+    "variables/gov/states/co/tax/income/credits/ctc/co_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc_child_individual_maximum.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_federal_ctc_maximum.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_non_refundable_ctc.py",
+    "variables/gov/states/co/tax/income/credits/ctc/federal_ctc/co_refundable_ctc.py"
+   ]
+  },
+  {
+   "url": "https://tax.idaho.gov/wp-content/uploads/forms/EFO00089/EFO00089_08-23-2023.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Form 40 2023 Individual Income Tax Return"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.idaho.gov/wp-content/uploads/forms/EFO00089/EFO00089_12-30-2022.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Form 40 2022 Individual Income Tax Return"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Idaho Individual Income Tax Instructions Packet 2025"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_10-23-2024.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Idaho Individual Income Tax Instructions Packet 2024"
+   ],
+   "states": [
+    "id"
+   ],
+   "files": [
+    "parameters/gov/states/id/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Schedule IL-E/EIC Illinois Exemption and Earned Income Tax Credit"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/il/tax/income/credits/ctc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2022.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vt. 2022 Income Tax Return Booklet"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/increment.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/Income%20Booklet-2024.pdf#page=33",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vt. 2024 Income Tax Return Booklet"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/increment.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2021.pdf#page=24",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vt. 2021 Tax Form"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/increment.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2023.pdf#page=33",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vt. 2023 Income Tax Return Booklet"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/increment.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf#page=35",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Vt. 2025 Income Tax Return Booklet"
+   ],
+   "states": [
+    "vt"
+   ],
+   "files": [
+    "parameters/gov/states/vt/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/amount.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/increment.yaml",
+    "parameters/gov/states/vt/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/forms/income-tax/2024/individual/il-1040-schedule-il-e-eic.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Schedule IL-E/EIC Illinois Exemption and Earned Income Tax Credit"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/il/tax/income/credits/ctc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20221020033542/https://www.tax.ny.gov/pit/child-earned-payments.htm#estimate",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Department of Taxation Additional Empire State child credit payments - 2021"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/additional/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=%E2%80%9CChild%E2%80%9D%20means%20an%20individual%20who%20is%20eighteen%20years%20of%20age%20or%20under",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 R.I. H 7127 Substitute A as amended, Article 6, Section 4, § 44-30-104(a)(1)"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/ctc/age_limit.yaml",
+    "variables/gov/states/ri/tax/income/credits/ctc/ri_ctc_eligible_child.py",
+    "variables/gov/states/ri/tax/income/credits/ctc/ri_ctc_eligible_children.py"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=44-30-104.%20Child%20Tax%20Credit",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "variables/gov/states/ri/tax/income/credits/ctc/ri_ctc.py"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=applicable%20percentage%E2%80%9D%20for%20purposes%20of%20this%20subsection%20means%20twenty%20(20)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 R.I. H 7127 Substitute A as amended, Article 6, Section 4, § 44-30-104(c)"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/ctc/phase_out/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=exceeds%20eighty-eight%20thousand%20five%20hundred%20dollars",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 R.I. H 7127 Substitute A as amended, Article 6, Section 4, § 44-30-104(c)"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/ctc/phase_out/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=the%20amount%20of%20three%20hundred%20thirty%20dollars%20(%24330)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 R.I. H 7127 Substitute A as amended, Article 6, Section 4, § 44-30-104(b)"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=two%20thousand%20eight%20hundred%20seventy-five%20(%242%2C875)",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 R.I. H 7127 Substitute A as amended, Article 6, Section 4, § 44-30-104(c)"
+   ],
+   "states": [
+    "ri"
+   ],
+   "files": [
+    "parameters/gov/states/ri/tax/income/credits/ctc/phase_out/increment.yaml"
+   ]
+  },
+  {
+   "url": "https://www.congress.gov/bill/119th-congress/house-bill/1/text",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "H.R.1 - One Big Beautiful Bill Act"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/adult_ssn_requirement_applies.yaml",
+    "parameters/gov/irs/credits/ctc/amount/adult_dependent.yaml",
+    "parameters/gov/irs/credits/ctc/child_ssn_requirement_applies.yaml",
+    "parameters/gov/irs/credits/ctc/eligible_ssn_card_type.yaml",
+    "parameters/gov/irs/credits/ctc/phase_out/threshold.yaml",
+    "parameters/gov/irs/credits/ctc/refundable/phase_in/threshold.yaml",
+    "variables/gov/irs/credits/ctc/maximum/individual/meets_ctc_identification_requirements.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2021/2021-3514-instructions.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Instructions for 2021 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml",
+    "variables/gov/states/ca/tax/income/credits/young_child/ca_yctc.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2021/2021-3514.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/increment.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/young_child/ca_yctc.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2022/2022-3514-instructions.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Instructions for 2022 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml",
+    "variables/gov/states/ca/tax/income/credits/young_child/ca_yctc.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2022/2022-3514.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/increment.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/start.yaml",
+    "variables/gov/states/ca/tax/income/credits/young_child/ca_yctc.py"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2023/2023-3514-instructions.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Instructions for 2023 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2023/2023-3514.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/increment.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2024/2024-3514.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 CalEITC Form 3514"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/ineligible_age.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/increment.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 California Earned Income Tax Credit Booklet"
+   ],
+   "states": [
+    "ca"
+   ],
+   "files": [
+    "parameters/gov/states/ca/tax/income/credits/young_child/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/ineligible_age.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/loss_threshold.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/amount.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/increment.yaml",
+    "parameters/gov/states/ca/tax/income/credits/young_child/phase_out/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/PLAW-114publ27/pdf/PLAW-114publ27.pdf#page=58",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Public Law 114-27, § 807"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/foreign_earned_income_exclusion_bar_applies.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ilga.gov/Documents/legislation/ilcs/documents/003500050K244.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Section 35 ILCS 5/244 Child Tax Credit, (a)"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/il/tax/income/credits/ctc/rate.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-18-57.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2019 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-19-44.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2020 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-20-45.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2021 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-21-45.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-22-38.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-23-34.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-24-40.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2026 IRS data release"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/base.yaml",
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-pdf/i1040s8.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/maximum/individual/filer_meets_child_ctc_identification_requirements.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/filer_meets_ctc_identification_requirements.py"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-pdf/i1040s8.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Instructions for Schedule 8812 (Form 1040), Credit Limit Worksheet A, line 2",
+    "2025 Instructions for Schedule 8812 (Form 1040), Credit Limit Worksheet A, line 4"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/preceding_credits.yaml",
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/subsequent_credits.yaml",
+    "variables/gov/irs/credits/ctc/phase_out/arpa/ctc_arpa_addition.py",
+    "variables/gov/irs/credits/ctc/phase_out/arpa/ctc_arpa_max_addition.py",
+    "variables/gov/irs/credits/ctc/phase_out/arpa/ctc_arpa_phase_out_cap.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_credit_limit_worksheet_b_applies.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_limiting_tax_liability.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_tax_liability_after_preceding_credits.py"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-pdf/i1040s8.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_non_refundable_minimum.py"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-pdf/i1040s8.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Instructions for Schedule 8812 (Form 1040), Credit Limit Worksheet B, line 15"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/subsequent_credits.yaml",
+    "variables/gov/irs/credits/ctc/refundable/ctc_limiting_tax_liability.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_non_refundable_minimum.py"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/f1040--2021.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_refundable_maximum.py"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/f1040s8--2021.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_refundable_maximum.py"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/i1040s8--2022.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Instructions for Schedule 8812 (Form 1040), Credit Limit Worksheet A, line 2"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/preceding_credits.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/i1040s8--2025.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Instructions for Schedule 8812, Part II-A"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/foreign_earned_income_exclusion_bar_applies.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/p972--2013.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2013 Publication 972, Child Tax Credit Worksheet, line 10"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/preceding_credits.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/p972--2020.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2020 Publication 972, Child Tax Credit and Credit for Other Dependents Worksheet, line 12"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/preceding_credits.yaml"
+   ]
+  },
+  {
+   "url": "https://www.irs.gov/pub/irs-prior/p972--2020.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2020 Publication 972, Line 14 Worksheet, line 15"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/subsequent_credits.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/164#f",
+   "kind": "statute",
+   "citation": "us/statute/26/164/f",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_phase_in_relevant_earnings.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#a",
+   "kind": "statute",
+   "citation": "us/statute/26/24/a",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/ctc.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_adult_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_child_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_refundable_maximum.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#b_1",
+   "kind": "statute",
+   "citation": "us/statute/26/24/b/1",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(b)(1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/phase_out/amount.yaml",
+    "parameters/gov/irs/credits/ctc/phase_out/arpa/increment.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#b_2",
+   "kind": "statute",
+   "citation": "us/statute/26/24/b/2",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(b)(2)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/phase_out/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#c",
+   "kind": "statute",
+   "citation": "us/statute/26/24/c",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/maximum/ctc_qualifying_child.py",
+    "variables/gov/irs/credits/ctc/maximum/ctc_qualifying_children.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#c_1",
+   "kind": "statute",
+   "citation": "us/statute/26/24/c/1",
+   "titles": [
+    "26 U.S. Code § 24(c)(1)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/base.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_phase_in.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_phase_in_relevant_earnings.py",
+    "variables/gov/irs/credits/ctc/refundable/refundable_ctc.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_1",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/1",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_non_refundable_minimum.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_1_B",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/1/B",
+   "titles": [
+    "26 U.S. Code § 24(d)(1)(B) - Portion of credit refundable"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/subsequent_credits.yaml",
+    "variables/gov/irs/credits/ctc/refundable/ctc_credit_limit_worksheet_b_applies.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_limiting_tax_liability.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_1_B_i",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/1/B/i",
+   "titles": [
+    "26 U.S. Code § 24(d)(1)(B)(i)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/phase_in/rate.yaml",
+    "parameters/gov/irs/credits/ctc/refundable/phase_in/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_1_B_ii",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/1/B/ii",
+   "titles": [
+    "26 U.S. Code § 24(d)(1)(B)(i)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/phase_in/min_children_for_ss_taxes_minus_eitc.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_2",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/2",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_social_security_tax.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_2_A",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/2/A",
+   "titles": [
+    "26 U.S. Code § 24(d)(2)(A)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/social_security/add.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_2_B",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/2/B",
+   "titles": [
+    "26 U.S. Code § 24(d)(2)(B)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/social_security/subtract.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#d_3",
+   "kind": "statute",
+   "citation": "us/statute/26/24/d/3",
+   "titles": [
+    "26 U.S. Code § 24(d)(3)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/foreign_earned_income_exclusion_bar_applies.yaml",
+    "variables/gov/irs/credits/ctc/refundable/ctc_credit_limit_worksheet_b_applies.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_adult_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_child_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_refundable_maximum.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h_2",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h/2",
+   "titles": [
+    "26 U.S. Code § 24(h)(2) - Child tax credit amount"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/base.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h_3",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h/3",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(h)(3)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/phase_out/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h_4_A",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h/4/A",
+   "titles": [
+    "26 U.S. Code § 24(h)(4)(a)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/adult_dependent.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h_5_A",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h/5/A",
+   "titles": [
+    "26 U.S. Code § 24(h)(5)(A) - Child tax credit refundable portion"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h_6",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h/6",
+   "titles": [
+    "26 U.S. Code § 24(h)(6)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/phase_in/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#h_7",
+   "kind": "statute",
+   "citation": "us/statute/26/24/h/7",
+   "titles": [
+    "26 U.S. Code § 24(h)(7)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/child_ssn_requirement_applies.yaml",
+    "variables/gov/irs/credits/ctc/maximum/individual/meets_ctc_child_identification_requirements.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_adult_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_child_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/maximum/individual/ctc_individual_maximum.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_refundable_maximum.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_1",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/1",
+   "titles": [
+    "26 U.S. Code § 24(i)(1)",
+    "26 U.S. Code § 24(i)(1) - Inflation adjustment for refundable amount"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/refundable/fully_refundable.yaml",
+    "parameters/gov/irs/credits/ctc/refundable/individual_max.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_2",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/2",
+   "titles": [
+    "26 U.S. Code § 24(i)(2) - Inflation adjustment for credit amount"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/base.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_3",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/3",
+   "titles": [
+    "26 U.S. Code § 24(i)(3)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/arpa.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_4",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/4",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(i)(4)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/phase_out/arpa/in_effect.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_4_A",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/4/A",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(i)(4)(A)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/phase_out/arpa/amount.yaml",
+    "parameters/gov/irs/credits/ctc/phase_out/increment.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_4_B",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/4/B",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(i)(4)(B)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/phase_out/arpa/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/24#i_4_C_i_II",
+   "kind": "statute",
+   "citation": "us/statute/26/24/i/4/C/i",
+   "titles": [
+    "U.S.C 26 U.S. Code § 24(i)(4)(C)(i)(II)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc/amount/arpa_expansion_cap_percent_of_threshold_diff.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/25D#c",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "26 U.S. Code § 25D(c) - Carryforward of unused credit"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/preceding_credits.yaml",
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/subsequent_credits.yaml"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/26#a",
+   "kind": "statute",
+   "citation": "us/statute/26/26/a",
+   "titles": [
+    "26 U.S. Code § 26(a) - Limitation based on amount of tax"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/irs/credits/ctc_tax_liability_limit/preceding_credits.yaml",
+    "variables/gov/irs/credits/ctc/refundable/ctc_limiting_tax_liability.py",
+    "variables/gov/irs/credits/ctc/refundable/ctc_tax_liability_after_preceding_credits.py"
+   ]
+  },
+  {
+   "url": "https://www.law.cornell.edu/uscode/text/26/32#c_2",
+   "kind": "statute",
+   "citation": "us/statute/26/32/c/2",
+   "titles": [],
+   "states": [],
+   "files": [
+    "variables/gov/irs/credits/ctc/refundable/ctc_phase_in_relevant_earnings.py"
+   ]
+  },
+  {
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2024/Resident-Booklet.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2024 Resident Tax Forms and Instructions",
+    "Maryland 2024 Resident Tax Forms and Instructions - Worksheet 12(c)"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/disabled.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/main.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/agi_cap.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/reduced_by_federal_credit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=27",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2025 Resident Tax Forms and Instructions - Child Tax Credit",
+    "Maryland 2025 Resident Tax Booklet - Refundable Child Tax Credit Worksheet 21C"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/disabled.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/main.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/agi_cap.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/applies.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/increment.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/max_agi.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/rate.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/phase_out/threshold.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/reduced_by_federal_credit.yaml",
+    "variables/gov/states/md/tax/income/credits/ctc/md_ctc.py"
+   ]
+  },
+  {
+   "url": "https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf#page=25",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Maryland 2023 Resident Tax Forms and Instructions",
+    "2023 State & Local Tax Forms & Instructions Maryland"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/disabled.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/age_threshold/main.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/md/tax/income/credits/ctc/reduced_by_federal_credit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 State & Local Tax Forms & Instructions Maryland"
+   ],
+   "states": [
+    "md"
+   ],
+   "files": [
+    "parameters/gov/states/md/tax/income/credits/ctc/agi_cap.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ncdor.gov/documents/files/2017-d-401-individual-income-tax-instructions/open",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Department of Revenue - 2017 Individual Income Tax Instructions"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/tax/income/credits/ctc/head_of_household.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/joint.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/separate.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/single.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ncdor.gov/taxes-forms/individual-income-tax/credit-children",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Department of Revenue - Credit for Children"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/tax/income/credits/ctc/head_of_household.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/joint.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/separate.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/single.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Code of North Carolina | § 105-153.10 Repealed by Session Laws."
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/tax/income/credits/ctc/head_of_household.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/joint.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/separate.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/single.yaml",
+    "parameters/gov/states/nc/tax/income/credits/ctc/surviving_spouse.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=46",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 NJ-1040 Instructions (line 65)",
+    "2025 NJ-1040 Instructions (Line 65)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/nj/tax/income/credits/ctc/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc.py",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2022 Instructions for Form NJ-1040 (line 65)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/nj/tax/income/credits/ctc/amount.yaml",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc.py",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.nysenate.gov/legislation/laws/TAX/606",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Consolidated Laws of New York, Cahpter 60, Tax Article 22 Personal Income Tax, Section 606 Credits against tax (c-1)(4)(A) / (c-1)(5)(A)",
+    "Section 606 Credits against tax (c-1)"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/additional/amount.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/additional/min_credit_value.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/minimum.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/percent.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/minimum_age.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/pre_tcja.yaml",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_additional_ctc.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc_post_2024.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc_post_2024_base.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc_post_2024_eligible.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc_post_2024_phase_out.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc_pre_2024.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_ctc_pre_2024_eligible.py",
+    "variables/gov/states/ny/tax/income/credits/ctc/ny_escc_qualifying_child.py"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2023.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/child_limit.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/ineligible_age.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/start.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/width.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2024.pdf#page=19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2024 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/child_limit.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/ineligible_age.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/start.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/width.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf#page=22",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Oregon Income Tax Form OR-40 Instructions"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/amount.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/child_limit.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/ineligible_age.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/start.yaml",
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/width.yaml"
+   ]
+  },
+  {
+   "url": "https://www.oregonlegislature.gov/bills_laws/ors/ors315.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Oregon Revised Statutes Section 315.273 - 5(a)"
+   ],
+   "states": [
+    "or"
+   ],
+   "files": [
+    "parameters/gov/states/or/tax/income/credits/ctc/reduction/start.yaml"
+   ]
+  },
+  {
+   "url": "https://www.state.nj.us/treasury/taxation/pdf/current/1040i.pdf#page=46",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2023 NJ-1040 Instructions (line 65)"
+   ],
+   "states": [
+    "nj"
+   ],
+   "files": [
+    "parameters/gov/states/nj/tax/income/credits/ctc/age_limit.yaml",
+    "parameters/gov/states/nj/tax/income/credits/ctc/amount.yaml",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc.py",
+    "variables/gov/states/nj/tax/income/credits/ctc/nj_ctc_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/forms/html-instructions/2023/it/it201i-2023.htm#step-8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Instructions for Form IT-201 Line 63"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/minimum.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/percent.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/minimum_age.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/pre_tcja.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/forms/html-instructions/2023/it/it213i-2023.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Instructions for Form IT-213"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/minimum.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/percent.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/minimum_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pdf/current_forms/it/it201i.pdf#page=25",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Form IT-201-I Instructions"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/additional/amount.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/additional/min_credit_value.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/minimum.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/percent.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/minimum_age.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/pre_tcja.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pdf/current_forms/it/it213_fill_in.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Form IT-213"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/minimum.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/amount/percent.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pdf/current_forms/it/it213i.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "2025 Instructions for Form IT-213"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/amount.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/in_effect.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/phase_out/increment.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/phase_out/rate.yaml",
+    "parameters/gov/states/ny/tax/income/credits/ctc/post_2024/phase_out/threshold.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pit/credits/empire_state_child_credit.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Empire State child credit | New for 2023"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/minimum_age.yaml"
+   ]
+  },
+  {
+   "url": "https://www.tax.ny.gov/pit/empire-child-credit-payments.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "New York Department of Taxation Additional Empire State child credit payments - 2023"
+   ],
+   "states": [
+    "ny"
+   ],
+   "files": [
+    "parameters/gov/states/ny/tax/income/credits/ctc/additional/amount.yaml"
+   ]
+  }
+ ]
+}

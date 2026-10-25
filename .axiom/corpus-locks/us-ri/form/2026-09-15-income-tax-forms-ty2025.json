@@ -1,0 +1,15 @@
+{
+  "schema_version": "axiom-corpus/corpus-lock/v1",
+  "jurisdiction": "us-ri",
+  "document_class": "form",
+  "version": "2026-09-15-income-tax-forms-ty2025",
+  "files": [
+    {"path": "data/corpus/coverage/us-ri/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "e67306179e8e59150a6ace285fff2341d49766d08d4d660b984c6d96fa8ebabb", "size": 330},
+    {"path": "data/corpus/inventory/us-ri/form/2026-09-15-income-tax-forms-ty2025.json", "sha256": "b5256043238b7f85dfa419a427eb28accf4dd0dcc21c75656cd056815f4866ba", "size": 11879},
+    {"path": "data/corpus/provisions/us-ri/form/2026-09-15-income-tax-forms-ty2025.jsonl", "sha256": "1897fe5ef2700852360af32c70a8e225690dded43e9f4ceb9e4e916373abd8b4", "size": 162359},
+    {"path": "data/corpus/sources/us-ri/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ri-tax-ri-1040-instructions-ty2025.pdf", "sha256": "17c4d5abe85fe61e69da5daa349865576b5a66425a147dd5686a922b0c208336", "size": 221814},
+    {"path": "data/corpus/sources/us-ri/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ri-tax-ri-1040-ty2025.pdf", "sha256": "ac024a0d865fd08ca8cc6a907ae78b0aa74a3f3bd3b6c35d845f4294ba4d9f52", "size": 9567972},
+    {"path": "data/corpus/sources/us-ri/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ri-tax-tax-rate-schedule-and-worksheets-ty2025.pdf", "sha256": "1d33746ace050d28a83e3d96bca6f515049b41d2aeaff80e5347325125309a60", "size": 27748},
+    {"path": "data/corpus/sources/us-ri/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ri-tax-tax-tables-ty2025.pdf", "sha256": "a7a6f399885411d31291898c5c9e2607c6321262057c494520cd8226739429b2", "size": 119826}
+  ]
+}

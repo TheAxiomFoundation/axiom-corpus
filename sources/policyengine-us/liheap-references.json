@@ -1,0 +1,2270 @@
+{
+ "policyengine_us_release": "latest",
+ "policyengine_us_version": "2.29.11",
+ "policyengine_us_commit": "4c900b6d3d808c4a9cf56d11afcedad9898f732f",
+ "policyengine_us_commit_date": "2026-10-06",
+ "program": "liheap",
+ "folders": [
+  "gov/hhs/liheap",
+  "gov/hhs/smi",
+  "gov/hhs/fpg"
+ ],
+ "state_folders": "liheap|lieap|heap|eap",
+ "derived_by": "scripts/export_policyengine_references.py",
+ "files_read": 212,
+ "references": [
+  {
+   "url": "https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "LIHEAP Statute and Regulations, Section 2605(b)(2)(B)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/liheap/smi_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/ocs/policy-guidance/liheap-im-2018-3-state-median-income-estimates-optional-use-fy-2018-and",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "LIHEAP IM 2018-3 State Median Income Estimates for Optional Use in FY 2018 and Mandatory Use in FY 2019 (Attachment 1, ACF landing page)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att4SMITable_States_FY2027.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FY 2027 (Attachment 4)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM%202024-02_Att4SMITable.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FY 2025"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM2025-02_SMIStateTable_Att4.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FY 2026"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/sites/default/files/documents/ocs/comm_liheap_im2002smiattachment_fy2021.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FFY 2021 (Attachment 1, LIHEAP-IM-2020-02)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/sites/default/files/documents/ocs/comm_liheap_smiimattachment_1_fy2019.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FFY 2020 (Attachment 1, LIHEAP-IM-2019-02)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://acf.gov/sites/default/files/documents/ocs/im_17_03_liheap_smi_fy18.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "60 percent of estimated State Median Income adjusted for family size, by state, FFY 2018 (Attachment 1, LIHEAP-IM-2017-03)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://apps.legislature.ky.gov/law/kar/titles/921/004/116/",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "921 KAR 4:116 Section 1(8)",
+    "921 KAR 4:116 Section 3(1)(b) (cabinet-approved increase above the 130 percent base)",
+    "921 KAR 4:116 Section 4(1)(c) (lowest income receives the highest benefit; conflicts with the workbook ordering)"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/earned_income_sources.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/income_limit.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_points/subsidized.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/unearned_income_sources.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap.py",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_eligible.py",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_income.py",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HHS poverty guidelines, 2024 and 2025"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_year_lag.yaml"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13230 Proof of Information Requirement, January 2026 edition (gross income of the month of application)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/income_band.yaml",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_income_band.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13320 Household Definition, January 2026 edition (a member who is or turns eighteen in the month of application has countable income)",
+    "KEESM 13320 Household Definition, January 2026 edition (income of all household members living together is used)",
+    "KEESM 13330 Citizenship and Alienage Requirements, January 2026 edition (non-citizen members excluded from household size)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/earned_income_min_age.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/household_size_group.yaml",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_energy_vulnerable.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_income.py",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13360 Income Eligibility, January 2026 edition",
+    "KEESM 13362 Income Guidelines, January 2026 edition",
+    "KEESM 13360-13362, January 2026 edition",
+    "KEESM 13361 Exempt Income, January 2026 edition (earned income of child household members under age 18 is exempt)",
+    "KEESM 13361 Exempt Income, January 2026 edition (interest accrued from the interest-bearing accounts of children under 18 is exempt)",
+    "KEESM 13361 Exempt Income, January 2026 edition (only irregular, unpredictable interest and dividends under $30 in a quarter are exempt)",
+    "KEESM 13360 Income Eligibility, January 2026 edition (countable income includes earnings by adults; self-employment income paragraph)",
+    "KEESM 13360-13361, January 2026 edition (countable income and specific exemptions)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_rate.yaml",
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_year_lag.yaml",
+    "parameters/gov/states/ks/dcf/liheap/eligibility/max_table_size.yaml",
+    "parameters/gov/states/ks/dcf/liheap/eligibility/rounding_increment.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/earned_income_min_age.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/interest_income_min_age.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/regular_interest_dividend_exemption.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_limit.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_earned_income.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_interest_dividend_income.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_unearned_income.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13410 Benefit Levels, January 2026 edition"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/electricity.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/natural_gas.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/other.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/propane.yaml",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap.py",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_fuel_category.py",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_matrix_amount.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 6313 Self-Employment, January 2026 edition (a loss from self-employment cannot be deducted from other income)",
+    "KEESM 6313 Self-Employment, January 2026 edition (rental property income is unearned unless actively managed 20 hours a week)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 7122.1 Income Producing Cost Deduction, January 2026 edition (a loss from self-employment cannot be deducted from other income)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13362 Income Guidelines, July 2025 edition (first edition with the FY2026 limits of $1,956 to $6,769 and the $688 increment)",
+    "KEESM 13361 Exempt Income, July 2025 edition (first edition with the FY2026 rule; only irregular, unpredictable interest and dividends under $30 in a quarter are exempt)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/eligibility/rounding_increment.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/regular_interest_dividend_exemption.yaml"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_income.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13230 Proof of Information Requirement, October 2024 edition (gross income of the month of application)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/income_band.yaml",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_income_band.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13320 Household Definition, October 2024 edition (a member who is or turns eighteen in the month of application has countable income)",
+    "KEESM 13320 Household Definition, October 2024 edition (income of all household members living together is used)",
+    "KEESM 13330 Citizenship and Alienage Requirements, October 2024 edition (non-citizen members excluded from household size)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/earned_income_min_age.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/household_size_group.yaml",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_energy_vulnerable.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_income.py",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13360 Income Eligibility, October 2024 edition",
+    "KEESM 13362 Income Guidelines, October 2024 edition",
+    "KEESM 13360-13362, October 2024 edition",
+    "KEESM 13361 Exempt Income, October 2024 edition (earned income of child household members under age 18 is exempt)",
+    "KEESM 13361 Exempt Income, October 2024 edition (interest accrued from the interest-bearing accounts of children under 18 is exempt)",
+    "KEESM 13361 Exempt Income, October 2024 edition (interest and dividend income not exceeding $50 per month is exempt; if in excess the full amount is counted)",
+    "KEESM 13360 Income Eligibility, October 2024 edition (countable income includes earnings by adults; self-employment income paragraph)",
+    "KEESM 13360-13361, October 2024 edition (countable income and specific exemptions)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_rate.yaml",
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_year_lag.yaml",
+    "parameters/gov/states/ks/dcf/liheap/eligibility/max_table_size.yaml",
+    "parameters/gov/states/ks/dcf/liheap/eligibility/rounding_increment.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/earned_income_min_age.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/interest_income_min_age.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/regular_interest_dividend_exemption.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_limit.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_earned_income.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_interest_dividend_income.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_unearned_income.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 13410 Benefit Levels, October 2024 edition"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/electricity.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/natural_gas.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/other.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/propane.yaml",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap.py",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_fuel_category.py",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_matrix_amount.py"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 6313 Self-Employment, October 2024 edition (a loss from self-employment cannot be deducted from other income)",
+    "KEESM 6313 Self-Employment, October 2024 edition (rental property income is unearned unless actively managed 20 hours a week)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml"
+   ]
+  },
+  {
+   "url": "https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "KEESM 7122.1 Income Producing Cost Deduction, October 2024 edition (a loss from self-employment cannot be deducted from other income)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://dceo.illinois.gov/communityservices/utilitybillassistance.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois DCEO Utility Bill Assistance"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/eligibility/fpg_limit.yaml",
+    "variables/gov/states/il/dceo/liheap/eligibility/il_liheap_eligible.py",
+    "variables/gov/states/il/dceo/liheap/eligibility/il_liheap_eligible_for_crisis_assistance.py",
+    "variables/gov/states/il/dceo/liheap/eligibility/il_liheap_income_eligible.py",
+    "variables/gov/states/il/dceo/liheap/il_liheap.py",
+    "variables/gov/states/il/dceo/liheap/payment/il_liheap_crisis_assistance_amount.py"
+   ]
+  },
+  {
+   "url": "https://dceo.illinois.gov/communityservices/utilitybillassistance/faqs.html",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois DCEO Utility Bill Assistance FAQs Q2"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/eligibility/rent_rate.yaml"
+   ]
+  },
+  {
+   "url": "https://dceo.illinois.gov/content/dam/soi/en/web/dceo/communityservices/utilitybillassistance/documents/py25-liheap-state-plan--submitted-detailed-model-plan-liheap-10.01.24.pdf#page=28",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois LIHEAP FY2025 State Plan, Section 4.12"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/payment/crisis_amount/max.yaml"
+   ]
+  },
+  {
+   "url": "https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Nebraska LIHEAP Guidance Document effective October 1, 2025 (the one-person limit of $23,475 is 150% of the 2025 guideline)",
+    "Nebraska LIHEAP Guidance Document effective October 1, 2025, pages 1-2 (income limits; \"at or below 150% of the federal poverty level\")"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/liheap/fpg_year_lag.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/income_limit.yaml",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_fpg.py",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://dhhs.ne.gov/Documents/Low%20Income%20Home%20Energy%20Assistance%20Program%20%28LIHEAP%29%20Guidance%20Document%202026.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Nebraska LIHEAP Guidance Document effective October 1, 2025",
+    "Nebraska LIHEAP Guidance Document effective October 1, 2025, Heating Payment Computation"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/liheap/earned_income_disregard.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/payment/multifamily.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/payment/oil.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/payment/propane.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/payment/utility.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/payment/wood.yaml",
+    "parameters/gov/states/ne/dhhs/liheap/payment_size_limit.yaml",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap.py"
+   ]
+  },
+  {
+   "url": "https://dhhs.ne.gov/Documents/OBBB-SNAP-Changes-FAQ.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://doee.dc.gov/liheap",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "variables/gov/states/dc/doee/liheap/dc_liheap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DC%20DOEE%20-%20FY26%20LIHEAP%20Benefit%20Matrix.docx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DOEE Regular Benefits Table for FY 2026"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/doee/liheap/income_level_increment.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/electricity.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/gas.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/heat_in_rent.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/oil.yaml"
+   ]
+  },
+  {
+   "url": "https://doee.dc.gov/sites/default/files/dc/sites/doee/service_content/attachments/DOEE%20FY24%20LIHEAP_REGULAR_Benefits_Table-Matrix.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "DOEE Regular Benefits Table for FY 2024"
+   ],
+   "states": [
+    "dc"
+   ],
+   "files": [
+    "parameters/gov/states/dc/doee/liheap/income_level_increment.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/electricity.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/gas.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/heat_in_rent.yaml",
+    "parameters/gov/states/dc/doee/liheap/payment/oil.yaml",
+    "variables/gov/states/dc/doee/liheap/dc_liheap_income_level.py",
+    "variables/gov/states/dc/doee/liheap/dc_liheap_payment.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2024/benefits-matricies/IL_BenefitMatrix_2024.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "variables/gov/states/il/dceo/liheap/payment/il_liheap_base_payment.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2024/benefits-matricies/IL_BenefitMatrix_2024.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois LIHEAP FY2024 Benefit Matrix"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/payment/income_bracket.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/nat_gas.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/propane.yaml",
+    "variables/gov/states/il/dceo/liheap/il_liheap_income_bracket.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2024/state-plans/IL_Plan_2024_rev1.pdf#page=28",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois LIHEAP FY2024 State Plan, Section 4.12"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/payment/crisis_amount/max.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/IL_BenefitMatrix_2025.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois LIHEAP FY2025 Benefit Matrix"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/nat_gas.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/propane.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/IN_BenefitMatrix_2025.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2024-25 EAP Benefit Matrix, page 1",
+    "Indiana PY2024-25 EAP Benefit Matrix, pages 1-2"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/lower_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/middle_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/fuel_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/heating_award_fuels.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/lower_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/middle_points.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2025 Benefit Matrix",
+    "Kansas LIEAP FY2025 Benefit Matrix, Electricity (Ben Adj 100.0%; pages 1-2)",
+    "Kansas LIEAP FY2025 Benefit Matrix, Natural gas (Ben Adj 100.0%)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/household_size_group.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/income_band.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/electricity.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/natural_gas.yaml",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_matrix_amount.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2025 Benefit Matrix, Propane (Ben Adj 100.0%; pages 2-3)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/propane.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/KS_BenefitMatrix_2025.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2025 Benefit Matrix, Other fuels (Ben Adj 100.0%)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/other.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/benefits-matricies/KY_BenefitMatrix_2025.xlsx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2025 benefit workbook, subsidy benefits worksheet, poverty guideline table",
+    "Kentucky FY2025 benefit workbook, subsidy benefits worksheet",
+    "Kentucky FY2025 benefit workbook, Subsidy points worksheet, cells H8-H11",
+    "Kentucky FY2025 benefit workbook, subsidy benefits worksheet, column L",
+    "Kentucky FY2025 benefit workbook, points worksheet, cells J2-J7",
+    "Kentucky FY2025 benefit workbook, subsidy benefits worksheet, income range boundaries (cells Q27-S27)",
+    "Kentucky FY2025 benefit workbook, subsidy benefits worksheet, cells E45-E48 (same reversed ordering)",
+    "Kentucky FY2025 benefit workbook, points worksheet, cells H2-H5",
+    "Kentucky FY2025 benefit workbook, Subsidy points worksheet, cell E28",
+    "Kentucky FY2025 benefit workbook, subsidy benefits worksheet, cell E45 (ROUNDUP(E6*0.3,0))"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/fpg_year_lag.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/maximum_table_size.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/coal_adjustment.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/dollars_per_point.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/fuel_points.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_bands.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_points/subsidized.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_points/unsubsidized.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/maximum_household_points.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/subsidized_housing_rate.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2025 State Plan, Section 1.8-1.9, pages 5-6 (gross income; wages, self-employment income, contract income and commissions counted)",
+    "Kansas LIHEAP FY2025 State Plan, Section 1.9, pages 5-6 (countable income sources)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml",
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2025 State Plan, Section 1.9 (earned income of a child under the age of 18 is not counted)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/earned_income_min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2025 State Plan, Section 2.1 (eligibility threshold 150.00% of the HHS poverty guidelines)",
+    "Kansas LIHEAP FY2025 State Plan, Section 2.5, pages 8-9 (benefit variables)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_rate.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/electricity.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/natural_gas.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/other.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/propane.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KS_Plan_2025.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2025 State Plan, Section 2.6 (minimum benefit $100, maximum benefit $2,232)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/min_benefit.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KY_Plan_2025.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2025 state plan, Section 1.9, page 5"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/earned_income_sources.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_income.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KY_Plan_2025.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2025 state plan, Section 1.9, page 6"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/earned_income_age.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/social_security_medicare_premium_deduction.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/unearned_income_sources.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/KY_Plan_2025.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2025 state plan, Section 2.1, page 8"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2025/state-plans/MA_Plan_2025.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "FY25 Model Plan Proposed Changes_Detail Form"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/eligibility/rent_threshold_subsidized_housing.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/IL_BenefitMatrix_Heat-Cool_2026.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Illinois LIHEAP FY2026 Benefit Matrix (No LID for Electric)"
+   ],
+   "states": [
+    "il"
+   ],
+   "files": [
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/all_electric.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/cash.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/nat_gas.yaml",
+    "parameters/gov/states/il/dceo/liheap/payment/matrix/propane.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/IN_BenefitMatrix_Heat-Crisis_2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2025-26 EAP Benefit Matrix, page 1"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/dwelling_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/higher_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/lower_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/middle_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/fuel_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/higher_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/lower_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/middle_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/vulnerability/elderly_age.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/vulnerability/points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/vulnerability/young_child_age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/KS_BenefitMatrix_2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2026 Benefit Matrix (Household Size 1-4 and Household Size 5 and Over columns)",
+    "Kansas LIEAP FY2026 Benefit Matrix (one-month income rows 0-899, 900-1,199, 1,200-1,699, 1,700 and over)",
+    "Kansas LIEAP FY2026 Benefit Matrix, Natural gas (Benefit Adjustment @ 80% table)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/household_size_group.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/income_band.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/natural_gas.yaml",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_dwelling_type.py",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_utility_rate_tier.py",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_household_size_group.py",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_income_band.py",
+    "variables/gov/states/ks/dcf/liheap/payment/ks_liheap_matrix_amount.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/KS_BenefitMatrix_2026.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2026 Benefit Matrix, Electricity (Benefit Adjustment @ 80% table)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/electricity.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/KS_BenefitMatrix_2026.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2026 Benefit Matrix, Propane (Benefit Adjustment @ 80% table)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/propane.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/KS_BenefitMatrix_2026.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIEAP FY2026 Benefit Matrix, Other fuels (Benefit Adjustment @ 80% table)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/other.yaml",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_fuel_category.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/KY_BenefitMatrix_Heat-Cool_2026.xlsx",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2026 benefit workbook, rev benefit income range worksheet, poverty guideline table",
+    "Kentucky FY2026 benefit workbook, rev benefit income range worksheet",
+    "Kentucky FY2026 benefit workbook, Subsidy points worksheet, cells H8-H11 (two-person coal rows)",
+    "Kentucky FY2026 benefit workbook, rev benefit income range worksheet, column L",
+    "Kentucky FY2026 benefit workbook, Points Description worksheet, cells J2-J7",
+    "Kentucky FY2026 benefit workbook, rev benefit income range worksheet, income range boundaries (cells Q10-S10)",
+    "Kentucky FY2026 benefit workbook, rev benefit income range worksheet, cells E52-E55 (30 percent of the unsubsidized rows in reverse order)",
+    "Kentucky FY2026 benefit workbook, Points Description worksheet, cells H2-H5",
+    "Kentucky FY2026 benefit workbook, Subsidy points worksheet, cell E28 (5 + 6 + 4)",
+    "Kentucky FY2026 benefit workbook, rev benefit income range worksheet, cell E52 (ROUNDUP(E8*0.3,0))"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/fpg_year_lag.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/maximum_table_size.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/coal_adjustment.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/dollars_per_point.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/fuel_points.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_bands.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_points/subsidized.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/income_points/unsubsidized.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/maximum_household_points.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/payment/subsidized_housing_rate.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 benefit matrix, Electric column, pages 1-6",
+    "Mississippi FY2026 benefit matrix, household size 1, page 1",
+    "Mississippi FY2026 benefit matrix, household size 2, page 1",
+    "Mississippi FY2026 benefit matrix, household size 3, page 1",
+    "Mississippi FY2026 benefit matrix, Propane, Natural Gas, Wood/Other Fuel and Total Electric columns, pages 1-6"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/electric_maximum_payment.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/electric_payment_reduction.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/1.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/2.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/3.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/maximum_payment.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/payment_reduction.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 benefit matrix, household size 4, page 2",
+    "Mississippi FY2026 benefit matrix, household size 5, page 2",
+    "Mississippi FY2026 benefit matrix, household size 6, page 2"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/4.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/5.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/6.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf#page=3",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 benefit matrix, household size 7, page 3",
+    "Mississippi FY2026 benefit matrix, household size 8, page 3",
+    "Mississippi FY2026 benefit matrix, household size 9, page 3"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/7.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/8.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/9.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 benefit matrix, household size 10, page 4",
+    "Mississippi FY2026 benefit matrix, household size 11, page 4",
+    "Mississippi FY2026 benefit matrix, household size 12, page 4",
+    "Mississippi FY2026 benefit matrix, household size 13, page 4"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/10.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/11.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/12.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/13.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 benefit matrix, household size 14, page 5",
+    "Mississippi FY2026 benefit matrix, household size 15, page 5",
+    "Mississippi FY2026 benefit matrix, household size 16, page 5",
+    "Mississippi FY2026 benefit matrix, household size 17, page 5"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/14.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/15.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/16.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/17.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/propane_exception_amount.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/propane_exception_household_size.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/propane_exception_income_band.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/MS_BenefitMatrix_Heat-Cool_2026.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 benefit matrix, household size 18, page 6",
+    "Mississippi FY2026 benefit matrix, household size 19, page 6",
+    "Mississippi FY2026 benefit matrix, household size 20, page 6"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/18.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/19.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_bands/20.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/benefits-matricies/NC_BenefitMatrix_Heat-Cool_2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina FY2026 heating benefit matrix, pages 1-3"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/payment/higher_income.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/payment/lower_income.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2026 State Plan, Section 1.8-1.9, pages 5-6 (gross income; wages, self-employment income, contract income and commissions counted)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/earned.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2026 State Plan, Section 1.9 (countable income sources)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/sources/unearned.yaml",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_earned_income.py",
+    "variables/gov/states/ks/dcf/liheap/income/ks_liheap_countable_unearned_income.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2026 State Plan, Section 1.9 (earned income of a child under the age of 18 is not counted)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/income/earned_income_min_age.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2026 State Plan, Section 2.1 (eligibility threshold 150.00% of the HHS poverty guidelines)",
+    "Kansas LIHEAP FY2026 State Plan, Section 2.5, pages 8-9 (benefit variables)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/eligibility/fpg_rate.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/electricity.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/natural_gas.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/other.yaml",
+    "parameters/gov/states/ks/dcf/liheap/payment/matrix/propane.yaml",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_eligible.py",
+    "variables/gov/states/ks/dcf/liheap/eligibility/ks_liheap_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KS_Plan_2026.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kansas LIHEAP FY2026 State Plan, Section 2.6 (minimum benefit $130, maximum benefit $4,301)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/min_benefit.yaml",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap.py",
+    "variables/gov/states/ks/dcf/liheap/ks_liheap_utility_rate_tier.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KY_Plan_2026.pdf#page=33",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KY_Plan_2026.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2026 state plan, Section 1.9, page 5 (wages, self-employment income and contract income)"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/earned_income_sources.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_income.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KY_Plan_2026.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2026 state plan, Section 1.9, page 6 (earned income of a child under 18 not counted)",
+    "Kentucky FY2026 state plan, Section 1.9, page 6",
+    "Kentucky FY2026 state plan, Section 1.9, page 6, and Section 17.4, page 34"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/earned_income_age.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/social_security_medicare_premium_deduction.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/unearned_income_sources.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KY_Plan_2026.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2026 state plan, Section 2.1, page 8"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/income_limit.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap.py",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/KY_Plan_2026.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2026 state plan, Section 2.6, page 9 ($250 maximum benefit)"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/payment/maximum_household_points.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/MS_Plan_2026.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 LIHEAP State Plan, Section 1.9, pages 5-6"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/unearned_income_sources.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/MS_Plan_2026.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi FY2026 LIHEAP State Plan, Section 2.1, page 8"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/income_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/MS_Plan_2026.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "variables/gov/states/ms/mdhs/liheap/ms_liheap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/NC_Plan_2026.pdf#page=6",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina FY2026 state plan, item 1.9 countable income checklist, page 6",
+    "North Carolina FY2026 state plan, item 1.9 countable income checklist, pages 6-7"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/rental_income_sources.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/unearned_income_sources.yaml",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/NE_Plan_2026.pdf#page=7",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Nebraska FY2026 state plan, Section 1.9, page 7"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/liheap/earned_income_sources.yaml",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_earned_income.py",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_gross_income.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/docs/2026/state-plans/NE_Plan_2026.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/profiles/Kansas.htm",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "LIHEAP Clearinghouse Kansas state profile (heating $130 minimum, $4,301 maximum)"
+   ],
+   "states": [
+    "ks"
+   ],
+   "files": [
+    "parameters/gov/states/ks/dcf/liheap/payment/min_benefit.yaml"
+   ]
+  },
+  {
+   "url": "https://liheapch.acf.gov/tables/subsidize.htm#MA",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "HEAP Income Eligibility and Benefit Chart for program year 2025"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/eligibility/rent_threshold_subsidized_housing.yaml",
+    "variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_eligible.py",
+    "variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_eligible_subsidized_housing.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_is_daas_disabled.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=10",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.09 A (page 10) and Section 300.09 B.3 (page 12)",
+    "North Carolina Energy Programs Manual, Sections 300.02 A.1 (page 1), 300.09 (page 10) and 300.09 B.4.a (page 13)",
+    "North Carolina Energy Programs Manual, Section 300.09, page 10",
+    "North Carolina Energy Programs Manual, Section 300.09 A (pages 10-11)"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/earned_income_sources.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/elderly_age.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/income_limit.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/special_income_limit.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/unearned_income_sources.yaml",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_earned_income.py",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_gross_income_person.py",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_income.py",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=12",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.09 B.3, pages 12-13",
+    "North Carolina Energy Programs Manual, Section 300.09 B.3 (page 12)"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/earned_income_deduction.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/rental_income_sources.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=13",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.09 B.3, page 13",
+    "North Carolina Energy Programs Manual, Section 300.09 B.4.a, page 13"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/earned_income_deduction_rate.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/earned_income_deduction_threshold.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/medical_deduction.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=14",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.09, maximum countable income tables, pages 14-15"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/fpg_year_lag.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=15",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.11, pages 17-18",
+    "North Carolina Energy Programs Manual, Section 300.11, FY2025-2026 waiver, page 17"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/resource_limit.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/resource_test.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/special_resource_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=18",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.12 A (page 18) and Section 300.12 B chart (page 20)"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/payment/coal_wood.yaml",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap.py",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_bank_account_exclusions.py",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_nonbank_resources.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=19",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual, Section 300.12 B payment charts, pages 19-20"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/payment/higher_income.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/payment/lower_income.yaml",
+    "parameters/gov/states/nc/ncdhhs/lieap/payment/lower_income_share.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-300-5.1.2026.pdf#page=9",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_eligible.py",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_has_paid_excess_heating_costs.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-03-2026.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual Change Notice 03-2026, FY2027 federal poverty level effective October 1, 2026, page 1"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/fpg_year_lag.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/EP-CN-05-2025.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Energy Programs Manual Change Notice 05-2025, FY2026 federal poverty level effective October 1, 2025, page 1"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/fpg_year_lag.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/eps150.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/eps175.pdf#page=4",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/fns-300-sources-of-income.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Food and Nutrition Services Manual, FNS 300.01 B (page 1) and FNS 300.02 sources of income chart, pages 3, 5, 6, 9, 11, 16, 18, 20, 22, 24, 25 and 26"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/unearned_income_sources.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/fns-300-sources-of-income.pdf#page=17",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Food and Nutrition Services Manual, FNS 300.02 sources of income chart, Rental Income, pages 17-18"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/rental_income_sources.yaml"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/fns-300-sources-of-income.pdf#page=5",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "North Carolina Food and Nutrition Services Manual, FNS 300.02 sources of income chart, pages 5, 21 and 26"
+   ],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "parameters/gov/states/nc/ncdhhs/lieap/earned_income_sources.yaml",
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/fns-315-special-budgeting-income.pdf#page=8",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://policies.ncdhhs.gov/wp-content/uploads/fns-350-whose-income-is-counted.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "nc"
+   ],
+   "files": [
+    "variables/gov/states/nc/ncdhhs/lieap/nc_lieap_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%201%20(12-26-2020).pdf/1746#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_dwelling_type.py"
+   ]
+  },
+  {
+   "url": "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%202%20(06-26-2022).pdf/1747#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "476 NAC 2-002.01 Income Guidelines (total annual income \"may not exceed 150% of the federal poverty level\")"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/liheap/income_limit.yaml",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_eligible.py",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_household_size.py",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/chapter-pdfs/476%20NAC%203%20(12-26-2020).pdf/1748#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_eligible.py"
+   ]
+  },
+  {
+   "url": "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/historical-chapter-pdfs/475%20NAC%203%20(09-17-2024)-202607280000.pdf#page=44",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "475 NAC 3-002.04(B)(i), text in effect for FY2026, page 44 (each source of self-employment)"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/liheap/earned_income_sources.yaml",
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_earned_income.py"
+   ]
+  },
+  {
+   "url": "https://rules.nebraska.gov/api/fileStorage/GetAsByteArray/historical-chapter-pdfs/475%20NAC%203%20(09-17-2024)-202607280000.pdf#page=47",
+   "kind": null,
+   "citation": null,
+   "titles": [],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "variables/gov/states/ne/dhhs/liheap/ne_liheap_gross_income.py"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20221024195401/https://www.mass.gov/doc/fy-2023-liheap-income-eligibility-and-benefit-level-chart-october-2022/download",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Fiscal Year 2023 Home Energy Assistance Program (HEAP) Income Eligibility and Benefit Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/benefit_level.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/eligibility/prior_year_cost_threshold.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/subsidized.yaml"
+   ]
+  },
+  {
+   "url": "https://web.archive.org/web/20250720165524/https://www.mass.gov/doc/fy-2025-heap-income-eligibility-benefit-chart-may-8-2025/download",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Fiscal Year 2025 Home Energy Assistance Program (HEAP) Income Eligibility and Benefit Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/benefit_level.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/eligibility/prior_year_cost_threshold.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/subsidized.yaml",
+    "variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_hecs_eligible.py",
+    "variables/gov/states/ma/doer/liheap/ma_liheap_benefit_level.py",
+    "variables/gov/states/ma/doer/liheap/ma_liheap_fpg.py",
+    "variables/gov/states/ma/doer/liheap/ma_liheap_heating_type.py",
+    "variables/gov/states/ma/doer/liheap/ma_liheap_utility_category.py",
+    "variables/gov/states/ma/doer/liheap/payment/ma_liheap.py",
+    "variables/gov/states/ma/doer/liheap/payment/ma_liheap_hecs_payment.py",
+    "variables/gov/states/ma/doer/liheap/payment/ma_liheap_standard_payment.py"
+   ]
+  },
+  {
+   "url": "https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_Att1SMITable_FY2023.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FFY 2023"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM03%20Attachment1%20SMITable_FY2022.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by household size FFY 2022",
+    "State Median Income (SMI) by household size for Mandatory Use in LIHEAP for FFY 2022"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/additional_person_threshold.yaml",
+    "parameters/gov/hhs/smi/amount.yaml",
+    "parameters/gov/hhs/smi/household_size_adjustment.yaml"
+   ]
+  },
+  {
+   "url": "https://www.acf.hhs.gov/sites/default/files/documents/ocs/COMM_LIHWAP_Att1SMITable_FY2023.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "State Median Income (SMI) by Household Size for Mandatory Use in LIHEAP for FY 2024"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.capky.org/wp-content/uploads/2026/01/2025-2026-LIHEAP-Fact-Sheet-V2.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Kentucky FY2025-2026 LIHEAP fact sheet, income eligibility",
+    "Kentucky FY2025-2026 LIHEAP fact sheet, income eligibility (sizes 1 to 8)"
+   ],
+   "states": [
+    "ky"
+   ],
+   "files": [
+    "parameters/gov/states/ky/dcbs/liheap/fpg_year_lag.yaml",
+    "parameters/gov/states/ky/dcbs/liheap/maximum_table_size.yaml",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_fpg.py",
+    "variables/gov/states/ky/dcbs/liheap/ky_liheap_income_eligible.py"
+   ]
+  },
+  {
+   "url": "https://www.commteam.org/wp-content/uploads/2024/03/FY-2024-LIHEAP-Income-Eligibility-and-Benefit-Chart_Incomes-March-2024-Increase.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Fiscal Year 2024 Home Energy Assistance Program (HEAP) Income Eligibility and Benefit Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/benefit_level.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/eligibility/prior_year_cost_threshold.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/subsidized.yaml"
+   ]
+  },
+  {
+   "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-96/subpart-H/section-96.85#p-96.85(b)",
+   "kind": "regulation",
+   "citation": "us/regulation/45/96/85/b",
+   "titles": [
+    "45 CFR 96.85(b), Adjustment of annual median income for household size"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/additional_person_threshold.yaml",
+    "parameters/gov/hhs/smi/household_size_adjustment.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-1988-03-03/pdf/FR-1988-03-03.pdf#page=53",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "53 FR 6824, Block Grant Programs final rule (effective April 4, 1988), 45 CFR 96.85(b)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/additional_person_threshold.yaml",
+    "parameters/gov/hhs/smi/household_size_adjustment.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2013-05-15/pdf/2013-11575.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Estimated State Median Income for Four-Person Families, by State, FFY 2014 (78 FR 28597)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2014-07-21/pdf/2014-17063.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Estimated State Median Income for Four-Person Families, by State, FFY 2015 (79 FR 42331)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2015-06-10/pdf/2015-14187.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Estimated State Median Income for Four-Person Families, by State, FFY 2016 (80 FR 32958)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2016-08-23/pdf/2016-19922.pdf#page=2",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Estimated State Median Income for Four-Person Families, by State, FFY 2017 (81 FR 57589)"
+   ],
+   "states": [],
+   "files": [
+    "parameters/gov/hhs/smi/amount.yaml"
+   ]
+  },
+  {
+   "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-17/pdf/2025-01377.pdf#page=1",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Annual Update of the HHS Poverty Guidelines, Federal Register, January 17, 2025, page 1 ($15,650 for one person, $5,500 for each additional person)"
+   ],
+   "states": [
+    "ne"
+   ],
+   "files": [
+    "parameters/gov/states/ne/dhhs/liheap/fpg_year_lag.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=23",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Sections 3.1 (page 23) and 8.3 (pages 69-70)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/eligibility/income_limit.yaml",
+    "variables/gov/states/in/ihcda/eap/in_eap_eligible.py",
+    "variables/gov/states/in/ihcda/eap/in_eap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=26",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Sections 3.4 (pages 26-27) and 8.6 (pages 71-72)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/vulnerability/elderly_age.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/vulnerability/young_child_age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=32",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 4.7, page 32"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/eligibility/minimum_monthly_rent.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=47",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Sections 4.4 (page 29), 6 (page 47) and 6.2 (pages 57-58)",
+    "Indiana PY2026 EAP Intake and Operations Manual, Sections 6 (page 47) and 8.3 (page 69)",
+    "Indiana PY2026 EAP Intake and Operations Manual, Sections 6.1 (pages 47-57) and 6.2 (pages 57-61)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/eligibility/adult_age.yaml",
+    "parameters/gov/states/in/ihcda/eap/income/calculation_months.yaml",
+    "parameters/gov/states/in/ihcda/eap/income/sources.yaml",
+    "variables/gov/states/in/ihcda/eap/in_eap_income.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=58",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 6.2, page 58"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/income/student_age_limit.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=69",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.3, pages 69-70"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/income/lower_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/lower_rate.yaml",
+    "variables/gov/states/in/ihcda/eap/in_eap_smi.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=70",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.3, pages 69-70",
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.3, page 70"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/income/higher_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/middle_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/income/middle_rate.yaml",
+    "variables/gov/states/in/ihcda/eap/in_eap_dwelling_type.py"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=71",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.4, page 71",
+    "Indiana PY2026 EAP Intake and Operations Manual, Sections 1.1 (page 10) and 8.5 (page 71)"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/dwelling_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/fuel_points.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/heating_award_fuels.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=72",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.7, pages 72-73",
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.7, page 72",
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.6, pages 71-72"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/higher_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/lower_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/electricity/middle_income.yaml",
+    "parameters/gov/states/in/ihcda/eap/benefit/vulnerability/points.yaml"
+   ]
+  },
+  {
+   "url": "https://www.in.gov/ihcda/files/Indiana-LIHEAP-Intake-and-Operations-Program-Manual-PY2026.pdf#page=77",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Indiana PY2026 EAP Intake and Operations Manual, Section 8.11, page 77"
+   ],
+   "states": [
+    "in"
+   ],
+   "files": [
+    "parameters/gov/states/in/ihcda/eap/benefit/amount_per_point.yaml",
+    "variables/gov/states/in/ihcda/eap/in_eap.py"
+   ]
+  },
+  {
+   "url": "https://www.mass.gov/info-details/learn-about-home-energy-assistance-heap",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Fiscal Year 2026 Home Energy Assistance Program (HEAP) Income Eligibility and Benefit Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/hecs/eligibility/prior_year_cost_threshold.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/subsidized.yaml",
+    "variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_eligible.py",
+    "variables/gov/states/ma/doer/liheap/eligibility/ma_liheap_income_eligible.py",
+    "variables/gov/states/ma/doer/liheap/ma_liheap_income.py",
+    "variables/gov/states/ma/doer/liheap/ma_liheap_state_median_income_threshold.py"
+   ]
+  },
+  {
+   "url": "https://www.masslegalservices.org/system/files/blog/FY_2022_LIHEAP_Income_Eligibility_and_Benefit_Chart_APRIL_2022_UTILITY_Increase.pdf",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Fiscal Year 2022 Home Energy Assistance Program (HEAP) Income Eligibility and Benefit Levels"
+   ],
+   "states": [
+    "ma"
+   ],
+   "files": [
+    "parameters/gov/states/ma/doer/liheap/benefit_level.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/amount/subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/hecs/eligibility/prior_year_cost_threshold.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/non_subsidized.yaml",
+    "parameters/gov/states/ma/doer/liheap/standard/amount/subsidized.yaml"
+   ]
+  },
+  {
+   "url": "https://www.sos.ms.gov/adminsearch/ACCode/00000693c.pdf#page=22",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi LIHEAP Policy Manual, Rule 6.1 D, Rule 6.11 D(3) and Rule 6.11 J(1), pages 22, 30 and 33",
+    "Mississippi LIHEAP Policy Manual, Rule 6.1 C and Appendix 60% State Median Income table, pages 22 and 58"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/adult_age.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/income_limit.yaml",
+    "variables/gov/states/ms/mdhs/liheap/ms_liheap_eligible.py",
+    "variables/gov/states/ms/mdhs/liheap/ms_liheap_household_size.py"
+   ]
+  },
+  {
+   "url": "https://www.sos.ms.gov/adminsearch/ACCode/00000693c.pdf#page=29",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi LIHEAP Policy Manual, Rule 6.11 C, D, F, J and K, pages 29-33"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/unearned_income_sources.yaml",
+    "variables/gov/states/ms/mdhs/liheap/ms_liheap_income.py"
+   ]
+  },
+  {
+   "url": "https://www.sos.ms.gov/adminsearch/ACCode/00000693c.pdf#page=39",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi LIHEAP Policy Manual, Rule 7.8 C and D, page 39"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/electric_maximum_payment.yaml",
+    "variables/gov/states/ms/mdhs/liheap/ms_liheap.py"
+   ]
+  },
+  {
+   "url": "https://www.sos.ms.gov/adminsearch/ACCode/00000693c.pdf#page=58",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi LIHEAP Policy Manual, Appendix 60% State Median Income table and benefit matrix for household size 20, pages 58 and 64"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/maximum_table_size.yaml",
+    "variables/gov/states/ms/mdhs/liheap/ms_liheap_income_limit.py"
+   ]
+  },
+  {
+   "url": "https://www.sos.ms.gov/adminsearch/ACCode/00000693c.pdf#page=63",
+   "kind": null,
+   "citation": null,
+   "titles": [
+    "Mississippi LIHEAP Policy Manual, Appendix benefit matrix, household size 16, page 63"
+   ],
+   "states": [
+    "ms"
+   ],
+   "files": [
+    "parameters/gov/states/ms/mdhs/liheap/propane_exception_amount.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/propane_exception_household_size.yaml",
+    "parameters/gov/states/ms/mdhs/liheap/propane_exception_income_band.yaml"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,107 @@
+version: 2026-10-06-w6-income-tax-legislation-hi
+metadata:
+  work_order: docs/coverage/program-bundle-gaps-2026-10-06/wave6/tax-al-hi.csv
+  run_note: docs/ingest-runs/2026-10-06-w6-tax-al-hi.md
+  generator: scripts/build_w6_tax_al_hi_manifests.py
+  jurisdiction_name: Hawaii
+documents:
+- source_id: us-hi-w6-bills-2024-hb2404-cd1
+  jurisdiction: us-hi
+  document_class: statute
+  title: H.B. No. 2404, H.D. 1, S.D. 1, C.D. 1 (2024), Relating to Taxation
+  source_url: https://data.capitol.hawaii.gov/sessions/session2024/bills/HB2404_CD1_.HTM
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-hi/statute/bills/2024/hb2404-cd1
+  metadata:
+    primary_source: true
+    source_authority: Hawaii State Legislature
+    document_subtype: bill
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HB2404 CD1
+    wave6_work_order_rows:
+    - 368
+- source_id: us-hi-w6-bills-2026-sb3125-cd1
+  jurisdiction: us-hi
+  document_class: statute
+  title: S.B. No. 3125, C.D. 1 (2026), enacted as Act 24, SLH 2026
+  source_url: https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3125_CD1_.HTM
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-hi/statute/bills/2026/sb3125-cd1
+  metadata:
+    primary_source: true
+    source_authority: Hawaii State Legislature
+    document_subtype: bill
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: SB3125 CD1
+    wave6_work_order_rows:
+    - 369
+    - 396
+- source_id: us-hi-w6-bills-2022-sb514-cd2
+  jurisdiction: us-hi
+  document_class: statute
+  title: S.B. No. 514, S.D. 1, H.D. 1, C.D. 2 (2022), Relating to Taxation
+  source_url: https://data.capitol.hawaii.gov/sessions/session2022/bills/SB514_CD2_.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-hi/statute/bills/2022/sb514-cd2
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Hawaii State Legislature
+    document_subtype: bill
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: THE SENATE 514 THIRTY-FIRST LEGISLATURE ... CD. 2 A BILL FOR AN ACT RELATING
+    wave6_work_order_rows:
+    - 397
+- source_id: us-hi-w6-session-laws-2023-act-163
+  jurisdiction: us-hi
+  document_class: statute
+  title: Act 163, Session Laws of Hawaii 2023 (H.B. No. 954, Relating to Taxation)
+  source_url: https://data.capitol.hawaii.gov/slh/Years/SLH2023/SLH2023_Act163.pdf
+  source_format: pdf
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-hi/statute/session-laws/2023/act-163
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Hawaii State Legislature
+    document_subtype: session_law
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: ACT 163 H.B. NO. 954 A Bill for an Act Relating to Taxation
+    wave6_work_order_rows:
+    - 398
+- source_id: us-hi-w6-571-2
+  jurisdiction: us-hi
+  document_class: statute
+  title: Hawaii Revised Statutes Section 571-2, Definitions (Family Courts)
+  source_url: https://data.capitol.hawaii.gov/hrscurrent/Vol12_Ch0501-0588/HRS0571/HRS_0571-0002.htm
+  source_format: html
+  source_as_of: '2026-10-06'
+  expression_date: '2026-10-06'
+  citation_path: us-hi/statute/571-2
+  metadata:
+    primary_source: true
+    source_authority: Hawaii State Legislature
+    document_subtype: statute_section
+    program: individual_income_tax
+    source_family: w6-tax-al-hi-income-tax-legislation
+    discovered_via: wave6:tax-al-hi work order (program-bundle gaps 2026-10-06)
+    first_page_first_line: HRS 571-2 Definitions
+    wave6_work_order_rows:
+    - 395

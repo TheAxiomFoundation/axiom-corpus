@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2.json",
+      "sha256": "43f5ba6a17be12cc7ed69522c7caa4be823df006ba2d3700cb42bd1e941288b9"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2.json",
+      "sha256": "e927925175e2ab39bdd30e2c7edee7649f634e2c0376efe5c0cc2d08495170a0"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2.jsonl",
+      "sha256": "d5b3f306e54e2c579cdbebcb5ee9aa03259395ebd27134b7cfdecbb41f637aa9"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2/official-documents/us-nm-statute-bills-2024-hb37.html",
+      "sha256": "e6571a3675f4ec530eaccb6581241cffccd46b734d0d955c1107f8ba654aeb11"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2/official-documents/us-nm-statute-session-laws-2022-laws-2022-second-session.pdf",
+      "sha256": "81da19b7fda42f247299ca43c979cfb3ff9b941f9830c12139242dc98dac73a5"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2/official-documents/us-nm-statute-session-laws-2022-laws-2022-third-special-session.pdf",
+      "sha256": "baf74a4b3e1d0ddde80cb8e0cdc6962815e4fa17dd461d921b0af86a6f7885cf"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-10-06-w6-income-tax-statute-nm-r2/official-documents/us-nm-statute-session-laws-2023-laws-2023-first-session.pdf",
+      "sha256": "7254931b69bf641c822180b596e875ccfb82e5054710c499c32fe0349288c6c8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:56:27.515213+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XOmqNqMPp7S89Q6niuF/s8LRI3f5FQA6DpWjTVMhxjeWDOQkn1P2xac03chrnPHxR9UxxqiaZyemGzLQUNfhDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-nm-r2"
+}
