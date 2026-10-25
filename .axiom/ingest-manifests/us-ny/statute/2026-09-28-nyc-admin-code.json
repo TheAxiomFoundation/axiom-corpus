@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/statute/2026-09-28-nyc-admin-code.json",
+      "sha256": "5922d41c4c773857f1e801680a14df007b5e4b64036fa777a48731a25505aa70"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/statute/2026-09-28-nyc-admin-code.json",
+      "sha256": "206c4c556df294adabff5269f4f23f8d966f0e7911371d70fe587bbd63863cb7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/statute/2026-09-28-nyc-admin-code.jsonl",
+      "sha256": "4c6b4c9b9316b866753172dbf36940625f22d219eec499e8cd3528c412a8be1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-09-28-nyc-admin-code/nyc-admin-code-amlegal-html/11-1701/0-0-0-13463.html",
+      "sha256": "91203a113dc9489097171d6ea13ec2f847cb87b9a50b33b8ce04e057786f1737"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-09-28-nyc-admin-code/nyc-admin-code-amlegal-html/11-1704.1/0-0-0-13565.html",
+      "sha256": "7440bfbbcdd1dbc3d8c969e44a2eed11eefb77ef9e943a48d6c7359459d92294"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-09-28-nyc-admin-code/nyc-admin-code-amlegal-html/11-1706/0-0-0-13608.html",
+      "sha256": "ab3d16c0510243ee361d3e7c2384522e7df9d08693dcb0302bc8cdf31c58a5d2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "99a709d7b5f285fc49035e96a9b4d7b6f8970e63",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-nyc-admin-code --base data/corpus --version 2026-09-28 --section 11-1701 --section 11-1704.1 --section 11-1706 --source-as-of 2026-09-28 --expression-date 2026-09-28 --source-dir <browser-saved CodeLibrary HTML>"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-29T21:48:44.218860+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-28-nyc-admin-code-ch127.md",
+      "sha256": "0bdbe3b878fdc1308f89ceb915fc04f38b454fa3f5d71c38ea5c19ff9b981a9d"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DWASSUrKdx+zf8uzSv65Xg3nH0crPvJSHLrqhsuMvJcsVPx4I7dIaJOoOQLxVfT7o5+jSjBkjKa61hzkTh76Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-28-nyc-admin-code"
+}
