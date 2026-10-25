@@ -20,10 +20,10 @@ its provisions (later its inventory and coverage) without the PDF.
 | Scope | File | sha256 | Bytes | Where the bytes were |
 | --- | --- | --- | ---: | --- |
 | `us-ny/policy/2026-06-05-ny-tanf` | `ny-otda-tanf-state-plan-2024-2026.pdf` | `f222c331…94c2f` | 856,867 | R2, locked by `us-ny/policy/2026-08-03-ny-tanf-official-source-recovery` |
-| `us-sd/manual/2026-05-27-sd-snap-manual` | `sd-dss-snap-policy-procedure-manual.pdf` | `9b2d299b…3cba9` | 2,749,383 | only in the checkout that ran the ingest (`~/TheAxiomFoundation/axiom-corpus-wave1`) |
+| `us-sd/manual/2026-05-27-sd-snap-manual` | `sd-dss-snap-policy-procedure-manual.pdf` | `9b2d299b…3cba9` | 2,749,383 | only in the checkout that ran the ingest |
 | `us-va/manual/2026-05-27-va-snap-manual` | `va-dss-snap-full-manual-2025-10-01.pdf` | `9868c25c…e8d8a` | 8,147,430 | R2, locked by `us-va/manual/2026-07-21-va-snap-manual` |
 | `us-wi/manual/2026-05-27-wi-foodshare-manual` | `wi-dhs-foodshare-handbook-26-01.pdf` | `6e76d771…850d7` | 2,685,819 | R2, locked by `us-wi/manual/2026-07-21-wi-foodshare-manual` |
-| `us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation` | `snap-qc-fy2024-technical-documentation.pdf` | `59b6999d…37e33` | 4,345,993 | only in the checkout that ran the ingest (`~/TheAxiomFoundation/_worktrees/axiom-corpus-snap-fy2024`) |
+| `us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation` | `snap-qc-fy2024-technical-documentation.pdf` | `59b6999d…37e33` | 4,345,993 | only in the checkout that ran the ingest |
 
 Full digests are in `scripts/restore_unlocked_pdf_sources.py`.
 
@@ -38,10 +38,10 @@ Three independent kinds of evidence, at least two for every file:
    `source_path` as its rows.
 2. **The file the ingest wrote.** The South Dakota, Virginia and Wisconsin
    PDFs were still at their exact `data/corpus/sources/…` paths in
-   `axiom-corpus-wave1`, the clone that ran the state SNAP manual batch
+   the checkout that ran the state SNAP manual batch
    (axiom-corpus#59, #61), with birth times of 2026-05-27 06:18 to 09:10
    local time. The
-   SNAP QC PDF was at its exact path in `axiom-corpus-snap-fy2024`, written
+   SNAP QC PDF was at its exact path in the original SNAP QC checkout, written
    2026-07-08 12:31. The Virginia and Wisconsin files hash to the objects the
    2026-07-21 successor scopes already lock, so those bytes were in R2 all
    along.
@@ -50,7 +50,7 @@ Three independent kinds of evidence, at least two for every file:
    PyMuPDF 1.26.7), given the restored file through its manifest's
    `local_path`, reproduces every committed row in every field except two that
    depend on the download rather than the PDF: `metadata.download_url` (a
-   local run records `file://…`) and `metadata.content_type` (taken from the
+   local run records a local-file URL) and `metadata.content_type` (taken from the
    HTTP response). That covers ids, bodies, headings, ordinals and dates.
 
    | Scope | Rows reproduced | Other committed rows |
@@ -95,9 +95,15 @@ original values.
 ## Commands
 
 ```bash
+# Fetch the original, hash-pinned PDF inputs into repository-relative paths:
+uv run --extra dev axiom-corpus-ingest corpus fetch \
+  --path data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf \
+  --path data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf \
+  --workers 4
+
 uv run --extra dev python scripts/restore_unlocked_pdf_sources.py \
-  --from 9b2d299bf6637787306c3ba8571fb19aa5a64e2f24e42b265abb328bd5f3cba9=$HOME/TheAxiomFoundation/axiom-corpus-wave1/data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf \
-  --from 59b6999d1b9e51ebe920e00899d9aab066d69f1227ea83b0a3e9f16fd8137e33=$HOME/TheAxiomFoundation/_worktrees/axiom-corpus-snap-fy2024/data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf
+  --from 9b2d299bf6637787306c3ba8571fb19aa5a64e2f24e42b265abb328bd5f3cba9=data/corpus/sources/us-sd/manual/2026-05-27-sd-snap-manual/official-documents/sd-dss-snap-policy-procedure-manual.pdf \
+  --from 59b6999d1b9e51ebe920e00899d9aab066d69f1227ea83b0a3e9f16fd8137e33=data/corpus/sources/us/guidance/2026-07-08-snap-qc-fy2024-technical-documentation/official-documents/snap-qc-fy2024-technical-documentation.pdf
 
 # Then, from a clean tracked tree, for each of the five scopes:
 uv run --extra dev axiom-corpus-ingest sign-ingest-manifest \
