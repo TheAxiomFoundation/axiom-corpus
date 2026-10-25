@@ -17,14 +17,13 @@ and none is withdrawn:
 | `us/statute/2026-10-06-w6-federal-public-laws` | `us/statute/public-law/<congress>-<number>` | `docs/ingest-runs/2026-10-06-w6-federal.md` |
 
 That makes 271 scopes, a strict superset of the pin. The W6 (`2026-10-07`), W5 (`2026-10-11`,
-`2026-10-12`) and W7 (`2026-10-13`) unions already select all three, the public-law scope next to the
-pin's `2026-06-29-pl-119-21-medicaid-community-engagement` scopes. The 2026-09-13 cms-state-plans and
+`2026-10-12`) and W7 (`2026-10-13`) unions already select all three. The 2026-09-13 cms-state-plans and
 federal-and-plans unions and the 2026-09-14 wave4 unions select both SSI POMS scopes. The pin is a
 narrower line and carries none of them.
 
 ## Why these three
 
-- rulespec-us#1910 encodes SSI retirement-fund resources from POMS SI 01120.210, ingested at
+- rulespec-us#1910 proposes encoding SSI retirement-fund resources from POMS SI 01120.210, ingested at
   `us/manual/ssa/poms/si/01120.210` (expression date 2012-12-04). It also relies on SI 01330.120,
   SI 01330.220 and SI 00830.500 (same scope) and SI 00510.001 (the remainder scope).
 - rulespec-us#415 extends the taxation-of-benefits allocation for PolicyEngine-US #10381, and needs
@@ -36,7 +35,17 @@ narrower line and carries none of them.
 A re-pin changes no existing resolution. The SSI POMS scopes use the `us/manual/ssa/poms/si` family.
 The pin's two POMS scopes, `us/guidance/2026-07-03-dc-ossp-ssa-poms` and
 `us-de/guidance/2026-07-03-de-ssi-state-supplement-poms`, are guidance scopes. The two SSI scopes are
-disjoint: their manifests list 915 and 778 citation paths with none in common. The W6
+disjoint: their source manifests list 915 and 778 documents with none in common (the scopes hold
+11,028 and 7,046 provisions).
+
+Two sections are carried twice, at different paths. The pin's guidance scopes already hold SI 01415.058
+(`us/guidance/2026-07-03-dc-ossp-ssa-poms` and `us-de/guidance/2026-07-03-de-ssi-state-supplement-poms`,
+expression date 2026-01-01) and SI PHI01415.009 (the D.C. scope, 2022-09-12). The 2026-09-10 SSI scope
+carries both again under `us/manual/ssa/poms/si/`, SI 01415.058 with expression date 2026-08-28. These are
+distinct citation paths, not collisions, and ten existing union selectors already pair both guidance
+scopes with the 2026-09-10 SSI scope the same way.
+
+The W6
 run note's collision audit found that its document scopes, the public-law scope among them, share no
 path with any scope on disk. They use the `public-law` family, which no U.S. Code scope emits. The
 collision it records with the P.L. 119-21 Medicaid scopes belongs to
@@ -45,10 +54,13 @@ collision it records with the P.L. 119-21 Medicaid scopes belongs to
 
 ## Coordination with #926
 
-axiom-corpus#926 cuts `us-rulespec-2026-10-23-ks-liheap` on the same base (268 plus seven Kansas LIHEAP
-scopes, for rulespec-us#1469). rulespec-us pins one release, so whichever selector merges second must
+axiom-corpus#926 cuts `us-rulespec-2026-10-23-ks-liheap` on the same base (268 plus seven LIHEAP scopes, for
+rulespec-us#1469: five `us-ks` scopes, `us/statute/2026-09-13-liheap-statute-chapter-94-title-42` and
+`us/guidance/2026-10-02-hhs-poverty-2024-2025`). rulespec-us pins one release, so whichever selector merges second must
 be rebuilt on the first. If #926 merges first, set `BASE_RELEASE` to `us-rulespec-2026-10-23-ks-liheap`,
-rerun the reproducer, raise the expected count to 278 and re-record the selector digest. Either way,
+rerun the reproducer, raise the expected count to 278 (275 plus three) and re-record the selector digest.
+No test checks that the base is the latest pin, so these steps are manual; the second PR is likely to
+conflict in `manifests/withdrawn-scopes.yaml` as well. Either way,
 the next rulespec-us re-pin carries all ten added scopes.
 
 ## Checks
