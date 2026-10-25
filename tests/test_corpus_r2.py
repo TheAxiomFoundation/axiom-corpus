@@ -122,6 +122,19 @@ def test_make_r2_client_uses_bounded_network_timeouts(monkeypatch):
         max_pool_connections=2,
     )
     assert captured["config"].max_pool_connections == 10
+    # A caller that retries on its own turns botocore's retries off: one HTTP
+    # request per call (content_store.R2ObjectStore reads).
+    make_r2_client(
+        R2Config(
+            bucket="axiom-corpus",
+            endpoint_url="https://example.r2.cloudflarestorage.com",
+            access_key_id="key",
+            secret_access_key="secret",
+        ),
+        sdk_retries=False,
+    )
+    assert captured["config"].retries == {"total_max_attempts": 1, "mode": "standard"}
+    assert captured["config"].connect_timeout == 10 and captured["config"].read_timeout == 30
 
 
 def test_sync_artifacts_to_r2_uploads_missing_and_size_changed_files(tmp_path):

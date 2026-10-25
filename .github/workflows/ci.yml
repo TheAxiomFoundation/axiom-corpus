@@ -10,6 +10,15 @@ on:
     # active named release points at navigation/provision scopes that diverge.
     - cron: "0 12 * * *"
 
+# Each run reads tens of thousands of corpus objects from R2, and R2 throttles
+# simultaneous reads of one object. A new push to a pull request cancels that
+# pull request's older, superseded run instead of reading alongside it. Pushes
+# to main and the daily run each have a group of their own: never cancelled,
+# never queued behind another run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || format('run-{0}', github.run_id) }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   workflow-lint:
     name: Validate GitHub workflows
