@@ -167,11 +167,10 @@ the same part grammar (`Appendix A to Part 60-300` is
 sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
 `manifests/releases/` carried title 41 then.
 
-A section may be numbered for a part other than the eCFR part that holds it. Title 43
-groups BLM rules in parts such as 3800, whose subparts carry their own numbers: subpart
-3809 of part 3800 holds 43 CFR 3809.1, and eCFR has no part 3809. Such a section keeps
-the path of its citation, `us/regulation/43/3809/1`, which is how the app and the encoder
-resolve "43 CFR 3809.1".
+A section may be numbered for a part other than the eCFR part that holds it. The title
+43 fixtures in `tests/test_corpus_ecfr_group_part_sections.py` model BLM group part
+3800: its subpart 3809 holds 43 CFR 3809.1, and the structure fixture has no part 3809.
+Such a section keeps the path of its citation, `us/regulation/43/3809/1`.
 It belongs to the part that holds it:
 
 - its parent is `us/regulation/43/3800/subpart-3809`;
@@ -179,10 +178,11 @@ It belongs to the part that holds it:
 - its source URL is on part 3800's eCFR page;
 - `metadata.enclosing_part` is `3800`.
 
-Within one eCFR run, two provisions never share a citation path. An inventory that would
-put two items under one path fails, and so does a retained XML (`--source-xml`) whose
-selector names two sections. XML that holds two elements under one selected path is a
-fatal validation error, even with complete cached provisions or `--allow-incomplete`.
+An inventory that would put two items under one citation path fails, and so does a
+retained XML (`--source-xml`) whose selector names two sections. When XML is parsed,
+fresh or reparsed, two elements under one selected path are a fatal validation error,
+even with `--allow-incomplete`. Complete cached provisions whose pinned source hashes
+match are reused as before; their XML is not re-checked for duplicate paths.
 A rejected retained-XML rebuild preserves the previous run's artifacts, including its
 source snapshot. In the XML, a section numbered for another part is read only from an
 identifier the structure grammar reads whole, so an identifier that merely contains

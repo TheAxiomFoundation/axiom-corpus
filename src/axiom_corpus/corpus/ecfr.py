@@ -360,11 +360,11 @@ def _ecfr_source_key(run_id: str, title: int, only_part: str | None) -> str:
 # the enclosing part confirms it ("60-20.1" inside part 60-20); every other identifier
 # parses by the alphanumeric grammar, as before.
 #
-# The part an identifier names need not be the eCFR part that holds it. Title 43 groups
-# BLM rules in parts such as 3800, whose subparts carry their own numbers: subpart 3809
-# of part 3800 holds 43 CFR 3809.1, and eCFR has no part 3809. A few typeset errors do
-# the same (§ 1735.9 sits in 7 CFR part 1739). Such a section keeps the path of its
-# citation (us/regulation/43/3809/1, which is how a "43 CFR 3809.1" citation resolves),
+# The part an identifier names need not be the eCFR part that holds it. The title 43
+# fixtures in tests/test_corpus_ecfr_group_part_sections.py place 43 CFR 3809.1 in
+# subpart 3809 of part 3800, with no part 3809 in the structure fixture. Other fixture
+# examples include § 1735.9 in 7 CFR part 1739. Such a section keeps the path of its
+# citation (us/regulation/43/3809/1),
 # but it belongs to the part that holds it: its parent is that part's subpart or the
 # part itself, a run scoped to that part includes it, and metadata["enclosing_part"]
 # names that part.
@@ -1823,7 +1823,6 @@ def extract_ecfr(
                 )
             )
         )
-        store.write_bytes(*retained_source)
 
     existing_records = {
         record.citation_path: record
@@ -1835,6 +1834,9 @@ def extract_ecfr(
         item.citation_path: (item.source_path, item.sha256)
         for item in load_source_inventory_references(inventory_path)
     } if inventory_path.exists() else {}
+    if retained_source is not None:
+        # Parse the previous run's artifacts before replacing its source snapshot.
+        store.write_bytes(*retained_source)
     title_paths: dict[int, set[str]] = {}
     for citation_path in allowed_citation_paths:
         title_paths.setdefault(_title_from_citation_path(citation_path), set()).add(citation_path)

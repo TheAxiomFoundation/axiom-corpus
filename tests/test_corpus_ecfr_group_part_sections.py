@@ -1,18 +1,20 @@
 """eCFR sections whose identifier names a part other than the part that holds them.
 
-Title 43 groups BLM rules in parts such as 3800 ("Mining Claims Under the General Mining
-Laws"), whose subparts carry their own numbers: subpart 3809 of part 3800 holds
-43 CFR 3809.1, and eCFR has no part 3809 (its ancestry API resolves section 3809.1 to
-part 3800, subpart 3809, and answers nothing for part 3809). A few typeset errors do the
-same: § 1735.9 sits in 7 CFR part 1739. The fixtures copy the shapes of the eCFR title
-structures and XML as of 2026-10-08.
+The inline structure and XML fixtures are dated 2026-10-08. TITLE_43_STRUCTURE and
+TITLE_43_XML place 43 CFR 3809.1 in subpart 3809 of BLM group part 3800 ("Mining Claims
+Under the General Mining Laws"); the structure fixture has no part 3809. Other fixture
+examples include § 1735.9 in 7 CFR part 1739.
 
-Such a section keeps the path of its citation (us/regulation/43/3809/1), which is how
-the app and the encoder resolve "43 CFR 3809.1". It belongs to the part that holds it:
+Such a section keeps the path of its citation (us/regulation/43/3809/1).
+It belongs to the part that holds it:
 its parent is that part's subpart or the part itself, a run scoped to that part includes
 it, and metadata["enclosing_part"] names that part. Before this, a run scoped to part
 3800 dropped it, and a whole-title run gave it the parent us/regulation/43/3809/subpart-3809,
 which is not in the inventory.
+
+The generated structure properties use _expected_sections as a separate reference
+model. The retained-many-elements property uses the production selector for expected
+claimants and checks extraction against that selection.
 """
 
 import json
@@ -252,7 +254,7 @@ def test_section_keeps_its_citation_path_and_takes_the_part_that_holds_it_as_par
     assert section.metadata["section"] == "1"
     assert section.metadata["subpart"] == "3809"
     assert section.metadata["enclosing_part"] == "3800"
-    # eCFR serves no part 3809 page: the section is on part 3800's.
+    # The fixture's source URL uses part 3800, which holds the section.
     assert section.source_url == f"{PART_3800_URL}#p-3809.1"
 
     placeholder = ecfr._structure_only_provision(section, "v", "2026-10-08", "2026-10-08")
@@ -304,8 +306,8 @@ def test_part_scoped_inventory_is_the_whole_inventory_restricted_to_that_part():
 
 
 def test_a_part_named_only_by_section_identifiers_is_not_a_scope():
-    # eCFR has no part 3809, so a run scoped to it finds nothing rather than borrowing
-    # part 3800's sections.
+    # The structure fixture has no part 3809, so a run scoped to it finds nothing
+    # rather than borrowing part 3800's sections.
     inventory = build_ecfr_inventory_from_structures((TITLE_43_STRUCTURE,), only_part="3809")
 
     assert inventory.items == ()
@@ -369,8 +371,7 @@ def test_section_selector_does_not_reach_another_part():
         )
 
 
-# The other live sections of 2026-10-08 that name a part other than the one holding them:
-# typeset errors that eCFR publishes, with eCFR's own citation (hierarchy_metadata).
+# Additional fixture examples pair section identifiers with different enclosing parts.
 @pytest.mark.parametrize(
     ("title", "part", "subpart", "identifier", "path", "label"),
     [
@@ -1305,7 +1306,7 @@ def test_property_retained_xml_reads_another_parts_section_only_as_its_identifie
             select()
 
 
-# N values of one retained part: sections of parts 3800 and 3809 as published, with a
+# N values of a retained part fixture: sections numbered for parts 3800 and 3809, with a
 # leading section sign or spaces, forms that fold to one path, and identifiers that only
 # the XML search reads ("19-3809.1" holds "3809.1").
 _RETAINED_N = [

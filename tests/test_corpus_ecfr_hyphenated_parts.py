@@ -410,7 +410,7 @@ def test_hyphenated_selector_selects_only_a_section_under_that_part():
     # Its path is not under 105-60, so no selector naming part 105-60 reaches it.
     with pytest.raises(ValueError, match="not found: 105-60.60.001"):
         build_ecfr_inventory_from_structures((structure,), only_sections=("105-60.60.001",))
-    # eCFR's own citation (41 CFR 105.60.001) selects it, under the part that holds it.
+    # The fixture's citation (41 CFR 105.60.001) selects it, under the part that holds it.
     assert _paths(
         build_ecfr_inventory_from_structures((structure,), only_sections=("105.60.001",)).items
     ) == [*whole[:2], "us/regulation/41/105/60.001"]
@@ -421,9 +421,8 @@ def test_selector_main_accepts_still_matches_a_dotted_part():
     # "1.2-3" with "1.2-3.4": its metadata named the enclosing part, so part and section
     # spelled that (and main reads it as part 1, section 2-3.4). A section's metadata now
     # names the part its identifier names, with the part that holds it in enclosing_part
-    # (#841), so its own citation selects it, under that part. Main's spelling no longer
-    # does: in the 2026-10-08 title 43 it was ambiguous for 547 selectors, and for 1,338
-    # sections it returned another section (for 43 CFR 1812.1, "1810.1" returned 1815.1).
+    # (#841), so its own citation selects it, under that part. This fixture's section
+    # is selected by "1.4"; the former spelling "1.2-3.4" no longer selects it.
     structure = {"identifier": "41", "type": "title", "children": [
         {"identifier": "1", "label": "Part 1", "type": "part", "children": []},
         {"identifier": "1.2-3", "label": "Part 1.2-3", "type": "part",
