@@ -167,6 +167,34 @@ the same part grammar (`Appendix A to Part 60-300` is
 sections and the XML pass read `60-20.1` as part 20, section 1; no release selector under
 `manifests/releases/` carried title 41 then.
 
+A section may be numbered for a part other than the eCFR part that holds it. The title
+43 fixtures in `tests/test_corpus_ecfr_group_part_sections.py` model BLM group part
+3800: its subpart 3809 holds 43 CFR 3809.1, and the structure fixture has no part 3809.
+Such a section keeps the path of its citation, `us/regulation/43/3809/1`.
+It belongs to the part that holds it:
+
+- its parent is `us/regulation/43/3800/subpart-3809`;
+- `--only-part 3800` includes it, and `--section 3809.1` selects it;
+- its source URL is on part 3800's eCFR page;
+- `metadata.enclosing_part` is `3800`.
+
+An inventory that would put two items under one citation path fails, and so does a
+retained XML (`--source-xml`) whose selector names two sections. When XML is parsed,
+fresh or reparsed, two elements under one selected path are a fatal validation error,
+even with `--allow-incomplete`. Complete cached provisions whose pinned source hashes
+match are reused as before; their XML is not re-checked for duplicate paths.
+A retained-XML rebuild that fails identity validation, or cannot parse the previous
+run's inventory or provisions, preserves the previous run's artifacts, including its
+source snapshot. Cached graphics are read only after the snapshot is replaced, so a
+cached graphic that is unreadable or invalid can leave the new snapshot beside the old
+provisions (#934). In the XML, a section numbered for another part is read only from an
+identifier the structure grammar reads whole, so an identifier that merely contains
+one (`19-3809.1`) cannot take its path.
+
+Source XML and graphic writes wait until every pending title has passed fatal
+validation. An ordinary resume reuses cached provisions only when their source
+bytes match the inventory's pinned hashes; missing or changed snapshots are reparsed.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
