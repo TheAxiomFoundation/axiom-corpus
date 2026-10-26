@@ -1,0 +1,142 @@
+version: '2026-09-14'
+documents:
+- source_id: mn-revisor-rules-8001
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8001
+  title: 'Minnesota Rules Chapter 8001: Tax Definitions (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8001/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8001\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181
+- source_id: mn-revisor-rules-8002
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8002
+  title: 'Minnesota Rules Chapter 8002: Individual Income Determination (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8002/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8002\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181
+- source_id: mn-revisor-rules-8007
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8007
+  title: 'Minnesota Rules Chapter 8007: Accounting Methods; Taxable Year (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8007/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8007\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181
+- source_id: mn-revisor-rules-8038
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8038
+  title: 'Minnesota Rules Chapter 8038: Returns (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8038/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8038\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181
+- source_id: mn-revisor-rules-8050
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8050
+  title: 'Minnesota Rules Chapter 8050: Overpayments (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8050/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8050\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181
+- source_id: mn-revisor-rules-8092
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8092
+  title: 'Minnesota Rules Chapter 8092: Withholding (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8092/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8092\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181
+- source_id: mn-revisor-rules-8093
+  jurisdiction: us-mn
+  document_class: regulation
+  citation_path: us-mn/regulation/minnesota-rules/8093
+  title: 'Minnesota Rules Chapter 8093: Estimated Tax (Department of Revenue)'
+  source_url: https://www.revisor.mn.gov/rules/8093/full
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8093\.\d{4})\s+(?P<heading>[A-Z\[].+)$
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Revenue
+    official_publisher: Minnesota Office of the Revisor of Statutes
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mn/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.revisor.mn.gov/rules/agency/181

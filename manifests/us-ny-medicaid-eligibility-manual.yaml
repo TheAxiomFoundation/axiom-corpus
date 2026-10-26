@@ -1,0 +1,202 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-ny-medicaid-introduction
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Introduction to the Medicaid Reference Guide and Instructions for Use'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/mrg-intro.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/introduction
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-glossary
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Glossary'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/glossary.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/glossary
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-categorical-factors
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Categorical Factors'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/category.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/categorical-factors
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-income
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Income'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/income.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/income
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-resources
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Resources'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/resindex.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/resources
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-other-eligibility-requirements
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Other Eligibility Requirements'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/other-eligibility-requirements.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/other-eligibility-requirements
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-reference
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Reference'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/reference.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/reference
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that
+- source_id: us-ny-medicaid-master-index
+  jurisdiction: us-ny
+  document_class: manual
+  title: 'New York Medicaid Reference Guide: Cumulative/Master Index'
+  source_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/masterindex.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ny/manual/doh/medicaid/master-index
+  request:
+    browser_impersonation: true
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: New York State Department of Health
+    document_subtype: eligibility_manual_chapter_pdf
+    program: MEDICAID
+    manual: New York Medicaid Reference Guide (MRG)
+    manual_index_url: https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    source_discovery_group: us-ny/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 1; publisher index https://www.health.ny.gov/health_care/medicaid/reference/mrg/
+    extraction_granularity: pdf_page
+    request_note: health.ny.gov returns 403 to the Axiom user agent; browser_impersonation is the existing manifest option
+      for that

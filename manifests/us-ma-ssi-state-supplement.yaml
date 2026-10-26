@@ -1,0 +1,37 @@
+version: 2026-09-10-ssi-state-supplement
+documents:
+- source_id: ma-dta-106-cmr-327
+  jurisdiction: us-ma
+  document_class: regulation
+  title: '106 CMR 327.00: Eligibility requirements for State Supplement Program (SSP)'
+  source_url: https://www.mass.gov/regulations/106-CMR-32700-eligibility-requirements-for-state-supplement-program-ssp
+  download_url: https://www.mass.gov/doc/106-cmr-327-eligibility-requirements-for-state-supplement-program-ssp/download
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ma/regulation/106-cmr/327
+  extraction:
+    segmentation: labeled_sections
+    start_page: 1
+    start_after_pattern: ^327\.410:\s+Recovery of Overpayments\s*$
+    section_heading_pattern: ^(?P<label>327\.\d{3})\s*:\s+(?P<heading>(?!continued\b).+?)\s*$
+    drop_lines:
+    - '106 CMR: DEPARTMENT OF TRANSITIONAL ASSISTANCE'
+    drop_line_patterns:
+    - ^327\.\d{3}\s*:\s*continued\s*$
+  metadata:
+    primary_source: true
+    source_authority: Massachusetts Department of Transitional Assistance
+    document_subtype: regulation_chapter_pdf
+    program: ssi_state_supplement
+    state_program: State Supplement Program (SSP)
+    federal_program: SSI
+    state: MA
+    cmr_chapter: 106 CMR 327.000
+    index_url: https://www.mass.gov/law-library/106-cmr
+    source_discovery_group: us-ma/regulation/106-cmr/327
+    discovered_via: manual-review:ssi-agent-queue batch 1 (state-administered supplements); publisher index https://www.mass.gov/law-library/106-cmr
+    extraction_granularity: labeled_sections (327.xxx headings); the page-1 table of contents is skipped with start_after_pattern
+      so 327.010-327.110, which begin on page 1, are kept
+    download_note: the mass.gov regulation page carries only the official PDF download; the PDF is fetched as download_url
+    expression_date_note: fetch date; the PDF's own modification date is 2019-05-06 and the page prints no effective date

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import re
 import time
-import unicodedata
 from collections import defaultdict
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, replace
@@ -26,6 +25,7 @@ from axiom_corpus.corpus.models import (
     SourceInventoryItem,
 )
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from axiom_corpus.corpus.text import strip_accents as _strip_accents
 
 BELGIAN_ELI_SOURCE_FORMAT = "ejustice.just.fgov.be-eli-html"
 EJUSTICE_BASE_URL = "https://www.ejustice.just.fgov.be"
@@ -727,11 +727,6 @@ def _coerce_date(value: date | str) -> date:
 
 def _normalize_heading(value: str) -> str:
     return _strip_accents(_clean_text(value)).lower()
-
-
-def _strip_accents(value: str) -> str:
-    normalized = unicodedata.normalize("NFKD", value)
-    return "".join(char for char in normalized if not unicodedata.combining(char))
 
 
 def _infer_document_type(title: str) -> str | None:

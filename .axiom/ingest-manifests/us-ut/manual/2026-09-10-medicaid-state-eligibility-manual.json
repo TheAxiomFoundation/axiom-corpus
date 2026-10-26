@@ -1,0 +1,2601 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "9c911213b175e4b8a7a370a9bbb604e6541975a7c7115ac5a20fc0e20b7aa4fb"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "772be6582678da670b2f4844a65d5a1b07f6e30d02d1c423c13d8e50688cc5e9"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "7e581771456a1d7b88cf45fb8e35428c5b1a8601f3d0d6d704173649842cccb6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-100-general-provisions.html",
+      "sha256": "75519be74657d38000b41d269f3546245a4a003898352ae8387f627732e417c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-101-authority-of-bureau-director.html",
+      "sha256": "5d34787c0fe55a1348919067325d612fc945332839f4bfd3e69272d7ceac439b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-103-employee-requirements.html",
+      "sha256": "3e1d2c02e3183fa478ba989916d35497249a46a9b0fffd02ef2f553bf69218a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-105-rights-of-applicants-and-recipients.html",
+      "sha256": "9dc103b3bbdf4b3f098290477f362a1f45beb3b0ea45f4656b325f3503486afa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-1-completion-of-an-application.html",
+      "sha256": "466a5ec5f5262912c0abbbf3b07171bdd03f41895868b9389599da64a448e513"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-2-verification.html",
+      "sha256": "d4731629e229fc9b21cad10f906e7cd013d5de96b5840e3971f38873d55eb80e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-3-assign-rights-to-medical-benefits-and-medical-support.html",
+      "sha256": "3c0115ba7d21a449fb756d1357640ea40abbb12f456bd71b75582e554b99f248"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-4-report-changes.html",
+      "sha256": "cc256b38fe3dd06b60507a6675c6bd4f818d924dbc9e143541b17337b47b4955"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-5-medical-assistance-overpayments-and-understatements-of-liability.html",
+      "sha256": "8adcf0e8b0b251d628d17f47252eb8db759dfe8e9ddbc1a2a09d42efee7a649b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-7-cooperate-with-quality-control-reviews.html",
+      "sha256": "9d6fd22af2402806d50df964142ca57e2f89d6dbaec9f831e2d687b9106bbffe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-107-responsibilities-of-applicants-and-recipients.html",
+      "sha256": "1fb00021b4e744069c57fa8c3f7438ec7d30c57bad0778718c89e6a41cf6d39e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-109-voter-registration-requirements.html",
+      "sha256": "dba506df266d8c8ab67a0191a84037b83fca2fd8e90da5cfe991521e808d5049"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-111-1-when-confidential-information-may-be-released.html",
+      "sha256": "94779da62fd59ac2f245e7ee88ba90c2c7bc283f45ead83df1a85e3533cc7a3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-111-safeguarding-confidential-information.html",
+      "sha256": "963a2ff15a48000b670893547acb9a3461b85e23e64a49bb6f5e52eb5dea0436"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-113-1-restricted-medical-information.html",
+      "sha256": "3a08fb801dc9193666d380c0d1c6b1394a1c16b4a31e745d8f21ac4c98016f5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-113-releasing-information-to-applicants-and-recipients.html",
+      "sha256": "1cbcaa6db639d9a694667a7e43c6f9c78704ac73ab06028ec0e8dc2c0a7e6f11"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-115-1-special-safeguards-for-irs-income-match-records.html",
+      "sha256": "51bedaaa90c66f6aa0b4d4850116ca5a56ca39c3c1325ce21c7c94a730d39807"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-115-2-who-may-have-access-to-income-match-records.html",
+      "sha256": "e02c7e178aba913289b506429c949768a0540ddfe40fcac578c7fd5204797c40"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-115-safeguards-of-income-match-data.html",
+      "sha256": "c65369ba314a8d8d3f1af159a98a9d37bdde65d055e82fe6d2991e5492148876"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-121-complaints-and-agency-conferences.html",
+      "sha256": "51ca203eec89f19514dc1e5f11ec35d1a2ff2563e33bdb111ccd0f725af393bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-1-fair-hearing-requests.html",
+      "sha256": "966034bdadb907ab9b286442bc0141c8282c3f7083c4b35eb99e0f67d5db28fb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-2-the-hearing.html",
+      "sha256": "d2f6017f341da3d60fc4ba7597ed759d0a2595e35eb7df5265a7889aaf90f84c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-3-benefits-pending-a-hearing-decision.html",
+      "sha256": "13f13b8b59cd1153fba8d8f99d88e086c51f1270e9b0732ffb32f86f74feb8eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-4-what-happens-during-a-fair-hearing.html",
+      "sha256": "13f0513248f1506da28c67838dd28d592780275d4cbc4d225087425f361ade3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-6-fair-hearing-decisions.html",
+      "sha256": "a3d1035764715077def9473a1c7524af073cc6430cde801d0cc3db79cc22bcc1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-7-what-records-are-kept-of-hearing-decisions-and-who-can-see-them.html",
+      "sha256": "fdb5061cb78a8a81b3dab4007d964e6daaf8cb69cb7b914d9854b146bb90175a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-100-general-provisions-125-fair-hearings.html",
+      "sha256": "7aacda1d409827c539665086edc4c4bfff3a151d2676de500c7bd037fdb861cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1000-1-age-requirement.html",
+      "sha256": "6cc9a9e1eb2a8186b80fdc5a10390fe2230bb3655285d7ebbe05ad9442e6f39a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1000-2-ineligible-non-citizens.html",
+      "sha256": "3250155e0301e482f9de0f272ef673ef2084f3a263864277e36d7dae6e018190"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1000-3-upp-open-enrollment-periods.html",
+      "sha256": "7e3f1025e18bb7fd7d0aa013679d829dcddcd8e4c624eede54d61849f231a106"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1000-4-eligibility-decisions.html",
+      "sha256": "0072efc6881d191bc96895481339fbb9355ea9c9591ec45da22ef6bbfaaba490"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1000-utahs-premium-partnership-for-health-insurance-upp.html",
+      "sha256": "3d8072df682a3abf1401f74b6d852aa553f5540998317ca06a5a442362877f04"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1001-eligibility-for-other-medicaid-programs.html",
+      "sha256": "8d414f45951255e33f8e61e28f7df7fb867663123ce034ce57dcf193e98a30c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1002-medical-support-enforcement.html",
+      "sha256": "c7de55d1935cbd8edf15208b0847cb0f710337b9cd4fe9376ad52695532f60f3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-1-definitions.html",
+      "sha256": "f4e6604474204d0448f28aca9e51e2c3b9d8eca1a4aa8f37e368398c8c73e2ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-10-cobra-coverage.html",
+      "sha256": "db1ea2695b8e0ade2f92ac07614602acf5515190781452d12510a55e2c11996a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-11-coordination-with-the-federally-facilitated-marketplace-ffm.html",
+      "sha256": "a459999f90c24294050120811a716ebd3669d19665080d2558adb90e3d6ee88e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-2-health-insurance-coverage.html",
+      "sha256": "869a2a94c0af0f350e63cea33f61453d311199244783a165198750ddeb75f6c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-3-access-to-medicare-or-veterans-health-insurance.html",
+      "sha256": "5823638cbefa8a09a9762397cf2e5845009b0fd4d5e64fe2941b56339187b098"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-4-access-to-employer-sponsored-health-insurance.html",
+      "sha256": "f9efc169f6a11086f8202c171bb48eba14ef3287d2d08a41a4aeedb05d277214"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-5-out-of-state-health-insurance-coverage.html",
+      "sha256": "1cd6e5c21096331e5548fae39d1820271c090b3534b4a97ac94b240b3146e846"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-6-coverage-with-indian-health-services.html",
+      "sha256": "ba76e0a37c1d685240e1a152506514bae082d0bacccd102f48ff4d520b8e461f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-7-termination-of-health-insurance-coverage.html",
+      "sha256": "d22f752ec055ce7ea5bcda161ed508b0776140b75a82f5e9ee068314fa77838c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-9-when-other-types-of-health-insurance-become-available.html",
+      "sha256": "5a1a62f5f34c573057cd7dd7adc1a2fcddbb3f5984076d496cf6e59d2e7618fd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1003-health-insurance.html",
+      "sha256": "fcc0e776029ea00833d67fec09b511f23b71f3f7fd997eebd043216f67610f5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1004-income-standards.html",
+      "sha256": "bb0f37fd16aa5d98d0196865a7b9867eb18c00d16fa8aa5a1b743eb98986e6e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1005-assets.html",
+      "sha256": "13ced38e18ff4a52ad4eee73fa83653bc4a56a62488f87941c7244211f0b71ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1007-1-effective-date-of-changes-that-cause-upp-payment-to-increase.html",
+      "sha256": "bad61862ffb4185844764f38fa5e07a7f322cb5f25e062df86d48d34343f3ccc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1007-2-effective-date-of-changes-that-cause-upp-payment-to-decrease.html",
+      "sha256": "1a67eeadd2139fc8b1df946c9f10fd465c0cb53d39512f7d7efba4bbdd85704e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1007-effective-dates.html",
+      "sha256": "c3633d0b625baec296eadaee381a599ebd5ced0584e7ff177ab2885a6c23425b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1008-1-eligibility-review.html",
+      "sha256": "68deb92c0fe26f89d1947577873f8aa1331ca4a2bbcd6fccfa8efc3c837adba4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1008-2-upp-reviews-requiring-member-participation.html",
+      "sha256": "2e25681f18eec9265878550327e45573e924c7dc84279354d1cd1dc7506e1a3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1008-certification-periods.html",
+      "sha256": "2769e200dbb88fdbfc9c478a5034fb62516e6234dd77a3b1eaf7bf669678898e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-1-reportable-changes.html",
+      "sha256": "17bf21068a6f3adeb67180c226c2f8cb3d6e36c25019f2b02cc40226d18bfb2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-2-income-changes.html",
+      "sha256": "14e4f3e5536d2d190b1388356b1bab7a449cc045c0280e00e2a9062e471f5c2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-3-adding-an-eligible-spouse-or-child-to-an-open-upp-case.html",
+      "sha256": "a255ae0af6f6fef653428fef94a3465568fb59b6a4a50db28f7b09072825dca5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-4-removing-an-ineligible-person-or-closing-an-ineligible.html",
+      "sha256": "13484965197a696017ebe42ebc589cbb9135807ea2e0a6d2d332cc2bb2e19339"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-5-transitions-between-upp-and-chip-pcn-and-medicaid.html",
+      "sha256": "bf0328c4306bd8901fd0ca9af844f6a31c1047b91074f1b3848313ecd0cf3d0a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-6-when-all-programs-are-closed-for-a-full-benefit-month.html",
+      "sha256": "ae63362c64d197132381e8930d0dbaba7ee6ae75d4fc99b28dbc05e595ad4cc1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-7-when-married-couples-separate-during-the-certification.html",
+      "sha256": "36c5b17dc318c6be04b89ad8c8fed26b7034ee28028b793958c42a085d6f34a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1009-changes.html",
+      "sha256": "040a87b94a06fe610cab8ee2c7532d73177c51e27b5357080a8e6b3c3e5e7be4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1010-program-benefits.html",
+      "sha256": "545c6f6b6380d77ec47c6bf586e80160296f4471f3657a1388dd4bdfb187a7ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1011-1-causes-of-improper-upp-reimbursement.html",
+      "sha256": "fb184c6a50d6412b09dd0ac2e48169b579eec4c2d5ee3a571c8ec1d620b86be1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1011-2-what-to-do-when-an-improper-upp-reimbursement-occurs.html",
+      "sha256": "86384080f02b38ae9bf2b53525fa79bd83abf0d0c7ec308cd6e59b2417f3c022"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-1000-utah-s-premium-partnership-upp-1011-improper-upp-payments.html",
+      "sha256": "0fe3d1c6345e7e0f8828b53a4238b02b7e36167ad6a76de64d5eb72b552d9b5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-200-basic-rules.html",
+      "sha256": "00e10a5b408061cbdfba25cd5ddb743cb2ebc8ec1a47e85eba2766cb440e0c38"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-1-u-s-citizens.html",
+      "sha256": "360f6058c84baacba024920c581e89bda4fa4dc5ed5146767124a20c09a09c7d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-2-1-lawfully-present-children.html",
+      "sha256": "248b5aee98d3e55910eebcf67bb36d5ea8331c31de39e31f9b89a8d670417381"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-2-qualified-non-citizens.html",
+      "sha256": "1bd5da8f591a3c1d420cdba4be986b80616357cfd3b091d52f91e3b9b347f1e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-4-sponsored-aliens.html",
+      "sha256": "b10053107be211c4bb267028c3056a38d3942b3dd284b6b110c54425bf26ee41"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-5-sponsor-deeming-and-household-size.html",
+      "sha256": "94dada27e3b07bf07d78ad8eb5749c75495fa34ef50fb6db80121a2d2b84c01a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-6-emergency-medicaid.html",
+      "sha256": "c1e066b069bcfc5b8e45abc0d04a28690b7651a24555bfa1c08bc73be41b36d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-205-citizenship-and-non-citizen-status-requirements.html",
+      "sha256": "d8d3224a058c3fd38d55eca3df59fa131ea5f4bc93a99c90dddf313e12064fae"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-1-determining-residency.html",
+      "sha256": "dd1592c22ad75f777f4f7efa6bbefd781bd94772aa32931fb3aaae5617979338"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-2-who-is-capable-of-expressing-intent.html",
+      "sha256": "20f1921836dd42a55fdf8180a8d94b94e8c014787e2cce3781a58e2c3ac8adde"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-3-determining-residency-for-adults-who-cannot-express-intent.html",
+      "sha256": "56197376818b0d45fe3f7092ba6a50fc6df844bcc06f91a9d65961e9fb7a01e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-4-determining-residency-for-unemancipated-children.html",
+      "sha256": "7f63a54776a8d15782c73d9a9956a502723ec3f130584693e9d065a37c904f09"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-5-factors-indicating-no-intent-to-reside-in-utah.html",
+      "sha256": "1eced41a06b7babf62a05caafc45e84992bbc248d7ce6518e5cad446cb1423ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-6-moving-from-state-to-state.html",
+      "sha256": "5f90ff2017eff16c52a93a98b3052b04e5cdf3c0df997f7cec41796a51260c99"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-207-utah-residence.html",
+      "sha256": "1b583746a5f040aba4d8d684ad5978139f3112c8b8e2f629d596244721d26ed5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-210-age-determination.html",
+      "sha256": "6952dac489ccb1c1a899580935197bcf3b95156d37c65aef6b457dc6b1c1bb98"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-1-what-is-an-institution.html",
+      "sha256": "a9e83ac455fb478854904a0f0a5fd010e40eebb49dc0199733188833878fe2ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-2-who-is-a-resident-of-a-household.html",
+      "sha256": "ddeae8b109b52e269046de09193e0c8e0b2dbd6dce7cab03a746c3c71913cf8d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-3-who-is-a-resident-of-an-institution.html",
+      "sha256": "15607cfbabb924eac70891a86a9053427b0e21d824ed105938e1ba14afa0be65"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-4-residents-of-medical-institutions.html",
+      "sha256": "d117cd892ca222e3b569857d02c07a7624b1e80cf045853f5641055f1d61ae68"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-5-residents-of-institutions-for-mental-disease-imds.html",
+      "sha256": "28e2329def22c861c07a1e409b3c92444229df8055b4895d40ceda6837a9b176"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-6-residents-of-non-medical-institutions.html",
+      "sha256": "da7393bff7332a791e2384de5118add1fd37382d2590f26637373dce6bb9e61e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-215-residents-of-a-household-or-an-institutions.html",
+      "sha256": "2f3936e78bca5d666b2f144fde8e2b006b4df8b053767f38976756117d4556d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-221-1-verification-of-the-social-security-number.html",
+      "sha256": "969aad8360f8db61c13c6f3426f0729a471974a4f6e6f8c36e7405dd4f025899"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-221-2-applying-for-a-social-security-number.html",
+      "sha256": "d2c8818265f67e2f457b13a1ee7777aa6a2ac5fa59e8dd6385ee0c706cd892f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-221-3-who-does-not-have-to-provide-a-social-security-number.html",
+      "sha256": "2f5a790c0f8cfa5260be23c97bc722a8c3edc55ea664b4e5987743a8e1c791be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-221-4-good-cause-for-not-applying-for-the-ssn-card.html",
+      "sha256": "9118590ade51cfcebe268392a60c7ee18926a1e56b734574539954a822fd1151"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-221-social-security-numbers-ssn.html",
+      "sha256": "e75a2b170cb751bf002bb4f8a53eebf451a3e6473cd85529379a1c43005ffa1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-223-1-medicare.html",
+      "sha256": "c03f6802f0b30b8213a45321c680745f2acef0172a304822acf1d26c25f12f57"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-223-2-application-for-part-b-medicare.html",
+      "sha256": "265a9dd2368fc2390a37d6d455d3cd6ede54db85b7fb7c603a33aef7fae58967"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-223-3-supplemental-security-income-ssi.html",
+      "sha256": "2793862f2a4466ad1a0c2cbbf85d6ca5e7c309e7218b3d0d6dc2d483ced2756d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-223-4-va-benefits.html",
+      "sha256": "b834c26d1a1a592662189eae6437f0781f53a6d5f045b793356ddd02cef34ca1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-223-application-for-other-possible-benefits.html",
+      "sha256": "40f89428ebb00a466985eceb6bd2735c00ac404e04620efc94ab3b967a5d2171"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-224-strikers.html",
+      "sha256": "1ff131e404c5e1a38a260b28258ec970cdf96309de9f5231d62778072ad4cdfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-1-tpl-requirement-of-applicants.html",
+      "sha256": "fe3b455fb2c5a49ab1c3710bfd4ef838aa3509166ea31cd9700428ad6d429301"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-2-tpl-requirement-of-recipients.html",
+      "sha256": "70b7e2f07f203ad20744a08faefaedabfe2e6d05b6c1775d20a6f2d533d37b63"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-3-changing-and-updating-tpl-information.html",
+      "sha256": "e528cbd4108a87c8c54201e1bf431ed3b41b6ad8c3c55b4b167e009651682f6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-4-good-cause-for-non-cooperation-with-tpl.html",
+      "sha256": "8e36663c1b0842b98888b816ef4dc55f757f178a0dd428498964070d9c02c8a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-5-ineligibility-or-sanctions-for-non-cooperation.html",
+      "sha256": "f2bf9a394294b42a4d1546ff6b6135eaff2b10667f2d156b74eb068e573177d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-6-the-buyout-process.html",
+      "sha256": "beecb4f6ef9b8664aa303ce22aeca045fcb39aebe7b16622e089ff6d5417378e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-225-third-party-liability-tpl.html",
+      "sha256": "9ed73e575e3ab4c8a8cc93f60a5312c4f88c9c84ff74ea597baff4de93a7aaf5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-1-cooperation-requirements.html",
+      "sha256": "92ed299b92b2060998e25d6e5a87820ee7ba230f53297352ab7a1c5d4c8bcf3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-2-refusal-to-cooperate-with-medical-support-enforcement-requirements.html",
+      "sha256": "bb9b6d3b3e563c6ee9155fffb3b880dc9c6f0221fb0bfa92e203ebddf14804ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-3-good-cause-for-refusal-to-cooperate.html",
+      "sha256": "c21c533e6bb9383a96731bb22cfd374c137644aebc01376c5ee0457cffa15674"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-4-procedures-for-processing-good-cause-determination.html",
+      "sha256": "d9c99c378415c9bc07a8de06b8f228be1bc91789c00183157240c6be086b44ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-5-review-of-good-cause-determination.html",
+      "sha256": "d4b3aae8fe558cce5ca0472b4b8e08b68e46d610a867e4d9b84406e7557ba041"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-6-sanctions-for-non-cooperation.html",
+      "sha256": "cdef5fc47acbf4250be2c43b12bbd36ed40b085ea941e3412af5d1640165a5e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-227-medical-support-enforcement.html",
+      "sha256": "895ba56f950d8a4f6d0be6b3abfae3c1f4232a60e4a2edfff9268880b3586941"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-229-1-parent.html",
+      "sha256": "5d71702a826a376fc779640c3b25ec04e1a5531930dd218a915000926a270c2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-229-4-common-law-marriage.html",
+      "sha256": "c4e11c170b59a718c585a99eb4044226b98f7df89111bae33005f8cc07eae3bc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-229-relationship.html",
+      "sha256": "392b1ec67f34c7deaef1893f4c0701d493e6c72436140fa556834251c6841339"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-230-h-i-p-a-a-health-insurance-portability-and-accountability-act-of-1996.html",
+      "sha256": "4148616784155bd25963b81765614062effa8c5ac755acb5ce00b0ef3e773350"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-200-basic-rules-verification-of-non-citizen-status.html",
+      "sha256": "fd90b09447c44134e21838b17dd4ccd9c92e5b82ac69afacd833a9f195c7bca4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-300-medicaid-programs.html",
+      "sha256": "243b0dde11cd653bb166af59dfdda304cd42ba8fbc85c604f972dbfefc9576d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-10-persons-being-released-from-the-state-hospital-or-public.html",
+      "sha256": "102340e65a2e61642306a552b6030921f90981540f6c40d52765643c8642543b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-2-proof-of-blindness-or-disability.html",
+      "sha256": "b3c7f1b4056c866dc79727c5054a5aead6bb72e9104b6b8fa1f0546488a7790f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-3-when-to-establish-and-redetermine-blindness-or-disability-through-the.html",
+      "sha256": "300ecb12e971ada74ea17fe5406f574b40e3c8da4bdd9d223a2a9dd73f5d980c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-4-effective-date-of-disability.html",
+      "sha256": "ff3ee4aa3abacd0a70aa13c4a79b6a990dab29bb5b0890383032f6b64b8e9f21"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-6-when-ssi-or-ssdi-benefits-are-denied-or-stopped.html",
+      "sha256": "1d7ad34dc3e3f54b5873c6ffdc16df671c04989448c410ab2adb34ccc831e2c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-7-bm-or-dm-recipient-who-appeals-an-ssa-decision-that-the.html",
+      "sha256": "685dd531e0109b7392cec5ac46c75550d52e8aedb0a5b162f3d872fb13d67322"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-8-bm-or-dm-eligibility-for-past-months-when-an-applicant.html",
+      "sha256": "01d7e15e0f79f581cc3d5320bb2636ef257a1c1c96879fc381ecb48f41e295d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-9-approving-disabled-medicaid-for-current-recipients.html",
+      "sha256": "b82e2cba3993723f78099e7cbac17c5189166b69e4b4ae485e24322f6ef3d94e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-303-medicaid-for-people-who-are-aged-blind-or-disabled.html",
+      "sha256": "0b7e2aefbb7d6c9380e233c737052ea272fa630fe268031bd2ecddb604e675c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-314-medicaid-work-incentive-program-mwi.html",
+      "sha256": "af774134aa1a7a1d428c603f71c03efed8a703567c5379f919ddb5951244bb7c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-1-eligibility-for-medicare-cost-sharing.html",
+      "sha256": "9b465525e068f060f8dd98fdba512223bbeeb9ce6888dfaac9567682240e3462"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-2-qmb.html",
+      "sha256": "50b47358a3590e5293a5fee4c2cef302f1a2b28e836480ed65449bb027d666b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-3-slmb.html",
+      "sha256": "4f2f1082dccc5e908c66e53bc12b3af957b91b7c6f27f6c8162b6a4b4fa9a488"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-4-qi.html",
+      "sha256": "4b1f8a47f7abb29e22e30c2300a6c4673af3fe8a1ad68d5c2e7ff1c480c3eda9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-5-qdwi.html",
+      "sha256": "86d349ec25e1d18b97709d4946a929441d385888a6bf8ea597be392fa2b9c23d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-6-cola-increases-for-medicare-cost-sharing-programs.html",
+      "sha256": "6a3095dced12eda2168e6bf32ff5ff239031ae7b4452a8b7fb8fe48d4dd4881b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-8-medicare-low-income-subsidy.html",
+      "sha256": "ea60a440e9cd3a913ad6e1cde77fa954ed40c0907622c21955188cfa2222c91f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-320-medicare-cost-sharing-programs.html",
+      "sha256": "ff8b3631be9797d8803230898b5e32a3d9c80df47b15b354315260e80ab5fabd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-329-ssi-recipients-and-medicaid-eligibility.html",
+      "sha256": "72f8d2fda4f9cbd7790616ee57b17ae497dcbbb01f690704169a1107ecfe5580"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-330-1-protected-medicaid-group-for-disabled-adult-children-dac.html",
+      "sha256": "85dc53240d128de0a7860b1fc3bd712f875f39d2bd5b8d08ae97c90e4c414f0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-330-2-1619-a-and-1619-b-ssi-statuses.html",
+      "sha256": "739db0455cfa0b62cfca2e9fc2c6788b851f64f09b40e58e1f27655797d22773"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-330-3-protected-medicaid-for-the-pickle-amendment-group.html",
+      "sha256": "19646bc0400602cc1dbf35e325ec7d0e26b1419437efd8f22e3f49c5adb172f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-330-4-protected-medicaid-for-disabled-widows-and-widowers.html",
+      "sha256": "a12b6e7104e25f79318f4deacf29ac1cf761479c91a5c3d507a6506d57cdec6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-330-protected-medicaid-groups-for-former-ssi-recipients.html",
+      "sha256": "bd0bc35f64471811713c06e5277587fba9c34e09fef33b7754eb266a0517611c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-1-4-month-extended-medicaid.html",
+      "sha256": "63c9ca5c3c241a194d41ce51abb5d06488f04c97ef143aa5080f6facd8e751c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-2-12-month-transitional-medicaid.html",
+      "sha256": "46259831e13dfea98634eb17b98c1d94330dbeade9f6620718b310549beb4ccd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-3-good-cause-for-no-earnings-12-month-transitional-medicaid.html",
+      "sha256": "ec99e0efe5e177ad382e922829160811b4a62fbf5da072047460d0d04dd78b15"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-4-good-cause-for-a-late-report-12-month-transitional-medicaid.html",
+      "sha256": "8a460d12bfc8d74a6aa2b2f22cb6cbce456e43b4685114b7c4b3c475a84660e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-4-month-extended-and-12-month-transitional-medicaid.html",
+      "sha256": "cb411becba54b39edc966e8549c0a2eaa8f14203d7cf6609d695cf6cc7847821"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-5-changes-during-the-12-month-period.html",
+      "sha256": "cedf73634e2652d669fdd528c714b46ace4545c545438a64496e0e7bc8d7c2b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-343-6-reopening-a-12-month-transitional-case.html",
+      "sha256": "92d748732a64094c658ba8fabf557e6ba145bb3c0f825d5801fb2db9c75bd412"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-345-1-age-of-a-dependent-child-for-family-medicaid.html",
+      "sha256": "ad05270e9a9e746c719717894b27cc2d669feed1d64dd74ed6bfdae43c27adb4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-345-2-deprivation-of-support.html",
+      "sha256": "79c1a3a497504fdecd5d45d01707742c3b2594babb794630ffa0ddb1eb140ff8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-345-3-caretaker-relatives-for-parent-caretaker-relative-pcr-and-family-medically-needy.html",
+      "sha256": "72e5cc8b94953e21f44c36e7f9c4755f0296f49790198f4dd21da091bc80267b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-345-parents-and-caretaker-relatives-category.html",
+      "sha256": "a2f2124275ee9f7c0680cbc96493aa3143c92711a3f138e02c64e47900e55be4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-346-targeted-adult-medicaid-tam.html",
+      "sha256": "bae9c9f389875605ae997a407db8726659731ac3bfc1cdae1ace93ba94f1c24e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-347-child-category.html",
+      "sha256": "c6dcbce53e2a3c5aa3ea351a22ba27881e673889018d367ab964b4f0c3b2bc5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-348-3-1-esi-enrollment-requirements.html",
+      "sha256": "693b11919f782e5e839c3fe48cef1f1a7b99a6186c4288912d534d9b21156a91"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-348-3-2-health-insurance-coverage.html",
+      "sha256": "889b3d08a9498064e235863dbffd82245e7b9a2beb493fb693779b6ad29bd3a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-348-3-3-how-to-calculate-an-esi-premium-reimbursement.html",
+      "sha256": "9031fcdb7cf031e01527310db1959d2dbfba745508450c19a129e1f597cb2d0a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-348-3-4-disenrollment-period-for-adult-expansion.html",
+      "sha256": "040af12c3d59ee2465adf4a20cdda1b38d8a5a2508e1042a4c23872b6cf39e0d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-348-3-adult-expansion-employer-sponsored-insurance-premium-reimbursement.html",
+      "sha256": "4785df6f54e6f5f02f0e0af7de2c95534b3979d004dc1cad27a8f4bbaed6fd07"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-348-adult-expansion.html",
+      "sha256": "8f934417c0076726a72fa92114f420adc1f06310e5187e6fe981c6930cbe1ae4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-349-pregnant-woman-catergory.html",
+      "sha256": "c224ec09db18b3d61398efa451c4c462823f3992db48527a62461660fd285e12"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-354-1-medicaid-eligibility-for-title-iv-e-foster-care-children.html",
+      "sha256": "65ed0bbd0fde96bceb6638e67e2c7c1ddc1db96c373ec43eccd6f4bc54b83966"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-354-2-medicaid-eligibility-for-non-title-iv-e-foster-care.html",
+      "sha256": "0fb33e0615c19d6d262a679f24a9cc1685fdafe103a95f58567487db5fb3f203"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-354-3-former-foster-care-individuals.html",
+      "sha256": "6756f7400c43f2fab097680c058f161883b600fa515da9688b3c282a85e9b582"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-354-4-foster-care-independent-living-program.html",
+      "sha256": "3803374cf9cbb8ec5596cc386afbaa7a35e5c2f20dcffc6d1656b6757917dae0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-354-5-title-iv-e-kinship-guardianship-medicaid.html",
+      "sha256": "770ac34d7241f8106891537dd108d97979b8ea00b5ddb2622e969e84403c53c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-354-foster-care-medicaid.html",
+      "sha256": "cb426e18f2b883c942a17b768dbad1ea876dc8fc434eb0df56491fec74bb9e3d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-355-subsidized-adoption-medicaid.html",
+      "sha256": "8254200a0d412c4587f454d643f09751c8c3f5e844ccc36a791368c5ecf98415"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-356-presumptive-eligibility.html",
+      "sha256": "23dee6ed79b8943deecccb474dde2213938a9c9a66deac49e0f76a60d1d06a77"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-357-dhhs-covid-19-uninsured-testing-coverage.html",
+      "sha256": "7f09d1646e55cadb8cd58ef6bc9f8d67d92ea6737b185677285a52b2c0a160a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-370-1-eligible-for-a-medicaid-program.html",
+      "sha256": "d2d9b7e6c2e03e57bb95784e7605cdd019694b1e0ad0a1eb275df94bbb85830f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-370-2-need-for-level-of-care.html",
+      "sha256": "201fdde68b3ff96ac8571d3ccda4f1b1a3cb96b1d1aa86dfe7c9fb0695feb9e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-370-3-medicare-eligibility.html",
+      "sha256": "d59a12dd9a0016015e493acbaa49e019c06ea7be8b6806cf384c94aa678ec800"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-370-nursing-home.html",
+      "sha256": "d351dfb2de783eff2dd596fda0153a556a7b37a29e72baa52395fe6c2189557b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-380-1-waiver-asset-requirements.html",
+      "sha256": "8cb3227f99054bf87cd804a8fd192f9d35b74e51bc5070f567c921ec2c19a6c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-380-2-home-and-community-based-waiver-services-financial-eligibility.html",
+      "sha256": "738fdde9e84a155e353d9e59598e75044c3a68d8aca06aa9748d5901a80823d4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-380-home-and-community-based-hcb-waiver-programs.html",
+      "sha256": "8d516814f973bfed7aacdedda992fc140cdf67052ee6a44ad545b82dc56ff095"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-381-aging-waiver-aw.html",
+      "sha256": "a01c1e45f254055eec0f1ff690fd766de6403fb3b363166632de97eb152e99db"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-382-medically-complex-children-waiver-mcc.html",
+      "sha256": "ef32969b584e4dc277c0fb3ea4f8280c59a527f99bccf94e5823b8c1ad7dae4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-383-acquired-brain-injury-waiver-abiw.html",
+      "sha256": "2af53b34c24de4bb0c72229c74b3cca8523e099ffc0df652a9b91d8ad2fce3d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-384-1-general-requirements-for-the-community-transitions-waiver-ctw.html",
+      "sha256": "ac84f67005edcf5372a9e4d7a5bbcead86cbfc3b24b947e14f2efb3eec00148d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-384-2-community-transitions-waiver-coverage-groups.html",
+      "sha256": "bd8f715e09e947b158b512771f2739fd148d097308cc1606a24ffce4c606b634"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-384-community-transitions-waiver-ctw.html",
+      "sha256": "570e7eeba416ccd80769e48a31ac8533fa313f2d36159286784035f249bbffca"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-385-utah-community-supports-waiver-ucsw.html",
+      "sha256": "9e5635da95651f98e5b2a54ab53bff14bced6b9aeadfeacd07a0233f038f7386"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-386-1-general-requirements-for-the-new-choices-waiver.html",
+      "sha256": "bfb3d0fef4ecdfdcf2b242b0856d87245692f3be52dc22337afb0ea86075e97e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-386-2-medicaid-coverage-groups.html",
+      "sha256": "c875339870ed0f06e14922c9355fc0896a56249460614b7f8120c43899999d8c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-386-new-choices-waiver-ncw.html",
+      "sha256": "653350e378a508fd856271cc746cda744d6198285ad3d316cf9d629ed8445a19"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-387-physical-disabilities-waiver-pdw.html",
+      "sha256": "97379915c8fb106be340f3818630fdc3f0266bd7af043be9a6bee856dc190dfa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-388-1-general-requirements-for-the-limited-supports-waiver-lsw.html",
+      "sha256": "a1fc12846750e1fbe8bcfec053af530a40d79ae24367d6eddf487a1cb983312e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-388-2-limited-supports-waiver-coverage-groups.html",
+      "sha256": "ea18d45bbc56c64ac0cb5e51aa850cac38b3c7d7724dbe34e017692ba6322b9d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-388-limited-supports-waiver-lsw.html",
+      "sha256": "58a93f3646a0106f01a54f2b1d256f918906431b0bd7d106cf6f2e5cbe56a5ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-389-technology-dependent-waiver-tdw.html",
+      "sha256": "eea9cfbe13bdffdf701975d3cc1601c5b1e92bacd8e956f934f37b5322b3fe41"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-390-1-screening.html",
+      "sha256": "363efc6af108fc163cd0412c3e4f475ed393c7deade7147d816e649e132dd5e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-390-2-health-coverage-and-medicaid-cancer-program-eligibility.html",
+      "sha256": "6e2a061c4d6c882119061cf5b01556ea7df8de594ae1ebc1fba124fd9bc68fed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-390-3-medicaid-cancer-program-eligibility-periods.html",
+      "sha256": "51d4c55bba8b0f49dc75bce31ca5bbedca8ce0752aad567f04220a4a63d80cd9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-390-4-cancer-program-eligibility-review.html",
+      "sha256": "b6ecbe86f4c80e19eec98e9fa9f04243091d0adc338f9a4b82a69ddedbcfd0fd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-390-medicaid-cancer-program.html",
+      "sha256": "9d456720bb8cff60f0a69024fea7a0792f1bb8c3ea666419332dd0446d3fd32e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-392-tb-positive-group.html",
+      "sha256": "2ad83db9b966f780534cce85ea9ec856030bd5d8e2d7f9f0c8136d5e55ec7230"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-394-1-when-to-use-the-rma-program.html",
+      "sha256": "2e16bc616d756eb831439f697dc3f4b25afd5f98d4ecb9033ecf0f8bee41c6ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-394-2-immigration-status-for-rma.html",
+      "sha256": "16d20b909e9eaea66e6c2126ab07384d39f32505916df5b5ae7334f0277c272f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-394-3-refugee-entry-dates.html",
+      "sha256": "088e85b0bd2de74aa94fe22c198a91b5ec7343c8c63b7ef000c610b9a36c5698"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-394-4-rma-income-and-asset-eligibility.html",
+      "sha256": "7713126118fe5918855ca1607297f26a830d29b98e5123e1bd13edb8dcb1c6cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-394-5-refugee-sponsor-and-resettlement-agency-contributions.html",
+      "sha256": "7a2fe2c34f3b28e6d24b6bb48b27e4eeb446125ad2245a93c0d9eedeb81f941b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-300-medicaid-programs-394-refugee-medical-assistance-rma.html",
+      "sha256": "abfd37c564bc2f403604f0c9dc9ff2a441d0b9f779b729b709e11851f0ded7ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-400-income-and-household-requirements.html",
+      "sha256": "f29337cca884619a7fddedc79eeacbe7374175f8ffba4074da1993377594760d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-401-1-the-magi-household.html",
+      "sha256": "655577c36009dc6f4f18577659a2046870e47d69c51f3a8a4ff8ab7d54ebf58e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-401-2-tax-filer-s-magi-household.html",
+      "sha256": "2d37555c91da82d21b73385cce3a83342276a996ec5f97a8426e1639a7047dc2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-401-3-non-tax-filer-s-household.html",
+      "sha256": "900bce80881d266a6d1c1dc663899619b4781bf164b5e61f82570eba6d333905"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-401-4-magi-programs-joint-custody-and-temporary-absence.html",
+      "sha256": "f252b177722302d5dd81cd501fb64781c39e89c51c981a582f9c7c653a48d295"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-401-5-household-size-and-ineligible-non-citizens.html",
+      "sha256": "1b8c9cafd6b91d6facdaafa88a4752a70ac5085defc75d7e4aa858dba389b27e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-401-magi-household-composition.html",
+      "sha256": "3eeff6fc138334ab3a15dc57ef823435dec4ef1a0d38b38720ddcfb96d75c715"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-1-parents-and-caretaker-relatives-household-composition.html",
+      "sha256": "3c7abc5a91c22db645c4677526c10db5a8af0d8323a915572170b03dd9185b24"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-2-pregnant-woman-household-composition.html",
+      "sha256": "cef2c275d4c66a1fbbfca49a82618eb080c19788b49d732459c794f5f56f38af"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-3-child-medicaid-household-composition.html",
+      "sha256": "366b7f4135c9abf31e9176c0fd7e68e153d80b246a40957a55470df5e1355844"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-4-foster-care-non-iv-e-medicaid-household-composition.html",
+      "sha256": "226575a3bd2945dacfbc5cdb3df6afde3fcb56d1de24ae4e47b8e963d6f80ac4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-5-adult-expansion-medicaid-household-composition.html",
+      "sha256": "1ad4ea73a491188f5508a6bcab72b2d11057a73496ba10fe28e86bf07256365f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-6-targeted-adult-medicaid-tam-household-composition.html",
+      "sha256": "21401abe32c2a74de87923eb39454d34ea59a6c9e383737761c11642b58db388"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-7-tb-positive-group-household-composition.html",
+      "sha256": "113dad05273ac5751918eb1461fe5182e0dbab8c16550714d32f85dae76b5539"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-402-magi-programs-and-whose-income-to-count.html",
+      "sha256": "a19f0f2cd8723792752410ba460d0be565433ff4aadd94041bf64d6b25c88d46"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-1-parents-and-caretaker-relatives-medically-needy-household-composition.html",
+      "sha256": "0c9dda26a434ef33c1ed567a01a7cb17b73cc6a0cdf5283de658c07c18bc63cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-2-pregnant-woman-medically-needy-household-composition.html",
+      "sha256": "bb37fb76aaed77d2d2fd648459b477ff9f3dc3aad76bc442bb213ea0e1953515"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-3-foster-care-non-iv-e-medically-needy-medicaid-household-composition.html",
+      "sha256": "b992bada636f2d9d0d368522adac38d58c4abbfad42987197fe86d2f1805fd0c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-4-child-medically-needy-household-composition.html",
+      "sha256": "b6e8bc4a7527453faba4d2567b1e8522443cdb470a1f0806190c611c90c65a04"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-5-whose-income-to-count-for-family-related-medically-needy-medicaid.html",
+      "sha256": "e5d169e6f2c49649397f1b9540b8518ec7b389089d8dc6f4d334fe5a7e9baf41"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-6-family-medically-needy-joint-custody-and-temporary-absence.html",
+      "sha256": "78a6c05aa644bd62660c75b44442e916ad896c7c428b1beeba8134b87bb85fb6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-404-family-related-medically-needy-household-composition.html",
+      "sha256": "4adef61b20d08a696ebc03e8fec9d67a26c18e2d6d315cfc5e793eeac4d155be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-405-1-parents-under-age-18-or-parents-between-age-18-and-19-for-medically-needy-cov.html",
+      "sha256": "a9784db68a8094d30ed17d4227a6fff0ce4cb6c780fa14245522619cf1397b39"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-405-2-minor-parents-under-age-18-who-live-with-their-parents-or-stepparents.html",
+      "sha256": "c277ce6f6656bfc6d2cf9b929d8c14d9edb4036a34eed4c6a2227b76d260d5f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-405-3-minor-parents-between-age-18-and-19-who-live-with-their-parents-or-stepparent.html",
+      "sha256": "9aa5903a3df4f1715b3d2d994a348646a62a0b03b303cfdd6480ebe0a6372fe5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-1-aged-and-disabled-100-poverty-related-medicaid.html",
+      "sha256": "4d586a8d9bd630a417cc99e0f59a29713e5ab14db067027819504e4f7913081e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-2-temporary-absence-aged-blind-disabled-medicaid-and-medicare-cost-sharing-prog.html",
+      "sha256": "0ba8553bbbdd0cfb2b742e4f8b9c941691a6f4bca694e80affba8d42dc5a3e5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-3-aged-blind-and-disabled-medically-needy-medicaid.html",
+      "sha256": "f6d27653b05cf2250067bd56724b22827d90acaa2685f88a7d4e690d1978422b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-4-qmb-slmb-qi-medicare-a-b-and-b-id.html",
+      "sha256": "516fa4165baf29df16c255eab697d8544b746146d7c4268a7e2e85759d919b9e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-5-medicaid-work-incentive-program.html",
+      "sha256": "032cf6199d7ce7211878f1d1df5a40952de890c6c947952cdf121633d05b436e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-6-abd-joint-custody-and-temporary-absence.html",
+      "sha256": "cf552953e90ac082afbc322157eac03771903bec30904f341471a71e95f66916"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-408-household-composition-aged-blind-disabled-medicaid-and-medicare-cost-sharing-pr.html",
+      "sha256": "8507c04c9d2735020376c49a1b33c0bf99bb69ef567c35f2af2c9c102799983a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-409-1-medicaid-for-ssi-recipients-and-ssi-protected-groups.html",
+      "sha256": "cf703a36d989d4bdd5cbd3a2b04489453f37b3fa346f72dda017ee7d194c469e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-409-2-aged-and-disabled-poverty-related-medicaid-qmb-slmb-or-qi.html",
+      "sha256": "2bf92b9b52dfce736f192d9133edb626d141bdf2360505c9b8396de0a293405e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-409-3-aged-blind-and-disabled-medically-needy-medicaid.html",
+      "sha256": "0ee25ee5cc3ff5413fbffb9a7f071ebd993ac564d007780d2effd2265f6ade20"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-409-whose-income-to-count-for-aged-blind-and-disabled-medicaid-and-medicare-cost-sh.html",
+      "sha256": "21ae9598e4af36a2a82dc55947a01ca219b475d5c32c1f8c99d12af19a96caf3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-1-when-to-deem-income.html",
+      "sha256": "addcd539765ebc0dcb5bd453e9d3ea66fefa00f8cf71c5ea535454a52801395f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-2-deeming-income-from-a-spouse.html",
+      "sha256": "5e218db2993f095f93f457b1dd713e6811ad510c0a3a1fcf0ce11d3a0240dc84"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-3-deeming-income-from-parents.html",
+      "sha256": "7ab7bc386a183059669a571eb39214216b89b0c1429d42c66c9e34fde18cceb8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-4-deeming-rules-chart.html",
+      "sha256": "a317caf846eef357b5579d587208f519bb4bc5bb02495275f3c121c0b44d6dd9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-5-parental-deeming-worksheet.html",
+      "sha256": "0c5ee5aa316f5ef5ea842d52fbd5d706f04cc465a6cbbca00fa13e07479d0a15"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-6-spouse-deeming-worksheet.html",
+      "sha256": "5eedd554b6bb408aa150701266971f39dde8f5ad239bcbb34733bcfdddbc4a23"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-410-deeming-income-for-aged-blind-and-disabled-medicaid-and-medicare-cost-sharing-p.html",
+      "sha256": "b4582dcd086c030f8258f3a584171cd3a20f89828ae9fb3e68d7ff4d9d7acf91"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-412-household-size-and-income-for-long-term-care-programs.html",
+      "sha256": "64fd0bd8754ad335195421744b9c12ef51dfd8608d6bc7f76a671aa7b86f4ddc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-1-what-is-income.html",
+      "sha256": "50817dbe0c075a2268e6b0f21dac5cbbef090c91e6b3bbb341eae27947f5115a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-2-income-in-kind.html",
+      "sha256": "20e18823fb045353c31ab0d2c82b445e4b1d11148db43366b4fd8e6b0fff1e31"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-3-countable-income-for-non-magi-based-programs.html",
+      "sha256": "b33b4a2f751b661ee6df1e4549eaed4f4d0cabfe818c929c31468513595cbf71"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-4-ownership-of-income.html",
+      "sha256": "f1bad26cad4277488694a4fb049afd6966bd9eef56cbbc3a8ae2356af115a056"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-5-deposits-to-joint-accounts-payee-or-fiduciary-accounts.html",
+      "sha256": "4c06039c05295f96d0cf173e50ea10556096ec2767a9cdbd3a178d2153dd1a3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-6-what-is-not-income.html",
+      "sha256": "b48a2e4876153319b65dd0f6d30bfb30bfe3cb3a51ffa35bcc10886003d55ce3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-413-introduction-to-types-of-income.html",
+      "sha256": "b1da1415d2a3de13de17d73d7798b08139840f57c777b8cddae04dc3cb87e104"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-1-examples-of-unearned-income.html",
+      "sha256": "c43e0aadccfc7cc48a62010e2bd1e57db7b69874c270365705b58e3625afa31e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-10-in-kind-food-and-shelter-and-presumed-maximum-value.html",
+      "sha256": "9b81758c6c9d97a25dfd33b86adc2d1088d3aec94ca4466d49b68bba0ab18fa9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-11-royalties.html",
+      "sha256": "5c21618b4c1a2b83fc15e8d3510e9ad843951b4310ff4a451a7ea2095126e3f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-12-personal-injury-and-tpl-settlements.html",
+      "sha256": "f22027adc3a04b6a5f35845d5dc97a48ba33b7ae3541ba6be7cabdef372b8a07"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-13-countable-payments-to-american-indians-alaska-natives.html",
+      "sha256": "987e42fa88a510e3bd394a348d64499b0831fcae68e99ac7a76c0bec423dc98f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-2-va-veterans-administration-benefits.html",
+      "sha256": "815c187a1a4080319a4128c569f343c9000106d53ad31c1e5c3acd935656bb44"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-3-when-the-entitlement-differs-from-the-payment-amount.html",
+      "sha256": "84c85ecf6e3e5538e2e685ae9911b6c4e98749c307d38fb0d2076ec738b584e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-4-unearned-income-from-rental-property.html",
+      "sha256": "ac7f3ff1e13edca79d87e58cfdc182b8746724fe648ff86f50c1125947823757"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-5-child-support-payments-received.html",
+      "sha256": "e20d09f879a048ee62c299b915be81c7df35516882cf30729d1417a9668f413d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-6-educational-assistance.html",
+      "sha256": "f8f253faaf7fdef0600d55018771d1fb4bb080ec944dac2b5b740a7b2ef24bff"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-7-certain-interest-or-dividend-income-irregular-and-infrequent-income.html",
+      "sha256": "eb2dad74aa716691e23112463c367d852a8acf840a635583d3cffaac36a2eee7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-8-sales-contracts.html",
+      "sha256": "2e37086732cc9e11f64c8138dcaef0b497598d7c059d0211d543d4bceede7caa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-9-payments-to-replace-or-repair-lost-stolen-or-damaged-property.html",
+      "sha256": "8b390462a9c0510d3c1862f89f5c3c92e1fe52a8fa04ca32e22bed1761dc28b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-415-unearned-income.html",
+      "sha256": "e58c5ff3bdd50e39466cdfe1c35bc2abade64acd056bbf1dcff8d7085e31b7c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-1-rental-subsidies-and-relocation-assistance.html",
+      "sha256": "9b885f4346fa9e0f85de9ab707ab3a62f39f8dae58a44aaf2e256dbd52bec81e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-10-income-excluded-under-a-plan-for-achieving-self-support-pass-plan.html",
+      "sha256": "f9573eca2d3d94922569b0fc10e6fce73213efbebe7e9f671b0e2c0dce500110"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-11-home-produce-for-consumption.html",
+      "sha256": "d3f514001f862a6707ccee0dd3fcd01d72503be5096f5bf3b6ed5adfd0c7c8de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-13-cash-payments-for-medical-or-social-services.html",
+      "sha256": "86e37f1316140d495b514df7669edfe414188e9dd4d242471f1d46398cf116a6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-14-payments-to-american-indians-alaska-natives.html",
+      "sha256": "154d172579f56a0392da5e01f82b5e413968986aa76c0989c0cec2e3046fc7ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-15-gifts-made-to-a-child-with-a-life-threatening-disease-by-non-profit-organiza.html",
+      "sha256": "502860160a6781137452b9824898877c6d2d4071a3061ff8cebafab5c0f124b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-16-income-from-protected-assets.html",
+      "sha256": "31873f3ca7f4bcfa85cb93b94666f324b3fe6543b7cbf2377d5a9c42ab194d2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-17-public-assistance-exclusions.html",
+      "sha256": "5f7c7c5567ec6cf6dbcfe530f8f92e5b6dbbe4a181898af1df30e42c2eb067e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-18-employment-and-volunteer-program-payments.html",
+      "sha256": "f75ecd71c946cf0e4bfa40916711d9121d7ccdbb8e59e76ff13542b0fa463b32"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-19-reparation-payments.html",
+      "sha256": "3c5f7404e530e711b4825a803ac99e59e0199c466decc999bc0250a69f19a737"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-2-trust-funds.html",
+      "sha256": "f51084e4655eab7c29cd798b2c4c53b9ee973005ec9fd3c98c4413c0fd29f690"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-20-settlement-and-disaster-relief-payments.html",
+      "sha256": "5e7f6d29d6b01a3447c30d78763b6d996940958cf941c56f9aa8c7573b4e42cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-21-covid-19-recovery-rebate-payments.html",
+      "sha256": "0f2347f6241c92a8d244b542cb06541c63ac05e9d332ba1a3ceb131f7f97a489"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-3-tax-refunds-and-tax-credits.html",
+      "sha256": "e1fff7de40edccf57553f2a505f77cbb6c00e19b326b92a16dfbd2d79b3f62cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-4-transportation-tickets-for-domestic-travel.html",
+      "sha256": "98463b6ffb2fae616331ac2e395ddca5b6eb2c48fcfcdee09de058fd9347a8c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-5-travel-and-training-allowances-and-reimbursements.html",
+      "sha256": "cf6a965183cdd65aad924ae8040fdd648226505e3bf55d6581d60b9ad986c9be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-6-death-benefits.html",
+      "sha256": "5a79cbc1ec5bf7409259d997a1b904a0dadf804cfee9900ebcb848f96489f006"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-7-credit-life-and-credit-disability-insurance-benefits.html",
+      "sha256": "e56dd61329dfd381c39096637afce27f9254bc888f348bdbe11e20b8697a964a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-8-payments-under-the-national-flood-insurance-program.html",
+      "sha256": "31876ece8984f51a15377bf002ffd343db18ae122c1c7688a3a0928daa5a2f9c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-9-payments-for-clinical-trial-participation.html",
+      "sha256": "3304591454dcfd5bda65bc692f58b93a1437f1522b575d7138f606651f9463df"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-417-unearned-income-exclusions.html",
+      "sha256": "18d5989494856d4e9452c74dcb08e92de82313851daed58429a9336115bfde3a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-419-1-sources-of-earned-income.html",
+      "sha256": "e25e629bc75fe69fa8accebb4060c26b78a010ccb9f75ffa597a4557f1a989db"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-419-2-income-received-from-a-business.html",
+      "sha256": "97b769d0a9df5f0d4a921e6a4b38720ac0f74f2001a589f90597efd3426af4e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-419-3-self-employment-income.html",
+      "sha256": "e391552999ce21269d682b28022b42fd8a29a6b2a683519aef112ba87133e263"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-419-4-self-employment-expenses.html",
+      "sha256": "7c041a7ce641c27905b48d4940930db3ff73de73d6d4db46573543927eaf2c4d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-419-5-earned-income-exclusions.html",
+      "sha256": "5448ba7e499e742884c06f0d10549c3227776c5db4b6e2fd22cae38edf2fe1f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-419-earned-income.html",
+      "sha256": "edd720ee55939af0067604cba51ceab5b3239f16b9545e4e29b8fab67ce74fc4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-421-1-what-are-lump-sum-payments.html",
+      "sha256": "d45d7a52ccb5ab759777c9ac74fa41f2dcd192908a27cb584fd869c295a692fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-421-2-exempt-lump-sum-payments.html",
+      "sha256": "b92c8e2553081c7059570af7cfe689bda5513da451bebbc5572f3993584ebf1b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-421-3-how-to-count-lump-sum-payments.html",
+      "sha256": "36ed0972f6cca26e19dce85d25950b2c762a520e2ff906ab138ae182405439dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-421-4-when-to-report-lump-sum-payments-to-ors.html",
+      "sha256": "e74a22bd9ea0c5dd2fb19bdc0eadb0449e43e6e4249b452cb59d01820d5c6fe7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-421-5-va-aid-and-attendance-homebound-payments-unusual-medical-expenses-and-90-paym.html",
+      "sha256": "82504dce28b83e0a3ed3b9a90b6c0ff73580e9d58c49d043d5bd83519f17b425"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-421-lump-sum.html",
+      "sha256": "535c6ccee1e37d71b4fd04dae59dfd92b50d271774584ed805022afd4bd8b97c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-425-2-deeming-income-from-a-non-citizen-s-sponsor.html",
+      "sha256": "775969a50a042f5ed1f5ea059ff582d2412cc2dbb59130da7df0ec7b2bf82bac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-425-4-deeming-for-long-term-care-programs.html",
+      "sha256": "d87df2b90a8f3b835cdbbbb7a95f71a474e82a5753bbcb0d076b7ea03c305102"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-1-1-medically-needy-programs-and-health-insurance-premiums.html",
+      "sha256": "a0432e943f29498f372aee1ea2a82add3ecb2f5193f768d678647164b7d17109"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-1-2-health-insurance-premiums-and-medicaid-work-incentive.html",
+      "sha256": "d41cb880e01d447f403472fac84da56a6df27cdd4bc46dd3499a3f4d9c0897a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-1-3-long-term-care-and-health-insurance-premiums.html",
+      "sha256": "b099b9ca5dfe3d4a869dec6e7dc707590aacfaf7c12432307da96bc0925f9e2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-1-health-insurance-premiums.html",
+      "sha256": "1cf853b17b47d376b46a5c2b44354f4b0e8e754b3c50936bc814f1173cc81188"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-10-deduction-for-dependent-family-members.html",
+      "sha256": "688546644801fb6548e7bb10d1a08fdbecfef51f82708d3daee7254b113b17c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-11-aging-waiver-and-brain-injury-waiver-deductions.html",
+      "sha256": "d2530e525a9a60fff159111f4da3cb8d8158e62e8e81fb729316052b62b2a42d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-12-community-supports-and-medically-complex-children-waiver-deductions.html",
+      "sha256": "b4bc953dcbc2966de5f94fda87b823138da4a34b39e1fc2837ce4eac84635681"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-13-technology-dependent-waiver-tdw-deductions.html",
+      "sha256": "0413b6576bd6297ff01df825df3e1880fe4d78072ef14c3a9099143c1fd3ae35"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-14-new-choices-waiver-post-eligibility-deductions.html",
+      "sha256": "b2cb4b9ede3e26bf7168a51c3a12b6d3df3ed02b7040794cba0639acf0af06b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-15-physical-disabilities-waiver-deductions.html",
+      "sha256": "35e7020a00f046699706362808080d153393349b3bd4394ddf5dc1b90f0924c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-16-community-transitions-and-limited-supports-waiver-deductions.html",
+      "sha256": "450aa0fd78e1b96630fd295cf630831303779944a0e4ccf740d35c54414d6a26"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-2-earned-income-deductions-for-abd-qm-slmb-and-qi-programs.html",
+      "sha256": "a81d8bf1e969abaa45f18d471c0b59ed2cde541aab115cd2569a852352ed3d57"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-3-earned-income-disregards-for-family-medically-needy-medicaid.html",
+      "sha256": "61dccfda4d68a3ecb32de172b6acfee50f6b13f6a7775fc437e4a324bd2c1f70"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-4-earned-income-deductions-for-waiver-and-long-term-care.html",
+      "sha256": "e4a8b00e36a9ee2cc4f9a8dd260e2ac28b02f77162c28e5eb7d2da21d5256e15"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-5-unearned-income-deductions-20-general-income-disregard-for-abd-medicaid-qmb-s.html",
+      "sha256": "b5295054b2ef62a8c84195dddbdfb25654e5ad3025d69b40810e0df56e4eeff7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-6-unearned-income-disregards-for-medically-needy-family-child-and-pregnant-woma.html",
+      "sha256": "2caa01dee9441d136beff912ed785d102ed8356517ec36f506a83a643cebc54d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-7-unearned-income-deductions-for-long-term-care.html",
+      "sha256": "e54feb2985d7db648382403aa6f93c4622641371cc07824f36e1ef0240b47515"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-8-personal-needs-allowance.html",
+      "sha256": "47b6be58f127604ba15ab16f006274495cd3102e3e255278c7d541591941c2ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-9-1-determining-the-sna.html",
+      "sha256": "2a5a159ce7b7c00a42a31fba5636c7572b6a832dcdd411c1da273093494cfbfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-9-2-when-to-deduct-the-sna.html",
+      "sha256": "f10fec99f41a4d81dddc3b94490a1e51cbd1ebeb6a2147ad4b305872cee74f3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-9-3-deduct-less-than-the-sna.html",
+      "sha256": "9a97513d162d9bead6bcef640cbc24dc5e696e76a5955e3d06f9d26440345529"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-9-4-fair-hearing-order-for-more-than-the-minimum-spousal-needs-standard.html",
+      "sha256": "293c444b2e219d1eb55c74cc8bebf03d2842d0a7007a5c71857a1d802c1b8008"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-9-5-court-orders-for-more-than-the-sna.html",
+      "sha256": "5e9541a76add43bed440355ae0bbe67415d012a0c2adb4cf05a39ed49b08c3c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-9-spousal-impoverishment-income-deduction.html",
+      "sha256": "1ceaf4dfc176a6c6c725c8f7c168a82c82af1c38439e30e83b431c1be8b3ae88"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-431-income-deductions-for-non-magi-programs.html",
+      "sha256": "b20d4c491223add8e0975606a33a79374f5e763726bcd7be173885c367e8b564"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-435-1-definitions.html",
+      "sha256": "1ebdc23daa5272087594927e9af502daa4e434063bbfdd0e29eff4d07883c0f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-435-2-determine-a-best-estimate-of-income.html",
+      "sha256": "4a7f5ba72d294c8233f4a611db443ac580b70a4f14cb6034c38cd7dbef8639e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-435-3-retroactive-period-income.html",
+      "sha256": "1a01ab56d38e6d0ab7616a98b31fb858eee91f291e56d96d8fd0e936b1684265"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-435-budgeting-income.html",
+      "sha256": "8f669e1f69079dc73e6e967eb400ebf1c6a0073901e64c4a40f00704b79ccba8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-1-modified-adjusted-gross-income-magi-methodology.html",
+      "sha256": "efd4c2d63e7beedbf21861db03ac26dad8244780d00cadb7abf09743a9260d4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-2-magi-based-income-requirements.html",
+      "sha256": "dd14e56ba2e5bf585b73a56837b201df319f10971c078eed70cce3f77d5af4f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-3-income-for-magi-based-programs.html",
+      "sha256": "592fbe730aab78b1dc3e0f993848b8b755fc17a3b0d084eb6edb55dbddcec572"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-4-specific-treatment-of-income-for-magi-based-programs.html",
+      "sha256": "0a5d9b7be79dcbcf9075c45324122cb89f2bde4440c889662af148dd178d8499"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-5-calculating-income-for-magi-based-programs.html",
+      "sha256": "d88d23294f1c66d2125469e5b926c8987544c55e666da1e11464b675e76829dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-6-whose-income-counts-for-magi-household.html",
+      "sha256": "6986050ba266ef83797cd4b23d3d6cdc4f53716a2c5901fd73a672303a7c8d96"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-440-determine-countable-income-for-magi-based-programs.html",
+      "sha256": "9b824f53a97eb1154b5bc2b30be3546fec64c95f33305ed09b5fe1d2bdb7dc17"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-441-1-income-eligibility-and-calculation-for-family-medically-needy.html",
+      "sha256": "71e913d4e5497bffb906af0bc9a7f4f64a18f8b49603bf8cc6e64c5f561cfb30"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-441-2-income-eligibility-and-calculation-for-child-medically-needy.html",
+      "sha256": "69c98a094be7e855e88fc4d2ae7e9d96c28ed862d8332e9fd4b705b2f3e35301"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-441-3-income-eligibility-and-calculation-for-pregnant-women-medically-needy.html",
+      "sha256": "99a65641582af202fee1c6bdcdfc3e8864e5f971a31ca7b04786d7e1c04b811c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-441-family-related-medically-needy-income-eligibility-and-calculation.html",
+      "sha256": "8d1053130dcde985bd28eaa91997b911e3b48ae97046142e619066e22908ec66"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-443-1-comparing-countable-income-to-the-fpl.html",
+      "sha256": "dcda4e5f3dc8c1bfa3deb88a61c572b36c582c4e4b7f6b446dbf3110cadeaa54"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-443-2-100-fpl-group-or-spenddown-program-for-the-aged-blind-or-disabled.html",
+      "sha256": "55bc6bf4e7e9647c94008ccadb0976bf7b3de0c614ab781c3f4111507b7c818f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-443-3-disregard-of-rsdi-cost-of-living-adjustment-cola.html",
+      "sha256": "a6e1759fd5adafd1dcc8deea105e9a9add362a3cdaead265e446023ef7be2833"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-443-determining-countable-income-for-aged-blind-and-disabled-medicaid-and-medicare.html",
+      "sha256": "b436d90a0e87d849f481f79dbbadcd2b8fc4c86cdc1ef219fa7f056a52c1ddf1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-460-1-programs-without-payments.html",
+      "sha256": "522334d1c520440477292c29e8f67639fd48bc6221c1a5ba8345fe87e154aabd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-460-2-payment-notification.html",
+      "sha256": "ad81eb0061557b0c6f2e382123cd2803599e757167d324bf358840244957302d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-460-3-time-limit-retroactive-coverage-and-late-payments.html",
+      "sha256": "d1788e1b1a7b5492cac20f77327138b3618d4b6a82c0d688a822b0e8c1a52d6e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-460-4-changes-in-payments-refunds-and-fair-hearings.html",
+      "sha256": "b8f22788192e65711fa7a8dacc1f0d2d8f13eb215b907df0a76e1188e9268798"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-460-payments-to-receive-medicaid.html",
+      "sha256": "ac0111461e255df74ce71987b34cc47a6af8f70c0da1bd46a3ef749280ed259d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-1-benefits-of-spenddown.html",
+      "sha256": "1bcad07d05a5ef865501bc6593dfc70bd92e0729b0ba3a933db1c3b09d01b4b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-2-methods-of-meeting-a-spenddown.html",
+      "sha256": "a0959fd7124dba35777dfa43598f84e04d712502edd93199ebf7c1bfa935f3ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-3-spenddown-with-cash.html",
+      "sha256": "c6ccef0cf2968ef147241981f5602f6fc31d213aea5bf13a924317694387d23a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-4-spenddown-for-multiple-family-members.html",
+      "sha256": "a812ff7e0e84e460d86a0b33d77ecb672497c0aeca4eb2daca130fe6d8cb2d58"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-5-spenddown-with-medical-bills.html",
+      "sha256": "23f948994c33dce71cd25579cc5585509f709c411ccac563126a28528b1a25e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-6-medical-necessity.html",
+      "sha256": "4740b3001a5d08d579f02cb11d9cd2f5607c9ebef6ad3ea4204853e039d4470d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-7-tpl-and-medical-bills.html",
+      "sha256": "47fbb796ca8eafe4de9574d4c21688763a4732d7ba6ef17b46d84a5038a4b078"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-8-applying-medical-bills.html",
+      "sha256": "a762a8f316b63956bce44ba4b54608e1c545f7ca0354600d49fd87597d2af328"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-9-spenddown-summary-chart.html",
+      "sha256": "a506c853552d905c7780ada1ba1d98d9ddf558189392a0683b45f4f416f8779d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-461-spenddown-medicaid.html",
+      "sha256": "dfa89d3b52a639674fb10e438dd89c31431c15ee266f62bed3c5a949b779f651"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-462-1-mwi-income-and-premium-tests.html",
+      "sha256": "2f67983aaad020db051fd958840d98d4588c4d2ad2467ad8917c193010655320"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-462-2-payment-of-a-mwi-premium.html",
+      "sha256": "b53aa559de6e2d240836cde2fef2fd2ee3ca37be5e682b99b078f83b60c9d808"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-462-meeting-mwi-premiums.html",
+      "sha256": "ddc3386fe3f9cc4a1b4a93ee5c32ffc9d9ce8eec901d4126382be167cc7ebfb7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-463-1-determine-total-income-and-cost-of-care-contribution.html",
+      "sha256": "604c621c933dca320ee8cd9f9a688110fc44d660a32b84d9d3849c889f64cb10"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-463-2-waiver-recipients-with-a-spenddown.html",
+      "sha256": "9ecf0f9d713d80a40a7a0ef531b603744dd23f618562819117abf132e012a021"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-463-3-long-term-care-and-medical-bills.html",
+      "sha256": "ce3f83e080baac227560d1c8cd50839ab80a3920e29465abdd1d2c345b11f448"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-400-income-and-household-requirments-463-payments-for-long-term-care.html",
+      "sha256": "6f2daf2a74aa53cb39cea4fb5e478e62baf036125c07c2aff94d88ceb4222e9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-500-asset-standards.html",
+      "sha256": "ba69c62d92fdfe47eebed4a21588edbc33bb57c6cb6060443fd8134ec81a6d53"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-501-1-real-property.html",
+      "sha256": "c347c547fe4bff790e9d3bffc8f07e7ce31a1d487ae150de9e69740a43bbf206"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-501-2-personal-property.html",
+      "sha256": "3ab1f4c31f1fbb91c713eb76366352215ccdbba63f4e935ee0bb3444e4813a83"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-501-3-assets-of-ssi-recipients.html",
+      "sha256": "f2d115d1b39a4cf928c17e2c3f05383c2e0fd4b887c9aad2967ec3a89fb9d254"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-501-what-is-an-asset.html",
+      "sha256": "f581faf6fd851d6000ca6080e1e13346d9d708eae518e2aeb68606d970645408"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-503-1-whose-assets-to-count.html",
+      "sha256": "0b3e9578159435c1c914b46ec29db1f8e07bafca96cd9f709a560af21513351b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-503-2-when-assets-must-be-below-the-asset-limit.html",
+      "sha256": "75089023e1a3bc8c43212c5e736c92dd11cedc1a1809b1ac241834b755bc5a15"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-503-household-size-and-asset-limits.html",
+      "sha256": "de337631624cb837b5c419175eca550c5da24054339d799f237ded43cde516f7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-505-the-value-of-assets.html",
+      "sha256": "6d64d00e4162aa06e6fb19bf9bc84afe2a43b93e39b8379bfac03aa37a5236ae"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-2-assets-managed-by-someone-other-than-the-individual.html",
+      "sha256": "ba09db3c34d9b688e8d0b12498437dfec1a827d45b8370ff549be4cb165bc5d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-3-joint-accounts.html",
+      "sha256": "bd65e7880873c86a4020015a93b7323f189bca905e50189a8d626ad82405e64f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-4-joint-ownership-of-other-assets.html",
+      "sha256": "b33a88ee7da9e09a7c57464fce315e8c042af3862166c3e4979b2ea3f19aad40"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-5-when-legal-factors-hinder-making-an-asset-available.html",
+      "sha256": "0f0f5b154bca14df7816b4a9ca1d3e2c7a0aa522c6f53704cc9c1b5da9f5eca2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-6-transfer-of-title.html",
+      "sha256": "7d5c33c76f38bf69c1e279cc9cf6cd2dc8757cdccf6ba44e535833f36591edfb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-7-divorce-decrees.html",
+      "sha256": "88c24bcd06e5890e7d3c751ea1b75d92d120dab99140c5ea5c2c296479b37bc3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-511-availability-of-assets.html",
+      "sha256": "f0d1ce83eeb66575b3c29d654dfc1ac2bfa3774256d1a11498c8336fa6538c5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-1-trusts-established-before-august-11-1993.html",
+      "sha256": "6c8d175de5aa7324171ad48c40d70e64333c9b4c2020ffca3ef83a4d46756fc9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-2-1-revocable-trusts-established-on-or-after-august-11-1993.html",
+      "sha256": "8f74891ed258e1d8ff22731dd57ce2b5f66d6c01a7ae74ba5dd6ad07b2e08e8e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-2-2-irrevocable-trusts-established-on-or-after-august-11-1993.html",
+      "sha256": "a9f369090f8ea91798a9dd415b2c94a94682d9eac68aac0e61b6e80c274d03c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-2-3-excluded-trusts-for-disabled-individuals-established-on-or-after-august-11-1993.html",
+      "sha256": "598a9c02307c7b6acc7b2d60ce1ef74b1b099e68054fc4f0ce2457d1d3e8e163"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-2-4-trust-accounting-review.html",
+      "sha256": "95ca1d02878a24edc849dd8a6061db6d1cf8247df705e8da7b0e1ccc58760875"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-2-trusts-established-on-or-after-august-11-1993.html",
+      "sha256": "4e0ba96b7b7e63c7a33f62e6136e6629cfa00129d8fb489b763428862ccf7e0b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-3-placement-of-excluded-assets-in-a-trust.html",
+      "sha256": "0b7be3711c6253ab71b2c0e5ea950c5d65143bffcaf77d382b857d020a8fd416"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-4-undue-hardship.html",
+      "sha256": "dfcf3b3748c84520cfffc1ce9843daa561535ce5d0529bce67d2fc29409a1dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-512-trusts.html",
+      "sha256": "2e357008e2bce7edf71a1cd64f5ed2a92767e1a7564bcd19165363fbdef49c67"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-513-long-term-care-insurance-partnership-policies.html",
+      "sha256": "6ee5e737fa5b55b40f1283316176d5e5901d35037b54c502c398b81087c96cd1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-1-one-home-and-lot.html",
+      "sha256": "dc7127fe4c3759a0ffabac4e2c15d5c9e6881af5458d406f7c9d42ad6b02d484"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-10-educational-assistance.html",
+      "sha256": "0c1f17ef702232f0c770eb45d5bdc8cfe2b335c2d5f8803df6e37a6ec992aff7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-11-japanese-american-and-aleutian-restitution-payments.html",
+      "sha256": "682be43061cd80d91eab1f38a4e76b80a6b140399f9e862a7074b023130873f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-12-cash-payments-for-medical-or-social-services.html",
+      "sha256": "08e6a533ffb8b05da5da2bc33a00bfa4840dbc9ad2a46de93390ad3bebe021b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-13-retirement-pension-funds.html",
+      "sha256": "0ac2da4c634947cafff3b71917257f2dfe605a31635531980b90bc88b3a1a423"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-14-uniform-transfers-to-minors-act-utma.html",
+      "sha256": "36fff72d4ea290032fd2b59fdaa0ab9f8dd43da92ed4899944877ea0a52fd6c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-16-life-insurance.html",
+      "sha256": "ead83fcc1498c1f505da47e34f5cca7a00051db27d759dffe105020dc36b9ea4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-19-conversion-of-an-asset.html",
+      "sha256": "3ecc5d17f0f665f3f628d13e92ccdc833109441c36e8cdf92946c1e1d409fa65"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-2-water-rights.html",
+      "sha256": "e5a629e9597da6059d50aa2016cf2bf88e301790abf3c059aef45a5c1faea277"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-20-resources-set-aside-as-part-of-a-plan-for-achieving-self-support-for-ssi-recipients.html",
+      "sha256": "e8da73e340df1caafedb0af8313a4e2c0e2a89d313a083980683173a83e82e5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-21-oil-and-gas-leases-and-other-mineral-rights.html",
+      "sha256": "4e6533390a1c95deaa307de0f5e60d5135453af1eb30bcc5e842a4e9aacacc8f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-22-german-reparation-payments-payments-to-victims-of-nazi-persecution.html",
+      "sha256": "ed322d0df6060f493d0b35cd7f3b5913ea7e094e59859ad0025ae0dede877c00"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-23-certain-housing-assistance-payments.html",
+      "sha256": "d2c985dc574645d3ee524cc29c63aa30eccd9c5aa8ac726b9b0f34a310d44748"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-24-radiation-exposure-compensation-trust-fund-payments.html",
+      "sha256": "6444c3d3ec84b46bb6c75da205d38b1f6ea34fc17d562688da7714335b96712f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-25-agent-orange-settlement-payments.html",
+      "sha256": "0c8d4a1fbc065055432aefe06596c1b01c6df247d7b5842c37ca261f90e032e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-26-crime-victim-s-compensation-payments.html",
+      "sha256": "4acce5cfbc617677039d28b0d773706e6958c7083aaec1e6c27a403c67781bad"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-27-relocation-assistance-payments-from-a-state-or-local-government.html",
+      "sha256": "48fa7509c48c7ed3098aba8f85cc596cfb34ff615a797f73d0dc4435775405b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-28-austrian-social-insurance-payments.html",
+      "sha256": "2e009c91c0a08a1ec3e28a39fcf48368abc4eef3d6c6875950677913389904e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-29-benefits-received-from-programs-authorized-under-the-older-americans-act-of-1965-or-the.html",
+      "sha256": "e2fb4725ee7633244e04bf7c60a3dc6de3e649eef1e4e811c9e66c2d81203f9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-3-household-goods-personal-effects-and-other-personal-property.html",
+      "sha256": "59e28f4de695e8ce49bafe5db2a2153f637a1c736905bc984bf35ecd1b41cc26"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-30-dedicated-bank-account-containing-lump-sum-payments-of-retroactive-ssi-paid-for-a-child.html",
+      "sha256": "244178d7897df6211b69120e8df17d297096a6a88c9052c55fd2d667de43599b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-31-federal-disaster-relief-and-emergency-assistance.html",
+      "sha256": "0d11935c83feacc489cc39e622d9dda990b8c58c2905298d63102921f6a45985"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-32-federal-tax-refunds-including-earned-income-and-child-tax-credits.html",
+      "sha256": "486f9114e9182c508b21fc7c27c68f5a26ce7be822bf21ff9551432514301fca"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-33-settlements-paid-to-hemophilia-patients-and-others-infected-with-hiv.html",
+      "sha256": "4b503244315ea9efe8aee9a2eba08c2771bbc9e64d25763519f7ea20537a9250"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-34-va-payments-to-veterans-children-born-with-spina-bifida-or-other-birth-defects.html",
+      "sha256": "c982435404bb77d4313cd26f196a5b54e23fd29de046cda24aaad663f4fc1c91"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-35-netherlands-wuv-payments-to-victims-of-persecution.html",
+      "sha256": "0e7b831b3c8f4948cef0fd05b894a3e3a942ac01fc46654a724f92476a51d025"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-36-gifts-made-to-a-child-with-a-life-threatening-disease.html",
+      "sha256": "658ec6ab814c802ed3ec24093066f4c1b1ef5c6600eafec8f47b3f83983782b1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-37-individual-development-accounts-ida.html",
+      "sha256": "1258f50bc1d28a2d1d5740109dcad4f3376dfbbdb7a51059a8d944f8db02c4b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-38-payments-to-certain-persons-captured-and-interned-by-north-vietnam.html",
+      "sha256": "0cb75fe869a4e59c341161255c9af0f745c2c31dabf89e97d8e6405edd1e5ed3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-39-payments-under-the-national-flood-insurance-program.html",
+      "sha256": "29b9975d804c136084a88c0f7b8d4cdd05b9592c2bc2f74c1f15ac88432c3f93"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-4-vehicles.html",
+      "sha256": "a7d012cb60d7dadfb8165ae35ebf82814ae384b490b0d7454f736e0880acd01e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-40-payments-to-filipino-veterans-of-world-war-ii.html",
+      "sha256": "265d3ceca1e40de6134e42d0ec858af03b427032f48ebb84f3d7181f62b4c818"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-41-energy-employees-occupational-illness-compensation-program-eeoicp.html",
+      "sha256": "aa6e514af2992e9a6a38a8a020d67d58568f9042fd15e1793fe3dc72c4f18bc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-42-payments-under-the-individual-indian-accounts-settlement-litigation-approved-by-pub-l-111-291.html",
+      "sha256": "9cdb68cece44dd33835ea8809eeff115358720c07dba061c4a4941e686610ae5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-43-payments-for-clinical-trial-participation.html",
+      "sha256": "971e0427175047df3dbfe5b761b518cdbe78327f52015a0e70782db959648c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-44-able-accounts.html",
+      "sha256": "b883ea02b67ae87e8e0ccb56cf8b475fc40508850dc9045353a619e5ba5dc46a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-45-utah-educational-savings-plan-uesp-529-accounts.html",
+      "sha256": "3f98e14426a81d4bb6144350c46e171ac8a746751104c2ac908d41117d31f0bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-46-covid-19-recovery-relief-payments.html",
+      "sha256": "ca2185037751c35453b35778e642a08b72e5a2de3aae3d7d5ba7b74c95c5cca3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-5-indian-land-or-accounts-held-in-trust.html",
+      "sha256": "3406343208768bd28abbe296bbced798e119f9a906e18692ce04ea09e3e45ef4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-6-per-capita-tribal-payments.html",
+      "sha256": "4400491682c94e4e1757b08a7f1a1d587527f7b224c0063529f92b5ef1e26889"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-7-alaska-native-claims-settlement-act.html",
+      "sha256": "f43652ecdfa678c65335dccca0ac37d05a6f5dc8c7955ababd600a7389d4440f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-8-income-producing-property.html",
+      "sha256": "ecc9a4cbb9de7f3c8456cbf112583c8300d71423e05dbf04c45e59740ff6e368"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-9-retroactive-and-reissued-social-security-and-railroad-retirement-benefits.html",
+      "sha256": "375fd2f0d9ae5cb0c5e164da398053ad773954f7aeaca0b90f9038a72f48bfb9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-521-exempt-assets.html",
+      "sha256": "037d2853c4bb2907e302d139a61111b09cd8c803e7119a8630866ab9a3e7ebda"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-531-1-ssi-ssa-and-railroad-retirement-board-lump-sums.html",
+      "sha256": "30ea88f5c7573a8d8c8cf2806684df6c7ee9a0ad68dd9c69cee37fc2099cf730"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-531-2-ssi-lump-sums-for-retroactive-benefits-for-a-minor-child.html",
+      "sha256": "1ab2863205fa1b0f8d3b2ba0f22318a8e2834330bc325c28668d5e85a2a2e2e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-531-3-sales-contract-lump-sum.html",
+      "sha256": "fe63e6b0faba5b1ab75d85c171d09291cf83f785f749e43523582e46b978a3a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-531-4-death-benefits.html",
+      "sha256": "336ff81b8f44a4474b6e4979f82e28512f1f8b858c698744bd463e7f726be611"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-531-lump-sum-payments.html",
+      "sha256": "296c10547120c8ca5c3f3d32191bf15217cb3d2722d84cfbd2ef5bbf0803faf0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-550-health-savings-accounts.html",
+      "sha256": "db2c5a56e67a0d719263bd19c8a6a1abb924dd7433ef0d2efaa989269ad23729"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-551-payments-to-replace-property.html",
+      "sha256": "eeb9438b3928f2a020412612d6d12158e7083df0c3d0cf79a17af366a23ed3e0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-553-life-estates.html",
+      "sha256": "1718c537ab624ed604bcea243fd7bee5c84210319cc6be0a56b1967c7afef252"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-554-1-treatment-of-annuities.html",
+      "sha256": "04b76446c3e16fec28a4efa47ff9d10191dc666012a605b53d25c66162a9e4f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-554-annuities.html",
+      "sha256": "1e7c49ab05f1831cd8bab0ee796513faa5ad9d78674bfe1d7ff79060ceed7978"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-573-1-assessment-of-assets-and-spousal-share.html",
+      "sha256": "4f3db568f914c2dae828dfe241faec720b8432b16456cfce04a1e0ba873f1f98"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-573-2-spousal-protected-share-of-resources.html",
+      "sha256": "cf806608695517b2adf8a529f19c821b4c274747c7659d9fec8f17f498c50521"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-573-3-deciding-asset-eligibility-for-the-institutionalized-spouse.html",
+      "sha256": "907f63ddaffbf801487563286bdf11f5cdb78a703d6ecd57c1ef231b44bf4f4c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-573-4-assignment-of-support-rights-and-undue-hardship.html",
+      "sha256": "0de28608aa733645ba439f2d72383f237d16cde6e17794af8e48480a20ec1d56"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-573-6-protected-period-to-transfer-excess-assets-to-spouse.html",
+      "sha256": "b25580754eb8977ee56e545668b08a1355045fca90279f9151b437e518d6d6ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-573-treatment-of-assets-for-institutionalized-individuals.html",
+      "sha256": "d128b3e81af25afbd748936364ccc9430780d88891332c6cf56e99eead6e78eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-1-decide-if-a-transfer-has-occurred.html",
+      "sha256": "e1958d86ebdfc11beae3a3e937295452030a1474075c5c0a666359e026877964"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-10-setting-the-penalty-period.html",
+      "sha256": "10cf8a612d7efb8aa2f76c83d568fb13217864778e15fb7f0836eba725efb19b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-2-the-look-back-date.html",
+      "sha256": "0618f88a7eaff7ffd96d77fec26707b10ef691d810f18429cdd3b029deb2d8e0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-3-when-to-restrict-medicaid-services.html",
+      "sha256": "6a461a83956b236dd3e0c6ff70fc5a8ad7e933d622704cfc8b85bc9edee34987"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-4-when-not-to-restrict-medicaid-services.html",
+      "sha256": "b6f9c045f2f5658e7d3302ca63cdcd035bd5cd7e512f8e2a2e0ced8a3ebea599"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-5-the-sole-benefit-of.html",
+      "sha256": "49458f8fa1a2dfd336d1b8a0b615e44c6ebb88b7c384925ce9c6ce8fa1c1a986"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-6-transfers-for-the-purpose-other-than-to-qualify-for-medicaid.html",
+      "sha256": "724ee185dd37193b3ecf1c8c830f7e65f3c6ad503ac92ac719e6eaeb33d97e5f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-7-intended-to-get-fair-market-value.html",
+      "sha256": "e3147755d12b296469c5311b0afe94913f93d6cda1c1f555d43c629302eb2608"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-8-returning-transferred-assets.html",
+      "sha256": "70a85a515a1578e48c2fd3dc686e5239d847f47875c4f6309aaefb67be8cceeb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-9-undue-hardship.html",
+      "sha256": "17cd5007bd4cd8c3a67330f29a1b32aacc36d4e03247fe0517920376ac118c83"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-575-transfer-of-assets.html",
+      "sha256": "e772490edba78e49ae707e68bf6f470c606804d0e8090ff24c0a5e6038e2250c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-590-assets-used-for-burials-and-funerals.html",
+      "sha256": "407865bde4333a928665257411277403694861b64cbf598d1172af1fea47404d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-591-1-definition-of-a-burial-space.html",
+      "sha256": "497616971d51622ecbfea4b601720d6aa57bc59fc0f9422a2b694c10b12bec9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-591-2-burial-space-exclusion.html",
+      "sha256": "c093398d1be932507642375a166c22461e4e47e38597794857349b51d359f4fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-591-burial-spaces.html",
+      "sha256": "ee38df12b5461306109ce5fa35eb00b007211a9e74d57953959dd95268007087"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-1-definition-of-burial-funds.html",
+      "sha256": "4b455df44f538f967519ab017d8de3199ffd50dd2edba93db80e2c7b667d244b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-10-redesignation-or-replenishment-of-burial-funds-after-use-for-another-purpose.html",
+      "sha256": "e548463713067947646d04d0229c88c06171e1fee377abd0078e82e15c03e1f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-11-burial-fund-exclusion-and-unreported-assets.html",
+      "sha256": "9739d6c3db2118babf5911fe634cc9fdf30a05ac780f38a8f11d50bab2be084f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-12-burial-funds-that-were-excluded-before-august-1-1990.html",
+      "sha256": "7b940d612927db82e397250b808b753c51568ab7c9f8b0a35d58d36a8548b947"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-2-burial-related-expenses.html",
+      "sha256": "fe8383b8157446e88b2ce57cf87425a4d1c3dd259c48d119d6a13d254fc1b9c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-3-burial-funds-must-be-separated-from-non-burial-related-assets.html",
+      "sha256": "945f79d0e616b73008d6f0438d508462364181b21e463068e8ed15fbbf0ff8cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-4-designation-of-burial-funds-date-of-exclusion-and-case-closure.html",
+      "sha256": "31221c758237c3c58d78c8beb476c848733678c7a4b7b115a5b5cabf2e1977d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-5-burial-fund-exclusion.html",
+      "sha256": "6481d917287d129d44cff36c0aa5ce4dd11e56551ef7f83723a395904fc54b48"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-6-excluded-and-non-excluded-burial-funds.html",
+      "sha256": "9714f6dde9def3c20e5a5a4074ea5db7eb0b299c31d9e15228f7939465cda7cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-7-changes-affecting-the-burial-fund-exclusion.html",
+      "sha256": "5f9b8f4ed2179a78d81c06b701c785121f1197744e16b52086915f037c5d2028"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-8-exclusion-of-life-insurance-as-a-burial-fund.html",
+      "sha256": "a9e070cf20eb1a39fe7e7f89f162e0618862b4046a243c8908896803857a83c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-9-burial-funds-used-for-another-purpose.html",
+      "sha256": "227b1db87d0bc38d1d0c4634860838c3452f6a6f3178be1ab94474d76c37f0c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-592-burial-funds.html",
+      "sha256": "b59eeb3df39a3746755e9186e7f0c4d5a888ce5bfaa4623b522422fd912a83dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-1-examine-the-preneed-funeral-contract.html",
+      "sha256": "0fec92e69fdfc1391ce24b479ce36b4faa8b90cd64afd53eb7a9f40a8b832983"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-2-revocable-or-salable-preneed-funeral-contract.html",
+      "sha256": "c0ba2e8f519e612616edadf7791d83f0b1268680ca34c644efefe7ea5245aaf0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-3-preneed-funeral-contract-is-irrevocable-and-not-salable.html",
+      "sha256": "e236a2e5ad1e1f2d7db352a299b1821db6508d8fa7e462c5b9e802850b79e663"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-1-use-of-a-life-insurance-policy-to-fund-a-preneed-funeral-contract.html",
+      "sha256": "8b0b62b016c28e1bee4102f79324181820a4afb532e55f8cec521fc7362ed68a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-2-value-of-preneed-funeral-contracts-funded-with-life-insurance.html",
+      "sha256": "5c8d33cb9349c6f1c584aed1ebfabf8457be325f0e847fb0d78287cf39d8acca"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-3-revocable-assignment-of-proceeds-or-ownership-of-the-life-insurance-policy.html",
+      "sha256": "4602db85948392759bc9624a100789f3ba058c30de255897b1b63f64d53dfbaa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-4-irrevocable-sssignment-of-ownership-of-the-life-insurance-policy.html",
+      "sha256": "41c2749dd3384fd79fc9f2067fc8ea57836a2760e53eca031fb8a5078d9e4b31"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-5-irrevocable-assignment-of-proceeds-of-a-life-insurance-policy-to-a-funeral-provider.html",
+      "sha256": "3488a9f2b08d02addf66297bd5550a6bd627b359d429d7d0b6fa46fee06f7004"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-6-life-insurance-policy-irrevocably-placed-in-a-trust.html",
+      "sha256": "05ab4497366c184b6afb382b86a976e020f638c05ea5d99f48f3a1fb6fe277d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-7-designation-of-the-funeral-provider-as-the-beneficiary-of-the-life-insurance-policy.html",
+      "sha256": "9d667307db62049fe796cd20d592bb137d8cc56c6475855689df11a758e67270"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-8-transfer-of-asset-penalties-and-use-of-a-life-insurance-policy-to-fund-a.html",
+      "sha256": "ea54a2e726e270fb2322abeb7cbd9a18746d22f39d692f4184c64988748c6c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-4-life-insurance-funded-preneed-funeral-contracts.html",
+      "sha256": "a66661b5c59eb279a2470b96a11650245a5585e0b74ab0626c89e3d1d2a60d4d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-594-preneed-funeral-contracts.html",
+      "sha256": "271c43510790d441e300723d536facfe226962b3dc4601cb91d13784d163c0fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-596-1-definition-of-burial-trust.html",
+      "sha256": "20169664e14be0e91e77bd410ff1a7242f999df80ca0bf0c8e69955c4def7f37"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-596-2-revocable-burial-trust.html",
+      "sha256": "f9d18e1bf87c8a790251ade98bb49b79a07031a7eda84d97dad66c5e4cfbd74e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-596-3-irrevocable-burial-trust.html",
+      "sha256": "123a0ba75100e259dd0dd09b34c9e4647b5ae493a92f8e12639d89d1577a612a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-500-assets-596-burial-trusts.html",
+      "sha256": "c2828c9a2b347590e7713dd0d8250d64b4a2170b8c53123f5c02c8bad88cfdd9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-600-program-benefits-and-services.html",
+      "sha256": "a11e52356e0eef4912fd3aebedf1b1db4c0f47632f0341a8cfc64f15c11598ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-601-health-plan-selection-and-education.html",
+      "sha256": "a0f83d7670e55f84281c476d210b96e49bace95c281a8c9666c9119adfca80e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-602-medicaid-member-card.html",
+      "sha256": "be9479fdb73438e1afedea72a35bc16b469da9dd58476a55231a5b30588bfa92"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-603-3-benefits-for-the-qdwi-qualified-disabled-working-individuals.html",
+      "sha256": "1f78a10f249ab0ef2812f2d31d72bb0f8ca5830230ad9b72a096f7ef294a593f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-603-cost-sharing-requirements.html",
+      "sha256": "bdcb5b1d10858daa38db8fc7589ef7abac078ebc1b5850f6fa858d8912ae69f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-604-suspension-of-benefits.html",
+      "sha256": "2b3bad0614bb98081389a981b09c6dae2654906a585c3b19be7edd7a550952f2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-1-exceptions-to-eligibility-for-non-emergency-medical-transportation.html",
+      "sha256": "cdabad660f86601c38fe390b6e106810f2f95e3f242c6e39b600a02caf79bde5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-2-modes-of-medical-transportation.html",
+      "sha256": "f8d7f49842fb4a69570a4d240a66e7772047a240b29973be37fdb2933e09a552"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-3-mileage-reimbursement-for-travel-within-the-local-area.html",
+      "sha256": "5d7ada8c8b010b7810a0c2ec5583f302cbfb6ab6aa010d4c114cc5cbe3af8a69"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-4-reimbursement-for-travel-outside-of-the-local-area.html",
+      "sha256": "e46060d76a5dcd8a3c6244f2f010efa8802c6bb4367990bcb8b1a5fc7faef2ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-5-mileage-reimbursement-for-multiple-trips-on-the-same-day.html",
+      "sha256": "94f20a122b4ce5826f19872f55fa60c95e892d8450336dc37ca048cf19e06902"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-6-rate-and-method-of-reimbursement.html",
+      "sha256": "daa6909d576d581494cd249e56c30033fdc8be44a390bc6bcd0b89a928927ff2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-651-non-emergency-medical-transportation.html",
+      "sha256": "b32b95624f057af97c9327d6ae2bf8da94e2dbd943ca9c78055d0d0e24150701"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-600-program-benefits-661-fifteen-dollar-state-supplemental-payment-ssp.html",
+      "sha256": "8891377f5a9d95513c45490fb5bc2f802f95fb72ac461f40c7b66e5c923976b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-700-eligibility-determination-and-eligibility-review.html",
+      "sha256": "3ccf21d5a5916d308b24056c5ab5f561aabf4f1b530ddf089a418799ed771c1e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-1-what-is-an-application.html",
+      "sha256": "4ea9b0af0170aa4bff33ccdfbdbe8180ff79c3bf2fa916c0cf4c267a1f55554f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-2-date-of-application.html",
+      "sha256": "258cf2024b31c93a718d4a8fb4c295fcf07631199f2df726861ecc66e484355a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-3-who-can-apply.html",
+      "sha256": "6db99bbcbe598ac9a15e5163949c72caa99282b0e74e7bc7679e6fa8f796ae31"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-4-what-to-do-with-an-application.html",
+      "sha256": "379fb2f036de58513101e2062a162d888e11072968d04cf2aa444b756d58c24c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-5-eligibility-decisions.html",
+      "sha256": "c14bd4b7f9bf155f0a6e09a583d3c37a985479624047772053d18048e6e891c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-6-withdrawal-of-an-application.html",
+      "sha256": "01a308724d5f0b71546a95c6dc9e7fd1ea810f22527d36f12f38e2f539918bed"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-7-residents-of-imd-s-and-inmates-of-utah-jails-or-prisons.html",
+      "sha256": "10636306b5fea7f9da6d26e0de5477cac26c15ac0c70fbb2647cf4d917213ffc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-703-application.html",
+      "sha256": "8953fe83572acc257d46c436fcf13ba634340a0e9f3ea3af750999dfd69be5c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-705-1-determining-the-retroactive-period.html",
+      "sha256": "604ab6b3559ca06d33bb0c6d6a99cb58e4942da408d44b01387119c29bd68dd3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-705-2-determining-eligibility-for-the-retroactive-period.html",
+      "sha256": "f3972ac6e133c978f19c5ca0be4e0d0c5f58a9be0b95a819ed15b83806b7a9a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-705-3-requesting-retroactive-coverage-after-the-application-is-processed.html",
+      "sha256": "c3eb5851665427b861d21ba40782806652bb6eb4ac60aeb9e46558a794533c75"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-705-4-payment-of-bills-from-the-retroactive-period.html",
+      "sha256": "cd2906c726adcc5a5a9c3e7d69f32646a0d3f04dbac3971c569afacab2378279"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-705-retroactive-assistance.html",
+      "sha256": "7fc3ff7c460818f5b5fa36dcff971b00149ec44aa16c07bdad18c050cc74e429"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-707-re-opening-cases-without-a-new-application.html",
+      "sha256": "83548bf62bde27a64f38189e1de552f18c48c3d0eaddeb79f13c5d8fee0f019d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-711-benefit-effective-date-for-medical-programs.html",
+      "sha256": "3fcbf5107cfccd5bad544b36b06167690ae8bdd3cc78a7fec347a9ad03e888bf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-715-certification-period.html",
+      "sha256": "243128c444f54265dfe423352dd9301653e3480be3bcb80c9819da35fdcd0841"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-721-1-ex-parte-reviews-reviews-not-requiring-member-participation.html",
+      "sha256": "625124a0e09c11cc02f77b7c184349b4cd045c731a750c4bf5fec20bd1f1be31"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-721-2-reviews-requiring-member-participation.html",
+      "sha256": "5211b535e644ec2c07bb7b34bdb0ca98789de7c7cfe62c90cec39354e6246865"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-721-4-time-limited-programs.html",
+      "sha256": "075275738fc2ecf6802a6696e4750ec42c42dd2033988aabc3de475c6f8bdde4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-721-eligibility-renewals.html",
+      "sha256": "8087d96ec3f4930e3119fb695b2a2c5f01c463959b01c51f653c08384eec9a31"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-1-electronic-match.html",
+      "sha256": "4948bad8953e5faa4b0193ff2f4146fb96ebfed4439d8af12498a1c66c41c533"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-3-client-statement-verification.html",
+      "sha256": "08713c095c42069fd76bafaf6412502abad7559743966ffecbc9a147d36d21b1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-4-verification-and-ssi-recipients.html",
+      "sha256": "7bd4da53b7c14838578f9d1f307266541692839e783be2cccd0166970db3f7a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-5-verification-from-collateral-contacts.html",
+      "sha256": "aa581a2478abf567e3279e00758f581de2f88d23e78aa91f4d078439414a48cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-7-verification-of-ssa-benefits.html",
+      "sha256": "0a8817953fa1c025f5c06eb8825599efbdef95343f341f5790268bb8aeffa1bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-8-verification-for-targeted-adult-medicaid-tam.html",
+      "sha256": "efd17fdf5a0ad720c48d6fb8ac81b2f844c109a4ae288f3ffb745a5e4a761af4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-731-verification.html",
+      "sha256": "31d2e5bb4d19c0380934e392a8a5e2e4e4469170e4b23a98981fdb40defc6537"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-1-sources-of-ievs-data.html",
+      "sha256": "cf839df44c211d969cb7ddfe0a6eca559c7fdf9eaa3d02cb6e1957c2cb323789"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-2-special-rules-for-income-matches-required-when-individuals-apply.html",
+      "sha256": "f91caf047b301b9fa7236c85ece7d37511455002e6e1ded955b739e7b00e8bbf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-3-what-to-do-with-match-reports.html",
+      "sha256": "79fa8bffd57dd204a414063a710196fb8710de3ea6e2dabda505a91fb1a4bf42"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-4-taking-actions-on-responses.html",
+      "sha256": "09c9ee677286f4400bd59561e8cef729dfd6af4b13616f925f87ccb6f3643da3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-5-what-to-do-when-there-is-no-response-to-a-request.html",
+      "sha256": "2531fad4de99c38978fec6f1027ba6b3c10a38c9dba13703976adc93d151119f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-6-what-to-do-when-there-is-an-overpayment.html",
+      "sha256": "3269db3646d0fcf99417cbb19ff58b6c90a669f7b5cc13b104a853fbfb0b41a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-751-income-match.html",
+      "sha256": "89e5aef1a2156baa2608afddf0a8bbcb9fa95c189a0e11e96a4326c1844011a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-761-1-prison-match.html",
+      "sha256": "a4dc2c230c77dad09fc9fcadde35ddb3c69ee7ae67dba426de1caebf514f4548"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-761-2-what-to-do-when-a-match-occurs.html",
+      "sha256": "9fa7416932d3cc59ceb9a47180ba9b3925ddd2ee1c8fb7c0d5f2855503001e59"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-700-eligibility-determination-and-review-761-prisoner-verification-match.html",
+      "sha256": "36e434e852632b40ffb7eef235d5a3f9ecd538b3a5c91538ea0dcd238aa33f23"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-800-records-and-case-management.html",
+      "sha256": "978d67ee38a1f66830a7eccf1f255198f6b035e576434129c17d86fff91dc962"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-801-1-case-record-requirements.html",
+      "sha256": "d4e5a7e543f8d92a20dcfdc480abad71ad864e4fc97828756dc707b9d9638404"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-801-2-removing-case-records-from-the-office.html",
+      "sha256": "5dca670a91857476cf7eb6fd5db2acda66ca9da1520fc38b4dc0721bb3420b0c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-801-case-records.html",
+      "sha256": "a2d7e07371044ec992b425f5f2b89797300efdf95b50b74d74a9110eae8a3b88"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-805-case-numbers-and-member-numbers.html",
+      "sha256": "5ce2e4db7b074cd97b33c6ec08369d31032f0c53ff4c7eb9466566ff4e0d155b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-811-1-due-process.html",
+      "sha256": "958908a0e75b6a6998ca1e0cb7bfa548ec5f3a337ae12dd5bd8541b68c407791"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-811-4-returned-mail.html",
+      "sha256": "afcfe0f62cc4f2e12d38c45cea24c5554e3ec83ad5710059261e495a4bacc723"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-811-notification.html",
+      "sha256": "5e01ee915c39ff0329f99ef2a9d764ef5195678940c8a8dcaa112c4a4a756060"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-815-1-change-of-address.html",
+      "sha256": "34974e725b7faae4adff07aa5631bc9e4ae270a6cea9191376fd818fa7fba2be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-815-4-changes-in-household-composition.html",
+      "sha256": "e7700b3c40a424596481927a161b36269fe0185e6b2fc54e5bcb491d814d30d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-815-5-income-changes.html",
+      "sha256": "57d60addfeace9c14572c3607d06afa4570ad1281a7d58ca9ceff91dcaf1cb56"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-815-changes.html",
+      "sha256": "77cc420de34dd8078f393ecadec9495abdf3917c2832f0d9f69ba21ed2913955"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-1-1-causes-of-underpayments-and-overstated-liability-errors.html",
+      "sha256": "ff8c238f6bbaca03e9dfd8e3d589d886dd9518b3154081043df1d0f51fde0002"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-1-2-correction-of-underpayments.html",
+      "sha256": "95bc9f603b79c85f6a5697be4933e9fbdf647848a0d352f7869809f1d090e46a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-1-3-correction-of-overstated-liability-errors.html",
+      "sha256": "b94b6a12e5624c7b2db1fdea3cbab25c4efe05abdcc7758c0feef6ee732f8f92"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-1-4-refunds-of-overstated-liability-and-estate-recovery.html",
+      "sha256": "2ee9213ac570ece84938f2240e6d1b0d1ac3216ce34fcd91770b96a4b885ca6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-1-underpayments-and-overstatements-of-liability.html",
+      "sha256": "e96eda6f262746425f91e7e6c847925687396f988531ef32b7c827efa2306b3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-2-1-causes-of-overpayments-and-understated-liability-errors.html",
+      "sha256": "4ce5a1a75b38e0815298074a0665cd1a72b0746edaf1708458d138c6662b9e89"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-2-2-member-s-responsibility-to-repay-overpayments-and-understated-liability-errors.html",
+      "sha256": "57813571ee24833d1ac953976179615963ab0877328d57694040cb3378fd133c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-2-overpayments-and-understatements-of-liability.html",
+      "sha256": "7d2109678f6f76234640d1bc8751c2f6c67911826d0bd60932024a63f0ec17f3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-3-1-eligibility-for-other-medical-assistance-programs.html",
+      "sha256": "95a29e2cd2fef9de480e539b0e3092fec87df2eec14840143bbca741bb4e09db"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-3-2-ineligible-member-or-ineligible-cases.html",
+      "sha256": "dbd43be53fb59a9411f28e506a85a59bac15765a1c380e0685988bf150039538"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-3-preparations-for-referral-for-investigation-or-calculation.html",
+      "sha256": "a0fef0b8fe95f552f7ef590300ec2f4f52305e8801844027268d0b1be31836fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-4-1-income-match-data-and-referral-for-investigation-or-calculation.html",
+      "sha256": "85c0c335b48e12d376f0cd4be7ac59546ff3494795f14ed031b2bf98c754b778"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-4-referral-for-investigation-or-calculation.html",
+      "sha256": "c17771c4360aee34f838892ec5978ce9ed712c01184c7458ff69853abd88ef65"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-1-rules-and-facts-that-apply-to-overpayments-and-understatements-of-liability.html",
+      "sha256": "1fab5595f401ababc5001320e04f0c3fb7185c64b3a428bbd91a37664c632b4a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-2-the-first-month-of-an-overpayment-or-understated-liability.html",
+      "sha256": "7e7d9679502109d4f3576fa906993182036e85dd4a09102cae7d85458cb5725a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-3-assets-first-moment-of-the-month-rule-and-10-10-notice-rule-for-abd.html",
+      "sha256": "4ceaec41ad852c2f3c19283ea99e09aec7974e4d633d7e4db0bbe3c1e68e1ecf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-4-assets-anytime-during-the-month-and-10-10-notice-for-medically-needy-family-preg.html",
+      "sha256": "de2c29a939da7372862c0745e6ee32591c33adae27c71d4009840176dfc049b5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-5-income-rules-to-use-for-overpayments-and-understatements-of-liability.html",
+      "sha256": "ff52c759562ce008d01e026247c5dfd8e834a667f14685bf440a0b450991b2cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-6-amount-of-overpayments-or-understatement-of-liability-errors.html",
+      "sha256": "27804e6471a78c63df160af131e94a2d073d44a387fa94cfc6088c461d28c544"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-5-calculation-of-overpayments-and-understatements-of-liability.html",
+      "sha256": "65850ca9b75457e2e42152e9833a5d24c2639a508f6bed6947fe4198e57fb043"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-6-referral-for-adjudication.html",
+      "sha256": "e77bb566fcd0b15c7e949feaa8126768689b326ef4251a81b6b1b2da8151872b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-7-dhhs-differences-to-dws-eligibility-on-adjudication-ipv-and-fraud-overpayment-coll.html",
+      "sha256": "a5b32ded8db2b6e658f87a114a9c49dbdd2ab9a5d365047e862244270eb04cbc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-825-eligibility-payment-errors.html",
+      "sha256": "efc4f0c598cafa65656fca011b8fe3abca9891f566d74d2c409f6ca12ad88f1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-827-eligibility-for-other-programs.html",
+      "sha256": "27b7f4abb14a5720b1e5bf2890e9fa8384bcd0cc82acd80f18624cc249c2713f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-833-changes-to-the-contribution-to-cost-of-care-for-nursing-home-cases-only.html",
+      "sha256": "5ebaf6fa321061f3eabde5a1509c3705d8130fdc052508dbdc381a08f219b8e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-835-estate-recovery.html",
+      "sha256": "4b05fc433a15666b449dc8db0743f0d31a99d06abf1733c488d2647e6445ffbf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-800-records-and-case-management-845-medical-assistance-fraud-and-abuse.html",
+      "sha256": "5997957ef3194f75ee10100b15e5556ecb68abb80c6c0762980c820e13751a96"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-900-primary-care-network-pcn-900-primary-care-network-of-utah-pcn.html",
+      "sha256": "5fea80af2eb0af51edd43544f1c62b57e2b03072feb32eb2530c276c343920f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-glossary-glossary-a-d.html",
+      "sha256": "abe7fa89d7a65db40ac808a36e27e6aeaf6b66de32f6f540b891d0123b0d5162"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-glossary-glossary-e-k.html",
+      "sha256": "bd6656af432bb4bfd4d2742fd0b854668a18ae5e32f06c8abef68c42d1795419"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-glossary-glossary-l-r.html",
+      "sha256": "8cb3233acfc277272f7de5f96b93db8d787307f66a6dd517c7a487c51bbf0f47"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-glossary-glossary-s-z.html",
+      "sha256": "87a787162b0141d0640d8510fb4bd7ba87329f64d82649da77f9b0d264a40702"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-qna-900-pcn-open-enrollment-periods.html",
+      "sha256": "bbf1b19b78c551f116eefdbbc0c4fa2a64f4c36af0462704a73b669716beb6c9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-qna-continued-medicaid-unwinding-flexibilities.html",
+      "sha256": "faa161aa533c0b869023731d14217abd916b5d2ed5976b345c40a6b6b29bff80"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-qna-covid-19-unwinding-questions-and-answers-resource.html",
+      "sha256": "4d275035f773a0ee1f821491c9a176e984c8eb2dcc5d70458f686a6fa69d268a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-qna-covid-19-unwinding-questions-and-answers.html",
+      "sha256": "0220993991dabd2a8d2fba619390faffc83b18ae2c35e272b01b38b9802b6990"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-qna-section-1000-questions-and-answers.html",
+      "sha256": "7d4c724992b3f6f6d67c88da337a14eb7fdb65ad87735b56437e14d7036dcb44"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-12-month-post-partum-conversion.html",
+      "sha256": "097eb0435720d6f4f045902e0df24662eac7404e9494d93c708a183ada6b6c3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-223-1-resource-medicare.html",
+      "sha256": "dc7876e87448475bf899cdfd5ef6cc7601866e20cc1e931b2fa53ca4b414acfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-346-resource-tam-open-enrollment-periods.html",
+      "sha256": "3811949e69e85361e02037056a9bfd7276b90a50db204233c704475f38c88838"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-431-9-1-sna-budget-sheet.html",
+      "sha256": "9fd22fd12396a0f3dea7a00c8ff5a0d1a074aff3eb4dcf547659aae0a4acc438"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-431-9-4-coumminty-spouse-s-sna-budget-sheet-instructions.html",
+      "sha256": "f93e57a36f5f91747bee1ec8112b935c111badad9a8b6ca6d341d6bde86d3e43"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-431-9-4-hearing-officer-s-sna-budget-sheet-instructions.html",
+      "sha256": "6152be5f827215a49100f291ccec26dd908d012181f26ae8954e83c4da1a1761"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-resources-resource-household-summary-for-family-related-medicaid-programs.html",
+      "sha256": "6932901a0942003a59103b0a310a3b6f0a2801f2316f299721d925642228acab"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-entry-date-of-qualified-non-citizen-for-medicaid-eligibility.html",
+      "sha256": "145a9f8aac8e12f64c37482040b0222dc45b6a6cdc76b542a1243de615e04259"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-qualified-non-citizen-categories-for-medicaid-eligibility.html",
+      "sha256": "d8d742dbf3a7d24781f80b38981d5d2d0142892af1746f79996f77bf5bdabe7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-i-federally-qualified-health-centers.html",
+      "sha256": "b23f9acdabfd2af4b133487900329275955146890fdc03f6e559524d97d0843d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-ii-a-long-term-care-figures.html",
+      "sha256": "65aa0764c5593c32c866de90ebb6e1dd86a45d140e201b17cb224149f9cb9ca1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-ii-aged-blind-and-disabled-income-limits-and-other-important-figures.html",
+      "sha256": "a7c3cc306321174e112a10efac3e32dbd818ffdcf6b46640ab6f19e29f49134c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-iv-proof-of-us-citizenship-and-identification.html",
+      "sha256": "3c627534a2138c34f1292086b8f9585e332049887b6904246f82c02b44c29876"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-ix-phone-numbers.html",
+      "sha256": "f6f3bb68f3f2320bafd2928bb92b50df86795619bcb53750876ffef96cb15fa3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-v-sponsor-deeming.html",
+      "sha256": "68d1e1ef68d9068974854b57e9274cab8d4b663a92cbdae697b0ec7d1a0250da"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-vi-life-estate-interest-tables.html",
+      "sha256": "30ced0e860948b579b3207ede303f989c7588d73be9f7fa8e5b7c371ad626e1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-vii-a-medicaid-work-incentive-income-and-premium-tests.html",
+      "sha256": "7bc134259cf22cfb3ff17325854ffefdb4d9da4be0613185cfb140c674f9e885"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-vii-b-5-federal-poverty-level-deduction-amount.html",
+      "sha256": "598f9d756126a31c849835f8084f4d2a72acbe07dfb4a7dfa02b0c9a074191d4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-vii-income-limits-for-medical-medicare-cost-sharing-programs.html",
+      "sha256": "2a55892b6ab433bbe706130b2d60eb5996c6e3f763d00c7d0c270e33777d4826"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-viii-a-data-retention.html",
+      "sha256": "c0a92828651d0a116f1da21452f30befe81d959a744c4d6924296a18e9d04d4c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-viii-verification-and-interface-match.html",
+      "sha256": "887a8286dad6318ad435a26a89e479dc1ee9b9ba1860332b900d967bcc340e10"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-x-172-hour-rule.html",
+      "sha256": "2ca1e5be6418a7275231ce5f00d3db7913710da59a3ee00db4a00d4bc3fc1eb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xi-pickle-reduction-figures.html",
+      "sha256": "0606c64ee711c159bcaf9263c9587f12ba62254e7f758df43963940e4d9edcd4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xii-life-expectancy-of-males-females.html",
+      "sha256": "c057716aa3357b4a9447e1b64e6e0a0d121b80efdb8ec15f5b6c344c11c376ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xiv-hospitals-authorized-to-approve-hospital-presumptive-eligibility-hpe.html",
+      "sha256": "df02135e7b98a8d32fc1d5f4567197a479840b169344f4a9f2a72c0fb3a4601a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xix-imd-s-licensed-to-provide-treatment-for-serious-mental-illness.html",
+      "sha256": "460a6214be983ed0597dac5dc078841b7e76701b89b40f6d8c0781267ffc0c70"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xv-baby-your-baby-byb-sites-authorized-to-administer-presumptive-eligibility.html",
+      "sha256": "b956bfa151726ecb8c6ccdabf47da8779dd919c64994391b1e11a8b1025dea67"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xvi-a-participating-facilities-and-organizations-for-pre-release-services.html",
+      "sha256": "731568853039c5e1884f885f5c10ab7fb2a8cc34606200f54ab30211064546a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xvi-approved-halfway-houses.html",
+      "sha256": "f954b6370e777f8b0dbbab4daddfb0a8c7cc605b97024de2ed5a16102c532bbe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xvi-b-facilities-reporting-data-to-ccjj.html",
+      "sha256": "df16867c0ad6300f2a388ff4ab3056e0f5da8063544670826fbdfd8bedfe61f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xvii-targeted-adult-medicaid-tam-agencies.html",
+      "sha256": "a02ffdfcdadd4a87b54560715392425f423bd5525f7ff10d0cff231097f10ac1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-table-xviii-imd-s-with-a-licensed-sud-treatment-program.html",
+      "sha256": "84699905d3d1919d951b0e298d25d76a6b7801d609b8d9bc81d3b4a26adfbde9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-tables-trust-table.html",
+      "sha256": "bd70801f07584370929c55059a6765cada0f311e7c19a9b70385f38d1c6e3911"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-welcome-page.html",
+      "sha256": "cd5f334b124641d1c38c43bb2f46e7c34fa051262c71e1de972cbc3d26d727f3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ut-medicaid-whats-new.html",
+      "sha256": "d63661779c102dfcb2266cd52d506d5d9dde1e5f8668f34ed0de140e37c8df34"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ut-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1971,
+    "missing_count": 0,
+    "provision_count": 1971,
+    "source_count": 1971
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:57:13.795506+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ogvBHl/rLdiVX+7YXUah9SNp8QmjsO9tUjpYWmCXiCVnzbx5PuFhAEF/Ofswp9ompJ55mHl4+0eK5Ntmw160Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

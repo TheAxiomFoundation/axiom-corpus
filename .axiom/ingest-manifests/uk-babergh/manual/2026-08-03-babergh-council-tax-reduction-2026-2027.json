@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-babergh/manual/2026-08-03-babergh-council-tax-reduction-2026-2027.json",
+      "sha256": "9d3402c48ae1a4ae77cc1c56e14e68177d85ac79b4216f128665f95595f4b74f"
+    },
+    {
+      "path": "data/corpus/inventory/uk-babergh/manual/2026-08-03-babergh-council-tax-reduction-2026-2027.json",
+      "sha256": "b5fbd04f18498d2bc6365318614aeb3e3e4e44c55048afc78d854b082dc65532"
+    },
+    {
+      "path": "data/corpus/provisions/uk-babergh/manual/2026-08-03-babergh-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f389c2cbefde1d9fc4eb16458d503c754125c63c55d736f1f3ee889f7bde2117"
+    },
+    {
+      "path": "data/corpus/sources/uk-babergh/manual/2026-08-03-babergh-council-tax-reduction-2026-2027/official-documents/babergh-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "b882b4510132ad555a86645cc79ec8567bd4ffa1db6ac44e38f31b26aeb912e2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-babergh-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-babergh-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 153,
+    "missing_count": 0,
+    "provision_count": 153,
+    "source_count": 153
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:36:12.826024+00:00",
+  "jurisdiction": "uk-babergh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qfwdnHdWbELhP3A+DoFaj+nGMO/G84e87wX5jYuXLmsR2gp26xZ5lY4qrfpU6qYfUueGxFK23EVHDbMBCjAKAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-babergh-council-tax-reduction-2026-2027"
+}

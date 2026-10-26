@@ -1,0 +1,79 @@
+{
+  "documents": [
+    {
+      "source_id": "east-hertfordshire-council-tax-reduction-scheme-2026-2027",
+      "jurisdiction": "uk-east-hertfordshire",
+      "document_class": "manual",
+      "citation_path": "uk-east-hertfordshire/manual/council-tax-reduction-scheme-2026-2027",
+      "title": "East Hertfordshire District Council Council Tax Support Scheme 2026/27 (S13A Scheme Final)",
+      "source_url": "https://eastherts.fra1.digitaloceanspaces.com/s3fs-public/2026-04/East%20Herts%20S13a%20202627%20Scheme%20Final.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-08-14",
+      "expression_date": "2026-04-01",
+      "metadata": {
+        "primary_source": true,
+        "program": "Council Tax Reduction",
+        "discovered_via": "axiom-296-council-expansion-w10-hunt",
+        "source_authority": "East Hertfordshire",
+        "document_subtype": "council_tax_reduction_scheme",
+        "effective_scheme_year": "2026-2027",
+        "role": "scheme_text"
+      }
+    },
+    {
+      "source_id": "east-hertfordshire-council-minutes-2025-12-10",
+      "jurisdiction": "uk-east-hertfordshire",
+      "document_class": "manual",
+      "citation_path": "uk-east-hertfordshire/manual/council-minutes-2025-12-10",
+      "title": "East Hertfordshire District Council Printed Minutes, Council 10 December 2025",
+      "source_url": "https://democracy.eastherts.gov.uk/documents/g5543/Printed%20minutes%2010th-Dec-2025%2019.00%20Council.pdf?T=1",
+      "source_format": "pdf",
+      "source_as_of": "2026-08-14",
+      "expression_date": "2026-04-01",
+      "metadata": {
+        "primary_source": true,
+        "program": "Council Tax Reduction",
+        "discovered_via": "axiom-296-council-expansion-w10-hunt",
+        "source_authority": "East Hertfordshire",
+        "document_subtype": "adoption_minutes",
+        "role": "operative_adoption",
+        "adoption_body": "Full Council",
+        "adoption_date": "2025-12-10",
+        "effective_scheme_year": "2026-2027",
+        "identification": {
+          "classification": "ACCEPT-DERIVED",
+          "adopts": "east-hertfordshire-council-tax-reduction-scheme-2026-2027",
+          "carries_amendments": "none - continuation of the 2013-origin 91.5% working-age scheme; the proposed banded replacement was not adopted",
+          "chain": "Council 10 December 2025 minute 271: 'RESOLVED - that (A) there be no change to the local council tax support scheme for 2026/27.' Motion declared CARRIED."
+        }
+      },
+      "request": {
+        "browser_impersonation": true
+      }
+    },
+    {
+      "source_id": "east-hertfordshire-cts-council-report-2026-27",
+      "jurisdiction": "uk-east-hertfordshire",
+      "document_class": "manual",
+      "citation_path": "uk-east-hertfordshire/manual/cts-council-report-2026-27",
+      "title": "East Hertfordshire District Council Report: Council Tax Support Scheme 2026/27 (Council 10 December 2025)",
+      "source_url": "https://democracy.eastherts.gov.uk/documents/s71243/Council%20Tax%20Support%20Scheme%20202627.pdf",
+      "source_format": "pdf",
+      "source_as_of": "2026-08-14",
+      "expression_date": "2026-04-01",
+      "metadata": {
+        "primary_source": true,
+        "program": "Council Tax Reduction",
+        "discovered_via": "axiom-296-council-expansion-w10-hunt",
+        "source_authority": "East Hertfordshire",
+        "document_subtype": "adoption_report",
+        "role": "corroboration",
+        "corroboration_only": true,
+        "effective_scheme_year": "2026-2027"
+      },
+      "request": {
+        "browser_impersonation": true
+      }
+    }
+  ]
+}

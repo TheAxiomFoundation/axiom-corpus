@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation.json",
+      "sha256": "68125f86e3eee58bb7762b5c6b652f18463d9890a098fa48a8c853f8ff304ff2"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation.json",
+      "sha256": "32cf558169b37c8aace8f2fba0caafd24f4719afac31bdabf9d90c24c34bfa45"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation.jsonl",
+      "sha256": "e35a68f328473eb415a130382f73e48ee33d676bbb229b009e5273d3ac90b4fe"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation/federal-register/api/documents-page-1.json",
+      "sha256": "0ecdf37357867b8a217b1586f3c3c15a05eac2f5548f30fed56d278519fd7162"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation/federal-register/documents/2025-15267.json",
+      "sha256": "d36a6ad4a6851249d454cb12b4c1a749bc930345c9905530bdb009c526b34207"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation/federal-register/documents/2025-15267.txt",
+      "sha256": "5a4eb0d9f2f7947d9f520a7c8ca643082546179b37e8822c4241b79643c07859"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-russia-secondary --start-date 2025-08-11 --document-type PRESDOCU --term \"Russian Federation\" --source-as-of 2026-08-01 --expression-date 2025-08-11"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:50.933151+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Py8O2AAoT0MNAWXLMTFlmsNByRS7qmI/5tldNOuo/ts2a1h/WgM/8ma4NP8D4rauOe6RbRhjeSylsLoWXQooBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-russia-secondary-types-presdocu-term-russian-federation"
+}

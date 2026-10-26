@@ -1,0 +1,2726 @@
+version: '2026-09-14'
+documents:
+- source_id: ga-dfcs-tanf-1001
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1001 TANF (Temporary Assistance for Needy Families)'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1001/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1001
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1001'
+    official_listing_title: 1001 TANF (Temporary Assistance for Needy Families)
+    official_effective_date: November 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1002
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1002 Confidentiality'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1002/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1002
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1002'
+    official_listing_title: 1002 Confidentiality
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1003
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1003 Civil Rights'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1003/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-01'
+  citation_path: us-ga/manual/dfcs/tanf/1003
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1003'
+    official_listing_title: 1003 Civil Rights
+    expression_date_source: HTTP Last-Modified
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1004
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1004 Americans with Disabilities Act (ADA) and Section 504'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1004/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-01'
+  citation_path: us-ga/manual/dfcs/tanf/1004
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1004'
+    official_listing_title: 1004 Americans with Disabilities Act (ADA) and Section 504
+    expression_date_source: HTTP Last-Modified
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1005
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1005 Domestic Violence'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1005/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1005
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1005'
+    official_listing_title: 1005 Domestic Violence
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1008
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1008 Voter Registration'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1008/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/1008
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1008'
+    official_listing_title: 1008 Voter Registration
+    official_effective_date: February 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1010
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1010 Mandated Reporting'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1010/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-08-01'
+  citation_path: us-ga/manual/dfcs/tanf/1010
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1010'
+    official_listing_title: 1010 Mandated Reporting
+    official_effective_date: August 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1011
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1011 Health Insurance Portability and Accountability Act (HIPAA) of 1996'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1011/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-08-01'
+  citation_path: us-ga/manual/dfcs/tanf/1011
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1011'
+    official_listing_title: 1011 Health Insurance Portability and Accountability Act (HIPAA) of 1996
+    official_effective_date: August 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1105
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1105 Application Processing'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1105/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/1105
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1105'
+    official_listing_title: 1105 Application Processing
+    official_effective_date: March 2026
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1110
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1110 Authorized Representative'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1110/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-12-01'
+  citation_path: us-ga/manual/dfcs/tanf/1110
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1110'
+    official_listing_title: 1110 Authorized Representative
+    official_effective_date: December 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1205
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1205 Assistance Units'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1205/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1205
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1205'
+    official_listing_title: 1205 Assistance Units
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1210
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1210 Grandparents Raising Grandchildren (GRG)'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1210/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/1210
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1210'
+    official_listing_title: 1210 Grandparents Raising Grandchildren (GRG)
+    official_effective_date: February 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1302
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1302 Domestic Violence'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1302/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1302
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1302'
+    official_listing_title: 1302 Domestic Violence
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1305
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1305 Age'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1305/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1305
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1305'
+    official_listing_title: 1305 Age
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1310
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1310 Citizenship/Alienage'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1310/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1310
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1310'
+    official_listing_title: 1310 Citizenship/Alienage
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1315
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1315 Deprivation'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1315/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1315
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1315'
+    official_listing_title: 1315 Deprivation
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1316
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1316 Deprivation Based on Death'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1316/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1316
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1316'
+    official_listing_title: 1316 Deprivation Based on Death
+    official_effective_date: November 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1317
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1317 Continued Absence from The Home'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1317/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1317
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1317'
+    official_listing_title: 1317 Continued Absence from The Home
+    official_effective_date: November 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1318
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1318 Deprivation Based on Incapacity'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1318/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1318
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1318'
+    official_listing_title: 1318 Deprivation Based on Incapacity
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1319
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1319 Deprivation Based on Recent Connection to the Work Force'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1319/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1319
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1319'
+    official_listing_title: 1319 Deprivation Based on Recent Connection to the Work Force
+    official_effective_date: October 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1320
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1320 Child Support Enforcement'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1320/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1320
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1320'
+    official_listing_title: 1320 Child Support Enforcement
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1325
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1325 Enumeration'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1325/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1325
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1325'
+    official_listing_title: 1325 Enumeration
+    official_effective_date: November 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1330
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1330 Identity'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1330/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/1330
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1330'
+    official_listing_title: 1330 Identity
+    official_effective_date: February 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1335
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1335 Living with a Specified Relative'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1335/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1335
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1335'
+    official_listing_title: 1335 Living with a Specified Relative
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1340
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1340 Residency'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1340/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1340
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1340'
+    official_listing_title: 1340 Residency
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1345
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1345 Personal Responsibility Requirements'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1345/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1345
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1345'
+    official_listing_title: 1345 Personal Responsibility Requirements
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1347
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1347 School Attendance'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1347/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1347
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1347'
+    official_listing_title: 1347 School Attendance
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1349
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1349 Work Requirements'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1349/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1349
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1349'
+    official_listing_title: 1349 Work Requirements
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1351
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1351 Sanctions'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1351/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1351
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1351'
+    official_listing_title: 1351 Sanctions
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1355
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1355 Application for Other Benefits'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1355/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1355
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1355'
+    official_listing_title: 1355 Application for Other Benefits
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1360
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1360 Immunization'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1360/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1360
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1360'
+    official_listing_title: 1360 Immunization
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1365
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1365 Living Arrangements of a Minor Head of Household'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1365/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1365
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1365'
+    official_listing_title: 1365 Living Arrangements of a Minor Head of Household
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1370
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1370 Pregnancy and Prenatal Care'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1370/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1370
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1370'
+    official_listing_title: 1370 Pregnancy and Prenatal Care
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1380
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1380 Cooperation with Eligibility Investigations'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1380/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1380
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1380'
+    official_listing_title: 1380 Cooperation with Eligibility Investigations
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1385
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1385 Intentional Program Violations'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1385/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1385
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1385'
+    official_listing_title: 1385 Intentional Program Violations
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1387
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1387 Lawbreakers'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1387/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-12-01'
+  citation_path: us-ga/manual/dfcs/tanf/1387
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1387'
+    official_listing_title: 1387 Lawbreakers
+    official_effective_date: December 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1390
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1390 Lifetime Limit'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1390/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1390
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1390'
+    official_listing_title: 1390 Lifetime Limit
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1392
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1392 Hardship Waiver'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1392/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1392
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1392'
+    official_listing_title: 1392 Hardship Waiver
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1394
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1394 Verification'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1394/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1394
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1394'
+    official_listing_title: 1394 Verification
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1401
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1401 Computer Matches Overview'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1401/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1401
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1401'
+    official_listing_title: 1401 Computer Matches Overview
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1405
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1405 Income and Eligibility Verification System (IEVS)'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1405/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2021-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1405
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1405'
+    official_listing_title: 1405 Income and Eligibility Verification System (IEVS)
+    official_effective_date: November 2021
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1410
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1410 Security for IRS, FTI, and BEERS Information'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1410/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/1410
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1410'
+    official_listing_title: 1410 Security for IRS, FTI, and BEERS Information
+    official_effective_date: February 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1415
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1415 Clearinghouse'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1415/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1415
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1415'
+    official_listing_title: 1415 Clearinghouse
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1430
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1430 Social Security Number (SSN) Validation'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1430/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1430
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1430'
+    official_listing_title: 1430 Social Security Number (SSN) Validation
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1440
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1440 Prisoner Verification Inquiry System'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1440/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1440
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1440'
+    official_listing_title: 1440 Prisoner Verification Inquiry System
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1501
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1501 Financial Overview'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1501/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1501
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1501'
+    official_listing_title: 1501 Financial Overview
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1505
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1505 Resources'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1505/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1505
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1505'
+    official_listing_title: 1505 Resources
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1510
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1510 Treatment of Resources by Resource Type'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1510/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/1510
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1510'
+    official_listing_title: 1510 Treatment of Resources by Resource Type
+    official_effective_date: March 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1515
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1515 Vehicles'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1515/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1515
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1515'
+    official_listing_title: 1515 Vehicles
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1520
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1520 Real Property'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1520/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1520
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1520'
+    official_listing_title: 1520 Real Property
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1525
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1525 Income'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1525/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1525
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1525'
+    official_listing_title: 1525 Income
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1530
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1530 Treatment of Income-by-Income Type'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1530/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/1530
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1530'
+    official_listing_title: 1530 Treatment of Income-by-Income Type
+    official_effective_date: February 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1535
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1535 Military Pay'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1535/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1535
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1535'
+    official_listing_title: 1535 Military Pay
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1540
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1540 Self-Employment'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1540/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1540
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1540'
+    official_listing_title: 1540 Self-Employment
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1605
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1605 Basic Budgeting'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1605/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1605
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1605'
+    official_listing_title: 1605 Basic Budgeting
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1610
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1610 Determining Representative Income and Expenses'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1610/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1610
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1610'
+    official_listing_title: 1610 Determining Representative Income and Expenses
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1615
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1615 Deductions'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1615/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-12-01'
+  citation_path: us-ga/manual/dfcs/tanf/1615
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1615'
+    official_listing_title: 1615 Deductions
+    official_effective_date: December 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1620
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1620 Responsibility Budgeting'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1620/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-12-01'
+  citation_path: us-ga/manual/dfcs/tanf/1620
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1620'
+    official_listing_title: 1620 Responsibility Budgeting
+    official_effective_date: December 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1622
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1622 Budgeting the Income of a Stepparent'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1622/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1622
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1622'
+    official_listing_title: 1622 Budgeting the Income of a Stepparent
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1624
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1624 Budgeting the Income of the Parent(s) of a Minor Head of Household'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1624/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1624
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1624'
+    official_listing_title: 1624 Budgeting the Income of the Parent(s) of a Minor Head of Household
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1626
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1626 Budgeting the Income of an Ineligible Parent'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1626/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1626
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1626'
+    official_listing_title: 1626 Budgeting the Income of an Ineligible Parent
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1628
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1628 Budgeting the Income of the Spouse of a Nonparent Caretaker'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1628/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1628
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1628'
+    official_listing_title: 1628 Budgeting the Income of the Spouse of a Nonparent Caretaker
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1630
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1630 Budgeting the Income of an Ineligible Spouse'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1630/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/1630
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1630'
+    official_listing_title: 1630 Budgeting the Income of an Ineligible Spouse
+    official_effective_date: February 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1632
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1632 Budgeting the Income and Resources of a Sponsored Alien'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1632/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1632
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1632'
+    official_listing_title: 1632 Budgeting the Income and Resources of a Sponsored Alien
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1635
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1635 Allocation to an Ineligible Spouse and/or Child'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1635/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1635
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1635'
+    official_listing_title: 1635 Allocation to an Ineligible Spouse and/or Child
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1645
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1645 Budgeting Child Support Income'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1645/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1645
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1645'
+    official_listing_title: 1645 Budgeting Child Support Income
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1650
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1650 Budgeting Lump Sum Income'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1650/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1650
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1650'
+    official_listing_title: 1650 Budgeting Lump Sum Income
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1655
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1655 Budgeting When A First Sanction is Imposed'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1655/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1655
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1655'
+    official_listing_title: 1655 Budgeting When A First Sanction is Imposed
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1665
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1665 Budgeting the Income of a Disqualified Individual'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1665/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1665
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1665'
+    official_listing_title: 1665 Budgeting the Income of a Disqualified Individual
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1670
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1670 Budgeting the Income of a Penalized Individual'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1670/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1670
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1670'
+    official_listing_title: 1670 Budgeting the Income of a Penalized Individual
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1701
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1701 Case Management Overview'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1701/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-06-01'
+  citation_path: us-ga/manual/dfcs/tanf/1701
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1701'
+    official_listing_title: 1701 Case Management Overview
+    official_effective_date: June 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1705
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1705 Notification'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1705/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1705
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1705'
+    official_listing_title: 1705 Notification
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1710
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1710 Recertifications (Renewals)'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1710/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/1710
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1710'
+    official_listing_title: 1710 Recertifications (Renewals)
+    official_effective_date: March 2026
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1720
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1720 Changes'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1720/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1720
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1720'
+    official_listing_title: 1720 Changes
+    official_effective_date: May 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1730
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1730 Financial Changes'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1730/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-06-01'
+  citation_path: us-ga/manual/dfcs/tanf/1730
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1730'
+    official_listing_title: 1730 Financial Changes
+    official_effective_date: June 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1735
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1735 Changes in Residence'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1735/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2021-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1735
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1735'
+    official_listing_title: 1735 Changes in Residence
+    official_effective_date: November 2021
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1740
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1740 AU Composition Changes'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1740/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-07-01'
+  citation_path: us-ga/manual/dfcs/tanf/1740
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1740'
+    official_listing_title: 1740 AU Composition Changes
+    official_effective_date: July 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1745
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1745 Miscellaneous Changes'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1745/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2019-06-01'
+  citation_path: us-ga/manual/dfcs/tanf/1745
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1745'
+    official_listing_title: 1745 Miscellaneous Changes
+    official_effective_date: June 2019
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1801
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1801 Employment Services'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1801/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1801
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1801'
+    official_listing_title: 1801 Employment Services
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1805
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1805 Applicant Services'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1805/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1805
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1805'
+    official_listing_title: 1805 Applicant Services
+    official_effective_date: May 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1815
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1815 TANF Family Service Plan Development'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1815/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-01'
+  citation_path: us-ga/manual/dfcs/tanf/1815
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1815'
+    official_listing_title: 1815 TANF Family Service Plan Development
+    expression_date_source: HTTP Last-Modified
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1820
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1820 Work Activities'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1820/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-05-01'
+  citation_path: us-ga/manual/dfcs/tanf/1820
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1820'
+    official_listing_title: 1820 Work Activities
+    official_effective_date: May 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1825
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1825 Subsidized Employment General Requirements'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1825/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1825
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1825'
+    official_listing_title: 1825 Subsidized Employment General Requirements
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1826
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1826 Subsidized Employment Grant Diversion'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1826/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1826
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1826'
+    official_listing_title: 1826 Subsidized Employment Grant Diversion
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1827
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1827 Subsidized Employment Cash Reimbursement'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1827/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/manual/dfcs/tanf/1827
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1827'
+    official_listing_title: 1827 Subsidized Employment Cash Reimbursement
+    official_effective_date: January 2020
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1830
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1830 Employment Support Services'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1830/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1830
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1830'
+    official_listing_title: 1830 Employment Support Services
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1835
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1835 Failure to Participate'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1835/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1835
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1835'
+    official_listing_title: 1835 Failure to Participate
+    official_effective_date: November 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1840
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1840 Work Support Program'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1840/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/1840
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1840'
+    official_listing_title: 1840 Work Support Program
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1901
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1901 Issuance Overview'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1901/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1901
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1901'
+    official_listing_title: 1901 Issuance Overview
+    official_effective_date: November 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1905
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1905 Issuance'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1905/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1905
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1905'
+    official_listing_title: 1905 Issuance
+    official_effective_date: November 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1910
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1910 Electronic Benefits Transfer'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1910/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1910
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1910'
+    official_listing_title: 1910 Electronic Benefits Transfer
+    official_effective_date: November 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-1915
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: 1915 Managed Accounts'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1915/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2023-11-01'
+  citation_path: us-ga/manual/dfcs/tanf/1915
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: '1915'
+    official_listing_title: 1915 Managed Accounts
+    official_effective_date: November 2023
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-a
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix A TANF Financial Standards'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-a/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-a
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-a
+    official_listing_title: Appendix A TANF Financial Standards
+    official_effective_date: March 2026
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 1
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-b-1
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix B Fair Hearings'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-b-1/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-b-1
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-b-1
+    official_listing_title: Appendix B Fair Hearings
+    official_effective_date: February 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-b-2
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix B Fair Hearing Responsibilities'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-b-2/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-b-2
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-b-2
+    official_listing_title: Appendix B Fair Hearing Responsibilities
+    official_effective_date: February 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-b-3
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix B Appealing a Final OSAH Decision'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-b-3/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2022-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-b-3
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-b-3
+    official_listing_title: Appendix B Appealing a Final OSAH Decision
+    official_effective_date: February 2022
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 2
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-d
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix D Case Record Document Management'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-d/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2024-10-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-d
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-d
+    official_listing_title: Appendix D Case Record Document Management
+    official_effective_date: October 2024
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 1
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-e
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix E Glossary'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-e/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2025-02-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-e
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-e
+    official_listing_title: Appendix E Glossary
+    official_effective_date: February 2025
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 1
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-f
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix F Forms'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-f/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-f
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-f
+    official_listing_title: Appendix F Forms
+    official_effective_date: March 2026
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 1
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-g
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix G Manual Transmittal Cover Letters'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-g/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-g
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-g
+    official_listing_title: Appendix G Manual Transmittal Cover Letters
+    official_effective_date: March 2026
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 1
+    extraction_granularity: html_heading_block
+- source_id: ga-dfcs-tanf-appendix-h
+  jurisdiction: us-ga
+  document_class: manual
+  title: 'Georgia TANF Policy Manual: Appendix H TANF Subsidized Employment Program (TSEP)'
+  source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-h/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/manual/dfcs/tanf/appendix-h
+  extraction:
+    html_content_selector: article.doc
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Human Services Division of Family and Children Services
+    document_subtype: policy_manual_section
+    program: TANF
+    state_program: Georgia TANF
+    federal_program: TANF
+    manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+    source_discovery_group: us-ga/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://pamms.dhs.ga.gov/dfcs/tanf/
+    official_section_number: appendix-h
+    official_listing_title: Appendix H TANF Subsidized Employment Program (TSEP)
+    official_effective_date: March 2026
+    expression_date_source: page 'Effective Date' line
+    navigation_depth: 1
+    extraction_granularity: html_heading_block

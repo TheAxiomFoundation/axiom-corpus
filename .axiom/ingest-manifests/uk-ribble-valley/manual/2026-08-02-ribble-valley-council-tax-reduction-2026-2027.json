@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-ribble-valley/manual/2026-08-02-ribble-valley-council-tax-reduction-2026-2027.json",
+      "sha256": "fecba8581ebf51dec310c67173514b41fcf4aa93a410a1f7cfd79b3977d963a8"
+    },
+    {
+      "path": "data/corpus/inventory/uk-ribble-valley/manual/2026-08-02-ribble-valley-council-tax-reduction-2026-2027.json",
+      "sha256": "8a96b12dd84d1704cb73d0dea0e6b590f6631d3e63679dcfbc83b319c6ed011a"
+    },
+    {
+      "path": "data/corpus/provisions/uk-ribble-valley/manual/2026-08-02-ribble-valley-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "280ebfd8874792cfec3b4902872749ee744794777e4ffd3fa1d38e483d9d4080"
+    },
+    {
+      "path": "data/corpus/sources/uk-ribble-valley/manual/2026-08-02-ribble-valley-council-tax-reduction-2026-2027/official-documents/ribble-valley-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "80fdd5cb69db13c37ef6ffc56244d90d63a0401c7362ef9cb27ba5f3202b3426"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-ribble-valley-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-ribble-valley-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 146,
+    "missing_count": 0,
+    "provision_count": 146,
+    "source_count": 146
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:28.886177+00:00",
+  "jurisdiction": "uk-ribble-valley",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "P2FiqIWtUcezsqZE7C6zCIVFsAvhspFKq+Di9X05Rke8MNuRAFskPMozV4flzy1WYcrBsBaNTeU+pZnzKDEwDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-ribble-valley-council-tax-reduction-2026-2027"
+}

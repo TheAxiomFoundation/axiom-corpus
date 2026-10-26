@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-wirral/manual/2026-08-03-wirral-council-tax-reduction-2026-2027.json",
+      "sha256": "922d838022002396047872687a81cca5f33a15578aa47d38e8e2a93aaed3b2fb"
+    },
+    {
+      "path": "data/corpus/inventory/uk-wirral/manual/2026-08-03-wirral-council-tax-reduction-2026-2027.json",
+      "sha256": "8412a1a84eeb25774bfc9261bf17bbaa869259cce8674f9a454f8d3f4e633fad"
+    },
+    {
+      "path": "data/corpus/provisions/uk-wirral/manual/2026-08-03-wirral-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "a4f47eb353e4ffdf4866b83cd846c3a843a235359a7cadc2c248467a04456b96"
+    },
+    {
+      "path": "data/corpus/sources/uk-wirral/manual/2026-08-03-wirral-council-tax-reduction-2026-2027/official-documents/wirral-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "98eaa274357b5ea49e7ebaf642cf2008489636c470f83659945c6bf9e00d3a56"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-wirral-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-wirral-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 88,
+    "missing_count": 0,
+    "provision_count": 88,
+    "source_count": 88
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:37:09.537913+00:00",
+  "jurisdiction": "uk-wirral",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GDduD5c4n+cI/DEZpsZnHCoqrS8taynCDjVdxHpiDJl1I0LhRXCPWtbGh+9+lSXf1Jj5o8aS6FXcbLToFojeAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-wirral-council-tax-reduction-2026-2027"
+}

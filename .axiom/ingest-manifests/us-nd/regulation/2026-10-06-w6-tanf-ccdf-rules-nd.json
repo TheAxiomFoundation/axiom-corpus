@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd.json",
+      "sha256": "4ea1d15dd2f901372e6bc16b5a38615459c1f4564b7aba72737eede2e7c30b65"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd.json",
+      "sha256": "0bc726aa95667fde29f682fd49d1e97c22367dd7f22b8287f3fa955324326a80"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd.jsonl",
+      "sha256": "a853e6d999b881f41e132ef899d05e993bca992dfbbc51a7363ec1d129cfe333"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd/official-documents/us-nd-w6-ndac-75-02-01-2.pdf",
+      "sha256": "96da998d43ec84ac4fdc905cdd5721e4a665c350dcdbff8d25b42b7789d394cf"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/regulation/2026-10-06-w6-tanf-ccdf-rules-nd/official-documents/us-nd-w6-ndac-75-02-01-3.pdf",
+      "sha256": "dddf476905f4695901957bc2849d2eb057a0bb0f1066f8f63b5e653189cae483"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tanf-ccdf-ak-ne.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 123,
+    "missing_count": 0,
+    "provision_count": 123,
+    "source_count": 123
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-07T17:55:31.774565+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PQLjQYO+9+qkCYtKArFhvNqqZAR8zp/ObK3ieBPvXdxXI/udM+u/ahejwTv8A2+mglGcF6kUahyG4d8Ta5nqBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-tanf-ccdf-rules-nd"
+}

@@ -28,6 +28,24 @@ The source document itself may be stored in R2 for provenance. Generated
 normalized provision rows are loaded into Supabase. Do not store executable
 encodings in this repo.
 
+## Corpus bytes outside git
+
+When `.axiom/corpus-locks/` exists, git keeps one lock file per scope (path,
+sha256, size of every file under `data/corpus/{sources,inventory,provisions,coverage}`)
+and the bytes live in a shared cache (`~/.axiom/corpus-cache`) backed by R2
+`objects/sha256/`. `data/corpus` holds only what has been fetched. See
+`docs/corpus-storage.md`.
+
+```bash
+uv run axiom-corpus-ingest corpus fetch us-ca/statute       # scopes, --path, --release, --all
+uv run axiom-corpus-ingest corpus status                    # present / missing / unlocked
+uv run axiom-corpus-ingest sign-ingest-manifest ... --lock  # sign, then lock the scope
+```
+
+Code-only work needs no fetch. The test suite reads real corpus data and needs
+`corpus fetch --all` (APFS clones: almost no extra disk). CLI commands and
+`load_provisions`/`load_source_inventory` fetch the locked inputs they name.
+
 ## Infrastructure
 
 - R2 bucket: `axiom-corpus`
@@ -69,7 +87,15 @@ uv run --extra dev python scripts/publish_corpus.py \
 
 # Check that every navigation_nodes scope has matching current_provisions
 uv run axiom-corpus-ingest verify-release-coverage
+
+# Content findings of a new scope (page navigation, chrome-prefixed bodies,
+# hollow document roots, version pickers); validation fails on unrecorded ones.
+# CI checks every locked scope against manifests/release-content-baseline.json.
+uv run axiom-corpus-ingest content-check <jurisdiction>/<document_class>/<version>
 ```
+
+A selector may not select a scope listed in `manifests/withdrawn-scopes.yaml`
+unless its entry grandfathers that selector; see `docs/release-gate-policy.md`.
 
 ## Named-release visibility model
 
@@ -92,12 +118,19 @@ The release name `current`, per-scope `publish`/`unpublish`, publish-on-load,
 scope auto-registration, and missing-parent synthesis do not exist. See
 `docs/named-release-publication.md`.
 
+## Branches, not forks
+
+Push branches to `TheAxiomFoundation/axiom-corpus` itself, never to a fork: a
+fork-head pull request run does not receive this repository's Actions variable
+`AXIOM_CORPUS_INGEST_PUBLIC_KEY`, so the authentication-gate tests in
+`tests/test_state_snap_manual_queue.py` fail by design. See CONTRIBUTING.md.
+
 ## Repo Boundaries
 
 - Source text and provenance: this repo.
 - RuleSpec encodings: rules repositories.
 - Encoder/validator logic: `axiom-encode`.
-- App/browser UI: `axiom-foundation.org`.
+- App/browser UI: `axiom.org`.
 
 When a provision repeats a value from another source, represent that in the
 rules repo with RuleSpec metadata and source verification. The corpus repo should

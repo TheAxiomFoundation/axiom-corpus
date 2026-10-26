@@ -1,0 +1,63 @@
+version: '2026-09-10'
+documents:
+- source_id: us-id-istc-form-40-ty2025
+  jurisdiction: us-id
+  document_class: form
+  title: Form 40, Idaho Individual Income Tax Return (2025)
+  source_url: https://tax.idaho.gov/wp-content/uploads/forms/EFO00089/EFO00089_03-02-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-id/form/istc/ty2025/form-40
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-id/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.idaho.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.idaho.gov/forms/
+- source_id: us-id-istc-individual-income-tax-instructions-ty2025
+  jurisdiction: us-id
+  document_class: form
+  title: Idaho Individual Income Tax Instructions, Forms 40, 43, 39R, 39NR (2025, EIN00046 rev. 2026-03-02)
+  source_url: https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-id/form/istc/ty2025/individual-income-tax-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-id/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.idaho.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.idaho.gov/forms/
+- source_id: us-id-istc-form-39r-ty2025
+  jurisdiction: us-id
+  document_class: form
+  title: Form 39R, Idaho Resident Supplemental Schedule (2025)
+  source_url: https://tax.idaho.gov/wp-content/uploads/forms/EFO00088/EFO00088_03-02-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-id/form/istc/ty2025/form-39r
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Idaho State Tax Commission
+    document_subtype: schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-id/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://tax.idaho.gov/forms/
+    discovered_via: manual-review:tax-agent-queue; index https://tax.idaho.gov/forms/

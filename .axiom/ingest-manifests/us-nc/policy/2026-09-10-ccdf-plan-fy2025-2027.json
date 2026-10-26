@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "42d5faa701d7723e26df853a05a55205b5df7b208ab572e967981095388753fc"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/policy/2026-09-10-ccdf-plan-fy2025-2027.json",
+      "sha256": "1ab6ce60dd955d2f7ddca76a31899934b63e6cf2b6188c61b6feebe17fe72628"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/policy/2026-09-10-ccdf-plan-fy2025-2027.jsonl",
+      "sha256": "cf6565418c416c8da9e8d831d64eee600f1cc732558bbf7fac94cdd2e89c3cd8"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-10-ccdf-plan-fy2025-2027/official-documents/us-nc-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "6dddd7de99a183e24dc01778a20db9d5ceb89413ef64dcb32946c416f00d0c5a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-ccdf-plan-fy2025-2027 --manifest manifests/us-nc-ccdf-state-plan-fy2025-2027.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-11T22:09:59.474209+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5XtaT9qzOL3Wi3LHy2iYxmK6b8mDX4F7Je34zlqJLP7mo2rrJYoNaz7XtGHWmY3a1BdtZ6NL0utLTQqZpeWmBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-ccdf-plan-fy2025-2027"
+}

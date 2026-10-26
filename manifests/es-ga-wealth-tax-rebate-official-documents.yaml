@@ -1,0 +1,51 @@
+documents:
+  - source_id: es-ga-ley-18-2021-wealth-tax-rebate
+    jurisdiction: es-ga
+    document_class: statute
+    citation_path: es-ga/statute/ley-18-2021/impuesto-patrimonio
+    title: Ley 18/2021, de 27 de diciembre, de medidas fiscales y administrativas de Galicia
+    source_url: 'https://www.boe.es/eli/es-ga/l/2021/12/27/18'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2022-01-01'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>2)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+      stop_text_pattern: '^Artículo\s+3\.'
+    metadata:
+      primary_source: true
+      source_authority: Comunidad Autónoma de Galicia, reproduced in BOE ELI
+      source_family: wealth-tax/regional-rebate
+      source_note: >-
+        Extraction retains Article 2 and stops before Article 3. Article 2
+        inserts article 13 quater, a 25 percent rebate effective for tax year
+        2022.
+  - source_id: es-ga-ley-7-2022-wealth-tax-rebate-2023
+    jurisdiction: es-ga
+    document_class: statute
+    citation_path: es-ga/statute/ley-7-2022/impuesto-patrimonio
+    title: Ley 7/2022, de 27 de diciembre, de medidas fiscales y administrativas de Galicia
+    source_url: 'https://www.xunta.gal/dog/Publicados/2022/20221230/AnuncioC3B0-271222-3_es.html'
+    source_format: html
+    source_as_of: '2026-08-28'
+    expression_date: '2023-01-01'
+    language: es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Artículo\s+(?P<number>6)\.\s*(?P<heading>.*)$'
+      section_label_template: 'articulo-{number}'
+      stop_text_pattern: '^Artículo\s+7\.'
+    metadata:
+      primary_source: true
+      source_authority: Xunta de Galicia, Diario Oficial de Galicia
+      source_family: wealth-tax/regional-rebate
+      source_note: >-
+        Extraction retains Article 6 and stops before Article 7. Article 6
+        raises the autonomous wealth-tax rebate from 25 percent to 50 percent
+        from 2023.

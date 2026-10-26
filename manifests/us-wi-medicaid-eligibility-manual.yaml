@@ -1,0 +1,52 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: us-wi-medicaid-meh-release-26-03
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin Medicaid Eligibility Handbook: Release 26-03'
+  source_url: https://www.dhs.wisconsin.gov/publications/p10030-26-03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-wi/manual/dhs/medicaid/meh-release-26-03
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    document_subtype: eligibility_handbook_release_pdf
+    program: MEDICAID
+    manual: Wisconsin Medicaid Eligibility Handbook
+    manual_index_url: https://www.dhs.wisconsin.gov/library/collection/p-10030
+    source_discovery_group: us-wi/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.dhs.wisconsin.gov/library/collection/p-10030
+    extraction_granularity: pdf_page
+    release: 26-03
+    online_handbook_url: https://www.emhandbooks.wisconsin.gov/meh-ebd/meh.htm
+    transport_note: emhandbooks.wisconsin.gov TCP connections time out from this network (curl 28, plain and browser-impersonated);
+      the DHS publications library PDF of the same release is the publisher's own copy
+- source_id: us-wi-medicaid-badgercare-plus-handbook-release-26-03
+  jurisdiction: us-wi
+  document_class: manual
+  title: 'Wisconsin BadgerCare Plus Eligibility Handbook: Release 26-03'
+  source_url: https://www.dhs.wisconsin.gov/publications/p10171-26-03.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-wi/manual/dhs/medicaid/badgercare-plus-handbook-release-26-03
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Health Services
+    document_subtype: eligibility_handbook_release_pdf
+    program: MEDICAID
+    manual: Wisconsin BadgerCare Plus Eligibility Handbook
+    manual_index_url: https://www.dhs.wisconsin.gov/library/collection/p-10171
+    source_discovery_group: us-wi/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 2; publisher index https://www.dhs.wisconsin.gov/library/collection/p-10171
+    extraction_granularity: pdf_page
+    release: 26-03
+    online_handbook_url: https://www.emhandbooks.wisconsin.gov/bcplus/bcplus.htm
+    transport_note: emhandbooks.wisconsin.gov TCP connections time out from this network (curl 28, plain and browser-impersonated);
+      the DHS publications library PDF of the same release is the publisher's own copy

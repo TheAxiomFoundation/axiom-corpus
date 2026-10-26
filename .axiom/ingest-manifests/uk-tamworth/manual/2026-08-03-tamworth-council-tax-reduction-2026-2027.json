@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-tamworth/manual/2026-08-03-tamworth-council-tax-reduction-2026-2027.json",
+      "sha256": "5520b122a7c544ea9151674023845e97442b7d28644e2c36c18a9724179c57f1"
+    },
+    {
+      "path": "data/corpus/inventory/uk-tamworth/manual/2026-08-03-tamworth-council-tax-reduction-2026-2027.json",
+      "sha256": "497582bab04a1cc0d92b71a1082ca892b28190599b4f228349655bbc88745cb5"
+    },
+    {
+      "path": "data/corpus/provisions/uk-tamworth/manual/2026-08-03-tamworth-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "b2d939f4c3410767c2e87c6cf55baaa2863e861d04f52d6f7e9ec547b8686feb"
+    },
+    {
+      "path": "data/corpus/sources/uk-tamworth/manual/2026-08-03-tamworth-council-tax-reduction-2026-2027/official-documents/tamworth-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "d32a24d16fff86e3838aaccf39a85d63b0f75c967d7762be70312fa18082241f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-tamworth-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-tamworth-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 90,
+    "missing_count": 0,
+    "provision_count": 90,
+    "source_count": 90
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:37:04.186995+00:00",
+  "jurisdiction": "uk-tamworth",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oQbZ06ORlFeE99EmvzH5kAAqQj3l47UcqJY4FqMonjVCoNJaVnERQWtRAEz1Fy5ADmFpQDjL6kzafh/CXuuEBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-tamworth-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-county-durham/manual/2026-08-10-county-durham-council-tax-reduction-2026-2027.json",
+      "sha256": "ea6a8ff3171c4668cd54d12cfd82e78fdcf756b894964f3b6da35b9c78b84491"
+    },
+    {
+      "path": "data/corpus/inventory/uk-county-durham/manual/2026-08-10-county-durham-council-tax-reduction-2026-2027.json",
+      "sha256": "7dada19f1c0005773420ab5dd678dde339ca43b1a780f02f1719597396ecd666"
+    },
+    {
+      "path": "data/corpus/provisions/uk-county-durham/manual/2026-08-10-county-durham-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "e6c4098a80d47fc6fc45a73d66d18c0165d606f9d9a0395cdc27cbeb4b5cc44a"
+    },
+    {
+      "path": "data/corpus/sources/uk-county-durham/manual/2026-08-10-county-durham-council-tax-reduction-2026-2027/official-documents/county-durham-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "e90415eb9540e791e5b336fd47df0a1d246b0ff58c5f6d0cfbc54a1fe0a0c7a4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f7289e50efb1e95ea459b2755f222d1ffe147734",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-10-county-durham-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-county-durham-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-10T12:24:06.613299+00:00",
+  "jurisdiction": "uk-county-durham",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "H/Lxa918QBY7s1FpTvOmAjY8aTBKuvA3BOU6bWfCOU1QQZ+jWzN+0CRTxa4hxzSxVgXHfjwDkA4wJXoyL3s+Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-10-county-durham-council-tax-reduction-2026-2027"
+}

@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import gzip
 import json
 import re
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import zlib
 from collections.abc import Callable, Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -19,7 +21,7 @@ from xml.etree import ElementTree as ET
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory_references
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
@@ -77,6 +79,7 @@ class _EcfrTitleResult:
     transcription_evidence: Mapping[str, Mapping[str, str]] | None = None
     source_sha256: str | None = None
     error: str | None = None
+    pending_source_writes: tuple[tuple[Path, bytes], ...] = ()
 
 
 def ecfr_run_id(
@@ -98,29 +101,54 @@ def ecfr_run_id(
 _scoped_run_id = ecfr_run_id
 
 
+def _fetch_ecfr_api_bytes(url: str, *, timeout: int) -> bytes:
+    """Fetch one eCFR Versioner API resource.
+
+    Since September 2026 the ``full`` XML endpoint answers ``406 Not Acceptable``
+    (support code 11, "This endpoint requires response compression") unless the
+    request advertises a compressed encoding, so every API fetch offers gzip and
+    deflate and transparently decodes whatever the publisher chose.
+    """
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": USER_AGENT, "Accept-Encoding": "gzip, deflate"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        data = bytes(resp.read())
+        headers = getattr(resp, "headers", None)
+        encoding = (headers.get("Content-Encoding") if headers is not None else None) or ""
+    return _decode_content_encoding(data, encoding)
+
+
+def _decode_content_encoding(data: bytes, encoding: str) -> bytes:
+    normalized = encoding.strip().lower()
+    if normalized == "gzip" or normalized == "x-gzip":
+        return gzip.decompress(data)
+    if normalized == "deflate":
+        try:
+            return zlib.decompress(data)
+        except zlib.error:
+            return zlib.decompress(data, -zlib.MAX_WBITS)
+    if normalized in ("", "identity"):
+        return data
+    raise ValueError(f"unsupported eCFR content encoding: {encoding!r}")
+
+
 def fetch_ecfr_structure(title: int, as_of: str) -> dict[str, Any]:
     url = f"{ECFR_API_BASE}/structure/{as_of}/title-{title}.json"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.loads(resp.read())
+    data = json.loads(_fetch_ecfr_api_bytes(url, timeout=60))
     return cast(dict[str, Any], data)
 
 
 def fetch_ecfr_title_xml(title: int, as_of: str) -> str:
     url = f"{ECFR_API_BASE}/full/{as_of}/title-{title}.xml"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        data = resp.read()
-    return bytes(data).decode("utf-8")
+    return _fetch_ecfr_api_bytes(url, timeout=600).decode("utf-8")
 
 
 def fetch_ecfr_part_xml(title: int, part: str, as_of: str) -> str:
     part_query = urllib.parse.quote(part, safe="")
     url = f"{ECFR_API_BASE}/full/{as_of}/title-{title}.xml?part={part_query}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=180) as resp:
-        data = resp.read()
-    return bytes(data).decode("utf-8")
+    return _fetch_ecfr_api_bytes(url, timeout=180).decode("utf-8")
 
 
 def fetch_ecfr_graphic(identifier: str) -> bytes:
@@ -276,14 +304,32 @@ def _ecfr_section_url(
     section: str,
     chapter: str | None,
     subchapter: str | None,
+    *,
+    enclosing_part: str | None = None,
 ) -> str:
+    """Link section ``part``.``section`` on the page of the eCFR part that holds it."""
     base = f"{ECFR_READER_BASE}/title-{title}"
     anchor = f"#p-{part}.{section}"
+    page_part = enclosing_part or part
     if chapter and subchapter:
-        return f"{base}/chapter-{chapter}/subchapter-{subchapter}/part-{part}{anchor}"
+        return f"{base}/chapter-{chapter}/subchapter-{subchapter}/part-{page_part}{anchor}"
     if chapter:
-        return f"{base}/chapter-{chapter}/part-{part}{anchor}"
-    return f"{base}/part-{part}{anchor}"
+        return f"{base}/chapter-{chapter}/part-{page_part}{anchor}"
+    return f"{base}/part-{page_part}{anchor}"
+
+
+def _ecfr_appendix_url(
+    title: int,
+    part: str,
+    identifier: str,
+    chapter: str | None,
+    subchapter: str | None,
+) -> str:
+    appendix_path = urllib.parse.quote(identifier, safe="")
+    return (
+        f"{_ecfr_part_url(title, part, chapter, subchapter)}"
+        f"/appendix-{appendix_path}"
+    )
 
 
 def _ecfr_source_relative_name(title: int, only_part: str | None) -> str:
@@ -299,12 +345,73 @@ def _ecfr_source_key(run_id: str, title: int, only_part: str | None) -> str:
     )
 
 
-def _section_citation_from_identifier(title: int, identifier: str) -> tuple[str, str] | None:
-    match = re.fullmatch(r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.-]*)", identifier)
+# An eCFR section identifier is PART.SECTION. Title 26 numbers many sections after the
+# Code subsection they implement, so SECTION may carry parenthesised groups
+# ("1.401(k)-1", "31.3121(a)(1)-1", "31.3121(a)-1T"). Parentheses are not legal in a
+# citation-path segment (schema/citation-path.v1.json), so the path segment folds each
+# group into hyphens ("401-k-1", "3121-a-1-1") while labels, identifiers, metadata and
+# the eCFR URL keep the official form.
+#
+# PART is alphanumeric, except in title 41, which numbers each part within its chapter:
+# part 60-20 is part 20 of chapter 60, and its sections are 60-20.1, 60-20.2, and so on.
+# A hyphenated part never contains a dot, so the first dot still ends PART. The
+# identifier alone cannot say whether a hyphenated prefix is a part, though: 14 CFR part
+# 241 numbers its own sections 19-8.1 to 19-8.10. So a hyphenated PART is read only where
+# the enclosing part confirms it ("60-20.1" inside part 60-20); every other identifier
+# parses by the alphanumeric grammar, as before.
+#
+# The part an identifier names need not be the eCFR part that holds it. The title 43
+# fixtures in tests/test_corpus_ecfr_group_part_sections.py place 43 CFR 3809.1 in
+# subpart 3809 of part 3800, with no part 3809 in the structure fixture. Other fixture
+# examples include § 1735.9 in 7 CFR part 1739. Such a section keeps the path of its
+# citation (us/regulation/43/3809/1),
+# but it belongs to the part that holds it: its parent is that part's subpart or the
+# part itself, a run scoped to that part includes it, and metadata["enclosing_part"]
+# names that part.
+_PART_IDENTIFIER_PATTERN = r"[0-9A-Za-z]+(?:-[0-9A-Za-z]+)*"
+_SECTION_NUMBER_PATTERN = r"[0-9A-Za-z][0-9A-Za-z.()-]*"
+_SECTION_IDENTIFIER_PATTERN = rf"([0-9A-Za-z]+)\.({_SECTION_NUMBER_PATTERN})"
+# A section selector names its part, so it may use a hyphenated one.
+_SECTION_SELECTOR_PATTERN = rf"{_PART_IDENTIFIER_PATTERN}\.{_SECTION_NUMBER_PATTERN}"
+
+
+def _section_path_segment(section: str) -> str:
+    segment = re.sub(r"[()]", "-", section)
+    segment = re.sub(r"-{2,}", "-", segment)
+    return segment.strip("-")
+
+
+def _section_citation_path(title: int, part: str, section: str) -> str:
+    return f"us/regulation/{title}/{part}/{_section_path_segment(section)}"
+
+
+def _part_scoped_section(part: str | None, identifier: str) -> tuple[str, str] | None:
+    """Split ``identifier`` as ``part``.SECTION when it names the enclosing part.
+
+    For an alphanumeric part this gives what the alphanumeric grammar gives; it adds
+    only identifiers under a hyphenated part.
+    """
+    if part is None or not re.fullmatch(_PART_IDENTIFIER_PATTERN, part):
+        return None
+    prefix = f"{part}."
+    section = identifier[len(prefix):]
+    if not identifier.startswith(prefix) or not re.fullmatch(_SECTION_NUMBER_PATTERN, section):
+        return None
+    return part, section
+
+
+def _section_citation_from_identifier(
+    title: int, identifier: str, part: str | None = None
+) -> tuple[str, str] | None:
+    """Parse a structure section identifier; ``part`` is the enclosing part."""
+    scoped = _part_scoped_section(part, identifier)
+    if scoped is not None:
+        return _section_citation_path(title, *scoped), scoped[1]
+    match = re.fullmatch(_SECTION_IDENTIFIER_PATTERN, identifier)
     if not match:
         return None
-    part, section = match.groups()
-    return f"us/regulation/{title}/{part}/{section}", section
+    named_part, section = match.groups()
+    return _section_citation_path(title, named_part, section), section
 
 
 def _title_from_citation_path(citation_path: str) -> int:
@@ -314,13 +421,75 @@ def _title_from_citation_path(citation_path: str) -> int:
     return int(parts[2])
 
 
-def _section_citation_from_element(title: int, elem: ET.Element) -> tuple[str, str, str] | None:
+def _section_citation_from_element(
+    title: int, elem: ET.Element, part: str | None = None
+) -> tuple[str, str, str] | None:
+    """Parse a section element's N; ``part`` is the N of its enclosing part element."""
     n_attr = elem.get("N", "")
-    match = re.search(r"([0-9A-Za-z]+)\.([0-9A-Za-z][0-9A-Za-z.-]*)", n_attr)
+    scoped = _part_scoped_section(part, re.sub(r"^§\s*", "", n_attr.strip()))
+    if scoped is not None:
+        return _section_citation_path(title, *scoped), *scoped
+    match = re.search(_SECTION_IDENTIFIER_PATTERN, n_attr)
     if not match:
         return None
-    part, section = match.groups()
-    return f"us/regulation/{title}/{part}/{section}", part, section
+    named_part, section = match.groups()
+    return _section_citation_path(title, named_part, section), named_part, section
+
+
+def _bare_section_identifier(value: str) -> str:
+    return re.sub(r"^§\s*", "", value.strip())
+
+
+def _selectable_section_from_element(
+    title: int, elem: ET.Element, part: str | None
+) -> tuple[str, str, str] | None:
+    """Parse a section element's N as an inventory can select it.
+
+    As _section_citation_from_element, except that a section numbered for another part
+    must publish an identifier the structure grammar reads whole, as the inventory read
+    it. The XML search alone finds PART.SECTION anywhere in N: it reads "19-3809.1" as
+    3809.1, which would take that section's citation path.
+    """
+    parsed = _section_citation_from_element(title, elem, part)
+    if parsed is None or part is None or parsed[1] == part:
+        return parsed
+    citation_path, _named_part, section = parsed
+    bare = _bare_section_identifier(elem.get("N", ""))
+    if _section_citation_from_identifier(title, bare, part) != (citation_path, section):
+        return None
+    return parsed
+
+
+def _appendix_citation_from_identifier(
+    title: int, identifier: str, *, require_supported: bool = True
+) -> tuple[str, str, str] | None:
+    # A hyphenated part (title 41) matches ASCII-only: under re.I alone, [A-Za-z] also
+    # matches lookalikes such as a dotless "ı", which the citation-path grammar rejects.
+    # The alphanumeric form keeps its earlier flags.
+    match = re.fullmatch(
+        r"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+([0-9A-Za-z]+)",
+        identifier.strip(),
+        flags=re.I,
+    ) or re.fullmatch(
+        rf"Appendix\s+([0-9A-Za-z]+)\s+to\s+Part\s+({_PART_IDENTIFIER_PATTERN})",
+        identifier.strip(),
+        flags=re.I | re.ASCII,
+    )
+    if not match:
+        return None
+    appendix, part = match.groups()
+    appendix = appendix.lower()
+    if require_supported and not (
+        appendix.isdigit() or (len(appendix) == 1 and appendix.isalpha())
+    ):
+        return None
+    return f"us/regulation/{title}/{part}/appendix-{appendix}", part, appendix
+
+
+def _appendix_citation_from_element(
+    title: int, elem: ET.Element
+) -> tuple[str, str, str] | None:
+    return _appendix_citation_from_identifier(title, elem.get("N", ""))
 
 
 def _walk_part_targets(
@@ -355,6 +524,112 @@ def part_targets_from_structure(structure: dict[str, Any]) -> tuple[EcfrPartTarg
     return tuple(_walk_part_targets(structure, title))
 
 
+def _scoped_structure_from_part_xml(
+    xml_content: str,
+    *,
+    title: int,
+    part: str,
+    only_sections: tuple[str, ...],
+) -> dict[str, Any]:
+    root = ET.fromstring(xml_content)
+    part_elem = next(
+        (
+            elem
+            for elem in root.iter("DIV5")
+            if elem.get("TYPE") == "PART" and elem.get("N") == part
+        ),
+        None,
+    )
+    if part_elem is None and root.tag == "DIV5" and root.get("N") == part:
+        part_elem = root
+    if part_elem is None:
+        raise ValueError(f"retained eCFR XML does not contain part {part}")
+
+    requested = tuple(dict.fromkeys(only_sections))
+    sections_by_selector: dict[str, ET.Element] = {}
+    for elem in part_elem.iter("DIV8"):
+        if elem.get("TYPE") != "SECTION":
+            continue
+        parsed = _selectable_section_from_element(title, elem, part)
+        if parsed is None:
+            continue
+        _citation_path, actual_part, section = parsed
+        selector = f"{actual_part}.{section}"
+        if selector in requested:
+            if selector in sections_by_selector:
+                raise ValueError(
+                    f"eCFR section selector {selector} names more than one section "
+                    "in retained XML"
+                )
+            sections_by_selector[selector] = elem
+    missing = [selector for selector in requested if selector not in sections_by_selector]
+    if missing:
+        raise ValueError(
+            f"eCFR section selector(s) not found in retained XML: {', '.join(missing)}"
+        )
+
+    part_head = part_elem.find("HEAD")
+    part_node: dict[str, Any] = {
+        "identifier": part,
+        "label": _element_text(part_head) if part_head is not None else f"Part {part}",
+        "type": "part",
+        "children": [],
+    }
+    formal_subpart_by_section: dict[ET.Element, ET.Element] = {}
+    for subpart_elem in part_elem.findall("./DIV6"):
+        if subpart_elem.get("TYPE") != "SUBPART":
+            continue
+        for section_elem in subpart_elem.iter("DIV8"):
+            if section_elem.get("TYPE") == "SECTION":
+                formal_subpart_by_section[section_elem] = subpart_elem
+
+    subpart_nodes: dict[ET.Element, dict[str, Any]] = {}
+    for selector in requested:
+        elem = sections_by_selector[selector]
+        parsed = _selectable_section_from_element(title, elem, part)
+        if parsed is None:
+            continue
+        _citation_path, actual_part, section = parsed
+        head = elem.find("HEAD")
+        label = _element_text(head) if head is not None else f"§ {selector}"
+        section_node = {
+            "identifier": f"{actual_part}.{section}",
+            "label": label,
+            "label_description": _section_heading(elem, actual_part, section),
+            "type": "section",
+        }
+        formal_subpart_elem = formal_subpart_by_section.get(elem)
+        if formal_subpart_elem is None:
+            part_node["children"].append(section_node)
+            continue
+
+        subpart_node = subpart_nodes.get(formal_subpart_elem)
+        if subpart_node is None:
+            subpart = formal_subpart_elem.get("N")
+            if not subpart:
+                raise ValueError("retained eCFR formal subpart has no identifier")
+            subpart_head = formal_subpart_elem.find("HEAD")
+            subpart_node = {
+                "identifier": subpart,
+                "label": (
+                    _element_text(subpart_head)
+                    if subpart_head is not None
+                    else f"Subpart {subpart}"
+                ),
+                "type": "subpart",
+                "children": [],
+            }
+            subpart_nodes[formal_subpart_elem] = subpart_node
+            part_node["children"].append(subpart_node)
+        subpart_node["children"].append(section_node)
+    return {
+        "identifier": str(title),
+        "label": f"Title {title}",
+        "type": "title",
+        "children": [part_node],
+    }
+
+
 def _clean_part_heading(label: str | None, part: str) -> str | None:
     heading = _clean_text(label)
     heading = re.sub(rf"^Part\s+{re.escape(part)}\s*[—–-]\s*", "", heading, flags=re.I)
@@ -365,6 +640,17 @@ def _clean_subpart_heading(label: str | None, subpart: str) -> str | None:
     heading = _clean_text(label)
     heading = re.sub(
         rf"^Subpart\s+{re.escape(subpart)}\s*[—–-]\s*",
+        "",
+        heading,
+        flags=re.I,
+    )
+    return heading or None
+
+
+def _clean_appendix_heading(label: str | None, identifier: str) -> str | None:
+    heading = _clean_text(label)
+    heading = re.sub(
+        rf"^{re.escape(identifier)}\s*[—–-]\s*",
         "",
         heading,
         flags=re.I,
@@ -387,6 +673,14 @@ def _subpart_ordinal(subpart: str) -> int | None:
     return ord(subpart.upper()) if len(subpart) == 1 and subpart.isalpha() else None
 
 
+def _appendix_ordinal(appendix: str) -> int | None:
+    if appendix.isdigit():
+        return 1_000_000 + int(appendix)
+    if len(appendix) == 1 and appendix.isalpha():
+        return 1_000_000 + ord(appendix.upper())
+    return None
+
+
 def _walk_inventory_items(
     node: dict[str, Any],
     title: int,
@@ -397,6 +691,8 @@ def _walk_inventory_items(
     subchapter: str | None = None,
     part: str | None = None,
     subpart: str | None = None,
+    *,
+    include_appendices: bool = False,
 ) -> Iterator[SourceInventoryItem]:
     node_type = node.get("type")
     identifier = str(node.get("identifier") or "")
@@ -458,17 +754,35 @@ def _walk_inventory_items(
         )
     elif node_type == "section":
         if not node.get("reserved"):
-            parsed = _section_citation_from_identifier(title, identifier)
+            parsed = _section_citation_from_identifier(title, identifier, part)
             if parsed is not None:
                 citation_path, section = parsed
                 actual_part = citation_path.split("/")[-2]
-                if only_part is not None and actual_part != only_part:
+                # The eCFR part that holds the section, which may differ from the part
+                # its identifier names (43 CFR 3809.1 in part 3800).
+                enclosing_part = part or actual_part
+                if only_part is not None and enclosing_part != only_part:
                     return
                 parent_citation_path = (
-                    f"us/regulation/{title}/{actual_part}/subpart-{subpart}"
+                    f"us/regulation/{title}/{enclosing_part}/subpart-{subpart}"
                     if subpart
-                    else f"us/regulation/{title}/{actual_part}"
+                    else f"us/regulation/{title}/{enclosing_part}"
                 )
+                metadata: dict[str, Any] = {
+                    "kind": "section",
+                    "title": title,
+                    "part": actual_part,
+                    "section": section,
+                    "subpart": subpart,
+                    "chapter": chapter,
+                    "subchapter": subchapter,
+                    "parent_citation_path": parent_citation_path,
+                    "label": node.get("label"),
+                    "label_description": node.get("label_description"),
+                    "received_on": node.get("received_on"),
+                }
+                if enclosing_part != actual_part:
+                    metadata["enclosing_part"] = enclosing_part
                 yield SourceInventoryItem(
                     citation_path=citation_path,
                     source_url=_ecfr_section_url(
@@ -477,24 +791,62 @@ def _walk_inventory_items(
                         section,
                         chapter,
                         subchapter,
+                        enclosing_part=enclosing_part,
                     ),
                     source_path=source_path,
                     source_format="ecfr-xml",
                     sha256=source_sha256,
-                    metadata={
-                        "kind": "section",
-                        "title": title,
-                        "part": part or actual_part,
-                        "section": section,
-                        "subpart": subpart,
-                        "chapter": chapter,
-                        "subchapter": subchapter,
-                        "parent_citation_path": parent_citation_path,
-                        "label": node.get("label"),
-                        "label_description": node.get("label_description"),
-                        "received_on": node.get("received_on"),
-                    },
+                    metadata=metadata,
                 )
+        return
+    elif node_type == "appendix":
+        if not include_appendices or node.get("reserved"):
+            return
+        if only_part is not None and part != only_part:
+            return
+        if not identifier or not part:
+            raise ValueError(
+                "unsupported nonreserved eCFR appendix without a part-scoped "
+                f"identifier: {identifier!r}"
+            )
+        appendix_parsed = _appendix_citation_from_identifier(title, identifier)
+        if appendix_parsed is None:
+            raise ValueError(
+                f"unsupported nonreserved eCFR appendix identifier: {identifier!r}"
+            )
+        citation_path, actual_part, appendix = appendix_parsed
+        if actual_part != part:
+            raise ValueError(
+                f"eCFR appendix part {actual_part!r} conflicts with enclosing part {part!r}: "
+                f"{identifier!r}"
+            )
+        yield SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=_ecfr_appendix_url(
+                title,
+                actual_part,
+                identifier,
+                chapter,
+                subchapter,
+            ),
+            source_path=source_path,
+            source_format="ecfr-xml",
+            sha256=source_sha256,
+            metadata={
+                "kind": "appendix",
+                "title": title,
+                "part": actual_part,
+                "appendix": appendix,
+                "appendix_identifier": identifier,
+                "chapter": chapter,
+                "subchapter": subchapter,
+                "parent_citation_path": f"us/regulation/{title}/{actual_part}",
+                "label": node.get("label"),
+                "label_description": node.get("label_description"),
+                "heading": _clean_appendix_heading(node.get("label"), identifier),
+                "received_on": node.get("received_on"),
+            },
+        )
         return
 
     for child in node.get("children", []) or ():
@@ -508,17 +860,24 @@ def _walk_inventory_items(
             subchapter,
             part,
             subpart,
+            include_appendices=include_appendices,
         )
 
 
 def build_ecfr_inventory_from_structures(
     structures: tuple[dict[str, Any], ...],
     only_part: str | None = None,
+    only_sections: tuple[str, ...] = (),
     limit: int | None = None,
     run_id: str | None = None,
     source_sha256_by_title: Mapping[int, str] | None = None,
+    *,
+    include_appendices: bool = False,
 ) -> EcfrInventory:
+    if only_sections and limit is not None:
+        raise ValueError("eCFR section filtering cannot be combined with limit")
     items: list[SourceInventoryItem] = []
+    source_url_by_path: dict[str, str | None] = {}
     part_count = 0
     for structure in structures:
         part_targets = tuple(
@@ -533,7 +892,21 @@ def build_ecfr_inventory_from_structures(
             run_id,
             only_part,
             source_sha256_by_title,
+            # Section selectors never include appendices. Exclude them before
+            # validating identifiers that may be unsupported outside this scope.
+            include_appendices=include_appendices and not only_sections,
         ):
+            # A section takes the path of the part its identifier names, so a section
+            # held by another part could claim the path of one that part already has.
+            # Two provisions under one identity would overwrite each other downstream.
+            # The check spans every structure of the call and runs before section
+            # selectors filter the inventory; with a limit, it covers the items returned.
+            if item.citation_path in source_url_by_path:
+                raise ValueError(
+                    f"eCFR citation path {item.citation_path!r} is claimed twice: "
+                    f"{source_url_by_path[item.citation_path]} and {item.source_url}"
+                )
+            source_url_by_path[item.citation_path] = item.source_url
             items.append(item)
             if limit is not None and len(items) >= limit:
                 return EcfrInventory(
@@ -541,23 +914,83 @@ def build_ecfr_inventory_from_structures(
                     title_count=len(structures),
                     part_count=part_count,
                 )
+    if only_sections:
+        items = _filter_ecfr_inventory_sections(items, only_sections)
+        part_count = sum(
+            1 for item in items if (item.metadata or {}).get("kind") == "part"
+        )
     return EcfrInventory(items=tuple(items), title_count=len(structures), part_count=part_count)
+
+
+def _filter_ecfr_inventory_sections(
+    items: list[SourceInventoryItem],
+    only_sections: tuple[str, ...],
+) -> list[SourceInventoryItem]:
+    requested = tuple(dict.fromkeys(only_sections))
+    for selector in requested:
+        if not re.fullmatch(_SECTION_SELECTOR_PATTERN, selector):
+            raise ValueError(
+                f"invalid eCFR section selector {selector!r}; expected PART.SECTION"
+            )
+
+    by_path = {item.citation_path: item for item in items}
+    matches: dict[str, SourceInventoryItem] = {}
+    for item in items:
+        metadata = item.metadata or {}
+        if metadata.get("kind") != "section":
+            continue
+        selector = f"{metadata.get('part')}.{metadata.get('section')}"
+        if selector in requested:
+            # A selector only the hyphenated grammar accepts must name the section's own
+            # part: eCFR files "105.60.001" under part 105-60, but its path is under
+            # part 105. Selectors the alphanumeric grammar accepts match as before.
+            if (
+                not re.fullmatch(_SECTION_IDENTIFIER_PATTERN, selector)
+                and item.citation_path.split("/")[3] != str(metadata.get("part"))
+            ):
+                continue
+            matches[selector] = item
+    missing = [selector for selector in requested if selector not in matches]
+    if missing:
+        raise ValueError(f"eCFR section selector(s) not found: {', '.join(missing)}")
+
+    retained_paths: set[str] = set()
+    for item in matches.values():
+        retained_paths.add(item.citation_path)
+        parent_path = str((item.metadata or {}).get("parent_citation_path") or "")
+        while parent_path:
+            retained_paths.add(parent_path)
+            parent = by_path.get(parent_path)
+            parent_path = str(
+                ((parent.metadata if parent else None) or {}).get(
+                    "parent_citation_path"
+                )
+                or ""
+            )
+    return [item for item in items if item.citation_path in retained_paths]
 
 
 def build_ecfr_inventory(
     as_of: str,
     only_title: int | None = None,
     only_part: str | None = None,
+    only_sections: tuple[str, ...] = (),
     limit: int | None = None,
     run_id: str | None = None,
+    *,
+    include_appendices: bool = False,
 ) -> EcfrInventory:
+    if only_sections and only_title is None:
+        raise ValueError("eCFR section filtering requires only_title")
     titles = (only_title,) if only_title is not None else DEFAULT_CFR_TITLES
     structures = tuple(_fetch_available_structures(titles, as_of, strict=only_title is not None))
     return build_ecfr_inventory_from_structures(
         structures,
         only_part=only_part,
+        only_sections=only_sections,
         limit=limit,
         run_id=run_id,
+        include_appendices=include_appendices,
     )
 
 
@@ -609,9 +1042,55 @@ def _math_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
     return tuple(identifiers)
 
 
+def _source_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
+    identifiers: list[str] = []
+    seen: set[str] = set()
+    for elem in root.iter():
+        if _local_name(elem.tag) != "IMG":
+            continue
+        identifier = _graphic_identifier(elem.get("src"))
+        if identifier and identifier not in seen:
+            identifiers.append(identifier)
+            seen.add(identifier)
+    return tuple(identifiers)
+
+
+def _non_math_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
+    identifiers: list[str] = []
+    seen: set[str] = set()
+
+    def visit(node: ET.Element, *, inside_math: bool = False) -> None:
+        tag = _local_name(node.tag)
+        inside_math = inside_math or tag == "MATH"
+        if tag == "IMG" and not inside_math:
+            identifier = _graphic_identifier(node.get("src"))
+            if identifier and identifier not in seen:
+                identifiers.append(identifier)
+                seen.add(identifier)
+        for child in node:
+            visit(child, inside_math=inside_math)
+
+    visit(root)
+    return tuple(identifiers)
+
+
+def _element_citation_path(
+    title: int, elem: ET.Element, part: str | None = None
+) -> str | None:
+    if elem.tag == "DIV8" and elem.get("TYPE") == "SECTION":
+        parsed = _section_citation_from_element(title, elem, part)
+        return parsed[0] if parsed is not None else None
+    if elem.tag == "DIV9" and elem.get("TYPE") == "APPENDIX":
+        parsed = _appendix_citation_from_element(title, elem)
+        return parsed[0] if parsed is not None else None
+    return None
+
+
 def _section_body(
     elem: ET.Element,
     graphic_transcriptions: Mapping[str, str] | None = None,
+    *,
+    appendix: bool = False,
 ) -> str:
     blocks: list[str] = []
     transcriptions = graphic_transcriptions or {}
@@ -621,15 +1100,32 @@ def _section_body(
             tag = _local_name(child.tag)
             if tag in {"HEAD", "CITA"}:
                 continue
+            if tag == "HED" or (appendix and tag in {"HD1", "HD2", "HD3"}):
+                text = _element_text(child)
+                if text:
+                    blocks.append(text)
+                for identifier in _non_math_graphic_identifiers(child) if appendix else ():
+                    blocks.append(
+                        f"[Official source image: ecfr/graphics/{identifier}.png]"
+                    )
+                continue
             if tag in {"P", "PSPACE"} or tag == "FP" or tag.startswith("FP-"):
                 text = _element_text(child)
                 if text:
                     blocks.append(text)
+                for identifier in _non_math_graphic_identifiers(child) if appendix else ():
+                    blocks.append(
+                        f"[Official source image: ecfr/graphics/{identifier}.png]"
+                    )
                 continue
             if tag == "TABLE":
                 text = _table_text(child)
                 if text:
                     blocks.append(text)
+                for identifier in _non_math_graphic_identifiers(child) if appendix else ():
+                    blocks.append(
+                        f"[Official source image: ecfr/graphics/{identifier}.png]"
+                    )
                 continue
             if tag == "MATH":
                 for identifier in _math_graphic_identifiers(child):
@@ -643,6 +1139,14 @@ def _section_body(
                             f"[Official formula image: ecfr/graphics/{identifier}.png]"
                         )
                 continue
+            if appendix and tag == "IMG":
+                graphic_identifier = _graphic_identifier(child.get("src"))
+                if graphic_identifier:
+                    blocks.append(
+                        "[Official source image: "
+                        f"ecfr/graphics/{graphic_identifier}.png]"
+                    )
+                continue
             visit(child)
 
     visit(elem)
@@ -655,12 +1159,15 @@ def _ecfr_identifiers(
     part: str,
     section: str | None = None,
     subpart: str | None = None,
+    appendix: str | None = None,
 ) -> dict[str, str]:
     identifiers = {"ecfr:title": str(title), "ecfr:part": part}
     if subpart:
         identifiers["ecfr:subpart"] = subpart
     if section:
         identifiers["ecfr:section"] = section
+    if appendix:
+        identifiers["ecfr:appendix"] = appendix
     return identifiers
 
 
@@ -703,6 +1210,9 @@ def _inventory_heading(item: SourceInventoryItem) -> str | None:
     if kind == "subpart":
         subpart = _metadata_text(metadata, "subpart")
         return _clean_subpart_heading(label, subpart) if subpart else label
+    if kind == "appendix":
+        identifier = _metadata_text(metadata, "appendix_identifier")
+        return _clean_appendix_heading(label, identifier) if identifier else label
     if kind == "part":
         part = _metadata_text(metadata, "part")
         return _clean_part_heading(label, part) if part else label
@@ -723,6 +1233,10 @@ def _inventory_legal_identifier(metadata: Mapping[str, Any]) -> str | None:
         subpart = _metadata_text(metadata, "subpart")
         if subpart:
             return f"{title} CFR part {part}, subpart {subpart}"
+    if kind == "appendix":
+        appendix = _metadata_text(metadata, "appendix")
+        if appendix:
+            return f"{title} CFR part {part}, appendix {appendix.upper()}"
     if kind == "part":
         return f"{title} CFR part {part}"
     return None
@@ -738,6 +1252,7 @@ def _inventory_identifiers(metadata: Mapping[str, Any]) -> dict[str, str] | None
         part,
         section=_metadata_text(metadata, "section"),
         subpart=_metadata_text(metadata, "subpart"),
+        appendix=_metadata_text(metadata, "appendix"),
     )
 
 
@@ -749,6 +1264,8 @@ def _inventory_level(metadata: Mapping[str, Any]) -> int | None:
         return 1
     if kind == "section":
         return 2 if _metadata_text(metadata, "subpart") else 1
+    if kind == "appendix":
+        return 1
     return None
 
 
@@ -763,6 +1280,9 @@ def _inventory_ordinal(metadata: Mapping[str, Any]) -> int | None:
     if kind == "section":
         section = _metadata_text(metadata, "section")
         return _section_ordinal(section) if section else None
+    if kind == "appendix":
+        appendix = _metadata_text(metadata, "appendix")
+        return _appendix_ordinal(appendix) if appendix else None
     return None
 
 
@@ -941,11 +1461,21 @@ def _section_provision(
     subpart: str | None = None,
     graphic_transcriptions: Mapping[str, str] | None = None,
 ) -> ProvisionRecord | None:
-    parsed = _section_citation_from_element(title, elem)
+    parsed = _section_citation_from_element(title, elem, target.part)
     if parsed is None:
         return None
     citation_path, part, section = parsed
     heading = _section_heading(elem, part, section)
+    metadata: dict[str, Any] = {
+        "title": title,
+        "part": part,
+        "section": section,
+        "subpart": subpart,
+        "chapter": target.chapter,
+        "subchapter": target.subchapter,
+    }
+    if part != target.part:
+        metadata["enclosing_part"] = target.part
     return ProvisionRecord(
         id=deterministic_provision_id(citation_path),
         jurisdiction="us",
@@ -955,7 +1485,14 @@ def _section_provision(
         heading=heading,
         body=_section_body(elem, graphic_transcriptions),
         version=version,
-        source_url=_ecfr_section_url(title, part, section, target.chapter, target.subchapter),
+        source_url=_ecfr_section_url(
+            title,
+            part,
+            section,
+            target.chapter,
+            target.subchapter,
+            enclosing_part=target.part,
+        ),
         source_path=source_path,
         source_id=elem.get("NODE"),
         source_format="ecfr-xml",
@@ -968,15 +1505,87 @@ def _section_provision(
         kind="section",
         legal_identifier=f"{title} CFR {part}.{section}",
         identifiers=_ecfr_identifiers(title, part, section=section, subpart=subpart),
+        metadata=metadata,
+    )
+
+
+def _appendix_provision(
+    elem: ET.Element,
+    title: int,
+    target: EcfrPartTarget,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    parent_citation_path: str,
+    graphic_transcriptions: Mapping[str, str] | None = None,
+) -> ProvisionRecord:
+    parsed = _appendix_citation_from_element(title, elem)
+    if parsed is None:
+        raise ValueError(
+            "unsupported nonreserved eCFR appendix XML identifier: "
+            f"{elem.get('N', '')!r}"
+        )
+    citation_path, part, appendix = parsed
+    if part != target.part:
+        raise ValueError(
+            f"eCFR appendix part {part!r} conflicts with enclosing part {target.part!r}: "
+            f"{elem.get('N', '')!r}"
+        )
+    identifier = elem.get("N", "")
+    head = elem.find("HEAD")
+    heading = _clean_appendix_heading(
+        _element_text(head) if head is not None else identifier,
+        identifier,
+    )
+    return ProvisionRecord(
+        id=deterministic_provision_id(citation_path),
+        jurisdiction="us",
+        document_class=DocumentClass.REGULATION.value,
+        citation_path=citation_path,
+        citation_label=f"{title} CFR part {part}, appendix {appendix.upper()}",
+        heading=heading,
+        body=_section_body(elem, graphic_transcriptions, appendix=True),
+        version=version,
+        source_url=_ecfr_appendix_url(
+            title,
+            part,
+            identifier,
+            target.chapter,
+            target.subchapter,
+        ),
+        source_path=source_path,
+        source_id=elem.get("NODE"),
+        source_format="ecfr-xml",
+        source_as_of=source_as_of,
+        expression_date=expression_date,
+        parent_citation_path=parent_citation_path,
+        parent_id=deterministic_provision_id(parent_citation_path),
+        level=1,
+        ordinal=_appendix_ordinal(appendix),
+        kind="appendix",
+        legal_identifier=f"{title} CFR part {part}, appendix {appendix.upper()}",
+        identifiers=_ecfr_identifiers(title, part, appendix=appendix),
         metadata={
             "title": title,
             "part": part,
-            "section": section,
-            "subpart": subpart,
+            "appendix": appendix,
+            "appendix_identifier": identifier,
             "chapter": target.chapter,
             "subchapter": target.subchapter,
         },
     )
+
+
+def _ecfr_provision_children(elem: ET.Element) -> Iterator[ET.Element]:
+    """Walk transparent groups in source order, stopping at provision nodes."""
+    for child in elem:
+        if (child.tag, child.get("TYPE")) in {
+            ("DIV6", "SUBPART"), ("DIV8", "SECTION"), ("DIV9", "APPENDIX")
+        }:
+            yield child
+        else:
+            yield from _ecfr_provision_children(child)
 
 
 def iter_ecfr_title_provisions(
@@ -988,9 +1597,43 @@ def iter_ecfr_title_provisions(
     expression_date: str | None = None,
     allowed_citation_paths: set[str] | None = None,
     graphic_transcriptions: Mapping[str, str] | None = None,
+    *,
+    include_appendices: bool = False,
 ) -> Iterator[ProvisionRecord]:
     root = ET.fromstring(xml_content)
     target_by_part = {target.part: target for target in targets}
+
+    def selected_appendix(
+        elem: ET.Element, target: EcfrPartTarget, parent_citation_path: str
+    ) -> ProvisionRecord | None:
+        if not include_appendices:
+            return None
+        # Scope resolution must not admit unsupported identifiers. The
+        # same boundary applies under part/subpart subject groups.
+        appendix_scope = _appendix_citation_from_identifier(
+            target.title, elem.get("N", ""), require_supported=False
+        )
+        # A selected appendix with a contradictory part must be validated,
+        # whether selected by its parsed citation or its enclosing part.
+        if allowed_citation_paths is not None and (
+            appendix_scope is None or not allowed_citation_paths.intersection({
+                appendix_scope[0],
+                f"{parent_citation_path}/appendix-{appendix_scope[2]}",
+            })
+        ):
+            return None
+        return _appendix_provision(
+            elem,
+            target.title,
+            target,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of or version,
+            expression_date=expression_date or source_as_of or version,
+            parent_citation_path=parent_citation_path,
+            graphic_transcriptions=graphic_transcriptions,
+        )
+
     for div5 in root.iter("DIV5"):
         if div5.get("TYPE") != "PART":
             continue
@@ -1011,76 +1654,82 @@ def iter_ecfr_title_provisions(
         if allowed_citation_paths is None or part_record.citation_path in allowed_citation_paths:
             yield part_record
 
-        subpart_divs = tuple(
-            div6 for div6 in div5.findall("./DIV6") if div6.get("TYPE") == "SUBPART"
-        )
-        if subpart_divs:
-            for div6 in subpart_divs:
-                subpart_record = _subpart_provision(
-                    div6,
+        parent_citation_path = f"us/regulation/{target.title}/{part}"
+
+        # Transparent DIV7 subject groups can occur beside or within subparts.
+        # Stopping at provision nodes avoids converting their descendants twice.
+        for child in _ecfr_provision_children(div5):
+            if child.tag == "DIV9":
+                appendix_record = selected_appendix(child, target, parent_citation_path)
+                if appendix_record is not None:
+                    yield appendix_record
+                continue
+            if child.tag == "DIV8":
+                record = _section_provision(
+                    child,
+                    target.title,
                     target,
                     version=version,
                     source_path=source_path,
                     source_as_of=source_as_of or version,
                     expression_date=expression_date or source_as_of or version,
+                    parent_citation_path=parent_citation_path,
+                    level=1,
+                    graphic_transcriptions=graphic_transcriptions,
                 )
-                if subpart_record is None:
+                if record is None:
                     continue
-                if (
-                    allowed_citation_paths is None
-                    or subpart_record.citation_path in allowed_citation_paths
+                if allowed_citation_paths is not None and (
+                    record.citation_path not in allowed_citation_paths
+                    or _selectable_section_from_element(target.title, child, part) is None
                 ):
-                    yield subpart_record
-                for div8 in div6.iter("DIV8"):
-                    if div8.get("TYPE") != "SECTION":
-                        continue
-                    record = _section_provision(
-                        div8,
-                        target.title,
-                        target,
-                        version=version,
-                        source_path=source_path,
-                        source_as_of=source_as_of or version,
-                        expression_date=expression_date or source_as_of or version,
-                        parent_citation_path=subpart_record.citation_path,
-                        level=2,
-                        subpart=div6.get("N"),
-                        graphic_transcriptions=graphic_transcriptions,
-                    )
-                    if record is None:
-                        continue
-                    if (
-                        allowed_citation_paths is not None
-                        and record.citation_path not in allowed_citation_paths
-                    ):
-                        continue
-                    yield record
-            continue
-
-        parent_citation_path = f"us/regulation/{target.title}/{part}"
-        for div8 in div5.iter("DIV8"):
-            if div8.get("TYPE") != "SECTION":
+                    continue
+                yield record
                 continue
-            record = _section_provision(
-                div8,
-                target.title,
+            subpart_record = _subpart_provision(
+                child,
                 target,
                 version=version,
                 source_path=source_path,
                 source_as_of=source_as_of or version,
                 expression_date=expression_date or source_as_of or version,
-                parent_citation_path=parent_citation_path,
-                level=1,
-                graphic_transcriptions=graphic_transcriptions,
             )
-            if record is None:
+            if subpart_record is None:
                 continue
             if (
-                allowed_citation_paths is not None
-                and record.citation_path not in allowed_citation_paths
+                allowed_citation_paths is None
+                or subpart_record.citation_path in allowed_citation_paths
             ):
-                continue
-            yield record
+                yield subpart_record
+            for nested in _ecfr_provision_children(child):
+                if nested.tag == "DIV9":
+                    appendix_record = selected_appendix(nested, target, parent_citation_path)
+                    if appendix_record is not None:
+                        yield appendix_record
+                    continue
+                if nested.tag != "DIV8" or nested.get("TYPE") != "SECTION":
+                    continue
+                record = _section_provision(
+                    nested,
+                    target.title,
+                    target,
+                    version=version,
+                    source_path=source_path,
+                    source_as_of=source_as_of or version,
+                    expression_date=expression_date or source_as_of or version,
+                    parent_citation_path=subpart_record.citation_path,
+                    level=2,
+                    subpart=child.get("N"),
+                    graphic_transcriptions=graphic_transcriptions,
+                )
+                if record is None:
+                    continue
+                if allowed_citation_paths is not None and (
+                    record.citation_path not in allowed_citation_paths
+                    or _selectable_section_from_element(target.title, nested, part) is None
+                ):
+                    continue
+                yield record
 
 
 def extract_ecfr(
@@ -1088,56 +1737,135 @@ def extract_ecfr(
     version: str,
     as_of: str,
     expression_date: date | None = None,
+    source_xml: str | Path | None = None,
     only_title: int | None = None,
     only_part: str | None = None,
+    only_sections: tuple[str, ...] = (),
     limit: int | None = None,
     workers: int = 2,
     progress_stream: TextIO | None = None,
     graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None = None,
+    *,
+    include_appendices: bool = False,
 ) -> EcfrExtractReport:
+    if only_sections and only_title is None:
+        raise ValueError("eCFR section filtering requires only_title")
+    if only_sections and limit is not None:
+        raise ValueError("eCFR section filtering cannot be combined with limit")
+    if source_xml is not None and (
+        only_title is None or only_part is None or not only_sections
+    ):
+        raise ValueError(
+            "local eCFR source_xml requires only_title, only_part, and section filters"
+        )
     expression_date_text = (expression_date or date.fromisoformat(as_of)).isoformat()
     titles = (only_title,) if only_title is not None else DEFAULT_CFR_TITLES
-    structures = tuple(_fetch_available_structures(titles, as_of, strict=only_title is not None))
     run_id = ecfr_run_id(version, only_title, only_part, limit)
-    source_paths: list[Path] = []
-    source_sha256_by_title: dict[int, str] = {}
-
-    for structure in structures:
-        title = int(structure["identifier"])
-        structure_path = store.source_path(
+    structures: tuple[dict[str, Any], ...]
+    retained_source: tuple[Path, bytes] | None = None
+    if source_xml is not None:
+        source_bytes = Path(source_xml).read_bytes()
+        xml_content = source_bytes.decode("utf-8")
+        assert only_title is not None
+        assert only_part is not None
+        structures = (
+            _scoped_structure_from_part_xml(
+                xml_content,
+                title=only_title,
+                part=only_part,
+                only_sections=only_sections,
+            ),
+        )
+        retained_source_path = store.source_path(
             "us",
             DocumentClass.REGULATION,
             run_id,
-            f"ecfr/title-{title}.structure.json",
+            _ecfr_source_relative_name(only_title, only_part),
         )
-        store.write_json(structure_path, structure)
-        source_paths.append(structure_path)
+        retained_source = (retained_source_path, source_bytes)
+    else:
+        structures = tuple(
+            _fetch_available_structures(
+                titles,
+                as_of,
+                strict=only_title is not None,
+            )
+        )
+    source_paths: list[Path] = []
+    source_sha256_by_title: dict[int, str] = {}
 
+    # Resolve and validate the complete requested inventory before writing any
+    # run artifacts, including a retained local XML snapshot.
     inventory = build_ecfr_inventory_from_structures(
         structures,
         only_part=only_part,
+        only_sections=only_sections,
         limit=limit,
         run_id=run_id,
+        include_appendices=include_appendices,
     )
     allowed_citation_paths = {item.citation_path for item in inventory.items}
+    if retained_source is not None:
+        # A scoped structure includes only the requested selectors. Another XML
+        # element can still normalize to one of their paths, so validate the
+        # actual selected records before replacing a consistent source snapshot.
+        _reject_repeated_citation_paths(
+            tuple(
+                iter_ecfr_title_provisions(
+                    retained_source[1].decode("utf-8"),
+                    part_targets_from_structure(structures[0]),
+                    version=run_id,
+                    source_path=_ecfr_source_key(run_id, int(structures[0]["identifier"]), only_part),
+                    source_as_of=as_of,
+                    expression_date=expression_date_text,
+                    allowed_citation_paths=allowed_citation_paths,
+                    include_appendices=include_appendices,
+                )
+            )
+        )
 
     existing_records = {
         record.citation_path: record
         for record in load_provisions(store.provisions_path("us", DocumentClass.REGULATION, run_id))
         if record.citation_path in allowed_citation_paths
     }
+    inventory_path = store.inventory_path("us", DocumentClass.REGULATION, run_id)
+    cached_sources = {
+        item.citation_path: (item.source_path, item.sha256)
+        for item in load_source_inventory_references(inventory_path)
+    } if inventory_path.exists() else {}
+    if retained_source is not None:
+        # Parse the previous run's artifacts before replacing its source snapshot.
+        store.write_bytes(*retained_source)
     title_paths: dict[int, set[str]] = {}
     for citation_path in allowed_citation_paths:
         title_paths.setdefault(_title_from_citation_path(citation_path), set()).add(citation_path)
 
     pending_titles: list[tuple[int, tuple[EcfrPartTarget, ...], set[str]]] = []
+    revalidating_cached_titles: set[int] = set()
     for structure in structures:
         title = int(structure["identifier"])
         paths = title_paths.get(title, set())
         if not paths:
             continue
-        if paths <= set(existing_records) and not graphic_transcriptions:
-            continue
+        if (
+            paths.intersection(existing_records)
+            and not graphic_transcriptions
+            and not only_sections
+        ):
+            source_key = _ecfr_source_key(run_id, title, only_part)
+            source_path = store.root / source_key
+            source_sha256 = sha256_bytes(source_path.read_bytes()) if source_path.exists() else None
+            if source_sha256 is not None and all(
+                cached_sources.get(path) == (source_key, source_sha256) for path in paths
+            ):
+                # Reuse the verified digest; never rehash skipped cached rows
+                # against bytes that were not checked with their inventory.
+                if paths <= set(existing_records):
+                    source_sha256_by_title[title] = source_sha256
+                    continue
+            else:
+                revalidating_cached_titles.add(title)
         targets = tuple(
             target
             for target in part_targets_from_structure(structure)
@@ -1168,8 +1896,30 @@ def extract_ecfr(
             only_part=only_part,
             workers=workers,
             graphic_transcriptions=graphic_transcriptions,
+            include_appendices=include_appendices,
         )
     )
+    # Workers stage XML and graphics, including resumable error downloads.
+    # No title may change a source until every pending title has passed fatal
+    # validation. A failed cache revalidation must also leave its old pins intact.
+    for result in title_results:
+        if result.title in revalidating_cached_titles and result.error is not None:
+            raise ValueError(f"cannot revalidate cached eCFR provisions: {result.error}")
+    for result in title_results:
+        for path, content in result.pending_source_writes:
+            store.write_bytes(path, content)
+    if not only_sections and source_xml is None:
+        for structure in structures:
+            title = int(structure["identifier"])
+            structure_path = store.source_path(
+                "us",
+                DocumentClass.REGULATION,
+                run_id,
+                f"ecfr/title-{title}.structure.json",
+            )
+            store.write_json(structure_path, structure)
+            source_paths.append(structure_path)
+
     for result in title_results:
         source_paths.extend(result.source_paths)
         if result.source_sha256 is not None:
@@ -1192,6 +1942,10 @@ def extract_ecfr(
         for result in title_results:
             if result.error is not None:
                 continue
+            # A reparse replaces the title, including sections now absent from
+            # its XML. Missing bodies become structure-only placeholders below.
+            for citation_path in title_paths[result.title]:
+                existing_records.pop(citation_path, None)
             transcription_evidence.update(result.transcription_evidence or {})
             for record in result.provisions:
                 existing_records[record.citation_path] = record
@@ -1222,9 +1976,11 @@ def extract_ecfr(
     inventory = build_ecfr_inventory_from_structures(
         structures,
         only_part=only_part,
+        only_sections=only_sections,
         limit=limit,
         run_id=run_id,
         source_sha256_by_title=source_sha256_by_title,
+        include_appendices=include_appendices,
     )
     inventory_path = store.inventory_path("us", DocumentClass.REGULATION, run_id)
     store.write_inventory(inventory_path, inventory.items)
@@ -1262,11 +2018,41 @@ def extract_ecfr(
     )
 
 
+def _reject_repeated_citation_paths(provisions: tuple[ProvisionRecord, ...]) -> None:
+    """Fail when two elements of one source claim a citation path.
+
+    The later record would replace the earlier under the same identity.
+    """
+    source_id_by_path: dict[str, str | None] = {}
+    for record in provisions:
+        if record.citation_path in source_id_by_path:
+            raise ValueError(
+                f"eCFR XML holds citation path {record.citation_path!r} twice: elements "
+                f"{source_id_by_path[record.citation_path]!r} and {record.source_id!r}"
+            )
+        source_id_by_path[record.citation_path] = record.source_id
+
+
+def _enclosing_part_by_section(root: ET.Element) -> dict[ET.Element, str]:
+    """Map each section element to the N of the part element that encloses it."""
+    return {
+        section: part
+        for part_elem in root.iter("DIV5")
+        if part_elem.get("TYPE") == "PART" and (part := part_elem.get("N"))
+        for section in part_elem.iter("DIV8")
+    }
+
+
 def _capture_ecfr_math_graphics(
     store: CorpusArtifactStore,
     run_id: str,
     xml_content: str,
     transcriptions: Mapping[str, EcfrGraphicTranscription],
+    *,
+    title: int,
+    allowed_citation_paths: set[str] | None,
+    include_appendices: bool = False,
+    pending_source_writes: dict[Path, bytes] | None = None,
 ) -> tuple[
     tuple[Path, ...],
     dict[str, str],
@@ -1277,7 +2063,40 @@ def _capture_ecfr_math_graphics(
     used_transcriptions: dict[str, str] = {}
     transcription_evidence: dict[str, dict[str, str]] = {}
 
-    for identifier in _math_graphic_identifiers(root):
+    graphic_roots: tuple[ET.Element, ...]
+    if allowed_citation_paths is None:
+        graphic_roots = (root,)
+    else:
+        part_by_section = _enclosing_part_by_section(root)
+        graphic_roots = tuple(
+            elem
+            for elem in root.iter("DIV8")
+            if elem.get("TYPE") == "SECTION"
+            and (
+                selected := _selectable_section_from_element(
+                    title, elem, part_by_section.get(elem)
+                )
+            )
+            is not None
+            and selected[0] in allowed_citation_paths
+        )
+    # Ordinary sections retain their established formula-only capture. All-IMG
+    # capture belongs only to explicitly included appendix records.
+    identifiers = [
+        identifier
+        for graphic_root in graphic_roots
+        for identifier in _math_graphic_identifiers(graphic_root)
+    ]
+    if include_appendices:
+        for elem in root.iter("DIV9"):
+            if elem.get("TYPE") != "APPENDIX":
+                continue
+            if allowed_citation_paths is not None and (
+                _element_citation_path(title, elem) not in allowed_citation_paths
+            ):
+                continue
+            identifiers.extend(_source_graphic_identifiers(elem))
+    for identifier in dict.fromkeys(identifiers):
         graphic_path = store.source_path(
             "us",
             DocumentClass.REGULATION,
@@ -1291,7 +2110,10 @@ def _capture_ecfr_math_graphics(
                 f"eCFR graphic {identifier}",
                 partial(fetch_ecfr_graphic, identifier),
             )
-            store.write_bytes(graphic_path, content)
+            if pending_source_writes is None:
+                store.write_bytes(graphic_path, content)
+            else:
+                pending_source_writes[graphic_path] = content
         if not content.startswith(b"\x89PNG\r\n\x1a\n"):
             raise ValueError(f"eCFR graphic is not a PNG: {identifier}")
 
@@ -1329,6 +2151,7 @@ def _extract_title_results(
     only_part: str | None,
     workers: int,
     graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
+    include_appendices: bool,
 ) -> Iterator[_EcfrTitleResult]:
     max_workers = max(1, workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -1345,6 +2168,7 @@ def _extract_title_results(
                 allowed_citation_paths,
                 only_part,
                 graphic_transcriptions,
+                include_appendices,
             ): title
             for title, targets, _paths in pending_titles
         }
@@ -1363,6 +2187,7 @@ def _extract_one_title(
     allowed_citation_paths: set[str],
     only_part: str | None,
     graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
+    include_appendices: bool,
 ) -> _EcfrTitleResult:
     source_relative_name = _ecfr_source_relative_name(title, only_part)
     source_path = store.source_path(
@@ -1386,27 +2211,7 @@ def _extract_one_title(
                     else fetch_ecfr_title_xml(title, as_of)
                 ),
             )
-            source_sha256 = store.write_text(source_path, xml_content)
-        graphic_paths, used_transcriptions, transcription_evidence = (
-            _capture_ecfr_math_graphics(
-                store,
-                run_id,
-                xml_content,
-                graphic_transcriptions or {},
-            )
-        )
-        provisions = tuple(
-            iter_ecfr_title_provisions(
-                xml_content,
-                targets,
-                version=run_id,
-                source_path=_ecfr_source_key(run_id, title, only_part),
-                source_as_of=as_of,
-                expression_date=expression_date,
-                allowed_citation_paths=allowed_citation_paths,
-                graphic_transcriptions=used_transcriptions,
-            )
-        )
+            source_sha256 = sha256_bytes(xml_content.encode("utf-8"))
     except (
         TimeoutError,
         ValueError,
@@ -1415,10 +2220,81 @@ def _extract_one_title(
         ET.ParseError,
     ) as exc:
         return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
+
+    parse_provisions = partial(
+        iter_ecfr_title_provisions,
+        xml_content,
+        targets,
+        version=run_id,
+        source_path=_ecfr_source_key(run_id, title, only_part),
+        source_as_of=as_of,
+        expression_date=expression_date,
+        allowed_citation_paths=allowed_citation_paths,
+        include_appendices=include_appendices,
+    )
+    pending_source_writes: dict[Path, bytes] = {}
+    try:
+        provisions = tuple(parse_provisions())
+    except ET.ParseError as exc:
+        if not source_path.exists():
+            cached_path = store.provisions_path("us", DocumentClass.REGULATION, run_id)
+            if cached_path.exists() and any(
+                record.citation_path in allowed_citation_paths
+                and _title_from_citation_path(record.citation_path) == title
+                for record in load_provisions(cached_path)
+            ):
+                raise ValueError(
+                    f"{title} CFR: cannot validate replacement XML with cached provisions: {exc}"
+                ) from exc
+            # Fresh malformed downloads remain resumable, without binding saved
+            # provisions to replacement bytes whose identities were not validated.
+            pending_source_writes[source_path] = xml_content.encode("utf-8")
+        return _EcfrTitleResult(
+            title=title, error=f"{title} CFR: {exc}",
+            pending_source_writes=tuple(pending_source_writes.items()),
+        )
+    # Validate every selected identity before graphics can write or fail. Other
+    # provision validation errors also propagate before any source is replaced.
+    _reject_repeated_citation_paths(provisions)
+
+    try:
+        graphic_paths, used_transcriptions, transcription_evidence = (
+            _capture_ecfr_math_graphics(
+                store,
+                run_id,
+                xml_content,
+                graphic_transcriptions or {},
+                title=title,
+                allowed_citation_paths=allowed_citation_paths,
+                include_appendices=include_appendices,
+                pending_source_writes=pending_source_writes,
+            )
+        )
+        if used_transcriptions:
+            provisions = tuple(
+                parse_provisions(graphic_transcriptions=used_transcriptions)
+            )
+    except (
+        TimeoutError,
+        ValueError,
+        urllib.error.HTTPError,
+        urllib.error.URLError,
+        ET.ParseError,
+    ) as exc:
+        # Only XML with validated identities can reach a resumable graphic error.
+        if not source_path.exists():
+            pending_source_writes[source_path] = xml_content.encode("utf-8")
+        return _EcfrTitleResult(
+            title=title, error=f"{title} CFR: {exc}",
+            pending_source_writes=tuple(pending_source_writes.items()),
+        )
+    if not source_path.exists():
+        pending_source_writes[source_path] = xml_content.encode("utf-8")
     return _EcfrTitleResult(
         title=title,
         provisions=provisions,
         source_paths=(source_path, *graphic_paths),
         transcription_evidence=transcription_evidence,
         source_sha256=source_sha256,
+        pending_source_writes=tuple(pending_source_writes.items()),
     )

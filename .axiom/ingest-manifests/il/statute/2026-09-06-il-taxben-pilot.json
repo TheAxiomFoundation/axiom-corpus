@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/il/statute/2026-09-06-il-taxben-pilot.json",
+      "sha256": "96ee7ea0164885f199af82378ac0993ea59a72536fd971fc102c1e23e4cb740e"
+    },
+    {
+      "path": "data/corpus/inventory/il/statute/2026-09-06-il-taxben-pilot.json",
+      "sha256": "ad3fa78d408eaa431e49dad53669ad6aeca72bd301e5ea6f5d80b0828e96ad96"
+    },
+    {
+      "path": "data/corpus/provisions/il/statute/2026-09-06-il-taxben-pilot.jsonl",
+      "sha256": "909689a5224fec7edcfb6717fb230bf6f807b83355a4c026f9d966144ecb0526"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-06-il-taxben-pilot/openlaw/economic-efficiency-law-2026-wikisource.html",
+      "sha256": "c4632b9f2d50e63cdd4bd0ab517ec5aa1a0f1488448e6151d0eb6a7aedbb6c4c"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-06-il-taxben-pilot/openlaw/ito-wikisource-tail-235-247.html",
+      "sha256": "6cc14dd6bdd6caf14d1f0d63a6f9f74bc83706aefae46b000933d82d84abb9e8"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-06-il-taxben-pilot/openlaw/ito-wikisource.html",
+      "sha256": "87535c2b8cd8aa50b27d32301dc2ddd768390ef64e9fb4f391c3e65fe99dc228"
+    },
+    {
+      "path": "data/corpus/sources/il/statute/2026-09-06-il-taxben-pilot/openlaw/nii-law-wikisource.html",
+      "sha256": "7dbaaa757912c71b361381640d2578bf2c6ab52f2002817b85d677c2267f0715"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1d9fdb6acc35eb98ec1d9c6af443ce6ee04e3ae4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-il-openlaw --base data/corpus --version 2026-09-06-il-taxben-pilot --manifest manifests/il-taxben-pilot-openlaw.yaml --source-dir data/corpus/sources/il/statute/2026-09-06-il-taxben-pilot/openlaw"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1435,
+    "missing_count": 0,
+    "provision_count": 1435,
+    "source_count": 1435
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-07T00:22:31.702628+00:00",
+  "jurisdiction": "il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gU6RZtf68Ji4KP+LUEkXoUYUbkqDjPDZWqvcxFuQJecmnx0LabPpT4f3ba4Ngc7knirGyNgyd3VtmSQOQmxHDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-06-il-taxben-pilot"
+}

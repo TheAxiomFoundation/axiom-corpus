@@ -1,0 +1,35 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: tn-tenncare-rules-1200-13-21-coverkids
+  jurisdiction: us-tn
+  document_class: regulation
+  title: Rules of the Tennessee Department of Finance and Administration, Division of TennCare, Chapter 1200-13-21 CoverKids
+  source_url: https://publications.tnsosfiles.com/rules/1200/1200-13/1200-13-21.20250202.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-02-02'
+  citation_path: us-tn/regulation/1200-13/21
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^1200-13-21-\.(?P<num>\d{2})\s+(?P<heading>[A-Z][A-Z0-9 ,'&/()-]*?)\.(?:\s+(?P<body>\S.*))?\s*$
+    section_label_template: '{num}'
+    heading_continuation_pattern: (?!)
+    drop_lines:
+    - COVERKIDS
+    - CHAPTER 1200-13-21
+    drop_line_patterns:
+    - ^\(Rule 1200-13-21-\.\d{2}, continued\)\s*$
+    - '^[A-Z][a-z]+, \d{4}(?: \(Revised\))?\s*$'
+    - ^\d{1,2}\s*$
+  metadata:
+    primary_source: true
+    source_authority: Tennessee Department of Finance and Administration, Division of TennCare
+    document_subtype: administrative_rules_chapter
+    program: CHIP
+    source_discovery_group: us-tn/regulation/chip
+    discovered_via: manual-review:chip-agent-queue batch 2; publisher index confirmed by agent 2026-09-10
+    state_program: CoverKids
+    rule_chapter: '1200-13-21'
+    sos_revision: February, 2025 (Revised)

@@ -1,0 +1,17 @@
+{
+  "name": "am-rulespec-2026-08-30",
+  "description": "Immutable Armenian current-law tax-benefit core plus a bounded historical evidence selection for supervised RuleSpec-AM encoding. The historical scope includes the 2024 Q1 and year-end Tax Code expressions, the three Funded Pensions expressions spanning 2024, and the operative minimum-wage expression; it does not claim an exhaustive 2024 Tax Code expression timeline.",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "statute",
+      "jurisdiction": "am",
+      "version": "2026-08-29-am-taxben-core"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "am",
+      "version": "2026-08-30-am-rulespec-source-pack"
+    }
+  ]
+}

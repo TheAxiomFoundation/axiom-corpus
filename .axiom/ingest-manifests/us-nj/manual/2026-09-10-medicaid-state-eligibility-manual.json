@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "5e1bd8f8ba47553fb392da0649bc75b5e612079702ff5e5d216578df1bf94e5c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "581ec14c3440359db6e8d77d999ac0d8fd6c182856f96518788b3ffc0c03ab74"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "4e494cee1ba2d02a39cfa4e2abf6941a6c148299c5f211773a1e1531aee37534"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nj-medicaid-njac-10-69.pdf",
+      "sha256": "5433686ab97e09e884606834263554e89583e153937838f0e1356c1752f4fa45"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nj-medicaid-njac-10-70.pdf",
+      "sha256": "ec0f03694722f58c76f4454b662fd91714fd80474c3fefb8912be81c47b427f6"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nj-medicaid-njac-10-71.pdf",
+      "sha256": "5a082ad5c3dacb8239e0e1fde0c4c12e75a8aad168e3597c3165271f4f4e813f"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nj-medicaid-njac-10-72.pdf",
+      "sha256": "4e21168e38b58454782813757a9dc4aa34693ba827c0b01add10d96e3f39fe95"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nj-medicaid-njac-10-78.pdf",
+      "sha256": "d7d0b6039de0b7a52aee0948a13033272dce7cbbaf99cc62e6cc1e64ad2ae27e"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-nj-medicaid-njac-10-79.pdf",
+      "sha256": "b44e6bdb057eab48a185c6d61b03f925ef2cec16d43e52333c287b8fe2756ebc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-nj-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 914,
+    "missing_count": 0,
+    "provision_count": 914,
+    "source_count": 914
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:18:13.300835+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uA4lnTKzL6Gl1AllJg5EPxFoPTox4SD8HK+pD9JeOSG6i2kLmdNOE62hhNatAdyt2UL+TAfYwf+x3YFbdSu7Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-42-part-423.json",
+      "sha256": "02f23caada1dc45780701dce0616a49567c1165ca008b8176d6136adb4a01712"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-42-part-423.json",
+      "sha256": "7dba75772ae930ec0dbc1603bd85c75a3315d12662da2936a0e639828da85302"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-42-part-423.jsonl",
+      "sha256": "026d918d0c0083661c5e3d9c08e49667e021dc4c97d9d2b0d6d7b908c0297b98"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-42-part-423/ecfr/title-42-part-423.xml",
+      "sha256": "5294e3b1fb9e58c7a779b17fdb2238f250753c86df966f3e86981f1f71e48e47"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-42-part-423/ecfr/title-42.structure.json",
+      "sha256": "e26fcf6a5b5d463b8402883ca8159ecfdbdc37f3c215fdfaef9efce4d0faf1ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-42-part-423 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 360,
+    "missing_count": 0,
+    "provision_count": 360,
+    "source_count": 360
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:43:14.036923+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "w4c77D5UmzT4beRBkQBBOWh4EOcrGlVdTGbzFg+nPTJY+OhMgy4J7O0QTWNdeS91gL7syX4cvry3LBJYX1IiCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-42-part-423"
+}

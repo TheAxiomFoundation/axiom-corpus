@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/form/2026-10-06-w6-income-tax-forms-ut.json",
+      "sha256": "e76dd378d7ea8c7a77af9e179829189d080372aa2bff941325a1240dedfa135c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/form/2026-10-06-w6-income-tax-forms-ut.json",
+      "sha256": "1ea0d9c64f6bd3d2eff26b30d705aa78fe92d8f4031143664fcc4306844d59c6"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/form/2026-10-06-w6-income-tax-forms-ut.jsonl",
+      "sha256": "908b9f91e740cd103ac07a668f528ca25b9825f24e01d36316a95c6847c6f973"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/form/2026-10-06-w6-income-tax-forms-ut/official-documents/us-ut-form-ustc-ty2021-tc-40-instructions.pdf",
+      "sha256": "f5898b3b2386f8c3ff858bfbb8b27f63449c4d55eee9a37f083c00220b919c53"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/form/2026-10-06-w6-income-tax-forms-ut/official-documents/us-ut-form-ustc-ty2021-tc-40.pdf",
+      "sha256": "7cc2016d57a2e460e63f68c5eeb8eb9791f396d638f6147d53f5b091de9cf9dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/form/2026-10-06-w6-income-tax-forms-ut/official-documents/us-ut-form-ustc-ty2022-tc-40-instructions.pdf",
+      "sha256": "44e1be20985a3d99f5f073350479df5ecbdf66296fbfa47b9a99690020bd0490"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/form/2026-10-06-w6-income-tax-forms-ut/official-documents/us-ut-form-ustc-ty2023-tc-40-instructions.pdf",
+      "sha256": "634ce281a265887eae06fcddfc771a3e4d8a2eb3745378c1aed90191f5c2550a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/form/2026-10-06-w6-income-tax-forms-ut/official-documents/us-ut-form-ustc-ty2024-tc-40-instructions.pdf",
+      "sha256": "bc4a62fdf7bbaa1a6f6ffc4d2b111474771197d9f4b6c0859aed86434d76687c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ok-wv.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-07T17:59:12.869717+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "76I0cKX+P9OylaKaim6L/GVszdfRba0+mbRSuZBGBSTB9EVvEXHdfJaXBqh3GpbmHTuZsXlXqw6YF4VE7K0wDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-forms-ut"
+}

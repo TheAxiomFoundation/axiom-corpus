@@ -1,3 +1,5 @@
+import pytest
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.idaho import (
@@ -5,6 +7,7 @@ from axiom_corpus.corpus.state_adapters.idaho import (
     IDAHO_SECTION_SOURCE_FORMAT,
     IDAHO_TITLE_INDEX_SOURCE_FORMAT,
     IDAHO_TITLE_SOURCE_FORMAT,
+    IdahoSectionListing,
     _RecordedSource,
     extract_idaho_statutes,
     parse_idaho_chapter_page,
@@ -75,6 +78,18 @@ SAMPLE_SECTION_HTML = """
 </body></html>
 """
 
+SAMPLE_RENDITIONED_SECTION_HTML = """
+<html><body>
+  <div class="pgbrk">
+    <div style="font-family: Courier New; text-align: center">TITLE 63</div>
+    <div style="font-family: Courier New; text-align: justify">63-3022E. Current text. [effective until January 1, 2027] Uses section <a href="/statutesrules/idstat/Title66/T66CH4/SECT66-402">66-402</a>(5).</div>
+    <div style="font-family: Courier New; text-align: justify">63-3022E. Future text. [effective January 1, 2027] Uses section <a href="/statutesrules/idstat/Title66/T66CH4/SECT66-403">66-403</a>(4).</div>
+    <div style="font-family: Courier New; text-align: justify">History:</div>
+    <div style="font-family: Courier New; text-align: justify">[Added 2026.]</div>
+  </div>
+</body></html>
+"""
+
 SAMPLE_RECORDED = _RecordedSource(
     source_url="https://legislature.idaho.gov/statutesrules/idstat/",
     source_path="sources/us-id/statute/test/index.html",
@@ -98,8 +113,7 @@ def test_parse_idaho_indexes_and_section_page():
 
     assert [chapter.chapter for chapter in chapters] == ["30", "31"]
     assert chapters[0].pdf_url == (
-        "https://legislature.idaho.gov/wp-content/uploads/statutesrules/idstat/"
-        "Title63/T63CH30.pdf"
+        "https://legislature.idaho.gov/wp-content/uploads/statutesrules/idstat/Title63/T63CH30.pdf"
     )
     assert chapters[1].active is False
     assert chapters[1].status == "repealed"
@@ -124,6 +138,58 @@ def test_parse_idaho_indexes_and_section_page():
     assert parsed.references_to == ("us-id/statute/63-3003",)
 
 
+def test_parse_idaho_section_page_selects_expression_date_rendition():
+    listing = IdahoSectionListing(
+        title_number="63",
+        chapter="30",
+        section="63-3022E",
+        heading="Household deduction",
+        source_url=SAMPLE_RECORDED.source_url,
+        ordinal=1,
+    )
+
+    current = parse_idaho_section_page(
+        SAMPLE_RENDITIONED_SECTION_HTML,
+        listing=listing,
+        source=SAMPLE_RECORDED,
+        expression_date="2026-07-13",
+    )
+    future = parse_idaho_section_page(
+        SAMPLE_RENDITIONED_SECTION_HTML,
+        listing=listing,
+        source=SAMPLE_RECORDED,
+        expression_date="2027-01-01",
+    )
+
+    assert current.heading == "Current text"
+    assert "effective until January 1, 2027" in (current.body or "")
+    assert "Future text" not in (current.body or "")
+    assert current.references_to == ("us-id/statute/66-402",)
+    assert current.source_history == ("[Added 2026.]",)
+    assert future.heading == "Future text"
+    assert "effective January 1, 2027" in (future.body or "")
+    assert "Current text" not in (future.body or "")
+    assert future.references_to == ("us-id/statute/66-403",)
+
+
+def test_parse_idaho_section_page_requires_date_for_multiple_renditions():
+    listing = IdahoSectionListing(
+        title_number="63",
+        chapter="30",
+        section="63-3022E",
+        heading="Household deduction",
+        source_url=SAMPLE_RECORDED.source_url,
+        ordinal=1,
+    )
+
+    with pytest.raises(ValueError, match="expression_date is required"):
+        parse_idaho_section_page(
+            SAMPLE_RENDITIONED_SECTION_HTML,
+            listing=listing,
+            source=SAMPLE_RECORDED,
+        )
+
+
 def test_extract_idaho_statutes_from_source_dir_writes_complete_artifacts(tmp_path):
     source_dir = tmp_path / "source"
     (source_dir / IDAHO_TITLE_INDEX_SOURCE_FORMAT).mkdir(parents=True)
@@ -143,11 +209,7 @@ def test_extract_idaho_statutes_from_source_dir_writes_complete_artifacts(tmp_pa
         encoding="utf-8",
     )
     (
-        source_dir
-        / IDAHO_SECTION_SOURCE_FORMAT
-        / "title-63"
-        / "chapter-30"
-        / "63-3002.html"
+        source_dir / IDAHO_SECTION_SOURCE_FORMAT / "title-63" / "chapter-30" / "63-3002.html"
     ).write_text(SAMPLE_SECTION_HTML, encoding="utf-8")
     store = CorpusArtifactStore(tmp_path / "corpus")
 

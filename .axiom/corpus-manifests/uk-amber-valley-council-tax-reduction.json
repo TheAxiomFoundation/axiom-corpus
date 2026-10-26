@@ -1,0 +1,53 @@
+{
+ "documents": [
+  {
+   "source_id": "amber-valley-council-tax-reduction-scheme-2026-2027",
+   "jurisdiction": "uk-amber-valley",
+   "document_class": "manual",
+   "citation_path": "uk-amber-valley/manual/council-tax-reduction-scheme-2026-2027",
+   "title": "Amber Valley Council Working-age Council Tax Reduction Scheme (operative 2026/27)",
+   "source_url": "https://www.ambervalley.gov.uk/media/2182/avbc-cts-scheme-2026-2027.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-09-05",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w11-hunt",
+    "source_authority": "Amber Valley",
+    "document_subtype": "council_tax_reduction_scheme",
+    "effective_scheme_year": "2026-2027",
+    "role": "scheme_text"
+   }
+  },
+  {
+   "source_id": "amber-valley-council-adoption-2026-27",
+   "jurisdiction": "uk-amber-valley",
+   "document_class": "manual",
+   "citation_path": "uk-amber-valley/manual/council-adoption-2026-27",
+   "title": "Amber Valley Council — Full Council adoption record for the 2026/27 Council Tax Reduction Scheme (Minute 5257)",
+   "source_url": "https://info.ambervalley.gov.uk/WebServices/AVBCFeeds/DemocracyJSON.asmx/StreamCommitteeDoc?docId=22309&uniqueToken=&authUserName=&committeeRef=CNL",
+   "source_format": "pdf",
+   "source_as_of": "2026-09-05",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w11-hunt",
+    "source_authority": "Amber Valley",
+    "document_subtype": "adoption_minutes",
+    "role": "operative_adoption",
+    "adoption_body": "Full Council",
+    "adoption_date": "2026-01-21",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "ACCEPT-DERIVED",
+     "adopts": "amber-valley-council-tax-reduction-scheme-2026-2027",
+     "carries_amendments": "continues the scheme for 2026/27 with Housing-Benefit-style uprating only",
+     "chain": "\"5257 COUNCIL TAX SUPPORT SCHEME 2026/27. The Council considered a report seeking approval for the continuation of the local Council Tax Support Scheme for the financial year 2026/27. RESOLVED: 1 That the following be approved as Amber Valley Borough Council's Local Council Tax Support Scheme from 1 April 2026: a) That working age claimants can continue to receive full help towards their Council Tax if they are on a low income, in the same way as pension age claimants, with no reduction to be applied.\" (from Full Council minutes, 21 January 2026, pp.5-6)"
+    },
+    "adoption_reference": "Full Council, 21 January 2026 (Minute No. 5257, item \"Council Tax Support Scheme 2026/27\")"
+   }
+  }
+ ]
+}

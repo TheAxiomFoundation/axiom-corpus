@@ -1,0 +1,87 @@
+{
+ "documents": [
+  {
+   "source_id": "oldham-council-tax-reduction-scheme-2025-26",
+   "jurisdiction": "uk-oldham",
+   "document_class": "manual",
+   "citation_path": "uk-oldham/manual/council-tax-reduction-scheme-2025-26",
+   "title": "Oldham Metropolitan Borough Council Council Tax Reduction Scheme 2025-26",
+   "source_url": "https://www.oldham.gov.uk/download/downloads/id/2632/council_tax_reduction_scheme_2025-26.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-08",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-weekend",
+    "source_authority": "Oldham",
+    "document_subtype": "council_tax_reduction_scheme",
+    "role": "scheme_text",
+    "effective_scheme_year": "2026-2027",
+    "base_instrument_year": "2025-26",
+    "identification": {
+     "classification": "ACCEPT-DERIVED",
+     "adopted_by": "oldham-council-minutes-2026-03-04",
+     "chain": "Full Council 4 March 2026 resolved that the existing Council Tax Reduction Scheme remains unchanged for 2026/27 (recorded vote 48-0-6); the scheme instrument is the published CTR Scheme 2025-26 (cited as the Oldham Metropolitan Borough Council, Council Tax Reduction Scheme 2025-26, commencement 1 April 2025)."
+    }
+   }
+  },
+  {
+   "source_id": "oldham-council-minutes-2026-03-04",
+   "jurisdiction": "uk-oldham",
+   "document_class": "manual",
+   "citation_path": "uk-oldham/manual/council-minutes-2026-03-04",
+   "title": "Oldham Council Minutes, Council 4 March 2026",
+   "source_url": "https://committees.oldham.gov.uk/documents/g9604/Printed%20minutes%2004th-Mar-2026%2018.00%20Council.pdf?T=1",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-08",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-weekend",
+    "source_authority": "Oldham",
+    "document_subtype": "adoption_minutes",
+    "role": "operative_adoption",
+    "adoption_body": "Full Council",
+    "adoption_date": "2026-03-04",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "ACCEPT-DERIVED",
+     "adopts": "oldham-council-tax-reduction-scheme-2025-26",
+     "carries_amendments": "none - scheme unchanged for 2026/27"
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  },
+  {
+   "source_id": "oldham-ctr-cabinet-report-2026-27",
+   "jurisdiction": "uk-oldham",
+   "document_class": "manual",
+   "citation_path": "uk-oldham/manual/ctr-cabinet-report-2026-27",
+   "title": "Oldham Cabinet Report: Council Tax Reduction Scheme 2026/27",
+   "source_url": "https://committees.oldham.gov.uk/documents/s155588/Council%20Tax%20Reduction%20Scheme%202026.27%20Final.pdf",
+   "source_format": "pdf",
+   "source_as_of": "2026-08-08",
+   "expression_date": "2026-04-01",
+   "metadata": {
+    "primary_source": true,
+    "program": "Council Tax Reduction",
+    "discovered_via": "axiom-296-council-expansion-w7-weekend",
+    "source_authority": "Oldham",
+    "document_subtype": "cabinet_report",
+    "role": "adoption_context",
+    "effective_scheme_year": "2026-2027",
+    "identification": {
+     "classification": "corroboration-only",
+     "confirms": "oldham-council-minutes-2026-03-04"
+    }
+   },
+   "request": {
+    "browser_impersonation": true
+   }
+  }
+ ]
+}

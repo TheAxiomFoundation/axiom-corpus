@@ -1,0 +1,29 @@
+version: 2026-09-13-tanf-state-plan
+documents:
+- source_id: us-wi-tanf-state-plan-2024-2027
+  jurisdiction: us-wi
+  document_class: policy
+  title: Wisconsin TANF State Plan (WIOA combined plan Section VII, PY 2024-2027, 2026 modifications)
+  source_url: https://dcf.wisconsin.gov/files/w2/tanf-state-plans/2026-tanf-section-wioa-combined-plan-modifications.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-wi/policy/acf/tanf-plan/2024-2027
+  metadata:
+    primary_source: true
+    source_authority: Wisconsin Department of Children and Families (Wisconsin Works)
+    document_subtype: state_plan_pdf
+    program: TANF
+    federal_program: TANF
+    plan_status: Wisconsin's Combined State Plan under WIOA, Section VII TANF, PY 2024-2027, effective July 1, 2024, modifications
+      March 15, 2026; the index labels the file 'Proposed Modifications to the Current TANF State Plan' (the stand-alone FFY
+      2021-2023 plan is the newest non-WIOA print)
+    publisher_index_url: https://dcf.wisconsin.gov/w2/researchers/state-plans
+    listed_on_publisher_index: true
+    ofa_index: ACF OFA posts no state plan index (acf.gov/ofa/programs/tanf and the resource library carry no plan links,
+      checked 2026-09-10 and 2026-09-13); the plan is the state agency's own publication
+    source_discovery_group: us-wi/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue additional_families; index https://dcf.wisconsin.gov/w2/researchers/state-plans
+    closure_elements:
+    - tanf-s32
+    extraction_granularity: pdf_page

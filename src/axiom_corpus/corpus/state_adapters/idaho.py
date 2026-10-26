@@ -6,7 +6,7 @@ import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from threading import Lock
@@ -42,6 +42,11 @@ _SECTION_HREF_RE = re.compile(
     re.I,
 )
 _SECTION_NUMBER_RE = re.compile(r"\b(?P<section>\d{1,2}-\d{2,5}[A-Z]?)\b", re.I)
+_RENDITION_EFFECTIVE_RE = re.compile(
+    r"\[effective(?P<until>\s+until)?\s+"
+    r"(?P<date>[A-Z][a-z]+\s+\d{1,2},\s+\d{4})\]",
+    re.I,
+)
 
 
 @dataclass(frozen=True)
@@ -447,6 +452,7 @@ def extract_idaho_statutes(
                 fetcher,
                 selected_listings,
                 source=chapter_recorded,
+                expression_date=expression_date_text,
                 workers=workers,
             ):
                 if result.error is not None:
@@ -653,12 +659,18 @@ def parse_idaho_section_page(
     *,
     listing: IdahoSectionListing,
     source: _RecordedSource,
+    expression_date: date | str | None = None,
 ) -> IdahoSection:
     """Parse one official Idaho Statutes section HTML page."""
     soup = BeautifulSoup(_decode(html), "lxml")
     content_divs = _section_content_divs(soup)
     if not content_divs:
         raise ValueError("Idaho section page has no statute content divs")
+    content_divs = _select_section_rendition(
+        content_divs,
+        section=listing.section,
+        expression_date=expression_date,
+    )
 
     heading = _clean_heading(listing.heading) or f"Section {listing.section}"
     body_parts: list[str] = []
@@ -707,7 +719,11 @@ def parse_idaho_section_page(
     body = _join_paragraphs(body_parts)
     history = tuple(part for part in (_join_paragraphs(history_parts),) if part)
     notes = tuple(part for part in (_join_paragraphs(note_parts),) if part)
-    references_to = _extract_section_references(soup, "\n".join(part for part in [body or "", *notes] if part), current=listing.section)
+    references_to = _extract_section_references(
+        content_divs,
+        "\n".join(part for part in [body or "", *notes] if part),
+        current=listing.section,
+    )
     status = _section_status(heading, body, history + notes)
     return IdahoSection(
         listing=listing,
@@ -729,16 +745,31 @@ def _fetch_idaho_section_results(
     listings: list[IdahoSectionListing],
     *,
     source: _RecordedSource,
+    expression_date: date | str | None,
     workers: int,
 ) -> list[_IdahoSectionFetchResult]:
     if not listings:
         return []
     if workers <= 1 or len(listings) == 1:
-        return [_fetch_one_idaho_section(fetcher, listing, source=source) for listing in listings]
+        return [
+            _fetch_one_idaho_section(
+                fetcher,
+                listing,
+                source=source,
+                expression_date=expression_date,
+            )
+            for listing in listings
+        ]
     results: dict[int, _IdahoSectionFetchResult] = {}
     with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
         futures = {
-            executor.submit(_fetch_one_idaho_section, fetcher, listing, source=source): index
+            executor.submit(
+                _fetch_one_idaho_section,
+                fetcher,
+                listing,
+                source=source,
+                expression_date=expression_date,
+            ): index
             for index, listing in enumerate(listings)
         }
         for future in as_completed(futures):
@@ -751,6 +782,7 @@ def _fetch_one_idaho_section(
     listing: IdahoSectionListing,
     *,
     source: _RecordedSource,
+    expression_date: date | str | None,
 ) -> _IdahoSectionFetchResult:
     try:
         section_source = fetcher.fetch_section(listing)
@@ -764,6 +796,7 @@ def _fetch_one_idaho_section(
             section_source.data,
             listing=listing,
             source=transient_source,
+            expression_date=expression_date,
         )
         return _IdahoSectionFetchResult(
             listing=listing,
@@ -1061,6 +1094,74 @@ def _section_content_divs(soup: BeautifulSoup) -> tuple[Tag, ...]:
     return tuple(divs)
 
 
+def _select_section_rendition(
+    divs: tuple[Tag, ...],
+    *,
+    section: str,
+    expression_date: date | str | None,
+) -> tuple[Tag, ...]:
+    """Select one effective rendition when an Idaho page publishes several."""
+    starts = [
+        index
+        for index, div in enumerate(divs)
+        if _strip_section_heading(_clean_text(div), section)[1] is not None
+    ]
+    if len(starts) <= 1:
+        return divs
+    if expression_date is None:
+        raise ValueError(
+            f"Idaho section {section} publishes {len(starts)} renditions; "
+            "expression_date is required"
+        )
+
+    as_of = _coerce_expression_date(expression_date)
+    matching: list[int] = []
+    unmarked: list[int] = []
+    for start in starts:
+        marker = _rendition_effective_marker(_clean_text(divs[start]))
+        if marker is None:
+            unmarked.append(start)
+            continue
+        effective_date, is_until = marker
+        if (is_until and as_of < effective_date) or (not is_until and as_of >= effective_date):
+            matching.append(start)
+    if len(matching) == 1:
+        selected_start = matching[0]
+    elif not matching and len(unmarked) == 1:
+        selected_start = unmarked[0]
+    else:
+        raise ValueError(f"Idaho section {section} has no unique rendition for {as_of.isoformat()}")
+
+    history_start = next(
+        (
+            index
+            for index in range(starts[-1] + 1, len(divs))
+            if _is_history_marker(_clean_text(divs[index]))
+        ),
+        len(divs),
+    )
+    next_start = next((start for start in starts if start > selected_start), history_start)
+    selected_end = min(next_start, history_start)
+    return (*divs[: starts[0]], *divs[selected_start:selected_end], *divs[history_start:])
+
+
+def _rendition_effective_marker(text: str) -> tuple[date, bool] | None:
+    match = _RENDITION_EFFECTIVE_RE.search(text)
+    if match is None:
+        return None
+    effective_date = datetime.strptime(match.group("date"), "%B %d, %Y").date()
+    return effective_date, match.group("until") is not None
+
+
+def _coerce_expression_date(value: date | str) -> date:
+    if isinstance(value, date):
+        return value
+    try:
+        return date.fromisoformat(value)
+    except ValueError as exc:
+        raise ValueError(f"invalid Idaho expression_date: {value!r}") from exc
+
+
 def _strip_section_heading(text: str, section: str) -> tuple[str | None, str | None]:
     match = re.match(
         rf"^{re.escape(section)}\.\s*(?P<heading>.+?)\.\s*(?P<body>.*)$",
@@ -1077,16 +1178,17 @@ def _strip_section_heading(text: str, section: str) -> tuple[str | None, str | N
 
 
 def _extract_section_references(
-    soup: BeautifulSoup,
+    divs: tuple[Tag, ...],
     text: str,
     *,
     current: str,
 ) -> tuple[str, ...]:
     references: list[str] = []
-    for link in soup.find_all("a", href=True):
-        match = _SECTION_HREF_RE.search(str(link["href"]))
-        if match:
-            _append_reference(references, match.group("section").upper(), current=current)
+    for div in divs:
+        for link in div.find_all("a", href=True):
+            match = _SECTION_HREF_RE.search(str(link["href"]))
+            if match:
+                _append_reference(references, match.group("section").upper(), current=current)
     for match in _SECTION_NUMBER_RE.finditer(text):
         _append_reference(references, match.group("section").upper(), current=current)
     return tuple(_dedupe_preserve_order(references))
@@ -1120,11 +1222,15 @@ def _is_note_marker(text: str) -> bool:
 
 
 def _strip_note_marker(text: str) -> str:
-    return re.sub(r"^(compiler'?s notes?|cross references?|effective date):?\s*", "", text, flags=re.I)
+    return re.sub(
+        r"^(compiler'?s notes?|cross references?|effective date):?\s*", "", text, flags=re.I
+    )
 
 
 def _status_from_heading(heading: str | None) -> str | None:
-    if heading and re.search(r"\[(?:repealed|reserved|expired)\]|\b(repealed|reserved|expired)\b", heading, re.I):
+    if heading and re.search(
+        r"\[(?:repealed|reserved|expired)\]|\b(repealed|reserved|expired)\b", heading, re.I
+    ):
         if re.search(r"repealed", heading, re.I):
             return "repealed"
         if re.search(r"reserved", heading, re.I):

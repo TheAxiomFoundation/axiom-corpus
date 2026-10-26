@@ -1,0 +1,42 @@
+version: 2026-09-10-chip-state-eligibility-manual
+documents:
+- source_id: mn-dhs-epm-2-2-2-1
+  jurisdiction: us-mn
+  document_class: manual
+  title: Minnesota EPM 2.2.2.1 MA-FCA Bases of Eligibility
+  source_url: https://hcopub.dhs.state.mn.us/epm/2_2_2_1.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-06-03'
+  citation_path: us-mn/manual/dhs/chip/epm-2-2-2-1
+  extraction:
+    html_content_selector: '#rh-topic'
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services
+    document_subtype: eligibility_policy_manual_topic
+    program: CHIP
+    source_discovery_group: us-mn/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 2; publisher index confirmed by agent 2026-09-10
+    state_program: Medical Assistance for Families with Children and Adults (CHIP-funded infants and pregnant people)
+    epm_section: 2.2.2.1
+- source_id: mn-dhs-epm-2-2-3-3
+  jurisdiction: us-mn
+  document_class: manual
+  title: Minnesota EPM 2.2.3.3 MA-FCA Income Limit
+  source_url: https://hcopub.dhs.state.mn.us/epm/2_2_3_3.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2018-12-01'
+  citation_path: us-mn/manual/dhs/chip/epm-2-2-3-3
+  extraction:
+    html_content_selector: '#rh-topic'
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services
+    document_subtype: eligibility_policy_manual_topic
+    program: CHIP
+    source_discovery_group: us-mn/manual/chip
+    discovered_via: manual-review:chip-agent-queue batch 2; publisher index confirmed by agent 2026-09-10
+    state_program: Medical Assistance for Families with Children and Adults (CHIP-funded infants and pregnant people)
+    epm_section: 2.2.3.3

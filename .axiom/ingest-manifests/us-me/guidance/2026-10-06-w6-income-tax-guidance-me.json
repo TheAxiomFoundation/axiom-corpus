@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/guidance/2026-10-06-w6-income-tax-guidance-me.json",
+      "sha256": "445b536cc8c01f5f5cfd1dbccf377d348cb973105f5b58f155f3e5fbf3253058"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/guidance/2026-10-06-w6-income-tax-guidance-me.json",
+      "sha256": "4aeae3c9d514e397401b5292a2bdf59557b56749b40b3bf30eee918cdfc81fe9"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/guidance/2026-10-06-w6-income-tax-guidance-me.jsonl",
+      "sha256": "213b74a24c62f0e082b1720b5a2f44dbd0997332d06f7f5d1fa009c0627747a8"
+    },
+    {
+      "path": "data/corpus/sources/us-me/guidance/2026-10-06-w6-income-tax-guidance-me/official-documents/us-me-guidance-governor-relief-checks.html",
+      "sha256": "d3b6caeae12740a1fadb3c1bdf4610c9a5e05a98762edcf7104fae43dfd0019e"
+    },
+    {
+      "path": "data/corpus/sources/us-me/guidance/2026-10-06-w6-income-tax-guidance-me/official-documents/us-me-guidance-mrs-2026-session-legislation-enacted.pdf",
+      "sha256": "f35b3ab5e5ec6b6aa7ef9e7e32888d09c949ea02058dc6bb9d65506514cec464"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:53:20.180730+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nTq8wOrc7dsml5O5/iA+pYhmJhY5magB/r6qHKSAK3Z/a9ybByeG1ZwPLeaCc7w+vL0ckkgZrbvNu/B+A5I8Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-me"
+}

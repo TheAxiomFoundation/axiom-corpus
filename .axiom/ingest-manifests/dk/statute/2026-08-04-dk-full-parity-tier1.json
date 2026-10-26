@@ -1,0 +1,557 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/dk/statute/2026-08-04-dk-full-parity-tier1.json",
+      "sha256": "b4cb241fd1b7510088f844867bb9408a6a1749a42077e3851caad712343a10f3"
+    },
+    {
+      "path": "data/corpus/inventory/dk/statute/2026-08-04-dk-full-parity-tier1.json",
+      "sha256": "505a29fda7c2cf47b29eaf7b373bdaf0b4c05f65e5e6dd78cf9caff1bf9bacaf"
+    },
+    {
+      "path": "data/corpus/provisions/dk/statute/2026-08-04-dk-full-parity-tier1.jsonl",
+      "sha256": "97d79e082953e59aa396b957862daff72b4a8d2b4ad7dc69d0aa78f68a71686b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1004-2025-aktivloven.jsonld",
+      "sha256": "8009f2b97ebb395ea8bba08b559398410d8c28e93b34c7afbe5e55119ea36eb5"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1004-2025-aktivloven.xml",
+      "sha256": "c35dcfeab6829547dc61aa8893097a879627445a7555c6479fe7562be9cfa441"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1077-2025-arbejdsloeshedsforsikringsloven.jsonld",
+      "sha256": "7dd477cb9fc614c58b12315d6d42ec2d99de13b1a2182e016fa212eb6e1d1b10"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1077-2025-arbejdsloeshedsforsikringsloven.xml",
+      "sha256": "a30ca69aa0098ae0b631fa8ac000c236faabce1f1a47b87607e5cbe7cadbae18"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1123-2024-pensionsloven.jsonld",
+      "sha256": "ad7ca252be5cb57aee557b1fd1d9a6bf321bc7de357d85d63aa68f784db2b4ef"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1123-2024-pensionsloven.xml",
+      "sha256": "f549a58e0c036d27bc3576681f9be8def57726bb86c11ce889018beeaa433ab1"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1142-2024-atp-loven.jsonld",
+      "sha256": "881c750164b78cefbb44eea446bef2c7583cf63849edc40fc57063008c469f76"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1142-2024-atp-loven.xml",
+      "sha256": "40d42ced7a3b3545a5923ea1505cf45587028b67d54886e3bd930af9ff817ede"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-121-2020-arbejdsmarkedsbidragsloven.jsonld",
+      "sha256": "6029912ddb496110c10e5e23a167f83bf6dc13625b33224b0d4b63b76b322666"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-121-2020-arbejdsmarkedsbidragsloven.xml",
+      "sha256": "ad841782e42dbb3d967fa205206084a8b9db78192bcc52a716ef4c7253586c0f"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1243-2024-pensionsbeskatningsloven.jsonld",
+      "sha256": "242dfeb63492329d66124aaf8272896424d76a5c6e594ca4266c153dacb73832"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1243-2024-pensionsbeskatningsloven.xml",
+      "sha256": "44d557a35638e35d231e10f45a7e56f9949655b1de2d1ef7fed73bb8a33b7663"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1284-2021-personskatteloven.jsonld",
+      "sha256": "e2cc1d8a1759505406729ef34dbd3d9033b35ae8e9f39915666c300691a8b221"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1284-2021-personskatteloven.xml",
+      "sha256": "df8423c78d14f487eaa255264d6efd66aeee3147fbb833b675339b8b49046157"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1500-2025-ligningsloven.jsonld",
+      "sha256": "b99e513e37ff32b73b42727a322b287f6ec4220bb7fce9ec04d185781eba659f"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-1500-2025-ligningsloven.xml",
+      "sha256": "71dbace06dfbb4e018662099eb1465df1c8dc3d79a8207057019978588890e3d"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-395-2023-su-loven.jsonld",
+      "sha256": "e44ac5cbc68f695aa8b999c8c70b172449ed3d3ffb98f0b8ac51fb964107bb8b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-395-2023-su-loven.xml",
+      "sha256": "e1d0c4d10a5fac50b5eeab2d168cd483bac822e7b03fa91b2749d234b0f1d07e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-460-2024-kildeskatteloven.jsonld",
+      "sha256": "50272c781ef37da628055ae54b60b2ed2501f960905905a8ccd832d568a365de"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-460-2024-kildeskatteloven.xml",
+      "sha256": "e7e6dad9b3de94d2f5a9acb68f377e3e81e6726ea80da92397a16f4384dc4f5b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-603-2025-boerne-og-ungeydelsesloven.jsonld",
+      "sha256": "69419e83855d527a4fb6f5be3106eb26500f592a080cddff6c2135bb4a8ab638"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-603-2025-boerne-og-ungeydelsesloven.xml",
+      "sha256": "0700781a17bdcaaf21ee73a51281a6cac2094a889322d87f092e3a0aa43f144f"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-63-2019-boernetilskudsloven.jsonld",
+      "sha256": "d0393a2931c8cb7eab954ee75d7a1631bd289f204473c6e9fc6d9cbea9536213"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-63-2019-boernetilskudsloven.xml",
+      "sha256": "b0bd712226c0ab30d610a70b4ed8d52115b63bcac7349ac2adba71fcbf85153e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-724-2022-boerne-og-ungeydelsesloven.jsonld",
+      "sha256": "d7156dfe02b8d8b404478e176dcf1aa65b739c08cc69c137d6382de184db309e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lbk-724-2022-boerne-og-ungeydelsesloven.xml",
+      "sha256": "9913af228d25012fe954df6c79e7d993d63570a37e35aee6e78a6da38519ba06"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-108-2024-aendringslov.jsonld",
+      "sha256": "7deaa5629373af652b2df323a403fd3d508dcdbcacd31f07a765682b4a25a697"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-108-2024-aendringslov.xml",
+      "sha256": "605430e83153c965cb908c53dade12e95e81a4d90053ec061b37a7c7f92dea14"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1214-2024-aendringslov.jsonld",
+      "sha256": "9f4c9fba77da618f0eef4c329ed516625e42788e4131033bc0cd664d232131db"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1214-2024-aendringslov.xml",
+      "sha256": "ad9557a93ba68f300bb51cb6c8191cee7d00f3f42d3ffb7699b6d8e9c659c27d"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1389-2022-aendringslov.jsonld",
+      "sha256": "9d765ba9940b368caf5a01494178eb894549132ea500bf104c28575c4359ec61"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1389-2022-aendringslov.xml",
+      "sha256": "6d1dc1b2dc5bb11ab3dd68dbf94104e4522d11d8992fc4ddcc96473e72abf703"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1456-2024-aendringslov.jsonld",
+      "sha256": "26c6561a4af4d1ae73410f12becfb1b878e60e8625dc4d587d4240fa7c511b10"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1456-2024-aendringslov.xml",
+      "sha256": "2295bfe7ea8d9e97c12ccb79b09875584b225491fa9faef3242c6cbe0450480a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1564-2023-aendringslov.jsonld",
+      "sha256": "5fb010e937060c3ce6a3a18a914df9b5eb5b553a79d213a90dd797e7589b161d"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1564-2023-aendringslov.xml",
+      "sha256": "b2b0836b9ceb4e215d736a98e43ddfe4bc09eeb5c16d9ef79d742b0e8c94f589"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1623-2025-aendringslov.jsonld",
+      "sha256": "b9a48fcfad81d8c5fb06e205ffc8db612d2d3c84f2b4f03a335548648dbe4293"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1623-2025-aendringslov.xml",
+      "sha256": "8ace5db659a294e7d352def8623a9dc67dd85d5fafbfe3cdebc1b0777927d0d8"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1627-2025-aendringslov.jsonld",
+      "sha256": "1e06709634432ddef6428a7957ba372312537b9bdf2f472b398385db5620b98c"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1627-2025-aendringslov.xml",
+      "sha256": "c3c0b92b0d84206e614c1b9d3dcc8c92fad26cb604689a339525b9e8fd81492a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1628-2025-aendringslov.jsonld",
+      "sha256": "f90123e0b24ec196253ff1a276507be27cd4fc4870b7fc9ca0323bd2d36edb3f"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1628-2025-aendringslov.xml",
+      "sha256": "ca29c303c4693e6f0221bf8806cdbaf77061141568dec0d909d3f3e7db29bcf3"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1630-2025-aendringslov.jsonld",
+      "sha256": "d6ebbdf2d2e7bc1d83537706dfe4fdaa6d1e6046a60309106d7ff8684a90affd"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1630-2025-aendringslov.xml",
+      "sha256": "da4c59a36738a5e79ef0788cf7066a99ab58ac04d125555b259a60313d44bc0e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1638-2025-aendringslov.jsonld",
+      "sha256": "eafc9c92946167bc777747a834db7ef2f082dcec8e7c268501e6718edd14868c"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1638-2025-aendringslov.xml",
+      "sha256": "b38e92ceb7baa5b296fd81a731665d89ead062728e65132930e5ff734a6e2655"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1642-2025-aendringslov.jsonld",
+      "sha256": "ab3ac649f3bc6b270aa063a67355da5c8ca41009da8f8b5ff708aedd7a487f6a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1642-2025-aendringslov.xml",
+      "sha256": "ef491f9d8abc77c65f18bd9f78200e036ac6ec1a0678c08ff84b142c268cf62e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1648-2025-aendringslov.jsonld",
+      "sha256": "e50f4e78559fdd9913bc352985103a7d366bc7abab5bae57e97377dd2105ad66"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1648-2025-aendringslov.xml",
+      "sha256": "8ccff861fa59608e0eee347b2f41cd439f6daa5d33fd6c35a05b28d2989ff406"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1655-2024-aendringslov.jsonld",
+      "sha256": "f933b519d00dace6141744c1044c9d36d9a037b9805ba9b31cc88bad23e495d0"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1655-2024-aendringslov.xml",
+      "sha256": "3556f756dd137e527e42408c88b7621b4dd8cf3da273f3f6debddce3b8bdc10a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1691-2024-aendringslov.jsonld",
+      "sha256": "fd5b56c09dc047f4173b5e6b57d49ecc459b648fc880826aebd68501744e9d3a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1691-2024-aendringslov.xml",
+      "sha256": "49fe7b69c5cec191a243f865320a77672d28205ead01025459ded0caf0cb176d"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1694-2024-aendringslov.jsonld",
+      "sha256": "91462d15fc1ebf9637a5a8cfa7445a80f72a7864aaed1961b77f04245cd40876"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1694-2024-aendringslov.xml",
+      "sha256": "a18326afce4b09b9817db61b271966979e9cd9c57dd43dfb5a35ba2868391228"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1703-2024-aendringslov.jsonld",
+      "sha256": "9ba48f61529e30777f593c4395754b811fcaee97847c621e3068b5ab88403762"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1703-2024-aendringslov.xml",
+      "sha256": "f8f1d7d75a7261c58ddb99d4cbcac46a28dbd7f4c60ac79788b6cc5692b0b941"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-174-2024-aendringslov.jsonld",
+      "sha256": "424dad74e6938a9c67c1a2f5858cce4c551158b19b349de4eb728c3c201deeed"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-174-2024-aendringslov.xml",
+      "sha256": "1511c859420bd95d2163ece66b321f8b3eb796c9d21d34928c7f458f273d82c4"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1750-2025-aendringslov.jsonld",
+      "sha256": "cb3e98f3561c7378669c7776cf0eb0ea8ea4c2231ce4238e1ba3a7e6a67163f2"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1750-2025-aendringslov.xml",
+      "sha256": "d2d27ee8c788b10080cc0a1cc55999df959e3b52a5bbbaca4eb78b13d82a3f38"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1755-2025-aendringslov.jsonld",
+      "sha256": "e89f3a8ff277e13f96b45567d3b9493deb1d659c6fc66bfd3a5839aa74719246"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1755-2025-aendringslov.xml",
+      "sha256": "964ebd975810d0efd71bfab129d6c94cca8140305ce4b75d2a971ed7cf207fb8"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1757-2025-aendringslov.jsonld",
+      "sha256": "faa8f855f9b45744ed9938b9898059fc5afb3277e9bb0a6ffe5deb9680a33366"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1757-2025-aendringslov.xml",
+      "sha256": "d7d927cf78f0c98def21c11a1148aa918e8fb6dbd3b807efd625e1ed8bf3802c"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1775-2025-aendringslov.jsonld",
+      "sha256": "ae214d58164ac3cb2a6ace54ace23d3ef26c79e35778a74d749bdcebafd1f478"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1775-2025-aendringslov.xml",
+      "sha256": "8256ceb23995a641320ae23f1f57ce4c6a2c2a6c36444c3aead938dcc1f80790"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1781-2025-aendringslov.jsonld",
+      "sha256": "d7fde2989e2d07d7d6f9a40d999c995809cd1c8f5295c9694f1bd07d10fb2f83"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-1781-2025-aendringslov.xml",
+      "sha256": "559de133b62a6dd09f4b19b32d283c250f5abcc176bb6bdfec4e6df09a5adda1"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-198-2025-aendringslov.jsonld",
+      "sha256": "1cc70978ed7d514259c5fff3ed9b8e16a5b9741805c6d6ced1d0912eb26c83fc"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-198-2025-aendringslov.xml",
+      "sha256": "6af407c87b76b3757533b8d365b8e90e01743a3df454b29f8af44e6d5aede90b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-2226-2020-aendringslov.jsonld",
+      "sha256": "f44d769f87905868dc7b83209641675ffd9d8ee3d4155c258e7dc390e839ae7a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-2226-2020-aendringslov.xml",
+      "sha256": "cf2ce665d73ec2067096c5435b0bea514e9e4dc10704b197f3787ddf7e5db46a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-252-2022-aendringslov.jsonld",
+      "sha256": "958d08def333d96d28df5eb80f3aeb7865655c54f5005a34c86cbb3369f782d4"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-252-2022-aendringslov.xml",
+      "sha256": "9b5a79a34758b5c979f4ac85a38e367a9370aa5df77f6474d0cade07f74ae2e0"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-303-2026-aendringslov.jsonld",
+      "sha256": "c96981c8ce3bf006cd019b04b3452fbfc31ab7e91d3065df842131ec2bd3886c"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-303-2026-aendringslov.xml",
+      "sha256": "f14cd358e3910d9f05d1f17df5fbb5539dbac7a36affa1cb0204b1db40a9fa6b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-333-2024-aendringslov.jsonld",
+      "sha256": "3196b9e476262ac507593312e15944b67bed6d81726e25335403409edc883200"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-333-2024-aendringslov.xml",
+      "sha256": "1cde4123db160a3142cad21215fb89740dd0ba19a5a14f060d7f19941c8fa071"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-369-2025-aendringslov.jsonld",
+      "sha256": "7d1561f903a2a4186a0bcfa73ab547b699bca2fecdcbb3c3895c6e3de38aae38"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-369-2025-aendringslov.xml",
+      "sha256": "b42632fbe80a6f2e46c6e492cb41be4352deb434ea5490ce393ce3bba530247e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-437-2025-aendringslov.jsonld",
+      "sha256": "23af7679c2d8bc9e428372163e66a0a75108b46d129aaf0411bda838eeffea7b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-437-2025-aendringslov.xml",
+      "sha256": "be3a550a8e72b6cf64e8ed4e74c9ffe18fc69934ca02358e4a03c11b69fd8f3d"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-469-2025-aendringslov.jsonld",
+      "sha256": "a080ec73057371b7698b6584e21fed9c1364f0c908f4dfad9cc7976328f493a5"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-469-2025-aendringslov.xml",
+      "sha256": "69dd6c0a8c3c727aeded2029312d4dd78fb01e28020ba4569223a5a1db1ef410"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-482-2024-personskattereform.jsonld",
+      "sha256": "eeff78ccc667027a347e032f7db5176d8ac4bb2447151757ef239a18ff5f73ff"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-482-2024-personskattereform.xml",
+      "sha256": "3e741a0a253d5cbf1a20fdcd7d8b74448d6909f32d6d0fddbc92bbc4e1e5468e"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-546-2022-aendringslov.jsonld",
+      "sha256": "f3994089bab69328fdcc014a3c872ac92fd87a2c145733bc62c6e91f016fcf56"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-546-2022-aendringslov.xml",
+      "sha256": "326b33ab4036a6bda280032e5c816e48806028fc05947a48a813f46c18d91a27"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-562-2025-aendringslov.jsonld",
+      "sha256": "f87b72e8eaa67975b7924103241cd8238514219f7b16e42d904a735bea28d47a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-562-2025-aendringslov.xml",
+      "sha256": "8970e53c1d3f9d7c75eb888f0864371b5f6b250c2ea2f85b7fc4aa272cf19612"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-610-2023-aendringslov.jsonld",
+      "sha256": "d6963e49061799d0c7a71bad8a0e0a158b305f64e40650a5ddd79b32407e9a9b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-610-2023-aendringslov.xml",
+      "sha256": "bc81a4f30c043f8a5a55e1107cf5f223066f812f541eae5c8fd981d57f3ee61f"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-615-2026-aendringslov.jsonld",
+      "sha256": "4d07d98a38fd60a9ec2103c99c4ae3e32759a3320fe14724460b628eea9a6c15"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-615-2026-aendringslov.xml",
+      "sha256": "9a2a511c3abd7ad307fcca1130ca388c1aecbcfe8cf71c646daecf73338d992b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-616-2026-aendringslov.jsonld",
+      "sha256": "2a24609c510b65392f6cf75d70343c03ac6b069fe696da5f36af214551eaa5b9"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-616-2026-aendringslov.xml",
+      "sha256": "e861bc9d14c63db6f26b15c8ff2d351fca7caa852d932168f1102ff791eacb48"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-630-2024-aendringslov.jsonld",
+      "sha256": "c62bf296d8d76ecd761b0442fba96061fed988281ea9702fc7352178fe7465fe"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-630-2024-aendringslov.xml",
+      "sha256": "4ab66ef28ba15a740c32ff5efa6aa467826d40abad75a01d399976b90ad3fb5b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-632-2024-aendringslov.jsonld",
+      "sha256": "d93c4aa814d3a3e74957a14d0fc2836a63a340df714d31b04766cb038324c378"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-632-2024-aendringslov.xml",
+      "sha256": "8abf70e7d48c2eb7c65e489ece4bb5b19276c9544db9edb416da2b2403e7a3b2"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-665-2024-aendringslov.jsonld",
+      "sha256": "2d00a3176a7be80f2e9d0f94d11c6bb15618320ebc5f58b30272fc3c80d1d70f"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-665-2024-aendringslov.xml",
+      "sha256": "89998e37bc30c03dc59ec0a3b121370c05ab1c20cfa59ae5f1a9bb6aeb3557a0"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-674-2025-aendringslov.jsonld",
+      "sha256": "0d66c115645b965180b2bfc6293bb06e8aedd577418e1d36d6c60dc74d225cda"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-674-2025-aendringslov.xml",
+      "sha256": "3c7641058361ff909d6d95a83129cc413033d64bc917899aa10f6ceeb3a97893"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-679-2023-aendringslov.jsonld",
+      "sha256": "96b7de6ec8893bd6553e3618c91ffca20f53899c718b24e19a96ab1345dc7040"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-679-2023-aendringslov.xml",
+      "sha256": "71dfe0c32098fcb5bc806e766ece9d1747f5f22975ef897fc6ddf9845d28e982"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-685-2024-aendringslov.jsonld",
+      "sha256": "b200ab8ab0f3ec46ef24b3e0c73c89dc0cd110c92cfda4c5688bf4422e7209c0"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-685-2024-aendringslov.xml",
+      "sha256": "6824ec9d13f99a3de4737ffdb608385db2474c0b13ddf5d5b8d70cddee312ac3"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-703-2025-aendringslov.jsonld",
+      "sha256": "6b598461daa129b78043e51bd33c496f942a3a12e309b8e3f7fa9b5e0e5e35d1"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-703-2025-aendringslov.xml",
+      "sha256": "b7ff4a5ec77c29011cbeddb6a89db3cdcecdc73a7167bda9985cbb6ecfc4fa7c"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-704-2025-aendringslov.jsonld",
+      "sha256": "9c2d5744b727549c959446797a9aec1e5945004b6f2a3efccc905f567fc31651"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-704-2025-aendringslov.xml",
+      "sha256": "7bbdeed0873cb6942cfc79d9c5b39f966c215f06a00a211296fcc9955fdb9801"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-711-2025-aendringslov.jsonld",
+      "sha256": "77f8257e1be898995ad1dccbbd7ebb7e2c3842827e9b9de3c86c45c0d8f6720b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-711-2025-aendringslov.xml",
+      "sha256": "705c1ccc80b00b7a87d11e061fb251fb549243fd3c2c2bab1fa9cbd1f89a5b7b"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-730-2025-aendringslov.jsonld",
+      "sha256": "0edb17472f4adef8c05bf111d75903581026db933365be52a1bd9e1cfa42ab83"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-730-2025-aendringslov.xml",
+      "sha256": "7143a1c2c922425f8861448e4197544946ce1e7eb1eb3e026ddaba29ea166df3"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-749-2025-aendringslov.jsonld",
+      "sha256": "eeb744d0719f531ca41310dffbf0071c8734b77d85583e07e0c07eed80ce92ca"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-749-2025-aendringslov.xml",
+      "sha256": "ccd38dc594e2471bfbe17b23b3da77cc0dad6b49c21b8c623ec63c0e8a1bf9bf"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-750-2025-aendringslov.jsonld",
+      "sha256": "6e3b0c1959ce0c1e5059d8290027b43dc93fc64192a0a3efb5d0ad1b1806512d"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-750-2025-aendringslov.xml",
+      "sha256": "664f94991d57cd9c5e56b9508467741f8ff04f4d915befaac9ef2d9b3e6fe613"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-753-2023-aendringslov.jsonld",
+      "sha256": "9645b52efde12268bf29cea5cdb34a32e539f68abebe50ff48e02cf8a51433ed"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-753-2023-aendringslov.xml",
+      "sha256": "c987120deb4e7149a13b3fc317c4f135b9f677248fa69b551f7a866f98a01652"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-754-2025-aendringslov.jsonld",
+      "sha256": "b769be859b293fd1881f9c10d4ed04a7d216f5bea8cc09d1d54a56ea0043c4da"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-754-2025-aendringslov.xml",
+      "sha256": "8643944966585a3b71f3d014f88cbb0cb141821cb617adefcfa1d26dd068c1c1"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-96-2025-aendringslov.jsonld",
+      "sha256": "80d5d4c758aa6fd439e06f577e4cf836ba367d196afe625ac005115c851aa3a4"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-08-04-dk-full-parity-tier1/eli/dk-lov-96-2025-aendringslov.xml",
+      "sha256": "6d7fc96953df900f3e97391814015c796f4867fd1277ffe9944d0aa348cdc6d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9062e639e4e93f0b6cef710873df94d0ee4f821a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "python scripts/compose_scope_versions.py --base data/corpus --jurisdiction dk --document-class statute --source-version 2026-08-04-dk-full-parity-tier1-current --source-version 2026-08-04-dk-full-parity-tier1-historical --source-version 2026-08-04-dk-full-parity-tier1-amendments --target-version 2026-08-04-dk-full-parity-tier1"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1922,
+    "missing_count": 0,
+    "provision_count": 1922,
+    "source_count": 1922
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-07T19:02:02.127008+00:00",
+  "jurisdiction": "dk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gkIjjqojhrpSImm1y9GcElIqx0UDB5vu0DPs5ergUqRJ2Y4fGxqFcFzo3sj1Kj+vyyU91pUR4uBQoUoPJwuBCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-04-dk-full-parity-tier1"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-wigan/manual/2026-08-03-wigan-council-tax-reduction-2026-2027.json",
+      "sha256": "68454db5a8f1c4efbcabf7a15bd8c4a158d248432cedbbde29fed479a53bc0ba"
+    },
+    {
+      "path": "data/corpus/inventory/uk-wigan/manual/2026-08-03-wigan-council-tax-reduction-2026-2027.json",
+      "sha256": "c2de2859dc409753a2b5d66e38f792cdec7d86edf08d07b744a714b666b639e2"
+    },
+    {
+      "path": "data/corpus/provisions/uk-wigan/manual/2026-08-03-wigan-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "aa1bce79562296ba3498ab6467ba72ca94692dbc1a8db7c0a9e35d3cae275a13"
+    },
+    {
+      "path": "data/corpus/sources/uk-wigan/manual/2026-08-03-wigan-council-tax-reduction-2026-2027/official-documents/wigan-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "3004b5ba48ed7ab7d3f913d11512c8ee4e158da041e339f638457c5bd962165a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "78d2d9407d289ae4865260fdef81e876399ac06c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-03-wigan-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-wigan-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 212,
+    "missing_count": 0,
+    "provision_count": 212,
+    "source_count": 212
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-03T23:37:07.841863+00:00",
+  "jurisdiction": "uk-wigan",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QcMfM3LzKpYd1sBLkCqtS2+Y+gMRkLYSkp3TSnT30/aAKKyfozBabulRQCYJXMa3ZD6mNNcXPRTttKk4YL1ACw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-wigan-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar.json",
+      "sha256": "df820c2e2788c5bfb7df90dfa9c88e8deefb36a12e535b1d922867334f1d07a4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar.json",
+      "sha256": "e27c60e382faa82d537db5ab7de425f1bc51916d8b3b518dd94a185d586ed5bb"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar.jsonl",
+      "sha256": "1f55171d91e8bd746a648bf6d8f8fc5cec7488d85eeaecc70722df2d5587c050"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar/official-documents/us-ar-w6-dfa-legislative-impact-statements-2022s3-hb1002.pdf",
+      "sha256": "716491a887b7e7a99ef7f4861bb7aac3a822468baa7f84252b927eb5faacfae8"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/guidance/2026-10-06-w6-income-tax-guidance-ar/official-documents/us-ar-w6-general-assembly-bill-information-2026s1-hb1001.html",
+      "sha256": "68b009613c8d2f7d9172372eb2c8318c0f9dea357313df002f5a3d98f45f1500"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-al-hi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:48:34.560561+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VMc0RzxC0BwVGO58jDgP8dRP1DjDOgo+A2Dh83zccAErdPgCj5gpxsD/NOrfm3tJ63Zdl4sS7ttlK8o6D7Q5Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-ar"
+}

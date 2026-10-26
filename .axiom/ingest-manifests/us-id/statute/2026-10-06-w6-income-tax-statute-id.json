@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/statute/2026-10-06-w6-income-tax-statute-id.json",
+      "sha256": "7621cbca129f870e05aae2101e1aac48703f6438ce0765223ef1bd7692f64442"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/statute/2026-10-06-w6-income-tax-statute-id.json",
+      "sha256": "d3c620702134f9534379189ec9e6241d4e92df5d3041b2ddb22c41ae1f429d62"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/statute/2026-10-06-w6-income-tax-statute-id.jsonl",
+      "sha256": "570021955587d1cabfa0630802893d71869d6519f6a85b43e9cc484102ec63ab"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-57-1110.html",
+      "sha256": "a3bf02eeddf89f1f68b628cf029dd7d6b5ede9c0e26d4130635ac29e52efd88f"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2022-h0001-legislation-page.html",
+      "sha256": "68bef412fd7d9e6b5621eb7d6d61cb6c3ff181036250caf7ade6ebbc19e48830"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2024-h0521.pdf",
+      "sha256": "c9c6ee8689fe6ad1f42fa1b235836a07b63168d9f06a93d4f44ee2be5821aad1"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2025-h0040-legislation-page.html",
+      "sha256": "2ae39cb8c99b15b3cffa27a43488a4e7cd12835b712a5a2556d0d72d7aed44d3"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2025-h0040.pdf",
+      "sha256": "cb34fd6aa3ac8644ced3fa2ac22c5e1eed9f79fa2bbbd29e8639a96ae1d4fb4e"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2025-h0231-legislation-page.html",
+      "sha256": "41f6c5b709a3594fe625c11339a509086c8b0b0ed4364f3496652da98acada10"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2025-h0231.pdf",
+      "sha256": "bb813211228fd708a3e12350f44a4609f6237082d6bdb7c02fafa1465692dadb"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-10-06-w6-income-tax-statute-id/official-documents/us-id-statute-session-laws-2026-h0559-legislation-page.html",
+      "sha256": "5ea0bfa4ecc25e369878b9e04dca17c9b4e9336d3583cc7d30fc4d8dbb6b7e7b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-ia-mi.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:51:29.933771+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Bz4VsTNk4E96LqqmyBeQorkYzh+rnfzDbXvPK1qsCsae4vpKW8XKAgNZ+EzlGGx13PbMh6rPtj8IDvxt5nQ5BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-statute-id"
+}

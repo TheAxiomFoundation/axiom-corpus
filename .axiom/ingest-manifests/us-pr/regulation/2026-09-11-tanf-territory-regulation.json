@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pr/regulation/2026-09-11-tanf-territory-regulation.json",
+      "sha256": "fba643aac5db697861e7f488297690b59be0594dbb04c8307fc5645ef81b62de"
+    },
+    {
+      "path": "data/corpus/inventory/us-pr/regulation/2026-09-11-tanf-territory-regulation.json",
+      "sha256": "6ba8e6721252555cad21975a9ddfcf07ef747473dec7c5d7309b35d65d420643"
+    },
+    {
+      "path": "data/corpus/provisions/us-pr/regulation/2026-09-11-tanf-territory-regulation.jsonl",
+      "sha256": "d028e31b7554c6296074ef392da1f3d7348286f405beefd9cf6841a6ec5a0ee9"
+    },
+    {
+      "path": "data/corpus/sources/us-pr/regulation/2026-09-11-tanf-territory-regulation/official-documents/us-pr-adsef-reglamento-7653-tanf.pdf",
+      "sha256": "ee57843de749f62bb10b4a22b0ab5799ed928a7ad7d6b5b7c9b8c7f8eb8705c8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1855ec4b925ebbe5d39dc73624fe44ae736e9b31",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-tanf-territory-regulation (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 117,
+    "missing_count": 0,
+    "provision_count": 117,
+    "source_count": 117
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:44:06.671448+00:00",
+  "jurisdiction": "us-pr",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NodpJSiVJ/DxaEjnB9xoqjHeG4fvTHH22py58R9+jV/DNBOwq9rfaaqJpvFcoSeEqAQePXQcf0M5/WziffzsAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-tanf-territory-regulation"
+}

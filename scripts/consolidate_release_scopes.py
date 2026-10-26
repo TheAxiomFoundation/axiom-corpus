@@ -14,6 +14,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.resolver import require_materialized
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 
@@ -93,8 +94,15 @@ def consolidate_release_scopes(
     preferred_duplicate_versions: dict[str, str] | None = None,
     preferred_duplicate_version: str | None = None,
     shadowed_block_versions: dict[str, str] | None = None,
+    included_citations_by_version: dict[str, frozenset[str]] | None = None,
 ) -> tuple[Path, ...]:
-    """Create one immutable scope from ordered sources, deduping empty containers."""
+    """Create one immutable scope from ordered sources, deduping empty containers.
+
+    A source version absent from ``included_citations_by_version`` contributes
+    its complete scope. A source version present in the mapping contributes
+    only the explicitly listed citations. This supports narrow successor
+    overlays without importing unrelated historical provisions.
+    """
     if not source_versions:
         raise ValueError("at least one source version is required")
     if len(source_versions) != len(set(source_versions)):
@@ -103,6 +111,20 @@ def consolidate_release_scopes(
         raise ValueError("target version must differ from source versions")
     preferences = dict(preferred_duplicate_versions or {})
     shadowing = dict(shadowed_block_versions or {})
+    included = dict(included_citations_by_version or {})
+    unknown_included_versions = sorted(set(included) - set(source_versions))
+    if unknown_included_versions:
+        raise ValueError(
+            "included citation versions must be source versions: "
+            f"{unknown_included_versions}"
+        )
+    empty_included_versions = sorted(
+        source_version for source_version, citations in included.items() if not citations
+    )
+    if empty_included_versions:
+        raise ValueError(
+            "included citation sets must not be empty: " f"{empty_included_versions}"
+        )
     preference_versions = set(preferences.values())
     if preferred_duplicate_version is not None:
         preference_versions.add(preferred_duplicate_version)
@@ -144,6 +166,9 @@ def consolidate_release_scopes(
         inventory_path = store.inventory_path(jurisdiction, document_class, source_version)
         provisions_path = store.provisions_path(jurisdiction, document_class, source_version)
         source_directory = store.root / "sources" / jurisdiction / document_class / source_version
+        # Corpus bytes may live outside git: fetch the whole constituent scope
+        # before listing its sources (docs/corpus-storage.md).
+        require_materialized([inventory_path, provisions_path, source_directory], fetch=True)
         for path in (inventory_path, provisions_path):
             if not path.is_file() or path.is_symlink():
                 raise ValueError(f"source artifact is not a regular file: {path}")
@@ -153,7 +178,24 @@ def consolidate_release_scopes(
             raise ValueError(f"source directory contains a symlink: {source_directory}")
         source_directories.append((source_version, source_directory))
 
-        for item in load_source_inventory(inventory_path):
+        source_inventory = load_source_inventory(inventory_path)
+        source_provisions = load_provisions(provisions_path)
+        selected_citations = included.get(source_version)
+        if selected_citations is not None:
+            inventory_citations = {item.citation_path for item in source_inventory}
+            provision_citations = {record.citation_path for record in source_provisions}
+            missing_inventory = sorted(selected_citations - inventory_citations)
+            missing_provisions = sorted(selected_citations - provision_citations)
+            if missing_inventory or missing_provisions:
+                raise ValueError(
+                    f"included citations are absent from {source_version}; "
+                    f"missing_inventory={missing_inventory}, "
+                    f"missing_provisions={missing_provisions}"
+                )
+
+        for item in source_inventory:
+            if selected_citations is not None and item.citation_path not in selected_citations:
+                continue
             rewritten = replace(
                 item,
                 metadata=_portable_metadata(item.metadata),
@@ -169,7 +211,9 @@ def consolidate_release_scopes(
                 (source_version, rewritten)
             )
 
-        for record in load_provisions(provisions_path):
+        for record in source_provisions:
+            if selected_citations is not None and record.citation_path not in selected_citations:
+                continue
             rewritten = replace(
                 record,
                 version=target_version,
@@ -355,6 +399,16 @@ def main() -> int:
         default=[],
         metavar="SOURCE_VERSION=SUCCESSOR_VERSION",
     )
+    parser.add_argument(
+        "--include-citation-from",
+        action="append",
+        default=[],
+        metavar="SOURCE_VERSION=CITATION_PATH",
+        help=(
+            "Restrict the named source version to explicit citations; repeat "
+            "for every citation retained from that version."
+        ),
+    )
     args = parser.parse_args()
     preferences: dict[str, str] = {}
     for raw in args.prefer_duplicate_carrier:
@@ -372,6 +426,17 @@ def main() -> int:
         if source_version in shadowing:
             parser.error(f"duplicate shadowed block source version {source_version}")
         shadowing[source_version] = successor_version
+    included_citations: dict[str, set[str]] = {}
+    for raw in args.include_citation_from:
+        source_version, separator, citation_path = raw.partition("=")
+        if not separator or not source_version or not citation_path:
+            parser.error("--include-citation-from must be SOURCE_VERSION=CITATION_PATH")
+        citations = included_citations.setdefault(source_version, set())
+        if citation_path in citations:
+            parser.error(
+                f"duplicate included citation for {source_version}: {citation_path}"
+            )
+        citations.add(citation_path)
     generated = consolidate_release_scopes(
         base=args.base,
         jurisdiction=args.jurisdiction,
@@ -381,6 +446,10 @@ def main() -> int:
         preferred_duplicate_versions=preferences,
         preferred_duplicate_version=args.prefer_all_duplicates_from,
         shadowed_block_versions=shadowing,
+        included_citations_by_version={
+            source_version: frozenset(citations)
+            for source_version, citations in included_citations.items()
+        },
     )
     for path in generated:
         print(path)

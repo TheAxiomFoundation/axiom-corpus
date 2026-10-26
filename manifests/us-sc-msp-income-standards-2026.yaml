@@ -1,0 +1,47 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-sc-scdhhs-program-eligibility-and-income-limits-2026
+  jurisdiction: us-sc
+  document_class: guidance
+  title: 'Program Eligibility and Income Limits: Qualified Medicare Beneficiaries; Specified Low Income Medicare Beneficiaries
+    and Qualifying Individuals (2026)'
+  source_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-sc/guidance/scdhhs/program-eligibility-and-income-limits/2026
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Health and Human Services (Healthy Connections Medicaid)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-sc/guidance
+    index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: agency_program_page
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+- source_id: us-sc-scdhhs-medicaid-eligibility-programs-2026-03-01
+  jurisdiction: us-sc
+  document_class: guidance
+  title: Medicaid Eligibility Programs Effective March 1, 2026
+  source_url: https://www.scdhhs.gov/sites/dhhs/files/pdf/links/Medicaid%20Eligibility%20Groups%20Effective%201.1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-sc/guidance/scdhhs/medicaid-eligibility-programs/2026-03-01
+  metadata:
+    primary_source: true
+    source_authority: South Carolina Department of Health and Human Services (Healthy Connections Medicaid)
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-sc/guidance
+    index_url: https://www.scdhhs.gov/members/program-eligibility-and-income-limits
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_groups_chart
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

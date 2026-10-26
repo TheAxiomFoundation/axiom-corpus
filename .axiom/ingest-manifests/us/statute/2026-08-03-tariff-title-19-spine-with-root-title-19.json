@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-03-tariff-title-19-spine-with-root-title-19.json",
+      "sha256": "d46831f331c14c4139a53bfc5fd8127c7ac9388815f71f8339f65d187b1ac8dc"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-03-tariff-title-19-spine-with-root-title-19.json",
+      "sha256": "12a6dad0fb6f8ebb4ae3443abe2b338570224e0a6a4fec74a0233464f6be7eef"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-03-tariff-title-19-spine-with-root-title-19.jsonl",
+      "sha256": "bfb77b3425957a1d68a6815c794e87ee53450154b8a5c0ffa7262076e314926e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-03-tariff-title-19-spine-with-root-title-19/uslm/usc19.xml",
+      "sha256": "cd21e6796f9f0baa403d21a37a0a2d70ecfedae92b879e1b7b06738a67591c67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "961e980dd5e72617977a80a625d6b414eb386ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-usc Title 19 sections 1202,1321,1401a,1862,2132,2251,2411 with title root from official USLM XML"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 326,
+    "missing_count": 0,
+    "provision_count": 326,
+    "source_count": 326
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-03T14:42:05.447638+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QGKe9d6na4jI/LoQrZu+s3tgytwVyLmirjtteL0m/3h59VKudaiwuZYwTLL0jEXE/Ow9sQmo93qNVS/4zdRvBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-03-tariff-title-19-spine-with-root-title-19"
+}

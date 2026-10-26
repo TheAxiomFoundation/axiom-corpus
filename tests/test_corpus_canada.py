@@ -103,6 +103,96 @@ def _store(tmp_path: Path) -> CorpusArtifactStore:
     return CorpusArtifactStore(tmp_path / "corpus")
 
 
+def test_new_canada_scope_uses_ca_without_rewriting_historical_scope(tmp_path: Path) -> None:
+    base = tmp_path / "corpus"
+    historical = {
+        base / "sources/canada/statute/old/I-3.3.xml": b"historical source",
+        base / "inventory/canada/statute/old.json": b"historical inventory",
+        base / "provisions/canada/statute/old.jsonl": b"historical provisions",
+        base / "coverage/canada/statute/old.json": b"historical coverage",
+    }
+    for path, content in historical.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(content)
+    report = extract_canada_acts(
+        _store(tmp_path),
+        version="new-ca-scope",
+        fetcher=_FakeFetcher({"I-3.3": SAMPLE_CANADA_XML.encode()}),
+        only_acts=["I-3.3"],
+    )
+    assert report.jurisdiction == "ca"
+    assert report.inventory_path == base / "inventory/ca/statute/new-ca-scope.json"
+    assert report.provisions_path == base / "provisions/ca/statute/new-ca-scope.jsonl"
+    assert report.coverage_path == base / "coverage/ca/statute/new-ca-scope.json"
+    assert report.source_paths == (base / "sources/ca/statute/new-ca-scope/I-3.3.xml",)
+    for row in map(json.loads, report.provisions_path.read_text().splitlines()):
+        assert row["jurisdiction"] == "ca"
+        assert row["citation_path"].startswith("ca/statute/I-3.3")
+        assert row["source_path"].startswith("sources/ca/statute/new-ca-scope/")
+        if row.get("parent_citation_path"):
+            assert row["parent_citation_path"].startswith("ca/statute/I-3.3")
+    for item in json.loads(report.inventory_path.read_text())["items"]:
+        assert item["citation_path"].startswith("ca/statute/I-3.3")
+    for path, content in historical.items():
+        assert path.read_bytes() == content
+
+
+def test_extract_preserves_formula_definitions_and_nested_conditions(tmp_path: Path) -> None:
+    xml = (
+        b'<Statute current-date="2026-06-21"><Identification>'
+        b'<ConsolidatedNumber>I-3.3</ConsolidatedNumber><ShortTitle>Income Tax Act</ShortTitle>'
+        b'</Identification><Body><Section><Label>122.5</Label>'
+        b'<Subsection><Label>(1)</Label><Text>Definitions: </Text>'
+        b'<Definition><DefinedTermEn>income</DefinedTermEn><Text> means income except </Text>'
+        b'<Paragraph><Label>(a)</Label><Text>excluded gains.</Text></Paragraph></Definition>'
+        b'</Subsection><Subsection><Label>(3.005)</Label><Text>Amount: </Text>'
+        b'<FormulaGroup><Formula><FormulaText>A - B</FormulaText></Formula>'
+        b'<FormulaConnector> where </FormulaConnector><FormulaDefinition>'
+        b'<FormulaTerm>A</FormulaTerm><Text> is </Text><FormulaParagraph>'
+        b'<Label>(a)</Label><Text>$445.</Text></FormulaParagraph></FormulaDefinition>'
+        b'</FormulaGroup><ContinuedSectionSubsection><Text> Applies quarterly.</Text>'
+        b'</ContinuedSectionSubsection><Paragraph><Label>(b)</Label><Text>Subject to </Text>'
+        b'<Subparagraph><Label>(i)</Label><Text>the condition </Text><Clause><Label>(A)</Label>'
+        b'<FormulaGroup><Formula><FormulaText>C + D</FormulaText></Formula></FormulaGroup>'
+        b'</Clause><ContinuedSubparagraph><Text> only.</Text></ContinuedSubparagraph>'
+        b'</Subparagraph><ContinuedParagraph><Text> Otherwise excluded.</Text>'
+        b'</ContinuedParagraph></Paragraph></Subsection></Section></Body></Statute>'
+    )
+    report = extract_canada_acts(
+        _store(tmp_path),
+        version="formula-fidelity",
+        fetcher=_FakeFetcher({"I-3.3": xml}),
+        only_acts=["I-3.3"],
+        source_as_of="2026-10-06",
+        expression_date="2026-06-21",
+    )
+    rows = {
+        row["citation_path"]: row
+        for row in map(json.loads, report.provisions_path.read_text().splitlines())
+    }
+    prefix = "ca/statute/I-3.3/122.5"
+    definition = "(1)Definitions: income means income except (a)excluded gains."
+    clause = "(A)C + D"
+    subparagraph = "(i)the condition " + clause + " only."
+    paragraph = "(b)Subject to " + subparagraph + " Otherwise excluded."
+    formula = "(3.005)Amount: A - B where A is (a)$445. Applies quarterly." + paragraph
+    assert rows[prefix]["body"] == "122.5" + definition + formula
+    for suffix, expected in {
+        "/1": definition,
+        "/3005": formula,
+        "/3005/b": paragraph,
+        "/3005/b/i": subparagraph,
+        "/3005/b/i/A": clause,
+    }.items():
+        row = rows[prefix + suffix]
+        assert row["body"] == expected
+        assert row["parent_citation_path"] == (prefix + suffix).rsplit("/", 1)[0]
+        assert row["expression_date"] == "2026-06-21"
+        assert row["source_as_of"] == "2026-10-06"
+    assert report.source_paths[0].read_bytes() == xml
+    assert report.errors == ()
+
+
 def test_extract_canada_acts_emits_act_section_and_subsection_rows(tmp_path: Path) -> None:
     fetcher = _FakeFetcher({"I-3.3": SAMPLE_CANADA_XML.encode()})
     store = _store(tmp_path)
@@ -128,13 +218,13 @@ def test_extract_canada_acts_emits_act_section_and_subsection_rows(tmp_path: Pat
     paths = [p["citation_path"] for p in provisions]
 
     # Act, sections, then subsection chain
-    assert "canada/statute/I-3.3" in paths
-    assert "canada/statute/I-3.3/1" in paths
-    assert "canada/statute/I-3.3/2" in paths
-    assert "canada/statute/I-3.3/7.2" in paths
-    assert "canada/statute/I-3.3/2/1" in paths
-    assert "canada/statute/I-3.3/2/1/a" in paths
-    assert "canada/statute/I-3.3/2/1/a/i" in paths
+    assert "ca/statute/I-3.3" in paths
+    assert "ca/statute/I-3.3/1" in paths
+    assert "ca/statute/I-3.3/2" in paths
+    assert "ca/statute/I-3.3/7.2" in paths
+    assert "ca/statute/I-3.3/2/1" in paths
+    assert "ca/statute/I-3.3/2/1/a" in paths
+    assert "ca/statute/I-3.3/2/1/a/i" in paths
 
 
 def test_extract_canada_acts_sets_proper_parent_chain(tmp_path: Path) -> None:
@@ -148,15 +238,15 @@ def test_extract_canada_acts_sets_proper_parent_chain(tmp_path: Path) -> None:
         if line.strip()
     }
 
-    assert by_path["canada/statute/I-3.3"].get("parent_citation_path") is None
-    assert by_path["canada/statute/I-3.3/2"]["parent_citation_path"] == "canada/statute/I-3.3"
-    assert by_path["canada/statute/I-3.3/2/1"]["parent_citation_path"] == "canada/statute/I-3.3/2"
+    assert by_path["ca/statute/I-3.3"].get("parent_citation_path") is None
+    assert by_path["ca/statute/I-3.3/2"]["parent_citation_path"] == "ca/statute/I-3.3"
+    assert by_path["ca/statute/I-3.3/2/1"]["parent_citation_path"] == "ca/statute/I-3.3/2"
     assert (
-        by_path["canada/statute/I-3.3/2/1/a"]["parent_citation_path"] == "canada/statute/I-3.3/2/1"
+        by_path["ca/statute/I-3.3/2/1/a"]["parent_citation_path"] == "ca/statute/I-3.3/2/1"
     )
     assert (
-        by_path["canada/statute/I-3.3/2/1/a/i"]["parent_citation_path"]
-        == "canada/statute/I-3.3/2/1/a"
+        by_path["ca/statute/I-3.3/2/1/a/i"]["parent_citation_path"]
+        == "ca/statute/I-3.3/2/1/a"
     )
 
 
@@ -186,8 +276,8 @@ def test_extract_canada_acts_uses_act_short_title_as_root_heading(tmp_path: Path
         for line in report.provisions_path.read_text().splitlines()
         if line.strip()
     }
-    assert by_path["canada/statute/I-3.3"]["heading"] == "Income Tax Act"
-    assert by_path["canada/statute/I-3.3/2"]["heading"] == "Definitions"
+    assert by_path["ca/statute/I-3.3"]["heading"] == "Income Tax Act"
+    assert by_path["ca/statute/I-3.3/2"]["heading"] == "Definitions"
 
 
 def test_extract_canada_acts_section_url_carries_section_number(tmp_path: Path) -> None:
@@ -201,11 +291,11 @@ def test_extract_canada_acts_section_url_carries_section_number(tmp_path: Path) 
         if line.strip()
     }
     assert (
-        by_path["canada/statute/I-3.3/2"]["source_url"]
+        by_path["ca/statute/I-3.3/2"]["source_url"]
         == "https://laws-lois.justice.gc.ca/eng/acts/I-3.3/section-2.html"
     )
     assert (
-        by_path["canada/statute/I-3.3/7.2"]["source_url"]
+        by_path["ca/statute/I-3.3/7.2"]["source_url"]
         == "https://laws-lois.justice.gc.ca/eng/acts/I-3.3/section-7.2.html"
     )
 
@@ -244,9 +334,9 @@ def test_extract_canada_acts_handles_multiple_acts(tmp_path: Path) -> None:
         for line in report.provisions_path.read_text().splitlines()
         if line.strip()
     }
-    assert "canada/statute/I-3.3" in paths
-    assert "canada/statute/P-4" in paths
-    assert "canada/statute/P-4/125" in paths
+    assert "ca/statute/I-3.3" in paths
+    assert "ca/statute/P-4" in paths
+    assert "ca/statute/P-4/125" in paths
 
 
 def test_extract_canada_acts_limit_acts_truncates_iteration(tmp_path: Path) -> None:
@@ -279,7 +369,7 @@ def test_extract_canada_acts_writes_inventory_and_coverage(tmp_path: Path) -> No
     coverage = json.loads(report.coverage_path.read_text())
     assert "items" in inventory
     assert any(
-        item["citation_path"] == "canada/statute/I-3.3/2/1/a/i" for item in inventory["items"]
+        item["citation_path"] == "ca/statute/I-3.3/2/1/a/i" for item in inventory["items"]
     )
     assert coverage["matched_count"] == coverage["provision_count"]
 

@@ -1,0 +1,188 @@
+version: 2026-09-14-liheap-benefit-matrix
+documents:
+- source_id: us-vt-liheap-dcf-esd-procedures-p2914a
+  jurisdiction: us-vt
+  document_class: manual
+  title: 'Vermont ESD Procedure P-2914A: Calculation of Benefits, Percentage of Poverty (2025-2026)'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914A.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/manual/dcf/esd-procedures/p2914a
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division
+    document_subtype: procedure_pdf
+    program: LIHEAP
+    state: VT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    source_discovery_group: us-vt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    extraction_granularity: pdf_page
+    expression_date_note: 2025-2026 heating season table; PDF dated 2025-07-28
+    access_note: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the plain client
+    page_count: 3
+    benefit_matrix_pdf_pages: 1-3
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-vt-liheap-dcf-esd-procedures-p2914b
+  jurisdiction: us-vt
+  document_class: manual
+  title: 'Vermont ESD Procedure P-2914B: Calculation of Benefits, Payment Rate'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914B.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/manual/dcf/esd-procedures/p2914b
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division
+    document_subtype: procedure_pdf
+    program: LIHEAP
+    state: VT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    source_discovery_group: us-vt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    extraction_granularity: pdf_page
+    expression_date_note: PDF dated 2025-07-28 (7/1/25 procedures release)
+    access_note: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the plain client
+    page_count: 1
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-vt-liheap-dcf-esd-procedures-p2914c
+  jurisdiction: us-vt
+  document_class: manual
+  title: 'Vermont ESD Procedure P-2914C: Calculation of Benefits, Types of Benefits'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914C.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/manual/dcf/esd-procedures/p2914c
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division
+    document_subtype: procedure_pdf
+    program: LIHEAP
+    state: VT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    source_discovery_group: us-vt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    extraction_granularity: pdf_page
+    expression_date_note: PDF dated 2025-07-28 (7/1/25 procedures release)
+    access_note: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the plain client
+    page_count: 2
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-vt-liheap-dcf-esd-procedures-p2914d
+  jurisdiction: us-vt
+  document_class: manual
+  title: 'Vermont ESD Procedure P-2914D: Calculation of Benefits, Manual Budget'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2914D.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/manual/dcf/esd-procedures/p2914d
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division
+    document_subtype: procedure_pdf
+    program: LIHEAP
+    state: VT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    source_discovery_group: us-vt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    extraction_granularity: pdf_page
+    expression_date_note: PDF dated 2025-07-21 (7/1/25 procedures release)
+    access_note: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the plain client
+    page_count: 9
+    benefit_matrix_pdf_pages: none printed in this document
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-vt-liheap-dcf-esd-procedures-p2915
+  jurisdiction: us-vt
+  document_class: manual
+  title: 'Vermont ESD Procedure P-2915: Heat Cost Percentage Table (7/1/25)'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2915.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/manual/dcf/esd-procedures/p2915
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division
+    document_subtype: procedure_pdf
+    program: LIHEAP
+    state: VT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    source_discovery_group: us-vt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    extraction_granularity: pdf_page
+    expression_date_note: printed '(7/1/25, 25-16)'
+    access_note: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the plain client
+    page_count: 1
+    benefit_matrix_pdf_pages: '1'
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number
+- source_id: us-vt-liheap-dcf-esd-procedures-p2916
+  jurisdiction: us-vt
+  document_class: manual
+  title: 'Vermont ESD Procedure P-2916: Standard Heating Cost Tables, 2025-26 heating season'
+  source_url: https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2916.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2025-07-01'
+  citation_path: us-vt/manual/dcf/esd-procedures/p2916
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department for Children and Families, Economic Services Division
+    document_subtype: procedure_pdf
+    program: LIHEAP
+    state: VT
+    closure_elements:
+    - LIHEAP-ST-09
+    - LIHEAP-ST-18
+    index_url: https://liheapch.acf.gov/stateplans.htm#MANUALS
+    publisher_index_url: https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    on_clearinghouse_index: true
+    source_discovery_group: us-vt/manual/liheap-benefit-matrix
+    discovered_via: manual-review:liheap-agent-queue (needs-closure-2026-09-11 LIHEAP-ST-09); ACF LIHEAP Clearinghouse 'State
+      LIHEAP Policy Manuals' index https://liheapch.acf.gov/stateplans.htm#MANUALS, publisher page https://dcf.vermont.gov/esd/laws-rules/proposed/P2900
+    extraction_granularity: pdf_page
+    expression_date_note: tables 'for 2025-26 heating season'; PDF dated 2025-07-28
+    access_note: dcf.vermont.gov and outside.vermont.gov HTTP 200 to the plain client
+    page_count: 2
+    benefit_matrix_pdf_pages: 1-2
+    page_numbering_note: benefit_matrix_pdf_pages counts PDF pages; the corpus citation suffix page-N counts text-bearing
+      pages only (image-only and blank pages are skipped), so N can be smaller than the PDF page number

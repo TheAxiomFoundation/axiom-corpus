@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei.json",
+      "sha256": "8c5e13b445691585253f5ddee5fcc455e7e8abada8eac15bbfb6e61f67f004fd"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei.json",
+      "sha256": "a2871c2d578aba0d5bf2bbe0b717193694463eed9437a9fa5a19927acdc39145"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei.jsonl",
+      "sha256": "d20082cfeb61f19b564c6ca7e4627480cf569839d316e5360dd30643c7f21ddf"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei/federal-register/api/documents-page-1.json",
+      "sha256": "619aa6bbf09ec4205c0339ea96658825aa48661208173e2ea564c2b58c4ea677"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei/federal-register/documents/2026-10571.json",
+      "sha256": "55e50eb4e3de5ebc91a741387f659778d94e817e0b30a6736d5a01ebddf9c5a3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei/federal-register/documents/2026-10571.txt",
+      "sha256": "f3f41bef54808ba090c4488b0e4b3bdfacd44ae04f3c3cbb3b1fdf69dd76836b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-taiwan-mou --start-date 2026-05-28 --document-type NOTICE --term \"Taipei\" --source-as-of 2026-08-01 --expression-date 2026-05-28"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:26.031921+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CrX5wTOqBtnruwNH+ptCj/MSaiWkxGFlXeE7hGJYkEJZXzLLmNpsoXD//zJY2pCTasEyz9zwnQjVArdbejh5Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-taiwan-mou-types-notice-term-taipei"
+}

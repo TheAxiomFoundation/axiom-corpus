@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors.json",
+      "sha256": "2ba8820db4913560b22d1eb04d2319f82c9ed5f85cacb802faf2a13527208303"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors.json",
+      "sha256": "99d159a18d06740303dbdf133b3d2ca1fbb2fa4a3b51f504b55206c852f8c228"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors.jsonl",
+      "sha256": "469ab8c7cb5ea6edaa745f6a9485f964f224a1c88050814d344a2ead58580284"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors/federal-register/api/documents-page-1.json",
+      "sha256": "2ddb9aed6c206ef3133090f9ea47a77b9ff2737e284f60c61776e6aae3630dcc"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors/federal-register/documents/2026-01052.json",
+      "sha256": "69a178261706c9e089af8c7f220fc3d3b7771088dc01183ea7c8c80d81e2a824"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors/federal-register/documents/2026-01052.txt",
+      "sha256": "3bcb6bc45e32ce00b175772d9455bc84d8d44e721ed07d755daa166469a17d8b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "979d31ede7fc1ad8f4085a9dbe05ab8a5cd79ad2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-semiconductors --start-date 2026-01-20 --document-type PRESDOCU --term \"semiconductors\" --source-as-of 2026-08-01 --expression-date 2026-01-20"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:39:19.272548+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3qlA2lu0TtRUB+z4qXs0IzEjgJ6y/06N5oylPnA2XRZu9NDkOBZGrx0QXafNuhnqhJzWfcLyLU2gpHn+KXOHDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-semiconductors-types-presdocu-term-semiconductors"
+}

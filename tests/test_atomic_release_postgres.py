@@ -61,6 +61,10 @@ CHUNKED_ACTIVATION_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260722021000_chunked_release_activation_upload.sql"
 )
+STAGED_RELEASE_OBJECT_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260803175000_stage_signed_release_object.sql"
+)
 REQUIRED_ROLES = ("anon", "authenticated", "service_role", "postgres")
 TEST_SIGNING_KEY = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
 TEST_PUBLIC_KEY = base64.b64encode(
@@ -339,6 +343,7 @@ def postgres_dsn() -> Iterator[str]:
                     cursor.execute(PROFILED_RELEASE_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(COMPACT_RELEASE_OBJECTS_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(CHUNKED_ACTIVATION_MIGRATION.read_text(encoding="utf-8"))
+                    cursor.execute(STAGED_RELEASE_OBJECT_MIGRATION.read_text(encoding="utf-8"))
                 connection.commit()
             yield dsn
         finally:
@@ -479,6 +484,18 @@ def _activate(connection: Any, release_object: Mapping[str, Any]) -> dict[str, A
     return result[0]
 
 
+def _stage_release_object(connection: Any, release_object: Mapping[str, Any]) -> dict[str, Any]:
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "SELECT corpus.stage_corpus_release_object(%s::jsonb)",
+            (Json(dict(release_object)),),
+        )
+        result = cursor.fetchone()
+    assert result is not None
+    assert isinstance(result[0], dict)
+    return result[0]
+
+
 def _profiled_release_object(release_object: Mapping[str, Any]) -> dict[str, Any]:
     profiled = copy.deepcopy(dict(release_object))
     content = profiled["content"]
@@ -569,6 +586,7 @@ def test_actual_migration_applies_and_removes_unsigned_pre_cut_memberships(
               to_regclass('corpus.release_objects'),
               to_regclass('corpus.active_release_pointer'),
               to_regprocedure('corpus.activate_corpus_release(jsonb)'),
+              to_regprocedure('corpus.stage_corpus_release_object(jsonb)'),
               to_regprocedure('corpus.get_staged_release_scope_evidence(jsonb)')
             """
         )
@@ -585,6 +603,221 @@ def test_actual_migration_applies_and_removes_unsigned_pre_cut_memberships(
             """
         )
         assert cursor.fetchone()[0] == 0
+
+
+def test_staging_signed_release_object_records_publication_without_moving_serving(
+    clean_postgres: str,
+) -> None:
+    identity = _scope_identity("stage-only")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _profiled_release_object(
+            _release_object(
+                "stage-only-release",
+                _scope_evidence(connection, identity),
+            )
+        )
+
+        first = _stage_release_object(connection, release_object)
+        second = _stage_release_object(connection, release_object)
+        connection.commit()
+
+        assert first["staged"] is True
+        assert first["inserted"] is True
+        assert second["staged"] is True
+        assert second["inserted"] is False
+        assert first["release"] == release_object["release"]
+        assert first["content_sha256"] == release_object["content_sha256"]
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT content_sha256, release_object, "
+                "to_char(created_at AT TIME ZONE 'UTC', "
+                '\'YYYY-MM-DD"T"HH24:MI:SS"Z"\') '
+                "FROM corpus.release_objects WHERE release_name = %s",
+                (release_object["release"],),
+            )
+            assert cursor.fetchone() == (
+                release_object["content_sha256"],
+                release_object,
+                release_object["content"]["created_at"],
+            )
+            cursor.execute("SELECT COUNT(*) FROM corpus.release_scopes")
+            assert cursor.fetchone()[0] == 0
+            cursor.execute("SELECT COUNT(*) FROM corpus.active_scope_pointer")
+            assert cursor.fetchone()[0] == 0
+            cursor.execute("SELECT COUNT(*) FROM corpus.scope_activation_history")
+            assert cursor.fetchone()[0] == 0
+
+
+def test_release_object_trigger_enforces_signed_publication_time_for_every_writer(
+    clean_postgres: str,
+) -> None:
+    identity = _scope_identity("trigger-publication-time")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _profiled_release_object(
+            _release_object(
+                "trigger-publication-time-release",
+                _scope_evidence(connection, identity),
+            )
+        )
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO corpus.release_objects "
+                "(release_name, content_sha256, release_object, created_at) "
+                "VALUES (%s, %s, %s, '2099-01-01T00:00:00Z') "
+                "RETURNING to_char(created_at AT TIME ZONE 'UTC', "
+                '\'YYYY-MM-DD"T"HH24:MI:SS"Z"\')',
+                (
+                    release_object["release"],
+                    release_object["content_sha256"],
+                    Json(release_object),
+                ),
+            )
+            assert cursor.fetchone()[0] == release_object["content"]["created_at"]
+
+
+def test_exact_release_object_replay_repairs_legacy_publication_time(
+    clean_postgres: str,
+) -> None:
+    identity = _scope_identity("replay-publication-time")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _profiled_release_object(
+            _release_object(
+                "replay-publication-time-release",
+                _scope_evidence(connection, identity),
+            )
+        )
+        assert _stage_release_object(connection, release_object)["inserted"] is True
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "UPDATE corpus.release_objects SET created_at = '2099-01-01T00:00:00Z' "
+                "WHERE release_name = %s",
+                (release_object["release"],),
+            )
+
+        replay = _stage_release_object(connection, release_object)
+
+        assert replay["inserted"] is False
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT to_char(created_at AT TIME ZONE 'UTC', "
+                '\'YYYY-MM-DD"T"HH24:MI:SS"Z"\') '
+                "FROM corpus.release_objects WHERE release_name = %s",
+                (release_object["release"],),
+            )
+            assert cursor.fetchone()[0] == release_object["content"]["created_at"]
+
+
+@pytest.mark.parametrize(
+    ("case", "created_at"),
+    [("missing", None), ("malformed", "not-a-timestamp")],
+)
+def test_staging_rejects_missing_or_malformed_signed_publication_time(
+    clean_postgres: str,
+    case: str,
+    created_at: str | None,
+) -> None:
+    identity = _scope_identity(f"invalid-publication-time-{case}")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _profiled_release_object(
+            _release_object(
+                f"invalid-publication-time-{case}-release",
+                _scope_evidence(connection, identity),
+            )
+        )
+        if created_at is None:
+            del release_object["content"]["created_at"]
+        else:
+            release_object["content"]["created_at"] = created_at
+
+        with pytest.raises(
+            errors.RaiseException,
+            match="signed corpus release publication timestamp",
+        ):
+            _stage_release_object(connection, release_object)
+
+
+def test_staging_and_activation_cannot_race_on_one_immutable_release_name(
+    clean_postgres: str,
+) -> None:
+    identity = _scope_identity("stage-activation-race")
+    with closing(psycopg2.connect(clean_postgres)) as setup:
+        _seed_scope(setup, identity)
+        evidence = _scope_evidence(setup, identity)
+        setup.commit()
+
+    staged = _profiled_release_object(_release_object("raced-release", evidence))
+    conflicting_source = _release_object("raced-release", evidence)
+    conflicting_source["content"]["git"]["commit"] = "b" * 40
+    conflicting = _profiled_release_object(conflicting_source)
+    assert staged["content_sha256"] != conflicting["content_sha256"]
+
+    activation_started = threading.Event()
+    errors_out: list[BaseException] = []
+    activation_pid: list[int] = []
+
+    def activate_conflicting_object() -> None:
+        try:
+            with closing(psycopg2.connect(clean_postgres)) as activation:
+                with activation.cursor() as cursor:
+                    cursor.execute("SELECT pg_backend_pid()")
+                    activation_pid.append(int(cursor.fetchone()[0]))
+                activation_started.set()
+                _activate(activation, conflicting)
+                activation.commit()
+        except BaseException as exc:  # noqa: BLE001 - surfaced to the test thread
+            errors_out.append(exc)
+
+    def activation_is_blocked_on_release_name(observer: Any) -> bool:
+        with observer.cursor() as cursor:
+            cursor.execute(
+                "SELECT COUNT(*) FROM pg_locks "
+                "WHERE pid = %s AND locktype = 'advisory' AND NOT granted",
+                (activation_pid[0],),
+            )
+            return int(cursor.fetchone()[0]) > 0
+
+    with closing(psycopg2.connect(clean_postgres)) as staging:
+        first = _stage_release_object(staging, staged)
+        assert first["inserted"] is True
+
+        thread = threading.Thread(target=activate_conflicting_object)
+        thread.start()
+        assert activation_started.wait(timeout=10)
+
+        deadline = 15.0
+        blocked = False
+        with closing(psycopg2.connect(clean_postgres)) as observer:
+            observer.autocommit = True
+            waited = 0.0
+            while waited < deadline:
+                if activation_pid and activation_is_blocked_on_release_name(observer):
+                    blocked = True
+                    break
+                time.sleep(0.1)
+                waited += 0.1
+        assert blocked, "activation never blocked on the immutable release-name lock"
+        assert thread.is_alive()
+        staging.commit()
+        thread.join(timeout=15)
+
+    assert not thread.is_alive()
+    assert len(errors_out) == 1
+    assert "immutable corpus release name already exists with another digest" in str(errors_out[0])
+    with closing(psycopg2.connect(clean_postgres)) as check:
+        with check.cursor() as cursor:
+            cursor.execute(
+                "SELECT content_sha256, release_object FROM corpus.release_objects "
+                "WHERE release_name = 'raced-release'"
+            )
+            assert cursor.fetchone() == (staged["content_sha256"], staged)
+            cursor.execute("SELECT COUNT(*) FROM corpus.release_scopes")
+            assert cursor.fetchone()[0] == 0
+            cursor.execute("SELECT COUNT(*) FROM corpus.active_scope_pointer")
+            assert cursor.fetchone()[0] == 0
 
 
 def test_python_and_postgres_projection_digest_contracts_are_byte_identical(
@@ -1002,6 +1235,11 @@ def test_service_role_cannot_submit_a_signature_shaped_invalid_object(
             cursor.execute(
                 "SELECT has_function_privilege("
                 "'service_role', 'corpus.activate_corpus_release(jsonb)', 'EXECUTE')"
+            )
+            assert cursor.fetchone()[0] is False
+            cursor.execute(
+                "SELECT has_function_privilege("
+                "'service_role', 'corpus.stage_corpus_release_object(jsonb)', 'EXECUTE')"
             )
             assert cursor.fetchone()[0] is False
             cursor.execute("SET ROLE service_role")
@@ -1543,19 +1781,22 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
             "preview-contract-release", _scope_evidence(connection, identity)
         )
         with connection.cursor() as cursor:
+            # Exactly the statement the wrapper sends: timeout reset first, the
+            # release identity inlined as a dollar-quoted jsonb literal.
             cursor.execute(
-                f"PREPARE preview_contract (jsonb) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
-            )
-            cursor.execute(
-                "EXECUTE preview_contract(%s)",
-                (
-                    Json(
-                        {
-                            "release": release_object["release"],
-                            "content": {"scopes": release_object["content"]["scopes"]},
-                        }
+                supabase.unbounded_statement(
+                    supabase.PREVIEW_ACTIVATION_QUERY,
+                    release_identity=supabase.sql_jsonb_literal(
+                        json.dumps(
+                            {
+                                "release": release_object["release"],
+                                "content": {"scopes": release_object["content"]["scopes"]},
+                            },
+                            separators=(",", ":"),
+                            sort_keys=True,
+                        )
                     ),
-                ),
+                )
             )
             columns = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
@@ -1593,18 +1834,16 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
                     raw,
                 ),
             )
+            # Exactly the statement the wrapper sends: timeout reset first, the
+            # four values inlined as validated plain literals.
             cursor.execute(
-                f"PREPARE activation_contract (text, text, text, text) AS "
-                f"{supabase.ACTIVATE_RELEASE_QUERY}"
-            )
-            cursor.execute(
-                "EXECUTE activation_contract(%s, %s, %s, %s)",
-                (
-                    upload_id,
-                    release_object["release"],
-                    release_object["content_sha256"],
-                    object_sha256,
-                ),
+                supabase.unbounded_statement(
+                    supabase.ACTIVATE_RELEASE_QUERY,
+                    upload_id=supabase.sql_text_literal(upload_id),
+                    release=supabase.sql_text_literal(release_object["release"]),
+                    content_sha256=supabase.sql_text_literal(release_object["content_sha256"]),
+                    object_sha256=supabase.sql_text_literal(object_sha256),
+                )
             )
             result = cursor.fetchone()[0]
         assert result["active"] is True

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-broxbourne/manual/2026-08-02-broxbourne-council-tax-reduction-2026-2027.json",
+      "sha256": "c8a6b589afa6af83c9a0e2a306b12a998825c0eb0c5182e94098da8cb74cad0b"
+    },
+    {
+      "path": "data/corpus/inventory/uk-broxbourne/manual/2026-08-02-broxbourne-council-tax-reduction-2026-2027.json",
+      "sha256": "c61db8d7a609e3380e14b7f31e03cc427b11db91bc311219a9dc05bbd52fbafb"
+    },
+    {
+      "path": "data/corpus/provisions/uk-broxbourne/manual/2026-08-02-broxbourne-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "c3965239a925ec3807c9279ca1b0c7e9c01bc0e03239aa9c24fa389bc1e70c9a"
+    },
+    {
+      "path": "data/corpus/sources/uk-broxbourne/manual/2026-08-02-broxbourne-council-tax-reduction-2026-2027/official-documents/broxbourne-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2834796299d9e6ee206e930595ea42d24beec923fe983e9de818fb0ecc38854f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-broxbourne-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-broxbourne-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 138,
+    "missing_count": 0,
+    "provision_count": 138,
+    "source_count": 138
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:37:52.987766+00:00",
+  "jurisdiction": "uk-broxbourne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oNfl9WcJC/BYOOTwFZ522rhBAz8fGkryPkr26QaJYXI+Ec8EPY+8n6VREqshPCOwctp40DyxqvgbTTyAoWJMAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-broxbourne-council-tax-reduction-2026-2027"
+}

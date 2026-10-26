@@ -103,3 +103,66 @@ def test_extract_alabama_code_from_source_dir_writes_complete_artifacts(tmp_path
     assert "ordinary meaning" in records[2].body
     assert records[2].metadata is not None
     assert records[2].metadata["references_to"] == ["us-al/statute/1-1-2"]
+
+
+def test_extract_alabama_code_disambiguates_repeated_section_numbers_in_grammar(tmp_path):
+    """A pending second version of a section number gets a ``--code-<id>`` segment.
+
+    ALISON publishes both the current section and an "Effective Upon
+    Ratification" version under the same display id. The second row used to be
+    ``<path>@code-<id>``, which the citation-path grammar rejects.
+    """
+    scaffold = SAMPLE_SCAFFOLD + "∫S2†C1†1-1-1"
+    titles = SAMPLE_TITLES + (
+        "∫S2†Section 1-1-1 (Effective Upon Ratification of Proposed Constitutional Amendment) "
+        "Meaning of Certain Words and Terms.††"
+    )
+    first = json.loads(_sections_response())["data"]["codesOfAlabama"]["data"][0]
+    second = {
+        **first,
+        "id": "101",
+        "codeId": "S2",
+        "title": (
+            "Section 1-1-1 (Effective Upon Ratification of Proposed Constitutional "
+            "Amendment) Meaning of Certain Words and Terms."
+        ),
+        "content": "<p>The pending version of the section.</p>",
+    }
+    sections = json.dumps(
+        {"data": {"codesOfAlabama": {"count": 2, "data": [first, second]}}}, sort_keys=True
+    ).encode("utf-8")
+    source_dir = tmp_path / "source"
+    (source_dir / ALABAMA_GRAPHQL_SOURCE_FORMAT).mkdir(parents=True)
+    (source_dir / ALABAMA_GRAPHQL_SOURCE_FORMAT / "scaffold.json").write_bytes(
+        _graphql_response("scaffold", scaffold)
+    )
+    (source_dir / ALABAMA_GRAPHQL_SOURCE_FORMAT / "titles.json").write_bytes(
+        _graphql_response("titles", titles)
+    )
+    (
+        source_dir / ALABAMA_GRAPHQL_SOURCE_FORMAT / "sections-current-offset-0-limit-2.json"
+    ).write_bytes(sections)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_alabama_code(
+        store,
+        version="2026-09-14",
+        source_dir=source_dir,
+        source_as_of="2026-09-14",
+        expression_date="2026-09-14",
+        limit=2,
+    )
+
+    assert report.section_count == 2
+    records = load_provisions(report.provisions_path)
+    section_records = [record for record in records if record.kind == "section"]
+    assert [record.citation_path for record in section_records] == [
+        "us-al/statute/1-1-1",
+        "us-al/statute/1-1-1--code-S2",
+    ]
+    pending = section_records[1]
+    assert pending.metadata["canonical_citation_path"] == "us-al/statute/1-1-1"
+    assert pending.metadata["publisher_section_id"] == "1-1-1"
+    assert pending.metadata["code_id"] == "S2"
+    assert "publisher_section_id" not in section_records[0].metadata
+    assert all("@" not in record.citation_path for record in records)

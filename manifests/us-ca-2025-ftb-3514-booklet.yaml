@@ -1,0 +1,370 @@
+# California Franchise Tax Board 2025 FTB 3514 booklet (California Earned
+# Income Tax Credit), captured from the one official PDF in four
+# non-overlapping page_windows slices. Every slice fetches the same URL, and
+# the four retained source files carry the same bytes and SHA-256.
+#
+# Line-preserving extraction: `single_block` with `page_windows` keeps each
+# extracted PDF line on its own line instead of joining consecutive lines into
+# paragraphs, so worksheet line numbers, their stop and skip guards, and every
+# printed row of the EITC table survive as separate lines.
+#
+# Text order: the instructions, worksheet and form slices use the PDF's own
+# content-stream order (no `sort_text`). On the two-column instruction pages a
+# position sort interleaves the two columns line by line, and on PDF pages
+# 1-10 and 13-16 it returns fewer non-whitespace characters than the stream
+# order. The EITC table slice uses `sort_text: true` so each printed table
+# line stays one line; on PDF pages 23-30 the sorted and stream orders carry
+# the same characters.
+#
+# Text layer: the bodies were extracted with PyMuPDF 1.26.7, the version
+# uv.lock pins, and each slice records it as `text_extractor`. Each body keeps
+# every token that PyMuPDF 1.26.7 returns for its pages, and that text is not
+# always the printed text. The PDF's tagged structure attaches ActualText to
+# some glyphs, and PyMuPDF substitutes it: some bullet glyphs read as the word
+# "Bullet", the cover title, the form title, headings and one form line come
+# back two to five times, and most of the printed column labels in the
+# table's page-22 header are missing. Each slice's `extraction_note` lists
+# what differs. Other PyMuPDF releases read the ActualText differently:
+# PyMuPDF 1.28.2 returns different tokens for the instructions, form and
+# table pages, so re-extracting with it does not reproduce these bodies.
+#
+# Pages not captured: PDF pages 11, 12 and 21 read only "THIS PAGE
+# INTENTIONALLY LEFT BLANK" plus the page footer and web address, and PDF
+# pages 17-20 are a second copy of form FTB 3514 whose extracted text is
+# identical to PDF pages 13-16.
+documents:
+  - source_id: us-ca-ftb-2025-3514-instructions
+    jurisdiction: us-ca
+    document_class: form
+    title: 2025 Instructions for Form FTB 3514, California Earned Income Tax Credit
+    source_url: https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf
+    source_format: pdf
+    source_as_of: "2026-09-23"
+    expression_date: "2025-01-01"
+    citation_path: us-ca/form/individual-income-tax/2025/3514-instructions
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 1
+          end_page: 7
+        - start_page: 9
+          end_page: 10
+        - start_page: 31
+          end_page: 32
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: 9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538
+      pdf_last_modified: "2026-03-04"
+      pdf_modification_date: "2026-02-19"
+      booklet_title: 2025 California Earned Income Tax Credit Booklet, FTB 3514
+      booklet_pdf_page_count: "32"
+      pdf_pages: "1-7, 9-10, 31-32"
+      document_subtype: individual_income_tax_credit_instructions
+      form: FTB 3514
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: current_official_tax_year_instructions
+      certification_scope: tax_year_2025_california_eitc_booklet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_corpus_citation: us-ca/statute/rtc/17052
+      statutory_corpus_version: 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7
+      statutory_superseding_corpus_version: 2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052
+      statutory_note: >-
+        SB 1435 (Stats. 2026, Ch. 236, Sec. 2), effective September 14, 2026,
+        amended R&TC 17052 for taxable years beginning on or after January 1,
+        2025, which includes the 2025 taxable year this booklet covers. The
+        17052 record at statutory_corpus_version holds the text from before
+        that amendment, which was in force on the PDF's modification date
+        (February 19, 2026). For taxable year 2025 it is superseded by the
+        amended text in the 17052 record at
+        statutory_superseding_corpus_version. The amendment rewrites
+        17052(d), (j)(1) and (j)(2).
+      text_extractor: PyMuPDF 1.26.7
+      booklet_pages_not_captured: >-
+        PDF pages 11, 12 and 21 are blank placeholder pages ("THIS PAGE
+        INTENTIONALLY LEFT BLANK"). PDF pages 17-20 are a second copy of form
+        FTB 3514 whose extracted text is identical to PDF pages 13-16.
+      extraction_note: >-
+        The body is PyMuPDF 1.26.7's text for these pages in content-stream
+        order. The PDF's tagged structure attaches ActualText to some
+        glyphs, and PyMuPDF substitutes it, so the body differs from the
+        printed pages as follows. The word "Bullet" appears 30 times where
+        the page prints a bullet (•). On PDF page 1 the cover title "2025
+        California Earned Income Tax Credit Booklet. 3514 California Forms &
+        Instructions" appears four times where the page prints it once:
+        three copies on lines of their own, and a fourth that starts at the
+        end of the "Form FTB 3514, California Earned Income Tax Credit" line
+        and ends on the next line. Headings repeat where the page prints
+        them once: the Step 1, 2 and 4 headings twice on one line; the Step
+        3, 5 and 7 headings three times on one line; on PDF page 5 the
+        Worksheet 2 heading twice on consecutive lines and the Worksheet 1
+        heading three times (twice on one line, then again on the next
+        line); on PDF page 9 the Part I heading twice and the Part III
+        heading three times on one line; and the Step 8-11 headings twice,
+        with the second copy broken across a line break (mid-word for Steps
+        8, 10 and 11, between words for Step 9). The Step 7-11 headings and
+        the line 22, 30, 31 and 41 headings spell the credit acronyms with
+        spaces ("E I T C", "Y C T C", "F Y T C") where the page prints EITC,
+        YCTC and FYTC. The pipeline removes and replaces no words: the body
+        keeps every token PyMuPDF 1.26.7 returns for these pages.
+      source_note: >-
+        Official FTB 2025 instructions for form FTB 3514: cover and contents,
+        general information, differences from federal law, Steps 1-5 (filer
+        qualifications, investment income worksheets, qualifying child,
+        filer without a qualifying child, California earned income), Steps
+        7-11 (part-year resident EITC, Young Child Tax Credit, Foster Youth
+        Tax Credit), and the assistance and privacy pages. Step 6 and the
+        California Earned Income Tax Credit Worksheet (PDF page 8) are
+        retained at us-ca/form/individual-income-tax/2025/3514-eitc-worksheet.
+
+  - source_id: us-ca-ftb-2025-3514-eitc-worksheet
+    jurisdiction: us-ca
+    document_class: form
+    title: 2025 FTB 3514 Instructions, Step 6 — California Earned Income Tax Credit Worksheet
+    source_url: https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf
+    source_format: pdf
+    source_as_of: "2026-09-23"
+    expression_date: "2025-01-01"
+    citation_path: us-ca/form/individual-income-tax/2025/3514-eitc-worksheet
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 8
+          end_page: 8
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: 9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538
+      pdf_last_modified: "2026-03-04"
+      pdf_modification_date: "2026-02-19"
+      booklet_title: 2025 California Earned Income Tax Credit Booklet, FTB 3514
+      booklet_pdf_page_count: "32"
+      pdf_pages: "8"
+      document_subtype: individual_income_tax_credit_worksheet
+      form: FTB 3514
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: current_official_tax_year_instructions
+      certification_scope: tax_year_2025_california_eitc_booklet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_corpus_citation: us-ca/statute/rtc/17052
+      statutory_corpus_version: 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7
+      statutory_superseding_corpus_version: 2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052
+      statutory_note: >-
+        SB 1435 (Stats. 2026, Ch. 236, Sec. 2), effective September 14, 2026,
+        amended R&TC 17052 for taxable years beginning on or after January 1,
+        2025, which includes the 2025 taxable year this booklet covers. The
+        17052 record at statutory_corpus_version holds the text from before
+        that amendment, which was in force on the PDF's modification date
+        (February 19, 2026). For taxable year 2025 it is superseded by the
+        amended text in the 17052 record at
+        statutory_superseding_corpus_version. The amendment rewrites
+        17052(d), (j)(1) and (j)(2).
+      text_extractor: PyMuPDF 1.26.7
+      worksheet: California Earned Income Tax Credit Worksheet
+      worksheet_table_citation: us-ca/form/individual-income-tax/2025/3514-eitc-table
+      worksheet_line_3_source: federal Form 1040 or 1040-SR, line 11b (federal AGI)
+      worksheet_line_5_threshold_no_qualifying_children: "4661"
+      worksheet_line_5_threshold_one_qualifying_child: "6998"
+      worksheet_line_5_threshold_two_or_more_qualifying_children: "9823"
+      worksheet_line_6_destination: form FTB 3514, line 20
+      extraction_note: >-
+        The body is PyMuPDF 1.26.7's text for PDF page 8 in content-stream
+        order, and that text differs from the printed page in two ways. The
+        PDF's tagged structure attaches the ActualText "Bullet" to bullet
+        glyphs, and PyMuPDF substitutes it: the three line 5 conditions
+        begin with the word "Bullet" (3 times) where the page prints a
+        bullet (•). The heading "Part III Your Earned Income Tax Credit"
+        appears three times on one line where the page prints it once. The
+        pipeline removes and replaces no words: the body keeps every token
+        PyMuPDF 1.26.7 returns for the page, and the line numbers, stop and
+        skip guards and line 5 thresholds read as printed.
+      source_note: >-
+        Official FTB 2025 Step 6 instructions and California Earned Income Tax
+        Credit Worksheet (booklet page 8). Line 1 stops when California
+        earned income is zero or less; line 2 reads the credit from the EITC
+        Table and stops when that credit is zero; line 4 skips line 5 when
+        line 1 and line 3 are the same; line 5 is left blank when federal AGI
+        on line 3 is less than $4,661, $6,998 or $9,823 for no, one, or two
+        or more qualifying children, and otherwise reads the EITC Table at
+        line 3 so that line 6 takes the smaller of line 5 and line 2. The
+        PDF content stream places the worksheet lines before the Step 6
+        introduction, and this extraction keeps that stream order.
+
+  - source_id: us-ca-ftb-2025-3514-form
+    jurisdiction: us-ca
+    document_class: form
+    title: 2025 Form FTB 3514, California Earned Income Tax Credit
+    source_url: https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf
+    source_format: pdf
+    source_as_of: "2026-09-23"
+    expression_date: "2025-01-01"
+    citation_path: us-ca/form/individual-income-tax/2025/3514
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 13
+          end_page: 16
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: 9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538
+      pdf_last_modified: "2026-03-04"
+      pdf_modification_date: "2026-02-19"
+      booklet_title: 2025 California Earned Income Tax Credit Booklet, FTB 3514
+      booklet_pdf_page_count: "32"
+      pdf_pages: "13-16"
+      document_subtype: individual_income_tax_credit_form
+      form: FTB 3514
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: current_official_tax_year_form
+      certification_scope: tax_year_2025_california_eitc_booklet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_corpus_citation: us-ca/statute/rtc/17052
+      statutory_corpus_version: 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7
+      statutory_superseding_corpus_version: 2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052
+      statutory_note: >-
+        SB 1435 (Stats. 2026, Ch. 236, Sec. 2), effective September 14, 2026,
+        amended R&TC 17052 for taxable years beginning on or after January 1,
+        2025, which includes the 2025 taxable year this booklet covers. The
+        17052 record at statutory_corpus_version holds the text from before
+        that amendment, which was in force on the PDF's modification date
+        (February 19, 2026). For taxable year 2025 it is superseded by the
+        amended text in the 17052 record at
+        statutory_superseding_corpus_version. The amendment rewrites
+        17052(d), (j)(1) and (j)(2).
+      text_extractor: PyMuPDF 1.26.7
+      extraction_note: >-
+        The body is PyMuPDF 1.26.7's text for these pages in content-stream
+        order. The PDF's tagged structure attaches ActualText to some
+        glyphs, and PyMuPDF substitutes it, so the body differs from the
+        printed form as follows. The word "Bullet" appears 4 times, all on
+        PDF page 16 (Side 4), where the form prints a hollow sub-bullet (◦).
+        On PDF page 13 the form title "TAXABLE YEAR 2025 California Earned
+        Income Tax CreditFORM 3514" appears five times, each on a line of
+        its own, where the form prints it once, in separately placed
+        pieces. Each Part I-X heading appears twice on one line where the
+        form prints it once. On PDF page 15 the line 23 text ("23.
+        California earned income. Enter the amount from form FTB 3514, line
+        19. If the amount entered here is greater than $0, do not complete
+        line 23a or line 23b and continue on to line 24") appears twice, the
+        second copy broken across a line break, where the form prints it
+        once. Entry fields, cents boxes and pre-printed amounts follow the
+        content stream rather than sitting beside their line; for example,
+        the 1,189 pre-printed in the line 24 box on PDF page 15 comes right
+        after line 22 in the body. The pipeline removes and replaces no
+        words: the body keeps every token PyMuPDF 1.26.7 returns for these
+        pages.
+      source_note: >-
+        Official 2025 form FTB 3514, Sides 1-4, as printed in the booklet
+        (PDF pages 13-16): Part I qualifying information, Part II investment
+        income, Part III qualifying child information, Part IV California
+        earned income (lines 13-19), Part V California EITC (line 20), and
+        Parts VI-X for the part-year resident EITC, the Young Child Tax
+        Credit and the Foster Youth Tax Credit. Printed line numbers and
+        entry fields follow the PDF content-stream order.
+        The booklet's second copy of the form (PDF pages 17-20) has identical
+        extracted text and is not captured again.
+
+  - source_id: us-ca-ftb-2025-3514-eitc-table
+    jurisdiction: us-ca
+    document_class: form
+    title: 2025 Earned Income Tax Credit Table (FTB 3514 booklet)
+    source_url: https://www.ftb.ca.gov/forms/2025/2025-3514-booklet.pdf
+    source_format: pdf
+    source_as_of: "2026-09-23"
+    expression_date: "2025-01-01"
+    citation_path: us-ca/form/individual-income-tax/2025/3514-eitc-table
+    extraction:
+      segmentation: single_block
+      sort_text: true
+      page_windows:
+        - start_page: 22
+          end_page: 30
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: 9096ff0ec8a240717753f3f0345f2fa85a7bfaba4a8bcb194f316394a4e15538
+      pdf_last_modified: "2026-03-04"
+      pdf_modification_date: "2026-02-19"
+      booklet_title: 2025 California Earned Income Tax Credit Booklet, FTB 3514
+      booklet_pdf_page_count: "32"
+      pdf_pages: "22-30"
+      document_subtype: individual_income_tax_credit_table
+      form: FTB 3514
+      program: individual_income_tax
+      tax_year: "2025"
+      source_status: current_official_tax_year_instructions
+      certification_scope: tax_year_2025_california_eitc_booklet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      statutory_corpus_citation: us-ca/statute/rtc/17052
+      statutory_corpus_version: 2026-09-14-income-tax-chapter-us-ca-sections-4e26e6efabc3f0c7
+      statutory_superseding_corpus_version: 2026-09-23-ca-rtc-sb-1435-us-ca-sections-rtc-17024.5-rtc-17052
+      statutory_note: >-
+        SB 1435 (Stats. 2026, Ch. 236, Sec. 2), effective September 14, 2026,
+        amended R&TC 17052 for taxable years beginning on or after January 1,
+        2025, which includes the 2025 taxable year this booklet covers. The
+        17052 record at statutory_corpus_version holds the text from before
+        that amendment, which was in force on the PDF's modification date
+        (February 19, 2026). For taxable year 2025 it is superseded by the
+        amended text in the 17052 record at
+        statutory_superseding_corpus_version. The amendment rewrites
+        17052(d), (j)(1) and (j)(2).
+      text_extractor: PyMuPDF 1.26.7
+      table_title: 2025 Earned Income Tax Credit Table
+      table_caution: This is not a tax table.
+      table_lookup_input: >-
+        The amount the California Earned Income Tax Credit Worksheet directs
+        the filer to look up (worksheet line 1 or line 3).
+      table_columns: >-
+        At least; But not over; then the credit when the number of qualifying
+        children is 0, 1, 2 and 3.
+      table_row_layout: >-
+        Each lookup row is six whitespace-separated values in column order.
+        On PDF pages 22-29 each printed line carries two lookup rows, the
+        page's left column block followed by its right column block; the left
+        block precedes the right block in ascending lookup order. PDF page 30
+        prints one block.
+      table_row_count: "658"
+      table_bracket_width: "50"
+      table_first_bracket: $1-$50
+      table_last_bracket: $32,851-$32,900
+      table_max_credit_no_qualifying_children: "302"
+      table_max_credit_one_qualifying_child: "2016"
+      table_max_credit_two_qualifying_children: "3339"
+      table_max_credit_three_qualifying_children: "3756"
+      extraction_note: >-
+        The body is PyMuPDF 1.26.7's position-sorted text for these pages.
+        The PDF's tagged structure gives the column labels on PDF page 22
+        ActualText replacement strings (for example "And your number of
+        qualifying children is 0, Your credit is"), and PyMuPDF returns
+        those strings in place of the printed labels, in content-stream
+        order as well. With the position sort PyMuPDF returns 2,410
+        non-whitespace characters for PDF page 22 against 2,822 in stream
+        order; for PDF pages 23-30 the two orders return the same
+        characters. The page prints two column blocks, each labelled "If
+        the amount you are looking up from the worksheet is . . .", "At
+        least", "But Not Over", "0 1 2 3" and "Your credit is . . .", but
+        the body's page-22 header is three lines, the last two of them
+        run-together fragments, that hold "Your credit" and the labels 0,
+        1, 2 and 3 once each and "looking up from" and "But Not" not at
+        all. The header on each of
+        PDF pages 23-30 carries those labels once per printed column block.
+        The page-22 table rows are complete; `table_columns` gives the
+        column meanings.
+      source_note: >-
+        Official FTB 2025 Earned Income Tax Credit Table: 658 lookup brackets
+        of $50 from $1 to $32,900, each giving the credit for 0, 1, 2 and 3
+        qualifying children. The booklet instructions state that the credit
+        increases with each qualifying child up to a maximum of three
+        children.

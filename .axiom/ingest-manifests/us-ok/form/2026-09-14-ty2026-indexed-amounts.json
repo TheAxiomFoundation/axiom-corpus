@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "e1982d356408d76df8b02dc6926634d9f7cd0871c3683afc231056027181ace5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/form/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "e3dc4f1a433484cf74cf229266faff05d8a9f3935d4e2a33603912efb242c4f4"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/form/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "212bf25820e6efacfd7622afb1f6d6802fa09adfe1abd9efdb7d2f82a34ea81c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/form/2026-09-14-ty2026-indexed-amounts/official-documents/us-ok-otc-ow-8-es-ty2026.pdf",
+      "sha256": "27fbbbfca6443a238732c459f95c47b73e171ee094622a700ac9e2a60331ae1a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-ok-individual-income-tax-form-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-14T17:47:10.157269+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HtFEbtQ0qyx55q1Sodz+6qxexWe+HbvBu/5BxUGHcAGA+53iF+VdYVFaoQg4HgMfvyvv2jYkIl/To/kI7HBPAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

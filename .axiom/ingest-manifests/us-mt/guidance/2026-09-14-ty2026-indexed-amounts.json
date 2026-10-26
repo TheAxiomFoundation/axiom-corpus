@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "9d51bca6ad609babff844f0d7d914057c74a28667f70aaaca03f7ace241fb60f"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "9bde2ad3619ce158646b8fa84f7f8066436a45837a3806acac8f36e6fde5370b"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "d09497480240ad776603bc9a42652967005ab30b41463b0e303eebeb27cda564"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-mt-mtdor-publication-1-ty2026.pdf",
+      "sha256": "e3c8ead48b90065910744bb2ffdfc23709760892bfaa34ee4b468286cdde620d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-mt-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T17:08:22.760614+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v5nHO+nV2GXgKicYM5NknRA5HzDfMhxuGhsTNTdu2suiyUVDECl/DpfCBmeMmsbsOL6xElIp0i1ozLGzEDA7Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

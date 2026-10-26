@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses.json",
+      "sha256": "a9d7c91c4bf52ddf2e8ad7cda473712f5995f11f20b4f35ee7146993766676dd"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses.json",
+      "sha256": "f21918926b5c0fa783fef6d45b9fbc8c440ca31c3e7e6ea3e16077490392fde3"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses.jsonl",
+      "sha256": "f44cb0aa5a6b46929b9ccda0ef2c583e4fcbdf835eb9682b00cad9f06948376e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses/2026-08-01-usitc-hts-2025-rev16/usitc-hts/hts_2025_revision_16_json.json",
+      "sha256": "69a3ddee24ff58342dbfcc74cc9eb2be8c405cf6fff72eb5407bdea66c2c503e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses/2026-08-02-usitc-hts-2026-rev14-witness-lines/usitc-hts/hts_2026_revision_14_json.json",
+      "sha256": "a99da87129ebfd71352b9a747b2a36045a45f7f838ce8d4b9b02e157b78392ef"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses/2026-08-04-usitc-hts-2026-rev15/usitc-hts/hts_2026_revision_15_json.json",
+      "sha256": "59a76c12e28d7a28975f31a8876bfb08e64927b922fe2b4f88801ff4459181e6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8ea83b58ec3410f9a3fb698ae371690ce9c51386",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us --document-class statute --source-version 2026-08-04-usitc-hts-2026-rev15 --source-version 2026-08-01-usitc-hts-2025-rev16 --source-version 2026-08-02-usitc-hts-2026-rev14-witness-lines --target-version 2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses --include-citation-from 2026-08-01-usitc-hts-2025-rev16=us/statute/hts/9903.85.02 --include-citation-from 2026-08-01-usitc-hts-2025-rev16=us/statute/hts/9903.85.08 --include-citation-from 2026-08-01-usitc-hts-2025-rev16=us/statute/hts/9903.85.12 --include-citation-from 2026-08-02-usitc-hts-2026-rev14-witness-lines=us/statute/hts/2203.00.00 --include-citation-from 2026-08-02-usitc-hts-2026-rev14-witness-lines=us/statute/hts/2203.00.00.30 --include-citation-from 2026-08-02-usitc-hts-2026-rev14-witness-lines=us/statute/hts/8541.42.00 --include-citation-from 2026-08-02-usitc-hts-2026-rev14-witness-lines=us/statute/hts/8541.42.00.10"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1714,
+    "missing_count": 0,
+    "provision_count": 1714,
+    "source_count": 1714
+  },
+  "document_class": "statute",
+  "generated_at": "2026-08-10T20:52:55.930832+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "w8SsU9XU56Y8HzbU+MvfwhDMdgTidnb5kdOkGe9D6w2sJZTWpCe8IBWnKXmBL0JEIPolfPB9WQQjipdkc8gOAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-09-rulespec-hts-current-with-legacy-aluminum-and-witnesses"
+}

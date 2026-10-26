@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "0ae84c10d2f91476c1ee203784b4f2d9ee270e3753e16b57fec4e2068708c3c5"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "70e97a0bb4feb186af8dead031ae65423c30c04616cf7959fd98668833f182a6"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "ef89997193af92a7a9aedf4338ba88a6b010132539742ced6d54625596f45777"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-chip-state-eligibility-manual/official-documents/mo-dss-magi-appendix-a.pdf",
+      "sha256": "d0bd0bfbd90a19559dcffd841f20e4b50ca7c0faf3673406227e85d05ec3e5bf"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/manual/2026-09-10-chip-state-eligibility-manual/official-documents/mo-dss-magi-appendix-e.pdf",
+      "sha256": "fc65d9a6b09fce64ecdaef5b6515deee1ca6cc400b4d57c477b3821062a9597d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-mo-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:02:19.070576+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/x9XXDlwftW7k5yEDuwaA9E6xvBiTG/1KYHIH4s2jKeTg+rbyD+pI4Ce7ZiTyvo5dMzTpfycs7AgAgwU29jRBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

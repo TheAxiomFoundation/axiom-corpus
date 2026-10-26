@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-hart/manual/2026-09-05-hart-council-tax-reduction-2026-2027.json",
+      "sha256": "f9e13ba3ab0b7a1c3e55487b1e3b02c1e520b69a896ab32a30bd193a9ce9dc15"
+    },
+    {
+      "path": "data/corpus/inventory/uk-hart/manual/2026-09-05-hart-council-tax-reduction-2026-2027.json",
+      "sha256": "ff6a923a37c976cb25d0f44fc34d945a8062af78d3692d248194ae568af27bf1"
+    },
+    {
+      "path": "data/corpus/provisions/uk-hart/manual/2026-09-05-hart-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "60872ab899d2858e4d012e9554720f6fe7ec120c1ded7e5dd68cf2872fea149c"
+    },
+    {
+      "path": "data/corpus/sources/uk-hart/manual/2026-09-05-hart-council-tax-reduction-2026-2027/official-documents/hart-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "5fe40b9634c9c6a902d75b52bad40c7358b1f636caf54ff42fbc94bc6c666ef1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-hart-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-hart-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 149,
+    "missing_count": 0,
+    "provision_count": 149,
+    "source_count": 149
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:03.399114+00:00",
+  "jurisdiction": "uk-hart",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VrPQznz3Od7MYbfoQEqkl8Sm2uJdKYR1tQQo9N3S33L9NrfwClXBSG5PX4B+y/9SJkXmpQa/CHjbSVwYN24cBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-hart-council-tax-reduction-2026-2027"
+}

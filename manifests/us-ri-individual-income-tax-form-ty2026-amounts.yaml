@@ -1,0 +1,32 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-ri-tax-ri-1040es-ty2026
+  jurisdiction: us-ri
+  document_class: form
+  title: 2026 RI-1040ES Rhode Island Resident and Nonresident Estimated Payment Coupons
+  source_url: https://tax.ri.gov/sites/g/files/xkgbur541/files/2026-01/2026%20RI-1040ES_w.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-ri/form/tax/ty2026/ri-1040es
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Rhode Island Division of Taxation
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2026-01-02'
+    amounts_carried:
+    - 2026 tax rate schedule (3.75%/4.75%/5.99%)
+    - standard deduction
+    - exemption ($5,250)
+    - phase-out threshold ($261,000)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+    discovered_via: manual-review:tax-agent-queue; index https://tax.ri.gov/forms/individual-tax-forms/personal-income-tax-forms
+      (read 2026-09-13)
+    source_note: ADV 2025-22 (the inflation-adjustment advisory for 2026) is already released as us-ri/guidance/2026-07-23-ri-pit-adv-2025-22
+      and is not re-taken.

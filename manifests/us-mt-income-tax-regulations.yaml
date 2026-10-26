@@ -1,0 +1,22 @@
+version: '2026-09-14'
+extractor: extract-montana-admin-rules --only-title 42 --only-section 42.15
+documents:
+- source_id: mt-sos-arm-42-15-income-tax
+  jurisdiction: us-mt
+  document_class: regulation
+  citation_path: us-mt/regulation/title-42/chapter-42-15
+  title: Administrative Rules of Montana Title 42 (Department of Revenue), Chapter 15 Income Tax
+  source_url: https://rules.mt.gov/
+  source_format: html
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  metadata:
+    primary_source: true
+    source_authority: Montana Department of Revenue
+    official_publisher: Montana Secretary of State, Administrative Rules of Montana
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-mt/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://rules.mt.gov/api/policy-library-public/collections
+    extractor: uv run axiom-corpus-ingest extract-montana-admin-rules --only-title 42 --only-section 42.15
+    pointer_manifest: true

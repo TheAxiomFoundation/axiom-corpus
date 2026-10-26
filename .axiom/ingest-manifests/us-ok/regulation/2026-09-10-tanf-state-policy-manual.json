@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "4a9cc9c9ca3b14fef650c46b8452c06cde72351ef3c6c05beba3a2d82bb560e3"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/regulation/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "4230f60914073f254ad2f06b4556a8962295f33b660c2a0449a81b2ecc932976"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/regulation/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "4bb64cb56799875d237b284021e5ae9e179b2861593649fbeec46675e7e2b46c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/regulation/2026-09-10-tanf-state-policy-manual/official-documents/us-ok-oac-340-10-tanf-rules.json",
+      "sha256": "c21811db09ecf6870b7f230277c16eab5f78e3dea96d40b949863e4699e78879"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 63,
+    "missing_count": 0,
+    "provision_count": 63,
+    "source_count": 63
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-11T22:41:43.200528+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HK5FWrv0COD//aRH1TaTXv4engv0Scjr68HT65w7qW6ucYY8pTfbErfCmigzw2iILcEvaiVX2Hq0US9nYpSmBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

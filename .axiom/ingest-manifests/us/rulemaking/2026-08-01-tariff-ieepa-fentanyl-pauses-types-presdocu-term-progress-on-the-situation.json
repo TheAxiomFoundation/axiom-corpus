@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation.json",
+      "sha256": "d6ee141b6300f57570b6f5e4d20454426be015958ad5e76190f737170d476afa"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation.json",
+      "sha256": "1ab46cd920832da66e65415888f8a243be2453f137eb1307f54ce21061f24a81"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation.jsonl",
+      "sha256": "6a29737356a41ce20a82678d1a64deeeec7b36fb88aebdc7c0ade9606aaa5493"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation/federal-register/api/documents-page-1.json",
+      "sha256": "a6bc8c211b88e50ee0708cab6e579e76e57fd99d2fd31448d0fe275b6d722bd4"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation/federal-register/documents/2025-02478.json",
+      "sha256": "37d816ae7218b003b578f39603c3ed2964d37dcf32fdaa59669eb545733285a0"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation/federal-register/documents/2025-02478.txt",
+      "sha256": "280ba207d65c9abcf670e050b6b0a9b9fe18020f8cd8dad965c95c42b0ccb6e6"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation/federal-register/documents/2025-02479.json",
+      "sha256": "b8d07e75fbddacd20560df5c508c289463c3a44f521cfffa8bfa7278fa9739f1"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation/federal-register/documents/2025-02479.txt",
+      "sha256": "dbf36af419f58004ef508747da985f93b4cbd05d52ed7dd422e188829bc217f1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b1f82967d7770381cd642b880a48ca324f19b4df",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-ieepa-fentanyl-pauses --start-date 2025-02-10 --document-type PRESDOCU --term \"progress on the situation\" --source-as-of 2026-08-01 --expression-date 2025-02-10"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T21:41:38.418755+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RKY5mChD9z0Nul1ozCMkPgzcZjjzBtC/xXLU3nrtutI8wAMm7TF+fLQy87d0SstljloBelhS0TeyFSVRdWFVBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-ieepa-fentanyl-pauses-types-presdocu-term-progress-on-the-situation"
+}

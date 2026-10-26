@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions.json",
+      "sha256": "b9dc1f6432ccc2e1a36e6ccfffcb560ad93e13862c6de9f2922154c3ac9deb89"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions.json",
+      "sha256": "26815dcc4c0fac47c6c67fa81c8d9e606bbd9b5be351ca59e2a836158ff01055"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions.jsonl",
+      "sha256": "0742c35c8060afe06b24a406584f663a4fee197598a4480990bf7b4f5bba01ad"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions/federal-register/api/documents-page-1.json",
+      "sha256": "75b2bb4bcd6a8ff2a8a6a9989536f7845cfe82d97a7ddeb0943cfc0c8cb8990b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions/federal-register/documents/2025-10203.json",
+      "sha256": "14c50d8ebbd64176f0c2b3f4bf4ee036c4923fcc31816711a79c4d7934cc8775"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions/federal-register/documents/2025-10203.txt",
+      "sha256": "db4c12f385fb5ed0b2a74a67c3238aadcfdb857a174254e9605ca999b3aa9085"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9ca5291d639dcd68856feb86c933e6b216a6710",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-exclusions-jun-2025 --start-date 2025-06-05 --document-type NOTICE --term '\"product exclusion extensions\"' --source-as-of 2026-08-01 --expression-date 2025-06-05"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:33:36.284419+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "96KSYGiluvQ1jAAGEErhZLMyyJSwo3ihMykYy0KnC08pyfA96oiSadpKtY8KlWBo7L4DV1pH+uRskDMMei8zAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-exclusions-jun-2025-types-notice-term-product-exclusion-extensions"
+}

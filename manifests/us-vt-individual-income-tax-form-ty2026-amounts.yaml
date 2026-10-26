@@ -1,0 +1,29 @@
+version: 2026-09-14-ty2026-indexed-amounts
+documents:
+- source_id: us-vt-vdt-in-114-instructions-ty2026
+  jurisdiction: us-vt
+  document_class: form
+  title: 2026 Form IN-114 Instructions, Individual Income Estimated Tax Payment Voucher, with 2026 Preliminary Vermont Tax
+    Rates (Rev. 10/25)
+  source_url: https://tax.vermont.gov/sites/tax/files/documents/IN-114-Instr-2026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-01-01'
+  citation_path: us-vt/form/vdt/ty2026/in-114-instructions
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department of Taxes
+    document_subtype: estimated_tax_instructions
+    program: individual_income_tax
+    tax_year: '2026'
+    publication_or_revision_date: '2025-10-27'
+    amounts_carried:
+    - 2026 preliminary rate schedules X, Y-1, Y-2, Z
+    - child care contribution rate (0.11%)
+    source_family: state-ty2026-indexed-amounts
+    closure_element: F06
+    index_url: https://tax.vermont.gov/individuals/personal-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://tax.vermont.gov/individuals/personal-income-tax (read 2026-09-13)
+    source_note: The department labels the 2026 schedules 'Preliminary'; the final 2026 rate schedule PDF is not yet posted.

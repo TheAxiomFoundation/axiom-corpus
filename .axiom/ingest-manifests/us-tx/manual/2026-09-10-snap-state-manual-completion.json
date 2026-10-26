@@ -1,0 +1,1177 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "c426b257bcf2217e0bc2c313bb619a38c69e5576fd6292df95dddcdfeb5a7304"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "2b5fbaa8ff8335bdcbbfdffb0abc664ecee72db3fba2a756d5c252d3dd1c2231"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-09-10-snap-state-manual-completion.jsonl",
+      "sha256": "3daa1c0eb8226095a0db383d9c9367308218de85b2c7538e8a990c66308e4b6a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1010-general-policy.html",
+      "sha256": "8221b534a6a7b69d058f433dffbb935f698238a2cd53d593e35082e5e144c35b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1020-establishing-deprivation-children-unwed-parents.html",
+      "sha256": "38572d75ed0a813bc14a13974525cd18242277b92b8dd506a637d571e9982c87"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1030-deprivation-based-death-a-parent.html",
+      "sha256": "948860f1e48176765dfd1c2c17c2fc7c4548592de7ee678fe69aacfbc82a0dda"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1040-deprivation-based-absence-home.html",
+      "sha256": "5d97611e903e2bc0d5757b3d202be811571dba11a9797ad40ce204bddfbcfc65"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1050-deprivation-based-incapacity.html",
+      "sha256": "248f371cc88d3c474b477cfd3c4c62d47772673ea6465bb46cab687a1db0fe03"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1060-deprivation-based-unemployment.html",
+      "sha256": "b47b26cdd31f3d209fc943881ffa6a188254173807aab565c389516834c262f6"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1070-tanf-state-program.html",
+      "sha256": "79ab3fa5796e15fd2b53078e8f0050ee08a107993fc3edd17288421ca69d8dd5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1080-disability-verification.html",
+      "sha256": "5a06d8672fa5777bb7301f1c7ef42173e29ccfd62b4f66cd98de23742e06b6fc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1090-documentation-requirements.html",
+      "sha256": "aa32452ece9fcd01c3b9e9fb003f615a5dfd947a45b0b6a1134a0c2362bd58f7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-110-application-procedures.html",
+      "sha256": "dbfc27e2251b2baacc10358567f577d86cae1680f56eb62c82805814e791a3c0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1110-general-policy.html",
+      "sha256": "04d0db359dde3de2570de76493dc791b3e5bc38f62f8518d84dc559878445187"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1120-child-support-program-requirements-procedures.html",
+      "sha256": "96e6900009de4dc6532ef97ddaba598e7bad8777735e627feb39175e4a3673df"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1130-explanation-good-cause.html",
+      "sha256": "2df0cf42c7a2768c09f4a7d903c7da858a5963c5c53c1075bf72a2c5928fc0ea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1140-noncooperation-child-support-program-requirements.html",
+      "sha256": "eaf133ad3d2334c76f233f6d8eca512df85410d379ec6e09399f3e7a008029f9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1150-verification-requirements.html",
+      "sha256": "62140cdbe8d279a3bf7e4455322202533aee09b9950bba66566e79a7f6f92351"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1160-documentation-requirements.html",
+      "sha256": "20a371680327c21bac221e8d1b5947b2185f64b65e31001a214c21e91d559684"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-120-office-procedures.html",
+      "sha256": "703de412c7fc36a2587f0d50c52419e1a13d5cc370d8024858c9a0001dba4933"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1230-types-resources.html",
+      "sha256": "e3f33d2409c51dda84fb2bf852f83a9c1fd165ae832faf451e3db2acb8b1ed0e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1240-determining-countable-resources-special-situations.html",
+      "sha256": "09d78ba412e7d16ec944d067b5ba27ad3df7fbb79a5dc5f57c2c213cf34af7f5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1250-verification-requirements.html",
+      "sha256": "73dfece2f712df3623418a3d0da152c7421af1e0b811d88f4cfd745cae724f3d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1260-documentation-requirements.html",
+      "sha256": "acb373ca98453230f976cdc8e2e6e77bd19398fff9e5e0afffccdb679dc43f04"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-130-interview-procedures.html",
+      "sha256": "f4a80d03ba3a9d7d5670dae66df02a1ccbdffd0941c158f947efce9bada6566e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1310-general-policy.html",
+      "sha256": "d3092b9c9b023e8f9669dd25b4a7049488c1f72604ac04e968cce9fac1b49631"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1330-types-payments.html",
+      "sha256": "b32026144db8689f5e7a17a9ba52a52a633752e0ada69be12f8264754479ba5a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1360-determining-countable-income-special-household-situations.html",
+      "sha256": "8a86afb730472ffd44d026d633ba17477eb45537e064ee773795f7c21fa7b11a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1370-verification-requirements.html",
+      "sha256": "3637f9575213ba8ddf8287149767c02170a9487c1d640994c66723c8766a8064"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1380-documentation-requirements.html",
+      "sha256": "bcdccf81ae690413d2d78f6bb4fdaf97e93d156a645920fcdc6fad6e0e74eb2d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-140-expedited-service.html",
+      "sha256": "bfc26e565836372e97ee4647ad797cd5733ec3f7af1e2582391c341ef3662b4d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1410-general-policy.html",
+      "sha256": "d6d24c0370632d019e3aa5755c6b2f54c69effd9acb29e54eeeaf6a56255aee9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1430-standard-deduction.html",
+      "sha256": "cdde9381e1e1a6188ff62fd8594a7bd07c8a1446ee42f1e60a7399d78187d8b7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1440-verification-requirements.html",
+      "sha256": "97fedc56915d9e6a2ac67fe4f494d2b0361bde3a4a6b337490bf02a925b43546"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1450-documentation-requirements.html",
+      "sha256": "f6a0f9efa8f6fcfffaa013b14d916cbaa5657bb08824e97bd5d989d750403b4b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-150-combined-allotments.html",
+      "sha256": "b316e131f6002f61629d5fc9297a214ac089aa19675afb8c0b12d437dcf3616a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1510-general-reminders.html",
+      "sha256": "d7b0449e71a45951db850b82b53b732e16183b4ae4f754c0fe8632315aacfa94"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1520-registering-vote.html",
+      "sha256": "e0cb7c92f56a3522ca737010523fe4ba3e2907655e39a87a3b0286bb0b9c6efa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1530-medical-dental-benefits.html",
+      "sha256": "16eabeaa1ead075ff9fa722be1f5cb103c96a7ab1f2fd6f48e0031b4f984ca44"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1540-redeterminations.html",
+      "sha256": "e498c69694f69c002393ea4af8be4a9ef71eff12885d57c79653c6690be00209"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1550-issuance-use-benefits.html",
+      "sha256": "c8feb5d8f3cc30ec224bd1af4f14848e5cf383083ebf1f7c80f16f8ce7d02f45"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1560-documentation-requirements.html",
+      "sha256": "c6ded854ac61e637a2c032cb1e53203f444ff451d9ab8d7f058fee7ee7919fe4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-160-joint-tanf-snap-applications.html",
+      "sha256": "abeb1e306bfc8426441077c50379db3d79526663c204920bc4061f61df20fc42"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1610-eligibility-requirement.html",
+      "sha256": "50aa84bf4bd1c6bf76bd6597162ddf495813462bc59d8de71c42a7b1ebcf2568"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1620-determining-attendance.html",
+      "sha256": "73bf086ea14de7f2d7dd1baf9b4dd89ef3b587f56696bc583d92e2dcab1276fe"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1630-failure-cooperate-school-attendance.html",
+      "sha256": "49b5db4791a20e12e7da4281497caede65d9dc65b11412e82e014a93357dd54e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1640-verification-requirements.html",
+      "sha256": "129abef85507f7d3f31d6b5d398faeeb2ba2381e2f0c1cd87123ed5b5e6a6a3f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1650-documentation-requirements.html",
+      "sha256": "58dbfcb316618750184be7a7751cf983cd7631fbe66085a7fce07ff0a2981bb1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-170-authorized-representatives.html",
+      "sha256": "cc6ee02967d73f1b4701a44f9faa3d012b78afb53d71f270f4360fac72753903"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1710-general-policy.html",
+      "sha256": "e783cd8435e0ebd9fb78704c233360ebb376df1cb95367c51116465cf58b5709"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1720-how-evaluate-management.html",
+      "sha256": "f1f262e4158408f704fe715f075865a5576bf7bbe3799b5e2524e8b64c4c3070"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1730-staff-action.html",
+      "sha256": "ad39c08c9375aa348988c6eac66f9c5d3e9b878e5787396a21818d8a8015990b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1740-verification-requirements.html",
+      "sha256": "263aa18a7adc7856742f258b8613d07acc11abd86a6c20eb6daa664154699389"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1750-documentation-requirements.html",
+      "sha256": "d93655f18dcc5b5f2983b785dbfeb8d86ab9e3cb8bc00f4cf854e5e01338c96e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-180-verification-requirements.html",
+      "sha256": "03af9a4000fd445e2c9f5a72e33b302b93e5e5707296ac8f14934058d18c8cce"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1810-general-policy.html",
+      "sha256": "7c20a873f39f42bc6de43b384518a605c283a861d2d44e828202adee41db62ba"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1820-employment-services-programs-procedures.html",
+      "sha256": "bcc1f75a47663a4dfca9015bdeb2802471cd12e08bfefd97bc9da9f8d9050ad1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1830-esp-actions.html",
+      "sha256": "816c4f718676978e429ebc797fe44da6749c0dfe47eb089b8e2ed61ee020b021"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1840-noncooperation-esp.html",
+      "sha256": "0c88a3b2659c3d9cd6e6687762e3485271b7539c1a6aa7b172d8e4dd9591e76d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1850-voluntary-quit.html",
+      "sha256": "f3dbfd0d27223f64147922037b7c42ec9edf7f115011a88a91670e6e9300ce9d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1860-determining-good-cause.html",
+      "sha256": "29b9733f63630763c3ed5ee29ef52c83673a7f2c4b4b0181581bebe8f7ffc882"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1870-appeals.html",
+      "sha256": "4c7d6201c3bff62683ebb2688b79ad3ed62eb977b3c0c8768274ac8c7721fd0e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1880-verification-requirements.html",
+      "sha256": "ffe2e82359ec5ace7766fa22fe06fffabe1ee93b3bc941213254f1b67d2fb441"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1890-documentation-requirements.html",
+      "sha256": "8278b354b4eea2f0ab63afc81f73cbec0bd8ffa5b3a801fc8bf3c69852f06ede"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-190-documentation-requirements.html",
+      "sha256": "f8e64104cbb1dba7776f303135693e15d9dd6c4c6b8c277cd6716ddcdd931966"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1910-general-policy.html",
+      "sha256": "e7855c9d784b21ab870b13d95572fb957e7a6d0b66a1615b5782f6d435269458"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1920-determining-number-ftl-months-used.html",
+      "sha256": "10fc1d6e68bafeb6d2f290572f4dfe52081bbe4dca57f6244ff9be5609fc7293"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1930-extended-tanf-hardship-exemptions.html",
+      "sha256": "129b2676e51648b4f3a7db675f3203e87ff2c730a70f22e5796a56d6a2d8dea8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1940-abawd-work-requirement.html",
+      "sha256": "22ae1a57bdd3796b02e29bbce30b50366c6754e24079638f34e4ca73eb924e5f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1950-counting-months-toward-time-limited-eligibility.html",
+      "sha256": "f1e140641ec934c085ac74f9bfcc2411f0bb7888b6269f182121e48e7985aa1e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1960-regaining-eligibility.html",
+      "sha256": "40330d6c8bd051afe7574e48298f98ca0f031e528231924ae786c2177b2c569a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1970-verification-requirements.html",
+      "sha256": "7e89c59f7c1400eacc3592dbf9a56783baa1cb4bf5a6a473404a8f327ca88268"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-1980-documentation-requirements.html",
+      "sha256": "8588b5dae0170514a46fa37134e9d3329dc3bc12efce18d2f89b95489c1b8455"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2010-general-policy.html",
+      "sha256": "4b71783e9cbbf3f340389bee04bbbc58ea1d9fd412c9654dfe400e4c113ec4de"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2020-authenticating-a-caller.html",
+      "sha256": "033f8b66df831482fdca0e347218e2f0fd59ccd17c9d62b2c43e221ebdc849a8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2030-prevention-duplicate-participation.html",
+      "sha256": "fe6cad059e61dd1b93dc29cc8c7f75bd2255bf628e66d467bb69b8893670687a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2040-verification-requirements.html",
+      "sha256": "803924b337477c3dafa51cca9a917541bd4da6bbf976cfade3f6533a19ad0cc9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2050-documentation-requirements.html",
+      "sha256": "6e640f7bd0910ee0ddfe58eac49935c24ed54f3f4886fb28fd5cdc297d21ae15"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-210-general-policy.html",
+      "sha256": "95e04f9a2fb6ff7b895f29ba4841b44f35137d03afa602a54ffa1de7cd77866f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2110-general-policy.html",
+      "sha256": "a4cec92931d8e95a68c63ed17a9d5bd1e20eac7dc5e098527dcc98da114e9609"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2120-individual-responsibilities.html",
+      "sha256": "3f5ddb9f795fc80e0b33a5d26c56d6101b3850bab2d14293b7388ef281c9c104"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2130-form-h1073-personal-responsibility-agreement.html",
+      "sha256": "b1e952626533dfb14c5c3ca9af0dbb4916757137905a498ba5b9b70dd15d6ca4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2140-full-family-sanction.html",
+      "sha256": "d74ff202245644df209e6228e8b4b8adc19c7f602cd10aa8d2c74590ab65a781"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2150-pay-performance.html",
+      "sha256": "4bc3686ed2fba74b7d82a43da147fbe42dbbb43516af3183d592041692d72b5e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2160-verification-requirements.html",
+      "sha256": "e74a0d899b2dd843db09580f50757b60bd1c40b7c7b8a3025467a493c94e4756"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2170-documentation-requirements.html",
+      "sha256": "bf70f2392c16af1c62d5d3fe824234faab4ef2b7ca3c00a73e2f3bce4d358f82"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2210-requirements.html",
+      "sha256": "7ec7735fdc46459653648ac992790e946653969873cbb786af323ec940d98e07"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2220-verification-requirements.html",
+      "sha256": "eb1c049fc7cdfdaaf10871e1d91c818b8293c9b5ff4a12d4d99706608aff609e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2230-documentation-requirements.html",
+      "sha256": "372e60c8d8b6937e69bbfa7f950341b8c5938f865cacb77c4aae6a6e9f725cac"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-230-supplemental-nutrition-assistance-program.html",
+      "sha256": "32e3f73e1f66e2f98512cdf6704b5956ca4dcde721b693fce52d53c3745d4cd1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2310-notice-applicants.html",
+      "sha256": "1f4cb4a1bbe4881443ea9125d1c8258f2e2be6e67ff65cf06144b3fe96956f08"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2320-eligibility-dates-benefit-amounts.html",
+      "sha256": "6c72910c1a0d652d5af1fb8bbab228b68f026053bc9cd94a60f71de5a36ccbfc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2330-setting-special-reviews.html",
+      "sha256": "aec1bcd65c61d6f1c31745f7efdcdef5a3bf27c2416e58ee9d9c720045c644b1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2340-adverse-action.html",
+      "sha256": "d79679e6253cc09b8c0e6dd6c93f3c4a6b8a8e9704e188b76cfdb7e06bfcd643"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2350-streamlined-reporting-households.html",
+      "sha256": "ce0f6aab305770efb8d663be49012d41c8339bcb6ac4eea0a2da909017acbf32"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2360-documentation-requirements.html",
+      "sha256": "35c066bf7185b87852fb5728741d2b9b25323a933111ac9d1887ad0d1bb7e76b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-240-medical-programs.html",
+      "sha256": "bc6d2fcccdf6609193b9e79757afe9d0bcc6e62c45a2a8f5bd46eea9a383d525"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2430-who-not-eligible.html",
+      "sha256": "a26831789cc4e5186d76c1b8df8a466cd80e75da5fc228a25fe1730c16ee07aa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2440-determining-crisis-criteria.html",
+      "sha256": "c6136327c51cb848d0f20c9528804a9f07486f7f54b90d0c7b65a7413d9a9eae"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2450-issuing-benefits.html",
+      "sha256": "5cd066bdfc71d4d50af6ff203ee1fad1f7a1b913b5a7f44936ff5d35183a6866"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2460-verification-requirements.html",
+      "sha256": "bd3555aac522ad9b84c27dfebfb71dd0c971398d722fbb06cac6dae4daecc41e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2470-documentation-requirements.html",
+      "sha256": "ea8f47277298561034ad7ebff416ecc000d353c481df80c87a14abcdbdbcae73"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-250-verification-requirements.html",
+      "sha256": "b2a3badb554964adbee8d3a25f9d024eab3f25c9c46913abd58e74a5e8ce7176"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2510-general-policy.html",
+      "sha256": "1ec6d7467cb27c9cd76a79fffc1f8665a13883ef5819c19d86281e6d152919cb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2520-time-limit-tiers.html",
+      "sha256": "3964a278b306e0ff40dcb5443c1ace437e4e9b4853e2abacd053abca88f1f084"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2530-counting-tanf-months-toward-state-time-limit.html",
+      "sha256": "fc9439f62a6300d66b924ce0b87ed6a61ee64a7a03e14c9b7029f308bd028a5c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2540-state-time-limit-five-year-freeze-out-period.html",
+      "sha256": "dd96bde5a97919bc8cc8827236b3637b384c3aa8fd96465f1f1bfd374e7f8424"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2550-notices.html",
+      "sha256": "d45768b4656e493bdd1bac5560e65e6432d630d2cbcd938353ae5a846f31bed2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2560-tanf-sp-60-month-time-limit.html",
+      "sha256": "a10bee9314f9f840df2357edbcffdc6b3537bd516f5fbd2d3b839003efcb9193"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2570-verification-requirements.html",
+      "sha256": "5a6b64dad0b777c707780c35823beb44484064d6f3f756ef5e79724ca3ef4775"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-2580-documentation-requirements.html",
+      "sha256": "043090c85b545b3997e85c13c02329d057961cff71b6ef265b87cccaa8f6fe2d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-260-documentation-requirements.html",
+      "sha256": "6f266b10c9be896a227da9fde254ab4c8180fec7faffbc9217e375f17c565f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-310-general-policy.html",
+      "sha256": "dec3f4066942ccb41bf3eed2f1959e0aa07130d7e65efee99e0e49c68406ca49"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-320-definitions-military-connection.html",
+      "sha256": "799860d42a5d6631e1ffea0a0321d8708e102ade12430fbe7ad0d786b0941608"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-330-lawful-permanent-resident-40-qualifying-quarters-social-security-coverage.html",
+      "sha256": "db0c632d8b66d9f155e158b745c62859da185cb2696bb6d081cab788006043a7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-340-qualified-alien-status-eligibility-charts.html",
+      "sha256": "ee439bb2faa2bd774ec9f606157694b96316207e243c5fa9d02e9970e91dd88a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-350-verification-requirements.html",
+      "sha256": "e5167c76761864a2c0e9145b6e57c3a2ce5dd9c10c855e7450c83375f5bc1468"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-360-documentation-requirements.html",
+      "sha256": "3fda80bbcf3deb553441738264580b90d97c6dc80f5155ffcb72297de36f8770"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-410-general-policy.html",
+      "sha256": "be7567fba6e46158b56044d4c9b47764d74d4e74b2d88c714b4621bf6b7c1f4d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-420-failure-comply.html",
+      "sha256": "0c981b1bf36cf83db2b94623e44dd90e1213857531fab6d72bbae537ac44d0cd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-430-proof-required-ssa.html",
+      "sha256": "118731f4b68c119153d9d95564b1369f352e458cdb036d0cd671ba135fb416ac"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-440-verification-requirements.html",
+      "sha256": "56e4bea705e2458cbc87e461faa981c72be59231d81bee3d4349e7579cf0fecb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-450-documentation-requirements.html",
+      "sha256": "2e041cdb21aa4b3bebfd31e99b6184bd2ae08f9694d23a327e350d3fb95db0ff"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-510-age-limits.html",
+      "sha256": "cb836ca71e7adb32ea1810cc067c87e578d98daad3a6b6a31492a5c4de4f8840"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-520-relationship.html",
+      "sha256": "5da8aef58888496bc43d8dee665343d5d6d8e8b8d9a7f2cb8422175dd0fd9260"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-530-verification-requirements.html",
+      "sha256": "ac2830882e4c8ab8df1298ad83e5f14ca698cb70405868d9e472b825e8d5a3e4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-540-documentation-requirements.html",
+      "sha256": "c52368da125726a9fa09c4d95a7ab73fb63c0fd4c34efc27732d4f78066a8071"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-610-general-policy.html",
+      "sha256": "ef826750ee12e4cff5e9e47d8c9b504d1b3e95b7df05f89ae32d0287706f2cf9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-620-verification-requirements.html",
+      "sha256": "1077c4a6f3ebe2501b880d57eeee18e22ee0679dc3953dd89565dec534228b3e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-630-documentation-requirements.html",
+      "sha256": "32d9e274173ae7cb39f9b3f62ac5bf7b69ea41a176af88a415806018f0338cdc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-710-general-policy.html",
+      "sha256": "3d8369a8f3081a3b80e7ec8183f21f107f01d4b8a52d23a8c2d1c6d9daaaa4e1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-720-new-texas-residents.html",
+      "sha256": "3243fced4c7dfc2fd67fcca825392e4e2cecdcee6e605e142c684c34ddcd0c70"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-730-moves-within-texas.html",
+      "sha256": "af7d3085a791d75f67d9243bab126fd44eac69e8834dbda0f1a1c34a57404208"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-740-moves-out-texas.html",
+      "sha256": "3f3e84cbb9e57594c610060f10ac6acff4a04339dcee93d0fbf6b50fe6810b9d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-750-temporary-visits-out-texas.html",
+      "sha256": "1e815ec36997ee351e041bac2a646541dd777256a908166f7297652e9da0f1e3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-760-verification-requirements.html",
+      "sha256": "b9fda610258275418c7165168c74e8597d83d65c638bc288d07c64eb2abbc6f4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-770-documentation-requirements.html",
+      "sha256": "d5e66ae2836037da810b0466005c25af2dedd6a9e3f47ff07a8f1131e9f4e0df"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-810-general-policy.html",
+      "sha256": "24579217a31e56675a85ebf4ab8b664110fc2440f5732672b7cabcd938106b3b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-820-regular-medicaid-coverage.html",
+      "sha256": "310d1d2b398ec35abf4cb1dbcef39a4e16441f715ab4ddf71cff2f5b4f3fac46"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-830-medicaid-coverage-months-prior-month-application.html",
+      "sha256": "75988df36ba5cc2068dce20c5672e6c889a3f7fca2ddaa0c5974cd8f478c68a8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-840-transitional-medicaid-coverage.html",
+      "sha256": "2d5f96434a9c39c39165c6c34306e43a84c45469010251e46356cd30c70d5c94"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-850-tp-20-alimonyspousal-support-transitional-medicaid-coverage.html",
+      "sha256": "54b146282011877014b098a4104c657452ac7eef02e9b96ab3b36a2dcfda704e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-860-third-party-resources.html",
+      "sha256": "130643ae1dd0c045fe63f0b2f2605c76f814f8b595fd9a022dcc5521cfe9cfbd"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-870-verification-requirements.html",
+      "sha256": "ce5fac2c1274c93ebe6d7a1fb78f5fe5833d9041bf8cfe172afd22ee724b8783"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-880-documentation-requirements.html",
+      "sha256": "b0ee1285c9b9baa42c5b1c967a1873c00dc3232ddeeb1cd528e85361fd6a8a46"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-910-general-policy.html",
+      "sha256": "37a1549ef439f05a6402f9335f41260af93af00289d1a704a1f3893ad55eb7dc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-920-temporary-absence-home.html",
+      "sha256": "089c912339fcc195140d9e3d99376973bbac63d845efafbb7dd3d1f6e032f6c1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-930-requirement-unmarried-minor-parents-live-adult-or-adult-supervised-setting.html",
+      "sha256": "b2c0af4d1af2a16ab7a9eb07784a203da6d308e02c80a448bebc2d68d1a423e2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-940-verification-requirements.html",
+      "sha256": "77f312087e392a42b26418fa297a6cbf2ba43e503c7c6e011129e8f0b22a50eb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-a-950-documentation-requirements.html",
+      "sha256": "b01b1a41e13d2ce0c347af910c2ba03d3b37bfae676ce3d861d939881751b552"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1010-right-appeal.html",
+      "sha256": "5fceba6890c952b6c2cdfd11b4db74d0cf3baf357498f21b79f1f5c13c4a6da1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1020-time-period-requesting-fair-hearing.html",
+      "sha256": "6076125f374f412a5a4004f349e6d989e2f08c35228a7e3dcf5086b58ced2998"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1030-appeals-procedure.html",
+      "sha256": "33a794996267512a3dfe91c8d6842566555d37378003eb2e3b61aa7a0827a325"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1040-timely-action-fair-hearings.html",
+      "sha256": "6840597b571ee36fd517f54cc1cca9fa41889ef9312dff915bc016ba39ffaa69"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1050-handling-benefits-during-appeal-process.html",
+      "sha256": "ba182b3186be47b63f0fbc8f47da70a2538f9d45b2729d7cda32eca12bcc8f36"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1060-fair-hearings-held-telephone.html",
+      "sha256": "5fc21bd436f6870776622de560bd62b8bf19cec9f89e03baec908dfcc82d39d1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1070-administrative-judicial-reviews.html",
+      "sha256": "d2fc2ed8a88cd2f48fe42ef6aab321e24c24644b73267aed9ab514c4711b3d42"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1080-verification-requirements.html",
+      "sha256": "ce3a07e01412af77eefdd41640b6c4c2148199e7cd8f6d7c6a874209e9c57fe3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1090-documentation-requirements.html",
+      "sha256": "754c51f079deabf65a5c07766baf21abceeecb1c71e365b1cc8030d803569f56"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-110-applications.html",
+      "sha256": "76a4569dcf07a2674e91cc3f5ac8fc7d96e2fc5cfc1961a4a45ba86c5ef5df23"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-120-redeterminations.html",
+      "sha256": "1ba873f9d61fedbb4a9a8bc05a911dd3e36164211fe2c4b2939d0a8da583ce23"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1210-disclosure-information.html",
+      "sha256": "010b5909aaab8992c55ae78a40bb3b052819e0d1ec161439248ce2d177f28f3b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1220-specific-information-may-be-released.html",
+      "sha256": "e3204037c4778c848f30ef1f9054f0be2c1feeec74b138e32e871a73a5376626"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1230-releasable-information-medicaid-providers-their-contractors.html",
+      "sha256": "14b67d5ebeccf92aade71c2773c5a767b1bf72451886ea84a694d1a9cc1598ea"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1240-preventing-disclosure-information.html",
+      "sha256": "ce22d6e64271c9d814b9d1ed7eced10ba43234cef42a6bb1fdc52a67305b2e0e"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1250-reporting-unauthorized-inspection-or-disclosure-social-security-administration-provided.html",
+      "sha256": "ac6e723f8a87d45dca06f9e27b43053ff34332612793772b0f7f9017790973e3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1260-verification-requirements.html",
+      "sha256": "1a2082d6273173ac48f1950d6ee25e4ffd498d6d75e8e515ab8a47afe4f94e96"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1270-documentation-requirements.html",
+      "sha256": "ed8bf5f076ed7495275e987eeb4023d3ce6f36e561391907260356e4c781f597"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-130-changes.html",
+      "sha256": "51e2bb0a155fe388944ae176ab75849bceabee26850d338a5ff33231bdc99c54"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1310-nondiscrimination-policy.html",
+      "sha256": "f0dd727ea57c4392e6676934bd0e1ad2849b2b4b3afceb6bb7ec0cebbb0d35ed"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1320-racial-ethnic-data-collection.html",
+      "sha256": "7a52744356c1fa3deec84b2d7c3c3d105bc4077be87197960abbd72aad073f35"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-140-summary-due-dates-form-h1020-request-information-or-action.html",
+      "sha256": "f9727c78023c504a0f09a7112b60ec92d2644b70d6c6de924a145282046fa3d3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1410-discrimination-complaints.html",
+      "sha256": "560d24a1c57d1fbce09b2ca3442874ab449f0e3c826cd1b889e32f484f50a9d7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-1420-office-ombudsman.html",
+      "sha256": "840af8cb32dc1fc3f91a3484aa40a37159dbac4e7d7567dc6c4262b40144e950"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-150-avoiding-invalid-denials-related-missing-information-missed-appointments.html",
+      "sha256": "42a01d7fe84771866beeb0f66760fbccec582e2660a211a0aadc2675fe244dc1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-160-snap-timeliness-charts-applications-all-redeterminations.html",
+      "sha256": "02edf0ef561bcf5a18583e77ccd21ea197f6e3489bba1e2d05e6b9006351798f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-170-documentation-requirements.html",
+      "sha256": "b025a260aa61e542238d156a9477f9d49b5225bf23e1ca539c54c42c0b6b8ca7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-210-general-policy.html",
+      "sha256": "167a34565afc4ce68edee4f14d08220835fe67bb06a603ccb73a919125a30f97"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-220-benefits.html",
+      "sha256": "4dd6e6476a10de1b70523c2821896bc47f8386e8b87e2944693f369c7cd928a7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-230-electronic-benefit-transfer-ebt.html",
+      "sha256": "77c863c202c329f7b7880768148d0bef1578f7687f649540fc56d95982c1d22f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-240-special-certification-situations.html",
+      "sha256": "e04be0f482db7bd91aae2c26371d3802e7a4361c120d6aa4336c130ef6293e40"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-250-ebt-benefit-issuance.html",
+      "sha256": "266ab7ed039b4d670ba13d5f4c92ffd39c23848708802e70e71d226710028178"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-260-ebt-system.html",
+      "sha256": "4777f71a27ffb6d2366cf6b75d8aa72743f8a98cff0e178a4ded8344abe6f70c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-270-management-automation-processes.html",
+      "sha256": "e2fab1065a8904d56794f5ac6048c02a83a5dee7858cebee7a638fb878862e21"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-280-ebt-material-inventorydistribution.html",
+      "sha256": "a2270f1f393964d22ee67a6c49c2118886a134db72eba543dfda7cc735953d6f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-310-general-policy.html",
+      "sha256": "082fd30820508f177b45c55f3807bc808e47a7302a725677741a9e47c9f2f969"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-320-reserved-future-use.html",
+      "sha256": "073af8553a46554f99e7f1feb4c2a48bfcc823a7e7084b224e87ca92ad93b072"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-330-cancelling-benefits.html",
+      "sha256": "d40f77b82be357b35c4a750088a0ac329ae95eacd0459b88a2c10cf72eacd5c1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-340-replacing-benefits.html",
+      "sha256": "00eedcfd1a356034c88efa167b15940b1f403d528cff5b388e9752a74cc13072"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-350-using-benefits-out-state.html",
+      "sha256": "2041c4e5146f7bc3ba78408a3e2d574163f4ac89f7a6761bb20fbd1c26a731bc"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-360-reserved-future-use.html",
+      "sha256": "defcacc75a4fc933375d8812eb768e5a59a81a2819630e0c5c9818b17f796df8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-370-expunged-benefits.html",
+      "sha256": "c9c848896f7b5333837df45d0542c06e4e0eeecb3f5de7fd80fdffeb7f8be7a1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-380-ebt-problem-resolution.html",
+      "sha256": "ec7e638458cf1b2094dbbd398e0ef1c4a59727987477be2e1a6c564dd8f9d9d4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-390-documentation-requirements.html",
+      "sha256": "22310248786dba42b252b1a8cb5f21312acda769f560e201cd23de539ea1357c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-410-students-higher-education.html",
+      "sha256": "ffa5ca19656a59a7006e607bc26f19c62f16c25f2f5d4e0583b2aa22a924e6ed"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-420-other-special-situations.html",
+      "sha256": "7b018dd55f9e4f564f440e37ea30234f43435b3b0548fe9730af114dd9cf1971"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-430-households-elderly-members-or-members-a-disability.html",
+      "sha256": "b98166e4c553275c3a0785b321a7e874b874d9985eb407311ea5a8445ec0a4e0"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-440-drug-alcohol-treatment-da-or-group-living-arrangement-gla-facilities.html",
+      "sha256": "747d9270d89fcbfc3eb6b26b733cc71b6ca2cc4a94edb81697b3870a786b8a87"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-450-residents-family-violence-shelters.html",
+      "sha256": "9ddb6409c7602bd219548e8db43db17287302e0ed5e23c861b150253dc54c769"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-460-prepared-meal-services.html",
+      "sha256": "8125dcca73592bbbee1296550b39500cfaca8f7b12ae1ceaef145c6b207b9dca"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-470-categorically-eligible-households.html",
+      "sha256": "2e4da99076739f964fed9cfd88e27088e702316754f52897a74c3cfdfb604487"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-480-a-household-members-tanf-tanf-state-program-sp-tp-07-tp-08-tp-20.html",
+      "sha256": "0400e7b69b9b40f2317db08886302dd82df531c0f0807f24f58c35747ecc8610"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-490-determining-whether-a-person-who-resides-a-facility-institutionalized.html",
+      "sha256": "af59e318cdd2a42b3e1f5aaa5ec1faec2f811e3bd8d41b5fada3fd5e725c033f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-510-termination-medical-coverage-people-confined-a-public-institution.html",
+      "sha256": "d3ce721f96a496611d03ea4eb6b4aa5cc74c91999b67346de8452554fbcb0d6b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-520-medicaid-suspension.html",
+      "sha256": "7fee33a689c2a1e72603aee561feba1bdddc388c798529c67eeaed7cf5164451"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-530-medicaid-reinstatement.html",
+      "sha256": "a27bd50f58c8eb6df35ac4eb1493e2eece84a2faf2454e88ca275abd7e67326c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-540-centralized-benefit-services.html",
+      "sha256": "5d6e9e9e842baafd3a044936e9f46796e2f54d5c5444ae5dc56286a499b6a92a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-610-general-policy.html",
+      "sha256": "51748a74fb469a8e8b14372ecb4c39844c419a6d88e0df3cf158b384a6de6f1c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-620-reporting-requirements.html",
+      "sha256": "dd2b7ded712eb9ab310cd0a6c835bcb8997350405c3770dcfff46c2dac6cc0de"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-630-processing-requirements.html",
+      "sha256": "941705ab84d021defae5f0080ca6b2a7eb8885b1d9ffa95442ccd5230fb8502d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-640-effective-date-requirements.html",
+      "sha256": "83e0061d5153211c32b4b6b59d55363374aa5349c5172956f52d62c9a72de9ab"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-650-correcting-incorrect-information.html",
+      "sha256": "8e9c3de23b9fc03f36275832e79a66125baaa0bc93a5a088c88ff7691f0d914b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-660-documentation-requirements.html",
+      "sha256": "02fa3b675e657527b36a3f14f3843aa2777cee4213d23fbcba49c5a27bb6ea48"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-710-general-policy.html",
+      "sha256": "4bb74cd270b4109fc9f7bd1154a5c405bbc8437a7bf76cb259c24860ec7fa071"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-720-when-file-overpayment-referral.html",
+      "sha256": "17421434c23d5992cf20f5275696228ecea11665dc235728927804ec3b4f8062"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-730-how-file-overpayment-referral.html",
+      "sha256": "313502aedc9c5ed596c1d98e3c539916177364409da5b92acd9b21739fc21849"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-740-texas-works-responsibilities.html",
+      "sha256": "e84d58183059a0540841fe64f98d9e3213dbbd0d4e5f8a2d386779651428ed2c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-750-office-inspector-general-oig-responsibilities.html",
+      "sha256": "b0c1334b79b221a764bb26be05d4f659701f1f219a0ce2811498ba35991021e9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-760-fiscal-management-services-accounts-receivable-responsibilities.html",
+      "sha256": "93d7e4c1e30f3d4d7893e412e6ebcdf03ab5174080b6932785275a31855f4a39"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-770-filing-overpayment-referral.html",
+      "sha256": "fbc45a058e7316761c807534cab5a596ab54cfa8495aa6dc36e2c7f59ffc9b02"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-780-documentation-requirements.html",
+      "sha256": "00ce57ec2af0e3928deafb71e3d0071da361dd7a32fd839acecb0d044555e3d1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-810-entitlement-restored-benefits.html",
+      "sha256": "6b9bbed81529d95c3064ad816a47664cab6d148b1c305aa7a2081e0b90e4c247"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-820-time-frames-qualifying-restored-benefits.html",
+      "sha256": "440c9cb49ad7331a5b69486fb517136a860c4d27420fbdc5c405e3a1a89a7f29"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-830-how-determine-amount-restored-benefits.html",
+      "sha256": "f5a0cc0b34cd42988f752541ba2cf8c3af304a70e48ced6be09f67ac1a09665f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-840-notice-household.html",
+      "sha256": "a23528c7b3f12c432b6dc302ddc9d8bf527361dc2e8fbd3dbcee191ad6f5a725"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-850-disputed-benefits.html",
+      "sha256": "a391c1150d45574543af412584b855ecfd30f9d3f6a558b9bdab835792de0988"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-860-method-restoration.html",
+      "sha256": "bd89e07de91807c89bff612b9cf52cc60e986ae3605e45b1116e3a671517b1ef"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-870-changes-household-composition.html",
+      "sha256": "fa147a81b9957d7ec278eeb7972227ed541092294739b129fe7fe74c26665128"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-880-procedure-authorizing-restored-benefits.html",
+      "sha256": "967b1f6d2496d30915857cc1c3944a121a15cf7f3505de70deb3ecfcb30f2435"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-890-documentation-requirements.html",
+      "sha256": "84eb2c0541bb0c5b6bd10d294248428ed71d11b6e5b25ad7ba1fa4e33db93536"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-910-general-policy.html",
+      "sha256": "2eab8c4c2e9da13abaa6944a43a187311b7f566aba51b03b65d84b7d473b24c3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-920-when-file-ipv-referral.html",
+      "sha256": "8f300ea05fa314999bcc3ef4b1804d91fc8af58281c6e2473529effa64f8b0db"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-930-how-file-ipv-referral.html",
+      "sha256": "3e9cef149313893fdd17a272f86cc2dfd2f73ea0247ff0f6991ab80bc69dd6a3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-940-texas-works-responsibilities.html",
+      "sha256": "2ea6a62547e11fc0889ba22ad67fc881cc48e936d3de632113a46b6adbb5de7f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-950-oig-responsibilities.html",
+      "sha256": "599a2a1b3a9edb3f01221ddf08af0226bfce8172f670feecb995c8751f6b20ba"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-960-fiscal-management-services-responsibilities.html",
+      "sha256": "fa9e2f43bf495e24fd4bc49f5b2b057e984a762d19898239ef26f9d91f90ff31"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-970-hhsc-employee-fraud.html",
+      "sha256": "b914eda185ee7784384df6b9dae92ad44c623b7eaa7ed37e33a14bb0f499ff56"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-b-980-documentation-requirements.html",
+      "sha256": "f9fcdf1ddf52f9ae9301186d06d62739abafd65d745547c9f5b953c68a052854"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1010-clearance-ievs-reports-office-inspector-general-do-not-include-irs-fti.html",
+      "sha256": "c7db7ec667ade31e327a9214f60dc4756ca02aefc9f815fe78ea4e72253cedf7"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1020-clearance-ievs-reports-texas-works-staff.html",
+      "sha256": "8971bb523801d955aad2dafe316374c75b93330abbb582a81ddeb9d95fe62621"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1030-reversed-future-use.html",
+      "sha256": "2d0d75768e252512b7ee9552e4aa277d22c348320206f049715e6754e5776053"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1040-reversed-future-use.html",
+      "sha256": "faf60aa7624251c5a4dbd0fab48891ed6fe962d8c3ba86413ae29284b2657bc8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1050-irs-fti-security-protection.html",
+      "sha256": "118074946213e49da261e7d21a00afbabc68d209e1e676bb127b3db12b709248"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1060-reporting-irs-fti-security-incidents.html",
+      "sha256": "983c15c9e82bcee7c522c91bc1a700f113b53f09009a71af500b6ac887b9a626"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1110-medical-information.html",
+      "sha256": "9bbe419f2560e63e422536a58770239471e03aa4efd2e9d701171c6201a47448"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1120-irs-tax-code.html",
+      "sha256": "0df3ecd0efd99f32f65e428aca6175636065f4e79bc61fa24d918389b89c61f2"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1130-reserved-future-use.html",
+      "sha256": "501a332ba2b5e891432eb28a70790d296f0a259aa0d1af9d237b3fec046a7d15"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1140-tanf-snap-overpayment-determination-chart.html",
+      "sha256": "8ccf71d0b8d36dd0e475529a18ad0a7084b9a3100c86bf98bd0d2cf77e5deea1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1150-type-programs-tp-type-assistance-ta.html",
+      "sha256": "47407b6a044a24d0addcf386657f6806ab63061dda1a3ef1125714146b866caa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-130-medical-programs.html",
+      "sha256": "14cd46dbf181c9adcd4298006140b9f4cd939121e5a9c8ba8803e9eca74a30da"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1410-legal-aid.html",
+      "sha256": "5a0fbf63ac40250b62d46aaafcbae12c4f73a058a0feb044bd032e3fda9725d3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1420-ssa-claim-number-suffixes.html",
+      "sha256": "b25aaff5c16e8b085ae9253b7d33bcea2bff50e4d37e09fbe4c05edd43e5a28b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1430-snap-allotment-charts.html",
+      "sha256": "9cb416379b152515e431248960faf8c479420e0f0ed6ab4413804494b698d34a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1440-relationship-charts.html",
+      "sha256": "665ea70ca1eb9c4d223efae719526237c58322f24613a21bd73aaa6e161db578"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1450-guidelines-clearing-quality-control-qc-findings.html",
+      "sha256": "fa597f01c670f216a920112ef53ddb497df16257520519051526a3204e71cddb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1460-helpful-toll-free-numbers.html",
+      "sha256": "9f0ab4c0f4cd23ae51ede257e2639a046e449be73365899f417802954b49ec25"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-1470-eligibility-environments.html",
+      "sha256": "f31a42fdbf7cb37f15b0a4deeb9e3645cbcd4e7d3c7eb9a3879a36031d886c1b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-210-tanf-codes.html",
+      "sha256": "f585e5d442e583b3560be64165a1a855d778d6888405b92b32327d8821f29f5c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-220-supplemental-nutrition-assistance-program-codes.html",
+      "sha256": "f8135865230351db2c7eb450c289c3d35bfba691d929196f4dab7380f61fcdd4"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-230-medical-programs-codes.html",
+      "sha256": "736343074f16ca2ca0bc48387ca4503af30500a73b797d4c2e2a00d906ce011b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-240-expanded-denial-code-reference-charts.html",
+      "sha256": "4ed15efe770c0f751f71969e291cf83fdab0d7ce7a6ce8373f17d67e3e389a8c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-310-full-minimum-service-choices-counties-region.html",
+      "sha256": "d3e88f92813233edb809ed7d4ccd5ff961c274d59039cb91aec86ccbc53122d5"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-320-tanf-state-time-limit-county-hardship-lists.html",
+      "sha256": "0c892d30c070a2e56e146aaf3bae0b98e76ac5bd971a91d517adea9ce6c4cb8d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-330-snap-abawd-work-requirement-waiver-counties.html",
+      "sha256": "c7fcfee560972db13fafbf0542f2c4fb739c63d21ba912f291bc99d035df6f37"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-340-snap-employment-training-counties.html",
+      "sha256": "080d5325e52dbc8c263c027c274fe3c45346c41e4c3b2ada64cbf2d7ec46a512"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-350-county-lists.html",
+      "sha256": "8d02b5129dbe93028ddee52ee67d553f804cfe40b2ada27d724d870c42c47825"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-510-general-information.html",
+      "sha256": "8b311728de756de56a5610735c64e7e4d539021975462e16a27597b6508f04ec"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-520-form-h1000-a-form-h1000-b-completion-instructions.html",
+      "sha256": "6558654febe3b56fee82fd136f354a9744989cd2119325f64b596330a5812547"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-530-form-h1000-c-secondary-client-input-instructions.html",
+      "sha256": "9642ab69ffa11ea89f5d65b679329495e8a09c2414ac02e1e442c0ab9965ec5c"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-540-code-summary.html",
+      "sha256": "0c7c2dfd4f89888b750ff05c781f0adad660e87e23c97d98e42c391a04afa06b"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-610-general-information.html",
+      "sha256": "3b8a698495ac632f1a8f8ce3696fdbb9b89b95a85d69f34a937db8cb98f033e9"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-620-certification-entries.html",
+      "sha256": "b5ed2acfdc42d206e981da1a1fd17b895d6869f5ef5b2a1f838ff56cc673f31d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-630-entries-actions-taken-during-certification-period.html",
+      "sha256": "95077f735a1359eec41b9a79a12f9abcfc787fc9567254ba8a9c49c39641ffad"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-640-denial-entries.html",
+      "sha256": "8a500df819b5163ad33b03673cc739289ce972186bdb2e1727adf2e5ca9999c8"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-810-texas-integrated-eligibility-redesign-system.html",
+      "sha256": "5d00feac84d9a849e826bff4a99974b77c416c2c6ce37b4d8fd4a9a34872ec36"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-820-data-broker.html",
+      "sha256": "ee3327e1ed488aed3492ceca4b32647d1deadde68950bafa69861e8bb1d1cc5a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-830-child-support-systems.html",
+      "sha256": "e5cb7aa59ccb0f9e37df19b35e2aa8ba94549562c9a33a09a7ab7f14b83593eb"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-840-datamart.html",
+      "sha256": "4b141bcb1e6bcd110e497c027294322a12de9715af1259a95c265723dde3dbfa"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-850-one-time-grandparent-payment-system.html",
+      "sha256": "1e520017216f072b223001cf764b842963a7dd659b45c95db93e7d98fb3cbdb3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-860-birth-verification-system.html",
+      "sha256": "cb78dbe77e8f632817c883b07663d35a1d0a05d70959a01e525fd9a4d8b7b7e3"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-870-other-systems.html",
+      "sha256": "2df0bcb399cee1ae0629ec6489000329ebb0f2aaf30fabad46ff092d7e7a80f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-910-required-verification.html",
+      "sha256": "9fb45db88080636a84dcb43353c37c0bc62e7fd30d5b9c70c5a599b3b4ff5d80"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-920-questionable-information.html",
+      "sha256": "60aee57bbe1d83dd775eb04d6da2d0fcc90c9533a39c6c55f01296ff63654c42"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-930-providing-verification.html",
+      "sha256": "cc0e01368c6a6ded376a487dabc11ac3479ab4871a38d3c60806014f14f0920a"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-c-940-documentation.html",
+      "sha256": "d2609f512fd6554ec015f80b6ba42ab06343794d582f58a89d26d0901c664591"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-09-10-snap-state-manual-completion/official-documents/tx-hhs-texas-works-twh-glossary.html",
+      "sha256": "f9c12a36912a3fa1ea2cd99349b3b9956d7ad3296dc02ea0e6d65b462aae51e4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-snap-state-manual-completion --manifest manifests/us-tx-snap-manual-completion.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4392,
+    "missing_count": 0,
+    "provision_count": 4392,
+    "source_count": 4392
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:54:53.230820+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4FRVwpOv5GfEEqrJsiV4rtJp7OWi1q7mh3PvuxP3CFTgmSl3/UN78zazPwoZQZifRvc1Hi9U5Bzyv5SQ8wINCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-snap-state-manual-completion"
+}

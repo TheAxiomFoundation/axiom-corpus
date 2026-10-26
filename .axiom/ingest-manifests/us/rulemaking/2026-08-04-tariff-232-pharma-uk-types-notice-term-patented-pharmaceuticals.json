@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals.json",
+      "sha256": "8d2c8b1fc1558cac7227f017a9e4d6cb1e2913cd30e3f9f9c6c096056e3359c3"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals.json",
+      "sha256": "d7137fa6c5ce5c9b8f00ffa8d96315407fd2125d698564a23cdc807428994beb"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals.jsonl",
+      "sha256": "392864bfead6d998e5312711b9c3c97f438c2387555de54840fcc13f95e15be3"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals/federal-register/api/documents-page-1.json",
+      "sha256": "bfec4e831965303fa4bf7cd2d35c91624a26bf983ea64757d298e16bd2440841"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals/federal-register/documents/2026-15799.json",
+      "sha256": "c16063f571397109e8127a503a9e54f9bee480206946d1a1ec0bbfd27a00083b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals/federal-register/documents/2026-15799.txt",
+      "sha256": "cfdbca5779183a5ec4859d6628ee26ad789f2453596641087400b429e8a8bc35"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d982bfb4e62ff9478cb38ae8c4cedf7e51c98578",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-04-tariff-232-pharma-uk --start-date 2026-08-04 --document-type NOTICE --term \"patented pharmaceuticals\" --source-as-of 2026-08-04 --expression-date 2026-08-04"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-04T13:11:58.627049+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OIlKUZ7Zz6xO8eRkEd/0DKk2MLJUQ3eyr4EuOaTGEafjxUSM2DSqNSMKrLykcmynl1XTx5WYnhSP1oYgC9DSBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-04-tariff-232-pharma-uk-types-notice-term-patented-pharmaceuticals"
+}

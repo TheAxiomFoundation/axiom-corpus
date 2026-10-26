@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414.json",
+      "sha256": "46ae27537a4913af7779e955963f3c2d16cd64f6e8b916e34ba897195f2b7f16"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414.json",
+      "sha256": "389954bfad490dcc43ffc04e2b6aaef5fa7dc237ff3de997fbfdbc9965fccc92"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414.jsonl",
+      "sha256": "6fc0855ad4ee9c84475c52b3a6143feec0f2de2cbc1ba53606da09a746248bed"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414/oregon-ors-html/ORS.aspx",
+      "sha256": "51008a5c121d7b3f2cc194e95e59c55617aa810aba36a81bf4e55b344c4d48e9"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-10-06-w6-health-statute-or-ors-us-or-chapter-414/oregon-ors-html/ors414.html",
+      "sha256": "51ac3b8dad941ab9c7d07c69b44d8a4d06a479850d6cfb327a2c76e75b47e954"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-health.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 353,
+    "missing_count": 0,
+    "provision_count": 353,
+    "source_count": 353
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-07T17:57:44.886053+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pz9YL/eLkIRwO9doI2tMqXmzWZXXgGKpgN37RCkr+QB46S3Og/bgSkkQyehr1cm1KHjTwlvb3JYT4CpUB8wwAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-health-statute-or-ors-us-or-chapter-414"
+}

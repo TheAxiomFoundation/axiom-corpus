@@ -1,0 +1,1 @@
+Ingest USITC HTS 2026 Revision 15 (full snapshot + General Note 3 and Chapter 99 notes) and FR 2026-15799, the BIS notice reducing section 232 duties on UK patented pharmaceuticals from 10% to 0% effective 2026-07-31 per Proclamation 11020 — Revision 15's single substantive change (9903.04.63).

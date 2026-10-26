@@ -1,0 +1,24 @@
+version: '2026-09-14'
+documents:
+- source_id: la-osr-lac-61-i-chapter-13-income-individual
+  jurisdiction: us-la
+  document_class: regulation
+  citation_path: us-la/regulation/lac/61/i/chapter-13
+  title: 'Louisiana Administrative Code Title 61, Part I, Chapter 13: Income: Individual'
+  source_url: https://www.doa.la.gov/media/kwhdydi3/61v01.docx
+  source_format: docx
+  source_as_of: '2026-09-14'
+  expression_date: '2026-09-14'
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: '^Chapter 13\.\s*Income: Individual\s*$'
+    stop_text_pattern: ^Chapter (?:1[4-9]|[2-9]\d)\.
+    section_heading_pattern: ^§(?P<label>13\d\d)\.\s*(?P<heading>.+)$
+  metadata:
+    primary_source: true
+    source_authority: Louisiana Department of Revenue
+    official_publisher: Louisiana Division of Administration, Office of the State Register
+    document_subtype: administrative_code_chapter
+    program: individual_income_tax
+    source_discovery_group: us-la/regulation/income-tax
+    discovered_via: manual-review:tax-agent-queue 2026-09-14 (needs-closure R01); index https://www.doa.la.gov/doa/osr/louisiana-administrative-code/

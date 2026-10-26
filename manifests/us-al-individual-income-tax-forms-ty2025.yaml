@@ -1,0 +1,83 @@
+version: '2026-09-10'
+documents:
+- source_id: us-al-ador-form-40-ty2025
+  jurisdiction: us-al
+  document_class: form
+  title: Form 40, Alabama Individual Income Tax Return (2025)
+  source_url: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40blk.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-al/form/ador/ty2025/form-40
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Revenue
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-al/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+- source_id: us-al-ador-form-40-instructions-ty2025
+  jurisdiction: us-al
+  document_class: form
+  title: Form 40 Booklet, Alabama Individual Income Tax Return Instructions (2025)
+  source_url: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-al/form/ador/ty2025/form-40-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-al/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+- source_id: us-al-ador-form-40-tax-table-ty2025
+  jurisdiction: us-al
+  document_class: form
+  title: Form 40 Tax Table (2025)
+  source_url: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40taxtable.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-al/form/ador/ty2025/form-40-tax-table
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Revenue
+    document_subtype: tax_table
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-al/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+- source_id: us-al-ador-form-40-standard-deduction-chart-ty2025
+  jurisdiction: us-al
+  document_class: form
+  title: Standard Deduction Chart, Form 40 (2025)
+  source_url: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25stddeduction40.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-al/form/ador/ty2025/form-40-standard-deduction-chart
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Revenue
+    document_subtype: worksheet
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-al/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax
+    discovered_via: manual-review:tax-agent-queue; index https://www.revenue.alabama.gov/forms/?jsf=jet-data-table:form-table&tax=individual-income-tax

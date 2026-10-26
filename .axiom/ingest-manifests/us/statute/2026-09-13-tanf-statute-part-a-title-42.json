@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-13-tanf-statute-part-a-title-42.json",
+      "sha256": "067c44eeb7909c09511f67f2c671ae1aab2e303137bd0ee3e20186ed5eea01a3"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-13-tanf-statute-part-a-title-42.json",
+      "sha256": "b02bcb30ffc09747f4ae2de0c9af92c5145a6c6c8184865e23fe8f509690d8a9"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-13-tanf-statute-part-a-title-42.jsonl",
+      "sha256": "abed03506b58a08c600fdf628559fc546323e845a7f8ad174042e27044d2b250"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-13-tanf-statute-part-a-title-42/olrc/xml_usc42@119-103.zip",
+      "sha256": "28eaf3479573ea9342c208a3cd28a48aedb57dd87a30c2f978b59d1cf4757388"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-tanf-statute-part-a-title-42 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1101,
+    "missing_count": 0,
+    "provision_count": 1101,
+    "source_count": 1101
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-13T20:57:49.446737+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "o7SYhJaYoGW2sa+oVyXiGKuoRJ0CfZahcYX1s2MSTHL9DfLLpXjUK9dnbgLLhwReyqQc/YAtFaIo0q8lxTaEAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-tanf-statute-part-a-title-42"
+}

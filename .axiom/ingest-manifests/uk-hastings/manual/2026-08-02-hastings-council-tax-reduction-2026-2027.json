@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-hastings/manual/2026-08-02-hastings-council-tax-reduction-2026-2027.json",
+      "sha256": "f173d91fce650785feca087494b0d6c519eff16c07f304e7532e01bb05089422"
+    },
+    {
+      "path": "data/corpus/inventory/uk-hastings/manual/2026-08-02-hastings-council-tax-reduction-2026-2027.json",
+      "sha256": "60247e902bd696836d7b37b87d4a321d288cfb7d67312776b55975efc4ec8d23"
+    },
+    {
+      "path": "data/corpus/provisions/uk-hastings/manual/2026-08-02-hastings-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f003eae63e8db7a23de52db07557d58f1462ee9170c12b1773f82bed3b090a39"
+    },
+    {
+      "path": "data/corpus/sources/uk-hastings/manual/2026-08-02-hastings-council-tax-reduction-2026-2027/official-documents/hastings-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "88e2b76b6d6e8866d1054a15f224c0e96a8c39324c4ad1613e9180bc7ff25912"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-hastings-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-hastings-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 134,
+    "missing_count": 0,
+    "provision_count": 134,
+    "source_count": 134
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:03.961528+00:00",
+  "jurisdiction": "uk-hastings",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Fj1q7IBXf0l9xzsVKRpYFPriPqB4fSb7l/0oNZfYgDbkq5Vew8br2D0OLwVwOMmAY+A2Bge+9+vHfCXnCrQQAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-hastings-council-tax-reduction-2026-2027"
+}

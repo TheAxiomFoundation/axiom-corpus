@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-15-title-26-part-301-closure-title-26-part-301.json",
+      "sha256": "eac7349c953d710746069225e37ca41331e45cd51c640e2ba88d20f19696b3ce"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-15-title-26-part-301-closure-title-26-part-301.json",
+      "sha256": "017c36474249ce19c4c805e89b24df29cdfa15db7c76d0c416e862d2fefbfbc0"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-15-title-26-part-301-closure-title-26-part-301.jsonl",
+      "sha256": "db124cf1dc2ae98bc994be3bc1763b08ce428d422f682ef7acc3527bccc6ad01"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-15-title-26-part-301-closure-title-26-part-301/ecfr/title-26-part-301.xml",
+      "sha256": "2932ac43f9d28db49b403a18ed56d987bdb7ff402b278241df119467995a6c48"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-11T18:27:17.573122+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rDarQypWRhdTFL6UJ5uvuAh/WF3EhWY+q97XrOjQIQjm2QGXpCLl4igcMxmhptX6z6CDrAnEmdTtsAKNVUrrBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-title-26-part-301-closure-title-26-part-301"
+}

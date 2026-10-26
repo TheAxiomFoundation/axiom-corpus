@@ -1,0 +1,1505 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "6fff9792bb098588e1a87dab77b38ac3bf110bc70311116a6b9956df1dc56542"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/manual/2026-09-10-tanf-state-policy-manual.json",
+      "sha256": "a3afb33e79949f3cf8d2e1830744b22560e32726bd2018c35a91731c45d1c961"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/manual/2026-09-10-tanf-state-policy-manual.jsonl",
+      "sha256": "3ff3a65edf94dd223b1a757b4faeaea395aba492158eb64cc548eeedfbbd98b0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-100-ops-memo-policyclarifications-100-operations-memoranda.html",
+      "sha256": "a502366497465ec8aa233da879bdd878e0e159c037fc2cfbb65465efffd11475"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-100-ops-memo-policyclarifications-100-policy-clarifications.html",
+      "sha256": "2844e90389bd678a6b374b5003cbd7f9621bf25f74d543cee5e53437c1494d43"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-100-ops-memo-policyclarifications-100-title.html",
+      "sha256": "48626582a52a1676dc4b6e6d78572999bad31cb7c53ca69391ec9c17037b8d60"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-1-purpose-of-cash-assistance.html",
+      "sha256": "a287ae8dcf0c35a40bf6d50c0c0dc07c8060c915dacda2e7958786aeefc53353"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-2-medical-assistance-program.html",
+      "sha256": "bae42199bb0e4e4c8d4c46d02d7364f4d39b354b8d075d655c714329c2d5812c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-3-rights-and-responsibilities.html",
+      "sha256": "b9024f58d9283b5f3e2450540d86ef70c26b71565bff5287d43fd8ba08820e08"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-4-suspected-child-abuse.html",
+      "sha256": "83bbeeb362bd807590eeb71d4e4eca410be433abfab7293d223a2afccfc9e18b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-5-nondiscrimination.html",
+      "sha256": "df3fdf53eb67b9618d87365bff9de89ad10299567454e3ade3015a7eeb085d03"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-6-confidentiality.html",
+      "sha256": "097127b5eb4ca5590a0bbd0a70327efa25b1d10877cedbddcd1ef64a94379db5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-7-allegations-of-employee-fraud.html",
+      "sha256": "faf26ddbd8673d546ec16cc8a66c3ed9e45d4ef97bb6bac8b9fcbcf6056f7573"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-8-state-employee-recipient-match.html",
+      "sha256": "5fcebe5a5cf3d1e446f0609a39b0b932a7a47f6f364c8ec046fd2d28411f0c69"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-appendix-a.html",
+      "sha256": "e01ffc8ec89d90022a494df15305ecccf0ce08df8e33c27415715784061e2922"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-103-general-information-103-title.html",
+      "sha256": "2a09850dd11b8081ed42f7006dd30a2952b2ae4b6d51d1325f06dd97ce255b95"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-1-general-policy.html",
+      "sha256": "40717ab42f754add84786dbf548f86a5b57fa0c4b1781a22ae0ef5497ff6f46c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-2-application-process.html",
+      "sha256": "3ffb4a53079d1eaf97abc33d4934e14994a9f764cef2d8e9b1bfc40be2e3bc56"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-3-screening-interview.html",
+      "sha256": "e5e9e1a0c2790cd32f4a0adc4bdbc4c9912f0b23c75d71e93955d7961180c70a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-4-application-interview.html",
+      "sha256": "a6fcaf23897cef6dbc556dc139d7d389a63f161d5ea6f1199e5866068f63e0a2"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-5-processing-an-application.html",
+      "sha256": "5390ef0e63074d306befc8434ed42388d1d7eed6200bac45d99dc10c13674542"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-appendix-a.html",
+      "sha256": "b5e354fb8e79e0d127c2d7f0a88dd646ae93dfa8a0f8d13237f4494194ee2124"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-appendix-b.html",
+      "sha256": "0ea1b0266fcb822622b1ac31ab37ed0cf054a8c9efc7a9ec7fbf12a337600614"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-appendix-c.html",
+      "sha256": "1cb57214e0600e3e5f8319aba18296cb5f8c63c866723011c03479e18608cdda"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-appendix-d.html",
+      "sha256": "a6b00ea505e70de52865af5eb337ea6830c8077a4437adac8d9312d849caf942"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-104-application-104-title.html",
+      "sha256": "f8f1447d4027dfa6d772372b2b9de11d57e18f61d8c026a63ab9fd7ccea7d7d9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-1-general-policy.html",
+      "sha256": "a1f0afeeece478919b5cece587092a2a3c83117accdeb8ce3547e1ee8d281e14"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-2-tanf-categorical-requirements.html",
+      "sha256": "6d331101e04bb686bb156dbe4b1a7a61dd696e9c902d8c99589f9db0af5f6cb7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-3-ga-general-categorical-requirements.html",
+      "sha256": "c59676c0fe3d6282dc848099b0cefbdb61c3d2e2f4378001126ff918fee92990"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-4-ga-categorical-requirements.html",
+      "sha256": "f4c8ecdd88134d8b4ce17919a4edbda73eea5aeffc679c07f4a229aa4815834c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-5-determining-category-using-information-given-on-pa-166.html",
+      "sha256": "aacbd5cd7b489b725268c200ab971ec8ec333c1445cf87e87d4a71c16bd5d28c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-6-changes.html",
+      "sha256": "38fe18dce7bd3c2c6657d67b3dfeca5775b74c1a8f652d9d82dce3bd3dfc810d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-appendix-a.html",
+      "sha256": "ab8f2e71d9d51c89bb553238f010f25b52c7599c3a3a4a9f5507e4b2a2eb2837"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-appendix-b.html",
+      "sha256": "239cf3564ce965e39c860b9b1acc525f5d2eb3e121947fb67a307c2aa0ed9387"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-appendix-c.html",
+      "sha256": "25c411f198f0c7249c9aaf87fd55dbb4107400a3778f4fd7a466461fb890d687"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-appendix-d.html",
+      "sha256": "2628055fc86bb5bd58887f8d41eddb3ed4334fdef560d5da2088c98328fb79d9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-appendix-e.html",
+      "sha256": "3e1554fb12299112e1e347f85359f481c59fbe2f2a102c4fc185fe3290f74e71"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-105-category-105-title.html",
+      "sha256": "b99398bc20c1eb2d5783952b6d0a4f85ad3c8289b125912769c7dd9efe3f7098"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-106-reserved-106-1-general-assistance.html",
+      "sha256": "84f6d63c7823df5186d40944dddf53ba021d0bfb70ad6cb6bb80d289d63fa41d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-1-general-policy.html",
+      "sha256": "59c8f627e2f8bec594dcec223aca32fc589f932948f9137fed0920484941d863"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-2-who-completes-the-amr-and-when.html",
+      "sha256": "fc3fac67c16bdcb3fc1ae5af902e659b0f20532d84168e773312020b29bd4b7e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-3-discussing-the-amr.html",
+      "sha256": "b416f815275b2115fd014b03fef8fdcff2c59c5564a9668305a5bcb8d6ffa967"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-4-mandatory-and-voluntary-activities.html",
+      "sha256": "22f8c2fe6c2dc4546223de58c2077e2dbba04523a19c12053bacbf538eaec81b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-5-penalties-for-noncompliance-with-the-amr.html",
+      "sha256": "10e05ce2488614fca040d1cda3e5d012d3101c4b0334d88a4d18dfb3e77384f8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-6-completing-the-amr.html",
+      "sha256": "b265cb696ac5c98da321e2fb5dc737c91a52e87033e605523389133a3ace2698"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-7-follow-up-tracking-success.html",
+      "sha256": "741b99a368c78a63d6d90f918db513005bbd62260fe373fab9105f304cae08ce"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-8-coordinating-with-other-agencies.html",
+      "sha256": "8187946d4829a732900157783dda89985b3cb8b7fe3347fe23b0b54ef884a91f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-107-the-agreement-of-mutual-responsibility-107-title.html",
+      "sha256": "ee48b63bab6a68510dec87be75d151e9895ec66afefd8ddd2fc175c73b79f2cd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-1-purpose.html",
+      "sha256": "1336ece9d5ca3331087f2eebc7cd29a39466f83021d939cdbaa2fb1f0db185e5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-10-safeguarding-information-the-fvi-and-other-safety-mea.html",
+      "sha256": "4ce83079ab94d442913145296728e83e81b0a2e4dd9068cefbefff5877a96b7d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-11-referral-to-services.html",
+      "sha256": "e5c2c20a147e721b5b396b46b6fbee76cdabbdf27955ae4b88fe7a5aba34e188"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-12-other-assistance-programs-available-to-domestic-viole.html",
+      "sha256": "4db82adb672128957b743d61139faaaa11985632dd46e039b7bf3fb085469876"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-2-general-policy.html",
+      "sha256": "647ab84d60d11ee8fced087fc83e7f5e8ed465439b31d37532c51708f37a52b3"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-3-definitions.html",
+      "sha256": "33e8fd3277a639cdf4cdf6ff18312d9a9d60bd1085d53f00af69ed59d7f4345b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-4-universal-notification.html",
+      "sha256": "c1052a1762313bbc260b2ca82d9496ff35393277cac05f7e955d5b329da09ec8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-5-assistance-for-clients-in-immediate-danger.html",
+      "sha256": "4a9033b59c9e5ee7fe2e7a2729cdf9c209fc6796a60de4bc0b4fe7c8e137e1be"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-6-general-policies-and-standards-applicable-to-good-caus.html",
+      "sha256": "0964bf74540429409ea6e62c718d088f0c190559d5c6ebaf80a95b2e5d1ae985"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-7-guidance-on-good-cause-waivers-of-specific-tanf-ga-pro.html",
+      "sha256": "f4966c7bb075a1b532ed5a51864d35e3ba3923053789da447a642c6ae08c79fd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-8-specific-policies-and-procedures.html",
+      "sha256": "e951982ce54c31f9bbfcf0c512289fbb80320ebb21cb0d7bd61f6e9fb7581bcb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-9-special-client-circumstances.html",
+      "sha256": "f2d39ce4969d45933f7245c649ccf99507e093bd0361f78a6f3c855d2b668853"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-appendix-a.html",
+      "sha256": "134f53abf26ee827de2464a4cf29ed6cae826ada148114941ba64839bc1a6872"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-108-family-violence-policies-and-procedures-108-title.html",
+      "sha256": "5c0448ab7e81f5741b8b8fc6057fe1590ebd7fc7af1c33c51c0a35001a5feaae"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-1-general-policy.html",
+      "sha256": "265ea5b9f1f19666052d94f8b0ecdf0dfd2bc8ddcdc3c9847afbb2381c68aa65"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-10-program-status-codes.html",
+      "sha256": "dce3e3945623be9cff9c264a0979eb162f4d7fde24551ae2297dda5d78c7ef85"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-2-tanf-budget-groups.html",
+      "sha256": "6e47f8896d60d8505f69801abe462fe24473a4058b5cd041323bb9f9a0cbe663"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-3-ga-budget-groups.html",
+      "sha256": "f0a2962be35273a3e5bee6fe65d490ae9e330a1ab2cf5771d4a354bcc435331e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-4-mandatory-tanf-budget-group-members.html",
+      "sha256": "d0a8263ee1120e83ab8996fade94f354ba9c54acdcc1dfdfd09510702ec721dd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-5-persons-who-may-be-included-in-the-tanf-budget-group.html",
+      "sha256": "e278886eef9e7b22a23078d371ae88223b1c7601495d57a6d84aecdc01c43554"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-6-tanf-minor-parents.html",
+      "sha256": "ba59f5e4be324adf6d986c050e2e0460141dbd616f1c7ca9857ec035c3ddf10c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-7-ga-minor-parents.html",
+      "sha256": "638484eeb56284935f00b3cacdd8af7605895816112f4522ece7e2723c03a944"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-8-payment-name.html",
+      "sha256": "9b5d849780b938d0a359c61584be2d8d74f0eb39aa5c05db1b41de30098521fb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-9-multiple-budget-groups-in-a-common-residence.html",
+      "sha256": "80a7a779d15dbde293185d5e10efd08b6c86bf4a9cd6197c08044fa71737c01e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-110-title.html",
+      "sha256": "1854dbd62a552d22d7e19459e1103fa9fb19f98d606bb5be234a98dd227255a6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-110-budget-groups-appendix-a-examples-of-budget-groups.html",
+      "sha256": "30bd0535f10b078e18719363eed14a3320f8f7aa58542556e004fc9c8b396c18"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-1-general-policy-tanf.html",
+      "sha256": "2c34965d40d538bb9e37f00ef7031bed1c98d44e17ad557bdbe62fc560bf073d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-2-general-policy-ga.html",
+      "sha256": "3ef62e591c9cbfcd3f59cbe0f345f21ee0cc317dd29e15b756cce8b0210146fb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-3-who-is-a-striker-tanf.html",
+      "sha256": "867df42a9a818aa49fd86da17d313616022b01ca3feddd359d355fbe2288cf87"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-4-applicant-budget-groups-tanf.html",
+      "sha256": "410d55df79e239ea8ce33a7609829effb0f4dabdc840a8024323dd053ff040ae"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-5-recipient-budget-groups-tanf.html",
+      "sha256": "d4b6e9d136d263cebb354a9e807731eb58463f680d247829706949954f495df3"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-6-cao-responsibilities-tanf.html",
+      "sha256": "ebb1ad0342decfcf7edfc70b0acef23fa3fd452bf490e1a47e1fd7557e5ef824"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-113-strikers-113-title.html",
+      "sha256": "bac5c3dfbe77560ee1d3098f28f5fe83d418e2fcbda167cad3501c022c8c602e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-114-students-114-1-general-policy.html",
+      "sha256": "bb1e36100a1bba40cc12501a49a1f8d99b2aab7ac550f9331bf66849d3f3246b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-114-students-114-2-who-is-a-student.html",
+      "sha256": "0d52acbdf5c3ebd55c5dd57e39500d8c8c0b8672a3c21e976713e83ca62e904d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-114-students-114-3-secondary-students.html",
+      "sha256": "9cbe8c872a264035f13b3f66734ca4d24627b1716adcd93346168d3dc6693370"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-114-students-114-4-ga-college-students.html",
+      "sha256": "f041cb94c9bcf0098e84d8b8916e0ec7e9e254dc321210805f8c499830c8e773"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-114-students-114-5-educational-assistance.html",
+      "sha256": "82eccca46b8f9af2a9b470b7c3074d8b461acdbcefca18fb1299bb96c1ba2d41"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-114-students-114-title.html",
+      "sha256": "035fbbec29b1e1343727d4d767cfef73b0fd9fa0ef4ee72a3e625078cc0d8003"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-120-identity-120-1-general-policy.html",
+      "sha256": "6b416d25d7d649c994b3785493dd82c7355105e3ec09adc0255812c60d7ccd1d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-120-identity-120-2-verification.html",
+      "sha256": "e6c4b46b7369651a1539bf1948d131ca47f3cf4c9f94b2194204ff00a1cc1b53"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-120-identity-120-title.html",
+      "sha256": "62484f1519852ee44ff37b36e68da7ef1300ecc63751068cd2f4029832f93ab8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-121-age-121-1-general-policy-tanf.html",
+      "sha256": "0d03d80cb07a16203cff3dd353eb50a5a71e4e4256d5759d42499e424676ffbf"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-121-age-121-2-general-policy-ga.html",
+      "sha256": "3e58119f51315bd6fc5663d25c9a4ba5dbd6655472dc90e3a7cf8e8b88e62a89"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-121-age-121-3-verification.html",
+      "sha256": "6689be0f271d95083da9d4e48e2dd77cfdc0d87037b965c2b63d551ed6b8baa7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-121-age-121-title.html",
+      "sha256": "cc454cbb79c8e0f21e02c159f3f833ea5b564ae32aa2cf31ec442cfeb69727c1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-1-general-policy.html",
+      "sha256": "611e5d4819ad9226050fea467dc060bb6528f783336e7180c2272c63f5b74fce"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-2-citizenship.html",
+      "sha256": "c8e8575f8e066c457c76dcb6897d58ddb96380db5e6ef6b0c0d841c9da3cb369"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-3-noncitizen-status.html",
+      "sha256": "6fde67dc3beb10747855cdc32f90c9a3a65dcacf0574fc22ce150efddd0b7d57"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-4-sponsored-noncitizens.html",
+      "sha256": "8abc980c8313daaad974d17958d5d0a7b9b5333c3d1a35281bcbe451f8dcb789"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-appendix-a.html",
+      "sha256": "c162a519cbd6362d76fc47872481dc3d9b229edb84c878f26204a86ac3662e00"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-appendix-b.html",
+      "sha256": "869e8080268e7b606a7ea5070d09a2aae7b40099f37672db9529142b0aec4806"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-appendix-c.html",
+      "sha256": "8020efa63d659c019f65b331ee9ba62c6ca8a885e27e0b7302c4f154fe4ff145"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-appendix-d.html",
+      "sha256": "812229ecda4218f8de41bf5ae9415dafc1764d302f567661c423558a401341e4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-122-citizen-noncitizen-122-title.html",
+      "sha256": "ee5d6ce9b4d722ccfb8b8207cc2970e4cc0211584e947189c2f0beabeb3deba7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-1-general-policy.html",
+      "sha256": "840b358a55e5e977147cfe8beaa2e7d99d21701732d7e3e0bd31bc693644bee6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-2-who-is-a-resident.html",
+      "sha256": "4372c159427ee680d38dd386854626de34809fcbe9b3c8113822c58019fb4214"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-3-who-is-not-a-resident.html",
+      "sha256": "e3edea956c34c1db6b03a3ad38751ab8a21cc1b2c493325c92de879344227e71"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-4-homeless-clients.html",
+      "sha256": "1e8a2ca7ea5f8ff38c8901716dce5657383ace922b627af059b742fdf4160ae9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-5-place-of-application.html",
+      "sha256": "2627a49adcf61202809e890a45163fe1777188d27aaed371a4c81cedd397fc24"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-6-verification.html",
+      "sha256": "5f01d21d8aa23efb62be8e3ec4eba6c6ad90b3edecce7dac1ab32c7111305238"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-7-changes-in-residence.html",
+      "sha256": "9cc494f66cd65f1b5b9990184416cb51fc4b6b9258573b56ba94e74fe05e37dd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-8-client-whose-whereabouts-are-unknown.html",
+      "sha256": "8aae19d9e8527023406eb73c5f389d854e9d3b239a4a0c437da25b16077a25ab"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-9-temporary-assistance-for-nonresidents.html",
+      "sha256": "fb374a541080e719f43c078da69b799a70cc428829f06efbdfb801ff1b5bef7c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-123-residence-123-title.html",
+      "sha256": "9fe7b95d39f48a34bad337453bd9ca2db56a584787dfdc3cc7ea549a17703103"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-1-general-policy.html",
+      "sha256": "e4daeb9cc0a3cb941f26d9fe047388eb1d13ed60e8eb41854170d831ed2c9d2e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-2-specified-relative-requirements.html",
+      "sha256": "319b8f22e149c73249d3e11898136fa49ccf36a06abef59e3b17a9299b7e5b6a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-3-the-number-of-specified-relatives.html",
+      "sha256": "eee8c9df0d98441e904ff0ce5c8c195a7df5000622b864397fc80ed0af0594f4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-4-specified-relatives-not-included-in-the-budget-group.html",
+      "sha256": "6f40ab7587606010cdf5f975d71bae17d16e22be7f3a2934401b01c23a62bce7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-5-specified-relatives-in-budget-groups-without-tanf-chil.html",
+      "sha256": "dcefd4b20b0457df90e97075196e295e853a34de753ae3150a420f8818d93e71"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-6-exception-to-living-with-a-specified-relative.html",
+      "sha256": "cd9c32a248cb9b099b84b09cc219a346cc42245aaa5172280b70522b42e93425"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-7-temporary-absence-of-the-tanf-child-or-specified-relat.html",
+      "sha256": "5ea3fa66f2f71e1e4a5b441a596b273149d650a19f6224779bd86ee8773a1b7d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-8-verification.html",
+      "sha256": "427066f770417e10360697dec181c6a17cd10508111fcebecbc3697b27d92bf3"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-appendix-a.html",
+      "sha256": "e52138dec61dfef2c8fecbd4a4183f7af7180b0b2a687daec84cb6bcd291de66"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-127-specified-relatives-127-title.html",
+      "sha256": "745d517eb4438ee1639aee55fc7eac8c9bc0f7638441348d2dbf5e7f140971d7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-1-general-policy.html",
+      "sha256": "0fbd901b1e27f192608dc8b7615f282bbfd2c7ff0f86fc98c6d90117d01df875"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-2-continued-absence.html",
+      "sha256": "cd21b91b77d1edee077f9d3c2cca98977f61fbada4c5db575843c954245120c9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-3-incapacity.html",
+      "sha256": "0d7c84c758576dd4ababb007234f8bbaa49849bdbd0d4e6893c7907e65689c45"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-4-unemployment.html",
+      "sha256": "04cfdd8bf4c813f68e1370d283bc88e9f5741e31f00f3bca577e967d1e5cc3b6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-5-transfers-between-tanf-c-and-tanf-u.html",
+      "sha256": "3d6bb5075672cbbabd1eb71d3afff2e4667d2c0ff0e40c8e6d122e28485b04ed"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-6-transfers-between-tanf-and-ga.html",
+      "sha256": "ada14249570557cb74ca78c9caf349bbc60e9e3db899e27df4e901e7208e837c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-appendix-a.html",
+      "sha256": "a6e021e8bbbe14f702afba34d4b20ed13b1bea69c4aa68d8d36bc436b2cd27d5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-appendix-b.html",
+      "sha256": "065d5783f6ae657c91764da6c4614a205165f047748989b661ec0e88259c6dc2"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-129-deprivation-129-title.html",
+      "sha256": "9ff7d00377f50f50ba4e5da2ba283018c31c8a4f5cdde08fffb6c95f66413c9d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-1-general-policy.html",
+      "sha256": "d5578e01c4477654b46464074cd8536172ec63295a20e38835708e4376e02a02"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-2-legally-responsible-relatives-lrr.html",
+      "sha256": "577aa71c215a23da3112cb61968ec419154e19bd14d8f8126a3e50666c4f27e3"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-3-cooperation-with-support-requirements.html",
+      "sha256": "c19ec6030055ce774c12ca8f58e91edc2b61d399fe9747aef26b4d60edd88f57"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-4-assignment-of-support-rights.html",
+      "sha256": "68f58efa4c7368a1735673b1f9d9b560a5c9f86efc082def34932bf19261d835"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-5-noncooperation-with-support-requirements.html",
+      "sha256": "43566dfbda7dcff0fdaee772f338b6a8c2692f6f479569020e28b542082ab835"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-6-good-cause.html",
+      "sha256": "455f11c6500903dba3da8bc3f4123cc979f0ed8905fa8235c40102b8f34f941d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-7-child-support-action-notice-pa-cs-293.html",
+      "sha256": "46556cdbc065b73cf465ed2d05541cba5bf8bdd0048e8102c736c2a96077ee05"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-8-summary-of-responsibilities.html",
+      "sha256": "8f2defce6568459854391d6b3a3d6ea36c86b943e1c491a2fa19291722f2aa33"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-appendix-a.html",
+      "sha256": "7cec74ad0fb5b0da72c9bd734136632056df68a8a1f6d6ff9dd87965f0526ba1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-appendix-b.html",
+      "sha256": "08c0ed61c017e5b6292d4fa3a87a7b7db749f9e5432c0a0d4108b974262ed587"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-appendix-c.html",
+      "sha256": "14b7801c532e3a20b2cb5425655ecfac8a5bf519d249bb07e0aacbca546c1c66"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-appendix-d.html",
+      "sha256": "de8f99924b90828f20b4cb0c9554ccfbe930067f9379b8d2ca5fd08c09ec3e0a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-appendix-e.html",
+      "sha256": "989ee059a460a1d2aea57cd842324b995b1921bae2fe0ac28d9f1898865a08e8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-131-support-131-title.html",
+      "sha256": "2fa2caceb627374c2b7e04257c257faa819933a5d2d25fbd05771032a349304d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-1-the-road-to-economic-self-sufficiency-through-employme.html",
+      "sha256": "07402712584ccb6a724748a5792b51acf37fb4b3b7f5f1a76863cacdc1b63947"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-2-exemptions-from-reset-enrollment.html",
+      "sha256": "8d7c3d5689567c3712bb03d407489d63158f0ccc8ee69101502cf03d6e20560f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-3-good-cause.html",
+      "sha256": "059772a4b700c121135851be7db2334b3c8222807db28d7a9e83160c5339ece1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-4-employment-and-training-activities.html",
+      "sha256": "061cc665de9bbd3b6cab33c34503b58c64dcdf02f94683ad9ea31d5c98caf12a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-5-volunteering-to-participate-in-reset.html",
+      "sha256": "05b29e151912ce318294eea677741585e2acf2b52f2851009798e402d3519e07"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-6-special-allowances-for-supportive-services.html",
+      "sha256": "17790cb0f02a5cf5011b49109e0c749af493de3e175356b54536e5eed1dd02a0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-7-non-compliance-with-reset-requirements.html",
+      "sha256": "287f2205cd08ed50ae76b22b6768360f2e86a138811abf91bb812b3b9337b691"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-8-extended-tanf.html",
+      "sha256": "016e1021b3577b75d914acfe823e1f81d098527a3d6322c51421562e493d9887"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-84-reserved.html",
+      "sha256": "efb5b4e7dd4c2c61b829742fdf59924eb72ce31fca14ea18396343cb55b037ec"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-85-reserved.html",
+      "sha256": "1879911dde9da6cff4a1b185c3ed479f2c50bdb5d0d3c1475cc7faa786b16e7f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-86-reserved.html",
+      "sha256": "a6308a33cca9b855fe69d9c067aa98aefe2c1f6b044c1da228836d9df51ac0cb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-a.html",
+      "sha256": "f946545cf3cb7d0145623b61803804bd69651ef393e44a733b4f5772c18b118a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-b.html",
+      "sha256": "d94f8253f68b8b2227e251f48b8689607b37a1053c24bacb6042fce303764681"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-c.html",
+      "sha256": "083374045dd20d773542e6db1c772f6b355177e46e855088ad52ade0aecc6806"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-d.html",
+      "sha256": "c5bcbe09aeea6e19598b7e74979c9664c56a9fd86766301a9175240b1f7217c8"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-e.html",
+      "sha256": "6ce6bb420993a965bbd9ebaec5e84837942222f03b3a89ae4d918e750bbba512"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-f.html",
+      "sha256": "af55e739d99df278985b56f5e58f343011a465cf7dcb0a1ac0cdb8eef02eda2a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-g.html",
+      "sha256": "64b253e669595365174427a10dcf33e68832111dd99f3e910b16b2e60f1b185b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-appendix-h.html",
+      "sha256": "9ce61435930878188bc7c6e443272d110ad1183d13070ab9c72bd39853a78e71"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-135-employment-and-training-requirements-135-title.html",
+      "sha256": "03f055d705f8633692620e9996fc55889f395d494e09972d7e02bac2e75c3389"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-136-interim-assistance-136-1-general-policy.html",
+      "sha256": "d3aa1f0e2bacfa6c78b9da8127dab41fb0057df3246a7f98c395eab9f76dbf79"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-136-interim-assistance-136-2-interim-assistance-reimbursement.html",
+      "sha256": "bc6c09e5f64894fe2b5131702bd68d1388c38dec81e50237c353dce93d0fed96"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-136-interim-assistance-136-3-replacement-of-ssi-refund-check-not-received.html",
+      "sha256": "fa5f569853d47c9134e215ec47370bea488eb41a88225d333761b5b05570b504"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-136-interim-assistance-136-4-other-interim-assistance.html",
+      "sha256": "c7ce3d2e4f31b6b842dd22a707e1c17471fe3fa7f9044274dce713d5d5a3e3bc"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-136-interim-assistance-136-appendix-a.html",
+      "sha256": "d56955323e86865fe55e2010fdbbe2d6c1ab1c8a44b1778be7ba3a9d89b5c57f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-136-interim-assistance-136-title.html",
+      "sha256": "949b1d7b51925d4c791147f7f93d280e156b86d36123b8c4f93a17620936d1bb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-1-introduction.html",
+      "sha256": "b7f0a25a2cfd51c26ec6cdd314d733b38763f67a072201932ed9a1539b27c00d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-2-work-support-component.html",
+      "sha256": "b0400f4ce7e4a7d687f2bcb05d29066da8ecd2b9fa0ba54389d667b4b78bbe0d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-3-transitional-cash-assistance.html",
+      "sha256": "41b00c769cb2ae1f337ef25fc665cbe66870dfe5fe4e0d1eafe6cb2eb9bb5047"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-4-work-expense-reimbursement.html",
+      "sha256": "dbcc13ff79a047458b888119869d9f08511ffb02f3d1c971197d5197fcd1bc2d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-5-diversion.html",
+      "sha256": "f0bb0fa713e44ebbc18d784c66d16d5606cb54de89b41510134a20eb12d6db68"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-6-time-out.html",
+      "sha256": "60953273a614a1144e162a714c3eca7bf9bd14adac346d4d96ce0354070f7892"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-appendix-a.html",
+      "sha256": "f5970d81c375059e7fc4b659c86c79b6cea2aa3e8bfbb4a75be4d243f8202005"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-appendix-b.html",
+      "sha256": "12de013c624839e7a7d70aaa7e98a3210c05a1a6288793c68ded9fbb6268096b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-appendix-c.html",
+      "sha256": "086edbf1b15971d1a1eecdf078e0498ca6c5d0be051f1093df6d9733030858a5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-appendix-d.html",
+      "sha256": "3552d481b5381e894538a5414fbaae317ff77c5c79a28d33393beb02bc6c45b1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-appendix-e.html",
+      "sha256": "71b718c089f5103217269c4768de2156df1899af248e87f6d138e541ccfde1a9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-137-cash-initiatives-137-title.html",
+      "sha256": "7f0ddccdfa45ffaeb0c846b17137f042198d9207e64582856e31fad0a787dbcc"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-1-general-policy.html",
+      "sha256": "262aa1c9b82df62d633e5d04054252bb5a60c9cfca833be15363d16068f61c65"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-2-the-family-size-allowance-fsa.html",
+      "sha256": "1c3e9d49ac2039a5598f4f20522ad56a3ca9d91bc75fe1ad7a994eef1b969956"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-3-special-items-allowances.html",
+      "sha256": "1c48500487299bdd58769b604180255f2909e923c8f8556836b9570674453a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-4-transportation-allowances.html",
+      "sha256": "f32518b2efc2f0afba1e0c44c23e1efb4d8885ddc3d047a12f3e84a3c12ba466"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-5-moving-allowances.html",
+      "sha256": "26cffce4047b0331c487cd75c94c471dabac2009ff60e8473b524056bc55212a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-6-clothing-and-personal-care-items.html",
+      "sha256": "166983e70a612b1c27708ac993cb7104bd1fd1e28f44d127b44ab2b373126732"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-7-hearing-aid-batteries-and-repairs.html",
+      "sha256": "7e1d7878bf1132d010094a01e95427d8b51df30a9b5f8cdb9fa0b4ea6a491aa1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-8-emergency-shelter-allowances-income-and-resource-eligi.html",
+      "sha256": "a5760fdf6efe15af6f146456b5563ce49d9de58bbcb4556fe89022dae443670f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-a.html",
+      "sha256": "73284c11c417005ccf5c27d86f475368ea63806e0c19a524a1e7c4ca14b60a31"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-b.html",
+      "sha256": "a1d8dd5919e8be285271b3a20cc517b3b939f73a48cd0912d3bf45052738cd97"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-c.html",
+      "sha256": "be58c1639edd6a63646fa8f946157737d6c7adf0e792e659926991bc8edd0e14"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-d.html",
+      "sha256": "aa15c7c60d4d0c3a56bad5894c7f56b1c3c1a3dc4e2ee93ea1a30225ac5c8b07"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-e.html",
+      "sha256": "1d5930c17c8715ca082e0a358d88538474a50475d99ce70d0d96eda24218e9c1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-f.html",
+      "sha256": "a5cbe673a98dfdbd2693da9e33e17214edbfb3809c791f17d25ed501bf31bec1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-appendix-g.html",
+      "sha256": "e8cc9669d881cdc637379bd4cc58bc2993f8d2eb706661f31630733f39efa8fd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-138-allowances-and-benefits-138-title.html",
+      "sha256": "18155db3b4cc07b57aba02d0fc8cd2956df7c04322b719611ae8c38e0faee794"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-1-general-policy.html",
+      "sha256": "cd590f48260016b72c232a4bf71a06a904880a6659d8bb81793b08d1088333ef"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-10-disposal-of-resources.html",
+      "sha256": "927f8781beb49d51da8a6a68eebef61cac4383abb3e9371d12f186be0b6db5a1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-2-determination-of-ownership.html",
+      "sha256": "55c2d88ee1c1418d5f47e68bed4a6bdf5e0bdf8c70395a33586a5020fc690381"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-3-personal-property.html",
+      "sha256": "ba8d548fcad5aac9209b0ecb94d8108fb0fddb99f5a02b8019457afab9d816bd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-4-life-insurance.html",
+      "sha256": "a56aefb33a4338e26183f26cf49ff75403a457b9f84590f3365faa9cce1c07d4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-5-motor-vehicles.html",
+      "sha256": "a8a7e0746f577ad297829fac84431217ae196b50fa1aaca70f59faa23d6820d6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-6-real-property.html",
+      "sha256": "a71ee253b16becc6dedb96067919df6d55deb9af4178510a3a9c3ac7e2f6d75b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-7-burial-resources.html",
+      "sha256": "4c82c1a7ec54d7f36dfdcd7fcd71f2339f473370457f2b47df97d01d6ab85243"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-8-other-excluded-resources.html",
+      "sha256": "657e2a3f9ba0af838c61425385bee1cd38bf2c94c7e101d0264916c6d1f15dda"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-9-educational-savings-accounts.html",
+      "sha256": "da37508b242a8b123913ee7a43b0f345791f1047d407d9a9cdf95dc771ea57df"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-appendix-a.html",
+      "sha256": "423449b5aedff8ee3afd131a481855392a093374166abe6a8048f4f906a5471f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-appendix-b.html",
+      "sha256": "5997e40d9ee049bdabe460f6be0634e5431ffb8a2a658dfb0217b5c2aae67792"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-140-resources-140-title.html",
+      "sha256": "f81eec21016c3b94f640b31a4d30ad8bf00f425dd46e0ea73aee13315b73eea0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-1-general-policy.html",
+      "sha256": "30a1ce513bcdcb149b13589e092e95e5df31951a8129772bfc7acffc0fe2e15d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-2-countable-earned-income.html",
+      "sha256": "c3e703d41720a891c54c02087f8d92b9c3af9da59479007fd948f6909a7b8b23"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-3-unearned-income.html",
+      "sha256": "bfc8f9b36b37b80d378b2e71c774f8a0274c8b5537cd4292be0606ac3a4ebc5b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-4-delayed-potential-income.html",
+      "sha256": "188293109afd9068391dbca7dc8fb4f3d2628953d947b66b31c09d473df0b4ae"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-5-income-excluded-in-computing-eligibility.html",
+      "sha256": "ba7ba135e6433fa5e82f10f6bef76a0e016a6300de73e3c6e7558a50350ac49f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-appendix-a.html",
+      "sha256": "2bad677e4c16e447030e21e035169e3ae5439ec8182389f4a708e18b6239c2be"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-appendix-b.html",
+      "sha256": "6535e7a32916e4db000fbaf040521c641c4f72595e5842d91b26dd7d4e2d3dd4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-150-income-150-title.html",
+      "sha256": "6f42f941b3188710c27c20f5e08fc277ec26adce7c25275525a50c3775a256eb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-152-self-employment-income-152-1-general-policy.html",
+      "sha256": "b117025f9feacc55654449b25d64d21ce122ba5f3c39e0cb2e151e072d103829"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-152-self-employment-income-152-2-identifying-self-employment.html",
+      "sha256": "a62a7413a58b4aa25392ecc9925228974b5986486dc3699cdade0782154d1e29"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-152-self-employment-income-152-3-estimating-self-employment-income.html",
+      "sha256": "c7f2d1b5e6cfa8c69f69bac0af2b8208240b4f7114022dd4e755384ddd8bf7bf"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-152-self-employment-income-152-4-computing-monthly-profit-from-self-employment-income.html",
+      "sha256": "39134558df9c761798de9eec100d35fb6dcbffcdd7256bd2a4fd76d2481f1901"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-152-self-employment-income-152-5-deductions-from-profit.html",
+      "sha256": "d0e7b4b20206d55c5a5714ba74f850bcc5515abc85ceb6b4018dc3be6597a019"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-152-self-employment-income-152-title.html",
+      "sha256": "a2b5e4f1dd6837c74912e7286e5a3bffe5d6e6c921b17b21d5e558ad5ec67f7e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-155-deeming-income-and-resources-155-1-general-policy.html",
+      "sha256": "1a5cb6cf9978052c517233679ef1dc07541586dcbcc8785cb1d62d1b2f96ff7e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-155-deeming-income-and-resources-155-2-deeming-income.html",
+      "sha256": "950c9f1aaa48c055ebb67c79b613b1b43a8ffc156cc60bc0868cfa98ee7fef0a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-155-deeming-income-and-resources-155-3-deeming-resources.html",
+      "sha256": "bb630c951595b61953ec4527ecd888b759b86626c411dc02e082ccfaa51d0f0d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-155-deeming-income-and-resources-155-appendix-a.html",
+      "sha256": "2a040d57f2c3892cb0e9352de66658a2a8232493c279f60df7dddad524f8526c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-155-deeming-income-and-resources-155-title.html",
+      "sha256": "d20676d27e13ac1bd93a9bafcd1831e5760f87df80e6d8e84c39650cd6911920"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-157-lump-sum-157-1-general-policy.html",
+      "sha256": "f42b7642263fce3610555e53edb3d280f7b5d77b0ef8baad7655c0f1fa1561a6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-157-lump-sum-157-2-types-of-lump-sum.html",
+      "sha256": "5a8bdd23e776144c7029d31de9380b4b983f5af7d3a613198d8e341e9ada9514"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-157-lump-sum-157-3-allowable-lump-sum-expense-deductions.html",
+      "sha256": "f1ce406f330c50c2418392a9b92a933d83a402af2e94cab653ee40622a826465"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-157-lump-sum-157-4-deeming-lump-sum.html",
+      "sha256": "0fa8b9ef716970e78dac82ef001f421978e1610fec8a769c96168b0aee29cb89"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-157-lump-sum-157-5-determining-the-effect-of-a-lump-sum-payment-on-eligib.html",
+      "sha256": "139b5ec7be23aa5242000013fc49175220e33359a20bfb9b96896462693bc621"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-157-lump-sum-157-title.html",
+      "sha256": "8ef4ccacd6a6af8a17c4dc9f38ceada83fd76ff1e3680b9ac566ddfec02ea09c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-160-income-deductions-160-1-general-policy.html",
+      "sha256": "8e6ede4fdacc4d7b2efacda9450fb84b7aad611cc61098eb8b087155a6d031f2"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-160-income-deductions-160-2-tanf-earned-income-deductions.html",
+      "sha256": "331f45b1c1576d799a2265bb1cb23c78e904e6345965447be20c6a59b82362be"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-160-income-deductions-160-3-tanf-unearned-income-deductions.html",
+      "sha256": "7c975c1475bacb65bfe95d6b11755bda31a7c87344052dd76b1af98910be82d1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-160-income-deductions-160-4-ga-earned-income-deductions.html",
+      "sha256": "ab2abb5a03def5fdcb9a7aaf9eca155ecd902bfd4f449714d29eede41d372f2c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-160-income-deductions-160-5-ga-unearned-income-deductions.html",
+      "sha256": "261e6b5d6269d8d9a0d65de3d71697aefa9020cd3b56b55d3e8e97e1925f31e0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-160-income-deductions-160-title.html",
+      "sha256": "5e7b1380ffdbe1fe627b669bdf02724dd840a8d910e3fc406c91f9503676e746"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-167-prospective-budgeting-167-1-general-policy.html",
+      "sha256": "347bc9c019967a630b2aa6c181c4db09f5c9c5a13fb2479554d576d770dc0d67"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-167-prospective-budgeting-167-2-prospective-budgeting.html",
+      "sha256": "cd456230b8cd192af66c79deb289ddd9023b2c45f098c0616340367a32790d44"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-167-prospective-budgeting-167-title.html",
+      "sha256": "2f769e38ce874833cb80f2a95e8210bdcbe29d95da84a724e9f71bb0df10e0ef"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-1-general-policy.html",
+      "sha256": "f2c25746a114a3f64ba6f6833748d8350e70eb27c432d82c721b4aac274acfdc"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-2-prospective-determination-of-need.html",
+      "sha256": "e15b4d07b59f81e300f12e65acf00296aa648b497fe642d4864bc0b3338bfca7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-3-computing-the-monthly-assistance-payment-amount.html",
+      "sha256": "dc3b29fd47ecc554c1adb1fe9063e68239c7890d86a847feeea6d2975bb6d070"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-4-determining-eligibility-and-payment-amount.html",
+      "sha256": "1dde67fb502bc808b686dadef1c0af02252eb7e6b22e7f00139a0be8d251ce88"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-5-change-of-category.html",
+      "sha256": "c573832885baebaad9bc84f13ece2e1a84e355c050863c20d9fc7d9d28ec6f10"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-6-redetermination.html",
+      "sha256": "b7b0d6aea7d2f33b150f170a3437b6817633e3f2075d264d17ba30ed17ffdaf6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-7-changes-in-income.html",
+      "sha256": "1409e6535d33570f640bcb8f35a4d0b3c4d5c6f0d1a5a89dd6a7b6bcf8938b6a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-8-changes-in-budget-group-members.html",
+      "sha256": "200d6fa35d530f085760264a072ca8d76646e7a2398072865ebd9def775190db"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-appendix-a.html",
+      "sha256": "c575304598722cae63b6a13720dcafcd04a13c89c87bc5eaeda9932330472a6d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-appendix-b.html",
+      "sha256": "42bf8505a413ab69196fdf44733be5f270d286e8d64f4e856e8b18621821b2ec"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-168-determining-eligibility-and-payment-amount-168-title.html",
+      "sha256": "671ea7506d6484119a2d9b3f1c0e234b5989148cca7d017bb14b50993967b02a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-1-general-policy.html",
+      "sha256": "7d6b60803688b617febdde9c4b8fc371b128a04f4c15f68ccdd860bc79f2a20f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-2-types-of-changes-to-be-reported.html",
+      "sha256": "53ac493091215a793dc25cec5317894d9092b137a6efa53081e271705fc3b85f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-3-reporting-methods.html",
+      "sha256": "39ee6e9efcc8baa1d93a49d689ae4d67a70bf79acf93581d7b6cd15e189e19ad"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-4-failure-to-report-changes.html",
+      "sha256": "472783d8e9fe86c0d420563168f22dfd0702169db583ef106842c6a8726106c9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-5-county-assistance-office-responsibility-for-acting-on.html",
+      "sha256": "c0eb5e1bbea71af0bde8da59902718105555c53f969bb202d2f4d86b064a1187"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-6-changes-that-result-in-ineligibility.html",
+      "sha256": "dfa1234b1590ebd8dad04d9a24fb275704ce7baf0925fb1f87601ecf8d261c46"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-appendix-a.html",
+      "sha256": "ec5cf48cb05309751bd5a3de2b7ee461162506685be4d7dd0d879c14666a9cf5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-170-reporting-changes-170-title.html",
+      "sha256": "20c7c1fbdbf1652a67c6fa56169550e84e296d78687df0921758bc21e0cc8587"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-1-general-policy.html",
+      "sha256": "9675ce34474069030b9a177e26071043bad9b851c4933cfee5a2da737a602291"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-2-the-semiannual-reporting-system.html",
+      "sha256": "d3b1233648874e5aa0ed3429e65d4619f780e2ecc4832e2cc5f554cedda9e97d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-3-reviewing-the-semiannual-reporting-form.html",
+      "sha256": "af3e85a648d65f40878f0fd653ef4019f46cc958dd88645d718c974cffa632d5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-4-processing-semiannual-reporting-forms.html",
+      "sha256": "6a9dfc6af3fb347062a1ad8c61ec066dc151da4f0b010cb918f7adb6316bfe4c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-5-disposition-of-a-late-incomplete-notice-l-in.html",
+      "sha256": "9e36d625d3b4e373d130a2d876c3bbcc974f727e1c06014eaa5835c6150b35bd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-6-failure-to-submit-a-semiannual-reporting-form-or-a-com.html",
+      "sha256": "23f9494739e2c983936f8972bc061b258e9f8b313d639398d81c14cdbec22305"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-7-renewal-with-a-face-to-face-interview.html",
+      "sha256": "d80242e1459e965944033c8364d8cd85e2b9e30a9983379de46a35519eb6ca98"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-8-appeal-and-fair-hearing-process.html",
+      "sha256": "15f81b09264bd7a85d10eb502236081640facdd68c00bca88084e67afcfc032b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-appendix-a.html",
+      "sha256": "1a5be69dc583497370762497a59b53b9a64e6e39be0681d70b28da58f67d8429"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-appendix-b.html",
+      "sha256": "fde98d8ae250077cdbcba7407a895c6ddff9b2fb7782743153b18a6acc429a55"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-appendix-c.html",
+      "sha256": "73ffc6c9a810e138211ee60d1de2914cf232550934cd5cda4ba10e3e9a38037f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-appendix-d.html",
+      "sha256": "687ee0f2170e95bf27c8ebe1e37fb0c6bec07aee4036459ed910efc52b0ee23d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-171-semiannual-reporting-171-title.html",
+      "sha256": "eade4831e64c12df63f7199fc6b3066b872902ed1b664d95ce7c05417d0db175"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-172-mass-changes-172-1-general-policy.html",
+      "sha256": "42b49c727a9ea9f2caa16a58060ec85b36086b928daceed651616088c05f10c0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-172-mass-changes-172-2-system-processing-of-a-mass-grant-change.html",
+      "sha256": "fe2bd61804cf0d0dc467a8891022182be719d24a09ee29feb1f909d79f1ab897"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-172-mass-changes-172-3-manual-processing-of-a-mass-grant-change.html",
+      "sha256": "2b6c58c6d4da81b05b11e547b4ddf84d3c9bf7bcfe47e10662c05ec982423d44"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-172-mass-changes-172-title.html",
+      "sha256": "2aca09e12c3f6db358614fcea2614ff84678626285ff850b6ef6975eedb942fe"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-1-general-policy.html",
+      "sha256": "bcfa38d4bc1b6be2d88717676521a295c0244387a9defc0c1e5297827e5c9362"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-2-complete-renewal.html",
+      "sha256": "4ca5b52ebc7b06497d1609fed65fe8c9c113ebf3088e8ad4d53b772beab98c46"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-3-partial-renewal.html",
+      "sha256": "d8e65e01231c192a6c899f1075bd7899a13ecf4b448d674cfd95e72c29a95f43"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-a.html",
+      "sha256": "f72cff018a6785fe4e3a1f1e8708d3954b43416a517ec1a03c5ab0066e914b47"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-b.html",
+      "sha256": "17a7f95c66fe20a369d65a8cd46a140d05d1d74a97daf526ad3090dfc48b2671"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-c.html",
+      "sha256": "8c4dd45679a4d044e6a55d47a353d2a52d29e120796278e049036bd5684649f1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-d.html",
+      "sha256": "ec4bd33c4f2474e8d6da8446aff81f3a0a7fe0fc03fbde67441e9af737f547b7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-e.html",
+      "sha256": "680619b3639b8d7159fb9a17093e1f9aaf5b711eee833043712c5866cf957c25"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-f.html",
+      "sha256": "eceafda2022b0d4304ed7ea48d26217bc83745826e7fb396a698c0fd6be32598"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-appendix-g.html",
+      "sha256": "aa277f768739c506ee05067e06a780fb1d3466dc7864e10a5b70ffe744adfa16"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-176-renewal-176-title.html",
+      "sha256": "74789bed31112905897f62f9cc935f25c92925b6409e6a7447bc57e282de9636"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-1-general-policy.html",
+      "sha256": "a0bd0d9c71b0c5af4eaf6ebc6c9cc341b6d171d3f9793a6eb56a504a59fd0823"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-2-notice-of-eligibility.html",
+      "sha256": "0b9a6061a7122a15ab8098245bc80f7d28eb3a5586c7364890c9845ab2d996da"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-3-advance-notice.html",
+      "sha256": "4975254b9c34548a0d597df84f509a31a7c1bd3f9b7d942c759024c7fd06f790"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-4-confirming-notice.html",
+      "sha256": "382323f86a41a6e8306bb6225bb0696cce7af5c94ce600e31a3f17d61433948e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-5-client-verification-request-form-pa-162-vr.html",
+      "sha256": "957761d2230994dea289d853e27cd2f9d3a492213d308b0714765474ce7c2ab5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-6-automated-notices.html",
+      "sha256": "21a5dd4173727d3fb94b3aa6d9b1a39c8ee2a5d274504186dcb56e0399c855b7"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-7-notice-retention-schedule.html",
+      "sha256": "c09f7898ff98e60ffd14969474628beeef344b8f8e353013d3e9d94f62cb6914"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-appendix-a.html",
+      "sha256": "15c5c574a5bfc8d64618844a65d9362160119d22af5bce03b22a104945c6748d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-177-notices-177-title.html",
+      "sha256": "ce4335090b38d22e8fb7331f5f73867cf370db1cfe424e844730b3f8c2a6d454"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-1-general-policy.html",
+      "sha256": "f7edf86303dd968890d487907cbf2cc07f70ffc7e0ae26a5816b7aeb53236970"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-2-applicant-recipient-responsibility.html",
+      "sha256": "840e83a78630cbcfeb79b65f99596ac5a10b796d8277d397ea490f88b7416da1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-3-cao-responsibility.html",
+      "sha256": "e52a05f8be48fe918b4664443966a9cc306fe1a1c8a18a1a5c3d05088bcbad9d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-4-collateral-contacts.html",
+      "sha256": "a1cd55c69d1c9cf39c806326b343ac5cd8e0d9e429af8a21bdeb54ae574b85cd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-5-home-visits.html",
+      "sha256": "961041830c7273755235426772f4fa033a5507529845eba4e976f383086641dd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-6-effect-of-pending-verification-on-budget-group-eligibi.html",
+      "sha256": "dd1cc26402a07b3035678f262d60d02c3867131514a519596f53b56f8b773b0f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-7-automated-sources.html",
+      "sha256": "ee75c1c7277137aa1e72c15b951d04163e3d786b26faf76176748fc34e9332ac"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-appendix-a.html",
+      "sha256": "e2dc3e58f24c167efe80e1151fd54a16e2f4c69c5eb54951a41b38595d14e0aa"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-appendix-b.html",
+      "sha256": "aeac349c2acaace5537f8232834f5f240487a2134a76b6141d8ffd5976cfc6a9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-appendix-c.html",
+      "sha256": "e96cf86327f05a0194201e38864500e4d93cf5a733504cfc632d8a35149b2fc4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-appendix-e.html",
+      "sha256": "0aa6e1394014f1691750333ceddf7fe0e0ced137949da46aaeb3700292867cd9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-appendix-f.html",
+      "sha256": "83c594f3ca1ccb2416b5eab67a90b71cb48b81a00a8744e102377f8612821174"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-178-verification-178-title.html",
+      "sha256": "7354583696035ea4ab92a5ffc46bc4e7df8e61ff8f96172c2c03f2a62785f7bc"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-179-reconsidering-recently-denied-applications-and-closed-benefits-179-1-reconsidering-denied-applications.html",
+      "sha256": "4e88759813444fab21ee20829b394c44f219a5dc0b9f9763ca2666be96f78b67"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-179-reconsidering-recently-denied-applications-and-closed-benefits-179-2-reopening-closed-benefits.html",
+      "sha256": "3aafb6647f4291d0f2a72e2b86eb492f1eab19755e100cef36d99e3827cce35c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-179-reconsidering-recently-denied-applications-and-closed-benefits-179-3-reopening-benefits-that-were-closed-at-renewal.html",
+      "sha256": "67e3c4039f19642bedb2ee74bad6de4b6eb7e77d18616b017d7077c82b273338"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-179-reconsidering-recently-denied-applications-and-closed-benefits-179-4-when-a-new-application-is-required.html",
+      "sha256": "0b60c821560f4bcd9073a2b63581648ec4828873e23642b609c2c4e8d903f6fb"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-179-reconsidering-recently-denied-applications-and-closed-benefits-179-title.html",
+      "sha256": "b5e06b12ccb6c5dd864a150470deaabd8bf5dfafda01d7fca43d378bd84efb83"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-1-general-policy.html",
+      "sha256": "127ae0286c456f203034453b71e0d3cfe8cb9da38393525fcc5e92c234dc6017"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-2-benefit-issuance.html",
+      "sha256": "109d2957b877d4cbe3cfc959962109b6bae50063dee9726910ed49df267909ee"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-3-initial-openings.html",
+      "sha256": "73c0f43a87aec1604ddbc55d5b7ea4648bf359a8e08e1dd604927058cee881f9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-4-the-one-time-issuance.html",
+      "sha256": "9f6695f16c221a2dd1c74d9404b68d186f07f82f6a48d765d0aaec80343dd9e4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-5-replacements.html",
+      "sha256": "bdaa5d1c160f14ffdc8c66d08bbdccc9e7975a19a9f83ee7e3865ccbf4a4662e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-6-processing-changes.html",
+      "sha256": "b3c9ea8a599b8451aa03edc9975b10cf496d7a7cd40e157cd6db6833626ad428"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-7-pennsylvania-ebt-access-card.html",
+      "sha256": "0a0946c35c01362545d75c048ff84b7282c15edb894ca46dad0dd03c098ec142"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-a.html",
+      "sha256": "a2b4fa5e8b07d2a1489a16e0d81ae6e1fd99dd57e3f58b9e02517dde7ac1ef9a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-b.html",
+      "sha256": "a09ed0e8c45c7899bacb3d5e372da50cda444bb5d96edc87f5bc7a17f91b5d16"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-c.html",
+      "sha256": "6687bdb385d7813610c3ef7dacc6f2116379cba030e5e598a889e4d64884c287"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-d.html",
+      "sha256": "8c664a4cbd55d2ab1f113ebbb8e6b4b6e0eaac300d8ed669a33c4cb6e780f6a1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-e.html",
+      "sha256": "a2d5d0e1a6947c4b3b689b663b5a9ef4a93564cbe399af4ea948cfeda05d1197"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-f.html",
+      "sha256": "dd62fc128faefbb90d9248bb2a5d9b133cf8b8b755b483b1de4087a4f6b6c3f4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-appendix-g.html",
+      "sha256": "ff402c2b691f38ec579242dd79ebe2d914f7edc389f3be1267384ef58199e8ff"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-180-issuing-benefits-180-title.html",
+      "sha256": "5a3f62f8e7bb2f4135b0d3e5328aaf09ea4682b30c8c9b5d081f7edbf4b830f5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-181-delayed-and-corrective-payments-181-1-general-policy.html",
+      "sha256": "9ac4b34be878f4411c354c467a722529a3bebaf5d392e924ceb772076004c999"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-181-delayed-and-corrective-payments-181-2-correction-of-an-underpayment.html",
+      "sha256": "7e7871dc8c0a7db9c1f2336c3e98f1e57771345da7db6d2aa428bd4a9789f094"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-181-delayed-and-corrective-payments-181-3-authorizing-a-delayed-payment.html",
+      "sha256": "f265ee71cd9181f691bcd861097526ed62c6dd52db1d531a44efbd01f4fff709"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-181-delayed-and-corrective-payments-181-title.html",
+      "sha256": "5f1677aeefad6bba02e5ae13feb119be55a928926c9ee822a763ca0d3af0d8a5"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-181-delayed-and-corrective-payments-183-appendix-a.html",
+      "sha256": "5f6c5f0748f033a4d09e8ccfbed402d77a562b29cd44c58f05a6fb7761815b9a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-1-general-policy.html",
+      "sha256": "26a5b947f035f735e2b1945ce27fd6de48cd6cdcd2cc0a3c5d95d2b25dcdf5c0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-2-eligibility-requirements.html",
+      "sha256": "0515a487b39fec526a3850525a7cd0161f5bdafd90162d30b87c4d433995c76b"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-3-reserved.html",
+      "sha256": "c21803c6ca2e37373b6b26a413d19c1c1013b8ec3aa6b86470f4cacaa8f61874"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-4-verification-and-reporting-requirements.html",
+      "sha256": "1ada95ed115221b9e1559c5ab0e0a6f7c45fada9534f25b29cc3014a3b9bab13"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-5-reserved.html",
+      "sha256": "01472dc214c764ddbee617fd13da0013a662765d24e6ffd3925c61a7de7802fd"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-6-reserved.html",
+      "sha256": "1f5aa6a204a022b013be08084162efbcabba124148bffefd41908cfc73852d14"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-7-transferring-tanf-case-closures-to-the-ccis.html",
+      "sha256": "2f63ffdd49959967018232975256e7a961b7b7b8c5d2da569bdb78af1f1c8dae"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-8-restitution.html",
+      "sha256": "fcc8a11372b3301860597625f8ea54d40cd8e87176e2774e78848615437a3da2"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-9-appeal-and-fair-hearing.html",
+      "sha256": "f8eeae6132f1e9f52e063149824bff26e19c265d34a7c8d41fa3c30542369e4e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-appendix-a.html",
+      "sha256": "46661979f16f4093bf53385fd39db10174c5ff0632120953b7708877210e10ba"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-appendix-b.html",
+      "sha256": "064b334a694b062b599a4b96c973705ca735f8fe18efe3b772f0ad7b6579fb14"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-appendix-c.html",
+      "sha256": "11180b00a9ee58f70cf2cd820571f364574f0e6010a6fb72bf27403696b46e7c"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-appendix-d.html",
+      "sha256": "968114259110eff6efccaea7df7106372788ff9e10e885294029206113d2917e"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-appendix-e.html",
+      "sha256": "692d6b224cd407da6b49524ad03ca98d0d12e6994ca29a918b4cbc9a29099ac6"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-appendix-f.html",
+      "sha256": "e13c4c78f1ec9be03b2af170c7b4a47f874bec7d86390705982809599f6caa8d"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-183-child-care-183-title.html",
+      "sha256": "f08136d3b8022980cd564b4641326ee2e5079bc1e4379926ed63d582e9e95ef4"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-185-medical-benefits-for-cash-recipients-185-1-general-policy.html",
+      "sha256": "f7908a517be8b539d9821f9aef6460d1626e484fea402c1b454c657556e19457"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-185-medical-benefits-for-cash-recipients-185-appendix-a.html",
+      "sha256": "2d5c38224e59fa8ca016defafdab13c3133095f46930d9de2019b064370d6d7a"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-185-medical-benefits-for-cash-recipients-185-title.html",
+      "sha256": "202c31cf813fe2b31a0b561d7a03c8180360c4c8460ad26f2accd7d22c0c85ea"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-1-general-policy.html",
+      "sha256": "c04662a5ceeffbec3d7e422f37448f86ffe91c4b424a1d942bea186e30ea54e0"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-2-what-is-an-institution.html",
+      "sha256": "caf3a9cb941c8a957dbd2cd43f41c495e926926936efe59c450b163c05fc9242"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-3-who-is-an-inmate-resident-or-patient.html",
+      "sha256": "3e364d595b2e3a653dea53c095ed678138fc32fbb849ccb4528f59a81a2091ef"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-4-eligibility-while-institutionalized.html",
+      "sha256": "ba648cc2dc9f88202679760df061a088eb2a451d7b803e9477321baab04475ea"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-5-pre-release-payment-to-leave-an-institution.html",
+      "sha256": "69d3014632229ec182022e54c8818915143cf910650ff3605bd1649b1bced4c1"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-6-eligibility-following-release-from-state-mental-instit.html",
+      "sha256": "8e792d292353a95b261dc5f729384ed0f9fbfcbe3d3b75b73a2452ef7634ba29"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-appendix-a.html",
+      "sha256": "43206bdf4cb9117a9d4762bef49ef02864df64a23970b80f5e6ff1071f4fdaa9"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/manual/2026-09-10-tanf-state-policy-manual/official-documents/us-pa-dhs-cash-192-institutions-192-title.html",
+      "sha256": "b9b10134eb8015cc7871ea52b760203c79a768ec2b98577ff4e1cf2d068586f9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tanf-state-policy-manual (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1283,
+    "missing_count": 0,
+    "provision_count": 1283,
+    "source_count": 1283
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T11:21:11.927487+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Rj6A4+UwCKbUXXsgrvjN8eJKyO+me146L6wEpl8W4W/G1kUe8G7AWaCWMRIwynwzKKCBAtQk9Y7LDzeCFm8XAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tanf-state-policy-manual"
+}

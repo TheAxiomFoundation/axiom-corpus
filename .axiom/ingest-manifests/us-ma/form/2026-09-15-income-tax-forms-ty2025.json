@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "59e545a49ed8db6df4e4bd20619054903dae1f77504b9db5b23c73e9bba6f73c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/form/2026-09-15-income-tax-forms-ty2025.json",
+      "sha256": "72e21a3faf4660257691f6c96cd5f66e3613b291811da0bd5c26a10ac43b2447"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/form/2026-09-15-income-tax-forms-ty2025.jsonl",
+      "sha256": "04b056a7ad41423a6282e64815f8eb7cd06ab0a8f75a1b8d1e8b564c204c366b"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ma-dor-form-1-instructions-ty2025.pdf",
+      "sha256": "f99acc9db3a4c83da890b7e2a26fd310f1a0ec6fa9e2744e4f975e32f64dd2cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-09-15-income-tax-forms-ty2025/official-documents/us-ma-dor-form-1-ty2025.pdf",
+      "sha256": "0bb62498fda14b515084b83fb4467f379f17d08a712f6390b1cd2fceecb04a07"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "be64caadb7a2f682799268fa2a23f2e2cc1b2ba2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-tax.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-10-11T18:27:35.156520+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Pp+6P/MdivyV+7wDOXJ/6TM8sKgXchFGmEUle3ZAQML2hhxdCPkIhwIyVPfrkPGIGb00H3HHQind3WQnTWrFBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-income-tax-forms-ty2025"
+}

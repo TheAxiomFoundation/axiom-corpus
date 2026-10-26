@@ -1,0 +1,3188 @@
+version: 2026-09-10-medicaid-state-eligibility-manual
+documents:
+- source_id: ak-dpa-adltc-500-overview-of-aged-disabled-and-long-term-care-medicaid-500
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 500 Overview of Aged, Disabled and Long Term
+    Care Medicaid'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/500_overview_of_aged,_disabled_and_long_term_care_medicaid/500.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/500-overview-of-aged-disabled-and-long-term-care-medicaid-500
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-501-medicaid-recipient-identification-card-501-medicaid-recipient-id-card
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 501 Medicaid Recipient Identification Card'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/501_medicaid_recipient_identification_card/501_medicaid_recipient_id_card.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/501-medicaid-recipient-identification-card-501-medicaid-recipient-id-card
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-505-third-party-liability-tpl-and-recovery-505-third-party-liability-and-recovery
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 505 Third Party Liability (TPL) and Recovery'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/505_third_party_liability_(tpl)_and_recovery/505_third_party_liability_and_recovery.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/505-third-party-liability-tpl-and-recovery-505-third-party-liability-and-recovery
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-506-medicare-506-medicare
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 506 Medicare'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/506_medicare/506_medicare.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/506-medicare-506-medicare
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-507-estate-recovery-507-estate-recovery
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 507 Estate Recovery'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/507_estate_recovery/507_estate_recovery.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/507-estate-recovery-507-estate-recovery
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-510-assignment-of-rights-510-assignment-of-rights
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 510 Assignment of Rights'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/510_assignment_of_rights/510_assignment_of_rights.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/510-assignment-of-rights-510-assignment-of-rights
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-511-child-support-cooperation-511-child-support-cooperation
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 511 Child Support Cooperation'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/511_child_support_cooperation/511_child_support_cooperation.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/511-child-support-cooperation-511-child-support-cooperation
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-512-social-security-enumeration-512-ssn-required
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 512 Social Security Enumeration'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/512_social_security_enumeration/512_ssn_required.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/512-social-security-enumeration-512-ssn-required
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-513-alaska-residency-513-alaska-residency
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 513 Alaska Residency'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/513_alaska_residency/513_alaska_residency.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/513-alaska-residency-513-alaska-residency
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-514-residents-of-institutions-514-residents-of-institutions
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 514 Residents of Institutions'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/514_residents_of_institutions/514_residents_of_institutions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/514-residents-of-institutions-514-residents-of-institutions
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-515-continuous-eligibility-and-children-in-ssi-related-categories-515-cont-elig-and-child
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 515 Continuous Eligibility and Children in
+    SSI-Related Categories'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/515_continuous_eligibility_and_children_in_ssi-related_categories/515_cont_elig_and_child.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/515-continuous-eligibility-and-children-in-ssi-related-categories-515-cont-elig-and-child
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-516-retroactive-medicaid-516-retroactive-medicaid
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 516 Retroactive Medicaid'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/516_retroactive_medicaid/516_retroactive_medicaid.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/516-retroactive-medicaid-516-retroactive-medicaid
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-517-fair-hearings-517-fair-hearings
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 517 Fair Hearings'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/517_fair_hearings/517_fair_hearings.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/517-fair-hearings-517-fair-hearings
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-518-alien-sponsor-income-alien-sponsor-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 518 Alien Sponsor Income'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/518_alien_sponsor_income/alien_sponsor_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/518-alien-sponsor-income-alien-sponsor-income
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-520-eligibility-requirements-that-follow-apa-policy-520-elig-req-apa-policy
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 520 Eligibility Requirements That Follow APA
+    Policy'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/520_eligibility_requirements_that_follow_apa_policy/520_elig_req_apa_policy.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/520-eligibility-requirements-that-follow-apa-policy-520-elig-req-apa-policy
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-521-coordination-with-the-federally-facilitate-marketplace-521-coordination-with-federally-facilitated-marketplace
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 521 Coordination With The Federally Facilitate
+    Marketplace'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/521_coordination_with_the_federally_facilitate_marketplace/521_coordination_with_federally_facilitated_marketplace.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/521-coordination-with-the-federally-facilitate-marketplace-521-coordination-with-federally-facilitated-marketplace
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-522-medicaid-exceptions-to-apa-eligibility-policy-522-medicaid-exception-to-apa-citizenship-requirements
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 522 Medicaid Exceptions to APA Eligibility
+    Policy'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/522_medicaid_exceptions_to_apa_eligibility_policy/522_medicaid_exception_to_apa_citizenship_requirements.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/522-medicaid-exceptions-to-apa-eligibility-policy-522-medicaid-exception-to-apa-citizenship-requirements
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-523-medicaid-exceptions-to-apa-income-policy-523-medicaid-except-to-income
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 523 Medicaid Exceptions to APA Income Policy'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/523_medicaid_exceptions_to_apa_income_policy/523_medicaid_except_to_income.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/523-medicaid-exceptions-to-apa-income-policy-523-medicaid-except-to-income
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-524-medicaid-exceptions-to-apa-resource-policy-524-medicaid-except-to-resource
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 524 Medicaid Exceptions to APA Resource Policy'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/524_medicaid_exceptions_to_apa_resource_policy/524_medicaid_except_to_resource.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/524-medicaid-exceptions-to-apa-resource-policy-524-medicaid-except-to-resource
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-525-general-medicaid-trust-policy-525-general-medicaid-trust
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 525 General Medicaid Trust Policy'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/525_general_medicaid_trust_policy/525_general_medicaid_trust.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/525-general-medicaid-trust-policy-525-general-medicaid-trust
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-526-qualifying-income-trusts-526-qualifying-income-trusts
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 526 Qualifying Income Trusts'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/526_qualifying_income_trusts/526_qualifying_income_trusts.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/526-qualifying-income-trusts-526-qualifying-income-trusts
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-527-special-needs-and-pooled-trusts-527-special-needs-and-pooled-trusts
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 527 Special Needs and Pooled Trusts'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/527_special_needs_and_pooled_trusts/527_special_needs_and_pooled_trusts.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/527-special-needs-and-pooled-trusts-527-special-needs-and-pooled-trusts
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-528-processing-cases-with-trusts-528-processing-cases-with-trusts
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 528 Processing Cases With Trusts'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/528_processing_cases_with_trusts/528_processing_cases_with_trusts.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/528-processing-cases-with-trusts-528-processing-cases-with-trusts
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-530-ssi-and-apa-related-categories-530-ssi-and-apa-related-categories
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 530 SSI and APA Related Categories'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/530_ssi_and_apa_related_categories/530_ssi_and_apa_related_categories.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/530-ssi-and-apa-related-categories-530-ssi-and-apa-related-categories
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-531-deemed-an-ssi-apa-recipient-under-the-pickle-amendment-531-deemed-under-the-pickle
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 531 Deemed an SSI APA Recipient Under The
+    Pickle Amendment'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/531_deemed_an_ssi_apa_recipient_under_the_pickle_amendment/531_deemed_under_the_pickle.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/531-deemed-an-ssi-apa-recipient-under-the-pickle-amendment-531-deemed-under-the-pickle
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-532-ssi-or-apa-ineligible-for-reasons-that-do-not-apply-to-medicaid-532-ssi-or-apa-ineligible-not-medicaid
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 532 SSI or APA Ineligible For Reasons That
+    Do Not Apply to Medicaid'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/532_ssi_or_apa_ineligible_for_reasons_that_do_not_apply_to_medicaid/532_ssi_or_apa_ineligible_not_medicaid.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/532-ssi-or-apa-ineligible-for-reasons-that-do-not-apply-to-medicaid-532-ssi-or-apa-ineligible-not-medicaid
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-disabled-children-at-home-tefra
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 533 Disabled Children at Home (TEFRA)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_disabled_children_at_home_(tefra).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-disabled-children-at-home-tefra
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-a-tefra-eligibility
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: A. TEFRA Eligibility'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_a_tefra_eligibility.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-a-tefra-eligibility
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-b-tefra-conversions
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: B. TEFRA Conversions'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_b_tefra_conversions.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-b-tefra-conversions
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-c-referral-and-interagency-communications
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: C. Referral and Interagency Communications'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_c_referral_and_interagency_communications.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-c-referral-and-interagency-communications
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-d-case-processing
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: D. Case Processing'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_d_case_processing.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-d-case-processing
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-e-tefra-reviews
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: E. TEFRA Reviews'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_e_tefra_reviews.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-e-tefra-reviews
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-533-disabled-children-at-home-tefra-533-f-eis-information
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: F. EIS Information'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/533_disabled_children_at_home_(tefra)/533_f_eis_information.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/533-disabled-children-at-home-tefra-533-f-eis-information
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-534-working-disabled-medicaid-buy-in-534-working-disabled-medicaid-buy-in
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 534 Working Disabled Medicaid Buy-In'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/534_working_disabled_medicaid_buy-in/534_working_disabled_medicaid_buy-in.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/534-working-disabled-medicaid-buy-in-534-working-disabled-medicaid-buy-in
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-540-grandfathered-eligibility-categories-540-grandfathered-eligibility-categories
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 540 Grandfathered Eligibility Categories'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/540_grandfathered_eligibility_categories/540_grandfathered_eligibility_categories.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/540-grandfathered-eligibility-categories-540-grandfathered-eligibility-categories
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-550-eligibility-categories-for-an-individual-living-in-an-institution-550-eligibility-categories-for-an-individual-livin
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 550 Eligibility Categories for an Individual
+    Living in an Institution'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/550_eligibility_categories_for_an_individual_living_in_an_institution/550_eligibility_categories_for_an_individual_living_in_an_institution.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/550-eligibility-categories-for-an-individual-living-in-an-institution-550-eligibility-categories-for-an-individual-livin
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-553-preventing-spousal-impoverishment-553-preventing-spousal-impoverish
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 553 Preventing Spousal Impoverishment'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/553_preventing_spousal_impoverishment/553_preventing_spousal_impoverish.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/553-preventing-spousal-impoverishment-553-preventing-spousal-impoverish
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-554-transfer-of-assets-554-transfer-of-assets
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 554 Transfer of Assets'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/554_transfer_of_assets/554_transfer_of_assets.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/554-transfer-of-assets-554-transfer-of-assets
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-555-institutional-deeming-555-institutional-deeming
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 555 Institutional Deeming'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/555_institutional_deeming/555_institutional_deeming.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/555-institutional-deeming-555-institutional-deeming
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-560-hcb-waiver-560-hcb-waiver
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 560 HCB Waiver'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/560_hcb_waiver/560_hcb_waiver.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/560-hcb-waiver-560-hcb-waiver
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-561-eis-hcb-waiver-codes-561-eis-hcb-waiver-codes
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 561 EIS HCB Waiver Codes'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/561_eis_hcb_waiver_codes/561__eis_hcb_waiver_codes.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/561-eis-hcb-waiver-codes-561-eis-hcb-waiver-codes
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-562-processing-hcb-waiver-cases-562-processing-hcb-waiver
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 562 Processing HCB Waiver Cases'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/562_processing_hcb_waiver_cases/562_processing_hcb_waiver.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/562-processing-hcb-waiver-cases-562-processing-hcb-waiver
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-570-post-eligibility-treatment-of-income-coca-570-post-eligibility-and-coc
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 570 Post Eligibility and COCA'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/570_post_eligibility_treatment_of_income_(coca)/570_post_eligibility_and_coc.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/570-post-eligibility-treatment-of-income-coca-570-post-eligibility-and-coc
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-575-alaska-breast-and-cervical-screening-assistance-program-575-breast-and-cervical-cancer
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 575 Breast and Cervical Cancer (AK B+C)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/575_alaska_breast_and_cervical_screening_assistance_program/575_breast_and_cervical_cancer.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/575-alaska-breast-and-cervical-screening-assistance-program-575-breast-and-cervical-cancer
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-576-emergency-treatment-for-aliens-576-emergency-treatment-for-aliens
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 576 Emergency Treatment for Aliens'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/576_emergency_treatment_for_aliens/576_emergency_treatment_for_aliens.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/576-emergency-treatment-for-aliens-576-emergency-treatment-for-aliens
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-580-medicare-savings-programs-580-medicare-premium-assistance
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: 580 Medicare Savings Programs'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/580_medicare_savings_programs/580_medicare_premium_assistance.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/580-medicare-savings-programs-580-medicare-premium-assistance
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-1
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 1 Program Standards'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_1.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-1
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-2
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 2 APA Related Medicaid Subtypes,
+    Eligibility Codes, and Waiver Codes'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_2.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-2
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-3
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 3 Countable and Excluded Income for
+    ADLTC Medicaid'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_3.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-3
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-4
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 4 COCA Processing'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_4.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-4
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-5
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 5 Reserved'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_5.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-5
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-6
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 6 Community Residential Centers (CRCs)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_6.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-6
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-7
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 7 Prescription Drug Plans'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_7.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-7
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-addenda-addendum-8
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: ADDENDUM 8 Working Disabled Medicaid Buy-In
+    Procedures'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/addenda/addendum_8.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/addenda-addendum-8
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-1
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #1 (03/05)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__1_.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-1
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-2
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #2 (09/05)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_2.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-2
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-3
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #3 (12/05)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_3.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-3
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-4
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #4 (10/06)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_4.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-4
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-5
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #5 (04/07)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_5.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-5
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-06-07-07
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #6 (07/07)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_06_(07_07).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-06-07-07
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-7
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #7 (09/07)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_7.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-7
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-8-12-07
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #8 (12/07)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_8_(12_07).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-8-12-07
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-9-07-08
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #9 (7/08)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_9_(07_08).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-9-07-08
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-10-12-08
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #10 (12/08)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__10_(12_08).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-10-12-08
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-11-02-09
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #11 (02/09)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__11_(02_09).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-11-02-09
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-12-4-09
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #12 (4/09)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__12_(4_09).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-12-4-09
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-13-7-09
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #13 (7/09)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__13_(7_09).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-13-7-09
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-14-01-10
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #14 (01/10)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__14_(01_10).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-14-01-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-15-4-10
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #15 (4/10)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__15_(4_10).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-15-4-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-16-05-10
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #16 (05/10)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__16_(05_10).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-16-05-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-17-8-10
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #17 (10/10)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__17_(8_10).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-17-8-10
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-18-01-11
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #18 (01/11)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__18_(01_11).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-18-01-11
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-19-04-11
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #19 (04/11)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__19_(04_11).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-19-04-11
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-20-07-11
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #20 (07/11)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__20_(07_11).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-20-07-11
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-21-08-11
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #21 (08/11)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__21_(08_11).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-21-08-11
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-22-09-11
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #22 (09/11)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__22_(09_11).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-22-09-11
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-23-12-11
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #23 (12/11)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__23_(12_11).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-23-12-11
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-24-03-12
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #24 (03/12)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__24_(03_12).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-24-03-12
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-25
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #25 (04/12)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__25.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-26-09-12
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #26 (09/12)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__26_(09_12).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-26-09-12
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-27-12-12
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #27 (12/12)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__27_(12_12).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-27-12-12
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-copy-of-mc-28-1-13
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #28 (1/13)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/copy_of_mc__28_(1_13).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-copy-of-mc-28-1-13
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-copy-of-mc-29-3-13
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #29 (3/13)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/copy_of_mc__29_(3_13).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-copy-of-mc-29-3-13
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-30-07-13
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #30 (07/13)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc___30_(07_13).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-30-07-13
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-31-09-13
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #31 (09/13)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__31_(09_13).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-31-09-13
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-32-1-14
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #32 (12/13)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__32_(1_14).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-32-1-14
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-33-03-14
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #33 (03/14)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__33_(03_14).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-33-03-14
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-34-06-14
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #34 (06/14)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__34_(06_14).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-34-06-14
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-35-01-15
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #35 (01/15)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__35_(01_15).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-35-01-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-36-03-15
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #36 (03/15)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__36_(03_15).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-36-03-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-37-06-15
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #37 (06/15)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__37_(06_15).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-37-06-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-38-09-15
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #38 (09/15)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__38_(09_15).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-38-09-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-39-12-15
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #39 (12/15)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__39_(12_15).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-39-12-15
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-40-04-16
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #40 (04/16)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__40_(04_16).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-40-04-16
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-41-08-16
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #41 (08/16)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__41_(08_16).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-41-08-16
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-42-12-16
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #42 (12/16)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__42_(12_16).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-42-12-16
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-43-04-17
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #43 (04/17)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__43_(04_17).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-43-04-17
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-44-07-17
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #44 (07/17)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__44_(07_17).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-44-07-17
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-45-09-17
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #45 (09/17)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__45_(09_17).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-45-09-17
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-46-12-17
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #46 (12/17)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__46_(12_17).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-46-12-17
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-47-04-18
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #47 (04/18)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__47_(04_18).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-47-04-18
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-48-09-18
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #48 (09/18)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__48_(09_18).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-48-09-18
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-49-12-18
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #49 (12/18)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__49_(12_18).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-49-12-18
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-50-04-19
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #50 (04/19)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__50_(04_19).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-50-04-19
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-51-09-19
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #51 (09/19)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__51_(09_19).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-51-09-19
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-52-12-19
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #52 (12/19)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__52_(12_19).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-52-12-19
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-53-04-20
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #53 (04/20)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__53_(04_20).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-53-04-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-54-09-20
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #54 (09/20)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__54_(09_20).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-54-09-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-55-12-20
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #55 (12/20)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__55_(12_20).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-55-12-20
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-56-04-21
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #56 (04/21)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__56_(04_21).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-56-04-21
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-57-09-21
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #57 (09/21)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__57_(09_21).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-57-09-21
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-58-12-21
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #58 (12/21)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__58_(12_21).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-58-12-21
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-59-04-22
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #59 (04/22)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__59_(04_22).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-59-04-22
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-60-09-22
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #60 (09/22)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__60_(09_22).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-60-09-22
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-61-12-22
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #61 (12/22)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc____61_(12_22).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-61-12-22
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-62-04-23
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #62 (04/23)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__62_(04_23).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-62-04-23
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-63-09-23
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #63 (09/23)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_63(09_23).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-63-09-23
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-64-12-24
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #64 (12/23)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_64(12_24).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-64-12-24
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-65-04-24
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #65 (04/24)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc_65(04_24).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-65-04-24
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-67-12-24
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #67 (12/24)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__67_(12_24).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-67-12-24
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-68-04-25
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #68 (04/25)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__68_(04_25).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-68-04-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-69-09-25
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #69 (09/25)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__69(09_25).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-69-09-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-70-12-25
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #70 (12/25)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__70_(12_25).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-70-12-25
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-71-04-26
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #71 (04/26)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__71_(04_26).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-71-04-26
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-previous-transmittals-mc-72-07-26
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #72 (07/26)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/previous_transmittals/mc__72_(07_26).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-previous-transmittals-mc-72-07-26
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-transmittals-mc-73-9-26
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: MC #73 (09/26)'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/transmittals/mc__73_(9_26).htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/transmittals-mc-73-9-26
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+- source_id: ak-dpa-adltc-title-page
+  jurisdiction: us-ak
+  document_class: manual
+  title: 'Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual: Title Page'
+  source_url: http://dpaweb.hss.state.ak.us/manuals/adltc/title_page.htm
+  source_format: html
+  source_as_of: '2026-09-10'
+  expression_date: '2026-09-10'
+  citation_path: us-ak/manual/dpa/adltc/title-page
+  extraction:
+    html_content_selector: body
+    html_drop_selectors:
+    - div.topic-header
+    - div.topic-header-shadow
+    - script
+    - style
+  metadata:
+    primary_source: true
+    source_authority: Alaska Department of Health, Division of Public Assistance
+    document_subtype: manual_topic_html
+    program: MEDICAID
+    manual: Alaska DPA Aged, Disabled and Long Term Care (ADLTC) Medicaid Manual
+    manual_index_url: http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm
+    source_discovery_group: us-ak/manual/medicaid
+    discovered_via: manual-review:medicaid-agent-queue batch 5; publisher index http://dpaweb.hss.state.ak.us/manuals/adltc/adltc.htm

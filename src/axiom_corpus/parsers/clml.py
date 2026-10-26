@@ -43,6 +43,7 @@ NAMESPACES = {
     "dc": "http://purl.org/dc/elements/1.1/",
     "atom": "http://www.w3.org/2005/Atom",
     "xhtml": "http://www.w3.org/1999/xhtml",
+    "math": "http://www.w3.org/1998/Math/MathML",
 }
 
 # CLML writes a vulgar fraction as a <Superior> (numerator) element followed by
@@ -139,11 +140,11 @@ def extract_citations(xml_str: str) -> list[str]:
 def _get_text_content(elem: ET.Element) -> str:
     """Get all text content from an element, including nested elements.
 
-    Equivalent to ``"".join(elem.itertext())`` except that a CLML
+    Equivalent to ``"".join(elem.itertext())`` except for MathML rendering and a CLML
     <Superior>/<Inferior> vulgar-fraction pair is rendered as a spaced mixed
     number (``2 6/7``) instead of being flattened into an improper fraction
     (``26/7``). See the module-level note and issue #321. Elements whose subtree
-    holds no such pair render byte-identically to ``itertext``.
+    holds neither MathML nor such a pair render byte-identically to ``itertext``.
     """
     parts: list[str] = []
     _append_text_content(elem, parts)
@@ -151,13 +152,16 @@ def _get_text_content(elem: ET.Element) -> str:
 
 
 def _append_text_content(elem: ET.Element, parts: list[str]) -> None:
-    """Depth-first ``itertext`` walk that renders Superior/Inferior fractions.
+    """Depth-first walk that renders CLML fractions and MathML expressions.
 
     Mirrors ``ElementTree.itertext``: emit ``elem.text``, then for each child
     emit its rendered text followed by the child's ``tail``. (``parse_section``
     always builds the tree with ``ET.fromstring``, which discards comment and
     processing-instruction nodes, so only string-tagged elements are reached.)
     """
+    if elem.tag == f"{{{NAMESPACES['math']}}}math":
+        parts.append(_mathml_text(elem))
+        return
     if elem.text:
         parts.append(elem.text)
     children = list(elem)
@@ -221,12 +225,40 @@ def _clean_text(text: str) -> str:
 
 
 def _operative_text_parts(parent: ET.Element, ns: dict) -> list[str]:
-    """Extract operative provision text, including embedded XHTML tables."""
-    parts = [
-        _clean_text(_get_text_content(text_elem)) for text_elem in parent.findall(".//leg:Text", ns)
-    ]
+    """Keep Text and standalone MathML in source order, then existing tables."""
+    parts: list[str] = []
+
+    def visit(element: ET.Element, in_table: bool = False) -> None:
+        for child in element:
+            if child.tag == f"{{{ns['leg']}}}Text" or (
+                child.tag == f"{{{ns['math']}}}math" and not in_table
+            ):
+                # A Text subtree already includes any inline math; do not emit
+                # it again when collecting standalone Formula math blocks.
+                parts.append(_clean_text(_get_text_content(child)))
+            else:
+                visit(child, in_table or child.tag == f"{{{ns['xhtml']}}}table")
+
+    visit(parent)
     parts.extend(_extract_xhtml_tables(parent, ns))
     return [part for part in parts if part]
+
+
+def _mathml_text(element: ET.Element) -> str:
+    """Prefer supplied alternative text, otherwise separate presentation tokens."""
+    alternative = element.get("alttext", "").strip()
+    if alternative:
+        return re.sub(r"\s+", " ", alternative)
+    return " ".join(token for text in element.itertext() for token in text.split())
+
+
+def _provision_extent(root: ET.Element, provision: ET.Element | None) -> list[str]:
+    """Inherit the nearest restriction on the provision's own ancestor chain."""
+    parents = {child: parent for parent in root.iter() for child in parent}
+    element = provision if provision is not None else root
+    while "RestrictExtent" not in element.attrib and element in parents:
+        element = parents[element]
+    return parse_extent(element.get("RestrictExtent", ""))
 
 
 def _extract_xhtml_tables(parent: ET.Element, ns: dict) -> list[str]:
@@ -673,9 +705,8 @@ def parse_section(xml_str: str) -> UKSection:
             with contextlib.suppress(ValueError):
                 enacted_date = date.fromisoformat(date_str)
 
-    # Parse extent
-    extent_str = root.get("RestrictExtent", "")
-    extent = parse_extent(extent_str)
+    # A provision can have a narrower extent than its instrument.
+    extent = _provision_extent(root, provision_root)
 
     # Parse amendments
     amendments = _parse_amendments(root, ns)

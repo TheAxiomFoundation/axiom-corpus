@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "6bfa86119e97871012e4d97eff3bbf8e9ce7462de744151f392355561f81a513"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/guidance/2026-09-14-ty2026-indexed-amounts.json",
+      "sha256": "1cc96b2bbd2b8ff968e0aad65dd81d47e04b925ff2e8fe9ab310193ddcf754ae"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/guidance/2026-09-14-ty2026-indexed-amounts.jsonl",
+      "sha256": "a3d0a4da4e600b3732613f3bf6dfa8c1b79975d31efe0d75d061bea18e6a25da"
+    },
+    {
+      "path": "data/corpus/sources/us-va/guidance/2026-09-14-ty2026-indexed-amounts/official-documents/us-va-tax-deductions-ty2026.html",
+      "sha256": "46c67f4ba8aae1e83944cbac6bfd2ae6f67739bf413a7df43b6cc1d70a4c5d67"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-ty2026-indexed-amounts --manifest manifests/us-va-individual-income-tax-guidance-ty2026-amounts.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 21,
+    "missing_count": 0,
+    "provision_count": 21,
+    "source_count": 21
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T18:18:42.326548+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uvPn0DzsSNM2YMYg6SYB0ES1Wzi5AeCwkFQI9t7gkUpkFWMExX+wHHhDDwhqh3bU8bC/ahp/tl9G1rM5VSctAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-ty2026-indexed-amounts"
+}

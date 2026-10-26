@@ -1,0 +1,56 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ky-dcbs-dfs-om-vol-iii
+  jurisdiction: us-ky
+  document_class: manual
+  title: Kentucky DFS Operation Manual Volume III - Kentucky Transitional Assistance Program (KTAP)
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLIII.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2026-07-10'
+  citation_path: us-ky/manual/dcbs/dfs/volume-iii-ktap
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department for Community Based Services, Division of Family Support
+    document_subtype: policy_manual_volume
+    program: TANF
+    state_program: Kentucky Transitional Assistance Program (KTAP)
+    federal_program: TANF
+    manual_landing_page: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    manual_volume: III
+    official_listing_title: Kentucky Transitional Assistance Program (KTAP)
+    manual_revision_date: '2026-05-01'
+    latest_omtl: '692'
+    pdf_page_count: 226
+    source_last_modified: '2026-07-10'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-ky SNAP manual scope (volumes II and IIA from the same page)
+- source_id: us-ky-dcbs-dfs-om-vol-iiia
+  jurisdiction: us-ky
+  document_class: manual
+  title: Kentucky DFS Operation Manual Volume IIIA - Kentucky Works Program (KWP)
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLIIIA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-10-31'
+  citation_path: us-ky/manual/dcbs/dfs/volume-iiia-kwp
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department for Community Based Services, Division of Family Support
+    document_subtype: policy_manual_volume
+    program: TANF
+    state_program: Kentucky Works Program (KWP)
+    federal_program: TANF
+    manual_landing_page: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    manual_volume: IIIA
+    official_listing_title: Kentucky Works Program (KWP)
+    manual_revision_date: '2023-08-01'
+    latest_omtl: '628'
+    pdf_page_count: 109
+    source_last_modified: '2025-10-31'
+    extraction_granularity: pdf_page
+    extraction_note: page-level like the us-ky SNAP manual scope (volumes II and IIA from the same page)

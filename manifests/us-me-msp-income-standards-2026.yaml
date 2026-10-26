@@ -1,0 +1,27 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-me-ofi-mainecare-eligibility-guidelines-2026
+  jurisdiction: us-me
+  document_class: guidance
+  title: 2026 MaineCare Eligibility Guidelines (OFI chart, incl. Medicare Savings Programs / Buy-in)
+  source_url: https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+  download_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/inline-files/2026%20MaineCare%20Eligibility%20Guidelines%206.23..26_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-me/guidance/ofi/mainecare-eligibility-guidelines/2026
+  metadata:
+    primary_source: true
+    source_authority: Maine Department of Health and Human Services, Office for Family Independence
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-me/guidance
+    index_url: https://www.maine.gov/dhhs/ofi/programs-services/health-care-assistance
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: eligibility_guidelines_chart
+    file_date: '2026-06-23'
+    msp_groups: 'QMB 185% FPL, QI 250% FPL; no SLMB tier; resource test: none'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3

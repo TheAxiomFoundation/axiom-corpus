@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/statute/2026-10-12-w7-state-benefits-statute-mi.json",
+      "sha256": "d05f3297a81572540762c4afb4eee2e7bf815494b5602a09e3e89c203717439b"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/statute/2026-10-12-w7-state-benefits-statute-mi.json",
+      "sha256": "4e3c10f1e75375500bdc32ec93bf0025c58d1ed5ca227f18c64e5d29f7756f80"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/statute/2026-10-12-w7-state-benefits-statute-mi.jsonl",
+      "sha256": "3a8d0a9f8635367f34e584b18796748142c68d0d1e10598a35cc5bce605758f1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-10-12-w7-state-benefits-statute-mi/official-documents/us-mi-statute-400.10.html",
+      "sha256": "5a19d34577b25b7d0268c859e4c58369555b62d955b66e40d2107ce490b0e29d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-13T12:06:24.232834+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7OJTqew/0ftVqKb/8m8eYMb1ZWEhATZkytl3RAW6FrV1SbONmtSRO9cMz/DoH/F4Gf7bBqrCR4LXv0HATY/jDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-statute-mi"
+}

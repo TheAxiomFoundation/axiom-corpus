@@ -1,0 +1,47 @@
+version: 2026-09-14-msp-income-standards
+documents:
+- source_id: us-ga-medicaid-financial-limits-2026
+  jurisdiction: us-ga
+  document_class: guidance
+  title: 2026 Financial Limits, All Programs (Income Limits Effective 3/1/2026, Revised 3/5/2026)
+  source_url: https://medicaid.georgia.gov/how-apply/basic-eligibility
+  download_url: https://medicaid.georgia.gov/document/document/2026-financial-limits-revised-3526/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/guidance/dch/medicaid/financial-limits-all-programs/2026
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Community Health, Georgia Medicaid
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ga/guidance
+    index_url: https://medicaid.georgia.gov/how-apply/basic-eligibility
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: financial_limits_chart
+    revised: '2026-03-05'
+    closure_elements_extra:
+    - MED-ST-2
+    - MED-ST-3
+    - MED-ST-4
+- source_id: us-ga-medicaid-abd-fm-income-resource-limits-2026
+  jurisdiction: us-ga
+  document_class: guidance
+  title: 2026 Income and Resource Limits (ABD and Family Medicaid)
+  source_url: https://medicaid.georgia.gov/how-apply/basic-eligibility
+  download_url: https://medicaid.georgia.gov/document/document/2026-abd-fm-income-resource-limits/download
+  source_format: pdf
+  source_as_of: '2026-09-14'
+  expression_date: '2026-03-01'
+  citation_path: us-ga/guidance/dch/medicaid/abd-fm-income-resource-limits/2026
+  metadata:
+    primary_source: true
+    source_authority: Georgia Department of Community Health, Georgia Medicaid
+    program: MEDICARE_SAVINGS_PROGRAMS
+    source_discovery_group: us-ga/guidance
+    index_url: https://medicaid.georgia.gov/how-apply/basic-eligibility
+    closure_elements:
+    - MED-ST-7
+    discovered_via: manual-review; needs-closure-2026-09-11 MED-ST-7
+    document_subtype: income_resource_limits_narrative

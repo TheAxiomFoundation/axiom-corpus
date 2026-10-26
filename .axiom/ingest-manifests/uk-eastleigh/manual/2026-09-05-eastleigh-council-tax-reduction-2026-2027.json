@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-eastleigh/manual/2026-09-05-eastleigh-council-tax-reduction-2026-2027.json",
+      "sha256": "a57388721ae9cb1abc5349afdbd4e23b6d93667942ed656bca883ba530328c59"
+    },
+    {
+      "path": "data/corpus/inventory/uk-eastleigh/manual/2026-09-05-eastleigh-council-tax-reduction-2026-2027.json",
+      "sha256": "f765f4ada51daa677af61aaba3bf116876cd575cd6d1e4f66e339e34f618be34"
+    },
+    {
+      "path": "data/corpus/provisions/uk-eastleigh/manual/2026-09-05-eastleigh-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "84129acf4a9c41b6ca618f109b5e1bac0085810267072959c00092955a60bc57"
+    },
+    {
+      "path": "data/corpus/sources/uk-eastleigh/manual/2026-09-05-eastleigh-council-tax-reduction-2026-2027/official-documents/eastleigh-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "2c09e251a4fc7b2efeabfca6388b4460ff0e709ec2dea9e7756b9dc45e052bf3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-eastleigh-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-eastleigh-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 144,
+    "missing_count": 0,
+    "provision_count": 144,
+    "source_count": 144
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:34:56.506979+00:00",
+  "jurisdiction": "uk-eastleigh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tgeFkPDltPHt8NwYBUR+F3sXflvkHzjgaJapBObyQBT9OnjxA47QfPcoH3oOg9yQK6Qsf93cCiFC636F5uQNCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-eastleigh-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,30 @@
+{
+  "documents": [
+    {
+      "source_id": "de-bmf-2014-01-17-civil-partners",
+      "jurisdiction": "de",
+      "document_class": "guidance",
+      "citation_path": "de/guidance/esth-2024/bmf-2014-01-17-civil-partners",
+      "title": "Familienleistungsausgleich; Lebenspartner und Freibeträge für Kinder; BMF 17.01.2014, EStH 2024",
+      "source_url": "https://amtliche-handbuecher.bundesfinanzministerium.de/esth/2024/C-Anhaenge/Anhang-19c/II/anhang-19c-II.html",
+      "source_format": "html",
+      "source_as_of": "2026-09-09",
+      "expression_date": "2026-09-09",
+      "language": "de",
+      "extraction": {
+        "html_content_selector": "main#content",
+        "segmentation": "anchor_range",
+        "html_start_selector": "#Inhalt",
+        "section_label": "inhalt"
+      },
+      "metadata": {
+        "primary_source": true,
+        "source_authority": "Bundesministerium der Finanzen, Amtliche Handbücher",
+        "edition": "2024",
+        "letter_date": "2014-01-17",
+        "source_note": "Complete edition-specific official handbook letter, including its five numbered sections. Capture expression date is not commencement. The letter addresses tax allowances for civil partners and application to income-tax assessments not yet final; bearing must be reviewed from this text.",
+        "snapshot_sha256": "32c35766674768558952d8a0582c82eae4e17311cc7fa019a4f7026197445df7"
+      }
+    }
+  ]
+}

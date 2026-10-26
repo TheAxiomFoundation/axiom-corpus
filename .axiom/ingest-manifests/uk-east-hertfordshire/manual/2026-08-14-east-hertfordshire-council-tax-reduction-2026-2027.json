@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-east-hertfordshire/manual/2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "b2ae77df74e5750ba154207935a6f3e980d53da51cc0ae3a7016b8d5a384f298"
+    },
+    {
+      "path": "data/corpus/inventory/uk-east-hertfordshire/manual/2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "65b9ac69e8d6c71421e243467d8f078f2db4d5e270e20ad57ba76d70e27f246f"
+    },
+    {
+      "path": "data/corpus/provisions/uk-east-hertfordshire/manual/2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "60cd0071c5961fee22b048f3d19aa937c188588076abf5e323a7128d2f9a2445"
+    },
+    {
+      "path": "data/corpus/sources/uk-east-hertfordshire/manual/2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027/official-documents/east-hertfordshire-council-minutes-2025-12-10.pdf",
+      "sha256": "3d940ecd9bfbbab3e337f54e6df7f6271cb6db3be2feef343335275844af4144"
+    },
+    {
+      "path": "data/corpus/sources/uk-east-hertfordshire/manual/2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027/official-documents/east-hertfordshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "3eadec13f9f0a904bc2a8c6d4e055d50478facaa0e2986075c89b02658a6c2fa"
+    },
+    {
+      "path": "data/corpus/sources/uk-east-hertfordshire/manual/2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027/official-documents/east-hertfordshire-cts-council-report-2026-27.pdf",
+      "sha256": "afd94534ba0286d79dabdf03560258ef558465dc600328a68d7dc8c52627bcad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7c99cd489c9c62762b060fda3516284dd9553c96",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-east-hertfordshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 161,
+    "missing_count": 0,
+    "provision_count": 161,
+    "source_count": 161
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-14T14:59:21.735045+00:00",
+  "jurisdiction": "uk-east-hertfordshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kEArRzI3KVxb3gORHAXWNhEVqTPxm2Uea4YfMcY2CYLtB9Zc5Al3zmnjvfem2u28/I+MlgptN+QnqRXiaMUfDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-14-east-hertfordshire-council-tax-reduction-2026-2027"
+}

@@ -11,9 +11,12 @@ Structure mirrors ``test_citation_path_grammar.py``:
    target yields at least a floor number of anchors. A green suite therefore
    means the checks can actually fail, not that there was nothing to check.
 
-Both targets are read from the real committed provision JSONL so the test
+Both targets are read from the real lock-pinned provision JSONL so the test
 exercises production data, and the committed anchor JSONL is checked to be
-exactly what the generator reproduces (the derived artifact is in sync).
+exactly what the generator reproduces (the derived artifact is in sync). These
+are lock-pinned corpus fixtures, fetched on demand, so a missing file or row
+fails the suite rather than skipping it: it means a test points at a renamed or
+superseded scope.
 """
 
 from __future__ import annotations
@@ -31,6 +34,7 @@ from axiom_corpus.corpus.anchors import (
     anchor_for_stored_leaf,
     anchor_to_supabase_row,
     generate_anchors_for_provision,
+    generate_asserted_descendant_anchors,
     generate_stored_leaf_anchors,
     load_anchors,
     verify_anchor,
@@ -45,10 +49,12 @@ PROVISIONS_DIR = REPO_ROOT / "data" / "corpus" / "provisions"
 ANCHORS_DIR = REPO_ROOT / "data" / "corpus" / "anchors"
 
 # --- Target 1: 7 CFR 273.9 (federal, paragraph-tree parse) ---
-CFR_PROVISIONS = (
-    PROVISIONS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
-)
-CFR_ANCHORS = ANCHORS_DIR / "us" / "regulation" / "2026-05-10-snap-7-cfr-273.jsonl"
+# The release-carried scope. #344 replaced ``2026-05-10-snap-7-cfr-273`` with
+# this self-contained successor (it adds the part 273 and subpart parents);
+# the 273.9 row kept its id and body, so only the anchors' ``version`` moved.
+CFR_SCOPE = "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
+CFR_PROVISIONS = PROVISIONS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
+CFR_ANCHORS = ANCHORS_DIR / "us" / "regulation" / f"{CFR_SCOPE}.jsonl"
 CFR_SECTION = "us/regulation/7/273/9"
 CFR_LEAF = "us/regulation/7/273/9/d/6/iii"
 
@@ -70,13 +76,30 @@ MA_LEAF = "us-ma/regulation/106-cmr/365/180/A"
 # --------------------------------------------------------------------------- #
 
 
+def _repo_relative(path: Path) -> str:
+    return str(path.relative_to(REPO_ROOT))
+
+
+def _committed_provision(path: Path, citation_path: str) -> ProvisionRecord:
+    # ``load_provisions`` returns () for a missing path, so check the file
+    # first; otherwise a renamed scope reads as a missing row.
+    if not path.is_file():
+        pytest.fail(f"committed provisions fixture is missing: {_repo_relative(path)}")
+    for record in load_provisions(path):
+        if record.citation_path == citation_path:
+            return record
+    pytest.fail(f"{citation_path} not present in {_repo_relative(path)}")
+
+
+def _committed_anchors(path: Path) -> tuple[ProvisionAnchor, ...]:
+    if not path.is_file():
+        pytest.fail(f"committed anchors artifact is missing: {_repo_relative(path)}")
+    return load_anchors(path)
+
+
 @pytest.fixture(scope="module")
 def cfr_section() -> ProvisionRecord:
-    records = load_provisions(CFR_PROVISIONS)
-    for record in records:
-        if record.citation_path == CFR_SECTION:
-            return record
-    pytest.skip(f"{CFR_SECTION} not present in {CFR_PROVISIONS}")
+    return _committed_provision(CFR_PROVISIONS, CFR_SECTION)
 
 
 @pytest.fixture(scope="module")
@@ -86,11 +109,7 @@ def cfr_anchors(cfr_section: ProvisionRecord) -> list[ProvisionAnchor]:
 
 @pytest.fixture(scope="module")
 def ma_leaf_provision() -> ProvisionRecord:
-    records = load_provisions(MA_PROVISIONS)
-    for record in records:
-        if record.citation_path == MA_LEAF:
-            return record
-    pytest.skip(f"{MA_LEAF} not present in {MA_PROVISIONS}")
+    return _committed_provision(MA_PROVISIONS, MA_LEAF)
 
 
 @pytest.fixture(scope="module")
@@ -146,14 +165,14 @@ def test_resolver_descendant_over_real_data(
     resolver = AnchorResolver(cfr_anchors)
     parent_of_d = f"{CFR_LEAF}/D"
     by_path = {a.citation_path: a for a in cfr_anchors}
-    if parent_of_d in by_path:
-        # (D) itself is drafted (intermediate), so this is an exact hit; assert
-        # its span covers its (1)..(3) children.
-        res = resolver.resolve(parent_of_d)
-        assert res is not None
-        child = by_path[f"{parent_of_d}/3"]
-        assert res.span[0] <= child.char_start
-        assert res.span[1] >= child.char_end
+    # (D) itself is drafted (intermediate), so this is an exact hit; assert its
+    # span covers its (1)..(3) children.
+    assert parent_of_d in by_path
+    res = resolver.resolve(parent_of_d)
+    assert res is not None
+    child = by_path[f"{parent_of_d}/3"]
+    assert res.span[0] <= child.char_start
+    assert res.span[1] >= child.char_end
 
 
 def test_cfr_leaf_is_the_standard_utility_allowance(
@@ -193,6 +212,134 @@ def test_cfr_parent_linkage_is_the_stored_provision(
     for anchor in cfr_anchors:
         assert anchor.parent_provision_id == cfr_section.id
         assert anchor.parent_citation_path == CFR_SECTION
+
+
+def test_source_asserted_descendants_use_publisher_identity_and_exact_spans() -> None:
+    parent_path = "us/statute/26/1401"
+    parent_source_id = "/us/usc/t26/s1401"
+    parent_body = (
+        "(b) Hospital insurance (2) Additional tax "
+        "(A) In general Tax applies. (i) joint return. "
+        "(B) Coordination with FICA Apply section 3121(b)(2)."
+    )
+    parent = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path=parent_path,
+        id="00000000-0000-0000-0000-000000000101",
+        source_id=parent_source_id,
+        version="v",
+        body=parent_body,
+    )
+    descendants = [
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b",
+            id="00000000-0000-0000-0000-000000000102",
+            source_id=f"{parent_source_id}/b",
+            version="v",
+            kind="subsection",
+            heading="Hospital insurance",
+            body=(
+                "(2) Additional tax (A) In general Tax applies. "
+                "(i) joint return. (B) Coordination with FICA "
+                "Apply section 3121(b)(2)."
+            ),
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2",
+            id="00000000-0000-0000-0000-000000000103",
+            source_id=f"{parent_source_id}/b/2",
+            version="v",
+            kind="paragraph",
+            heading="Additional tax",
+            body=(
+                "(A) In general Tax applies. (i) joint return. "
+                "(B) Coordination with FICA Apply section 3121(b)(2)."
+            ),
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2/A",
+            id="00000000-0000-0000-0000-000000000104",
+            source_id=f"{parent_source_id}/b/2/A",
+            version="v",
+            kind="subparagraph",
+            heading="In general",
+            body="Tax applies. (i) joint return.",
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2/A/i",
+            id="00000000-0000-0000-0000-000000000105",
+            source_id=f"{parent_source_id}/b/2/A/i",
+            version="v",
+            kind="clause",
+            body="joint return.",
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path=f"{parent_path}/b/2/B",
+            id="00000000-0000-0000-0000-000000000106",
+            source_id=f"{parent_source_id}/b/2/B",
+            version="v",
+            kind="subparagraph",
+            heading="Coordination with FICA",
+            body="Apply section 3121(b)(2).",
+        ),
+    ]
+
+    anchors = generate_asserted_descendant_anchors(parent, descendants)
+
+    assert [anchor.citation_path for anchor in anchors] == [
+        f"{parent_path}/b",
+        f"{parent_path}/b/2",
+        f"{parent_path}/b/2/A",
+        f"{parent_path}/b/2/A/i",
+        f"{parent_path}/b/2/B",
+    ]
+    assert {anchor.confidence for anchor in anchors} == {"machine_asserted"}
+    coordination = anchors[-1]
+    assert coordination.span == (
+        parent_body.index("(B)"),
+        len(parent_body),
+    )
+    assert coordination.text.endswith("section 3121(b)(2).")
+    assert coordination.metadata == {
+        "source_id": f"{parent_source_id}/b/2/B",
+        "source_kind": "subparagraph",
+    }
+    verify_anchors_against_provisions(anchors, [parent])
+
+
+def test_source_asserted_descendant_rejects_unrelated_source_id() -> None:
+    parent = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path="us/statute/26/1401",
+        id="00000000-0000-0000-0000-000000000201",
+        source_id="/us/usc/t26/s1401",
+        version="v",
+        body="(b) Text.",
+    )
+    descendant = ProvisionRecord(
+        jurisdiction="us",
+        document_class="statute",
+        citation_path="us/statute/26/1401/b",
+        id="00000000-0000-0000-0000-000000000202",
+        source_id="/us/usc/t26/s3101/b",
+        version="v",
+        body="Text.",
+    )
+
+    with pytest.raises(ValueError, match="source id"):
+        generate_asserted_descendant_anchors(parent, [descendant])
 
 
 def test_ma_stored_leaf_and_children(ma_anchors: list[ProvisionAnchor]) -> None:
@@ -445,25 +592,78 @@ def test_invalid_span_rejected() -> None:
 def test_committed_cfr_anchors_match_generator(
     cfr_anchors: list[ProvisionAnchor],
 ) -> None:
-    if not CFR_ANCHORS.exists():
-        pytest.skip("committed CFR anchors artifact not present")
-    committed = load_anchors(CFR_ANCHORS)
+    committed = _committed_anchors(CFR_ANCHORS)
     got = {a.citation_path: a.to_mapping() for a in cfr_anchors}
     have = {a.citation_path: a.to_mapping() for a in committed}
     assert got == have, (
-        "committed data/corpus/anchors is stale; rerun generate-anchors"
+        f"{_repo_relative(CFR_ANCHORS)} is stale; rerun generate-anchors "
+        f"--provisions {_repo_relative(CFR_PROVISIONS)} --target {CFR_SECTION} "
+        f"--output {_repo_relative(CFR_ANCHORS)}"
     )
 
 
 def test_committed_ma_anchors_match_generator(
     ma_anchors: list[ProvisionAnchor],
 ) -> None:
-    if not MA_ANCHORS.exists():
-        pytest.skip("committed us-ma anchors artifact not present")
-    committed = load_anchors(MA_ANCHORS)
+    committed = _committed_anchors(MA_ANCHORS)
     got = {a.citation_path: a.to_mapping() for a in ma_anchors}
     have = {a.citation_path: a.to_mapping() for a in committed}
-    assert got == have
+    assert got == have, (
+        f"{_repo_relative(MA_ANCHORS)} is stale; rerun generate-anchors "
+        f"--provisions {_repo_relative(MA_PROVISIONS)} --stored-leaf {MA_LEAF} "
+        f"--output {_repo_relative(MA_ANCHORS)}"
+    )
+
+
+def _committed_anchor_artifacts() -> list[Path]:
+    return sorted(ANCHORS_DIR.rglob("*.jsonl"))
+
+
+def test_committed_anchor_artifacts_exist() -> None:
+    # Anti-vacuous: the parametrized check below must have something to check.
+    assert len(_committed_anchor_artifacts()) >= 2
+
+
+@pytest.mark.parametrize(
+    "anchors_path",
+    _committed_anchor_artifacts(),
+    ids=lambda path: str(path.relative_to(ANCHORS_DIR)),
+)
+def test_committed_anchor_artifact_tracks_its_provisions(anchors_path: Path) -> None:
+    # Anchors mirror the provisions layout. When a provisions scope is renamed
+    # to a successor, its anchors must be regenerated and renamed with it. This
+    # catches a renamed or deleted scope, not a predecessor that stays committed
+    # beside its successor.
+    relative = anchors_path.relative_to(ANCHORS_DIR)
+    provisions_path = PROVISIONS_DIR / relative
+    assert provisions_path.is_file(), (
+        f"{_repo_relative(anchors_path)} has no provisions file at "
+        f"{_repo_relative(provisions_path)}; regenerate the anchors against the "
+        "successor scope"
+    )
+    anchors = load_anchors(anchors_path)
+    assert anchors, f"{_repo_relative(anchors_path)} is empty"
+    records = load_provisions(provisions_path)
+    verify_anchors_against_provisions(anchors, records)
+    # The scope columns are denormalized from the parent row; they must name
+    # the parent's scope, not a superseded one.
+    jurisdiction, document_class = relative.parts[:2]
+    parents = {record.id: record for record in records}
+    for anchor in anchors:
+        parent = parents.get(anchor.parent_provision_id)
+        assert parent is not None, (
+            f"{anchor.citation_path}: parent id {anchor.parent_provision_id} is not "
+            f"in {_repo_relative(provisions_path)}"
+        )
+        assert anchor.parent_citation_path == parent.citation_path
+        assert (
+            anchor.jurisdiction,
+            anchor.document_class,
+        ) == (parent.jurisdiction, parent.document_class) == (jurisdiction, document_class)
+        assert anchor.version == parent.version, (
+            f"{anchor.citation_path}: anchor version {anchor.version!r} != parent "
+            f"version {parent.version!r}"
+        )
 
 
 def test_roundtrip_jsonl(
@@ -549,8 +749,7 @@ def test_migration_ddl_matches_expected_columns() -> None:
         / "migrations"
         / "20260704120000_corpus_provision_anchors.sql"
     )
-    if not migration.exists():
-        pytest.skip("migration not present")
+    assert migration.is_file(), f"migration is missing: {_repo_relative(migration)}"
     sql = migration.read_text()
     for column in _DDL_COLUMNS:
         assert column in sql, f"DDL is missing column {column!r}"

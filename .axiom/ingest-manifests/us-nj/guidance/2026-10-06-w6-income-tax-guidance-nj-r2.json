@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2.json",
+      "sha256": "d060222a7314c19f55ea10eea64fc0cc12aea0084aca1148b847864a2d1f615c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2.json",
+      "sha256": "4b1f7cdd3e0d3fe02a1b9dc87b96fc4e63e19950084d1ae35af0b47ad7751aa4"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2.jsonl",
+      "sha256": "678958bd93fa0af65dc01a157d83a951ef0b17eb9bbfc93454509f1cc42db719"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-anchor-how-benefits-are-calculated.html",
+      "sha256": "c5d5e0bf600bb92c543302d3500bb9193d9b3ce0e69fdd17ead1f3898065428c"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-anchor-program.html",
+      "sha256": "db94aa8d22351d0a11a7454afe461e5a9ae439ba2527a483c0a3bbf6de350c1b"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-child-and-dependent-care-credit.html",
+      "sha256": "5e60c61aa93c954cddabffc744305f76ff88fa5752bfb920669d161ce139bcd5"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-git-1-2-retirement-income.pdf",
+      "sha256": "5a14720ac59c11ba38d8edfa5dd5082e63d712475940564297bba466370a4feb"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-property-tax-deduction-credit-for-homeowners-and-renters.html",
+      "sha256": "1464e45530bebb55fd96afac21c84e28dfe8104ee049856f8f3048ad44108c4d"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-property-tax-relief-programs.html",
+      "sha256": "0db84caaf02c4c35c21b04d73f3bdc58558469f052317bd952c2ed3f8dcdb092"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-senior-freeze-property-tax-reimbursement.html",
+      "sha256": "46717affb7e378faff003aa5dc5d58dd13b795a3315d0d4c326ea47f40c31e80"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/guidance/2026-10-06-w6-income-tax-guidance-nj-r2/official-documents/us-nj-guidance-taxation-stay-nj.html",
+      "sha256": "70876059ef361b9b649ba61986fc42d5e5b7177a689b4b88bc7c9333d335afec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c06a705ff0c27c4e931f990f5c59412fc6b9ec5e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-06-w6-tax-mn-oh.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-07T17:56:01.906495+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Tfl1o0dHNVk4LV98tUA58RhH2aiZdyo4pCULFk/uy0reXstlVDfbAHQQWWUV5Y6aRev939IXcILeSAbc5fmDCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-06-w6-income-tax-guidance-nj-r2"
+}

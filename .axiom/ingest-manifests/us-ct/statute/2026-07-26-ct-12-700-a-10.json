@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/statute/2026-07-26-ct-12-700-a-10.json",
+      "sha256": "3465b469adb7adcea0780f252f306a1f87c88dfeeb6d785d3a38c791f3cc4fa6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/statute/2026-07-26-ct-12-700-a-10.json",
+      "sha256": "ee5c232766f23e1a7532de46c7cfcf40eabe7478b2296edce6c7f3e145a7de29"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/statute/2026-07-26-ct-12-700-a-10.jsonl",
+      "sha256": "005278ce7c4dcb7eb40e093fbfdeb1c8f55f639ce8d68fb91cfcc78204a8731d"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/statute/2026-07-26-ct-12-700-a-10/official-documents/us-ct-cga-current-section-12-700-a-10.html",
+      "sha256": "9bda4ecdbbe3937466237f934178f2d1d478b74f586d49cafdca262844467d8a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5b5ad3b83259e90b9452c1554eb8e3b759bd175d",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom_with_corpus_ingest_key uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-26-ct-12-700-a-10 --manifest manifests/us-ct-12-700-a-10-current.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-26T20:34:40.924826+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mWMVZ7Tp9O05Jv63bFGyQ4EC7l52MjImmkNgXrgpIx4YuQ2fnD60+JJBomjtXe0BRQcMnAgkUWwo/o3iFzhtBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-26-ct-12-700-a-10"
+}

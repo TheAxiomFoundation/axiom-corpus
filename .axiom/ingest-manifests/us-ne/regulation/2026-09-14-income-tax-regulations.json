@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "ea81886c584ef759c61180e7da62f28e731344f4ebf9a2815ced43347b7d7dc8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "ec7cc97528c0c9bb39b0db363ee6a8ed0cff1796c88d6336362744394a8794f2"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "f8541f93c7f9cb2fe54908490b296b032df6131bef251cc32cae4825669d853f"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/regulation/2026-09-14-income-tax-regulations/official-documents/ne-dor-regulations-chapter-22-individual-income-tax.html",
+      "sha256": "b13653e4fe3f9cfa775a2bd944560a3596871039eaab212c08e4e8ef21f4ea96"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T17:20:36.571797+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/bpEr3d0uLnpUoAcznv9evbGHiC41SM4jymhD/01s9iY1WlBeUznyfdpQyuoFB3+vseOzAk1bQuwKtgBomKZAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

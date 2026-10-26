@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-08-07-snap-obbb-alien-eligibility-implementation-memo.json",
+      "sha256": "bf5ad82535e651faff5988518e876685ee6ada6b83180b80f97b135c51251ac7"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-08-07-snap-obbb-alien-eligibility-implementation-memo.json",
+      "sha256": "8954dcebf8c3bb66b624b176dfd1a7468b325995d4629fae0e7e4db25e0469e6"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-08-07-snap-obbb-alien-eligibility-implementation-memo.jsonl",
+      "sha256": "6475df5a213466d7998301a4541fb93aa5107c084dc6fc25ab695eac887c1a42"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-08-07-snap-obbb-alien-eligibility-implementation-memo/official-documents/snap-obbb-alien-eligibility-implementation-memo.pdf",
+      "sha256": "6c56acc2e93c203977ba6a4e92311c847db1422cc64dbb575cf0cb95ba4ce90d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "47d5bd4f8be85d9a3fb38ca792c719dc002bd453",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-08-07-snap-obbb-alien-eligibility-implementation-memo --manifest manifests/us-snap-obbb-alien-eligibility-memo-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-08-08T04:09:08.247348+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "brJUvZ3MDSoNxBcVFfzymZX/sp/rsi6ioTrDqumA8+iQdFbVCkPfjJC1PXgSKeZ9vRn/iwn9/NHRAHwn+vB4Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-07-snap-obbb-alien-eligibility-implementation-memo"
+}

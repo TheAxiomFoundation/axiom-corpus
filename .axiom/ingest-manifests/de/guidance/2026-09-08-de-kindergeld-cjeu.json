@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-08-de-kindergeld-cjeu.json",
+      "sha256": "c28b1eff2d87aa049aa77955042d754675a744a93a7b455a94db319e09fd95d6"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-08-de-kindergeld-cjeu.json",
+      "sha256": "74e8dfa9aded09d34cad08c04249da5016ac478b0bace29562d11343e74ef21e"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-08-de-kindergeld-cjeu.jsonl",
+      "sha256": "80f92f8559a0f422b0d45b25af6aba2430de1650c03dd1722eab5f99cc803b29"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-08-de-kindergeld-cjeu/official-documents/de-kindergeld-cjeu-c-411-20.pdf",
+      "sha256": "1522babb1f3c77ced1d8e0199f73635f0a6e4b7486f38a95022ad4bcd4e1f719"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "603e1a190f90a9d7d55e780a151bbbc5c4f5b3fa",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "DE Kindergeld civil dependencies: existing extract-de-gii and extract-official-documents; exact commands and inputs in docs/ingest-runs/2026-09-08-de-kindergeld-civil.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-08T15:41:22.189511+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-09-08-de-kindergeld-civil.md",
+      "sha256": "45f939bcf9260213e7a84d62dce67c557bc50b227e0173bcc011cea44f469e54"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Gcn0BZrAo+iJXPwUjonm4IgWjggTHEuN5KPkV0u8x4Jpe/BLWGsiCoMPT62LkiXaDgof1yJd0QOuFgBaB+JmAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-cjeu"
+}

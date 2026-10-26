@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "015cc024ea052331a745da7763d976f6188ee2e0f933c600167fd3bff4e7ba64"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/guidance/2026-09-14-msp-income-standards.json",
+      "sha256": "66ecb74772f646502582513d6aada2e35b747632b39051aecc753cff2993a426"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/guidance/2026-09-14-msp-income-standards.jsonl",
+      "sha256": "a4d1527781cc7b34e30ed6a8167ceec7c83fc0e1af8ac37cbc28603a2ac473d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-09-14-msp-income-standards/official-documents/us-ga-medicaid-abd-fm-income-resource-limits-2026.pdf",
+      "sha256": "859b9f493523c06a03e5df7a3ca321a04ace75d3a9490f112103e23d1bddd162"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-09-14-msp-income-standards/official-documents/us-ga-medicaid-financial-limits-2026.pdf",
+      "sha256": "57b3923782daa762f64069c2033fc459b25ebf9a685e4bb399539e45d8de167e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-msp-income-standards --manifest manifests/us-ga-msp-income-standards-2026.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-14T16:23:55.190599+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eZnU62Pw+8NTx/pVWM1v8Au7QzrxeNxLjRumCnPPoAn2LurghzOkIsAYZY/ayhfo72RCF1L1HW3upX9yWT8xDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-msp-income-standards"
+}

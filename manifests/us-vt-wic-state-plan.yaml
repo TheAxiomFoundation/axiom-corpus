@@ -1,0 +1,24 @@
+version: 2026-09-13-wic-state-plan
+documents:
+- source_id: vt-wic-state-plan-2025-goals-objectives
+  jurisdiction: us-vt
+  document_class: policy
+  title: 'Vermont WIC State Plan 2025: Goals and Objectives'
+  source_url: https://www.healthvermont.gov/sites/default/files/document/2025-WIC-State-Plan.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-10-01'
+  citation_path: us-vt/policy/wic-state-plan/2025/goals-and-objectives
+  metadata:
+    primary_source: true
+    source_authority: Vermont Department of Health, WIC Program
+    document_subtype: state_plan
+    program: WIC
+    fiscal_year: '2025'
+    plan_period: 2024-10-01 to 2025-09-30
+    plan_status: current (goals and objectives only; the rest of the plan is not posted)
+    extraction_granularity: pdf_page
+    publisher_page_url: https://www.healthvermont.gov/family/wic/wic-plans-reports
+    source_discovery_group: us-vt/policy/wic-state-plan
+    discovered_via: manual-review:fns-state-plan-agent-queue; state WIC agency state plan page
+    closure_element: wic_s30

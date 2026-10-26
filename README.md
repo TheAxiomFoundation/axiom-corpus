@@ -135,10 +135,10 @@ curl "http://localhost:8000/v1/sections/26/32?as_of=2020-01-01"
 
 For a visual map of how `axiom-corpus` fits into the wider Axiom Foundation
 ecosystem — fetchers, parsers, adapters, storage, the encoder, RuleSpec
-repos, axiom-rules-engine, axiom-programs, and the consumer apps — see the
+repos, axiom-rules-engine, axiom-compose, and the consumer apps — see the
 interactive architecture viewer:
 
-- **Live:** <https://axiom-architecture-one.vercel.app>
+- **Live:** <https://axiom.org/architecture>
 - **Repo:** <https://github.com/TheAxiomFoundation/axiom-architecture>
 
 It has an External / Internal mode toggle that controls how much detail
@@ -228,14 +228,13 @@ docker run -p 8000:8000 -v $(pwd)/axiom.db:/app/axiom.db axiom-corpus
 
 ## License
 
-Apache 2.0
+MIT
 
 ## Related Repos
 
 - [axiom-rules-engine](https://github.com/TheAxiomFoundation/axiom-rules-engine) — RuleSpec compiler and runtime
 - [axiom-encode](https://github.com/TheAxiomFoundation/axiom-encode) — Encoder pipeline for generating RuleSpec from source law
-- [axiom-programs](https://github.com/TheAxiomFoundation/axiom-programs) — Oracle-comparison toolkit (Axiom vs PolicyEngine, TAXSIM, ACCESS NYC)
-- [axiom-architecture](https://github.com/TheAxiomFoundation/axiom-architecture) — Interactive architecture viewer for the whole ecosystem ([live](https://axiom-architecture-one.vercel.app))
+- [axiom-architecture](https://github.com/TheAxiomFoundation/axiom-architecture) — Interactive architecture viewer for the whole ecosystem ([live](https://axiom.org/architecture))
 - [axiom-demo-shell](https://github.com/TheAxiomFoundation/axiom-demo-shell) — Landing page embedding the three demos
-- [axiom-foundation.org](https://github.com/TheAxiomFoundation/axiom-foundation.org) — Public web app
+- [axiom.org](https://github.com/TheAxiomFoundation/axiom.org) — Public web app
 - [rulespec-us](https://github.com/TheAxiomFoundation/rulespec-us) — US federal rules in RuleSpec

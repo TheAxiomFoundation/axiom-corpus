@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-11-title-20-part-416.json",
+      "sha256": "80f4df4c1c7644dee96d4bc7dc12e59697ef8a692d172e7294f216135a7703e7"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-11-title-20-part-416.json",
+      "sha256": "492b39fe41bdeb824dfb0a7823a39ac6619345f236477e18dfe7ff09512f9f8e"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-11-title-20-part-416.jsonl",
+      "sha256": "14e70d4fd009c828bc4841910095060d7960b3a72e9ceddab48aa5b3d9fdb42b"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-11-title-20-part-416/ecfr/title-20-part-416.xml",
+      "sha256": "11ec5a3f11457ebdca99bc958c9666740590a544cd44bd88e681f29b9bf41b26"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-11-title-20-part-416/ecfr/title-20.structure.json",
+      "sha256": "9587a2f15038535028f87ccbe8d81318db2cf2f7e1abdf781e41ece2da3d1d55"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "de9a23d2d7610775f446ff26f26e48c9b04a9b7e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-11-title-20-part-416 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 622,
+    "missing_count": 0,
+    "provision_count": 622,
+    "source_count": 622
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T19:28:10.941564+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XTdgLusYEW6trbRAwQoVhRpWVlKnsIxNaWqj59pHKJByuCIL0tJ7hK/ADoEhkYScpyH476btc4v/3BEh0WfiAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-title-20-part-416"
+}

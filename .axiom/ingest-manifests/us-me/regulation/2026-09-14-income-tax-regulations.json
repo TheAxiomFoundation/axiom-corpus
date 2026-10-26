@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "f4e3755431dbaa0af6c9f3aec3f3f8f84791d5597e7253cb017ae422f7951b9f"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "ccc555b5b9da8ece06452c4a2f8734210976d5c2a2589a63525bb96cb1eae020"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "1a067eb123b69856fd7dd54c323a6ff620c524f1a02702ffddfdd5b382af4469"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-803.pdf",
+      "sha256": "bf0413bb3c8f1ee5127471fa34de400f408e174f45dbe5ea98f75ce07d97ba2d"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-805.pdf",
+      "sha256": "bf80a358071899ddc753f39a30a1692eb2e069c1bd47e8ed6f79a296550d92a3"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-806.pdf",
+      "sha256": "6012bae669ab03fdd26e2e34c45eece3b3cf456dbd09f39c8953e00a77896502"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-807.pdf",
+      "sha256": "764460da313b6cc495b47d6c6583f5dbefc7e1b203314f5639049bba0dd93ec0"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-812.pdf",
+      "sha256": "1aceb2b71c57f0c35c027c54b78b8960e894a48903fc646401f219fc65837555"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-813.pdf",
+      "sha256": "1a5753daeeb59ca60c061a45457a107d2bc68f6f11ee732c5276dd2a88c11ccb"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-09-14-income-tax-regulations/official-documents/me-mrs-rule-825.pdf",
+      "sha256": "fe21502623ed5bdb7ba394c06ce797fa8fd9f08fc4179c69710ab7b556a9b7bd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 71,
+    "missing_count": 0,
+    "provision_count": 71,
+    "source_count": 71
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:48:00.362512+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ISTqqT287Ngo4j3XCiSyinhCAFF218SxU83uueZk3OjjH7i1BmoPLxOkq5i+DIONy/sDj6RVjRyJGHAloEexCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

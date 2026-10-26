@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-lancaster/manual/2026-08-02-lancaster-council-tax-reduction-2026-2027.json",
+      "sha256": "7e647b3d8231fc2f75547abd61f57409f3b8c8e6f654bd7c99d1c51d9a393e4d"
+    },
+    {
+      "path": "data/corpus/inventory/uk-lancaster/manual/2026-08-02-lancaster-council-tax-reduction-2026-2027.json",
+      "sha256": "a177d1655bc319e5e2e56e11919aca3e350955d9f0862a817c54fba9be74a8ed"
+    },
+    {
+      "path": "data/corpus/provisions/uk-lancaster/manual/2026-08-02-lancaster-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "6c89ee68cfa329c1546518fb8aafd29fc41d9daac9fa1ad456f1435a9036b4fd"
+    },
+    {
+      "path": "data/corpus/sources/uk-lancaster/manual/2026-08-02-lancaster-council-tax-reduction-2026-2027/official-documents/lancaster-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "850a77abd9505229cf3c54c6e17d6485236749f0d6a21b7a2da6ad9e1bf1edca"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05ce3d3dd21b0ced76f9af40c2ecc02c1c57d9c6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-02-lancaster-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-lancaster-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 142,
+    "missing_count": 0,
+    "provision_count": 142,
+    "source_count": 142
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-02T12:38:24.420664+00:00",
+  "jurisdiction": "uk-lancaster",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JtJos94ouS3PwhVQviakcOVGQjlx+EIWZDVd9e207AJ6Pq3G4ugDtJ2IWAqi+LRyW2dvHO9Xcb12Du3uJbyrCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-02-lancaster-council-tax-reduction-2026-2027"
+}

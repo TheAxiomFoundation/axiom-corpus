@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-vale-of-white-horse/manual/2026-09-05-vale-of-white-horse-council-tax-reduction-2026-2027.json",
+      "sha256": "78a86435db02b26ad9184e9b7a5815cf2eba547e766c05e52836dabb45f13bb9"
+    },
+    {
+      "path": "data/corpus/inventory/uk-vale-of-white-horse/manual/2026-09-05-vale-of-white-horse-council-tax-reduction-2026-2027.json",
+      "sha256": "a2b528899d77cd2dd014ca0c3e7b99b14cbd4d2cae5e6423a5226fba3e850526"
+    },
+    {
+      "path": "data/corpus/provisions/uk-vale-of-white-horse/manual/2026-09-05-vale-of-white-horse-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "80b536319e98b7d07d11417ac11eef0011558406c7b344d9847833b8b980fbfc"
+    },
+    {
+      "path": "data/corpus/sources/uk-vale-of-white-horse/manual/2026-09-05-vale-of-white-horse-council-tax-reduction-2026-2027/official-documents/vale-of-white-horse-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "6e9afb0d3667a5f25eae0866f7eb4f6b00278bf7747277508573b7c54a32a69c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-vale-of-white-horse-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-vale-of-white-horse-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 158,
+    "missing_count": 0,
+    "provision_count": 158,
+    "source_count": 158
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:59.927738+00:00",
+  "jurisdiction": "uk-vale-of-white-horse",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wxAiCePX7lWVWXP+bhkKlF5zRYWf36W+cOepwGjNfp8RNlCr/sH/x9JdG5pWh2/aRI8EzspcV1OtYmoN+Pa6CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-vale-of-white-horse-council-tax-reduction-2026-2027"
+}

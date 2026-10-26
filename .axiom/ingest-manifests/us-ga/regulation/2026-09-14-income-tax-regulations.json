@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "ca82e6ff5f5beff4584c547e542859ff14134599dbdd647378699eb2e8a0ed2d"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/regulation/2026-09-14-income-tax-regulations.json",
+      "sha256": "9c72d7243135476b3b90f82669314a6d81a9ab84817524fd1259b631bee3de6e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/regulation/2026-09-14-income-tax-regulations.jsonl",
+      "sha256": "c477bb75bad484231aaf47ea99e2d7f0cff92c2c41d6973f4cec1a95ffd735ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/regulation/2026-09-14-income-tax-regulations/official-documents/ga-sos-560-7-income-tax-division.pdf",
+      "sha256": "0fc9ee39e003a1f1ce86b6bfffdae2c5aae19a3113f71d192399156246418867"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "dcdb4e424d7e41cf890721ff8d4ba712744c074f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-14-income-tax-regulations (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 130,
+    "missing_count": 0,
+    "provision_count": 130,
+    "source_count": 130
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-14T16:25:40.201929+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9REx8JN6Y6NqDj218G/8ku0ptDnGzX7SjYqqa8r+ocsVDj8Olye9SiEK36/+oIsIcK52ialdzYgp9r6LPxofCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-14-income-tax-regulations"
+}

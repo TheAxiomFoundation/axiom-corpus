@@ -1,0 +1,77 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "5704112af4a0213d3edf7f54e1a7d2eeaca1d1c749688207fb1d3c5f08fa9ad4"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "5adbda86c0f43c2c6623b7eafacbf0cf3419484d917e4beab3fd9927e70ea65e"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "c14ea6f15f1ca2421964f2c17c727af8db17cc2d0b8b522545e807f63d66a93b"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-1.pdf",
+      "sha256": "a9ee9701ff1342f41187eae0ffe7bd6517abd32ac95e66162e86aecbe5aa01d8"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-2.pdf",
+      "sha256": "393976913240de1915ec55d514cd102090e818263c9b2912401b501e28bb58ec"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-3.pdf",
+      "sha256": "c4ee1c9c905d248da10531db1bdc00047c6b8fe6b55cc372626f2498b696037f"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-4.pdf",
+      "sha256": "67fabc6e8b4dfbfee418155108825d4da14b17c4eaca929dc8222ce02e1c5b54"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-5.pdf",
+      "sha256": "eee4ddf1205e07725af2cb321b2640dee594e734c5d5efba885b2090488c05cb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-6.pdf",
+      "sha256": "e3e5102439ac8ba07e8e854545273d69b5dced130ae5b5cee76226a7707f33d1"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-7.pdf",
+      "sha256": "8be44362bc35d76d89e3db0bfaf794033765d81e7e0a8edafe1d63e87ec34bbb"
+    },
+    {
+      "path": "data/corpus/sources/us-md/manual/2026-09-10-wic-state-policy-manual/official-documents/us-md-wic-manual-chapter-8.pdf",
+      "sha256": "439cd9b7311fc5339d091029bb3ddce4c8795d9f3b90bb3a33aed84b42ed229e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-md-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:56:54.419208+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Uzn+Cg0qtrHVAo3Q4mEIdAbeS6KWzNpjw5kihipzoVFaH/raK89Wou2ZCvH3w1y6tBgP3w1NVaJOvJJ65jRLCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

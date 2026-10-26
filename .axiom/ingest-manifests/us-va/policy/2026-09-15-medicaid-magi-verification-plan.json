@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "e2300295d38560eac477ef80a0f9fc7675731417f0c437cb8eb69460b2b96e5e"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/policy/2026-09-15-medicaid-magi-verification-plan.json",
+      "sha256": "0951f172a80f89fc31630ca04f6f2ba67051231756f4565f0ea8178b5d1b5451"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/policy/2026-09-15-medicaid-magi-verification-plan.jsonl",
+      "sha256": "d0c8c40d273e9d5548ccafe5e6f04be4cae67c86945133b06d23b026cf728f7d"
+    },
+    {
+      "path": "data/corpus/sources/us-va/policy/2026-09-15-medicaid-magi-verification-plan/official-documents/us-va-cms-magi-verification-plan-virginia-magi-verification-plan.pdf",
+      "sha256": "0e1335a8a970efb5f4994cb342940c41730d167da9cfbde162479cf2f4efddfc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:46:51.774547+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HaFObvD9V3JgDuCJu8DNrVnJ8W+SnrJtZispcKFZSCWnM9JZkKCuJVfWzkO3wkbga0j3fjvlGB7wpoi2f2fBBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-magi-verification-plan"
+}

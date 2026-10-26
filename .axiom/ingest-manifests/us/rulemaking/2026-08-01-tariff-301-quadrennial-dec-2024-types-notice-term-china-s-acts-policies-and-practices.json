@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices.json",
+      "sha256": "9c2df9d7dc5e1ac287f5149ece6c9355601153bce419100ce8edc9b65ff5d31b"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices.json",
+      "sha256": "3f7939b1e90bdb3608d4ee360389690e8118e40ed42d374cf4fd54686501abe2"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices.jsonl",
+      "sha256": "ba51ba6aa93294eb1323914c94e33a8a5c301b275aad418d28db08cfe1bb2e89"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices/federal-register/api/documents-page-1.json",
+      "sha256": "6f0961f8543092442d6399abacbb8d5fe818b636b5464b2c4592c47dcca2417a"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices/federal-register/documents/2024-29462.json",
+      "sha256": "38d4e3fecb6af371d2901e69817562f08e9d29f88389586cd32e2f6f6c54e2b0"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices/federal-register/documents/2024-29462.txt",
+      "sha256": "227e8332418b79380d83eb02818e2efa01b88e11eb18ff493bdedc8efc858b20"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9ca5291d639dcd68856feb86c933e6b216a6710",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-301-quadrennial-dec-2024 --start-date 2024-12-16 --document-type NOTICE --term '\"china'\"'\"'s acts, policies, and practices\"' --source-as-of 2026-08-01 --expression-date 2024-12-16"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:33:16.385251+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+4oRaAXZC2/Gt849uzWDirPMAIV1pJ8hOwbCygId9w8FFQLf8KLhDkJTZANtxfsDJU4R3Oo1Cq11Y3GvZ55bDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-301-quadrennial-dec-2024-types-notice-term-china-s-acts-policies-and-practices"
+}

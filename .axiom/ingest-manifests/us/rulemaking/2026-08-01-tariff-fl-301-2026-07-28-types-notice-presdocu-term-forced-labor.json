@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor.json",
+      "sha256": "58f2da039191e33093e4d11ac0af68c16b91d6e78191cf885e22dee175c61973"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor.json",
+      "sha256": "45db1961cc4dfc2f8e01ebb1e9e3eb7567927697b492158f46e183016bfe4f05"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor.jsonl",
+      "sha256": "117636b1ca1e8da32d4aa6fdd01ece7500f21e107e4b9d261d15e66da5e66f6d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor/federal-register/api/documents-page-1.json",
+      "sha256": "19b8e7db07858efc20b79c6215a0166eb9408f403e43020bfe5b7501f615d48d"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor/federal-register/documents/2026-15181.json",
+      "sha256": "9ed39c2bf8f10773b047ba51d2f5da131f02d489e24ee442752db0a11d3d823e"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor/federal-register/documents/2026-15181.txt",
+      "sha256": "60af91b1fbef3f10ac71e38e6bbcc2f64e56edf7d81bb89d2a9e3afedd219c7e"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor/federal-register/documents/2026-15274.json",
+      "sha256": "3cc687de43319cb088836a846dd138c999bc3e4f686a075982716d51f2937cb8"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor/federal-register/documents/2026-15274.txt",
+      "sha256": "5d1c2d2b1d72383f753d686010b8924588f0d1ee3650a21fb8d53066dccf4c6d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f4cbeb9b2e26c1158ebf075144267abebcea797f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-fl-301 --start-date 2026-07-28 --document-type NOTICE --document-type PRESDOCU --term \"forced labor\" --source-as-of 2026-08-01 --expression-date 2026-07-28"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T12:58:16.332635+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WexRf3Cg38guC5rOq4kgBNYa10xRcnbKhkvYSqxssmi2BDUXcEdDfVyCQnPOk5CgD2NIPIBwiFD/kH38QUHIDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-fl-301-2026-07-28-types-notice-presdocu-term-forced-labor"
+}

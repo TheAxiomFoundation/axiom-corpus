@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "8d6de396d7f25883fd31f7229aa4fe5714f992d2f831910fa19dd5dafe207a1c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "b2a73845988f8af185823a6b68709b357705cffc205babaa67aa052e0c6796f3"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "d02b2cf6a04efd8f605f0e2103ab364d37cdd413528cba49278905aacea3f465"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-13-snap-et-state-plan/official-documents/nc-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "30ecd3fd22c3263f9802b7404623b13c896c30be6c3d7baab18c9b4e156f69c4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 219,
+    "missing_count": 0,
+    "provision_count": 219,
+    "source_count": 219
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:52:37.873586+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PLRIC0ZO0orpnrMIpywn94qIEbvxKLkCZ0udpN/o3lKD98EcE9iIrgSqF4miAyJhcbBSYp4nnh8cQwaqgu4WBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

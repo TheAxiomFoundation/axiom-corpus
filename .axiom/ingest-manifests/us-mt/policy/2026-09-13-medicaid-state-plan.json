@@ -1,0 +1,329 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/policy/2026-09-13-medicaid-state-plan.json",
+      "sha256": "9c50f116b9fb9c1e666440dbfa7e73dee6698cd24815579ef3bc0526bb2b95fa"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/policy/2026-09-13-medicaid-state-plan.json",
+      "sha256": "305462e96289c85c5204202d4a1534b87f064cc3f1d18dc8f402a3ecbc405162"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/policy/2026-09-13-medicaid-state-plan.jsonl",
+      "sha256": "bed4bbd7ca9485960b2abe447420b3502dbd5633e6476863e5af80414505c951"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-index-p01.html",
+      "sha256": "0934d1dff7f71ceeaa81ef44d894229765b57fb49e8b69adaad283cdc5d34d63"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-index-p02.html",
+      "sha256": "7b9e400aae68bf4828a2f8aa5fa4e7a4d60a59e34af25ee221310529cd8bec27"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-index-p03.html",
+      "sha256": "0032343d4c7d8745e5ab9b95854346d9d9d664b3a8032ac940a992a5c9bc3398"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-index-p04.html",
+      "sha256": "a9de739212ea5bf503f6b37148ea80154849378e709c2a42302cb7688eba789f"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-index-p05.html",
+      "sha256": "ecd4cf3b20dbddf96aeddc7dc8085c108172504e343d290f2f09dfcdaa3f0386"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-08-016-approval-document.pdf",
+      "sha256": "42ef7c6becb8b6a333567e1cb938180e8f0ae66b12a1d3731650eb3dab731f67"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-08-016-form-cms-179.pdf",
+      "sha256": "89ee6c6b8436e4ee1852485f78d541f2f6288b90016b1e2908ce6f839ca6f0a6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-09-011-approval-document.pdf",
+      "sha256": "6b154f041356b47e71bc8cff94d10944975c6cb494cb28a2a08e51182809bf38"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-12-002-approval-document.pdf",
+      "sha256": "bf2881162dd7a122d5ab2f03a2492c900d6c959ad4a053250f18f97f73dc94fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-12-002-attachment.pdf",
+      "sha256": "00dfe0266284a8f8c0c8d2332a54c7358d3448b54f5405dc9c087ba7b034aefc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-12-002-form-cms-179.pdf",
+      "sha256": "683d1e364045f14aa614726688cb91d9ef0ebe79dcec2767c0e6d0a5a253ee2b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-0042-mm-approval-document.pdf",
+      "sha256": "5ebdbd6b7bd764f85e200d4fc548fd333b4b5eb98ce6ab20e08d52c5cfc1be80"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-0044-mm-approval-document.pdf",
+      "sha256": "734b80aea2bf37f085893ad0b3822022a545ef2bc658a039429c5a3cc803fbcf"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-0045-mm-approval-document.pdf",
+      "sha256": "72bcd22f283f70bed20a855da534987811e327762997d27ed16bded8b0dfc6de"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-0048-mm-approval-document.pdf",
+      "sha256": "9027b96c039cd3bf46376b1363ed181a22a6392bfea967bd5ec480b74e9d80ea"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-009-approval-document.pdf",
+      "sha256": "d3d5d1ab1294dde1b6b22ba1ab6fbccc140d861f9205afe4c5e5e3da09d9636a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-009-attachment.pdf",
+      "sha256": "cd5ac4a014179bbc88b690d39b7bddaed8f45bc7806dd6f3be789bcf59ae3b0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-009-form-cms-179.pdf",
+      "sha256": "4b721ebf6de337c85c78ffcb4b2711e0761e1c2263349464a3f339dcc96159d8"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-015-approval-document.pdf",
+      "sha256": "4413a84515e529b057fadd3b6d451cc0f3beb5951b5fde8010d8f2c686d527a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-015-attachment.pdf",
+      "sha256": "49f3afd18bd2fbfe10144f6189a75c4a1952243347718184f517dd2522397566"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-015-form-cms-179.pdf",
+      "sha256": "1df595f29a3fb98b14c8b69f34c83b5fe6c24c38668c649bce7788902129a0f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-016-approval-document.pdf",
+      "sha256": "ee4c3c0ac3a9dc3ce1b6b57b114f8277fd5a15abc7f366484f769a82fead3a7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-016-attachment.pdf",
+      "sha256": "3a894d29976907982ecfec86bbda17235675d332b99843e23e2cf9e3125e7afb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-016-form-cms-179.pdf",
+      "sha256": "e911b7d2571a51835a4c033b54725d22b488b8b2cf42ab6ad46afe3afaf5bc8e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-017-approval-document.pdf",
+      "sha256": "4d82c6f630eccffd4c2bf88d959225ef4b1c28335a6e2a2195ffeaf051284b7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-017-attachment.pdf",
+      "sha256": "f9c609d2af2fa16f6b8538c8eb9816fe576f2941d40b06e77d2b900e2932910e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-017-form-cms-179.pdf",
+      "sha256": "2c0150bbe932ec1899526849421dd1e8a37ab469d5baa07c207c4cc1cc5d6a38"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-018-approval-document.pdf",
+      "sha256": "31e24734ab84d53ed13b3178542db52e8de9d2efbbd7faa6eb9a55b6247800ac"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-018-attachment.pdf",
+      "sha256": "dee5ec701c58149b176c0deebe64a8c0cb0fa4539220e9925865d1557d137cbd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-018-form-cms-179.pdf",
+      "sha256": "7621217eb555b941fea90248d183b347dbfa8047a00a9a00c94b4e317609b7e2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-019-approval-document.pdf",
+      "sha256": "2a739c2a5a0c869f11c909c852a9244bf56ae679ee6cfa8cbf653befda19cb04"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-019-attachment.pdf",
+      "sha256": "0b0bf4baae093c929fec285078d54de8f4dbb9cf03664cc04e100dec7d41997b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-019-form-cms-179.pdf",
+      "sha256": "6999cb275eee94e7078fea1af6174535f506f89fbac15908e2dea92c95d52608"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-023-approval-document.pdf",
+      "sha256": "b9ec034e441ff6f40fae6bee2d896e09d3714d635c16f797c6a2fe3fe88a7533"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-023-attachment.pdf",
+      "sha256": "bdf613818de9d730b35aeb9b7b91ad088871622bd1c1a79654f6e25ec0c2aaad"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-023-form-cms-179.pdf",
+      "sha256": "7244fedf6f0e4cdc776d90a1a5dba8bd91b59722ea03961ac8946baa99235585"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-026-approval-document.pdf",
+      "sha256": "ee75bc99b638cd8849abe29899a63fd7f2bc839c9abbc87045f95d3cc98f2da6"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-026-attachment.pdf",
+      "sha256": "6771c7d8b11b78a0d0a1a8c96fb636ccbbe376c12b4b5aa3222af6cc4b820c8d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-026-form-cms-179.pdf",
+      "sha256": "4d156cf9db91c6a86e82c547c99dc99eb045c74a9b9b1d22d552d1f3540d5c43"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-028-approval-document.pdf",
+      "sha256": "4eaa929709b557c6072da1d47e800e5a56ad4c3a712ba9a1a3869737adc3db3d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-028-attachment.pdf",
+      "sha256": "9a521b29471f52de9111604ae2b52c016c3b9c7afd7f1e0dbd9f9413c5d0dd2d"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-028-form-cms-179.pdf",
+      "sha256": "49e1a2d47ec9f846b588c18e59641c6bbfbb6a906c8375cf4d5ad5b96c13ca89"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-029-approval-document.pdf",
+      "sha256": "6a2df7c21bbcd3efb2bf1492413f7029f4d99ad93298ec1bea5891a36ba12ac9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-030-approval-document.pdf",
+      "sha256": "8c732128abf7f5770076ba9e33997affee1b969957108623e110b28db84c67b0"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-030-attachment.pdf",
+      "sha256": "f5b1f370e7ebde60ad87a5ffd9fece7327b4fb59d47336bd346707832213e582"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-030-form-cms-179.pdf",
+      "sha256": "56ec11b9e9889fbce835f5a4def9bc84698ddd5bf0f1be295ec120abb19e14d9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-032-approval-document.pdf",
+      "sha256": "bb1b4d1a2061f373cb99f87148f52168c4d9b8d198b43299291023f647733958"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-032-attachment.pdf",
+      "sha256": "4f88200e10481708a1f5b5c612ec2b080b103ff9f1a1aaf4953d55d8df62c85c"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-032-form-cms-179.pdf",
+      "sha256": "6232c1b2ce3210478252f3a78053d3420388abac4ccc23617ae41187a41a2dcc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-033-approval-document.pdf",
+      "sha256": "ac2802acaf6864bcbdf447a5c8685aea20fafb8ea929489e4cffedf16aedb035"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-033-attachment.pdf",
+      "sha256": "a814be58700b937e55a81553067544f0231c40f9b6e3afeb69d0f70e9da3b03b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-13-033-form-cms-179.pdf",
+      "sha256": "a74c4f726297eaf2c22fde655b364812774de40f28a66a932d1bf3ed3ea5cc4b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-14-0004-mm7-approval-document.pdf",
+      "sha256": "10c71c3d189487622b6c434a9aeef3266b9ef7931340cdbe4f39c01374cbd703"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-15-0021-approval-document.pdf",
+      "sha256": "ba66c254538e3f95ce0b389313b7ab490364e2379307ca34c143f7dd3aa23acd"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-15-0032-approval-document.pdf",
+      "sha256": "177672cb3e18f2f41c164fa25228b4583894d96220adc601c5bc9b1f3ae5ba1a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-15-0036-approval-document.pdf",
+      "sha256": "a3470a66ef7903f568869dff6d36edf8c4d2336011ef95b7d427583638dbe73b"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-16-0003-approval-document.pdf",
+      "sha256": "97049bdccaf0363a756ddab30724e219383d400656e349a45b41ac3be3c33b69"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-16-0007-approval-document.pdf",
+      "sha256": "e50567abd74831feb00114f82b6846d5eb67b43147614efc357530f8e3745e33"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-16-0020-approval-document.pdf",
+      "sha256": "08b240b2eb575ac6cef9edfcb569910b52eed653ab5349ab7bf266ff8eb26feb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-18-0007-approval-document.pdf",
+      "sha256": "d92a628559e1c2878e5480f6ad3831924eb6d80cfcb5c6cff7247250980437b5"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-19-0001-approval-document.pdf",
+      "sha256": "483a89eedad636e70d49eb9b22dff25912cb74cf5e07f9128336145378283df7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-20-0005-approval-document.pdf",
+      "sha256": "813584872ab14af8844c7b83fdcec683e441b143d02cf7e59657476d4bd8fa41"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-20-0015-approval-document.pdf",
+      "sha256": "269e45a68f2ba1417d153f48f1b6decdcf2c705d39d825b37574c5a604c697de"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-20-0024-approval-document.pdf",
+      "sha256": "c30f244e585a2cc7da07124e25188ded9a176c10a80c3b463d32b846426f77ff"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-21-0003-approval-document.pdf",
+      "sha256": "9ba314cd7c083e0141bb4bd29cbdee40773203446fb818ce3e89610c89f2034e"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-21-0004-approval-document.pdf",
+      "sha256": "5009f811c5eb178ea3bca7360f49f0157622b3e7f27a8e8ba7f6674311d702be"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-22-0002-approval-document.pdf",
+      "sha256": "b5c41751d03b596fa6dd3e7ca138a79d95bc70f61ccca1453af65bb095f45c7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-22-0007-approval-document.pdf",
+      "sha256": "511f2bde5df3a37b1a8b5e75aa9e9283f9d7ca3d06fb3bba4c700d95cedc41c7"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-22-0013-approval-document.pdf",
+      "sha256": "015ad0ac52ca3993a5d73ea1dd496e958e1429fe4249b3742c5647ba74df4ebb"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-23-0001-approval-document.pdf",
+      "sha256": "6cb7eacb2bbeeca3a70c8541a47130b96b04362c29b873495d1a384d3fc0c1c2"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-13-medicaid-state-plan/official-documents/us-mt-cms-medicaid-state-plan-spa-mt-23-0007-approval-document.pdf",
+      "sha256": "2d00f337e1bf70af96954a1fc561c2c501244bb8f81248b84bc1e3b084a602ff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d554614f2dd48a090cb2e3c7712369da76d2928",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-medicaid-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 638,
+    "missing_count": 0,
+    "provision_count": 638,
+    "source_count": 638
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-14T14:06:57.636065+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dQWKvCXCWW9L2phZEWibZow6lN0esEWmcwx5PfvZdWAmvqL56SDCDY1Cee9egIOQFWDmPWNpJY74sCWBpj5oCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-medicaid-state-plan"
+}

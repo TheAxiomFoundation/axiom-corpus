@@ -1,0 +1,853 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "cc47a9e3a226a8919e43ea9f6909c8461a3b90801ba44dfa9c4256a6c5b64f28"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "14e0994e826e6e81073702096053a93ad8b25df97e924a8d78a873f2b5a632dc"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "1b2ae1a0b2067cc30df3e97a3e23fef06d37f90ab41183cc44ad5ddd92d59f52"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-100-series-reason-codes.html",
+      "sha256": "b24a8e9d6f142a6fa8f94861665d6b9c4e1f4caff11b03bc593aa59450c418ad"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-200-series-reason-codes.html",
+      "sha256": "a69d151338bb2adbff01c5d2b47f80e8b285256295fdc898b36dd6f17a0254d5"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-300-series-reason-codes.html",
+      "sha256": "3966d89e4f1bd23309b279a4675613e4b67c3cb3a65ac3056b2453389f067501"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-400-series-reason-codes.html",
+      "sha256": "ae0337188424168376cc098128670c1f8a1f9b1f531ce52a74ce098695f91e74"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-500-series-reason-codes.html",
+      "sha256": "d7061cb5e73e8a80b31c6c70ed942f3d9e70c86b9de8ed21f801a6a0c7fe3e34"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-600-series-reason-codes.html",
+      "sha256": "307470bc58ae7a3bc1a1bdaeae2dbb6290f1af6e2a6097a25330f7967718cbe1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-aces-codes.html",
+      "sha256": "fb56aca73763f420314237e5e4c1a714304aa40488bf8c628b31b1ed532a6131"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-achieving-better-life-experience-able-account.html",
+      "sha256": "5b43b58fc92d69a0775cd75fea42cc6964f010c09561357ee0db369ef1a26f0d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-address-confidentiality-program-acp-domestic-violence-victims.html",
+      "sha256": "ad5bef87943c0bfb331e78c1209ae1fd779cbfb4a6e10c07f385ca5024dd21ca"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-administrative-hearing-decision.html",
+      "sha256": "dcb2d2b340934f2199fe9976433d5ea87c65a8a0887c6e86ca1509a751d8f1a6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-allowable-expenses-chart.html",
+      "sha256": "de9b2f81929ce0424b4a00599ada93fc448bdd48f55e1129ee5bebedda877a9f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-allowable-medical-expenses.html",
+      "sha256": "5077561ac3466dcc8756993dee21c607372ee3c1c09037b2007d0e0137a5b7bd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-allowable-practitioners.html",
+      "sha256": "9f834e28d23d0cfebc02185e9be5d8886cbb055e248d4d2a8c93a7b7d87e424c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-annuities.html",
+      "sha256": "bfb0903a813c1970be3073501b920afa93df71012fcea9dd04e19c65d8a38048"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-adults.html",
+      "sha256": "9e8550ddfa1687431c5c0ad287407169c1b055acbdb0e7d1d6fbeccc3c262edf"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-alien-emergency-medical.html",
+      "sha256": "73738a8cca696ce600027189bfed67f6637224f2dd27bef3f3e89128f5023d7d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-expansion.html",
+      "sha256": "7dbb7725708c028c07362bd17ea31d70164cf237e973288e606c8e80ecb25ee1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-family-planning-only.html",
+      "sha256": "7cea95d90f17a6c50393d8d5a628f8d770dcb85af2dde751e616211922d2dc49"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-kidney-disease-program-kdp.html",
+      "sha256": "9a366cfbae581a037934435d16ca6c71c4df4be05d788a99156fcabfeb3e57d7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-kids-and-without-premiums.html",
+      "sha256": "31617bd7e7c6466b6cc0ea797099b168a9081fba29c49eb44682a77ed2318d14"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-medical-extension-families-and-caretaker-relatives.html",
+      "sha256": "ed43282cee88830603bbc4cf20b4b593a99e393c777f0d94d9889f138d117890"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-medically-needy-and-spenddown-overview.html",
+      "sha256": "5dd23da8811376c94c0c2a04b4ce5da1bbac64e09534b99504319ce10f617b41"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-parents-and-caretakers.html",
+      "sha256": "2512bf1975c29a9863acf98b27d7565f8224920d2b8f232be22b14bf553abd7c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-pregnant-individuals.html",
+      "sha256": "698a585eed5a9c200030ccdb1de547bcaa9efed13984cc0110212bf21134ee59"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-refugees.html",
+      "sha256": "e8da89346de181e6f144133f3bd5b05e2063bd7975446d5d745bc919098781c8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-apple-health-workers-disabilities.html",
+      "sha256": "fc0d2826d6d42b71f7a40bc92b9d3e487de52e5c6a54b00f4cd248e55984ae92"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-application-medicare.html",
+      "sha256": "1f5f09d940db21b1709a37d992f5979bdbcdad1aa76bac1d838432c682891e69"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-applications-ltss.html",
+      "sha256": "9ec72654b5fa917b16425fb8a492b563ca54d7d6f35e3155fff3d57f460a0787"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-applications-overview.html",
+      "sha256": "fc1f976865dd2c59e55d8c5a203c0d7f78e32e6db6dfe85f105e8ad3373aa8d2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-arep-screens-long-term-care-cases.html",
+      "sha256": "6505fcc2f455d60ca71ab55490690df76ce4569f87d8723fe43ebeba45394a53"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-asset-verification.html",
+      "sha256": "13fa1fd346635138e1dbbf22b57bb86806ceb4a672ea7f88a5f5af466ca4b693"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-authorized-representatives.html",
+      "sha256": "066fa54e563f7263f01b21ae8c63f33de83670f65a97b326399872feffd1ba21"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-automated-client-eligibility-aces-program-codes.html",
+      "sha256": "657c396c8075c4ac6f83544a9bd8a9348e33623ae74e6e1017a0243547c447d2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-available-income.html",
+      "sha256": "6cc44bf2bdc56390ea4c68171631398a5c19851b33fb92516e8ced2953d9aaa6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-available-resources.html",
+      "sha256": "d0f3974be31364eb0e9d415dff3be49b2b87d520fb31bda03296d7498a71a372"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-care-delivery-managed-care.html",
+      "sha256": "48dd86a8269782cd4b366fd2e53769a0dcbc4d775ac08d9137ddba2ab765eedc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-certification-periods.html",
+      "sha256": "be7afdd74093a550ae835d70728c3bf7cfdde514d1768b2ea5917af5ac4a63f7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-change-circumstance.html",
+      "sha256": "8d877219b8e6d1ab87def2317baac68854a0761eaa387b4ac2c99b551f7e30cf"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-changes-circumstance-effect-eligibility.html",
+      "sha256": "b749256bbe9134048110ca13912e452365b23ef8410504ae0e5ffefd4032c991"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-changes-circumstances-reporting-requirement.html",
+      "sha256": "2dbd6519b498a93bc7410d3b128ec03168510333a283e25e7702cd7dc95c0752"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-chart-acceptable-documents.html",
+      "sha256": "6425da79d05514c514ccc90c7ac5f1a1e4e78b167b43ded353cdbffcfde77e78"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-chart-requirements.html",
+      "sha256": "4c738595aa9858813b5908e156b055f01b9f2ab34d648e5ab14a8a1b3803bad8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-citizen-and-immigration-status-definitions.html",
+      "sha256": "a6bd92f739144c45efba1628cfe41951c1c36afbe46ab94025018b1cb42746b6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-citizenship-and-immigration-status-general-requirements.html",
+      "sha256": "338216e9e5acf16ff290d9a25a8bf26ef541434c3f0a9899e23d2b178af01f32"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-civil-rights-and-complaints.html",
+      "sha256": "98e75cc5ebd1b5b6d0ec9f3841dab68e07647e3360de8ce802f22f0eead6de32"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-client-notices-overview.html",
+      "sha256": "50e5652ec64e42d8cd53161d752ceac2b459cac292ec95a2f6b5ac7ebb5b3f1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-cms-guidance-part-d-prescription-drug-expenses-and-spenddown.html",
+      "sha256": "0220023f44395d9a767fb49b52582f5177edef6f20fcdb7c7d5d623092c9c758"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-cofa-islander-health-care-program.html",
+      "sha256": "ed1db9d67eb5ef804aeb8072284011f8149f5043645686b45af8fb88bd807c97"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-community-first-choice.html",
+      "sha256": "4d53884fcbf5ca42d8b74673a68c904795b77c5d332970ffe9ffcbe695ac8e95"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-confidentiality-data-sharing.html",
+      "sha256": "31f9adb62565095f027e0e2c4fa206b83d75bd0db5a7a1b468851e1c184954c7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-confidentiality-information.html",
+      "sha256": "6c0eacc20e9e37ac45b469a119ba611b30f540f875989ad675552b00bdc5b2b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-contact-hospice-program-eligibility.html",
+      "sha256": "51e52eb57b27a67478eb95081df72ac48c5efb6f776e4bcf856c989401e02560"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-continued-coverage-pending-appeal.html",
+      "sha256": "465000ac7ad5aab3fa1d73f614c5f9b047de6e4eecceaebd619b104a6c40beb8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-countable-income-and-lump-sum-payments.html",
+      "sha256": "e7ec866fcbb0d9dd5be95946882f84ea35fde12ac48d3070a47c0284b70528e1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-date-entry.html",
+      "sha256": "bafdacc2031ebb370bde5242c828ba838fb66ca8167f1924fc0f31dded14a80f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-ddcs-home-and-community-based-hcb-waivers.html",
+      "sha256": "96598a6596cb64cb0007090aaae670ea09b1dfede7b713b195bd93d99a4d16ce"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-ddcs-residential-habilitation-centers-rhc.html",
+      "sha256": "71df67df1f8793253e72d52b550cc29b9f5c950a62e7ac1f08f021da1ccb2607"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-definitions-long-term-services-and-supports.html",
+      "sha256": "071a730110ebc61c51b9b234697ea2d50cecdcadd272ad5ef91ea31e7b9f6a19"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-denials.html",
+      "sha256": "837d1de1972dab0e5d75942aaea2fa82e6839c150d49a85ec62f39e075860017"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-determining-eligibility-noninstitutional-coverage-alternative-living-facility-g03-or-l52-group-c-and.html",
+      "sha256": "bdf2e02838d984e7621576840cf574ade04dce5ec76db3012dde38991e9dfb1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-determining-value-life-estates.html",
+      "sha256": "17a0923d41fd3770d35549aa235b31df7ea126cebb1dd00d2d0b5e61b84997ea"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-dshs-and-hca-forms-wacs-rulemaking-and-useful-ltc-links.html",
+      "sha256": "5fbc0c81219e62829b74c711b83b4c1bcacec29aa0e4919e1295845475e5f2f3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-electing-hospice-services-dshs-agency-and-client.html",
+      "sha256": "d9ad076a856782dcffac1b212c57cb9bcfb3c9177145df35b7c02fb6ea52019d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-eligibility-hospice-service.html",
+      "sha256": "ebdc36623a0a319b8c20705d450784e7ec5977b6fea4cb647fa862fb630b7d63"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-eligibility-requirements-ltss.html",
+      "sha256": "b0cd577af27d04bd96937c515b89701bf5669c65663c5b56e8a60571459dad18"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-eligibility-review.html",
+      "sha256": "493512cf069d4cc807512585f2e0c515a6312cdbff480823e8099f1b2a9633bc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-equal-access-necessary-supplemental-accommodation-nsa-and-long-term-services-and-supports.html",
+      "sha256": "d8a4dda0f596bd42a2a2e8236b968f77c330ccc4cebd1c60c1f9040655de6b5f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-equal-access-services.html",
+      "sha256": "2c0f39c20a1df248092e59a1377419512e3c5d2d309bfd72fcac50bf412c3677"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-equitable-estoppel.html",
+      "sha256": "ac703b11b8e59247ce72ff20084bbfb21e1405a4f18f2f439e3401a51f951112"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-estate-recovery.html",
+      "sha256": "63cb4d52e59500f8dd1a2c18eea08fc47f72e25885b1abce8a546139c3d9979c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-excess-home-equity.html",
+      "sha256": "97f63a83196507d8979c1ca8cde4da9942d7f5e690de531dac4578412b1d7cee"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-excluded-income.html",
+      "sha256": "d38e646a771bd10f72ec374e6bb2bcd6af7da12bba541876ebc1aa7868495ae6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-family-and-dependent-allocation.html",
+      "sha256": "25315f5cbace3615b41639f3f52bb8090cfb598970dd89b4090a7939a69423aa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-filing-application.html",
+      "sha256": "42df3668207877b370e7b68992500219ea9151132b9291828e8654f4cc19a1cb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-flowchart.html",
+      "sha256": "b3570bd0f0ab26d8aa5c68363ac9a47e8fb473d1ef494f02fc250d856db17b35"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-foster-care-relative-placement-adoption-support-juvenile-rehabilitation-unaccompanied-minor-program.html",
+      "sha256": "885abd74e303aae405baa934925ca87f649cdb3c7c0c0b5ce74072133d3f3181"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-free-form-text-aces-letters.html",
+      "sha256": "bde5dfcc0bdab534325625cfe0cce7909cf420f22de740404cbcc722406cd921"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-general-eligibility-long-term-care.html",
+      "sha256": "4de2a84071e01008c86dba9f854c0c93f43a7752f23dfb5edeb93368fd09e13f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-general-verification.html",
+      "sha256": "d1e52d25b858037af5e22b2dbd959961fd46a1146a9e7adebcac137cdb57a1c3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-guardianship-training.html",
+      "sha256": "453a53c9a5b865aea65742ad111bfa8886f1d3f1a072758d9c2c20507f6e456f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-guardianships-deductions-participation-room-and-board.html",
+      "sha256": "01cb001ab97fa05e87fbd0dd298a23e53cb75155fb082a4e7053dd8b9306068d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hardship-waivers-long-term-care-ltc-services.html",
+      "sha256": "5cb843adfb21c844b893cf7f84af557a4dbb7494986a9dedf29fbfe895574693"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hcb-waivers-room-and-board-etrs-and-bed-holds.html",
+      "sha256": "c93dc5af2b860da2f76a811dd730aef715f3caf3cf45b54fad7b2b0ec364fd30"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hcs-home-and-community-based-hcb-waivers.html",
+      "sha256": "44c8fb5bd4a2ea140cd5959415e2777ca8eb17e7075b44c1f60e9972ae5a3196"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hcs-state-funded-residential-program-through-medical-care-service-mcs-program.html",
+      "sha256": "b90ef902a430c7b002768d504a19b76c3631ab622b8d9cb9595c0c1a80e5a14a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-health-care-adults.html",
+      "sha256": "76a8b825b6864a5c8cb27b97bf2771c20d734ff1ed26a77da30c2c5fe90d81e9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-health-care-aged-blind-or-disabled.html",
+      "sha256": "d81bcaaf8b807bcd6397869c1f6dd984a1283726331819b0a150c4fb9822b4bf"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-health-care-children.html",
+      "sha256": "8ff3bcda9ce92470250b68682c0ba1bc4e01257e81955d827456c6f62e40ccf0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-health-care-pregnant-individuals.html",
+      "sha256": "0ec790a6ba7e7d1a0d92b090a1ea1a9db484f44cf828c6edc289d24d031cef95"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-health-insurance-premium-program.html",
+      "sha256": "c7f0d2c36757e5449301a9d70da3b0ed7b087a11d3d15f4b9ea39df56d6be1a7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-healthplanfinder-letters.html",
+      "sha256": "22e32f3c5db0cd9fb73406d6c3b936e5230834b1e1df477bebd59f9e030d9af6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-home-and-community-based-hcb-waivers-and-programs-using-hcb-waiver-rules.html",
+      "sha256": "db58c0b98dd9d26958289d05b8dfafea44478a002badef1ff754f0f31e46aa42"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-agency-contacts.html",
+      "sha256": "cde455ab0a0feddd9619aa73ecb868713bd4e6c93990115dd0c3e65bb42e980b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-and-long-term-services-and-supports-ltss-programs.html",
+      "sha256": "cc1d7c3a294192d6753167b088eef4689b1255d74f14ab48ab206e5d71bb37fa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-applications-clients-eligible-categorically-needy-cn-coverage.html",
+      "sha256": "5f28e257e80d2908f142522437b064aae010e0d0499d3d47af2d7cfc23aef4e3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-applications-clients-not-eligible-noninstitutional-cn-program.html",
+      "sha256": "e93db15b69491c26516acc8580298a931e3b5a6718ffa9f189f97864989f1688"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-changes-or-death-reported.html",
+      "sha256": "8e48fb1da8247354f4bb90af658b3ad2b0af19fc5b97f718ee2d9d44ef033e82"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-eligibility-institutional-medicaid-rules.html",
+      "sha256": "7da4fb305cd00af072ebd8bc4ed71b6ffbd611f4fdf2c188297fc1ffcfe218c9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-index.html",
+      "sha256": "a07696e235e1e84e16eebbb8a36d342dc1c2779d706195af9c5a46ee70197231"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-overview.html",
+      "sha256": "b2f686315e6d4e2f4d3ccf1bebebae0039bc58d52322b021cf1f02aa3d3884fe"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-hospice-special-circumstances.html",
+      "sha256": "b55256ab30a39de6ade3f2541fbcd6958d94172d1c36dfdc520ac93c9d921368"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-household-composition.html",
+      "sha256": "2965b3c4b5aa0dbf6a6883a93b5d12685b3a971532fce671c3defc990a8c4d90"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-incarceration-overview.html",
+      "sha256": "308fc45519a7c72e79cbcc43ace525eedd158c3363b9211a32a5d0736967053c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-allocation-and-deeming.html",
+      "sha256": "4c5c044739e858807cada0e9504322a23505d00e7daf4cb18b536c571c750d48"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-best-estimate-guide.html",
+      "sha256": "46e349ad052ee6f0c6a105e40adb1e59a0a816850d91f7356b42aa5f01e6a4c7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-overview-1-income-eligibility.html",
+      "sha256": "a18c451cf883354aedb50af8a0f49d9a5cac910e12d0d037c9ecd1f1f7c288ea"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-overview-2-income-eligibility-continued.html",
+      "sha256": "e1d7e0bd2afca07a27d77db3eb106821d06c564be48350213607bbcac5fd7c7a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-overview-3-exclusions-and-allocations.html",
+      "sha256": "ba02e08b529e5d1afb54e65fa95d020029ae858d4655258786e06c6fcf34f906"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-overview-4-exclusions-and-allocations-continued.html",
+      "sha256": "dcc3838dc83ab16407fc8fbcb527acc45b060662e2a5f9444a354233527cdd2a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-ownership-and-availability.html",
+      "sha256": "7a5d526cddb1ede505231faa92f490a8587efb237087a58ad7b29f6149cccdc6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-part-1.html",
+      "sha256": "d66d4ca10ced4adbd0c389f6e067c1fb031217aeecda0b49d293f5b161757fee"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-part-2.html",
+      "sha256": "32820055dac26a8b6caa283ad8d431336eed9060f6770a9693b9cc69d2d11a4d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-requirements-index.html",
+      "sha256": "e912027adb0af055e68bba84137db6c3a158a38209f810220943d83a317cddd3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-income-special-disregards.html",
+      "sha256": "ed3a035beb0a06c9122d34d2e01e31f3331e7f03aae7b30cf5326ce116cc2e45"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-institutional-status.html",
+      "sha256": "f6eed2fed75c47191775b5db066e2071f85fe4dd353f47b93282df5db637f8a0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-institutional.html",
+      "sha256": "5b2f93d6d4c7b0f2d0f0357a3cfc4b337a6be545195d23b67c2441b6c70ef530"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-introduction-overview.html",
+      "sha256": "52f4b2a6bdd5ba71c154487c501503d7688ade6a17f4431e31cf1d22a8c13b35"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-iraqi-and-afghan-immigrants.html",
+      "sha256": "3b834f3125a57fb41edf2bb49f6351b071df9248272898b32713b347778631eb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-lep-services.html",
+      "sha256": "b70b99db8d5288091e54948cd917671c12b24df44118547743af0e1d2e8137bc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-life-estates.html",
+      "sha256": "3bbdf8b3577d6882b661ae73b00d65b8b52ec972b0343b8ca2a1fa38ea3a0ab6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-care-partnership-frequently-asked-questions.html",
+      "sha256": "95ad609a6a8897d788370c1a10d380907c8e42863dcd725c2a0f9028373c3f41"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-care-partnership-information-consumers.html",
+      "sha256": "d26e48453196825c75d752af2e588bdd0974c0feb4cd3e579e960d7daed19ea8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-care-partnerships.html",
+      "sha256": "8bec284b2590939007d774b315c0e1e0bc113130ddbe3e24b87842d05f8a72d1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-care.html",
+      "sha256": "35ccbb25973bb657ec9cd5347341bc1239ba20f622de1824c70bcab04e6224ae"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-services-and-supports-authorized-under-apple-health.html",
+      "sha256": "aa0c82c0ad87a679a193aa604fa27c20167895516ef936fffaa56b08631a0995"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-services-and-supports-index.html",
+      "sha256": "0d48336afe8b8312fc832999dbfa453d1093a49a26a09c2999166f895e4ad383"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-long-term-services-and-supports-personal-needs-allowance-pna.html",
+      "sha256": "8f3537da6256262023dfdeab0f79e2d50749bc9226bf3a505229ec36f0475540"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-ltc-change-circumstance.html",
+      "sha256": "06653f1d3316e1a47f9941f5887cc093a276e334555ab038299e283336eb88b0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-lump-sum-income.html",
+      "sha256": "1927c9aa29c515a171edf460e27125788e6736757b2287f927446fa9f46199dc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-managed-care-and-long-term-care.html",
+      "sha256": "31c14bce6773c373c9f820395a29d17a4f8f934480859b193d1b69a0a1ba5404"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicaid-alternative-care-mac.html",
+      "sha256": "c214aa6bb441b748ac33d4e803bcafc967f2d896bd10280a2a34d5c572e40149"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicaid-personal-care.html",
+      "sha256": "cab61e627b314c37f74c3587b234023cadd274724b7063337f90b41dfc5bd024"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medical-assistance-definitions.html",
+      "sha256": "8c5a1034db49ccc43d4c2d463738258dd4ddc0b82d03e998fc165f5c3e7a80df"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medical-care-services-mcs-program.html",
+      "sha256": "ace73486ce84802e71566a2b9681a2fda5fd3646770a0b3a26e6c54f2f0cdb7f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medically-needy-ltc-programs.html",
+      "sha256": "d35a69fa706c0ef27f30e2766b83b9028e45941ea4c6d2b938c72df0c785f9d8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicare-and-long-term-services-and-supports-ltss.html",
+      "sha256": "eed255d950f893f66c0b3b984f24e9bacaf0f76f7f7c5510634cbe94ffa841db"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicare-and-spenddown.html",
+      "sha256": "38effd70d8637109d54239068c838bec5bbdcc331faa376173e0920b3ef46aef"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicare-coinsurance-days.html",
+      "sha256": "b15dd3fa367aa4fdbde99ea97a1c89ad2484ae3c0af1a14274a9e6fd5b0f8ef5"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicare-part-d-staff-handout.html",
+      "sha256": "ce2c916041b644fb869c58e9ca79417dcd6a3b11ca611efeef8631ccefb80bca"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-medicare-savings-program-msp.html",
+      "sha256": "00dd35c048d1f2e7ea6ff1309d8e2477967620d2ccf704f64d88758efbc43882"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-modified-adjusted-gross-income-magi-based-institutional-apple-health.html",
+      "sha256": "82777e5e7cbe3ab30e5ed5b92b06d791185782aae6550f27b7c58b3a8fcec54a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-national-immigration-law-center-guide.html",
+      "sha256": "5fc9551d871f23a40453daf48c795efaf5a26e8282e96ea70b7132a61bac4ad3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-non-grant-medical-assistance-ngma-examples.html",
+      "sha256": "43377f66e6774a3765772dc473ae1f05997006d37dd3be3558c670abaec7c794"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-non-grant-medical-assistance-ngma-hearings.html",
+      "sha256": "969f9dd0551d40e4fd38279aeddc7363da9fe5fafee62a29f8452d72c1343690"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-non-grant-medical-assistance-ngma-overview.html",
+      "sha256": "e0f3b81e6e7371c123f1b91bb057a01899d126a12e532b5ca03e967d054bbaa4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-or-verification-identity.html",
+      "sha256": "c6af476d4bb53934dfe96f3dfe3b2b86ef935400b7f2ea43e3a7123388ee010d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-other-programs.html",
+      "sha256": "d1ac186c9fa6bc2ebc4ece976df0870fc8b3895b817f5b3dc49a48ac60641687"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-overview-long-term-services-and-supports-program-administration-chart.html",
+      "sha256": "50f4571c45e0b393a1fb74f36e060934889c53d72ee207ebda6cde14c9b1d24e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-overview-long-term-services-and-supports-program-administration.html",
+      "sha256": "42ca38c9a05df711808c6fff15eada78c8afbc423157eba8c6b1f23b74c0a5d2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-participation-medical-institution.html",
+      "sha256": "96a3fb6e14c023dafcb302be8d79bedbad4e7f5fe1833ac8e1080455f8deda83"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-patient-access-and-affordability-programs.html",
+      "sha256": "0c0ad9c0662a5b1ead2e85089c1a6f1d8dd24f27af61c78e95a8bca62e7af6e8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-patient-review-and-coordination-0.html",
+      "sha256": "89a16dcd6c40b5e1a0dacf5eae0729ef84d85910eb3071392fb77b7a66051718"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-post-eligibility-index.html",
+      "sha256": "780bddacce69cca870d443c7047ea6e671e2f6c4a8ead5a739eeb9ef339032c5"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-presumptive-eligibility-home-and-community-services-hcs.html",
+      "sha256": "68ecd7b8e953671cc0465d4f71aa311ce5d981ce368547f27c6734aaac67b362"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-program-all-inclusive-care-elderly-pace.html",
+      "sha256": "775aff7370ec87ad8a853eceb9238a7a4b72911d19efdc697006b54999897027"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-program-options-justice-involved.html",
+      "sha256": "5b494cddb1313cfe0e1683a0302ea4ebea1beaa5cebcf550f1596d05eca885da"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-program-standard-income-and-resources.html",
+      "sha256": "ecdf25a21ee65894c50639a2cf82d8ecc574596ad1b06a07727447970432415a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-promissory-notes-and-loans.html",
+      "sha256": "6a4a37039c94719771b63ea1b2d9c753c0863f815cb22a37ccd9ad02a1a768b8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-providerone-services-card-and-health-plan-card.html",
+      "sha256": "1022389ae6e11dd3aecbe6035ddebca35bbee85c1639e9aadb8c57d7d708851c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-public-health-emergency-and-apple-health.html",
+      "sha256": "a7dfe283ae6fc52216957d6afff975d9126bea8dd262af1c4baec49850f434eb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-public-programs.html",
+      "sha256": "3bdb7c6379765092e6742b936d818626ae8dcb62bc10cfe04619b5685faf58d1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-quality-assurance-and-post-eligibility-reviews.html",
+      "sha256": "f1dedef60e75c89ad78f0a50625ee528a0821b8dde861bf90d67880d290de977"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-reason-code-quick-links.html",
+      "sha256": "adafd265157f5a0bac048e857eb285ec55bd13df83890940b227873658d794ff"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-redetermination-overview.html",
+      "sha256": "e09ac993d39aab52b69dac75b916a4d63bd65f6858109e2f3c2378464c779eb3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-renewals.html",
+      "sha256": "585f043bfd6f8e5008b8bafa9a9d149600c4f5c1b51948cd8776f287a63e93d0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-requesting-administrative-hearing.html",
+      "sha256": "839fdea71f83dd3587bc9afd5b4ca2102bcd62a0abac096ec997a14aff8bb5ff"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-required-verification.html",
+      "sha256": "3be953ecdb2292930c26e57de1f74c1cd25c7b9c5a91add8fdc3b9705ac80629"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-residency.html",
+      "sha256": "4be65f035982f6e068a2ea4794bd782f31f223480d1b2ffe179657a3fc8e2a54"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-resource-eligibility-index.html",
+      "sha256": "e74370cd42f24bd471b03181a98b9f212d5716c904fa7e3532a8db3dcaf9b3b3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-resource-exclusions.html",
+      "sha256": "60ade5c3c1f07e61992a89a7188656321a99c188d9753d6846aa895400c854a1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-resource-ownership-and-availability.html",
+      "sha256": "b7ee3cb39ec02990d897d993ffff1cf4d339414ef53b018336bf406222062630"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-resources-overview.html",
+      "sha256": "00d80cf818ea224621f5040ce654f23c2dce4d698ef78e287f59b0b036ae7408"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-reverse-mortgage-and-loans.html",
+      "sha256": "1591902b8a39a4de21b977a290bda5529ff040221cf3129ef7a80680cf8249f2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-roads-community-living.html",
+      "sha256": "038fe27f94fe57d0117f764be3fa1f024aefa93053978297d8fb882684e977df"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-scope-care-early-and-periodic-screening-diagnosis-and-treatment-epsdt.html",
+      "sha256": "427b5365d5ab31f04f638bd13dca21648a4744f40791e5c998638dbde1fb33b7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-scope-care.html",
+      "sha256": "547c7f0c0e59437bec63d5f09d0b81deeaaaea46a46ccb6cc3d6c7186c56b299"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-short-stays.html",
+      "sha256": "70cccc0e05a0895c820840ec4229d92e0ab1a25a256539f2283f7de9cf4501cf"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-social-security-number.html",
+      "sha256": "39c614d4899c0916b00f0b8d81af74c71309c814023c759a2237f0ff3321290a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-spousal-impoverishment-protections-mac-and-tsoa-programs.html",
+      "sha256": "097ab56b5f42683ceb966c2ce151c7464e6e7406f39826616726af3b069ea9c7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-ssi-deemed-eligible.html",
+      "sha256": "5cb5c9903cda9e415186c2f8b19642e064bde0d9103a4f947ec03d1b8eb53837"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-ssi-related-medicaid-overview.html",
+      "sha256": "a5443c1769ca12cd1b823425506a3da96b31464aa8d03a6b2c29515929b21e1f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-standards-ltss.html",
+      "sha256": "b088c7e0a9c3915528aa97b72b01eb661d346e45760ab824f8b94fc57afc9dcd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-state-funded-long-term-care-noncitizens.html",
+      "sha256": "2177bd33c07f551c98952b7e5be341828ee9e3796dc17be8bcf78f1cc4904364"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-statement-hmong-or-highland-lao-tribal-membership.html",
+      "sha256": "67fee18d722cb2d510c1f5c70a6bfbe7e034dacc7d877658cdcb243e51585d0f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-supplemental-security-income-ssi-recipients.html",
+      "sha256": "309f62b35405d823c9c34d238695f1fe9c0bb29584f3f8ff8b78a220f9407700"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-tailored-supports-older-adults-tsoa-applications-rights-and-responsibilities.html",
+      "sha256": "1c353ce415bb78ee30c01e263b3b8b66f782d664ed53de20fad563de23dfdd39"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-tailored-supports-older-adults-tsoa-presumptive-eligibility.html",
+      "sha256": "02fc2a4e2f7e120fdd6d7c28d9e7b56aabb37b2b6f885d8a6a1d07fbb6fae97c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-tailored-supports-older-adults-tsoa.html",
+      "sha256": "cfcd49fb64b7f04892859052f1ae1099a08ae3c62c244bd2c620ccf9504d6031"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-third-party-liability.html",
+      "sha256": "c306c9c2588e9fda8fa44f859a7ee692ff60be09924441c21102706f15cca022"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-third-party-resources-and-ltc-insurance.html",
+      "sha256": "2cad4f2937425a9347dcf35bd45ea1118b96e1fa211dd0be18df2218b4f96bc3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-time-process.html",
+      "sha256": "7128a3cc9c13d3e126bc3161b8f4cd83e3755f797f4981394e872f27111a70a3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-transfer-asset.html",
+      "sha256": "77c035d1151c1e27d607222e01d5a8302f9fe749a23739058c4d0a6c8f105720"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-treatment-entrance-fees-people-residing-continuing-care-or-life-care-communities.html",
+      "sha256": "1defff3d2f71319e34de3df95bce3fe6cb74aaff01de6fba39e308298a1b2eec"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-treatment-income-chart.html",
+      "sha256": "412483f8428693c957d08f7102bc7419d894fafe8487465e21863d1585c0c196"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-trusts-continued.html",
+      "sha256": "81a69c3774debd328526d639bc8b11457eebd757fe273e3629f32779c2c70879"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-trusts.html",
+      "sha256": "5c96d298ccd5feb77aa807a4063913818e4ae1fea2b396b424ff1b2fca47af57"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-tsoa-certification-periods-change-circumstances-and-renewals.html",
+      "sha256": "9bfa72cdc948732c3936154ea8938e86d00098d8d159ea5b700e767849e56b8d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-tsoa-income-and-resources.html",
+      "sha256": "3e143080d173454be11584c4e6961b569a8c226c159a46d17a20c5ad74f6fe41"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-va-benefits-chart-and-va-information-appendix-4.html",
+      "sha256": "38b9d90e5e6e1edd0a6b1b6330bd4263d3cef135bb3d12ae7497f70c91624744"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-verification-requirements.html",
+      "sha256": "a2c2cdf1b5478a3f6664b09f03b951419cc5718c9584a555623b552c208a2f0c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-who-can-apply-whom.html",
+      "sha256": "dad7981a17d98919025a95e9aae0a72b0fbef9d2338ded0772bec99e35511cfa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wa-medicaid-working-clients-long-term-care-services-and-supports.html",
+      "sha256": "82df22a90e7c28bd7a43ba1483b1b11cbb14dc2e88a327b2339991f465e4e7b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-wa-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1751,
+    "missing_count": 0,
+    "provision_count": 1751,
+    "source_count": 1751
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:06:10.338782+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iACyPHaYnnlOZ6spYFYVRhEJ1zjaWkYWumQzcX3Whb2jU9j3Pgtpz48t2f1+HsmzvOxCbD7pWYAx4MeC5q9aBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

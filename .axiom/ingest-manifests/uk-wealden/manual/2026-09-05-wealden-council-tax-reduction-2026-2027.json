@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-wealden/manual/2026-09-05-wealden-council-tax-reduction-2026-2027.json",
+      "sha256": "957cad89e92aa2551d9e1f8abd9d80aeca02a43734d19fbc0bee6502e161d937"
+    },
+    {
+      "path": "data/corpus/inventory/uk-wealden/manual/2026-09-05-wealden-council-tax-reduction-2026-2027.json",
+      "sha256": "bd1c99d5b056035b2d1af9a58b54ad6e9861e0fb66b5c0da8e979f1ddfdd2331"
+    },
+    {
+      "path": "data/corpus/provisions/uk-wealden/manual/2026-09-05-wealden-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "f1a73a912dd5f36f9055c8f2b1eaa35aa925bdc7d0b94b89ba4ad68b7802dc08"
+    },
+    {
+      "path": "data/corpus/sources/uk-wealden/manual/2026-09-05-wealden-council-tax-reduction-2026-2027/official-documents/wealden-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "b932e2a9f481418c27ded387350d4cac5011c59bf722db39f3634f6d34c5725b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-wealden-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-wealden-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 78,
+    "missing_count": 0,
+    "provision_count": 78,
+    "source_count": 78
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:17.795898+00:00",
+  "jurisdiction": "uk-wealden",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "27uYj19WwwRwXe/Plho4EpxMP7SxZuHWaK70xcRIwylIQPdHnO9lCWBhxAtz4rQca/Y6r0uxK8AFxz779mT0Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-wealden-council-tax-reduction-2026-2027"
+}

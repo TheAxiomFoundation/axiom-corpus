@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-wakefield/manual/2026-08-08-wakefield-council-tax-reduction-2026-2027.json",
+      "sha256": "f178c7ff97d3c940a30f9f4585cc73b154b25896844aa87776310543d6c13c5e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-wakefield/manual/2026-08-08-wakefield-council-tax-reduction-2026-2027.json",
+      "sha256": "88464b6794dd433881ecbb1e09298d5cae751c12b74a76c388c25e4c3ea50b5e"
+    },
+    {
+      "path": "data/corpus/provisions/uk-wakefield/manual/2026-08-08-wakefield-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "e54e522fe86281e9320182bb246ac8e40d4c85ef572cb35ff37c1dc02a6782f4"
+    },
+    {
+      "path": "data/corpus/sources/uk-wakefield/manual/2026-08-08-wakefield-council-tax-reduction-2026-2027/official-documents/wakefield-council-tax-support-scheme-working-age.docx",
+      "sha256": "9c0b2dde9a0b8f09215bc8566f2865f18d658955ba508b14bb824f90f810590e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0cae5bdaad598b803007d949c5f5f6ed8f9a864e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-08-08-wakefield-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-wakefield-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 73,
+    "missing_count": 0,
+    "provision_count": 73,
+    "source_count": 73
+  },
+  "document_class": "manual",
+  "generated_at": "2026-08-08T19:40:09.789873+00:00",
+  "jurisdiction": "uk-wakefield",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7pTku+RNZTLi8QLNnloW85w4B8ny+8x1lDuHmWEQ7dDJ2JCwGsi3ac8LngJPaK9K9UwLPtqzYdl6r0eoW/hGAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-08-wakefield-council-tax-reduction-2026-2027"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "f50e84b4d875d8c5f3d0aeb3f257617f32e6670107255eaefabafcb8f7f6b5e1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "7fe962188d725058e24b7d4bd195cd77c7038eb973b2c52698197edb97814ae1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "2ab800a6c771333e4bd07f9a8d41773af8c2bc51eeafb38779e435f2b5489bc1"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/policy/2026-09-13-snap-et-state-plan/official-documents/ny-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "d27ae4a11a6e63f942416379ba5bcfe0183647711f6c3c5660e9681e084383f9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 313,
+    "missing_count": 0,
+    "provision_count": 313,
+    "source_count": 313
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:04:13.263427+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nEnInIIfbW41AeYH6N10y3ftSMNpY+peNMcQU+Z6k7Kr0+4QlccA9oh3tfRmJ1EklNuV3t63r+tP7vcxHQqfCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

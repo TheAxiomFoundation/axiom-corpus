@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions.json",
+      "sha256": "c1d94d7f40b28090150779f2a39325649b54646832d0f878d71e13318ee2265c"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions.json",
+      "sha256": "76674a3d3d2e8aa87f4b9eb9b2dd4023a850524ba804e90d4819431fb0cac7c2"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions.jsonl",
+      "sha256": "e6159d550d86a4e2b9e46e1a1f30c0fe00ccd33e0b0838d3b11155ee9290a199"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions/federal-register/api/documents-page-1.json",
+      "sha256": "239120847b20bcce8f9be6c562ff92569f9f2e158bb43e49eaa8312b766fae4b"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions/federal-register/documents/2026-06960.json",
+      "sha256": "0116ad35a2d9cf0b33c33751d35a9ca70c6516993943aceee94b4311948f8007"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions/federal-register/documents/2026-06960.txt",
+      "sha256": "8452ad33db1a1dbaf298cefbdaf1cb464ddc55af4d9ab4e8cdbc8038fcf1b4e1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7dcb14694645e345c86e2c108c225e0a1cbe7290",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-federal-register --base data/corpus --version 2026-08-01-tariff-232-annex-restructure --start-date 2026-04-09 --document-type PRESDOCU --term '\"strengthening actions\"' --source-as-of 2026-08-01 --expression-date 2026-04-09"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-01T22:26:30.968680+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EVjy8EgDqgNzcxUQrSLxb3BrZN2TxauaP0IafG0PjBd50Jz13/PWto21f62QL6NCKeev8ZG3C96eV7ocCMRiCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions"
+}

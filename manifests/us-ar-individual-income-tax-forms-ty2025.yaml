@@ -1,0 +1,63 @@
+version: '2026-09-10'
+documents:
+- source_id: us-ar-dfa-ar1000f-ty2025
+  jurisdiction: us-ar
+  document_class: form
+  title: Form AR1000F, Arkansas Full Year Resident Individual Income Tax Return (2025)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2025_AR1000F_FullYearResidentIndividualIncomeTaxReturn_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ar/form/dfa/ty2025/ar1000f
+  extraction: &id001
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: form
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ar/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
+- source_id: us-ar-dfa-ar1000f-instructions-ty2025
+  jurisdiction: us-ar
+  document_class: form
+  title: AR1000F and AR1000NR Instructions, Arkansas Individual Income Tax (2025)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2025_AR1000F_and_AR1000NR_Instructions.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ar/form/dfa/ty2025/ar1000f-instructions
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: instructions
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ar/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
+- source_id: us-ar-dfa-tax-brackets-ty2025
+  jurisdiction: us-ar
+  document_class: form
+  title: Arkansas Individual Income Tax Brackets (2025)
+  source_url: https://www.dfa.arkansas.gov/wp-content/uploads/2025_TaxBrackets.pdf
+  source_format: pdf
+  source_as_of: '2026-09-10'
+  expression_date: '2025-01-01'
+  citation_path: us-ar/form/dfa/ty2025/tax-brackets
+  extraction: *id001
+  metadata:
+    primary_source: true
+    source_authority: Arkansas Department of Finance and Administration
+    document_subtype: rate_schedule
+    program: individual_income_tax
+    tax_year: '2025'
+    source_discovery_group: us-ar/form/individual-income-tax
+    source_family: state-resident-individual-income-tax-forms-ty2025
+    index_url: https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
+    discovered_via: manual-review:tax-agent-queue; index https://www.dfa.arkansas.gov/office/taxes/income-tax-administration/individual-income-tax/forms/2025-tax-forms/
