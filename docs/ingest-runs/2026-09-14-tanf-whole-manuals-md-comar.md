@@ -5,9 +5,9 @@ Work order: the "slice taken, publisher posts whole" row of the needs-driven clo
 (`docs/coverage/needs-closure-2026-09-11/tanf.md`: CT 28, GA 20, AZ 13, DE 17 EXTRACTABLE cells, 78 in all) and the
 held-out Maryland COMAR chapter-03 scope of `docs/ingest-runs/2026-09-11-release-consolidation.md`.
 Branch `discovery/ingest-tanf-whole-manuals-md-comar` cut from `origin/main` (421ffbea4, later moved to 5c2505ec6, the
-CMS state-plans merge) in the sparse worktree `~/axiom-corpus-worktrees/tanf-whole` (`data/corpus/` excluded, never
+CMS state-plans merge) in the sparse worktree `<worktrees>/tanf-whole` (`data/corpus/` excluded, never
 symlinked); every extraction and the consolidation wrote to the main checkout's corpus root
-(`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`). Agent timing: worktree created 2026-09-14T01:09Z; probes,
+(`--base <main-checkout>/data/corpus`). Agent timing: worktree created 2026-09-14T01:09Z; probes,
 GA, DE and the MD consolidation done by 01:35Z; the session was then suspended (an API rate limit) and resumed at
 14:05Z, when `origin/main` had moved: the branch, which had no commits of its own, was moved to the new head with the
 uncommitted work stashed around the reset (no conflicts) and `uv sync` re-run; the CT generator and extraction
@@ -37,7 +37,7 @@ sections, COMAR keeps its regulation rows. Extraction command for the three TANF
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 for m in us-de us-ga us-ct; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus --version 2026-09-14-tanf-manual-whole \
+    --base <main-checkout>/data/corpus --version 2026-09-14-tanf-manual-whole \
     --manifest manifests/$m-tanf-state-policy-manual.yaml --source-as-of 2026-09-14
 done
 ```
@@ -121,7 +121,7 @@ CFR branch had written into the queue directly, is now carried by the generator'
 ## Swaps with cited-path checks
 
 Released scopes are immutable; the controller swaps the selector. For each swap, every citation path of the released
-scope was looked up in the successor and every path `rulespec-us` cites (grep of `~/rulespec-us` for
+scope was looked up in the successor and every path `rulespec-us` cites (grep of `<rulespec-us>` for
 `<jurisdiction>/<class>/...`) was checked too; bodies were compared byte by byte.
 
 | Released scope | Successor | Released rows carried | Bodies | rulespec-us cited paths |
@@ -148,7 +148,7 @@ consolidated on 2026-09-11. Same mechanism and command shape as the 2026-09-11 a
 first:
 
 ```bash
-uv run python scripts/consolidate_release_scopes.py --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run python scripts/consolidate_release_scopes.py --base <main-checkout>/data/corpus \
   --jurisdiction us-md --document-class regulation \
   --source-version 2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapters-06-07 \
   --source-version 2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03 \
@@ -191,7 +191,7 @@ two sources share no text-bearing path. The two inputs stay on disk for provenan
 - Draft selector `docs/ingest-runs/2026-09-14-tanf-whole-md-comar.selector.json` (the released 2026-09-13
   federal-and-plans union, 761 scopes, with the three swaps applied and DE added: 762 scopes; kept outside
   `manifests/releases/` because CI deep-validates every tracked selector against the checked-in `data/corpus`),
-  validated from the worktree with `validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus
+  validated from the worktree with `validate-release --base <main-checkout>/data/corpus
   --ignore-r2-missing --max-issues 50` in 41 s: `ok: true`, 0 errors, 546 warnings, all the pre-existing
   `missing_parent_id` warnings of `us-ca/regulation/2026-07-13-recovery`; no cross-scope citation-path collision.
 - CT rows: 1,565 document roots and 1,566 text rows (one `block-1` per `.doc`, heading blocks for the four `.docx`,
@@ -212,7 +212,7 @@ two sources share no text-bearing path. The two inputs stay on disk for provenan
 ## Controller
 
 Selector swaps (released scope out, successor in) and one addition. Artifacts are unsigned, on the controller's disk
-under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`, not committed.
+under `<main-checkout>/data/corpus`, not committed.
 
 | Action | jurisdiction / document_class / version |
 | --- | --- |
@@ -232,22 +232,22 @@ history only.
 Rebuild:
 
 ```bash
-cd ~/axiom-corpus-worktrees/tanf-whole
+cd <worktrees>/tanf-whole
 export REQUESTS_CA_BUNDLE=$(uv run python -c "import certifi;print(certifi.where())")
 uv run python scripts/build_tanf_state_policy_manual_manifests.py --only us-ga --only us-de
 uv run python scripts/build_tanf_state_policy_manual_manifests.py --only us-ct --only us-az \
-  --ct-header-cache /tmp/ct_upm_headers.json      # about 20 minutes without the cache
+  --ct-header-cache <scratchpad>/ct_upm_headers.json      # about 20 minutes without the cache
 for m in us-de us-ga us-ct; do
   s=$(date +%s); uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus --version 2026-09-14-tanf-manual-whole \
+    --base <main-checkout>/data/corpus --version 2026-09-14-tanf-manual-whole \
     --manifest manifests/$m-tanf-state-policy-manual.yaml --source-as-of 2026-09-14
   echo "elapsed_seconds=$(( $(date +%s) - s )) manifest=$m"
 done
-uv run python scripts/consolidate_release_scopes.py --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run python scripts/consolidate_release_scopes.py --base <main-checkout>/data/corpus \
   --jurisdiction us-md --document-class regulation \
   --source-version 2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapters-06-07 \
   --source-version 2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03 \
   --target-version 2026-09-10-ssi-state-supplement-publication-2026-09-09-title-07-subtitle-03-chapters-06-07-r2026-09-14-chapter-03-consolidated
-uv run axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run axiom-corpus-ingest validate-release --base <main-checkout>/data/corpus \
   --release docs/ingest-runs/2026-09-14-tanf-whole-md-comar.selector.json --ignore-r2-missing --max-issues 50
 ```

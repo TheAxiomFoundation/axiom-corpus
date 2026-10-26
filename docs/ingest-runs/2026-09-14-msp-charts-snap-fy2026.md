@@ -5,8 +5,8 @@ Work order: the two state-level chart families the needs-driven closure check le
 (`docs/coverage/needs-closure-2026-09-11/medicare.md` MED-ST-7 with MED-ST-2/3/4 where the chart carries them, 36 states;
 `snap.md` snap_s20, the 25 states whose cell is not PRESENT in `snap-matrix.csv`).
 Branch `discovery/ingest-msp-charts-snap-fy2026` cut from `origin/main` (5c2505ec6) in the sparse worktree
-`~/axiom-corpus-worktrees/msp-snap-charts` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
-checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`, `--source-as-of 2026-09-14`).
+`<worktrees>/msp-snap-charts` (`data/corpus/` excluded, never symlinked); every extraction wrote to the main
+checkout's corpus root (`--base <main-checkout>/data/corpus`, `--source-as-of 2026-09-14`).
 Impact analysis: no library function was modified (the GitNexus tools were not needed); the code change is two new
 generator modules, `scripts/build_msp_snap_state_charts_manifests.py` and `scripts/msp_snap_state_chart_records.py`.
 Disk: `df -g ~` 33 GB free at start, 30 GB at the end (stop line 5 GB never approached).
@@ -206,7 +206,7 @@ modules (grep of the log: 0 hits). No adapter was added, so no new tests.
 
 ## Controller
 
-Selector additions (artifacts unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`,
+Selector additions (artifacts unsigned, on the controller's disk under `<main-checkout>/data/corpus`,
 not committed):
 
 | jurisdiction | document_class | version |

@@ -5,7 +5,7 @@ Programs: LIHEAP, Medicaid, CCDF, CHIP, SSI, TANF, WIC, tax, SNAP (NAP/ASNAP/NAP
 territory runs a block grant instead of SNAP), Medicare
 Jurisdictions: Puerto Rico (us-pr), Guam (us-gu), U.S. Virgin Islands (us-vi), American Samoa
 (us-as), Northern Mariana Islands (us-mp)
-Branch: `discovery/ingest-territories` (sparse worktree `~/axiom-corpus-worktrees/territories`,
+Branch: `discovery/ingest-territories` (sparse worktree `<worktrees>/territories`,
 cut from `origin/discovery/program-ingestion-union` because `origin/main` did not yet carry the
 2026-09-11 hand-off; artifacts written to the main checkout's `data/corpus`).
 Agent: started_at 2026-09-11T21:00Z, finished_at 2026-09-11T21:50Z, wall time 50 min.
@@ -262,10 +262,10 @@ uv run python scripts/build_cms_iom_100_01_manifests.py --territory-rows
 uv run python scripts/build_tax_forms_manifests.py --only us-pr,us-gu,us-vi,us-as,us-mp
 uv run python scripts/build_tanf_state_policy_manual_manifests.py --only us-gu --only us-pr --only us-vi --only us-as --only us-mp
 uv run python scripts/build_snap_state_manual_completion_manifests.py --only us-pr --only us-mp --only us-gu --only us-vi --only us-as \
-  --corpus-base /Users/pavelmakarchuk/axiom-corpus/data/corpus
+  --corpus-base <main-checkout>/data/corpus
 
 # extraction (base = the main checkout's corpus root; df -h / checked before each run, 8.5 GB free)
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<main-checkout>/data/corpus
 for j in pr gu mp; do
   uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-11-tax-territory-forms-ty2025 \
     --manifest manifests/us-$j-individual-income-tax-forms-ty2025.yaml --source-as-of 2026-09-11

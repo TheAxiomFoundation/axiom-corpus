@@ -1,6 +1,6 @@
 # Wave 5 brief — SSI, LIHEAP and Medicare (group `ssi-liheap-medicare`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w5-ssi-liheap-medicare`,
+Read `00-common-preamble.md` first. Worktree `<worktrees>/w5-ssi-liheap-medicare`,
 branch `discovery/ingest-w5-ssi-liheap-medicare` (at main 9b0641afc). Inputs:
 `wave5/ssi-liheap-medicare-extractable.csv` (442 rows: 357 are the 7 federal elements inherited by 51 states, 78 are
 state-level) and `wave5/ssi-liheap-medicare-review.csv` (219 rows). Schemas `{ssi,liheap,medicare}-schema.yaml`; builder

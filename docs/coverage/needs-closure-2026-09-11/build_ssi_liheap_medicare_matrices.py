@@ -1030,7 +1030,7 @@ def rollup(m: Matrix):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--base", default="/Users/pavelmakarchuk/axiom-corpus/data/corpus")
+    ap.add_argument("--base", default="data/corpus")
     a = ap.parse_args()
     base = Path(a.base)
     builds = [

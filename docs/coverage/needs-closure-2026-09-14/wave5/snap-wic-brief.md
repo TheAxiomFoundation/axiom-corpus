@@ -1,6 +1,6 @@
 # Wave 5 brief — SNAP and WIC (group `snap-wic`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w5-snap-wic`, branch
+Read `00-common-preamble.md` first. Worktree `<worktrees>/w5-snap-wic`, branch
 `discovery/ingest-w5-snap-wic` (at main 9b0641afc). Inputs: `wave5/snap-wic-extractable.csv` (34 rows, 2 federal) and
 `wave5/snap-wic-review.csv` (337 rows). Schemas `snap-schema.yaml`, `wic-schema.yaml`; reports `snap.md`, `wic.md`;
 the check `check_snap_wic.py` (its `-hits.jsonl` files hold every PRESENT snippet). Queues:

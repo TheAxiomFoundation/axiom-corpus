@@ -99,7 +99,7 @@ to the impersonation). The exact failure per row is in `BLOCKED` / `RETRIED` in 
 
 ## Artifacts (unsigned, uncommitted, awaiting controller)
 
-In the main checkout's corpus root (`/Users/pavelmakarchuk/axiom-corpus/data/corpus`, where batches 1-4's artifacts
+In the main checkout's corpus root (`<main-checkout>/data/corpus`, where batches 1-4's artifacts
 are; this worktree is sparse and excludes `data/corpus`):
 
 - `data/corpus/sources/us-dc/manual/2026-09-10-wic-state-policy-manual/official-documents/*.pdf` (92 files)
@@ -112,7 +112,7 @@ one pass is enough, and the pass run by the continuation reproduced the manifest
 ```bash
 uv run python scripts/build_wic_manifests.py --only us-dc,us-ak,us-nd,us-vt,us-wy,us-az,us-de
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/wic-state-ca-bundle.pem
-uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run axiom-corpus-ingest extract-official-documents --base <main-checkout>/data/corpus \
   --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-dc-wic-policy-manual.yaml \
   --source-as-of 2026-09-10 --expression-date 2026-09-10
 ```

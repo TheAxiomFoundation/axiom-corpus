@@ -352,7 +352,7 @@ Office page lists no CCDF plan document. Taken: 0.
     was re-run against the committed script and the 28 existing manifests were byte-identical after this run as well
     (`git status` shows only the queue, the script and 16 new manifests).
 
-## Artifacts (unsigned, uncommitted, shared corpus root `/Users/pavelmakarchuk/axiom-corpus/data/corpus`)
+## Artifacts (unsigned, uncommitted, shared corpus root `<main-checkout>/data/corpus`)
 
 For each of `us-co`, `us-ct`, `us-id`, `us-ks`, `us-ky`, `us-la`, `us-mn`, `us-ne`, `us-nj`, `us-or`, `us-ri`,
 `us-sc`, `us-tn`, `us-ut`, `us-va`, `us-vt`:
@@ -373,7 +373,7 @@ manual), `scripts/build_ccdf_state_plan_manifests.py`, this note. No certificate
 uv run python scripts/build_ccdf_state_plan_manifests.py
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/ccdf-ca-bundle.pem
 for j in co ct id ks ky la mn ne nj or ri sc tn ut va vt; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base <main-checkout>/data/corpus \
     --version 2026-09-10-ccdf-plan-fy2025-2027 \
     --manifest manifests/us-$j-ccdf-state-plan-fy2025-2027.yaml --source-as-of 2026-09-10 --expression-date 2024-10-01
 done

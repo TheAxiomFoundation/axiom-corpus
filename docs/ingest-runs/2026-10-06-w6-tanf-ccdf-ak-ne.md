@@ -4,9 +4,9 @@ Date: 2026-10-06 (evening, US Eastern).
 Work order: `docs/coverage/program-bundle-gaps-2026-10-06/wave6/tanf-ccdf-ak-ne.csv` (372 rows, 371 Tier 1, 30
 jurisdictions, every row `pe_cited_units` 1 except NC 108A-27.01) with `wave6/00-common-preamble.md` and
 `wave6/tanf-ccdf-ak-ne-brief.md` (branch `analysis/program-bundle-gaps-2026-10-06`).
-Worktree `~/axiom-corpus-worktrees/w6-tanf-ccdf-ak-ne` (sparse, `data/corpus/` excluded, never symlinked), branch
+Worktree `<worktrees>/w6-tanf-ccdf-ak-ne` (sparse, `data/corpus/` excluded, never symlinked), branch
 `discovery/ingest-w6-tanf-ccdf-ak-ne` cut from main e16ccb799. Every extraction wrote to the main checkout's corpus root
-(`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`); nothing under `data/corpus/` is committed, nothing was signed,
+(`--base <main-checkout>/data/corpus`); nothing under `data/corpus/` is committed, nothing was signed,
 locked, pushed to R2 or loaded to Supabase. Working files in the scratchpad folder `w6-tanf-ccdf-ak-ne` (the shared `w6`
 folder was overwritten by another agent early on; the probe was re-run in the group folder).
 
@@ -65,7 +65,7 @@ the path.
    (ARM 37.78, 37.80), `extract-california-codes --only-title WIC` (the Legislative Counsel bulk file), the
    `ks-kar` builder (K.A.R. article 30-4 from rules.ks.gov, the tax run's method) and the `nd-ccap` builder (the whole
    CCAP Policy Manual 400-28 from its MadCap master TOC).
-5. **Extraction.** `extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus --version <v>
+5. **Extraction.** `extract-official-documents --base <main-checkout>/data/corpus --version <v>
    --manifest <m> --source-as-of 2026-10-06`, one manifest at a time, with `REQUESTS_CA_BUNDLE` = certifi + the
    committed intermediates. Every scope: coverage `complete: true`, 0 missing, 0 duplicate citation paths, no
    symlinked or stale source file (the CA bulk extractor stored the zip as a symlink to the download cache; it was

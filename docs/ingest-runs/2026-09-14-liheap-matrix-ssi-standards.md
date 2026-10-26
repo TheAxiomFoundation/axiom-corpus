@@ -5,9 +5,9 @@ Work order: close the two state-level chart families of the needs-driven closure
 (`docs/coverage/needs-closure-2026-09-11/liheap.md`, `ssi.md`): LIHEAP-ST-09 (heating/cooling benefit matrix, a plan
 attachment) for the 37 EXTRACTABLE and 13 REVIEW states, and SSI-ST-4 (state supplement payment standards by living
 arrangement, current year) for the 10 REVIEW states, with SSI-ST-2 where the same publisher carries the authority.
-Branch `discovery/ingest-liheap-matrix-ssi-standards` in the sparse worktree `~/axiom-corpus-worktrees/liheap-ssi-charts`
+Branch `discovery/ingest-liheap-matrix-ssi-standards` in the sparse worktree `<worktrees>/liheap-ssi-charts`
 (`data/corpus/` excluded, never symlinked; re-synced to `origin/main` 5c2505ec6 on 2026-09-14 before the artifacts were
-committed); every extraction wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`)
+committed); every extraction wrote to the main checkout's corpus root (`--base <main-checkout>/data/corpus`)
 with `--source-as-of 2026-09-14`; the artifacts stay uncommitted for the controller. Versions
 `2026-09-14-liheap-benefit-matrix` and `2026-09-14-ssi-state-supplement-standards`. Agent timing: discovery 2026-09-13
 about 21:10 to 23:40 EDT (four read-only discovery sub-agents in parallel, about 13 minutes each, plus the direct probes),
@@ -252,7 +252,7 @@ needed). No adapter was added, so no new tests; the two generators are data tabl
 
 ## Controller
 
-Selector additions (artifacts unsigned, on the controller's disk under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`,
+Selector additions (artifacts unsigned, on the controller's disk under `<main-checkout>/data/corpus`,
 not committed), as `jurisdiction / document_class / version`:
 
 | jurisdiction | document_class | version |
@@ -337,11 +337,11 @@ uv run python scripts/build_ssi_state_supplement_standards_manifests.py # 10 man
 python3 -c "import certifi,pathlib; pathlib.Path('data/certs/liheapch-ca-bundle.pem').write_text(pathlib.Path(certifi.where()).read_text()+'\n'+pathlib.Path('data/certs/entrust-dv-tls-issuing-rsa-ca-2.pem').read_text())"
 export REQUESTS_CA_BUNDLE=$PWD/data/certs/liheapch-ca-bundle.pem
 for m in manifests/us-*-liheap-benefit-matrix-*.yaml; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base <main-checkout>/data/corpus \
     --version 2026-09-14-liheap-benefit-matrix --manifest "$m" --source-as-of 2026-09-14
 done
 for m in manifests/us-*-ssi-state-supplement-standards-*.yaml; do
-  uv run axiom-corpus-ingest extract-official-documents --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  uv run axiom-corpus-ingest extract-official-documents --base <main-checkout>/data/corpus \
     --version 2026-09-14-ssi-state-supplement-standards --manifest "$m" --source-as-of 2026-09-14
 done
 ```

@@ -4,7 +4,7 @@ Date: 2026-09-13
 Programs: Medicaid and CHIP (needs-driven closure check `docs/coverage/needs-closure-2026-09-11/{medicaid,chip}.md`,
 "CMS-posted approved state plan" family, the single largest state-level gap: about 2,560 Medicaid cells and
 1,180 CHIP cells).
-Branch: `discovery/ingest-cms-state-plans` (sparse worktree `~/axiom-corpus-worktrees/cms-state-plans`, cut from
+Branch: `discovery/ingest-cms-state-plans` (sparse worktree `<worktrees>/cms-state-plans`, cut from
 `origin/main` 8dc613000; artifacts written to the main checkout's `data/corpus`, uncommitted).
 Generator: `scripts/build_cms_state_plan_manifests.py` (new). One small edit to
 `scripts/build_chip_state_eligibility_manifests.py` so a rerun carries the second per-jurisdiction queue row through.
@@ -423,7 +423,7 @@ the legacy protected groups.
   tables above); every row carries `expression_date`.
 - Draft selector `docs/ingest-runs/2026-09-13-cms-state-plans.selector.json` = the follow-up draft
   (`us-rulespec-2026-09-13-followup-union`, 556 scopes) + the 102 CMS state-plan scopes = 658 scopes.
-  `uv run axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus --release
+  `uv run axiom-corpus-ingest validate-release --base <main-checkout>/data/corpus --release
   docs/ingest-runs/2026-09-13-cms-state-plans.selector.json --ignore-r2-missing --max-issues 50`:
   not yet run on the full draft; a partial draft (follow-up + the first 28 CHIP scopes) validated ok: true, 0 errors, 546 pre-existing missing_parent_id warnings.
 - Disk: 21 GB free at start, 4.6-8 GB during the run (other agents extract into the same corpus root); the driver stops itself below 4 GB.
