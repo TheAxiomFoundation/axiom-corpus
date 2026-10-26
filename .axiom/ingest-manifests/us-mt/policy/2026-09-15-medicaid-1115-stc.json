@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "a41a8883d76c7b60ddfb31d1f41ecceac83cc10da5ff5d7d4907c51ad3d77f7d"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/policy/2026-09-15-medicaid-1115-stc.json",
+      "sha256": "33996607691819dd9629378d83fada7465d1bc4b9187e00b5d76378b4edc25dd"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/policy/2026-09-15-medicaid-1115-stc.jsonl",
+      "sha256": "238493d8fb41752acae51d235131cdb19f9f0a984a7e07d6e4cffece9c3bced9"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-15-medicaid-1115-stc/official-documents/us-mt-cms-1115-stc-plan-first-2025-amendment.pdf",
+      "sha256": "7965efd3131998742dcae0ea4ebfbe193d64e70474c8cf53587a1c996728bf68"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/policy/2026-09-15-medicaid-1115-stc/official-documents/us-mt-cms-1115-stc-plan-first.pdf",
+      "sha256": "6da288880c3f12200190fb1523d6833a5e5b383d965c8709808aa392417de2ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 37,
+    "missing_count": 0,
+    "provision_count": 37,
+    "source_count": 37
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:25.288612+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "CO0z27NhdHMcenNt5I938sqfdhmuxnRWwfRiotEjrkOKlKvkKvpz+T/g7S9TUKMZJlIoU+weOPk//OeHzyHsAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicaid-1115-stc"
+}

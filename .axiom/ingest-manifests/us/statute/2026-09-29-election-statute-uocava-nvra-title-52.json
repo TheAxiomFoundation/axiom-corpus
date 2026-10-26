@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-09-29-election-statute-uocava-nvra-title-52.json",
+      "sha256": "b1debea93e0467a2ec8149467c59bca054617441c1c59d6636143e659c6014bc"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-09-29-election-statute-uocava-nvra-title-52.json",
+      "sha256": "bf3f15dc2fb6eff732f5d79a3bd1aebcd05231ebd569f60adf592e4cc88c9c3a"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-09-29-election-statute-uocava-nvra-title-52.jsonl",
+      "sha256": "89116ffa305febc5cd12b5c75a5fd0e4ac3883c137e3f741d68c458210522236"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-09-29-election-statute-uocava-nvra-title-52/olrc/xml_usc52@119-111.zip",
+      "sha256": "3fd8b179d10463e9651b148c75b1e0ad9294169e56a059b87786a4ea16167e60"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b325fcc4a320f92d6cd3ad0ed27f6fa60cc9d41e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-09-29-election-statute-uocava-nvra --source-zip xml_usc52@119-111.zip --title 52 --source-as-of 2026-09-18 --expression-date 2026-09-18 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/111/xml_usc52@119-111.zip --section 20302 --section 20310 --section 20507 --include-title (run note: docs/ingest-runs/2026-09-29-election-statute-uocava-nvra.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 162,
+    "missing_count": 0,
+    "provision_count": 162,
+    "source_count": 162
+  },
+  "document_class": "statute",
+  "generated_at": "2026-09-29T18:34:10.935330+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hoS6siUMjbBBl7XtUf90Or/FwOR8JcjH5zg0dA2HI9upVnEBPzKey5VmP5fRYR2rGoLKdnMOb6vgOd+Pz9nACQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-29-election-statute-uocava-nvra-title-52"
+}

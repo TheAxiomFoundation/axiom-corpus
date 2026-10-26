@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-08-30-proposal-security-title-45-part-604.json",
+      "sha256": "d967af953890f1456d42ff966076e0dcfc41ecbef3135c542fa12e7b51b75d9e"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-08-30-proposal-security-title-45-part-604.json",
+      "sha256": "ea96a4e0558b61893a4bfa9425f997e4599710f0953fb4914c50efe23bfcb381"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-08-30-proposal-security-title-45-part-604.jsonl",
+      "sha256": "07eaf7b9b5da8d01607311e72c0c47e0a78b05cca420969feb8e3478310a1679"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-45-part-604/ecfr/graphics/EC01JA91.007.png",
+      "sha256": "8fe4e55182918231b96bb881d20dc5ccfb97865b2037a2fe3a6cfdd68cf050ff"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-45-part-604/ecfr/graphics/EC01JA91.008.png",
+      "sha256": "03394bcac854e8e8a7de7124d10faafbc04e2ef80a02760d06300305742e1ec1"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-45-part-604/ecfr/graphics/EC01JA91.009.png",
+      "sha256": "cf1ebd4003cd8e54e4e6e252fb06e7062d096bca62f50b780f3fb74ec06a107c"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-45-part-604/ecfr/title-45-part-604.xml",
+      "sha256": "c0adf8b08dff971b06984817826cbe7e94db190c9c36ae32724fee72c0ba2323"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-08-30-proposal-security-title-45-part-604/ecfr/title-45.structure.json",
+      "sha256": "aa178d9c9dc8410832f32d9b275f522ec28283b6af68f9d56b2b341f64ed4185"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a4b80e77d1105c7d28ac01f64bebb5a2b0ca89d5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-08-30-proposal-security --as-of 2026-08-27 --expression-date 2026-08-27 --only-title 45 --only-part 604 --include-appendices --workers 1 (run note: docs/ingest-runs/2026-08-30-federal-proposal-security.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-29T02:56:37.378395+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MLZ3dgm4TwshuBZrMt8iC/YCoMurGW63b8RT6qOw6L287a56FgyMkk4rm++hukJZwH1ZmFYctOPOHbPL/roVAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-30-proposal-security-title-45-part-604"
+}

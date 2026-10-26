@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/policy/2026-09-15-chip-income-premium-table-2026.json",
+      "sha256": "1dd0da5b2f359c214447aa6aa2f0d6f2ed3f2e82350858d1f7c851417f91f976"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/policy/2026-09-15-chip-income-premium-table-2026.json",
+      "sha256": "4061afed87ac94c524f9dea9d73c8b45e85d322b96d9eb09f3cec8b7f3245645"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/policy/2026-09-15-chip-income-premium-table-2026.jsonl",
+      "sha256": "9e0140df81f0895b3cc4999165d0de25df56cacdd34615f89d62ffccb771d327"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-09-15-chip-income-premium-table-2026/official-documents/us-me-income_table-eligibility-guidelines-2026.pdf",
+      "sha256": "d9ee39dff0574cc4cb894362d66970c9c6d202b06cadf9411f68f5716a3ca98c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-medicaid-chip.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-12T19:45:04.979164+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HNGMt9fBciNY9QFK0me6RBzJQ4/FiJnlEBee7ggpdunkgpjjFTNPD3+K/w5WHIPZlk2i7f2W8iCD+1x+8uI+DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-chip-income-premium-table-2026"
+}

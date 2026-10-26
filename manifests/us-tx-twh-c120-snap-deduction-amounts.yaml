@@ -7,6 +7,9 @@ documents:
     source_url: https://www.hhs.texas.gov/handbooks/texas-works-handbook/c-120-supplemental-nutrition-assistance-program
     download_url: https://web.archive.org/web/20251031191702id_/https://www.hhs.texas.gov/handbooks/texas-works-handbook/c-120-supplemental-nutrition-assistance-program
     source_format: html
+    extraction:
+      html_navigation_heading_selectors:
+        - ':is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic"):not(:-soup-contains("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"))'
     source_as_of: "2025-10-31"
     expression_date: "2025-10-01"
     metadata:

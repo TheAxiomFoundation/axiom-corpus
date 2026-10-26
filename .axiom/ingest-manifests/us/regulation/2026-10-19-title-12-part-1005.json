@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-10-19-title-12-part-1005.json",
+      "sha256": "5080f303e3958718478e44aae1501154bc7644c3f1a114cfef5f563837f98453"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-10-19-title-12-part-1005.json",
+      "sha256": "1b14a4f88eacebfbad4c02fc00e4134d4bfb1251cf5ef8b4f48cf2341953bb65"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-10-19-title-12-part-1005.jsonl",
+      "sha256": "fca18943813c2b4e9f8ceefc04815afb3b1687e17a22eee0b7e16c4afc48b4b8"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-19-title-12-part-1005/ecfr/title-12-part-1005.xml",
+      "sha256": "0669a14f83f836f4086de21514f3bcd40041784e50c444b415f4d8e1909a10d0"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-10-19-title-12-part-1005/ecfr/title-12.structure.json",
+      "sha256": "10fdae647d581e0b85ed1c824720ffd3b39e4c6a09f8a8120e353182d992266d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9dff29d8c5b6130b815c424171596bd8280db9e6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest inventory-ecfr --base data/corpus --version 2026-10-19 --as-of 2026-10-16 --only-title 12 --only-part 1005 && uv run axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-10-19 --as-of 2026-10-16 --expression-date 2026-10-16 --only-title 12 --only-part 1005"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 30,
+    "missing_count": 0,
+    "provision_count": 30,
+    "source_count": 30
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-19T22:19:30.167982+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "E8/CsqrqU6fW0zrl2TlKRM/qp6m29QQB+4RbMo0X7/X5bfYRvtgfpoeOrycK+farACgL+PJplRovHRD+Fj2xBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-19-title-12-part-1005"
+}

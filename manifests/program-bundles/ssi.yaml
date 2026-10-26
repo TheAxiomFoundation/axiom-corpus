@@ -21,11 +21,11 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a
+    recorded reason, and the screener-level parity run against the newest reference release has no unfixed Axiom
+    errors. Federal law in Tier 1 is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+    rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
       documents, each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/ssi-references.json
     policyengine_us_release: latest
@@ -45,23 +45,23 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 83
-      state: 117
+      state: 128
 - id: full
   title: Full document bundle
-  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
-    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
-    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
+    the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
+    A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
-      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
-      for the program; and the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
+      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
+      the sources the config knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/ssi-schema.yaml
     federal_manifests: ^us-(ssa-poms-si|ssa-cola)
     state_manifests: ssi|ssp|state-supplement|oss|aabd|sspp|capi
     known_sources: 0
     in_scope_by_layer:
       federal: 1754
-      state: 1152
+      state: 1171
 layers:
 - jurisdiction: us
   screener:
@@ -2081,6 +2081,17 @@ layers:
     manifest: manifests/us-ssa-cola-2026-official-documents.yaml
     scope: in
     part: Benefit amount
+  - key: us/manual/ssa/poms/si/r00529.020/redacted-pdf
+    name: 'POMS SI R00529.020: No Social Security Benefits for Prisoners (NSSBP) Title XVI Field Office (FO) Processing
+      Instructions (Redacted) (redacted PDF)'
+    layer: federal
+    citation_path: us/manual/ssa/poms/si/r00529.020/redacted-pdf
+    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500529020R
+    sources:
+    - manifests/us-ssa-poms-si-00529-2026-09-15.yaml
+    manifest: manifests/us-ssa-poms-si-00529-2026-09-15.yaml
+    scope: in
+    part: Definitions from other programs
   - key: us/manual/ssa/poms/si/00501.000
     name: 'POMS SI 00501.000: Eligibility Under the Supplemental Security Income (SSI) Provisions - Table of Contents'
     layer: federal
@@ -11234,17 +11245,6 @@ layers:
     layer: federal
     citation_path: us/manual/ssa/poms/si/00515.010
     source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500515010
-    sources:
-    - manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
-    manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
-    scope: in
-    part: Definitions from other programs
-  - key: us/manual/ssa/poms/si/r00529.020
-    name: 'POMS SI R00529.020: No Social Security Benefits for Prisoners (NSSBP) Title XVI Field Office (FO) Processing
-      Instructions (Redacted)'
-    layer: federal
-    citation_path: us/manual/ssa/poms/si/r00529.020
-    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0500529020R
     sources:
     - manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
     manifest: manifests/us-ssa-poms-si-remainder-2026-09-13.yaml
@@ -22447,10 +22447,10 @@ layers:
     - path: us-ca/regulation/cdss/eas/49
       references: 1
       part: Benefit amount
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/wic/12200
+    name: us-ca/statute/wic/12200
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/wic/12200
     source_url: null
     sources:
     - policyengine-references
@@ -22458,7 +22458,7 @@ layers:
     scope: in
     part: Benefit amount
     cited:
-    - path: us-ca/statute/rtc/17054.1
+    - path: us-ca/statute/wic/12200
       references: 1
       part: Benefit amount
   full:
@@ -22481,10 +22481,10 @@ layers:
     - screener
     - manifests/us-ca-capi-regulations.yaml
     scope: in
-  - key: us-ca/statute/rtc/17054.1
-    name: us-ca/statute/rtc/17054.1
+  - key: us-ca/statute/wic/12200
+    name: us-ca/statute/wic/12200
     layer: state
-    citation_path: us-ca/statute/rtc/17054.1
+    citation_path: us-ca/statute/wic/12200
     source_url: null
     part: Benefit amount
     sources:
@@ -22502,48 +22502,25 @@ layers:
     part: Other
 - jurisdiction: us-co
   screener:
-  - key: us-co/regulation/10-ccr-2505-3
-    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
+  - key: us-co/regulation/9-ccr-2503-5
+    name: us-co/regulation/9-ccr-2503-5
     layer: state
-    citation_path: us-co/regulation/10-ccr-2505-3
+    citation_path: us-co/regulation/9-ccr-2503-5
     source_url: null
     sources:
     - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-    cited:
-    - path: us-co/regulation/10-ccr-2505-3
-      references: 1
-      part: Benefit amount
-  - key: us-co/regulation/9-ccr-2503-6
-    name: Code of Colorado Regulations 9 CCR 2503-6 Colorado Works Program
-    layer: state
-    citation_path: us-co/regulation/9-ccr-2503-6
-    source_url: null
-    sources:
-    - policyengine-references
-    references: 3
+    references: 4
     scope: in
     part: Household and eligibility
     cited:
-    - path: us-co/regulation/9-ccr-2503-6
-      references: 3
+    - path: us-co/regulation/9-ccr-2503-5
+      references: 4
       part: Household and eligibility
   full:
-  - key: us-co/regulation/10-ccr-2505-3
-    name: 10 CCR 2505-3 Financial Management of the Children's Basic Health Plan (Child Health Plan Plus rules)
+  - key: us-co/regulation/9-ccr-2503-5
+    name: us-co/regulation/9-ccr-2503-5
     layer: state
-    citation_path: us-co/regulation/10-ccr-2505-3
-    source_url: null
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: us-co/regulation/9-ccr-2503-6
-    name: Code of Colorado Regulations 9 CCR 2503-6 Colorado Works Program
-    layer: state
-    citation_path: us-co/regulation/9-ccr-2503-6
+    citation_path: us-co/regulation/9-ccr-2503-5
     source_url: null
     part: Household and eligibility
     sources:
@@ -22885,20 +22862,48 @@ layers:
     - path: us-fl/manual/dcf/ess-program-policy-manual/appendix-a-12-state-funded-programs-eligibility-standards
       references: 2
       part: Benefit amount
-  - key: us-fl/regulation/fac/65a-2/022
-    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
+  - key: us-fl/regulation/fac/65a-2/032
+    name: 'Fla. Admin. Code R. 65A-2.032: Optional State Supplementation Eligibility Criteria'
     layer: state
-    citation_path: us-fl/regulation/fac/65a-2/022
+    citation_path: us-fl/regulation/fac/65a-2/032
     source_url: null
     sources:
     - policyengine-references
-    references: 3
+    references: 1
     scope: in
     part: Household and eligibility
     cited:
-    - path: us-fl/regulation/fac/65a-2/022
-      references: 3
+    - path: us-fl/regulation/fac/65a-2/032
+      references: 1
       part: Household and eligibility
+  - key: us-fl/regulation/fac/65a-2/033
+    name: 'Fla. Admin. Code R. 65A-2.033: Optional State Supplementation Coverage Groups'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/033
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-fl/regulation/fac/65a-2/033
+      references: 1
+      part: Household and eligibility
+  - key: us-fl/regulation/fac/65a-2/036
+    name: 'Fla. Admin. Code R. 65A-2.036: Optional State Supplementation Base Provider Rates and Program Standards'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/036
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Other
+    cited:
+    - path: us-fl/regulation/fac/65a-2/036
+      references: 1
+      part: Other
   - key: us-fl/statute/session-laws/2024
     name: us-fl/statute/session-laws/2024
     layer: state
@@ -22941,12 +22946,32 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-fl/regulation/fac/65a-2/022
-    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
+  - key: us-fl/regulation/fac/65a-2/032
+    name: 'Fla. Admin. Code R. 65A-2.032: Optional State Supplementation Eligibility Criteria'
     layer: state
-    citation_path: us-fl/regulation/fac/65a-2/022
+    citation_path: us-fl/regulation/fac/65a-2/032
     source_url: null
     part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-fl-ssi-state-supplement.yaml
+    scope: in
+  - key: us-fl/regulation/fac/65a-2/033
+    name: 'Fla. Admin. Code R. 65A-2.033: Optional State Supplementation Coverage Groups'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/033
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    - manifests/us-fl-ssi-state-supplement.yaml
+    scope: in
+  - key: us-fl/regulation/fac/65a-2/036
+    name: 'Fla. Admin. Code R. 65A-2.036: Optional State Supplementation Base Provider Rates and Program Standards'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/036
+    source_url: null
+    part: Other
     sources:
     - screener
     - manifests/us-fl-ssi-state-supplement.yaml
@@ -22968,6 +22993,56 @@ layers:
     sources:
     - manifests/us-fl-ess-manual.yaml
     manifest: manifests/us-fl-ess-manual.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-fl/regulation/fac/65a-2/022
+    name: 'Fla. Admin. Code R. 65A-2.022: Rights and Responsibilities'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/022
+    source_url: https://flrules.org/gateway/RuleNo.asp?title=OPTIONAL%20STATE%20SUPPLEMENTATION&ID=65A-2.022
+    sources:
+    - manifests/us-fl-ssi-state-supplement.yaml
+    manifest: manifests/us-fl-ssi-state-supplement.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-fl/regulation/fac/65a-2/023
+    name: 'Fla. Admin. Code R. 65A-2.023: Application and Determination of Eligibility'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/023
+    source_url: https://flrules.org/gateway/RuleNo.asp?title=OPTIONAL%20STATE%20SUPPLEMENTATION&ID=65A-2.023
+    sources:
+    - manifests/us-fl-ssi-state-supplement.yaml
+    manifest: manifests/us-fl-ssi-state-supplement.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-fl/regulation/fac/65a-2/024
+    name: 'Fla. Admin. Code R. 65A-2.024: Determination of Continued Eligibility'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/024
+    source_url: https://flrules.org/gateway/RuleNo.asp?title=OPTIONAL%20STATE%20SUPPLEMENTATION&ID=65A-2.024
+    sources:
+    - manifests/us-fl-ssi-state-supplement.yaml
+    manifest: manifests/us-fl-ssi-state-supplement.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-fl/regulation/fac/65a-2/031
+    name: 'Fla. Admin. Code R. 65A-2.031: Advance Notice: Written Ten Day Advance Notice'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/031
+    source_url: https://flrules.org/gateway/RuleNo.asp?title=OPTIONAL%20STATE%20SUPPLEMENTATION&ID=65A-2.031
+    sources:
+    - manifests/us-fl-ssi-state-supplement.yaml
+    manifest: manifests/us-fl-ssi-state-supplement.yaml
+    scope: in
+    part: Benefit amount
+  - key: us-fl/regulation/fac/65a-2/035
+    name: 'Fla. Admin. Code R. 65A-2.035: Income Calculation'
+    layer: state
+    citation_path: us-fl/regulation/fac/65a-2/035
+    source_url: https://flrules.org/gateway/RuleNo.asp?title=OPTIONAL%20STATE%20SUPPLEMENTATION&ID=65A-2.035
+    sources:
+    - manifests/us-fl-ssi-state-supplement.yaml
+    manifest: manifests/us-fl-ssi-state-supplement.yaml
     scope: in
     part: Benefit amount
 - jurisdiction: us-ga
@@ -23106,19 +23181,75 @@ layers:
     scope: in
 - jurisdiction: us-il
   screener:
-  - key: us-il/policy/acf/ccdf-plan/fy2025-2027
-    name: Illinois CCDF Plan, FFY 2025-2027
+  - key: us-il/manual/dhs/csmm/12668
+    name: 'WAG 25-03-03: AABD Fuel and Utility Allowances by Area'
     layer: state
-    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    citation_path: us-il/manual/dhs/csmm/12668
     source_url: null
     sources:
     - policyengine-references
-    references: 5
+    references: 1
     scope: in
     part: Benefit amount
     cited:
-    - path: us-il/policy/acf/ccdf-plan/fy2025-2027
-      references: 5
+    - path: us-il/manual/dhs/csmm/12668
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/csmm/15910
+    name: 'PM 11-01-00: AABD Cash Assistance Standard'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/15910
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-il/manual/dhs/csmm/15910
+      references: 1
+      part: Household and eligibility
+  - key: us-il/manual/dhs/csmm/15913
+    name: 'WAG 11-01-01: Personal Allowance'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/15913
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/csmm/15913
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/csmm/15948
+    name: 'PM 11-01-07: Grant Adjustment'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/15948
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/csmm/15948
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/csmm/19812
+    name: 'WAG 25-06-01: AABD Grant Adjustment Changes'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/19812
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/csmm/19812
+      references: 1
       part: Benefit amount
   - key: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113
     name: us-il/regulation/title-089/chapter-iv/subchapter-b/part-113
@@ -23343,10 +23474,46 @@ layers:
       a local third-party summary of several programs, not a rule document'
     part: Benefit amount
   full:
-  - key: us-il/policy/acf/ccdf-plan/fy2025-2027
-    name: Illinois CCDF Plan, FFY 2025-2027
+  - key: us-il/manual/dhs/csmm/12668
+    name: 'WAG 25-03-03: AABD Fuel and Utility Allowances by Area'
     layer: state
-    citation_path: us-il/policy/acf/ccdf-plan/fy2025-2027
+    citation_path: us-il/manual/dhs/csmm/12668
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/15910
+    name: 'PM 11-01-00: AABD Cash Assistance Standard'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/15910
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/15913
+    name: 'WAG 11-01-01: Personal Allowance'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/15913
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/15948
+    name: 'PM 11-01-07: Grant Adjustment'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/15948
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-il/manual/dhs/csmm/19812
+    name: 'WAG 25-06-01: AABD Grant Adjustment Changes'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/19812
     source_url: null
     part: Benefit amount
     sources:
@@ -23487,18 +23654,18 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-il/manual/dhs/csmm/13251
+    name: 'IDHS: WAG 03-03-01: SSI and TANF'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/13251
+    source_url: https://www.dhs.state.il.us/page.aspx?item=13251
+    sources:
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    manifest: manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+    part: Other
 - jurisdiction: us-in
   screener:
-  - key: https://www.law.cornell.edu/regulations/indiana/455-IAC-1-3-3
-    name: law.cornell.edu/regulations/indiana/455-IAC-1-3-3
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/indiana/455-IAC-1-3-3
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
   - key: us-in/guidance/fssa/rcap-provider-guide
     name: Residential Care Assistance Program (RCAP) Provider Guide (September 7, 2017)
     layer: state
@@ -23525,6 +23692,20 @@ layers:
     part: Benefit amount
     cited:
     - path: us-in/manual/fssa/medicaid-policy-manual/chapter-5000
+      references: 1
+      part: Benefit amount
+  - key: us-in/regulation/iac/455/1
+    name: '455 IAC Article 1: Aging (Indiana Administrative Code, 2026 edition)'
+    layer: state
+    citation_path: us-in/regulation/iac/455/1
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-in/regulation/iac/455/1/3-3
       references: 1
       part: Benefit amount
   - key: us-in/statute/12-10-6-2.1
@@ -23554,15 +23735,6 @@ layers:
       of the corpus families'
     part: Other
   full:
-  - key: https://www.law.cornell.edu/regulations/indiana/455-IAC-1-3-3
-    name: law.cornell.edu/regulations/indiana/455-IAC-1-3-3
-    layer: state
-    citation_path: null
-    source_url: https://www.law.cornell.edu/regulations/indiana/455-IAC-1-3-3
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: us-in/guidance/fssa/rcap-provider-guide
     name: Residential Care Assistance Program (RCAP) Provider Guide (September 7, 2017)
     layer: state
@@ -23581,6 +23753,15 @@ layers:
     sources:
     - screener
     - manifests/us-in-ssp-sapn-official-documents.yaml
+    scope: in
+  - key: us-in/regulation/iac/455/1
+    name: '455 IAC Article 1: Aging (Indiana Administrative Code, 2026 edition)'
+    layer: state
+    citation_path: us-in/regulation/iac/455/1
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
     scope: in
   - key: us-in/statute/12-10-6-2.1
     name: us-in/statute/12-10-6-2.1
@@ -23685,10 +23866,10 @@ layers:
     - path: us-ky/regulation/kar/921/002/015
       references: 1
       part: Benefit amount
-  - key: us-ky/statute/krs/141.020
-    name: KRS 141.020 — Levy of income tax on individuals
+  - key: us-ky/statute/krs/205.245
+    name: KRS 205.245 Supplementary payments
     layer: state
-    citation_path: us-ky/statute/krs/141.020
+    citation_path: us-ky/statute/krs/205.245
     source_url: null
     sources:
     - policyengine-references
@@ -23696,7 +23877,7 @@ layers:
     scope: in
     part: Benefit amount
     cited:
-    - path: us-ky/statute/krs/141.020
+    - path: us-ky/statute/krs/205.245
       references: 1
       part: Benefit amount
   full:
@@ -23720,10 +23901,10 @@ layers:
     - screener
     - manifests/us-ky-ssi-state-supplement.yaml
     scope: in
-  - key: us-ky/statute/krs/141.020
-    name: KRS 141.020 — Levy of income tax on individuals
+  - key: us-ky/statute/krs/205.245
+    name: KRS 205.245 Supplementary payments
     layer: state
-    citation_path: us-ky/statute/krs/141.020
+    citation_path: us-ky/statute/krs/205.245
     source_url: null
     part: Benefit amount
     sources:
@@ -24085,10 +24266,10 @@ layers:
     - path: us-mi/manual/mdhhs/rft/248
       references: 5
       part: Benefit amount
-  - key: us-mi/statute/400.10d
-    name: Michigan Compiled Laws 400.10d, FIP asset test
+  - key: us-mi/statute/400.10
+    name: Michigan Compiled Laws 400.10, Administration of social security act and food stamp act
     layer: state
-    citation_path: us-mi/statute/400.10d
+    citation_path: us-mi/statute/400.10
     source_url: null
     sources:
     - policyengine-references
@@ -24096,7 +24277,7 @@ layers:
     scope: in
     part: Benefit amount
     cited:
-    - path: us-mi/statute/400.10d
+    - path: us-mi/statute/400.10
       references: 1
       part: Benefit amount
   full:
@@ -24120,10 +24301,10 @@ layers:
     - screener
     - manifests/us-mi-bridges-manual.yaml
     scope: in
-  - key: us-mi/statute/400.10d
-    name: Michigan Compiled Laws 400.10d, FIP asset test
+  - key: us-mi/statute/400.10
+    name: Michigan Compiled Laws 400.10, Administration of social security act and food stamp act
     layer: state
-    citation_path: us-mi/statute/400.10d
+    citation_path: us-mi/statute/400.10
     source_url: null
     part: Benefit amount
     sources:
@@ -24551,13 +24732,69 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 5
+    references: 1
+    scope: in
+    part: Assets
+    cited:
+    - path: us-mo/statute/208.010
+      references: 1
+      part: Assets
+  - key: us-mo/statute/208.030
+    name: RSMo 208.030
+    layer: state
+    citation_path: us-mo/statute/208.030
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
     scope: in
     part: Household and eligibility
     cited:
-    - path: us-mo/statute/208.010
-      references: 5
+    - path: us-mo/statute/208.030
+      references: 1
       part: Household and eligibility
+  - key: us-mo/statute/209.030
+    name: RSMo 209.030
+    layer: state
+    citation_path: us-mo/statute/209.030
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-mo/statute/209.030
+      references: 1
+      part: Household and eligibility
+  - key: us-mo/statute/209.040
+    name: RSMo 209.040
+    layer: state
+    citation_path: us-mo/statute/209.040
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-mo/statute/209.040
+      references: 1
+      part: Benefit amount
+  - key: us-mo/statute/209.240
+    name: RSMo 209.240
+    layer: state
+    citation_path: us-mo/statute/209.240
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-mo/statute/209.240
+      references: 1
+      part: Income
   full:
   - key: https://dssmanuals.mo.gov/2022/12/05/im-143-2/
     name: dssmanuals.mo.gov/2022/12/05/im-143-2/
@@ -24794,7 +25031,43 @@ layers:
     layer: state
     citation_path: us-mo/statute/208.010
     source_url: null
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-mo/statute/208.030
+    name: RSMo 208.030
+    layer: state
+    citation_path: us-mo/statute/208.030
+    source_url: null
     part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-mo/statute/209.030
+    name: RSMo 209.030
+    layer: state
+    citation_path: us-mo/statute/209.030
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-mo/statute/209.040
+    name: RSMo 209.040
+    layer: state
+    citation_path: us-mo/statute/209.040
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-mo/statute/209.240
+    name: RSMo 209.240
+    layer: state
+    citation_path: us-mo/statute/209.240
+    source_url: null
+    part: Income
     sources:
     - screener
     scope: in
@@ -31491,6 +31764,16 @@ layers:
     manifest: manifests/us-ut-manuals.yaml
     scope: in
     part: Assets
+  - key: us-ut/regulation/admin-rules/r414/306/6
+    name: 'Utah Administrative Code R414-306-6: State Supplemental Payments for Institutionalized SSI Recipients'
+    layer: state
+    citation_path: us-ut/regulation/admin-rules/r414/306/6
+    source_url: https://adminrules.utah.gov/Rule/980/51/7248/undefined
+    sources:
+    - manifests/us-ut-ssi-state-supplement-rules.yaml
+    manifest: manifests/us-ut-ssi-state-supplement-rules.yaml
+    scope: in
+    part: Benefit amount
 - jurisdiction: us-vt
   screener: []
   full: []
@@ -31791,19 +32074,47 @@ layers:
     - path: us-wa/guidance/hca/income-standards/2026-01-01
       references: 1
       part: Benefit amount
-  - key: us-wa/regulation/388/388-414/388-414-0001
-    name: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  - key: us-wa/regulation/388/388-474/388-474-0012
+    name: us-wa/regulation/388/388-474/388-474-0012
     layer: state
-    citation_path: us-wa/regulation/388/388-414/388-414-0001
+    citation_path: us-wa/regulation/388/388-474/388-474-0012
     source_url: null
     sources:
     - policyengine-references
-    references: 3
+    references: 1
+    scope: in
+    part: Household and eligibility
+    cited:
+    - path: us-wa/regulation/388/388-474/388-474-0012
+      references: 1
+      part: Household and eligibility
+  - key: us-wa/regulation/388/388-478/388-478-0055
+    name: us-wa/regulation/388/388-478/388-478-0055
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0055
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
     scope: in
     part: Benefit amount
     cited:
-    - path: us-wa/regulation/388/388-414/388-414-0001
-      references: 3
+    - path: us-wa/regulation/388/388-478/388-478-0055
+      references: 1
+      part: Benefit amount
+  - key: us-wa/regulation/388/388-478/388-478-0057
+    name: us-wa/regulation/388/388-478/388-478-0057
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0057
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-wa/regulation/388/388-478/388-478-0057
+      references: 1
       part: Benefit amount
   - key: us-wa/rulemaking/wsr/06-16-071
     name: Washington State Register WSR 06-16-071
@@ -31973,10 +32284,28 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-wa/regulation/388/388-414/388-414-0001
-    name: WAC 388-414-0001 Broad-based categorical eligibility (BBCE)
+  - key: us-wa/regulation/388/388-474/388-474-0012
+    name: us-wa/regulation/388/388-474/388-474-0012
     layer: state
-    citation_path: us-wa/regulation/388/388-414/388-414-0001
+    citation_path: us-wa/regulation/388/388-474/388-474-0012
+    source_url: null
+    part: Household and eligibility
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/388/388-478/388-478-0055
+    name: us-wa/regulation/388/388-478/388-478-0055
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0055
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-wa/regulation/388/388-478/388-478-0057
+    name: us-wa/regulation/388/388-478/388-478-0057
+    layer: state
+    citation_path: us-wa/regulation/388/388-478/388-478-0057
     source_url: null
     part: Benefit amount
     sources:
@@ -32098,6 +32427,17 @@ layers:
 - jurisdiction: us-wi
   screener: []
   full:
+  - key: us-wi/statute/49.77
+    name: Wis. Stat. 49.77 State supplemental payments (2023-24 Wisconsin Statutes updated through 2025 Wis. Act
+      247)
+    layer: state
+    citation_path: us-wi/statute/49.77
+    source_url: https://docs.legis.wisconsin.gov/statutes/statutes/49/v/77
+    sources:
+    - manifests/us-wi-ssi-state-supplement-rules.yaml
+    manifest: manifests/us-wi-ssi-state-supplement-rules.yaml
+    scope: in
+    part: Benefit amount
   - key: us-wi/manual/dhs/ssi/ssi-admin/1-1
     name: 'Wisconsin SSI Administration Handbook: 1.1 Introduction'
     layer: state

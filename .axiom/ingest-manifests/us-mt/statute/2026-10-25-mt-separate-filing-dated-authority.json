@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/statute/2026-10-25-mt-separate-filing-dated-authority.json",
+      "sha256": "d32db319ccbbe4df651523382e4c796bb47110dc0e5615c0943647c0fa2a5d34"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/statute/2026-10-25-mt-separate-filing-dated-authority.json",
+      "sha256": "064413515d511e853fdfedaec590f35b12d2e4aa231e1c7e63a80bb831b9d326"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/statute/2026-10-25-mt-separate-filing-dated-authority.jsonl",
+      "sha256": "b5bb5a976d9d1917742f8316597d6eb4ffa82a4ccbe660016f689bc408504ffc"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/statute/2026-10-25-mt-separate-filing-dated-authority/official-documents/us-mt-statute-15-30-2602--mca-2021.html",
+      "sha256": "f37e44a5aaad268086efec0a3c5116e46df1e544a52d4c06b690d243d0461e2f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "114ba77520119e188e7143f746e7b80539d75e6f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-25-mt-separate-filing-dated-authority --manifest manifests/us-mt-separate-filing-dated-authority-statute.yaml (run note: docs/ingest-runs/2026-10-25-us-mt-separate-filing-dated-authority.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-25T11:42:59.706815+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tgX8lubs5aiE1mpveT43bdCGkGtZBvaO10TJin4/eSbVMbFPjlDF5msgM2Jrwupox1xeHOlhjf6kK0R0BT1RAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-25-mt-separate-filing-dated-authority"
+}

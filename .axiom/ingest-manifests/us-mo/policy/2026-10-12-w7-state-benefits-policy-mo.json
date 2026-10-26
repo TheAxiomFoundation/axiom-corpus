@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mo/policy/2026-10-12-w7-state-benefits-policy-mo.json",
+      "sha256": "af38bca598d96434a03fc80593c7dda33d3261c342bd93010b15d9a7b8ff3d33"
+    },
+    {
+      "path": "data/corpus/inventory/us-mo/policy/2026-10-12-w7-state-benefits-policy-mo.json",
+      "sha256": "db597296758552cfebb85aab0cc464be7483de39c1abed22a9787d42125d88f7"
+    },
+    {
+      "path": "data/corpus/provisions/us-mo/policy/2026-10-12-w7-state-benefits-policy-mo.jsonl",
+      "sha256": "7bfe4ce4b475f656b9e694f21927094f17d463338dd564a9c65a5193821b82fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mo/policy/2026-10-12-w7-state-benefits-policy-mo/official-documents/us-mo-policy-acf-ccdf-plan-fy2025-2027.pdf",
+      "sha256": "933501fdbcde1a307f98c8645e712c9da814edbbbba56c65e010cfaf0310a954"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21b69d477e3358c4bc49957f2932bbc1c98bda49",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-10-12-w7-state-benefits.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-13T12:06:33.639732+00:00",
+  "jurisdiction": "us-mo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VH/dqqatRs1QJ/re5Ns1c7j/IfVvrJcaPmfOt5g8814Ls65U4840b52SHTMOHq2+3RMoEVI8S6xGbCPhxdQkDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-w7-state-benefits-policy-mo"
+}
