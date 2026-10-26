@@ -427,6 +427,16 @@ axiom-corpus-ingest extract-official-documents \
   --manifest manifests/us-co-snap-primary-policy.yaml
 ```
 
+### PDF page filters
+
+The page filters `page_windows`, `start_page`, `end_page`,
+`start_after_pattern`, `drop_lines`, `drop_line_patterns` and
+`page_header_patterns` work only with the `single_block`, `numbered_sections`
+and `labeled_sections` PDF segmentations. The default per-page segmentation
+writes a row for every page that has text and reads none of them, so
+extraction stops with an error that names any page filter set without one of
+those segmentations.
+
 ### Retained copies (`local_path`)
 
 A manifest entry with `local_path` reads the document's bytes from that file
