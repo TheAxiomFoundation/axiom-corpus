@@ -1,0 +1,111 @@
+# Wave 7 state-tax (2026-10-12): Indiana Department of Revenue forms named by the program bundles.
+# forms.in.gov/Download.aspx?id= is query-routed (one document per id); source_url is the bundle address exactly.
+# Printed form number, revision and tax year read from page 1 of each PDF on 2026-10-12.
+# Run note docs/ingest-runs/2026-10-12-w7-state-tax.md.
+version: 2026-10-12-w7-income-tax-forms-in
+documents:
+- source_id: us-in-form-dor-ty2023-schedule-in-eic
+  jurisdiction: us-in
+  document_class: form
+  title: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+  source_url: https://forms.in.gov/Download.aspx?id=15784
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  citation_path: us-in/form/dor/ty2023/schedule-in-eic
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w7-state-tax-income-tax-forms
+    discovered_via: wave-7 program-bundle gaps 2026-10-12 (state-tax.csv); fetched and read 2026-10-12
+    publisher_filename: IN-EIC (9-23) Fillable.pdf
+    first_page_first_line: Schedule IN-EIC Schedule IN-EIC Indiana's Earned Income Credit 2023 State Form 49469 (R23 / 9-23) (2 pages)
+    tax_year: '2023'
+- source_id: us-in-form-dor-ty2023-it-40-booklet
+  jurisdiction: us-in
+  document_class: form
+  title: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
+  source_url: https://forms.in.gov/Download.aspx?id=15792
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  citation_path: us-in/form/dor/ty2023/it-40-booklet
+  expression_date: '2023-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w7-state-tax-income-tax-forms
+    discovered_via: wave-7 program-bundle gaps 2026-10-12 (state-tax.csv); fetched and read 2026-10-12
+    publisher_filename: IT-40 Instructions (12-23).pdf
+    first_page_first_line: INDIANA 2023 IT-40 Full-Year Resident Individual Income Tax Booklet (56 pages)
+    tax_year: '2023'
+- source_id: us-in-form-dor-ty2024-schedule-ct-40
+  jurisdiction: us-in
+  document_class: form
+  title: 2024 Schedule CT-40, County Tax Schedule for Full-Year Indiana Residents (State Form 47907, R23 / 9-24)
+  source_url: https://forms.in.gov/Download.aspx?id=16337
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  citation_path: us-in/form/dor/ty2024/schedule-ct-40
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: schedule
+    program: individual_income_tax
+    source_family: w7-state-tax-income-tax-forms
+    discovered_via: wave-7 program-bundle gaps 2026-10-12 (state-tax.csv); fetched and read 2026-10-12
+    publisher_filename: CT-40 (9-24) Fillable.pdf
+    first_page_first_line: Schedule CT-40 Indiana Department of Revenue County Tax Schedule for Full-Year Indiana Residents 2024 (R23 / 9-24) (2 pages)
+    tax_year: '2024'
+- source_id: us-in-form-dor-ty2024-it-40-booklet
+  jurisdiction: us-in
+  document_class: form
+  title: 2024 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (9-24)
+  source_url: https://forms.in.gov/Download.aspx?id=16379
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  citation_path: us-in/form/dor/ty2024/it-40-booklet
+  expression_date: '2024-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: instructions
+    program: individual_income_tax
+    source_family: w7-state-tax-income-tax-forms
+    discovered_via: wave-7 program-bundle gaps 2026-10-12 (state-tax.csv); fetched and read 2026-10-12
+    publisher_filename: IT-40 Instructions (9-24).pdf
+    first_page_first_line: INDIANA 2024 IT-40 Full-Year Resident Individual Income Tax Booklet (56 pages)
+    tax_year: '2024'
+- source_id: us-in-form-dor-ty2025-it-40rnr
+  jurisdiction: us-in
+  document_class: form
+  title: 2025 Form IT-40RNR, Reciprocal Nonresident Indiana Individual Income Tax Return (State Form 44406, R24 / 9-25)
+  source_url: https://forms.in.gov/Download.aspx?id=16925
+  source_format: pdf
+  source_as_of: '2026-10-12'
+  citation_path: us-in/form/dor/ty2025/it-40rnr
+  expression_date: '2025-01-01'
+  extraction:
+    segmentation: single_block
+  metadata:
+    primary_source: true
+    source_authority: Indiana Department of Revenue
+    document_subtype: return
+    program: individual_income_tax
+    source_family: w7-state-tax-income-tax-forms
+    discovered_via: wave-7 program-bundle gaps 2026-10-12 (state-tax.csv); fetched and read 2026-10-12
+    publisher_filename: IT-40RNR (9-25) Fillable.pdf
+    first_page_first_line: Form IT-40RNR Indiana Department of Revenue State Form 44406 Reciprocal Nonresident Indiana Individual Income Tax Return 2025 (R24 / 9-25) (5 pages)
+    tax_year: '2025'

@@ -251,7 +251,10 @@ def test_no_other_us_id_scope_carries_a_variant_path() -> None:
 LINE_HEADS = {
     "us-rulespec-2026-09-24-snap-fy2027-cola": SUCCESSOR_VERSION,
     "us-rulespec-2026-09-24-irs-sales-tax-tables-union": SUCCESSOR_VERSION,
-    "us-rulespec-2026-10-11-w5-remainder-union": CHAPTER_VERSION,
+    "us-rulespec-2026-10-13-w7-bundle-gaps-union": CHAPTER_VERSION,
+    "us-rulespec-2026-10-16-snap-abawd-memo-source-corrected": SUCCESSOR_VERSION,
+    "us-rulespec-2026-10-23-ks-liheap": SUCCESSOR_VERSION,
+    "us-rulespec-2026-10-25-mt-separate-filing": SUCCESSOR_VERSION,
 }
 
 

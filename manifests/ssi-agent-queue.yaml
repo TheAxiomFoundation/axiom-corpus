@@ -40,6 +40,10 @@ policy:
   - '2026-09-13 SSI re-probe of the blocked rows: scripts/build_ssi_state_supplement_manifests.py --batch 5; NY still reset
     by otda.ny.gov (durable block), WY still a script-rendered Drive embed, PR/GU/VI/AS still outside title XVI; nothing fetched
     beyond one plain GET each; docs/ingest-runs/2026-09-13-blocked-publishers-reprobe.md.'
+  - '2026-09-15 SSI state-authority batch 6 (wave 5, needs-closure-2026-09-14 SSI-ST-2): scripts/build_ssi_state_supplement_manifests.py
+    --batch 6; WI (Wis. Stat. 49.77) and UT (R414-306-6) taken as 2026-09-15-ssi-state-supplement-rules; OR (OAR chapter 461,
+    held in the TANF chapter-461 scopes) and VA (22VAC30-80, held in the 2026-09-14 standards scope) recorded as already held;
+    docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -48,8 +52,8 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   agent_ready: 30
-  done: 23
-  blocked_primary_source: 6
+  blocked_primary_source: 1
+  done: 28
 states:
 - jurisdiction: us
   name: Federal
@@ -591,7 +595,10 @@ states:
     are not re-ingested; the rest of 20 CFR 416 remains a separate follow-up. Sibling POMS documents already under us/guidance
     (SI 01415.058 2026, SI PHI01415.009 from the DC run) keep their guidance citation paths; the manual family re-takes them
     under the section-number path. 2026-09-11: the rest of 20 CFR 416 is now the full-part scope us/regulation/2026-09-11-title-20-part-416
-    (see the eCFR row below).'
+    (see the eCFR row below). 2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-POMS-SI-00529): subchapter SI
+    00529 lists one section, SI R00529.020, a redacted regional page whose HTML carries only a ''View In PDF'' link (the 46-character
+    stub in the si-remainder scope); the linked PDF is taken as scope us/manual/2026-09-15-ssi-poms-si-00529 under us/manual/ssa/poms/si/r00529.020/redacted-pdf
+    through the same generator (--family si-00529).'
   index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
   index_document_count: 1693
   taken_count: 915
@@ -667,6 +674,20 @@ states:
     citation_paths:
     - us/statute/42/401
     run_note: docs/ingest-runs/2026-10-06-w6-federal.md
+  poms_si_00529_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-15-ssi-poms-si-00529
+    target_manifest: manifests/us-ssa-poms-si-00529-2026-09-15.yaml
+    index_url: https://secure.ssa.gov/poms.nsf/chapterlist!openview&restricttocategory=05
+    subchapter_index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
+    index_document_count: 1693
+    taken_count: 1
+    citation_paths:
+    - us/manual/ssa/poms/si/r00529.020/redacted-pdf
+    closure_elements:
+    - SSI-F-POMS-SI-00529
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
 - jurisdiction: us
   name: Federal (20 CFR part 416, eCFR)
   queue_status: agent_ready
@@ -686,7 +707,12 @@ states:
     deeming slice is signed but selected by no release, so no released scope carries a us/regulation/20/416 path; the two
     scopes are mutually exclusive in a selector and the full part is the one to select. 2026-09-13 closure run (needs-closure-2026-09-11
     SSI-F-POMS): the remaining 56 part SI subchapters (778 sections) taken as scope us/manual/2026-09-13-ssi-poms-si-remainder
-    through the same generator (--family si-remainder); together with the 2026-09-10 scope every section of part SI is held.'
+    through the same generator (--family si-remainder); together with the 2026-09-10 scope every section of part SI is held.
+    2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-CFR416-APPK): the Appendix to Subpart K of 20 CFR part 416
+    (types of income excluded under other federal laws), the one part-416 node the 2026-09-11 eCFR scope skipped (extract-ecfr
+    --include-appendices rejects subpart-scoped appendix identifiers), taken as an official document from the eCFR renderer
+    API under us/regulation/20/416/subpart-K/appendix; the canonical eCFR page is walled to the corpus client (unblock.federalregister.gov)
+    and is the citation.'
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-09/title-20.json
   index_document_count: 622
   taken_count: 622
@@ -756,6 +782,22 @@ states:
     - SI 04060
     - SI 04070
     run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+  appendix_subpart_k_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: 2026-09-15-title-20-part-416-appendix-k
+    target_manifest: manifests/us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml
+    document_count: 1
+    citation_paths:
+    - us/regulation/20/416/subpart-K/appendix
+    closure_elements:
+    - SSI-F-CFR416-APPK
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
+    notes: '2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-CFR416-APPK): the Appendix to Subpart K of 20 CFR
+      part 416 (types of income excluded under other federal laws), the one part-416 node the 2026-09-11 eCFR scope skipped
+      (extract-ecfr --include-appendices rejects subpart-scoped appendix identifiers), taken as an official document from
+      the eCFR renderer API under us/regulation/20/416/subpart-K/appendix; the canonical eCFR page is walled to the corpus
+      client (unblock.federalregister.gov) and is the citation.'
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready
@@ -851,28 +893,40 @@ states:
   name: American Samoa
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
+  queue_status: done
   program_applicability: not_applicable
-  source_kind: federal_statute_excludes_jurisdiction
+  source_kind: ssa_poms_section
   primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
-  target_manifest: null
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
   target_scope:
-    jurisdiction: us-as
-    document_class: null
-    version: null
-  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
-  index_document_count: 0
-  taken_count: 0
-  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
-  administration: null
-  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
-    not operate in American Samoa. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
-    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-ssi-poms-si
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; the table carries no American Samoa row and SI 01415 holds no territory-specific section; POMS SI 00501.410
+    / SI 00501.415 keep the jurisdiction outside the title XVI definition of the United States; no territory document family
+    exists'
+  administration: N
+  notes: 'Not applicable: SSI does not operate in American Samoa. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI
+    as the 50 States and the District of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
-    American Samoa operates no adult assistance program under titles I, X, XIV or XVI. No territory SSI document exists to
-    inventory and nothing was fetched. (2026-09-11 territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the
-    plain extractor client: POMS SI 00501 subchapter list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov
-    HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion is unchanged. Not applicable on two dates; nothing to take.'
+    American Samoa operates no adult assistance program under titles I, X, XIV or XVI. No territory SSI document exists to inventory
+    and nothing was fetched. (2026-09-11 territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor
+    client: POMS SI 00501 subchapter list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944
+    bytes, 4.5 s); the statutory exclusion is unchanged. Not applicable on two dates; nothing to take. Done 2026-10-20 (w8 benefits
+    run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md): confirmed on the publisher''s own index that the jurisdiction pays
+    no state supplement at all, optional or mandatory. The POMS SI 014 chapter list (https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014)
+    lists 32 SI 01415 sections and names no territory, and the SI 01415.010 state table (fetched 2026-10-20, HTTP 200, 79,638
+    bytes) carries exactly 51 jurisdiction rows, the 50 States and the District of Columbia, with no American Samoa, Guam, Puerto
+    Rico, Virgin Islands or Northern Mariana Islands row. With 42 U.S.C. 1382c(e) and POMS SI 00501.410 / SI 00501.415 that
+    settles the row: there is no optional state supplement and no territory supplement document to ingest (American Samoa operates
+    no adult assistance program under titles I, X, XIV or XVI, a separate family). Recorded done with that POMS finding and
+    a pointer to us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si), the resolution the us-mp row already uses.
+    Nothing was fetched.'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-az
   name: Arizona
   lead_counts: {}
@@ -1032,29 +1086,40 @@ states:
   name: Guam
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
+  queue_status: done
   program_applicability: not_applicable
-  source_kind: federal_statute_excludes_jurisdiction
+  source_kind: ssa_poms_section
   primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
-  target_manifest: null
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
   target_scope:
-    jurisdiction: us-gu
-    document_class: null
-    version: null
-  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
-  index_document_count: 0
-  taken_count: 0
-  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
-  administration: null
-  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
-    not operate in Guam. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District of Columbia
-    (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-ssi-poms-si
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; the table carries no Guam row and SI 01415 holds no territory-specific section; POMS SI 00501.410 / SI 00501.415
+    keep the jurisdiction outside the title XVI definition of the United States; no territory document family exists'
+  administration: N
+  notes: 'Not applicable: SSI does not operate in Guam. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50
+    States and the District of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
     Guam administers Old Age Assistance, Aid to the Blind and Aid to the Permanently and Totally Disabled through DPHSS (SSA
     titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
     territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter
     list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory
-    exclusion is unchanged. Not applicable on two dates; nothing to take.'
+    exclusion is unchanged. Not applicable on two dates; nothing to take. Done 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md):
+    confirmed on the publisher''s own index that the jurisdiction pays no state supplement at all, optional or mandatory. The
+    POMS SI 014 chapter list (https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014) lists
+    32 SI 01415 sections and names no territory, and the SI 01415.010 state table (fetched 2026-10-20, HTTP 200, 79,638 bytes)
+    carries exactly 51 jurisdiction rows, the 50 States and the District of Columbia, with no American Samoa, Guam, Puerto Rico,
+    Virgin Islands or Northern Mariana Islands row. With 42 U.S.C. 1382c(e) and POMS SI 00501.410 / SI 00501.415 that settles
+    the row: there is no optional state supplement and no territory supplement document to ingest (Guam administers Old Age
+    Assistance, Aid to the Blind and Aid to the Permanently and Totally Disabled through DPHSS under titles I, X and XIV, a
+    separate family). Recorded done with that POMS finding and a pointer to us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si),
+    the resolution the us-mp row already uses. Nothing was fetched.'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-hi
   name: Hawaii
   lead_counts: {}
@@ -1690,8 +1755,13 @@ states:
     Your support ID is ...''), no page content. Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client,
     same failure: connection reset by peer after 0.1 s, no response. Durable block: the same failure from two networks (the
     2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13); the dashboard should treat the cell as not available
-    rather than pending.'
-  index_families: no index inventory possible (publisher blocked; see notes)
+    rather than pending. Re-probed 2026-10-20T18:58Z (wave 8 New York unblock, docs/ingest-runs/2026-10-20-w8-ny-unblock.md):
+    still blocked. A wave-8 probe report of a working chrome120 fingerprint did not reproduce. https://otda.ny.gov/programs/ssp/
+    answers HTTP 200 to curl-cffi chrome120 and resets the plain client, but the chrome120 body is the same 6.6 KB F5/Shape
+    TSPD JavaScript challenge (window[''bobcmn'']) with no page content; the challenge was not solved or worked around. No
+    index inventory possible, so no SSP payment-standard or eligibility document could be confirmed on the publisher''s own
+    index.'
+  index_families: no index inventory possible (publisher serves a JavaScript bot challenge; see notes)
 - jurisdiction: us-oh
   name: Ohio
   lead_counts: {}
@@ -1801,15 +1871,37 @@ states:
   index_document_count: null
   taken_count: 0
   administration: S
-  notes: Done by pointer. Oregon Supplemental Income Program (OSIP) cash supplements and special needs payments are covered
+  notes: 'Done by pointer. Oregon Supplemental Income Program (OSIP) cash supplements and special needs payments are covered
     by the ODHS Oregon Programs Eligibility Notebook (OPEN, DE 2818, 07/2026), in the corpus as us-or/manual/odhs/open (1,323
-    page rows; 47 pages name OSIP cash, e.g. 'OSIP Oregon Supplemental Income Program Cash supplements and special needs',
+    page rows; 47 pages name OSIP cash, e.g. ''OSIP Oregon Supplemental Income Program Cash supplements and special needs'',
     OSIP maintenance standard, OAR 461-140-0296/-0300 references). The adopted rules are OAR chapter 461 on the Secretary
-    of State's OARD (displayChapterRules.action?selectedChapter=99, HTTP 200 on 2026-09-10), a chapter shared with SNAP, TANF
-    and ERDC; not taken. oregon.gov/odhs guessed OSIP page 404. (2026-09-10 state-supplement batch 2.)
+    of State''s OARD (displayChapterRules.action?selectedChapter=99, HTTP 200 on 2026-09-10), a chapter shared with SNAP,
+    TANF and ERDC; not taken. oregon.gov/odhs guessed OSIP page 404. (2026-09-10 state-supplement batch 2.) Already held:
+    OAR chapter 461 (the OSIP adopted-rule family, secure.sos.state.or.us) was taken whole by the TANF chapter-461 scope on
+    2026-09-10 and carried into its 2026-09-14 consolidated successor; 461-155-0250 Income and Payment Standard; OSIPM (SSI-ST-2/ST-4),
+    461-160-0550 Income Deductions; Non-SSI OSIP and OSIPM and 461-160-0780 Determining Adjusted Income; OSIP-EPD and OSIPM-EPD
+    (SSI-ST-5) are rows of both. Nothing fetched. (2026-09-15 wave-5 batch 6.)'
   index_families: 'pointer to the ODHS Oregon Programs Eligibility Notebook scope (1 PDF, 1,323 page rows; 47 pages name OSIP
     cash, 392 name OSIP or OSIPM): 0 new documents taken; OAR chapter 461 (secure.sos.state.or.us, HTTP 200) is the adopted-rule
     family, not taken'
+  authority_scope:
+    status: already_held
+    scopes:
+    - us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461
+    - us-or/regulation/2026-09-10-tanf-state-policy-manual-chapter-461-r2026-09-14-150-316-consolidated
+    citation_paths:
+    - us-or/regulation/chapter-461/division-155/rule-461-155-0250
+    - us-or/regulation/chapter-461/division-160/rule-461-160-0550
+    - us-or/regulation/chapter-461/division-160/rule-461-160-0780
+    closure_elements:
+    - SSI-ST-2
+    - SSI-ST-4
+    - SSI-ST-5
+    note: 'Already held: OAR chapter 461 (the OSIP adopted-rule family, secure.sos.state.or.us) was taken whole by the TANF
+      chapter-461 scope on 2026-09-10 and carried into its 2026-09-14 consolidated successor; 461-155-0250 Income and Payment
+      Standard; OSIPM (SSI-ST-2/ST-4), 461-160-0550 Income Deductions; Non-SSI OSIP and OSIPM and 461-160-0780 Determining
+      Adjusted Income; OSIP-EPD and OSIPM-EPD (SSI-ST-5) are rows of both. Nothing fetched. (2026-09-15 wave-5 batch 6.)'
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
 - jurisdiction: us-pa
   name: Pennsylvania
   lead_counts: {}
@@ -1831,29 +1923,41 @@ states:
   name: Puerto Rico
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
+  queue_status: done
   program_applicability: not_applicable
-  source_kind: federal_statute_excludes_jurisdiction
+  source_kind: ssa_poms_section
   primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
-  target_manifest: null
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
   target_scope:
-    jurisdiction: us-pr
-    document_class: null
-    version: null
-  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
-  index_document_count: 0
-  taken_count: 0
-  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
-  administration: null
-  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
-    not operate in Puerto Rico. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
-    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-ssi-poms-si
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; the table carries no Puerto Rico row and SI 01415 holds no territory-specific section; POMS SI 00501.410
+    / SI 00501.415 keep the jurisdiction outside the title XVI definition of the United States; no territory document family
+    exists'
+  administration: N
+  notes: 'Not applicable: SSI does not operate in Puerto Rico. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as
+    the 50 States and the District of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
-    Puerto Rico administers Aid to the Aged, Blind and Disabled under SSA titles I, X and XIV (42 U.S.C. 1308 ceiling), a
-    separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.)
-    Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter list HTTP 200
-    (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion
-    is unchanged. Not applicable on two dates; nothing to take.'
+    Puerto Rico administers Aid to the Aged, Blind and Disabled under SSA titles I, X and XIV (42 U.S.C. 1308 ceiling), a separate
+    family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11 territories pass.) Re-probed
+    2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter list HTTP 200 (48,992 bytes,
+    0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory exclusion is unchanged. Not
+    applicable on two dates; nothing to take. Done 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md):
+    confirmed on the publisher''s own index that the jurisdiction pays no state supplement at all, optional or mandatory. The
+    POMS SI 014 chapter list (https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014) lists
+    32 SI 01415 sections and names no territory, and the SI 01415.010 state table (fetched 2026-10-20, HTTP 200, 79,638 bytes)
+    carries exactly 51 jurisdiction rows, the 50 States and the District of Columbia, with no American Samoa, Guam, Puerto Rico,
+    Virgin Islands or Northern Mariana Islands row. With 42 U.S.C. 1382c(e) and POMS SI 00501.410 / SI 00501.415 that settles
+    the row: there is no optional state supplement and no territory supplement document to ingest (Puerto Rico administers Aid
+    to the Aged, Blind and Disabled under titles I, X and XIV, a separate family). Recorded done with that POMS finding and
+    a pointer to us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si), the resolution the us-mp row already uses.
+    Nothing was fetched.'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-ri
   name: Rhode Island
   lead_counts: {}
@@ -2021,9 +2125,38 @@ states:
     (rates as of 2026-01-01: $3.91/month single, $12.19 couples in the household of another, $5.75 couples living alone or
     with others; institutionalized SSI recipients are handled under Medicaid, Utah Admin. Code R414-306-6), in the corpus
     as us-ut/manual/dws/eligibility-manual/200-program-eligibility-requirements-205-10-... (2 blocks). R414-306-6 (adminrules.utah.gov)
-    is not in the corpus and not taken. (2026-09-10 state-supplement batch 2.)'
+    is not in the corpus and not taken. (2026-09-10 state-supplement batch 2.) Utah Admin. Code R414-306-6 State Supplemental
+    Payments for Institutionalized SSI Recipients ($15 to a Medicaid-eligible resident of a medical institution whose SSI
+    is reduced to $30) taken from the Office of Administrative Rules eRules public API as us-ut/regulation/admin-rules/r414/306
+    (section 6). Closes SSI-ST-2 beside the DWS manual pointer. (2026-09-15 wave-5 batch 6.) Address repaired 2026-10-20.
+    eRules relaunched v1.0.0 on 2026-10-16 and every /public/rule/ and /api/public/ address answers HTTP 404. index_url is
+    now the POST /api/search endpoint, called with searchTerm R414-306 and ruleTypeId 51, and the rule itself is read from
+    the rule page https://adminrules.utah.gov/Rule/980/51/7248/undefined. The rule version is unchanged, so no document was
+    added or dropped and taken_count stays 1. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.'
   index_families: 'pointer to the DWS Eligibility Manual scope (2,398 rows; section 205-10 State Supplemental Payments to
     SSI Recipients present with the 2026-01-01 rates): 0 new documents taken'
+  authority_scope:
+    status: taken
+    jurisdiction: us-ut
+    document_class: regulation
+    version: 2026-09-15-ssi-state-supplement-rules
+    target_manifest: manifests/us-ut-ssi-state-supplement-rules.yaml
+    source_kind: official_state_administrative_rule
+    index_url: https://adminrules.utah.gov/api/search
+    index_document_count: 1
+    taken_count: 1
+    citation_paths:
+    - us-ut/regulation/admin-rules/r414/306
+    closure_elements:
+    - SSI-ST-2
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
+    notes: Utah Admin. Code R414-306-6 State Supplemental Payments for Institutionalized SSI Recipients ($15 to a Medicaid-eligible
+      resident of a medical institution whose SSI is reduced to $30) taken from the Office of Administrative Rules eRules
+      public API as us-ut/regulation/admin-rules/r414/306 (section 6). Closes SSI-ST-2 beside the DWS manual pointer. (2026-09-15
+      wave-5 batch 6.) Address repaired 2026-10-20. eRules relaunched v1.0.0 on 2026-10-16 and every /public/rule/ and /api/public/
+      address answers HTTP 404. index_url is now the POST /api/search endpoint, called with searchTerm R414-306 and ruleTypeId
+      51, and the rule itself is read from the rule page https://adminrules.utah.gov/Rule/980/51/7248/undefined. The rule
+      version is unchanged, so no document was added or dropped and taken_count stays 1. See docs/ingest-runs/2026-10-20-ut-erules-url-repair.md.
 - jurisdiction: us-va
   name: Virginia
   lead_counts: {}
@@ -2045,7 +2178,8 @@ states:
     and provider documents not taken; the adopted rule 22VAC30-80 (Virginia LIS, 12 sections) is the alternative family, not
     taken. document_class manual, citation us-va/manual/dars/auxiliary-grant/chapter-<x>, page granularity. 2026-09-14: current
     payment standards (SSI-ST-4) taken as us-va/guidance/2026-09-14-ssi-state-supplement-standards, us-va/regulation/2026-09-14-ssi-state-supplement-standards
-    (see standards_scope).'
+    (see standards_scope). Already held: 22VAC30-80 Auxiliary Grants Program (all 12 sections, law.lis.virginia.gov) was taken
+    on 2026-09-14 in the standards scope. Nothing fetched. (2026-09-15 wave-5 batch 6.)'
   index_families: 'Auxiliary Grant Program Manual chapters: 12 found / 12 taken; manual transmittals: 1 found / 0 taken; provider
     manuals, agreements, certification and forms: 8 found / 0 taken; 22VAC30-80 Auxiliary Grants Program sections on Virginia
     LIS (https://law.lis.virginia.gov/admincode/title22/agency30/chapter80/; separate index): 12 found / 0 taken'
@@ -2073,33 +2207,67 @@ states:
       District 8 effective 2026-01-01, personal needs allowance $87), linked from the VDSS assisted-living-facilities page;
       and 22VAC30-80 Auxiliary Grants Program, all 12 sections from Virginia LIS (SSI-ST-2), the alternative family the 2026-09-10
       row inventoried and did not take. Access: dss.virginia.gov and law.lis.virginia.gov HTTP 200 to the plain client.'
+  authority_scope:
+    status: already_held
+    scopes:
+    - us-va/regulation/2026-09-14-ssi-state-supplement-standards
+    citation_paths:
+    - us-va/regulation/22vac30-80/10
+    - us-va/regulation/22vac30-80/15
+    - us-va/regulation/22vac30-80/20
+    - us-va/regulation/22vac30-80/30
+    - us-va/regulation/22vac30-80/35
+    - us-va/regulation/22vac30-80/40
+    - us-va/regulation/22vac30-80/45
+    - us-va/regulation/22vac30-80/50
+    - us-va/regulation/22vac30-80/60
+    - us-va/regulation/22vac30-80/70
+    - us-va/regulation/22vac30-80/80
+    - us-va/regulation/22vac30-80/9998
+    closure_elements:
+    - SSI-ST-2
+    note: 'Already held: 22VAC30-80 Auxiliary Grants Program (all 12 sections, law.lis.virginia.gov) was taken on 2026-09-14
+      in the standards scope. Nothing fetched. (2026-09-15 wave-5 batch 6.)'
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
 - jurisdiction: us-vi
   name: Virgin Islands
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
+  queue_status: done
   program_applicability: not_applicable
-  source_kind: federal_statute_excludes_jurisdiction
+  source_kind: ssa_poms_section
   primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1382c&num=0&edition=prelim
-  target_manifest: null
+  target_manifest: manifests/us-ssa-poms-si-2026-09-10.yaml
   target_scope:
-    jurisdiction: us-vi
-    document_class: null
-    version: null
-  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05005
-  index_document_count: 0
-  taken_count: 0
-  index_families: 'no SSI document family: the jurisdiction is outside the SSI program'
-  administration: null
-  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): SSI does
-    not operate in Virgin Islands. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI as the 50 States and the District
-    of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-ssi-poms-si
+  index_url: https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014
+  index_document_count: 1
+  taken_count: 1
+  index_families: 'POMS SI 01415.010 Administration of State Supplementary Programs (state table): 1 found / 1 taken in the
+    federal family; the table carries no Virgin Islands row and SI 01415 holds no territory-specific section; POMS SI 00501.410
+    / SI 00501.415 keep the jurisdiction outside the title XVI definition of the United States; no territory document family
+    exists'
+  administration: N
+  notes: 'Not applicable: SSI does not operate in Virgin Islands. 42 U.S.C. 1382c(e) defines ''United States'' for title XVI
+    as the 50 States and the District of Columbia (in the corpus as us/statute/42/1382c/e, version 2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup),
     and POMS SI 00501.410 / SI 00501.415 add only the Northern Mariana Islands (us/manual/ssa/poms/si/00501.410, version 2026-09-10-ssi-poms-si).
     the Virgin Islands Department of Human Services administers Old Age Assistance, Aid to the Blind and Aid to the Disabled
     (SSA titles I, X and XIV), a separate family. No territory SSI document exists to inventory and nothing was fetched. (2026-09-11
     territories pass.) Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: POMS SI 00501 subchapter
     list HTTP 200 (48,992 bytes, 0.3 s) and 42 U.S.C. 1382c on uscode.house.gov HTTP 200 (228,944 bytes, 4.5 s); the statutory
-    exclusion is unchanged. Not applicable on two dates; nothing to take.'
+    exclusion is unchanged. Not applicable on two dates; nothing to take. Done 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md):
+    confirmed on the publisher''s own index that the jurisdiction pays no state supplement at all, optional or mandatory. The
+    POMS SI 014 chapter list (https://secure.ssa.gov/apps10/poms.nsf/subchapterlist!openview&restricttocategory=05014) lists
+    32 SI 01415 sections and names no territory, and the SI 01415.010 state table (fetched 2026-10-20, HTTP 200, 79,638 bytes)
+    carries exactly 51 jurisdiction rows, the 50 States and the District of Columbia, with no American Samoa, Guam, Puerto Rico,
+    Virgin Islands or Northern Mariana Islands row. With 42 U.S.C. 1382c(e) and POMS SI 00501.410 / SI 00501.415 that settles
+    the row: there is no optional state supplement and no territory supplement document to ingest (the Virgin Islands Department
+    of Human Services administers Old Age Assistance, Aid to the Blind and Aid to the Disabled under titles I, X and XIV, a
+    separate family). Recorded done with that POMS finding and a pointer to us/manual/ssa/poms/si/01415.010 (version 2026-09-10-ssi-poms-si),
+    the resolution the us-mp row already uses. Nothing was fetched.'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-vt
   name: Vermont
   lead_counts: {}
@@ -2160,7 +2328,9 @@ states:
     Release 26-01 date (2026-05-01). The SSI Caretaker Supplement handbook (P-23131; TANF-funded benefit to SSI parents, Wis.
     Stat. 49.775), the DHS SSI program web pages, forms and fact sheets are separate families, not taken. Wisconsin has no
     administrative-rule chapter for the state SSI payment (the batch-2 lead ''DHS 2 Wis. Adm. Code'' is Recoupment of Benefit
-    Overpayments).'
+    Overpayments). Wis. Stat. 49.77 State supplemental payments (the authority for the DHS-administered state SSI supplement)
+    taken from the Legislature''s statutes site as us-wi/statute/49.77 (anchor range of the subchapter V page; the certification
+    line dates the text). Closes SSI-ST-2 beside the 2026-09-10 handbook scope. (2026-09-15 wave-5 batch 6.)'
   index_families: 'SSI Administration Handbook (P-23129) topic pages, RoboHelp TOC on emhandbooks.wisconsin.gov: 5 found /
     5 taken; SSI Exceptional Expense (SSI-E) Handbook (P-20679) topic pages, RoboHelp TOC on emhandbooks.wisconsin.gov: 8
     found / 8 taken; SSI Caretaker Supplement (CTS) Policy Handbook (P-23131) topic pages, RoboHelp TOC on emhandbooks.wisconsin.gov:
@@ -2168,6 +2338,24 @@ states:
     SSI-E, contacts): 9 found / 0 taken; Forms (F-numbers) on the Forms and Publications page: 10 found / 0 taken; Interim-assistance
     letter templates (Word): 3 found / 0 taken; Fact sheets and publications (P-numbers other than the handbooks): 4 found
     / 0 taken'
+  authority_scope:
+    status: taken
+    jurisdiction: us-wi
+    document_class: statute
+    version: 2026-09-15-ssi-state-supplement-rules
+    target_manifest: manifests/us-wi-ssi-state-supplement-rules.yaml
+    source_kind: official_state_statute
+    index_url: https://docs.legis.wisconsin.gov/statutes/statutes/49
+    index_document_count: 1
+    taken_count: 1
+    citation_paths:
+    - us-wi/statute/49.77
+    closure_elements:
+    - SSI-ST-2
+    run_note: docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md
+    notes: Wis. Stat. 49.77 State supplemental payments (the authority for the DHS-administered state SSI supplement) taken
+      from the Legislature's statutes site as us-wi/statute/49.77 (anchor range of the subchapter V page; the certification
+      line dates the text). Closes SSI-ST-2 beside the 2026-09-10 handbook scope. (2026-09-15 wave-5 batch 6.)
 - jurisdiction: us-wv
   name: West Virginia
   lead_counts: {}
@@ -2191,30 +2379,50 @@ states:
   name: Wyoming
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
-  source_kind: state_agency_document
+  queue_status: done
+  source_kind: official_state_agency_manual_already_held
   primary_source_url: https://ecom.wyo.gov/m1800-other-programs/m1804-state-supplemental-payments
-  target_manifest: null
+  target_manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
   target_scope:
     jurisdiction: us-wy
-    document_class: null
-    version: null
+    document_class: manual
+    version: 2026-09-15-medicaid-eligibility-manual-closure
   index_url: https://ecom.wyo.gov/
-  index_document_count: 107
-  taken_count: 0
+  index_document_count: 128
+  taken_count: 1
   administration: S
   notes: 'Blocked 2026-09-11 (state-supplement batch 3): Wyoming''s State Supplemental Payments are administered by the Department
     of Health (Division of Healthcare Financing); the agency''s governing text is Eligibility Operations Manual (EOM) section
-    M1804 State Supplemental Payments on ecom.wyo.gov (Google Sites; the EOM navigation lists 107 sections, M1804 the one
-    SSP section). The page answers HTTP 200 (248,711 bytes) to a plain client, but its content is a Google Drive viewer embed
-    rendered by script (embeds.googleusercontent.com inner frame); the HTML carries only the title and navigation and no document
-    URL or file id, so the document is not addressable from the publisher''s page. DFS (dfs.wyo.gov) lists no SSI supplement
-    family (Cash Assistance = POWER; policy manuals: APS, Child Support, SNAP/POWER, Foster Care). rules.wyo.gov (Secretary
-    of State, ASP.NET search application) was not searched for a Department of Health SSP rule chapter. No index document
-    taken. The SSA regional description is in the federal family: us/manual/ssa/poms/si/01415.010 (Wyoming row S/S). Re-probed
-    2026-09-13T19:57Z from a US network with the plain extractor client: ecom.wyo.gov answers HTTP 200 (218,582 bytes, 0.3
-    s) with the same Google Sites navigation and script-rendered Drive embed; M1804 is still not addressable from the publisher''s
-    page. Not a network block: the document is not fetchable on two dates (2026-09-11 and 2026-09-13); treat the cell as not
-    available rather than pending.'
-  index_families: 'Department of Health EOM sections (Google Sites navigation): 107 found / 0 taken (M1804 content is a script-rendered
-    Drive embed; see notes); DFS index: no SSI supplement family'
+    M1804 State Supplemental Payments on ecom.wyo.gov (Google Sites; the EOM navigation lists 107 sections, M1804 the one SSP
+    section). The page answers HTTP 200 (248,711 bytes) to a plain client, but its content is a Google Drive viewer embed rendered
+    by script (embeds.googleusercontent.com inner frame); the HTML carries only the title and navigation and no document URL
+    or file id, so the document is not addressable from the publisher''s page. DFS (dfs.wyo.gov) lists no SSI supplement family
+    (Cash Assistance = POWER; policy manuals: APS, Child Support, SNAP/POWER, Foster Care). rules.wyo.gov (Secretary of State,
+    ASP.NET search application) was not searched for a Department of Health SSP rule chapter. No index document taken. The SSA
+    regional description is in the federal family: us/manual/ssa/poms/si/01415.010 (Wyoming row S/S). Re-probed 2026-09-13T19:57Z
+    from a US network with the plain extractor client: ecom.wyo.gov answers HTTP 200 (218,582 bytes, 0.3 s) with the same Google
+    Sites navigation and script-rendered Drive embed; M1804 is still not addressable from the publisher''s page. Not a network
+    block: the document is not fetchable on two dates (2026-09-11 and 2026-09-13); treat the cell as not available rather than
+    pending. Resolved 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md): not blocked, and no new
+    extraction was needed. The Wyoming Department of Health publishes the governing text itself in the Eligibility Online Manual
+    at ecom.wyo.gov, whose navigation now carries 128 sections in the served HTML (107 at the 2026-09-11 probe), and the 2026-09-11
+    finding of a script-rendered Google Drive embed with no document URL is obsolete: the body served to the plain extractor
+    client (HTTP 200, 233,949 bytes, no challenge or stub signature) carries the policy text in div.UtePc, so no browser impersonation
+    is needed here. Section M1804 State Supplemental Payments is already in the corpus as us-wy/manual/wdh/medicaid/m1800-other-programs-m1804-state-supplemental-payments
+    in the locked scope us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure (manifests/us-wy-medicaid-eligibility-manual.yaml,
+    121 documents), with four non-empty block rows carrying the POL M1804 policy (the $20.00 monthly supplement, the sole-SSI-income
+    and Wyoming-residence criteria), the 20 CFR 416.2001, W.S. 42-2-103 and Senate Enrolled Act 43 (SF002) references, the clarifying
+    information and the worker responsibilities including the SDX living-arrangement and record-identification code tables.
+    Re-extraction was refused because it would duplicate those citation paths. Verified 2026-10-20 against the live page: the
+    corpus text is a strict subset of the text served today, the only live tokens absent from the corpus being the section labels
+    and the Purpose sentence (recorded as a finding in the run note). Nothing new was fetched into the corpus. rules.wyo.gov
+    is confirmed unusable as an index: Search.aspx?mode=1&AgencyId=48 answers HTTP 200 (33,580 bytes) but its agency and program
+    lists and its rule text come from an undocumented vendor endpoint set (AjaxHandler.ashx?handler=GetAllAgencies / GetAgencies
+    / GetAgencyPrograms / Search / Search_GetProgramRules / GetRuleVersionHTML / GetRuleVersionHistory), and the one GET-addressable
+    document path, Report.aspx?token=<server-minted token>, needs a token the application mints (the token on Agencies.aspx
+    returns a 3-page ''Agency Listing'' PDF, 27,811 bytes). Not emulated. The SSA regional description stays in the federal
+    family at us/manual/ssa/poms/si/01415.010 (Wyoming row S/S).'
+  index_families: 'Wyoming Department of Health EOM sections (ecom.wyo.gov navigation, 2026-10-20): 128 found / 1 taken (M1804
+    State Supplemental Payments, already held in us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure); the other 127
+    sections are other-program families and out of this row''s scope. DFS index: no SSI supplement family.'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
