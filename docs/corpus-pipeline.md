@@ -183,8 +183,11 @@ retained XML (`--source-xml`) whose selector names two sections. When XML is par
 fresh or reparsed, two elements under one selected path are a fatal validation error,
 even with `--allow-incomplete`. Complete cached provisions whose pinned source hashes
 match are reused as before; their XML is not re-checked for duplicate paths.
-A rejected retained-XML rebuild preserves the previous run's artifacts, including its
-source snapshot. In the XML, a section numbered for another part is read only from an
+A retained-XML rebuild that fails identity validation, or cannot parse the previous
+run's inventory or provisions, preserves the previous run's artifacts, including its
+source snapshot. Cached graphics are read only after the snapshot is replaced, so a
+cached graphic that is unreadable or invalid can leave the new snapshot beside the old
+provisions (#934). In the XML, a section numbered for another part is read only from an
 identifier the structure grammar reads whole, so an identifier that merely contains
 one (`19-3809.1`) cannot take its path.
 
