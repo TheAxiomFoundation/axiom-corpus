@@ -93,7 +93,7 @@ Rebuild:
 uv run python scripts/build_chip_state_eligibility_manifests.py
 for j in pa wa tn md co mn; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+    --base <axiom-corpus checkout>/data/corpus \
     --version 2026-09-10-chip-state-eligibility-manual \
     --manifest manifests/us-$j-chip-state-eligibility-manual.yaml --source-as-of 2026-09-10
 done
