@@ -65,6 +65,7 @@ selector_digests:
   us-rulespec-2026-10-25-mt-separate-filing: 642d9a8dcb84ad6cba16c75bb4adf005a99daac62d7805d6b9f29bd30dd8a9da
   us-rulespec-2026-10-25-nyc-ch127-title-52: 51c4f297bfcce6f4e54b74c47a07ff8d438076d21f94d2b4ea8a357f0567f755
   us-rulespec-2026-10-25-ssi-poms-public-laws: 4fce914c090b565ccc5eae0780050a04c299bb9dead043bc0f6edf0550ba9c92
+  us-rulespec-2026-10-27-ks-liheap: c21298ad892a164d2775aef441c30329b4b534f9612d08ac5016603c19362908
   us-rulespec-ny-snap-2026-07-17: 7ff17ffafe5c61205dd9b8ee92d6580093d9fd30d1e4692eaab30893835ffb3c
   us-rulespec-snap-2026-07-21: 1d2cae04d8b83694e13756fe3302cda386272013b72818342dc0ccfb826a744a
 scopes:
@@ -493,6 +494,14 @@ scopes:
           rulespec-us#1365, which re-points those modules' citations, has not landed. The
           first cut in the line after #1365 lands drops the scope and selects its
           replacement scopes.
+      - selector: us-rulespec-2026-10-27-ks-liheap
+        reason: >-
+          Kansas LIHEAP pin release decision recorded in
+          docs/ingest-runs/2026-10-27-ks-liheap-pin-successor.md: this successor of
+          us-rulespec-2026-10-25-mt-separate-filing keeps the scope for the same reason as
+          us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
+          modules' citations, has not landed (checked 2026-10-27). The first cut in the line
+          after #1365 lands drops the scope and selects its replacement scopes.
   - scope: us-mi/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -579,6 +588,14 @@ scopes:
           rulespec-us#1365, which re-points those modules' citations, has not landed. The
           first cut in the line after #1365 lands drops the scope and selects its
           replacement scopes.
+      - selector: us-rulespec-2026-10-27-ks-liheap
+        reason: >-
+          Kansas LIHEAP pin release decision recorded in
+          docs/ingest-runs/2026-10-27-ks-liheap-pin-successor.md: this successor of
+          us-rulespec-2026-10-25-mt-separate-filing keeps the scope for the same reason as
+          us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
+          modules' citations, has not landed (checked 2026-10-27). The first cut in the line
+          after #1365 lands drops the scope and selects its replacement scopes.
   - scope: us-mn/statute/2026-07-13-recovery
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
@@ -667,6 +684,14 @@ scopes:
           rulespec-us#1365, which re-points those modules' citations, has not landed. The
           first cut in the line after #1365 lands drops the scope and selects its
           replacement scopes.
+      - selector: us-rulespec-2026-10-27-ks-liheap
+        reason: >-
+          Kansas LIHEAP pin release decision recorded in
+          docs/ingest-runs/2026-10-27-ks-liheap-pin-successor.md: this successor of
+          us-rulespec-2026-10-25-mt-separate-filing keeps the scope for the same reason as
+          us-rulespec-2026-10-20-fs-pilot-reg-e-f. rulespec-us#1365, which re-points those
+          modules' citations, has not landed (checked 2026-10-27). The first cut in the line
+          after #1365 lands drops the scope and selects its replacement scopes.
   - scope: us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616
     withdrawn_on: "2026-10-03"
     listed_on: "2026-10-13"
