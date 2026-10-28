@@ -18,7 +18,7 @@ NZ_LEGISLATION_API_KEY_HEADER = "X-Api-Key"
 NZ_LEGISLATION_HOSTS = frozenset(
     {"legislation.govt.nz", "www.legislation.govt.nz", "api.legislation.govt.nz"}
 )
-# Request extension that tags a request with the PCO key to send.
+# Request extension that asks a PCO key client to add its key to a request.
 _API_KEY_EXTENSION = "axiom_corpus.nz_legislation_api_key"
 # Keys must be printable ASCII with no whitespace, which h11 accepts as a
 # header value; h11 quotes a value it rejects in its error message.
@@ -58,12 +58,7 @@ def scope_nz_legislation_api_key(request: httpx.Request, api_key: str) -> None:
 
 
 class _PCOAPIKey:
-    """A PCO API key in a request's tag, redacted from its repr.
-
-    httpx copies request extensions onto every redirect, so the tag outlives
-    the send on response.request, redirect history and next_request; it holds
-    this object rather than the key itself.
-    """
+    """A validated PCO API key, redacted from its repr."""
 
     __slots__ = ("value",)
 
@@ -78,25 +73,26 @@ class _PCOAPIKey:
 
 
 class _PCOKeyTransport(httpx.BaseTransport):
-    """Add a tagged request's PCO key to the hop being sent, then remove it.
+    """Add the client's PCO key to a tagged hop being sent, then remove it.
 
     httpx sends every hop of a request, redirects included, through the
     transport its client picks for that hop's URL, and copies request
-    extensions onto each redirect. So the key is set here, per hop, from the
-    tag on the hop's own request, whatever the client's event hooks are.
-    Removing it once the hop is sent keeps it out of the response's request,
-    the redirect httpx builds from it, and next_request. Requests not tagged
-    by nz_legislation_api_key_extensions pass through unchanged.
+    extensions onto each redirect. So the key is set here, per hop, on hops
+    tagged by nz_legislation_api_key_extensions, whatever the client's event
+    hooks are. The tag is only a marker and the key stays with the client: it
+    is on a request only while that hop is sent, so it is never on the
+    response's request, the redirect httpx builds from it, or next_request.
+    Untagged requests pass through unchanged.
     """
 
-    def __init__(self, transport: httpx.BaseTransport) -> None:
+    def __init__(self, transport: httpx.BaseTransport, api_key: _PCOAPIKey | None) -> None:
         self._transport = transport
+        self._api_key = api_key
 
     def handle_request(self, request: httpx.Request) -> httpx.Response:
-        tag = request.extensions.get(_API_KEY_EXTENSION)
-        if not isinstance(tag, _PCOAPIKey):
+        if self._api_key is None or request.extensions.get(_API_KEY_EXTENSION) is not True:
             return self._transport.handle_request(request)
-        scope_nz_legislation_api_key(request, tag.value)
+        scope_nz_legislation_api_key(request, self._api_key.value)
         try:
             return self._transport.handle_request(request)
         finally:
@@ -104,40 +100,51 @@ class _PCOKeyTransport(httpx.BaseTransport):
 
 
 class _PCOKeyClient(httpx.Client):
-    """An httpx client that sends every hop through _PCOKeyTransport.
+    """An httpx client that holds a PCO key and sends every hop through _PCOKeyTransport.
 
     httpx 0.28 picks each hop's transport in _transport_for_url, from its
     default transport and its mounts, including proxy mounts from the
     environment, so wrapping that choice covers all of them.
     """
 
+    def __init__(self, *, api_key: str | None, **kwargs: Any) -> None:
+        self._pco_api_key = None if api_key is None else _PCOAPIKey(api_key)
+        super().__init__(**kwargs)
+
     def _transport_for_url(self, url: httpx.URL) -> httpx.BaseTransport:
-        return _PCOKeyTransport(super()._transport_for_url(url))
+        return _PCOKeyTransport(super()._transport_for_url(url), self._pco_api_key)
 
 
 def nz_legislation_api_key_client(
     *,
+    api_key: str | None,
     timeout: float,
     transport: httpx.BaseTransport | None = None,
     headers: Mapping[str, str] | None = None,
 ) -> httpx.Client:
-    """Build an httpx client that sends each request's tagged PCO key per hop.
+    """Build an httpx client that adds its PCO key, per hop, to tagged requests.
 
-    Tag a request with nz_legislation_api_key_extensions; the client follows
-    redirects and handles auth and cookies as plain httpx does.
+    Tag a request with nz_legislation_api_key_extensions(); the client follows
+    redirects and handles auth and cookies as plain httpx does. With no key it
+    adds none. Raises ValueError, whose message never includes the key, unless
+    the key is printable ASCII with no whitespace.
     """
     return _PCOKeyClient(
-        timeout=timeout, follow_redirects=True, transport=transport, headers=headers
+        api_key=api_key,
+        timeout=timeout,
+        follow_redirects=True,
+        transport=transport,
+        headers=headers,
     )
 
 
-def nz_legislation_api_key_extensions(api_key: str) -> dict[str, object]:
-    """Request extensions that tag a request with the PCO API key to send.
+def nz_legislation_api_key_extensions() -> dict[str, bool]:
+    """Request extensions that ask a PCO key client to add its key, per hop.
 
-    Raises ValueError, whose message never includes the key, unless the key
-    is printable ASCII with no whitespace.
+    The tag is a marker, not the key, so nothing secret is left on the
+    redirects, history and next_request that httpx copies it onto.
     """
-    return {_API_KEY_EXTENSION: _PCOAPIKey(api_key)}
+    return {_API_KEY_EXTENSION: True}
 
 
 @dataclass(frozen=True)
@@ -199,11 +206,11 @@ class NZLegislationAPIDownloadReport:
 class NZLegislationAPIClient:
     """Minimal synchronous client for api.legislation.govt.nz.
 
-    It builds and owns its httpx client. Each of its own requests is tagged
-    with its key, which the client's transport adds to each hop that is https
-    to a PCO host; other requests on that client go out unchanged. A given
-    transport, such as a mock, is used for every request and closed with the
-    client.
+    It builds and owns its httpx client, which holds its key. Each of its own
+    requests is tagged, and the client's transport adds the key to each hop
+    that is https to a PCO host; other requests on that client go out
+    unchanged. A given transport, such as a mock, is used for every request
+    and closed with the client.
     """
 
     def __init__(
@@ -216,18 +223,22 @@ class NZLegislationAPIClient:
     ) -> None:
         if not api_key:
             raise ValueError("NZ Legislation API key is required")
-        _PCOAPIKey(api_key)
-        self.api_key = api_key
+        self._api_key = _PCOAPIKey(api_key)
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
         self._transport = transport
         self._client: httpx.Client | None = None
 
     @property
+    def api_key(self) -> str:
+        """The PCO API key, fixed when the wrapper is built."""
+        return self._api_key.value
+
+    @property
     def client(self) -> httpx.Client:
         if self._client is None:
             self._client = nz_legislation_api_key_client(
-                timeout=self.timeout, transport=self._transport
+                api_key=self.api_key, timeout=self.timeout, transport=self._transport
             )
         return self._client
 
@@ -249,12 +260,12 @@ class NZLegislationAPIClient:
         headers: Mapping[str, str],
         params: Mapping[str, str] | None = None,
     ) -> httpx.Response:
-        """GET a URL tagged with this wrapper's API key."""
+        """GET a URL tagged for this wrapper's client to add its API key."""
         return self.client.get(
             url,
             headers=headers,
             params=params,
-            extensions=nz_legislation_api_key_extensions(self.api_key),
+            extensions=nz_legislation_api_key_extensions(),
         )
 
     def get_json(self, path: str, params: Mapping[str, str] | None = None) -> dict[str, Any]:

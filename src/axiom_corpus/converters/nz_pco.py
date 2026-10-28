@@ -294,15 +294,21 @@ class NZPCOConverter:
                 mock; closed with the client.
         """
         self.timeout = timeout
-        self.api_key = api_key or os.environ.get(NZ_LEGISLATION_API_KEY_ENV)
+        self._api_key = api_key or os.environ.get(NZ_LEGISLATION_API_KEY_ENV) or None
         self._transport = transport
         self._client: httpx.Client | None = None
+
+    @property
+    def api_key(self) -> str | None:
+        """The PCO API key, fixed when the converter is built."""
+        return self._api_key
 
     @property
     def client(self) -> httpx.Client:
         """Lazy-initialize HTTP client."""
         if self._client is None:
             self._client = nz_legislation_api_key_client(
+                api_key=self.api_key,
                 timeout=self.timeout,
                 transport=self._transport,
                 headers={"User-Agent": "Axiom/1.0 (contact@axiom-foundation.org)"},
@@ -747,8 +753,7 @@ class NZPCOConverter:
         Returns:
             List of RSS items representing recent legislation updates
         """
-        extensions = nz_legislation_api_key_extensions(self.api_key) if self.api_key else {}
-        response = self.client.get(self.RSS_URL, extensions=extensions)
+        response = self.client.get(self.RSS_URL, extensions=nz_legislation_api_key_extensions())
         response.raise_for_status()
         return self.parse_rss(response.text)  # pragma: no cover
 

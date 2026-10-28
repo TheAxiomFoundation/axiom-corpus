@@ -20,6 +20,7 @@ from axiom_corpus.fetchers.nz_legislation_api import (
     _PCOKeyTransport,
     download_nz_legislation_api_sources,
     is_nz_legislation_url,
+    nz_legislation_api_key_client,
     nz_legislation_api_key_extensions,
     scope_nz_legislation_api_key,
 )
@@ -298,12 +299,13 @@ def test_every_transport_the_client_can_pick_adds_the_key(monkeypatch):
     seen_default = []
     seen_mounted = []
     client = _PCOKeyClient(
+        api_key="test-key",
         transport=httpx.MockTransport(_recording_handler(seen_default)),
         mounts={
             "https://www.legislation.govt.nz": httpx.MockTransport(_recording_handler(seen_mounted))
         },
     )
-    extensions = nz_legislation_api_key_extensions("test-key")
+    extensions = nz_legislation_api_key_extensions()
     client.get(_PCO_XML_URL, extensions=extensions)
     client.get("https://legislation.govt.nz/act.xml", extensions=extensions)
 
@@ -422,7 +424,7 @@ def test_closing_or_rehooking_mid_redirect_never_forwards_the_key(action, locati
 
     client.event_hooks = {"response": [caller_response_hook]}
 
-    response = client.get(_REDIRECT_URL, extensions=nz_legislation_api_key_extensions("owner-key"))
+    response = client.get(_REDIRECT_URL, extensions=nz_legislation_api_key_extensions())
 
     assert response.status_code == 200
     assert seen == [(_REDIRECT_URL, "owner-key"), (location, None)]
@@ -512,22 +514,72 @@ def test_a_nested_caller_request_that_rehooks_never_exposes_the_outer_key():
     wrapper.close()
 
 
-def test_the_key_is_redacted_in_the_tag_that_outlives_the_send():
-    # httpx copies request extensions onto every redirect, history entry and
-    # next_request, so the tag must not show the key in a repr or str.
-    handler = _recording_handler([], {_REDIRECT_URL: "https://example.org/end"})
+def test_no_request_holds_the_key_once_its_hop_is_sent():
+    # Invariant: the key is on a request only while its hop is being sent.
+    # The tag httpx copies onto redirects, history and next_request is a
+    # marker, so no request a caller can reach afterwards holds the key.
+    def handler(request):
+        if request.url.path == "/redirect":
+            return httpx.Response(302, headers={"location": "https://example.org/end"})
+        if request.url.path == "/fail":
+            return httpx.Response(500)
+        return httpx.Response(200, content=_XML)
+
     wrapper = NZLegislationAPIClient(_SECRET, transport=httpx.MockTransport(handler))
+    hooked = []
+    wrapper.client.event_hooks = {"response": [lambda response: hooked.append(response.request)]}
 
     followed = wrapper._get(_REDIRECT_URL, headers={})
     wrapper.client.follow_redirects = False
     stopped = wrapper._get(_REDIRECT_URL, headers={})
+    failed = wrapper._get("https://www.legislation.govt.nz/fail", headers={})
+    with pytest.raises(httpx.HTTPStatusError) as raised:
+        failed.raise_for_status()
 
-    requests = [followed.request, *(r.request for r in followed.history), stopped.next_request]
-    assert len(requests) == 3
+    requests = [
+        followed.request,
+        *(response.request for response in followed.history),
+        stopped.request,
+        stopped.next_request,
+        raised.value.request,
+        *hooked,
+    ]
+    assert len(requests) == 9
     for request in requests:
-        assert _API_KEY_EXTENSION in request.extensions
-        for text in (repr(request.extensions), str(request.extensions), repr(request)):
-            assert _SECRET not in text
+        assert request.extensions[_API_KEY_EXTENSION] is True
+        assert _SECRET not in repr(vars(request))
+    wrapper.close()
+
+
+def test_the_key_is_redacted_where_the_client_holds_it():
+    # The key lives on the wrapper and its httpx client, and on each hop's
+    # transport; none of them shows it in a repr of its attributes.
+    wrapper = NZLegislationAPIClient(
+        _SECRET, transport=httpx.MockTransport(lambda request: httpx.Response(200))
+    )
+    client = wrapper.client
+    transport = client._transport_for_url(httpx.URL(_PCO_XML_URL))
+
+    assert wrapper.api_key == _SECRET
+    for holder in (wrapper, client, transport):
+        assert _SECRET not in repr(holder)
+        assert _SECRET not in repr(vars(holder))
+    wrapper.close()
+
+
+def test_the_key_is_fixed_when_the_wrapper_is_built():
+    # The client holds the key it was built with, so the wrapper offers no way
+    # to change it afterwards.
+    seen = []
+    wrapper = NZLegislationAPIClient(
+        "test-key", transport=httpx.MockTransport(_recording_handler(seen))
+    )
+
+    with pytest.raises(AttributeError):
+        wrapper.api_key = "other-key"  # type: ignore[misc]
+    wrapper.client.get(_PCO_XML_URL, extensions=nz_legislation_api_key_extensions())
+
+    assert seen == [(_PCO_XML_URL, "test-key")]
     wrapper.close()
 
 
@@ -563,12 +615,12 @@ def test_keys_are_validated_without_echoing_them(key):
     valid = re.fullmatch(r"[!-~]+", key) is not None
 
     if valid:
-        nz_legislation_api_key_extensions(key)
+        nz_legislation_api_key_client(api_key=key, timeout=1).close()
         NZLegislationAPIClient(key).close()
         h11.Request(method="GET", target="/", headers=[("Host", "x"), ("X-Api-Key", key)])
     else:
         with pytest.raises(ValueError) as raised:
-            nz_legislation_api_key_extensions(key)
+            nz_legislation_api_key_client(api_key=key, timeout=1)
         assert str(raised.value) == _INVALID_KEY_MESSAGE
         with pytest.raises(ValueError) as raised:
             NZLegislationAPIClient(key)

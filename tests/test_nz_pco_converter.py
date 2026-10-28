@@ -683,6 +683,27 @@ class TestPCOApiKey:
         assert seen == [(NZPCOConverter.RSS_URL, None)]
         converter.close()
 
+    def test_empty_env_key_means_no_key(self, monkeypatch):
+        monkeypatch.setenv("NZ_LEGISLATION_API_KEY", "")
+        seen = []
+        converter = self._converter(self._rss_handler(seen))
+
+        assert converter.api_key is None
+        assert converter.fetch_rss_feed()
+        assert seen == [(NZPCOConverter.RSS_URL, None)]
+        converter.close()
+
+    def test_the_key_is_fixed_when_the_converter_is_built(self, monkeypatch):
+        monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
+        seen = []
+        converter = self._converter(self._rss_handler(seen), api_key="test-key")
+
+        with pytest.raises(AttributeError):
+            converter.api_key = "other-key"  # type: ignore[misc]
+        assert converter.fetch_rss_feed()
+        assert seen == [(NZPCOConverter.RSS_URL, "test-key")]
+        converter.close()
+
     def test_other_requests_on_the_client_carry_no_key(self, monkeypatch):
         monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
         seen = []
