@@ -155,7 +155,7 @@ encoding gap there is encoder work, not corpus work.
 Session 2026-09-12, 08:30-09:20 EDT (about 50 minutes wall; an earlier 2026-09-11 draft of the
 builder in this worktree was reviewed, corrected and re-run rather than discarded). Builder runs:
 TANF matrix 100 s, CCDF matrix 0.4 s (provision JSONL cached in memory). Searches run for this
-report, all read-only against `/Users/pavelmakarchuk/axiom-corpus/data/corpus`:
+report, all read-only against `<axiom-corpus checkout>/data/corpus`:
 citation_path scans of every `us/statute` file for 42 U.S.C. 601-619 and 9857-9858r (0 rows);
 listing of `us/regulation` title-45 scopes (parts 98, 1302 only); selector membership check of
 every `TANF_SCOPES` and `CCDF_RULEBOOK_ALLOW` entry; release-manifest grep for the four
