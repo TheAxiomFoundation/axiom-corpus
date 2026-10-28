@@ -79,9 +79,10 @@ class _PCOKeyTransport(httpx.BaseTransport):
     transport its client picks for that hop's URL, and copies request
     extensions onto each redirect. So the key is set here, per hop, on hops
     tagged by nz_legislation_api_key_extensions, whatever the client's event
-    hooks are. The tag is only a marker and the key stays with the client: it
-    is on a request only while that hop is sent, so it is never on the
-    response's request, the redirect httpx builds from it, or next_request.
+    hooks are. The tag is only a marker and the key stays with the client. The
+    X-Api-Key header is on a request only while that hop is sent, so the
+    response's request, the redirect httpx builds from it and next_request
+    carry no key header.
     Untagged requests pass through unchanged.
     """
 
@@ -141,8 +142,8 @@ def nz_legislation_api_key_client(
 def nz_legislation_api_key_extensions() -> dict[str, bool]:
     """Request extensions that ask a PCO key client to add its key, per hop.
 
-    The tag is a marker, not the key, so nothing secret is left on the
-    redirects, history and next_request that httpx copies it onto.
+    The tag is a marker, not the key, so the extensions httpx copies onto
+    redirects, history and next_request hold no key.
     """
     return {_API_KEY_EXTENSION: True}
 
