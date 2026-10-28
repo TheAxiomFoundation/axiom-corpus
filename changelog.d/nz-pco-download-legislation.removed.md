@@ -1,1 +1,1 @@
-Remove `NZPCOConverter.download_legislation`: its `/Subscribe/.../wholeof.xml` URL now returns 404 even with an API key. Fetch single NZ documents with `download-nz-legislation-api`, which resolves each work's current XML format URL through the API.
+Remove `NZPCOConverter.download_legislation`, which built `/Subscribe/.../wholeof.xml` URLs. Fetch single NZ documents with `download-nz-legislation-api`, which resolves each work's current XML format URL through the API.

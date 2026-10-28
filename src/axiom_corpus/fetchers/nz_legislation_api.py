@@ -43,19 +43,25 @@ def is_nz_legislation_url(url: httpx.URL | str) -> bool:
     return url.scheme == "https" and url.host in NZ_LEGISLATION_HOSTS
 
 
+def scope_nz_legislation_api_key(request: httpx.Request, api_key: str) -> None:
+    """Set the PCO API key on an https PCO request and strip it from any other."""
+    if is_nz_legislation_url(request.url):
+        request.headers[NZ_LEGISLATION_API_KEY_HEADER] = api_key
+    else:
+        request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
+
+
 def nz_legislation_api_key_hook(api_key: str) -> Callable[[httpx.Request], None]:
     """Build an httpx request hook that scopes the PCO API key to PCO hosts.
 
     httpx runs request hooks on every redirect hop but copies custom headers
     across redirects, so the hook sets the key on each https PCO hop and
-    strips it from any other hop.
+    strips it from any other hop. Install it only on a client you own: on a
+    shared client it would send its key with every other user's requests.
     """
 
     def hook(request: httpx.Request) -> None:
-        if is_nz_legislation_url(request.url):
-            request.headers[NZ_LEGISLATION_API_KEY_HEADER] = api_key
-        else:
-            request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
+        scope_nz_legislation_api_key(request, api_key)
 
     return hook
 
@@ -132,23 +138,13 @@ class NZLegislationAPIClient:
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
-        self._key_hook = nz_legislation_api_key_hook(api_key)
-        if client is not None:
-            client.event_hooks = {
-                **client.event_hooks,
-                "request": [*client.event_hooks["request"], self._key_hook],
-            }
         self._client = client
         self._owns_client = client is None
 
     @property
     def client(self) -> httpx.Client:
         if self._client is None:
-            self._client = httpx.Client(
-                timeout=self.timeout,
-                follow_redirects=True,
-                event_hooks={"request": [self._key_hook]},
-            )
+            self._client = httpx.Client(timeout=self.timeout, follow_redirects=True)
         return self._client
 
     def close(self) -> None:
@@ -162,10 +158,43 @@ class NZLegislationAPIClient:
     def __exit__(self, *args: object) -> None:
         self.close()
 
+    def _get(
+        self,
+        url: str,
+        *,
+        headers: Mapping[str, str],
+        params: Mapping[str, str] | None = None,
+    ) -> httpx.Response:
+        """GET a URL with this client's API key scoped to each redirect hop.
+
+        The key is chosen per request rather than installed on the httpx
+        client, so wrappers sharing one client each send their own key and
+        leave the client as they found it. httpx copies custom headers across
+        redirects, so this follows redirects itself, as far as the client's
+        follow_redirects and max_redirects allow, and sets or strips the key
+        on every hop.
+        """
+        client = self.client
+        request = client.build_request("GET", url, headers=headers, params=params)
+        history: list[httpx.Response] = []
+        while True:
+            scope_nz_legislation_api_key(request, self.api_key)
+            response = client.send(request, follow_redirects=False)
+            response.history = list(history)
+            next_request = response.next_request
+            if next_request is None or not client.follow_redirects:
+                return response
+            history.append(response)
+            if len(history) > client.max_redirects:
+                raise httpx.TooManyRedirects(
+                    "Exceeded maximum allowed redirects.", request=next_request
+                )
+            request = next_request
+
     def get_json(self, path: str, params: Mapping[str, str] | None = None) -> dict[str, Any]:
         """GET an API JSON endpoint with the configured API key."""
         url = f"{self.base_url}/{path.lstrip('/')}"
-        response = self.client.get(
+        response = self._get(
             url,
             headers={"Accept": "application/json"},
             params=dict(params or {}),
@@ -270,7 +299,7 @@ class NZLegislationAPIClient:
 
     def download_xml(self, url: str) -> bytes:
         """Download a single XML format URL returned by the API."""
-        response = self.client.get(
+        response = self._get(
             url,
             headers={
                 "Accept": "application/xml,text/xml,*/*",
