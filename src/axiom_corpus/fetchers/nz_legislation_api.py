@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,6 +14,10 @@ import httpx
 
 NZ_LEGISLATION_API_BASE_URL = "https://api.legislation.govt.nz"
 NZ_LEGISLATION_API_KEY_ENV = "NZ_LEGISLATION_API_KEY"
+NZ_LEGISLATION_API_KEY_HEADER = "X-Api-Key"
+NZ_LEGISLATION_HOSTS = frozenset(
+    {"legislation.govt.nz", "www.legislation.govt.nz", "api.legislation.govt.nz"}
+)
 NZ_LEGISLATION_DEFAULT_TYPES = (
     "act",
     "secondary_legislation",
@@ -24,6 +28,36 @@ NZ_LEGISLATION_DEFAULT_TYPES = (
 
 class NZLegislationAPIError(RuntimeError):
     """Raised when the NZ Legislation API or XML format fetch fails."""
+
+
+def is_nz_legislation_url(url: httpx.URL | str) -> bool:
+    """Return whether a request URL may carry the PCO API key.
+
+    PCO's firewall lets requests to legislation.govt.nz itself (HTML, XML and
+    PDF, including format URLs from API responses) bypass its CAPTCHA and JS
+    challenges when they carry a valid API key, the same way
+    api.legislation.govt.nz authenticates. The key only goes over https to
+    those hosts.
+    """
+    url = httpx.URL(url)
+    return url.scheme == "https" and url.host in NZ_LEGISLATION_HOSTS
+
+
+def nz_legislation_api_key_hook(api_key: str) -> Callable[[httpx.Request], None]:
+    """Build an httpx request hook that scopes the PCO API key to PCO hosts.
+
+    httpx runs request hooks on every redirect hop but copies custom headers
+    across redirects, so the hook sets the key on each https PCO hop and
+    strips it from any other hop.
+    """
+
+    def hook(request: httpx.Request) -> None:
+        if is_nz_legislation_url(request.url):
+            request.headers[NZ_LEGISLATION_API_KEY_HEADER] = api_key
+        else:
+            request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
+
+    return hook
 
 
 @dataclass(frozen=True)
@@ -98,13 +132,23 @@ class NZLegislationAPIClient:
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
+        self._key_hook = nz_legislation_api_key_hook(api_key)
+        if client is not None:
+            client.event_hooks = {
+                **client.event_hooks,
+                "request": [*client.event_hooks["request"], self._key_hook],
+            }
         self._client = client
         self._owns_client = client is None
 
     @property
     def client(self) -> httpx.Client:
         if self._client is None:
-            self._client = httpx.Client(timeout=self.timeout, follow_redirects=True)
+            self._client = httpx.Client(
+                timeout=self.timeout,
+                follow_redirects=True,
+                event_hooks={"request": [self._key_hook]},
+            )
         return self._client
 
     def close(self) -> None:
@@ -123,7 +167,7 @@ class NZLegislationAPIClient:
         url = f"{self.base_url}/{path.lstrip('/')}"
         response = self.client.get(
             url,
-            headers={"Accept": "application/json", "X-Api-Key": self.api_key},
+            headers={"Accept": "application/json"},
             params=dict(params or {}),
         )
         response.raise_for_status()
@@ -230,7 +274,6 @@ class NZLegislationAPIClient:
             url,
             headers={
                 "Accept": "application/xml,text/xml,*/*",
-                "X-Api-Key": self.api_key,
                 "User-Agent": "Axiom/1.0 (max@axiom-foundation.org)",
             },
         )

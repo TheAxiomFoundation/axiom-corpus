@@ -12,9 +12,13 @@ NZ legislation XML uses a custom DTD with these key elements:
 - <citation> - Cross-references to other legislation
 
 Data sources:
-- RSS feed: http://www.legislation.govt.nz/subscribe/nzpco-rss.xml
+- RSS feed: https://www.legislation.govt.nz/subscribe/nzpco-rss.xml
 - Bulk XML: https://catalogue.data.govt.nz/dataset/new-zealand-legislation
 - Web: https://www.legislation.govt.nz/
+- Single documents: the API fetcher in axiom_corpus.fetchers.nz_legislation_api
+
+Requests to legislation.govt.nz carry the PCO API key (NZ_LEGISLATION_API_KEY)
+when one is set; without it the site answers with a WAF challenge.
 
 Usage:
     from axiom_corpus.converters.nz_pco import NZPCOConverter
@@ -26,12 +30,10 @@ Usage:
 
     # Fetch from RSS feed
     items = converter.fetch_rss_feed()
-
-    # Download a specific act
-    xml_content = converter.download_legislation("act", "public", 2007, 97)
 """
 
 import contextlib
+import os
 import re
 from collections import Counter
 from collections.abc import Iterator
@@ -43,6 +45,11 @@ from xml.etree import ElementTree as ET
 
 import httpx
 from pydantic import BaseModel, Field
+
+from axiom_corpus.fetchers.nz_legislation_api import (
+    NZ_LEGISLATION_API_KEY_ENV,
+    nz_legislation_api_key_hook,
+)
 
 # NZ legislation types
 NZLegislationType = Literal["act", "bill", "regulation", "sop"]
@@ -265,17 +272,20 @@ class NZRSSItem(BaseModel):
 class NZPCOConverter:
     """Parser for New Zealand PCO legislation XML."""
 
-    RSS_URL = "http://www.legislation.govt.nz/subscribe/nzpco-rss.xml"
+    RSS_URL = "https://www.legislation.govt.nz/subscribe/nzpco-rss.xml"
     BASE_URL = "https://www.legislation.govt.nz"
     _SCHEDULE_HIERARCHY_TAGS = frozenset({"head1", "head2", "part", "subpart"})
 
-    def __init__(self, timeout: int = 30):
+    def __init__(self, timeout: int = 30, api_key: str | None = None):
         """Initialize the converter.
 
         Args:
             timeout: HTTP request timeout in seconds
+            api_key: PCO API key for legislation.govt.nz requests. Defaults to
+                the NZ_LEGISLATION_API_KEY environment variable.
         """
         self.timeout = timeout
+        self.api_key = api_key or os.environ.get(NZ_LEGISLATION_API_KEY_ENV)
         self._client: httpx.Client | None = None
 
     @property
@@ -286,6 +296,9 @@ class NZPCOConverter:
                 timeout=self.timeout,
                 headers={"User-Agent": "Axiom/1.0 (contact@axiom-foundation.org)"},
                 follow_redirects=True,
+                event_hooks={
+                    "request": [nz_legislation_api_key_hook(self.api_key)] if self.api_key else []
+                },
             )
         return self._client
 
@@ -903,51 +916,12 @@ class NZPCOConverter:
         return ("act", "public", 0, 0)  # pragma: no cover
 
     # =========================================================================
-    # Download methods
+    # Bulk directory methods
     # =========================================================================
 
-    def download_legislation(
-        self,
-        leg_type: NZLegislationType,
-        subtype: NZLegislationSubtype,
-        year: int,
-        number: int,
-        version: str = "latest",
-    ) -> str | None:
-        """Download legislation XML from legislation.govt.nz.
-
-        Note: The website uses WAF protection which may block automated access.
-        For bulk downloads, use the data.govt.nz dataset instead.
-
-        Args:
-            leg_type: Type of legislation (act, bill, regulation, sop)
-            subtype: Subtype (public, private, etc.)
-            year: Year of legislation
-            number: Legislation number
-            version: Version identifier (default: "latest")
-
-        Returns:
-            XML content as string, or None if not available
-        """
-        # Build URL
-        # Note: The Subscribe endpoint requires authentication
-        url = (  # pragma: no cover
-            f"{self.BASE_URL}/Subscribe/{leg_type}/{subtype}/"
-            f"{year}/{number:04d}/{version}/wholeof.xml"
-        )
-
-        try:  # pragma: no cover
-            response = self.client.get(url)  # pragma: no cover
-            response.raise_for_status()
-
-            # Check if we got XML (not a WAF challenge page)
-            content_type = response.headers.get("content-type", "")  # pragma: no cover
-            if "xml" not in content_type.lower():  # pragma: no cover
-                return None  # pragma: no cover
-
-            return response.text  # pragma: no cover
-        except httpx.HTTPError:  # pragma: no cover
-            return None  # pragma: no cover
+    # Single documents come from the API fetcher
+    # (axiom_corpus.fetchers.nz_legislation_api), which resolves each work's
+    # current format URL; the old /Subscribe/.../wholeof.xml path now 404s.
 
     def iter_legislation_from_directory(
         self,

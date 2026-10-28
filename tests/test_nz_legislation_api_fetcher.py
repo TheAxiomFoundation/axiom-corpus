@@ -2,11 +2,16 @@ import json
 
 import httpx
 import pytest
+from hypothesis import given
+from hypothesis import strategies as st
 
 from axiom_corpus.fetchers.nz_legislation_api import (
+    NZ_LEGISLATION_HOSTS,
     NZLegislationAPIClient,
     NZLegislationAPIError,
     download_nz_legislation_api_sources,
+    is_nz_legislation_url,
+    nz_legislation_api_key_hook,
 )
 
 
@@ -174,3 +179,114 @@ def test_download_nz_legislation_api_sources_raises_on_waf_by_default(tmp_path):
             legislation_types=("act",),
             client=client,
         )
+
+
+_XML = b'<?xml version="1.0"?><act id="DLM1" year="1990" act.no="109" />'
+_PCO_XML_URL = "https://www.legislation.govt.nz/act/public/1990/109/en/2022-08-30.xml"
+
+
+def test_download_xml_sends_api_key_to_legislation_govt_nz():
+    def handler(request):
+        assert request.url.host == "www.legislation.govt.nz"
+        assert request.headers["x-api-key"] == "test-key"
+        return httpx.Response(200, content=_XML)
+
+    client = NZLegislationAPIClient(
+        "test-key",
+        client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+
+    assert client.download_xml(_PCO_XML_URL) == _XML
+
+
+def test_owned_client_installs_api_key_hook():
+    client = NZLegislationAPIClient("test-key")
+    request = httpx.Request("GET", _PCO_XML_URL)
+
+    for hook in client.client.event_hooks["request"]:
+        hook(request)
+
+    assert request.headers["x-api-key"] == "test-key"
+    client.close()
+
+
+@pytest.mark.parametrize(
+    "location",
+    [
+        "https://example.org/act.xml",
+        "http://www.legislation.govt.nz/act/public/1990/109/en/2022-08-30.xml",
+        "https://legislation.govt.nz.example.org/act.xml",
+    ],
+)
+def test_redirect_off_https_pco_hosts_drops_api_key(location):
+    seen = []
+
+    def handler(request):
+        seen.append((str(request.url), request.headers.get("x-api-key")))
+        if request.url.host == "www.legislation.govt.nz" and request.url.scheme == "https":
+            return httpx.Response(302, headers={"location": location})
+        return httpx.Response(200, content=_XML)
+
+    client = NZLegislationAPIClient(
+        "test-key",
+        client=httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True),
+    )
+
+    assert client.download_xml(_PCO_XML_URL) == _XML
+    assert seen == [(_PCO_XML_URL, "test-key"), (location, None)]
+
+
+def test_redirect_between_pco_hosts_keeps_api_key():
+    seen = []
+    target = "https://legislation.govt.nz/act/public/1990/109/en/2022-08-30.xml"
+
+    def handler(request):
+        seen.append((request.url.host, request.headers.get("x-api-key")))
+        if request.url.host == "www.legislation.govt.nz":
+            return httpx.Response(301, headers={"location": target})
+        return httpx.Response(200, content=_XML)
+
+    client = NZLegislationAPIClient(
+        "test-key",
+        client=httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True),
+    )
+
+    assert client.download_xml(_PCO_XML_URL) == _XML
+    assert seen == [
+        ("www.legislation.govt.nz", "test-key"),
+        ("legislation.govt.nz", "test-key"),
+    ]
+
+
+_HOSTS = st.one_of(
+    st.sampled_from(sorted(NZ_LEGISLATION_HOSTS)),
+    st.sampled_from(
+        [
+            "legislation.govt.nz.example.org",
+            "evillegislation.govt.nz",
+            "pco.govt.nz",
+            "example.org",
+            "api.legislation.govt.nz.attacker.test",
+        ]
+    ),
+    st.from_regex(r"[a-z]{1,12}(\.[a-z]{2,8}){1,3}", fullmatch=True),
+)
+
+
+@given(
+    scheme=st.sampled_from(["https", "http"]),
+    host=_HOSTS,
+    path=st.from_regex(r"(/[a-z0-9._-]{0,12}){0,4}", fullmatch=True),
+    preset=st.booleans(),
+)
+def test_api_key_hook_sets_key_iff_https_pco_host(scheme, host, path, preset):
+    # Invariant: after the hook, a request carries the key exactly when it is
+    # https to a PCO host, whatever headers it started with.
+    headers = {"X-Api-Key": "stale-key"} if preset else {}
+    request = httpx.Request("GET", f"{scheme}://{host}{path}", headers=headers)
+
+    nz_legislation_api_key_hook("test-key")(request)
+
+    allowed = scheme == "https" and host in NZ_LEGISLATION_HOSTS
+    assert is_nz_legislation_url(request.url) is allowed
+    assert request.headers.get("x-api-key") == ("test-key" if allowed else None)

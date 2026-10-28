@@ -1,0 +1,1 @@
+Send the PCO API key on every NZ legislation.govt.nz request, including the RSS feed, which now uses https: PCO's firewall lets keyed requests bypass its CAPTCHA and JS challenges. The key goes only over https to PCO hosts and is dropped on any redirect away from them.
