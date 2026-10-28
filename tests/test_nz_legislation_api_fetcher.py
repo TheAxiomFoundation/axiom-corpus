@@ -1,4 +1,6 @@
 import json
+import logging
+import traceback
 
 import httpx
 import pytest
@@ -290,3 +292,95 @@ def test_api_key_hook_sets_key_iff_https_pco_host(scheme, host, path, preset):
     allowed = scheme == "https" and host in NZ_LEGISLATION_HOSTS
     assert is_nz_legislation_url(request.url) is allowed
     assert request.headers.get("x-api-key") == ("test-key" if allowed else None)
+
+
+_SECRET = "pco-secret-value-7f3a9c"
+
+
+def _rows(*suffixes):
+    rows = []
+    for suffix in suffixes:
+        row = json.loads(json.dumps(_work_row()))
+        row["work_id"] = f"act_public_1990_{suffix}"
+        version = row["latest_matching_version"]
+        version["version_id"] = f"act_public_1990_{suffix}_en_2022-08-30"
+        for item in version["formats"]:
+            item["url"] = item["url"].replace("/109/", f"/{suffix}/")
+        rows.append(row)
+    return rows
+
+
+def _leak_handler(seen_urls):
+    def handler(request):
+        seen_urls.append(str(request.url))
+        if request.url.host == "api.legislation.govt.nz":
+            return httpx.Response(
+                200,
+                json={"results": _rows("1", "2", "3"), "page": 1, "per_page": 100, "total": 3},
+            )
+        if "/1/" in request.url.path:
+            return httpx.Response(200, content=_XML)
+        if "/2/" in request.url.path:
+            return httpx.Response(202, headers={"x-amzn-waf-action": "challenge"})
+        return httpx.Response(500, text="upstream error")
+
+    return handler
+
+
+def test_api_key_never_reaches_logs_errors_urls_or_manifest(tmp_path, caplog):
+    caplog.set_level(logging.DEBUG)
+    seen_urls = []
+    client = NZLegislationAPIClient(
+        _SECRET,
+        client=httpx.Client(transport=httpx.MockTransport(_leak_handler(seen_urls))),
+    )
+    manifest_path = tmp_path / "manifest.json"
+
+    report = download_nz_legislation_api_sources(
+        tmp_path / "xml",
+        api_key=_SECRET,
+        legislation_types=("act",),
+        allow_failures=True,
+        manifest_path=manifest_path,
+        client=client,
+    )
+
+    assert (report.downloaded_count, report.failed_count) == (1, 2)
+    errors = [failure["error"] for failure in report.failures]
+    assert any("WAF challenge" in error for error in errors)
+    assert any("500" in error for error in errors)
+    assert len(seen_urls) == 4
+    surfaces = {
+        "manifest": manifest_path.read_text(),
+        "report": json.dumps(report.to_mapping()),
+        "errors": "\n".join(errors),
+        "request urls": "\n".join(seen_urls),
+        "logs": caplog.text,
+        "client repr": repr(client),
+    }
+    for name, text in surfaces.items():
+        assert _SECRET not in text, name
+
+
+@pytest.mark.parametrize("suffix", ["2", "3"])
+def test_api_key_never_reaches_raised_exceptions(tmp_path, suffix):
+    def handler(request):
+        if request.url.host == "api.legislation.govt.nz":
+            return httpx.Response(
+                200, json={"results": _rows(suffix), "page": 1, "per_page": 100, "total": 1}
+            )
+        return _leak_handler([])(request)
+
+    client = NZLegislationAPIClient(
+        _SECRET,
+        client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+
+    with pytest.raises((NZLegislationAPIError, httpx.HTTPStatusError)) as excinfo:
+        download_nz_legislation_api_sources(
+            tmp_path / "xml", api_key=_SECRET, legislation_types=("act",), client=client
+        )
+
+    rendered = "".join(traceback.format_exception(excinfo.value))
+    assert _SECRET not in rendered
+    assert _SECRET not in repr(excinfo.value)
