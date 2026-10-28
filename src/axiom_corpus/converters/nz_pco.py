@@ -48,6 +48,7 @@ from pydantic import BaseModel, Field
 
 from axiom_corpus.fetchers.nz_legislation_api import (
     NZ_LEGISLATION_API_KEY_ENV,
+    drop_nz_legislation_api_key,
     nz_legislation_api_key_hook,
 )
 
@@ -296,9 +297,14 @@ class NZPCOConverter:
                 timeout=self.timeout,
                 headers={"User-Agent": "Axiom/1.0 (contact@axiom-foundation.org)"},
                 follow_redirects=True,
-                event_hooks={
-                    "request": [nz_legislation_api_key_hook(self.api_key)] if self.api_key else []
-                },
+                event_hooks=(
+                    {
+                        "request": [nz_legislation_api_key_hook(self.api_key)],
+                        "response": [drop_nz_legislation_api_key],
+                    }
+                    if self.api_key
+                    else {}
+                ),
             )
         return self._client
 

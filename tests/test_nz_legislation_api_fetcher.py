@@ -11,6 +11,8 @@ from axiom_corpus.fetchers.nz_legislation_api import (
     NZ_LEGISLATION_HOSTS,
     NZLegislationAPIClient,
     NZLegislationAPIError,
+    _drop_tagged_api_key,
+    _scope_tagged_api_key,
     download_nz_legislation_api_sources,
     is_nz_legislation_url,
     nz_legislation_api_key_hook,
@@ -251,8 +253,9 @@ def test_client_created_after_close_is_owned_and_closed(monkeypatch):
 
 def test_wrappers_sharing_a_client_send_their_own_keys():
     # Invariants: each wrapper's requests carry its own key; the caller's own
-    # requests on the shared client are never changed; once the last wrapper
-    # closes, the client has exactly the hooks its caller gave it.
+    # requests on the shared client are never changed; the client keeps its
+    # caller's hooks plus one copy of each key-free tagged-key hook, which no
+    # close removes.
     seen = []
     caller_hook_urls = []
 
@@ -267,9 +270,13 @@ def test_wrappers_sharing_a_client_send_their_own_keys():
         transport=httpx.MockTransport(handler),
         event_hooks={"request": [caller_hook]},
     )
-    hooks_before = {name: list(hooks) for name, hooks in shared.event_hooks.items()}
     first = NZLegislationAPIClient("first-key", client=shared)
     second = NZLegislationAPIClient("second-key", client=shared)
+    hooks_installed = {
+        "request": [caller_hook, _scope_tagged_api_key],
+        "response": [_drop_tagged_api_key],
+    }
+    assert shared.event_hooks == hooks_installed
     url = "https://www.legislation.govt.nz/act/public/1990/{}/en/latest.xml"
 
     first.download_xml(url.format(1))
@@ -293,8 +300,204 @@ def test_wrappers_sharing_a_client_send_their_own_keys():
         "first-key",
         None,
     ]
-    assert shared.event_hooks == hooks_before
+    assert shared.event_hooks == hooks_installed
     assert len(caller_hook_urls) == 8
+    assert not shared.is_closed
+    shared.close()
+
+
+_REDIRECT_URL = "https://www.legislation.govt.nz/redirect"
+_OFF_PCO_LOCATIONS = ["https://example.org/end", "http://www.legislation.govt.nz/end"]
+
+
+def _redirect_handler(seen, location):
+    def handler(request):
+        seen.append((str(request.url), request.headers.get("x-api-key")))
+        if request.url.path == "/redirect":
+            return httpx.Response(302, headers={"location": location})
+        return httpx.Response(200, content=_XML)
+
+    return handler
+
+
+def _mock_owned_clients(monkeypatch, handler):
+    real_client = httpx.Client
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kwargs: real_client(transport=httpx.MockTransport(handler), **kwargs),
+    )
+
+
+def test_closing_a_borrower_leaves_the_owner_sending_its_key(monkeypatch):
+    seen = []
+    _mock_owned_clients(monkeypatch, _redirect_handler(seen, _OFF_PCO_LOCATIONS[0]))
+    owner = NZLegislationAPIClient("owner-key")
+    owned = owner.client
+    borrower = NZLegislationAPIClient("borrower-key", client=owned)
+    url = "https://www.legislation.govt.nz/act/public/1990/{}/en/latest.xml"
+
+    hooks_installed = {"request": [_scope_tagged_api_key], "response": [_drop_tagged_api_key]}
+
+    owner.download_xml(url.format(1))
+    borrower.download_xml(url.format(2))
+    borrower.close()
+    borrower.close()
+    assert owned.event_hooks == hooks_installed
+    owner.download_xml(url.format(3))
+
+    assert [key for _, key in seen] == ["owner-key", "borrower-key", "owner-key"]
+    assert owned.event_hooks == hooks_installed
+    assert not owned.is_closed
+    owner.close()
+    assert owned.is_closed
+
+
+@pytest.mark.parametrize("location", _OFF_PCO_LOCATIONS)
+@pytest.mark.parametrize(
+    "action", ["close borrower", "close owner", "replace hooks", "empty hooks in place"]
+)
+@pytest.mark.parametrize("client_owner", ["wrapper", "caller"])
+def test_closing_or_rehooking_mid_redirect_never_forwards_the_key(
+    monkeypatch, client_owner, action, location
+):
+    # Invariant: whatever a caller's response hook does to the wrappers or to
+    # the client's hooks between hops, a hop that is not https to a PCO host
+    # carries no key.
+    seen = []
+    handler = _redirect_handler(seen, location)
+
+    def caller_response_hook(response):
+        if response.url.path != "/redirect":
+            return
+        if action == "close borrower":
+            borrower.close()
+        elif action == "close owner":
+            owner.close()
+        elif action == "replace hooks":
+            client.event_hooks = {"request": [], "response": []}
+        else:
+            client.event_hooks["request"].clear()
+            client.event_hooks["response"].clear()
+
+    if client_owner == "wrapper":
+        _mock_owned_clients(monkeypatch, handler)
+        owner = NZLegislationAPIClient("owner-key")
+        client = owner.client
+        client.event_hooks = {
+            **client.event_hooks,
+            "response": [*client.event_hooks["response"], caller_response_hook],
+        }
+    else:
+        client = httpx.Client(
+            transport=httpx.MockTransport(handler),
+            follow_redirects=True,
+            event_hooks={"response": [caller_response_hook]},
+        )
+        owner = NZLegislationAPIClient("owner-key", client=client)
+    borrower = NZLegislationAPIClient("borrower-key", client=client)
+
+    response = owner._get(_REDIRECT_URL, headers={})
+
+    assert response.status_code == 200
+    assert seen == [(_REDIRECT_URL, "owner-key"), (location, None)]
+    owner.close()
+    client.close()
+
+
+def test_wrapper_reinstalls_hooks_a_caller_replaced():
+    seen = []
+    shared = httpx.Client(transport=httpx.MockTransport(_redirect_handler(seen, "")))
+    wrapper = NZLegislationAPIClient("test-key", client=shared)
+    shared.event_hooks = {}
+
+    assert wrapper.download_xml(_PCO_XML_URL) == _XML
+    shared.get(_PCO_XML_URL)
+
+    assert seen == [(_PCO_XML_URL, "test-key"), (_PCO_XML_URL, None)]
+    assert shared.event_hooks == {
+        "request": [_scope_tagged_api_key],
+        "response": [_drop_tagged_api_key],
+    }
+    shared.close()
+
+
+_TARGETS = {
+    "pco": "https://www.legislation.govt.nz/act/1.xml",
+    "pco to other host": "https://www.legislation.govt.nz/redirect?to=https://example.org/end",
+    "pco to http": "https://www.legislation.govt.nz/redirect?to=http://www.legislation.govt.nz/end",
+    "pco to pco": "https://www.legislation.govt.nz/redirect?to=https://legislation.govt.nz/end",
+    "other host": "https://example.org/own.xml",
+}
+_OPERATIONS = st.lists(
+    st.one_of(
+        st.tuples(st.just("new"), st.integers(0, 2)),
+        st.tuples(st.just("close"), st.integers(0, 5)),
+        st.tuples(st.just("wrapper get"), st.integers(0, 5), st.sampled_from(sorted(_TARGETS))),
+        st.tuples(
+            st.just("caller get"),
+            st.sampled_from(sorted(_TARGETS)),
+            st.sampled_from([None, "caller-key"]),
+        ),
+        st.tuples(st.just("replace hooks")),
+    ),
+    max_size=12,
+)
+
+
+@given(operations=_OPERATIONS)
+def test_any_interleaving_scopes_each_wrappers_key_and_leaves_caller_requests_alone(operations):
+    # Invariants, for any interleaving of wrappers created on and closed over
+    # one shared client, caller requests and caller hook replacements: a
+    # wrapper's hop carries that wrapper's key exactly when it is https to a
+    # PCO host; a caller's hops carry exactly the headers plain httpx would.
+    seen = []
+
+    def handler(request):
+        seen.append((str(request.url), request.headers.get("x-api-key")))
+        target = request.url.params.get("to")
+        if target:
+            return httpx.Response(302, headers={"location": target})
+        return httpx.Response(200, content=_XML)
+
+    def hops(url):
+        target = httpx.URL(url).params.get("to")
+        return [url, target] if target else [url]
+
+    shared = httpx.Client(transport=httpx.MockTransport(handler), follow_redirects=True)
+    wrappers = []
+    open_wrappers = []
+    expected = []
+    for operation in operations:
+        kind = operation[0]
+        if kind == "new":
+            wrapper = NZLegislationAPIClient(f"key-{len(wrappers)}", client=shared)
+            wrappers.append(wrapper)
+            open_wrappers.append(wrapper)
+        elif kind == "close" and operation[1] < len(wrappers):
+            wrapper = wrappers[operation[1]]
+            wrapper.close()
+            if wrapper in open_wrappers:
+                open_wrappers.remove(wrapper)
+        elif kind == "wrapper get" and open_wrappers:
+            wrapper = open_wrappers[operation[1] % len(open_wrappers)]
+            url = _TARGETS[operation[2]]
+            wrapper._get(url, headers={})
+            expected += [
+                (str(httpx.URL(hop)), wrapper.api_key if is_nz_legislation_url(hop) else None)
+                for hop in hops(url)
+            ]
+        elif kind == "caller get":
+            url = _TARGETS[operation[1]]
+            headers = {"X-Api-Key": operation[2]} if operation[2] else {}
+            shared.get(url, headers=headers)
+            expected += [(str(httpx.URL(hop)), operation[2]) for hop in hops(url)]
+        elif kind == "replace hooks":
+            shared.event_hooks = {}
+
+    assert seen == expected
+    for wrapper in open_wrappers:
+        wrapper.close()
     assert not shared.is_closed
     shared.close()
 

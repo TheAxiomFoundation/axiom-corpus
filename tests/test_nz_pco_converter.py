@@ -682,3 +682,38 @@ class TestPCOApiKey:
 
         assert converter.fetch_rss_feed()
         assert seen == [(NZPCOConverter.RSS_URL, "test-key")]
+
+    @pytest.mark.parametrize(
+        "location", ["https://example.org/feed", "http://www.legislation.govt.nz/feed"]
+    )
+    def test_redirect_after_caller_replaces_hooks_carries_no_key(self, location):
+        # Invariant: the key is dropped from each sent request before httpx
+        # copies its headers onto a redirect, so a hop off https PCO hosts
+        # carries no key even when a caller's hook has removed the key hooks.
+        seen = []
+        start = "https://www.legislation.govt.nz/redirect"
+
+        def handler(request):
+            seen.append((str(request.url), request.headers.get("x-api-key")))
+            if request.url.path == "/redirect":
+                return httpx.Response(302, headers={"location": location})
+            return httpx.Response(200, text=SAMPLE_RSS2)
+
+        converter = NZPCOConverter(api_key="test-key")
+        hooks = converter.client.event_hooks
+        converter.client.close()
+        client = httpx.Client(
+            transport=httpx.MockTransport(handler), follow_redirects=True, event_hooks=hooks
+        )
+
+        def caller_response_hook(response):
+            client.event_hooks = {}
+
+        client.event_hooks = {
+            **client.event_hooks,
+            "response": [*client.event_hooks["response"], caller_response_hook],
+        }
+        client.get(start)
+
+        assert seen == [(start, "test-key"), (location, None)]
+        client.close()

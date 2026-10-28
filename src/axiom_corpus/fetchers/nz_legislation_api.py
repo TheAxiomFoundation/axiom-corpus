@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import re
 import threading
-import weakref
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -62,12 +61,23 @@ def nz_legislation_api_key_hook(api_key: str) -> Callable[[httpx.Request], None]
     across redirects, so the hook sets the key on each https PCO hop and
     strips it from any other hop. Install it only on a client you own: on a
     shared client it would send its key with every other user's requests.
+    Pair it with drop_nz_legislation_api_key as a response hook.
     """
 
     def hook(request: httpx.Request) -> None:
         scope_nz_legislation_api_key(request, api_key)
 
     return hook
+
+
+def drop_nz_legislation_api_key(response: httpx.Response) -> None:
+    """Drop the PCO API key from a request once it has been sent.
+
+    httpx runs response hooks before it copies the request's headers onto a
+    redirect, so no redirect request inherits the key; the request hook sets it
+    again on the next hop only if that hop is https to a PCO host.
+    """
+    response.request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
 
 
 def _scope_tagged_api_key(request: httpx.Request) -> None:
@@ -82,32 +92,34 @@ def _scope_tagged_api_key(request: httpx.Request) -> None:
         scope_nz_legislation_api_key(request, api_key)
 
 
-# Wrappers using each borrowed client, so the last one to close removes the hook.
-_borrowed_client_users: weakref.WeakKeyDictionary[httpx.Client, int] = weakref.WeakKeyDictionary()
-_borrowed_client_lock = threading.Lock()
+def _drop_tagged_api_key(response: httpx.Response) -> None:
+    """Drop the key from a sent request a wrapper tagged; leave others alone."""
+    if _API_KEY_EXTENSION in response.request.extensions:
+        drop_nz_legislation_api_key(response)
 
 
-def _attach_tagged_key_hook(client: httpx.Client) -> None:
-    with _borrowed_client_lock:
-        users = _borrowed_client_users.get(client, 0)
+_tagged_key_hooks_lock = threading.Lock()
+
+
+def _install_tagged_key_hooks(client: httpx.Client) -> None:
+    """Add the tagged-key hooks to a client if absent; nothing removes them.
+
+    The hooks hold no key and leave untagged requests alone, so they change
+    nothing for a borrowed client's other users once its wrappers close, while
+    removing them could unscope another wrapper's request in flight. The drop
+    hook goes first so it runs before any caller response hook.
+    """
+    with _tagged_key_hooks_lock:
         hooks = client.event_hooks
-        if _scope_tagged_api_key not in hooks["request"]:
-            client.event_hooks = {**hooks, "request": [*hooks["request"], _scope_tagged_api_key]}
-        _borrowed_client_users[client] = users + 1
-
-
-def _detach_tagged_key_hook(client: httpx.Client) -> None:
-    with _borrowed_client_lock:
-        users = _borrowed_client_users.get(client, 0) - 1
-        if users > 0:
-            _borrowed_client_users[client] = users
+        request_hooks = hooks["request"]
+        response_hooks = hooks["response"]
+        if _scope_tagged_api_key in request_hooks and _drop_tagged_api_key in response_hooks:
             return
-        _borrowed_client_users.pop(client, None)
-        hooks = client.event_hooks
-        client.event_hooks = {
-            **hooks,
-            "request": [hook for hook in hooks["request"] if hook is not _scope_tagged_api_key],
-        }
+        if _scope_tagged_api_key not in request_hooks:
+            request_hooks = [*request_hooks, _scope_tagged_api_key]
+        if _drop_tagged_api_key not in response_hooks:
+            response_hooks = [_drop_tagged_api_key, *response_hooks]
+        client.event_hooks = {"request": request_hooks, "response": response_hooks}
 
 
 @dataclass(frozen=True)
@@ -170,8 +182,9 @@ class NZLegislationAPIClient:
     """Minimal synchronous client for api.legislation.govt.nz.
 
     Each request is tagged with this wrapper's key, so wrappers sharing one
-    httpx client each send their own key. A borrowed client gets one hook that
-    ignores untagged requests, and loses it when its last wrapper closes.
+    httpx client each send their own key. A borrowed client gets one pair of
+    hooks that hold no key and ignore untagged requests; they stay installed
+    after its wrappers close.
     """
 
     def __init__(
@@ -188,7 +201,7 @@ class NZLegislationAPIClient:
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
         if client is not None:
-            _attach_tagged_key_hook(client)
+            _install_tagged_key_hooks(client)
         self._client = client
         self._owns_client = client is None
 
@@ -198,17 +211,17 @@ class NZLegislationAPIClient:
             self._client = httpx.Client(
                 timeout=self.timeout,
                 follow_redirects=True,
-                event_hooks={"request": [_scope_tagged_api_key]},
+                event_hooks={
+                    "request": [_scope_tagged_api_key],
+                    "response": [_drop_tagged_api_key],
+                },
             )
             self._owns_client = True
         return self._client
 
     def close(self) -> None:
-        if self._client is not None:
-            if self._owns_client:
-                self._client.close()
-            else:
-                _detach_tagged_key_hook(self._client)
+        if self._client is not None and self._owns_client:
+            self._client.close()
         self._client = None
 
     def __enter__(self) -> NZLegislationAPIClient:
@@ -224,8 +237,14 @@ class NZLegislationAPIClient:
         headers: Mapping[str, str],
         params: Mapping[str, str] | None = None,
     ) -> httpx.Response:
-        """GET a URL tagged with this wrapper's API key."""
-        return self.client.get(
+        """GET a URL tagged with this wrapper's API key.
+
+        The hooks are reinstalled if a caller replaced the client's hooks, so
+        the key is still scoped; without them a tagged request sends no key.
+        """
+        client = self.client
+        _install_tagged_key_hooks(client)
+        return client.get(
             url,
             headers=headers,
             params=params,
