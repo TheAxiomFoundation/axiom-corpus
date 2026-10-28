@@ -50,7 +50,11 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # After checkout a green run takes 15-26 minutes. The full-history
+    # checkout below (about 6 GB) usually takes 1-5 minutes but has taken
+    # 11 to more than 30 at busy hours, so a 30-minute cap cancelled healthy
+    # runs before they finished. 90 leaves margin over the worst case seen.
+    timeout-minutes: 90
     env:
       AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
     strategy:
