@@ -627,93 +627,91 @@ class TestContextManager:
 
 class TestClientProperty:
     def test_lazy_client(self):
-        with patch("axiom_corpus.converters.nz_pco.httpx.Client") as mock_cls:
-            converter = NZPCOConverter(timeout=15)
-            _ = converter.client
-            mock_cls.assert_called_once()
+        converter = NZPCOConverter(timeout=15)
+        assert converter._client is None
+        client = converter.client
+        assert client is converter.client
+        assert client.timeout == httpx.Timeout(15)
+        assert client.follow_redirects is True
+        converter.close()
+        assert client.is_closed
 
 
 class TestPCOApiKey:
+    @staticmethod
+    def _converter(handler, **kwargs):
+        return NZPCOConverter(transport=httpx.MockTransport(handler), **kwargs)
+
+    @staticmethod
+    def _rss_handler(seen, location=None):
+        def handler(request):
+            seen.append((str(request.url), request.headers.get("x-api-key")))
+            if location and request.url.path == "/subscribe/nzpco-rss.xml":
+                return httpx.Response(302, headers={"location": location})
+            return httpx.Response(200, text=SAMPLE_RSS2)
+
+        return handler
+
     def test_rss_url_is_https(self):
         assert NZPCOConverter.RSS_URL.startswith("https://www.legislation.govt.nz/")
 
-    def test_client_sends_api_key_from_env(self, monkeypatch):
+    def test_fetch_rss_feed_sends_api_key_from_env(self, monkeypatch):
         monkeypatch.setenv("NZ_LEGISLATION_API_KEY", "env-key")
-        converter = NZPCOConverter()
-        request = httpx.Request("GET", converter.RSS_URL)
+        seen = []
+        converter = self._converter(self._rss_handler(seen))
 
-        for hook in converter.client.event_hooks["request"]:
-            hook(request)
-
-        assert request.headers["x-api-key"] == "env-key"
-        converter.client.close()
+        assert converter.fetch_rss_feed()
+        assert seen == [(NZPCOConverter.RSS_URL, "env-key")]
+        converter.close()
 
     def test_explicit_api_key_wins_over_env(self, monkeypatch):
         monkeypatch.setenv("NZ_LEGISLATION_API_KEY", "env-key")
-        converter = NZPCOConverter(api_key="explicit-key")
-        request = httpx.Request("GET", converter.RSS_URL)
-
-        for hook in converter.client.event_hooks["request"]:
-            hook(request)
-
-        assert request.headers["x-api-key"] == "explicit-key"
-        converter.client.close()
-
-    def test_client_without_api_key_sends_none(self, monkeypatch):
-        monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
-        converter = NZPCOConverter()
-
-        assert converter.api_key is None
-        assert converter.client.event_hooks["request"] == []
-        converter.client.close()
-
-    def test_fetch_rss_feed_sends_api_key(self, monkeypatch):
-        monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
         seen = []
-
-        def handler(request):
-            seen.append((str(request.url), request.headers.get("x-api-key")))
-            return httpx.Response(200, text=SAMPLE_RSS2)
-
-        converter = NZPCOConverter(api_key="test-key")
-        hooks = converter.client.event_hooks
-        converter.client.close()
-        converter._client = httpx.Client(transport=httpx.MockTransport(handler), event_hooks=hooks)
+        converter = self._converter(self._rss_handler(seen), api_key="explicit-key")
 
         assert converter.fetch_rss_feed()
-        assert seen == [(NZPCOConverter.RSS_URL, "test-key")]
+        assert seen == [(NZPCOConverter.RSS_URL, "explicit-key")]
+        converter.close()
+
+    def test_without_api_key_sends_none(self, monkeypatch):
+        monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
+        seen = []
+        converter = self._converter(self._rss_handler(seen))
+
+        assert converter.api_key is None
+        assert converter.fetch_rss_feed()
+        assert seen == [(NZPCOConverter.RSS_URL, None)]
+        converter.close()
+
+    def test_other_requests_on_the_client_carry_no_key(self, monkeypatch):
+        monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
+        seen = []
+        converter = self._converter(self._rss_handler(seen), api_key="test-key")
+
+        converter.client.get(NZPCOConverter.RSS_URL)
+
+        assert seen == [(NZPCOConverter.RSS_URL, None)]
+        converter.close()
 
     @pytest.mark.parametrize(
         "location", ["https://example.org/feed", "http://www.legislation.govt.nz/feed"]
     )
-    def test_redirect_after_caller_replaces_hooks_carries_no_key(self, location):
-        # Invariant: the key is dropped from each sent request before httpx
-        # copies its headers onto a redirect, so a hop off https PCO hosts
-        # carries no key even when a caller's hook has removed the key hooks.
+    def test_redirect_off_https_pco_hosts_carries_no_key_whatever_the_hooks(
+        self, monkeypatch, location
+    ):
+        # Invariant: the key is added per hop at the transport, only on https
+        # PCO hops, so a caller replacing the client's hooks mid-redirect
+        # changes nothing.
+        monkeypatch.delenv("NZ_LEGISLATION_API_KEY", raising=False)
         seen = []
-        start = "https://www.legislation.govt.nz/redirect"
-
-        def handler(request):
-            seen.append((str(request.url), request.headers.get("x-api-key")))
-            if request.url.path == "/redirect":
-                return httpx.Response(302, headers={"location": location})
-            return httpx.Response(200, text=SAMPLE_RSS2)
-
-        converter = NZPCOConverter(api_key="test-key")
-        hooks = converter.client.event_hooks
-        converter.client.close()
-        client = httpx.Client(
-            transport=httpx.MockTransport(handler), follow_redirects=True, event_hooks=hooks
-        )
+        converter = self._converter(self._rss_handler(seen, location), api_key="test-key")
+        client = converter.client
 
         def caller_response_hook(response):
             client.event_hooks = {}
 
-        client.event_hooks = {
-            **client.event_hooks,
-            "response": [*client.event_hooks["response"], caller_response_hook],
-        }
-        client.get(start)
+        client.event_hooks = {"response": [caller_response_hook]}
 
-        assert seen == [(start, "test-key"), (location, None)]
-        client.close()
+        assert converter.fetch_rss_feed()
+        assert seen == [(NZPCOConverter.RSS_URL, "test-key"), (location, None)]
+        converter.close()

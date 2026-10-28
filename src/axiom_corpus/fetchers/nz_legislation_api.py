@@ -4,8 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-import threading
-from collections.abc import Callable, Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
@@ -54,72 +53,63 @@ def scope_nz_legislation_api_key(request: httpx.Request, api_key: str) -> None:
         request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
 
 
-def nz_legislation_api_key_hook(api_key: str) -> Callable[[httpx.Request], None]:
-    """Build an httpx request hook that scopes the PCO API key to PCO hosts.
+class _PCOKeyTransport(httpx.BaseTransport):
+    """Add a tagged request's PCO key to the hop being sent, then remove it.
 
-    httpx runs request hooks on every redirect hop but copies custom headers
-    across redirects, so the hook sets the key on each https PCO hop and
-    strips it from any other hop. Install it only on a client you own: on a
-    shared client it would send its key with every other user's requests.
-    Pair it with drop_nz_legislation_api_key as a response hook.
+    httpx sends every hop of a request, redirects included, through the
+    transport its client picks for that hop's URL, and copies request
+    extensions onto each redirect. So the key is set here, per hop, from the
+    tag on the hop's own request, whatever the client's event hooks are.
+    Removing it once the hop is sent keeps it out of the response's request,
+    the redirect httpx builds from it, and next_request. Untagged requests
+    pass through unchanged.
     """
 
-    def hook(request: httpx.Request) -> None:
+    def __init__(self, transport: httpx.BaseTransport) -> None:
+        self._transport = transport
+
+    def handle_request(self, request: httpx.Request) -> httpx.Response:
+        api_key = request.extensions.get(_API_KEY_EXTENSION)
+        if api_key is None:
+            return self._transport.handle_request(request)
         scope_nz_legislation_api_key(request, api_key)
+        try:
+            return self._transport.handle_request(request)
+        finally:
+            request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
 
-    return hook
 
+class _PCOKeyClient(httpx.Client):
+    """An httpx client that sends every hop through _PCOKeyTransport.
 
-def drop_nz_legislation_api_key(response: httpx.Response) -> None:
-    """Drop the PCO API key from a request once it has been sent.
-
-    httpx runs response hooks before it copies the request's headers onto a
-    redirect, so no redirect request inherits the key; the request hook sets it
-    again on the next hop only if that hop is https to a PCO host.
+    httpx 0.28 picks each hop's transport in _transport_for_url, from its
+    default transport and its mounts, including proxy mounts from the
+    environment, so wrapping that choice covers all of them.
     """
-    response.request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
+
+    def _transport_for_url(self, url: httpx.URL) -> httpx.BaseTransport:
+        return _PCOKeyTransport(super()._transport_for_url(url))
 
 
-def _scope_tagged_api_key(request: httpx.Request) -> None:
-    """Scope the key a wrapper tagged this request with; leave others alone.
+def nz_legislation_api_key_client(
+    *,
+    timeout: float,
+    transport: httpx.BaseTransport | None = None,
+    headers: Mapping[str, str] | None = None,
+) -> httpx.Client:
+    """Build an httpx client that sends each request's tagged PCO key per hop.
 
-    httpx copies request extensions onto every redirect request and runs
-    request hooks on every hop, so the tagged key is set or stripped hop by
-    hop while httpx handles redirects, auth and cookies as usual.
+    Tag a request with nz_legislation_api_key_extensions; the client follows
+    redirects and handles auth and cookies as plain httpx does.
     """
-    api_key = request.extensions.get(_API_KEY_EXTENSION)
-    if api_key is not None:
-        scope_nz_legislation_api_key(request, api_key)
+    return _PCOKeyClient(
+        timeout=timeout, follow_redirects=True, transport=transport, headers=headers
+    )
 
 
-def _drop_tagged_api_key(response: httpx.Response) -> None:
-    """Drop the key from a sent request a wrapper tagged; leave others alone."""
-    if _API_KEY_EXTENSION in response.request.extensions:
-        drop_nz_legislation_api_key(response)
-
-
-_tagged_key_hooks_lock = threading.Lock()
-
-
-def _install_tagged_key_hooks(client: httpx.Client) -> None:
-    """Add the tagged-key hooks to a client if absent; nothing removes them.
-
-    The hooks hold no key and leave untagged requests alone, so they change
-    nothing for a borrowed client's other users once its wrappers close, while
-    removing them could unscope another wrapper's request in flight. The drop
-    hook goes first so it runs before any caller response hook.
-    """
-    with _tagged_key_hooks_lock:
-        hooks = client.event_hooks
-        request_hooks = hooks["request"]
-        response_hooks = hooks["response"]
-        if _scope_tagged_api_key in request_hooks and _drop_tagged_api_key in response_hooks:
-            return
-        if _scope_tagged_api_key not in request_hooks:
-            request_hooks = [*request_hooks, _scope_tagged_api_key]
-        if _drop_tagged_api_key not in response_hooks:
-            response_hooks = [_drop_tagged_api_key, *response_hooks]
-        client.event_hooks = {"request": request_hooks, "response": response_hooks}
+def nz_legislation_api_key_extensions(api_key: str) -> dict[str, str]:
+    """Request extensions that tag a request with the PCO API key to send."""
+    return {_API_KEY_EXTENSION: api_key}
 
 
 @dataclass(frozen=True)
@@ -181,10 +171,11 @@ class NZLegislationAPIDownloadReport:
 class NZLegislationAPIClient:
     """Minimal synchronous client for api.legislation.govt.nz.
 
-    Each request is tagged with this wrapper's key, so wrappers sharing one
-    httpx client each send their own key. A borrowed client gets one pair of
-    hooks that hold no key and ignore untagged requests; they stay installed
-    after its wrappers close.
+    It builds and owns its httpx client. Each of its own requests is tagged
+    with its key, which the client's transport adds to each hop that is https
+    to a PCO host; other requests on that client go out unchanged. A given
+    transport, such as a mock, is used for every request and closed with the
+    client.
     """
 
     def __init__(
@@ -193,34 +184,26 @@ class NZLegislationAPIClient:
         *,
         base_url: str = NZ_LEGISLATION_API_BASE_URL,
         timeout: float = 60.0,
-        client: httpx.Client | None = None,
+        transport: httpx.BaseTransport | None = None,
     ) -> None:
         if not api_key:
             raise ValueError("NZ Legislation API key is required")
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
-        if client is not None:
-            _install_tagged_key_hooks(client)
-        self._client = client
-        self._owns_client = client is None
+        self._transport = transport
+        self._client: httpx.Client | None = None
 
     @property
     def client(self) -> httpx.Client:
         if self._client is None:
-            self._client = httpx.Client(
-                timeout=self.timeout,
-                follow_redirects=True,
-                event_hooks={
-                    "request": [_scope_tagged_api_key],
-                    "response": [_drop_tagged_api_key],
-                },
+            self._client = nz_legislation_api_key_client(
+                timeout=self.timeout, transport=self._transport
             )
-            self._owns_client = True
         return self._client
 
     def close(self) -> None:
-        if self._client is not None and self._owns_client:
+        if self._client is not None:
             self._client.close()
         self._client = None
 
@@ -237,18 +220,12 @@ class NZLegislationAPIClient:
         headers: Mapping[str, str],
         params: Mapping[str, str] | None = None,
     ) -> httpx.Response:
-        """GET a URL tagged with this wrapper's API key.
-
-        The hooks are reinstalled if a caller replaced the client's hooks, so
-        the key is still scoped; without them a tagged request sends no key.
-        """
-        client = self.client
-        _install_tagged_key_hooks(client)
-        return client.get(
+        """GET a URL tagged with this wrapper's API key."""
+        return self.client.get(
             url,
             headers=headers,
             params=params,
-            extensions={_API_KEY_EXTENSION: self.api_key},
+            extensions=nz_legislation_api_key_extensions(self.api_key),
         )
 
     def get_json(self, path: str, params: Mapping[str, str] | None = None) -> dict[str, Any]:

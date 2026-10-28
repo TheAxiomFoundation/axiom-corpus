@@ -48,8 +48,8 @@ from pydantic import BaseModel, Field
 
 from axiom_corpus.fetchers.nz_legislation_api import (
     NZ_LEGISLATION_API_KEY_ENV,
-    drop_nz_legislation_api_key,
-    nz_legislation_api_key_hook,
+    nz_legislation_api_key_client,
+    nz_legislation_api_key_extensions,
 )
 
 # NZ legislation types
@@ -277,34 +277,35 @@ class NZPCOConverter:
     BASE_URL = "https://www.legislation.govt.nz"
     _SCHEDULE_HIERARCHY_TAGS = frozenset({"head1", "head2", "part", "subpart"})
 
-    def __init__(self, timeout: int = 30, api_key: str | None = None):
+    def __init__(
+        self,
+        timeout: int = 30,
+        api_key: str | None = None,
+        transport: httpx.BaseTransport | None = None,
+    ):
         """Initialize the converter.
 
         Args:
             timeout: HTTP request timeout in seconds
-            api_key: PCO API key for legislation.govt.nz requests. Defaults to
-                the NZ_LEGISLATION_API_KEY environment variable.
+            api_key: PCO API key for the converter's own legislation.govt.nz
+                requests. Defaults to the NZ_LEGISLATION_API_KEY environment
+                variable.
+            transport: httpx transport for the converter's client, such as a
+                mock; closed with the client.
         """
         self.timeout = timeout
         self.api_key = api_key or os.environ.get(NZ_LEGISLATION_API_KEY_ENV)
+        self._transport = transport
         self._client: httpx.Client | None = None
 
     @property
     def client(self) -> httpx.Client:
         """Lazy-initialize HTTP client."""
         if self._client is None:
-            self._client = httpx.Client(
+            self._client = nz_legislation_api_key_client(
                 timeout=self.timeout,
+                transport=self._transport,
                 headers={"User-Agent": "Axiom/1.0 (contact@axiom-foundation.org)"},
-                follow_redirects=True,
-                event_hooks=(
-                    {
-                        "request": [nz_legislation_api_key_hook(self.api_key)],
-                        "response": [drop_nz_legislation_api_key],
-                    }
-                    if self.api_key
-                    else {}
-                ),
             )
         return self._client
 
@@ -746,7 +747,8 @@ class NZPCOConverter:
         Returns:
             List of RSS items representing recent legislation updates
         """
-        response = self.client.get(self.RSS_URL)  # pragma: no cover
+        extensions = nz_legislation_api_key_extensions(self.api_key) if self.api_key else {}
+        response = self.client.get(self.RSS_URL, extensions=extensions)
         response.raise_for_status()
         return self.parse_rss(response.text)  # pragma: no cover
 

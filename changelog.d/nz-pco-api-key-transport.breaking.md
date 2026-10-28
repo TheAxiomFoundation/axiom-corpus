@@ -1,0 +1,1 @@
+`NZLegislationAPIClient` no longer accepts an httpx `client=`. It always builds and closes its own client; pass `transport=` to supply a transport instead, for example `httpx.MockTransport` in tests. `NZPCOConverter` also accepts `transport=`.
