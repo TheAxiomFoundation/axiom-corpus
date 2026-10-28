@@ -201,7 +201,7 @@ def test_download_xml_sends_api_key_to_legislation_govt_nz():
     assert client.download_xml(_PCO_XML_URL) == _XML
 
 
-def test_owned_client_sends_api_key_without_hooks(monkeypatch):
+def test_owned_client_sends_its_key_only_on_its_own_requests(monkeypatch):
     seen = []
 
     def handler(request):
@@ -216,19 +216,48 @@ def test_owned_client_sends_api_key_without_hooks(monkeypatch):
     )
 
     with NZLegislationAPIClient("test-key") as client:
-        assert client.client.follow_redirects is True
-        assert client.client.event_hooks == {"request": [], "response": []}
+        owned = client.client
+        assert owned.follow_redirects is True
         assert client.download_xml(_PCO_XML_URL) == _XML
+        owned.get(_PCO_XML_URL)
 
-    assert seen == ["test-key"]
+    assert seen == ["test-key", None]
+    assert owned.is_closed
+
+
+def test_client_created_after_close_is_owned_and_closed(monkeypatch):
+    real_client = httpx.Client
+    monkeypatch.setattr(
+        httpx,
+        "Client",
+        lambda **kwargs: real_client(
+            transport=httpx.MockTransport(lambda request: httpx.Response(200, content=_XML)),
+            **kwargs,
+        ),
+    )
+    borrowed = real_client(transport=httpx.MockTransport(lambda request: httpx.Response(200)))
+    client = NZLegislationAPIClient("test-key", client=borrowed)
+    client.close()
+
+    assert client.download_xml(_PCO_XML_URL) == _XML
+    created = client.client
+    assert created is not borrowed
+    client.close()
+
+    assert created.is_closed
+    assert not borrowed.is_closed
+    borrowed.close()
 
 
 def test_wrappers_sharing_a_client_send_their_own_keys():
+    # Invariants: each wrapper's requests carry its own key; the caller's own
+    # requests on the shared client are never changed; once the last wrapper
+    # closes, the client has exactly the hooks its caller gave it.
     seen = []
     caller_hook_urls = []
 
     def handler(request):
-        seen.append((request.url.path, request.headers.get("x-api-key")))
+        seen.append((str(request.url), request.headers.get("x-api-key")))
         return httpx.Response(200, content=_XML)
 
     def caller_hook(request):
@@ -238,28 +267,34 @@ def test_wrappers_sharing_a_client_send_their_own_keys():
         transport=httpx.MockTransport(handler),
         event_hooks={"request": [caller_hook]},
     )
-    hooks_before = shared.event_hooks
+    hooks_before = {name: list(hooks) for name, hooks in shared.event_hooks.items()}
     first = NZLegislationAPIClient("first-key", client=shared)
     second = NZLegislationAPIClient("second-key", client=shared)
     url = "https://www.legislation.govt.nz/act/public/1990/{}/en/latest.xml"
 
     first.download_xml(url.format(1))
     second.download_xml(url.format(2))
-    first.download_xml(url.format(3))
+    shared.get(url.format(3))
+    shared.get(url.format(4), headers={"X-Api-Key": "caller-key"})
+    shared.get("https://example.org/own.xml", headers={"X-Api-Key": "caller-key"})
+    first.download_xml(url.format(6))
     second.close()
-    first.download_xml(url.format(4))
+    first.download_xml(url.format(7))
     first.close()
-    shared.get(url.format(5))
+    shared.get(url.format(8))
 
     assert [key for _, key in seen] == [
         "first-key",
         "second-key",
+        None,
+        "caller-key",
+        "caller-key",
         "first-key",
         "first-key",
         None,
     ]
     assert shared.event_hooks == hooks_before
-    assert len(caller_hook_urls) == 5
+    assert len(caller_hook_urls) == 8
     assert not shared.is_closed
     shared.close()
 
@@ -346,12 +381,14 @@ def test_api_key_hook_sets_key_iff_https_pco_host(scheme, host, path, preset):
     assert request.headers.get("x-api-key") == ("test-key" if allowed else None)
 
 
-def _follow_chain(chain, *, follow, max_redirects, send):
+def _follow_chain(chain, *, follow, max_redirects, auth, send):
     """Serve a redirect chain and record each transmitted hop and the outcome."""
     seen = []
 
     def handler(request):
-        seen.append((request.url, request.headers.get("x-api-key")))
+        seen.append(
+            (request.url, request.headers.get("authorization"), request.headers.get("x-api-key"))
+        )
         index = int(request.url.path.rsplit("/", 1)[1])
         if index + 1 < len(chain):
             return httpx.Response(302, headers={"location": chain[index + 1]})
@@ -361,6 +398,7 @@ def _follow_chain(chain, *, follow, max_redirects, send):
         transport=httpx.MockTransport(handler),
         follow_redirects=follow,
         max_redirects=max_redirects,
+        auth=auth,
     )
     try:
         response = send(client, chain[0])
@@ -377,11 +415,25 @@ def _follow_chain(chain, *, follow, max_redirects, send):
     hops=st.lists(st.tuples(st.sampled_from(["https", "http"]), _HOSTS), min_size=1, max_size=5),
     follow=st.booleans(),
     max_redirects=st.integers(min_value=0, max_value=4),
+    auth=st.sampled_from([None, ("caller-user", "caller-password")]),
 )
 @example(
     hops=[("https", "www.legislation.govt.nz")] * 4,
     follow=True,
     max_redirects=1,
+    auth=None,
+)
+@example(
+    hops=[("https", "www.legislation.govt.nz"), ("https", "example.org")],
+    follow=True,
+    max_redirects=20,
+    auth=("caller-user", "caller-password"),
+)
+@example(
+    hops=[("https", "www.legislation.govt.nz"), ("http", "api.legislation.govt.nz")],
+    follow=True,
+    max_redirects=20,
+    auth=("caller-user", "caller-password"),
 )
 @example(
     hops=[
@@ -391,17 +443,20 @@ def _follow_chain(chain, *, follow, max_redirects, send):
     ],
     follow=True,
     max_redirects=20,
+    auth=None,
 )
-def test_redirect_chains_match_httpx_and_scope_the_key_per_hop(hops, follow, max_redirects):
-    # Invariants: the wrapper transmits exactly the hops httpx's own redirect
-    # loop would, with the same outcome, and each transmitted hop carries the
-    # key exactly when it is https to a PCO host.
+def test_redirect_chains_match_httpx_and_scope_the_key_per_hop(hops, follow, max_redirects, auth):
+    # Invariants: the wrapper transmits exactly the hops plain httpx would,
+    # with the same caller Authorization on each hop and the same outcome, and
+    # each transmitted hop carries the key exactly when it is https to a PCO
+    # host.
     chain = [f"{scheme}://{host}/hop/{index}" for index, (scheme, host) in enumerate(hops)]
 
     wrapper_seen, wrapper_outcome = _follow_chain(
         chain,
         follow=follow,
         max_redirects=max_redirects,
+        auth=auth,
         send=lambda client, url: NZLegislationAPIClient("test-key", client=client)._get(
             url, headers={}
         ),
@@ -410,12 +465,13 @@ def test_redirect_chains_match_httpx_and_scope_the_key_per_hop(hops, follow, max
         chain,
         follow=follow,
         max_redirects=max_redirects,
+        auth=auth,
         send=lambda client, url: client.get(url),
     )
 
-    assert [url for url, _ in wrapper_seen] == [url for url, _ in httpx_seen]
+    assert [hop[:2] for hop in wrapper_seen] == [hop[:2] for hop in httpx_seen]
     assert wrapper_outcome == httpx_outcome
-    for url, key in wrapper_seen:
+    for url, _, key in wrapper_seen:
         assert key == ("test-key" if is_nz_legislation_url(url) else None)
 
 

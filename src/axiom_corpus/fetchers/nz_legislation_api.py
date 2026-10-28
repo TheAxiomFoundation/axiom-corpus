@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import re
+import threading
+import weakref
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -18,6 +20,8 @@ NZ_LEGISLATION_API_KEY_HEADER = "X-Api-Key"
 NZ_LEGISLATION_HOSTS = frozenset(
     {"legislation.govt.nz", "www.legislation.govt.nz", "api.legislation.govt.nz"}
 )
+# Request extension that carries a wrapper's key on its own requests.
+_API_KEY_EXTENSION = "axiom_corpus.nz_legislation_api_key"
 NZ_LEGISLATION_DEFAULT_TYPES = (
     "act",
     "secondary_legislation",
@@ -64,6 +68,46 @@ def nz_legislation_api_key_hook(api_key: str) -> Callable[[httpx.Request], None]
         scope_nz_legislation_api_key(request, api_key)
 
     return hook
+
+
+def _scope_tagged_api_key(request: httpx.Request) -> None:
+    """Scope the key a wrapper tagged this request with; leave others alone.
+
+    httpx copies request extensions onto every redirect request and runs
+    request hooks on every hop, so the tagged key is set or stripped hop by
+    hop while httpx handles redirects, auth and cookies as usual.
+    """
+    api_key = request.extensions.get(_API_KEY_EXTENSION)
+    if api_key is not None:
+        scope_nz_legislation_api_key(request, api_key)
+
+
+# Wrappers using each borrowed client, so the last one to close removes the hook.
+_borrowed_client_users: weakref.WeakKeyDictionary[httpx.Client, int] = weakref.WeakKeyDictionary()
+_borrowed_client_lock = threading.Lock()
+
+
+def _attach_tagged_key_hook(client: httpx.Client) -> None:
+    with _borrowed_client_lock:
+        users = _borrowed_client_users.get(client, 0)
+        hooks = client.event_hooks
+        if _scope_tagged_api_key not in hooks["request"]:
+            client.event_hooks = {**hooks, "request": [*hooks["request"], _scope_tagged_api_key]}
+        _borrowed_client_users[client] = users + 1
+
+
+def _detach_tagged_key_hook(client: httpx.Client) -> None:
+    with _borrowed_client_lock:
+        users = _borrowed_client_users.get(client, 0) - 1
+        if users > 0:
+            _borrowed_client_users[client] = users
+            return
+        _borrowed_client_users.pop(client, None)
+        hooks = client.event_hooks
+        client.event_hooks = {
+            **hooks,
+            "request": [hook for hook in hooks["request"] if hook is not _scope_tagged_api_key],
+        }
 
 
 @dataclass(frozen=True)
@@ -123,7 +167,12 @@ class NZLegislationAPIDownloadReport:
 
 
 class NZLegislationAPIClient:
-    """Minimal synchronous client for api.legislation.govt.nz."""
+    """Minimal synchronous client for api.legislation.govt.nz.
+
+    Each request is tagged with this wrapper's key, so wrappers sharing one
+    httpx client each send their own key. A borrowed client gets one hook that
+    ignores untagged requests, and loses it when its last wrapper closes.
+    """
 
     def __init__(
         self,
@@ -138,18 +187,28 @@ class NZLegislationAPIClient:
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
+        if client is not None:
+            _attach_tagged_key_hook(client)
         self._client = client
         self._owns_client = client is None
 
     @property
     def client(self) -> httpx.Client:
         if self._client is None:
-            self._client = httpx.Client(timeout=self.timeout, follow_redirects=True)
+            self._client = httpx.Client(
+                timeout=self.timeout,
+                follow_redirects=True,
+                event_hooks={"request": [_scope_tagged_api_key]},
+            )
+            self._owns_client = True
         return self._client
 
     def close(self) -> None:
-        if self._owns_client and self._client is not None:
-            self._client.close()
+        if self._client is not None:
+            if self._owns_client:
+                self._client.close()
+            else:
+                _detach_tagged_key_hook(self._client)
         self._client = None
 
     def __enter__(self) -> NZLegislationAPIClient:
@@ -165,31 +224,13 @@ class NZLegislationAPIClient:
         headers: Mapping[str, str],
         params: Mapping[str, str] | None = None,
     ) -> httpx.Response:
-        """GET a URL with this client's API key scoped to each redirect hop.
-
-        The key is chosen per request rather than installed on the httpx
-        client, so wrappers sharing one client each send their own key and
-        leave the client as they found it. httpx copies custom headers across
-        redirects, so this follows redirects itself, as far as the client's
-        follow_redirects and max_redirects allow, and sets or strips the key
-        on every hop.
-        """
-        client = self.client
-        request = client.build_request("GET", url, headers=headers, params=params)
-        history: list[httpx.Response] = []
-        while True:
-            scope_nz_legislation_api_key(request, self.api_key)
-            response = client.send(request, follow_redirects=False)
-            response.history = list(history)
-            next_request = response.next_request
-            if next_request is None or not client.follow_redirects:
-                return response
-            history.append(response)
-            if len(history) > client.max_redirects:
-                raise httpx.TooManyRedirects(
-                    "Exceeded maximum allowed redirects.", request=next_request
-                )
-            request = next_request
+        """GET a URL tagged with this wrapper's API key."""
+        return self.client.get(
+            url,
+            headers=headers,
+            params=params,
+            extensions={_API_KEY_EXTENSION: self.api_key},
+        )
 
     def get_json(self, path: str, params: Mapping[str, str] | None = None) -> dict[str, Any]:
         """GET an API JSON endpoint with the configured API key."""
