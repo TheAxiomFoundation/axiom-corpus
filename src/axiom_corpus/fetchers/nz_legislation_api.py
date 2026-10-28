@@ -18,8 +18,12 @@ NZ_LEGISLATION_API_KEY_HEADER = "X-Api-Key"
 NZ_LEGISLATION_HOSTS = frozenset(
     {"legislation.govt.nz", "www.legislation.govt.nz", "api.legislation.govt.nz"}
 )
-# Request extension that carries a wrapper's key on its own requests.
+# Request extension that tags a request with the PCO key to send.
 _API_KEY_EXTENSION = "axiom_corpus.nz_legislation_api_key"
+# Keys must be printable ASCII with no whitespace, which h11 accepts as a
+# header value; h11 quotes a value it rejects in its error message.
+_API_KEY_PATTERN = re.compile(r"[\x21-\x7e]+")
+_INVALID_API_KEY_MESSAGE = "NZ Legislation API key must be printable ASCII with no whitespace"
 NZ_LEGISLATION_DEFAULT_TYPES = (
     "act",
     "secondary_legislation",
@@ -53,6 +57,26 @@ def scope_nz_legislation_api_key(request: httpx.Request, api_key: str) -> None:
         request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
 
 
+class _PCOAPIKey:
+    """A PCO API key in a request's tag, redacted from its repr.
+
+    httpx copies request extensions onto every redirect, so the tag outlives
+    the send on response.request, redirect history and next_request; it holds
+    this object rather than the key itself.
+    """
+
+    __slots__ = ("value",)
+
+    def __init__(self, value: str) -> None:
+        if not isinstance(value, str) or not _API_KEY_PATTERN.fullmatch(value):
+            # The message never includes the rejected value, which may be a key.
+            raise ValueError(_INVALID_API_KEY_MESSAGE)
+        self.value = value
+
+    def __repr__(self) -> str:
+        return "<NZ Legislation API key>"
+
+
 class _PCOKeyTransport(httpx.BaseTransport):
     """Add a tagged request's PCO key to the hop being sent, then remove it.
 
@@ -61,18 +85,18 @@ class _PCOKeyTransport(httpx.BaseTransport):
     extensions onto each redirect. So the key is set here, per hop, from the
     tag on the hop's own request, whatever the client's event hooks are.
     Removing it once the hop is sent keeps it out of the response's request,
-    the redirect httpx builds from it, and next_request. Untagged requests
-    pass through unchanged.
+    the redirect httpx builds from it, and next_request. Requests not tagged
+    by nz_legislation_api_key_extensions pass through unchanged.
     """
 
     def __init__(self, transport: httpx.BaseTransport) -> None:
         self._transport = transport
 
     def handle_request(self, request: httpx.Request) -> httpx.Response:
-        api_key = request.extensions.get(_API_KEY_EXTENSION)
-        if api_key is None:
+        tag = request.extensions.get(_API_KEY_EXTENSION)
+        if not isinstance(tag, _PCOAPIKey):
             return self._transport.handle_request(request)
-        scope_nz_legislation_api_key(request, api_key)
+        scope_nz_legislation_api_key(request, tag.value)
         try:
             return self._transport.handle_request(request)
         finally:
@@ -107,9 +131,13 @@ def nz_legislation_api_key_client(
     )
 
 
-def nz_legislation_api_key_extensions(api_key: str) -> dict[str, str]:
-    """Request extensions that tag a request with the PCO API key to send."""
-    return {_API_KEY_EXTENSION: api_key}
+def nz_legislation_api_key_extensions(api_key: str) -> dict[str, object]:
+    """Request extensions that tag a request with the PCO API key to send.
+
+    Raises ValueError, whose message never includes the key, unless the key
+    is printable ASCII with no whitespace.
+    """
+    return {_API_KEY_EXTENSION: _PCOAPIKey(api_key)}
 
 
 @dataclass(frozen=True)
@@ -188,6 +216,7 @@ class NZLegislationAPIClient:
     ) -> None:
         if not api_key:
             raise ValueError("NZ Legislation API key is required")
+        _PCOAPIKey(api_key)
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout

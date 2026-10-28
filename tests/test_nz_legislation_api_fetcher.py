@@ -1,15 +1,18 @@
 import json
 import logging
+import re
 import threading
 import traceback
 from concurrent.futures import ThreadPoolExecutor
 
+import h11
 import httpx
 import pytest
 from hypothesis import example, given, settings
 from hypothesis import strategies as st
 
 from axiom_corpus.fetchers.nz_legislation_api import (
+    _API_KEY_EXTENSION,
     NZ_LEGISLATION_HOSTS,
     NZLegislationAPIClient,
     NZLegislationAPIError,
@@ -507,6 +510,69 @@ def test_a_nested_caller_request_that_rehooks_never_exposes_the_outer_key():
         ("https://example.org/outer-end", None),
     ]
     wrapper.close()
+
+
+def test_the_key_is_redacted_in_the_tag_that_outlives_the_send():
+    # httpx copies request extensions onto every redirect, history entry and
+    # next_request, so the tag must not show the key in a repr or str.
+    handler = _recording_handler([], {_REDIRECT_URL: "https://example.org/end"})
+    wrapper = NZLegislationAPIClient(_SECRET, transport=httpx.MockTransport(handler))
+
+    followed = wrapper._get(_REDIRECT_URL, headers={})
+    wrapper.client.follow_redirects = False
+    stopped = wrapper._get(_REDIRECT_URL, headers={})
+
+    requests = [followed.request, *(r.request for r in followed.history), stopped.next_request]
+    assert len(requests) == 3
+    for request in requests:
+        assert _API_KEY_EXTENSION in request.extensions
+        for text in (repr(request.extensions), str(request.extensions), repr(request)):
+            assert _SECRET not in text
+    wrapper.close()
+
+
+def test_only_a_key_tag_from_the_helper_adds_the_key():
+    seen = []
+    wrapper = NZLegislationAPIClient(
+        "test-key", transport=httpx.MockTransport(_recording_handler(seen))
+    )
+
+    wrapper.client.get(_PCO_XML_URL, extensions={_API_KEY_EXTENSION: "raw-key"})
+
+    assert seen == [(_PCO_XML_URL, None)]
+    wrapper.close()
+
+
+_INVALID_KEY_MESSAGE = "NZ Legislation API key must be printable ASCII with no whitespace"
+
+
+@given(
+    key=st.one_of(
+        st.text(max_size=12),
+        st.text(alphabet=st.characters(min_codepoint=0x21, max_codepoint=0x7E), min_size=1),
+        st.from_regex(r"[!-~]{1,8}[ \t\r\n\x00\x7f\x80][!-~]{0,8}", fullmatch=True),
+    )
+)
+@example(key="test-key\n")
+@example(key=" test-key")
+@example(key="")
+def test_keys_are_validated_without_echoing_them(key):
+    # Invariants: a key is accepted exactly when it is printable ASCII with no
+    # whitespace; a rejected key raises one fixed message, never the key; and
+    # every accepted key is a header value h11 sends without error.
+    valid = re.fullmatch(r"[!-~]+", key) is not None
+
+    if valid:
+        nz_legislation_api_key_extensions(key)
+        NZLegislationAPIClient(key).close()
+        h11.Request(method="GET", target="/", headers=[("Host", "x"), ("X-Api-Key", key)])
+    else:
+        with pytest.raises(ValueError) as raised:
+            nz_legislation_api_key_extensions(key)
+        assert str(raised.value) == _INVALID_KEY_MESSAGE
+        with pytest.raises(ValueError) as raised:
+            NZLegislationAPIClient(key)
+        assert str(raised.value) in (_INVALID_KEY_MESSAGE, "NZ Legislation API key is required")
 
 
 _HOSTS = st.one_of(

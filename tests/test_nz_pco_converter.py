@@ -693,6 +693,22 @@ class TestPCOApiKey:
         assert seen == [(NZPCOConverter.RSS_URL, None)]
         converter.close()
 
+    def test_malformed_key_fails_the_fetch_without_echoing_it(self, monkeypatch):
+        # Parse-only use never sends the key, so a malformed one only fails a
+        # fetch, before any request, with a message that doesn't include it.
+        monkeypatch.setenv("NZ_LEGISLATION_API_KEY", "env-key\n")
+        seen = []
+        converter = self._converter(self._rss_handler(seen))
+
+        with pytest.raises(ValueError) as raised:
+            converter.fetch_rss_feed()
+
+        assert str(raised.value) == (
+            "NZ Legislation API key must be printable ASCII with no whitespace"
+        )
+        assert seen == []
+        converter.close()
+
     @pytest.mark.parametrize(
         "location", ["https://example.org/feed", "http://www.legislation.govt.nz/feed"]
     )
