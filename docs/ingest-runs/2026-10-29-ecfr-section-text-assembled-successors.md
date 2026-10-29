@@ -16,8 +16,9 @@ signs and locks both successors and adds recovery's content-baseline entry. It
 changes no predecessor lock, release selector, ratchet, RuleSpec module or
 serving database.
 
-Five other scopes that a native `extract-ecfr` run reproduces get their
-successors in a separate PR, as does 20 CFR part 416 (#830).
+Seven other affected scopes, which a native `extract-ecfr` run reproduces, get
+their successors in a separate PR, and 20 CFR part 416 gets its successor in
+#830.
 
 ## Reproducer and guards
 
