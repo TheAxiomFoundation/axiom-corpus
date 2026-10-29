@@ -4,7 +4,7 @@
 
 - Status: complete and locally committed
 - Branch: `ingest/usc-amt-ftc-sections`
-- Worktree: `/Users/maxghenis/TheAxiomFoundation/axiom-corpus/.claude/worktrees/usc-amt-ftc`
+- Worktree: `<axiom-corpus checkout>/.claude/worktrees/usc-amt-ftc`
 - Base: local `origin/main` at `db12795577c5809009168982cf8a72fb58440620`
 - Head: `c2f51414d0f94a0d7f9d895b01a4bb3c550bbc93`
 - Content commit attested by the manifest: `e10287a7bd785cdb15e06f62533bfc5bb8442741`

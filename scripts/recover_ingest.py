@@ -33,9 +33,9 @@ from axiom_corpus.corpus.ingest_manifests import (
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.corpus.usc import (
-    build_usc_inventory_from_xml,
+    _build_usc_inventory,
+    _iter_usc_provisions,
     decode_uslm_bytes,
-    iter_usc_title_provisions,
     parse_uslm_title,
 )
 
@@ -224,9 +224,8 @@ def _uscode_records(
         _assert_xml_kind(row, "uscode-olrc-xml")
         xml = decode_uslm_bytes(row.path.read_bytes())
         document = parse_uslm_title(xml, title=entry.get("title"))
-        inventory = build_usc_inventory_from_xml(
-            xml,
-            title=document.title,
+        inventory = _build_usc_inventory(
+            document,
             run_id=None,
             source_sha256=row.sha256,
             source_download_url=row.url,
@@ -237,11 +236,10 @@ def _uscode_records(
             mapping["source_path"] = key
             items.append(SourceInventoryItem.from_mapping(mapping))
         records.extend(
-            iter_usc_title_provisions(
-                xml,
+            _iter_usc_provisions(
+                document,
                 version=entry["version"],
                 source_path=key,
-                title=document.title,
                 source_as_of=entry.get("source_as_of"),
                 expression_date=entry.get("expression_date"),
                 source_download_url=row.url,

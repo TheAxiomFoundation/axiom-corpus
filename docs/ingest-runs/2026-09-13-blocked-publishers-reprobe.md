@@ -1,7 +1,7 @@
 # Blocked publishers: re-probe of every `blocked_primary_source` queue row from a US network (2026-09-13)
 
 Date: 2026-09-13. Branch: `discovery/blocked-publishers-reprobe` (sparse worktree on `origin/main`, corpus root
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus`). Probe pass 2026-09-13T19:57:21Z to 19:57:51Z (74 distinct URLs, 8 threads);
+`<axiom-corpus checkout>/data/corpus`). Probe pass 2026-09-13T19:57:21Z to 19:57:51Z (74 distinct URLs, 8 threads);
 extraction 20:14Z (GA, TX) and 20:22Z (NE). GitNexus MCP tools were not available in this session; impact analysis was
 done by reading the generators directly.
 
@@ -116,7 +116,7 @@ HTTP 202 and a 2,467-byte AWS WAF challenge body; the CCDF generator's browser U
 
 ## Cleared rows and what was extracted
 
-All three scopes were written into `/Users/pavelmakarchuk/axiom-corpus/data/corpus` (unsigned, uncommitted; `data/` is gitignored)
+All three scopes were written into `<axiom-corpus checkout>/data/corpus` (unsigned, uncommitted; `data/` is gitignored)
 with `REQUESTS_CA_BUNDLE` = certifi plus the committed `data/certs/*.pem` intermediates.
 
 | Scope | Manifest | Documents | Provisions | Coverage | Bodies |
@@ -141,7 +141,7 @@ the 2018 filings (`16-001.01A Heading: body`); chapter 14 is an unnumbered defin
 
 **Draft selector.** `docs/ingest-runs/2026-09-13-us-rulespec-followup-union.selector.json` (read from the main checkout, 556 scopes) plus
 the three scopes above, validated from the worktree with
-`axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus --release <draft> --ignore-r2-missing --max-issues 50`:
+`axiom-corpus-ingest validate-release --base <axiom-corpus checkout>/data/corpus --release <draft> --ignore-r2-missing --max-issues 50`:
 `ok: true`, `error_count: 0`, 559 scopes, 546 pre-existing `missing_parent_id` warnings (us-ca MPP recovery scope), no cross-scope
 citation-path collision. The draft stayed in the scratch directory.
 

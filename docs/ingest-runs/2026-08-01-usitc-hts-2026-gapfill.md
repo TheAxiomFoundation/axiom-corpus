@@ -90,7 +90,7 @@ use the existing regular `us/statute/hts/...` path family.
 ```bash
 uv run --extra dev python scripts/repro/us_hts_tariff_snapshots_2026_gapfill.py \
   --base data/corpus \
-  --source-dir /Users/maxghenis/.axiom/workspace/laneA-hts-downloads
+  --source-dir <download dir>
 ```
 
 The source directory may instead be omitted after the canonical source files
