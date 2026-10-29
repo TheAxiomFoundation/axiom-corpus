@@ -118,7 +118,7 @@ The second line is the exact portable reproduction command for signing.
 | Changed citation | Rendering change | Characters, before → after |
 | --- | --- | ---: |
 | `us/regulation/42/457/555` | Separate `Maximum` and `Copayment` at the source break | 3,706 → 3,707 |
-| `us/regulation/7/246/10` | Retain two food-package table captions and separate table-cell words at source breaks | 80,304 → 81,002 |
+| `us/regulation/7/246/10` | Retain four food-package table captions (Tables 1–4) and separate table-cell words at source breaks | 80,304 → 81,002 |
 
 ### Earlier extractor omissions retained for a later successor
 
@@ -136,7 +136,7 @@ successor round.
 | `us/regulation/42/457/628` | `FP-2` list of applicable administration, appeals and nondiscrimination regulations | — |
 | `us/regulation/7/246/2` | `Editorial Note:` heading | — |
 | `us/regulation/7/246/4` | `Editorial Note` heading | — |
-| `us/regulation/7/246/7` | `Editorial Note:` heading | Modules cite inferred paragraphs `c` and `d` beneath this section |
+| `us/regulation/7/246/7` | `Editorial Note:` heading | Modules cite inferred paragraphs `c`, `d` and `e` beneath this section |
 | `us/regulation/7/246/16` | `Editorial Note:` heading | — |
 | `us/regulation/7/247/8` | `FP` application choices `YES [ ]` and `NO [ ]` | — |
 | `us/regulation/7/247/9` | `Editorial Note:` heading | Modules cite this section |
@@ -146,8 +146,12 @@ successor round.
 | `us/regulation/7/273/13` | `Editorial Note:` heading | — |
 | `us/regulation/7/273/21` | `FP` sentence directing mass changes when a State agency uses the PA grant paid in the issuance month, plus `Editorial Note:` heading | — |
 
-The `—` entries make no claim that no consumer exists. The three named
-consumer relationships explain the requested preservation decision; this run
+The named consumers come from the generated reverse index of rulespec-us `main`
+at `8f893f23`: `us/regulations/7-cfr/246/7/{c,d,e}.yaml` and
+`us/policies/usda/wic/eligibility_pipeline.yaml` cite 7 CFR 246.7(c)–(e);
+`us/policies/usda/csfp/eligibility_pipeline.yaml` and `us/regulations/7-cfr/247/9/b.yaml`
+cite 7 CFR 247.9 and its paragraphs; `us/regulations/7-cfr/273/11/c.yaml` cites
+7 CFR 273.11. The `—` entries make no claim that no consumer exists. This run
 does not edit a rules repository.
 
 ### Recovery source hashes
@@ -269,8 +273,10 @@ and SHA-256.
 
 ## Row comparisons and gates
 
-This reproducer and the research helper it came from, run on separately fetched
-predecessors, produced byte-identical successors: all 31 files (recovery's 16 sources and
+In the hub's runs, this reproducer and the research helper it came from (a scratch
+script outside this repository), run on separately fetched predecessors, produced
+byte-identical successors; an independent replay of this reproducer matched them
+too: all 31 files (recovery's 16 sources and
 three derived artifacts, `26-1`'s nine sources and three derived artifacts).
 Every source hash equals its predecessor lock.
 
