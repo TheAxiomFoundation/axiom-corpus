@@ -278,6 +278,7 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
     caption as adjacent paragraphs (``<P>Table IV-A</P><P>[Applicable ...]</P>``);
     joining ``itertext()`` would glue the words on either side. Inline markup
     (``<E>``, ``<sub>``, ``<sup>``) still joins: ``FEV<sub>1</sub>`` is ``FEV1``.
+    A ``<br/>`` directly after a hyphen preserves the source join and hyphen.
     """
     parts: list[str] = []
 
@@ -286,7 +287,9 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
             parts.append(node.text)
         for child in node:
             name = _local_name(child.tag)
-            if name.startswith("FP-") or name in _WORD_BREAK_TAGS:
+            if name == "BR" and parts and parts[-1].endswith("-"):
+                visit(child)
+            elif name.startswith("FP-") or name in _WORD_BREAK_TAGS:
                 parts.append(" ")
                 visit(child)
                 parts.append(" ")
@@ -299,9 +302,7 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
     return _clean_text("".join(parts))
 
 
-def _table_text(
-    elem: ET.Element, cell_text: Callable[[ET.Element], str] = _element_text
-) -> str:
+def _table_text(elem: ET.Element) -> str:
     rows: list[str] = []
     for row in elem.iter():
         if _local_name(row.tag) != "TR":
@@ -310,7 +311,7 @@ def _table_text(
             text
             for cell in row
             if _local_name(cell.tag) in {"TH", "TD"}
-            for text in [cell_text(cell)]
+            for text in [_element_text_with_breaks(cell)]
             if text
         ]
         if cells:
@@ -1443,9 +1444,9 @@ def _section_body(
 ) -> str:
     blocks: list[str] = []
     transcriptions = graphic_transcriptions or {}
-    # Appendix rendering also keeps table captions and word breaks at <br/>.
-    # Section rendering keeps its established output.
-    text_of = _element_text_with_breaks if appendix else _element_text
+    # Sections and appendices both keep table captions and break words at <br/>
+    # and block boundaries. Appendix rendering also keeps HD1-HD3 headings and
+    # marks non-formula images.
 
     def visit(node: ET.Element) -> None:
         for child in node:
@@ -1453,7 +1454,7 @@ def _section_body(
             if tag in {"HEAD", "CITA"}:
                 continue
             if tag == "HED" or (appendix and tag in {"HD1", "HD2", "HD3"}):
-                text = text_of(child)
+                text = _element_text_with_breaks(child)
                 if text:
                     blocks.append(text)
                 for identifier in _non_math_graphic_identifiers(child) if appendix else ():
@@ -1462,7 +1463,7 @@ def _section_body(
                     )
                 continue
             if tag in {"P", "PSPACE"} or tag == "FP" or tag.startswith("FP-"):
-                text = text_of(child)
+                text = _element_text_with_breaks(child)
                 if text:
                     blocks.append(text)
                 for identifier in _non_math_graphic_identifiers(child) if appendix else ():
@@ -1471,11 +1472,11 @@ def _section_body(
                     )
                 continue
             if tag == "TABLE":
-                if appendix:
-                    caption = _table_caption_text(child)
-                    if caption:
-                        blocks.append(caption)
-                text = _table_text(child, text_of)
+                caption = _table_caption_text(child)
+                if caption:
+                    # Distinguish captions from paragraph labels during anchor inference.
+                    blocks.append(f"[Table caption: {caption}]")
+                text = _table_text(child)
                 if text:
                     blocks.append(text)
                 for identifier in _non_math_graphic_identifiers(child) if appendix else ():
