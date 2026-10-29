@@ -223,7 +223,9 @@ The same adapter change takes `Appendix to Subpart K of Part 416` at
 (`manifests/us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml`, never locked) chose.
 Taking it into the corpus means a successor of the released
 `us/regulation/2026-09-11-title-20-part-416` scope, at a newer point in time; that is
-left to a follow-up so this PR changes no released 416 text.
+left to a follow-up so this PR changes no released 416 text. The follow-up
+(`docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md`) keeps the predecessor's
+2026-09-09 point in time instead and explains why.
 
 ## Not done here
 
