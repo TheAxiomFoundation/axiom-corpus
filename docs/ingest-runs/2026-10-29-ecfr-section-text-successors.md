@@ -560,6 +560,19 @@ Each extraction fetched its locked predecessor first (`uv run axiom-corpus-inges
 | `2026-06-18-r2026-10-29-ecfr-section-text-title-47-part-54` | 272 | complete |
 | `2026-06-24-r2026-10-29-ecfr-section-text-title-45-part-1302` | 63 | complete |
 
+## Signing and post-signing checks
+
+Each successor carries a signed ingest manifest and a corpus lock, signed one scope at a time from a clean tree with the extraction command shown in its section (`sign-ingest-manifest --lock`). Every manifest records `dirty_tracked: false`. `corpus push` then uploaded each scope's new content-addressed objects to R2: 23 new objects in all, with zero failures. Only 47 CFR 54 and 45 CFR 1302 add a new source object, the drifted part XML and title structure that the source-drift section describes.
+
+| Check | Exit | Result |
+| --- | --- | --- |
+| `corpus verify --attest --ref HEAD --workers 1` | 0 | 2,573 lock files, 68,295 entries |
+| `corpus verify --remote --changed-since origin/main --workers 1` | 0 | 38 entries; 0 missing from R2 |
+| `guard-ingested --repo . --base-ref origin/main` | 0 | Every changed corpus artifact has a signed ingest manifest |
+| `verify-scope-tracked` for each successor | 0 | Every referenced file verified |
+| `content-check us/regulation/<successor> --check-baseline --workers 1` for each successor | 0 | 0 findings; 0 baseline differences |
+| `validate-release` with a one-scope selector for each successor, `AXIOM_CORPUS_NO_FETCH=1` | 0 | ok; 0 errors; 0 warnings |
+
 ## Release handoff
 
 A separate selector PR replaces each predecessor with its successor. A selector picks one scope from each pair, never both: every pair carries the same citation paths, so selecting both duplicates release citations. That PR validates its complete selector.
