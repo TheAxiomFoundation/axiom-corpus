@@ -159,8 +159,8 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
   (`2026-09-24-nsf-slice-title-2-part-200`), which raises the same message in both, now
   as `EcfrAppendixError`. The caption and word-break changes reach no locked row: the
   only locked appendices (7 CFR 277 appendix A, 45 CFR 96 appendix A) have neither.
-  Script and report: `~/reviews/axiom-corpus-cfr-404-appendices-2026-10-12/`
-  (`differential.py`, `differential-report-v4.json`, which also covers this scope).
+  The differential script and its report were review working files; this repository
+  does not keep them, so the replay below is the check a reader can rerun.
 - Fail closed before writes: an opted-in appendix that names another part or subpart, or
   has an ambiguous designator, raises `EcfrAppendixError` (CLI exit 2) whether the
   structure or only the XML shows it. `extract-ecfr` reads or fetches every pending
@@ -169,14 +169,13 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
   title error and is not extracted.
 - Every eCFR part, from the 49 title structures as of 2026-10-08 (8,322 parts), main
   against this branch, inventory and structure-only placeholders, appendices off and
-  on (`structure_differential.py`, by the part-appendix follow-up session): with
+  on (`structure_differential.py`, in a follow-up run): with
   appendices off all 8,322 are identical; with appendices on 7,938 are identical, 114
   parts that main rejected now pass, and 270 still fail: 256 with the same message
   (now as `EcfrAppendixError`), 12 now reaching a later unsupported identifier, and
   2 (10 CFR 51, 29 CFR 2520) now naming the
   misplaced subpart appendix instead of calling it unsupported. No part main took
-  changes or fails. Report: `structure-differential-828-ascii.json` in the review
-  folder.
+  changes or fails. This repository does not keep that script or its report either.
 - Replay: the final code, fed this scope's locked XML, structure and PNGs, writes all 8
   locked files byte for byte, so the manifest signed at `c3cad3462` matches what the
   merged code produces. Rechecked on 2026-10-29 after merging `main` (`e4e34a8b`):
@@ -187,14 +186,17 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
 
 ## Citation-path ratchets
 
-Measured with `scripts/validate_citation_paths.py --update-baselines` over every locked
-provisions file on `main` (2,330 scopes, all present, hash-verified; `main` alone measures
-exactly at the existing baselines) plus the new file: `uppercase_segments` +32, from
-18,796 to 18,828; the other families are unchanged. The 32 are the paths with a
-`subpart-<X>` segment: the 21 subpart containers (`subpart-A` to `subpart-V`, L reserved)
-and the 11 appendices. #826 raises the same family by its 21 subpart containers, which
-are the same paths, so with both merged the live count is still 18,828; if #826 lands
-first, the merged baseline is `block_n` from #826 and `uppercase_segments` 18,828.
+On 2026-10-12, before #826 merged, `scripts/validate_citation_paths.py
+--update-baselines` measured every locked provisions file on that day's `main` (2,330
+scopes, all present, hash-verified; `main` alone measured exactly at its baselines) plus
+the new file: `uppercase_segments` +32, from 18,796 to 18,828, with the other families
+unchanged. The 32 are the paths with a `subpart-<X>` segment: the 21 subpart containers
+(`subpart-A` to `subpart-V`, L reserved) and the 11 appendices. #826 merged on
+2026-10-13 with the same 21 subpart containers, so on the merged tree this scope adds
+only its 11 appendices: the baseline in `schema/citation-path.v1.json` rises from
+`main`'s 19,550 `uppercase_segments` to 19,561, and `endash_segments` stays at 1,656.
+The merged-tree scan in this pull request's CI measures 19,561 of 19,561 and 1,656 of
+1,656.
 
 ## Fit with the W6 successor release
 
