@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
+import contextlib
 import gzip
 import json
 import re
+import tempfile
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 import zlib
-from collections.abc import Callable, Iterator, Mapping
+from collections.abc import Callable, Iterable, Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import date
@@ -29,6 +31,15 @@ ECFR_API_BASE = "https://www.ecfr.gov/api/versioner/v1"
 ECFR_READER_BASE = "https://www.ecfr.gov/current"
 USER_AGENT = "axiom-corpus/0.1"
 DEFAULT_CFR_TITLES = tuple(range(1, 51))
+
+
+class EcfrAppendixError(ValueError):
+    """An opted-in eCFR appendix that cannot be taken as published.
+
+    Raised for an unsupported identifier, an identifier that names another part or
+    subpart than the one enclosing it, or a designator with no unambiguous order.
+    ``extract_ecfr`` raises it before writing any artifact of the run.
+    """
 
 
 @dataclass(frozen=True)
@@ -257,21 +268,64 @@ def _local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1].upper()
 
 
-def _table_text(elem: ET.Element) -> str:
+_WORD_BREAK_TAGS = frozenset({"BR", "P", "FP", "PSPACE", "HED", "HD1", "HD2", "HD3", "LI", "DIV"})
+
+
+def _element_text_with_breaks(elem: ET.Element) -> str:
+    """Like ``_element_text``, but line breaks and block children separate words.
+
+    eCFR breaks table headings with ``<br/>`` ("means<br/>less") and writes a
+    caption as adjacent paragraphs (``<P>Table IV-A</P><P>[Applicable ...]</P>``);
+    joining ``itertext()`` would glue the words on either side. Inline markup
+    (``<E>``, ``<sub>``, ``<sup>``) still joins: ``FEV<sub>1</sub>`` is ``FEV1``.
+    """
+    parts: list[str] = []
+
+    def visit(node: ET.Element) -> None:
+        if node.text:
+            parts.append(node.text)
+        for child in node:
+            name = _local_name(child.tag)
+            if name.startswith("FP-") or name in _WORD_BREAK_TAGS:
+                parts.append(" ")
+                visit(child)
+                parts.append(" ")
+            else:
+                visit(child)
+            if child.tail:
+                parts.append(child.tail)
+
+    visit(elem)
+    return _clean_text("".join(parts))
+
+
+def _table_text(
+    elem: ET.Element, cell_text: Callable[[ET.Element], str] = _element_text
+) -> str:
     rows: list[str] = []
     for row in elem.iter():
         if _local_name(row.tag) != "TR":
             continue
         cells = [
-            cell_text
+            text
             for cell in row
             if _local_name(cell.tag) in {"TH", "TD"}
-            for cell_text in [_element_text(cell)]
-            if cell_text
+            for text in [cell_text(cell)]
+            if text
         ]
         if cells:
             rows.append(" | ".join(cells))
     return "\n".join(rows)
+
+
+def _table_caption_text(elem: ET.Element) -> str:
+    return " ".join(
+        text
+        for caption in elem
+        if _local_name(caption.tag) == "CAPTION"
+        for text in [_element_text_with_breaks(caption)]
+        if text
+    )
 
 
 def _ecfr_part_url(
@@ -492,6 +546,233 @@ def _appendix_citation_from_element(
     return _appendix_citation_from_identifier(title, elem.get("N", ""))
 
 
+# A subpart-scoped appendix names its subpart and part: "Appendix II to Subpart C of
+# Part 404", an unnumbered "Appendix to Subpart B of Part 404", or the collective
+# "Appendixes to Subpart C of Part 404" note that introduces a subpart's appendices.
+# A designator is a number, a single letter, or an uppercase roman numeral. The match
+# is ASCII-only: under a Unicode IGNORECASE, [A-Za-z] also matches letters such as
+# the Kelvin sign or a dotted capital I, whose lowercase forms would change the
+# path and ordinal; no eCFR appendix identifier uses them, so they fail closed.
+_SUBPART_APPENDIX_IDENTIFIER_PATTERN = re.compile(
+    r"(Appendix|Appendixes|Appendices)(?:\s+([0-9A-Za-z]+))?"
+    r"\s+to\s+Subpart\s+([0-9A-Za-z]+)\s+of\s+Part\s+([0-9A-Za-z]+)",
+    flags=re.I | re.ASCII,
+)
+_ROMAN_NUMERAL_PATTERN = re.compile(
+    r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})"
+)
+_ROMAN_NUMERAL_VALUES = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+
+
+def _is_roman_numeral(value: str) -> bool:
+    return bool(value) and _ROMAN_NUMERAL_PATTERN.fullmatch(value) is not None
+
+
+def _roman_numeral_value(numeral: str) -> int:
+    total = 0
+    for index, char in enumerate(numeral):
+        value = _ROMAN_NUMERAL_VALUES[char]
+        following = (
+            _ROMAN_NUMERAL_VALUES[numeral[index + 1]] if index + 1 < len(numeral) else 0
+        )
+        total += -value if value < following else value
+    return total
+
+
+@dataclass(frozen=True)
+class _SubpartAppendix:
+    identifier: str
+    part: str
+    subpart: str
+    # As published ("II", "1", "A"); None for an unnumbered or collective appendix.
+    designator: str | None
+    # "appendixes" or "appendices" for the collective note form, else None.
+    collective: str | None
+
+    @property
+    def segment(self) -> str:
+        if self.collective:
+            return self.collective
+        if self.designator:
+            return f"appendix-{self.designator.lower()}"
+        return "appendix"
+
+    def subpart_citation_path(self, title: int) -> str:
+        return f"us/regulation/{title}/{self.part}/subpart-{self.subpart}"
+
+    def citation_path(self, title: int) -> str:
+        return f"{self.subpart_citation_path(title)}/{self.segment}"
+
+    def legal_identifier(self, title: int) -> str:
+        base = f"{title} CFR part {self.part}, subpart {self.subpart}"
+        if self.collective:
+            return f"{base}, {self.collective}"
+        if self.designator:
+            return f"{base}, appendix {self.designator}"
+        return f"{base}, appendix"
+
+
+def _subpart_appendix_from_identifier(identifier: str) -> _SubpartAppendix | None:
+    match = _SUBPART_APPENDIX_IDENTIFIER_PATTERN.fullmatch(identifier.strip())
+    if not match:
+        return None
+    noun, designator, subpart, part = match.groups()
+    collective = noun.lower() if noun.lower() != "appendix" else None
+    if collective and designator:
+        return None
+    if designator and not (
+        designator.isdigit()
+        or (len(designator) == 1 and designator.isalpha())
+        or _is_roman_numeral(designator)
+    ):
+        return None
+    return _SubpartAppendix(
+        identifier=identifier,
+        part=part,
+        subpart=subpart,
+        designator=designator,
+        collective=collective,
+    )
+
+
+def _subpart_appendix_numbering(designators: Iterable[str]) -> dict[str, str | None]:
+    """Classify the published designators of one subpart's appendices.
+
+    "I" and "V" are letters among A, B, C... and numerals among I, II, III..., so the
+    set decides: when every non-numeric designator is a roman numeral and one has
+    more than one character, they are numerals. A multi-character designator in a
+    lettered set (e.g. "CC" beside "A") has no ordinal and maps to None. Keys
+    are the upper-cased designators.
+    """
+    # Keys are upper-cased so a lowercase spelling of a letter ("a") finds the
+    # same numbering as the uppercase one ("A"); the path lowercases both.
+    published = {designator.upper() for designator in designators if designator}
+    lettered = {designator for designator in published if not designator.isdigit()}
+    roman = (
+        bool(lettered)
+        and all(_is_roman_numeral(designator) for designator in lettered)
+        and any(len(designator) > 1 for designator in lettered)
+    )
+    numbering: dict[str, str | None] = {}
+    for designator in published:
+        if designator.isdigit():
+            numbering[designator] = "digit"
+        elif roman:
+            numbering[designator] = "roman"
+        elif len(designator) == 1 and designator.isalpha():
+            numbering[designator] = "letter"
+        else:
+            numbering[designator] = None
+    return numbering
+
+
+def _subpart_appendix_ordinal(designator: str | None, numbering: str | None) -> int | None:
+    # Appendices follow the subpart's sections, as part appendices follow the part's.
+    if not designator:
+        return 1_000_000
+    if numbering == "digit":
+        return 1_000_000 + int(designator)
+    if numbering == "roman":
+        return 1_000_000 + _roman_numeral_value(designator.upper())
+    if numbering == "letter":
+        return 1_000_000 + ord(designator.upper())
+    return None
+
+
+def _subpart_appendix_numbering_by_subpart(
+    placements: Iterable[tuple[str, str | None, str | None]],
+) -> dict[tuple[str, str], dict[str, str | None]]:
+    """Classify designators per subpart from ``(identifier, part, subpart)`` placements.
+
+    ``part`` and ``subpart`` are where the appendix sits. An appendix that sits
+    outside the subpart or part it names is no evidence for that subpart's
+    numbering: selecting it fails validation, and leaving it out must not change
+    how its named siblings are ordered.
+    """
+    designators: dict[tuple[str, str], list[str]] = {}
+    for identifier, part, subpart in placements:
+        appendix = _subpart_appendix_from_identifier(identifier)
+        if appendix is None or appendix.part != part or appendix.subpart != subpart:
+            continue
+        designators.setdefault((appendix.part, appendix.subpart), []).append(
+            appendix.designator or ""
+        )
+    return {
+        key: _subpart_appendix_numbering(values) for key, values in designators.items()
+    }
+
+
+def _structure_appendix_placements(
+    node: dict[str, Any], part: str | None = None, subpart: str | None = None
+) -> Iterator[tuple[str, str | None, str | None]]:
+    node_type = node.get("type")
+    identifier = str(node.get("identifier") or "")
+    if node_type == "appendix":
+        yield identifier, part, subpart
+        return
+    if node_type == "part":
+        part, subpart = identifier, None
+    elif node_type == "subpart":
+        subpart = identifier
+    for child in node.get("children", []) or ():
+        yield from _structure_appendix_placements(child, part, subpart)
+
+
+def _xml_appendix_placements(
+    part_elem: ET.Element,
+) -> Iterator[tuple[str, str | None, str | None]]:
+    """Yield a part's appendices with the subpart that encloses each, in the
+    same traversal ``iter_ecfr_title_provisions`` converts them in."""
+    part = part_elem.get("N")
+    for child in _ecfr_provision_children(part_elem):
+        if child.tag == "DIV9":
+            yield child.get("N", ""), part, None
+        elif child.tag == "DIV6":
+            for nested in _ecfr_provision_children(child):
+                if nested.tag == "DIV9":
+                    yield nested.get("N", ""), part, child.get("N")
+
+
+def _resolved_subpart_appendix(
+    identifier: str,
+    *,
+    part: str | None,
+    subpart: str | None,
+    numbering_by_subpart: Mapping[tuple[str, str], Mapping[str, str | None]],
+    label: str,
+) -> tuple[_SubpartAppendix, str | None] | None:
+    """Validate a subpart appendix against its placement and return its numbering.
+
+    Returns None when ``identifier`` is not a subpart appendix. Raises when the
+    identifier names another part or subpart than the one that encloses it, or when
+    its designator has no unambiguous order among its siblings.
+    """
+    appendix = _subpart_appendix_from_identifier(identifier)
+    if appendix is None:
+        return None
+    if appendix.part != part:
+        raise EcfrAppendixError(
+            f"eCFR appendix part {appendix.part!r} conflicts with enclosing part {part!r}: "
+            f"{identifier!r}"
+        )
+    if appendix.subpart != subpart:
+        raise EcfrAppendixError(
+            f"eCFR appendix subpart {appendix.subpart!r} conflicts with enclosing "
+            f"subpart {subpart!r}: {identifier!r}"
+        )
+    numbering: str | None = None
+    if appendix.designator:
+        numbering = numbering_by_subpart.get((appendix.part, appendix.subpart), {}).get(
+            appendix.designator.upper()
+        )
+        if numbering is None:
+            raise EcfrAppendixError(
+                f"unsupported nonreserved eCFR appendix {label}: {identifier!r} "
+                "(designator order is ambiguous among its subpart's appendices)"
+            )
+    return appendix, numbering
+
+
 def _walk_part_targets(
     node: dict[str, Any],
     title: int,
@@ -693,6 +974,7 @@ def _walk_inventory_items(
     subpart: str | None = None,
     *,
     include_appendices: bool = False,
+    appendix_numbering: Mapping[tuple[str, str], Mapping[str, str | None]] | None = None,
 ) -> Iterator[SourceInventoryItem]:
     node_type = node.get("type")
     identifier = str(node.get("identifier") or "")
@@ -805,18 +1087,36 @@ def _walk_inventory_items(
         if only_part is not None and part != only_part:
             return
         if not identifier or not part:
-            raise ValueError(
+            raise EcfrAppendixError(
                 "unsupported nonreserved eCFR appendix without a part-scoped "
                 f"identifier: {identifier!r}"
             )
         appendix_parsed = _appendix_citation_from_identifier(title, identifier)
         if appendix_parsed is None:
-            raise ValueError(
-                f"unsupported nonreserved eCFR appendix identifier: {identifier!r}"
+            subpart_appendix = _resolved_subpart_appendix(
+                identifier,
+                part=part,
+                subpart=subpart,
+                numbering_by_subpart=appendix_numbering or {},
+                label="identifier",
             )
+            if subpart_appendix is None:
+                raise EcfrAppendixError(
+                    f"unsupported nonreserved eCFR appendix identifier: {identifier!r}"
+                )
+            yield _subpart_appendix_inventory_item(
+                *subpart_appendix,
+                node=node,
+                title=title,
+                chapter=chapter,
+                subchapter=subchapter,
+                source_path=source_path,
+                source_sha256=source_sha256,
+            )
+            return
         citation_path, actual_part, appendix = appendix_parsed
         if actual_part != part:
-            raise ValueError(
+            raise EcfrAppendixError(
                 f"eCFR appendix part {actual_part!r} conflicts with enclosing part {part!r}: "
                 f"{identifier!r}"
             )
@@ -861,7 +1161,50 @@ def _walk_inventory_items(
             part,
             subpart,
             include_appendices=include_appendices,
+            appendix_numbering=appendix_numbering,
         )
+
+
+def _subpart_appendix_inventory_item(
+    appendix: _SubpartAppendix,
+    numbering: str | None,
+    *,
+    node: Mapping[str, Any],
+    title: int,
+    chapter: str | None,
+    subchapter: str | None,
+    source_path: str,
+    source_sha256: str | None,
+) -> SourceInventoryItem:
+    return SourceInventoryItem(
+        citation_path=appendix.citation_path(title),
+        source_url=_ecfr_appendix_url(
+            title,
+            appendix.part,
+            appendix.identifier,
+            chapter,
+            subchapter,
+        ),
+        source_path=source_path,
+        source_format="ecfr-xml",
+        sha256=source_sha256,
+        metadata={
+            "kind": "appendix",
+            "title": title,
+            "part": appendix.part,
+            "subpart": appendix.subpart,
+            "appendix": appendix.designator.lower() if appendix.designator else None,
+            "appendix_identifier": appendix.identifier,
+            "appendix_numbering": numbering,
+            "chapter": chapter,
+            "subchapter": subchapter,
+            "parent_citation_path": appendix.subpart_citation_path(title),
+            "label": node.get("label"),
+            "label_description": node.get("label_description"),
+            "heading": _clean_appendix_heading(node.get("label"), appendix.identifier),
+            "received_on": node.get("received_on"),
+        },
+    )
 
 
 def build_ecfr_inventory_from_structures(
@@ -895,6 +1238,9 @@ def build_ecfr_inventory_from_structures(
             # Section selectors never include appendices. Exclude them before
             # validating identifiers that may be unsupported outside this scope.
             include_appendices=include_appendices and not only_sections,
+            appendix_numbering=_subpart_appendix_numbering_by_subpart(
+                _structure_appendix_placements(structure)
+            ),
         ):
             # A section takes the path of the part its identifier names, so a section
             # held by another part could claim the path of one that part already has.
@@ -1082,7 +1428,10 @@ def _element_citation_path(
         return parsed[0] if parsed is not None else None
     if elem.tag == "DIV9" and elem.get("TYPE") == "APPENDIX":
         parsed = _appendix_citation_from_element(title, elem)
-        return parsed[0] if parsed is not None else None
+        if parsed is not None:
+            return parsed[0]
+        subpart_appendix = _subpart_appendix_from_identifier(elem.get("N", ""))
+        return subpart_appendix.citation_path(title) if subpart_appendix else None
     return None
 
 
@@ -1094,6 +1443,9 @@ def _section_body(
 ) -> str:
     blocks: list[str] = []
     transcriptions = graphic_transcriptions or {}
+    # Appendix rendering also keeps table captions and word breaks at <br/>.
+    # Section rendering keeps its established output.
+    text_of = _element_text_with_breaks if appendix else _element_text
 
     def visit(node: ET.Element) -> None:
         for child in node:
@@ -1101,7 +1453,7 @@ def _section_body(
             if tag in {"HEAD", "CITA"}:
                 continue
             if tag == "HED" or (appendix and tag in {"HD1", "HD2", "HD3"}):
-                text = _element_text(child)
+                text = text_of(child)
                 if text:
                     blocks.append(text)
                 for identifier in _non_math_graphic_identifiers(child) if appendix else ():
@@ -1110,7 +1462,7 @@ def _section_body(
                     )
                 continue
             if tag in {"P", "PSPACE"} or tag == "FP" or tag.startswith("FP-"):
-                text = _element_text(child)
+                text = text_of(child)
                 if text:
                     blocks.append(text)
                 for identifier in _non_math_graphic_identifiers(child) if appendix else ():
@@ -1119,7 +1471,11 @@ def _section_body(
                     )
                 continue
             if tag == "TABLE":
-                text = _table_text(child)
+                if appendix:
+                    caption = _table_caption_text(child)
+                    if caption:
+                        blocks.append(caption)
+                text = _table_text(child, text_of)
                 if text:
                     blocks.append(text)
                 for identifier in _non_math_graphic_identifiers(child) if appendix else ():
@@ -1233,6 +1589,11 @@ def _inventory_legal_identifier(metadata: Mapping[str, Any]) -> str | None:
         subpart = _metadata_text(metadata, "subpart")
         if subpart:
             return f"{title} CFR part {part}, subpart {subpart}"
+    if kind == "appendix" and _metadata_text(metadata, "subpart"):
+        subpart_appendix = _subpart_appendix_from_identifier(
+            _metadata_text(metadata, "appendix_identifier") or ""
+        )
+        return subpart_appendix.legal_identifier(title) if subpart_appendix else None
     if kind == "appendix":
         appendix = _metadata_text(metadata, "appendix")
         if appendix:
@@ -1265,7 +1626,9 @@ def _inventory_level(metadata: Mapping[str, Any]) -> int | None:
     if kind == "section":
         return 2 if _metadata_text(metadata, "subpart") else 1
     if kind == "appendix":
-        return 1
+        # Only a subpart appendix carries ``subpart``; a part appendix nested in a
+        # subpart stays a child of the part.
+        return 2 if _metadata_text(metadata, "subpart") else 1
     return None
 
 
@@ -1280,6 +1643,11 @@ def _inventory_ordinal(metadata: Mapping[str, Any]) -> int | None:
     if kind == "section":
         section = _metadata_text(metadata, "section")
         return _section_ordinal(section) if section else None
+    if kind == "appendix" and _metadata_text(metadata, "subpart"):
+        designator = _metadata_text(metadata, "appendix")
+        return _subpart_appendix_ordinal(
+            designator, _metadata_text(metadata, "appendix_numbering")
+        )
     if kind == "appendix":
         appendix = _metadata_text(metadata, "appendix")
         return _appendix_ordinal(appendix) if appendix else None
@@ -1522,13 +1890,13 @@ def _appendix_provision(
 ) -> ProvisionRecord:
     parsed = _appendix_citation_from_element(title, elem)
     if parsed is None:
-        raise ValueError(
+        raise EcfrAppendixError(
             "unsupported nonreserved eCFR appendix XML identifier: "
             f"{elem.get('N', '')!r}"
         )
     citation_path, part, appendix = parsed
     if part != target.part:
-        raise ValueError(
+        raise EcfrAppendixError(
             f"eCFR appendix part {part!r} conflicts with enclosing part {target.part!r}: "
             f"{elem.get('N', '')!r}"
         )
@@ -1577,6 +1945,70 @@ def _appendix_provision(
     )
 
 
+def _subpart_appendix_provision(
+    elem: ET.Element,
+    appendix: _SubpartAppendix,
+    numbering: str | None,
+    target: EcfrPartTarget,
+    version: str,
+    source_path: str,
+    source_as_of: str,
+    expression_date: str,
+    graphic_transcriptions: Mapping[str, str] | None = None,
+) -> ProvisionRecord:
+    title = target.title
+    citation_path = appendix.citation_path(title)
+    parent_citation_path = appendix.subpart_citation_path(title)
+    head = elem.find("HEAD")
+    heading = _clean_appendix_heading(
+        _element_text(head) if head is not None else appendix.identifier,
+        appendix.identifier,
+    )
+    legal_identifier = appendix.legal_identifier(title)
+    designator = appendix.designator.lower() if appendix.designator else None
+    return ProvisionRecord(
+        id=deterministic_provision_id(citation_path),
+        jurisdiction="us",
+        document_class=DocumentClass.REGULATION.value,
+        citation_path=citation_path,
+        citation_label=legal_identifier,
+        heading=heading,
+        body=_section_body(elem, graphic_transcriptions, appendix=True),
+        version=version,
+        source_url=_ecfr_appendix_url(
+            title,
+            appendix.part,
+            appendix.identifier,
+            target.chapter,
+            target.subchapter,
+        ),
+        source_path=source_path,
+        source_id=elem.get("NODE"),
+        source_format="ecfr-xml",
+        source_as_of=source_as_of,
+        expression_date=expression_date,
+        parent_citation_path=parent_citation_path,
+        parent_id=deterministic_provision_id(parent_citation_path),
+        level=2,
+        ordinal=_subpart_appendix_ordinal(appendix.designator, numbering),
+        kind="appendix",
+        legal_identifier=legal_identifier,
+        identifiers=_ecfr_identifiers(
+            title, appendix.part, subpart=appendix.subpart, appendix=designator
+        ),
+        metadata={
+            "title": title,
+            "part": appendix.part,
+            "subpart": appendix.subpart,
+            "appendix": designator,
+            "appendix_identifier": appendix.identifier,
+            "appendix_numbering": numbering,
+            "chapter": target.chapter,
+            "subchapter": target.subchapter,
+        },
+    )
+
+
 def _ecfr_provision_children(elem: ET.Element) -> Iterator[ET.Element]:
     """Walk transparent groups in source order, stopping at provision nodes."""
     for child in elem:
@@ -1599,12 +2031,64 @@ def iter_ecfr_title_provisions(
     graphic_transcriptions: Mapping[str, str] | None = None,
     *,
     include_appendices: bool = False,
+    appendix_numbering: Mapping[tuple[str, str], Mapping[str, str | None]] | None = None,
 ) -> Iterator[ProvisionRecord]:
+    """Convert one title's eCFR XML into provision records in source order.
+
+    ``appendix_numbering`` classifies subpart appendix designators by
+    ``(part, subpart)``. ``extract_ecfr`` passes the numbering it derived from the
+    structure, so XML records and structure-only placeholders agree; without it the
+    numbering is derived from the XML's own appendices.
+    """
     root = ET.fromstring(xml_content)
     target_by_part = {target.part: target for target in targets}
 
+    def selected_subpart_appendix(
+        elem: ET.Element,
+        appendix: _SubpartAppendix,
+        target: EcfrPartTarget,
+        subpart: str | None,
+        numbering_by_subpart: Mapping[tuple[str, str], Mapping[str, str | None]],
+    ) -> ProvisionRecord | None:
+        # As for part appendices, an appendix selected by its parsed citation or
+        # by its enclosing subpart is validated against where it sits.
+        candidate_paths = {appendix.citation_path(target.title)}
+        if subpart:
+            candidate_paths.add(
+                f"us/regulation/{target.title}/{target.part}/subpart-{subpart}/"
+                f"{appendix.segment}"
+            )
+        if allowed_citation_paths is not None and not allowed_citation_paths.intersection(
+            candidate_paths
+        ):
+            return None
+        resolved = _resolved_subpart_appendix(
+            appendix.identifier,
+            part=target.part,
+            subpart=subpart,
+            numbering_by_subpart=numbering_by_subpart,
+            label="XML identifier",
+        )
+        assert resolved is not None
+        _appendix, numbering = resolved
+        return _subpart_appendix_provision(
+            elem,
+            appendix,
+            numbering,
+            target,
+            version=version,
+            source_path=source_path,
+            source_as_of=source_as_of or version,
+            expression_date=expression_date or source_as_of or version,
+            graphic_transcriptions=graphic_transcriptions,
+        )
+
     def selected_appendix(
-        elem: ET.Element, target: EcfrPartTarget, parent_citation_path: str
+        elem: ET.Element,
+        target: EcfrPartTarget,
+        parent_citation_path: str,
+        subpart: str | None,
+        numbering_by_subpart: Mapping[tuple[str, str], Mapping[str, str | None]],
     ) -> ProvisionRecord | None:
         if not include_appendices:
             return None
@@ -1613,6 +2097,12 @@ def iter_ecfr_title_provisions(
         appendix_scope = _appendix_citation_from_identifier(
             target.title, elem.get("N", ""), require_supported=False
         )
+        if appendix_scope is None:
+            subpart_appendix = _subpart_appendix_from_identifier(elem.get("N", ""))
+            if subpart_appendix is not None:
+                return selected_subpart_appendix(
+                    elem, subpart_appendix, target, subpart, numbering_by_subpart
+                )
         # A selected appendix with a contradictory part must be validated,
         # whether selected by its parsed citation or its enclosing part.
         if allowed_citation_paths is not None and (
@@ -1655,12 +2145,21 @@ def iter_ecfr_title_provisions(
             yield part_record
 
         parent_citation_path = f"us/regulation/{target.title}/{part}"
+        numbering_by_subpart: Mapping[tuple[str, str], Mapping[str, str | None]] = {}
+        if include_appendices:
+            numbering_by_subpart = (
+                appendix_numbering
+                if appendix_numbering is not None
+                else _subpart_appendix_numbering_by_subpart(_xml_appendix_placements(div5))
+            )
 
         # Transparent DIV7 subject groups can occur beside or within subparts.
         # Stopping at provision nodes avoids converting their descendants twice.
         for child in _ecfr_provision_children(div5):
             if child.tag == "DIV9":
-                appendix_record = selected_appendix(child, target, parent_citation_path)
+                appendix_record = selected_appendix(
+                    child, target, parent_citation_path, None, numbering_by_subpart
+                )
                 if appendix_record is not None:
                     yield appendix_record
                 continue
@@ -1703,7 +2202,13 @@ def iter_ecfr_title_provisions(
                 yield subpart_record
             for nested in _ecfr_provision_children(child):
                 if nested.tag == "DIV9":
-                    appendix_record = selected_appendix(nested, target, parent_citation_path)
+                    appendix_record = selected_appendix(
+                        nested,
+                        target,
+                        parent_citation_path,
+                        child.get("N"),
+                        numbering_by_subpart,
+                    )
                     if appendix_record is not None:
                         yield appendix_record
                     continue
@@ -1842,6 +2347,12 @@ def extract_ecfr(
         title_paths.setdefault(_title_from_citation_path(citation_path), set()).add(citation_path)
 
     pending_titles: list[tuple[int, tuple[EcfrPartTarget, ...], set[str]]] = []
+    appendix_numbering_by_title = {
+        int(structure["identifier"]): _subpart_appendix_numbering_by_subpart(
+            _structure_appendix_placements(structure)
+        )
+        for structure in structures
+    }
     revalidating_cached_titles: set[int] = set()
     for structure in structures:
         title = int(structure["identifier"])
@@ -1884,21 +2395,52 @@ def extract_ecfr(
     title_errors: list[str] = []
     failed_titles: set[int] = set()
     transcription_evidence: dict[str, Mapping[str, str]] = {}
-    title_results = tuple(
-        _extract_title_results(
-            store,
-            pending_titles,
-            run_id,
-            version,
-            as_of,
-            expression_date_text,
-            allowed_citation_paths,
-            only_part=only_part,
-            workers=workers,
-            graphic_transcriptions=graphic_transcriptions,
-            include_appendices=include_appendices,
+    staged_xml_by_title: dict[int, Path] = {}
+    acquisition_errors: dict[int, str] = {}
+    with contextlib.ExitStack() as stack:
+        if include_appendices and pending_titles:
+            # An opted-in appendix that fails validation in any title's XML stops
+            # the run here, before any source, image, structure, inventory,
+            # provisions or coverage file is written. A title whose XML could not
+            # be acquired is reported as a title error and is not fetched again,
+            # so no XML reaches the run without passing this check.
+            staging = Path(
+                stack.enter_context(
+                    tempfile.TemporaryDirectory(prefix="axiom-ecfr-appendix-preflight-")
+                )
+            )
+            staged_xml_by_title, acquisition_errors = _preflight_title_appendices(
+                store,
+                pending_titles,
+                run_id,
+                as_of,
+                allowed_citation_paths,
+                only_part=only_part,
+                workers=workers,
+                appendix_numbering_by_title=appendix_numbering_by_title,
+                staging_dir=staging,
+            )
+        title_results = tuple(
+            _extract_title_results(
+                store,
+                [pending for pending in pending_titles if pending[0] not in acquisition_errors],
+                run_id,
+                version,
+                as_of,
+                expression_date_text,
+                allowed_citation_paths,
+                only_part=only_part,
+                workers=workers,
+                graphic_transcriptions=graphic_transcriptions,
+                include_appendices=include_appendices,
+                appendix_numbering_by_title=appendix_numbering_by_title,
+                staged_xml_by_title=staged_xml_by_title,
+            )
+        ) + tuple(
+            _EcfrTitleResult(title=title, error=error)
+            for title, error in sorted(acquisition_errors.items())
         )
-    )
+
     # Workers stage XML and graphics, including resumable error downloads.
     # No title may change a source until every pending title has passed fatal
     # validation. A failed cache revalidation must also leave its old pins intact.
@@ -2152,6 +2694,11 @@ def _extract_title_results(
     workers: int,
     graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
     include_appendices: bool,
+    appendix_numbering_by_title: Mapping[
+        int, Mapping[tuple[str, str], Mapping[str, str | None]]
+    ]
+    | None = None,
+    staged_xml_by_title: Mapping[int, Path] | None = None,
 ) -> Iterator[_EcfrTitleResult]:
     max_workers = max(1, workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -2169,11 +2716,132 @@ def _extract_title_results(
                 only_part,
                 graphic_transcriptions,
                 include_appendices,
+                (appendix_numbering_by_title or {}).get(title),
+                (staged_xml_by_title or {}).get(title),
             ): title
             for title, targets, _paths in pending_titles
         }
         for future in as_completed(futures):
             yield future.result()
+
+
+def _ecfr_appendix_preflight_error(
+    xml_content: str,
+    targets: tuple[EcfrPartTarget, ...],
+    allowed_citation_paths: set[str],
+    appendix_numbering: Mapping[tuple[str, str], Mapping[str, str | None]] | None,
+) -> str | None:
+    """Convert a title's selected appendices once, in memory, before any write.
+
+    Returns the appendix validation error, if any. A conversion failure that
+    prevents checking later appendices is also fatal: an incomplete preflight
+    cannot establish that every selected appendix is valid.
+    """
+    try:
+        for _record in iter_ecfr_title_provisions(
+            xml_content,
+            targets,
+            version="preflight",
+            source_path="preflight",
+            allowed_citation_paths=allowed_citation_paths,
+            include_appendices=True,
+            appendix_numbering=appendix_numbering,
+        ):
+            pass
+    except EcfrAppendixError as exc:
+        return str(exc)
+    except Exception as exc:  # noqa: BLE001 - incomplete validation must fail closed
+        return f"could not complete eCFR appendix preflight: {exc}"
+    return None
+
+
+def _fetch_title_xml(title: int, only_part: str | None, as_of: str) -> str:
+    fetch_label = f"{title} CFR part {only_part}" if only_part else f"{title} CFR"
+    return _fetch_with_retries(
+        fetch_label,
+        lambda: (
+            fetch_ecfr_part_xml(title, only_part, as_of)
+            if only_part is not None
+            else fetch_ecfr_title_xml(title, as_of)
+        ),
+    )
+
+
+def _preflight_title_appendices(
+    store: CorpusArtifactStore,
+    pending_titles: list[tuple[int, tuple[EcfrPartTarget, ...], set[str]]],
+    run_id: str,
+    as_of: str,
+    allowed_citation_paths: set[str],
+    *,
+    only_part: str | None,
+    workers: int,
+    appendix_numbering_by_title: Mapping[
+        int, Mapping[tuple[str, str], Mapping[str, str | None]]
+    ],
+    staging_dir: Path,
+) -> tuple[dict[int, Path], dict[int, str]]:
+    """Validate every pending title's selected appendices before the run writes.
+
+    Each title's XML is read from the run if retained there, or fetched and staged
+    in ``staging_dir`` (outside the corpus base) so the extraction that follows
+    writes those bytes without fetching again. Raises ``EcfrAppendixError`` naming
+    every failing title. Returns the staged XML by title and, for each title whose
+    XML could not be acquired, its title error; the caller must not extract those
+    titles, since their XML was never validated.
+    """
+
+    def preflight_one(
+        title: int, targets: tuple[EcfrPartTarget, ...]
+    ) -> tuple[int, Path | None, str | None, str | None]:
+        source_path = store.source_path(
+            "us",
+            DocumentClass.REGULATION,
+            run_id,
+            _ecfr_source_relative_name(title, only_part),
+        )
+        staged: Path | None = None
+        try:
+            if source_path.exists():
+                xml_content = source_path.read_bytes().decode("utf-8")
+            else:
+                xml_content = _fetch_title_xml(title, only_part, as_of)
+                staged = staging_dir / f"title-{title}.xml"
+                staged.write_bytes(xml_content.encode("utf-8"))
+        except (
+            TimeoutError,
+            ValueError,
+            urllib.error.HTTPError,
+            urllib.error.URLError,
+        ) as exc:
+            # The same title error the extraction reports for a failed fetch.
+            return title, None, None, f"{title} CFR: {exc}"
+        error = _ecfr_appendix_preflight_error(
+            xml_content,
+            targets,
+            allowed_citation_paths,
+            appendix_numbering_by_title.get(title),
+        )
+        return title, staged, error, None
+
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
+        results = list(
+            executor.map(
+                lambda pending: preflight_one(pending[0], pending[1]), pending_titles
+            )
+        )
+    errors = sorted(
+        f"{title} CFR: {error}" for title, _staged, error, _failure in results if error
+    )
+    if errors:
+        raise EcfrAppendixError("; ".join(errors))
+    staged_xml = {
+        title: staged for title, staged, _error, _failure in results if staged is not None
+    }
+    acquisition_errors = {
+        title: failure for title, _staged, _error, failure in results if failure is not None
+    }
+    return staged_xml, acquisition_errors
 
 
 def _extract_one_title(
@@ -2188,6 +2856,8 @@ def _extract_one_title(
     only_part: str | None,
     graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
     include_appendices: bool,
+    appendix_numbering: Mapping[tuple[str, str], Mapping[str, str | None]] | None = None,
+    staged_xml: Path | None = None,
 ) -> _EcfrTitleResult:
     source_relative_name = _ecfr_source_relative_name(title, only_part)
     source_path = store.source_path(
@@ -2202,14 +2872,11 @@ def _extract_one_title(
             xml_content = source_bytes.decode("utf-8")
             source_sha256 = sha256_bytes(source_bytes)
         else:
-            fetch_label = f"{title} CFR part {only_part}" if only_part else f"{title} CFR"
-            xml_content = _fetch_with_retries(
-                fetch_label,
-                lambda: (
-                    fetch_ecfr_part_xml(title, only_part, as_of)
-                    if only_part is not None
-                    else fetch_ecfr_title_xml(title, as_of)
-                ),
+            # The appendix preflight already fetched this title's XML.
+            xml_content = (
+                staged_xml.read_bytes().decode("utf-8")
+                if staged_xml is not None
+                else _fetch_title_xml(title, only_part, as_of)
             )
             source_sha256 = sha256_bytes(xml_content.encode("utf-8"))
     except (
@@ -2231,6 +2898,7 @@ def _extract_one_title(
         expression_date=expression_date,
         allowed_citation_paths=allowed_citation_paths,
         include_appendices=include_appendices,
+        appendix_numbering=appendix_numbering,
     )
     pending_source_writes: dict[Path, bytes] = {}
     try:
