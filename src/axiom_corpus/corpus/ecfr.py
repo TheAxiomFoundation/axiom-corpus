@@ -1474,9 +1474,8 @@ def _section_body(
             if tag == "TABLE":
                 caption = _table_caption_text(child)
                 if caption:
-                    # Distinguish section captions from paragraph labels during
-                    # anchor inference; appendices retain their caption format.
-                    blocks.append(caption if appendix else f"[Table caption: {caption}]")
+                    # Distinguish captions from paragraph labels during anchor inference.
+                    blocks.append(f"[Table caption: {caption}]")
                 text = _table_text(child)
                 if text:
                     blocks.append(text)

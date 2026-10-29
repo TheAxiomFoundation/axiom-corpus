@@ -56,8 +56,8 @@ subpart they name count toward its classification, so a misplaced appendix, sele
 or not, never changes how its named siblings sort; reserved appendices do count.
 `extract-ecfr` classifies designators from the retained structure, so a
 structure-only placeholder and the XML record it stands in for get the same
-ordinal; an appendix that only the XML has is outside the inventory and is not
-taken.
+ordinal; extraction skips an appendix that only the XML has because it falls
+outside the inventory.
 
 A subpart appendix must sit inside the subpart and part it names. One that does
 not (for example `Appendix A to Subpart F of Part 2520`, which the eCFR places
@@ -76,14 +76,15 @@ iterator likewise applies an explicit citation allowlist before converting an
 appendix; selected unsupported identifiers still fail closed.
 Appendix validation errors (`EcfrAppendixError`, a `ValueError`) from either CLI
 command print a diagnostic to stderr and exit with status 2 before writing run
-artifacts; an existing run is preserved. That holds for contradictions only the XML
+artifacts and preserve an existing run. That holds for contradictions only the XML
 shows, too, in multi-title runs as well: before writing anything, `extract-ecfr`
 reads or fetches every pending title's XML (staging fetched XML outside the corpus
-base, so it is fetched once) and converts its selected appendices in memory; it
-writes sources, images, structures, inventory, provisions and coverage only after
-every title passes. A title whose XML cannot be fetched there is reported as a title
-error and is not extracted, so no unchecked XML reaches the run. Other parsing or
-I/O failures can still occur after source capture and surface as title errors.
+base, so the command fetches it once) and converts its selected appendices in
+memory; it writes sources, images, structures, inventory, provisions and coverage
+only after every title passes. If the command cannot fetch a title's XML there, it reports a
+title error and skips that title, so no unchecked XML reaches the run. Other
+parsing or I/O failures can still occur after source capture and surface as title
+errors.
 
 For included appendices, extraction archives official PNG bytes for source
 images, retains image references in the body, and keeps HD1–HD3 heading text.
@@ -93,17 +94,16 @@ references are source evidence, not OCR text or an executable formula.
 
 Appendix and section bodies keep table captions as a block before the table's
 rows (`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P
-of part 404, `Table 1—For Employees` in 20 CFR 404.1592). Section bodies wrap each
-caption in `[Table caption: …]`; appendix bodies keep their existing caption
-format. The anchor scanner masks the complete marked line with equal-length
-spaces before finding paragraph heads, so caption labels never create paragraph
-anchors and offsets still refer to the original body. Plain section text gives
-the scanner no way to distinguish a caption's paragraph-like label from a
-paragraph head. A prefix alone cannot exclude labels after dashes or sentence
+of part 404, `Table 1—For Employees` in 20 CFR 404.1592). Both body renderers wrap
+each caption in `[Table caption: …]`. The anchor scanner masks the complete
+marked line with equal-length spaces before finding paragraph heads, so caption
+labels never create paragraph anchors and offsets still refer to the original
+body. Plain body text gives the scanner no way to distinguish a caption's
+paragraph-like label from a paragraph head. A prefix alone cannot exclude labels after dashes or sentence
 punctuation inside a caption. The marker follows the bracketed evidence convention
 of `[Official formula image: …]`: apart from whitespace and `|` cell separators,
 rendering adds only caption blocks and their marker characters to ordinary
-section text and preserves every source character within each caption.
+body text and preserves every source character within each caption.
 
 Both body renderers read a `<br/>` as a word break, so `means<br/>less` becomes
 `means less`. A break directly after a hyphen preserves the join and the hyphen:
@@ -119,8 +119,10 @@ These rendering rules also apply to part appendices and preserve their path,
 parent, level, ordinal and metadata.
 
 Sections took captions and word breaks after the appendices did. Locked scopes
-keep the text their extraction produced (captions dropped, words joined across
-`<br/>`); a scope picks up the fix only when a successor extraction replaces it.
+keep the exact text their extraction produced: earlier sections drop captions
+and join words across `<br/>`, while the part 404 appendices from #828 keep plain
+captions. Successor extractions pick up the shared caption marker and word-break
+rules.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with

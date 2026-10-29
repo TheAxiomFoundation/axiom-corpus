@@ -9,13 +9,12 @@ Invariants checked here, for any generated section:
 - Only whitespace is added: with whitespace removed, the break-aware text equals
   the plain ``itertext()`` join, so no character is lost, added or reordered.
 - Captions: a table's caption is its own block, just before the table's rows.
-- Conservation: remove the section caption marker, whitespace and ``|`` cell
+- Conservation: remove the caption marker, whitespace and ``|`` cell
   separators, and a body equals the source text less ``HEAD`` and ``CITA``.
 - Caption isolation: captions never change paragraph paths, labels or spans after
   mapping offsets through removal of their caption blocks.
 - Agreement: sections and appendices render the same body for content that has
-  no appendix-only element (HD1-HD3 headings, non-formula images), after removing
-  the section-only caption marker.
+  no appendix-only element (HD1-HD3 headings, non-formula images).
 """
 
 import re
@@ -188,13 +187,16 @@ def _without_caption_blocks(body):
     )
 
 
-def _anchor_signature(elem, *, remove_captions=False):
-    body = ecfr._section_body(elem)
+def _anchor_signature(elem, *, appendix=False, remove_captions=False):
+    body = ecfr._section_body(elem, appendix=appendix)
     provision = ProvisionRecord(
         jurisdiction="us",
         document_class="regulation",
         id="section-fixture",
-        citation_path="us/regulation/26/1/412-c-1-2",
+        citation_path=(
+            "us/regulation/26/1/appendix-a" if appendix
+            else "us/regulation/26/1/412-c-1-2"
+        ),
         body=body,
     )
     return [
@@ -217,7 +219,8 @@ def _remove_captions(elem):
             table.remove(caption)
 
 
-def test_repeated_labeled_captions_do_not_create_paragraph_anchors():
+@pytest.mark.parametrize("appendix", [False, True])
+def test_repeated_labeled_captions_do_not_create_paragraph_anchors(appendix):
     # 26 CFR 1.412(c)(1)-2 repeats (A) captions after its (a) paragraph text.
     elem = ET.fromstring(
         '<DIV8 N="§ 1.412(c)(1)-2" TYPE="SECTION">'
@@ -228,10 +231,10 @@ def test_repeated_labeled_captions_do_not_create_paragraph_anchors():
         '<TR><TD>Second computation</TD></TR></TABLE>'
         '<P>(b) Next paragraph.</P></DIV8>'
     )
-    actual = _anchor_signature(elem, remove_captions=True)
+    actual = _anchor_signature(elem, appendix=appendix, remove_captions=True)
     _remove_captions(elem)
 
-    assert actual == _anchor_signature(elem)
+    assert actual == _anchor_signature(elem, appendix=appendix)
     assert [path.rsplit("/", 1)[-1] for path, *_ in actual] == ["a", "b"]
 
 
@@ -245,9 +248,10 @@ _labeled_caption = st.tuples(
 ).map(lambda pair: f"({pair[0]}){pair[1]}")
 
 
+@pytest.mark.parametrize("appendix", [False, True])
 @settings(max_examples=100, deadline=None)
-@given(st.lists(_labeled_caption, min_size=1, max_size=5))
-def test_labeled_captions_preserve_paragraph_anchors(captions):
+@given(captions=st.lists(_labeled_caption, min_size=1, max_size=5))
+def test_labeled_captions_preserve_paragraph_anchors(captions, appendix):
     tables = "".join(
         f"<TABLE><CAPTION><P>{escape(caption)}</P></CAPTION>"
         f"<TR><TD>Value {index}</TD></TR></TABLE>"
@@ -257,10 +261,10 @@ def test_labeled_captions_preserve_paragraph_anchors(captions):
         '<DIV8><P>(a) Computation—(1) First paragraph.</P>'
         f'{tables}<P>(2) Second paragraph.</P><P>(b) Next paragraph.</P></DIV8>'
     )
-    actual = _anchor_signature(elem, remove_captions=True)
+    actual = _anchor_signature(elem, appendix=appendix, remove_captions=True)
     _remove_captions(elem)
 
-    assert actual == _anchor_signature(elem)
+    assert actual == _anchor_signature(elem, appendix=appendix)
 
 
 @pytest.mark.parametrize("appendix", [False, True])
@@ -286,18 +290,19 @@ def test_nested_inline_break_separates_words():
     assert ecfr._section_body(elem) == "ab cd"
 
 
+@pytest.mark.parametrize("appendix", [False, True])
 @settings(max_examples=300, deadline=None)
-@given(_children)
-def test_section_body_keeps_captions_and_word_breaks(children):
+@given(children=_children)
+def test_section_body_keeps_captions_and_word_breaks(children, appendix):
     elem = ET.fromstring(_section_xml(children))
 
-    body = ecfr._section_body(elem)
+    body = ecfr._section_body(elem, appendix=appendix)
 
     assert (body.split("\n\n") if body else []) == _expected_blocks(children)
     assert "HEADWORD" not in body and "CITAWORD" not in body
     assert _no_ws(_unmark_caption_blocks(body)).replace("|", "") == _no_ws(_source_text(elem))
-    # Sections alone mark captions; sections and appendices share source text.
-    assert ecfr._section_body(elem, appendix=True) == _unmark_caption_blocks(body)
+    # Sections and appendices share caption markers and source text.
+    assert ecfr._section_body(elem, appendix=not appendix) == body
 
 
 @pytest.mark.parametrize(

@@ -58,7 +58,7 @@ from axiom_corpus.corpus.models import ProvisionRecord
 #: The table is rebuildable from (provisions x this version); the pair is the
 #: cache key for a rebuild. Any change to :func:`generate_anchors` output for
 #: identical input MUST bump this.
-EXTRACTOR_VERSION = "provision-anchors/1.0.0"
+EXTRACTOR_VERSION = "provision-anchors/1.0.1"
 
 CONFIDENCE_MACHINE_ASSERTED = "machine_asserted"
 CONFIDENCE_LABEL_INFERRED = "label_inferred"
@@ -224,8 +224,8 @@ def _scan_heads(body: str) -> list[_Head]:
     accepted by :func:`_build_tree` when they are the expected next outline
     child, which filters out cross-references and parentheticals.
     """
-    # eCFR marks section table captions as evidence blocks. Mask the whole line
-    # so neither initial labels nor inline strong/weak labels become heads.
+    # eCFR marks section and appendix table captions as evidence blocks. Mask
+    # the whole line so initial and inline strong/weak labels cannot become heads.
     # Equal-length spaces keep every offset relative to the original body.
     body = re.sub(
         r"(?m)^\[Table caption: [^\n]*\]$",
