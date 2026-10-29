@@ -127,8 +127,9 @@ The selector PR owns that replacement. Release cutting, activation and rulespec-
 | Appendix word sequence against the source `DIV9` | 3,952 words, identical sequence. |
 | `validate-release` on a one-scope selector (`complete-expression-dates-v1` profile) | One scope, zero errors, zero warnings. |
 | `scripts/audit_release_scope_self_containment.py` on the same selector | Zero parent residuals. |
-| `content-check us/regulation/2026-10-12-with-appendices-title-20-part-416` | CONTENT_CHECK_RESULT |
+| `content-check us/regulation/2026-10-12-with-appendices-title-20-part-416` | Run after signing and locking: zero findings, baseline unchanged. |
 | Citation-path validator on predecessor, successor and union | `uppercase_segments` +1, every other family +0, no identity drift. |
+| `corpus verify --attest --ref HEAD`; `corpus verify --remote --changed-since origin/main`; `verify-scope-tracked`; `guard-ingested --base-ref origin/main` | All pass after signing: every lock entry attests, all five objects are in R2, and every changed corpus artifact has a signed ingest manifest. |
 | `ruff check .`, `mypy src/axiom_corpus/corpus`, `towncrier check`, `git diff --check` | Pass. |
 
 The full test suite and the merged-tree citation-path scan run in CI on this PR.
