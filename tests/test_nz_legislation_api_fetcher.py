@@ -514,10 +514,39 @@ def test_a_nested_caller_request_that_rehooks_never_exposes_the_outer_key():
     wrapper.close()
 
 
+def _reaches(value, key, seen=None):
+    """Whether key is reachable from value through containers and attributes.
+
+    It follows dict keys and values, sequence and set items, and each object's
+    __dict__ and __slots__, so a key held by a redacted holder counts as well.
+    """
+    seen = set() if seen is None else seen
+    if id(value) in seen:
+        return False
+    seen.add(id(value))
+    if isinstance(value, str):
+        return key in value
+    if isinstance(value, (bytes, bytearray)):
+        return key.encode() in value
+    if isinstance(value, dict):
+        items = [*value.keys(), *value.values()]
+    elif isinstance(value, (list, tuple, set, frozenset)):
+        items = list(value)
+    else:
+        items = list(getattr(value, "__dict__", {}).values())
+        for cls in type(value).__mro__:
+            slots = getattr(cls, "__slots__", ())
+            for slot in (slots,) if isinstance(slots, str) else slots:
+                if hasattr(value, slot):
+                    items.append(getattr(value, slot))
+    return any(_reaches(item, key, seen) for item in items)
+
+
 def test_no_request_holds_the_key_once_its_hop_is_sent():
     # Invariant: the key is on a request only while its hop is being sent.
     # The tag httpx copies onto redirects, history and next_request is a
-    # marker, so no request a caller can reach afterwards holds the key.
+    # marker, so no request a caller can reach afterwards holds the key: not
+    # in its headers, its extensions or any object they hold.
     def handler(request):
         if request.url.path == "/redirect":
             return httpx.Response(302, headers={"location": "https://example.org/end"})
@@ -547,8 +576,14 @@ def test_no_request_holds_the_key_once_its_hop_is_sent():
     assert len(requests) == 9
     for request in requests:
         assert request.extensions[_API_KEY_EXTENSION] is True
-        assert _SECRET not in repr(vars(request))
+        assert not _reaches(request, _SECRET)
+
+    # The search finds the key in a header, and behind a redacted holder.
+    holder = wrapper.client._pco_api_key
     wrapper.close()
+    assert _reaches(httpx.Request("GET", _PCO_XML_URL, headers={"X-Api-Key": _SECRET}), _SECRET)
+    assert _SECRET not in repr(holder)
+    assert _reaches(httpx.Request("GET", _PCO_XML_URL, extensions={"key": holder}), _SECRET)
 
 
 def test_the_key_is_redacted_where_the_client_holds_it():
@@ -596,8 +631,11 @@ def test_only_a_key_tag_from_the_helper_adds_the_key():
 
 
 _INVALID_KEY_MESSAGE = "NZ Legislation API key must be printable ASCII with no whitespace"
+# Building a client on a mock transport skips loading TLS contexts.
+_NO_NETWORK = httpx.MockTransport(lambda request: httpx.Response(500))
 
 
+@settings(deadline=None)
 @given(
     key=st.one_of(
         st.text(max_size=12),
@@ -615,8 +653,8 @@ def test_keys_are_validated_without_echoing_them(key):
     valid = re.fullmatch(r"[!-~]+", key) is not None
 
     if valid:
-        nz_legislation_api_key_client(api_key=key, timeout=1).close()
-        NZLegislationAPIClient(key).close()
+        nz_legislation_api_key_client(api_key=key, timeout=1, transport=_NO_NETWORK).close()
+        NZLegislationAPIClient(key, transport=_NO_NETWORK).close()
         h11.Request(method="GET", target="/", headers=[("Host", "x"), ("X-Api-Key", key)])
     else:
         with pytest.raises(ValueError) as raised:
@@ -642,6 +680,7 @@ _HOSTS = st.one_of(
 )
 
 
+@settings(deadline=None)
 @given(
     scheme=st.sampled_from(["https", "http"]),
     host=_HOSTS,
