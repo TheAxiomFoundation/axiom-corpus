@@ -33,8 +33,9 @@ selecting successors. The successors change these bodies:
 - **45 CFR 1302**: 1302.21 gains a marked caption, and the structure-only Overview placeholder at
   1302.1 now holds the section's paragraph text.
 - **Recovery**: 7 CFR 246.10 gains four marked captions, and 42 CFR 457.555 separates a word at a
-  line break. The successor keeps every other recovery row byte for byte; axiom-corpus#942 lists
-  14 inherited omissions for a later round.
+  line break. Every other recovery row keeps its body byte for byte; across all 1,073 rows only
+  `version` and `source_path` change. axiom-corpus#942 lists 14 inherited omissions for a later
+  round.
 
 ## Paths and rulespec-us impact
 
@@ -66,9 +67,11 @@ selecting successors. The successors change these bodies:
 ## Coordination with #938
 
 axiom-corpus#938 cuts `us-rulespec-2026-10-27-ks-liheap` on the same pin. rulespec-us pins one
-release, so whichever of the two merges second must be rebuilt on the other: set its `BASE_RELEASE`
+release, so whichever of the two merges second rebuilds on the other: set its `BASE_RELEASE`
 to the selector that merged, rerun its reproducer, update its expected count and re-record its digest
-and the ME/MI/MN exceptions in `manifests/withdrawn-scopes.yaml`.
+and the ME/MI/MN exceptions in `manifests/withdrawn-scopes.yaml`. If #938 merges second, its check that
+only the older NYC Administrative Code capture leaves `us-rulespec-2026-10-23-ks-liheap` must also
+list this release's three predecessors, since the swaps drop them, and its run note must say so.
 
 ## After merge
 
