@@ -32,8 +32,8 @@ DESCRIPTION = (
     "(2026-06-24-title-45-part-1302 -> 2026-06-24-r2026-10-29-ecfr-section-text-title-45-part-1302) "
     "and the July 13 recovery scope (2026-07-13-recovery-r2026-07-17-dedup -> "
     "2026-07-13-recovery-r2026-07-17-dedup-r2026-10-29-ecfr-section-text). The 47 CFR 54 and "
-    "45 CFR 1302 successors also carry earlier source-backed extractor repairs (Editorial Note "
-    "headings and formula blocks in part 54, the 1302.1 Overview text). Every other scope is kept, "
+    "45 CFR 1302 successors also carry earlier source-backed extractor repairs (note headings and "
+    "formula blocks in part 54, the 1302.1 Overview text). Every other scope is kept, "
     "including the pin's three withdrawn ME, MI and MN 2026-07-13 recovery scopes under exceptions "
     "recorded for this selector. It is a publish-only pin release for rulespec-us; do not activate it."
 )
@@ -52,9 +52,7 @@ def build_release(
     keys = {_key(scope) for scope in scopes}
     if len(keys) != len(scopes):
         raise ValueError("base release contains duplicate scopes")
-    missing = sorted(
-        old for old in REPLACEMENTS if (JURISDICTION, DOCUMENT_CLASS, old) not in keys
-    )
+    missing = sorted(old for old in REPLACEMENTS if (JURISDICTION, DOCUMENT_CLASS, old) not in keys)
     if missing:
         raise ValueError(f"base release does not select {missing}")
     present = sorted(
