@@ -130,6 +130,12 @@ axiom-corpus-ingest generate-anchors \
   --target us/regulation/7/273/9 \
   --output data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl
 
+# Generate the Massachusetts stored leaf and its run-in numbered children.
+axiom-corpus-ingest generate-anchors \
+  --provisions data/corpus/provisions/us-ma/regulation/2026-05-28-365-180-children.jsonl \
+  --stored-leaf us-ma/regulation/106-cmr/365/180/A \
+  --output data/corpus/anchors/us-ma/regulation/2026-05-28-365-180-children.jsonl
+
 # Resolve a citation path to (provision_id, span) over an anchors artifact.
 axiom-corpus-ingest resolve-anchor \
   --anchors data/corpus/anchors/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl \

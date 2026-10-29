@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-BASE_RELEASE = "us-rulespec-2026-10-25-mt-separate-filing"
+BASE_RELEASE = "us-rulespec-2026-10-29-ecfr-section-text"
 RELEASE = "us-rulespec-2026-10-27-ks-liheap"
 # The seven scopes us-rulespec-2026-10-23-ks-liheap added to its own, older base.
 ADDITIONS = (
@@ -50,7 +50,7 @@ ADDITIONS = (
 )
 DESCRIPTION = (
     f"Successor to {BASE_RELEASE} on rulespec-us's corpus pin line. It keeps all 276 scopes "
-    "of that pin and adds the seven signed, locked Kansas LIHEAP scopes of "
+    "of that release and adds the seven signed, locked Kansas LIHEAP scopes of "
     "us-rulespec-2026-10-23-ks-liheap: the dated KEESM LIEAP manual pages "
     "(us-ks/manual/2026-10-02-ks-lieap-historical), the FY2025 Kansas LIHEAP plan and benefit "
     "matrix (us-ks/policy/2026-10-02-ks-liheap-plan-fy2025, "
@@ -59,7 +59,8 @@ DESCRIPTION = (
     "HHS poverty notices (us/guidance/2026-10-02-hhs-poverty-2024-2025) and the federal LIHEAP "
     "statute (us/statute/2026-09-13-liheap-statute-chapter-94-title-42). It replaces "
     "us-rulespec-2026-10-23-ks-liheap, which was cut from "
-    "us-rulespec-2026-10-22-ca-concurrent-versions and so lacks the pin line's later scopes. "
+    "us-rulespec-2026-10-22-ca-concurrent-versions and so lacks the pin line's later scopes and "
+    "the eCFR section-text successors. "
     "Every other scope is kept, including the pin's three withdrawn ME, MI and MN 2026-07-13 "
     "recovery scopes under exceptions recorded for this selector. It is a publish-only pin "
     "release for rulespec-us; do not activate it."

@@ -262,10 +262,10 @@ uv run python scripts/build_cms_iom_100_01_manifests.py --territory-rows
 uv run python scripts/build_tax_forms_manifests.py --only us-pr,us-gu,us-vi,us-as,us-mp
 uv run python scripts/build_tanf_state_policy_manual_manifests.py --only us-gu --only us-pr --only us-vi --only us-as --only us-mp
 uv run python scripts/build_snap_state_manual_completion_manifests.py --only us-pr --only us-mp --only us-gu --only us-vi --only us-as \
-  --corpus-base /Users/pavelmakarchuk/axiom-corpus/data/corpus
+  --corpus-base <axiom-corpus checkout>/data/corpus
 
 # extraction (base = the main checkout's corpus root; df -h / checked before each run, 8.5 GB free)
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 for j in pr gu mp; do
   uv run axiom-corpus-ingest extract-official-documents --base $B --version 2026-09-11-tax-territory-forms-ty2025 \
     --manifest manifests/us-$j-individual-income-tax-forms-ty2025.yaml --source-as-of 2026-09-11

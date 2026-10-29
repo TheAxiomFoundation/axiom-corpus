@@ -37,7 +37,7 @@ shared project environment:
 
 ```bash
 PYTHONPATH=src \
-UV_PROJECT_ENVIRONMENT=/Users/pavelmakarchuk/axiom-corpus-uc/.venv \
+UV_PROJECT_ENVIRONMENT=<axiom-corpus-uc checkout>/.venv \
 uv run --no-sync python -m axiom_corpus.corpus.cli \
   extract-official-documents \
   --base data/corpus \
@@ -45,7 +45,7 @@ uv run --no-sync python -m axiom_corpus.corpus.cli \
   --manifest manifests/us-wv-manuals.yaml
 
 PYTHONPATH=src \
-UV_PROJECT_ENVIRONMENT=/Users/pavelmakarchuk/axiom-corpus-uc/.venv \
+UV_PROJECT_ENVIRONMENT=<axiom-corpus-uc checkout>/.venv \
 uv run --no-sync python -m axiom_corpus.corpus.cli \
   extract-official-documents \
   --base data/corpus \

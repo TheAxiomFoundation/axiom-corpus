@@ -24,12 +24,20 @@ W6 federal public laws) and move the NYC Administrative Code back from
 `2026-09-28-nyc-admin-code` to `2026-06-05-nyc-admin-code`. **Do not publish
 `us-rulespec-2026-10-23-ks-liheap`.** This selector replaces it.
 
+This selector was first cut on 2026-10-27 from `us-rulespec-2026-10-25-mt-separate-filing`.
+On 2026-10-29 [axiom-corpus#945](https://github.com/TheAxiomFoundation/axiom-corpus/pull/945)
+cut `us-rulespec-2026-10-29-ecfr-section-text` from the same base. Two siblings
+would split the pin line, so this selector now builds on the section-text
+release; its name keeps the original cut date.
+
 ## Scope
 
-This selector keeps all 276 scopes of `us-rulespec-2026-10-25-mt-separate-filing`
-and adds exactly the seven scopes that #926 added, for 283 scopes. It keeps the
-pin's NYC capture, so the only scope of the October 23 selector it does not
-select is the older `us-ny/statute/2026-06-05-nyc-admin-code`. No selector,
+This selector keeps all 276 scopes of `us-rulespec-2026-10-29-ecfr-section-text`
+and adds exactly the seven scopes that #926 added, for 283 scopes. The only
+scopes of the October 23 selector it does not select are ones the pin line has
+since replaced: the older `us-ny/statute/2026-06-05-nyc-admin-code` and the three
+pre-section-text eCFR scopes (47 CFR part 54, 45 CFR part 1302 and the July 13
+`us/regulation` recovery scope), whose successors it keeps. No selector,
 signed ingest, lock, corpus artifact, citation ceiling or content baseline
 changes.
 
@@ -51,7 +59,7 @@ three were already signed and locked on main. The release needs no new capture
 or upload.
 
 The selector digest is
-`c21298ad892a164d2775aef441c30329b4b534f9612d08ac5016603c19362908`. It is not
+`c8f901852f437b64175224913893c3e313ed29d969a323795de76779b395c4ff`. It is not
 the published release content hash and must not be used as a RuleSpec content
 pin.
 
@@ -72,13 +80,13 @@ scope. The first cut in the line after #1365 lands drops them.
   identities are unique and sorted.
 - With every artifact the selector names fetched (16,075 locked files),
   `axiom-corpus-ingest validate-release` passed: 283 scopes, 0 errors, 541
-  warnings and 35 notices. The base pin gives the same 541 warnings and 35
-  notices, so the additions add none.
+  warnings and 35 notices. The base `us-rulespec-2026-10-29-ecfr-section-text`
+  gives the same 541 warnings and 35 notices, so the additions add none.
 - `tests/test_us_rulespec_2026_10_27_ks_liheap.py` checks the delta, the
   superseded selector's coverage, the locks, the withdrawal exceptions, the
   quality profile and two cited paths (the October 2024 KEESM 13360 income
-  table and `us/statute/42/8624/b/2/B`). It passes with the release-policy and
-  release-manifest tests (188 passed). The repository-wide policy tests need
+  table and `us/statute/42/8624/b/2/B`). It passes with the section-text,
+  mt-separate-filing, release-policy and release-manifest tests (203 passed). The repository-wide policy tests need
   the full corpus and run in CI.
 
 ## Publication and RuleSpec re-pin

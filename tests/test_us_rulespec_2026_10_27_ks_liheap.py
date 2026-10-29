@@ -22,6 +22,13 @@ SUPERSEDED = "us-rulespec-2026-10-23-ks-liheap"
 # The superseded selector's base held the older NYC Administrative Code capture; the pin
 # line has since moved to 2026-09-28, which this release keeps.
 OLDER_NYC = ("us-ny", "statute", "2026-06-05-nyc-admin-code")
+# The base replaced these three eCFR scopes with section-text successors (axiom-corpus#945),
+# which this release keeps.
+REPLACED_BY_BASE = {
+    ("us", "regulation", "2026-06-18-title-47-part-54-r2026-07-15-self-contained"),
+    ("us", "regulation", "2026-06-24-title-45-part-1302"),
+    ("us", "regulation", "2026-07-13-recovery-r2026-07-17-dedup"),
+}
 
 # Literal, so a change to the reproducer's constants cannot also change what is checked.
 EXPECTED_ADDITIONS = {
@@ -79,10 +86,12 @@ def test_selector_is_the_base_plus_the_kansas_scopes() -> None:
 
 
 def test_it_carries_everything_the_superseded_selector_added() -> None:
-    """Nothing of us-rulespec-2026-10-23-ks-liheap is lost except its older NYC capture."""
+    """Nothing of us-rulespec-2026-10-23-ks-liheap is lost except scopes the pin line has
+    since replaced: its older NYC capture and the three pre-section-text eCFR scopes."""
     superseded, release = set(_keys(SUPERSEDED)), set(_keys(RELEASE))
-    assert superseded - release == {OLDER_NYC}
+    assert superseded - release == {OLDER_NYC} | REPLACED_BY_BASE
     assert ("us-ny", "statute", "2026-09-28-nyc-admin-code") in release
+    assert not REPLACED_BY_BASE & set(_keys(BASE_RELEASE))
 
 
 @pytest.mark.parametrize("scope", ADDITIONS, ids=lambda scope: "/".join(_key(scope)))

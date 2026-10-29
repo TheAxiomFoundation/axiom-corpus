@@ -301,7 +301,7 @@ own keys, so the mapping survives a `--static-only` rebuild; it is not in the ge
 
 ## Artifacts (unsigned, uncommitted; `data/` is gitignored)
 
-Under `/Users/pavelmakarchuk/axiom-corpus/data/corpus`, for each of the six scopes:
+Under `<axiom-corpus checkout>/data/corpus`, for each of the six scopes:
 `sources/<jur>/<class>/<version>/official-documents/*`, `inventory/<jur>/<class>/<version>.json`,
 `provisions/<jur>/<class>/<version>.jsonl`, `coverage/<jur>/<class>/<version>.json`. The first failed NE
 and AR attempts wrote nothing (they failed on the first download). Draft selectors (not tracked) are in the
@@ -312,19 +312,19 @@ DigiCert intermediate from batch 2 is reused).
 
 ```bash
 # worktree
-git fetch origin && git worktree add --no-checkout /Users/pavelmakarchuk/axiom-corpus-worktrees/snap2 \
+git fetch origin && git worktree add --no-checkout <axiom-corpus worktrees>/snap2 \
   -b discovery/ingest-snap-superseding-2 origin/discovery/program-ingestion-union
 git sparse-checkout set --no-cone '/*' '!/data/corpus/' && git read-tree -mu HEAD && uv sync
 
 # extraction (REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE = certifi + data/certs/digicert-global-g2-tls-rsa-sha256-2020-ca1.pem)
 for st in ne ar nv wy nd me; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+    --base <axiom-corpus checkout>/data/corpus \
     --version 2026-09-11-$st-snap-manual-supersede --manifest manifests/<state manifest>.yaml
 done
 
 # per-state and combined draft selectors: the release selector with the released version swapped
-uv run axiom-corpus-ingest validate-release --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+uv run axiom-corpus-ingest validate-release --base <axiom-corpus checkout>/data/corpus \
   --release <draft>.json --ignore-r2-missing --max-issues 50
 ```
 
