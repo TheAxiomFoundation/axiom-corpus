@@ -503,6 +503,67 @@ def test_build_program_joins_a_query_routed_rule_only_to_its_own_manifest(tmp_pa
     assert colorado[bundle.normalize_url(snap)]["scope"] == "in"
 
 
+def test_build_program_joins_a_manifest_entry_without_a_path_to_the_path_that_holds_it(
+    tmp_path, monkeypatch
+):
+    # A state manifest lists a waiver by its address only; a wave decision says
+    # a served path holds that address, so Tier 2 names the path.
+    cfg = config(tmp_path, monkeypatch)
+    waiver = "https://www.fns.usda.gov/sites/default/files/resource-files/az-snap-waiver.pdf"
+    cfg["document_paths"] = {waiver: "us-az/policy/usda/fns/snap-waiver"}
+    manifests = {
+        "manifests/us-az-snap-primary-policy.yaml": [{"title": "SNAP waiver", "source_url": waiver}]
+    }
+    index = bundle.index_manifests(manifests, cfg["host_aliases"])
+    out = bundle.build_program(cfg, "snap", {"references": []}, None, manifests, index)
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    full = {d["key"]: d for d in layers["us-az"]["full"]}
+    assert "us-az/policy/usda/fns/snap-waiver" in full
+    assert (
+        full["us-az/policy/usda/fns/snap-waiver"]["citation_path"]
+        == "us-az/policy/usda/fns/snap-waiver"
+    )
+    assert waiver not in full
+
+
+def test_build_program_moves_a_known_source_to_the_path_a_wave_holds_it_at(tmp_path, monkeypatch):
+    cfg = config(tmp_path, monkeypatch)
+    cfg["path_moves"] = {"us-az/statute/46": "us-az/statute/title-46"}
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, None, {}, bundle.index_manifests({}, {})
+    )
+    layers = {layer["jurisdiction"]: layer for layer in out["layers"]}
+    keys = {d["key"] for d in layers["us-az"]["full"]}
+    assert "us-az/statute/title-46" in keys and "us-az/statute/46" not in keys
+
+
+def test_build_program_expands_a_plan_row_that_names_parts_of_a_code(tmp_path, monkeypatch):
+    # "USC 26 subtitle-A" names subparts of chapter 1, not the whole subtitle:
+    # the config lists their sections, and the bundle names each of them.
+    cfg = config(tmp_path, monkeypatch)
+    cfg["plan_sections"] = {"USC 26 subtitle-A": ["us/statute/26/21", "us/statute/26/32"]}
+    plan = {
+        "documents": [
+            {
+                "id": "USC 26 subtitle-A",
+                "jurisdiction": "US",
+                "programs": ["snap"],
+                "urls": [
+                    "https://www.law.cornell.edu/uscode/text/26/subtitle-A/chapter-1/subchapter-A/part-IV/subpart-A"
+                ],
+                "title": "26 U.S. Code Subpart A - Nonrefundable Personal Credits",
+            }
+        ]
+    }
+    out = bundle.build_program(
+        cfg, "snap", {"references": []}, plan, {}, bundle.index_manifests({}, {})
+    )
+    federal = {layer["jurisdiction"]: layer for layer in out["layers"]}["us"]
+    keys = {d["key"] for d in federal["screener"]}
+    assert {"us/statute/26/21", "us/statute/26/32"} <= keys
+    assert not any("subtitle-A" in k for k in keys)
+
+
 def test_build_program_excludes_a_plan_document_the_decisions_rule_out(tmp_path, monkeypatch):
     # A plan row whose URL is a not_source is excluded with its reason, as the
     # same URL is when PolicyEngine cites it (wave-6 OUT-OF-SCOPE rows such as

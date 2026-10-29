@@ -18,11 +18,11 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a
+    recorded reason, and the screener-level parity run against the newest reference release has no unfixed Axiom
+    errors. Federal law in Tier 1 is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+    rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
       documents, each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/ctc-references.json
     policyengine_us_release: latest
@@ -44,13 +44,13 @@ tiers:
       state: 85
 - id: full
   title: Full document bundle
-  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
-    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
-    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
+    the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
+    A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
-      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
-      for the program; and the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
+      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
+      the sources the config knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
     federal_manifests: ^us-irs-(guidance|individual)
     state_manifests: (^|-)ctc(-|$)|child-tax-credit
@@ -61,26 +61,6 @@ tiers:
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: us/form/irs/ty2013/p972
     name: Publication 972 (2013), Child Tax Credit
     layer: federal
@@ -205,6 +185,34 @@ layers:
     part: Credits
     cited:
     - path: us/guidance/irs/rev-proc-2020-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2021-45
+      references: 1
+      part: Credits
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us/guidance/irs/rev-proc-2022-38
       references: 1
       part: Credits
   - key: us/guidance/irs/rev-proc-2023-34
@@ -426,24 +434,6 @@ layers:
     reason: 'Enacting text: the citing file also cites the codified section, which is the document'
     part: Credits
   full:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us/form/irs/ty2013/p972
     name: Publication 972 (2013), Child Tax Credit
     layer: federal
@@ -521,6 +511,24 @@ layers:
     name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
     source_url: null
     part: Credits
     sources:

@@ -171,8 +171,9 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
   against this branch, inventory and structure-only placeholders, appendices off and
   on (`structure_differential.py`, by the part-appendix follow-up session): with
   appendices off all 8,322 are identical; with appendices on 7,938 are identical, 114
-  parts that main rejected now pass, and 270 still fail, 268 with the same message
-  (now as `EcfrAppendixError`) and 2 (10 CFR 51, 29 CFR 2520) now naming the
+  parts that main rejected now pass, and 270 still fail: 256 with the same message
+  (now as `EcfrAppendixError`), 12 now reaching a later unsupported identifier, and
+  2 (10 CFR 51, 29 CFR 2520) now naming the
   misplaced subpart appendix instead of calling it unsupported. No part main took
   changes or fails. Report: `structure-differential-828-ascii.json` in the review
   folder.

@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/manual/2026-10-12-oasdi-poms-gn.json",
+      "sha256": "e7ab3d12a599a6a7355e77e2967d4664f651f93a776103d3c0f3892bf0ff8d24"
+    },
+    {
+      "path": "data/corpus/inventory/us/manual/2026-10-12-oasdi-poms-gn.json",
+      "sha256": "003fccb5a22dff944b5d097932a477712cf6fc13f36180c4d3733dd5a75a785b"
+    },
+    {
+      "path": "data/corpus/provisions/us/manual/2026-10-12-oasdi-poms-gn.jsonl",
+      "sha256": "6a40baaf19e4b8af94f0a3dd406b87855784fdbecb6a9b2117b03187a79cfe25"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-000.html",
+      "sha256": "bfa67534bb69435b9484baf701c358bb238f9c842222b913cd6a31b273d2d9cc"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-010.html",
+      "sha256": "f92640034643a8a1eb4fe5a378bc144e21265bcbc0387968f9af3d04fbc6a6a3"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-020.html",
+      "sha256": "e397fd07d847f24c160e138de901dd89aca17e3fa7e06727de9a572f1c9eb508"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-040.html",
+      "sha256": "fec22e461e8cb1bb7829c717c5fbbc474b72ad7225e782a46b0f97c50b4bb16d"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-045.html",
+      "sha256": "99d515b4e1e635e91c489bb65f4d59f15c2d8e2a6935275f83b4b3030681549e"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-050.html",
+      "sha256": "4b151ca0a071fb5cb42393b541d1e0bb0459e5734923988e132efa43f6c322d0"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-055.html",
+      "sha256": "1046c1eef2b704b7ffb7ddb7a274b72c8bf52246d3137f1204d736818a1e39e2"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-060.html",
+      "sha256": "662ca1764e01689dbf6daf0569a568961d9c8c5610f5f4db21a337bfdbbb9151"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-075.html",
+      "sha256": "2d7f21fa191149ebf7e63392920606667f4fb41e65b1c4df0ea7ddcbfc6a899c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-080.html",
+      "sha256": "79d865b2dc0bf1e6e2ac48f1e83e51632a3c665fda14ecadddc7b35ca9da50fd"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-090.html",
+      "sha256": "fc544d57f3e2ec998a54b54ca4e7267dcd95b536463cabd94f00494c64f3269c"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-10-12-oasdi-poms-gn/official-documents/ssa-poms-gn-02603-100.html",
+      "sha256": "6e12efa1541b0c949ae1b80caa889d2f21f223446b0be148325990f5f8e9de04"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0c1d57c8faa1319b166aa76cf7d7da0231b0910e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/build_oasdi_poms_manifests.py --family oasdi-gn --print-index && axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-12-oasdi-poms-gn --manifest manifests/us-ssa-poms-gn-2026-10-12.yaml --source-as-of 2026-10-12 --expression-date 2026-10-12 (run note: docs/ingest-runs/2026-10-12-oasdi-ssa-sources.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 73,
+    "missing_count": 0,
+    "provision_count": 73,
+    "source_count": 73
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-12T15:50:15.093906+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ypzLat4GSQtDWyXym4xt4Y9sju/vBG1SWgwxYEVFmLBGFeGYboEdQBZsTCZ54Nh6sPVUljIQPF71VCNIs5QxCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-12-oasdi-poms-gn"
+}

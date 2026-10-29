@@ -1,7 +1,7 @@
 # Wave 7 brief — State income tax, EITC and CTC documents (group `state-tax`)
 
-Read `00-common-preamble.md` first. Worktree `/Users/pavelmakarchuk/axiom-corpus-worktrees/w7-state-tax`, branch `discovery/ingest-w7-state-tax` (cut from main). Input:
-`/Users/pavelmakarchuk/axiom-corpus-worktrees/w7-workorder/docs/coverage/program-bundle-gaps-2026-10-12/wave7/state-tax.csv` (16 rows, 16 of them in Tier 1; 6 jurisdictions).
+Read `00-common-preamble.md` first. Worktree `<axiom-corpus worktrees>/w7-state-tax`, branch `discovery/ingest-w7-state-tax` (cut from main). Input:
+`<axiom-corpus worktrees>/w7-workorder/docs/coverage/program-bundle-gaps-2026-10-12/wave7/state-tax.csv` (16 rows, 16 of them in Tier 1; 6 jurisdictions).
 
 ## Rows by action
 

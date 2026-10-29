@@ -45,11 +45,11 @@ I also checked the 2024 adoption PDF
 Command:
 
 ```bash
-uv run --project /Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-nj-wfnj-20260703 \
+uv run --project . \
   axiom-corpus extract-official-documents \
-  --base /Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-nj-wfnj-20260703/data/corpus \
+  --base data/corpus \
   --version 2026-07-03 \
-  --manifest /Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-nj-wfnj-20260703/manifests/us-nj-wfnj-rules.yaml
+  --manifest manifests/us-nj-wfnj-rules.yaml
 ```
 
 Result:

@@ -6,7 +6,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "commit": "88b2fbbd7f46bdebb768763e3741cec82fe2d515",
     "dirty_tracked": false,
     "root": "."
   },
@@ -16,19 +16,19 @@
   },
   "coverage": null,
   "document_class": "guidance",
-  "generated_at": "2026-07-21T11:57:43.078461+00:00",
+  "generated_at": "2026-10-27T11:31:56.547637+00:00",
   "jurisdiction": "be-wal",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-04-be-wallonia-aviq-family-benefit-plafonds-2025.md",
-      "sha256": "d12702294775e77329fe01c569c0180c4b92058c7ec6c928938560d6ed62dc4e"
+      "sha256": "50ab0246798202bbd1fd36eb366d7d88fd5abd6d9fe4303b6072175845ecec5a"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Kn7slo587I1UM95OjilJfTAL4HIvPg6TS4X7+QtYu8GknNJN3lma9wBZsHR/D6d9qw4VKy1vibntaPTeKdgqAw=="
+    "value": "V7TtI5dKDJrSRXV/CdxU/8CpaxAhutjKnXiqlZx9Q+057yQf/wWYYDFWUDvRAPEWZFH1kmycGNmoS50L+tfeAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-be-wallonia-family-benefit-amount-scale-2025"

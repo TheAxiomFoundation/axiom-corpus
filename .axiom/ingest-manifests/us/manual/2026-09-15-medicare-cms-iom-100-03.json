@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/manual/2026-09-15-medicare-cms-iom-100-03.json",
+      "sha256": "210cd325c4dd4f2d92698f000e83753f499b99016ce91bf00c34bc54d77558a0"
+    },
+    {
+      "path": "data/corpus/inventory/us/manual/2026-09-15-medicare-cms-iom-100-03.json",
+      "sha256": "78bcf13ea0c402ce7c4f42a8c55c671863dc8496f68da8c41589e455542c2fb2"
+    },
+    {
+      "path": "data/corpus/provisions/us/manual/2026-09-15-medicare-cms-iom-100-03.jsonl",
+      "sha256": "ec8cabf4a96a36a50b8d4737a7ac2ba07ab9ad4624742e1ed187fec6f27fa688"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-15-medicare-cms-iom-100-03/official-documents/us-cms-iom-100-03-chapter-1-part-1.pdf",
+      "sha256": "317bf050758c6cd762cf8d771658be55360be7898a1a1b945be8c816e4bd454a"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-15-medicare-cms-iom-100-03/official-documents/us-cms-iom-100-03-chapter-1-part-2.pdf",
+      "sha256": "adefedf64aacea04913983eaccc53e9cf346a9b52756830ac8ccbef738eaa529"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-15-medicare-cms-iom-100-03/official-documents/us-cms-iom-100-03-chapter-1-part-3.pdf",
+      "sha256": "5bec186b990048fb13537e1b24373df7e0271d56a4a25e3bb993ea908aefce65"
+    },
+    {
+      "path": "data/corpus/sources/us/manual/2026-09-15-medicare-cms-iom-100-03/official-documents/us-cms-iom-100-03-chapter-1-part-4.pdf",
+      "sha256": "42e710275d552d121e1e5531b197c5a5da9a8d557b6acaa0e3635c9d3f0a4075"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a9cea346f39f562e34a3012e28059406d03e138a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "rebuild: see docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 395,
+    "missing_count": 0,
+    "provision_count": 395,
+    "source_count": 395
+  },
+  "document_class": "manual",
+  "generated_at": "2026-10-12T19:43:38.280856+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZV2pNf/ZlQdWy9cFmjkP7CfMI6kzVW9ZBjTmh3RQSXERTsHpcGBWQo3Yv+pEiB9h3QHm+Njjn3A8A1eVUSKiBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-15-medicare-cms-iom-100-03"
+}

@@ -15,6 +15,9 @@ Invariants checked here:
 - Fail closed: an opted-in subpart appendix that sits outside the subpart or part it
   names, or whose designator has no unambiguous order, raises EcfrAppendixError, and
   extract_ecfr writes nothing, whether the structure or only the XML shows it.
+- Global fail closed: for an opted-in run, if any selected appendix in any pending
+  title is invalid, the run writes nothing, whatever else fails earlier in that
+  title. An earlier conversion failure must stop an incomplete preflight.
 - Numbering evidence: only appendices that sit in the subpart they name classify its
   designators; designator case does not matter.
 - Part appendices keep their identity and metadata; their bodies gain captions and
@@ -23,10 +26,11 @@ Invariants checked here:
 
 import json
 import random
+import tempfile
 from pathlib import Path
 
 import pytest
-from hypothesis import given, settings
+from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 
 import axiom_corpus.corpus.ecfr as ecfr
@@ -1142,4 +1146,76 @@ def test_default_extraction_needs_no_temporary_directory(tmp_path, monkeypatch, 
         extract_ecfr(
             CorpusArtifactStore(tmp_path / "opt-in"), version="2026-10-12", as_of="2026-10-08",
             only_title=20, only_part="404", include_appendices=True,
+        )
+
+
+def _assert_earlier_conversion_error_cannot_hide_invalid_appendix(
+    root, monkeypatch, *, workers, multi_title, section_digits=4301, host="B", existing_run=False,
+):
+    # The first section cannot convert its ordinal to int. The selected appendix
+    # appears later and contradicts its enclosing subpart, despite valid XML.
+    xml = _move_appendix_in_xml(XML, "Appendix I to Subpart C of Part 404", host)
+    xml = xml.replace("§ 404.101", f"§ 404.{'1' * section_digits}")
+    if multi_title:
+        # Title 20 is valid; the corruption occurs in pending title 21.
+        _two_title_fetchers(monkeypatch, xml)
+        selectors = {}
+        run_id = "2026-10-12"
+    else:
+        monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: STRUCTURE)
+        monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+        monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: PNG)
+        selectors = {"only_title": 20, "only_part": "404"}
+        run_id = "2026-10-12-title-20-part-404"
+    store = CorpusArtifactStore(root / "corpus")
+    if existing_run:
+        previous = store.root / f"sources/us/regulation/{run_id}/ecfr/title-20.structure.json"
+        previous.parent.mkdir(parents=True)
+        previous.write_bytes(b"previous run bytes")
+    before = _files(store.root)
+
+    with pytest.raises(ecfr.EcfrAppendixError, match="appendix preflight"):
+        extract_ecfr(
+            store, version="2026-10-12", as_of="2026-10-08", workers=workers,
+            include_appendices=True, **selectors,
+        )
+
+    assert _files(store.root) == before
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+@pytest.mark.parametrize("multi_title", [False, True], ids=["single-title", "multi-title"])
+@pytest.mark.parametrize("existing_run", [False, True])
+def test_earlier_section_conversion_error_cannot_hide_later_invalid_appendix(
+    tmp_path, monkeypatch, workers, multi_title, existing_run,
+):
+    _assert_earlier_conversion_error_cannot_hide_invalid_appendix(
+        tmp_path, monkeypatch, workers=workers, multi_title=multi_title, existing_run=existing_run,
+    )
+
+
+@settings(
+    max_examples=24,
+    deadline=None,
+    suppress_health_check=[HealthCheck.function_scoped_fixture],
+)
+@given(
+    workers=st.sampled_from([1, 2]),
+    multi_title=st.booleans(),
+    existing_run=st.booleans(),
+    section_digits=st.integers(min_value=4301, max_value=4315),
+    host=st.sampled_from(["B", "P"]),
+)
+def test_property_any_selected_invalid_appendix_prevents_all_writes_despite_earlier_failure(
+    tmp_path, monkeypatch, workers, multi_title, existing_run, section_digits, host,
+):
+    """Any invalid selected appendix in any pending title makes all writes fail closed.
+
+    Earlier section conversion failures cannot weaken that guarantee, and an
+    otherwise valid pending title cannot write its own artifacts first.
+    """
+    with tempfile.TemporaryDirectory(dir=tmp_path) as tmp, monkeypatch.context() as patch:
+        _assert_earlier_conversion_error_cannot_hide_invalid_appendix(
+            Path(tmp), patch, workers=workers, multi_title=multi_title,
+            existing_run=existing_run, section_digits=section_digits, host=host,
         )

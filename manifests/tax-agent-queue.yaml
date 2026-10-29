@@ -29,10 +29,10 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  agent_ready: 25
-  blocked_primary_source: 3
+  agent_ready: 28
+  blocked_primary_source: 1
   done: 84
-  needs_review: 3
+  needs_review: 2
 states:
 - jurisdiction: us
   name: Federal
@@ -26088,24 +26088,40 @@ states:
     document, 504 page); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; largest body 2,947 chars.'
 - jurisdiction: us-ar
   name: Arkansas income tax regulations
-  queue_status: blocked_primary_source
-  source_kind: official_publisher_blocked
+  queue_status: agent_ready
+  source_kind: official_state_regulation
   primary_source_url: https://codeofarrules.arkansas.gov/Rules/Search
-  target_manifest: null
+  target_manifest: manifests/us-ar-income-tax-regulations.yaml
   target_scope:
     jurisdiction: us-ar
     document_class: regulation
-    version: null
+    version: 2026-10-20-income-tax-regulations
   lead_counts: {}
-  index_url: https://codeofarrules.arkansas.gov/Rules/Search
+  index_url: https://codeofarrules.arkansas.gov/Home/GetRulesSearchPartDropdown?levelType=PART&titleID=26
   index_document_count: 67
-  taken_count: 0
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
-    Code of Arkansas Rules Title 26 Taxation, Part 100 Comprehensive Individual Income Tax Rule (id 26-33-261-941) and Parts
-    101-104. The Secretary of State''s codeofarrules.arkansas.gov (official since 2025-01-01) renders rule text only in the
-    browser: /Rules/Rule?levelType=PART&id=... returns the page shell (HTTP 200, 13 KB, no text), the tree endpoints (Home/GetRulesTreeViewData)
-    return [] below title level, and the site''s TLS chain fails curl_cffi verification. DFA''s rules page (HTTP 200 today;
-    520 on the first probe) links no income-tax rule PDF. 67 Title 26 parts listed; none extractable.'
+  taken_count: 73
+  index_families:
+    individual income tax: 5
+    income tax credits and incentives: 15
+    income tax withholding and administration: 4
+    corporate and pass-through income tax: 4
+    sales, use and excise tax: 8
+    tobacco, beverage and other excise: 7
+    property, severance and transfer tax: 4
+    tax administration and appeals: 18
+    other taxation rules: 2
+  notes: '2026-10-20 wave-8 re-probe (docs/ingest-runs/2026-10-20-w8-state-tax-regulations.md) of the row the 2026-09-14
+    run left blocked (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). The Secretary of State''s
+    codeofarrules.arkansas.gov now renders rule text server-side: the recorded /Rules/Rule?levelType=PART&id=26-33-261-941-0-0
+    shape answers with a null-reference error page, and the live shape is /Rules/Rule?levelType=section&titleID=26&chapterID=33&subChapterID=261&partID=<part>&subPartID=<subpart>&sectionID=<section>,
+    whose div#docxContent holds the section text. The tree endpoints (Home/GetRulesTreeViewData) still return [] below
+    title level, so the index is Home/GetRulesSearchPartDropdown?levelType=PART&titleID=26 (67 Title 26 parts, unchanged)
+    and the sections were enumerated by the publisher''s own PREVIOUS/NEXT chain across Parts 100-104 (Subchapter D):
+    5 part pages, 5 "Subpart 1. Generally" pages, 71 sections, 2 appendices. Taken: 71 section pages (HTML, plain
+    client; chrome120 still fails the certificate chain, so no impersonation) and the 2 appendix PDFs the appendix pages
+    link through /Rules/AppendixDocument. The 10 part and subpart pages carry no rule text and are not taken. Rows: 172
+    (73 document, 71 block, 28 appendix page); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; every
+    leaf body non-empty, largest 35,568 chars (26 CAR 100-122), smallest 30.'
 - jurisdiction: us-az
   name: Arizona income tax regulations
   queue_status: done
@@ -26280,22 +26296,39 @@ states:
     notes: Served the corpus client; Sitecore media URLs carry rev/hash query strings.
 - jurisdiction: us-dc
   name: District of Columbia income tax regulations
-  queue_status: blocked_primary_source
-  source_kind: official_publisher_blocked
+  queue_status: agent_ready
+  source_kind: official_state_regulation
   primary_source_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=9-1
-  target_manifest: null
+  target_manifest: manifests/us-dc-income-tax-regulations.yaml
   target_scope:
     jurisdiction: us-dc
     document_class: regulation
-    version: null
+    version: 2026-10-20-income-tax-regulations
   lead_counts: {}
   index_url: https://dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=9-1
-  index_document_count: 22
-  taken_count: 0
-  notes: 2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). DCMR
-    Title 9 Chapter 1 (Income and Franchise Taxes). dcregs.dc.gov lists the 22 sections (HTTP 200, 196 KB, plain client and
-    browser impersonation) but exposes rule text and files only through ASP.NET __doPostBack controls (lnkFile / 'View text');
-    no stable GET URL exists for any section, the same durable finding as the 2026-09-13 CHIP re-probe.
+  index_document_count: 85
+  taken_count: 85
+  index_families:
+    general provisions and exempt organizations: 4
+    returns and filing requirements: 8
+    individual income tax computation, credits and modifications: 4
+    modifications, federal adjustments and college savings: 3
+    franchise tax on corporations and unincorporated businesses: 6
+    allocation and apportionment: 8
+    withholding: 14
+    estimated tax: 6
+    refunds, penalties and licenses: 3
+    combined reporting and investment entities: 20
+    reserved: 9
+  notes: '2026-10-20 wave-8 re-probe (docs/ingest-runs/2026-10-20-w8-state-tax-regulations.md) of the row the 2026-09-14
+    run left blocked (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). DCMR Title 9 Chapter 1 (Income
+    and Franchise Taxes). The postback-only finding no longer holds: the RuleList page (HTTP 200, 196 KB, plain client)
+    now prints a stable GET address beside every lnkFile / "View text" control - RuleList.aspx?DownloadFile=<id> for the
+    rule file and SectionList.aspx?SectionNumber=<n> for the section - as the wave-7 us-dc regulation scope found for
+    chapter 29-72. The chapter now lists 85 sections, not the 22 recorded in 2026-09-14. All 85 taken, including the 9
+    RESERVED sections, which the publisher prints as rule text ("183 RESERVED" plus its SOURCE note). Files are legacy
+    Word (.doc, OLE2) read with segmentation single_block. Rows: 170 (85 document, 85 block); coverage complete, 0
+    missing, 0 extra, 0 duplicate citation paths; every leaf body non-empty, largest 38,327 chars (9-155), smallest 93.'
 - jurisdiction: us-de
   name: Delaware income tax regulations
   queue_status: needs_review
@@ -26308,13 +26341,24 @@ states:
     version: null
   lead_counts: {}
   index_url: https://regulations.delaware.gov/api/AdminCode/titles
-  index_document_count: 0
+  index_document_count: 147
   taken_count: 0
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
-    Delaware Administrative Code has no income-tax title: the Registrar of Regulations'' title list (api/AdminCode/titles,
-    HTTP 200) carries titles 1-29 with no Department of Finance / Division of Revenue title (Title 12 is unclaimed property
-    and refund offset only); the Division of Revenue publishes Technical Information Memoranda, not codified regulations.
-    Absent at the publisher; nothing extracted.'
+  index_families:
+    department of finance (unclaimed property, tax refund offset and intercept): 8
+    income or franchise tax: 0
+    other agency titles: 139
+  notes: '2026-10-20 wave-8 re-probe (docs/ingest-runs/2026-10-20-w8-state-tax-regulations.md) of the 2026-09-14 finding
+    (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Absence re-confirmed at the Registrar of
+    Regulations'' deeper endpoints, not from the small titles response: api/AdminCode/titles returns valid JSON with 20
+    complete title records (3.4 KB is the whole list, not a stub), and the POST api/AdminCode/title {regulationUrl}
+    endpoint named in the site bundle inventories every title - 147 top-level regulatory units in all. The only
+    Department of Finance title is Title 12 Unclaimed Property and Tax Refund Offset and Intercept (8 units: five
+    unclaimed-property regulations, 201 and 202 on tax refund offset and lottery intercept, 301 voluntary disclosure).
+    The same POST endpoint answers with an empty record (null name, 0 units) for every title number absent from the
+    list, including a hypothetical Title 30 revenue title, so the 20-title list is the complete index. The Delaware
+    Administrative Code therefore has no income-tax title; the Division of Revenue issues Technical Information
+    Memoranda, which are guidance, not codified regulations, and are out of scope for this row. Nothing extracted.
+    Follow-up for a reviewer: decide whether the Division of Revenue TIMs belong in a us-de/guidance scope.'
 - jurisdiction: us-ga
   name: Georgia income tax regulations
   queue_status: done
@@ -27271,11 +27315,22 @@ states:
   index_url: https://www.nj.gov/oal/rules/accessp/
   index_document_count: 0
   taken_count: 0
-  notes: '2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01).
-    N.J.A.C. 18:35 Gross Income Tax. The Office of Administrative Law''s public-access page states that free online access
-    to the New Jersey Administrative Code is provided by LexisNexis; nj.gov posts no N.J.A.C. text (Division of Taxation lawsregs
-    page, HTTP 200, links only to the OAL search). A vendor site is not an official publisher under the source policy: no
-    extraction.'
+  index_families: {}
+  notes: '2026-10-20 wave-8 re-probe (docs/ingest-runs/2026-10-20-w8-state-tax-regulations.md) of the 2026-09-14 finding
+    (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). N.J.A.C. 18:35 Gross Income Tax. Still blocked,
+    and the bodies were read, not just the status lines. Exact failure: www.nj.gov/oal/rules/accessp/ answers HTTP 200
+    with a 29 KB page whose only outbound code links are lexisnexis.com/hottopics/njcode and
+    lexisnexis.com/hottopics/njoal, so free public online access to the Administrative Code is still published by
+    LexisNexis alone; the OAL''s own "State Agency Rulemaking Searchable Portal"
+    (www.nj.gov/oal/rules/portal/ -> oalrulesproduction.dynamics365portals.us) carries rulemaking filings, not codified
+    N.J.A.C. text; and the Division of Taxation''s Statutes, Regulations and Laws page
+    (www.nj.gov/treasury/taxation/lawsregs.shtml, HTTP 200, 48 KB) links only those OAL pages plus
+    www.nj.gov/treasury/rulesamend.shtml, which is a Proposed Rules and Amendments list of rulemaking notice PDFs
+    (N.J.A.C. 18:35 proposals, amendments and readoptions) and not the codified chapter. A vendor site is not an
+    official publisher under the source policy, so no extraction. Follow-up for a reviewer: the nj.gov rulemaking
+    notices are a us-nj/rulemaking candidate, as the 2026-09-28 PRN scope already is, and a department-posted N.J.A.C.
+    chapter PDF (the pattern nj.gov/humanservices uses for N.J.A.C. 10:15) would close this row if Treasury ever posts
+    one.'
 - jurisdiction: us-nj
   name: New Jersey income tax program-bundle gaps (wave 6)
   queue_status: done
@@ -27663,23 +27718,45 @@ states:
     notes: Served the corpus client (server-rendered Drupal search).
 - jurisdiction: us-ut
   name: Utah income tax regulations
-  queue_status: needs_review
-  source_kind: official_publisher_blocked
-  primary_source_url: https://adminrules.utah.gov/public/rule/R865-9I/Current%20Rules
-  target_manifest: null
+  queue_status: agent_ready
+  source_kind: official_state_regulation
+  primary_source_url: https://adminrules.utah.gov/Rule/2067/51/7412/undefined
+  target_manifest: manifests/us-ut-income-tax-regulations.yaml
   target_scope:
     jurisdiction: us-ut
     document_class: regulation
-    version: null
+    version: 2026-10-20-income-tax-regulations
   lead_counts: {}
-  index_url: https://adminrules.utah.gov/public/rule/R865-9I/Current%20Rules
-  index_document_count: 0
-  taken_count: 0
-  notes: 2026-09-14 state income-tax regulation run (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Utah
-    Admin. Code R865-9I Income Tax. adminrules.utah.gov is a JavaScript application; the public API paths in its bundle (/api/public/rule/{a}/{b}/{c},
-    getHTML/{file}, ruleversioninfo/{id}) answer every guessed argument shape with HTTP 400/204, and searchRuleDataTotal returns
-    the agency tree with empty rule lists, so the rule's current-file id (the getfile uuid the July R986 manifest used) could
-    not be discovered without the browser. Not extracted; needs a session with the browser to capture the file id.
+  index_url: https://adminrules.utah.gov/api/search
+  index_document_count: 14
+  taken_count: 1
+  index_families:
+    individual income tax: 1
+    corporate and franchise income tax: 2
+    sales and use tax: 3
+    fuel tax: 2
+    severance and mineral tax: 3
+    tobacco tax: 1
+    assessments and fees: 2
+  notes: '2026-10-20 wave-8 re-probe (docs/ingest-runs/2026-10-20-w8-state-tax-regulations.md) of the 2026-09-14 finding
+    (docs/ingest-runs/2026-09-14-state-tax-regulations.md, closure R01). Utah Admin. Code R865-9I Income Tax. URL
+    repaired: the Office of Administrative Rules relaunched eRules (v1.0.0) on 2026-10-16
+    (rules.utah.gov/new-erules-launch-october-16/), so the recorded
+    adminrules.utah.gov/public/rule/R865-9I/Current%20Rules address and the whole /api/public/getfile/uac-html/ file
+    route that the July R986 manifest used now answer HTTP 404; the live address is
+    adminrules.utah.gov/Rule/2067/51/7412/undefined (ruleId/ruleTypeId/ruleVersionId; the trailing path segment is
+    required, without it the route 404s). Index: the new public API answers POST api/search with
+    {"searchTerm":"R865","ruleTypeId":51} (51 = current rules) and POST api/ruleVersion with {"ruleTypeId":51,
+    "versionIds":[...]}, which enumerate Title R865 (Tax Commission, Auditing) as 14 current rules. R865-9I Income Tax
+    (effective 2026-01-01) taken as one whole-rule document; corporate and franchise (R865-3c, R865-6f) and the other
+    tax families stay out of scope for the income-tax row, as in 2026-09-14. The rule page server-renders the
+    publisher''s own converted rule HTML (div.awdiv / span.awtext1) into the DOM, read with html_content_selector
+    "div[class$=''_ruleHtml'']" on the plain client with no request options. The new /api/storage/<file> download route
+    answers HTTP 500 for every file name, so the rule page is the only working official address and the rule is not
+    split into its 32 R865-9I-<n> sections: the Aspose absolute-positioned markup puts each visual line in its own
+    div.awdiv, so labeled_sections recovers only 2 of 32 section headings and 11,909 of 49,067 characters. Rows: 2
+    (1 document, 1 block); coverage complete, 0 missing, 0 extra, 0 duplicate citation paths; body 49,067 chars.
+    Follow-up for a reviewer: a section-level split of R865-9I needs a reader for the publisher''s positioned markup.'
 - jurisdiction: us-va
   name: Virginia income tax regulations
   queue_status: done
