@@ -160,7 +160,8 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
   as `EcfrAppendixError`. The caption and word-break changes reach no locked row: the
   only locked appendices (7 CFR 277 appendix A, 45 CFR 96 appendix A) have neither.
   The differential script and its report were review working files; this repository
-  does not keep them, so the replay below is the check a reader can rerun.
+  does not keep them, so the replay below is the check that remains reproducible from
+  the locked sources.
 - Fail closed before writes: an opted-in appendix that names another part or subpart, or
   has an ambiguous designator, raises `EcfrAppendixError` (CLI exit 2) whether the
   structure or only the XML shows it. `extract-ecfr` reads or fetches every pending
