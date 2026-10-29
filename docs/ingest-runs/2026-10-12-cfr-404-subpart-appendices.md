@@ -179,7 +179,10 @@ cases) and updated `tests/test_corpus_ecfr.py`, `tests/test_recover_ingest.py`.
   folder.
 - Replay: the final code, fed this scope's locked XML, structure and PNGs, writes all 8
   locked files byte for byte, so the manifest signed at `c3cad3462` matches what the
-  merged code produces.
+  merged code produces. Rechecked on 2026-10-29 after merging `main` (`e4e34a8b`):
+  with the eCFR structure, XML and graphic fetch functions returning the locked bytes,
+  `inventory-ecfr` and `extract-ecfr` with this note's arguments again write all 8
+  locked files byte for byte and nothing else.
 - Recovery scripts still refuse appendix replay, subpart appendix citations included.
 
 ## Citation-path ratchets
