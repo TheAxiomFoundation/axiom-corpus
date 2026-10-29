@@ -1,0 +1,1 @@
+Inherit UK provision extents from the nearest CLML restriction and retain operative MathML formulas in source order; replay the child-definition statute and regulation scopes from their unchanged archived captures.

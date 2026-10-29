@@ -19,28 +19,110 @@ The Python functions `build_ecfr_inventory`,
 `build_ecfr_inventory_from_structures`, `iter_ecfr_title_provisions`, and
 `extract_ecfr` expose the same keyword, `include_appendices=False` by default.
 
-Supported identifiers are `Appendix A to Part 604` and equivalent single-letter
-or numeric appendix identifiers. Their citation paths are
+Supported part appendix identifiers are `Appendix A to Part 604` and equivalent
+single-letter or numeric appendix identifiers. Their citation paths are
 `us/regulation/45/604/appendix-a`; the parent remains the enclosing part, including
 when a source subject group or subpart contains the appendix. Traversal preserves
 source order without converting a provision twice.
 
+## Subpart appendices
+
+Supported subpart appendix identifiers name the subpart and the part. Their parent
+is the subpart row, at level 2:
+
+| eCFR identifier | Citation path |
+| --- | --- |
+| `Appendix II to Subpart C of Part 404` | `us/regulation/20/404/subpart-C/appendix-ii` |
+| `Appendix 1 to Subpart P of Part 404` | `us/regulation/20/404/subpart-P/appendix-1` |
+| `Appendix A to Subpart C of Part 910` | `us/regulation/2/910/subpart-C/appendix-a` |
+| `Appendix to Subpart B of Part 404` (unnumbered) | `us/regulation/20/404/subpart-B/appendix` |
+| `Appendixes to Subpart C of Part 404` (the note before a subpart's appendices) | `us/regulation/20/404/subpart-C/appendixes` |
+
+A designator is a number, a single letter, or an uppercase roman numeral, and the
+path segment lowercases it (`Appendix a ...` and `Appendix A ...` are the same
+appendix, and classify the same way). The legal identifier reads
+`20 CFR part 404, subpart C, appendix II` (`..., appendix` and `..., appendixes` for
+the unnumbered and collective forms). Metadata carries `subpart`, `appendix` (the
+lowercased designator, or null), `appendix_identifier` and `appendix_numbering`.
+
+Appendices sort after their subpart's sections (ordinal 1,000,000 plus the
+designator's value). Whether `I` and `V` are numerals or letters depends on the
+other appendices of the same subpart: when every non-numeric designator is a roman
+numeral and one has more than one character (`I`, `II`, ... `VII`), they are
+numerals and sort by value; otherwise single letters keep the part-appendix ordinal
+(`ord` of the letter). A multi-character designator among letters (`CC` beside
+`A`) has no unambiguous order and fails validation. Only appendices that sit in the
+subpart they name count toward its classification, so a misplaced appendix, selected
+or not, never changes how its named siblings sort; reserved appendices do count.
+`extract-ecfr` classifies designators from the retained structure, so a
+structure-only placeholder and the XML record it stands in for get the same
+ordinal; extraction skips an appendix that only the XML has because it falls
+outside the inventory.
+
+A subpart appendix must sit inside the subpart and part it names. One that does
+not (for example `Appendix A to Subpart F of Part 2520`, which the eCFR places
+outside any subpart) fails validation, as a part appendix that names another part
+does.
+
 Opted-in inventory construction rejects unsupported nonreserved identifiers,
-including `Appendix to Subpart K of Part 416` and multi-letter identifiers such
-as `Appendix II to Part 604`. A parsed part that contradicts the enclosing part
-also fails validation. These errors do not imply full appendix coverage.
+including multi-letter part appendix identifiers such as `Appendix II to Part 604`,
+unnumbered part appendices (`Appendix to Part 720`), hyphenated or alphanumeric
+designators (`Appendix A-1 to Subpart I of Part 550`, `Appendix C1 to Subpart B of
+Part 430`), and identifiers that cite the title (`Appendix B to Subpart A of
+10 CFR Part 51`). A parsed part that contradicts the enclosing part also fails
+validation. These errors do not imply full appendix coverage.
 Exact `--section` selectors exclude appendices before validation. The lower-level
 iterator likewise applies an explicit citation allowlist before converting an
 appendix; selected unsupported identifiers still fail closed.
-Appendix inventory/selection validation errors from either CLI command print a
-diagnostic to stderr and exit with status 2 before writing run artifacts; an
-existing run is preserved. Later parsing or I/O failures can occur after source capture.
+Appendix validation errors (`EcfrAppendixError`, a `ValueError`) from either CLI
+command print a diagnostic to stderr and exit with status 2 before writing run
+artifacts and preserve an existing run. That holds for contradictions only the XML
+shows, too, in multi-title runs as well: before writing anything, `extract-ecfr`
+reads or fetches every pending title's XML (staging fetched XML outside the corpus
+base, so the command fetches it once) and converts its selected appendices in
+memory; it writes sources, images, structures, inventory, provisions and coverage
+only after every title passes. If the command cannot fetch a title's XML there, it reports a
+title error and skips that title, so no unchecked XML reaches the run. Other
+parsing or I/O failures can still occur after source capture and surface as title
+errors.
 
 For included appendices, extraction archives official PNG bytes for source
 images, retains image references in the body, and keeps HD1–HD3 heading text.
 Image-only forms therefore retain a nonempty body pointing to the captured
 source. Existing SHA-256-bound formula transcription checks still apply. Image
 references are source evidence, not OCR text or an executable formula.
+
+Appendix and section bodies keep table captions as a block before the table's
+rows (`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P
+of part 404, `Table 1—For Employees` in 20 CFR 404.1592). Both body renderers wrap
+each caption in `[Table caption: …]`. The anchor scanner masks the complete
+marked line with equal-length spaces before finding paragraph heads, so caption
+labels never create paragraph anchors and offsets still refer to the original
+body. Plain body text gives the scanner no way to distinguish a caption's
+paragraph-like label from a paragraph head. A prefix alone cannot exclude labels after dashes or sentence
+punctuation inside a caption. The marker follows the bracketed evidence convention
+of `[Official formula image: …]`: apart from whitespace and `|` cell separators,
+rendering adds only caption blocks and their marker characters to ordinary
+body text and preserves every source character within each caption.
+
+Both body renderers read a `<br/>` as a word break, so `means<br/>less` becomes
+`means less`. A break directly after a hyphen preserves the join and the hyphen:
+`Occupa-<br/>tion` becomes `Occupa-tion`, and `1954-<br/>Apr.` becomes `1954-Apr.`.
+Adjacent block children (`P`, `FP`, any `FP-*`, `PSPACE`, `HED`, `HD1`–`HD3`, `LI`,
+`DIV`) separate words, while inline markup still joins (`FEV<sub>1</sub>` becomes
+`FEV1`). The renderer skips an appendix's own bracketed source note (`CITA`) and
+plain text directly inside an element it does not read, such as an editorial
+cross-reference (`XREF`, "Link to an amendment published at 91 FR 40836, July 2,
+2026."). It still keeps paragraphs, headings and tables inside such an element,
+and all text nested inside a caption, paragraph or table cell, whatever its tag.
+These rendering rules also apply to part appendices and preserve their path,
+parent, level, ordinal and metadata.
+
+Sections took captions and word breaks after the appendices did. Locked scopes
+keep the exact text their extraction produced: earlier sections drop captions
+and join words across `<br/>`, while the part 404 appendices from #828 keep plain
+captions. Successor extractions pick up the shared caption marker and word-break
+rules.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with
@@ -59,9 +141,10 @@ ordinary section-only recovery. Preserve appendix artifacts and use an
 appendix-aware inventory/extraction workflow for a separate run instead; these
 recovery scripts do not certify an appendix replay as complete.
 
-Ordinary section rendering and formula-only image capture retain their prior
-behavior, even in an appendix-enabled run. This change does not add HD1–HD3 text
-or non-math image capture to sections. It also does not repair the inherited
+Apart from captions and word breaks, ordinary section rendering and
+formula-only image capture retain their prior behavior, even in an
+appendix-enabled run. Sections do not get HD1–HD3 text or non-math image
+capture. Nor do captions and word breaks repair the inherited
 loss of a nested `MATH` marker inside a consumed paragraph, table, or heading;
 standalone `MATH` transcription and markers remain supported.
 

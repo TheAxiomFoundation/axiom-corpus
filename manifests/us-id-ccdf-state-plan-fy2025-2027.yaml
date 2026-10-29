@@ -30,8 +30,8 @@ documents:
     plan_status: 'Approved as of 2024-11-09 (located on retry 2 2026-09-10T21:35Z from a US network: publicdocuments.dhw.idaho.gov
       now answers after TCP connect timeouts on the first two passes; the index links the Laserfiche WebLink DocView page
       id=32013, whose viewer serves the file from the same repository''s ElectronicFile.aspx endpoint, taken as source_url)'
-    central_index_url: https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    central_index_url: https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027
     publisher_index_url: https://healthandwelfare.idaho.gov/providers/child-care-providers/child-care-resources
     acf_appendix_url: https://acf.gov/sites/default/files/documents/occ/ID-Appendix-ACF-118-CCDF-FFY-2025-2027.pdf
     source_discovery_group: us-id/policy/ccdf
-    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/form/approved-ccdf-plans-fy-2025-2027
+    discovered_via: manual-review:ccdf-agent-queue; index https://acf.gov/occ/data/approved-ccdf-plans-fy-2025-2027

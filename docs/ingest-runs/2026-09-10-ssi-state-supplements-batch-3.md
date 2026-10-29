@@ -72,7 +72,7 @@ DHS group beside the MEH PDF scope `us-wi/manual/dhs/medicaid/...`); `source_as_
 dates; the OK API carries no effective dates for chapter 15).
 
 Extraction: `uv run axiom-corpus-ingest extract-official-documents` for the five manifests; artifacts under the
-main checkout's `--base /Users/pavelmakarchuk/axiom-corpus/data/corpus` (this worktree is sparse). TLS verification
+main checkout's `--base <axiom-corpus checkout>/data/corpus` (this worktree is sparse). TLS verification
 was never disabled; no certificate was needed (no publisher in this batch serves an incomplete chain; AK is plain
 http, the publisher's only working scheme). No `browser_impersonation` was needed for any extracted document (all
 five publishers answer the plain client); impersonation was used only for the OK and MO probes recorded above. No
@@ -220,7 +220,7 @@ AK, WI, MO, SD, OK), done 22 (16 + AR, AZ, MS, ND, TN, WV), blocked_primary_sour
 - `data/corpus/coverage/us-xx/<class>/2026-09-10-ssi-state-supplement.json`
 
 for us-ak/manual, us-wi/manual, us-mo/manual, us-sd/regulation, us-ok/regulation, all under
-`/Users/pavelmakarchuk/axiom-corpus/data/corpus` (main checkout). No certificate was added this batch.
+`<axiom-corpus checkout>/data/corpus` (main checkout). No certificate was added this batch.
 
 Rebuild (the generator caches index pages and API responses under `~/.axiom/ssi-state-supplement-cache`; the
 extractor re-fetches every document; no CA bundle and no `browser_impersonation` needed):
@@ -229,7 +229,7 @@ extractor re-fetches every document; no CA bundle and no `browser_impersonation`
 uv run python scripts/build_ssi_state_supplement_manifests.py --print-index   # batch 3 (default)
 for s in ak wi mo sd ok; do
   uv run axiom-corpus-ingest extract-official-documents \
-    --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+    --base <axiom-corpus checkout>/data/corpus \
     --version 2026-09-10-ssi-state-supplement \
     --manifest manifests/us-$s-ssi-state-supplement.yaml
 done

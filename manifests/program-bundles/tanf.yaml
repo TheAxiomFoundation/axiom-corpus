@@ -21,11 +21,11 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a
+    recorded reason, and the screener-level parity run against the newest reference release has no unfixed Axiom
+    errors. Federal law in Tier 1 is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+    rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
       documents, each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/tanf-references.json
     policyengine_us_release: latest
@@ -45,23 +45,23 @@ tiers:
       us-vi: 1
     in_scope_by_layer:
       federal: 15
-      state: 480
+      state: 474
 - id: full
   title: Full document bundle
-  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
-    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
-    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
+    the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
+    A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
-      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
-      for the program; and the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
+      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
+      the sources the config knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/tanf-schema.yaml
     federal_manifests: ^us-(tanf|acf|hhs-poverty)
     state_manifests: tanf|calworks|cash-assistance|atap|tea-|fip-|tafdc|work-first|wfnj|tca-|fep-|reach-up|ktap|fitap|owf|mfip
     known_sources: 0
     in_scope_by_layer:
       federal: 161
-      state: 5388
+      state: 5383
 layers:
 - jurisdiction: us
   screener:
@@ -2538,16 +2538,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-55.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-55.pdf
-    layer: state
-    citation_path: null
-    source_url: https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-55.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
   - key: https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201920200SB80
     name: leginfo.legislature.ca.gov/faces/billNavClient.xhtml
     layer: state
@@ -2617,12 +2607,12 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Benefit amount
     cited:
     - path: us-ca/guidance/cdss/acl-2024-24-55
-      references: 1
+      references: 2
       part: Benefit amount
   - key: us-ca/manual/la-county-dpss/epolicy/1210-child-care-overview
     name: 'Los Angeles County Department of Public Social Services: 1210 Overview'
@@ -3154,15 +3144,6 @@ layers:
     citation_path: null
     source_url: http://epolicy.dpss.lacounty.gov/epolicy/epolicy/server/general/projects_responsive/ePolicyMaster/index.htm?&area=general&type=responsivehelp&ctxid=&project=ePolicyMaster
     part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-55.pdf
-    name: cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-55.pdf
-    layer: state
-    citation_path: null
-    source_url: https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2024/24-55.pdf
-    part: Benefit amount
     sources:
     - screener
     scope: in
@@ -3751,26 +3732,6 @@ layers:
     part: Benefit amount
 - jurisdiction: us-co
   screener:
-  - key: https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=11535&fileName=9%20CCR%202503-6
-    name: coloradosos.gov/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=11535&fileName=9%20CCR%202503-6
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10321
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10321
-    sources:
-    - policyengine-references
-    references: 4
-    scope: in
-    part: Income
   - key: us-co/regulation/9-ccr-2503-6
     name: Code of Colorado Regulations 9 CCR 2503-6 Colorado Works Program
     layer: state
@@ -3778,35 +3739,17 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 2
+    references: 7
     scope: in
     part: Income
     cited:
     - path: us-co/regulation/9-ccr-2503-6
-      references: 1
-      part: Benefit amount
+      references: 6
+      part: Income
     - path: us-co/regulation/9-ccr-2503-6/3.605
       references: 1
       part: Income
   full:
-  - key: https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=11535&fileName=9%20CCR%202503-6
-    name: coloradosos.gov/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.coloradosos.gov/CCR/GenerateRulePdf.do?ruleVersionId=11535&fileName=9%20CCR%202503-6
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10321
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10321
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: us-co/regulation/9-ccr-2503-6
     name: Code of Colorado Regulations 9 CCR 2503-6 Colorado Works Program
     layer: state
@@ -19991,16 +19934,6 @@ layers:
     references: 1
     scope: in
     part: Household and eligibility
-  - key: https://www.dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=29-72
-    name: dcregs.dc.gov/Common/DCMR/RuleList.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=29-72
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
   - key: us-dc/policy/acf/tanf-plan/2023
     name: District of Columbia TANF State Plan, effective October 1, 2023
     layer: state
@@ -20043,6 +19976,20 @@ layers:
     - path: us-dc/policy/dhs/tanf/temporary-cash-assistance-for-needy-families
       references: 2
       part: Work requirements
+  - key: us-dc/regulation/dcmr/29-7200
+    name: DCMR 29-7200 Standards of Assistance and Payment Levels (Chapter 29-72)
+    layer: state
+    citation_path: us-dc/regulation/dcmr/29-7200
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-dc/regulation/dcmr/29-7200
+      references: 1
+      part: Benefit amount
   - key: us-dc/statute/4/chapter-2
     name: us-dc/statute/4/chapter-2
     layer: state
@@ -20168,15 +20115,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://www.dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=29-72
-    name: dcregs.dc.gov/Common/DCMR/RuleList.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dcregs.dc.gov/Common/DCMR/RuleList.aspx?ChapterNum=29-72
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
   - key: us-dc/policy/acf/tanf-plan/2023
     name: District of Columbia TANF State Plan, effective October 1, 2023
     layer: state
@@ -20206,6 +20144,15 @@ layers:
     sources:
     - screener
     - manifests/us-dc-tanf-ccdf-w6-docs.yaml
+    scope: in
+  - key: us-dc/regulation/dcmr/29-7200
+    name: DCMR 29-7200 Standards of Assistance and Payment Levels (Chapter 29-72)
+    layer: state
+    citation_path: us-dc/regulation/dcmr/29-7200
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
     scope: in
   - key: us-dc/statute/4/chapter-2
     name: us-dc/statute/4/chapter-2
@@ -20259,16 +20206,6 @@ layers:
     part: Other
 - jurisdiction: us-fl
   screener:
-  - key: https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0414/Sections/0414.095.html
-    name: leg.state.fl.us/statutes/index.cfm
-    layer: state
-    citation_path: null
-    source_url: https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0414/Sections/0414.095.html
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
   - key: us-fl/manual/dcf/ess-program-policy-manual/2400-budgeting-income
     name: 'Florida ESS Program Policy Manual: 2400 Budgeting Income'
     layer: state
@@ -20353,16 +20290,21 @@ layers:
     - path: us-fl/regulation/fac/65a-4/220
       references: 1
       part: Benefit amount
-  full:
-  - key: https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0414/Sections/0414.095.html
-    name: leg.state.fl.us/statutes/index.cfm
+  - key: us-fl/statute/title-xxx/chapter-414
+    name: us-fl/statute/title-xxx/chapter-414
     layer: state
-    citation_path: null
-    source_url: https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0414/Sections/0414.095.html
-    part: Benefit amount
+    citation_path: us-fl/statute/title-xxx/chapter-414
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
+    part: Benefit amount
+    cited:
+    - path: us-fl/statute/title-xxx/chapter-414/section-414-095
+      references: 1
+      part: Benefit amount
+  full:
   - key: us-fl/manual/dcf/ess-program-policy-manual/2400-budgeting-income
     name: 'Florida ESS Program Policy Manual: 2400 Budgeting Income'
     layer: state
@@ -20420,6 +20362,25 @@ layers:
     - screener
     - manifests/us-fl-tanf-ccdf-w6-rules.yaml
     scope: in
+  - key: us-fl/statute/title-xxx/chapter-414
+    name: us-fl/statute/title-xxx/chapter-414
+    layer: state
+    citation_path: us-fl/statute/title-xxx/chapter-414
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-fl/statute/title-xxx/chapter-414/section-414-095
+    name: Fla. Stat. 414.095 Determining eligibility for temporary cash assistance (2025 Florida Statutes)
+    layer: state
+    citation_path: us-fl/statute/title-xxx/chapter-414/section-414-095
+    source_url: https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0414/Sections/0414.095.html
+    sources:
+    - manifests/us-fl-state-benefits-w7-statute.yaml
+    manifest: manifests/us-fl-state-benefits-w7-statute.yaml
+    scope: in
+    part: Benefit amount
   - key: us-fl/statute/title-xiv/chapter-220
     name: 'The 2026 Florida Statutes, Title XIV, Chapter 220: Income Tax Code (whole chapter, Online Sunshine)'
     layer: state
@@ -21863,56 +21824,76 @@ layers:
     part: Other
 - jurisdiction: us-il
   screener:
-  - key: https://www.dhs.state.il.us/page.aspx?item=112906
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/guidance/dhs/brochure-586-tanf
+    name: 'IDHS: 586 - TANF Temporary Assistance For Needy Families (brochure)'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=112906
+    citation_path: us-il/guidance/dhs/brochure-586-tanf
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Benefit amount
-  - key: https://www.dhs.state.il.us/page.aspx?item=13251
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/guidance/dhs/brochure-586-tanf
+      references: 1
+      part: Benefit amount
+  - key: us-il/guidance/dhs/tanf
+    name: 'IDHS: Temporary Assistance for Needy Families (TANF)'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=13251
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.dhs.state.il.us/page.aspx?item=149890
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=149890
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.dhs.state.il.us/page.aspx?item=30358
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=30358
+    citation_path: us-il/guidance/dhs/tanf
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Household and eligibility
-  - key: https://www.dhs.state.il.us/page.aspx?item=49833
-    name: dhs.state.il.us/page.aspx
+    cited:
+    - path: us-il/guidance/dhs/tanf
+      references: 1
+      part: Household and eligibility
+  - key: us-il/manual/dhs/csmm/112906
+    name: 'IDHS: MR #18.17: Increase in TANF Payment Levels'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=49833
+    citation_path: us-il/manual/dhs/csmm/112906
+    source_url: null
     sources:
     - policyengine-references
     references: 1
     scope: in
     part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/csmm/112906
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/csmm/13251
+    name: 'IDHS: WAG 03-03-01: SSI and TANF'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/13251
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/csmm/13251
+      references: 1
+      part: Benefit amount
+  - key: us-il/manual/dhs/csmm/149890
+    name: 'IDHS: MR #23.30 TANF Payment Level Increase/IED Levels'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/149890
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Benefit amount
+    cited:
+    - path: us-il/manual/dhs/csmm/149890
+      references: 1
+      part: Benefit amount
   - key: us-il/manual/dhs/csmm/15820
     name: 'PM 10-01-02: Minimum Payment'
     layer: state
@@ -22152,50 +22133,55 @@ layers:
       references: 1
       part: Household and eligibility
   full:
-  - key: https://www.dhs.state.il.us/page.aspx?item=112906
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/guidance/dhs/brochure-586-tanf
+    name: 'IDHS: 586 - TANF Temporary Assistance For Needy Families (brochure)'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=112906
+    citation_path: us-il/guidance/dhs/brochure-586-tanf
+    source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-guidance.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=13251
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/guidance/dhs/tanf
+    name: 'IDHS: Temporary Assistance for Needy Families (TANF)'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=13251
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=149890
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=149890
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=30358
-    name: dhs.state.il.us/page.aspx
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=30358
+    citation_path: us-il/guidance/dhs/tanf
+    source_url: null
     part: Household and eligibility
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-guidance.yaml
     scope: in
-  - key: https://www.dhs.state.il.us/page.aspx?item=49833
-    name: dhs.state.il.us/page.aspx
+  - key: us-il/manual/dhs/csmm/112906
+    name: 'IDHS: MR #18.17: Increase in TANF Payment Levels'
     layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.il.us/page.aspx?item=49833
+    citation_path: us-il/manual/dhs/csmm/112906
+    source_url: null
     part: Benefit amount
     sources:
     - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/csmm/13251
+    name: 'IDHS: WAG 03-03-01: SSI and TANF'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/13251
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
+    scope: in
+  - key: us-il/manual/dhs/csmm/149890
+    name: 'IDHS: MR #23.30 TANF Payment Level Increase/IED Levels'
+    layer: state
+    citation_path: us-il/manual/dhs/csmm/149890
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    - manifests/us-il-state-benefits-w7-manual.yaml
     scope: in
   - key: us-il/manual/dhs/csmm/15820
     name: 'PM 10-01-02: Minimum Payment'
@@ -24147,16 +24133,6 @@ layers:
     part: Other
 - jurisdiction: us-ky
   screener:
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54926
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54926
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Other
   - key: us-ky/manual/dcbs/dfs/volume-iii-ktap
     name: Kentucky DFS Operation Manual Volume III - Kentucky Transitional Assistance Program (KTAP)
     layer: state
@@ -24214,16 +24190,21 @@ layers:
     - path: us-ky/regulation/kar/921/002/016/version-10142
       references: 1
       part: Deductions
-  full:
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54926
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
+  - key: us-ky/statute/krs/205.200
+    name: KRS 205.200 (current version)
     layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54926
-    part: Other
+    citation_path: us-ky/statute/krs/205.200
+    source_url: null
     sources:
-    - screener
+    - policyengine-references
+    references: 1
     scope: in
+    part: Other
+    cited:
+    - path: us-ky/statute/krs/205.200
+      references: 1
+      part: Other
+  full:
   - key: us-ky/manual/dcbs/dfs/volume-iii-ktap
     name: Kentucky DFS Operation Manual Volume III - Kentucky Transitional Assistance Program (KTAP)
     layer: state
@@ -24264,6 +24245,15 @@ layers:
     sources:
     - screener
     - manifests/us-ky-tanf-ccdf-w6-rules.yaml
+    scope: in
+  - key: us-ky/statute/krs/205.200
+    name: KRS 205.200 (current version)
+    layer: state
+    citation_path: us-ky/statute/krs/205.200
+    source_url: null
+    part: Other
+    sources:
+    - screener
     scope: in
   - key: us-ky/policy/chfs/ccdf/dcc-113
     name: 'Kentucky CHFS Division of Child Care: form DCC-113'
@@ -28433,46 +28423,6 @@ layers:
     part: Other
 - jurisdiction: us-mn
   screener:
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=ESM_000309
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=ESM_000309
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001121
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001121
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_00171203
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_00171203
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001809
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001809
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
   - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001818
     name: dhs.state.mn.us/main/idcplg
     layer: state
@@ -28677,6 +28627,62 @@ layers:
     - path: us-mn/manual/dhs/combined-manual-2021-12
       references: 1
       part: Benefit amount
+  - key: us-mn/manual/dhs/combined-manual/0011.21
+    name: Combined Manual 0011.21 Receipt of Other Assistance
+    layer: state
+    citation_path: us-mn/manual/dhs/combined-manual/0011.21
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-mn/manual/dhs/combined-manual/0011.21
+      references: 1
+      part: Income
+  - key: us-mn/manual/dhs/combined-manual/0017.12.03
+    name: Combined Manual 0017.12.03 Unearned Income
+    layer: state
+    citation_path: us-mn/manual/dhs/combined-manual/0017.12.03
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-mn/manual/dhs/combined-manual/0017.12.03
+      references: 1
+      part: Income
+  - key: us-mn/manual/dhs/combined-manual/0018.09
+    name: Combined Manual 0018.09 Dependent Care Deduction
+    layer: state
+    citation_path: us-mn/manual/dhs/combined-manual/0018.09
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-mn/manual/dhs/combined-manual/0018.09
+      references: 1
+      part: Deductions
+  - key: us-mn/manual/dhs/mfip-employment-services-manual/3.9
+    name: MFIP Employment Services Manual 3.9 Income and Asset Limits for MFIP
+    layer: state
+    citation_path: us-mn/manual/dhs/mfip-employment-services-manual/3.9
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-mn/manual/dhs/mfip-employment-services-manual/3.9
+      references: 1
+      part: Income
   - key: us-mn/policy/house-research/tanf/cash-assistance-in-minnesota-2022-12
     name: 'Minnesota House Research Department: Cash Assistance in Minnesota'
     layer: state
@@ -28749,42 +28755,6 @@ layers:
       references: 1
       part: Benefit amount
   full:
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=ESM_000309
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=ESM_000309
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001121
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001121
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_00171203
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_00171203
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001809
-    name: dhs.state.mn.us/main/idcplg
-    layer: state
-    citation_path: null
-    source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001809
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=cm_001818
     name: dhs.state.mn.us/main/idcplg
     layer: state
@@ -28965,6 +28935,42 @@ layers:
     sources:
     - screener
     - manifests/us-mn-tanf-ccdf-w6-manual.yaml
+    scope: in
+  - key: us-mn/manual/dhs/combined-manual/0011.21
+    name: Combined Manual 0011.21 Receipt of Other Assistance
+    layer: state
+    citation_path: us-mn/manual/dhs/combined-manual/0011.21
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/manual/dhs/combined-manual/0017.12.03
+    name: Combined Manual 0017.12.03 Unearned Income
+    layer: state
+    citation_path: us-mn/manual/dhs/combined-manual/0017.12.03
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/manual/dhs/combined-manual/0018.09
+    name: Combined Manual 0018.09 Dependent Care Deduction
+    layer: state
+    citation_path: us-mn/manual/dhs/combined-manual/0018.09
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-mn/manual/dhs/mfip-employment-services-manual/3.9
+    name: MFIP Employment Services Manual 3.9 Income and Asset Limits for MFIP
+    layer: state
+    citation_path: us-mn/manual/dhs/mfip-employment-services-manual/3.9
+    source_url: null
+    part: Income
+    sources:
+    - screener
     scope: in
   - key: us-mn/policy/house-research/tanf/cash-assistance-in-minnesota-2022-12
     name: 'Minnesota House Research Department: Cash Assistance in Minnesota'
@@ -50487,56 +50493,6 @@ layers:
     part: Benefit amount
 - jurisdiction: us-pa
   screener:
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter177/s177.31.html&d=reduce
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter177/s177.31.html&d=reduce
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Assets
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter178/chap178toc.html
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter178/chap178toc.html
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Assets
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/chap183toc.html
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/chap183toc.html
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.91.html&d=reduce
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.91.html&d=reduce
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.94.html&d=reduce
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.94.html&d=reduce
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
   - key: us-pa/guidance/dhs/cash-assistance-tanf
     name: 'PA DHS: Temporary Assistance for Needy Families (TANF)'
     layer: state
@@ -50635,6 +50591,34 @@ layers:
     - path: us-pa/policy/acf/tanf-plan/2024
       references: 1
       part: Deductions
+  - key: us-pa/regulation/title-55/chapter-177/section-177-31
+    name: us-pa/regulation/title-55/chapter-177/section-177-31
+    layer: state
+    citation_path: us-pa/regulation/title-55/chapter-177/section-177-31
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Assets
+    cited:
+    - path: us-pa/regulation/title-55/chapter-177/section-177-31
+      references: 1
+      part: Assets
+  - key: us-pa/regulation/title-55/chapter-178
+    name: us-pa/regulation/title-55/chapter-178
+    layer: state
+    citation_path: us-pa/regulation/title-55/chapter-178
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Assets
+    cited:
+    - path: us-pa/regulation/title-55/chapter-178
+      references: 1
+      part: Assets
   - key: us-pa/regulation/title-55/chapter-183-pdf
     name: 55 Pa. Code Chapter 183 Standards for Need and Amount of Assistance (incl. § 183.94)
     layer: state
@@ -50642,59 +50626,14 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 4
     scope: in
     part: Deductions
     cited:
     - path: us-pa/regulation/title-55/chapter-183-pdf
-      references: 1
+      references: 4
       part: Deductions
   full:
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter177/s177.31.html&d=reduce
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter177/s177.31.html&d=reduce
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter178/chap178toc.html
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter178/chap178toc.html
-    part: Assets
-    sources:
-    - screener
-    scope: in
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/chap183toc.html
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/chap183toc.html
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.91.html&d=reduce
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.91.html&d=reduce
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.94.html&d=reduce
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/055/chapter183/s183.94.html&d=reduce
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: us-pa/guidance/dhs/cash-assistance-tanf
     name: 'PA DHS: Temporary Assistance for Needy Families (TANF)'
     layer: state
@@ -50764,6 +50703,24 @@ layers:
     sources:
     - screener
     - manifests/us-pa-tanf-state-plan.yaml
+    scope: in
+  - key: us-pa/regulation/title-55/chapter-177/section-177-31
+    name: us-pa/regulation/title-55/chapter-177/section-177-31
+    layer: state
+    citation_path: us-pa/regulation/title-55/chapter-177/section-177-31
+    source_url: null
+    part: Assets
+    sources:
+    - screener
+    scope: in
+  - key: us-pa/regulation/title-55/chapter-178
+    name: us-pa/regulation/title-55/chapter-178
+    layer: state
+    citation_path: us-pa/regulation/title-55/chapter-178
+    source_url: null
+    part: Assets
+    sources:
+    - screener
     scope: in
   - key: us-pa/regulation/title-55/chapter-183-pdf
     name: 55 Pa. Code Chapter 183 Standards for Need and Amount of Assistance (incl. § 183.94)

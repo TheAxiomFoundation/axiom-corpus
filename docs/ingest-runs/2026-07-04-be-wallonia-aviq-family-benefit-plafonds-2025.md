@@ -30,7 +30,7 @@ for line in p.read_text().splitlines():
     json.loads(line)
 PY
 
-uv run --project /Users/maxghenis/TheAxiomFoundation/axiom-encode python - <<'PY'
+uv run --project <axiom-encode checkout> python - <<'PY'
 from axiom_encode.harness.validator_pipeline import (
     _fetch_local_corpus_source_text,
     extract_numbers_from_text,

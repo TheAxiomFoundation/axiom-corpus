@@ -18,11 +18,11 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a
+    recorded reason, and the screener-level parity run against the newest reference release has no unfixed Axiom
+    errors. Federal law in Tier 1 is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+    rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
       documents, each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/income_tax-references.json
     policyengine_us_release: latest
@@ -40,46 +40,26 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 216
-      state: 1626
+      state: 1620
 - id: full
   title: Full document bundle
-  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
-    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
-    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
+    the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
+    A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
-      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
-      for the program; and the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
+      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
+      the sources the config knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/tax-schema.yaml
     federal_manifests: ^us-(irs-(guidance|individual)|usc-26)
     state_manifests: income-tax|tax-regulations|tax-forms|-tax-|-dor-|revenue|140|1040|-it-|-es$|-es-|ftb|-rtc-
     known_sources: 0
     in_scope_by_layer:
       federal: 312
-      state: 3279
+      state: 3270
 layers:
 - jurisdiction: us
   screener:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    sources:
-    - policyengine-references
-    references: 9
-    scope: in
-    part: Deductions
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    sources:
-    - policyengine-references
-    references: 10
-    scope: in
-    part: Deductions
   - key: us/form/irs/ty2009/i1040gi
     name: Instructions for Form 1040 (2009)
     layer: federal
@@ -1785,6 +1765,34 @@ layers:
     cited:
     - path: us/guidance/irs/rev-proc-2020-45
       references: 9
+      part: Deductions
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 9
+    scope: in
+    part: Deductions
+    cited:
+    - path: us/guidance/irs/rev-proc-2021-45
+      references: 9
+      part: Deductions
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 10
+    scope: in
+    part: Deductions
+    cited:
+    - path: us/guidance/irs/rev-proc-2022-38
+      references: 10
       part: Deductions
   - key: us/guidance/irs/rev-proc-2023-34
     name: Rev. Proc. 2023-34 (2024 inflation-adjusted items)
@@ -3800,24 +3808,6 @@ layers:
     reason: 'Secondary source: not law'
     part: Credits
   full:
-  - key: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    name: irs.gov/pub/irs-drop/rp-21-45.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-21-45.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    name: irs.gov/pub/irs-drop/rp-22-38.pdf
-    layer: federal
-    citation_path: null
-    source_url: https://www.irs.gov/pub/irs-drop/rp-22-38.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: us/form/irs/ty2009/i1040gi
     name: Instructions for Form 1040 (2009)
     layer: federal
@@ -4933,6 +4923,24 @@ layers:
     name: Rev. Proc. 2020-45 (2021 inflation-adjusted items)
     layer: federal
     citation_path: us/guidance/irs/rev-proc-2020-45
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2021-45
+    name: Rev. Proc. 2021-45 (2022 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2021-45
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us/guidance/irs/rev-proc-2022-38
+    name: Rev. Proc. 2022-38 (2023 inflation-adjusted items)
+    layer: federal
+    citation_path: us/guidance/irs/rev-proc-2022-38
     source_url: null
     part: Deductions
     sources:
@@ -15794,26 +15802,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-104/
     name: law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/se
     layer: state
@@ -15834,36 +15822,6 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-5/section-39-22-544/
     name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-5/section
     layer: state
@@ -15904,16 +15862,6 @@ layers:
     references: 1
     scope: in
     part: Credits
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
   - key: us-co/form/cdor/ty2021/dr-0104-book
     name: 2021 Colorado Individual Income Tax Filing Guide (104 Book)
     layer: state
@@ -16306,6 +16254,20 @@ layers:
     - path: us-co/guidance/state-auditor/tax-expenditure-evaluations/te19-colorado-eitc
       references: 1
       part: Credits
+  - key: us-co/regulation/1-ccr-201-2
+    name: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
+    layer: state
+    citation_path: us-co/regulation/1-ccr-201-2
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-co/regulation/1-ccr-201-2
+      references: 1
+      part: Income
   - key: us-co/statute/39/39-22-104
     name: us-co/statute/39/39-22-104
     layer: state
@@ -16327,12 +16289,26 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Credits
     cited:
     - path: us-co/statute/39/39-22-119
-      references: 1
+      references: 2
+      part: Credits
+  - key: us-co/statute/39/39-22-119.5
+    name: us-co/statute/39/39-22-119.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-119.5
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-119.5
+      references: 2
       part: Credits
   - key: us-co/statute/39/39-22-123.5
     name: us-co/statute/39/39-22-123.5
@@ -16355,11 +16331,25 @@ layers:
     source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Credits
     cited:
     - path: us-co/statute/39/39-22-129
+      references: 2
+      part: Credits
+  - key: us-co/statute/39/39-22-2003
+    name: us-co/statute/39/39-22-2003
+    layer: state
+    citation_path: us-co/statute/39/39-22-2003
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-co/statute/39/39-22-2003
       references: 1
       part: Credits
   - key: us-co/statute/39/39-22-544
@@ -16511,24 +16501,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-119-5/
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    name: law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/2022/title-39/article-22/part-20/section-39-22-2003/
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: https://law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-104/
     name: law.justia.com/codes/colorado/2023/title-39/specific-taxes/income-tax/article-22/part-1/se
     layer: state
@@ -16544,33 +16516,6 @@ layers:
     citation_path: null
     source_url: https://law.justia.com/codes/colorado/title-39/property-tax/exemptions/article-3/part-2/section-39-3-203/
     part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119-5/
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-119/
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    name: law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section
-    layer: state
-    citation_path: null
-    source_url: https://law.justia.com/codes/colorado/title-39/specific-taxes/income-tax/article-22/part-1/section-39-22-129/
-    part: Credits
     sources:
     - screener
     scope: in
@@ -16607,15 +16552,6 @@ layers:
     citation_path: null
     source_url: https://leg.colorado.gov/bills/hb24-1311
     part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    name: sos.state.co.us/CCR/GenerateRulePdf.do
-    layer: state
-    citation_path: null
-    source_url: https://www.sos.state.co.us/CCR/GenerateRulePdf.do?fileName=1+CCR+201-2&ruleVersionId=11214
-    part: Income
     sources:
     - screener
     scope: in
@@ -16899,6 +16835,16 @@ layers:
     - screener
     - manifests/us-co-income-tax-w6-guidance.yaml
     scope: in
+  - key: us-co/regulation/1-ccr-201-2
+    name: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
+    layer: state
+    citation_path: us-co/regulation/1-ccr-201-2
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-co-income-tax-regulations.yaml
+    scope: in
   - key: us-co/statute/39/39-22-104
     name: us-co/statute/39/39-22-104
     layer: state
@@ -16917,6 +16863,15 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-co/statute/39/39-22-119.5
+    name: us-co/statute/39/39-22-119.5
+    layer: state
+    citation_path: us-co/statute/39/39-22-119.5
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-co/statute/39/39-22-123.5
     name: us-co/statute/39/39-22-123.5
     layer: state
@@ -16930,6 +16885,15 @@ layers:
     name: us-co/statute/39/39-22-129
     layer: state
     citation_path: us-co/statute/39/39-22-129
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-co/statute/39/39-22-2003
+    name: us-co/statute/39/39-22-2003
+    layer: state
+    citation_path: us-co/statute/39/39-22-2003
     source_url: null
     part: Credits
     sources:
@@ -17020,16 +16984,6 @@ layers:
     manifest: manifests/us-co-ccap-8-ccr-1403-1.yaml
     scope: in
     part: Other
-  - key: us-co/regulation/1-ccr-201-2
-    name: 'Code of Colorado Regulations 1 CCR 201-2: Income Tax (Taxation Division)'
-    layer: state
-    citation_path: us-co/regulation/1-ccr-201-2
-    source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleVersionId=12424
-    sources:
-    - manifests/us-co-income-tax-regulations.yaml
-    manifest: manifests/us-co-income-tax-regulations.yaml
-    scope: in
-    part: Income
   - key: us-co/statute/session-laws/2023/hb23-1112
     name: House Bill 23-1112 (signed act), earned income and child tax credits
     layer: state
@@ -18104,26 +18058,6 @@ layers:
     references: 5
     scope: in
     part: Credits
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    sources:
-    - policyengine-references
-    references: 11
-    scope: in
-    part: Credits
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Fina
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    sources:
-    - policyengine-references
-    references: 9
-    scope: in
-    part: Credits
   - key: us-dc/form/otr/ty2020/schedule-elc
     name: 2020 DC Schedule ELC, Early Learning Tax Credit (Revised 04/20)
     layer: state
@@ -18151,6 +18085,34 @@ layers:
     cited:
     - path: us-dc/form/otr/ty2021/d-40-booklet
       references: 11
+      part: Credits
+  - key: us-dc/form/otr/ty2022/d-40-booklet
+    name: us-dc/form/otr/ty2022/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2022/d-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 11
+    scope: in
+    part: Credits
+    cited:
+    - path: us-dc/form/otr/ty2022/d-40-booklet
+      references: 11
+      part: Credits
+  - key: us-dc/form/otr/ty2023/d-40-booklet
+    name: us-dc/form/otr/ty2023/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2023/d-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 9
+    scope: in
+    part: Credits
+    cited:
+    - path: us-dc/form/otr/ty2023/d-40-booklet
+      references: 9
       part: Credits
   - key: us-dc/form/otr/ty2024/d-40-booklet
     name: 2024 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 09/2024)
@@ -18329,24 +18291,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    name: otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Fina
-    layer: state
-    citation_path: null
-    source_url: https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-dc/form/otr/ty2020/schedule-elc
     name: 2020 DC Schedule ELC, Early Learning Tax Credit (Revised 04/20)
     layer: state
@@ -18366,6 +18310,24 @@ layers:
     sources:
     - screener
     - manifests/us-dc-income-tax-w6-forms.yaml
+    scope: in
+  - key: us-dc/form/otr/ty2022/d-40-booklet
+    name: us-dc/form/otr/ty2022/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2022/d-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-dc/form/otr/ty2023/d-40-booklet
+    name: us-dc/form/otr/ty2023/d-40-booklet
+    layer: state
+    citation_path: us-dc/form/otr/ty2023/d-40-booklet
+    source_url: null
+    part: Credits
+    sources:
+    - screener
     scope: in
   - key: us-dc/form/otr/ty2024/d-40-booklet
     name: 2024 DC Individual Income Tax Forms and Instructions (D-40 Booklet, Revised 09/2024)
@@ -22408,56 +22370,6 @@ layers:
     part: Income
 - jurisdiction: us-in
   screener:
-  - key: https://forms.in.gov/Download.aspx?id=15784
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15784
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://forms.in.gov/Download.aspx?id=15792
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15792
-    sources:
-    - policyengine-references
-    references: 2
-    scope: in
-    part: Deductions
-  - key: https://forms.in.gov/Download.aspx?id=16337
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=16337
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://forms.in.gov/Download.aspx?id=16379
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=16379
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://forms.in.gov/Download.aspx?id=16925
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=16925
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Rates
   - key: https://iga.in.gov/legislative/2025/bills/senate/243
     name: iga.in.gov/legislative/2025/bills/senate/243
     layer: state
@@ -22478,6 +22390,62 @@ layers:
     references: 1
     scope: in
     part: Credits
+  - key: us-in/form/dor/ty2023/it-40-booklet
+    name: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/it-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-in/form/dor/ty2023/it-40-booklet
+      references: 2
+      part: Deductions
+  - key: us-in/form/dor/ty2023/schedule-in-eic
+    name: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/schedule-in-eic
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-in/form/dor/ty2023/schedule-in-eic
+      references: 1
+      part: Credits
+  - key: us-in/form/dor/ty2024/it-40-booklet
+    name: 2024 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (9-24)
+    layer: state
+    citation_path: us-in/form/dor/ty2024/it-40-booklet
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-in/form/dor/ty2024/it-40-booklet
+      references: 1
+      part: Deductions
+  - key: us-in/form/dor/ty2024/schedule-ct-40
+    name: 2024 Schedule CT-40, County Tax Schedule for Full-Year Indiana Residents (State Form 47907, R23 / 9-24)
+    layer: state
+    citation_path: us-in/form/dor/ty2024/schedule-ct-40
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-in/form/dor/ty2024/schedule-ct-40
+      references: 1
+      part: Income
   - key: us-in/form/dor/ty2025/it-40-booklet
     name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
     layer: state
@@ -22492,6 +22460,21 @@ layers:
     - path: us-in/form/dor/ty2025/it-40-booklet
       references: 3
       part: Deductions
+  - key: us-in/form/dor/ty2025/it-40rnr
+    name: 2025 Form IT-40RNR, Reciprocal Nonresident Indiana Individual Income Tax Return (State Form 44406, R24
+      / 9-25)
+    layer: state
+    citation_path: us-in/form/dor/ty2025/it-40rnr
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Rates
+    cited:
+    - path: us-in/form/dor/ty2025/it-40rnr
+      references: 1
+      part: Rates
   - key: us-in/guidance/dor/2023-individual-tax-forms
     name: 2023 Individual Tax Forms (Indiana DOR forms index page)
     layer: state
@@ -22619,51 +22602,6 @@ layers:
       references: 3
       part: Deductions
   full:
-  - key: https://forms.in.gov/Download.aspx?id=15784
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15784
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://forms.in.gov/Download.aspx?id=15792
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=15792
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://forms.in.gov/Download.aspx?id=16337
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=16337
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://forms.in.gov/Download.aspx?id=16379
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=16379
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://forms.in.gov/Download.aspx?id=16925
-    name: forms.in.gov/Download.aspx
-    layer: state
-    citation_path: null
-    source_url: https://forms.in.gov/Download.aspx?id=16925
-    part: Rates
-    sources:
-    - screener
-    scope: in
   - key: https://iga.in.gov/legislative/2025/bills/senate/243
     name: iga.in.gov/legislative/2025/bills/senate/243
     layer: state
@@ -22682,6 +22620,46 @@ layers:
     sources:
     - screener
     scope: in
+  - key: us-in/form/dor/ty2023/it-40-booklet
+    name: 2023 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (12-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/it-40-booklet
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-in-income-tax-w7-forms.yaml
+    scope: in
+  - key: us-in/form/dor/ty2023/schedule-in-eic
+    name: 2023 Schedule IN-EIC, Indiana's Earned Income Credit (State Form 49469, R23 / 9-23)
+    layer: state
+    citation_path: us-in/form/dor/ty2023/schedule-in-eic
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    - manifests/us-in-income-tax-w7-forms.yaml
+    scope: in
+  - key: us-in/form/dor/ty2024/it-40-booklet
+    name: 2024 IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (9-24)
+    layer: state
+    citation_path: us-in/form/dor/ty2024/it-40-booklet
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    - manifests/us-in-income-tax-w7-forms.yaml
+    scope: in
+  - key: us-in/form/dor/ty2024/schedule-ct-40
+    name: 2024 Schedule CT-40, County Tax Schedule for Full-Year Indiana Residents (State Form 47907, R23 / 9-24)
+    layer: state
+    citation_path: us-in/form/dor/ty2024/schedule-ct-40
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-in-income-tax-w7-forms.yaml
+    scope: in
   - key: us-in/form/dor/ty2025/it-40-booklet
     name: IT-40 Booklet, Indiana Full-Year Resident Individual Income Tax Booklet (2025)
     layer: state
@@ -22690,6 +22668,17 @@ layers:
     part: Deductions
     sources:
     - screener
+    scope: in
+  - key: us-in/form/dor/ty2025/it-40rnr
+    name: 2025 Form IT-40RNR, Reciprocal Nonresident Indiana Individual Income Tax Return (State Form 44406, R24
+      / 9-25)
+    layer: state
+    citation_path: us-in/form/dor/ty2025/it-40rnr
+    source_url: null
+    part: Rates
+    sources:
+    - screener
+    - manifests/us-in-income-tax-w7-forms.yaml
     scope: in
   - key: us-in/guidance/dor/2023-individual-tax-forms
     name: 2023 Individual Tax Forms (Indiana DOR forms index page)
@@ -25025,36 +25014,6 @@ layers:
     part: Other
 - jurisdiction: us-ky
   screener:
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53498
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53498
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53500
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53500
-    sources:
-    - policyengine-references
-    references: 2
-    scope: in
-    part: Credits
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54585
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54585
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Rates
   - key: https://law.justia.com/codes/kentucky/2022/chapter-141/section-141-019/
     name: law.justia.com/codes/kentucky/2022/chapter-141/section-141-019/
     layer: state
@@ -25519,6 +25478,34 @@ layers:
     - path: us-ky/guidance/dor/news/2025-standard-deduction
       references: 1
       part: Deductions
+  - key: us-ky/statute/krs/141.019
+    name: KRS 141.019 Calculation of adjusted gross income and net income for taxpayers other than corporations.
+    layer: state
+    citation_path: us-ky/statute/krs/141.019
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-ky/statute/krs/141.019
+      references: 1
+      part: Income
+  - key: us-ky/statute/krs/141.020
+    name: KRS 141.020 — Levy of income tax on individuals
+    layer: state
+    citation_path: us-ky/statute/krs/141.020
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Credits
+    cited:
+    - path: us-ky/statute/krs/141.020
+      references: 3
+      part: Credits
   - key: us-ky/statute/krs/141.0205
     name: KRS 141.0205 Priority of application and use of tax credits.
     layer: state
@@ -25607,33 +25594,6 @@ layers:
       references: 1
       part: Rates
   full:
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53498
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53498
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53500
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53500
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54585
-    name: apps.legislature.ky.gov/law/statutes/statute.aspx
-    layer: state
-    citation_path: null
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=54585
-    part: Rates
-    sources:
-    - screener
-    scope: in
   - key: https://law.justia.com/codes/kentucky/2022/chapter-141/section-141-019/
     name: law.justia.com/codes/kentucky/2022/chapter-141/section-141-019/
     layer: state
@@ -25971,6 +25931,26 @@ layers:
     - screener
     - manifests/us-ky-w6-income-tax-guidance.yaml
     scope: in
+  - key: us-ky/statute/krs/141.019
+    name: KRS 141.019 Calculation of adjusted gross income and net income for taxpayers other than corporations.
+    layer: state
+    citation_path: us-ky/statute/krs/141.019
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-ky-krs-chapter-141-income-taxes.yaml
+    scope: in
+  - key: us-ky/statute/krs/141.020
+    name: KRS 141.020 — Levy of income tax on individuals
+    layer: state
+    citation_path: us-ky/statute/krs/141.020
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    - manifests/us-ky-2026-individual-income-tax-statutes.yaml
+    scope: in
   - key: us-ky/statute/krs/141.0205
     name: KRS 141.0205 Priority of application and use of tax credits.
     layer: state
@@ -26038,16 +26018,6 @@ layers:
     sources:
     - manifests/us-ky-2026-740-es.yaml
     manifest: manifests/us-ky-2026-740-es.yaml
-    scope: in
-    part: Income
-  - key: us-ky/statute/krs/141.020
-    name: KRS 141.020 — Levy of income tax on individuals
-    layer: state
-    citation_path: us-ky/statute/krs/141.020
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56339
-    sources:
-    - manifests/us-ky-2026-individual-income-tax-statutes.yaml
-    manifest: manifests/us-ky-2026-individual-income-tax-statutes.yaml
     scope: in
     part: Income
   - key: us-ky/regulation/kar/103/015/050
@@ -26399,16 +26369,6 @@ layers:
     layer: state
     citation_path: us-ky/statute/krs/141.018
     source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=29033
-    sources:
-    - manifests/us-ky-krs-chapter-141-income-taxes.yaml
-    manifest: manifests/us-ky-krs-chapter-141-income-taxes.yaml
-    scope: in
-    part: Income
-  - key: us-ky/statute/krs/141.019
-    name: KRS 141.019 Calculation of adjusted gross income and net income for taxpayers other than corporations.
-    layer: state
-    citation_path: us-ky/statute/krs/141.019
-    source_url: https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=57914
     sources:
     - manifests/us-ky-krs-chapter-141-income-taxes.yaml
     manifest: manifests/us-ky-krs-chapter-141-income-taxes.yaml
@@ -28901,26 +28861,6 @@ layers:
     part: Income
 - jurisdiction: us-me
   screener:
-  - key: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
-    name: maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
-    name: maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
   - key: us-me/form/mrs/ty2013/schedule-2
     name: 2013 Schedule 2 Itemized Deductions
     layer: state
@@ -29579,6 +29519,20 @@ layers:
     - path: us-me/form/mrs/ty2024/tax-rate-schedules
       references: 1
       part: Income
+  - key: us-me/form/mrs/ty2025/1040me-schedule-1s
+    name: us-me/form/mrs/ty2025/1040me-schedule-1s
+    layer: state
+    citation_path: us-me/form/mrs/ty2025/1040me-schedule-1s
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-me/form/mrs/ty2025/1040me-schedule-1s
+      references: 1
+      part: Deductions
   - key: us-me/form/mrs/ty2025/form-1040me-general-instructions
     name: 2025 Form 1040ME General Instructions (with cover page)
     layer: state
@@ -29621,6 +29575,20 @@ layers:
     - path: us-me/form/mrs/ty2025/tax-rate-schedules
       references: 1
       part: Income
+  - key: us-me/form/mrs/ty2026/1040es-me
+    name: us-me/form/mrs/ty2026/1040es-me
+    layer: state
+    citation_path: us-me/form/mrs/ty2026/1040es-me
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-me/form/mrs/ty2026/1040es-me
+      references: 1
+      part: Deductions
   - key: us-me/form/mrs/ty2026/itemized-standard-deduction-phaseout-worksheet
     name: 2026 Estimated Tax Worksheet Line 6a, Phaseout of Itemized / Standard Deductions
     layer: state
@@ -29891,24 +29859,6 @@ layers:
       references: 5
       part: Income
   full:
-  - key: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
-    name: maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/25_1040me_sch_1s_fillable.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
-    name: maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
-    layer: state
-    citation_path: null
-    source_url: https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_fillable.pdf
-    part: Deductions
-    sources:
-    - screener
-    scope: in
   - key: us-me/form/mrs/ty2013/schedule-2
     name: 2013 Schedule 2 Itemized Deductions
     layer: state
@@ -30379,6 +30329,15 @@ layers:
     - screener
     - manifests/us-me-w6-income-tax-forms.yaml
     scope: in
+  - key: us-me/form/mrs/ty2025/1040me-schedule-1s
+    name: us-me/form/mrs/ty2025/1040me-schedule-1s
+    layer: state
+    citation_path: us-me/form/mrs/ty2025/1040me-schedule-1s
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
   - key: us-me/form/mrs/ty2025/form-1040me-general-instructions
     name: 2025 Form 1040ME General Instructions (with cover page)
     layer: state
@@ -30408,6 +30367,15 @@ layers:
     sources:
     - screener
     - manifests/us-me-individual-income-tax-forms-ty2025-closure.yaml
+    scope: in
+  - key: us-me/form/mrs/ty2026/1040es-me
+    name: us-me/form/mrs/ty2026/1040es-me
+    layer: state
+    citation_path: us-me/form/mrs/ty2026/1040es-me
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
     scope: in
   - key: us-me/form/mrs/ty2026/itemized-standard-deduction-phaseout-worksheet
     name: 2026 Estimated Tax Worksheet Line 6a, Phaseout of Itemized / Standard Deductions
@@ -30788,116 +30756,6 @@ layers:
     references: 1
     scope: in
     part: Deductions
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://services.marylandcomptroller.gov/taxes/en/maryland-pension-exclusion?id=kb_article_view&sysparm_article=KB0010012
     name: services.marylandcomptroller.gov/taxes/en/maryland-pension-exclusion
     layer: state
@@ -31102,6 +30960,20 @@ layers:
     - path: us-md/guidance/dls/fiscal-notes/2023/hb0547
       references: 1
       part: Credits
+  - key: us-md/statute/gtg/10-107
+    name: us-md/statute/gtg/10-107
+    layer: state
+    citation_path: us-md/statute/gtg/10-107
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-107
+      references: 1
+      part: Credits
   - key: us-md/statute/gtg/10-204
     name: us-md/statute/gtg/10-204
     layer: state
@@ -31114,6 +30986,48 @@ layers:
     part: Income
     cited:
     - path: us-md/statute/gtg/10-204
+      references: 1
+      part: Income
+  - key: us-md/statute/gtg/10-207
+    name: us-md/statute/gtg/10-207
+    layer: state
+    citation_path: us-md/statute/gtg/10-207
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Income
+    cited:
+    - path: us-md/statute/gtg/10-207
+      references: 2
+      part: Income
+  - key: us-md/statute/gtg/10-208
+    name: us-md/statute/gtg/10-208
+    layer: state
+    citation_path: us-md/statute/gtg/10-208
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 2
+    scope: in
+    part: Income
+    cited:
+    - path: us-md/statute/gtg/10-208
+      references: 2
+      part: Income
+  - key: us-md/statute/gtg/10-209
+    name: us-md/statute/gtg/10-209
+    layer: state
+    citation_path: us-md/statute/gtg/10-209
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-md/statute/gtg/10-209
       references: 1
       part: Income
   - key: us-md/statute/gtg/10-211
@@ -31130,6 +31044,76 @@ layers:
     - path: us-md/statute/gtg/10-211
       references: 1
       part: Deductions
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
+    layer: state
+    citation_path: us-md/statute/gtg/10-704
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-704
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-709
+    name: us-md/statute/gtg/10-709
+    layer: state
+    citation_path: us-md/statute/gtg/10-709
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-709
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-716
+    name: us-md/statute/gtg/10-716
+    layer: state
+    citation_path: us-md/statute/gtg/10-716
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-716
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-751
+    name: us-md/statute/gtg/10-751
+    layer: state
+    citation_path: us-md/statute/gtg/10-751
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-751
+      references: 1
+      part: Credits
+  - key: us-md/statute/gtg/10-754
+    name: us-md/statute/gtg/10-754
+    layer: state
+    citation_path: us-md/statute/gtg/10-754
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-md/statute/gtg/10-754
+      references: 1
+      part: Credits
   - key: us-md/statute/session-laws/2022
     name: us-md/statute/session-laws/2022
     layer: state
@@ -31253,105 +31237,6 @@ layers:
     citation_path: null
     source_url: https://mgaleg.maryland.gov/2024RS/Statute_Web/gtg/10-217.pdf
     part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-107&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207&enactments=false
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enactments=false
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-208&enession=2024RS
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-209
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-704&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-709&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-716&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-751&enactments=false
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    name: mgaleg.maryland.gov/mgawebsite/Laws/StatuteText
-    layer: state
-    citation_path: null
-    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-754&enactments=false
-    part: Credits
     sources:
     - screener
     scope: in
@@ -31510,10 +31395,46 @@ layers:
     - screener
     - manifests/us-md-w6-income-tax-guidance.yaml
     scope: in
+  - key: us-md/statute/gtg/10-107
+    name: us-md/statute/gtg/10-107
+    layer: state
+    citation_path: us-md/statute/gtg/10-107
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
   - key: us-md/statute/gtg/10-204
     name: us-md/statute/gtg/10-204
     layer: state
     citation_path: us-md/statute/gtg/10-204
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-207
+    name: us-md/statute/gtg/10-207
+    layer: state
+    citation_path: us-md/statute/gtg/10-207
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-208
+    name: us-md/statute/gtg/10-208
+    layer: state
+    citation_path: us-md/statute/gtg/10-208
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-209
+    name: us-md/statute/gtg/10-209
+    layer: state
+    citation_path: us-md/statute/gtg/10-209
     source_url: null
     part: Income
     sources:
@@ -31528,6 +31449,51 @@ layers:
     sources:
     - screener
     - manifests/us-md-tax-statutes-2026-repair.yaml
+    scope: in
+  - key: us-md/statute/gtg/10-704
+    name: us-md/statute/gtg/10-704
+    layer: state
+    citation_path: us-md/statute/gtg/10-704
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-709
+    name: us-md/statute/gtg/10-709
+    layer: state
+    citation_path: us-md/statute/gtg/10-709
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-716
+    name: us-md/statute/gtg/10-716
+    layer: state
+    citation_path: us-md/statute/gtg/10-716
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-751
+    name: us-md/statute/gtg/10-751
+    layer: state
+    citation_path: us-md/statute/gtg/10-751
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-md/statute/gtg/10-754
+    name: us-md/statute/gtg/10-754
+    layer: state
+    citation_path: us-md/statute/gtg/10-754
+    source_url: null
+    part: Credits
+    sources:
+    - screener
     scope: in
   - key: us-md/statute/session-laws/2022
     name: us-md/statute/session-laws/2022
@@ -32728,76 +32694,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Deductions
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Credits
   - key: https://www.michigan.gov/-/media/Project/Websites/taxes/2022RM/IIT/BOOK_MI-1040CR-7.pdf?rev=d7990c15e0034d768a43c47b6d3ba0ac
     name: michigan.gov/-/media/Project/Websites/taxes/2022RM/IIT/BOOK_MI-1040CR-7.pdf
     layer: state
@@ -33331,6 +33227,104 @@ layers:
     - path: us-mi/guidance/treasury/withholding-faqs/personal-exemption-amount
       references: 1
       part: Deductions
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
+    layer: state
+    citation_path: us-mi/statute/206.272
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.272
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.30
+    name: us-mi/statute/206.30
+    layer: state
+    citation_path: us-mi/statute/206.30
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Deductions
+    cited:
+    - path: us-mi/statute/206.30
+      references: 1
+      part: Deductions
+  - key: us-mi/statute/206.508
+    name: us-mi/statute/206.508
+    layer: state
+    citation_path: us-mi/statute/206.508
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.508
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.514
+    name: us-mi/statute/206.514
+    layer: state
+    citation_path: us-mi/statute/206.514
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-mi/statute/206.514
+      references: 1
+      part: Income
+  - key: us-mi/statute/206.520
+    name: us-mi/statute/206.520
+    layer: state
+    citation_path: us-mi/statute/206.520
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.520
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.522
+    name: us-mi/statute/206.522
+    layer: state
+    citation_path: us-mi/statute/206.522
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.522
+      references: 1
+      part: Credits
+  - key: us-mi/statute/206.527a
+    name: us-mi/statute/206.527a
+    layer: state
+    citation_path: us-mi/statute/206.527a
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Credits
+    cited:
+    - path: us-mi/statute/206.527a
+      references: 1
+      part: Credits
   - key: us-mi/statute/chapter-206
     name: us-mi/statute/chapter-206
     layer: state
@@ -33386,69 +33380,6 @@ layers:
     citation_path: null
     source_url: https://law.justia.com/codes/michigan/2022/chapter-206/statute-act-281-of-1967/division-281-1967-1/division-281-1967-1-9/section-206-508/
     part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-272
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-30
-    part: Deductions
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-508
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-514
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-520
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-522
-    part: Credits
-    sources:
-    - screener
-    scope: in
-  - key: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    name: legislature.mi.gov/Laws/MCL
-    layer: state
-    citation_path: null
-    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206-527a
-    part: Credits
     sources:
     - screener
     scope: in
@@ -33859,6 +33790,69 @@ layers:
     sources:
     - screener
     - manifests/us-mi-w6-income-tax-guidance.yaml
+    scope: in
+  - key: us-mi/statute/206.272
+    name: us-mi/statute/206.272
+    layer: state
+    citation_path: us-mi/statute/206.272
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.30
+    name: us-mi/statute/206.30
+    layer: state
+    citation_path: us-mi/statute/206.30
+    source_url: null
+    part: Deductions
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.508
+    name: us-mi/statute/206.508
+    layer: state
+    citation_path: us-mi/statute/206.508
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.514
+    name: us-mi/statute/206.514
+    layer: state
+    citation_path: us-mi/statute/206.514
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.520
+    name: us-mi/statute/206.520
+    layer: state
+    citation_path: us-mi/statute/206.520
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.522
+    name: us-mi/statute/206.522
+    layer: state
+    citation_path: us-mi/statute/206.522
+    source_url: null
+    part: Credits
+    sources:
+    - screener
+    scope: in
+  - key: us-mi/statute/206.527a
+    name: us-mi/statute/206.527a
+    layer: state
+    citation_path: us-mi/statute/206.527a
+    source_url: null
+    part: Credits
+    sources:
+    - screener
     scope: in
   - key: us-mi/statute/chapter-206
     name: us-mi/statute/chapter-206
@@ -49927,16 +49921,6 @@ layers:
     references: 1
     scope: in
     part: Income
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/chapter101/s101.6.html
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/chapter101/s101.6.html
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
   - key: us-pa/form/department-of-revenue/ty2021/pa-40-instructions
     name: 2021 PA-40 IN, Pennsylvania Personal Income Tax Return Instructions Booklet
     layer: state
@@ -50133,6 +50117,20 @@ layers:
     - path: us-pa/guidance/pa-treasury/pa-529-faqs
       references: 1
       part: Deductions
+  - key: us-pa/regulation/title-61
+    name: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
+    layer: state
+    citation_path: us-pa/regulation/title-61
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 1
+    scope: in
+    part: Income
+    cited:
+    - path: us-pa/regulation/title-61/chapter-101/section-101-6
+      references: 1
+      part: Income
   - key: us-pa/statute/act-1971-2
     name: us-pa/statute/act-1971-2
     layer: state
@@ -50211,15 +50209,6 @@ layers:
     layer: state
     citation_path: null
     source_url: https://revenue-pa.custhelp.com/app/answers/detail/a_id/274/~/taxability-of-roth-iras-according-to-pa-income-tax-rules
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/chapter101/s101.6.html
-    name: pacodeandbulletin.gov/Display/pacode
-    layer: state
-    citation_path: null
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/chapter101/s101.6.html
     part: Income
     sources:
     - screener
@@ -50364,6 +50353,16 @@ layers:
     - screener
     - manifests/us-pa-income-tax-w6-guidance.yaml
     scope: in
+  - key: us-pa/regulation/title-61
+    name: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
+    layer: state
+    citation_path: us-pa/regulation/title-61
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    - manifests/us-pa-income-tax-regulations.yaml
+    scope: in
   - key: us-pa/statute/act-1971-2
     name: us-pa/statute/act-1971-2
     layer: state
@@ -50391,16 +50390,6 @@ layers:
     sources:
     - screener
     scope: in
-  - key: us-pa/regulation/title-61
-    name: '61 Pa. Code Part I Subpart B Article V: Personal Income Tax (chapters 101-125)'
-    layer: state
-    citation_path: us-pa/regulation/title-61
-    source_url: https://www.pacodeandbulletin.gov/Display/pacode?file=/secure/pacode/data/061/061toc.html
-    sources:
-    - manifests/us-pa-income-tax-regulations.yaml
-    manifest: manifests/us-pa-income-tax-regulations.yaml
-    scope: in
-    part: Income
   - key: us-pa/statute/bills/2003-2004/hb200-pn3160
     name: House Bill 200, Printer's No. 3160 (Pennsylvania General Assembly, 2003-2004 session; Senate amended)
     layer: state
@@ -54919,16 +54908,6 @@ layers:
     part: Rates
 - jurisdiction: us-va
   screener:
-  - key: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    name: legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    layer: state
-    citation_path: null
-    source_url: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    sources:
-    - policyengine-references
-    references: 3
-    scope: in
-    part: Credits
   - key: us-va/form/tax-forms/tax.virginia.gov/sites/default/files/vatax-pdf/2019-schedule-a-instructions
     name: 2019 Instructions for Virginia Schedule A, Itemized Deductions
     layer: state
@@ -55321,6 +55300,20 @@ layers:
     - path: us-va/statute/budget/2023/hb6001/introduced/3-5.28
       references: 1
       part: Income
+  - key: us-va/statute/budget/2025
+    name: us-va/statute/budget/2025
+    layer: state
+    citation_path: us-va/statute/budget/2025
+    source_url: null
+    sources:
+    - policyengine-references
+    references: 3
+    scope: in
+    part: Credits
+    cited:
+    - path: us-va/statute/budget/2025/hb1600/chapter-725
+      references: 3
+      part: Credits
   - key: us-va/statute/budget/2026
     name: us-va/statute/budget/2026
     layer: state
@@ -55336,15 +55329,6 @@ layers:
       references: 1
       part: Deductions
   full:
-  - key: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    name: legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    layer: state
-    citation_path: null
-    source_url: https://legiscan.com/VA/text/HB1600/id/3262750/Virginia-2025-HB1600-Chaptered.pdf
-    part: Credits
-    sources:
-    - screener
-    scope: in
   - key: us-va/form/tax-forms/tax.virginia.gov/sites/default/files/vatax-pdf/2019-schedule-a-instructions
     name: 2019 Instructions for Virginia Schedule A, Itemized Deductions
     layer: state
@@ -55621,6 +55605,15 @@ layers:
     citation_path: us-va/statute/budget/2023
     source_url: null
     part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-va/statute/budget/2025
+    name: us-va/statute/budget/2025
+    layer: state
+    citation_path: us-va/statute/budget/2025
+    source_url: null
+    part: Credits
     sources:
     - screener
     scope: in
@@ -58683,6 +58676,17 @@ layers:
     manifest: manifests/us-va-income-tax-w6-statute.yaml
     scope: in
     part: Income
+  - key: us-va/statute/budget/2025/hb1600/chapter-725
+    name: 2025 Acts of Assembly, Chapter 725 (HB 1600), the 2025 Appropriation Act amending Chapter 2 of the 2024
+      Special Session I (approved May 2, 2025)
+    layer: state
+    citation_path: us-va/statute/budget/2025/hb1600/chapter-725
+    source_url: https://budget.lis.virginia.gov/get/budget/5130/HB1600/
+    sources:
+    - manifests/us-va-income-tax-w7-statute.yaml
+    manifest: manifests/us-va-income-tax-w7-statute.yaml
+    scope: in
+    part: Other
   - key: us-va/form/tax/ty2026/760es
     name: 2026 Form 760ES Virginia Estimated Income Tax Payment Vouchers for Individuals (Rev. 09/25)
     layer: state

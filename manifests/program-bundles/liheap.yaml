@@ -21,11 +21,11 @@ comparison:
 tiers:
 - id: screener
   title: Screener-level parity
-  definition: Every provision PolicyEngine-US cites for the program in the state is encoded, or its document is
-    excluded with a recorded reason, and the comparison against the newest PolicyEngine release has no unfixed Axiom
-    errors. Federal law PolicyEngine cites is shared by every state.
+  definition: Every Tier 1 provision of the program in the state is encoded, or its document is excluded with a
+    recorded reason, and the screener-level parity run against the newest reference release has no unfixed Axiom
+    errors. Federal law in Tier 1 is shared by every state.
   membership:
-    rule: The PolicyEngine-US references of the release it was built from (the newest, by default) and the plan's
+    rule: The reference model's citations at the release it was built from (the newest, by default) and the plan's
       documents, each in the layer of the law it names, grouped into documents
     references: sources/policyengine-us/liheap-references.json
     policyengine_us_release: latest
@@ -45,23 +45,23 @@ tiers:
     outside_the_states: {}
     in_scope_by_layer:
       federal: 3
-      state: 36
+      state: 29
 - id: full
   title: Full document bundle
-  definition: 'Every relevant document for the program in the state: every document of the screener tier, the federal
-    law of the program (statute, regulations and federal guidance), and every primary source of the state''s own
-    rules. A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
+  definition: 'Every relevant document for the program in the state: every document of Tier 1, the federal law of
+    the program (statute, regulations and federal guidance), and every primary source of the state''s own rules.
+    A document the corpus does not hold yet stays in the tier and counts as not in the corpus.'
   membership:
-    rule: Every in-scope document of the screener tier; the federal law of the program, section by section, from
-      its needs-closure schema, and its federal guidance manifests; each state's own sources from its manifests
-      for the program; and the sources the config knows the corpus does not hold yet
+    rule: Every in-scope document of Tier 1; the federal law of the program, section by section, from its needs-closure
+      schema, and its federal guidance manifests; each state's own sources from its manifests for the program; and
+      the sources the config knows the corpus does not hold yet
     federal_schema: docs/coverage/needs-closure-2026-09-14/liheap-schema.yaml
     federal_manifests: ^us-(liheap|hhs-poverty)
     state_manifests: liheap|energy-assistance|heap
     known_sources: 0
     in_scope_by_layer:
       federal: 6
-      state: 215
+      state: 207
 layers:
 - jurisdiction: us
   screener:
@@ -1665,146 +1665,104 @@ layers:
     part: Other
 - jurisdiction: us-ks
   screener:
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+  - key: us-ks/manual/dcf/keesm/keesm13000
+    name: 'Kansas KEESM: 13000 Low Income Energy Assistance Program (LIEAP)'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm13000
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Household and eligibility
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm13000
+      references: 2
+      part: Household and eligibility
+  - key: us-ks/manual/dcf/keesm/keesm13200
+    name: 'Kansas KEESM: 13200 Applications Processing'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm13200
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm13200
+      references: 2
+      part: Income
+  - key: us-ks/manual/dcf/keesm/keesm13300
+    name: 'Kansas KEESM: 13300 Eligibility Requirements'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm13300
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm13300
+      references: 2
+      part: Income
+  - key: us-ks/manual/dcf/keesm/keesm13360
+    name: 'Kansas KEESM: 13360 Income Eligibility'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm13360
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm13360
+      references: 2
+      part: Income
+  - key: us-ks/manual/dcf/keesm/keesm13400
+    name: 'Kansas KEESM: 13400 Benefit Levels And Payment Methods'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm13400
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Benefit amount
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm13400
+      references: 2
+      part: Benefit amount
+  - key: us-ks/manual/dcf/keesm/keesm6313
+    name: 'Kansas KEESM: 6313 Self-Employment'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm6313
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm6313
+      references: 2
+      part: Income
+  - key: us-ks/manual/dcf/keesm/keesm7122
+    name: 'Kansas KEESM: keesm7122'
     layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
+    citation_path: us-ks/manual/dcf/keesm/keesm7122
+    source_url: null
     sources:
     - policyengine-references
-    references: 1
+    references: 2
     scope: in
     part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Household and eligibility
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Benefit amount
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
-    sources:
-    - policyengine-references
-    references: 1
-    scope: in
-    part: Income
+    cited:
+    - path: us-ks/manual/dcf/keesm/keesm7122
+      references: 2
+      part: Income
   - key: https://content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm
     name: content.dcf.ks.gov/ees/KEESM/Robo07-25/Robo_07_01_25/keesm13360.htm
     layer: state
@@ -1872,142 +1830,70 @@ layers:
     reason: 'Back-year table: not current law'
     part: Benefit amount
   full:
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13000.htm
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13200.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13300.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13360.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm13400.htm
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm6313.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo01-26/Robo_01_01_26/keesm7122.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13000.htm
-    part: Household and eligibility
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13200.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13300.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13360.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm13400.htm
-    part: Benefit amount
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm6313.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
-  - key: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
-    name: content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
-    layer: state
-    citation_path: null
-    source_url: https://content.dcf.ks.gov/ees/KEESM/Robo10-24/Robo_10_01_24/keesm7122.htm
-    part: Income
-    sources:
-    - screener
-    scope: in
   - key: us-ks/manual/dcf/keesm/keesm13000
     name: 'Kansas KEESM: 13000 Low Income Energy Assistance Program (LIEAP)'
     layer: state
     citation_path: us-ks/manual/dcf/keesm/keesm13000
-    source_url: https://content.dcf.ks.gov/EES/KEESM/Current/keesm13000.htm
+    source_url: null
+    part: Household and eligibility
     sources:
+    - screener
     - manifests/us-ks-keesm.yaml
-    manifest: manifests/us-ks-keesm.yaml
     scope: in
-    part: Other
+  - key: us-ks/manual/dcf/keesm/keesm13200
+    name: 'Kansas KEESM: 13200 Applications Processing'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm13200
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ks/manual/dcf/keesm/keesm13300
+    name: 'Kansas KEESM: 13300 Eligibility Requirements'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm13300
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ks/manual/dcf/keesm/keesm13360
+    name: 'Kansas KEESM: 13360 Income Eligibility'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm13360
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ks/manual/dcf/keesm/keesm13400
+    name: 'Kansas KEESM: 13400 Benefit Levels And Payment Methods'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm13400
+    source_url: null
+    part: Benefit amount
+    sources:
+    - screener
+    scope: in
+  - key: us-ks/manual/dcf/keesm/keesm6313
+    name: 'Kansas KEESM: 6313 Self-Employment'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm6313
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
+  - key: us-ks/manual/dcf/keesm/keesm7122
+    name: 'Kansas KEESM: keesm7122'
+    layer: state
+    citation_path: us-ks/manual/dcf/keesm/keesm7122
+    source_url: null
+    part: Income
+    sources:
+    - screener
+    scope: in
   - key: us-ks/policy/acf/liheap-plan/fy2026-benefit-matrix
     name: 'Kansas LIEAP FY 2026 plan attachment: LIEAP Benefits Matrix'
     layer: state

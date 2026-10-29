@@ -11,16 +11,20 @@
     {
       "path": "data/corpus/provisions/us-ny/policy/2026-06-05-ny-tanf.jsonl",
       "sha256": "71ade2709d4c425eedb5d1bac82d1121dee6bcd3f1a615c65e6d212c227e8f66"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/policy/2026-06-05-ny-tanf/official-documents/ny-otda-tanf-state-plan-2024-2026.pdf",
+      "sha256": "f222c3316f975a3a9281846e724ee3ce2c34878d14fe073f24def5c057f94c2f"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d7f14d5ab34b9d1710e0a6e7595f36386baa0c2",
+    "commit": "fff5aab7da091b0c78717e4f5440de238afae5d1",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "Restore the PDF source the rows name (axiom-corpus#873): uv run --extra dev python scripts/restore_unlocked_pdf_sources.py placed the bytes from R2 by sha256 (the object us-ny/policy/2026-08-03-ny-tanf-official-source-recovery locks; the scope inventory records the same sha256). Evidence: docs/ingest-runs/2026-10-13-restore-unlocked-pdf-sources.md"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +35,14 @@
     "source_count": 115
   },
   "document_class": "policy",
-  "generated_at": "2026-07-17T00:05:51.841716+00:00",
+  "generated_at": "2026-10-13T22:45:34.804174+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "hsq0XdWU1aOWl38BJfOGXDXhgAAaRLTQLA2nC3GguE4xw/gJ4vjKIPZoJNziOLyilDjOI2TOg8MDQndOEy9LAA=="
+    "value": "tEy1RFMD9lACEgejEaLjo27SzdBJsNPPCVc7HoqrwTi0PX7dCPhbC+Z08xQLRWXgGF1pW22451tKQKvsSW8qDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-05-ny-tanf"

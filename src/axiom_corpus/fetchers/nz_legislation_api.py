@@ -14,6 +14,16 @@ import httpx
 
 NZ_LEGISLATION_API_BASE_URL = "https://api.legislation.govt.nz"
 NZ_LEGISLATION_API_KEY_ENV = "NZ_LEGISLATION_API_KEY"
+NZ_LEGISLATION_API_KEY_HEADER = "X-Api-Key"
+NZ_LEGISLATION_HOSTS = frozenset(
+    {"legislation.govt.nz", "www.legislation.govt.nz", "api.legislation.govt.nz"}
+)
+# Request extension that asks a PCO key client to add its key to a request.
+_API_KEY_EXTENSION = "axiom_corpus.nz_legislation_api_key"
+# Keys must be printable ASCII with no whitespace, which h11 accepts as a
+# header value; h11 quotes a value it rejects in its error message.
+_API_KEY_PATTERN = re.compile(r"[\x21-\x7e]+")
+_INVALID_API_KEY_MESSAGE = "NZ Legislation API key must be printable ASCII with no whitespace"
 NZ_LEGISLATION_DEFAULT_TYPES = (
     "act",
     "secondary_legislation",
@@ -24,6 +34,118 @@ NZ_LEGISLATION_DEFAULT_TYPES = (
 
 class NZLegislationAPIError(RuntimeError):
     """Raised when the NZ Legislation API or XML format fetch fails."""
+
+
+def is_nz_legislation_url(url: httpx.URL | str) -> bool:
+    """Return whether a request URL may carry the PCO API key.
+
+    PCO's firewall lets requests to legislation.govt.nz itself (HTML, XML and
+    PDF, including format URLs from API responses) bypass its CAPTCHA and JS
+    challenges when they carry a valid API key, the same way
+    api.legislation.govt.nz authenticates. The key only goes over https to
+    those hosts.
+    """
+    url = httpx.URL(url)
+    return url.scheme == "https" and url.host in NZ_LEGISLATION_HOSTS
+
+
+def scope_nz_legislation_api_key(request: httpx.Request, api_key: str) -> None:
+    """Set the PCO API key on an https PCO request and strip it from any other."""
+    if is_nz_legislation_url(request.url):
+        request.headers[NZ_LEGISLATION_API_KEY_HEADER] = api_key
+    else:
+        request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
+
+
+class _PCOAPIKey:
+    """A validated PCO API key, redacted from its repr."""
+
+    __slots__ = ("value",)
+
+    def __init__(self, value: str) -> None:
+        if not isinstance(value, str) or not _API_KEY_PATTERN.fullmatch(value):
+            # The message never includes the rejected value, which may be a key.
+            raise ValueError(_INVALID_API_KEY_MESSAGE)
+        self.value = value
+
+    def __repr__(self) -> str:
+        return "<NZ Legislation API key>"
+
+
+class _PCOKeyTransport(httpx.BaseTransport):
+    """Add the client's PCO key to a tagged hop being sent, then remove it.
+
+    httpx sends every hop of a request, redirects included, through the
+    transport its client picks for that hop's URL, and copies request
+    extensions onto each redirect. So the key is set here, per hop, on hops
+    tagged by nz_legislation_api_key_extensions, whatever the client's event
+    hooks are. The tag is only a marker and the key stays with the client. The
+    X-Api-Key header is on a request only while that hop is sent, so the
+    response's request, the redirect httpx builds from it and next_request
+    carry no key header.
+    Untagged requests pass through unchanged.
+    """
+
+    def __init__(self, transport: httpx.BaseTransport, api_key: _PCOAPIKey | None) -> None:
+        self._transport = transport
+        self._api_key = api_key
+
+    def handle_request(self, request: httpx.Request) -> httpx.Response:
+        if self._api_key is None or request.extensions.get(_API_KEY_EXTENSION) is not True:
+            return self._transport.handle_request(request)
+        scope_nz_legislation_api_key(request, self._api_key.value)
+        try:
+            return self._transport.handle_request(request)
+        finally:
+            request.headers.pop(NZ_LEGISLATION_API_KEY_HEADER, None)
+
+
+class _PCOKeyClient(httpx.Client):
+    """An httpx client that holds a PCO key and sends every hop through _PCOKeyTransport.
+
+    httpx 0.28 picks each hop's transport in _transport_for_url, from its
+    default transport and its mounts, including proxy mounts from the
+    environment, so wrapping that choice covers all of them.
+    """
+
+    def __init__(self, *, api_key: str | None, **kwargs: Any) -> None:
+        self._pco_api_key = None if api_key is None else _PCOAPIKey(api_key)
+        super().__init__(**kwargs)
+
+    def _transport_for_url(self, url: httpx.URL) -> httpx.BaseTransport:
+        return _PCOKeyTransport(super()._transport_for_url(url), self._pco_api_key)
+
+
+def nz_legislation_api_key_client(
+    *,
+    api_key: str | None,
+    timeout: float,
+    transport: httpx.BaseTransport | None = None,
+    headers: Mapping[str, str] | None = None,
+) -> httpx.Client:
+    """Build an httpx client that adds its PCO key, per hop, to tagged requests.
+
+    Tag a request with nz_legislation_api_key_extensions(); the client follows
+    redirects and handles auth and cookies as plain httpx does. With no key it
+    adds none. Raises ValueError, whose message never includes the key, unless
+    the key is printable ASCII with no whitespace.
+    """
+    return _PCOKeyClient(
+        api_key=api_key,
+        timeout=timeout,
+        follow_redirects=True,
+        transport=transport,
+        headers=headers,
+    )
+
+
+def nz_legislation_api_key_extensions() -> dict[str, bool]:
+    """Request extensions that ask a PCO key client to add its key, per hop.
+
+    The tag is a marker, not the key, so the extensions httpx copies onto
+    redirects, history and next_request hold no key.
+    """
+    return {_API_KEY_EXTENSION: True}
 
 
 @dataclass(frozen=True)
@@ -83,7 +205,14 @@ class NZLegislationAPIDownloadReport:
 
 
 class NZLegislationAPIClient:
-    """Minimal synchronous client for api.legislation.govt.nz."""
+    """Minimal synchronous client for api.legislation.govt.nz.
+
+    It builds and owns its httpx client, which holds its key. Each of its own
+    requests is tagged, and the client's transport adds the key to each hop
+    that is https to a PCO host; other requests on that client go out
+    unchanged. A given transport, such as a mock, is used for every request
+    and closed with the client.
+    """
 
     def __init__(
         self,
@@ -91,24 +220,31 @@ class NZLegislationAPIClient:
         *,
         base_url: str = NZ_LEGISLATION_API_BASE_URL,
         timeout: float = 60.0,
-        client: httpx.Client | None = None,
+        transport: httpx.BaseTransport | None = None,
     ) -> None:
         if not api_key:
             raise ValueError("NZ Legislation API key is required")
-        self.api_key = api_key
+        self._api_key = _PCOAPIKey(api_key)
         self.base_url = base_url.rstrip("/")
         self.timeout = timeout
-        self._client = client
-        self._owns_client = client is None
+        self._transport = transport
+        self._client: httpx.Client | None = None
+
+    @property
+    def api_key(self) -> str:
+        """The PCO API key, fixed when the wrapper is built."""
+        return self._api_key.value
 
     @property
     def client(self) -> httpx.Client:
         if self._client is None:
-            self._client = httpx.Client(timeout=self.timeout, follow_redirects=True)
+            self._client = nz_legislation_api_key_client(
+                api_key=self.api_key, timeout=self.timeout, transport=self._transport
+            )
         return self._client
 
     def close(self) -> None:
-        if self._owns_client and self._client is not None:
+        if self._client is not None:
             self._client.close()
         self._client = None
 
@@ -118,12 +254,27 @@ class NZLegislationAPIClient:
     def __exit__(self, *args: object) -> None:
         self.close()
 
+    def _get(
+        self,
+        url: str,
+        *,
+        headers: Mapping[str, str],
+        params: Mapping[str, str] | None = None,
+    ) -> httpx.Response:
+        """GET a URL tagged for this wrapper's client to add its API key."""
+        return self.client.get(
+            url,
+            headers=headers,
+            params=params,
+            extensions=nz_legislation_api_key_extensions(),
+        )
+
     def get_json(self, path: str, params: Mapping[str, str] | None = None) -> dict[str, Any]:
         """GET an API JSON endpoint with the configured API key."""
         url = f"{self.base_url}/{path.lstrip('/')}"
-        response = self.client.get(
+        response = self._get(
             url,
-            headers={"Accept": "application/json", "X-Api-Key": self.api_key},
+            headers={"Accept": "application/json"},
             params=dict(params or {}),
         )
         response.raise_for_status()
@@ -226,11 +377,10 @@ class NZLegislationAPIClient:
 
     def download_xml(self, url: str) -> bytes:
         """Download a single XML format URL returned by the API."""
-        response = self.client.get(
+        response = self._get(
             url,
             headers={
                 "Accept": "application/xml,text/xml,*/*",
-                "X-Api-Key": self.api_key,
                 "User-Agent": "Axiom/1.0 (max@axiom-foundation.org)",
             },
         )
