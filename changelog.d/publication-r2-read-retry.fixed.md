@@ -1,0 +1,1 @@
+Retry transient R2 reads during publication with bounded jittered backoff, restarting failed streams before rechecking every byte; serialize artifact entries sharing an object key while retaining parallel reads of distinct objects, conditional writes, and exact hash, size, and signed-object verification.

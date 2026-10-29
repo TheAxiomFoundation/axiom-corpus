@@ -5,8 +5,9 @@ from __future__ import annotations
 import hashlib
 import json
 import mimetypes
+import threading
 import time
-from collections.abc import Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from concurrent.futures import Future, ThreadPoolExecutor, as_completed
 from contextlib import closing, contextmanager
 from dataclasses import dataclass
@@ -17,6 +18,7 @@ from typing import Any, TextIO
 
 from botocore.exceptions import ClientError
 
+from axiom_corpus.corpus.content_store import R2UnavailableError, RetryPolicy, is_transient
 from axiom_corpus.corpus.r2 import R2Config, make_r2_client
 from axiom_corpus.release.manifest import (
     ReleaseManifestError,
@@ -92,6 +94,7 @@ def stage_release_artifacts(
     client: Any | None = None,
     workers: int = 1,
     progress_stream: TextIO | None = None,
+    read_retry: RetryPolicy | None = None,
 ) -> R2ReadbackReport:
     """Upload missing content objects and hash their downloaded bytes.
 
@@ -101,7 +104,12 @@ def stage_release_artifacts(
     ``workers`` bounds a thread pool over the per-artifact sequence (snapshot
     and hash locally, read the existing object, conditionally write, read back,
     verify bytes and hash). Every artifact still runs that whole sequence on
-    its own; the first failure cancels the remaining work and is re-raised.
+    its own. Entries sharing a content key are serialized, including body
+    consumption, so duplicate source bytes do not produce overlapping reads.
+    Transient reads retry under ``read_retry`` (up to eight requests per
+    verification read by default),
+    restarting the stream and its hash after a failure. Non-transient errors
+    and exhausted retries cancel the remaining work and are re-raised.
     ``verified_keys`` keeps the artifact order of ``release_content`` regardless
     of completion order, so the signed readback evidence is identical for any
     worker count. ``progress_stream`` receives flushed, timestamped progress.
@@ -109,6 +117,8 @@ def stage_release_artifacts(
     if workers < 1:
         raise ValueError("workers must be positive")
     r2 = client or make_r2_client(config, max_pool_connections=workers)
+    reader = client or make_r2_client(config, max_pool_connections=workers, sdk_retries=False)
+    retry = read_retry or RetryPolicy()
     artifacts = release_content.get("artifacts")
     if not isinstance(artifacts, list) or not artifacts:
         raise ReleaseManifestError("release content has no artifacts to stage")
@@ -123,6 +133,14 @@ def stage_release_artifacts(
         _validated_artifact_entry(root, index, raw_entry, bucket=config.bucket)
         for index, raw_entry in enumerate(artifacts)
     )
+    key_locks = {entry.key: threading.Lock() for entry in entries}
+
+    def _stage(entry: _ArtifactEntry) -> _StagedArtifact:
+        with key_locks[entry.key]:
+            return _stage_one_artifact(
+                r2, bucket=config.bucket, entry=entry, read_client=reader, read_retry=retry
+            )
+
     expected_bytes = sum(entry.size for entry in entries)
     started = time.monotonic()
     emit_progress(
@@ -150,13 +168,12 @@ def stage_release_artifacts(
 
     if workers == 1:
         for entry in entries:
-            staged[entry.index] = _stage_one_artifact(r2, bucket=config.bucket, entry=entry)
+            staged[entry.index] = _stage(entry)
             _report()
     else:
         with ThreadPoolExecutor(max_workers=workers) as executor:
             futures: list[Future[_StagedArtifact]] = [
-                executor.submit(_stage_one_artifact, r2, bucket=config.bucket, entry=entry)
-                for entry in entries
+                executor.submit(_stage, entry) for entry in entries
             ]
             try:
                 for future in as_completed(futures):
@@ -234,8 +251,27 @@ def _validated_artifact_entry(
     )
 
 
-def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _StagedArtifact:
+def _stage_one_artifact(
+    client: Any,
+    *,
+    bucket: str,
+    entry: _ArtifactEntry,
+    read_client: Any | None = None,
+    read_retry: RetryPolicy | None = None,
+) -> _StagedArtifact:
     """Stage one artifact: snapshot, hash, conditional write, exact readback."""
+    reader = read_client if read_client is not None else client
+    retry = read_retry or RetryPolicy()
+
+    def verify_remote() -> bool:
+        return _retry_read(
+            lambda: _verify_object_or_none(
+                reader, bucket=bucket, key=entry.key, sha256=entry.sha256, size=entry.size
+            ),
+            key=entry.key,
+            retry=retry,
+        )
+
     with _snapshot_file(entry.path) as (snapshot, actual_digest, actual_bytes):
         # Hash, size, and upload all refer to this one immutable snapshot.
         # In particular, the repository path is never reopened after the
@@ -251,9 +287,7 @@ def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _
                 f"expected {entry.sha256}, got {actual_digest}"
             )
 
-        if _verify_object_or_none(
-            client, bucket=bucket, key=entry.key, sha256=entry.sha256, size=entry.size
-        ):
+        if verify_remote():
             was_uploaded = False
         else:
             was_uploaded = _put_snapshot_if_absent(
@@ -264,15 +298,38 @@ def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _
                 filename=entry.path.name,
                 sha256=entry.sha256,
                 size=entry.size,
+                verify_existing=verify_remote,
             )
 
     # Always read after the upload decision. Metadata, ETags, and upload
     # return values are not evidence that R2 persisted the expected bytes.
-    if not _verify_object_or_none(
-        client, bucket=bucket, key=entry.key, sha256=entry.sha256, size=entry.size
-    ):
+    if not verify_remote():
         raise ReleaseManifestError(f"R2 readback is missing after staging: {entry.key}")
     return _StagedArtifact(index=entry.index, key=entry.key, size=entry.size, uploaded=was_uploaded)
+
+
+def _retry_read[ReadResult](
+    read: Callable[[], ReadResult], *, key: str, retry: RetryPolicy
+) -> ReadResult:
+    """Retry a complete verified read, with one HTTP request per attempt.
+
+    The read client has SDK retries disabled. The existing streaming verifier
+    closes a failed response before returning here and starts a fresh hash and
+    length for each retry. Missing objects, malformed responses, and integrity
+    failures retain their existing fail-closed behavior.
+    """
+    for attempt in range(1, max(1, retry.attempts) + 1):
+        try:
+            return read()
+        except Exception as exc:  # noqa: BLE001 - only classified transient reads retry
+            if not is_transient(exc):
+                raise
+            if attempt >= retry.attempts:
+                raise R2UnavailableError(
+                    f"{exc} (R2 GetObject {key}: gave up after {attempt} attempts)"
+                ) from exc
+            retry.sleep(retry.delay(attempt, exc))
+    raise AssertionError("read retry loop must return or raise")
 
 
 def emit_progress(stream: TextIO | None, message: str) -> None:
@@ -289,6 +346,7 @@ def stage_signed_release_object(
     public_key: str,
     config: R2Config,
     client: Any | None = None,
+    read_retry: RetryPolicy | None = None,
 ) -> str:
     """Store and read back the signed release object before activation."""
     verify_release_object(release_object, public_key=public_key)
@@ -297,8 +355,17 @@ def stage_signed_release_object(
     key = release_object_r2_key(release_name, content_sha256)
     payload = serialize_release_object(release_object)
     r2 = client or make_r2_client(config)
+    reader = client or make_r2_client(config, sdk_retries=False)
+    retry = read_retry or RetryPolicy()
 
-    existing = _read_object_or_none(r2, bucket=config.bucket, key=key)
+    def read_remote() -> bytes | None:
+        return _retry_read(
+            lambda: _read_object_or_none(reader, bucket=config.bucket, key=key),
+            key=key,
+            retry=retry,
+        )
+
+    existing = read_remote()
     if existing is None:
         _put_release_object_if_absent(
             r2,
@@ -306,13 +373,14 @@ def stage_signed_release_object(
             key=key,
             payload=payload,
             content_sha256=content_sha256,
+            read_existing=read_remote,
         )
     elif existing != payload:
         raise ReleaseManifestError(
             f"immutable release object already exists with different bytes: {key}"
         )
 
-    readback = _read_object_or_none(r2, bucket=config.bucket, key=key)
+    readback = read_remote()
     if readback != payload:
         raise ReleaseManifestError(f"signed release object readback mismatch: {key}")
     try:
@@ -350,6 +418,7 @@ def _put_snapshot_if_absent(
     filename: str,
     sha256: str,
     size: int,
+    verify_existing: Callable[[], bool] | None = None,
 ) -> bool:
     request: dict[str, Any] = {
         "Bucket": bucket,
@@ -370,7 +439,14 @@ def _put_snapshot_if_absent(
         except ClientError as exc:
             if not _is_conditional_write_conflict(exc):
                 raise
-            if _verify_object_or_none(client, bucket=bucket, key=key, sha256=sha256, size=size):
+            verified = (
+                verify_existing()
+                if verify_existing is not None
+                else _verify_object_or_none(
+                    client, bucket=bucket, key=key, sha256=sha256, size=size
+                )
+            )
+            if verified:
                 return False
             if attempt + 1 == _MAX_CONDITIONAL_WRITE_ATTEMPTS:
                 raise ReleaseManifestError(
@@ -388,6 +464,7 @@ def _put_release_object_if_absent(
     key: str,
     payload: bytes,
     content_sha256: str,
+    read_existing: Callable[[], bytes | None] | None = None,
 ) -> None:
     for attempt in range(_MAX_CONDITIONAL_WRITE_ATTEMPTS):
         try:
@@ -403,7 +480,11 @@ def _put_release_object_if_absent(
         except ClientError as exc:
             if not _is_conditional_write_conflict(exc):
                 raise
-            remote = _read_object_or_none(client, bucket=bucket, key=key)
+            remote = (
+                read_existing()
+                if read_existing is not None
+                else _read_object_or_none(client, bucket=bucket, key=key)
+            )
             if remote is not None:
                 if remote != payload:
                     raise ReleaseManifestError(
