@@ -3,15 +3,19 @@
 Invariants checked here, for any generated section:
 
 - Word breaks: ``<br/>`` and block children (``<P>``, ``<FP>``, ...) separate the
-  words on either side; inline markup (``<E>``, ``<sub>``, ``<SU>``) joins them.
+  words on either side; a ``<br/>`` directly after a hyphen preserves the join.
+  Inline markup (``<E>``, ``<sub>``, ``<SU>``) joins its surrounding text.
   The tokens of the rendered text equal those of a reference model.
 - Only whitespace is added: with whitespace removed, the break-aware text equals
   the plain ``itertext()`` join, so no character is lost, added or reordered.
 - Captions: a table's caption is its own block, just before the table's rows.
-- Conservation: with whitespace and the ``|`` cell separators removed, a section
-  body is the section's text in document order, less its ``HEAD`` and ``CITA``.
+- Conservation: remove the section caption marker, whitespace and ``|`` cell
+  separators, and a body equals the source text less ``HEAD`` and ``CITA``.
+- Caption isolation: captions never change paragraph paths, labels or spans after
+  mapping offsets through removal of their caption blocks.
 - Agreement: sections and appendices render the same body for content that has
-  no appendix-only element (HD1-HD3 headings, non-formula images).
+  no appendix-only element (HD1-HD3 headings, non-formula images), after removing
+  the section-only caption marker.
 """
 
 import re
@@ -23,48 +27,63 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 import axiom_corpus.corpus.ecfr as ecfr
+from axiom_corpus.corpus.anchors import generate_anchors_for_provision
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
+from axiom_corpus.corpus.models import ProvisionRecord
 
-_words = st.text(alphabet="abcxyzABC0189§$%().,—–'é", min_size=1, max_size=6)
+_words = st.text(alphabet="abcxyzABC0189§$%().,—–'é-", min_size=1, max_size=6)
 _inline_tags = st.sampled_from(["E", "SU", "sub", "sup", "I"])
 _block_tags = st.sampled_from(["P", "FP", "FP-1", "PSPACE", "HED", "HD1", "LI", "DIV"])
 
-# A run of content inside one rendered element: (kind, tag, word, space_before).
-_segment = st.one_of(
-    st.tuples(st.just("text"), st.none(), _words, st.booleans()),
-    st.tuples(st.just("inline"), _inline_tags, _words, st.booleans()),
-    st.tuples(st.just("br"), st.none(), st.none(), st.booleans()),
-    st.tuples(st.just("block"), _block_tags, _words, st.booleans()),
+# A segment holds (kind, tag, content, space_before). Inline content recursively
+# contains text, breaks and inline elements, including breaks nested several deep.
+_segment = st.recursive(
+    st.one_of(
+        st.tuples(st.just("text"), st.none(), _words, st.booleans()),
+        st.tuples(st.just("br"), st.none(), st.none(), st.booleans()),
+        st.tuples(st.just("block"), _block_tags, _words, st.booleans()),
+    ),
+    lambda child: st.tuples(
+        st.just("inline"), _inline_tags, st.lists(child, max_size=4), st.booleans()
+    ),
+    max_leaves=16,
 )
 _segments = st.lists(_segment, max_size=8)
 
 
 def _xml(segments):
     parts = []
-    for kind, tag, word, space in segments:
+    for kind, tag, content, space in segments:
         parts.append(" " if space else "")
         if kind == "text":
-            parts.append(escape(word))
+            parts.append(escape(content))
         elif kind == "inline":
-            parts.append(f"<{tag}>{escape(word)}</{tag}>")
+            parts.append(f"<{tag}>{_xml(content)}</{tag}>")
         elif kind == "br":
             parts.append("<br/>")
         else:
-            parts.append(f"<{tag}>{escape(word)}</{tag}>")
+            parts.append(f"<{tag}>{escape(content)}</{tag}>")
     return "".join(parts)
 
 
 def _reference_text(segments):
-    """Rendered text by hand: a break or block boundary is a space, inline joins."""
+    """Model boundaries recursively, preserving source hyphens across breaks."""
     parts = []
-    for kind, _tag, word, space in segments:
-        parts.append(" " if space else "")
-        if kind in ("text", "inline"):
-            parts.append(word)
-        elif kind == "br":
-            parts.append(" ")
-        else:
-            parts.append(f" {word} ")
+
+    def visit(items):
+        for kind, _tag, content, space in items:
+            parts.append(" " if space else "")
+            if kind == "text":
+                parts.append(content)
+            elif kind == "inline":
+                visit(content)
+            elif kind == "br":
+                if not "".join(parts).endswith("-"):
+                    parts.append(" ")
+            else:
+                parts.append(f" {content} ")
+
+    visit(segments)
     return " ".join("".join(parts).split())
 
 
@@ -127,7 +146,7 @@ def _expected_blocks(children):
             captions, rows, _wrapped = content
             caption = " ".join(captions)
             if caption:
-                blocks.append(caption)
+                blocks.append(f"[Table caption: {caption}]")
             lines = [
                 " | ".join(text for cell in row for text in [_reference_text(cell)] if text)
                 for row in rows
@@ -159,6 +178,114 @@ def _source_text(elem):
     return "".join(parts)
 
 
+def _unmark_caption_blocks(body):
+    return re.sub(r"(?m)^\[Table caption: (.*)\]$", r"\1", body)
+
+
+def _without_caption_blocks(body):
+    return "\n\n".join(
+        block for block in body.split("\n\n") if not block.startswith("[Table caption: ")
+    )
+
+
+def _anchor_signature(elem, *, remove_captions=False):
+    body = ecfr._section_body(elem)
+    provision = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        id="section-fixture",
+        citation_path="us/regulation/26/1/412-c-1-2",
+        body=body,
+    )
+    return [
+        (
+            anchor.citation_path,
+            anchor.label,
+            len(_without_caption_blocks(body[:anchor.char_start]))
+            if remove_captions else anchor.char_start,
+            len(_without_caption_blocks(body[:anchor.char_end]))
+            if remove_captions else anchor.char_end,
+            _without_caption_blocks(anchor.text) if remove_captions else anchor.text,
+        )
+        for anchor in generate_anchors_for_provision(provision)
+    ]
+
+
+def _remove_captions(elem):
+    for table in elem.iter("TABLE"):
+        for caption in table.findall("CAPTION"):
+            table.remove(caption)
+
+
+def test_repeated_labeled_captions_do_not_create_paragraph_anchors():
+    # 26 CFR 1.412(c)(1)-2 repeats (A) captions after its (a) paragraph text.
+    elem = ET.fromstring(
+        '<DIV8 N="§ 1.412(c)(1)-2" TYPE="SECTION">'
+        '<P>(a) Computation of the charge.</P>'
+        '<TABLE><CAPTION><P>(A) Computation of Net Shortfall Charge</P></CAPTION>'
+        '<TR><TD>First computation</TD></TR></TABLE>'
+        '<TABLE><CAPTION><P>(A) Computation of Net Shortfall Charge</P></CAPTION>'
+        '<TR><TD>Second computation</TD></TR></TABLE>'
+        '<P>(b) Next paragraph.</P></DIV8>'
+    )
+    actual = _anchor_signature(elem, remove_captions=True)
+    _remove_captions(elem)
+
+    assert actual == _anchor_signature(elem)
+    assert [path.rsplit("/", 1)[-1] for path, *_ in actual] == ["a", "b"]
+
+
+_caption_label = st.sampled_from(["a", "A", "B", "C", "1", "2", "i", "ii"])
+_labeled_caption = st.tuples(
+    _caption_label,
+    st.sampled_from([
+        " Computation", " FIRST CATEGORY", " Text—(A) charge", " Text–(1) charge",
+        " Text. (1) charge", " Text: (A) charge",
+    ]),
+).map(lambda pair: f"({pair[0]}){pair[1]}")
+
+
+@settings(max_examples=100, deadline=None)
+@given(st.lists(_labeled_caption, min_size=1, max_size=5))
+def test_labeled_captions_preserve_paragraph_anchors(captions):
+    tables = "".join(
+        f"<TABLE><CAPTION><P>{escape(caption)}</P></CAPTION>"
+        f"<TR><TD>Value {index}</TD></TR></TABLE>"
+        for index, caption in enumerate(captions)
+    )
+    elem = ET.fromstring(
+        '<DIV8><P>(a) Computation—(1) First paragraph.</P>'
+        f'{tables}<P>(2) Second paragraph.</P><P>(b) Next paragraph.</P></DIV8>'
+    )
+    actual = _anchor_signature(elem, remove_captions=True)
+    _remove_captions(elem)
+
+    assert actual == _anchor_signature(elem)
+
+
+@pytest.mark.parametrize("appendix", [False, True])
+@pytest.mark.parametrize(
+    "content,expected",
+    [
+        ("<TABLE><TR><TH>Occupa-<br/>tion</TH></TR></TABLE>", "Occupa-tion"),
+        (
+            "<TABLE><TR><TH>Dec. 31, 1954-<br/>Apr. 1, 1957</TH></TR></TABLE>",
+            "Dec. 31, 1954-Apr. 1, 1957",
+        ),
+    ],
+)
+def test_hyphen_before_break_keeps_source_join(content, expected, appendix):
+    elem = ET.fromstring(f"<DIV8>{content}</DIV8>")
+
+    assert ecfr._section_body(elem, appendix=appendix) == expected
+
+
+def test_nested_inline_break_separates_words():
+    elem = ET.fromstring("<DIV8><P><E>a<sub><I>b<br/>c</I></sub>d</E></P></DIV8>")
+
+    assert ecfr._section_body(elem) == "ab cd"
+
+
 @settings(max_examples=300, deadline=None)
 @given(_children)
 def test_section_body_keeps_captions_and_word_breaks(children):
@@ -168,9 +295,9 @@ def test_section_body_keeps_captions_and_word_breaks(children):
 
     assert (body.split("\n\n") if body else []) == _expected_blocks(children)
     assert "HEADWORD" not in body and "CITAWORD" not in body
-    assert _no_ws(body).replace("|", "") == _no_ws(_source_text(elem))
-    # Sections and appendices share the text rules.
-    assert ecfr._section_body(elem, appendix=True) == body
+    assert _no_ws(_unmark_caption_blocks(body)).replace("|", "") == _no_ws(_source_text(elem))
+    # Sections alone mark captions; sections and appendices share source text.
+    assert ecfr._section_body(elem, appendix=True) == _unmark_caption_blocks(body)
 
 
 @pytest.mark.parametrize(
@@ -180,7 +307,7 @@ def test_section_body_keeps_captions_and_word_breaks(children):
         (
             '<TABLE><CAPTION><P class="title">Table 1—For Employees</P></CAPTION>'
             "<TR><TH>For months</TH><TH>Amount</TH></TR></TABLE>",
-            ["Table 1—For Employees", "For months | Amount"],
+            ["[Table caption: Table 1—For Employees]", "For months | Amount"],
         ),
         # 20 CFR 404.313: a heading cell broken with <br/>.
         (
@@ -193,7 +320,11 @@ def test_section_body_keeps_captions_and_word_breaks(children):
             '<TABLE><CAPTION><P class="title">Table IV-A</P><P class="headnote">'
             "[Applicable at test sites less than 3,000 feet above sea level]</P></CAPTION>"
             "<TR><TD>65</TD></TR></TABLE>",
-            ["Table IV-A [Applicable at test sites less than 3,000 feet above sea level]", "65"],
+            [
+                "[Table caption: Table IV-A "
+                "[Applicable at test sites less than 3,000 feet above sea level]]",
+                "65",
+            ],
         ),
         # A table with no caption renders as before.
         ("<TABLE><TR><TD>a</TD><TD>b</TD></TR></TABLE>", ["a | b"]),

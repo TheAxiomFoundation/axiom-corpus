@@ -278,6 +278,7 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
     caption as adjacent paragraphs (``<P>Table IV-A</P><P>[Applicable ...]</P>``);
     joining ``itertext()`` would glue the words on either side. Inline markup
     (``<E>``, ``<sub>``, ``<sup>``) still joins: ``FEV<sub>1</sub>`` is ``FEV1``.
+    A ``<br/>`` directly after a hyphen preserves the source join and hyphen.
     """
     parts: list[str] = []
 
@@ -286,7 +287,9 @@ def _element_text_with_breaks(elem: ET.Element) -> str:
             parts.append(node.text)
         for child in node:
             name = _local_name(child.tag)
-            if name.startswith("FP-") or name in _WORD_BREAK_TAGS:
+            if name == "BR" and parts and parts[-1].endswith("-"):
+                visit(child)
+            elif name.startswith("FP-") or name in _WORD_BREAK_TAGS:
                 parts.append(" ")
                 visit(child)
                 parts.append(" ")
@@ -1471,7 +1474,9 @@ def _section_body(
             if tag == "TABLE":
                 caption = _table_caption_text(child)
                 if caption:
-                    blocks.append(caption)
+                    # Distinguish section captions from paragraph labels during
+                    # anchor inference; appendices retain their caption format.
+                    blocks.append(caption if appendix else f"[Table caption: {caption}]")
                 text = _table_text(child)
                 if text:
                     blocks.append(text)

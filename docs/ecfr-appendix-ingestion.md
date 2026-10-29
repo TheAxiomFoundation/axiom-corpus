@@ -91,26 +91,36 @@ Image-only forms therefore retain a nonempty body pointing to the captured
 source. Existing SHA-256-bound formula transcription checks still apply. Image
 references are source evidence, not OCR text or an executable formula.
 
-Appendix and section bodies keep table captions, as a block before the table's
+Appendix and section bodies keep table captions as a block before the table's
 rows (`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P
-of part 404, `Table 1—For Employees` in 20 CFR 404.1592), and read a `<br/>` as
-a word break, so `means<br/>less` is `means less`, not `meansless`; adjacent
-block children (`P`, `FP`, any `FP-*`, `PSPACE`, `HED`, `HD1`–`HD3`, `LI`, `DIV`)
-separate words the same way, while inline markup still joins (`FEV<sub>1</sub>`
-is `FEV1`). An appendix's own bracketed source note
-(`CITA`) is not kept, and neither is plain text that sits directly in an element the
-renderer does not read, such as an editorial cross-reference (`XREF`, "Link to an
-amendment published at 91 FR 40836, July 2, 2026."); paragraphs, headings and tables
-inside such an element are still kept, and text nested inside a kept element (a
-caption, a paragraph or a table cell) is kept whatever its tag. These rendering changes apply
-to part appendices as well, whose path, parent, level, ordinal and metadata are
-unchanged; no locked part appendix has a caption, a `<br/>` or adjacent block
-children.
+of part 404, `Table 1—For Employees` in 20 CFR 404.1592). Section bodies wrap each
+caption in `[Table caption: …]`; appendix bodies keep their existing caption
+format. The anchor scanner masks the complete marked line with equal-length
+spaces before finding paragraph heads, so caption labels never create paragraph
+anchors and offsets still refer to the original body. Plain section text gives
+the scanner no way to distinguish a caption's paragraph-like label from a
+paragraph head. A prefix alone cannot exclude labels after dashes or sentence
+punctuation inside a caption. The marker follows the bracketed evidence convention
+of `[Official formula image: …]`: apart from whitespace and `|` cell separators,
+rendering adds only caption blocks and their marker characters to ordinary
+section text and preserves every source character within each caption.
+
+Both body renderers read a `<br/>` as a word break, so `means<br/>less` becomes
+`means less`. A break directly after a hyphen preserves the join and the hyphen:
+`Occupa-<br/>tion` becomes `Occupa-tion`, and `1954-<br/>Apr.` becomes `1954-Apr.`.
+Adjacent block children (`P`, `FP`, any `FP-*`, `PSPACE`, `HED`, `HD1`–`HD3`, `LI`,
+`DIV`) separate words, while inline markup still joins (`FEV<sub>1</sub>` becomes
+`FEV1`). The renderer skips an appendix's own bracketed source note (`CITA`) and
+plain text directly inside an element it does not read, such as an editorial
+cross-reference (`XREF`, "Link to an amendment published at 91 FR 40836, July 2,
+2026."). It still keeps paragraphs, headings and tables inside such an element,
+and all text nested inside a caption, paragraph or table cell, whatever its tag.
+These rendering rules also apply to part appendices and preserve their path,
+parent, level, ordinal and metadata.
 
 Sections took captions and word breaks after the appendices did. Locked scopes
-keep the text they were extracted with (captions dropped, words joined across
-`<br/>`); a scope picks up the fix only when it is extracted again as a
-successor.
+keep the text their extraction produced (captions dropped, words joined across
+`<br/>`); a scope picks up the fix only when a successor extraction replaces it.
 
 When an inventory lists a supported appendix absent from the retained XML,
 the existing structure-only fallback preserves its source identity with
@@ -132,7 +142,7 @@ recovery scripts do not certify an appendix replay as complete.
 Apart from captions and word breaks, ordinary section rendering and
 formula-only image capture retain their prior behavior, even in an
 appendix-enabled run. Sections do not get HD1–HD3 text or non-math image
-capture. Nor does this change repair the inherited
+capture. Nor do captions and word breaks repair the inherited
 loss of a nested `MATH` marker inside a consumed paragraph, table, or heading;
 standalone `MATH` transcription and markers remain supported.
 

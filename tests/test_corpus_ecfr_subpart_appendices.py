@@ -479,7 +479,7 @@ def test_appendix_and_section_rendering_keep_captions_and_word_breaks():
     # Sections keep the caption and break the word at <br/> too.
     assert by_path["us/regulation/20/404/201"].body.split("\n\n") == [
         "A section paragraph.",
-        "Section Caption",
+        "[Table caption: Section Caption]",
         "means less",
     ]
 

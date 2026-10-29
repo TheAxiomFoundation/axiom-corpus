@@ -224,6 +224,14 @@ def _scan_heads(body: str) -> list[_Head]:
     accepted by :func:`_build_tree` when they are the expected next outline
     child, which filters out cross-references and parentheticals.
     """
+    # eCFR marks section table captions as evidence blocks. Mask the whole line
+    # so neither initial labels nor inline strong/weak labels become heads.
+    # Equal-length spaces keep every offset relative to the original body.
+    body = re.sub(
+        r"(?m)^\[Table caption: [^\n]*\]$",
+        lambda match: " " * len(match.group()),
+        body,
+    )
     strong_offsets: set[int] = set()
     heads: list[_Head] = []
     for match in _HEAD.finditer(body):
