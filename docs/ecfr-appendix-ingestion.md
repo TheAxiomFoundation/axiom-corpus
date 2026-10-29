@@ -93,10 +93,11 @@ references are source evidence, not OCR text or an executable formula.
 
 Appendix and section bodies keep table captions, as a block before the table's
 rows (`Table No. 1—Residual Functional Capacity: ...` in appendix 2 to subpart P
-of part 404, `Table 1—For Employees` in 20 CFR 404.1592), and read a `<br/>` as a word break, so `means<br/>less` is
-`means less`, not `meansless`; adjacent block children (`P`, `FP`, `PSPACE`, `HED`,
-`HD1`–`HD3`, `LI`, `DIV`) separate words the same way, while inline markup still
-joins (`FEV<sub>1</sub>` is `FEV1`). An appendix's own bracketed source note
+of part 404, `Table 1—For Employees` in 20 CFR 404.1592), and read a `<br/>` as
+a word break, so `means<br/>less` is `means less`, not `meansless`; adjacent
+block children (`P`, `FP`, any `FP-*`, `PSPACE`, `HED`, `HD1`–`HD3`, `LI`, `DIV`)
+separate words the same way, while inline markup still joins (`FEV<sub>1</sub>`
+is `FEV1`). An appendix's own bracketed source note
 (`CITA`) is not kept, and neither is plain text that sits directly in an element the
 renderer does not read, such as an editorial cross-reference (`XREF`, "Link to an
 amendment published at 91 FR 40836, July 2, 2026."); paragraphs, headings and tables
@@ -131,7 +132,7 @@ recovery scripts do not certify an appendix replay as complete.
 Apart from captions and word breaks, ordinary section rendering and
 formula-only image capture retain their prior behavior, even in an
 appendix-enabled run. Sections do not get HD1–HD3 text or non-math image
-capture. It also does not repair the inherited
+capture. Nor does this change repair the inherited
 loss of a nested `MATH` marker inside a consumed paragraph, table, or heading;
 standalone `MATH` transcription and markers remain supported.
 
