@@ -1065,9 +1065,11 @@ def _extract_pdf_blocks(
         value = extraction_config.get(key)
         if value is not None and not isinstance(value, bool):
             raise ValueError(f"{key} must be true or false, not {value!r}")
-    # ocr_dpi is read only when OCR runs (force_ocr, or ocr on a page with no text
-    # layer); check it up front so a bad value fails every PDF extraction.
+    # ocr_dpi and ocr_orientation are read only when OCR runs (force_ocr, or ocr on a
+    # page with no text layer); check them up front so a bad value fails every PDF
+    # extraction.
     _pdf_ocr_dpi(extraction_config)
+    _pdf_ocr_orientation(extraction_config)
     markup = _pdf_amendment_markup_config(extraction_config)
     sort_blocks = extraction_config.get("sort_blocks") is True
     layered = markup is not None or sort_blocks
@@ -4945,39 +4947,249 @@ def _pdf_ocr_dpi(extraction: dict[str, Any]) -> int:
     return _positive_int(extraction.get("ocr_dpi"), key="ocr_dpi", default=200, noun="DPI")
 
 
+def _pdf_ocr_orientation(extraction: dict[str, Any]) -> bool:
+    value = extraction.get("ocr_orientation", True)
+    if not isinstance(value, bool):
+        raise ValueError(f"ocr_orientation must be true or false, not {value!r}")
+    return value
+
+
 def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     """Extract text from an image-only PDF page using the local Tesseract CLI."""
     if not shutil.which("tesseract"):
         raise RuntimeError("PDF OCR extraction requires tesseract on PATH")
 
     dpi = _pdf_ocr_dpi(extraction)
+    # Render with PyMuPDF's target-DPI rasterizer rather than an
+    # equivalent zoom matrix. On some scanned legal PDFs the matrix path
+    # anti-aliases faint interior table cells into illegibility (e.g. the
+    # Ghana Act 1111 rate table dropped its 10%/17.5% band cells), while
+    # the dpi= rasterizer preserves them, yielding faithful OCR.
+    pixmap = page.get_pixmap(dpi=dpi, alpha=False)
+    return _ocr_pixmap_text(pixmap, extraction=extraction)
+
+
+def _ocr_pixmap_text(pixmap: Any, *, extraction: dict[str, Any]) -> str:
+    """OCR of a rendered page, read upright when it was scanned sideways or upside down.
+
+    Tesseract's layout analysis reads a page turned a quarter clockwise (its vertical-text
+    detection turns the lines back) but reads a page turned a quarter counter-clockwise,
+    or upside down, as upside-down text: "(uas)pjiy usoqun sjuerddy" for "Applicant's
+    Unborn Child(ren)" on a sideways slide in the Utah 14-0007-MM approval document.
+
+    With ``ocr_orientation`` (the default), Tesseract's orientation detection runs first
+    (_tesseract_page_turn). A page it finds upright, or cannot judge, is read with exactly
+    the command and image used without the setting. Otherwise detection is only a
+    proposal: it names upright CMS letterheads "Rotate: 180" at confidence 19, and the
+    sideways Utah slide "Rotate: 90" at confidence 4. So the page is read as rendered and
+    turned by the proposed angle (an exact pixel rotation, _rotate_pixmap_clockwise), and
+    the turned read replaces the read as rendered only when it reads better
+    (_turned_read_is_better). Detection sometimes names the wrong side of a sideways page,
+    so when a quarter turn is not kept the opposite quarter turn is tried too.
+    """
     language = str(extraction.get("ocr_language") or "eng")
     page_segmentation_mode = extraction.get("ocr_psm")
-
     with tempfile.TemporaryDirectory(prefix="axiom-pdf-ocr-") as temp_dir:
         image_path = Path(temp_dir) / "page.png"
-        # Render with PyMuPDF's target-DPI rasterizer rather than an
-        # equivalent zoom matrix. On some scanned legal PDFs the matrix path
-        # anti-aliases faint interior table cells into illegibility (e.g. the
-        # Ghana Act 1111 rate table dropped its 10%/17.5% band cells), while
-        # the dpi= rasterizer preserves them, yielding faithful OCR.
-        pixmap = page.get_pixmap(dpi=dpi, alpha=False)
         pixmap.save(str(image_path))
+        turn = _tesseract_page_turn(image_path) if _pdf_ocr_orientation(extraction) else 0
+        if not turn:
+            return _tesseract_text(image_path, language, page_segmentation_mode)
+        rendered = _tesseract_read(image_path, language, page_segmentation_mode)
+        candidates = (turn, (turn + 180) % 360) if turn in (90, 270) else (turn,)
+        for candidate in candidates:
+            turned_path = Path(temp_dir) / f"turned-{candidate}.png"
+            _rotate_pixmap_clockwise(pixmap, candidate).save(str(turned_path))
+            turned = _tesseract_read(turned_path, language, page_segmentation_mode)
+            # A tie is good enough only for the clockwise-turned page detection named.
+            if _turned_read_is_better(turned, rendered, tie=candidate == turn == 270):
+                return turned.text
+        return rendered.text
 
-        command = ["tesseract", str(image_path), "stdout", "-l", language]
-        if page_segmentation_mode is not None:
-            command.extend(["--psm", str(page_segmentation_mode)])
-        result = subprocess.run(
-            command,
-            check=False,
-            capture_output=True,
-            encoding="utf-8",
-            errors="replace",
-        )
-        if result.returncode != 0:
-            message = result.stderr.strip() or result.stdout.strip()
-            raise RuntimeError(f"PDF OCR extraction failed: {message}")
-        return result.stdout
+
+def _tesseract_command(
+    image_path: Path, output: str, language: str, page_segmentation_mode: Any
+) -> list[str]:
+    command = ["tesseract", str(image_path), output, "-l", language]
+    if page_segmentation_mode is not None:
+        command.extend(["--psm", str(page_segmentation_mode)])
+    return command
+
+
+def _run_tesseract(command: list[str]) -> subprocess.CompletedProcess[str]:
+    result = subprocess.run(
+        command,
+        check=False,
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if result.returncode != 0:
+        message = result.stderr.strip() or result.stdout.strip()
+        raise RuntimeError(f"PDF OCR extraction failed: {message}")
+    return result
+
+
+def _tesseract_text(image_path: Path, language: str, page_segmentation_mode: Any) -> str:
+    command = _tesseract_command(image_path, "stdout", language, page_segmentation_mode)
+    return _run_tesseract(command).stdout
+
+
+@dataclass(frozen=True)
+class _TesseractRead:
+    """A Tesseract read of a page image: its text and its words' confidences (0-100)."""
+
+    text: str
+    word_confidences: tuple[float, ...]
+
+
+def _tesseract_read(
+    image_path: Path, language: str, page_segmentation_mode: Any
+) -> _TesseractRead:
+    """The page's text, as ``_tesseract_text`` reads it, with each word's confidence.
+
+    One Tesseract run writes the ``txt`` and ``tsv`` outputs of a single recognition; the
+    ``txt`` output is the text the ``stdout`` read prints.
+    """
+    base = image_path.with_suffix("")
+    command = _tesseract_command(image_path, str(base), language, page_segmentation_mode)
+    _run_tesseract([*command, "txt", "tsv"])
+    text = base.with_suffix(".txt").read_bytes().decode("utf-8", errors="replace")
+    tsv = base.with_suffix(".tsv").read_bytes().decode("utf-8", errors="replace")
+    return _TesseractRead(text=text, word_confidences=_tsv_word_confidences(tsv))
+
+
+def _tsv_word_confidences(tsv: str) -> tuple[float, ...]:
+    """Confidences of the recognized words (level 5 rows with text) in Tesseract TSV."""
+    confidences: list[float] = []
+    for line in tsv.splitlines()[1:]:
+        cells = line.split("\t")
+        if len(cells) == 12 and cells[0] == "5" and cells[11].strip():
+            confidences.append(float(cells[10]))
+    return tuple(confidences)
+
+
+# Orientation detection reports "Rotate: R", the clockwise turn in degrees that makes the
+# page upright. It declines a page with fewer characters than it samples by default ("Too
+# few characters"); such a page is judged again from as few as
+# _OSD_SPARSE_MIN_CHARACTERS characters (a sideways slide holds a few dozen), and read as
+# rendered if detection still declines. Any other failure (osd.traineddata missing) stops
+# extraction.
+_TESSERACT_TURN_RE = re.compile(r"^Rotate:\s*(\d+)\s*$", re.MULTILINE)
+_TESSERACT_TOO_FEW_CHARACTERS = "Too few characters"
+_OSD_SPARSE_MIN_CHARACTERS = 10
+
+
+def _tesseract_page_turn(image_path: Path) -> int:
+    """The clockwise turn (0, 90, 180 or 270) Tesseract's OSD proposes for the page image."""
+    turn = _tesseract_osd_turn(image_path, min_characters=None)
+    if turn is None:
+        turn = _tesseract_osd_turn(image_path, min_characters=_OSD_SPARSE_MIN_CHARACTERS)
+    return turn or 0
+
+
+def _tesseract_osd_turn(image_path: Path, *, min_characters: int | None) -> int | None:
+    """One OSD run: the proposed clockwise turn, or None when detection declines the page."""
+    command = ["tesseract", str(image_path), "stdout", "--psm", "0"]
+    if min_characters is not None:
+        command.extend(["-c", f"min_characters_to_try={min_characters}"])
+    result = subprocess.run(
+        command,
+        check=False,
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    match = _TESSERACT_TURN_RE.search(result.stdout)
+    if result.returncode == 0 and match:
+        turn = int(match.group(1))
+        if turn not in (0, 90, 180, 270):
+            raise RuntimeError(f"PDF OCR orientation detection gave Rotate: {turn}")
+        return turn
+    if _TESSERACT_TOO_FEW_CHARACTERS in f"{result.stderr}\n{result.stdout}":
+        return None
+    message = result.stderr.strip() or result.stdout.strip()
+    raise RuntimeError(f"PDF OCR orientation detection failed: {message}")
+
+
+# The read-quality gate, set from four-way reads of the 1,552 English pages the
+# 2026-10-13 orientation sweep picked (docs/ingest-runs/2026-10-13-ocr-page-orientation.md).
+# A word Tesseract reads at _OCR_CONFIDENT_WORD or more counts as read: upside-down text
+# yields many junk words at 50-60. A turned read must hold _OCR_TURN_MIN_RATIO times the
+# read words of the read as rendered and _OCR_TURN_MIN_GAIN more; the sideways Utah
+# slides gain only 4-6 words (from 1-4). A page turned a quarter clockwise reads about as
+# well as rendered as turned upright, so for that turn a tie is enough when the read as
+# rendered is itself good (at least _OCR_GOOD_READ_SHARE of its words read) and the
+# turned read holds _OCR_TIE_MIN_WORDS read words. An upright page turned that way reads
+# upside down and never ties; a page that reads upside down as rendered is not a good
+# read, so two upside-down reads never tie either.
+_OCR_CONFIDENT_WORD = 70.0
+_OCR_TURN_MIN_RATIO = 1.5
+_OCR_TURN_MIN_GAIN = 3
+_OCR_TIE_MIN_WORDS = 5
+_OCR_GOOD_READ_SHARE = 0.5
+
+
+def _turned_read_is_better(turned: _TesseractRead, rendered: _TesseractRead, *, tie: bool) -> bool:
+    """Whether the read of the turned page beats the read as rendered (ties too, with ``tie``,
+    when the read as rendered is good)."""
+    turned_words = sum(1 for c in turned.word_confidences if c >= _OCR_CONFIDENT_WORD)
+    rendered_words = sum(1 for c in rendered.word_confidences if c >= _OCR_CONFIDENT_WORD)
+    if (
+        turned_words >= _OCR_TURN_MIN_RATIO * rendered_words
+        and turned_words >= rendered_words + _OCR_TURN_MIN_GAIN
+    ):
+        return True
+    return (
+        tie
+        and rendered_words >= _OCR_GOOD_READ_SHARE * len(rendered.word_confidences)
+        and turned_words >= rendered_words
+        and turned_words >= _OCR_TIE_MIN_WORDS
+    )
+
+
+def _rotate_pixmap_clockwise(pixmap: Any, degrees: int) -> Any:
+    """The pixmap turned clockwise by 90, 180 or 270 degrees: an exact pixel permutation.
+
+    Output pixel (x, y) is input pixel (y, height-1-x) for 90 degrees, (width-1-x,
+    height-1-y) for 180 and (width-1-y, x) for 270, with every channel byte carried over
+    unchanged and the resolution kept, so turning by 360 degrees less the angle undoes the
+    turn and Tesseract sees exactly the pixels of the page scanned upright.
+    """
+    if degrees not in (90, 180, 270):
+        raise ValueError(f"page turn must be 90, 180 or 270 degrees, not {degrees!r}")
+    if pixmap.alpha:
+        raise ValueError("page turn needs a pixmap without alpha")
+    channels, width, height, stride = pixmap.n, pixmap.width, pixmap.height, pixmap.stride
+    samples = pixmap.samples
+    out = bytearray(width * height * channels)
+    if degrees == 180:
+        row_bytes = width * channels
+        for row in range(height):
+            source = samples[(height - 1 - row) * stride : (height - 1 - row) * stride + row_bytes]
+            for channel in range(channels):
+                out[row * row_bytes + channel : (row + 1) * row_bytes : channels] = source[
+                    channel::channels
+                ][::-1]
+        new_width, new_height = width, height
+    else:
+        new_width, new_height = height, width
+        row_bytes = new_width * channels
+        for row in range(new_height):
+            # 90: output row r is input column r read bottom to top; 270: output row r is
+            # input column width-1-r read top to bottom.
+            column = row if degrees == 90 else width - 1 - row
+            for channel in range(channels):
+                values = samples[column * channels + channel :: stride][:height]
+                out[row * row_bytes + channel : (row + 1) * row_bytes : channels] = (
+                    values[::-1] if degrees == 90 else values
+                )
+    turned = fitz.Pixmap(pixmap.colorspace, new_width, new_height, bytes(out), False)
+    if degrees == 180:
+        turned.set_dpi(pixmap.xres, pixmap.yres)
+    else:
+        turned.set_dpi(pixmap.yres, pixmap.xres)
+    return turned
 
 
 _NUMBERED_SECTION_START_RE = re.compile(
