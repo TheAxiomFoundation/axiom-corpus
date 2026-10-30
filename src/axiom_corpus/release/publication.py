@@ -98,10 +98,10 @@ def stage_release_artifacts(
     Existing objects are never overwritten. A byte mismatch at a SHA-256 key is
     a storage-integrity failure and aborts publication.
 
-    ``workers`` bounds a thread pool over the per-artifact sequence (snapshot
-    and hash locally, read the existing object, conditionally write, read back,
-    verify bytes and hash). Every artifact still runs that whole sequence on
-    its own; the first failure cancels the remaining work and is re-raised.
+    ``workers`` bounds a thread pool over distinct R2 keys. Every local path
+    is snapshotted and hashed, one snapshot at a time per key. One remote
+    staging sequence (existence check, conditional write and verified readback)
+    runs per key. The first failure cancels the remaining work and is re-raised.
     ``verified_keys`` keeps the artifact order of ``release_content`` regardless
     of completion order, so the signed readback evidence is identical for any
     worker count. ``progress_stream`` receives flushed, timestamped progress.
@@ -123,6 +123,12 @@ def stage_release_artifacts(
         _validated_artifact_entry(root, index, raw_entry, bucket=config.bucket)
         for index, raw_entry in enumerate(artifacts)
     )
+    groups: dict[str, list[_ArtifactEntry]] = {}
+    for entry in entries:
+        group = groups.setdefault(entry.key, [])
+        if group and (entry.sha256 != group[0].sha256 or entry.size != group[0].size):
+            raise ReleaseManifestError(f"inconsistent artifact metadata for R2 key: {entry.key}")
+        group.append(entry)
     expected_bytes = sum(entry.size for entry in entries)
     started = time.monotonic()
     emit_progress(
@@ -149,21 +155,22 @@ def stage_release_artifacts(
         )
 
     if workers == 1:
-        for entry in entries:
-            staged[entry.index] = _stage_one_artifact(r2, bucket=config.bucket, entry=entry)
+        for group in groups.values():
+            for result in _stage_artifact_group(r2, bucket=config.bucket, entries=group):
+                staged[result.index] = result
             _report()
     else:
         with ThreadPoolExecutor(max_workers=workers) as executor:
-            futures: list[Future[_StagedArtifact]] = [
-                executor.submit(_stage_one_artifact, r2, bucket=config.bucket, entry=entry)
-                for entry in entries
+            futures: list[Future[tuple[_StagedArtifact, ...]]] = [
+                executor.submit(_stage_artifact_group, r2, bucket=config.bucket, entries=group)
+                for group in groups.values()
             ]
             try:
                 for future in as_completed(futures):
                     # The first failure propagates unchanged; pending work is
                     # cancelled so a storage-integrity error stops staging.
-                    result = future.result()
-                    staged[result.index] = result
+                    for result in future.result():
+                        staged[result.index] = result
                     _report()
             except BaseException:
                 for pending in futures:
@@ -234,8 +241,9 @@ def _validated_artifact_entry(
     )
 
 
-def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _StagedArtifact:
-    """Stage one artifact: snapshot, hash, conditional write, exact readback."""
+@contextmanager
+def _checked_artifact_snapshot(entry: _ArtifactEntry) -> Iterator[SpooledTemporaryFile[bytes]]:
+    """Snapshot one path and check its own declared size and hash."""
     with _snapshot_file(entry.path) as (snapshot, actual_digest, actual_bytes):
         # Hash, size, and upload all refer to this one immutable snapshot.
         # In particular, the repository path is never reopened after the
@@ -250,7 +258,32 @@ def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _
                 f"local artifact sha256 mismatch for {entry.path_value}: "
                 f"expected {entry.sha256}, got {actual_digest}"
             )
+        yield snapshot
 
+
+def _stage_artifact_group(
+    client: Any, *, bucket: str, entries: list[_ArtifactEntry]
+) -> tuple[_StagedArtifact, ...]:
+    """Check every local copy, then run one remote staging sequence for its key."""
+    # Close each duplicate's snapshot before opening the next. Keeping the
+    # first snapshot open while checking the others would double the spool
+    # memory for a key, even though only one copy can be uploaded.
+    for entry in entries[1:]:
+        with _checked_artifact_snapshot(entry):
+            pass
+    first = _stage_one_artifact(client, bucket=bucket, entry=entries[0])
+    return (
+        first,
+        *(
+            _StagedArtifact(index=entry.index, key=entry.key, size=entry.size, uploaded=False)
+            for entry in entries[1:]
+        ),
+    )
+
+
+def _stage_one_artifact(client: Any, *, bucket: str, entry: _ArtifactEntry) -> _StagedArtifact:
+    """Stage one artifact: snapshot, hash, conditional write, exact readback."""
+    with _checked_artifact_snapshot(entry) as snapshot:
         if _verify_object_or_none(
             client, bucket=bucket, key=entry.key, sha256=entry.sha256, size=entry.size
         ):
