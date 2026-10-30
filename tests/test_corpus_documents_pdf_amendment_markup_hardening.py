@@ -4,7 +4,8 @@ Example tests pin each fix: the layered path's newlines, the check against the
 default page text, invisible and near-threshold rules, typographic underlines,
 and the configuration checks. Property tests state the invariants the layered
 path keeps for every input. They run exhaustively over short inputs and over a
-seeded sample of longer ones; the repository has no Hypothesis.
+seeded sample of longer ones. Text that holds the delimiter characters
+themselves is covered in ``test_corpus_documents_pdf_amendment_markup_reading``.
 
 1. Faithful markup: reading the delimiters back gives each visible character's
    state, and removing them gives ``_normalize_text`` of the raw text.
@@ -138,6 +139,9 @@ class _FakePage:
                 lines.append({"spans": spans})
             raw_blocks.append({"type": 0, "lines": lines})
         return raw_blocks
+
+    def get_fonts(self, full: bool = False) -> list[Any]:
+        return []
 
     def get_drawings(self) -> list[Any]:
         return []
@@ -530,8 +534,9 @@ def test_a_phrase_found_only_inside_an_insertion_fails_extraction() -> None:
 def _read_marked(text: str) -> list[tuple[str, str | None]]:
     """Return (character, state) for every non-space character of wdiff-marked text.
 
-    Asserts that delimiters are balanced, never nested, never empty and never
-    have whitespace just inside them.
+    Outside a run an opener starts one; inside a run only its own closer ends
+    it, so a struck "[" just before "-]" is text. Asserts that runs are closed,
+    never empty and never have whitespace just inside their delimiters.
     """
     out: list[tuple[str, str | None]] = []
     state: str | None = None
@@ -539,15 +544,13 @@ def _read_marked(text: str) -> list[tuple[str, str | None]]:
     index = 0
     while index < len(text):
         token = text[index : index + 2]
-        if token in ("[-", "{+"):
-            assert state is None, text
+        if state is None and token in ("[-", "{+"):
             state = D if token == "[-" else I
             opened_at = len(out)
             assert not text[index + 2 : index + 3].isspace(), text
             index += 2
             continue
-        if token in ("-]", "+}"):
-            assert state == (D if token == "-]" else I), text
+        if state is not None and token == ("-]" if state == D else "+}"):
             assert len(out) > opened_at, text
             assert not text[index - 1 : index].isspace(), text
             state = None

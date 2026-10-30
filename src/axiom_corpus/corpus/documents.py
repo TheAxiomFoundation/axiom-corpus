@@ -1166,13 +1166,21 @@ def _extract_pdf_blocks(
 # the page's thin horizontal rules and written with the GNU wdiff delimiters:
 # ``[-deleted text-]`` and ``{+inserted text+}``. Removing the delimiters gives
 # back exactly the page text that extraction without the markup would produce;
-# ``_pdf_check_layered_page_text`` checks that on every layered page.
+# ``_pdf_page_layered_text`` checks that on every marked page. The delimiters
+# are read left to right (``_amendment_markup_runs``): outside a run only an
+# opener is a delimiter, and inside a run only that run's closer is. Replacing
+# every occurrence of the four tokens is not the same: a struck run that ends
+# in a literal "[" reads ``[-[-]``.
 #
 # The classification is geometric: any thin horizontal rule at a strike or
 # underline offset from a text line marks it, so a table rule drawn just under a
 # row of text reads as an underline. Each new use must be checked against a
 # rendering of the pages or the publisher's HTML
 # (``scripts/compare_pdf_amendment_markup_with_html.py``).
+#
+# A drawing that is a glyph is not a rule (``_pdf_drawn_glyph_sizes``). MuPDF
+# draws some Type 3 glyphs as vector paths, and the bar of such a hyphen lies at
+# a strike offset from its own line, an underscore at an underline offset.
 _AMENDMENT_DELETED = "deleted"
 _AMENDMENT_INSERTED = "inserted"
 _AMENDMENT_MARKUP_DELIMITERS = {
@@ -1180,6 +1188,10 @@ _AMENDMENT_MARKUP_DELIMITERS = {
     _AMENDMENT_INSERTED: ("{+", "+}"),
 }
 _AMENDMENT_MARKUP_TOKENS = ("[-", "-]", "{+", "+}")
+_AMENDMENT_MARKUP_OPENERS = {
+    opener: state for state, (opener, _closer) in _AMENDMENT_MARKUP_DELIMITERS.items()
+}
+_AMENDMENT_MARKUP_OPENER = re.compile("|".join(map(re.escape, _AMENDMENT_MARKUP_OPENERS)))
 _AMENDMENT_MARKUP_NOTATION = {
     "notation": "wdiff",
     "deleted": "[-text-]",
@@ -1209,6 +1221,17 @@ _PDF_UNDERLINE_OFFSET_RANGE = (0.05, 0.22)
 # would flip it between marked and unmarked.
 _PDF_RULE_NEAR_THRESHOLD_MARGIN = 0.03
 _PDF_RULE_HORIZONTAL_TOLERANCE = 0.5
+# ``Page.get_texttrace`` span type of text the page does not paint (PyMuPDF:
+# "ignored text", PDF text rendering mode 3).
+_PDF_TEXTTRACE_HIDDEN = 3
+# MuPDF's names for a Type 3 font whose dictionary has no /Name: "Unnamed-T3"
+# in MuPDF 1.26, "Type3 (N 0 R)" with the font's object number in MuPDF 1.28.
+_PDF_UNNAMED_TYPE3_FONT_NAMES = ("Unnamed-T3", "Type3 ({xref} 0 R)")
+# A drawing is a glyph only if it is at most this many font sizes wide and high.
+# In the retained PDFs (PyMuPDF 1.26.7) the 2.5 million drawings that directly
+# precede a one-character hidden Type 3 span are at most 1.25 font sizes, except
+# three rules 55 to 69 font sizes long on one page, which are not glyphs.
+_PDF_GLYPH_MAX_EXTENT = 2.0
 _PDF_LAYERED_TEXT_UNSUPPORTED_KEYS = ("ocr", "force_ocr", "text_replacements", "sort_text")
 _PDF_WARNING_EXAMPLES = 8
 
@@ -1402,7 +1425,21 @@ def _pdf_page_layered_text(
     rendered = _render_amendment_markup(
         raw_text, states, typographic_underlines=markup.typographic_underlines
     )
-    if _strip_amendment_markup(rendered.text) != plain_text:
+    if rendered.delimiters_in_text:
+        # The raw text holds no delimiter, so the two characters were apart in it:
+        # normalizing drops the zero-width characters between them.
+        raise ValueError(
+            f"PDF page {page_number} text contains amendment markup delimiters "
+            f"{list(rendered.delimiters_in_text)} once its zero-width characters are "
+            "dropped; amendment_markup output would be ambiguous"
+        )
+    try:
+        stripped = _strip_amendment_markup(rendered.text)
+    except ValueError as error:
+        raise RuntimeError(
+            f"amendment markup of PDF page {page_number} cannot be read back: {error}"
+        ) from error
+    if stripped != plain_text:
         raise RuntimeError(f"amendment markup changed the text of PDF page {page_number}")
     for phrase, count in rendered.typographic_underlines_kept.items():
         if count:
@@ -1778,11 +1815,15 @@ def _pdf_horizontal_rules(
     ``_PDF_RULE_WARNING_MAX_THICKNESS``, used only for warnings. A rectangle's
     thickness is its height plus, when it is stroked, the stroke width; a line's
     is its stroke width. White paint and paint with zero opacity are invisible and
-    never make a rule.
+    never make a rule, and neither does a drawing that is a glyph
+    (``_pdf_drawing_is_glyph``).
     """
     rules: list[_PdfHorizontalRule] = []
     thick_rules: list[_PdfHorizontalRule] = []
+    glyph_sizes = _pdf_drawn_glyph_sizes(page)
     for path in page.get_drawings():
+        if _pdf_drawing_is_glyph(path, glyph_sizes):
+            continue
         path_type = str(path.get("type") or "")
         filled = "f" in path_type and _pdf_paint_is_visible(
             path.get("fill"), path.get("fill_opacity")
@@ -1817,6 +1858,71 @@ def _pdf_horizontal_rules(
                 elif stroke_width <= _PDF_RULE_WARNING_MAX_THICKNESS:
                     thick_rules.append(rule)
     return tuple(rules), tuple(thick_rules)
+
+
+def _pdf_drawn_glyph_sizes(page: Any) -> dict[int, float]:
+    """Map the page commands that may be drawn Type 3 glyphs to their font size.
+
+    MuPDF draws a Type 3 glyph that it cannot cache by running the glyph's
+    procedure on the page, and then reports the character as hidden text so that
+    it can still be extracted (``pdf_show_char`` in MuPDF's ``pdf-op-run.c``,
+    which flushes pending text before each such glyph, so the hidden span holds
+    that one character). PyMuPDF therefore lists the glyph among the page's
+    drawings, and the page command right after it (``seqno`` + 1) is a hidden
+    text span of one character in a Type 3 font. Such a drawing is text the page
+    shows, not a rule: the bar of a hyphen lies at a strike offset from its own
+    line and an underscore at an underline offset.
+
+    The keys are the command numbers right before such a span. A glyph drawn as
+    several paths is recognised only by its last one.
+    """
+    type3_fonts = _pdf_type3_font_names(page)
+    if not type3_fonts:
+        return {}
+    return {
+        int(span["seqno"]) - 1: float(span["size"])
+        for span in page.get_texttrace()
+        if span["type"] == _PDF_TEXTTRACE_HIDDEN
+        and span["font"] in type3_fonts
+        and len(span["chars"]) == 1
+    }
+
+
+def _pdf_type3_font_names(page: Any) -> frozenset[str]:
+    """Return the names a text trace gives the page's Type 3 fonts.
+
+    MuPDF names a Type 3 font by its /Name entry, which is also the base name
+    ``Page.get_fonts`` reports for a font without a /BaseFont (the PDF standard
+    gives a Type 3 font none; one that has both is not recognised). A font with
+    neither gets one of ``_PDF_UNNAMED_TYPE3_FONT_NAMES``.
+    """
+    names: set[str] = set()
+    for font in page.get_fonts(full=True):
+        if font[2] != "Type3":
+            continue
+        if font[3]:
+            names.add(str(font[3]))
+        else:
+            names.update(name.format(xref=font[0]) for name in _PDF_UNNAMED_TYPE3_FONT_NAMES)
+    return frozenset(names)
+
+
+def _pdf_drawing_is_glyph(path: dict[str, Any], glyph_sizes: dict[int, float]) -> bool:
+    """Return whether a drawing is a Type 3 glyph that MuPDF drew as a path.
+
+    It is when the next page command is a one-character hidden Type 3 span
+    (``_pdf_drawn_glyph_sizes``) and the drawing is no larger than a glyph of
+    that font size. A hidden character is not always preceded by its own glyph:
+    text the PDF itself hides is not drawn. A rule drawn before such a character
+    is then the previous command, so a drawing larger than
+    ``_PDF_GLYPH_MAX_EXTENT`` font sizes stays a rule.
+    """
+    seqno = path.get("seqno")
+    size = glyph_sizes.get(seqno) if isinstance(seqno, int) else None
+    if size is None or size <= 0:
+        return False
+    rect = path["rect"]
+    return bool(max(rect.width, rect.height) <= _PDF_GLYPH_MAX_EXTENT * size)
 
 
 def _pdf_paint_is_visible(color: Any, opacity: Any) -> bool:
@@ -1930,9 +2036,15 @@ class _RenderedAmendmentMarkup:
     inserted_runs: int
     typographic_underlines: dict[str, int]
     typographic_underlines_kept: dict[str, int]
+    # Delimiter tokens that the text itself spells inside one run or inside one
+    # stretch of plain text between runs. With any, the markup cannot be read back.
+    delimiters_in_text: tuple[str, ...] = ()
 
 
 _WORD_SEPARATOR = "separator"
+# Stands where a delimiter was written, in the copy of the output that is
+# searched for delimiters the text spells. It is in none of the four tokens.
+_AMENDMENT_MARKUP_BREAK = "\n"
 
 
 def _render_amendment_markup(
@@ -1954,6 +2066,11 @@ def _render_amendment_markup(
     name followed by a footnote digit. Every occurrence, overlapping ones
     included, is judged on the states before any phrase is
     applied, so the result does not depend on the order of the phrases.
+
+    ``delimiters_in_text`` lists the delimiter tokens that the text itself
+    spells inside one run or inside one stretch of plain text between runs.
+    Two characters with a delimiter written between them, such as an underlined
+    "[" before a plain "-" (``{+[+}-``), spell none.
     """
     kept = [
         (character, state)
@@ -1994,6 +2111,7 @@ def _render_amendment_markup(
     typographic_kept = dict.fromkeys(typographic_underlines, 0)
     counts = {_AMENDMENT_DELETED: 0, _AMENDMENT_INSERTED: 0}
     rendered: list[str] = []
+    rendered_stretches: list[str] = []
     for paragraph in paragraphs:
         paragraph_text = "".join(character for character, _state in paragraph)
         cleared: set[int] = set()
@@ -2014,14 +2132,18 @@ def _render_amendment_markup(
             if state == _AMENDMENT_INSERTED:
                 paragraph[position] = (character, None)
         out: list[str] = []
+        # The same characters with a break where each delimiter is written.
+        stretches: list[str] = []
         open_state: str | None = None
         for position, (character, state) in enumerate(paragraph):
             if state == _WORD_SEPARATOR:
                 next_state = paragraph[position + 1][1]
                 if open_state is not None and open_state != next_state:
                     out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
+                    stretches.append(_AMENDMENT_MARKUP_BREAK)
                     open_state = None
                 out.append(character)
+                stretches.append(character)
                 continue
             if state != open_state:
                 if open_state is not None:
@@ -2029,17 +2151,24 @@ def _render_amendment_markup(
                 if state is not None:
                     out.append(_AMENDMENT_MARKUP_DELIMITERS[state][0])
                     counts[state] += 1
+                stretches.append(_AMENDMENT_MARKUP_BREAK)
                 open_state = state
             out.append(character)
+            stretches.append(character)
         if open_state is not None:
             out.append(_AMENDMENT_MARKUP_DELIMITERS[open_state][1])
         rendered.append("".join(out))
+        rendered_stretches.append("".join(stretches))
+    text_without_delimiters = _AMENDMENT_MARKUP_BREAK.join(rendered_stretches)
     return _RenderedAmendmentMarkup(
         text="\n\n".join(rendered),
         deleted_runs=counts[_AMENDMENT_DELETED],
         inserted_runs=counts[_AMENDMENT_INSERTED],
         typographic_underlines=typographic_counts,
         typographic_underlines_kept=typographic_kept,
+        delimiters_in_text=tuple(
+            token for token in _AMENDMENT_MARKUP_TOKENS if token in text_without_delimiters
+        ),
     )
 
 
@@ -2080,10 +2209,63 @@ def _typographic_underline_occurrence(
     return _AMENDMENT_INSERTED not in (before, after)
 
 
+def _amendment_markup_runs(text: str) -> list[tuple[str, str | None]]:
+    """Split text that ``_render_amendment_markup`` wrote into (text, state) runs.
+
+    The delimiters are read left to right. Outside a run only an opener, ``[-``
+    or ``{+``, is a delimiter; inside a run only that run's closer, ``-]`` or
+    ``+}``, is, and the first one ends the run. Removing every occurrence of
+    the four tokens instead misreads a run whose last character and its closer
+    make a token: a struck run ending in "[" is written ``[-[-]``, and an
+    underlined run ending in "{" is written ``{+{+}``. Maryland prints a
+    deletion in brackets and strikes the brackets where an amendment struck it
+    (2025 ch. 604, page 87: ``the budget bill [-[-]shall[-] MAY-] specify``).
+
+    In the markup of a page ``_pdf_page_layered_text`` accepts, plain text
+    between runs and the text of a run hold none of the four tokens: it refuses
+    a page whose markup has one there
+    (``_RenderedAmendmentMarkup.delimiters_in_text``). So this reads only such
+    text, and raises ``ValueError`` for a token there, a run left open or an
+    empty run. A page outside the marked range is plain text, not markup.
+    """
+    runs: list[tuple[str, str | None]] = []
+    position = 0
+    while True:
+        opener = _AMENDMENT_MARKUP_OPENER.search(text, position)
+        plain_end = len(text) if opener is None else opener.start()
+        _check_amendment_markup_run(text, position, plain_end, state=None)
+        if plain_end > position:
+            runs.append((text[position:plain_end], None))
+        if opener is None:
+            return runs
+        state = _AMENDMENT_MARKUP_OPENERS[opener.group()]
+        closer = _AMENDMENT_MARKUP_DELIMITERS[state][1]
+        end = text.find(closer, opener.end())
+        if end < 0:
+            raise ValueError(
+                f"amendment markup run opened at offset {opener.start()} is never closed"
+            )
+        if end == opener.end():
+            raise ValueError(f"amendment markup run at offset {opener.start()} is empty")
+        _check_amendment_markup_run(text, opener.end(), end, state=state)
+        runs.append((text[opener.end() : end], state))
+        position = end + len(closer)
+
+
+def _check_amendment_markup_run(text: str, start: int, end: int, *, state: str | None) -> None:
+    run = text[start:end]
+    found = [token for token in _AMENDMENT_MARKUP_TOKENS if token in run]
+    if found:
+        where = "outside a run" if state is None else f"inside a {state} run"
+        raise ValueError(
+            f"amendment markup has {found} {where} (offsets {start} to {end}); "
+            "markup that amendment_markup accepts has no delimiter there"
+        )
+
+
 def _strip_amendment_markup(text: str) -> str:
-    for token in _AMENDMENT_MARKUP_TOKENS:
-        text = text.replace(token, "")
-    return text
+    """Remove the delimiters ``_render_amendment_markup`` wrote (``_amendment_markup_runs``)."""
+    return "".join(run for run, _state in _amendment_markup_runs(text))
 
 
 _SINGLE_BLOCK_PDF_FILTER_KEYS = (
