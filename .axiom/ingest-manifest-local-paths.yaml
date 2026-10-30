@@ -1,0 +1,92 @@
+# Signed ingest manifests that record a path on the machine that built them,
+# grandfathered until they are scrubbed and signed again (axiom-corpus#896).
+#
+# A signed manifest is public and records how anyone can rebuild its scope. A
+# path such as /Users/<name>/..., /private/tmp/... or ~/... reaches no one
+# else and publishes the operator's directory layout. sign-ingest-manifest
+# records paths inside the checkout repository-relative and refuses any other
+# (axiom_corpus.corpus.ingest_manifests.recordable_command), and
+# sign_ingest_manifest refuses a manifest that records one in any field.
+#
+# tests/test_ingest_manifest_local_paths.py fails when a manifest under
+# .axiom/ingest-manifests/ records a local path in any string field and is not
+# listed here. This list only shrinks:
+# - each entry pins the manifest's bytes (sha256 of the file) and the fields
+#   that hold the paths, so a manifest that changes must lose its paths and
+#   its entry together;
+# - an entry whose manifest no longer records a local path fails as stale;
+# - an entry whose (path, sha256) is not one grandfathered on 2026-10-20
+#   (GRANDFATHERED in the test) fails, so no entry can be added.
+#
+# Scrubbing re-signs the manifest, which needs the corpus ingest key: the
+# hub's to do; agents never read the key. For each scope: fetch it
+# (`axiom-corpus-ingest corpus fetch <jurisdiction>/<class>/<version>`), sign
+# it with `sign-ingest-manifest --jurisdiction ... --document-class ...
+# --version ... --command '<scrubbed text>' --output data/resign/<name>.json`,
+# passing each of the old manifest's reasoning_logs as --reasoning-log, and
+# check that the new applied_files equal the old ones, so that only
+# command.text, generated_at, the signer commit and the signature change.
+# Sign all of them before moving any into place: the signer refuses a dirty
+# tracked tree, so overwriting one tracked manifest stops the next signing.
+# scripts/sign_release_scopes.sh keeps any manifest that exists and writes its
+# own command text, so it cannot do this. Merge commits only; never rebase
+# signed manifests.
+
+schema_version: axiom-corpus/ingest-manifest-local-paths/v1
+manifests:
+  - path: .axiom/ingest-manifests/be/statute/2026-07-05-be-birth-leave.json
+    sha256: 313df68cdd3b91d50498b27cdca087f804b0e8a856138883f8511aa21f0533ee
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/ca/rulemaking/2026-09-04-us-surtax-orders.json
+    sha256: 030b4a0621490d98f564c0a12597fd9d34d0629134b6d0f1cab8e181daf21b48
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/de/guidance/2026-09-09-de-kindergeld-adult-services.json
+    sha256: 8e6263bf3cb260fbbca491c7a0c3572c1ac594ca66789f341b8a7825b34e1ff0
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/de/guidance/2026-09-09-de-kindergeld-allowance-explanation.json
+    sha256: 9b5fc16dda2dc6da4a72aeead6b40b2eb117d114e97f14ee6fb129c419581112
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context.json
+    sha256: 6ef51002cf47f4b9391ec13dfb7f3d55d3656ba8327ef561aeeb980f79d8ff53
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/de/statute/2026-09-09-de-kindergeld-adult-service-history.json
+    sha256: 177f547e33c8be690108f936b12ec94453fd3db243c7f96bcb27305965edcd64
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us-ca/regulation/2026-07-17-ca-cdss-mpp-calfresh.json
+    sha256: b02cab0d9c7e05d633c73570b2b54a58e1a57bb5397783a338dfd9096fe7d018
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us-co/policy/2026-07-21-co-snap-policy.json
+    sha256: c26cbc4250b352b0af8ef5fd408711337f53e6b7b6c492ef1b8c616233de42bc
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.json
+    sha256: 9e31c8ab4e6c8e7a58cd0f82c702f66f8ef3209be08a4d9717486fde07065220
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us-dc/statute/2026-05-19-title-4.json
+    sha256: 0e639195ec4bac231e913ed9d32c17f1ff7ff002315a21cbf8e09c161814e8fa
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json
+    sha256: 60e8d243f29ae7bf58a0939cc6f71d7394551aeefce1f5367c23bf0e4a905369
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json
+    sha256: dc417f56481d4de2fd47ab3f483cb97d0efac2fa5cdead3e14daca08a6cd8365
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us/statute/2026-06-26-chip-title-xxi-title-42.json
+    sha256: e8e0120ed3b74ed4b6cc9d8e541fc445d435a0e367ff150cb5d8444ede308e2f
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
+  - path: .axiom/ingest-manifests/us/statute/2026-08-01-tariff-title-19-spine-title-19.json
+    sha256: fc42d4dc1a8d4250ffebe1f81495ad2a61502b8668a2274a143640668e345c06
+    fields: [command.text]
+    issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896

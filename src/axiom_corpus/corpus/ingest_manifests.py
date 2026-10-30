@@ -21,6 +21,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, TypeGuard
 
+import yaml
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import (
@@ -44,6 +45,14 @@ from axiom_corpus.corpus.corpus_locks import (
     load_locks,
     load_locks_at_ref,
 )
+from axiom_corpus.corpus.manifest_local_paths import (
+    ManifestReadError,
+    find_local_paths,
+    local_path_fields,
+    manifest_local_path_fields,
+    relativize_repo_paths,
+    repo_rewrites,
+)
 
 INGEST_MANIFEST_SCHEMA_VERSION = "axiom-corpus/ingest-manifest/v1"
 INGEST_MANIFEST_SIGNATURE_ALGORITHM = "ed25519"
@@ -51,6 +60,8 @@ INGEST_MANIFEST_KEY_ID = "axiom-corpus-ingest-v1"
 INGEST_MANIFEST_PRIVATE_KEY_ENV = "AXIOM_CORPUS_INGEST_PRIVATE_KEY"
 INGEST_MANIFEST_PUBLIC_KEY_ENV = "AXIOM_CORPUS_INGEST_PUBLIC_KEY"
 INGEST_MANIFEST_ROOT = Path(".axiom") / "ingest-manifests"
+LOCAL_PATH_ALLOWLIST_PATH = Path(".axiom") / "ingest-manifest-local-paths.yaml"
+LOCAL_PATH_ALLOWLIST_SCHEMA_VERSION = "axiom-corpus/ingest-manifest-local-paths/v1"
 TEXT_OFFICIAL_DOCUMENT_SUFFIXES = {
     ".csv",
     ".html",
@@ -64,6 +75,22 @@ TEXT_OFFICIAL_DOCUMENT_SUFFIXES = {
     ".yml",
 }
 FULL_GIT_COMMIT_PATTERN = re.compile(r"[0-9a-f]{40}")
+LOCAL_PATH_RECORDING_CONVENTION = (
+    "Name repository files by their repository-relative path, and stand in for a "
+    "scratch, cache or tool directory with a placeholder such as `TMPDIR=<scratchpad>` "
+    "or `<ocr-cache>`, naming the run note under docs/ingest-runs/ that records it, "
+    "for example `--manifest <scratchpad>/replay.json "
+    "(run note: docs/ingest-runs/<date>-<scope>.md)`."
+)
+
+
+class ManifestLocalPathError(ValueError):
+    """An ingest manifest that would record a path on the machine that wrote it.
+
+    A signed manifest is public and records how anyone can rebuild its scope; a
+    path such as ``/Users/<name>/...``, ``/private/tmp/...`` or ``~/...`` reaches
+    no one else and publishes the operator's directory layout.
+    """
 
 
 @dataclass(frozen=True)
@@ -99,8 +126,13 @@ def build_ingest_manifest(
     deleted_files: list[Path] | None = None,
     reasoning_logs: list[Path] | None = None,
 ) -> dict[str, Any]:
-    """Build an unsigned ingest manifest for one corpus scope."""
+    """Build an unsigned ingest manifest for one corpus scope.
+
+    ``command`` is recorded as ``recordable_command`` returns it: paths inside
+    the checkout repository-relative, any other path on this machine refused.
+    """
     repo = repo.resolve()
+    command = recordable_command(command, repo=repo)
     base = _resolve_under_repo(repo, base)
     git_metadata = _git_metadata(repo)
     provenance_issues = _git_provenance_issues(git_metadata)
@@ -156,6 +188,197 @@ def build_ingest_manifest(
     return manifest
 
 
+def recordable_command(command: str, *, repo: Path) -> str:
+    """Return ``command`` as a signed ingest manifest may record it.
+
+    Absolute paths inside the checkout become repository-relative
+    (``/Users/<name>/axiom-corpus/.venv/bin/python`` is recorded as
+    ``.venv/bin/python``), which loses nothing. Any other path on this machine
+    (see ``axiom_corpus.corpus.manifest_local_paths``) raises
+    ``ManifestLocalPathError`` naming it: the operator replaces it with a
+    placeholder and names the run note, as ``LOCAL_PATH_RECORDING_CONVENTION``
+    says, since only they know what it held.
+    """
+    rewrites = repo_rewrites(command, repo=repo)
+    recorded = relativize_repo_paths(command, repo=repo)
+    unresolved: dict[str, None] = {}
+    # A local path that starts in no rewrite is outside the checkout. (One that
+    # starts in a rewrite and runs on, as ``"<checkout>"/x.json`` reads once
+    # its quotes are removed, continues the checkout path; the recorded text is
+    # read again below.)
+    for path in find_local_paths(command):
+        if not any(rewrite.start <= path.start < rewrite.end for rewrite in rewrites):
+            unresolved[command[path.start : path.end]] = None
+    # The recorded text is what gets signed, so it is read as well. The check
+    # above can miss a path: read without its quotes, ``<checkout><checkout>'<x>'``
+    # is one longer path, starting in the rewrite, that hides the quoted one.
+    for path in find_local_paths(recorded):
+        unresolved[recorded[path.start : path.end]] = None
+    if unresolved:
+        shown = ", ".join(f"`{token}`" for token in unresolved)
+        raise ManifestLocalPathError(
+            f"The command names {len(unresolved)} path(s) outside the repository on this "
+            f"machine ({shown}). A signed ingest manifest is public and records how anyone "
+            "can rebuild the scope; a path on this machine reaches no one else. "
+            + LOCAL_PATH_RECORDING_CONVENTION
+        )
+    return recorded
+
+
+def manifest_local_path_issues(payload: dict[str, Any]) -> list[str]:
+    """Name each field of a manifest that records a path on the writing machine.
+
+    Every string at any depth is read (``signature.value``, base64, is not).
+    A message names the field and the path's root (``/Users/…``), never the
+    whole path.
+    """
+    found = local_path_fields(payload)
+    if not found:
+        return []
+    shown = ", ".join(f"`{field}` holds {path.describe()}" for field, path in found)
+    return [
+        f"The manifest records {len(found)} path(s) on the machine that wrote it ({shown}). "
+        + LOCAL_PATH_RECORDING_CONVENTION
+    ]
+
+
+_TRACKING_ISSUE = re.compile(
+    r"https://github\.com/TheAxiomFoundation/axiom-corpus/issues/[1-9][0-9]*"
+)
+_SHA256 = re.compile(r"[0-9a-f]{64}")
+
+
+@dataclass(frozen=True)
+class LocalPathAllowance:
+    """One grandfathered manifest: its exact bytes, the fields with paths, its issue."""
+
+    path: str
+    sha256: str
+    fields: tuple[str, ...]
+    issue: str
+
+
+def load_local_path_allowlist(path: Path) -> list[LocalPathAllowance]:
+    """Read ``.axiom/ingest-manifest-local-paths.yaml``; raise ``ValueError`` if malformed."""
+    document = yaml.safe_load(path.read_text())
+    if not isinstance(document, dict):
+        raise ValueError("is not a mapping")
+    if document.get("schema_version") != LOCAL_PATH_ALLOWLIST_SCHEMA_VERSION:
+        raise ValueError(f"schema_version must be `{LOCAL_PATH_ALLOWLIST_SCHEMA_VERSION}`")
+    raw = document.get("manifests")
+    if not isinstance(raw, list):
+        raise ValueError("`manifests` must be a list")
+    allowances: list[LocalPathAllowance] = []
+    for index, item in enumerate(raw):
+        where = f"`manifests[{index}]`"
+        if not isinstance(item, dict) or set(item) != {"path", "sha256", "fields", "issue"}:
+            raise ValueError(f"{where} must have exactly path, sha256, fields and issue")
+        entry_path, digest, fields, issue = (
+            item["path"],
+            item["sha256"],
+            item["fields"],
+            item["issue"],
+        )
+        if not (
+            isinstance(entry_path, str)
+            and entry_path.startswith(f"{INGEST_MANIFEST_ROOT.as_posix()}/")
+            and entry_path.endswith(".json")
+            and ".." not in entry_path.split("/")
+        ):
+            raise ValueError(f"{where} path must name a .json file under {INGEST_MANIFEST_ROOT}/")
+        if not (isinstance(digest, str) and _SHA256.fullmatch(digest)):
+            raise ValueError(f"{where} sha256 must be 64 lowercase hex digits")
+        if not (
+            isinstance(fields, list)
+            and fields
+            and all(isinstance(field, str) and field for field in fields)
+            and fields == sorted(set(fields))
+        ):
+            raise ValueError(f"{where} fields must be a sorted list of distinct field names")
+        if not (isinstance(issue, str) and _TRACKING_ISSUE.fullmatch(issue)):
+            raise ValueError(f"{where} issue must be an axiom-corpus issue URL")
+        allowances.append(LocalPathAllowance(entry_path, digest, tuple(fields), issue))
+    return allowances
+
+
+def audit_manifest_local_paths(
+    repo: Path,
+    *,
+    grandfathered: frozenset[tuple[str, str]],
+    allowlist: Path = LOCAL_PATH_ALLOWLIST_PATH,
+) -> list[str]:
+    """Return the issues that keep the repository's ingest manifests from passing.
+
+    Every manifest under ``.axiom/ingest-manifests/`` must record no path on the
+    machine that wrote it (``manifest_local_path_issues``), unless the allowlist
+    grandfathers it. An allowance holds only while its manifest keeps the bytes
+    it pins and still records paths in exactly the fields it lists, and only
+    for a ``(path, sha256)`` pair in ``grandfathered``, so the allowlist only
+    shrinks. A manifest that cannot be read fails closed.
+    """
+    repo = repo.resolve()
+    issues: list[str] = []
+    try:
+        allowances = load_local_path_allowlist(repo / allowlist)
+    except (OSError, ValueError) as exc:
+        return [f"`{allowlist.as_posix()}` {exc}."]
+    by_path: dict[str, LocalPathAllowance] = {}
+    for allowance in allowances:
+        if allowance.path in by_path:
+            issues.append(f"`{allowlist.as_posix()}` lists `{allowance.path}` twice.")
+        by_path[allowance.path] = allowance
+        if (allowance.path, allowance.sha256) not in grandfathered:
+            issues.append(
+                f"`{allowlist.as_posix()}` lists `{allowance.path}` at a path and bytes that "
+                "were not grandfathered on 2026-10-20. The allowlist only shrinks: sign the manifest "
+                "again without local paths instead of listing it."
+            )
+    manifest_root = repo / INGEST_MANIFEST_ROOT
+    for manifest in sorted(manifest_root.rglob("*.json")) if manifest_root.is_dir() else []:
+        relative = manifest.relative_to(repo).as_posix()
+        payload = manifest.read_bytes()
+        allowed = by_path.pop(relative) if relative in by_path else None
+        try:
+            found = manifest_local_path_fields(payload)
+        except ManifestReadError as exc:
+            issues.append(f"`{relative}` {exc}, so its strings cannot be checked for local paths.")
+            continue
+        if not found:
+            if allowed is not None:
+                issues.append(
+                    f"`{relative}` no longer records a local path; remove its entry from "
+                    f"`{allowlist.as_posix()}` ({allowed.issue})."
+                )
+            continue
+        if allowed is None:
+            issues.append(
+                f"`{relative}`: "
+                + " ".join(manifest_local_path_issues(json.loads(payload)))
+                + " Sign it again without them (sign-ingest-manifest refuses such a "
+                "command); a new manifest is never grandfathered."
+            )
+            continue
+        if sha256_bytes(payload) != allowed.sha256:
+            issues.append(
+                f"`{relative}` changed since it was grandfathered (sha256 "
+                f"{allowed.sha256[:12]}…). A changed manifest is signed again, and a "
+                "manifest signed again must not record local paths: scrub them and remove "
+                f"its entry from `{allowlist.as_posix()}` ({allowed.issue})."
+            )
+        fields = tuple(sorted({field for field, _ in found}))
+        if fields != allowed.fields:
+            issues.append(
+                f"`{relative}` records local paths in {', '.join(fields)}, but "
+                f"`{allowlist.as_posix()}` lists {', '.join(allowed.fields)}."
+            )
+    for allowance in by_path.values():
+        issues.append(
+            f"`{allowlist.as_posix()}` lists `{allowance.path}`, which does not exist; "
+            "remove its entry."
+        )
+    return issues
+
+
 def sign_ingest_manifest(
     payload: dict[str, Any],
     *,
@@ -170,6 +393,16 @@ def sign_ingest_manifest(
         raise ValueError(
             "Cannot sign an ingest manifest with non-canonical generator state: "
             + " ".join(provenance_issues)
+        )
+    # The signature block is read too (its value, base64, is not): a key id is
+    # a recorded string like any other.
+    local_path_issues = manifest_local_path_issues(
+        {**signed, "signature": {"algorithm": INGEST_MANIFEST_SIGNATURE_ALGORITHM, "key_id": key_id}}
+    )
+    if local_path_issues:
+        raise ManifestLocalPathError(
+            "Cannot sign an ingest manifest that records a local path: "
+            + " ".join(local_path_issues)
         )
     signed["signature"] = {
         "algorithm": INGEST_MANIFEST_SIGNATURE_ALGORITHM,
