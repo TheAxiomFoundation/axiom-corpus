@@ -1,0 +1,102 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url.json",
+      "sha256": "c47d4662612eafe888f9576e858e64ae21e3e2fd3b93df4f51902375e59f62a6"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url.json",
+      "sha256": "a1de4118e7ba609853bcb35c787e6f8e3f1f0c08fdab587d5dd31b663ab2a1df"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "f668d63bdcb5a210de78f4215a7a3e70e41ef7269e588e724caa5fdbf5c8350f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-cbb.html",
+      "sha256": "deb8970175f9175aa0348161d248a7446babb5c16502e4f811e596d9da80944f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-cbbdet.html",
+      "sha256": "d10375e1a25c834d4cd006efc5e15f3fadf653dd41615627e0a62cd196f574c6"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-piaformula.html",
+      "sha256": "e84d29d7e72cf5c4e89afb27db0c653aeac2b716f62c90bf79e31fec173cc19f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-qc.html",
+      "sha256": "77bcaf8da3e47cf0fe0906b3d160964803db35540049f5e019cbfa770db690e8"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-rtdet.html",
+      "sha256": "63a0233adb3cd7cb159df983e0eabf827ec1b0d481ccede56160809e051ae58f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/official-documents/ssa-oact-cola-sgadet.html",
+      "sha256": "a1d08593c8793239f51a57bb6ebc837d5ce2508ce6e3afc4bcdb8b454d121bf3"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-cbb.provenance.json",
+      "sha256": "ab60fd8e87362277fcb8d43900ed96f279ce890c33f65003d4fbdbc37c8f8110"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-cbbdet.provenance.json",
+      "sha256": "18db14c7c30b30efd9ed362afc035f50347e5d6675bfc8d5b2f106055a4f49f9"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-piaformula.provenance.json",
+      "sha256": "322ab3466c4da09f44a24acad0e5162921f7e8048f55d14b26fcbf6a6bb6d16f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-qc.provenance.json",
+      "sha256": "4607f296918cbb87f1a8176ff052ad0c7640cbec7bf6e94ed27f1280faf3277e"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-rtdet.provenance.json",
+      "sha256": "cdea455a25fe0bf9bc37d61c91f822edd80230732f32d3fe725216ce10e1b3f3"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url/provenance/ssa-oact-cola-sgadet.provenance.json",
+      "sha256": "88f7e2138d805ba77fe3996d038ddb29fd5d48fe6f9752a953e846767b1d419a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py rewrite --scope us/guidance/2026-05-17-ssa-automatic-determinations-2026 --tag r2026-10-14-portable-download-url (successor of us/guidance/2026-05-17-ssa-automatic-determinations-2026 without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-us.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:10:20.370164+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-us-audit.json",
+      "sha256": "47c73fbb6e3f83852149577a6fd6537563bf0d5509fd19c6e133d30853254f0a"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-us.md",
+      "sha256": "078846e7cd0da5a769061184f720b0fd79f3a0d7b0d5ddc6ad906d1750135221"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/FtJZ4EVWbA+HGZngbC2/+4BjyAMP0e6vlu4kac9bXshXNzDFrfS9eOi4pngLPQwJnsyAoOrxirsNnBlw6eJCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-17-ssa-automatic-determinations-2026-r2026-10-14-portable-download-url"
+}
