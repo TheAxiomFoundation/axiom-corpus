@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart-r2026-10-14-portable-download-url.json",
+      "sha256": "0c390a439b925da6f3f4983cfd9df55070ee68880345b7dc2294af1de2632efe"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart-r2026-10-14-portable-download-url.json",
+      "sha256": "f8013994f6c1e3917ccf0ef9df66289506ec743c5303ec37db38d4d8ba58652e"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "446e54645d3a33ac8aed16afa276bc7a3fa2d2d6b8745ff4fd23631caf3542a6"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-11-de-kindergeld-bgh-counterpart-r2026-10-14-portable-download-url/official-documents/bgh-xii-zr-129-16-2018-03-07.pdf",
+      "sha256": "58238829ae53bd36f736a94254898025b31cd1eabd2b3df83f7c4bb17ba7744e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-11-de-kindergeld-bgh-counterpart --manifest manifests/de-kindergeld-bgh-counterpart.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-11-de-kindergeld-bgh-counterpart without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:18:11.180505+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6dYvQzsNNAD5Oi5lh/ofMc52Be8bCiJq8gun8po9BBYUGR1D5NMndSRn5b18HXSLk/RfMuQNq/uZAbjV6cbfAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-11-de-kindergeld-bgh-counterpart-r2026-10-14-portable-download-url"
+}

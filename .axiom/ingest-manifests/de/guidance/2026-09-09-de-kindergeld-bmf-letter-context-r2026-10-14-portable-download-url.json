@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url.json",
+      "sha256": "a7bbb063eb7827f1843b5a693ca692e00bd39d3c86dab907068fd291b61c5014"
+    },
+    {
+      "path": "data/corpus/inventory/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url.json",
+      "sha256": "7132ac38c9b47b832a063c22c2a23936df4a12ca405bf67057a8a2be66584084"
+    },
+    {
+      "path": "data/corpus/provisions/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "768a38c9812652c0c11b405c27510de339a3143dbb6cc5b99d7202cc24439280"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url/official-documents/de-bmf-2013-06-28-child-allowance-transfer.html",
+      "sha256": "c9cc5e7fff4cdcd13a82987a199ed502a4bea4bffe5f56268954bd06b00e7210"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url/official-documents/de-bmf-2025-12-02-country-groups.pdf",
+      "sha256": "745c34ec78b01e23896a46ea9c6e6c6c7c0ae69186c920908c95aaff6d95e0a0"
+    },
+    {
+      "path": "data/corpus/sources/de/guidance/2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url/official-documents/de-cjeu-c-328-20.pdf",
+      "sha256": "efdd53c5338484844376e54c8401a244a0578dd87d9e436dc22656eb6c8d937d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/guidance/2026-09-09-de-kindergeld-bmf-letter-context --manifest manifests/de-kindergeld-bmf-letter-context.yaml --tag r2026-10-14-portable-download-url (successor of de/guidance/2026-09-09-de-kindergeld-bmf-letter-context without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-10-23T15:17:41.410482+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1FANollUorrVVqwxEVUb9ZOY0OtL2VHtbqG/HUn4mX7nmIOFTeNAS4FJX70lxz+TmFbFg0P17FpiBkz4i4w5CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-bmf-letter-context-r2026-10-14-portable-download-url"
+}

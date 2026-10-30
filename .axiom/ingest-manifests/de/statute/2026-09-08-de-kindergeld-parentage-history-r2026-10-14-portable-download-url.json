@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-08-de-kindergeld-parentage-history-r2026-10-14-portable-download-url.json",
+      "sha256": "6c575796b68a4496dfb6fdbd8ec087ef1bcf00b961f7907e72d564f0c6cd8006"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-08-de-kindergeld-parentage-history-r2026-10-14-portable-download-url.json",
+      "sha256": "9719217dd133b7184f6a51e519000ebc69ba576b2e46bee116be790e6d968f8f"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-08-de-kindergeld-parentage-history-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "64b9d3779a8605abceee7b378f8c0e4332db12df4586e78efff96c6d670e1269"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-08-de-kindergeld-parentage-history-r2026-10-14-portable-download-url/official-documents/de-kindrg-1997.pdf",
+      "sha256": "bd58391268f7d4103670967f86ab7642fe9bae34faf56ec36415b2dadc1e2c7b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-08-de-kindergeld-parentage-history --manifest manifests/de-kindergeld-parentage-history.yaml --tag r2026-10-14-portable-download-url (successor of de/statute/2026-09-08-de-kindergeld-parentage-history without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-23T15:22:34.213756+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gxl703eXBb12V1yRqBHslaGvoh9E5r6iInPc8r4lpMIbjlbruVtJfcuHbJj7IE1pFoWpEBcepDDVAwtczOgqDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-08-de-kindergeld-parentage-history-r2026-10-14-portable-download-url"
+}

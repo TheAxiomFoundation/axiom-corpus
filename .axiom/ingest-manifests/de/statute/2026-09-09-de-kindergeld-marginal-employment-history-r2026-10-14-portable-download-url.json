@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/statute/2026-09-09-de-kindergeld-marginal-employment-history-r2026-10-14-portable-download-url.json",
+      "sha256": "144a9fdbd9676963676376555442a37bcfb9f61175039735a0795de4162918df"
+    },
+    {
+      "path": "data/corpus/inventory/de/statute/2026-09-09-de-kindergeld-marginal-employment-history-r2026-10-14-portable-download-url.json",
+      "sha256": "60d532643aa42eba5a5b91e58567f5ef0790a2b11e8c6985f4df1af3ec1cf4e6"
+    },
+    {
+      "path": "data/corpus/provisions/de/statute/2026-09-09-de-kindergeld-marginal-employment-history-r2026-10-14-portable-download-url.jsonl",
+      "sha256": "76cb097926902dd62868fc0cec444c61685124227eefa073f6cb5bbcf83a278a"
+    },
+    {
+      "path": "data/corpus/sources/de/statute/2026-09-09-de-kindergeld-marginal-employment-history-r2026-10-14-portable-download-url/official-documents/de-sgbiv8-2025-history.html",
+      "sha256": "886aef88aa54188995714b7b6e620a0f4ecd56dcd22985af7670c35f9e8996ab"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4aa31fa00fec0706f00cbda3bd4fb53fb0adf3ca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repair_local_file_download_urls.py reextract --scope de/statute/2026-09-09-de-kindergeld-marginal-employment-history --manifest manifests/de-kindergeld-marginal-employment-history.yaml --tag r2026-10-14-portable-download-url (successor of de/statute/2026-09-09-de-kindergeld-marginal-employment-history without file: download URLs; see docs/ingest-runs/2026-10-14-portable-download-url-de.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-10-23T15:25:54.697460+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de-audit.json",
+      "sha256": "8c3b540ec1731faaaf980cd25e5dd4f389cd744ac2faae2a2da5f2e0cc0ec960"
+    },
+    {
+      "path": "docs/ingest-runs/2026-10-14-portable-download-url-de.md",
+      "sha256": "d55e3cabc1e6a63e77df1a952192c708c5d4d5a75016920b5d970a007487890c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7lFiBBgD9b8KjlwNeJA2Get5Ta6ptqqLiTUOw3MWvxCwi68t/aBxKx/jq+3msrCG1AFYKGawSU1I5OJJ9p4kCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-09-de-kindergeld-marginal-employment-history-r2026-10-14-portable-download-url"
+}
