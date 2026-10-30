@@ -1,0 +1,1 @@
+Register the current codified 33 V.S.A. § 1812 (Vermont Health Benefit Exchange premium and cost-sharing assistance) as a manifest-driven statute source at citation path us-vt/statute/33/1812, supporting the rulespec-us Vermont Premium Assistance reference encoding and the PolicyEngine-US oracle comparison.
