@@ -24,8 +24,11 @@ join a `complete-expression-dates-v1` release, and no UK release selects it.
 s.16 sits in no scope.
 
 No publication, Supabase load, release selector, activation or registration
-step ran here. I signed and locked the scopes in a separate commit after the
-clean commit that adds this note.
+step ran here. I signed and locked both scopes in the commit after the one that
+added this note. After each correction to this note, I committed the note on
+its own, then re-signed the statute manifest and the regulation manifest in
+separate commits. I re-signed without `--lock`, so the lock files still date
+from the first signing.
 
 ## Commands
 
@@ -112,10 +115,12 @@ text in force on 2026-04-06:
   "Regulation N". The rows carry no marginal notes, footnotes or annotations,
   and the bodies omit paragraph numbers, so labels such as s.16(1)(za), (k) to
   (n) and reg 73(2A) appear only in the source captures.
-- Proof excerpts must quote the rows as stored. A space precedes punctuation
-  after each commentary reference ("State Pension Credit Regulations 2002 ." in
-  reg 67, "Civil List Act 1975 ;" in reg 16), and blank lines sit inside
-  s.16(1)(j) and inside reg 16's opening words.
+- Proof excerpts must quote the rows as stored. In two places
+  legislation.gov.uk's text puts a space before a commentary reference, and the
+  row keeps that space ahead of the next punctuation mark: "State Pension Credit
+  Regulations 2002 ." in reg 67 and "Civil List Act 1975 ;" in reg 16.
+  Elsewhere punctuation follows the words directly, as in "Civil List Act 1837,
+  the". Blank lines sit inside s.16(1)(j) and inside reg 16's opening words.
 
 ## Validation
 
