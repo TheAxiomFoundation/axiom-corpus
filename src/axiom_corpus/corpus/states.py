@@ -1576,7 +1576,8 @@ def extract_minnesota_statutes(
         url=f"{MINNESOTA_STATUTES_BASE_URL}/statutes/",
     )
     index_path = store.source_path(jurisdiction, DocumentClass.STATUTE, run_id, index_relative)
-    store.write_bytes(index_path, index_bytes)
+    index_sha = store.write_bytes(index_path, index_bytes)
+    index_source_key = _state_source_key(jurisdiction, run_id, index_relative)
     source_paths: list[Path] = [index_path]
 
     parts = _parse_minnesota_parts(index_bytes)
@@ -1594,6 +1595,14 @@ def extract_minnesota_statutes(
     selected_parts: dict[str, _MinnesotaPart] = {}
     chapters: list[_MinnesotaChapter] = []
     part_sources: dict[str, tuple[str, str]] = {}
+    # A part, or a chapter, is written as a provision only once its own page
+    # lists children. Otherwise it stays an inventory gap, so coverage reads
+    # incomplete instead of silently losing everything under it. A page that
+    # could not be fetched is sourced from the listing that names it; a page
+    # that was fetched but is unusable from itself. A chapter-filtered run
+    # leaves out parts it cannot read: it cannot tell whether they hold the
+    # chapter, and fails if no part does.
+    part_gaps: dict[str, _StateContainer] = {}
 
     for part in parts:
         part_relative = f"minnesota-statutes-html/parts/{_clean_path_token(part.token)}.html"
@@ -1605,8 +1614,13 @@ def extract_minnesota_statutes(
                 relative_name=part_relative,
                 url=part.source_url,
             )
-        except requests.RequestException as exc:
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"part {part.heading}: {exc}")
+            if only_chapter is None:
+                part_gaps[part.citation_path] = _dataclass_replace(
+                    _minnesota_part_container(part, source_path=index_source_key, sha256=index_sha),
+                    source_url=f"{MINNESOTA_STATUTES_BASE_URL}/statutes/",
+                )
             continue
         part_path = store.source_path(
             jurisdiction,
@@ -1617,7 +1631,15 @@ def extract_minnesota_statutes(
         part_sha = store.write_bytes(part_path, part_bytes)
         source_paths.append(part_path)
         part_source_key = _state_source_key(jurisdiction, run_id, part_relative)
-        part_chapters = _parse_minnesota_chapters(part_bytes, part=part)
+        listed_chapters = _parse_minnesota_chapters(part_bytes, part=part)
+        if not listed_chapters:
+            errors.append(f"part {part.heading}: no chapters listed on part page")
+            if only_chapter is None:
+                part_gaps[part.citation_path] = _minnesota_part_container(
+                    part, source_path=part_source_key, sha256=part_sha
+                )
+            continue
+        part_chapters = listed_chapters
         if only_chapter is not None:
             part_chapters = tuple(chapter for chapter in part_chapters if chapter.num == only_chapter)
         if not part_chapters:
@@ -1633,9 +1655,14 @@ def extract_minnesota_statutes(
     if not chapters:
         raise ValueError(f"no Minnesota Statutes chapters selected for filter: {only_title!r}")
 
-    for part in selected_parts.values():
+    for part in parts:
         if remaining is not None and remaining <= 0:
             break
+        if part.citation_path in part_gaps:
+            _append_container_gap(seen_citation_paths, items, part_gaps[part.citation_path])
+            continue
+        if part.citation_path not in selected_parts:
+            continue
         source_key, source_sha = part_sources[part.citation_path]
         part_container = _minnesota_part_container(part, source_path=source_key, sha256=source_sha)
         seen_citation_paths.add(part_container.citation_path)
@@ -1662,10 +1689,20 @@ def extract_minnesota_statutes(
         ):
             if remaining is not None and remaining <= 0:
                 break
-            if error is not None:
-                errors.append(f"chapter {chapter.num}: {error}")
-                continue
-            if chapter_bytes is None:
+            if error is not None or chapter_bytes is None:
+                errors.append(f"chapter {chapter.num}: {error or 'unknown source error'}")
+                # The part page lists the chapter; it is the source until the chapter is read.
+                part_source_key, part_sha = part_sources[chapter.part.citation_path]
+                _append_container_gap(
+                    seen_citation_paths,
+                    items,
+                    _dataclass_replace(
+                        _minnesota_chapter_container(
+                            chapter, source_path=part_source_key, sha256=part_sha
+                        ),
+                        source_url=chapter.part.source_url,
+                    ),
+                )
                 continue
             chapter_relative = _minnesota_chapter_relative(chapter)
             chapter_path = store.source_path(
@@ -1677,10 +1714,21 @@ def extract_minnesota_statutes(
             chapter_sha = store.write_bytes(chapter_path, chapter_bytes)
             source_paths.append(chapter_path)
             chapter_source_key = _state_source_key(jurisdiction, run_id, chapter_relative)
-            parsed_heading, sections = _parse_minnesota_chapter_sections(
-                chapter_bytes,
-                chapter=chapter,
-            )
+            try:
+                parsed_heading, sections = _parse_minnesota_chapter_sections(
+                    chapter_bytes,
+                    chapter=chapter,
+                )
+            except ValueError as exc:
+                errors.append(f"chapter {chapter.num}: {exc}")
+                _append_container_gap(
+                    seen_citation_paths,
+                    items,
+                    _minnesota_chapter_container(
+                        chapter, source_path=chapter_source_key, sha256=chapter_sha
+                    ),
+                )
+                continue
             chapter_with_heading = _MinnesotaChapter(
                 part=chapter.part,
                 num=chapter.num,
@@ -1693,6 +1741,10 @@ def extract_minnesota_statutes(
                 source_path=chapter_source_key,
                 sha256=chapter_sha,
             )
+            if not sections:
+                errors.append(f"chapter {chapter.num}: no sections on chapter page")
+                _append_container_gap(seen_citation_paths, items, chapter_container)
+                continue
             if chapter_container.citation_path not in seen_citation_paths:
                 seen_citation_paths.add(chapter_container.citation_path)
                 items.append(_container_inventory_item(chapter_container))
@@ -1746,7 +1798,7 @@ def extract_minnesota_statutes(
                 if remaining is not None:
                     remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError("no Minnesota Statutes provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -3901,7 +3953,7 @@ def _load_minnesota_chapter_source(
             url=chapter.full_source_url,
         )
         return chapter, data, None
-    except requests.RequestException as exc:
+    except Exception as exc:  # noqa: BLE001
         return chapter, None, str(exc)
 
 
@@ -8164,6 +8216,22 @@ def _replace_container_source(
         sha256=sha256,
         metadata=metadata,
     )
+
+
+def _append_container_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    container: _StateContainer,
+) -> None:
+    """Record a container whose listing yielded nothing as an inventory gap.
+
+    The item has no matching provision, so coverage lists it in
+    ``missing_from_provisions`` and reads incomplete.
+    """
+    if container.citation_path in seen:
+        return
+    seen.add(container.citation_path)
+    items.append(_container_inventory_item(container))
 
 
 def _container_inventory_item(container: _StateContainer) -> SourceInventoryItem:
