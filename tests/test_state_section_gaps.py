@@ -31,6 +31,13 @@ from axiom_corpus.corpus.state_adapters.hawaii import (
     HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT,
     extract_hawaii_revised_statutes,
 )
+from axiom_corpus.corpus.state_adapters.iowa import (
+    IOWA_CHAPTER_INDEX_SOURCE_FORMAT,
+    IOWA_SECTION_INDEX_SOURCE_FORMAT,
+    IOWA_SECTION_PDF_SOURCE_FORMAT,
+    IOWA_TITLE_INDEX_SOURCE_FORMAT,
+    extract_iowa_code,
+)
 from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
@@ -43,6 +50,11 @@ from tests.test_corpus_hawaii import SAMPLE_CHAPTER_INDEX_HTML as HI_CHAPTER_IND
 from tests.test_corpus_hawaii import SAMPLE_ROOT_HTML as HI_ROOT_HTML
 from tests.test_corpus_hawaii import SAMPLE_SECTION_HTML as HI_SECTION_HTML
 from tests.test_corpus_hawaii import SAMPLE_VOLUME_HTML as HI_VOLUME_HTML
+from tests.test_corpus_iowa import SAMPLE_CHAPTER_INDEX_HTML as IA_CHAPTER_INDEX_HTML
+from tests.test_corpus_iowa import SAMPLE_SECTION_INDEX_HTML as IA_SECTION_INDEX_HTML
+from tests.test_corpus_iowa import SAMPLE_TITLE_INDEX_HTML as IA_TITLE_INDEX_HTML
+from tests.test_corpus_iowa import _sample_pdf as ia_sample_pdf
+from tests.test_corpus_iowa import _status_pdf as ia_status_pdf
 from tests.test_corpus_maryland import SAMPLE_EMPTY_SECTION_HTML as MD_EMPTY_SECTION_HTML
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
@@ -352,3 +364,98 @@ def test_hawaii_repealed_section_page_stays_complete(tmp_path):
     _assert_complete(report, expected=HI_EXTRACTED)
     records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
     assert records["us-hi/statute/235-55.76"].metadata["status"] == "repealed"
+
+
+# --- Iowa: title index -> chapter index -> section index -> section PDFs ---
+
+IA_SECTION_INDEX = f"{IOWA_SECTION_INDEX_SOURCE_FORMAT}/chapter-422.html"
+IA_PDF_DIR = f"{IOWA_SECTION_PDF_SOURCE_FORMAT}/chapter-422"
+IA_SECTION_422_2 = f"{IA_PDF_DIR}/422.2.pdf"
+IA_SECTION_422_2_ROW = """    <tr>
+      <td>&#167;422.2 - Definitions.</td>
+      <td><a href="/docs/code/2026/422.2.pdf">PDF</a></td>
+    </tr>
+  </tbody></table>"""
+IA_GOOD_PAGES = {
+    f"{IOWA_TITLE_INDEX_SOURCE_FORMAT}/2026.html": IA_TITLE_INDEX_HTML,
+    f"{IOWA_CHAPTER_INDEX_SOURCE_FORMAT}/title-X.html": IA_CHAPTER_INDEX_HTML,
+    IA_SECTION_INDEX: IA_SECTION_INDEX_HTML.replace("  </tbody></table>", IA_SECTION_422_2_ROW, 1),
+}
+IA_EXTRACTED = {
+    "us-ia/statute/title-x",
+    "us-ia/statute/chapter-422",
+    "us-ia/statute/422.1",
+    "us-ia/statute/422.2",
+}
+
+
+def _extract_iowa(tmp_path, pages: dict[str, str], pdfs: dict[str, bytes]):
+    _write_sources(tmp_path / "source", pages)
+    for relative, data in pdfs.items():
+        path = tmp_path / "source" / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_iowa_code(
+        store, version="2026-05-09", source_dir=tmp_path / "source", only_title="X", workers=1
+    )
+    return store, report
+
+
+def _iowa_pdfs() -> dict[str, bytes]:
+    return {
+        f"{IA_PDF_DIR}/422.1.pdf": ia_sample_pdf(),
+        IA_SECTION_422_2: ia_status_pdf(
+            section="422.2",
+            heading="Definitions.",
+            body=["For the purposes of this chapter, terms have these meanings."],
+            notes=[],
+        ),
+    }
+
+
+def test_iowa_fixture_lists_both_sections(tmp_path):
+    _, report = _extract_iowa(tmp_path, dict(IA_GOOD_PAGES), _iowa_pdfs())
+    assert report.section_count == 2
+    _assert_complete(report, expected=IA_EXTRACTED)
+
+
+@pytest.mark.parametrize("failure", SECTION_FAILURES)
+def test_iowa_failed_section_pdf_remains_inventory_gap(tmp_path, failure):
+    # On main a section PDF that could not be fetched or read was logged as an
+    # error with no inventory item, so coverage still read complete; a
+    # maintenance page served in place of the PDF was read as section text.
+    pdfs = _iowa_pdfs()
+    if failure == "missing-file":
+        del pdfs[IA_SECTION_422_2]
+    else:
+        pdfs[IA_SECTION_422_2] = {
+            "maintenance": MAINTENANCE,
+            "empty": EMPTY_PAGE,
+            "wrong-shape": WRONG_SHAPE_HTML,
+        }[failure].encode()
+    store, report = _extract_iowa(tmp_path, dict(IA_GOOD_PAGES), pdfs)
+    assert report.section_count == 1
+    assert "section 422.2" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=IA_EXTRACTED,
+        missing={"us-ia/statute/422.2"},
+        gap_source=IA_SECTION_INDEX if failure == "missing-file" else IA_SECTION_422_2,
+    )
+
+
+def test_iowa_repealed_section_pdf_stays_complete(tmp_path):
+    pdfs = _iowa_pdfs()
+    pdfs[IA_SECTION_422_2] = ia_status_pdf(
+        section="422.2",
+        heading="Definitions.",
+        body=["Repealed by 2023 Acts, ch 1, §1."],
+        notes=[],
+    )
+    _, report = _extract_iowa(tmp_path, dict(IA_GOOD_PAGES), pdfs)
+    assert report.section_count == 2
+    _assert_complete(report, expected=IA_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-ia/statute/422.2"].metadata["status"] == "repealed"
