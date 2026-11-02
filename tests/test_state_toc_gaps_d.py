@@ -24,7 +24,7 @@ import requests
 from axiom_corpus.corpus import states
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.state_adapters import rhode_island, south_dakota, utah
+from axiom_corpus.corpus.state_adapters import rhode_island, south_dakota, utah, wisconsin
 from axiom_corpus.corpus.state_adapters.rhode_island import extract_rhode_island_general_laws
 from axiom_corpus.corpus.state_adapters.south_dakota import (
     SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT,
@@ -34,6 +34,11 @@ from axiom_corpus.corpus.state_adapters.utah import (
     UTAH_CODE_HTML_SOURCE_FORMAT,
     UTAH_CODE_XML_SOURCE_FORMAT,
     extract_utah_code,
+)
+from axiom_corpus.corpus.state_adapters.wisconsin import (
+    WISCONSIN_STATUTES_SOURCE_FORMAT,
+    WISCONSIN_STATUTES_TOC_URL,
+    extract_wisconsin_statutes,
 )
 from axiom_corpus.corpus.states import (
     extract_dc_code,
@@ -77,6 +82,8 @@ from tests.test_corpus_utah import PART_HTML as UT_PART_HTML
 from tests.test_corpus_utah import ROOT_HTML as UT_ROOT_HTML
 from tests.test_corpus_utah import SECTION_XML as UT_SECTION_XML
 from tests.test_corpus_utah import TITLE_HTML as UT_TITLE_HTML
+from tests.test_corpus_wisconsin import CHAPTER_HTML as WI_CHAPTER_HTML
+from tests.test_corpus_wisconsin import TOC_HTML as WI_TOC_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -1151,3 +1158,99 @@ def test_utah_run_of_only_gaps_still_fails(tmp_path, no_utah_network):
     # Main raised the fetch error itself (one worker) or a RuntimeError (a pool).
     with pytest.raises((requests.RequestException, RuntimeError, ValueError)):
         _extract_utah(tmp_path, pages)
+
+
+# --- Wisconsin: statutes TOC -> one chapter page per chapter ---
+
+WI_FORMAT = WISCONSIN_STATUTES_SOURCE_FORMAT
+WI_TOC = f"{WI_FORMAT}/statutes/prefaces/toc.html"
+WI_CHAPTER_71 = f"{WI_FORMAT}/statutes/statutes/71.html"
+WI_CHAPTER_72 = f"{WI_FORMAT}/statutes/statutes/72.html"
+WI_GOOD_PAGES = {
+    WI_TOC: WI_TOC_HTML,
+    WI_CHAPTER_71: WI_CHAPTER_HTML,
+    WI_CHAPTER_72: WI_CHAPTER_HTML.replace("71.01", "72.01")
+    .replace("71/i/01", "72/i/01")
+    .replace("CHAPTER 71", "CHAPTER 72")
+    .replace("ch. 71", "ch. 72")
+    .replace("statutes/71", "statutes/72"),
+}
+WI_CHAPTER_71_PATHS = {
+    "us-wi/statute/chapter-71",
+    "us-wi/statute/chapter-71/subchapter-i",
+    "us-wi/statute/71.01",
+}
+WI_EMPTY_CHAPTER = (
+    '<html><body><div id="document">'
+    '<div class="qsnum_chap"><span class="qstr">CHAPTER 72</span></div>'
+    '<div class="qstitle_chap"><span class="qstr">ESTATE TAX</span></div>'
+    "</div></body></html>"
+)
+
+
+def _extract_wisconsin(
+    tmp_path, monkeypatch, pages, *, failed=None, failure=None, raise_=None, **kwargs
+):
+    kwargs.setdefault("workers", 1)
+    if failure != "request-error" and raise_ is None:
+        _write_sources(tmp_path / "source", pages)
+        source_dir = tmp_path / "source"
+    else:
+        source_dir = None
+        by_url = {
+            WISCONSIN_STATUTES_TOC_URL: WI_TOC,
+            "https://docs.legis.wisconsin.gov/statutes/statutes/71?view=section": WI_CHAPTER_71,
+            "https://docs.legis.wisconsin.gov/statutes/statutes/72?view=section": WI_CHAPTER_72,
+        }
+
+        def download(source_url, *, fetcher):
+            relative = by_url[source_url]
+            if relative == failed:
+                if raise_ is not None:
+                    raise raise_
+                raise requests.ConnectionError("source unavailable")
+            return pages[relative].encode()
+
+        monkeypatch.setattr(wisconsin, "_download_wisconsin_source", download)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_wisconsin_statutes(
+        store, version="2026-05-10", source_dir=source_dir, **kwargs
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_wisconsin_failed_chapter_page_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    pages = dict(WI_GOOD_PAGES)
+    _fail_page(pages, WI_CHAPTER_72, failure, {"no-children": WI_EMPTY_CHAPTER})
+    store, report = _extract_wisconsin(
+        tmp_path, monkeypatch, pages, failed=WI_CHAPTER_72, failure=failure
+    )
+    assert report.section_count == 1
+    assert report.errors[0].startswith("chapter 72:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=WI_CHAPTER_71_PATHS | {"us-wi/statute/chapter-72"},
+        missing={"us-wi/statute/chapter-72"},
+        gap_source=WI_TOC if failure in FETCH_FAILURES else WI_CHAPTER_72,
+    )
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+def test_wisconsin_interrupt_during_chapter_fetch_stops_the_run(tmp_path, monkeypatch, workers):
+    with pytest.raises(KeyboardInterrupt):
+        _extract_wisconsin(
+            tmp_path,
+            monkeypatch,
+            dict(WI_GOOD_PAGES),
+            failed=WI_CHAPTER_72,
+            raise_=KeyboardInterrupt(),
+            workers=workers,
+        )
+
+
+def test_wisconsin_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
+    pages = {WI_TOC: WI_TOC_HTML}
+    with pytest.raises((FileNotFoundError, RuntimeError, ValueError)):
+        _extract_wisconsin(tmp_path, monkeypatch, pages)
