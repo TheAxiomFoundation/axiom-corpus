@@ -33,11 +33,15 @@ it sits in the part: directly, in a subject group, or inside a subpart.
 | `Appendix II to Part 200` | `us/regulation/2/200/appendix-ii` |
 | `Appendix to Part 720` (unnumbered) | `us/regulation/5/720/appendix` |
 | `Appendixes to Part 50` (a collective note) | `us/regulation/10/50/appendixes` |
+| `Appendix to Part 60-20` (a hyphenated title 41 part) | `us/regulation/41/60-20/appendix` |
 
 Designators follow the subpart-appendix grammar below: a number, a single letter,
 or an uppercase roman numeral, lowercased in the path. The legal identifier reads
 `2 CFR part 200, appendix II` (`5 CFR part 720, appendix` and
-`..., appendixes` for the unnumbered and collective forms). The eCFR of 2026-10-08
+`..., appendixes` for the unnumbered and collective forms). A hyphenated part
+(title 41) takes every form: `Appendix A to Part 60-300` is
+`us/regulation/41/60-300/appendix-a`, and `Appendix to Part 60-20` reads
+`41 CFR part 60-20, appendix`. The eCFR of 2026-10-08
 has no live collective part appendix; the form is accepted so that part and
 subpart appendices share one grammar.
 
@@ -74,7 +78,9 @@ ones in 28 parts and 60 unnumbered ones, which it parses now. With
 `--include-appendices`, 80 more parts pass inventory validation. The other 8 parts
 with roman or unnumbered appendices still fail on another node in the part: `Figure 1 to Part 1213`, `Table 1 to Part 150`, `Policy Statement to Part 145`,
 `Figures to Part 38`, `Appendix I(F) to Part 13`, or a nonreserved
-`Appendix IV to Part 261 [Reserved for Radioactive Waste Test Methods]`.
+`Appendix IV to Part 261 [Reserved for Radioactive Waste Test Methods]`. These
+counts were taken before hyphenated title 41 parts were read (#840), so they leave
+those parts out; their appendices now parse too.
 
 ## Subpart appendices
 
@@ -108,7 +114,13 @@ or not, never changes how its named siblings sort; reserved appendices do count.
 `extract-ecfr` classifies designators from the retained structure, so a
 structure-only placeholder and the XML record it stands in for get the same
 ordinal; extraction skips an appendix that only the XML has because it falls
-outside the inventory.
+outside the inventory. Part appendices are classified the same way, with the part as
+the container. A caller of `iter_ecfr_title_provisions` that passes `appendix_numbering`
+from a structure of another date than the XML, with no allowlist or with one that
+selects an appendix that structure lacks, gets a fail-closed `designator order is
+ambiguous` error for that designated part or subpart appendix. On main a part appendix
+needed no numbering and was extracted. `extract-ecfr` takes the allowlist and the
+numbering from the same structure, so there an XML-only appendix is skipped instead.
 
 A subpart appendix must sit inside the subpart and part it names. One that does
 not (for example `Appendix A to Subpart F of Part 2520`, which the eCFR places
@@ -119,8 +131,7 @@ Opted-in inventory construction rejects unsupported nonreserved identifiers,
 including hyphenated, alphanumeric or lowercase multi-character designators
 (`Appendix D-1 to Part 208`, `Appendix M1 to Part 226`, `Appendix A-1 to Subpart I
 of Part 550`, `Appendix C1 to Subpart B of Part 430`, `Appendix ii to Part 604`), a
-collective note with a designator (`Appendixes A to Part 604`), hyphenated parts
-(`Appendix to Part 60-20` in title 41; the adapter skips those parts' sections too), identifiers that cite the title (`Appendix B to Subpart A of 10 CFR Part
+collective note with a designator (`Appendixes A to Part 604`), identifiers that cite the title (`Appendix B to Subpart A of 10 CFR Part
 51`, `Appendix to 19 CFR Part 0`), and nodes that are not appendices to a part or
 subpart (`Figure 1 to Part 1213`, `Appendix A to Chapter I`). A parsed part that
 contradicts the enclosing part also fails validation. These errors do not imply full appendix coverage.
