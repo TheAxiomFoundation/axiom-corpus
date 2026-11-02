@@ -1,8 +1,6 @@
 import threading
-import time
 from datetime import date
 from pathlib import Path
-from types import SimpleNamespace
 from urllib.parse import urljoin
 
 import pytest
@@ -21,6 +19,7 @@ from axiom_corpus.corpus.state_adapters.oregon import (
     parse_oregon_chapter_html,
     parse_oregon_ors_landing_html,
 )
+from tests._fake_clock import FakeClock
 from tests._local_http import (
     OVERFLOWING_COOKIE,
     LocalHttpServer,
@@ -522,9 +521,11 @@ def test_oregon_download_page_success_and_retry_failure(monkeypatch):
         raise requests.RequestException("boom")
 
     monkeypatch.setattr(bounded_http, "_open", bad_get)
-    # Skip the pause between attempts, in the fetch module only.
+    # The pause between attempts passes on a fake clock, in the fetch module only.
+    clock = FakeClock()
+    monkeypatch.setattr(bounded_http, "_CLOCK", clock)
     monkeypatch.setattr(
-        bounded_http, "time", SimpleNamespace(monotonic=time.monotonic, sleep=lambda seconds: None)
+        bounded_http, "_get_with_retries", clock.reporting(bounded_http._get_with_retries)
     )
     with pytest.raises(ValueError, match="failed to fetch Oregon source page .*: boom"):
         oregon_adapter._download_oregon_page("https://example.test/ors091.html")
@@ -582,29 +583,16 @@ def test_oregon_download_reports_an_answer_it_cannot_handle_as_a_failed_fetch(
 _OREGON_PAGE_GIVE_UP_SECONDS = 25.0
 
 
-class _VirtualClock:
-    """``time.monotonic`` and ``time.sleep`` on a clock that moves only when slept on."""
-
-    def __init__(self) -> None:
-        self.now = 1_000.0
-
-    def monotonic(self) -> float:
-        return self.now
-
-    def sleep(self, seconds: float) -> None:
-        self.now += max(0.0, seconds)
-
-
 class _DeadOregonHost:
     """``bounded_http._open`` for an Oregon site that serves ``pages`` and hangs on the rest.
 
-    A hanging request waits out, on the virtual clock, the timeout it was
-    given: the connect timeout for a host that drops connection attempts
+    A hanging request waits out, on the fake clock, the timeout it was given:
+    the connect timeout for a host that drops connection attempts
     (``hang="connect"``), the read timeout for one that accepts and never
     answers (``hang="read"``). It then raises what ``requests`` raises.
     """
 
-    def __init__(self, clock: _VirtualClock, *, hang: str, pages: dict[str, bytes] | None = None):
+    def __init__(self, clock: FakeClock, *, hang: str, pages: dict[str, bytes] | None = None):
         self.clock = clock
         self.hang = hang
         self.pages = pages or {}
@@ -618,34 +606,44 @@ class _DeadOregonHost:
         connect, read = timeout if isinstance(timeout, tuple) else (timeout, timeout)
         self.timeouts.append((connect, read))
         if self.hang == "connect":
-            self.clock.sleep(connect)
+            self.clock.advance(connect)
             raise requests.ConnectTimeout(f"connect to {url} timed out after {connect}s")
-        self.clock.sleep(read)
+        self.clock.advance(read)
         raise requests.ReadTimeout(f"read from {url} timed out after {read}s")
 
 
 def _install_dead_oregon_host(monkeypatch, *, hang, pages=None):
-    # Only the fetch module sees the virtual clock, so no other thread or test
-    # does. The caller's wait for the worker is a real wait, cut short when the
-    # worker finishes, which it does at once on this clock.
-    clock = _VirtualClock()
+    # Only the fetch module sees the fake clock, so no other thread or test
+    # does. The caller waits for each worker on that clock too, so every page
+    # fetch ends at a time the clock reads, whatever the scheduling.
+    clock = FakeClock()
     host = _DeadOregonHost(clock, hang=hang, pages=pages)
+    monkeypatch.setattr(bounded_http, "_CLOCK", clock)
     monkeypatch.setattr(
-        bounded_http, "time", SimpleNamespace(monotonic=clock.monotonic, sleep=clock.sleep)
+        bounded_http, "_get_with_retries", clock.reporting(bounded_http._get_with_retries)
     )
     monkeypatch.setattr(bounded_http, "_open", host.get)
     return clock, host
 
 
+# A host that drops connection attempts costs two 10 s connect timeouts and the
+# 0.5 s pause. One that accepts and never answers costs a 20 s read timeout,
+# the pause, and the 4.5 s left of the 25 s deadline.
+_DEAD_HOST_GIVES_UP_AFTER = {"connect": 10.0 + 0.5 + 10.0, "read": 20.0 + 0.5 + 4.5}
+
+
 @pytest.mark.parametrize("hang", ["connect", "read"])
 def test_oregon_download_gives_up_on_a_dead_host_well_inside_the_test_limit(monkeypatch, hang):
     clock, host = _install_dead_oregon_host(monkeypatch, hang=hang)
-    started = clock.now
+    started = clock.monotonic()
 
     with pytest.raises(ValueError, match="failed to fetch Oregon source page"):
         oregon_adapter._download_oregon_page(urljoin(OREGON_ORS_BASE_URL, "ors/ors316.html"))
 
-    assert clock.now - started <= _OREGON_PAGE_GIVE_UP_SECONDS
+    assert clock.monotonic() - started == _DEAD_HOST_GIVES_UP_AFTER[hang]
+    assert clock.monotonic() - started <= _OREGON_PAGE_GIVE_UP_SECONDS
+    # Both waits of the caller, for a slot and for its worker, end by the page's deadline.
+    assert clock.waits == [started + _OREGON_PAGE_GIVE_UP_SECONDS] * 2
     # The bounded retry is kept, and every request has explicit connect and
     # read timeouts no longer than 10 and 20 seconds.
     assert len(host.timeouts) == 2
@@ -662,7 +660,7 @@ def test_extract_oregon_ors_live_fetch_failure_reaches_the_smoke_test_skip(
     if landing == "answers":
         pages[OREGON_ORS_LANDING_RELATIVE] = SAMPLE_OREGON_LANDING.encode()
     clock, host = _install_dead_oregon_host(monkeypatch, hang=hang, pages=pages)
-    started = clock.now
+    started = clock.monotonic()
 
     with pytest.raises(ValueError, match="failed to fetch Oregon source page") as excinfo:
         extract_oregon_ors(
@@ -674,7 +672,8 @@ def test_extract_oregon_ors_live_fetch_failure_reaches_the_smoke_test_skip(
 
     hung_page = "ors/ors316.html" if landing == "answers" else OREGON_ORS_LANDING_RELATIVE
     assert urljoin(OREGON_ORS_BASE_URL, hung_page) in str(excinfo.value)
-    assert clock.now - started <= _OREGON_PAGE_GIVE_UP_SECONDS
+    # Only the hung page took time: the landing page, if it answers, takes none.
+    assert clock.monotonic() - started == _DEAD_HOST_GIVES_UP_AFTER[hang]
     assert not (tmp_path / "download" / "oregon-ors-html" / "ors316.html").exists()
 
 
@@ -687,7 +686,6 @@ def test_extract_oregon_ors_against_a_local_server_that_never_answers(tmp_path, 
     monkeypatch.setattr(oregon_adapter, "OREGON_FETCH_DEADLINE_SECONDS", 3.0)
     landing = respond(SAMPLE_OREGON_LANDING.encode())
     with LocalHttpServer([landing, never_answer]) as server:
-        started = time.monotonic()
         with pytest.raises(
             ValueError,
             match=(
@@ -701,13 +699,10 @@ def test_extract_oregon_ors_against_a_local_server_that_never_answers(tmp_path, 
                 only_chapter="316",
                 base_url=server.url,
             )
-        elapsed = time.monotonic() - started
 
-    # The landing page, then two tries at ors316.html: 0.2 s, the 0.5 s pause,
-    # then 0.2 s more. A read the timeout failed to end would run to the 3 s
-    # deadline, and one nothing bounded would run until pytest-timeout.
+    # The landing page, then two tries at ors316.html, each ended by its read
+    # timeout. The page budget itself is checked on the fake clock above.
     assert len(server.requests) == 3
-    assert elapsed < 0.2 + 0.5 + 0.2 + 1.5
 
 
 def _finishes_within(seconds, call):
@@ -767,7 +762,6 @@ def test_oregon_chapter_discovery_on_a_trickling_site_holds_few_threads_and_drop
         fetcher = oregon_adapter._OregonFetcher(
             base_url=server.url, source_dir=None, download_dir=None
         )
-        started = time.monotonic()
         try:
             found, unchecked = _finishes_within(
                 30,
@@ -775,7 +769,6 @@ def test_oregon_chapter_discovery_on_a_trickling_site_holds_few_threads_and_drop
                     titles, fetcher=fetcher, workers=workers
                 ),
             )
-            elapsed = time.monotonic() - started
             open_fetches = [
                 thread
                 for thread in threading.enumerate()
@@ -793,8 +786,6 @@ def test_oregon_chapter_discovery_on_a_trickling_site_holds_few_threads_and_drop
         assert wait_until(lambda: fetches.started == 3)
         assert fetches.most_running <= 3
         assert len(open_fetches) <= 3
-        # Each round of eight probes ends at the 0.3 s deadline.
-        assert elapsed < (len(candidates) / workers + 1) * 0.3 + 1.5
 
 
 _SMALL_OREGON_LANDING = (

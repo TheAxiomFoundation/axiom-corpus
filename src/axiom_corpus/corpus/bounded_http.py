@@ -44,7 +44,7 @@ import contextlib
 import math
 import threading
 import time
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from typing import TYPE_CHECKING, Any
 
 import requests
@@ -58,6 +58,34 @@ if TYPE_CHECKING:
 # those still open after the call that started them gave up.
 MAX_FETCH_THREADS = 32
 _CHUNK_BYTES = 64 * 1024
+
+
+class _Clock:
+    """Real time, as this module reads it, pauses on it and waits on it.
+
+    Every reading of the time, every pause and every timed wait here goes
+    through ``_CLOCK``, so a test can put a fake clock in its place and check
+    the deadline on that clock instead of measuring elapsed time.
+    """
+
+    def monotonic(self) -> float:
+        return time.monotonic()
+
+    def sleep(self, seconds: float) -> None:
+        time.sleep(seconds)
+
+    def wait(self, event: threading.Event, until: float) -> bool:
+        """Wait for ``event`` until ``until`` on this clock; return whether it is set."""
+        return event.wait(timeout=max(0.0, until - self.monotonic()))
+
+    def wait_for(
+        self, condition: threading.Condition, predicate: Callable[[], bool], until: float
+    ) -> bool:
+        """With ``condition`` held, wait until ``predicate()`` or ``until``; return ``predicate()``."""
+        return condition.wait_for(predicate, timeout=max(0.0, until - self.monotonic()))
+
+
+_CLOCK = _Clock()
 
 
 class _Slots:
@@ -131,7 +159,7 @@ def get_bytes(
             raise ValueError(f"{name} must be a positive finite number, not {value!r}")
     if not (math.isfinite(retry_delay) and retry_delay >= 0):
         raise ValueError(f"retry_delay must be a non-negative finite number, not {retry_delay!r}")
-    give_up_at = time.monotonic() + deadline
+    give_up_at = _CLOCK.monotonic() + deadline
     slots = _SLOTS
     call = _Call()
 
@@ -158,10 +186,7 @@ def get_bytes(
 
     try:
         with slots.changed:
-            has_room = slots.changed.wait_for(
-                lambda: slots.used < slots.limit,
-                timeout=max(0.0, give_up_at - time.monotonic()),
-            )
+            has_room = _CLOCK.wait_for(slots.changed, lambda: slots.used < slots.limit, give_up_at)
             if not has_room:
                 raise requests.Timeout(
                     f"did not request {url}: all {slots.limit} fetch threads stayed busy "
@@ -182,7 +207,7 @@ def get_bytes(
         raise
     # From here the slot is the worker's to give back, so an interrupted wait
     # leaves nothing to undo.
-    if not call.finished.wait(timeout=max(0.0, give_up_at - time.monotonic())):
+    if not _CLOCK.wait(call.finished, give_up_at):
         raise requests.Timeout(f"no complete response from {url} within {deadline:g}s")
     if call.error is not None:
         raise call.error
@@ -203,12 +228,12 @@ def _get_with_retries(
     last_error: requests.RequestException | None = None
     for attempt in range(attempts):
         if attempt:
-            if give_up_at - time.monotonic() <= retry_delay:
+            if give_up_at - _CLOCK.monotonic() <= retry_delay:
                 # No time would be left for another attempt after the pause, so
                 # the last failure stands, now rather than at the deadline.
                 break
-            time.sleep(retry_delay)
-        remaining = give_up_at - time.monotonic()
+            _CLOCK.sleep(retry_delay)
+        remaining = give_up_at - _CLOCK.monotonic()
         if remaining <= 0:
             break
         try:
@@ -240,7 +265,7 @@ def _get_once(
             response.raise_for_status()
             chunks: list[bytes] = []
             for chunk in response.iter_content(chunk_size=_CHUNK_BYTES):
-                if time.monotonic() >= give_up_at:
+                if _CLOCK.monotonic() >= give_up_at:
                     raise requests.Timeout(f"no complete response from {url} before the deadline")
                 chunks.append(chunk)
         except BaseException as error:
@@ -372,7 +397,7 @@ class _DeadlineAdapter(HTTPAdapter):
         read = timeout[1] if isinstance(timeout, tuple) else None
         if not isinstance(timeout, tuple) or read is None:
             raise TypeError(f"expected (connect, read) timeouts, not {timeout!r}")
-        remaining = self._give_up_at - time.monotonic()
+        remaining = self._give_up_at - _CLOCK.monotonic()
         if remaining <= 0:
             raise requests.Timeout(f"no complete response from {self._url} before the deadline")
         return super().send(
