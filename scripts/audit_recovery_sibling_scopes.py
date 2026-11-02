@@ -451,10 +451,17 @@ def _pdf_extraction(repo_root: Path, manifest: str, citation_path: str) -> dict[
 
 @cache
 def _pdf_text(path: Path, extraction_json: str) -> PdfText:
-    from axiom_corpus.corpus.documents import _extract_pdf_blocks
+    from unittest import mock
+
+    from axiom_corpus.corpus import documents
 
     extraction = json.loads(extraction_json) or None
-    blocks = _extract_pdf_blocks(path.read_bytes(), extraction=extraction)
+    # These rows were made when a drop pattern removed a matching bare number
+    # anywhere on its page. The extractor now removes one only from the page
+    # margin (axiom-corpus#814), so replay the rule the rows were made with:
+    # every matched bare number counts as margin.
+    with mock.patch.object(documents, "_in_pdf_page_margin", lambda _extent, _body: True):
+        blocks = documents._extract_pdf_blocks(path.read_bytes(), extraction=extraction)
     return PdfText(
         pages={block.ordinal: block.body for block in blocks if block.kind == "page"},
         sections={

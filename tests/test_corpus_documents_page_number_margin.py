@@ -377,7 +377,9 @@ def test_colorado_sales_tax_refund_bands_keep_their_final_zero() -> None:
 
 # --- 16 Del. Admin. Code 3000, PDF pages 13-14 ------------------------------
 # Delaware prints its page numbers at the head of the page. The work-hours
-# table of 3006.2 ends a page, so its last row is the lowest line on the page.
+# table ends page 13, so its last row is the lowest line on the page; page
+# 14's text stream emits the rest of the table after 3006.4's opening lines,
+# so us-de/regulation/16/3000/3006.2 lost "20 20" and 3006.4 lost the rest.
 
 _DE_HEADER: list[Line] = [
     ("TITLE 16 HEALTH AND SAFETY", 207.7, 38.4, 16.0, "b"),
@@ -414,6 +416,28 @@ _DE_PAGE_14: list[Line] = [
     ("TITLE 16 HEALTH AND SAFETY", 207.7, 39.4, 16.0, "b"),
     ("DELAWARE ADMINISTRATIVE CODE", 186.1, 58.4, 16.0, "b"),
     ("14", 39.6, 43.8, 12.0, "b"),
+    (
+        "Numerator: # of TANF families with a work-eligible-individual who meet the "
+        "participation requirement for the month",
+        36.0,
+        148.4,
+        10.0,
+        "",
+    ),
+    (
+        "3006.4 TANF Employment and Training Activities Which Constitute Participation Under TANF",
+        36.0,
+        699.9,
+        10.0,
+        "b",
+    ),
+    (
+        "The following are employment-related activities that count as participation:",
+        54.0,
+        713.9,
+        10.0,
+        "",
+    ),
     ("B. No children under 6 years old", 168.0, 82.6, 10.0, ""),
     ("30", 352.0, 82.6, 10.0, ""),
     ("20", 403.4, 82.6, 10.0, ""),
@@ -424,14 +448,6 @@ _DE_PAGE_14: list[Line] = [
     ("B. Receiving subsidized child care", 168.0, 120.9, 10.0, ""),
     ("55", 352.0, 120.9, 10.0, ""),
     ("50", 403.4, 120.9, 10.0, ""),
-    (
-        "Numerator: # of TANF families with a work-eligible-individual who meet the "
-        "participation requirement for the month",
-        36.0,
-        148.4,
-        10.0,
-        "",
-    ),
 ]
 
 
@@ -442,18 +458,21 @@ def test_delaware_work_hours_table_at_the_foot_of_a_page_keeps_its_hours() -> No
     )
     content = _pdf([_DE_PAGE_13, _DE_PAGE_14])
 
-    assert "A. With a child under 6 years old B. No children under 6 years old Two Parent" in (
-        " ".join(_content_only_lines(content, extraction))
+    before = " ".join(_content_only_lines(content, extraction))
+    assert "A. With a child under 6 years old Numerator:" in before
+    assert before.endswith(
+        "B. No children under 6 years old Two Parent Family "
+        "A. Not receiving subsidized child care B. Receiving subsidized child care"
     )
 
     body = _section_body(content, extraction, "3006.2")
-    assert (
-        "Single Parent Family A. With a child under 6 years old 20 20 "
+    assert "Single Parent Family A. With a child under 6 years old 20 20 Numerator:" in body
+    assert not {"13", "14"} & set(_tokens(body))
+    assert _section_body(content, extraction, "3006.4").endswith(
         "B. No children under 6 years old 30 20 Two Parent Family "
         "A. Not receiving subsidized child care 35 30 "
-        "B. Receiving subsidized child care 55 50 Numerator:"
-    ) in body
-    assert not {"13", "14"} & set(_tokens(body))
+        "B. Receiving subsidized child care 55 50"
+    )
 
 
 # --- 16 Del. Admin. Code 9000 (Delaware SNAP), PDF page 12 ------------------
@@ -488,9 +507,12 @@ def test_delaware_snap_authority_line_keeps_its_cfr_title() -> None:
         _content_only_lines(content, extraction)
     )
 
-    body = _section_body(content, extraction, "9013.1")
-    assert body.startswith("7 CFR 273.1 A) General Definition")
-    assert "12" not in _tokens(body)
+    blocks = documents_module._extract_pdf_blocks(content, extraction=extraction)
+    section = next(block for block in blocks if block.metadata.get("section_label") == "9013.1")
+    # Without its "7", "CFR 273.1" read as a continuation of the heading.
+    assert section.heading == "9013.1 Household Definition"
+    assert section.body.startswith("7 CFR 273.1 A) General Definition")
+    assert "12" not in _tokens(section.body)
 
 
 # --- Differential: a page with no table -------------------------------------

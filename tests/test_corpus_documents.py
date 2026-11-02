@@ -2688,8 +2688,11 @@ def test_labeled_pdf_sections_drop_page_headers_by_position(tmp_path: Path) -> N
     assert blocks[1].body == (
         "Text of the second rule. 2 Body line that is not a header. RULEBOOK 3 More text."
     )
-    # A content-blind numeric drop would have eaten the table's first column.
-    blind = documents_module._extract_pdf_blocks(
+    # A numeric drop_line_patterns entry drops a bare number only outside the
+    # page's body text, so the cells between body lines stay. Page 2's "3" has
+    # no body text above it or beside it: by position alone it is a page
+    # number, which is what page_header_patterns tells apart.
+    by_margin = documents_module._extract_pdf_blocks(
         pdf_path.read_bytes(),
         extraction={
             **{k: v for k, v in extraction.items() if k != "page_header_patterns"},
@@ -2697,7 +2700,7 @@ def test_labeled_pdf_sections_drop_page_headers_by_position(tmp_path: Path) -> N
             "drop_line_patterns": [r"^\d{1,3}$"],
         },
     )
-    assert blind[0].body == "Family Size $10 $20 $30"
+    assert by_margin[0].body == "Family Size 1 $10 2 $20 $30"
 
     windowed = documents_module._filtered_pdf_lines(
         pdf_path.read_bytes(),
