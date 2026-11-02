@@ -24,11 +24,14 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.states import (
     extract_minnesota_statutes,
+    extract_nebraska_revised_statutes,
 )
 from tests.test_corpus_states import (
     SAMPLE_MINNESOTA_CHAPTER,
     SAMPLE_MINNESOTA_INDEX,
     SAMPLE_MINNESOTA_PART,
+    SAMPLE_NEBRASKA_CHAPTER,
+    SAMPLE_NEBRASKA_INDEX,
 )
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
@@ -182,3 +185,79 @@ def test_minnesota_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
     pages = {"minnesota-statutes-html/index.html": SAMPLE_MINNESOTA_INDEX}
     with pytest.raises((OSError, ValueError)):
         _extract_minnesota(tmp_path, monkeypatch, pages)
+
+
+# --- Nebraska: index -> one full-chapter page per chapter ---
+
+NE_CHAPTER_2 = "nebraska-revised-statutes-html/chapters/chapter-2-full.html"
+NE_GOOD_PAGES = {
+    "nebraska-revised-statutes-html/index.html": SAMPLE_NEBRASKA_INDEX.replace(
+        "</main>",
+        '<a href="/laws/browse-chapters.php?chapter=02">Chapter 2 AGRICULTURE</a></main>',
+    ),
+    "nebraska-revised-statutes-html/chapters/chapter-1-full.html": SAMPLE_NEBRASKA_CHAPTER,
+    NE_CHAPTER_2: SAMPLE_NEBRASKA_CHAPTER.replace("1-10", "2-10"),
+}
+NE_CHAPTER_1 = {"us-ne/statute/1", "us-ne/statute/1/1-101", "us-ne/statute/1/1-105"}
+NE_EMPTY_CHAPTER = (
+    '<html><body><div class="printwidth"><p>No statutes in this chapter.</p></div></body></html>'
+)
+
+
+def _extract_nebraska(tmp_path, monkeypatch, pages, *, failed=None, failure=None, raise_=None):
+    if failure != "request-error" and raise_ is None:
+        _write_sources(tmp_path / "source", pages)
+        source_dir = tmp_path / "source"
+    else:
+        source_dir = None
+
+        def load(session, source_root, download_root, *, relative_name, url):
+            if relative_name == failed:
+                if raise_ is not None:
+                    raise raise_
+                raise requests.ConnectionError("source unavailable")
+            return pages[relative_name].encode()
+
+        monkeypatch.setattr(states, "_load_nebraska_html", load)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_nebraska_revised_statutes(store, version="2026-05-04", source_dir=source_dir)
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_nebraska_failed_chapter_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    pages = dict(NE_GOOD_PAGES)
+    _fail_page(pages, NE_CHAPTER_2, failure, {"no-children": NE_EMPTY_CHAPTER})
+    store, report = _extract_nebraska(
+        tmp_path, monkeypatch, pages, failed=NE_CHAPTER_2, failure=failure
+    )
+    assert report.section_count == 2
+    assert report.errors[0].startswith("chapter 2:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NE_CHAPTER_1 | {"us-ne/statute/2"},
+        missing={"us-ne/statute/2"},
+        gap_source=(
+            "nebraska-revised-statutes-html/index.html"
+            if failure in FETCH_FAILURES
+            else NE_CHAPTER_2
+        ),
+    )
+
+
+def test_nebraska_interrupt_during_chapter_fetch_stops_the_run(tmp_path, monkeypatch):
+    with pytest.raises(KeyboardInterrupt):
+        _extract_nebraska(
+            tmp_path,
+            monkeypatch,
+            dict(NE_GOOD_PAGES),
+            failed=NE_CHAPTER_2,
+            raise_=KeyboardInterrupt(),
+        )
+
+
+def test_nebraska_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
+    pages = {"nebraska-revised-statutes-html/index.html": SAMPLE_NEBRASKA_INDEX}
+    with pytest.raises(ValueError, match="no Nebraska Revised Statutes provisions extracted"):
+        _extract_nebraska(tmp_path, monkeypatch, pages)
