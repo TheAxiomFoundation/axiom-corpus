@@ -208,6 +208,7 @@ def test_xml_records_agree_with_inventory_and_placeholders(group):
     assert appendix.citation_label == "5 CFR chapter XIV, subchapter D, appendix"
     assert appendix.body == "Text of Appendix to Subchapter D."
     assert appendix.source_id == "5:Appendix to Subchapter D"
+    assert appendix.metadata["appendix_subchapter"] == items[-1].metadata["appendix_subchapter"] == "D"
     placeholder = ecfr._structure_only_provision(items[-1], "v", "2026-10-08", "2026-10-08")
     assert _identity(placeholder) == _identity(appendix)
     # Free iteration (no allowlist) reads it the same way.

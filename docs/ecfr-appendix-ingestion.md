@@ -80,9 +80,9 @@ with roman or unnumbered appendices still fail on another node in the part: `Fig
 
 An appendix to a subchapter sits in that subchapter's last part on the eCFR. 41 CFR
 chapter 101's `Appendix to Subchapter D` is in part 101-21, at reader path
-`.../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D`, and on
-2026-10-08 it is the only live one in all 49 titles (three more in title 41 are
-reserved). It is read only inside the subchapter it names; one that names another
+`.../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D`. As of the
+2026-10-12 eCFR differential (the 2026-10-08 eCFR), it was the only live one in all
+49 titles (three more in title 41 were reserved). It is read only inside the subchapter it names; one that names another
 subchapter fails validation. The part that holds it is its parent, at level 1, and
 the path segment names the subchapter, so it never takes a part appendix's path:
 
