@@ -664,6 +664,10 @@ def test_committed_anchor_artifact_tracks_its_provisions(anchors_path: Path) -> 
             f"{anchor.citation_path}: anchor version {anchor.version!r} != parent "
             f"version {parent.version!r}"
         )
+        assert anchor.extractor_version == EXTRACTOR_VERSION, (
+            f"{_repo_relative(anchors_path)} carries stale extractor version "
+            f"{anchor.extractor_version!r}; regenerate with {EXTRACTOR_VERSION}"
+        )
 
 
 def test_roundtrip_jsonl(
@@ -680,6 +684,31 @@ def test_extractor_version_is_stamped(cfr_anchors: list[ProvisionAnchor]) -> Non
     assert all(a.extractor_version == EXTRACTOR_VERSION for a in cfr_anchors)
     # The parent-body hash is recorded for the staleness guard.
     assert all(len(a.parent_body_sha256) == 64 for a in cfr_anchors)
+
+
+def test_caption_mask_changes_the_legacy_rebuild_cache_version() -> None:
+    provision = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/26/1/1",
+        id="caption-cache-fixture",
+        body=(
+            "(a) Paragraph.\n\n"
+            "[Table caption: Text—(1) FIRST CATEGORY]\n\n"
+            "Cell\n\n(b) End."
+        ),
+    )
+
+    anchors = generate_anchors_for_provision(provision)
+
+    # 1.0.0 returned /a/1 for this identical body. Masking changes that output,
+    # so its replacement must identify a distinct rebuild cache entry.
+    assert [anchor.citation_path for anchor in anchors] == [
+        f"{provision.citation_path}/a", f"{provision.citation_path}/b",
+    ]
+    assert {anchor.extractor_version for anchor in anchors}.isdisjoint({
+        "provision-anchors/1.0.0",
+    })
 
 
 def test_generation_is_deterministic(cfr_section: ProvisionRecord) -> None:

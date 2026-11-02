@@ -14,6 +14,8 @@ import unicodedata
 import warnings
 import zipfile
 from collections import Counter
+from collections.abc import Iterator
+from copy import copy
 from dataclasses import dataclass, replace
 from datetime import date
 from io import BytesIO, StringIO
@@ -76,7 +78,8 @@ _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
-_TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
+_PREFORMATTED_TAGS = {"pre"}
+_TEXT_TAGS = _HEADING_TAGS | _PREFORMATTED_TAGS | {"p", "li", "table", "blockquote"}
 _NON_HEADING_UPPERCASE_LINES = {
     "HANDBOOK BEGINS HERE",
     "HANDBOOK CONTINUES",
@@ -1095,6 +1098,19 @@ def _extract_pdf_blocks(
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "single_block":
         return _extract_single_block_pdf(content, extraction=extraction_config)
+    # The default per-page path emits every page and reads none of the page
+    # filters, so refuse them rather than ignore them.
+    page_filters = [
+        key for key in _SINGLE_BLOCK_PDF_FILTER_KEYS if extraction_config.get(key) is not None
+    ]
+    if page_filters:
+        supported = ", ".join(_PDF_PAGE_FILTER_SEGMENTATIONS[:-1])
+        raise ValueError(
+            f"the default per-page PDF segmentation (used for segmentation={segmentation!r}) "
+            f"does not read page filters, so {', '.join(page_filters)} would be ignored; "
+            f"only the {supported} and {_PDF_PAGE_FILTER_SEGMENTATIONS[-1]} "
+            "segmentations read them"
+        )
     typographic_matches = dict.fromkeys(markup.typographic_underlines, 0) if markup else {}
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
@@ -2082,6 +2098,9 @@ _SINGLE_BLOCK_PDF_FILTER_KEYS = (
     "drop_line_patterns",
     "page_header_patterns",
 )
+# The PDF segmentations that read the page filters above, through
+# ``_filtered_pdf_styled_lines``. The default per-page segmentation rejects them.
+_PDF_PAGE_FILTER_SEGMENTATIONS = ("single_block", "numbered_sections", "labeled_sections")
 
 
 def _extract_single_block_pdf(
@@ -5163,16 +5182,17 @@ def _extract_html_blocks(
         nonlocal parts, nodes
         blocks.add(
             heading,
-            _normalize_text("\n\n".join(parts)),
+            _join_html_text_parts(parts),
             declared=declared.drops(heading_node, nodes),
         )
         parts = []
         nodes = []
 
-    # ``html_br_breaks`` makes two <br> in a row a paragraph break (one <br> still joins its
-    # lines with a space). The Maryland StatuteText page separates its subsections with
-    # <br><br> and has no paragraph tags. The source's own line breaks are collapsed first,
-    # so only <br> elements break the text.
+    # ``html_br_breaks`` makes two <br> in a row a paragraph break. Outside a ``pre`` one
+    # <br> still joins its lines with a space; inside a ``pre`` it is a line break. The
+    # Maryland StatuteText page separates its subsections with <br><br> and has no
+    # paragraph tags. The source's own line breaks are collapsed first, so only <br>
+    # elements break the text, inside a ``pre`` too.
     br_breaks = bool((extraction or {}).get("html_br_breaks"))
     if br_breaks:
         for string in list(root.find_all(string=True)):
@@ -5180,10 +5200,15 @@ def _extract_html_blocks(
                 string.replace_with(re.sub(r"[\r\n]+", " ", string))
         for br in root.find_all("br"):
             br.replace_with("\n")
+    # A page whose only body text is in ``pre`` nodes falls back to its whole content
+    # root, as it did before ``pre`` was a text node, so text outside every text tag
+    # stays in the row.
+    read_text_outside_pre = bool((extraction or {}).get("html_text_selector"))
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(
-            node.get_text(" ") if br_breaks else node.get_text(" ", strip=True)
-        )
+        if br_breaks and node.name not in _PREFORMATTED_TAGS:
+            text = _normalize_text(node.get_text(" "))
+        else:
+            text = _html_node_text(node)
         if not text:
             continue
         if node.name in _HEADING_TAGS:
@@ -5191,14 +5216,21 @@ def _extract_html_blocks(
             heading = " ".join(text.split())
             heading_node = node
             continue
+        if node.name not in _PREFORMATTED_TAGS:
+            read_text_outside_pre = True
         parts.append(text)
         nodes.append(node)
     flush()
-    if blocks.position:
+    if blocks.position and read_text_outside_pre:
         return blocks.kept()
+    # The root fallback numbers its one block afresh: the ``pre`` blocks the walk
+    # numbered are replaced, not kept.
+    blocks = _PositionalBlocks(
+        source_url=source_url, navigation=navigation, label_title=fallback_title
+    )
     blocks.add(
         title,
-        _normalize_text(root.get_text(" ", strip=True)),
+        _html_root_text(root),
         declared=declared.drops(None, [root]),
     )
     return blocks.kept()
@@ -5663,7 +5695,7 @@ def _extract_labeled_html_section_blocks(
                 kind="section",
                 ordinal=len(sections) + 1,
                 heading=heading,
-                body=_normalize_text("\n\n".join(current_body)),
+                body=_join_html_text_parts(current_body),
                 metadata={
                     "citation_suffix": current_label,
                     "section_label": current_label,
@@ -5676,9 +5708,14 @@ def _extract_labeled_html_section_blocks(
         current_body = []
 
     for node in _html_text_nodes(root, extraction=extraction):
-        text = _normalize_text(node.get_text(" ", strip=True))
-        if not text:
+        node_text = _html_node_text(node)
+        if not node_text:
             continue
+        # Label and stop patterns match the text with a ``pre`` node's line breaks read
+        # as spaces, as every other node reads; the section body keeps them. The two
+        # strings differ only where a line break became a space, so a span in one is the
+        # same span in the other.
+        text = _normalize_text(node_text)
         if stop_re is not None and stop_re.match(text):
             flush()
             break
@@ -5690,17 +5727,20 @@ def _extract_labeled_html_section_blocks(
             label_replacements=label_replacements,
         )
         if match is not None:
-            label, heading, body = match
+            label, heading, body_span = match
             if normalize_label_internal_whitespace:
                 label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
                 label = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", label)
             flush()
             current_label = label
             current_heading = heading or label
+            body = ""
+            if body_span is not None:
+                body = _normalize_preformatted_text(node_text[body_span[0] : body_span[1]])
             current_body = [body] if body else []
             continue
         if current_label is not None:
-            current_body.append(text)
+            current_body.append(node_text)
     flush()
     return tuple(sections)
 
@@ -5805,7 +5845,8 @@ def _match_labeled_html_section(
     *,
     label_template: str | None = None,
     label_replacements: dict[str, str] | None = None,
-) -> tuple[str, str, str] | None:
+) -> tuple[str, str, tuple[int, int] | None] | None:
+    """Return a section's label, heading and the span of its ``body`` group in ``text``."""
     if section_heading_re is not None:
         match = section_heading_re.match(text)
         if match:
@@ -5818,7 +5859,7 @@ def _match_labeled_html_section(
             return (
                 label,
                 (groups.get("heading") or "").strip(),
-                (groups.get("body") or "").strip(),
+                match.span("body") if groups.get("body") else None,
             )
     if section_label_re is not None:
         match = section_label_re.match(text)
@@ -5830,7 +5871,7 @@ def _match_labeled_html_section(
                     label_replacements=label_replacements,
                 ),
                 "",
-                "",
+                None,
             )
     return None
 
@@ -6107,8 +6148,9 @@ def _document_title(soup: BeautifulSoup) -> str | None:
 def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[Tag, ...]:
     """Return the block-level text nodes of ``root`` in document order.
 
-    By default these are the heading, paragraph, list-item, table and blockquote tags
-    (nested ones are read through their outermost ancestor). ``html_text_selector``
+    By default these are the heading, paragraph, list-item, table, blockquote and
+    ``pre`` tags (nested ones are read through their outermost ancestor; read each
+    one's text with ``_html_node_text``). ``html_text_selector``
     names the nodes explicitly for publishers that print provision text inside ``div``
     or ``span`` containers; a selected node inside another selected node is skipped so
     the text is read once.
@@ -6119,7 +6161,7 @@ def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[T
         return tuple(
             node
             for node in root.find_all(_TEXT_TAGS)
-            if isinstance(node, Tag) and not _inside_text_tag(node)
+            if isinstance(node, Tag) and not _inside_text_tag(node, root)
         )
     selected = [node for node in root.select(str(selector)) if isinstance(node, Tag)]
     selected_ids = {id(node) for node in selected}
@@ -6130,13 +6172,134 @@ def _html_text_nodes(root: Tag, *, extraction: dict[str, Any] | None) -> tuple[T
     )
 
 
-def _inside_text_tag(node: Tag) -> bool:
+def _inside_text_tag(node: Tag, root: Tag) -> bool:
+    """True when a text tag encloses ``node``, so the node is read through it.
+
+    A ``pre`` encloses only within ``root`` (``root`` itself included): a content
+    root that is a ``pre`` is read whole, and one that sits inside a ``pre`` reads
+    its nodes as it did before ``pre`` was a text tag.
+    """
+    within_root = True
     for parent in node.parents:
         if not isinstance(parent, Tag):
             continue
-        if parent.name in _TEXT_TAGS:
+        if parent.name in _TEXT_TAGS and (within_root or parent.name not in _PREFORMATTED_TAGS):
             return True
+        if parent is root:
+            within_root = False
     return False
+
+
+def _html_node_text(node: Tag) -> str:
+    """Return the normalized text of one ``_html_text_nodes`` node.
+
+    A ``pre`` node keeps its line breaks (``_normalize_preformatted_text``): its
+    strings are read as printed, with no separator added between them, and each
+    ``br`` inside it is a line break. Every other node reads as ``_normalize_text``
+    of its strings, each stripped and joined by single spaces.
+    """
+    if node.name in _PREFORMATTED_TAGS:
+        printed = copy(node)
+        for line_break in printed.find_all("br"):
+            # html.parser can nest the strings after a ``<br>`` inside it; unwrapping
+            # keeps them.
+            line_break.insert_before("\n")
+            line_break.unwrap()
+        return _normalize_preformatted_text(printed.get_text())
+    return _normalize_text(node.get_text(" ", strip=True))
+
+
+def _html_root_text(root: Tag) -> str:
+    """Return the text of the whole content root, for a page read by the root fallback.
+
+    Every string under ``root`` is read stripped and joined by spaces
+    (``_normalize_text``), except that each outermost ``pre`` is read by
+    ``_html_node_text`` and set off by a line break on each side. Without a ``pre``
+    this is the fallback's text as it always was. With one, ``_normalize_text`` of the
+    result is the old fallback text, except inside the ``pre``, where the printed
+    spacing at inline tags is kept instead of being stripped and replaced by one space.
+    """
+    if root.name in _PREFORMATTED_TAGS:
+        return _html_node_text(root)
+    preformatted = [
+        node
+        for node in root.find_all(_PREFORMATTED_TAGS)
+        if not any(
+            parent.name in _PREFORMATTED_TAGS
+            for parent in _parents_within(node, root)
+        )
+    ]
+    if not preformatted:
+        return _normalize_text(root.get_text(" ", strip=True))
+    starts = {id(node) for node in preformatted}
+    inside = {id(item) for node in preformatted for item in node.descendants}
+    string_types = root.interesting_string_types or root.MAIN_CONTENT_STRING_TYPES
+    pieces: list[str] = []
+    run: list[str] = []
+
+    def flush_run() -> None:
+        text = _normalize_text(" ".join(run))
+        if text:
+            pieces.append(text)
+        run.clear()
+
+    for item in root.descendants:
+        if id(item) in starts:
+            flush_run()
+            text = _html_node_text(cast(Tag, item))
+            if text:
+                pieces.append(text)
+        elif id(item) in inside or not isinstance(item, NavigableString):
+            continue
+        elif type(item) in string_types:
+            stripped = item.strip()
+            if stripped:
+                run.append(stripped)
+    flush_run()
+    return "\n".join(pieces)
+
+
+def _parents_within(node: Tag, root: Tag) -> Iterator[Tag]:
+    """Yield ``node``'s ancestors strictly inside ``root``."""
+    for parent in node.parents:
+        if parent is root or not isinstance(parent, Tag):
+            return
+        yield parent
+
+
+def _normalize_preformatted_text(text: str) -> str:
+    """Normalize preformatted text the way ``_normalize_text`` does, keeping line breaks.
+
+    Whitespace within a line collapses to one space, blank lines separate
+    paragraphs (a run of them reads as one) and leading and trailing blank lines
+    go. ``_normalize_text`` joins a paragraph's lines with spaces; this joins them
+    with line breaks, so ``_normalize_text`` of the result is ``_normalize_text``
+    of the input.
+    """
+    text = text.replace("\u200b", "").replace("\ufeff", "")
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for raw_line in text.splitlines():
+        line = " ".join(raw_line.split())
+        if not line:
+            if current:
+                paragraphs.append("\n".join(current))
+                current = []
+            continue
+        current.append(line)
+    if current:
+        paragraphs.append("\n".join(current))
+    return "\n\n".join(paragraphs)
+
+
+def _join_html_text_parts(parts: list[str]) -> str:
+    """Join one block's node texts, each already normalized and non-empty, as paragraphs.
+
+    The parts are not normalized again, so a ``pre`` part keeps its line breaks; for
+    parts that ``_normalize_text`` made, the result is ``_normalize_text`` of the
+    same join.
+    """
+    return "\n\n".join(parts)
 
 
 def _inventory_items(

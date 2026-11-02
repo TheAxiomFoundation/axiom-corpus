@@ -16,7 +16,7 @@ User-Agent block that the extractor's own built-in browser User-Agent fallback a
 
 - Worktree `~/axiom-corpus-worktrees/w8-ny`, branch `discovery/ingest-w8-ny` cut from `main` 393127f8b. `uv sync --extra
   dev` was needed: the worktree's `.venv` held no dev extras, so `uv run pytest` had been resolving Anaconda's pytest.
-- Every extraction wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`).
+- Every extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`).
   Artifacts are unsigned and uncommitted; `data/corpus` is not tracked in that checkout. Nothing was signed, locked,
   pushed to R2 or loaded to Supabase. `manifests/releases/` and `manifests/program-bundles/` are untouched. Only
   read-only git commands ran in `~/axiom-corpus`.
@@ -139,7 +139,7 @@ Manifest `manifests/us-ny-medicaid-income-levels-2026.yaml`, modelled on `manife
 
 ```bash
 uv run --extra dev axiom-corpus-ingest extract-official-documents \
-  --base /Users/pavelmakarchuk/axiom-corpus/data/corpus \
+  --base <axiom-corpus checkout>/data/corpus \
   --version 2026-10-20-w8-ny-medicaid \
   --manifest manifests/us-ny-medicaid-income-levels-2026.yaml
 ```
@@ -263,7 +263,7 @@ Each retained PDF's sha256 equals the live download's, fetched independently bef
 ## Rebuild
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 uv run --extra dev python scripts/inventory_nysoh_assistor_toolkit.py          # the index inventory above
 uv run --extra dev axiom-corpus-ingest extract-official-documents \
   --base $B \

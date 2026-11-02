@@ -10,7 +10,7 @@ every row this run did not touch stays byte-identical).
 ## Worktree, branch, timing, disk
 
 - Worktree `~/axiom-corpus-worktrees/w8-benefits`, branch `discovery/ingest-w8-benefits` cut from `main` 393127f8b.
-  The one extraction wrote to the main checkout's corpus root (`--base /Users/pavelmakarchuk/axiom-corpus/data/corpus`),
+  The one extraction wrote to the main checkout's corpus root (`--base <axiom-corpus checkout>/data/corpus`),
   `--source-as-of 2026-10-20 --expression-date 2026-10-20`; artifacts are unsigned and uncommitted. Nothing was
   signed, locked, pushed to R2 or loaded to Supabase; `manifests/releases/` and `manifests/program-bundles/` are
   untouched. In `~/axiom-corpus` only read-only git commands were run.
@@ -336,7 +336,7 @@ longer a stand-in. Nothing was fetched into the corpus for these rows.
 ## Rebuild
 
 ```bash
-B=/Users/pavelmakarchuk/axiom-corpus/data/corpus
+B=<axiom-corpus checkout>/data/corpus
 uv run --extra dev axiom-corpus-ingest extract-montana-admin-rules --base $B \
   --version 2026-10-20-w8-chip-hmk --only-title 37 --only-section 37.79 \
   --source-as-of 2026-10-20 --expression-date 2026-10-20 --workers 4

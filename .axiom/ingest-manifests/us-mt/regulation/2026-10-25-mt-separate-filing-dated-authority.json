@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority.json",
+      "sha256": "69c7b7cc027c6ec74d14b4c235e9520ece15bc164c405161a419c9232ec203cb"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority.json",
+      "sha256": "a10140a202dd690426f286ed437d919e2fe2599fe430a83abf71f9e301c8b844"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority.jsonl",
+      "sha256": "b4708c026cca06424cd0f3da92ae0dbae22c51dc826899f7595204fd25661d50"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/regulation/2026-10-25-mt-separate-filing-dated-authority/official-documents/us-mt-arm-42-15-524--effective-2010-04-30.html",
+      "sha256": "9064d3790b481f208c10c7a2cb985a4b75f44dbcc8b5342afc52471ac6232074"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7c14fad67cfdef929f6f0be3218132ff5af2b411",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-25-mt-separate-filing-dated-authority --manifest manifests/us-mt-separate-filing-dated-authority-regulation.yaml (run note: docs/ingest-runs/2026-10-25-us-mt-separate-filing-dated-authority.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-10-25T12:35:59.499906+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4BNh9goiA3qMwjhbuWUFQhbDx4vdt79yJJH1y25VeX21d8mrxnkCxfZcI3XR6eISzlBij29BwuxlzhnBy6xICg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-25-mt-separate-filing-dated-authority"
+}

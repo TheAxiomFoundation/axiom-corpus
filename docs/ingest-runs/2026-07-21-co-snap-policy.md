@@ -20,7 +20,7 @@ authored by hand. The repository extractor fetched and generated the scope:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-UV_PROJECT_ENVIRONMENT=/Users/pavelmakarchuk/axiom-corpus-uc/.venv \
+UV_PROJECT_ENVIRONMENT=<axiom-corpus-uc checkout>/.venv \
 uv run --no-sync axiom-corpus-ingest extract-official-documents \
   --base data/corpus \
   --version 2026-07-21-co-snap-policy \
