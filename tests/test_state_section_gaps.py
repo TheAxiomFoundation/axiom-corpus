@@ -31,6 +31,13 @@ from axiom_corpus.corpus.state_adapters.hawaii import (
     HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT,
     extract_hawaii_revised_statutes,
 )
+from axiom_corpus.corpus.state_adapters.idaho import (
+    IDAHO_CHAPTER_SOURCE_FORMAT,
+    IDAHO_SECTION_SOURCE_FORMAT,
+    IDAHO_TITLE_INDEX_SOURCE_FORMAT,
+    IDAHO_TITLE_SOURCE_FORMAT,
+    extract_idaho_statutes,
+)
 from axiom_corpus.corpus.state_adapters.iowa import (
     IOWA_CHAPTER_INDEX_SOURCE_FORMAT,
     IOWA_SECTION_INDEX_SOURCE_FORMAT,
@@ -50,6 +57,10 @@ from tests.test_corpus_hawaii import SAMPLE_CHAPTER_INDEX_HTML as HI_CHAPTER_IND
 from tests.test_corpus_hawaii import SAMPLE_ROOT_HTML as HI_ROOT_HTML
 from tests.test_corpus_hawaii import SAMPLE_SECTION_HTML as HI_SECTION_HTML
 from tests.test_corpus_hawaii import SAMPLE_VOLUME_HTML as HI_VOLUME_HTML
+from tests.test_corpus_idaho import SAMPLE_CHAPTER_HTML as ID_CHAPTER_HTML
+from tests.test_corpus_idaho import SAMPLE_SECTION_HTML as ID_SECTION_HTML
+from tests.test_corpus_idaho import SAMPLE_TITLE_HTML as ID_TITLE_HTML
+from tests.test_corpus_idaho import SAMPLE_TITLE_INDEX_HTML as ID_TITLE_INDEX_HTML
 from tests.test_corpus_iowa import SAMPLE_CHAPTER_INDEX_HTML as IA_CHAPTER_INDEX_HTML
 from tests.test_corpus_iowa import SAMPLE_SECTION_INDEX_HTML as IA_SECTION_INDEX_HTML
 from tests.test_corpus_iowa import SAMPLE_TITLE_INDEX_HTML as IA_TITLE_INDEX_HTML
@@ -459,3 +470,75 @@ def test_iowa_repealed_section_pdf_stays_complete(tmp_path):
     _assert_complete(report, expected=IA_EXTRACTED)
     records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
     assert records["us-ia/statute/422.2"].metadata["status"] == "repealed"
+
+
+# --- Idaho: title index -> title page -> chapter page -> section pages ---
+
+ID_CHAPTER = f"{IDAHO_CHAPTER_SOURCE_FORMAT}/title-63/chapter-30.html"
+ID_SECTION_DIR = f"{IDAHO_SECTION_SOURCE_FORMAT}/title-63/chapter-30"
+ID_SECTION_3003 = f"{ID_SECTION_DIR}/63-3003.html"
+ID_SECTION_3003_ROW = """    <tr>
+      <td><a href="/statutesrules/idstat/Title63/T63CH30/SECT63-3003">63-3003</a></td>
+      <td>&#160;&#160;</td>
+      <td> IDENTITY OF FEDERAL AND STATE TERMS. </td>
+    </tr>
+  </table>"""
+ID_GOOD_PAGES = {
+    f"{IDAHO_TITLE_INDEX_SOURCE_FORMAT}/index.html": ID_TITLE_INDEX_HTML,
+    f"{IDAHO_TITLE_SOURCE_FORMAT}/title-63.html": ID_TITLE_HTML,
+    ID_CHAPTER: ID_CHAPTER_HTML.replace("  </table>", ID_SECTION_3003_ROW, 1),
+    f"{ID_SECTION_DIR}/63-3002.html": ID_SECTION_HTML,
+    ID_SECTION_3003: ID_SECTION_HTML.replace("63-3002", "63-3003"),
+}
+ID_EXTRACTED = {
+    "us-id/statute/title-63",
+    "us-id/statute/title-63/chapter-30",
+    "us-id/statute/title-63/chapter-31",
+    "us-id/statute/63-3002",
+    "us-id/statute/63-3003",
+}
+
+
+def _extract_idaho(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_idaho_statutes(
+        store,
+        version="2026-05-09",
+        source_dir=tmp_path / "source",
+        expression_date="2025-07-01",
+        only_title="63",
+        workers=1,
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", SECTION_FAILURES)
+def test_idaho_failed_section_page_remains_inventory_gap(tmp_path, failure):
+    # On main a section page that could not be fetched or read was logged as an
+    # error with no inventory item, so coverage still read complete.
+    pages = dict(ID_GOOD_PAGES)
+    _fail_page(pages, ID_SECTION_3003, failure)
+    store, report = _extract_idaho(tmp_path, pages)
+    assert report.section_count == 1
+    assert "section 63-3003" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=ID_EXTRACTED,
+        missing={"us-id/statute/63-3003"},
+        gap_source=ID_CHAPTER if failure == "missing-file" else ID_SECTION_3003,
+    )
+
+
+def test_idaho_repealed_section_page_stays_complete(tmp_path):
+    pages = dict(ID_GOOD_PAGES)
+    pages[ID_SECTION_3003] = ID_SECTION_HTML.replace("63-3002", "63-3003").replace(
+        "Declaration of intent.</span> The income tax act applies with section 63-3003.",
+        "Repealed.</span> [63-3003, repealed 2020, ch. 1, sec. 1.]",
+    )
+    _, report = _extract_idaho(tmp_path, pages)
+    assert report.section_count == 2
+    _assert_complete(report, expected=ID_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-id/statute/63-3003"].metadata["status"] == "repealed"
