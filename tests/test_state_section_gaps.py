@@ -56,6 +56,12 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_openleg_sections,
 )
 from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
+from axiom_corpus.corpus.state_adapters.west_virginia import (
+    WEST_VIRGINIA_ARTICLE_SOURCE_FORMAT,
+    WEST_VIRGINIA_INDEX_SOURCE_FORMAT,
+    WEST_VIRGINIA_SECTION_SOURCE_FORMAT,
+    extract_west_virginia_code,
+)
 from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
@@ -102,6 +108,8 @@ from tests.test_corpus_new_york import (
     _write_new_york_openleg_section_fixture as ny_write_openleg_section_fixture,
 )
 from tests.test_corpus_nyc_admin_code import SECTION_HTML as NYC_SECTION_HTML
+from tests.test_corpus_west_virginia import SAMPLE_ARTICLE_JSON as WV_ARTICLE_JSON
+from tests.test_corpus_west_virginia import SAMPLE_INDEX_HTML as WV_INDEX_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -813,3 +821,87 @@ def test_nyc_unfetchable_section_page_stops_the_run(tmp_path):
     # fetch fails the run. On main it was logged and coverage read complete.
     with pytest.raises(ValueError, match="could not be fetched: 11-1706: "):
         _extract_nyc(tmp_path, "missing-file")
+
+
+# --- West Virginia: code index -> article JSON -> section pages for sections the article lacks ---
+
+WV_INDEX = f"{WEST_VIRGINIA_INDEX_SOURCE_FORMAT}/wvcodeentire.html"
+WV_ARTICLE = f"{WEST_VIRGINIA_ARTICLE_SOURCE_FORMAT}/chapter-2/article-2.json"
+WV_SECTION_1A = f"{WEST_VIRGINIA_SECTION_SOURCE_FORMAT}/2-2-1A.html"
+WV_SECTION_1A_HTML = (
+    '<html><body><div class="sectiontext">'
+    "<h4>§2-2-1a. Special memorial days.</h4><p>June 20 is West Virginia Day.</p>"
+    "</div></body></html>"
+)
+WV_EXTRACTED = {
+    "us-wv/statute/chapter-2",
+    "us-wv/statute/chapter-2/article-2",
+    "us-wv/statute/2-2-1",
+    "us-wv/statute/2-2-1A",
+    "us-wv/statute/2-2-1B",
+}
+
+
+def _wv_article_without(*headings: str) -> str:
+    html = WV_ARTICLE_JSON["html"]
+    for heading in headings:
+        start = html.index(heading)
+        end = html.find("<h4>", start + 1)
+        html = html[:start] + (html[end:] if end != -1 else "")
+    return json.dumps({"html": html})
+
+
+def _extract_west_virginia(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_west_virginia_code(
+        store,
+        version="2026-05-08",
+        source_dir=tmp_path / "source",
+        only_chapter=2,
+        only_article=2,
+    )
+    return store, report
+
+
+def _wv_pages_without_1a() -> dict[str, str]:
+    return {
+        WV_INDEX: WV_INDEX_HTML,
+        WV_ARTICLE: _wv_article_without("<h4>§2-2-1a."),
+        WV_SECTION_1A: WV_SECTION_1A_HTML,
+    }
+
+
+def test_west_virginia_section_page_fills_a_section_the_article_lacks(tmp_path):
+    _, report = _extract_west_virginia(tmp_path, _wv_pages_without_1a())
+    assert report.section_count == 3
+    _assert_complete(report, expected=WV_EXTRACTED)
+
+
+@pytest.mark.parametrize("failure", SECTION_FAILURES)
+def test_west_virginia_failed_section_page_remains_inventory_gap(tmp_path, failure):
+    # On main a section with no body in the article and no readable section page
+    # was logged and still written as a provision with no text, so coverage
+    # read complete.
+    pages = _wv_pages_without_1a()
+    _fail_page(pages, WV_SECTION_1A, failure)
+    store, report = _extract_west_virginia(tmp_path, pages)
+    assert report.section_count == 2
+    assert "2-2-1A" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=WV_EXTRACTED,
+        missing={"us-wv/statute/2-2-1A"},
+        gap_source=WV_ARTICLE if failure == "missing-file" else WV_SECTION_1A,
+    )
+
+
+def test_west_virginia_repealed_section_stays_complete(tmp_path):
+    # The code index marks 2-2-1b repealed, so the run writes it from the index
+    # without a section page.
+    pages = {WV_INDEX: WV_INDEX_HTML, WV_ARTICLE: _wv_article_without("<h4>§2-2-1b.")}
+    _, report = _extract_west_virginia(tmp_path, pages)
+    _assert_complete(report, expected=WV_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-wv/statute/2-2-1B"].metadata["status"] == "repealed"
