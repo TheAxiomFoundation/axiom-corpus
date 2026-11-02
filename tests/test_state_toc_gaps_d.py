@@ -822,7 +822,9 @@ def test_rhode_island_failed_part_toc_remains_inventory_gap(tmp_path, monkeypatc
     )
 
 
-@pytest.mark.parametrize("marker", ["[Repealed.]", "[Reserved.]", "Reserved", "Superseded"])
+@pytest.mark.parametrize(
+    "marker", ["[Repealed.]", "[Reserved.]", "[Transferred.]", "Reserved", "Superseded"]
+)
 def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(
     tmp_path, monkeypatch, marker
 ):
@@ -842,6 +844,44 @@ def test_rhode_island_repealed_chapter_listing_nothing_stays_complete(
     assert report.coverage.complete is True
     inventory, provisions = _report_paths(report)
     assert inventory == provisions == RI_TITLE_1_PATHS | {"us-ri/statute/1-1"}
+
+
+RI_HISTORY_REPEALED = (
+    "<div><p>History of Section.<br>Repealed by P.L. 2000, ch. 371, &sect; 1.</p></div>\n</body>"
+)
+
+
+@pytest.mark.parametrize("level", ["title", "chapter", "part"])
+def test_rhode_island_container_repealed_only_in_its_history_stays_complete(
+    tmp_path, monkeypatch, level
+):
+    # Neither the listing caption nor the page heading carries a status word;
+    # only the page's "History of Section." paragraph says it was repealed.
+    pages = dict(RI_GOOD_PAGES)
+    if level == "title":
+        pages["TITLE2/INDEX.HTM"] = RI_TITLE_2.replace("</body>", RI_HISTORY_REPEALED)
+        expected = RI_TITLE_1_PATHS | {"us-ri/statute/title-2"}
+        filters = {}
+    elif level == "chapter":
+        pages["TITLE1/INDEX.HTM"] = RI_TITLE_1.replace(
+            "</p>\n</body>",
+            '</p>\n<p><a href="1-3/INDEX.htm">Chapter 1-3&nbsp;Airport Zoning</a></p>\n</body>',
+        )
+        pages["TITLE1/1-3/INDEX.htm"] = RI_EMPTY_CHAPTER.replace("</body>", RI_HISTORY_REPEALED)
+        expected = RI_TITLE_1_PATHS | {"us-ri/statute/1-3"}
+        filters = {"only_title": "1"}
+    else:
+        pages["Statutes.html"] = RI_ROOT_6A_ONLY
+        pages["TITLE6A/6A-11/6A-2/INDEX.htm"] = RI_EMPTY_PART.replace(
+            "</body>", RI_HISTORY_REPEALED
+        )
+        expected = RI_6A_PART_1 | {"us-ri/statute/6a-11/part-2"}
+        filters = {}
+    store, report = _extract_rhode_island(tmp_path, monkeypatch, pages, **filters)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == expected
 
 
 def test_rhode_island_preserved_is_not_a_reserved_chapter(tmp_path, monkeypatch):
