@@ -2340,9 +2340,14 @@ def extract_ecfr(
         item.citation_path: (item.source_path, item.sha256)
         for item in load_source_inventory_references(inventory_path)
     } if inventory_path.exists() else {}
-    if retained_source is not None:
-        # Parse the previous run's artifacts before replacing its source snapshot.
-        store.write_bytes(*retained_source)
+    # A retained local XML is staged like a fetched one: it reaches the store
+    # only with the other pending source writes, after every title has passed
+    # validation, including the cached-source revalidation below.
+    replacement_xml_by_title: dict[int, bytes] = (
+        {int(structures[0]["identifier"]): retained_source[1]}
+        if retained_source is not None
+        else {}
+    )
     title_paths: dict[int, set[str]] = {}
     for citation_path in allowed_citation_paths:
         title_paths.setdefault(_title_from_citation_path(citation_path), set()).add(citation_path)
@@ -2360,23 +2365,31 @@ def extract_ecfr(
         paths = title_paths.get(title, set())
         if not paths:
             continue
-        if (
-            paths.intersection(existing_records)
-            and not graphic_transcriptions
-            and not only_sections
-        ):
+        if paths.intersection(existing_records):
             source_key = _ecfr_source_key(run_id, title, only_part)
             source_path = store.root / source_key
-            source_sha256 = sha256_bytes(source_path.read_bytes()) if source_path.exists() else None
+            if title in replacement_xml_by_title:
+                source_sha256 = sha256_bytes(replacement_xml_by_title[title])
+            elif source_path.exists():
+                source_sha256 = sha256_bytes(source_path.read_bytes())
+            else:
+                source_sha256 = None
             if source_sha256 is not None and all(
                 cached_sources.get(path) == (source_key, source_sha256) for path in paths
             ):
                 # Reuse the verified digest; never rehash skipped cached rows
                 # against bytes that were not checked with their inventory.
-                if paths <= set(existing_records):
+                if (
+                    paths <= set(existing_records)
+                    and not graphic_transcriptions
+                    and not only_sections
+                ):
                     source_sha256_by_title[title] = source_sha256
                     continue
             else:
+                # Cached rows whose snapshot is missing or changed are kept only
+                # by a committed reparse. Transcription and section runs reparse
+                # every title, so they need this check too (axiom-corpus#934).
                 revalidating_cached_titles.add(title)
         targets = tuple(
             target
@@ -2420,6 +2433,7 @@ def extract_ecfr(
                 workers=workers,
                 appendix_numbering_by_title=appendix_numbering_by_title,
                 staging_dir=staging,
+                replacement_xml_by_title=replacement_xml_by_title,
             )
         title_results = tuple(
             _extract_title_results(
@@ -2436,6 +2450,7 @@ def extract_ecfr(
                 include_appendices=include_appendices,
                 appendix_numbering_by_title=appendix_numbering_by_title,
                 staged_xml_by_title=staged_xml_by_title,
+                replacement_xml_by_title=replacement_xml_by_title,
             )
         ) + tuple(
             _EcfrTitleResult(title=title, error=error)
@@ -2445,12 +2460,31 @@ def extract_ecfr(
     # Workers stage XML and graphics, including resumable error downloads.
     # No title may change a source until every pending title has passed fatal
     # validation. A failed cache revalidation must also leave its old pins intact.
+    # A transcription run commits no title's provisions when any title fails, so
+    # a revalidating title fails then too: storing its replacement XML would
+    # leave its cached rows beside bytes they were not parsed from.
+    first_title_error = next(
+        (result.error for result in title_results if result.error is not None), None
+    )
+    commit_title_results = not (graphic_transcriptions and first_title_error is not None)
     for result in title_results:
-        if result.title in revalidating_cached_titles and result.error is not None:
+        if result.title not in revalidating_cached_titles:
+            continue
+        if result.error is not None:
             raise ValueError(f"cannot revalidate cached eCFR provisions: {result.error}")
+        if not commit_title_results:
+            raise ValueError(
+                f"cannot revalidate cached eCFR provisions: {result.title} CFR: "
+                f"not committed because another title failed: {first_title_error}"
+            )
     for result in title_results:
         for path, content in result.pending_source_writes:
             store.write_bytes(path, content)
+    if retained_source is not None and not any(
+        result.title in replacement_xml_by_title for result in title_results
+    ):
+        # No title was extracted from it, so no title result staged it.
+        store.write_bytes(*retained_source)
     if not only_sections and source_xml is None:
         for structure in structures:
             title = int(structure["identifier"])
@@ -2480,7 +2514,6 @@ def extract_ecfr(
                 flush=True,
             )
 
-    commit_title_results = not (graphic_transcriptions and title_errors)
     if commit_title_results:
         for result in title_results:
             if result.error is not None:
@@ -2700,6 +2733,7 @@ def _extract_title_results(
     ]
     | None = None,
     staged_xml_by_title: Mapping[int, Path] | None = None,
+    replacement_xml_by_title: Mapping[int, bytes] | None = None,
 ) -> Iterator[_EcfrTitleResult]:
     max_workers = max(1, workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -2719,6 +2753,7 @@ def _extract_title_results(
                 include_appendices,
                 (appendix_numbering_by_title or {}).get(title),
                 (staged_xml_by_title or {}).get(title),
+                (replacement_xml_by_title or {}).get(title),
             ): title
             for title, targets, _paths in pending_titles
         }
@@ -2781,10 +2816,12 @@ def _preflight_title_appendices(
         int, Mapping[tuple[str, str], Mapping[str, str | None]]
     ],
     staging_dir: Path,
+    replacement_xml_by_title: Mapping[int, bytes] | None = None,
 ) -> tuple[dict[int, Path], dict[int, str]]:
     """Validate every pending title's selected appendices before the run writes.
 
-    Each title's XML is read from the run if retained there, or fetched and staged
+    Each title's XML is the caller's replacement bytes (a local ``source_xml``)
+    when given, else read from the run if retained there, or fetched and staged
     in ``staging_dir`` (outside the corpus base) so the extraction that follows
     writes those bytes without fetching again. Raises ``EcfrAppendixError`` naming
     every failing title. Returns the staged XML by title and, for each title whose
@@ -2802,8 +2839,11 @@ def _preflight_title_appendices(
             _ecfr_source_relative_name(title, only_part),
         )
         staged: Path | None = None
+        replacement_xml = (replacement_xml_by_title or {}).get(title)
         try:
-            if source_path.exists():
+            if replacement_xml is not None:
+                xml_content = replacement_xml.decode("utf-8")
+            elif source_path.exists():
                 xml_content = source_path.read_bytes().decode("utf-8")
             else:
                 xml_content = _fetch_title_xml(title, only_part, as_of)
@@ -2859,6 +2899,7 @@ def _extract_one_title(
     include_appendices: bool,
     appendix_numbering: Mapping[tuple[str, str], Mapping[str, str | None]] | None = None,
     staged_xml: Path | None = None,
+    replacement_xml: bytes | None = None,
 ) -> _EcfrTitleResult:
     source_relative_name = _ecfr_source_relative_name(title, only_part)
     source_path = store.source_path(
@@ -2867,8 +2908,14 @@ def _extract_one_title(
         run_id,
         source_relative_name,
     )
+    # A replacement (a local source_xml) or a fetched XML is staged for writing;
+    # an XML already in the run is read and never rewritten.
+    replace_source = replacement_xml is not None or not source_path.exists()
     try:
-        if source_path.exists():
+        if replacement_xml is not None:
+            xml_content = replacement_xml.decode("utf-8")
+            source_sha256 = sha256_bytes(replacement_xml)
+        elif source_path.exists():
             source_bytes = source_path.read_bytes()
             xml_content = source_bytes.decode("utf-8")
             source_sha256 = sha256_bytes(source_bytes)
@@ -2901,11 +2948,14 @@ def _extract_one_title(
         include_appendices=include_appendices,
         appendix_numbering=appendix_numbering,
     )
+    replacement_bytes = (
+        replacement_xml if replacement_xml is not None else xml_content.encode("utf-8")
+    )
     pending_source_writes: dict[Path, bytes] = {}
     try:
         provisions = tuple(parse_provisions())
     except ET.ParseError as exc:
-        if not source_path.exists():
+        if replace_source:
             cached_path = store.provisions_path("us", DocumentClass.REGULATION, run_id)
             if cached_path.exists() and any(
                 record.citation_path in allowed_citation_paths
@@ -2917,7 +2967,7 @@ def _extract_one_title(
                 ) from exc
             # Fresh malformed downloads remain resumable, without binding saved
             # provisions to replacement bytes whose identities were not validated.
-            pending_source_writes[source_path] = xml_content.encode("utf-8")
+            pending_source_writes[source_path] = replacement_bytes
         return _EcfrTitleResult(
             title=title, error=f"{title} CFR: {exc}",
             pending_source_writes=tuple(pending_source_writes.items()),
@@ -2951,14 +3001,14 @@ def _extract_one_title(
         ET.ParseError,
     ) as exc:
         # Only XML with validated identities can reach a resumable graphic error.
-        if not source_path.exists():
-            pending_source_writes[source_path] = xml_content.encode("utf-8")
+        if replace_source:
+            pending_source_writes[source_path] = replacement_bytes
         return _EcfrTitleResult(
             title=title, error=f"{title} CFR: {exc}",
             pending_source_writes=tuple(pending_source_writes.items()),
         )
-    if not source_path.exists():
-        pending_source_writes[source_path] = xml_content.encode("utf-8")
+    if replace_source:
+        pending_source_writes[source_path] = replacement_bytes
     return _EcfrTitleResult(
         title=title,
         provisions=provisions,
