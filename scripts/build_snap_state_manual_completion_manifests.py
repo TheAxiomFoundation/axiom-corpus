@@ -70,6 +70,16 @@ EXPRESSION_DATE = SOURCE_AS_OF  # current-effective manual trees as fetched; see
 UA = "Axiom/1.0 (Legal Archive; contact@axiom-foundation.org) https://github.com/TheAxiomFoundation/axiom-corpus"
 ISSUE = "https://github.com/TheAxiomFoundation/axiom-corpus/issues/680"
 RUN_NOTE = "docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-1.md"
+# Texas HHS handbook pages close a section with a "Related Policy" heading over a list of
+# cross-references (section titles and codes, some linked). The extractor drops the block that
+# heading starts (``html_navigation_heading_selectors``, documents._DeclaredNavigation). The two
+# words are matched apart because some headings join them with a no-break space, and a heading
+# with a digit is never matched: every section heading carries its number (A-1323.2). See
+# docs/ingest-runs/2026-10-13-html-navigation-selectors.md.
+TX_RELATED_POLICY_HEADING = (
+    ':is(h2, h3, h4, h5, h6):-soup-contains("Related"):-soup-contains("Polic")'
+    ':not(:-soup-contains("0", "1", "2", "3", "4", "5", "6", "7", "8", "9"))'
+)
 RUN_NOTE_BATCH2 = "docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-2.md"
 RUN_NOTE_BATCH3 = "docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-3.md"
 
@@ -197,6 +207,7 @@ def build_tx() -> tuple[list[dict[str, Any]], dict[str, Any]]:
             "extraction": {
                 "html_content_selector": "article.c-article div.c-field--name-body",
                 "html_drop_selectors": [".c-field__label"],
+                "html_navigation_heading_selectors": [TX_RELATED_POLICY_HEADING],
             },
             "metadata": {
                 "primary_source": True,

@@ -91,6 +91,7 @@ from hypothesis import strategies as st
 
 import axiom_corpus.corpus.documents as documents_module
 from axiom_corpus.corpus.documents import (
+    _pdf_decoded_span_lines,
     _pdf_layer_lines,
     _pdf_page_text,
     _same_layer_characters,
@@ -912,17 +913,26 @@ def _spans(page: dict) -> list[list[tuple[str, bool, str, bool | None]]]:
     return [[(t, p, f, m) for t, p, f, m in spans] for spans in page["layer_spans"]]
 
 
-def _layer_pairs(span_lines: list, layer_text: str) -> list[tuple[str, bool]]:
+def _unchanged(span_lines: list) -> list:
+    return span_lines
+
+
+def _layer_pairs(span_lines: list, layer_text: str, decode=_unchanged) -> list[tuple[str, bool]]:
     """The (text, painted) lines ``_pdf_page_text`` filters: the spans' lines with their
-    marks put back, or the text output's lines when that can't be done."""
+    marks put back, then ``decode``d (as ``_pdf_page_text`` decodes shifted fonts with
+    ``_pdf_decoded_span_lines``), or the text output's lines when the marks can't be put
+    back."""
     marked = _with_layer_marks(span_lines, layer_text)
     if marked is None:
         return [(line, True) for line in layer_text.split("\n")]
-    return _without_garbled_spans(marked)
+    return _without_garbled_spans(decode(marked))
 
 
-def _merged(page: dict) -> str:
-    lines = _layer_pairs(_spans(page), page["layer_text"])
+def _merged(page: dict, span_lines: list | None = None, decode=_unchanged) -> str:
+    """The page text merged from the fixture's spans, or from ``span_lines`` (the PDF's),
+    with ``decode`` applied as in ``_layer_pairs``."""
+    span_lines = _spans(page) if span_lines is None else span_lines
+    lines = _layer_pairs(span_lines, page["layer_text"], decode)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     return _with_unread_layer_lines(page["ocr_text"], layer)
 
@@ -946,14 +956,27 @@ def _clean_painted_text(span_lines: list[list[tuple[str, bool, str, bool | None]
     return out
 
 
-def _held_lines(span_lines: list, layer_text: str, text_lines_used: bool) -> list[str]:
+def _held_lines(
+    span_lines: list, layer_text: str, text_lines_used: bool, decode=_unchanged
+) -> list[str]:
     """The layer lines the page text must hold: S1's painted lines of the spans with their
     marks put back, or, where the page uses the text output's lines (pinned per page and
-    PyMuPDF version in ``_TEXT_LINES_USED``), those lines that have text."""
+    PyMuPDF version in ``_TEXT_LINES_USED``), those lines that have text. With ``decode``
+    (``_pdf_decoded_span_lines`` on the marked spans), S1's painted lines of the lines
+    decoding left alone, and every painted line of text decoding changed (a decoded value
+    can arrive as fragments of one line: "0", "3", "/01/2020")."""
     marked = _with_layer_marks(span_lines, layer_text)
     assert (marked is None) == text_lines_used
     if marked is not None:
-        return _clean_painted_text(marked)
+        pairs = list(zip(marked, decode(marked), strict=True))
+        changed = [
+            line
+            for text, painted in _without_garbled_spans([new for old, new in pairs if old != new])
+            if painted
+            for line in (" ".join(part.split()) for part in text.splitlines())
+            if _is_text(line)
+        ]
+        return _clean_painted_text([old for old, new in pairs if old == new]) + changed
     lines = (" ".join(line.split()) for line in layer_text.split("\n"))
     return [line for line in lines if _is_text(line)]
 
@@ -994,10 +1017,18 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
         pdf_page = document[page["page"] - 1]
         layer_text = pdf_page.get_text("text", flags=fitz.TEXTFLAGS_TEXT)
         span_lines = _pdf_layer_lines(pdf_page, extraction={})
+
+        def decode(marked: list) -> list:
+            return _pdf_decoded_span_lines(
+                pdf_page, marked, extraction={}, ocr_text=page["ocr_text"]
+            )
+
         result = _pdf_page_text(pdf_page, extraction={"ocr": True})
+        held = _held_lines(span_lines, layer_text, _text_lines_used(path, False), decode)
+        merged = _merged(page, span_lines, decode)
 
     assert _same_layer_characters(span_lines, layer_text)
-    for line in _held_lines(span_lines, layer_text, _text_lines_used(path, False)):
+    for line in held:
         assert _reference_reads(result, line), line
     assert result.startswith(page["ocr_text"].rstrip("\n"))
     if path in _LAYOUT_DIFFERS_BY_VERSION and not _FIXTURE_PYMUPDF:
@@ -1009,7 +1040,7 @@ def test_real_pages_through_the_extractor(path, monkeypatch):
     # Differential: the dict lines, joined, are the text output.
     joined = "\n".join("".join(span[0] for span in spans) for spans in span_lines)
     assert joined.splitlines() == layer_text.splitlines()
-    assert result == _merged(page)
+    assert result == merged
 
 
 @pytest.mark.parametrize("path", sorted(PAGES))
@@ -1034,7 +1065,21 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
         text = pdf_page.get_text("text", sort=bool(extraction.get("sort_text")), flags=flags)
         needs_ocr = documents_module._pdf_page_needs_ocr(pdf_page, text)
         span_lines = _pdf_layer_lines(pdf_page, extraction=extraction)
+
+        def decode(marked: list) -> list:
+            return _pdf_decoded_span_lines(
+                pdf_page, marked, extraction=extraction, ocr_text=page["ocr_text"]
+            )
+
         result = _pdf_page_text(pdf_page, extraction={"ocr": True, **extraction})
+        lines = _layer_pairs(span_lines, text, decode) if needs_ocr else []
+        held = (
+            _held_lines(
+                span_lines, text, _text_lines_used(path, bool(extraction.get("sort_text"))), decode
+            )
+            if needs_ocr
+            else []
+        )
 
     assert _same_layer_characters(span_lines, text)
     if not needs_ocr:
@@ -1042,7 +1087,6 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
         # page 4), and a page with that many is read from its layer, not by OCR.
         assert result == text
         return
-    lines = _layer_pairs(span_lines, text)
     layer = "\n".join(_without_failed_recognition_lines(lines, page["ocr_text"]))
     assert result == _with_unread_layer_lines(page["ocr_text"], layer)
     if not extraction.get("sort_text"):
@@ -1054,9 +1098,7 @@ def test_page_text_under_every_text_option(path, extraction, monkeypatch):
             c for line in text.split("\n") if _is_text(line) for c in _marks(line)
         )
         assert not marks - collections.Counter(_marks(result))
-    for line in _held_lines(
-        span_lines, text, _text_lines_used(path, bool(extraction.get("sort_text")))
-    ):
+    for line in held:
         assert _reference_reads(result, line), line
 
 

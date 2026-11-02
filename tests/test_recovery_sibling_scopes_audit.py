@@ -133,15 +133,22 @@ def test_retained_files_are_the_signed_bytes() -> None:
             assert record["sha256_matches_provenance"] is expected, (key, record["document_id"])
 
 
-def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes() -> None:
+def test_rows_are_what_the_recovery_builders_make_of_the_retained_bytes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Replay the July builders on every page whose rows they still reproduce.
 
     This replays history through ``scripts/recover_ingest_batch.py`` and the shared
     extractor. If it fails after a change to that code, the committed scopes have
-    not changed; re-check the run note's "How the rows were made" section.
+    not changed; re-check the run note's "How the rows were made" section. The
+    July extractor kept navigation blocks, which it now drops
+    (``docs/ingest-runs/2026-10-13-html-navigation-blocks.md``), so the replay
+    turns that filter off.
     """
+    from axiom_corpus.corpus import documents
     from scripts.recover_ingest_batch import _generic, _targeted_state_html
 
+    monkeypatch.setattr(documents, "is_navigation_block", lambda *args, **kwargs: False)
     replayed = 0
     for key in (
         "us-ny/statute/2026-07-13-recovery",
@@ -507,6 +514,41 @@ def test_the_content_check_agrees_with_the_audit() -> None:
     assert table == VERDICTS_AGAINST_FINDINGS
     text_verdicts = {"legal_text", "document_page_text", "document_section_text"}
     assert all(finding == "-" for verdict, finding in table if verdict in text_verdicts)
+
+
+def test_the_maine_menu_under_the_navigation_bar_is_left_to_the_withdrawal() -> None:
+    """ME §5219-SS lost its text, and its menu is 69.2% navigation, under the 0.7 bar.
+
+    The hollow-root audit (2026-10-13) found the miss. Lowering the bar was
+    measured over every locked scope (docs/release-gate-policy.md, "Navigation
+    threshold"): 0.69 adds nine navigation_body findings, among them a UK
+    sentence on new National Insurance rates and an Israeli statute heading,
+    and the band down to 0.65 holds repeal notices and manual prose with
+    linked terms. So the bar stays; the scope is withdrawn, and the chapter
+    scope that replaces it carries the section's text (most of it: its history
+    notes and one paragraph are missing there, docs/source-coverage-check.md).
+    """
+    from axiom_corpus.corpus.content_quality import (
+        NAVIGATION_COVERAGE,
+        classify_body,
+        page_navigation,
+    )
+
+    rows = _rows("us-me/statute/2026-07-13-recovery")
+    menu = rows["us-me/statute/36/5219-SS/block-1"]
+    page = page_navigation((CORPUS_ROOT / menu["source_path"]).read_bytes())
+    tokens = menu["body"].split()
+    share = page.coverage(tokens).share
+    assert round(share, 3) == 0.692 and share < NAVIGATION_COVERAGE
+    verdict = classify_body(menu["body"], page, heading=menu.get("heading"))
+    assert (verdict.navigation, verdict.substantive) == (False, True)
+    assert ("us-me", "statute", "2026-07-13-recovery") in ReleaseGatePolicy.load(
+        REPO_ROOT
+    ).withdrawn
+    chapter = _rows("us-me/statute/2026-09-14-income-tax-chapter-us-me-title-36")
+    section = chapter["us-me/statute/36/5219-SS"]
+    assert classify_body(section["body"], None).substantive
+    assert len(section["body"]) > 5000
 
 
 @pytest.mark.parametrize(

@@ -29,13 +29,22 @@ sources. Each finding names one row or one source file:
     The rest of the body must not itself be mostly navigation.
 ``hollow_document_root``
     A ``document`` row with no body whose descendants in the scope (rows whose
-    citation path extends it) carry no text: each is empty, has no word with a
-    letter in it, is a ``navigation_body``, or comes from a version picker. A
-    bodyless document with no rows below it at all is hollow too: it carries a
-    heading and nothing else. A bodyless root with text below it is the shared
-    document extractor's normal shape (the wave4 chapter scopes keep each
-    section's text in one child block), so emptiness alone is not a finding,
-    and neither is a short text: "Reserved." is a section's text.
+    citation path extends it) carry no text: each is empty, has neither a word
+    with a letter in it nor a table of figures, is a ``navigation_body``, or
+    comes from a version picker. A body with no word with a letter is a table
+    of figures when at least ``FIGURE_TEXT_MIN_TOKENS`` of its tokens are
+    figures (numbers, dates, amounts, rates) and they are at least
+    ``FIGURE_TEXT_MIN_SHARE`` of its tokens: a benefit table of dates and
+    amounts is text, while a page number, a date stamp on a scanned page or a
+    font's garbled glyph codes are not. A bodyless document with no rows below
+    it at all is hollow too: it carries a heading and nothing else. A bodyless
+    root with text below it is the shared document extractor's normal shape
+    (the wave4 chapter scopes keep each section's text in one child block), so
+    emptiness alone is not a finding, and neither is a short text: "Reserved."
+    is a section's text. A root that review found correctly empty (a table of
+    contents, an index of separate documents, a reserved or repealed item) is
+    listed in ``manifests/reviewed-empty-nodes.yaml`` and is not a finding
+    (``ScopeContentScanner``'s ``reviewed_empty``).
 ``version_picker_source``
     A retained HTML source is a LegInfo "select from multiples" page: it has
     the ``form#selectFromMultiples`` the California adapter resolves
@@ -61,7 +70,7 @@ from lxml import etree
 
 from axiom_corpus.corpus.models import ProvisionRecord
 
-CONTENT_CHECK_VERSION = "content-check-v1"
+CONTENT_CHECK_VERSION = "content-check-v2"
 
 NAVIGATION_BODY = "navigation_body"
 NAVIGATION_PREFIXED_BODY = "navigation_prefixed_body"
@@ -92,6 +101,17 @@ PREFIXED_MIN_TOKENS = 80
 REST_MAX_COVERAGE = 0.5
 # A navigation string must be at least this share letters (spaces aside).
 NAVIGATION_STRING_LETTER_SHARE = 0.75
+# A body with no word with a letter is text when at least this many of its
+# tokens are figures and they are at least this share of its tokens. Date
+# stamps and page numbers on scanned pages hold one to four figures; garbled
+# glyph codes hold under 15% figures (docs/release-gate-policy.md).
+FIGURE_TEXT_MIN_TOKENS = 5
+FIGURE_TEXT_MIN_SHARE = 0.5
+# An extractor drops a block as navigation only when it is at least this many of
+# its page's navigation strings, none longer than this many words
+# (``is_navigation_block``).
+NAVIGATION_BLOCK_MIN_STRINGS = 2
+NAVIGATION_BLOCK_MAX_STRING_WORDS = 12
 # Bytes read to decide whether a source is HTML.
 HTML_SNIFF_BYTES = 4096
 
@@ -108,6 +128,21 @@ _SKIP_LINK = re.compile(
     re.IGNORECASE,
 )
 _HTML_MARKERS = (b"<html", b"<!doctype html", b"<body")
+# A figure: a number, date, amount, rate or range, with an optional sign,
+# currency symbol, percent sign, enclosing parentheses or trailing punctuation
+# ("16", "$1,014.00", ".9666", "10/19--", "(450,000)", "2.5%").
+_FIGURE = re.compile(r"[(\[]?[-+\u2212]?[$\u00a3\u20ac\u00a5]?\.?\d[\d.,/:\u2013-]*%?[)\]]?[.,;:]?")
+# A list marker, not a figure: up to three digits in brackets, or before a
+# period or a closing bracket, with or without punctuation after it
+# ("(1)", "[12]", "3.", "4)", "(5).", "6.)", "(7):").
+_ENUMERATOR = re.compile(r"(?:[(\[]\d{1,3}[)\]]|\d{1,3}(?:\.\)?|[)\]]))[.,;:]?")
+# A token that ends a sentence: a final period or exclamation mark, before any
+# closing quotes or brackets, that is not the last of an ellipsis.
+_ENDS_SENTENCE = re.compile(r"(?<!\.)[.!][\"')\]’”]*$")
+# Characters that only separate links (breadcrumb and menu dividers). Any other
+# token outside the page's navigation strings is the block's own content: a word,
+# a figure, or a table mark such as a check, a cross or a dash for "none".
+_SEPARATOR_CHARS = frozenset("|/\\<>«»‹›•·")
 # Rows arrive grouped by source, so a scope needs only its recent pages.
 PAGE_CACHE_SIZE = 256
 
@@ -134,6 +169,28 @@ def _tokens(text: str) -> list[str]:
 
 def _has_letters(token: str) -> bool:
     return any(char.isalpha() for char in token)
+
+
+def is_figure(token: str) -> bool:
+    """Whether a token is a number, date, amount, rate or range.
+
+    A list marker ("(1)", "2.") is not one: a body that kept only its
+    paragraph numbers has lost its text.
+    """
+    return _FIGURE.fullmatch(token) is not None and _ENUMERATOR.fullmatch(token) is None
+
+
+def is_figure_table(tokens: list[str]) -> bool:
+    """Whether tokens with no letter in them still read as text: a table of figures.
+
+    At least ``FIGURE_TEXT_MIN_TOKENS`` figures, making up at least
+    ``FIGURE_TEXT_MIN_SHARE`` of the tokens. A date stamp ("9/4/13"), a page
+    number or a pair of dates is too few; a scanned page's garbled glyph codes,
+    which hold a stray digit here and there, are too thin; list markers are not
+    figures at all.
+    """
+    figures = sum(1 for token in tokens if is_figure(token))
+    return figures >= FIGURE_TEXT_MIN_TOKENS and figures >= FIGURE_TEXT_MIN_SHARE * len(tokens)
 
 
 def is_navigation_string(text: str) -> bool:
@@ -192,9 +249,9 @@ class PageNavigation:
     def __bool__(self) -> bool:
         return bool(self._by_first)
 
-    def cover(self, tokens: list[str]) -> list[bool]:
-        """Mark each token that lies in a longest-first match of a navigation string."""
-        covered = [False] * len(tokens)
+    def matches(self, tokens: list[str]) -> list[tuple[int, int]]:
+        """The ``(start, end)`` token spans of the longest-first navigation string matches."""
+        spans = []
         index = 0
         while index < len(tokens):
             matched = 0
@@ -208,11 +265,18 @@ class PageNavigation:
                     matched = len(sequence)
                     break
             if matched:
-                for position in range(index, index + matched):
-                    covered[position] = True
+                spans.append((index, index + matched))
                 index += matched
             else:
                 index += 1
+        return spans
+
+    def cover(self, tokens: list[str]) -> list[bool]:
+        """Mark each token that lies in a longest-first match of a navigation string."""
+        covered = [False] * len(tokens)
+        for start, end in self.matches(tokens):
+            for position in range(start, end):
+                covered[position] = True
         return covered
 
     def coverage(self, tokens: list[str]) -> Coverage:
@@ -269,11 +333,16 @@ def is_version_picker(raw: bytes) -> bool:
 
 @dataclass(frozen=True)
 class RowVerdict:
-    """What the row checks conclude about one body."""
+    """What the row checks conclude about one body.
+
+    ``residual_words`` counts the body's words with a letter that no navigation
+    string covers (read to ``MAX_BODY_TOKENS``).
+    """
 
     navigation: bool
     prefixed: bool
     substantive: bool
+    residual_words: int = 0
 
 
 def _opening_run(tokens: list[str], covered: list[bool]) -> int:
@@ -293,8 +362,21 @@ def classify_body(
     heading: str | None = None,
     label: str | None = None,
 ) -> RowVerdict:
-    """Apply the navigation, prefix and substance rules to one body."""
-    tokens = _tokens(body or "")[:MAX_BODY_TOKENS]
+    """Apply the navigation, prefix and substance rules to one body.
+
+    A body is text (``substantive``) when it is not navigation and has a word
+    with a letter in it, or, having none, is a table of figures
+    (``is_figure_table``). Both substance checks read the whole body, so the
+    navigation token limit cannot hide figures or skew their share. That rule
+    decides substance only: the navigation and prefix verdicts are what they
+    were without it. In those verdicts a
+    figure is a token like any other: it counts in the coverage share, a
+    navigation string that holds one ("Appendix 1") covers it, and outside any
+    navigation string it has no letter, so it is neither a left-over word nor
+    the end of an opening run.
+    """
+    body_tokens = _tokens(body or "")
+    tokens = body_tokens[:MAX_BODY_TOKENS]
     has_letters = _has_letters(body or "")
     if not tokens:
         return RowVerdict(navigation=False, prefixed=False, substantive=False)
@@ -321,8 +403,70 @@ def classify_body(
             and _opening_run(head, head_covered) >= PREFIX_RUN_TOKENS
         )
         prefixed = chrome_opening and rest_coverage.share < REST_MAX_COVERAGE
-    substantive = not is_navigation and has_letters
-    return RowVerdict(navigation=is_navigation, prefixed=prefixed, substantive=substantive)
+    substantive = not is_navigation and (has_letters or is_figure_table(body_tokens))
+    return RowVerdict(
+        navigation=is_navigation,
+        prefixed=prefixed,
+        substantive=substantive,
+        residual_words=whole.residual_words,
+    )
+
+
+def is_navigation_block(
+    body: str | None,
+    navigation: PageNavigation | None,
+    *,
+    heading: str | None = None,
+    label: str | None = None,
+) -> bool:
+    """Whether an extractor may drop a block of a page as that page's navigation.
+
+    The official-document HTML extractor asks this of every positional block it
+    makes (``documents._extract_html_blocks``) and drops the block when it holds.
+    It is the ``navigation_body`` rule of ``classify_body`` with four more
+    conditions, so that a dropped block is a list of the page's link labels and
+    nothing else:
+
+    - every token lies in one of the page's navigation strings or is made only of
+      link separators (``|``, ``>``, ``»``, ``•`` ...), so a status ("Repealed April
+      6, 2000. Return to Table of Contents"), an instruction ("See Certification
+      Periods."), a figure beside a linked label ("Gross monthly income limit
+      $2,000") or a table mark ("✓", "✗", "-", "—") keeps its block;
+    - the body is at least ``NAVIGATION_BLOCK_MIN_STRINGS`` navigation strings: a
+      lone link can be a section's whole text ("See reciprocal agreement", an
+      exhibit's title, a glossary term whose definition sits inside its link);
+    - no matched string is longer than ``NAVIGATION_BLOCK_MAX_STRING_WORDS`` words,
+      so a table of contents whose entries carry amendment notes, or prose inside
+      a link, is kept;
+    - no matched string ends a sentence (a final period or exclamation mark): a
+      label names a page, while "Income means money received." is a definition.
+
+    A body longer than ``MAX_BODY_TOKENS`` words, which the check reads only in
+    part, and a body that repeats the block's heading are never navigation. So
+    every block the extractor drops is a row this check would flag; a flagged row
+    that fails one of these conditions is kept, for the check to report.
+    """
+    if not navigation or not body:
+        return False
+    tokens = _tokens(body)
+    if len(tokens) > MAX_BODY_TOKENS:
+        return False
+    if not classify_body(body, navigation, heading=heading, label=label).navigation:
+        return False
+    spans = navigation.matches(tokens)
+    covered = {position for start, end in spans for position in range(start, end)}
+    if any(
+        not set(token) <= _SEPARATOR_CHARS
+        for position, token in enumerate(tokens)
+        if position not in covered
+    ):
+        return False
+    return len(spans) >= NAVIGATION_BLOCK_MIN_STRINGS and all(
+        sum(1 for token in tokens[start:end] if _has_letters(token))
+        <= NAVIGATION_BLOCK_MAX_STRING_WORDS
+        and not _ENDS_SENTENCE.search(tokens[end - 1])
+        for start, end in spans
+    )
 
 
 def _text_or_none(value: object) -> str | None:
@@ -346,10 +490,18 @@ class ScopeContentScanner:
     record while it loads them, and must report what it reported without the
     scan. A ``source_path``, ``heading`` or ``citation_label`` that is not a
     string is read as absent; validation reports the field itself.
+
+    ``reviewed_empty`` names the citation paths of this scope's document rows
+    that review found correctly empty (``manifests/reviewed-empty-nodes.yaml``).
+    Such a row is not a ``hollow_document_root`` finding when it is hollow;
+    ``reviewed_empty_roots`` lists the ones the exemption applied to. Nothing
+    else depends on the list: a reviewed row is still hollow for
+    ``text_paths``, and its descendants are checked as any other rows.
     """
 
-    def __init__(self, corpus_root: str | Path):
+    def __init__(self, corpus_root: str | Path, *, reviewed_empty: Iterable[str] = ()):
         self.root = Path(corpus_root)
+        self._reviewed_empty = frozenset(reviewed_empty)
         self._pages: OrderedDict[str, PageNavigation | None] = OrderedDict()
         self._pickers: set[str] = set()
         self._findings: list[ContentFinding] = []
@@ -435,9 +587,15 @@ class ScopeContentScanner:
             root for root in self._empty_roots if root not in hollow
         )
 
+    def reviewed_empty_roots(self) -> tuple[str, ...]:
+        """Hollow roots that ``reviewed_empty`` exempts from the findings, sorted."""
+        return tuple(sorted(set(self._hollow_roots(self._text_row_paths())) & self._reviewed_empty))
+
     def findings(self) -> tuple[ContentFinding, ...]:
         found = list(self._findings)
         for root in self._hollow_roots(self._text_row_paths()):
+            if root in self._reviewed_empty:
+                continue
             found.append(
                 ContentFinding(
                     HOLLOW_DOCUMENT_ROOT,
@@ -457,10 +615,13 @@ class ScopeContentScanner:
 
 
 def scan_provisions(
-    corpus_root: str | Path, records: Iterable[ProvisionRecord]
+    corpus_root: str | Path,
+    records: Iterable[ProvisionRecord],
+    *,
+    reviewed_empty: Iterable[str] = (),
 ) -> tuple[ContentFinding, ...]:
     """Content findings for one scope's records (see ``ScopeContentScanner``)."""
-    scanner = ScopeContentScanner(corpus_root)
+    scanner = ScopeContentScanner(corpus_root, reviewed_empty=reviewed_empty)
     for record in records:
         scanner.add(record)
     return scanner.findings()

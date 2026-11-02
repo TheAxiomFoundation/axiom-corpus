@@ -26,8 +26,8 @@ their PDF from the USDA guidance portal, which serves only browser-impersonated 
 www.govinfo.gov for Federal Register notices, www.cms.gov, acf.gov and aspe.hhs.gov.
 No mirror or archived copy is used.
 
-Two 2026-09-15 wave-5 families (docs/coverage/needs-closure-2026-09-14, run note
-docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md) share the helpers:
+A 2026-09-15 wave-5 family (docs/coverage/needs-closure-2026-09-14, run note
+docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md) shares the helpers:
 
 * ``liheap-model-plan`` (``2026-09-15-liheap-model-plan``, guidance,
   LIHEAP-F-GUID-MODELPLAN): the FY 2027 (LIHEAP-AT-2026-4) and FY 2026
@@ -37,15 +37,16 @@ docs/ingest-runs/2026-09-15-ssi-liheap-medicare.md) share the helpers:
   answered the plain client with an AWS WAF challenge (HTTP 202, empty body,
   ``x-amzn-waf-action: challenge``) on 2026-09-15 and served a chrome120 TLS
   fingerprint, so the documents are fetched with browser impersonation.
-* ``ssi-cfr-416-appendix-k`` (``2026-09-15-title-20-part-416-appendix-k``, regulation,
-  SSI-F-CFR416-APPK): the Appendix to Subpart K of 20 CFR part 416 (income excluded
-  under other federal laws), a subpart-scoped appendix the eCFR adapter's
-  ``--include-appendices`` rejects; taken as an official document from the eCFR
-  renderer API (the same publisher API the adapter reads), the canonical eCFR page
-  being the citation.
+
+The wave-5 ``ssi-cfr-416-appendix-k`` family (``2026-09-15-title-20-part-416-appendix-k``,
+the Appendix to Subpart K of 20 CFR part 416 as an official document from the eCFR
+renderer API) was never locked and is retired: the appendix ships in the eCFR scope
+``us/regulation/2026-10-12-with-appendices-title-20-part-416``, which ``extract-ecfr
+--include-appendices`` takes now that the adapter accepts subpart appendices
+(docs/ingest-runs/2026-10-12-cfr-416-subpart-k-appendix.md).
 
     uv run python scripts/build_federal_guidance_layer_manifests.py [--only snap,wic,medicare,liheap] [--skip-queue]
-    uv run python scripts/build_federal_guidance_layer_manifests.py --only liheap-model-plan,ssi-cfr-416-appendix-k
+    uv run python scripts/build_federal_guidance_layer_manifests.py --only liheap-model-plan
 """
 from __future__ import annotations
 
@@ -522,59 +523,6 @@ def build_liheap_model_plan() -> list[dict[str, Any]]:
     return docs
 
 
-APPENDIX_K_VERSION = "2026-09-15-title-20-part-416-appendix-k"
-ECFR_APPENDIX_PAGE = (
-    "https://www.ecfr.gov/current/title-20/chapter-III/part-416/appendix-Appendix%20to%20Subpart%20K%20of%20Part%20416"
-)
-ECFR_APPENDIX_RENDERER = (
-    "https://www.ecfr.gov/api/renderer/v1/content/enhanced/2026-09-11/title-20"
-    "?part=416&appendix=Appendix%20to%20Subpart%20K%20of%20Part%20416"
-)
-
-
-def build_ssi_cfr_416_appendix_k() -> list[dict[str, Any]]:
-    """20 CFR part 416, Appendix to Subpart K (list of types of income excluded under the SSI
-    program as provided by federal laws other than the Social Security Act)."""
-    return [doc(
-        "us-ecfr-title-20-part-416-appendix-subpart-k",
-        "20 CFR Part 416, Appendix to Subpart K - List of Types of Income Excluded Under the SSI Program as Provided "
-        "by Federal Laws Other Than the Social Security Act",
-        ECFR_APPENDIX_PAGE, "us/regulation/20/416/subpart-K/appendix", "2026-09-09",
-        download_url=ECFR_APPENDIX_RENDERER, document_class="regulation", source_as_of=WAVE5_AS_OF,
-        extraction={"html_content_selector": "div.appendix"},
-        metadata={
-            "source_authority": "Office of the Federal Register, Electronic Code of Federal Regulations (eCFR)",
-            "document_subtype": "cfr_appendix",
-            "program": "SSI",
-            "title": 20, "part": "416", "subpart": "K",
-            "appendix_identifier": "Appendix to Subpart K of Part 416",
-            "parent_citation_path": "us/regulation/20/416/subpart-K",
-            "ecfr_point_in_time": "2026-09-11",
-            "expression_date_note": (
-                "title 20 latest_issue_date / latest_amended_on 2026-09-09 (eCFR titles.json read 2026-09-15), the "
-                "expression date the sibling scope us/regulation/2026-09-11-title-20-part-416 carries; the appendix's "
-                "own citation line is '45 FR 65547, Oct. 3, 1980, as amended at ... 75 FR 1273, Jan. 11, 2010' (last amendment 2010-01-11)"
-            ),
-            "download_note": (
-                "the canonical eCFR page (source_url) redirects the corpus client to unblock.federalregister.gov; the "
-                "eCFR renderer API (download_url, the publisher's own rendering of the 2026-09-11 point-in-time "
-                "text) serves the appendix HTML; the div.appendix node is the document body"
-            ),
-            "adapter_note": (
-                "extract-ecfr --include-appendices accepts part-scoped 'Appendix X to Part N' identifiers only and "
-                "raises on this subpart-scoped one (run note 2026-09-11-federal-cfr-followon-parts); taken as an "
-                "official document instead"
-            ),
-            "source_discovery_group": "us/regulation/ecfr",
-            "closure_elements": ["SSI-F-CFR416-APPK"],
-            "discovered_via": (
-                "manual-review:ssi-agent-queue; needs-closure-2026-09-14 SSI-F-CFR416-APPK; eCFR structure "
-                "title-20 2026-09-11 (part 416 > subpart K > appendix)"
-            ),
-        },
-    )]
-
-
 # ----------------------------------------------------------------------------------- queues
 def write_manifest(name: str, version: str, docs: list[dict[str, Any]]) -> Path:
     path = ROOT / "manifests" / name
@@ -582,7 +530,7 @@ def write_manifest(name: str, version: str, docs: list[dict[str, Any]]) -> Path:
     return path
 
 
-RUN_NOTES = {MODEL_PLAN_VERSION: WAVE5_RUN_NOTE, APPENDIX_K_VERSION: WAVE5_RUN_NOTE}
+RUN_NOTES = {MODEL_PLAN_VERSION: WAVE5_RUN_NOTE}
 
 
 def scope_record(version: str, manifest: Path, docs: list[dict[str, Any]], elements: list[str], note: str) -> dict[str, Any]:
@@ -657,22 +605,14 @@ FAMILIES = {
                           "instructions, Model Plan Reference Guide and OMB 0970-0075 Model Plan template (10 documents). "
                           "acf.gov fronted an AWS WAF challenge to the plain client on 2026-09-15 (HTTP 202, empty body) and "
                           "served a chrome120 TLS fingerprint; fetched with browser impersonation, TLS verification on."),
-    "ssi-cfr-416-appendix-k": ("us-ecfr-title-20-part-416-appendix-k-2026-09-15.yaml", APPENDIX_K_VERSION,
-                               build_ssi_cfr_416_appendix_k, "ssi-agent-queue.yaml", "appendix_subpart_k_scope",
-                               ["SSI-F-CFR416-APPK"],
-                               "2026-09-15 wave-5 closure run (needs-closure-2026-09-14 SSI-F-CFR416-APPK): the Appendix to "
-                               "Subpart K of 20 CFR part 416 (types of income excluded under other federal laws), the one "
-                               "part-416 node the 2026-09-11 eCFR scope skipped (extract-ecfr --include-appendices rejects "
-                               "subpart-scoped appendix identifiers), taken as an official document from the eCFR renderer "
-                               "API under us/regulation/20/416/subpart-K/appendix; the canonical eCFR page is walled to the "
-                               "corpus client (unblock.federalregister.gov) and is the citation."),
 }
-QUEUE_ROW_NAMES = {"ssi-cfr-416-appendix-k": "Federal (20 CFR part 416, eCFR)"}
+# Families whose scope record goes on a named federal row rather than the first ``us`` row.
+QUEUE_ROW_NAMES: dict[str, str] = {}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--only", help="comma-separated families (snap, wic, medicare, liheap, liheap-model-plan, ssi-cfr-416-appendix-k)")
+    parser.add_argument("--only", help="comma-separated families (snap, wic, medicare, liheap, liheap-model-plan)")
     parser.add_argument("--skip-queue", action="store_true")
     args = parser.parse_args()
     selected = set(args.only.split(",")) if args.only else set(FAMILIES)

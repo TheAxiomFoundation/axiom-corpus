@@ -14,6 +14,7 @@ from typing import Any, NamedTuple
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.content_quality import (
     CONTENT_CHECK_VERSION,
+    HOLLOW_DOCUMENT_ROOT,
     ContentFinding,
     ScopeContentScanner,
     findings_by_code,
@@ -29,6 +30,7 @@ from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.release_policy import (
     CONTENT_BASELINE_PATH,
+    REVIEWED_EMPTY_PATH,
     WITHDRAWN_SCOPES_PATH,
     ContentBaselineEntry,
     ReleaseGatePolicy,
@@ -728,16 +730,20 @@ class _ContentPlan:
 
     - A withdrawn scope is not checked: the withdrawal already decides it.
     - A scope whose provisions and inventory bytes match its content baseline
-      entry is not read again; its recorded findings become one notice.
+      entry, and whose applied empty-root exemptions remain authorized, is not
+      read again; its recorded findings become one notice.
     - Any other scope is scanned while its provisions stream for validation,
       and each finding is an error: new chrome, a hollow root or a version
       picker fails the release until the extraction is fixed or the finding is
       recorded in the baseline.
+    - Either way, a hollow root listed in ``manifests/reviewed-empty-nodes.yaml``
+      is not a finding; the scope's reviewed rows become one notice.
     """
 
     scanner: ScopeContentScanner | None = None
     baseline: ContentBaselineEntry | None = None
     mismatched: bool = False
+    reviewed_empty: frozenset[str] = frozenset()
 
     @classmethod
     def for_scope(
@@ -750,6 +756,7 @@ class _ContentPlan:
     ) -> _ContentPlan:
         if scope.key in policy.withdrawn:
             return cls()
+        reviewed = policy.reviewed_empty_paths(scope)
         baseline = policy.content_baseline
         entry = (
             baseline.entry_for(scope) if baseline.check_version == CONTENT_CHECK_VERSION else None
@@ -759,13 +766,45 @@ class _ContentPlan:
                 digests = (_sha256_file(provisions_path), _sha256_file(inventory_path))
             except OSError:
                 # A missing or unreadable artifact is reported by its own check.
-                return cls(scanner=ScopeContentScanner(store.root))
-            if entry.pins(*digests):
-                return cls(baseline=entry)
-            return cls(scanner=ScopeContentScanner(store.root), mismatched=True)
-        return cls(scanner=ScopeContentScanner(store.root))
+                return cls(scanner=_scanner(store, reviewed), reviewed_empty=reviewed)
+            if entry.pins(*digests) and set(entry.reviewed_empty) <= reviewed:
+                return cls(baseline=entry, reviewed_empty=reviewed)
+            return cls(scanner=_scanner(store, reviewed), mismatched=True, reviewed_empty=reviewed)
+        return cls(scanner=_scanner(store, reviewed), reviewed_empty=reviewed)
 
     def report(
+        self, scope: ReleaseScope, provisions_path: Path, collector: _IssueCollector
+    ) -> None:
+        self._report_findings(scope, provisions_path, collector)
+        # A scanned scope counts the rows its scan exempted. A baselined scope
+        # is not read again, so its listed rows are taken as hollow roots: the
+        # CI baseline check fails on a listed row that is not one. A row its
+        # entry still records as a finding (listed after the baseline was
+        # built) is reported there, not here.
+        if self.scanner is not None:
+            reviewed = self.scanner.reviewed_empty_roots()
+        elif self.baseline is not None:
+            recorded = {
+                finding.path
+                for finding in self.baseline.findings
+                if finding.code == HOLLOW_DOCUMENT_ROOT
+            }
+            reviewed = tuple(sorted(self.reviewed_empty - recorded))
+        else:
+            reviewed = ()
+        if reviewed:
+            collector.add(
+                "notice",
+                "reviewed_empty_document_roots",
+                (
+                    f"{scope_label(scope)} has {len(reviewed)} document rows that review found "
+                    f"correctly empty, listed in {REVIEWED_EMPTY_PATH}"
+                ),
+                scope=scope,
+                path=REVIEWED_EMPTY_PATH,
+            )
+
+    def _report_findings(
         self, scope: ReleaseScope, provisions_path: Path, collector: _IssueCollector
     ) -> None:
         if self.baseline is not None:
@@ -793,7 +832,8 @@ class _ContentPlan:
                 "content_baseline_mismatch",
                 (
                     f"{CONTENT_BASELINE_PATH} records {scope_label(scope)} with other provisions "
-                    "or inventory bytes, so its content was checked again"
+                    "or inventory bytes, or empty-root exemptions no longer authorized, "
+                    "so its content was checked again"
                 ),
                 scope=scope,
                 path=CONTENT_BASELINE_PATH,
@@ -806,6 +846,10 @@ class _ContentPlan:
                 scope=scope,
                 path=provisions_path if finding.code != "version_picker_source" else finding.path,
             )
+
+
+def _scanner(store: CorpusArtifactStore, reviewed_empty: frozenset[str]) -> ScopeContentScanner:
+    return ScopeContentScanner(store.root, reviewed_empty=reviewed_empty)
 
 
 def _finding_message(finding: ContentFinding) -> str:

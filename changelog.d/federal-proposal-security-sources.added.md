@@ -1,0 +1,1 @@
+Added official U.S. Code (31 U.S.C. 1352; 42 U.S.C. 1862o, 1862o–1, 6605, 18901, 19036 and 19231-19237), eCFR (2 CFR Part 25, 45 CFR Part 604) and scoped NSF guidance sources for federal proposal-security and submission checks, each scope with a signed ingest manifest.

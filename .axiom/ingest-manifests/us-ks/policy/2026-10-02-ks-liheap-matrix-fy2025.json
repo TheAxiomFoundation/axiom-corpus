@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025.json",
+      "sha256": "925ef5851a41cedac4f7c025d98838aa69a0b8590d8d3cd7031b42b9c8201fea"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025.json",
+      "sha256": "e59ad7816bd18571e8f7219ed645793f810205ac019f8d4c9080ff0df0656119"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025.jsonl",
+      "sha256": "21d9dcc717ee238728bb66b4bd7f0622f9130ef95bfc1a41a1cfd51822745409"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/policy/2026-10-02-ks-liheap-matrix-fy2025/official-documents/us-ks-acf-liheap-plan-fy2025-benefit-matrix.pdf",
+      "sha256": "63c18cb63cfca387b2c41c08f1ed58dcc1cee7b638e29701a4b9f70db1cdedd4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b5f170b65eeec17aaab592fd21f01bd7084dceb5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-10-02-ks-liheap-matrix-fy2025 --manifest manifests/us-ks-liheap-benefit-matrix-fy2025.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-10-05T18:16:43.529959+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bqWGET+GsQIv3ZBS00W4x1FbjJbOFAxEo4nZWz/2xFG/Yqpn4nXmbqyq4Qpqh5YW04ucaduRNzX4KncFC8lMBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-10-02-ks-liheap-matrix-fy2025"
+}

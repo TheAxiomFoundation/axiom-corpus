@@ -120,6 +120,30 @@ def test_batch_parser_refuses_appendix_replay(ecfr_recovery_case: tuple, declara
         )
 
 
+@pytest.mark.parametrize(
+    "citation_path",
+    [
+        "us/regulation/20/404/subpart-C/appendix-ii",
+        "us/regulation/20/404/subpart-C/appendixes",
+        "us/regulation/20/404/subpart-B/appendix",
+        "us/regulation/29/1910/subpart-L/appendices",
+        "us/regulation/29/1910/subpart-L/appendices/1",
+    ],
+)
+def test_recovery_refuses_subpart_appendix_citations(
+    tmp_path: Path, ecfr_recovery_case: tuple, citation_path: str
+) -> None:
+    entry, fetched, data, provenance = ecfr_recovery_case
+    entry["covers_citation_paths"] = [citation_path]
+    with pytest.raises(ValueError, match="appendix recovery is unsupported"):
+        recover(entry, fetched, base=tmp_path / "corpus", repo=tmp_path, dry_run=True)
+    entry.update(parser="ecfr:xml", document_id="ecfr-45-part-604", proposed_version="test")
+    with pytest.raises(ValueError, match="appendix recovery is unsupported"):
+        recover_ingest_batch._parse(
+            entry, fetched / "ecfr-45-604.xml", data, provenance, "sources/test.xml"
+        )
+
+
 @pytest.mark.parametrize("previously_parsed", [False, True])
 @pytest.mark.parametrize("declaration", ["opt-in", "existing-inventory"])
 def test_batch_refuses_appendix_replay_before_report_or_artifact_writes(

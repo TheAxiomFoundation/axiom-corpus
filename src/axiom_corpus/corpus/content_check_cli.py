@@ -5,7 +5,9 @@
 ``manifests/release-content-baseline.json`` and exits 1 on any difference; CI
 runs it. ``--update-baseline`` records the named scopes' findings (with
 ``--all``, rebuilds the whole baseline), which is how a new finding is accepted
-on purpose. See docs/release-gate-policy.md.
+on purpose. Hollow roots listed in ``manifests/reviewed-empty-nodes.yaml`` are
+not findings; ``--check-baseline`` also fails on a listed row that is no longer a
+hollow root. See docs/release-gate-policy.md.
 """
 
 from __future__ import annotations
@@ -13,7 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
@@ -21,10 +23,13 @@ from axiom_corpus.corpus.content_quality import CONTENT_CHECK_VERSION, findings_
 from axiom_corpus.corpus.corpus_locks import parse_scope_selector, scope_matches
 from axiom_corpus.corpus.release_policy import (
     CONTENT_BASELINE_PATH,
+    REVIEWED_EMPTY_PATH,
     ContentBaseline,
     ContentBaselineEntry,
+    ReviewedEmptyScope,
     compare_content_baseline,
     load_content_baseline,
+    load_reviewed_empty,
     scan_scope,
     scope_label,
     write_content_baseline,
@@ -87,16 +92,24 @@ def _corpus_base(base: Path, repo: Path) -> Path:
     return here if here.exists() else repo / base
 
 
-def _scan(arguments: tuple[str, ScopeKey]) -> ContentBaselineEntry:
-    base, scope = arguments
-    return scan_scope(base, scope)
+def _scan(arguments: tuple[str, ScopeKey, tuple[str, ...]]) -> ContentBaselineEntry:
+    base, scope, reviewed_empty = arguments
+    return scan_scope(base, scope, reviewed_empty=reviewed_empty)
 
 
 def scan_scopes(
-    base: Path, scopes: Sequence[ScopeKey], *, workers: int = DEFAULT_WORKERS
+    base: Path,
+    scopes: Sequence[ScopeKey],
+    *,
+    workers: int = DEFAULT_WORKERS,
+    reviewed_empty: Mapping[ScopeKey, ReviewedEmptyScope] | None = None,
 ) -> dict[ScopeKey, ContentBaselineEntry]:
-    """Scan ``scopes`` (in parallel when ``workers`` > 1)."""
-    jobs = [(str(base), scope) for scope in scopes]
+    """Scan ``scopes`` (in parallel when ``workers`` > 1), exempting reviewed-empty rows."""
+    reviewed = reviewed_empty or {}
+    jobs = [
+        (str(base), scope, tuple(sorted(reviewed[scope].paths)) if scope in reviewed else ())
+        for scope in scopes
+    ]
     if workers <= 1 or len(jobs) <= 1:
         return {scope: _scan(job) for scope, job in zip(scopes, jobs, strict=True)}
     with ProcessPoolExecutor(max_workers=workers) as pool:
@@ -155,7 +168,11 @@ def cmd_content_check(args: argparse.Namespace) -> int:
         print(f"corpus: {exc}", file=sys.stderr)
         return 2
     base = _corpus_base(args.base, repo)
-    scanned = scan_scopes(base, selected, workers=max(1, int(args.workers)))
+    reviewed_path = repo / REVIEWED_EMPTY_PATH
+    reviewed = load_reviewed_empty(reviewed_path) if reviewed_path.exists() else {}
+    scanned = scan_scopes(
+        base, selected, workers=max(1, int(args.workers)), reviewed_empty=reviewed
+    )
     baseline_path = repo / CONTENT_BASELINE_PATH
     baseline = (
         load_content_baseline(baseline_path)
@@ -169,6 +186,7 @@ def cmd_content_check(args: argparse.Namespace) -> int:
         "findings": dict(
             findings_by_code(finding for entry in scanned.values() for finding in entry.findings)
         ),
+        "reviewed_empty_roots": sum(len(entry.reviewed_empty) for entry in scanned.values()),
     }
     exit_code = 0
     if not args.all:
@@ -179,6 +197,7 @@ def cmd_content_check(args: argparse.Namespace) -> int:
     if args.check_baseline:
         if args.all:
             compared = baseline
+            compared_reviewed = reviewed
         else:
             # A partial check compares only the selected scopes' entries.
             chosen = set(selected)
@@ -186,10 +205,12 @@ def cmd_content_check(args: argparse.Namespace) -> int:
                 baseline.check_version,
                 {key: entry for key, entry in baseline.entries.items() if key in chosen},
             )
+            compared_reviewed = {key: entry for key, entry in reviewed.items() if key in chosen}
         differences = compare_content_baseline(
             compared,
             scanned,
             locked_scopes=_scannable(repo, locked) if args.all else selected,
+            reviewed_empty=compared_reviewed,
         )
         payload["baseline_differences"] = [
             {"scope": difference.scope, "problem": difference.problem} for difference in differences
