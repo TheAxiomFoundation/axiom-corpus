@@ -327,7 +327,7 @@ def extract_maine_revised_statutes(
     errors: list[str] = []
 
     index_page = fetcher.fetch(MAINE_REVISED_STATUTES_INDEX)
-    _record_source_page(
+    index_source = _record_source_page(
         store,
         jurisdiction=jurisdiction,
         run_id=run_id,
@@ -346,7 +346,20 @@ def extract_maine_revised_statutes(
     section_targets: list[MaineSectionTarget] = []
     chapter_sources: dict[str, _RecordedSource] = {}
     for title in titles:
-        title_page = fetcher.fetch(title.relative_path)
+        # A container is written as a provision only once its own table of
+        # contents lists children. Otherwise it stays an inventory gap, so
+        # coverage reads incomplete instead of silently losing everything
+        # under it. A page that could not be read is sourced from the parent
+        # listing that names it; a page that was read but lists nothing is
+        # sourced from that page, as it would have been on success.
+        try:
+            title_page = fetcher.fetch(title.relative_path)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{title.relative_path}: {exc}")
+            _append_inventory_gap(
+                _title_provision(title, heading=title.heading), index_source, items=items, seen=seen
+            )
+            continue
         title_source = _record_source_page(
             store,
             jurisdiction=jurisdiction,
@@ -357,6 +370,10 @@ def extract_maine_revised_statutes(
         )
         document = parse_maine_title_page(title_page.data, title=title)
         title_provision = _title_provision(title, heading=document.title_heading)
+        if not document.chapters:
+            errors.append(f"{title.relative_path}: no chapters listed in title table of contents")
+            _append_inventory_gap(title_provision, title_source, items=items, seen=seen)
+            continue
         added = _append_provision(
             title_provision,
             title_source,
@@ -388,21 +405,9 @@ def extract_maine_revised_statutes(
                 or _same_filter(chapter.chapter_id, chapter_filter)
             ):
                 continue
-            added = _append_provision(
-                _chapter_provision(chapter),
-                title_source,
-                version=run_id,
-                source_as_of=source_as_of_text,
-                expression_date=expression_date_text,
-                records=records,
-                items=items,
-                seen=seen,
-            )
-            if added:
-                container_count += 1
             try:
                 chapter_page = fetcher.fetch(chapter.relative_path)
-                chapter_sources[chapter.citation_path] = _record_source_page(
+                chapter_source = _record_source_page(
                     store,
                     jurisdiction=jurisdiction,
                     run_id=run_id,
@@ -410,11 +415,29 @@ def extract_maine_revised_statutes(
                     source_by_relative=source_by_relative,
                     source_paths=source_paths,
                 )
-                section_targets.extend(
-                    parse_maine_chapter_page(chapter_page.data, chapter=chapter)
-                )
+                chapter_targets = parse_maine_chapter_page(chapter_page.data, chapter=chapter)
+                if not chapter_targets:
+                    raise ValueError("no sections listed in chapter table of contents")
             except Exception as exc:  # noqa: BLE001
                 errors.append(f"{chapter.relative_path}: {exc}")
+                _append_inventory_gap(
+                    _chapter_provision(chapter), title_source, items=items, seen=seen
+                )
+            else:
+                chapter_sources[chapter.citation_path] = chapter_source
+                added = _append_provision(
+                    _chapter_provision(chapter),
+                    title_source,
+                    version=run_id,
+                    source_as_of=source_as_of_text,
+                    expression_date=expression_date_text,
+                    records=records,
+                    items=items,
+                    seen=seen,
+                )
+                if added:
+                    container_count += 1
+                section_targets.extend(chapter_targets)
             if limit is not None and len(section_targets) >= limit:
                 break
         if limit is not None and len(section_targets) >= limit:
@@ -854,6 +877,34 @@ def _record_source_page(
     )
     source_by_relative[page.relative_path] = recorded
     return recorded
+
+
+def _append_inventory_gap(
+    provision: MaineProvision,
+    source: _RecordedSource,
+    *,
+    items: list[SourceInventoryItem],
+    seen: set[str],
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if provision.citation_path in seen:
+        return
+    seen.add(provision.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=provision.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=MAINE_REVISED_STATUTES_SOURCE_FORMAT,
+            sha256=source.sha256,
+            metadata=_metadata(provision),
+        )
+    )
 
 
 def _append_provision(

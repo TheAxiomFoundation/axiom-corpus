@@ -1,0 +1,1 @@
+Keep a Maine or Ohio title or chapter whose table of contents cannot be read, is a maintenance or empty page, or lists no children as an inventory gap with no provision, so coverage, strict release validation and the completion selector report the run as incomplete instead of silently dropping every section under it.
