@@ -775,7 +775,8 @@ def parse_arizona_section(html: str | bytes, *, fallback_heading: str | None = N
     title_heading = ""
     if " - " in title_text:
         title_heading = title_text.split(" - ", 1)[1]
-    names_section = _SECTION_RE.match(title_text.split(" - ", 1)[0].strip()) is not None
+    # " -", not " - ": a title with an empty heading cleans to "<section> -".
+    names_section = _SECTION_RE.match(title_text.split(" -", 1)[0].strip()) is not None
     body = soup.find("body")
     paragraphs = body.find_all("p", recursive=False) if isinstance(body, Tag) else soup.find_all("p")
     heading = fallback_heading or title_heading

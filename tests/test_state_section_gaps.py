@@ -16,7 +16,7 @@ import pytest
 import requests
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters import arizona, illinois, new_york
 from axiom_corpus.corpus.state_adapters.arizona import (
     ARIZONA_SECTION_SOURCE_FORMAT,
@@ -1006,6 +1006,7 @@ def test_west_virginia_repealed_section_stays_complete(tmp_path):
 
 IL_SEQUENCE_URL = f"{ILLINOIS_ILCS_BASE_URL}aReadMe/Section%20Sequence.txt"
 IL_ACT_URL = f"{ILLINOIS_ILCS_BASE_URL}Ch%200005/Act%200070/"
+IL_ACT_DIR = "Ch 0005/Act 0070"
 IL_DOC_LINKS = """
 <a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K1.html">Sec. 1</a>
 <a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K2.html">Sec. 2</a>
@@ -1101,3 +1102,109 @@ def test_illinois_remote_run_that_fetches_no_section_still_fails(tmp_path, monke
     # still fails outright, as on main.
     with pytest.raises(ValueError, match="no Illinois ILCS provisions extracted"):
         _extract_illinois_remote(tmp_path, monkeypatch, dict(IL_LISTINGS["index"][0]), workers=1)
+
+
+@pytest.mark.parametrize("workers", [1, 4])
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+def test_illinois_remote_section_page_naming_no_section_remains_inventory_gap(
+    tmp_path, monkeypatch, failure, workers
+):
+    # On main a fetched section page with no ILCS citation was read under its
+    # document's own citation, so a maintenance, empty or wrong-shape page
+    # became the section's text and coverage still read complete.
+    pages = {
+        **IL_LISTINGS["index"][0],
+        f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K1": IL_SECTION_1,
+    }
+    _fail_page(pages, f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K2", failure)
+    store, report = _extract_illinois_remote(tmp_path, monkeypatch, pages, workers)
+    assert report.section_count == 1
+    assert report.errors == (
+        f"{IL_ACT_DIR}/000500700K2.html: ILCS section page names no section: 000500700K2",
+    )
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=IL_EXTRACTED,
+        missing={"us-il/statute/5/70/2"},
+        gap_source=f"illinois-ilcs/{IL_ACT_DIR}/000500700K2.html",
+    )
+
+
+# --- Illinois (local): ILCS act directory -> section documents ---
+
+IL_GOOD_PAGES = {
+    f"{IL_ACT_DIR}/000500700K1.html": IL_SECTION_1,
+    f"{IL_ACT_DIR}/000500700K2.html": IL_SECTION_2,
+}
+
+
+def _extract_illinois(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_illinois_ilcs(
+        store,
+        version="2026-05-01",
+        source_dir=tmp_path / "source",
+        only_chapter=5,
+        only_act=70,
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+@pytest.mark.parametrize("section", ["1", "2"])
+def test_illinois_section_page_naming_no_section_remains_inventory_gap(tmp_path, section, failure):
+    # The first document also supplies the chapter and act, so a failed first
+    # page still leaves both containers written.
+    relative = f"{IL_ACT_DIR}/000500700K{section}.html"
+    pages = dict(IL_GOOD_PAGES)
+    _fail_page(pages, relative, failure)
+    store, report = _extract_illinois(tmp_path, pages)
+    assert report.section_count == 1
+    assert report.errors == (
+        f"{relative}: ILCS section page names no section: 000500700K{section}",
+    )
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=IL_EXTRACTED,
+        missing={f"us-il/statute/5/70/{section}"},
+        gap_source=f"illinois-ilcs/{relative}",
+    )
+
+
+@pytest.mark.parametrize("copy", ["A/000500700K2.html", "Z/000500700K2.html"])
+def test_illinois_unreadable_copy_of_a_written_section_stays_complete(tmp_path, copy):
+    # Another document supplies section 2, before or after the unreadable copy,
+    # so the section is written once and only the copy's error is logged.
+    _, report = _extract_illinois(tmp_path, {**IL_GOOD_PAGES, copy: MAINTENANCE})
+    assert report.errors == (f"{copy}: ILCS section page names no section: 000500700K2",)
+    assert report.coverage.complete is True
+    inventory = load_source_inventory(report.inventory_path)
+    assert sorted(item.citation_path for item in inventory) == sorted(IL_EXTRACTED)
+    section = next(item for item in inventory if item.citation_path == "us-il/statute/5/70/2")
+    assert section.source_path is not None
+    assert section.source_path.endswith(f"illinois-ilcs/{IL_ACT_DIR}/000500700K2.html")
+
+
+def test_illinois_repealed_section_page_stays_complete(tmp_path):
+    pages = {**IL_GOOD_PAGES, f"{IL_ACT_DIR}/000500700K2.html": IL_REPEALED_SECTION_2}
+    _, report = _extract_illinois(tmp_path, pages)
+    _assert_complete(report, expected=IL_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-il/statute/5/70/2"].body is not None
+    assert "(Repealed)." in records["us-il/statute/5/70/2"].body
+
+
+def test_illinois_uncited_page_that_names_its_section_stays_complete(tmp_path):
+    # A page without an ILCS citation still reads under its document's
+    # citation when a line opens with the section's heading.
+    pages = {
+        **IL_GOOD_PAGES,
+        f"{IL_ACT_DIR}/000500700K2.html": "<html><body><p>Sec. 2.</p></body></html>",
+    }
+    _, report = _extract_illinois(tmp_path, pages)
+    _assert_complete(report, expected=IL_EXTRACTED)
+    records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
+    assert records["us-il/statute/5/70/2"].body == "Sec. 2."

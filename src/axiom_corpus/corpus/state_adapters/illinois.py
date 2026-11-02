@@ -963,7 +963,7 @@ def _section_heading(text: str, section: str) -> str | None:
 
 
 def _names_section(text: str, section: str) -> bool:
-    """Whether a line opens with this section's heading, not another's (``Sec. 1.`` vs ``Sec. 10.``)."""
+    """Whether a line opens with this section's heading (``Sec. 1.``, not ``Sec. 10.``)."""
     heading = re.compile(
         rf"^(?:Sec\.|Section)\s+{re.escape(section)}\.?(?:\s|$)",
         re.IGNORECASE,
