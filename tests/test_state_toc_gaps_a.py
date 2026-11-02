@@ -39,6 +39,14 @@ from axiom_corpus.corpus.state_adapters.florida import (
     FLORIDA_TITLE_INDEX_SOURCE_FORMAT,
     extract_florida_statutes,
 )
+from axiom_corpus.corpus.state_adapters.hawaii import (
+    HAWAII_CHAPTER_DIRECTORY_SOURCE_FORMAT,
+    HAWAII_CHAPTER_INDEX_SOURCE_FORMAT,
+    HAWAII_ROOT_INDEX_SOURCE_FORMAT,
+    HAWAII_SECTION_SOURCE_FORMAT,
+    HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT,
+    extract_hawaii_revised_statutes,
+)
 from axiom_corpus.corpus.state_adapters.iowa import (
     IOWA_CHAPTER_INDEX_SOURCE_FORMAT,
     IOWA_SECTION_INDEX_SOURCE_FORMAT,
@@ -96,6 +104,15 @@ from tests.test_corpus_delaware import (
 )
 from tests.test_corpus_florida import SAMPLE_CHAPTER as FL_CHAPTER_409
 from tests.test_corpus_florida import SAMPLE_TITLE_INDEX as FL_TITLE_XXX
+from tests.test_corpus_hawaii import (
+    SAMPLE_CHAPTER_DIRECTORY_HTML as HI_CHAPTER_DIRECTORY,
+)
+from tests.test_corpus_hawaii import (
+    SAMPLE_CHAPTER_INDEX_HTML as HI_CHAPTER_INDEX,
+)
+from tests.test_corpus_hawaii import SAMPLE_ROOT_HTML as HI_ROOT
+from tests.test_corpus_hawaii import SAMPLE_SECTION_HTML as HI_SECTION
+from tests.test_corpus_hawaii import SAMPLE_VOLUME_HTML as HI_VOLUME
 from tests.test_corpus_iowa import SAMPLE_CHAPTER_INDEX_HTML as IA_CHAPTER_INDEX
 from tests.test_corpus_iowa import SAMPLE_SECTION_INDEX_HTML as IA_SECTION_INDEX
 from tests.test_corpus_iowa import SAMPLE_TITLE_INDEX_HTML as IA_TITLE_INDEX
@@ -723,6 +740,130 @@ def test_florida_part_listing_no_sections_remains_inventory_gap(tmp_path, monkey
         missing={part},
         gap_source=FL_CHAPTER_409_PATH,
     )
+
+
+# --- Hawaii -----------------------------------------------------------------
+# A chapter's section files are listed by its directory; its heading comes
+# from its chapter index page. The adapter marks a chapter "repealed" from
+# that heading, and a repealed chapter may list no section files.
+
+HI_ROOT_PATH = f"{HAWAII_ROOT_INDEX_SOURCE_FORMAT}/index.html"
+HI_VOLUME_04 = f"{HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT}/volume-04.html"
+HI_VOLUME_05 = f"{HAWAII_VOLUME_DIRECTORY_SOURCE_FORMAT}/volume-05.html"
+HI_DIRECTORY_235 = f"{HAWAII_CHAPTER_DIRECTORY_SOURCE_FORMAT}/volume-04/HRS0235.html"
+HI_DIRECTORY_236 = f"{HAWAII_CHAPTER_DIRECTORY_SOURCE_FORMAT}/volume-04/HRS0236.html"
+HI_INDEX_235 = f"{HAWAII_CHAPTER_INDEX_SOURCE_FORMAT}/volume-04/HRS0235.html"
+HI_INDEX_236 = f"{HAWAII_CHAPTER_INDEX_SOURCE_FORMAT}/volume-04/HRS0236.html"
+HI_GOOD = {"us-hi/statute/volume-04", "us-hi/statute/chapter-235", "us-hi/statute/235-55.75"}
+HI_VOLUME_05_LINK = '<a href="/hrscurrent/Vol05_Ch0261-0319/">Vol05_Ch0261-0319</a>\n</pre>'
+HI_CHAPTER_236_LINK = '<a href="/hrscurrent/Vol04_Ch0201-0257/HRS0236/">HRS0236</a>\n</pre>'
+HI_DIRECTORY_236_INDEX_ONLY = (
+    "<html><body><pre>"
+    '<a href="/hrscurrent/Vol04_Ch0201-0257/HRS0236/HRS_0236-.htm">HRS_0236-.htm</a>'
+    "</pre></body></html>"
+)
+
+
+def _chapter_index(chapter: str, heading: str) -> str:
+    return (
+        '<html><body><div class="WordSection1">'
+        f'<p class="RegularParagraphs" align="center"><b>CHAPTER {chapter}</b></p>'
+        f'<p class="RegularParagraphs" align="center"><b>{heading}</b></p>'
+        "</div></body></html>"
+    )
+
+
+def _hawaii_pages() -> dict[str, str]:
+    return {
+        HI_ROOT_PATH: HI_ROOT,
+        HI_VOLUME_04: HI_VOLUME,
+        HI_DIRECTORY_235: HI_CHAPTER_DIRECTORY,
+        HI_INDEX_235: HI_CHAPTER_INDEX,
+        f"{HAWAII_SECTION_SOURCE_FORMAT}/volume-04/HRS0235/HRS_0235-0055_0007_0005.htm": (
+            HI_SECTION
+        ),
+    }
+
+
+def _extract_hawaii(tmp_path: Path, pages: dict[str, str], **kwargs):
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_hawaii_revised_statutes(
+        store, version=VERSION, source_dir=tmp_path / "source", workers=1, **kwargs
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_hawaii_failed_volume_directory_remains_inventory_gap(tmp_path, failure):
+    pages = _hawaii_pages()
+    pages[HI_ROOT_PATH] = HI_ROOT.replace("</pre>", HI_VOLUME_05_LINK, 1)
+    _fail_page(
+        pages, HI_VOLUME_05, failure, "<html><body><pre>1/6/2026 3:46 PM</pre></body></html>"
+    )
+    store, report = _extract_hawaii(tmp_path, pages)
+    assert report.section_count == 1
+    assert "volume 05" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=HI_GOOD | {"us-hi/statute/volume-05"},
+        missing={"us-hi/statute/volume-05"},
+        gap_source=HI_ROOT_PATH if failure == "missing-file" else HI_VOLUME_05,
+    )
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_hawaii_failed_chapter_directory_remains_inventory_gap(tmp_path, failure):
+    pages = _hawaii_pages()
+    pages[HI_VOLUME_04] = HI_VOLUME.replace("</pre>", HI_CHAPTER_236_LINK, 1)
+    pages[HI_INDEX_236] = _chapter_index("236", "ESTATE AND TRANSFER TAX")
+    _fail_page(pages, HI_DIRECTORY_236, failure, HI_DIRECTORY_236_INDEX_ONLY)
+    store, report = _extract_hawaii(tmp_path, pages, only_title="04")
+    assert report.section_count == 1
+    assert "chapter 236" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=HI_GOOD | {"us-hi/statute/chapter-236"},
+        missing={"us-hi/statute/chapter-236"},
+        gap_source=HI_VOLUME_04 if failure == "missing-file" else HI_DIRECTORY_236,
+    )
+
+
+def test_hawaii_unfetchable_chapter_index_remains_inventory_gap(tmp_path):
+    pages = _hawaii_pages()
+    pages.pop(HI_INDEX_235)
+    pages[HI_VOLUME_04] = HI_VOLUME.replace("</pre>", HI_CHAPTER_236_LINK, 1)
+    pages[HI_DIRECTORY_236] = HI_DIRECTORY_236_INDEX_ONLY
+    pages[HI_INDEX_236] = _chapter_index("236", "[REPEALED]")
+    store, report = _extract_hawaii(tmp_path, pages, only_title="04")
+    assert "chapter 235" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected={
+            "us-hi/statute/volume-04",
+            "us-hi/statute/chapter-235",
+            "us-hi/statute/chapter-236",
+        },
+        missing={"us-hi/statute/chapter-235"},
+        gap_source=HI_DIRECTORY_235,
+    )
+
+
+def test_hawaii_repealed_chapter_listing_no_sections_stays_complete(tmp_path):
+    # A chapter whose index heading the adapter marks repealed lists nothing
+    # by law: its directory holds only the chapter index file.
+    pages = _hawaii_pages()
+    pages[HI_VOLUME_04] = HI_VOLUME.replace("</pre>", HI_CHAPTER_236_LINK, 1)
+    pages[HI_DIRECTORY_236] = HI_DIRECTORY_236_INDEX_ONLY
+    pages[HI_INDEX_236] = _chapter_index("236", "[REPEALED]")
+    store, report = _extract_hawaii(tmp_path, pages, only_title="04")
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
+    assert inventory == HI_GOOD | {"us-hi/statute/chapter-236"}
 
 
 # --- Iowa -------------------------------------------------------------------
