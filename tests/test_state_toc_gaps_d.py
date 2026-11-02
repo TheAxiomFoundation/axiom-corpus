@@ -23,11 +23,14 @@ from axiom_corpus.corpus import states
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.states import (
+    extract_dc_code,
     extract_minnesota_statutes,
     extract_nebraska_revised_statutes,
     extract_washington_rcw,
 )
 from tests.test_corpus_states import (
+    SAMPLE_DC_INDEX,
+    SAMPLE_DC_SECTION,
     SAMPLE_MINNESOTA_CHAPTER,
     SAMPLE_MINNESOTA_INDEX,
     SAMPLE_MINNESOTA_PART,
@@ -413,3 +416,110 @@ def test_washington_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
     pages = {"washington-rcw-html/index.html": SAMPLE_WASHINGTON_INDEX}
     with pytest.raises(ValueError, match="no Revised Code of Washington"):
         _extract_washington(tmp_path, monkeypatch, pages)
+
+
+# --- District of Columbia: per-title index.xml -> section XML files ---
+
+DC_TITLE_2_INDEX = "2/index.xml"
+DC_INDEX_TWO_SECTIONS = SAMPLE_DC_INDEX.replace(
+    '<xi:include href="./sections/1-101.xml"/>',
+    '<xi:include href="./sections/1-101.xml"/>\n    <xi:include href="./sections/1-102.xml"/>',
+)
+DC_GOOD_PAGES = {
+    "1/index.xml": DC_INDEX_TWO_SECTIONS,
+    "1/sections/1-101.xml": SAMPLE_DC_SECTION,
+    "1/sections/1-102.xml": SAMPLE_DC_SECTION.replace("1-101", "1-102"),
+}
+DC_TITLE_1 = {
+    "us-dc/statute/1",
+    "us-dc/statute/1/chapter-1",
+    "us-dc/statute/1/1-101",
+    "us-dc/statute/1/1-102",
+}
+DC_EMPTY_TITLE = (
+    '<?xml version="1.0" encoding="utf-8"?>\n'
+    '<container xmlns="https://code.dccouncil.us/schemas/dc-library">'
+    "<prefix>Title</prefix><num>2</num><heading>Government Administration.</heading>"
+    "</container>"
+)
+
+
+def _extract_dc(tmp_path, pages):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_dc_code(store, version="2026-04-29", source_dir=tmp_path / "source")
+    return store, report
+
+
+@pytest.mark.parametrize("failure", ["missing-file", "maintenance", "empty", "wrong-shape"])
+def test_dc_failed_section_file_remains_inventory_gap(tmp_path, failure):
+    failed = "1/sections/1-102.xml"
+    pages = dict(DC_GOOD_PAGES)
+    _fail_page(pages, failed, failure, {})
+    store, report = _extract_dc(tmp_path, pages)
+    assert report.section_count == 1
+    assert "1-102" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=DC_TITLE_1,
+        missing={"us-dc/statute/1/1-102"},
+        # The title index lists the section; a file that was read but is
+        # unusable is its own evidence.
+        gap_source=(
+            "dc-law-xml/titles/1/index.xml"
+            if failure == "missing-file"
+            else f"dc-law-xml/titles/{failed}"
+        ),
+    )
+
+
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape", "no-children"])
+def test_dc_failed_title_index_remains_inventory_gap(tmp_path, failure):
+    pages = dict(DC_GOOD_PAGES)
+    pages[DC_TITLE_2_INDEX] = _page_for(failure, {"no-children": DC_EMPTY_TITLE})
+    store, report = _extract_dc(tmp_path, pages)
+    assert report.section_count == 2
+    assert report.errors[0].startswith("title 2:")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=DC_TITLE_1 | {"us-dc/statute/2"},
+        missing={"us-dc/statute/2"},
+        gap_source="dc-law-xml/titles/2/index.xml",
+    )
+
+
+def test_dc_reserved_containers_stay_complete(tmp_path):
+    # The title index is the table of contents for every container in it. A
+    # container it marks "[Reserved]" lists nothing by law (Title 4, Part D of
+    # the official index is one), and so does a whole title marked reserved.
+    reserved_part = (
+        "<container><prefix>Part</prefix><num>D</num><heading>[Reserved].</heading></container>"
+    )
+    pages = dict(DC_GOOD_PAGES)
+    pages["1/index.xml"] = DC_INDEX_TWO_SECTIONS.replace(
+        "  </container>\n</container>", f"  </container>\n  {reserved_part}\n</container>"
+    )
+    pages[DC_TITLE_2_INDEX] = DC_EMPTY_TITLE.replace("Government Administration.", "[Reserved].")
+    store, report = _extract_dc(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == DC_TITLE_1 | {"us-dc/statute/1/part-d", "us-dc/statute/2"}
+
+
+def test_dc_interrupt_while_reading_a_section_stops_the_run(tmp_path, monkeypatch):
+    def interrupt(data):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(states, "_parse_dc_section_xml", interrupt)
+    with pytest.raises(KeyboardInterrupt):
+        _extract_dc(tmp_path, dict(DC_GOOD_PAGES))
+
+
+def test_dc_run_of_only_gaps_still_fails(tmp_path):
+    # An unparseable title index raised ParseError (a SyntaxError) on main; it
+    # is now a gap, and a run with no provisions still raises.
+    with pytest.raises((SyntaxError, ValueError)):
+        _extract_dc(tmp_path, {"1/index.xml": EMPTY_PAGE})

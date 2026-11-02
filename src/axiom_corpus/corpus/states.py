@@ -1149,11 +1149,21 @@ def extract_dc_code(
     items: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
     source_paths: list[Path] = []
+    errors: list[str] = []
+    seen: set[str] = set()
     title_count = 0
     container_count = 0
     section_count = 0
     remaining = limit
 
+    # A title index is the table of contents for every container and section
+    # under it. A title is written only once its index parses and lists
+    # something, unless the index marks the title reserved; containers it
+    # lists stay complete as listed (a "[Reserved]" container lists nothing
+    # by law). A section the index lists is written only once its file reads
+    # and parses. Otherwise each stays an inventory gap, so coverage reads
+    # incomplete: sourced from the index when the file cannot be read, from
+    # the file itself when it was read but is unusable.
     for title_dir in _iter_dc_title_dirs(title_root, only_title_token):
         if remaining is not None and remaining <= 0:
             break
@@ -1167,15 +1177,30 @@ def extract_dc_code(
         index_sha256 = store.write_bytes(index_artifact_path, index_bytes)
         source_paths.append(index_artifact_path)
         index_key = _state_source_key("us-dc", run_id, index_relative)
-        root = ET.fromstring(index_bytes)
+        try:
+            root = ET.fromstring(index_bytes)
+        except ET.ParseError as exc:
+            errors.append(f"title {title}: {index_relative}: {exc}")
+            title_container = _dc_index_items(
+                ET.Element("container"),
+                title=title,
+                source_path=index_key,
+                source_sha256=index_sha256,
+            )[0][0]
+            _append_container_gap(seen, items, title_container)
+            continue
 
-        title_count += 1
         containers, targets = _dc_index_items(
             root,
             title=title,
             source_path=index_key,
             source_sha256=index_sha256,
         )
+        if len(containers) == 1 and not targets and not _dc_is_reserved(containers[0].heading):
+            errors.append(f"title {title}: {index_relative} lists no containers or sections")
+            _append_container_gap(seen, items, containers[0])
+            continue
+        title_count += 1
         for container in containers:
             if remaining is not None and remaining <= 0:
                 break
@@ -1198,10 +1223,20 @@ def extract_dc_code(
             if remaining is not None and remaining <= 0:
                 break
             section_path = title_dir / "sections" / f"{target.section}.xml"
-            if not section_path.exists():
-                continue
-            section_bytes = section_path.read_bytes()
             section_relative = f"dc-law-xml/titles/{title}/sections/{target.section}.xml"
+            try:
+                section_bytes = section_path.read_bytes()
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"section {target.section}: {section_relative}: {exc}")
+                _append_dc_section_gap(
+                    seen,
+                    items,
+                    target,
+                    source_url=_dc_title_url(title),
+                    source_path=index_key,
+                    sha256=index_sha256,
+                )
+                continue
             section_artifact_path = store.source_path(
                 "us-dc",
                 DocumentClass.STATUTE,
@@ -1211,7 +1246,20 @@ def extract_dc_code(
             section_sha256 = store.write_bytes(section_artifact_path, section_bytes)
             source_paths.append(section_artifact_path)
             section_source_key = _state_source_key("us-dc", run_id, section_relative)
-            document = _parse_dc_section_xml(section_bytes)
+            try:
+                document = _parse_dc_section_xml(section_bytes)
+            except (ET.ParseError, ValueError) as exc:
+                errors.append(f"section {target.section}: {section_relative}: {exc}")
+                _append_dc_section_gap(
+                    seen,
+                    items,
+                    target,
+                    source_url=_dc_section_url(target.section),
+                    source_path=section_source_key,
+                    sha256=section_sha256,
+                )
+                continue
+            seen.add(document.citation_path)
             item = SourceInventoryItem(
                 citation_path=document.citation_path,
                 source_url=_dc_section_url(document.section),
@@ -1245,7 +1293,7 @@ def extract_dc_code(
             if remaining is not None:
                 remaining -= 1
 
-    if not items:
+    if not records:
         raise ValueError(f"no DC Code provisions extracted from {title_root}")
 
     inventory_path = store.inventory_path("us-dc", DocumentClass.STATUTE, run_id)
@@ -1272,6 +1320,7 @@ def extract_dc_code(
         coverage_path=coverage_path,
         coverage=coverage,
         source_paths=tuple(source_paths),
+        errors=tuple(errors),
     )
 
 
@@ -3139,6 +3188,42 @@ def _iter_dc_title_dirs(title_root: Path, only_title: str | None) -> Iterator[Pa
         title = _clean_title_token(title_dir.name)
         if only_title is None or title == only_title:
             yield title_dir
+
+
+def _dc_is_reserved(heading: str | None) -> bool:
+    """Whether a DC index heading marks its container reserved (e.g. "[Reserved].")."""
+    return heading is not None and re.search(r"\breserved\b", heading, re.I) is not None
+
+
+def _append_dc_section_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    target: _DcSectionTarget,
+    *,
+    source_url: str,
+    source_path: str,
+    sha256: str,
+) -> None:
+    """Record a section the title index lists but whose file yielded nothing."""
+    citation_path = f"us-dc/statute/{target.title}/{target.section}"
+    if citation_path in seen:
+        return
+    seen.add(citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=source_url,
+            source_path=source_path,
+            source_format=DC_XML_SOURCE_FORMAT,
+            sha256=sha256,
+            metadata={
+                "kind": "section",
+                "title": target.title,
+                "section": target.section,
+                "parent_citation_path": target.parent_citation_path,
+            },
+        )
+    )
 
 
 def _dc_index_items(
