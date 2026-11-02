@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-11-02-uk-uc-retirement-pension-income.json",
+      "sha256": "548e00851479a178cc52a568f35a419b4f4beb67b9733c291c4cdab750ad787b"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-11-02-uk-uc-retirement-pension-income.json",
+      "sha256": "4ba3210c6268b0e6ad881477e754ef7547f8c56d2ce39977d2318ab74a059659"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-11-02-uk-uc-retirement-pension-income.jsonl",
+      "sha256": "32ad32158b4d41b9144a0ca843f8bdd60c6cc345e24ab14a2ab7a1137306b5c7"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-11-02-uk-uc-retirement-pension-income/uksi/2002/1792/regulation-16.xml",
+      "sha256": "fa0a84efad1bbd805d50fb721dd99de45798914d03c6248e5ed3280490a82d98"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-11-02-uk-uc-retirement-pension-income/uksi/2013/376/regulation-67.xml",
+      "sha256": "72bcd0b64e6899a1089951d20d752ecf2e8ad78be25b1c1fbe331739416c1d48"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-11-02-uk-uc-retirement-pension-income/uksi/2013/376/regulation-73.xml",
+      "sha256": "d8afb040007ed775ae03a9e6664ee57bad1513cbe5685f89988b417251b79f5f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c8bd154fe42757a1bad6f07088809a3496e5bc43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-11-02-uk-uc-retirement-pension-income --source clml --citation uksi/2013/376/regulation/67 --citation uksi/2013/376/regulation/73 --citation uksi/2002/1792/regulation/16 --source-as-of 2026-11-02 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-11-02T17:18:49.033990+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-11-02-uk-uc-retirement-pension-income.md",
+      "sha256": "1740c15d577955bde229648061f7e562a9302358d66989a507497897ede880a8"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tc9efqlVT8aWFco4k3CXe9obbXa2Eokm+NOWDfMpfIKrotXy/xdzlAWMEro7CT1aFluaPSrMq9S9pu3m55IXCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-11-02-uk-uc-retirement-pension-income"
+}
