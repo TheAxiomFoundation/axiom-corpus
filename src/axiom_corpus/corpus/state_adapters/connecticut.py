@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -47,6 +47,8 @@ _STATUS_RE = re.compile(
     r"\b(repealed|reserved|transferred|obsolete|expired|omitted|conditionally repealed)\b",
     re.I,
 )
+# Statuses under which a title or chapter lists nothing by law.
+_EMPTY_BY_LAW_STATUSES = frozenset({"repealed", "reserved", "transferred"})
 
 
 @dataclass(frozen=True)
@@ -423,26 +425,47 @@ def _extract_source_set(
     if source_set == "current" and not titles:
         raise ValueError(f"no Connecticut titles selected for filter: {title_filter!r}")
 
+    # In the current set, a container is written as a provision only once its
+    # own table of contents lists children. Otherwise it stays an inventory
+    # gap, so coverage reads incomplete instead of silently losing everything
+    # under it. A page that could not be fetched is sourced from the parent
+    # listing that names it; a page that was read but lists nothing is sourced
+    # from that page. A title the index lists without a link, and a title or
+    # chapter its parent listing marks repealed, reserved or transferred, may
+    # list nothing. The supplement keeps its behaviour: its pages may list
+    # only what changed.
+    is_current = source_set == "current"
     for title in titles:
         if remaining_sections is not None and remaining_sections <= 0:
             break
-        _upsert(
-            items_by_path,
-            records_by_path,
-            order,
-            _title_inventory_item(title),
-            _title_record(
-                title,
-                version=version,
-                source_as_of=source_as_of,
-                expression_date=expression_date,
-            ),
-            replace_existing=source_set == "supplement" and title.citation_path not in records_by_path,
+        title_item = _title_inventory_item(title)
+        title_record = _title_record(
+            title,
+            version=version,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
         )
+        replace_title = source_set == "supplement" and title.citation_path not in records_by_path
+        if not is_current or not title.active:
+            _upsert(
+                items_by_path,
+                records_by_path,
+                order,
+                title_item,
+                title_record,
+                replace_existing=replace_title,
+            )
         if not title.active:
             continue
 
-        title_source = fetcher.fetch_title(source_set, title.number)
+        try:
+            title_source = fetcher.fetch_title(source_set, title.number)
+        except Exception as exc:
+            if not is_current:
+                raise
+            errors.append(f"title {title.number}: {exc}")
+            _append_inventory_gap(items_by_path, order, title_item)
+            continue
         title_recorded = _record_source(
             store,
             jurisdiction=jurisdiction,
@@ -457,26 +480,51 @@ def _extract_source_set(
             source_set=source_set,
             base_url=fetcher._base_url_for(source_set) or CONNECTICUT_CURRENT_BASE_URL,
         )
+        if is_current:
+            if not chapters and title.status not in _EMPTY_BY_LAW_STATUSES:
+                errors.append(f"title {title.number}: no chapters listed in title page")
+                _append_inventory_gap(
+                    items_by_path, order, _resourced(title_item, title_recorded)
+                )
+                continue
+            _upsert(
+                items_by_path,
+                records_by_path,
+                order,
+                title_item,
+                title_record,
+                replace_existing=False,
+            )
         if chapter_filter is not None:
             chapters = tuple(chapter for chapter in chapters if chapter.chapter == chapter_filter)
 
         for chapter in chapters:
             if remaining_sections is not None and remaining_sections <= 0:
                 break
-            _upsert(
-                items_by_path,
-                records_by_path,
-                order,
-                _chapter_inventory_item(chapter),
-                _chapter_record(
-                    chapter,
-                    version=version,
-                    source_as_of=source_as_of,
-                    expression_date=expression_date,
-                ),
-                replace_existing=source_set == "supplement" and chapter.citation_path not in records_by_path,
+            chapter_item = _chapter_inventory_item(chapter)
+            chapter_record = _chapter_record(
+                chapter,
+                version=version,
+                source_as_of=source_as_of,
+                expression_date=expression_date,
             )
-            chapter_source = fetcher.fetch_chapter(source_set, chapter.chapter)
+            if not is_current:
+                _upsert(
+                    items_by_path,
+                    records_by_path,
+                    order,
+                    chapter_item,
+                    chapter_record,
+                    replace_existing=chapter.citation_path not in records_by_path,
+                )
+            try:
+                chapter_source = fetcher.fetch_chapter(source_set, chapter.chapter)
+            except Exception as exc:
+                if not is_current:
+                    raise
+                errors.append(f"chapter {chapter.chapter}: {exc}")
+                _append_inventory_gap(items_by_path, order, chapter_item)
+                continue
             chapter_recorded = _record_source(
                 store,
                 jurisdiction=jurisdiction,
@@ -490,6 +538,21 @@ def _extract_source_set(
                 source=chapter_recorded,
                 source_set=source_set,
             )
+            if is_current:
+                if not sections and chapter.status not in _EMPTY_BY_LAW_STATUSES:
+                    errors.append(f"chapter {chapter.chapter}: no sections listed in chapter page")
+                    _append_inventory_gap(
+                        items_by_path, order, _resourced(chapter_item, chapter_recorded)
+                    )
+                    continue
+                _upsert(
+                    items_by_path,
+                    records_by_path,
+                    order,
+                    chapter_item,
+                    chapter_record,
+                    replace_existing=False,
+                )
             if remaining_sections is not None:
                 sections = sections[:remaining_sections]
             for section in sections:
@@ -908,12 +971,42 @@ def _upsert(
     *,
     replace_existing: bool,
 ) -> None:
+    if record.citation_path in items_by_path and record.citation_path not in records_by_path:
+        # An inventory gap stays a gap: its own listing could not be read.
+        return
     if record.citation_path not in records_by_path:
         order.append(record.citation_path)
     if record.citation_path in records_by_path and not replace_existing:
         return
     items_by_path[record.citation_path] = item
     records_by_path[record.citation_path] = record
+
+
+def _append_inventory_gap(
+    items_by_path: dict[str, SourceInventoryItem],
+    order: list[str],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected container whose table of contents yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the
+    container is expected: its parent listing, or its own unusable page.
+    """
+    if item.citation_path in items_by_path:
+        return
+    order.append(item.citation_path)
+    items_by_path[item.citation_path] = item
+
+
+def _resourced(item: SourceInventoryItem, source: _RecordedSource) -> SourceInventoryItem:
+    return replace(
+        item,
+        source_url=source.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+    )
 
 
 def _record_source(
