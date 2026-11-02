@@ -26,6 +26,7 @@ from axiom_corpus.corpus.state_adapters.missouri import extract_missouri_revised
 from axiom_corpus.corpus.state_adapters.nevada import extract_nevada_nrs
 from axiom_corpus.corpus.state_adapters.new_hampshire import extract_new_hampshire_rsa
 from axiom_corpus.corpus.state_adapters.new_mexico import extract_new_mexico_statutes
+from axiom_corpus.corpus.state_adapters.new_york import extract_new_york_openleg_api
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -68,6 +69,7 @@ from tests.test_corpus_new_hampshire import SAMPLE_ROOT_HTML as NH_ROOT_HTML
 from tests.test_corpus_new_hampshire import SAMPLE_TITLE_HTML as NH_TITLE_HTML
 from tests.test_corpus_new_mexico import SAMPLE_NAV_HTML as NM_NAV_HTML
 from tests.test_corpus_new_mexico import _sample_epub as nm_sample_epub
+from tests.test_corpus_new_york import SAMPLE_OPENLEG_TAX as NY_OPENLEG_TAX
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -665,4 +667,65 @@ def test_new_mexico_failed_chapter_epub_remains_inventory_gap(tmp_path, failure)
         expected=NM_EXTRACTED | {"us-nm/statute/chapter-27"},
         missing={"us-nm/statute/chapter-27"},
         gap_source=NM_NAV if failure == "missing-file" else NM_EPUB_27,
+    )
+
+
+# --- New York (OpenLegislation): laws.json -> one law tree JSON per law ---
+
+NY_LAWS = "new-york-openleg-json/laws.json"
+NY_TAX = "new-york-openleg-json/TAX.json"
+NY_LAWS_PAYLOAD = {
+    "success": True,
+    "result": {
+        "items": [
+            {"lawId": "ABC", "name": "Alcoholic Beverage Control", "lawType": "CONSOLIDATED"},
+            {"lawId": "TAX", "name": "Tax", "lawType": "CONSOLIDATED", "chapter": "60"},
+        ]
+    },
+}
+NY_ABC_PAYLOAD = json.loads(json.dumps(NY_OPENLEG_TAX))
+NY_ABC_PAYLOAD["result"]["info"]["lawId"] = "ABC"
+NY_EXTRACTED = {"us-ny/statute/ABC", "us-ny/statute/ABC/A22", "us-ny/statute/ABC/601"}
+NY_TAX_INFO = {"lawId": "TAX", "name": "Tax", "lawType": "CONSOLIDATED", "chapter": "60"}
+NY_FAILED_LAW = {
+    "wrong-shape": json.dumps({"success": True, "result": {"info": NY_TAX_INFO}}),
+    "no-children": json.dumps(
+        {
+            "success": True,
+            "result": {
+                "info": NY_TAX_INFO,
+                "documents": {
+                    "locationId": "-CH60",
+                    "docType": "CHAPTER",
+                    "title": "Tax",
+                    "documents": {"items": []},
+                },
+            },
+        }
+    ),
+}
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_new_york_openleg_failed_law_tree_remains_inventory_gap(tmp_path, failure):
+    # On main a law tree that could not be fetched or parsed was counted as
+    # skipped with no inventory item, and one that listed no documents read
+    # complete.
+    pages = {
+        NY_LAWS: json.dumps(NY_LAWS_PAYLOAD),
+        "new-york-openleg-json/ABC.json": json.dumps(NY_ABC_PAYLOAD),
+        NY_TAX: json.dumps(NY_OPENLEG_TAX),
+    }
+    _fail_page(pages, NY_TAX, failure, NY_FAILED_LAW)
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_new_york_openleg_api(store, version="2026-test", source_dir=tmp_path / "source")
+    assert report.section_count == 1
+    assert report.errors[0].startswith("TAX: ")
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NY_EXTRACTED | {"us-ny/statute/TAX"},
+        missing={"us-ny/statute/TAX"},
+        gap_source=NY_LAWS if failure == "missing-file" else NY_TAX,
     )
