@@ -16,6 +16,7 @@ import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_source_inventory
+from axiom_corpus.corpus.state_adapters import florida
 from axiom_corpus.corpus.state_adapters.alaska import (
     ALASKA_CHAPTER_PRINT_SOURCE_FORMAT,
     ALASKA_TITLE_INDEX_SOURCE_FORMAT,
@@ -33,6 +34,11 @@ from axiom_corpus.corpus.state_adapters.connecticut import (
     extract_connecticut_statutes,
 )
 from axiom_corpus.corpus.state_adapters.delaware import extract_delaware_code
+from axiom_corpus.corpus.state_adapters.florida import (
+    FLORIDA_CHAPTER_SOURCE_FORMAT,
+    FLORIDA_TITLE_INDEX_SOURCE_FORMAT,
+    extract_florida_statutes,
+)
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
 )
@@ -69,6 +75,8 @@ from tests.test_corpus_delaware import (
 from tests.test_corpus_delaware import (
     SAMPLE_SUBCHAPTER as DE_SUBCHAPTER_I,
 )
+from tests.test_corpus_florida import SAMPLE_CHAPTER as FL_CHAPTER_409
+from tests.test_corpus_florida import SAMPLE_TITLE_INDEX as FL_TITLE_XXX
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 VERSION = "2026-05-09"
@@ -547,4 +555,139 @@ def test_delaware_failed_subchapter_page_remains_inventory_gap(tmp_path, failure
             if failure == "missing-file"
             else "title30/c011/sc02/index.html"
         ),
+    )
+
+
+# --- Florida ----------------------------------------------------------------
+# Florida's titles come from a fixed list in the adapter, not from a fetched
+# index page, so a title page that cannot be fetched has no listing to source
+# a gap from; that run still stops.
+
+FL_TITLE_XXIX = f"{FLORIDA_TITLE_INDEX_SOURCE_FORMAT}/title-XXIX.html"
+FL_TITLE_XXX_PATH = f"{FLORIDA_TITLE_INDEX_SOURCE_FORMAT}/title-XXX.html"
+FL_CHAPTER_409_PATH = f"{FLORIDA_CHAPTER_SOURCE_FORMAT}/0400-0499/0409/0409.html"
+FL_CHAPTER_410_PATH = f"{FLORIDA_CHAPTER_SOURCE_FORMAT}/0400-0499/0410/0410.html"
+FL_GOOD = {
+    "us-fl/statute/title-xxx",
+    "us-fl/statute/chapter-409",
+    "us-fl/statute/chapter-409/part-i",
+    "us-fl/statute/409.016",
+    "us-fl/statute/409.145",
+}
+FL_CHAPTER_410_ROW = """<tr valign="top">
+  <td nowrap align="Right"><font>
+    <a href="index.cfm?App_mode=Display_Statute&URL=0400-0499/0410/0410ContentsIndex.html&StatuteYear=2025">Chapter 410</a>
+  </font></td>
+  <td class="ChapterTOC"><font>AGING AND ADULT SERVICES</font></td>
+</tr>
+</table>"""
+FL_EMPTY_PART = """  <div class="Part">
+    <div class="PartTitle"><div class="PartNumber">PART II</div><span class="PartTitle">OTHER</span></div>
+  </div>
+</div>
+</div>"""
+
+
+def _florida_pages() -> dict[str, str]:
+    return {FL_TITLE_XXX_PATH: FL_TITLE_XXX, FL_CHAPTER_409_PATH: FL_CHAPTER_409}
+
+
+def _extract_florida(tmp_path: Path, monkeypatch, pages: dict[str, str]):
+    monkeypatch.setattr(florida, "FLORIDA_TITLE_ROMANS", ("XXIX", "XXX"))
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_florida_statutes(store, version=VERSION, source_dir=tmp_path / "source")
+    return store, report
+
+
+@pytest.mark.parametrize("failure", [f for f in FAILURES if f != "missing-file"])
+def test_florida_failed_title_index_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    pages = _florida_pages()
+    _fail_page(
+        pages,
+        FL_TITLE_XXIX,
+        failure,
+        '<html><body><table><tr><td><a name="TitleXXIX"></a>TITLE XXIX</td>'
+        "<td>PUBLIC HEALTH</td></tr></table></body></html>",
+    )
+    store, report = _extract_florida(tmp_path, monkeypatch, pages)
+    assert report.section_count == 2
+    assert "title XXIX" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=FL_GOOD | {"us-fl/statute/title-xxix"},
+        missing={"us-fl/statute/title-xxix"},
+        gap_source=FL_TITLE_XXIX,
+    )
+
+
+def test_florida_unfetchable_title_index_still_stops_the_run(tmp_path, monkeypatch):
+    # Pins existing behaviour: with no fetched listing to source a gap from,
+    # a title index page that cannot be fetched stops the run.
+    with pytest.raises(FileNotFoundError):
+        _extract_florida(tmp_path, monkeypatch, _florida_pages())
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_florida_failed_chapter_page_remains_inventory_gap(tmp_path, monkeypatch, failure):
+    pages = _florida_pages()
+    pages[FL_TITLE_XXIX] = FL_TITLE_XXX.replace("XXX", "XXIX").replace("0409", "0408")
+    pages[f"{FLORIDA_CHAPTER_SOURCE_FORMAT}/0400-0499/0408/0408.html"] = FL_CHAPTER_409.replace(
+        "409", "408"
+    ).replace("TITLE XXX", "TITLE XXIX")
+    pages[FL_TITLE_XXX_PATH] = FL_TITLE_XXX.replace("</table>", FL_CHAPTER_410_ROW, 1)
+    _fail_page(
+        pages,
+        FL_CHAPTER_410_PATH,
+        failure,
+        '<html><body><div class="Chapters"><div class="Chapter"><div class="Title">'
+        '<div class="TitleNumber">TITLE XXX</div></div><div class="ChapterTitle">'
+        '<div class="ChapterNumber">CHAPTER 410</div></div></div></div></body></html>',
+    )
+    store, report = _extract_florida(tmp_path, monkeypatch, pages)
+    assert report.section_count == 4
+    assert "chapter 410" in report.errors[0]
+    title_xxix = {
+        "us-fl/statute/title-xxix",
+        "us-fl/statute/chapter-408",
+        "us-fl/statute/chapter-408/part-i",
+        "us-fl/statute/408.016",
+        "us-fl/statute/408.145",
+    }
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=FL_GOOD | title_xxix | {"us-fl/statute/chapter-410"},
+        missing={"us-fl/statute/chapter-410"},
+        gap_source=FL_TITLE_XXX_PATH if failure == "missing-file" else FL_CHAPTER_410_PATH,
+    )
+
+
+def test_florida_part_listing_no_sections_remains_inventory_gap(tmp_path, monkeypatch):
+    pages = _florida_pages()
+    pages[FL_TITLE_XXIX] = FL_TITLE_XXX.replace("XXX", "XXIX").replace("0409", "0408")
+    pages[f"{FLORIDA_CHAPTER_SOURCE_FORMAT}/0400-0499/0408/0408.html"] = FL_CHAPTER_409.replace(
+        "409", "408"
+    ).replace("TITLE XXX", "TITLE XXIX")
+    pages[FL_CHAPTER_409_PATH] = FL_CHAPTER_409.replace(
+        "</div>\n</div>\n</body>", FL_EMPTY_PART + "\n</body>", 1
+    )
+    assert "PART II" in pages[FL_CHAPTER_409_PATH]
+    store, report = _extract_florida(tmp_path, monkeypatch, pages)
+    part = "us-fl/statute/chapter-409/part-ii"
+    assert "part II" in report.errors[0]
+    title_xxix = {
+        "us-fl/statute/title-xxix",
+        "us-fl/statute/chapter-408",
+        "us-fl/statute/chapter-408/part-i",
+        "us-fl/statute/408.016",
+        "us-fl/statute/408.145",
+    }
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=FL_GOOD | title_xxix | {part},
+        missing={part},
+        gap_source=FL_CHAPTER_409_PATH,
     )
