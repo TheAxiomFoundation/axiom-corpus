@@ -283,24 +283,59 @@ def extract_new_mexico_statutes(
         for nav_source in nav_sources
         for chapter in parse_new_mexico_navigation_page(nav_source.data, base_url=base_url)
     )
+    # The navigation page that first lists each chapter: the source of a chapter
+    # gap when the chapter ePub itself could not be fetched.
+    chapter_nav_sources: dict[str, _RecordedSource] = {}
     for nav_source in nav_sources:
         path, recorded = _record_source(store, jurisdiction, run_id, nav_source)
         source_paths.append(path)
         source_by_relative[nav_source.relative_path] = recorded
+        for listed in parse_new_mexico_navigation_page(nav_source.data, base_url=base_url):
+            chapter_nav_sources.setdefault(listed.citation_path, recorded)
     if chapter_filter is not None:
         chapters = [chapter for chapter in chapters if chapter.chapter == chapter_filter]
 
+    def append_chapter_gap(chapter: NewMexicoChapterLink, source: _RecordedSource) -> None:
+        # The inventory item has no matching provision, so coverage lists it in
+        # ``missing_from_provisions``.
+        if chapter.citation_path in seen:
+            return
+        seen.add(chapter.citation_path)
+        items.append(
+            SourceInventoryItem(
+                citation_path=chapter.citation_path,
+                source_url=source.source_url,
+                source_path=source.source_path,
+                source_format=source.source_format,
+                sha256=source.sha256,
+                metadata={"source_type": "chapter_epub", "nmsa_chapter": chapter.chapter},
+            )
+        )
+
+    # A chapter is written as a provision only once its ePub lists sections.
+    # Otherwise it stays an inventory gap, so coverage reads incomplete instead
+    # of silently losing every section under it. An ePub that could not be
+    # fetched is sourced from the navigation page that lists the chapter; one
+    # that was fetched but is unusable from the ePub itself.
     for chapter in chapters:
         if remaining_sections is not None and remaining_sections <= 0:
             break
-        epub_source = fetcher.fetch_epub(chapter)
+        try:
+            epub_source = fetcher.fetch_epub(chapter)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"chapter {chapter.chapter}: {exc}")
+            append_chapter_gap(chapter, chapter_nav_sources[chapter.citation_path])
+            continue
         epub_path, epub_recorded = _record_source(store, jurisdiction, run_id, epub_source)
         source_paths.append(epub_path)
         source_by_relative[epub_source.relative_path] = epub_recorded
         try:
             parsed = parse_new_mexico_epub(epub_source.data, chapter=chapter)
-        except (OSError, ValueError, zipfile.BadZipFile) as exc:
+            if not parsed.sections:
+                raise ValueError("no sections listed in chapter ePub table of contents")
+        except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:
             errors.append(f"chapter {chapter.chapter}: {exc}")
+            append_chapter_gap(chapter, epub_recorded)
             continue
 
         if chapter.citation_path in seen:

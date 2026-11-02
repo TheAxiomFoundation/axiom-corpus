@@ -2,7 +2,7 @@
 
 The eCFR inventory and extraction commands include parts, subparts, and sections
 by default. Add `--include-appendices` to both commands when a new ingestion run
-should also contain supported part appendices:
+should also contain supported part and subpart appendices:
 
 ```bash
 axiom-corpus-ingest inventory-ecfr --base /tmp/ecfr-604 \
@@ -19,11 +19,70 @@ The Python functions `build_ecfr_inventory`,
 `build_ecfr_inventory_from_structures`, `iter_ecfr_title_provisions`, and
 `extract_ecfr` expose the same keyword, `include_appendices=False` by default.
 
-Supported part appendix identifiers are `Appendix A to Part 604` and equivalent
-single-letter or numeric appendix identifiers. Their citation paths are
-`us/regulation/45/604/appendix-a`; the parent remains the enclosing part, including
-when a source subject group or subpart contains the appendix. Traversal preserves
-source order without converting a provision twice.
+Traversal preserves source order without converting a provision twice.
+
+## Part appendices
+
+A part appendix names its part. The adapter makes the part row its parent, at
+level 1, wherever the appendix sits in the part: directly, in a subject group, or
+inside a subpart.
+
+| eCFR identifier | Citation path |
+| --- | --- |
+| `Appendix A to Part 604` | `us/regulation/45/604/appendix-a` |
+| `Appendix 12 to Part 604` | `us/regulation/45/604/appendix-12` |
+| `Appendix II to Part 200` | `us/regulation/2/200/appendix-ii` |
+| `Appendix to Part 720` (unnumbered) | `us/regulation/5/720/appendix` |
+| `Appendixes to Part 50` (a collective note) | `us/regulation/10/50/appendixes` |
+| `Appendix to Part 60-20` (a hyphenated title 41 part) | `us/regulation/41/60-20/appendix` |
+
+Designators follow the subpart-appendix grammar below: a number, a single letter,
+or an uppercase roman numeral, which the path lowercases. The legal identifier reads
+`2 CFR part 200, appendix II` (`5 CFR part 720, appendix` and
+`..., appendixes` for the unnumbered and collective forms). A hyphenated part
+(title 41) takes every form: `Appendix A to Part 60-300` maps to
+`us/regulation/41/60-300/appendix-a`, and the legal identifier of `Appendix to
+Part 60-20` reads `41 CFR part 60-20, appendix`. The eCFR of 2026-10-08 has no
+live collective part appendix; the adapter accepts the form so that part and
+subpart appendices share one grammar.
+
+Part appendices sort after the part's sections and subparts, by the subpart rule
+below with the part as the container. When the part's lettered designators all
+read as roman numerals and one has more than one character, the adapter treats
+them as numerals and sorts them by value (2 CFR 200's Appendices I–XII sort
+1–12). Otherwise a letter sorts by `ord` and a number by its value. An unnumbered or collective appendix sorts at
+1,000,000: before every letter, numeral and number above 0, and tied with an
+`Appendix 0`, which the citation path then orders. A part appendix counts toward
+its part's classification when it sits in the part it names, reserved or not. A
+multi-character designator
+among letters (`II` beside `A`) fails validation.
+
+A number, or a letter among letters, keeps the path, ordinal, legal identifier,
+identifiers and metadata it had before the adapter read roman and unnumbered part
+appendices: its metadata carries `appendix` (the lowercased designator) and
+`appendix_identifier`, and no `appendix_numbering`. A roman-numbered,
+unnumbered or collective part appendix also carries `appendix_numbering` (`roman`,
+or null), from which a structure-only placeholder takes its ordinal. By design, a
+live single letter (`I`, `V`, `X`, `L`, `C`, `D`, `M`) reads as a numeral in a part
+whose other lettered appendices read as roman numerals, including a reserved
+multi-character one. No eCFR part had that shape on 2026-10-08.
+
+The adapter matches part appendix identifiers as ASCII only, as it does subpart
+appendix identifiers. Case-insensitive Unicode matching would read look-alikes by
+case folding: the Kelvin sign as `appendix-k`, a dotless `ı` as `appendix-ı`, which
+the citation-path grammar rejects. Such identifiers, and a no-break space between
+words, fail validation. No eCFR appendix identifier of 2026-10-08 contains a
+non-ASCII character other than `§`, and none of those parse as part appendices.
+
+The eCFR title structures of 2026-10-08 list 1,588 nonreserved part appendices with
+a number or single letter, 82 roman-numbered ones in 28 parts and 60 unnumbered
+ones, and the adapter parses all three forms. With `--include-appendices`, 80 of the
+parts that hold roman or unnumbered appendices pass inventory validation. The other
+8 fail on another node in the part: `Figure 1 to Part 1213`, `Table 1 to Part 150`, `Policy Statement to Part 145`,
+`Figures to Part 38`, `Appendix I(F) to Part 13`, or a nonreserved
+`Appendix IV to Part 261 [Reserved for Radioactive Waste Test Methods]`. These
+counts leave out hyphenated title 41 parts, whose appendices the adapter also
+parses.
 
 ## Subpart appendices
 
@@ -57,7 +116,13 @@ or not, never changes how its named siblings sort; reserved appendices do count.
 `extract-ecfr` classifies designators from the retained structure, so a
 structure-only placeholder and the XML record it stands in for get the same
 ordinal; extraction skips an appendix that only the XML has because it falls
-outside the inventory.
+outside the inventory. The adapter classifies part appendices the same way, with the
+part as the container. A caller of `iter_ecfr_title_provisions` can pass
+`appendix_numbering` from a structure dated differently from the XML. If the XML
+holds a designated part or subpart appendix that the structure lacks, and no
+allowlist leaves that appendix out, the iterator fails closed with `designator order
+is ambiguous`. `extract-ecfr` takes the allowlist and the numbering from the same
+structure, so it skips an XML-only appendix instead.
 
 A subpart appendix must sit inside the subpart and part it names. One that does
 not (for example `Appendix A to Subpart F of Part 2520`, which the eCFR places
@@ -65,12 +130,13 @@ outside any subpart) fails validation, as a part appendix that names another par
 does.
 
 Opted-in inventory construction rejects unsupported nonreserved identifiers,
-including multi-letter part appendix identifiers such as `Appendix II to Part 604`,
-unnumbered part appendices (`Appendix to Part 720`), hyphenated or alphanumeric
-designators (`Appendix A-1 to Subpart I of Part 550`, `Appendix C1 to Subpart B of
-Part 430`), and identifiers that cite the title (`Appendix B to Subpart A of
-10 CFR Part 51`). A parsed part that contradicts the enclosing part also fails
-validation. These errors do not imply full appendix coverage.
+including hyphenated, alphanumeric or lowercase multi-character designators
+(`Appendix D-1 to Part 208`, `Appendix M1 to Part 226`, `Appendix A-1 to Subpart I
+of Part 550`, `Appendix C1 to Subpart B of Part 430`, `Appendix ii to Part 604`), a
+collective note with a designator (`Appendixes A to Part 604`), identifiers that cite the title (`Appendix B to Subpart A of 10 CFR Part
+51`, `Appendix to 19 CFR Part 0`), and nodes other than appendices to a part or
+subpart (`Figure 1 to Part 1213`, `Appendix A to Chapter I`). A parsed part that
+contradicts the enclosing part also fails validation. These errors do not imply full appendix coverage.
 Exact `--section` selectors exclude appendices before validation. The lower-level
 iterator likewise applies an explicit citation allowlist before converting an
 appendix; selected unsupported identifiers still fail closed.

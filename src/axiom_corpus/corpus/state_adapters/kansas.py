@@ -341,6 +341,12 @@ def extract_kansas_statutes(
     if not root_chapters:
         raise ValueError(f"no Kansas statute chapters selected for filter: {only_title!r}")
 
+    # A container is written as a provision only once its own table of
+    # contents lists children, and a section page that cannot be fetched or
+    # read stays an inventory gap too, so coverage reads incomplete instead of
+    # silently losing what is under it. A page that could not be fetched is
+    # sourced from the parent listing that names it; a page that was read but
+    # is unusable is sourced from that page.
     for chapter_page in _fetch_kansas_chapter_pages(
         fetcher,
         [chapter.chapter for chapter in root_chapters],
@@ -353,6 +359,7 @@ def extract_kansas_statutes(
         )
         if chapter_page.error is not None:
             errors.append(f"chapter {chapter_page.chapter}: {chapter_page.error}")
+            _append_inventory_gap(seen, items, _chapter_inventory_item(root_chapter))
             continue
         assert chapter_page.source is not None
         chapter_recorded = _record_source(
@@ -375,6 +382,10 @@ def extract_kansas_statutes(
             source=chapter_recorded,
             base_url=base_url,
         )
+        if not listings:
+            errors.append(f"chapter {chapter.chapter}: no sections listed in chapter page")
+            _append_inventory_gap(seen, items, _chapter_inventory_item(chapter))
+            continue
         if article_filter is not None:
             articles = tuple(
                 article for article in articles if article.article == article_filter
@@ -398,7 +409,15 @@ def extract_kansas_statutes(
             title_count += 1
             container_count += 1
         article_by_id: dict[str, KansasArticle] = {}
+        listed_articles = {listing.article for listing in listings}
         for article in articles:
+            if article.article not in listed_articles:
+                errors.append(
+                    f"chapter {article.chapter} article {article.article}: "
+                    "no sections listed in chapter page"
+                )
+                _append_inventory_gap(seen, items, _article_inventory_item(article))
+                continue
             if _append_unique(
                 seen,
                 items,
@@ -437,6 +456,11 @@ def extract_kansas_statutes(
                 errors.append(
                     f"section {section_page.listing.section_label}: {section_page.error}"
                 )
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _listing_inventory_item(section_page.listing, chapter_recorded),
+                )
                 continue
             assert section_page.source is not None
             section_recorded = _record_source(
@@ -461,6 +485,11 @@ def extract_kansas_statutes(
                 )
             except ValueError as exc:
                 errors.append(f"section {section_page.listing.section_label}: {exc}")
+                _append_inventory_gap(
+                    seen,
+                    items,
+                    _listing_inventory_item(section_page.listing, section_recorded),
+                )
                 continue
             if section.citation_path in seen:
                 errors.append(f"duplicate citation path: {section.citation_path}")
@@ -805,6 +834,44 @@ def _fetch_kansas_section_page(
         return _KansasSectionPage(listing=listing, source=fetcher.fetch_section(listing))
     except BaseException as exc:  # pragma: no cover
         return _KansasSectionPage(listing=listing, error=exc)
+
+
+def _append_inventory_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected provision whose page yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. Its source is the page that shows the
+    provision is expected: its parent listing, or its own unusable page.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
+
+
+def _listing_inventory_item(
+    listing: KansasSectionListing,
+    source: _RecordedSource,
+) -> SourceInventoryItem:
+    """A section known only from its chapter page listing."""
+    return SourceInventoryItem(
+        citation_path=f"us-ks/statute/{_section_source_id(listing.section_label)}",
+        source_url=listing.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+        metadata={
+            "kind": "section",
+            "chapter": listing.chapter,
+            "article": listing.article,
+            "section": listing.section_label,
+            "heading": listing.heading,
+        },
+    )
 
 
 def _chapter_inventory_item(chapter: KansasChapter) -> SourceInventoryItem:
