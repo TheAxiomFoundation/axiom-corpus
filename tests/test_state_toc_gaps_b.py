@@ -20,6 +20,7 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
 )
 from axiom_corpus.corpus.state_adapters.michigan import extract_michigan_compiled_laws
+from axiom_corpus.corpus.state_adapters.missouri import extract_missouri_revised_statutes
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -41,6 +42,9 @@ from tests.test_corpus_massachusetts import (
 )
 from tests.test_corpus_michigan import SAMPLE_CHAPTER_XML as MI_CHAPTER_XML
 from tests.test_corpus_michigan import SAMPLE_INDEX_HTML as MI_INDEX_HTML
+from tests.test_corpus_missouri import SAMPLE_CHAPTER_HTML as MO_CHAPTER_HTML
+from tests.test_corpus_missouri import SAMPLE_ROOT_HTML as MO_ROOT_HTML
+from tests.test_corpus_missouri import SAMPLE_VIEW_CHAPTER_HTML as MO_VIEW_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -298,3 +302,91 @@ def test_michigan_repealed_chapter_without_sections_stays_complete(tmp_path):
     records = {record.citation_path: record for record in load_provisions(report.provisions_path)}
     assert set(records) == MI_EXTRACTED | {"us-mi/statute/chapter-750"}
     assert records["us-mi/statute/chapter-750"].metadata["status"] == "repealed"
+
+
+# --- Missouri: root (titles and chapters) -> chapter index -> full-chapter text ---
+
+MO_ROOT = "missouri-rs-root-html/Home.aspx.html"
+MO_CHAPTER_143 = "missouri-rs-chapter-html/chapter-143.html"
+MO_CHAPTER_144 = "missouri-rs-chapter-html/chapter-144.html"
+MO_VIEW_144 = "missouri-rs-view-chapter-html/chapter-144.html"
+MO_ROOT_TWO_CHAPTERS = MO_ROOT_HTML.replace(
+    "</div>\n</details>",
+    '</div>\n  <div><a href="/main/OneChapter.aspx?chapter=144">144 Sales Tax</a></div>\n</details>',
+)
+MO_GOOD_PAGES = {
+    MO_ROOT: MO_ROOT_TWO_CHAPTERS,
+    MO_CHAPTER_143: MO_CHAPTER_HTML,
+    "missouri-rs-view-chapter-html/chapter-143.html": MO_VIEW_HTML,
+    MO_CHAPTER_144: MO_CHAPTER_HTML.replace("143", "144"),
+    MO_VIEW_144: MO_VIEW_HTML.replace("143", "144"),
+}
+MO_EXTRACTED = {"us-mo/statute/title-x", "us-mo/statute/chapter-143", "us-mo/statute/143.011"}
+MO_EMPTY_CHAPTER = "<html><body><p>Title X TAXATION AND REVENUE Chapter 144 Sales Tax</p><table></table></body></html>"
+
+
+def _extract_missouri(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_missouri_revised_statutes(
+        store,
+        version="2026-05-10",
+        source_dir=tmp_path / "source",
+        expression_date="2026-05-10",
+        workers=1,
+    )
+    return store, report
+
+
+def test_missouri_title_listing_no_chapters_remains_inventory_gap(tmp_path):
+    # Titles have no page of their own: the root lists each title's chapters.
+    pages = dict(MO_GOOD_PAGES)
+    pages[MO_ROOT] = MO_ROOT_HTML + (
+        '<details><summary><span class="lr-font-emph">Chs. 156-175</span>'
+        '<span class="lr-font-emph">XI EDUCATION AND LIBRARIES</span></summary></details>'
+    )
+    del pages[MO_CHAPTER_144], pages[MO_VIEW_144]
+    store, report = _extract_missouri(tmp_path, pages)
+    assert "title XI" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MO_EXTRACTED | {"us-mo/statute/title-xi"},
+        missing={"us-mo/statute/title-xi"},
+        gap_source=MO_ROOT,
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_missouri_failed_chapter_index_remains_inventory_gap(tmp_path, failure):
+    # On main a chapter index that could not be fetched was logged as an error
+    # with no inventory item, so coverage still read complete.
+    pages = dict(MO_GOOD_PAGES)
+    _fail_page(pages, MO_CHAPTER_144, failure, {"no-children": MO_EMPTY_CHAPTER})
+    store, report = _extract_missouri(tmp_path, pages)
+    assert report.section_count == 1
+    assert "chapter 144" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MO_EXTRACTED | {"us-mo/statute/chapter-144"},
+        missing={"us-mo/statute/chapter-144"},
+        gap_source=MO_ROOT if failure == "missing-file" else MO_CHAPTER_144,
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_missouri_failed_full_chapter_text_remains_inventory_gap(tmp_path, failure):
+    # The chapter index lists the sections; the full-chapter page carries them.
+    pages = dict(MO_GOOD_PAGES)
+    _fail_page(pages, MO_VIEW_144, failure, {"no-children": MO_VIEW_HTML})
+    store, report = _extract_missouri(tmp_path, pages)
+    assert report.section_count == 1
+    assert "chapter 144 full text" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MO_EXTRACTED | {"us-mo/statute/chapter-144"},
+        missing={"us-mo/statute/chapter-144"},
+        gap_source=MO_CHAPTER_144 if failure == "missing-file" else MO_VIEW_144,
+    )
