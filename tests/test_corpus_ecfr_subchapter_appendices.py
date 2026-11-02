@@ -1,7 +1,7 @@
 """Subchapter appendices ("Appendix to Subchapter D", 41 CFR chapter 101).
 
-The eCFR places an appendix to a subchapter in that subchapter's last part: 41 CFR
-chapter 101's "Appendix to Subchapter D" is in part 101-21, at reader path
+The eCFR places 41 CFR chapter 101's "Appendix to Subchapter D" in that subchapter's
+last part, part 101-21, at reader path
 .../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D. On 2026-10-08 it
 is the only live one in all 49 titles; three more in title 41 are reserved.
 
