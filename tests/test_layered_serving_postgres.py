@@ -3760,9 +3760,7 @@ def _served_by_precedence(scopes: Sequence[Scope]) -> dict[tuple[str, str, str],
             if scope.layer != layer:
                 continue
             for node in scope.nodes:
-                served.setdefault(
-                    (*scope.pair, node.path), _provision_id(node.path, scope.version)
-                )
+                served.setdefault((*scope.pair, node.path), _provision_id(node.path, scope.version))
     return served
 
 
@@ -3811,9 +3809,7 @@ def test_each_path_resolves_to_its_highest_layer_and_withdrawn_rows_stay_withdra
             }
             assert served == expected
             member_ids = {
-                _provision_id(node.path, scope.version)
-                for scope in members
-                for node in scope.nodes
+                _provision_id(node.path, scope.version) for scope in members for node in scope.nodes
             }
             withdrawn = _ids(connection, "corpus.provisions") - member_ids
             assert withdrawn.isdisjoint(served.values())

@@ -16,6 +16,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 from base64 import b64encode
 from collections.abc import Sequence
 from pathlib import Path
@@ -35,10 +36,12 @@ from axiom_corpus.corpus.navigation import (
     merge_layered_parent_paths,
     scope_parent_paths,
 )
+from axiom_corpus.corpus.release_policy import ReleaseGatePolicy, WithdrawnScope
 from axiom_corpus.corpus.release_quality import (
     ReleaseValidationReport,
     _LayeredCitationOwners,
     validate_release,
+    validate_releases,
 )
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
@@ -947,24 +950,26 @@ def test_parent_closure_stays_per_scope_across_layers(
 Rows = Sequence[tuple[str, str | None]]
 
 
-def _write_tree_scope(store: CorpusArtifactStore, version: str, rows: Rows) -> None:
-    """A complete fx/statute scope of (citation path, declared parent) rows."""
-    source = store.source_path("fx", "statute", version, "statute.xml")
+def _write_tree_scope(
+    store: CorpusArtifactStore, version: str, rows: Rows, *, document_class: str = "statute"
+) -> None:
+    """A complete fx scope of (citation path, declared parent) rows."""
+    source = store.source_path("fx", document_class, version, "statute.xml")
     source_sha = store.write_text(source, "<statute>Official text.</statute>")
     source_rel = source.relative_to(store.root).as_posix()
     store.write_inventory(
-        store.inventory_path("fx", "statute", version),
+        store.inventory_path("fx", document_class, version),
         [
             SourceInventoryItem(citation_path=path, source_path=source_rel, sha256=source_sha)
             for path, _parent in rows
         ],
     )
     store.write_provisions(
-        store.provisions_path("fx", "statute", version),
+        store.provisions_path("fx", document_class, version),
         [
             ProvisionRecord(
                 jurisdiction="fx",
-                document_class="statute",
+                document_class=document_class,
                 citation_path=path,
                 parent_citation_path=parent,
                 version=version,
@@ -979,7 +984,7 @@ def _write_tree_scope(store: CorpusArtifactStore, version: str, rows: Rows) -> N
         ],
     )
     store.write_json(
-        store.coverage_path("fx", "statute", version),
+        store.coverage_path("fx", document_class, version),
         {
             "complete": True,
             "source_count": len(rows),
@@ -1355,3 +1360,177 @@ def test_primary_only_uniqueness_matches_pre_layer_rule(
         actual.append(None if conflict is None else conflict[1])
 
     assert actual == _reference_primary_conflicts(claims)
+
+
+# ---------------------------------------------------------------------------
+# Validation: the batched path (validate_releases) agrees with validate_release.
+# ---------------------------------------------------------------------------
+
+
+def _batch_corpus(root: Path) -> CorpusArtifactStore:
+    """Scopes that layered and unlayered selectors share."""
+    store = CorpusArtifactStore(root)
+    _write_tree_scope(
+        store,
+        "v-base",
+        (*_BASE_TITLE_1, ("fx/statute/1/a", "fx/statute/1"), ("fx/statute/1/b", "fx/statute/1/a")),
+    )
+    # A root under no served ancestor.
+    _write_tree_scope(store, "v-stray", (("fx/statute/l/5", None),))
+    # Puts 1/a under 1/b, where the base puts 1/b under 1/a: a cycle.
+    _write_tree_scope(
+        store, "v-flip", (("fx/statute/1/a", "fx/statute/1/b"), ("fx/statute/1/b", None))
+    )
+    # Two primary scopes that re-encode the same base path.
+    _write_tree_scope(store, "v-section", (("fx/statute/1/2", None),))
+    _write_tree_scope(store, "v-dup", (("fx/statute/1/2", None),))
+    # The base's paths in another pair: a cross-pair overlap.
+    _write_tree_scope(store, "v-other-pair", _BASE_TITLE_1, document_class="regulation")
+    return store
+
+
+def _batch_releases() -> list[ReleaseManifest]:
+    def statute(version: str, layer: str = LAYER_PRIMARY) -> ReleaseScope:
+        return ReleaseScope("fx", "statute", version, layer=layer)
+
+    base = statute("v-base", LAYER_BASE)
+    stray, flip, section, dup = map(statute, ("v-stray", "v-flip", "v-section", "v-dup"))
+    other_base = ReleaseScope("fx", "regulation", "v-other-pair", layer=LAYER_BASE)
+    other = ReleaseScope("fx", "regulation", "v-other-pair")
+    profiled = COMPLETE_EXPRESSION_DATES_PROFILE
+    return [
+        ReleaseManifest("fx-layered", (base, stray, flip), quality_profile=profiled),
+        # The same primary scopes, and more, in a release that layers nothing.
+        ReleaseManifest("fx-unlayered", (stray, flip, section, dup), quality_profile=profiled),
+        # Two primaries of a layered pair carry one path.
+        ReleaseManifest("fx-same-layer", (base, section, dup), quality_profile=profiled),
+        # A base scope's paths carried by a primary of another pair.
+        ReleaseManifest("fx-cross-pair", (base, section, other), quality_profile=profiled),
+        # A base scope in each pair, unprofiled.
+        ReleaseManifest("fx-two-bases", (base, section, other_base, stray)),
+        # v-base selected as a primary scope.
+        ReleaseManifest("fx-base-as-primary", (statute("v-base"), stray), quality_profile=profiled),
+    ]
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+def test_batched_validation_equals_validate_release_for_layered_selectors(
+    tmp_path: Path, workers: int
+) -> None:
+    """validate_releases reads each scope once for every selector, keeping a
+    scope's parents when any selector layers its pair; each selector's report
+    still equals validate_release's, layered warnings and errors included."""
+    store = _batch_corpus(tmp_path / "corpus")
+    releases = _batch_releases()
+    for max_issues in (1, 2, 200):
+        expected = [
+            validate_release(store.root, release, max_issues=max_issues).to_mapping()
+            for release in releases
+        ]
+        actual = validate_releases(store.root, releases, max_issues=max_issues, workers=workers)
+        assert [report.to_mapping() for report in actual] == expected
+    codes = {
+        # The fixture rows carry no parent ids; that warning is not the point.
+        release.name: sorted(
+            {issue.code for issue in report.issues if issue.code != "missing_parent_id"}
+        )
+        for release, report in zip(
+            releases, validate_releases(store.root, releases, workers=workers), strict=True
+        )
+    }
+    assert codes == {
+        "fx-layered": ["layered_parent_cycle_broken", "layered_primary_root_unattached"],
+        "fx-unlayered": ["duplicate_release_citation"],
+        "fx-same-layer": ["duplicate_release_citation"],
+        "fx-cross-pair": ["duplicate_release_citation", "layered_citation_outside_pair"],
+        "fx-two-bases": ["layered_primary_root_unattached"],
+        "fx-base-as-primary": [],
+    }
+
+
+_BATCH_VERSIONS = ("v0", "v1", "v2", "v3")
+
+
+@settings(max_examples=60, deadline=None)
+@given(
+    trees=st.lists(_TREE, min_size=len(_BATCH_VERSIONS), max_size=len(_BATCH_VERSIONS)),
+    selectors=st.lists(
+        st.tuples(
+            st.lists(st.sampled_from(_BATCH_VERSIONS), min_size=1, unique=True),
+            st.one_of(st.none(), st.sampled_from(_BATCH_VERSIONS)),
+            st.booleans(),
+        ),
+        min_size=1,
+        max_size=4,
+    ),
+    max_issues=st.integers(1, 6),
+)
+def test_batched_validation_equals_validate_release_on_generated_selectors(
+    trees: list[list[tuple[str, str | None]]],
+    selectors: list[tuple[list[str], str | None, bool]],
+    max_issues: int,
+) -> None:
+    """Any selectors over shared scopes, each with or without a base scope (a
+    scope may be base in one selector and primary in another): the batched
+    reports equal the one-selector reports."""
+    releases = []
+    for index, (versions, base, profiled) in enumerate(selectors):
+        releases.append(
+            ReleaseManifest(
+                f"fx-generated-{index}",
+                tuple(
+                    ReleaseScope(
+                        "fx", "statute", version, layer=LAYER_BASE if version == base else "primary"
+                    )
+                    for version in versions
+                ),
+                quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE if profiled else None,
+            )
+        )
+    with tempfile.TemporaryDirectory() as directory:
+        store = CorpusArtifactStore(Path(directory) / "corpus")
+        for version, rows in zip(_BATCH_VERSIONS, trees, strict=True):
+            _write_tree_scope(store, version, rows)
+        expected = [
+            validate_release(store.root, release, max_issues=max_issues).to_mapping()
+            for release in releases
+        ]
+        actual = validate_releases(store.root, releases, max_issues=max_issues)
+        assert [report.to_mapping() for report in actual] == expected
+
+
+def _withdrawn(scope: ReleaseScope) -> ReleaseGatePolicy:
+    return ReleaseGatePolicy(
+        withdrawn={
+            scope.key: WithdrawnScope(
+                scope=ReleaseScope(*scope.key),
+                withdrawn_on="2026-10-01",
+                listed_on="2026-10-02",
+                decision="test decision",
+                reason="Superseded.",
+                run_note="docs/ingest-runs/test.md",
+            )
+        }
+    )
+
+
+@pytest.mark.parametrize("layer", [LAYER_BASE, LAYER_PRIMARY])
+def test_a_withdrawn_scope_stays_withdrawn_in_either_layer(tmp_path: Path, layer: str) -> None:
+    """The withdrawal gate keys on the scope, not its layer: selecting a
+    withdrawn scope as the base layer fails exactly as selecting it as primary."""
+    store = _batch_corpus(tmp_path / "corpus")
+    withdrawn = ReleaseScope("fx", "statute", "v-base", layer=layer)
+    release = ReleaseManifest(
+        "fx-withdrawn",
+        (withdrawn, ReleaseScope("fx", "statute", "v-stray")),
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+    )
+    policy = _withdrawn(withdrawn)
+    for report in (
+        validate_release(store.root, release, policy=policy),
+        *validate_releases(store.root, [release], policy=policy),
+    ):
+        assert not report.ok
+        assert [
+            (issue.code, issue.version) for issue in report.issues if issue.severity == "error"
+        ] == [("withdrawn_scope_selected", "v-base")]
