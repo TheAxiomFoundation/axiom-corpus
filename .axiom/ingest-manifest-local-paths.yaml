@@ -15,8 +15,11 @@
 #   that hold the paths, so a manifest that changes must lose its paths and
 #   its entry together;
 # - an entry whose manifest no longer records a local path fails as stale;
-# - an entry whose (path, sha256) is not one grandfathered on 2026-10-20
-#   (GRANDFATHERED in the test) fails, so no entry can be added.
+# - an entry whose (path, sha256) is not one grandfathered (GRANDFATHERED in
+#   the test) fails, so no entry can be added. The set is the fourteen on main
+#   on 2026-10-20. Main signed three of them again on 2026-10-27 (f99e3990c),
+#   for their run notes only, keeping the same command text; on 2026-11-02 the
+#   set took those three at their new bytes in place of the old.
 #
 # Scrubbing re-signs the manifest, which needs the corpus ingest key: the
 # hub's to do; agents never read the key. For each scope: fetch it
@@ -63,7 +66,7 @@ manifests:
     fields: [command.text]
     issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
   - path: .axiom/ingest-manifests/us-co/policy/2026-07-21-co-snap-policy.json
-    sha256: c26cbc4250b352b0af8ef5fd408711337f53e6b7b6c492ef1b8c616233de42bc
+    sha256: e2ea12dae7cbd386b27a3d85dc117a7e62bc83e89176e453f6e61479a8bb9379
     fields: [command.text]
     issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
   - path: .axiom/ingest-manifests/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.json
@@ -75,11 +78,11 @@ manifests:
     fields: [command.text]
     issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
   - path: .axiom/ingest-manifests/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json
-    sha256: 60e8d243f29ae7bf58a0939cc6f71d7394551aeefce1f5367c23bf0e4a905369
+    sha256: 294679b9cb0c424de1ad0eeba5c77243e6238c8ea86367674429ace72e814fd1
     fields: [command.text]
     issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
   - path: .axiom/ingest-manifests/us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json
-    sha256: dc417f56481d4de2fd47ab3f483cb97d0efac2fa5cdead3e14daca08a6cd8365
+    sha256: 2e58155928878a69a8fa21d11c874b91a79e83ccb42dff2abd8bccd70036e738
     fields: [command.text]
     issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/896
   - path: .axiom/ingest-manifests/us/statute/2026-06-26-chip-title-xxi-title-42.json

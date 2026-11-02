@@ -12,7 +12,8 @@ Invariants:
    only while its manifest keeps the bytes it pins (sha256) and records paths in
    exactly the fields it lists; a stale entry fails; and an entry whose
    ``(path, sha256)`` is not in ``GRANDFATHERED`` (the fourteen on ``main`` on
-   2026-10-20) fails, so the allowlist only shrinks. A manifest or allowlist
+   2026-10-20, three of them at the bytes main signed again on 2026-10-27)
+   fails, so the allowlist only shrinks. A manifest or allowlist
    that cannot be read fails closed.
 2. Write time. ``build_ingest_manifest`` records an absolute path inside the
    checkout repository-relative (through ``~``, ``$HOME``, short-option and
@@ -83,10 +84,13 @@ from tests.test_ingest_manifest_provenance import _artifact, _init_repo, _keys
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # The fourteen manifests on main that recorded a local path when this guard
-# landed (2026-10-20; axiom-corpus#896), each at the bytes it had. An allowlist
-# entry must be one of these pairs, so the allowlist can only lose entries.
-# This set only ever loses members: never add to it; sign the manifest again
-# without the path.
+# was written (2026-10-20; axiom-corpus#896), each at the bytes it had. Main
+# signed three of them again on 2026-10-27 (f99e3990c, for their attested run
+# notes only, with the same command text and so the same local path), before
+# sign_ingest_manifest refused to; since 2026-11-02 those three are pinned at
+# the re-signed bytes in place of the old. An allowlist entry must be one of
+# these pairs, so the allowlist can only lose entries. This set only ever
+# loses members: never add to it; sign the manifest again without the path.
 _MANIFESTS = ".axiom/ingest-manifests/"
 GRANDFATHERED = frozenset(
     {
@@ -120,7 +124,7 @@ GRANDFATHERED = frozenset(
         ),
         (
             _MANIFESTS + "us-co/policy/2026-07-21-co-snap-policy.json",
-            "c26cbc4250b352b0af8ef5fd408711337f53e6b7b6c492ef1b8c616233de42bc",
+            "e2ea12dae7cbd386b27a3d85dc117a7e62bc83e89176e453f6e61479a8bb9379",
         ),
         (
             _MANIFESTS + "us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.json",
@@ -132,11 +136,11 @@ GRANDFATHERED = frozenset(
         ),
         (
             _MANIFESTS + "us-wv/manual/2026-07-21-wv-income-maintenance-manual.json",
-            "60e8d243f29ae7bf58a0939cc6f71d7394551aeefce1f5367c23bf0e4a905369",
+            "294679b9cb0c424de1ad0eeba5c77243e6238c8ea86367674429ace72e814fd1",
         ),
         (
             _MANIFESTS + "us-wv/manual/2026-07-21-wv-snap-healthy-choices-overlay.json",
-            "dc417f56481d4de2fd47ab3f483cb97d0efac2fa5cdead3e14daca08a6cd8365",
+            "2e58155928878a69a8fa21d11c874b91a79e83ccb42dff2abd8bccd70036e738",
         ),
         (
             _MANIFESTS + "us/statute/2026-06-26-chip-title-xxi-title-42.json",
@@ -252,7 +256,7 @@ def test_an_entry_outside_the_grandfathered_set_fails_so_the_list_only_shrinks(t
 
     [issue] = _audit(tmp_path, {(path, "0" * 64)})
 
-    assert "not grandfathered on 2026-10-20" in issue
+    assert "were not grandfathered (axiom-corpus#896)" in issue
 
 
 def test_grandfathered_bytes_copied_to_a_new_path_cannot_be_listed(tmp_path) -> None:

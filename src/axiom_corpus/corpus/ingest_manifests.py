@@ -330,8 +330,8 @@ def audit_manifest_local_paths(
         if (allowance.path, allowance.sha256) not in grandfathered:
             issues.append(
                 f"`{allowlist.as_posix()}` lists `{allowance.path}` at a path and bytes that "
-                "were not grandfathered on 2026-10-20. The allowlist only shrinks: sign the manifest "
-                "again without local paths instead of listing it."
+                "were not grandfathered (axiom-corpus#896). The allowlist only shrinks: sign "
+                "the manifest again without local paths instead of listing it."
             )
     manifest_root = repo / INGEST_MANIFEST_ROOT
     for manifest in sorted(manifest_root.rglob("*.json")) if manifest_root.is_dir() else []:
