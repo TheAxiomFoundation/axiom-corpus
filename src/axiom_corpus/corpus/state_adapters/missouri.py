@@ -429,7 +429,18 @@ def extract_missouri_revised_statutes(
         )
         rate_schedule = parse_missouri_rate_schedule(schedule_source.data)
 
+    # A title, or a chapter, is written as a provision only once its listing
+    # names children and, for a chapter, its full-chapter text carries them.
+    # Otherwise it stays an inventory gap, so coverage reads incomplete instead
+    # of silently losing everything under it. A page that could not be fetched
+    # is sourced from the listing that names the container; a page that was
+    # fetched but is unusable from itself.
+    titles_with_chapters = {listing.title_citation_path for listing in chapter_listings}
     for title in titles:
+        if title.citation_path not in titles_with_chapters:
+            errors.append(f"title {title.roman}: no chapters listed on root page")
+            _append_gap(seen, items, _title_inventory_item(title))
+            continue
         if _append_unique(
             seen,
             items,
@@ -454,6 +465,11 @@ def extract_missouri_revised_statutes(
             break
         if chapter_page.error is not None:
             errors.append(f"chapter {chapter_page.listing.chapter}: {chapter_page.error}")
+            _append_gap(
+                seen,
+                items,
+                _chapter_listing_inventory_item(chapter_page.listing, root_recorded),
+            )
             continue
         assert chapter_page.source is not None
         chapter_recorded = _record_source(
@@ -477,19 +493,10 @@ def extract_missouri_revised_statutes(
             base_url=base_url,
             as_of=expression_date_text,
         )
-        if _append_unique(
-            seen,
-            items,
-            records,
-            _chapter_inventory_item(chapter),
-            _chapter_record(
-                chapter,
-                version=run_id,
-                source_as_of=source_as_of_text,
-                expression_date=expression_date_text,
-            ),
-        ):
-            container_count += 1
+        if not listings:
+            errors.append(f"chapter {chapter.chapter}: no sections listed on chapter page")
+            _append_gap(seen, items, _chapter_inventory_item(chapter))
+            continue
 
         selected_listings: list[MissouriSectionListing] = []
         for listing in listings:
@@ -504,8 +511,9 @@ def extract_missouri_revised_statutes(
             continue
         try:
             view_source = fetcher.fetch_view_chapter(chapter_page.listing)
-        except BaseException as exc:  # pragma: no cover
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"chapter {chapter_page.listing.chapter} full text: {exc}")
+            _append_gap(seen, items, _chapter_inventory_item(chapter))
             continue
         view_recorded = _record_source(
             store,
@@ -529,6 +537,7 @@ def extract_missouri_revised_statutes(
             )
         except ValueError as exc:
             errors.append(f"chapter {chapter.chapter} full text: {exc}")
+            _append_gap(seen, items, _view_inventory_item(chapter, view_recorded))
             continue
         if chapter.chapter == "143" and rate_schedule is not None:
             assert rate_schedule_source is not None
@@ -542,6 +551,7 @@ def extract_missouri_revised_statutes(
             )
             if target_index is None:
                 errors.append("chapter 143 full text: section 143.011 missing")
+                _append_gap(seen, items, _view_inventory_item(chapter, view_recorded))
                 continue
             sections = list(sections)
             sections[target_index] = apply_missouri_rate_schedule_overlay(
@@ -550,6 +560,19 @@ def extract_missouri_revised_statutes(
                 tax_year=tax_year,
                 rate_source=rate_schedule_source,
             )
+        if _append_unique(
+            seen,
+            items,
+            records,
+            _chapter_inventory_item(chapter),
+            _chapter_record(
+                chapter,
+                version=run_id,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+            ),
+        ):
+            container_count += 1
         for section in sections:
             if section.citation_path in seen:
                 errors.append(f"duplicate citation path: {section.citation_path}")
@@ -1124,6 +1147,48 @@ def _chapter_inventory_item(chapter: MissouriChapter) -> SourceInventoryItem:
             "chapter": chapter.chapter,
         },
     )
+
+
+def _chapter_listing_inventory_item(
+    listing: MissouriChapterListing,
+    source: _RecordedSource,
+) -> SourceInventoryItem:
+    """Inventory a chapter from the root listing that names it."""
+    return SourceInventoryItem(
+        citation_path=f"us-mo/statute/chapter-{listing.chapter.lower()}",
+        source_url=source.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+        metadata={"kind": "chapter", "title": listing.title_roman, "chapter": listing.chapter},
+    )
+
+
+def _view_inventory_item(chapter: MissouriChapter, source: _RecordedSource) -> SourceInventoryItem:
+    """Inventory a chapter from its own unusable full-chapter page."""
+    return replace(
+        _chapter_inventory_item(chapter),
+        source_url=source.source_url,
+        source_path=source.source_path,
+        source_format=source.source_format,
+        sha256=source.sha256,
+    )
+
+
+def _append_gap(
+    seen: set[str],
+    items: list[SourceInventoryItem],
+    item: SourceInventoryItem,
+) -> None:
+    """Record an expected container whose listing yielded nothing.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``.
+    """
+    if item.citation_path in seen:
+        return
+    seen.add(item.citation_path)
+    items.append(item)
 
 
 def _chapter_record(

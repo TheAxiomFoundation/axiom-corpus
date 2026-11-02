@@ -422,7 +422,9 @@ def test_extract_new_york_openleg_api_reports_skipped_malformed_law(tmp_path):
         expression_date="2026-01-30",
     )
 
-    assert report.coverage.complete
+    # The skipped law stays an inventory gap, so coverage reads incomplete.
+    assert report.coverage.complete is False
+    assert report.coverage.missing_from_provisions == ("us-ny/statute/TAX",)
     assert report.provisions_written == 3
     assert report.skipped_source_count == 1
     assert report.errors == ("TAX: missing OpenLegislation documents",)

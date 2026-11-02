@@ -449,11 +449,39 @@ def extract_massachusetts_general_laws(
 
     chapter_targets: list[MassachusettsChapter] = []
     section_targets: list[MassachusettsSectionTarget] = []
+    # The title chapter list that names each chapter: the source of a chapter
+    # gap when the chapter page itself could not be fetched.
+    chapter_listing_sources: dict[str, _RecordedSource] = {}
     # The chapter page that names each section: the source of a section gap
     # when the section page itself could not be fetched.
     section_listing_sources: dict[str, _RecordedSource] = {}
 
+    # A part, title or chapter is written as a provision only once its own
+    # listing names children. Otherwise it stays an inventory gap, so coverage
+    # reads incomplete instead of silently losing everything under it. A
+    # listing that could not be fetched is sourced from the parent listing that
+    # names the container; a listing that was fetched but is unusable from
+    # itself.
     for part in parts:
+        try:
+            part_source = fetcher.fetch_part(part)
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"part {part.code} ({part.href}): {exc}")
+            _append_inventory_gap(_part_provision(part), index_recorded, items=items, seen=seen)
+            continue
+        part_recorded = _record_source(
+            store,
+            jurisdiction=jurisdiction,
+            run_id=run_id,
+            source=part_source,
+            source_by_relative=source_by_relative,
+            source_paths=source_paths,
+        )
+        listed_titles = parse_massachusetts_titles(part_source.data, part=part)
+        if not listed_titles:
+            errors.append(f"part {part.code} ({part.href}): no titles listed on part page")
+            _append_inventory_gap(_part_provision(part), part_recorded, items=items, seen=seen)
+            continue
         added = _append_provision(
             _part_provision(part),
             index_recorded,
@@ -466,24 +494,39 @@ def extract_massachusetts_general_laws(
         )
         if added:
             title_count += 1
-
-        part_source = fetcher.fetch_part(part)
-        part_recorded = _record_source(
-            store,
-            jurisdiction=jurisdiction,
-            run_id=run_id,
-            source=part_source,
-            source_by_relative=source_by_relative,
-            source_paths=source_paths,
-        )
         titles = tuple(
             title
-            for title in parse_massachusetts_titles(part_source.data, part=part)
+            for title in listed_titles
             if title_filter is None
             or _same_filter(title.roman, title_filter)
             or _same_filter(title.heading, title_filter)
         )
         for title in titles:
+            try:
+                chapters_source = fetcher.fetch_title_chapters(title)
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"title {title.roman} ({title.relative_path}): {exc}")
+                _append_inventory_gap(
+                    _title_provision(title), part_recorded, items=items, seen=seen
+                )
+                continue
+            chapters_recorded = _record_source(
+                store,
+                jurisdiction=jurisdiction,
+                run_id=run_id,
+                source=chapters_source,
+                source_by_relative=source_by_relative,
+                source_paths=source_paths,
+            )
+            listed_chapters = parse_massachusetts_chapters(chapters_source.data, title=title)
+            if not listed_chapters:
+                errors.append(
+                    f"title {title.roman} ({title.relative_path}): no chapters listed for title"
+                )
+                _append_inventory_gap(
+                    _title_provision(title), chapters_recorded, items=items, seen=seen
+                )
+                continue
             added = _append_provision(
                 _title_provision(title),
                 part_recorded,
@@ -496,23 +539,15 @@ def extract_massachusetts_general_laws(
             )
             if added:
                 container_count += 1
-
-            chapters_source = fetcher.fetch_title_chapters(title)
-            _record_source(
-                store,
-                jurisdiction=jurisdiction,
-                run_id=run_id,
-                source=chapters_source,
-                source_by_relative=source_by_relative,
-                source_paths=source_paths,
-            )
             chapters = tuple(
                 chapter
-                for chapter in parse_massachusetts_chapters(chapters_source.data, title=title)
+                for chapter in listed_chapters
                 if chapter_filter is None
                 or _same_filter(chapter.number, chapter_filter)
                 or _same_filter(chapter.heading, chapter_filter)
             )
+            for chapter in chapters:
+                chapter_listing_sources.setdefault(chapter.citation_path, chapters_recorded)
             chapter_targets.extend(chapters)
 
     if not chapter_targets:
@@ -529,10 +564,14 @@ def extract_massachusetts_general_laws(
     )
     matched_section_filters: set[str] = set()
     for chapter, source, targets, error in chapter_pages:
-        if error is not None:
-            errors.append(f"chapter {chapter.number}: {error}")
-            continue
-        if source is None or targets is None:
+        if error is not None or source is None or targets is None:
+            errors.append(f"chapter {chapter.number}: {error or 'chapter page not read'}")
+            _append_inventory_gap(
+                _chapter_provision(chapter),
+                chapter_listing_sources[chapter.citation_path],
+                items=items,
+                seen=seen,
+            )
             continue
         chapter_recorded = _record_source(
             store,
@@ -542,6 +581,12 @@ def extract_massachusetts_general_laws(
             source_by_relative=source_by_relative,
             source_paths=source_paths,
         )
+        if not targets:
+            errors.append(f"chapter {chapter.number}: no sections listed on chapter page")
+            _append_inventory_gap(
+                _chapter_provision(chapter), chapter_recorded, items=items, seen=seen
+            )
+            continue
         added = _append_provision(
             _chapter_provision(chapter),
             chapter_recorded,
@@ -601,7 +646,15 @@ def extract_massachusetts_general_laws(
                     source_paths=source_paths,
                 )
             )
-            _append_section_gap(target, gap_source, items=items, seen=seen)
+            placeholder = MassachusettsParsedSection(
+                heading=target.heading, body=None, references_to=()
+            )
+            _append_inventory_gap(
+                _section_provision(target, placeholder),
+                gap_source,
+                items=items,
+                seen=seen,
+            )
             continue
         if source is None or parsed is None:
             continue
@@ -967,31 +1020,30 @@ def _record_source(
     return recorded
 
 
-def _append_section_gap(
-    target: MassachusettsSectionTarget,
+def _append_inventory_gap(
+    provision: MassachusettsProvision,
     source: _RecordedSource,
     *,
     items: list[SourceInventoryItem],
     seen: set[str],
 ) -> None:
-    """Record a listed section whose page yielded no provision.
+    """Record an expected container or section whose page yielded nothing.
 
     The inventory item has no matching provision, so coverage lists it in
-    ``missing_from_provisions``. ``source`` is the page that shows the section
-    is expected: the chapter page, or the section's own unusable page.
+    ``missing_from_provisions``. ``source`` is the page that shows the
+    provision is expected: its parent listing, or its own unusable page.
     """
-    if target.citation_path in seen:
+    if provision.citation_path in seen:
         return
-    seen.add(target.citation_path)
-    placeholder = MassachusettsParsedSection(heading=target.heading, body=None, references_to=())
+    seen.add(provision.citation_path)
     items.append(
         SourceInventoryItem(
-            citation_path=target.citation_path,
+            citation_path=provision.citation_path,
             source_url=source.source_url,
             source_path=source.source_path,
             source_format=MASSACHUSETTS_GENERAL_LAWS_SOURCE_FORMAT,
             sha256=source.sha256,
-            metadata=_metadata(_section_provision(target, placeholder)),
+            metadata=_metadata(provision),
         )
     )
 
