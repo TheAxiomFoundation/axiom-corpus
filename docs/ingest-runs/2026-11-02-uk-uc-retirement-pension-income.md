@@ -71,14 +71,18 @@ Provision files (sha256):
 ## Expression date
 
 The rows carry `expression_date` 2026-04-06, the start of the 2026-27 benefit
-and tax year, as `2026-09-28-uk-pe-child-definitions` does. Before choosing it
-I read the `RestrictStartDate` of every element inside each capture's `Body`,
-leaving out the enclosing `Part`, `Chapter` and `Pblock` containers, which carry
-instrument-wide dates. No element carries `Status="Prospective"` or a
-`RestrictEndDate`. The latest start date in each provision falls on or before
-2026-04-06, so the fetched text matches the text in force on that date:
+and tax year, as `2026-09-28-uk-pe-child-definitions` does. Each provision's
+`P1group` starts on or before that date, and no element inside it carries
+`Status`, `Match` or `RestrictEndDate`. The enclosing `Body` and `Part` carry
+later dates where something else in the Part changed: for reg 67 and reg 73,
+Part 6 of the UC Regs starts 2026-10-30.
 
-| Provision | Latest element start | `dct:valid` of the capture |
+legislation.gov.uk's point-in-time version of each provision at 2026-04-06
+(`/<provision>/2026-04-06/data.xml`, fetched 2026-11-02) holds the same `P1`
+text as the capture and the same `P1group` start date, so the rows hold the
+text in force on 2026-04-06:
+
+| Provision | `P1group` start | `dct:valid` of the capture |
 | --- | --- | --- |
 | SPCA 2002 s.16 | 2016-04-06 | 2026-07-01 |
 | UC Regs 2013 reg 67 | 2013-04-29 | 2026-10-30 |
@@ -101,11 +105,17 @@ instrument-wide dates. No element carries `Status="Prospective"` or a
 - **SPC Regs reg 16** has an empty `extent`. Its capture carries no
   `RestrictExtent` attribute, and neither does the capture of reg 4A of the
   same instrument in `2026-09-28-uk-pe-child-definitions`.
-- **Reg 73(3)** holds a MathML fraction, which the row renders in place as
-  `N × ( M × 12 365 )`: twelve over three hundred and sixty-five.
+- **Reg 73(2A)**, which SI 2014/2887 inserted from 26.11.2014, holds a MathML
+  fraction with numerator `M × 12` and denominator `365`. The row renders it in
+  place as `N × ( M × 12 365 )`, which reads N × ((M × 12) / 365).
 - Each row holds the whole provision under the heading "Section 16" or
   "Regulation N". The rows carry no marginal notes, footnotes or annotations,
-  and the bodies omit paragraph numbers.
+  and the bodies omit paragraph numbers, so labels such as s.16(1)(za), (k) to
+  (n) and reg 73(2A) appear only in the source captures.
+- Proof excerpts must quote the rows as stored. A space precedes punctuation
+  after each commentary reference ("State Pension Credit Regulations 2002 ." in
+  reg 67, "Civil List Act 1975 ;" in reg 16), and blank lines sit inside
+  s.16(1)(j) and inside reg 16's opening words.
 
 ## Validation
 
