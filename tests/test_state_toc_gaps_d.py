@@ -233,10 +233,53 @@ def test_minnesota_interrupt_during_fetch_stops_the_run(tmp_path, monkeypatch, f
 
 def test_minnesota_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
     # The only part page is missing. Main raised FileNotFoundError; the part is
-    # now a gap, and a run with no provisions still raises.
+    # now a gap, and the run stops at the existing "no chapters selected" check
+    # (whose "for filter: None" wording is the base message), before the check
+    # on written provisions.
     pages = {"minnesota-statutes-html/index.html": SAMPLE_MINNESOTA_INDEX}
-    with pytest.raises((OSError, ValueError)):
+    with pytest.raises(
+        ValueError, match=r"^no Minnesota Statutes chapters selected for filter: None$"
+    ):
         _extract_minnesota(tmp_path, monkeypatch, pages)
+
+
+@pytest.mark.parametrize("failure", ["missing-file", "no-children"])
+def test_minnesota_chapter_filtered_run_leaves_out_an_unreadable_part(
+    tmp_path, monkeypatch, failure
+):
+    # A chapter-filtered run cannot tell whether a part it cannot read holds
+    # the chapter. It logs the part and records no gap for it.
+    pages = dict(MN_GOOD_PAGES)
+    _fail_page(pages, MN_TAX_PART, failure, {"no-children": MN_EMPTY_PART})
+    _write_sources(tmp_path / "source", pages)
+    report = extract_minnesota_statutes(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        version="2026-05-01",
+        source_dir=tmp_path / "source",
+        only_title="256B",
+        workers=1,
+    )
+    assert len(report.errors) == 1
+    assert report.errors[0].startswith("part TAXATION:")
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == MN_WELFARE
+
+
+def test_minnesota_chapter_filtered_run_fails_if_the_unreadable_part_held_it(tmp_path, monkeypatch):
+    pages = dict(MN_GOOD_PAGES)
+    pages.pop(MN_TAX_PART)
+    _write_sources(tmp_path / "source", pages)
+    with pytest.raises(
+        ValueError, match="no Minnesota Statutes chapters selected for filter: '290'"
+    ):
+        extract_minnesota_statutes(
+            CorpusArtifactStore(tmp_path / "corpus"),
+            version="2026-05-01",
+            source_dir=tmp_path / "source",
+            only_title="290",
+            workers=1,
+        )
 
 
 # --- Nebraska: index -> one full-chapter page per chapter ---
@@ -369,6 +412,13 @@ WA_SECTIONLESS_CHAPTER = (
     '<div id="ContentPlaceHolder1_pnlExpanded"><p>Recodified as chapter 42.17A RCW.</p></div>'
     "</body></html>"
 )
+# The live heading of the recodified chapter 42.17 page.
+WA_DISPOSITIONS_CHAPTER = (
+    "<html><body><h2>Chapter 42.17 RCW dispositions:  DISCLOSURE \u2014 CAMPAIGN FINANCES"
+    " \u2014   LOBBYING \u2014 RECORDS</h2>"
+    '<div id="ContentPlaceHolder1_pnlExpanded"><table><tr><td>42.17.010</td>'
+    "<td>Recodified as RCW 42.17A.005.</td></tr></table></div></body></html>"
+)
 # Section anchors that do not belong to the chapter parse to no sections.
 WA_FOREIGN_ANCHORS = SAMPLE_WASHINGTON_CHAPTER.replace("42.56", "42.99")
 
@@ -435,12 +485,15 @@ def test_washington_failed_chapter_remains_inventory_gap(tmp_path, monkeypatch, 
     )
 
 
-def test_washington_chapter_page_without_sections_stays_complete(tmp_path, monkeypatch):
+@pytest.mark.parametrize(
+    "page", [WA_SECTIONLESS_CHAPTER, WA_DISPOSITIONS_CHAPTER], ids=["h1", "dispositions"]
+)
+def test_washington_chapter_page_without_sections_stays_complete(tmp_path, monkeypatch, page):
     # Pins the existing exemption: a chapter page that names its chapter and
     # carries no section anchors (a recodified or wholly repealed chapter) is
     # written as a complete container and counted as a skipped source.
     pages = dict(WA_GOOD_PAGES)
-    pages[WA_CHAPTER_42_17] = WA_SECTIONLESS_CHAPTER
+    pages[WA_CHAPTER_42_17] = page
     store, report = _extract_washington(tmp_path, monkeypatch, pages)
     assert report.errors == ()
     assert report.skipped_source_count == 1
@@ -458,8 +511,13 @@ def test_washington_interrupt_during_fetch_stops_the_run(tmp_path, monkeypatch, 
 
 
 def test_washington_run_of_only_gaps_still_fails(tmp_path, monkeypatch):
+    # The only title page is missing, so the title is a gap and the run stops
+    # at the existing "no chapters selected" check (base wording), before the
+    # check on written provisions.
     pages = {"washington-rcw-html/index.html": SAMPLE_WASHINGTON_INDEX}
-    with pytest.raises(ValueError, match="no Revised Code of Washington"):
+    with pytest.raises(
+        ValueError, match=r"^no Revised Code of Washington chapters selected for filter: None$"
+    ):
         _extract_washington(tmp_path, monkeypatch, pages)
 
 
