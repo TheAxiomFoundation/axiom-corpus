@@ -776,7 +776,7 @@ def parse_arizona_section(html: str | bytes, *, fallback_heading: str | None = N
     if " - " in title_text:
         title_heading = title_text.split(" - ", 1)[1]
     # " -", not " - ": a title with an empty heading cleans to "<section> -".
-    names_section = _SECTION_RE.match(title_text.split(" -", 1)[0].strip()) is not None
+    names_section = _is_section_number(title_text.split(" -", 1)[0])
     body = soup.find("body")
     paragraphs = body.find_all("p", recursive=False) if isinstance(body, Tag) else soup.find_all("p")
     heading = fallback_heading or title_heading
@@ -785,7 +785,7 @@ def parse_arizona_section(html: str | bytes, *, fallback_heading: str | None = N
         text = _clean_text(paragraph)
         if not text:
             continue
-        if index == 0 and _SECTION_RE.match(text.split(".", 1)[0].strip()):
+        if index == 0 and _is_section_number(text.split(".", 1)[0]):
             names_section = True
             heading_node = paragraph.find("u")
             if isinstance(heading_node, Tag):
@@ -1092,6 +1092,12 @@ def _date_text(value: date | str | None, fallback: str) -> str:
     if isinstance(value, date):
         return value.isoformat()
     return str(value)
+
+
+def _is_section_number(text: str) -> bool:
+    """Whether ``text`` is a section number: ``1-201`` or ``47-2A101``, not ``503-Unavailable``."""
+    match = _SECTION_RE.match(text.strip())
+    return match is not None and match.group("section")[0].isdigit()
 
 
 def _is_repealed(heading: str, body: str | None) -> bool:

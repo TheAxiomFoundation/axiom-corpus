@@ -742,10 +742,13 @@ def test_new_york_section_page_without_section_remains_inventory_gap(tmp_path, f
     )
 
 
-def test_new_york_section_link_to_another_node_remains_inventory_gap(tmp_path):
+@pytest.mark.parametrize("workers", [1, 4])
+def test_new_york_section_link_to_another_node_remains_inventory_gap(tmp_path, workers):
     # The article page links on to its part; the crawl does not follow links
     # from a page that stands in for a section.
-    store, report = _extract_new_york(tmp_path, pages={"TAX/602.html": NY_ARTICLE_HTML})
+    store, report = _extract_new_york(
+        tmp_path, pages={"TAX/602.html": NY_ARTICLE_HTML}, workers=workers
+    )
     assert report.errors == (
         "https://www.nysenate.gov/legislation/laws/TAX/602: "
         "expected a section, page has headline ARTICLE 22",

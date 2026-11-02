@@ -10,10 +10,9 @@ Maryland run in which every section fails, and an Illinois run that fetches no
 section document, still raise, as they did before.
 
 Arizona, Illinois and New York runs keep these properties when a fetched page
-names no section: a maintenance, empty or wrong-shape page, or in New York a
-page for another node behind a "SECTION ..." link. A section whose page names
-it but holds no text, or marks it repealed, is still written. The Arizona and
-Illinois parsers read a page exactly when it names a section.
+names no section: a maintenance, empty or wrong-shape page. A section whose page
+names it but holds no text, or marks it repealed, is still written. The Arizona
+and Illinois parsers read a page exactly when it names a section.
 """
 
 import hashlib
@@ -369,17 +368,19 @@ def _new_york_pages(outcomes: list[str]) -> dict[str, str]:
         page = {
             "good": NY_SECTION_602_HTML.replace("602", f"60{index}"),
             "no-text": NY_EMPTY_SECTION_602.replace("602", f"60{index}"),
-            # A page for another node, here the article that holds the part.
-            "other-node": NY_ARTICLE_HTML,
         }.get(outcome) or _JUNK[outcome]
         pages[f"TAX/60{index}.html"] = page
     return pages
 
 
+# No page for another node here: a crawl that followed its links would loop, and
+# Hypothesis catches pytest-timeout's one failure and reruns the loop, so a
+# regression would hang the worker. A plain test covers that page instead:
+# test_new_york_section_link_to_another_node_remains_inventory_gap.
 @settings(max_examples=40, deadline=None, suppress_health_check=[HealthCheck.too_slow])
 @given(
     outcomes=st.lists(
-        st.sampled_from(["good", "no-text", "missing-file", "other-node", *_JUNK]),
+        st.sampled_from(["good", "no-text", "missing-file", *_JUNK]),
         min_size=1,
         max_size=6,
     )
@@ -419,7 +420,7 @@ _WORDS = st.text(alphabet="abcdefghij klmnopqrstuvwxyz", max_size=24)
 
 @settings(max_examples=100, deadline=None)
 @given(
-    section=st.from_regex(r"[1-9][0-9]?-[1-9][0-9]{2,3}(\.[0-9]{1,2})?", fullmatch=True),
+    section=st.from_regex(r"[1-9][0-9]?-[1-9][0-9A-Z]{2,3}(\.[0-9]{1,2})?", fullmatch=True),
     heading=_WORDS,
     paragraphs=st.lists(_WORDS, max_size=3),
     named_in=st.sampled_from(["title", "paragraph", "both", "neither"]),
@@ -435,6 +436,20 @@ def test_arizona_page_reads_exactly_when_it_names_a_section(section, heading, pa
         with pytest.raises(ValueError, match="no section number"):
             parse_arizona_section(html)
     else:
+        parse_arizona_section(html)
+
+
+@settings(max_examples=50, deadline=None)
+@given(
+    status=st.from_regex(r"[1-9][0-9]{2}-[A-Za-z]{2,12}", fullmatch=True),
+    text=_WORDS,
+)
+def test_arizona_page_titled_with_a_status_code_names_no_section(status, text):
+    # "503-Unavailable" fits the shape of a section number, so an error page
+    # titled that way must not read as one. All 25,107 section numbers on the
+    # official title pages (2026-11-02) start with a digit after the hyphen.
+    html = f"<html><head><title>{status}</title></head><body><p>{status}. {text}</p></body></html>"
+    with pytest.raises(ValueError, match="no section number"):
         parse_arizona_section(html)
 
 

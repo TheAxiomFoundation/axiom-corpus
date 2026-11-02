@@ -119,6 +119,9 @@ def test_parse_arizona_section_keeps_a_section_page_without_text():
         # Named only in the title, or only in the first paragraph.
         "<HTML><HEAD><TITLE>1-201 - Adoption</TITLE></HEAD><BODY></BODY></HTML>",
         "<HTML><BODY><p>1-201. <u>Adoption</u></p><p>Text.</p></BODY></HTML>",
+        # Title 47's numbers carry a letter after their first digit.
+        "<HTML><HEAD><TITLE>47-2A101 - Adoption</TITLE></HEAD><BODY></BODY></HTML>",
+        "<HTML><BODY><p>47-2A101. <u>Adoption</u></p><p>Text.</p></BODY></HTML>",
     ],
 )
 def test_parse_arizona_section_reads_a_page_that_names_its_section_once(html):
@@ -131,6 +134,9 @@ def test_parse_arizona_section_reads_a_page_that_names_its_section_once(html):
         "",
         "<html><body><h1>Scheduled maintenance</h1></body></html>",
         "<html><head><title>Page not found</title></head><body><p>Sorry.</p></body></html>",
+        # A status code fits the pattern's shape, but a real number starts with a digit.
+        "<html><head><title>503-Unavailable</title></head><body><p>Sorry.</p></body></html>",
+        "<html><body><p>503-Unavailable. Try again later.</p></body></html>",
         # A section number nested below the body's own paragraphs does not count.
         "<html><body><main><p>1-201. <u>Adoption</u></p></main></body></html>",
     ],
