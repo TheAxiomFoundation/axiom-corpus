@@ -49,6 +49,7 @@ from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
 )
+from axiom_corpus.corpus.state_adapters.montana import extract_montana_code
 from tests.test_corpus_arizona import SAMPLE_SECTION_HTML as AZ_SECTION_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_DETAIL_HTML as AZ_TITLE_DETAIL_HTML
 from tests.test_corpus_arizona import SAMPLE_TITLE_INDEX_HTML as AZ_TITLE_INDEX_HTML
@@ -89,6 +90,7 @@ from tests.test_corpus_massachusetts import (
 from tests.test_corpus_massachusetts import (
     SAMPLE_SECTION_ONE_HTML as MA_SECTION_ONE_HTML,
 )
+from tests.test_corpus_montana import _write_montana_fixture_tree as mt_write_fixture_tree
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -542,3 +544,64 @@ def test_idaho_repealed_section_page_stays_complete(tmp_path):
     _assert_complete(report, expected=ID_EXTRACTED)
     records = {r.citation_path: r for r in load_provisions(report.provisions_path)}
     assert records["us-id/statute/63-3003"].metadata["status"] == "repealed"
+
+
+# --- Montana: index -> title -> chapter -> part -> section pages ---
+
+MT_SECTION_2101 = "title_0150/chapter_0300/part_0210/section_0010/0150-0300-0210-0010.html"
+MT_EXTRACTED = {
+    "us-mt/statute/15",
+    "us-mt/statute/15-30",
+    "us-mt/statute/15-30-21",
+    "us-mt/statute/15-30-2101",
+    "us-mt/statute/15-30-2110",
+}
+
+
+def _extract_montana(tmp_path, failure: str | None):
+    source = tmp_path / "source"
+    source.mkdir()
+    mt_write_fixture_tree(source)
+    if failure == "missing-file":
+        (source / MT_SECTION_2101).unlink()
+    elif failure is not None:
+        (source / MT_SECTION_2101).write_text(
+            {"maintenance": MAINTENANCE, "empty": EMPTY_PAGE, "wrong-shape": WRONG_SHAPE_HTML}[
+                failure
+            ],
+            encoding="utf-8",
+        )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_montana_code(
+        store, version="2026-05-05", source_dir=source, only_title="15", workers=1
+    )
+    return store, report
+
+
+def test_montana_fixture_extracts_complete(tmp_path):
+    _, report = _extract_montana(tmp_path, None)
+    assert report.section_count == 2
+    _assert_complete(report, expected=MT_EXTRACTED)
+
+
+@pytest.mark.parametrize("failure", ["maintenance", "empty", "wrong-shape"])
+def test_montana_unreadable_section_page_remains_inventory_gap(tmp_path, failure):
+    # On main a section page with no section content was logged as an error with
+    # no inventory item, so coverage still read complete.
+    store, report = _extract_montana(tmp_path, failure)
+    assert report.section_count == 1
+    assert "section 15-30-2101" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=MT_EXTRACTED,
+        missing={"us-mt/statute/15-30-2101"},
+        gap_source=MT_SECTION_2101,
+    )
+
+
+def test_montana_unfetchable_section_page_still_stops_the_run(tmp_path):
+    # Montana fetches every page of a level before parsing it, and a page it
+    # cannot fetch stops the run: a loud failure, not a silent loss.
+    with pytest.raises(ValueError, match="does not exist"):
+        _extract_montana(tmp_path, "missing-file")
