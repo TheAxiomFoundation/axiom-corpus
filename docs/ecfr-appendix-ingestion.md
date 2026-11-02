@@ -2,7 +2,7 @@
 
 The eCFR inventory and extraction commands include parts, subparts, and sections
 by default. Add `--include-appendices` to both commands when a new ingestion run
-should also contain supported part and subpart appendices:
+should also contain supported part, subchapter and subpart appendices:
 
 ```bash
 axiom-corpus-ingest inventory-ecfr --base /tmp/ecfr-604 \
@@ -103,9 +103,10 @@ subchapter, so the appendix never takes a part appendix's path:
 It sorts with unnumbered appendices (ordinal 1,000,000). Its metadata carries
 `appendix_subchapter`, `appendix_identifier`, `appendix: null` and
 `appendix_numbering: null`, and the adapter adds `ecfr:subchapter` to its
-identifiers. The adapter refuses two forms that no live appendix takes: a designated
-one (`Appendix A to Subchapter D`) and an appendix directly under a subchapter,
-outside any part.
+identifiers. The adapter reads only the unnumbered form, so
+`Appendix A to Subchapter D` fails validation. An appendix directly under a
+subchapter, outside any part, fails too. No live appendix took either shape on
+2026-10-08.
 
 ## Subpart appendices
 
@@ -157,8 +158,8 @@ including hyphenated, alphanumeric or lowercase multi-character designators
 (`Appendix D-1 to Part 208`, `Appendix M1 to Part 226`, `Appendix A-1 to Subpart I
 of Part 550`, `Appendix C1 to Subpart B of Part 430`, `Appendix ii to Part 604`), a
 collective note with a designator (`Appendixes A to Part 604`), identifiers that cite the title (`Appendix B to Subpart A of 10 CFR Part
-51`, `Appendix to 19 CFR Part 0`), and nodes other than appendices to a part or
-subpart (`Figure 1 to Part 1213`, `Appendix A to Chapter I`). A parsed part that
+51`, `Appendix to 19 CFR Part 0`), and nodes other than appendices to a part,
+subpart or subchapter (`Figure 1 to Part 1213`, `Appendix A to Chapter I`). A parsed part that
 contradicts the enclosing part also fails validation. These errors do not imply full appendix coverage.
 Exact `--section` selectors exclude appendices before validation. The lower-level
 iterator likewise applies an explicit citation allowlist before converting an
