@@ -171,3 +171,73 @@ def test_other_title_graphic_failure_does_not_strand_a_refetched_title(
     _assert_rows_from_stored_bytes(
         store, VERSION, {1: "Replacement title 1 body.", 2: "New title 2 body."}
     )
+
+
+def _retained_run(store, source_xml, **kwargs):
+    return ecfr.extract_ecfr(
+        store,
+        version=VERSION,
+        as_of=AS_OF,
+        only_title=1,
+        only_part="10",
+        only_sections=("10.1",),
+        source_xml=source_xml,
+        workers=1,
+        **kwargs,
+    )
+
+
+def _retained_snapshot_path(store):
+    run_id = ecfr.ecfr_run_id(VERSION, 1, "10", None)
+    return run_id, store.source_path("us", "regulation", run_id, "ecfr/title-1-part-10.xml")
+
+
+@pytest.mark.parametrize("include_appendices", [False, True])
+@pytest.mark.parametrize("failure", ["download", "not-png"])
+def test_retained_xml_resume_graphic_failure_writes_nothing(
+    tmp_path, monkeypatch, failure, include_appendices
+):
+    # A --source-xml run once wrote the replacement snapshot before it knew
+    # whether the title would be reparsed, so the raise below came too late.
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    source_xml = tmp_path / "title-1-part-10.xml"
+    source_xml.write_text(_xml(1, "Saved title 1 body."))
+    initial = _retained_run(store, source_xml, include_appendices=include_appendices)
+    assert initial.coverage.complete and initial.title_error_count == 0
+    run_id, snapshot_path = _retained_snapshot_path(store)
+    saved_snapshot = snapshot_path.read_bytes()
+    before = _snapshot(store.root)
+    replacement = _with_graphic(_xml(1, "Replacement title 1 body."))
+    source_xml.write_text(replacement)
+    graphics = _graphic_fetcher(monkeypatch, failure)
+
+    with pytest.raises(ValueError, match="cannot revalidate cached eCFR provisions"):
+        _retained_run(store, source_xml, include_appendices=include_appendices)
+    assert _snapshot(store.root) == before
+    assert snapshot_path.read_bytes() == saved_snapshot
+
+    graphics["failure"] = None
+    resumed = _retained_run(store, source_xml, include_appendices=include_appendices)
+    assert resumed.coverage.complete and resumed.title_error_count == 0
+    assert snapshot_path.read_text() == replacement
+    _assert_rows_from_stored_bytes(store, run_id, {1: "Replacement title 1 body."})
+
+
+def test_fresh_retained_xml_graphic_failure_stays_resumable(tmp_path, monkeypatch):
+    # With no cached rows nothing can go stale: the retained snapshot is kept
+    # for the resume and the title is reported as a title error, as before.
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    source_xml = tmp_path / "title-1-part-10.xml"
+    replacement = _with_graphic(_xml(1, "Fresh title 1 body."))
+    source_xml.write_text(replacement)
+    graphics = _graphic_fetcher(monkeypatch, "download")
+
+    report = _retained_run(store, source_xml)
+    _, snapshot_path = _retained_snapshot_path(store)
+    assert report.title_error_count == 1
+    assert snapshot_path.read_text() == replacement
+    assert "Fresh title 1 body." not in report.provisions_path.read_text()
+
+    graphics["failure"] = None
+    resumed = _retained_run(store, source_xml)
+    assert resumed.coverage.complete and resumed.title_error_count == 0
