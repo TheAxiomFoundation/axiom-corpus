@@ -22,6 +22,7 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
 from axiom_corpus.corpus.state_adapters.michigan import extract_michigan_compiled_laws
 from axiom_corpus.corpus.state_adapters.missouri import extract_missouri_revised_statutes
 from axiom_corpus.corpus.state_adapters.nevada import extract_nevada_nrs
+from axiom_corpus.corpus.state_adapters.new_hampshire import extract_new_hampshire_rsa
 from tests.test_corpus_maryland import SAMPLE_SECTION_HTML as MD_SECTION_HTML
 from tests.test_corpus_massachusetts import (
     SAMPLE_CHAPTER_HTML as MA_CHAPTER_HTML,
@@ -48,6 +49,20 @@ from tests.test_corpus_missouri import SAMPLE_ROOT_HTML as MO_ROOT_HTML
 from tests.test_corpus_missouri import SAMPLE_VIEW_CHAPTER_HTML as MO_VIEW_HTML
 from tests.test_corpus_nevada import SAMPLE_NEVADA_CHAPTER as NV_CHAPTER_HTML
 from tests.test_corpus_nevada import SAMPLE_NEVADA_INDEX as NV_INDEX_HTML
+from tests.test_corpus_new_hampshire import (
+    SAMPLE_CHAPTER_TOC_HTML as NH_CHAPTER_TOC_HTML,
+)
+from tests.test_corpus_new_hampshire import (
+    SAMPLE_MERGED_CHAPTER_HTML as NH_MERGED_HTML,
+)
+from tests.test_corpus_new_hampshire import (
+    SAMPLE_REPEALED_CHAPTER_HTML as NH_REPEALED_MERGED_HTML,
+)
+from tests.test_corpus_new_hampshire import (
+    SAMPLE_REPEALED_CHAPTER_TOC_HTML as NH_REPEALED_TOC_HTML,
+)
+from tests.test_corpus_new_hampshire import SAMPLE_ROOT_HTML as NH_ROOT_HTML
+from tests.test_corpus_new_hampshire import SAMPLE_TITLE_HTML as NH_TITLE_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -464,3 +479,118 @@ def test_nevada_title_listing_no_chapters_remains_inventory_gap(tmp_path):
         missing={"us-nv/statute/title-33"},
         gap_source="index.html",
     )
+
+
+# --- New Hampshire: root -> title TOC -> chapter TOC + merged chapter page ---
+
+NH_ROOT = "new-hampshire-rsa-root-html/nhtoc.htm"
+NH_TITLE_V = "new-hampshire-rsa-title-toc-html/NHTOC-V.htm"
+NH_TOC_77B = "new-hampshire-rsa-chapter-toc-html/NHTOC-V-77-B.htm"
+NH_MERGED_77B = "new-hampshire-rsa-merged-chapter-html/V/77-B/77-B-mrg.htm"
+NH_CHAPTER_77B_LINK = '<li><a href="NHTOC-V-77-B.htm">CHAPTER 77-B: COMMUTERS INCOME TAX</a></li>\n</ul>'
+NH_GOOD_PAGES = {
+    NH_ROOT: NH_ROOT_HTML,
+    NH_TITLE_V: NH_TITLE_HTML,
+    "new-hampshire-rsa-chapter-toc-html/NHTOC-V-77-A.htm": NH_CHAPTER_TOC_HTML,
+    "new-hampshire-rsa-merged-chapter-html/V/77-A/77-A-mrg.htm": NH_MERGED_HTML,
+}
+NH_EXTRACTED = {
+    "us-nh/statute/title-v",
+    "us-nh/statute/chapter-77-a",
+    "us-nh/statute/77-a:1",
+    "us-nh/statute/77-a:2",
+}
+NH_EMPTY_TITLE = "<html><body><ul></ul></body></html>"
+NH_EMPTY_CHAPTER_TOC = '<html><body><h2><a href="../V/77-B/77-B-mrg.htm">Entire Chapter</a></h2><ul></ul></body></html>'
+
+
+def _new_hampshire_with_chapter_77b() -> dict[str, str]:
+    pages = dict(NH_GOOD_PAGES)
+    pages[NH_TITLE_V] = NH_TITLE_HTML.replace("</ul>", NH_CHAPTER_77B_LINK, 1)
+    pages[NH_TOC_77B] = NH_CHAPTER_TOC_HTML.replace("77-A", "77-B")
+    pages[NH_MERGED_77B] = NH_MERGED_HTML.replace("77-A", "77-B")
+    return pages
+
+
+def _extract_new_hampshire(tmp_path, pages: dict[str, str]):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_new_hampshire_rsa(
+        store, version="2026-05-10", source_dir=tmp_path / "source", request_delay_seconds=0
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_new_hampshire_failed_title_toc_remains_inventory_gap(tmp_path, failure):
+    # On main a title TOC that could not be fetched was logged as an error with
+    # no inventory item, and one that listed no chapters raised out of the run.
+    failed = "new-hampshire-rsa-title-toc-html/NHTOC-VI.htm"
+    pages = dict(NH_GOOD_PAGES)
+    pages[NH_ROOT] = NH_ROOT_HTML.replace(
+        "</ul>",
+        '  <li><a href="NHTOC/NHTOC-VI.htm">TITLE VI: PUBLIC OFFICERS AND EMPLOYEES</a></li>\n</ul>',
+        1,
+    )
+    pages[failed] = NH_TITLE_HTML
+    _fail_page(pages, failed, failure, {"no-children": NH_EMPTY_TITLE})
+    store, report = _extract_new_hampshire(tmp_path, pages)
+    assert report.section_count == 2
+    assert "title VI" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NH_EXTRACTED | {"us-nh/statute/title-vi"},
+        missing={"us-nh/statute/title-vi"},
+        gap_source=NH_ROOT if failure == "missing-file" else failed,
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_new_hampshire_failed_chapter_toc_remains_inventory_gap(tmp_path, failure):
+    # On main a chapter TOC that could not be fetched was logged as an error
+    # with no inventory item, and one that listed nothing read complete.
+    pages = _new_hampshire_with_chapter_77b()
+    _fail_page(pages, NH_TOC_77B, failure, {"no-children": NH_EMPTY_CHAPTER_TOC})
+    store, report = _extract_new_hampshire(tmp_path, pages)
+    assert report.section_count == 2
+    assert "chapter 77-B" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NH_EXTRACTED | {"us-nh/statute/chapter-77-b"},
+        missing={"us-nh/statute/chapter-77-b"},
+        gap_source=NH_TITLE_V if failure == "missing-file" else NH_TOC_77B,
+    )
+
+
+@pytest.mark.parametrize("failure", TOC_FAILURES)
+def test_new_hampshire_failed_merged_chapter_remains_inventory_gap(tmp_path, failure):
+    # The chapter TOC lists the sections; the merged page carries their text.
+    pages = _new_hampshire_with_chapter_77b()
+    _fail_page(pages, NH_MERGED_77B, failure, {"no-children": "<html><body><p>Chapter 77-B</p></body></html>"})
+    store, report = _extract_new_hampshire(tmp_path, pages)
+    assert report.section_count == 2
+    assert "chapter 77-B" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=NH_EXTRACTED | {"us-nh/statute/chapter-77-b"},
+        missing={"us-nh/statute/chapter-77-b"},
+        gap_source=NH_TITLE_V if failure == "missing-file" else NH_MERGED_77B,
+    )
+
+
+def test_new_hampshire_repealed_chapter_without_sections_stays_complete(tmp_path):
+    # A repealed chapter's TOC lists no sections and its merged page says the
+    # entire chapter was repealed: it lists nothing by law, so it stays a
+    # complete container. Chapter 77 also has its own repeal check; this one
+    # needs no session-law sources.
+    pages = _new_hampshire_with_chapter_77b()
+    pages[NH_TOC_77B] = NH_REPEALED_TOC_HTML.replace("77", "77-B")
+    pages[NH_MERGED_77B] = NH_REPEALED_MERGED_HTML.replace("77", "77-B")
+    _store, report = _extract_new_hampshire(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    provisions = {record.citation_path for record in load_provisions(report.provisions_path)}
+    assert provisions == NH_EXTRACTED | {"us-nh/statute/chapter-77-b"}
