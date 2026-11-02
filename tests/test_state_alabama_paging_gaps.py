@@ -312,6 +312,43 @@ def test_containers_empty_by_law_stay_complete_records(tmp_path):
     assert not any(path in error for path in EMPTY_BY_LAW for error in report.errors)
 
 
+@pytest.mark.parametrize(
+    ("title", "empty"),
+    [
+        ("Chapter 2 Repealed.", True),
+        ("Chapter 2 Reserved.", True),
+        ("Chapter 2 Transferred.", True),
+        ("Chapter 2 (Repealed)", True),
+        ("Chapter 2 Repealed by Act 2019-1.", True),
+        ("Chapter 2 Transferred to Title 40.", True),
+        ("Chapter 2 Repealed, Acts 2019, No. 1.", True),
+        ("Chapter 2 Transferred Property.", False),
+        ("Chapter 2 Reserved Powers of Counties.", False),
+        ("Chapter 2 Seals.", False),
+    ],
+)
+def test_empty_by_law_reads_only_a_marker_heading(title, empty):
+    node = alabama.AlabamaNode(code_id="X", title=title)
+    assert alabama._alabama_empty_by_law(node, {"X": node}) is empty
+
+
+def test_early_end_with_no_record_still_writes_its_gaps(tmp_path):
+    # Every node in title 1 is a gap, so the run holds no record at all. Main
+    # raised before writing anything; the gaps must still be written.
+    source = _write_source(tmp_path, {})
+    store, report = _extract(tmp_path, source, page_size=2, only_title="1")
+
+    missing = {TITLE_1, CHAPTER_1_1, CHAPTER_1_2}
+    assert report.provisions_written == 0
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=missing,
+        missing=missing,
+        gap_source=TITLES_SOURCE,
+    )
+
+
 # Lead 4: a server that ignores ``offset`` returns the same rows every page.
 
 

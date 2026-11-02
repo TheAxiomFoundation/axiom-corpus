@@ -281,10 +281,16 @@ def extract_alabama_code(
         titles_record=titles_record,
     )
     selected_section_ids: set[str] = set()
+    fetched_order: list[str] = []
     total_sections: int | None = None
     fetched_sections = 0
     offset = 0
     effective_page_size = max(1, page_size)
+    # The page that ended the listing, and why it ended early if it did. A
+    # page that could not be fetched has no snapshot, so the titles source,
+    # which names every container, is the evidence for the gaps instead.
+    ending_record: _RecordedSource | None = None
+    listing_failure: str | None = None
     while total_sections is None or offset < total_sections:
         if limit is not None and fetched_sections >= limit:
             break
@@ -293,11 +299,17 @@ def extract_alabama_code(
             if limit is not None
             else effective_page_size
         )
-        page_source = fetcher.fetch_sections_page(offset=offset, limit=current_limit)
-        page_path, page_record = _record_source(store, jurisdiction, run_id, page_source)
-        source_paths.append(page_path)
-        source_records[page_source.relative_path] = page_record
-        payload = _graphql_data(page_source.data, "codesOfAlabama")
+        ending_record = None
+        try:
+            page_source = fetcher.fetch_sections_page(offset=offset, limit=current_limit)
+            page_path, page_record = _record_source(store, jurisdiction, run_id, page_source)
+            source_paths.append(page_path)
+            source_records[page_source.relative_path] = page_record
+            ending_record = page_record
+            payload = _graphql_data(page_source.data, "codesOfAlabama")
+        except Exception as exc:  # noqa: BLE001
+            listing_failure = f"sections page at offset {offset} failed: {exc}"
+            break
         total_sections = int(payload.get("count") or 0)
         rows = payload.get("data") or []
         if not rows:
@@ -309,24 +321,46 @@ def extract_alabama_code(
                 node,
             )
             selected_section_ids.add(node.code_id)
+            fetched_order.append(node.code_id)
             fetched_sections += 1
             offset += 1
         if len(rows) < current_limit:
             break
 
-    nodes = _prepare_alabama_nodes(nodes_by_code_id)
-    full_corpus = (
-        limit is None
-        and title_filter is None
+    prepared_nodes = _prepare_alabama_nodes(nodes_by_code_id)
+    # The listing is whole only when it reports a positive count and the run
+    # holds that many distinct sections. A listing that reports no sections
+    # cannot vouch for a scaffold that names titles.
+    listing_complete = (
+        listing_failure is None
         and total_sections is not None
+        and total_sections > 0
         and len(selected_section_ids) >= total_sections
     )
+    full_corpus = limit is None and title_filter is None and listing_complete
     nodes = _select_alabama_nodes(
-        nodes,
+        prepared_nodes,
         selected_section_ids,
         title_filter=title_filter,
         full_corpus=full_corpus,
     )
+    # A run capped by ``limit`` selects only what it fetched, by design.
+    gap_code_ids: set[str] = set()
+    listing_reason = ""
+    if limit is None and not listing_complete:
+        reported = "an unknown number of" if total_sections is None else str(total_sections)
+        listing_reason = listing_failure or (
+            f"sections listing ended with {len(selected_section_ids)} of {reported} sections"
+        )
+        gap_code_ids, kept_code_ids = _alabama_listing_gaps(
+            prepared_nodes,
+            selected_section_ids,
+            fetched_order,
+            title_filter=title_filter,
+        )
+        keep = {node.code_id for node in nodes} | gap_code_ids | kept_code_ids
+        nodes = [node for node in prepared_nodes if node.code_id in keep]
+    gap_source = ending_record or titles_record
 
     items: list[SourceInventoryItem] = []
     records: list[ProvisionRecord] = []
@@ -342,6 +376,26 @@ def extract_alabama_code(
             continue
         citation_path = node.citation_path
         metadata = _alabama_metadata(node)
+        if node.code_id in gap_code_ids:
+            # An inventory item without a provision: coverage lists it in
+            # missing_from_provisions, so the run cannot read complete.
+            if citation_path in seen:
+                continue
+            seen.add(citation_path)
+            errors.append(
+                f"{gap_source.source_path}: {listing_reason}; no section held under {citation_path}"
+            )
+            items.append(
+                SourceInventoryItem(
+                    citation_path=citation_path,
+                    source_url=gap_source.source_url,
+                    source_path=gap_source.source_path,
+                    source_format=gap_source.source_format,
+                    sha256=gap_source.sha256,
+                    metadata=metadata,
+                )
+            )
+            continue
         if citation_path in seen:
             if node.kind != "section":
                 continue
@@ -388,7 +442,7 @@ def extract_alabama_code(
             metadata=metadata,
         )
 
-    if not records:
+    if not items:
         raise ValueError("no Alabama provisions extracted")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
@@ -584,6 +638,80 @@ def _select_alabama_nodes(
             or _has_title_ancestor(by_code_id[code_id], by_code_id, title_filter)
         }
     return [node for node in nodes if node.code_id in selected and (node.title or node.content_html)]
+
+
+def _alabama_listing_gaps(
+    nodes: list[AlabamaNode],
+    section_ids: set[str],
+    fetched_order: list[str],
+    *,
+    title_filter: str | None,
+) -> tuple[set[str], set[str]]:
+    """Name what a sections listing that ended early leaves out.
+
+    Returns the code ids that stay inventory gaps and the code ids kept as
+    records although no section was fetched beneath them, because the titles
+    data marks them (or an ancestor) repealed, reserved or transferred. Every
+    other node the scaffold or titles name, within ``title_filter``, with no
+    fetched section beneath it is a gap. When every such node holds a fetched
+    section, the container of the last section held is the gap: the listing
+    ended inside it, or could have.
+    """
+    by_code_id = {node.code_id: node for node in nodes}
+
+    def in_selection(node: AlabamaNode) -> bool:
+        if not (node.title or node.content_html):
+            return False
+        if title_filter is None:
+            return True
+        return _node_title_display(node) == title_filter or _has_title_ancestor(
+            node, by_code_id, title_filter
+        )
+
+    candidates = {node.code_id for node in nodes if in_selection(node)}
+    covered: set[str] = set()
+    for code_id in section_ids:
+        node = by_code_id.get(code_id)
+        while node is not None and node.code_id not in covered:
+            covered.add(node.code_id)
+            node = by_code_id.get(node.parent_id) if node.parent_id else None
+    uncovered = candidates - covered
+    kept = {
+        code_id for code_id in uncovered if _alabama_empty_by_law(by_code_id[code_id], by_code_id)
+    }
+    gaps = uncovered - kept
+    if not gaps:
+        for code_id in reversed(fetched_order):
+            if code_id not in candidates:
+                continue
+            section = by_code_id[code_id]
+            parent_id = section.parent_id
+            gaps.add(parent_id if parent_id in candidates else code_id)
+            break
+    return gaps, kept
+
+
+_EMPTY_BY_LAW_RE = re.compile(
+    r"^[\[(]?\s*(?:repealed|reserved|transferred)"
+    r"(?:[\s.\])]*$|\s*[,;(]|\s+(?:by|to)\b)",
+    re.I,
+)
+
+
+def _alabama_empty_by_law(node: AlabamaNode, by_code_id: dict[str, AlabamaNode]) -> bool:
+    """Whether the titles data marks this node or an ancestor as holding no sections.
+
+    Only a heading that is "Repealed", "Reserved" or "Transferred", alone or
+    followed by its authority ("Repealed by ...", "Transferred to ...",
+    "Repealed, Acts ..."), counts. A chapter headed "Transferred Property"
+    does not, and stays a gap when nothing beneath it was fetched.
+    """
+    current: AlabamaNode | None = node
+    while current is not None:
+        if _EMPTY_BY_LAW_RE.match(current.heading or ""):
+            return True
+        current = by_code_id.get(current.parent_id) if current.parent_id else None
+    return False
 
 
 def _section_node_count(nodes: list[AlabamaNode]) -> int:
