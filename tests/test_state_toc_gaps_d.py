@@ -24,11 +24,16 @@ import requests
 from axiom_corpus.corpus import states
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
-from axiom_corpus.corpus.state_adapters import rhode_island, south_dakota
+from axiom_corpus.corpus.state_adapters import rhode_island, south_dakota, utah
 from axiom_corpus.corpus.state_adapters.rhode_island import extract_rhode_island_general_laws
 from axiom_corpus.corpus.state_adapters.south_dakota import (
     SOUTH_DAKOTA_STATUTES_SOURCE_FORMAT,
     extract_south_dakota_codified_laws,
+)
+from axiom_corpus.corpus.state_adapters.utah import (
+    UTAH_CODE_HTML_SOURCE_FORMAT,
+    UTAH_CODE_XML_SOURCE_FORMAT,
+    extract_utah_code,
 )
 from axiom_corpus.corpus.states import (
     extract_dc_code,
@@ -67,6 +72,11 @@ from tests.test_corpus_states import (
     SAMPLE_WASHINGTON_INDEX,
     SAMPLE_WASHINGTON_TITLE,
 )
+from tests.test_corpus_utah import CHAPTER_HTML as UT_CHAPTER_HTML
+from tests.test_corpus_utah import PART_HTML as UT_PART_HTML
+from tests.test_corpus_utah import ROOT_HTML as UT_ROOT_HTML
+from tests.test_corpus_utah import SECTION_XML as UT_SECTION_XML
+from tests.test_corpus_utah import TITLE_HTML as UT_TITLE_HTML
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 EMPTY_PAGE = ""
@@ -954,3 +964,190 @@ def test_south_dakota_run_of_only_gaps_still_fails(tmp_path, no_south_dakota_net
     pages.pop(f"{SD_FORMAT}/statute-2.json")
     with pytest.raises((RuntimeError, ValueError)):
         _extract_south_dakota(tmp_path, pages)
+
+
+# --- Utah: root index -> title -> chapter -> part pages -> section XML ---
+
+UT_HTML = UTAH_CODE_HTML_SOURCE_FORMAT
+UT_XML = UTAH_CODE_XML_SOURCE_FORMAT
+UT_ROOT_URL = "https://le.utah.gov/xcode/C_1800010118000101.html"
+UT_ROOT = f"{UT_HTML}/C_1800010118000101.html"
+UT_TITLE_59 = f"{UT_HTML}/Title59/C59_1800010118000101.html"
+UT_TITLE_61 = f"{UT_HTML}/Title61/C61_1800010118000101.html"
+UT_CHAPTER_10 = f"{UT_HTML}/Title59/Chapter10/C59-10_1800010118000101.html"
+UT_CHAPTER_11 = f"{UT_HTML}/Title59/Chapter11/C59-11_1800010118000101.html"
+UT_PART_1 = f"{UT_HTML}/Title59/Chapter10/C59-10-P1_1800010118000101.html"
+UT_PART_2 = f"{UT_HTML}/Title59/Chapter10/C59-10-P2_1800010118000101.html"
+UT_EMPTY_LISTING = '\ntrue\n<html><body><table id="childtbl"></table></body></html>\n'
+
+
+def _ut_row(href: str, label: str, heading: str) -> str:
+    return f'<tr><td><a href="{href}">{label}</a></td><td>{heading}</td></tr>\n</table>'
+
+
+UT_GOOD_PAGES = {
+    UT_ROOT: UT_ROOT_HTML.replace(
+        "</table>", _ut_row("Title61/61.html?v=C61_1800010118000101", "Title 61", "Securities")
+    ),
+    f"{UT_XML}/C_1800010118000101.xml": "<code><catchline>Utah Code</catchline></code>",
+    UT_TITLE_59: UT_TITLE_HTML.replace(
+        "</table>",
+        _ut_row(
+            "../Title59/Chapter11/59-11.html?v=C59-11_1800010118000101", "Chapter 11", "Estate Tax"
+        ),
+    ),
+    UT_CHAPTER_10: UT_CHAPTER_HTML.replace(
+        "</table>",
+        _ut_row(
+            "../../Title59/Chapter10/59-10-P2.html?v=C59-10-P2_1800010118000101",
+            "Part 2",
+            "Trusts and Estates",
+        ),
+    ),
+    UT_PART_1: UT_PART_HTML,
+    UT_PART_2: UT_PART_HTML.replace("S104.1", "S204.1").replace("S104", "S204"),
+    f"{UT_XML}/Title59/Chapter10/C59-10-S104_2026050620260506.xml": UT_SECTION_XML,
+    f"{UT_XML}/Title59/Chapter10/C59-10-S204_2026050620260506.xml": UT_SECTION_XML.replace(
+        "59-10-104", "59-10-204"
+    ),
+    UT_CHAPTER_11: UT_PART_HTML.replace("Chapter10/59-10-S104.1", "Chapter11/59-11-S1.1")
+    .replace("C59-10-S104.1", "C59-11-S1.1")
+    .replace("Chapter10/59-10-S104", "Chapter11/59-11-S1")
+    .replace("C59-10-S104", "C59-11-S1"),
+    f"{UT_XML}/Title59/Chapter11/C59-11-S1_2026050620260506.xml": UT_SECTION_XML.replace(
+        "59-10-104", "59-11-1"
+    ),
+    UT_TITLE_61: UT_TITLE_HTML.replace("Title59/Chapter10/59-10", "Title61/Chapter1/61-1")
+    .replace("C59-10", "C61-1")
+    .replace("Chapter 10", "Chapter 1"),
+    f"{UT_HTML}/Title61/Chapter1/C61-1_1800010118000101.html": UT_PART_HTML.replace(
+        "Title59/Chapter10/59-10-S104.1", "Title61/Chapter1/61-1-S1.1"
+    )
+    .replace("C59-10-S104.1", "C61-1-S1.1")
+    .replace("Title59/Chapter10/59-10-S104", "Title61/Chapter1/61-1-S1")
+    .replace("C59-10-S104", "C61-1-S1"),
+    f"{UT_XML}/Title61/Chapter1/C61-1-S1_2026050620260506.xml": UT_SECTION_XML.replace(
+        "59-10-104", "61-1-1"
+    ),
+}
+UT_T59 = "us-ut/statute/title-59"
+UT_C10 = f"{UT_T59}/chapter-59-10"
+UT_C11 = f"{UT_T59}/chapter-59-11"
+UT_P1 = f"{UT_C10}/part-59-10-1"
+UT_P2 = f"{UT_C10}/part-59-10-2"
+UT_T61 = {"us-ut/statute/title-61", "us-ut/statute/title-61/chapter-61-1", "us-ut/statute/61-1-1"}
+UT_EVERYTHING = {
+    UT_T59,
+    UT_C10,
+    UT_C11,
+    UT_P1,
+    UT_P2,
+    "us-ut/statute/59-10-104",
+    "us-ut/statute/59-10-204",
+    "us-ut/statute/59-11-1",
+} | UT_T61
+UT_SECTIONS_UNDER = {
+    "us-ut/statute/title-61": UT_T61 - {"us-ut/statute/title-61"},
+    UT_C11: {"us-ut/statute/59-11-1"},
+    UT_P2: {"us-ut/statute/59-10-204"},
+}
+UT_FETCH_FAILURES = ["request-error"]
+UT_TOC_FAILURES = UT_FETCH_FAILURES + PAGE_FAILURES
+
+
+@pytest.fixture
+def no_utah_network(monkeypatch):
+    def unavailable(source_url, *, fetcher):
+        raise requests.ConnectionError(f"source unavailable: {source_url}")
+
+    monkeypatch.setattr(utah, "_download_utah_source", unavailable)
+
+
+def _extract_utah(tmp_path, pages, **kwargs):
+    _write_sources(tmp_path / "source", pages)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    kwargs.setdefault("workers", 1)
+    report = extract_utah_code(
+        store,
+        version="2026-05-10",
+        source_dir=tmp_path / "source",
+        source_as_of="2026-05-10",
+        expression_date="2026-05-10",
+        source_url=UT_ROOT_URL,
+        **kwargs,
+    )
+    return store, report
+
+
+@pytest.mark.parametrize("failure", UT_TOC_FAILURES)
+@pytest.mark.parametrize(
+    ("failed", "parent", "gap"),
+    [
+        (UT_TITLE_61, UT_ROOT, "us-ut/statute/title-61"),
+        (UT_CHAPTER_11, UT_TITLE_59, UT_C11),
+        (UT_PART_2, UT_CHAPTER_10, UT_P2),
+    ],
+    ids=["title", "chapter", "part"],
+)
+def test_utah_failed_container_toc_remains_inventory_gap(
+    tmp_path, no_utah_network, failed, parent, gap, failure
+):
+    pages = dict(UT_GOOD_PAGES)
+    _fail_page(pages, failed, failure, {"no-children": UT_EMPTY_LISTING})
+    store, report = _extract_utah(tmp_path, pages)
+    # Titles and chapters also carry descendants that are never seen; only the
+    # container whose page failed is the gap.
+    lost = {path for path in UT_EVERYTHING if path.startswith(gap + "/")} | UT_SECTIONS_UNDER[gap]
+    assert report.errors
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=UT_EVERYTHING - lost,
+        missing={gap},
+        gap_source=parent if failure in UT_FETCH_FAILURES else failed,
+    )
+
+
+def test_utah_container_listing_only_inactive_children_stays_complete(tmp_path, no_utah_network):
+    # Chapter 59-11 lists only a section not yet in force on the expression
+    # date, so it has nothing to extract by law and stays complete.
+    pages = dict(UT_GOOD_PAGES)
+    pages[UT_CHAPTER_11] = (
+        '\ntrue\n<html><body><table id="childtbl">\n'
+        '<tr><td><a href="../../Title59/Chapter11/59-11-S1.html?v=C59-11-S1_2026050620261001">'
+        "Section 1</a></td><td>Future section.<i><b>(Effective 10/1/2026)</b></i></td></tr>\n"
+        "</table></body></html>\n"
+    )
+    store, report = _extract_utah(tmp_path, pages)
+    assert report.errors == ()
+    assert report.coverage.complete is True
+    inventory, provisions = _report_paths(report)
+    assert inventory == provisions == UT_EVERYTHING - {"us-ut/statute/59-11-1"}
+
+
+@pytest.mark.parametrize("workers", [1, 2])
+@pytest.mark.parametrize(
+    "failed", [UT_TITLE_61, UT_CHAPTER_11, UT_PART_2], ids=["title", "chapter", "part"]
+)
+def test_utah_interrupt_during_fetch_stops_the_run(
+    tmp_path, monkeypatch, no_utah_network, workers, failed
+):
+    fetch = utah._UtahFetcher.fetch
+
+    def interrupt(self, source_url, relative_path):
+        if relative_path == failed:
+            raise KeyboardInterrupt
+        return fetch(self, source_url, relative_path)
+
+    monkeypatch.setattr(utah._UtahFetcher, "fetch", interrupt)
+    with pytest.raises(KeyboardInterrupt):
+        _extract_utah(tmp_path, dict(UT_GOOD_PAGES), workers=workers)
+
+
+def test_utah_run_of_only_gaps_still_fails(tmp_path, no_utah_network):
+    pages = dict(UT_GOOD_PAGES)
+    pages.pop(UT_TITLE_59)
+    pages.pop(UT_TITLE_61)
+    # Main raised the fetch error itself (one worker) or a RuntimeError (a pool).
+    with pytest.raises((requests.RequestException, RuntimeError, ValueError)):
+        _extract_utah(tmp_path, pages)
