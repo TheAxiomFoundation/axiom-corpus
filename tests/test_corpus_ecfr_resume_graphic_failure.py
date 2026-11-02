@@ -241,3 +241,56 @@ def test_fresh_retained_xml_graphic_failure_stays_resumable(tmp_path, monkeypatc
     graphics["failure"] = None
     resumed = _retained_run(store, source_xml)
     assert resumed.coverage.complete and resumed.title_error_count == 0
+
+
+@pytest.mark.parametrize("retained", ["valid", "repeated-path", "missing-section"])
+def test_retained_xml_with_no_title_result_is_stored_only_after_validation(
+    tmp_path, monkeypatch, retained
+):
+    # When no title result covers the retained title, no result stages its
+    # bytes, so extract_ecfr writes them itself after every check has passed.
+    # No real input reaches that branch: source_xml requires section
+    # selectors, and each one selects its part and section under the retained
+    # title. Keying every selected path under another title makes the retained
+    # title select none, while the checks on the retained bytes still run.
+    title_from_citation_path = ecfr._title_from_citation_path
+    monkeypatch.setattr(
+        ecfr, "_title_from_citation_path", lambda path: title_from_citation_path(path) + 1000
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    source_xml = tmp_path / "title-1-part-10.xml"
+    xml = _xml(1, "Retained title 1 body.")
+    if retained == "repeated-path":
+        # A second N that folds to the selected section's citation path.
+        xml = xml.replace(
+            "</DIV5>",
+            '<DIV8 N="10.1()" TYPE="SECTION" NODE="other-1">'
+            "<HEAD>Other section</HEAD><P>Conflicting body.</P></DIV8></DIV5>",
+        )
+    elif retained == "missing-section":
+        xml = xml.replace('N="10.1"', 'N="10.2"')
+    source_xml.write_text(xml)
+    run_id, snapshot_path = _retained_snapshot_path(store)
+
+    if retained != "valid":
+        expected_error = "holds citation path" if retained == "repeated-path" else "not found"
+        with pytest.raises(ValueError, match=expected_error):
+            _retained_run(store, source_xml)
+        assert not snapshot_path.exists()
+        assert not store.root.exists() or _snapshot(store.root) == {}
+        return
+
+    report = _retained_run(store, source_xml)
+    assert report.title_error_count == 0
+    assert snapshot_path.read_bytes() == source_xml.read_bytes()
+    digest = sha256(source_xml.read_bytes()).hexdigest()
+    inventory = load_source_inventory(store.inventory_path("us", "regulation", run_id))
+    assert {item.citation_path for item in inventory} == {
+        "us/regulation/1/10",
+        "us/regulation/1/10/1",
+    }
+    for item in inventory:
+        # The inventory pins the stored snapshot, which holds the checked bytes.
+        assert item.source_path == str(snapshot_path.relative_to(store.root))
+        assert item.sha256 == digest
+    assert report.coverage.complete
