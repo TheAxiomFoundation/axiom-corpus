@@ -86,15 +86,15 @@ parses.
 
 ## Subchapter appendices
 
-The eCFR places an appendix to a subchapter in that subchapter's last part. 41 CFR
-chapter 101's `Appendix to Subchapter D` sits in part 101-21, at reader path
+The eCFR places 41 CFR chapter 101's `Appendix to Subchapter D` in that
+subchapter's last part, part 101-21, at reader path
 `.../subchapter-D/part-101-21/appendix-Appendix%20to%20Subchapter%20D`. The
-2026-10-12 eCFR differential (the 2026-10-08 eCFR) found no other live one in all
-49 titles, and title 41 lists three more as reserved. The adapter reads it only
-inside the subchapter it names, and an appendix that names another subchapter
-fails validation. The adapter makes the part that holds it the appendix's parent,
-at level 1. Its path segment names the subchapter, so it never takes a part
-appendix's path:
+2026-10-12 eCFR differential, which read the 2026-10-08 eCFR, found no other live
+appendix to a subchapter in all 49 titles, and it found three reserved ones in
+title 41. The adapter reads an appendix to a subchapter only inside the subchapter
+it names, and one that names another subchapter fails validation. The adapter makes
+the part that holds the appendix its parent, at level 1. The path segment names the
+subchapter, so the appendix never takes a part appendix's path:
 
 | eCFR identifier | Citation path | Legal identifier |
 | --- | --- | --- |
@@ -102,9 +102,10 @@ appendix's path:
 
 It sorts with unnumbered appendices (ordinal 1,000,000). Its metadata carries
 `appendix_subchapter`, `appendix_identifier`, `appendix: null` and
-`appendix_numbering: null`, and its identifiers add `ecfr:subchapter`. The adapter
-doesn't support a designated form (`Appendix A to Subchapter D`), which has no live
-instance.
+`appendix_numbering: null`, and the adapter adds `ecfr:subchapter` to its
+identifiers. The adapter refuses two forms that no live appendix takes: a designated
+one (`Appendix A to Subchapter D`) and an appendix directly under a subchapter,
+outside any part.
 
 ## Subpart appendices
 

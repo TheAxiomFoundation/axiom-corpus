@@ -239,5 +239,5 @@ Reformat only (no text added, no successor needed):
 Not yet released:
 
 9. `us/manual/2026-10-12-oasdi-poms-rs` (#826; the #819 release selector includes
-   it): re-extract this scope once this lands and before its first release, so that
-   release carries RS 02510.026's 248 words.
+   it): re-extract this scope with the patched extractor before its first release, so
+   its first version carries RS 02510.026's 248 words.
