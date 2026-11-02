@@ -17,7 +17,7 @@ import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions
-from axiom_corpus.corpus.state_adapters import pennsylvania
+from axiom_corpus.corpus.state_adapters import missouri, pennsylvania
 from axiom_corpus.corpus.state_adapters.maryland import extract_maryland_code
 from axiom_corpus.corpus.state_adapters.massachusetts import (
     extract_massachusetts_general_laws,
@@ -53,6 +53,7 @@ from tests.test_corpus_michigan import SAMPLE_INDEX_HTML as MI_INDEX_HTML
 from tests.test_corpus_missouri import SAMPLE_CHAPTER_HTML as MO_CHAPTER_HTML
 from tests.test_corpus_missouri import SAMPLE_ROOT_HTML as MO_ROOT_HTML
 from tests.test_corpus_missouri import SAMPLE_VIEW_CHAPTER_HTML as MO_VIEW_HTML
+from tests.test_corpus_missouri import _rate_schedule_pdf as mo_rate_schedule_pdf
 from tests.test_corpus_nevada import SAMPLE_NEVADA_CHAPTER as NV_CHAPTER_HTML
 from tests.test_corpus_nevada import SAMPLE_NEVADA_INDEX as NV_INDEX_HTML
 from tests.test_corpus_new_hampshire import (
@@ -421,6 +422,53 @@ def test_missouri_failed_full_chapter_text_remains_inventory_gap(tmp_path, failu
         gap_source=MO_CHAPTER_144 if failure == "missing-file" else MO_VIEW_144,
     )
 
+
+
+def test_missouri_rate_overlay_without_section_143_011_remains_inventory_gap(tmp_path):
+    # With the annual rate schedule, the run overlays it on section 143.011. A
+    # full-chapter page that does not carry 143.011 cannot take the overlay, so
+    # chapter 143 stays a gap sourced from that page. On main the chapter was
+    # written and every section under it dropped while coverage read complete.
+    view = "missouri-rs-view-chapter-html/chapter-143.html"
+    pages = {
+        MO_ROOT: MO_ROOT_HTML,
+        MO_CHAPTER_143: MO_CHAPTER_HTML.replace("143.011", "143.021"),
+        view: MO_VIEW_HTML.replace("143.011", "143.021"),
+    }
+    source = tmp_path / "source"
+    _write_sources(source, pages)
+    schedule = source / "missouri-department-of-revenue" / "2026-form-mo-1040es.pdf"
+    schedule.parent.mkdir(parents=True)
+    schedule.write_bytes(mo_rate_schedule_pdf())
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_missouri_revised_statutes(
+        store,
+        version="2026-05-10",
+        source_dir=source,
+        expression_date="2026-05-10",
+        workers=1,
+        rate_schedule_url="https://dor.mo.gov/forms/MO-1040ES_2026.pdf",
+        tax_year=2026,
+    )
+    assert report.section_count == 0
+    assert report.errors == ("chapter 143 full text: section 143.011 missing",)
+    _assert_visible_gaps(
+        store,
+        report,
+        expected={"us-mo/statute/title-x", "us-mo/statute/chapter-143"},
+        missing={"us-mo/statute/chapter-143"},
+        gap_source=view,
+    )
+
+
+def test_missouri_interrupt_during_full_chapter_fetch_stops_the_run(tmp_path, monkeypatch):
+    # Only an ordinary fetch error becomes a gap; an interrupt still stops the run.
+    def interrupt(self, listing):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(missouri._MissouriFetcher, "fetch_view_chapter", interrupt)
+    with pytest.raises(KeyboardInterrupt):
+        _extract_missouri(tmp_path, dict(MO_GOOD_PAGES))
 
 # --- Nevada: index (titles and chapters) -> one chapter page per chapter ---
 

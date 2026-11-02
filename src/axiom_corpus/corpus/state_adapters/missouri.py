@@ -511,7 +511,7 @@ def extract_missouri_revised_statutes(
             continue
         try:
             view_source = fetcher.fetch_view_chapter(chapter_page.listing)
-        except BaseException as exc:  # noqa: BLE001
+        except Exception as exc:  # noqa: BLE001
             errors.append(f"chapter {chapter_page.listing.chapter} full text: {exc}")
             _append_gap(seen, items, _chapter_inventory_item(chapter))
             continue
