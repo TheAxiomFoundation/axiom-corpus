@@ -405,6 +405,7 @@ def extract_maine_revised_statutes(
                 or _same_filter(chapter.chapter_id, chapter_filter)
             ):
                 continue
+            chapter_source: _RecordedSource | None = None
             try:
                 chapter_page = fetcher.fetch(chapter.relative_path)
                 chapter_source = _record_source_page(
@@ -420,10 +421,17 @@ def extract_maine_revised_statutes(
                     raise ValueError("no sections listed in chapter table of contents")
             except Exception as exc:  # noqa: BLE001
                 errors.append(f"{chapter.relative_path}: {exc}")
+                # An unreadable page has no snapshot, so the title page that
+                # lists the chapter is the evidence; a page that was read but
+                # lists nothing is its own evidence.
                 _append_inventory_gap(
-                    _chapter_provision(chapter), title_source, items=items, seen=seen
+                    _chapter_provision(chapter),
+                    chapter_source if chapter_source is not None else title_source,
+                    items=items,
+                    seen=seen,
                 )
             else:
+                assert chapter_source is not None
                 chapter_sources[chapter.citation_path] = chapter_source
                 added = _append_provision(
                     _chapter_provision(chapter),

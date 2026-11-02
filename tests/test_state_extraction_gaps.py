@@ -359,7 +359,11 @@ def test_maine_failed_chapter_toc_remains_inventory_gap(tmp_path, failure):
         report,
         expected=MAINE_CONTAINERS | MAINE_SECTIONS | {chapter},
         missing={chapter},
-        gap_source="36/title36ch0sec0.html",
+        # An unreadable page is evidenced by the title page that lists it; a
+        # page that was read but lists nothing is its own evidence.
+        gap_source=(
+            "36/title36ch0sec0.html" if failure == "missing-file" else "36/title36ch823sec0.html"
+        ),
     )
 
 
@@ -387,7 +391,9 @@ def test_maine_failed_title_toc_remains_inventory_gap(tmp_path, failure):
     )
 
 
-@pytest.mark.parametrize("failure", ["request-error", "maintenance", "empty", "wrong-shape"])
+@pytest.mark.parametrize(
+    "failure", ["request-error", "missing-file", "maintenance", "empty", "wrong-shape"]
+)
 def test_ohio_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, failure):
     source = tmp_path / "source"
     pages = {
@@ -405,7 +411,8 @@ def test_ohio_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, fail
             return load_html(*args, **kwargs)
 
         monkeypatch.setattr(states, "_load_ohio_html", reject_title)
-    else:
+    elif failure != "missing-file":
+        # A missing --source-dir title file is left out of the pages entirely.
         pages[failed] = _FAILED_TOC_BODY[failure]
     _write_sources(source, pages)
     store = CorpusArtifactStore(tmp_path / "corpus")
@@ -418,7 +425,11 @@ def test_ohio_failed_title_toc_remains_inventory_gap(tmp_path, monkeypatch, fail
         report,
         expected=OHIO_CONTAINERS | {title, "us-oh/statute/5160.01", "us-oh/statute/5160.011"},
         missing={title},
-        gap_source=("ohio-revised-code/index.html" if failure == "request-error" else failed),
+        gap_source=(
+            "ohio-revised-code/index.html"
+            if failure in {"request-error", "missing-file"}
+            else failed
+        ),
     )
 
 

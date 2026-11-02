@@ -1344,7 +1344,8 @@ def extract_ohio_revised_code(
                 relative_name=title_relative,
                 url=title.source_url,
             )
-        except requests.RequestException as exc:
+        except (requests.RequestException, OSError) as exc:
+            # A failed download, or a --source-dir title file that cannot be read.
             errors.append(f"title {title.num}: {exc}")
             if title.citation_path not in seen_citation_paths:
                 seen_citation_paths.add(title.citation_path)
