@@ -1077,17 +1077,17 @@ def test_nebraska_extraction_reports_source_errors(tmp_path):
     )
     chapter_path.write_text("<html><body><div>No statutory sections.</div></body></html>")
 
-    report = extract_nebraska_revised_statutes(
-        CorpusArtifactStore(tmp_path / "corpus-bad-section"),
-        version="2026-05-04",
-        source_dir=bad_section_dir,
-        source_as_of="2026-05-04",
-        only_title="1",
-        limit=3,
-    )
-
-    assert report.section_count == 0
-    assert report.errors == ("chapter 1: no sections parsed",)
+    # The only chapter yields no sections, so it is an inventory gap and the
+    # run has no provisions to write.
+    with pytest.raises(ValueError, match="no Nebraska Revised Statutes provisions extracted"):
+        extract_nebraska_revised_statutes(
+            CorpusArtifactStore(tmp_path / "corpus-bad-section"),
+            version="2026-05-04",
+            source_dir=bad_section_dir,
+            source_as_of="2026-05-04",
+            only_title="1",
+            limit=3,
+        )
 
 
 def test_nebraska_live_source_helpers_cover_success_and_exhausted_retry(tmp_path, monkeypatch):

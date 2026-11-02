@@ -41,7 +41,18 @@ address in the queue and in the committed manifests; ``--repair-index`` runs it 
 Re-probe 2026-10-20 (same note): Missouri and Indiana now answer and are extracted into W8_SCOPE; AS, AZ, MD, MP and NY
 fail as before; AK, PR and VI still post no approved or certified FFY 2025-2027 plan.
 
-    uv run python scripts/build_ccdf_state_plan_manifests.py
+Row identity on manifests/ccdf-agent-queue.yaml is a row's target_manifest, not its jurisdiction:
+three rows carry jurisdiction us (the ACF plan directory, 45 CFR part 98, the CCDBG statute) and two
+carry us-in (the ACF-118 plan and the FSSA CCDF Policy Manual). Every pass here selects rows through
+plan_row_manifest/one_row, which refuse on anything but one match. There is no default pass: each
+mode is named, and the full rebuild is behind --rebuild because it is the only one that rewrites the
+whole queue and every agent_ready manifest. It carries each row's additional_families and committed
+target_scope.version through, and refuses to write if a row or a family block would be lost.
+
+    uv run python scripts/build_ccdf_state_plan_manifests.py --rebuild              # full index rebuild
+    uv run python scripts/build_ccdf_state_plan_manifests.py --only-plan-rows in,mo # narrow row refresh
+    uv run python scripts/build_ccdf_state_plan_manifests.py --family appendices
+    uv run python scripts/build_ccdf_state_plan_manifests.py --repair-index
 """
 from __future__ import annotations
 
@@ -418,14 +429,47 @@ def fetch_index() -> list[dict]:
 
 
 
-def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) -> dict:
+# The queue does not hold one row per jurisdiction: three rows carry jurisdiction ``us`` (the ACF plan
+# directory, 45 CFR part 98 and the CCDBG statute) and two carry ``us-in`` (the ACF-118 plan and the FSSA
+# CCDF Policy Manual). A row's identity is therefore its ``target_manifest``, never its jurisdiction.
+FEDERAL_ROW_MANIFEST = "manifests/us-ccdf-sources.yaml"
+IN_MANUAL_ROW_MANIFEST = "manifests/us-in-ccdf-sources.yaml"
+
+
+def plan_row_manifest(code: str) -> str:
+    """The target manifest of a jurisdiction's ACF-118 plan row, which is that row's identity."""
+    return f"manifests/us-{code}-ccdf-state-plan-fy{FY}.yaml"
+
+
+def one_row(states: list[dict], target_manifest: str) -> dict:
+    """Return the single queue row that carries ``target_manifest``; refuse anything else.
+
+    Keying rows by ``jurisdiction`` instead silently keeps whichever row the file lists last, so an edit
+    meant for Indiana's plan row lands on the FSSA policy-manual row and an edit meant for the federal
+    directory row lands on the CCDBG statute row. Selecting by target manifest cannot be ambiguous, and
+    refusing on 0 or 2 matches turns a layout change into a stop instead of a silent wrong write.
+    """
+    matches = [s for s in states if s.get("target_manifest") == target_manifest]
+    if len(matches) != 1:
+        raise SystemExit(f"{len(matches)} queue rows carry {target_manifest}; expected exactly 1")
+    return matches[0]
+
+
+def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None, *,
+                     version: str | None = None, source_as_of: str | None = None) -> dict:
     """Write the one-document manifest of an agent_ready jurisdiction and return its queue-row fields.
 
     A resolution may pin its own ``scope_version`` and ``source_as_of`` (the 2026-09-13 re-probe scope for GA
-    and TX); every other jurisdiction stays on the run-wide VERSION / SOURCE_AS_OF."""
+    and TX); every other jurisdiction stays on the run-wide VERSION / SOURCE_AS_OF. ``version`` is the scope
+    version the row already carries: the full rebuild passes it so a row it does not re-probe keeps its
+    committed scope instead of moving to the run date, and so the manifest written here and the queue row
+    returned never disagree. ``source_as_of`` is the date the row's committed manifest records, passed the same
+    way and for the same reason: a rebuild that did not re-read the publisher must not restamp when it was read.
+    A pinned ``scope_version`` / ``source_as_of`` on the resolution still wins over both."""
     jur = f"us-{code}"
     fmt = res.get("source_format", "pdf")
-    version = res.get("scope_version", VERSION)
+    version = res.get("scope_version") or version or VERSION
+    as_of = res.get("source_as_of") or source_as_of or SOURCE_AS_OF
     stem = f"{jur}-ccdf-state-plan-fy{FY}"
     doc = {
         "source_id": f"{jur}-acf-ccdf-plan-fy{FY}",
@@ -434,7 +478,7 @@ def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) 
         "title": f"{name} CCDF Plan, FFY {FY}",
         "source_url": res["url"],
         "source_format": fmt,
-        "source_as_of": res.get("source_as_of", SOURCE_AS_OF),
+        "source_as_of": as_of,
         "expression_date": EXPRESSION_DATE,
         "citation_path": f"{jur}/policy/acf/ccdf-plan/fy{FY}",
     }
@@ -471,34 +515,6 @@ def ready_row_fields(code: str, name: str, res: dict, appendix_url: str | None) 
         "taken_count": 1,
         "notes": f"FFY {FY} ACF-118 CCDF Plan ({res['version']}; {res['plan_status']}) located on the Lead Agency page linked from the ACF index; extraction proven. The ACF-hosted Appendix on the index is a separate document family, not taken.",
     }
-
-
-def refresh_rows_only(codes: list[str]) -> dict[str, int]:
-    """Refresh the queue rows of the listed jurisdictions from RESOLUTIONS without fetching the ACF index
-    (territories pass, 2026-09-11: AS, MP, PR, VI re-probed; re-probe 2026-09-13: GA and TX extracted, the
-    other blocked rows re-recorded). A newly agent_ready row gets its manifest written from the ACF index
-    facts the row already carries (index_plan_link, index_appendix_url); no other manifest is touched."""
-    queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
-    queue = yaml.safe_load(queue_path.read_text())
-    rows = {s["jurisdiction"]: s for s in queue["states"]}
-    for code in codes:
-        res = RESOLUTIONS[code]
-        row = rows[f"us-{code}"]
-        if res["status"] == "agent_ready":
-            row.update(ready_row_fields(code, row["name"], res, row.get("index_appendix_url")))
-            continue
-        row["queue_status"] = res["status"]
-        row["publisher_index_url"] = res["index"]
-        row["notes"] = (
-            ("Publisher blocked: " if res["status"] == "blocked_primary_source" else "Not extracted: ")
-            + res["reason"] + ". Nothing was worked around."
-        )
-    queue["status_counts"] = {}
-    for s in queue["states"]:
-        queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
-    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
-    return queue["status_counts"]
-
 
 
 # --------------------------------------------------------------------------------------
@@ -893,24 +909,25 @@ def run_family(family: str, *, as_of: str = FOLLOWUP_AS_OF) -> int:
 
 
 def refresh_plan_rows(codes: list[str]) -> dict[str, int]:
-    """Refresh the listed jurisdictions' ACF-118 *plan* rows from RESOLUTIONS, by target_manifest.
+    """Refresh the listed jurisdictions' ACF-118 *plan* rows from RESOLUTIONS, selected by target_manifest.
 
-    Same job as refresh_rows_only above, with one difference that the 2026-10-20 index-repair pass needs:
-    the queue holds two rows whose ``jurisdiction`` is ``us-in`` (the ACF-118 plan and the separate FSSA
-    CCDF Policy Manual family), so keying rows by jurisdiction reaches the manual row instead of the plan
-    row for ``in``. This selects each row by its plan ``target_manifest`` and leaves every other row,
-    including both Indiana rows' ``additional_families`` and the manual row itself, untouched.
+    The one narrow row-refresh pass, reached by ``--only-plan-rows`` and by ``--only``, which is the same
+    option under the name the 2026-09-11 and 2026-09-13 passes used. It replaces the earlier
+    ``refresh_rows_only``, which keyed rows by ``jurisdiction`` in a dict comprehension: because the queue
+    holds two rows whose jurisdiction is ``us-in``, that dict kept the FSSA policy-manual row, and
+    ``--only in`` would have written the plan row's status, scope, source and target manifest onto the
+    manual row while leaving the plan row untouched. ``one_row`` selects each row by its plan
+    ``target_manifest`` and refuses unless exactly one row matches, so no other row - including both
+    Indiana rows' ``additional_families`` and the manual row itself - is reachable from this pass.
+
+    No ACF index fetch: a newly agent_ready row gets its manifest written from the index facts the row
+    already carries (index_plan_link, index_appendix_url); no other manifest is touched.
     """
     queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
     for code in codes:
         res = RESOLUTIONS[code]
-        wanted = f"manifests/us-{code}-ccdf-state-plan-fy{FY}.yaml"
-        matches = [s for s in queue["states"] if s.get("target_manifest") == wanted]
-        if len(matches) != 1:
-            print(f"us-{code}: {len(matches)} rows carry {wanted}; expected exactly 1", file=sys.stderr)
-            raise SystemExit(1)
-        row = matches[0]
+        row = one_row(queue["states"], plan_row_manifest(code))
         if res["status"] == "agent_ready":
             row.update(ready_row_fields(code, row["name"], res, row.get("index_appendix_url")))
             continue
@@ -1019,34 +1036,62 @@ def repair_dead_index_refs() -> dict[str, int]:
     return counts
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--repair-index", action="store_true",
-                        help="rewrite the dead /occ/form/ ACF index address to the live /occ/data/ one across "
-                             "manifests/*.yaml and re-inventory the relocated index on the queue; no row is re-triaged")
-    parser.add_argument("--only-plan-rows", help="comma-separated jurisdiction codes whose ACF-118 plan rows are "
-                        "refreshed from RESOLUTIONS, selected by target_manifest so the two us-in rows stay distinct "
-                        "(2026-10-20 index-repair pass); every other row and manifest is left untouched")
-    parser.add_argument("--only", help="comma-separated jurisdiction codes (as,mp,...) whose rows are refreshed from "
-                        "RESOLUTIONS without fetching the ACF index (a newly agent_ready row also gets its manifest); "
-                        "every other row and manifest is left untouched")
-    parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
-                        help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
-                             "queue rows (additional_families) instead of rebuilding the plan rows")
-    parser.add_argument("--as-of", default=FOLLOWUP_AS_OF, choices=[FOLLOWUP_AS_OF, WAVE5_AS_OF],
-                        help="rate-schedules only: which pass to build (2026-09-13 follow-up or 2026-09-15 wave 5)")
-    args = parser.parse_args()
-    if args.repair_index:
-        print(f"index repair {repair_dead_index_refs()}")
-        return 0
-    if args.only_plan_rows:
-        print(f"queue {refresh_plan_rows(args.only_plan_rows.split(','))}")
-        return 0
-    if args.family:
-        return run_family(args.family, as_of=args.as_of)
-    if args.only:
-        print(f"queue {refresh_rows_only(args.only.split(','))}")
-        return 0
+def refuse_if_rows_lost(before: list[dict], states: list[dict]) -> None:
+    """Refuse a rebuild that would lose a queue row, or a row's ``additional_families``.
+
+    The rebuild is written to replace plan rows and carry everything else through, so this should never
+    fire. It is here because the loss it checks for is exactly what the earlier rebuild did silently, and
+    because the check is cheap: every row read must come back, either as the same object or as a row with
+    the same ``target_manifest``, and every ``additional_families`` block read must come back with it.
+    """
+    carried = {id(s) for s in states}
+    after_by_target = {s["target_manifest"]: s for s in states if s.get("target_manifest")}
+    lost = [f"{s['jurisdiction']} ({s.get('target_manifest')})" for s in before
+            if id(s) not in carried and s.get("target_manifest") not in after_by_target]
+    if lost:
+        raise SystemExit(f"rebuild would drop {len(lost)} queue rows: {', '.join(lost)}; refusing to write")
+    dropped = []
+    for s in before:
+        if "additional_families" not in s:
+            continue
+        now = after_by_target.get(s.get("target_manifest"))
+        if now is None:
+            if id(s) in carried:
+                continue
+        elif now.get("additional_families") == s["additional_families"]:
+            continue
+        dropped.append(f"{s['jurisdiction']} ({s.get('target_manifest')})")
+    if dropped:
+        raise SystemExit(f"rebuild would drop additional_families from {len(dropped)} rows: "
+                         f"{', '.join(dropped)}; refusing to write")
+
+
+def rebuild_all_rows() -> int:
+    """Rebuild every ACF-118 plan row from the live ACF index and RESOLUTIONS (``--rebuild``).
+
+    The only pass that rewrites the whole queue, and the only one that rewrites every agent_ready
+    manifest, so it is gated behind its own flag rather than being what a bare invocation does. It is
+    also non-destructive by construction, which the earlier version of this code was not:
+
+    * Rows are matched by ``target_manifest`` (``plan_row_manifest``, ``one_row``), not by jurisdiction.
+      The rebuilt plan rows replace the committed plan rows in place, and every row the index does not
+      supply - the ACF directory row, the 45 CFR part 98 row, the CCDBG statute row and the FSSA CCDF
+      Policy Manual row - is carried through untouched, in its original position. The earlier version
+      rebuilt ``queue["states"]`` as a fresh list and recovered only ``existing["us"]`` and
+      ``existing["us-in"]``, so it dropped the two ``us`` rows the file lists first and overwrote the
+      third with the directory row's own fields.
+    * ``additional_families`` is carried over onto the rebuilt row, so the appendix, amendment,
+      rate-schedule, held-elsewhere and wave-6 bundle entries that ``attach_family`` recorded survive a
+      rebuild. The earlier version dropped all 51 of them.
+    * ``target_scope.version`` is carried over unless the row's resolution pins a new one, so a rebuild
+      does not drag a committed scope onto the run date, and the manifest written for a row carries the
+      same version as the row. The earlier version reset every row to the run-wide VERSION.
+    * Nothing is written until the rebuilt queue has been checked against the queue that was read: a
+      lost row or a lost ``additional_families`` block refuses the whole write.
+
+    A resolution's ``held`` family is not attached here (``refresh_plan_rows`` does that for the narrow
+    pass); a rebuild preserves whatever that pass already recorded instead of re-deriving it.
+    """
     bundle = ca_bundle()
     rows = fetch_index()
     if len(rows) != 56 or {r["code"] for r in rows} != set(RESOLUTIONS):
@@ -1056,13 +1101,30 @@ def main() -> int:
     appendix = [r for r in rows if r["appendix_url"]]
     queue_path = ROOT / "manifests" / "ccdf-agent-queue.yaml"
     queue = yaml.safe_load(queue_path.read_text())
-    existing = {s["jurisdiction"]: s for s in queue["states"]}
-    states = []
+    before = list(queue["states"])
+    # What the committed rows own and the index pass does not: the scope version a row already sits on,
+    # and the follow-up families recorded against it. Keyed by row identity, so the two us-in rows and
+    # the three us rows keep their own.
+    committed_version = {s["target_manifest"]: (s.get("target_scope") or {}).get("version")
+                         for s in before if s.get("target_manifest")}
+    committed_families = {s["target_manifest"]: s["additional_families"]
+                          for s in before if s.get("target_manifest") and "additional_families" in s}
+    committed_as_of = {}
+    for target in {s.get("target_manifest") for s in before}:
+        path = ROOT / target if target else None
+        if path is not None and path.is_file():
+            docs = (yaml.safe_load(path.read_text()) or {}).get("documents") or []
+            if docs and docs[0].get("source_as_of"):
+                committed_as_of[target] = str(docs[0]["source_as_of"])
+
+    rebuilt: dict[str, dict] = {}
     written = 0
     for r in rows:
         code, name = r["code"], r["name"]
         jur = f"us-{code}"
         res = RESOLUTIONS[code]
+        target = plan_row_manifest(code)
+        version = res.get("scope_version") or committed_version.get(target) or VERSION
         row = {"jurisdiction": jur, "name": name}
         row["queue_status"] = res["status"]
         row["index_url"] = INDEX
@@ -1070,50 +1132,71 @@ def main() -> int:
         row["index_plan_link"] = r["plan_link"]
         row["index_appendix_url"] = r["appendix_url"]
         row["publisher_index_url"] = res["index"]
-        row["target_scope"] = {"jurisdiction": jur, "document_class": "policy", "version": VERSION}
+        row["target_scope"] = {"jurisdiction": jur, "document_class": "policy", "version": version}
         if res["status"] == "agent_ready":
-            row.update(ready_row_fields(code, name, res, r["appendix_url"]))
+            row.update(ready_row_fields(code, name, res, r["appendix_url"], version=version,
+                                        source_as_of=committed_as_of.get(target)))
             written += 1
         else:
             row.update({
                 "source_kind": "official_state_plan_page",
                 "primary_source_url": None,
-                "target_manifest": f"manifests/us-{code}-ccdf-state-plan-fy{FY}.yaml",
+                "target_manifest": target,
                 "taken_count": 0,
                 "notes": ("Publisher blocked: " if res["status"] == "blocked_primary_source" else "Not extracted: ") + res["reason"] + ". Nothing was worked around.",
             })
-        states.append(row)
-    # Keep the pre-existing federal row first and the Indiana agency-manual row (a different
-    # document family from the plans) last; both stay needs_review with the findings recorded.
-    us_row = existing["us"]
-    in_manual = existing["us-in"]
-    states = [us_row, *states, in_manual]
+        if target in committed_families:
+            row["additional_families"] = committed_families[target]
+        rebuilt[target] = row
+
+    # Replace each committed plan row with its rebuilt row in place; carry every other row through.
+    states = []
+    for old in before:
+        target = old.get("target_manifest")
+        states.append(rebuilt.pop(target) if target in rebuilt else old)
+    states.extend(rebuilt[target] for target in sorted(rebuilt))  # a plan row the queue did not hold yet
+
+    # The pre-existing federal directory row and Indiana policy-manual row, by identity. Both stay
+    # needs_review with the findings recorded; both keep the scope version they already carry.
+    us_row = one_row(states, FEDERAL_ROW_MANIFEST)
     us_row["queue_status"] = "needs_review"
     us_row["index_url"] = INDEX
     us_row["index_document_count"] = len(rows) + len(appendix)
     us_row["taken_count"] = 0
-    us_row["notes"] = (
+    # Index-derived facts above are re-derived from the fetched page; the triage findings below are not.
+    # A rebuild does not re-triage this row, so notes a later pass appended to it are kept.
+    us_row.setdefault("notes", (
         "Reviewed 2026-09-10: the lead-list URL (acf.hhs.gov) 301-redirects to acf.gov; that page is the FY 2025-2027 "
         "plan directory, not a federal source document. Federal CCDF rules are 45 CFR part 98: not in the corpus "
         "(no us/regulation title-45-part-98 coverage; no us/regulation/45/98 provisions); the CCDBG Act (42 U.S.C. 9857 et seq.) "
         "appears only as scattered cross-reference rows in other us/statute scopes. Ingest 45 CFR 98 through extract-ecfr "
         "(--only-title 45 --only-part 98) in a separate run; not re-ingested here."
-    )
+    ))
+    in_manual = one_row(states, IN_MANUAL_ROW_MANIFEST)
     in_manual["name"] = "Indiana (CCDF Policy Manual, FSSA Office of Early Childhood and Out-of-School Learning)"
     in_manual["queue_status"] = "needs_review"
     in_manual["source_kind"] = "official_pdf_agency_manual"
     in_manual["primary_source_url"] = "https://www.in.gov/fssa/carefinder/files/CCDF-Policy-Manual.pdf"
-    in_manual["target_scope"] = {"jurisdiction": "us-in", "document_class": "manual", "version": f"{SOURCE_AS_OF}-ccdf-in-policy-manual"}
+    in_manual["target_scope"] = {
+        "jurisdiction": "us-in", "document_class": "manual",
+        "version": committed_version.get(IN_MANUAL_ROW_MANIFEST) or f"{SOURCE_AS_OF}-ccdf-in-policy-manual",
+    }
     in_manual["index_url"] = IN_MANUAL_INDEX
     in_manual["index_document_count"] = IN_MANUAL_INDEX_COUNT
     in_manual["taken_count"] = 0
-    in_manual["notes"] = IN_MANUAL_NOTE
+    in_manual.setdefault("notes", IN_MANUAL_NOTE)
+
+    refuse_if_rows_lost(before, states)
+
     queue["status_counts"] = {}
     for s in states:
         queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
     queue["states"] = states
     queue["queue_status"] = "in_progress"
+    # Overwrite what this pass derives from the fetched index; keep what another pass recorded
+    # (repair_dead_index_refs adds landing_page_url and relocated_from).
     queue["index_inventory"] = {
+        **(queue.get("index_inventory") or {}),
         "index_url": INDEX,
         "lead_list_url": INDEX_LEAD,
         "reviewed": SOURCE_AS_OF,
@@ -1127,6 +1210,42 @@ def main() -> int:
     queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
     print(f"wrote {written} manifests; queue {queue['status_counts']}; ca bundle {bundle}")
     return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--repair-index", action="store_true",
+                        help="rewrite the dead /occ/form/ ACF index address to the live /occ/data/ one across "
+                             "manifests/*.yaml and re-inventory the relocated index on the queue; no row is re-triaged")
+    parser.add_argument("--only-plan-rows", "--only", dest="only_plan_rows",
+                        help="comma-separated jurisdiction codes (as,mp,...) whose ACF-118 plan rows are refreshed "
+                             "from RESOLUTIONS without fetching the ACF index (a newly agent_ready row also gets its "
+                             "manifest), selected by target_manifest so the two us-in rows stay distinct; every other "
+                             "row and manifest is left untouched. --only is the same option under its older name")
+    parser.add_argument("--family", choices=["appendices", "amendments", "rate-schedules"],
+                        help="2026-09-13 follow-up: build that family's manifests and annotate the existing "
+                             "queue rows (additional_families) instead of rebuilding the plan rows")
+    parser.add_argument("--as-of", default=FOLLOWUP_AS_OF, choices=[FOLLOWUP_AS_OF, WAVE5_AS_OF],
+                        help="rate-schedules only: which pass to build (2026-09-13 follow-up or 2026-09-15 wave 5)")
+    parser.add_argument("--rebuild", action="store_true",
+                        help="rebuild every ACF-118 plan row from the live ACF index and RESOLUTIONS, and rewrite "
+                             "every agent_ready manifest. Required for that pass: it is the only mode that rewrites "
+                             "the whole queue, so it is never what a bare invocation does")
+    args = parser.parse_args()
+    if args.repair_index:
+        print(f"index repair {repair_dead_index_refs()}")
+        return 0
+    if args.only_plan_rows:
+        print(f"queue {refresh_plan_rows(args.only_plan_rows.split(','))}")
+        return 0
+    if args.family:
+        return run_family(args.family, as_of=args.as_of)
+    if args.rebuild:
+        return rebuild_all_rows()
+    parser.error("no pass selected. Use --only-plan-rows (narrow row refresh), --family, --repair-index, or "
+                 "--rebuild for the full index rebuild, which rewrites every plan row and every agent_ready "
+                 "manifest")
+    return 2  # unreachable: parser.error exits 2
 
 
 if __name__ == "__main__":

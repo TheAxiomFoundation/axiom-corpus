@@ -34,9 +34,9 @@ lead_list:
   reference_file: policyengine-us-committed-program-references.jsonl
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
-  done: 14
   agent_ready: 93
-  blocked_primary_source: 10
+  blocked_primary_source: 8
+  done: 16
 states:
 - jurisdiction: us
   name: Federal
@@ -2871,28 +2871,60 @@ states:
   name: Montana
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
-  source_kind: official_publisher_blocked
-  primary_source_url: https://rules.mt.gov/gateway/ChapterHome.asp?Chapter=37%2E79
+  queue_status: done
+  source_kind: official_state_administrative_rules
+  primary_source_url: https://rules.mt.gov/
   target_manifest: null
   target_scope:
     jurisdiction: us-mt
-    document_class: manual
-    version: null
-  index_url: https://rules.mt.gov/gateway/ChapterHome.asp?Chapter=37%2E79
-  index_document_count: null
-  taken_count: 0
+    document_class: regulation
+    version: 2026-10-20-w8-chip-hmk-title-37-section-37-79
+  index_url: https://rules.mt.gov/api/policy-library-public/collections
+  index_document_count: 42
+  taken_count: 30
   notes: 'Blocked. Montana''s CHIP (Healthy Montana Kids) eligibility rule is ARM 37.79, published by the Secretary of State
-    at rules.mt.gov. The site (plain client HTTP 200) is now the Esper ''policy-library-public'' single-page application:
-    the HTML shell carries no rule text, its search API returns HTTP 403 AccessDenied to the plain client and the HTML shell
-    to the chrome120 client, and no document endpoint is discoverable. dphhs.mt.gov/hmk answers (HTTP 200) but publishes only
-    the member guide and evidence of coverage, not an eligibility manual or rule. 0 taken. retried 2026-09-10T21:35Z from
-    US network, same failure (rules.mt.gov now answers HTTP 405 with a ''Human Verification'' CAPTCHA page requiring JavaScript,
-    plain and chrome120). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the ARM 37.79 gateway
-    URL redirects to https://rules.mt.gov, HTTP 200, 894 bytes, 0.2 s (CloudFront), the ''Montana SOS'' single-page-application
-    shell with no rule text or links (the 2026-09-10 ''Human Verification'' CAPTCHA is gone but no fetchable rule text exists).
-    Durable block: no fetchable rule text from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10
-    and 2026-09-13); the dashboard should treat the cell as not available rather than pending.'
+    at rules.mt.gov. The site (plain client HTTP 200) is now the Esper ''policy-library-public'' single-page application: the
+    HTML shell carries no rule text, its search API returns HTTP 403 AccessDenied to the plain client and the HTML shell to
+    the chrome120 client, and no document endpoint is discoverable. dphhs.mt.gov/hmk answers (HTTP 200) but publishes only the
+    member guide and evidence of coverage, not an eligibility manual or rule. 0 taken. retried 2026-09-10T21:35Z from US network,
+    same failure (rules.mt.gov now answers HTTP 405 with a ''Human Verification'' CAPTCHA page requiring JavaScript, plain and
+    chrome120). Re-probed 2026-09-13T19:57Z from a US network with the plain extractor client: the ARM 37.79 gateway URL redirects
+    to https://rules.mt.gov, HTTP 200, 894 bytes, 0.2 s (CloudFront), the ''Montana SOS'' single-page-application shell with
+    no rule text or links (the 2026-09-10 ''Human Verification'' CAPTCHA is gone but no fetchable rule text exists). Durable
+    block: no fetchable rule text from two networks (the 2026-09-10 non-US and US exits) on two dates (2026-09-10 and 2026-09-13);
+    the dashboard should treat the cell as not available rather than pending. Resolved 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md):
+    not blocked. The gateway URL rules.mt.gov/gateway/ChapterHome.asp?Chapter=37.79 still redirects to https://rules.mt.gov
+    (HTTP 200, 894 bytes) and serves only the Esper policy-library-public single-page-application shell, whose bundle names
+    app.public.staging.esper.com; that URL carries no rule text and was not emulated. The chapter is taken instead with this
+    repository''s committed Montana adapter (extract-montana-admin-rules), which reads the publisher''s own policy-library-public
+    index at https://rules.mt.gov/api/policy-library-public/collections and is already the committed route for ARM title 42
+    chapter 42.15 and for ARM 37.78 and 37.80. ARM chapter 37.79 HEALTHY MONTANA KIDS (HMK): the index lists 42 rules in 6 subchapters;
+    the 30 currently effective rules were taken as us-mt/regulation/2026-10-20-w8-chip-hmk-title-37-section-37-79 (39 provision
+    rows: 30 rule rows plus 9 container rows), coverage complete with 0 missing, 0 extra and 0 duplicate citation paths and
+    every rule body non-empty; the 12 repealed or otherwise not-effective entries were inventoried and not taken. The scope''s
+    citation paths collide with no other us-mt provisions scope except the two shared ancestors us-mt/regulation and us-mt/regulation/title-37,
+    which every committed ARM scope shares. TLS verified; no mirror, repost, proxy or archived copy. Artifacts are unsigned
+    and uncommitted; the controller signs and selects.'
+  index_families:
+    subchapter_37-79-1 General Provisions:
+      found: 11
+      taken: 11
+    subchapter_37-79-2 Eligibility:
+      found: 6
+      taken: 5
+    subchapter_37-79-3 Benefits:
+      found: 15
+      taken: 5
+    subchapter_37-79-5 Enrollment Provisions:
+      found: 4
+      taken: 3
+    subchapter_37-79-6 Services and Provider Requirements:
+      found: 5
+      taken: 5
+    subchapter_37-79-8 Hearing and Appeal Procedures:
+      found: 1
+      taken: 1
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-mt
   name: Montana
   family: cms_state_plan
@@ -4998,26 +5030,47 @@ states:
   name: Wyoming
   lead_counts: {}
   candidate_sources: []
-  queue_status: blocked_primary_source
-  source_kind: official_publisher_blocked
-  primary_source_url: https://health.wyo.gov/healthcarefin/chip/
-  target_manifest: null
+  queue_status: done
+  source_kind: official_state_agency_manual_already_held
+  primary_source_url: https://ecom.wyo.gov/m1800-other-programs/m1803-kid-care-chip
+  target_manifest: manifests/us-wy-medicaid-eligibility-manual.yaml
   target_scope:
     jurisdiction: us-wy
     document_class: manual
-    version: null
-  index_url: https://rules.wyo.gov/Search.aspx?mode=1&AgencyId=48
-  index_document_count: null
-  taken_count: 0
+    version: 2026-09-15-medicaid-eligibility-manual-closure
+  index_url: https://ecom.wyo.gov/
+  index_document_count: 128
+  taken_count: 1
   notes: 'Blocked. Wyoming''s separate CHIP (Kid Care CHIP) eligibility rules are Department of Health rules filed with the
     Secretary of State at rules.wyo.gov (agency 048): the site answers HTTP 200 but its agency listing, search and rule downloads
     are ASP.NET postbacks with no GET listing or file URL, so the rules cannot be confirmed from a fetchable index. health.wyo.gov/healthcarefin/chip/
     (HTTP 200) publishes only member pages (Does My Child Qualify, copays, renewal, FAQ, handbooks) and no eligibility manual
     or rule text; the programs-and-eligibility page is 404. 0 taken. Re-probed 2026-09-13T19:57Z from a US network with the
-    plain extractor client: rules.wyo.gov answers HTTP 200 (33,505 bytes, 0.5 s) with the same ASP.NET postback search and
-    no GET listing or file URL; health.wyo.gov/healthcarefin/chip answers HTTP 200 (218,761 bytes, 0.2 s) with member pages
-    only. Not a network block: the rules are not fetchable from an index on two dates; treat the cell as not available rather
-    than pending.'
+    plain extractor client: rules.wyo.gov answers HTTP 200 (33,505 bytes, 0.5 s) with the same ASP.NET postback search and no
+    GET listing or file URL; health.wyo.gov/healthcarefin/chip answers HTTP 200 (218,761 bytes, 0.2 s) with member pages only.
+    Not a network block: the rules are not fetchable from an index on two dates; treat the cell as not available rather than
+    pending. Resolved 2026-10-20 (w8 benefits run, docs/ingest-runs/2026-10-20-w8-benefits-gaps.md): not blocked, and no new
+    extraction was needed. rules.wyo.gov is confirmed unusable as an index: Search.aspx?mode=1&AgencyId=48 answers HTTP 200
+    (33,580 bytes) but its agency and program lists and its rule text come from an undocumented vendor endpoint set (AjaxHandler.ashx?handler=GetAllAgencies
+    / GetAgencies / GetAgencyPrograms / Search / Search_GetProgramRules / GetRuleVersionHTML / GetRuleVersionHistory), and the
+    one GET-addressable document path, Report.aspx?token=<server-minted token>, needs a token the application mints (the token
+    on Agencies.aspx returns a 3-page ''Agency Listing'' PDF, 27,811 bytes). Not emulated. The Wyoming Department of Health
+    publishes the governing text itself in the Eligibility Online Manual at ecom.wyo.gov, whose navigation now carries 128 sections
+    in the served HTML (107 at the 2026-09-11 probe), and the 2026-09-11 finding of a script-rendered Google Drive embed with
+    no document URL is obsolete: the body served to the plain extractor client (HTTP 200, 233,949 bytes, no challenge or stub
+    signature) carries the policy text in div.UtePc, so no browser impersonation is needed here. Section M1803 Kid Care CHIP
+    is already in the corpus as us-wy/manual/wdh/medicaid/m1800-other-programs-m1803-kid-care-chip in the locked scope us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure
+    (manifests/us-wy-medicaid-eligibility-manual.yaml, 121 documents), with four non-empty block rows carrying the POL M1803
+    eligibility requirements, the 42 CFR 435.229 and Social Security Act references, the clarifying information and the worker
+    responsibilities. Re-extraction was refused because it would duplicate those citation paths. Verified 2026-10-20 against
+    the live page: the corpus text is a strict subset of the text served today, the only live tokens absent from the corpus
+    being the section labels and the Purpose sentence (recorded as a finding in the run note). Nothing new was fetched into
+    the corpus.'
+  index_families: 'Wyoming Department of Health EOM sections (ecom.wyo.gov navigation, 2026-10-20): 128 found / 1 taken (M1803
+    Kid Care CHIP, already held in us-wy/manual/2026-09-15-medicaid-eligibility-manual-closure); the other 127 sections are
+    other-program families and out of this row''s scope. Secretary of State rules site (rules.wyo.gov agency 048): 0 found /
+    0 taken, no publisher-served index.'
+  run_note: docs/ingest-runs/2026-10-20-w8-benefits-gaps.md
 - jurisdiction: us-wy
   name: Wyoming
   family: cms_state_plan

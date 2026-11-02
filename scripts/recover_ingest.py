@@ -49,8 +49,9 @@ def assert_ecfr_recovery_supported(entry: dict[str, Any], *, base: Path | None =
         return
 
     def appendix_path(value: object) -> bool:
+        # appendix-a, appendix, appendixes, and the collective "appendices" note.
         return any(
-            segment.lower().startswith("appendix")
+            segment.lower().startswith(("appendix", "appendices"))
             for segment in unquote(str(value)).split("/")
         )
 

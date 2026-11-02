@@ -11,11 +11,16 @@ from __future__ import annotations
 import atexit
 import ctypes
 import ctypes.util
+import email.utils
 import errno
 import fcntl
+import functools
 import hashlib
+import http.client
+import math
 import os
 import queue
+import random
 import shutil
 import signal
 import subprocess
@@ -23,10 +28,11 @@ import sys
 import tempfile
 import threading
 import time
-from collections.abc import Callable, Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import suppress
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Protocol
 
@@ -48,6 +54,10 @@ _NO_HARDLINK_ERRNOS = {errno.EPERM, errno.ENOTSUP, errno.EOPNOTSUPP, errno.EXDEV
 
 class ContentStoreError(RuntimeError):
     """Raised when bytes cannot be obtained, verified, or placed."""
+
+
+class R2UnavailableError(ContentStoreError):
+    """R2 answered every attempt with a transient error until the retry budget ran out."""
 
 
 def content_key(sha256: str) -> str:
@@ -568,8 +578,188 @@ class _GitBlobChunks:
         self.close()
 
 
+# --------------------------------------------------------------------------- transient R2 errors
+
+# Codes of an R2 (S3 API) answer that a later identical request may not repeat:
+# throttling (R2's "Reduce your rate of simultaneous reads on the same object"
+# is ServiceUnavailable), server faults and request timeouts.
+_TRANSIENT_ERROR_CODES = frozenset(
+    {
+        "BadGateway",
+        "GatewayTimeout",
+        "InternalError",
+        "InternalServerError",
+        "RequestLimitExceeded",
+        "RequestThrottled",
+        "RequestTimeout",
+        "RequestTimeoutException",
+        "ServiceUnavailable",
+        "SlowDown",
+        "Throttling",
+        "ThrottlingException",
+        "TooManyRequests",
+        "TooManyRequestsException",
+    }
+)
+_TRANSIENT_HTTP_STATUS = frozenset({429, 500, 502, 503, 504})
+
+
+@functools.cache
+def _botocore_errors() -> tuple[tuple[type[BaseException], ...], tuple[type[BaseException], ...]]:
+    """(transient, never transient) botocore exception types, without importing at load."""
+    from botocore import exceptions as boto
+
+    transient = (boto.ConnectionError, boto.HTTPClientError, boto.IncompleteReadError)
+    # SSLError is a botocore ConnectionError, but a TLS failure is not one a
+    # retry should paper over.
+    return transient, (boto.SSLError,)
+
+
+def is_transient(exc: BaseException) -> bool:
+    """True for an R2 read error that a later identical request may not repeat.
+
+    HTTP 429, 500, 502, 503 or 504, an error code in
+    ``_TRANSIENT_ERROR_CODES`` (``SlowDown``, ``ServiceUnavailable``, ...),
+    timeouts and dropped or reset connections, during the request or while its
+    body streams. A missing object, a refused request (400, 403,
+    416), a TLS failure and bytes that fail verification are never transient.
+    """
+    if isinstance(exc, ContentStoreError) or (isinstance(exc, Exception) and _is_missing(exc)):
+        return False
+    response = getattr(exc, "response", None)
+    if isinstance(response, dict):
+        code = str(response.get("Error", {}).get("Code", ""))
+        status = response.get("ResponseMetadata", {}).get("HTTPStatusCode")
+        return code in _TRANSIENT_ERROR_CODES or status in _TRANSIENT_HTTP_STATUS
+    transient, never = _botocore_errors()
+    if isinstance(exc, never):
+        return False
+    return isinstance(exc, (*transient, ConnectionError, TimeoutError, http.client.IncompleteRead))
+
+
+def _retry_after_seconds(exc: BaseException) -> float | None:
+    """The ``Retry-After`` an error response carried, in seconds from now, if any."""
+    response = getattr(exc, "response", None)
+    if not isinstance(response, dict):
+        return None
+    headers = response.get("ResponseMetadata", {}).get("HTTPHeaders") or {}
+    value = next((str(v).strip() for k, v in headers.items() if str(k).lower() == "retry-after"), None)
+    if not value:
+        return None
+    try:
+        seconds = float(value)
+    except ValueError:
+        try:
+            when = email.utils.parsedate_to_datetime(value)
+        except (TypeError, ValueError, IndexError):
+            return None
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=UTC)
+        seconds = (when - datetime.now(UTC)).total_seconds()
+    return max(0.0, seconds) if math.isfinite(seconds) else None
+
+
+@dataclass(frozen=True)
+class RetryPolicy:
+    """How many times, and how patiently, R2 reads retry a transient error.
+
+    After failure ``n`` the store waits a random time between half and all of
+    ``min(max_delay, base_delay * 2 ** (n - 1))``: exponential backoff with
+    jitter, so parallel readers spread out instead of retrying in step. When
+    R2 sent ``Retry-After`` it waits that long instead (at most
+    ``max_delay``), plus up to ``base_delay`` of jitter. ``attempts`` counts
+    every request for one key in one read, the first included; resuming a
+    body after a mid-stream error draws on the same budget.
+    """
+
+    attempts: int = 8
+    base_delay: float = 1.0
+    max_delay: float = 30.0
+    sleep: Callable[[float], None] = time.sleep
+    jitter: Callable[[], float] = random.random
+
+    def delay(self, failures: int, exc: BaseException) -> float:
+        retry_after = _retry_after_seconds(exc)
+        if retry_after is not None:
+            return min(self.max_delay, retry_after) + self.jitter() * self.base_delay
+        backoff = min(self.max_delay, self.base_delay * 2.0 ** min(failures - 1, 32))
+        return backoff / 2 + self.jitter() * backoff / 2
+
+
+class _Attempts:
+    """One object's retry budget, shared by its first request and every resume."""
+
+    def __init__(self, policy: RetryPolicy, label: str):
+        self.policy = policy
+        self.label = label
+        self.failures = 0
+
+    def call(self, request: Callable[[], Any]) -> Any:
+        """Run ``request``, retrying transient errors; any other error propagates at once."""
+        while True:
+            try:
+                return request()
+            except Exception as exc:  # noqa: BLE001 - classified by is_transient
+                if not is_transient(exc):
+                    raise
+                self.failed(exc)
+
+    def failed(self, exc: BaseException) -> None:
+        """Count one transient failure, then wait for the next attempt or give up."""
+        self.failures += 1
+        if self.failures >= max(1, self.policy.attempts):
+            raise R2UnavailableError(
+                f"{exc} (R2 {self.label}: gave up after {self.failures} attempts)"
+            ) from exc
+        self.policy.sleep(self.policy.delay(self.failures, exc))
+
+
+class _KeyGate:
+    """At most ``limit`` reads of one key at a time in this process."""
+
+    def __init__(self, limit: int):
+        self.limit = max(1, limit)
+        self._changed = threading.Condition(threading.RLock())
+        self._active: dict[str, int] = {}
+
+    def acquire(self, key: str) -> Callable[[], None]:
+        """Wait for a free read slot for ``key``; return the call that frees it (once)."""
+        with self._changed:
+            while self._active.get(key, 0) >= self.limit:
+                self._changed.wait()
+            self._active[key] = self._active.get(key, 0) + 1
+        released = False
+
+        def release() -> None:
+            nonlocal released
+            with self._changed:
+                if released:
+                    return
+                released = True
+                if self._active[key] > 1:
+                    self._active[key] -= 1
+                else:
+                    del self._active[key]
+                self._changed.notify_all()
+
+        return release
+
+
 class R2ObjectStore:
-    """R2 content-addressed objects, with read-only fallback to legacy path keys."""
+    """R2 content-addressed objects, with read-only fallback to legacy path keys.
+
+    Reads (``open``, ``has``) retry transient errors (``is_transient``) under
+    ``retry``, and they are the only retries: ``from_environment`` gives them
+    a client without botocore's own, so ``retry.attempts`` bounds the HTTP
+    requests for one key in one read. A missing object or any other error is never
+    retried. ``put`` uses ``write_client``, which keeps botocore's retries.
+    At most ``reads_per_object`` ``open`` reads of one key (from the request
+    to the end of the body) run at once through this store; ``has`` probes
+    are not gated. R2 has refused simultaneous reads of one object ("Reduce
+    your rate of simultaneous reads on the same object"), and successor scopes
+    repeat many of their predecessors' files, so one fetch meets the same key
+    several times.
+    """
 
     name = "r2"
 
@@ -579,15 +769,22 @@ class R2ObjectStore:
         bucket: str,
         client: Any | None = None,
         client_factory: Callable[[], Any] | None = None,
+        write_client_factory: Callable[[], Any] | None = None,
         legacy_path_keys: bool = True,
+        retry: RetryPolicy | None = None,
+        reads_per_object: int = 1,
     ):
         if client is None and client_factory is None:
             raise ValueError("R2ObjectStore needs a client or a client factory")
         self.bucket = bucket
         self._client = client
         self._client_factory = client_factory
+        self._write_client: Any | None = None
+        self._write_client_factory = write_client_factory
         self._client_lock = threading.Lock()
         self.legacy_path_keys = legacy_path_keys
+        self.retry = retry or RetryPolicy()
+        self._reads = _KeyGate(reads_per_object)
 
     @classmethod
     def from_environment(cls, *, workers: int = 16) -> R2ObjectStore:
@@ -596,28 +793,57 @@ class R2ObjectStore:
         config = load_r2_config()
         return cls(
             bucket=config.bucket,
-            client_factory=lambda: make_r2_client(config, max_pool_connections=workers + 4),
+            client_factory=lambda: make_r2_client(
+                config, max_pool_connections=workers + 4, sdk_retries=False
+            ),
+            write_client_factory=lambda: make_r2_client(config, max_pool_connections=workers + 4),
         )
 
     @property
     def client(self) -> Any:
+        """The client reads use."""
         with self._client_lock:
             if self._client is None:
                 assert self._client_factory is not None
                 self._client = self._client_factory()
             return self._client
 
+    @property
+    def write_client(self) -> Any:
+        """The client ``put`` uses: the read client unless a write factory was given."""
+        if self._write_client_factory is None:
+            return self.client
+        with self._client_lock:
+            if self._write_client is None:
+                self._write_client = self._write_client_factory()
+            return self._write_client
+
     def open(self, entry: LockEntry) -> Iterator[bytes] | None:
-        body = self._get(content_key(entry.sha256))
-        if body is None and self.legacy_path_keys:
-            body = self._get(entry.path.removeprefix(f"{CORPUS_BASE}/"))
-        if body is None:
-            return None
-        return _iter_body(body)
+        keys = [content_key(entry.sha256)]
+        if self.legacy_path_keys:
+            keys.append(entry.path.removeprefix(f"{CORPUS_BASE}/"))
+        for key in keys:
+            attempts = _Attempts(self.retry, f"GetObject {key}")
+            release = self._reads.acquire(key)
+            try:
+                body = self._get(key, attempts)
+            except BaseException:
+                release()
+                raise
+            if body is None:
+                release()
+                continue
+            return _BodyChunks(
+                body, resume=functools.partial(self._resume, key, attempts), release=release
+            )
+        return None
 
     def has(self, sha256: str, size: int | None = None) -> bool:
+        key = content_key(sha256)
         try:
-            response = self.client.head_object(Bucket=self.bucket, Key=content_key(sha256))
+            response = _Attempts(self.retry, f"HeadObject {key}").call(
+                lambda: self.client.head_object(Bucket=self.bucket, Key=key)
+            )
         except Exception as exc:  # noqa: BLE001 - boto raises ClientError; fakes raise KeyError
             if _is_missing(exc):
                 return False
@@ -642,10 +868,10 @@ class R2ObjectStore:
         with _snapshot_file(path) as (snapshot, actual_sha, actual_size):
             if (actual_sha, actual_size) != (sha256, size):
                 raise ContentStoreError(f"{path} no longer hashes to {sha256}")
-            existing = _read_object_or_none(self.client, bucket=self.bucket, key=key)
+            existing = _read_object_or_none(self.write_client, bucket=self.bucket, key=key)
             if existing is None:
                 uploaded = _put_snapshot_if_absent(
-                    self.client,
+                    self.write_client,
                     bucket=self.bucket,
                     key=key,
                     snapshot=snapshot,
@@ -656,20 +882,41 @@ class R2ObjectStore:
             else:
                 _verify_bytes(existing, sha256=sha256, size=size, label=key)
                 uploaded = False
-        readback = _read_object_or_none(self.client, bucket=self.bucket, key=key)
+        readback = _read_object_or_none(self.write_client, bucket=self.bucket, key=key)
         if readback is None:
             raise ContentStoreError(f"R2 readback is missing after upload: {key}")
         _verify_bytes(readback, sha256=sha256, size=size, label=key)
         return uploaded
 
-    def _get(self, key: str) -> Any | None:
+    def _get(self, key: str, attempts: _Attempts) -> Any | None:
         try:
-            response = self.client.get_object(Bucket=self.bucket, Key=key)
+            response = attempts.call(lambda: self.client.get_object(Bucket=self.bucket, Key=key))
         except Exception as exc:  # noqa: BLE001
             if _is_missing(exc):
                 return None
             raise
         return response.get("Body")
+
+    def _resume(self, key: str, attempts: _Attempts, offset: int, exc: BaseException) -> Any:
+        """The rest of ``key`` from byte ``offset``, after transient error ``exc`` mid-body."""
+        attempts.failed(exc)
+
+        def request() -> Any:
+            if not offset:
+                return self.client.get_object(Bucket=self.bucket, Key=key)["Body"]
+            response = self.client.get_object(
+                Bucket=self.bucket, Key=key, Range=f"bytes={offset}-"
+            )
+            body = response.get("Body")
+            content_range = str(response.get("ContentRange") or "")
+            if body is None or not content_range.startswith(f"bytes {offset}-"):
+                _close_quietly(body)
+                raise ContentStoreError(
+                    f"R2 did not resume {key} at byte {offset} (Content-Range {content_range!r})"
+                )
+            return body
+
+        return attempts.call(request)
 
 
 def _is_missing(exc: Exception) -> bool:
@@ -683,11 +930,33 @@ def _is_missing(exc: Exception) -> bool:
     return False
 
 
-class _BodyChunks:
-    """Chunks of an R2 response body; closing it closes the body even unread."""
+def _close_quietly(body: Any) -> None:
+    if body is not None:
+        with suppress(Exception):
+            body.close()
 
-    def __init__(self, body: Any):
+
+class _BodyChunks:
+    """Chunks of an R2 response body; closing it closes the body even unread.
+
+    A transient error mid-body asks ``resume`` for the rest, from the first
+    byte not yet returned. The consumer hashes every byte it is given
+    (``write_verified``), so a resumed tail that is wrong is refused, never
+    accepted. ``release`` frees the object's read slot once: when the stream
+    ends, fails or is closed.
+    """
+
+    def __init__(
+        self,
+        body: Any,
+        *,
+        resume: Callable[[int, BaseException], Any] | None = None,
+        release: Callable[[], None] | None = None,
+    ):
         self._body = body
+        self._resume = resume
+        self._release = release
+        self._offset = 0
         self._closed = False
 
     def __iter__(self) -> _BodyChunks:
@@ -696,17 +965,42 @@ class _BodyChunks:
     def __next__(self) -> bytes:
         if self._closed:
             raise StopIteration
-        chunk = self._body.read(CHUNK_SIZE)
+        while True:
+            try:
+                chunk = self._body.read(CHUNK_SIZE)
+                break
+            except Exception as exc:  # noqa: BLE001 - classified by is_transient
+                if self._resume is None or not is_transient(exc):
+                    self.close()
+                    raise
+                _close_quietly(self._body)
+                self._body = None
+                try:
+                    self._body = self._resume(self._offset, exc)
+                except BaseException:
+                    self.close()
+                    raise
         if not chunk:
             self.close()
             raise StopIteration
-        return chunk if isinstance(chunk, bytes) else bytes(chunk)
+        chunk = chunk if isinstance(chunk, bytes) else bytes(chunk)
+        self._offset += len(chunk)
+        return chunk
 
     def close(self) -> None:
-        if not self._closed:
-            self._closed = True
-            with suppress(Exception):
-                self._body.close()
+        if self._closed:
+            return
+        self._closed = True
+        try:
+            _close_quietly(self._body)
+        finally:
+            # Free the slot even when closing the body is interrupted.
+            release, self._release = self._release, None
+            if release is not None:
+                release()
+
+    def __del__(self) -> None:
+        self.close()
 
 
 def _iter_body(body: Any) -> Iterator[bytes]:
@@ -998,6 +1292,75 @@ def _install_sigint_flag(flag: list[bool]) -> Any:
     except (ValueError, OSError):
         return None
     return previous
+
+
+FETCH_RETRY_DELAYS: tuple[float, ...] = (1.0, 4.0, 10.0)
+
+
+def materialize_resilient(
+    repo: Path,
+    entries: Iterable[LockEntry],
+    cache: ContentCache | None,
+    sources: Iterable[ObjectSource],
+    *,
+    force: bool = False,
+    verify: bool = False,
+    workers: int = 8,
+    progress: Callable[[int, int], None] | None = None,
+    delays: Sequence[float] = FETCH_RETRY_DELAYS,
+    retriable: Callable[[dict[str, str]], bool] | None = None,
+    fetch: Callable[..., FetchReport] | None = None,
+) -> FetchReport:
+    """``materialize``, re-asking the store for whatever failed.
+
+    A bulk fetch asks for tens of thousands of objects at high concurrency, and
+    a small random subset can fail on throttling or a dropped connection.
+    ``materialize`` reports a per-entry failure instead of raising, so a caller
+    that treats a non-empty ``failed`` as fatal ended the whole fetch on the
+    first flake: CI could not fetch 22 objects on one run and 6 wholly
+    different ones on its own re-run, with the corpus itself intact.
+
+    Each pass re-asks only the entries that failed, and at a quarter of the
+    concurrency, because lowering pressure is what clears throttling. Pass
+    ``retriable`` to refuse a failure that cannot be transient; ``delays=()``
+    restores ``materialize``'s own behaviour exactly. ``fetch`` overrides which
+    materialize is called, so a caller keeps whatever seam its own tests patch.
+    """
+    selected = list(entries)
+    ask = fetch if fetch is not None else materialize
+    report = ask(
+        repo, selected, cache, sources, force=force, verify=verify, workers=workers, progress=progress
+    )
+    by_path = {entry.path: entry for entry in selected}
+    for delay in delays:
+        if not report.failed:
+            return report
+        if retriable is not None and not retriable(report.failed):
+            return report
+        again = [by_path[path] for path in report.failed if path in by_path]
+        if not again:
+            return report
+        time.sleep(delay)
+        retry = ask(
+            repo, again, cache, sources, force=force, verify=verify, workers=max(1, workers // 4)
+        )
+        report = _absorb_retry(report, retry)
+    return report
+
+
+def _absorb_retry(first: FetchReport, retry: FetchReport) -> FetchReport:
+    """``first`` with ``retry`` folded in; ``failed`` becomes what still fails."""
+    first.present.extend(retry.present)
+    first.materialized.extend(retry.materialized)
+    first.modified.extend(retry.modified)
+    first.rolled_back.extend(retry.rolled_back)
+    for name, count in retry.sources.items():
+        first.sources[name] = first.sources.get(name, 0) + count
+    for name, count in retry.methods.items():
+        first.methods[name] = first.methods.get(name, 0) + count
+    first.bytes_materialized += retry.bytes_materialized
+    first.failed = dict(retry.failed)
+    return first
 
 
 def materialize(
