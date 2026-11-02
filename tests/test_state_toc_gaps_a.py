@@ -32,6 +32,7 @@ from axiom_corpus.corpus.state_adapters.connecticut import (
     CONNECTICUT_CURRENT_SOURCE_FORMAT,
     extract_connecticut_statutes,
 )
+from axiom_corpus.corpus.state_adapters.delaware import extract_delaware_code
 from tests.test_corpus_alaska import (
     SAMPLE_CHAPTER_PRINT_HTML as AK_CHAPTER_PRINT,
 )
@@ -53,6 +54,21 @@ from tests.test_corpus_arizona import (
 from tests.test_corpus_connecticut import SAMPLE_CHAPTER as CT_CHAPTER
 from tests.test_corpus_connecticut import SAMPLE_TITLE as CT_TITLE
 from tests.test_corpus_connecticut import SAMPLE_TITLES as CT_TITLES
+from tests.test_corpus_delaware import (
+    SAMPLE_CHAPTER_WITH_SUBCHAPTERS as DE_CHAPTER_11,
+)
+from tests.test_corpus_delaware import (
+    SAMPLE_DELAWARE_INDEX as DE_INDEX_HTML,
+)
+from tests.test_corpus_delaware import (
+    SAMPLE_DELAWARE_TITLE as DE_TITLE_30,
+)
+from tests.test_corpus_delaware import (
+    SAMPLE_REPEALED_CHAPTER as DE_CHAPTER_14,
+)
+from tests.test_corpus_delaware import (
+    SAMPLE_SUBCHAPTER as DE_SUBCHAPTER_I,
+)
 from tests.test_state_extraction_gaps import MAINTENANCE, _assert_visible_gaps, _write_sources
 
 VERSION = "2026-05-09"
@@ -404,3 +420,131 @@ def test_connecticut_chapter_marked_empty_by_law_stays_complete(tmp_path, status
     assert report.coverage.complete is True
     inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
     assert inventory == CT_GOOD | {"us-ct/statute/chapter-204"}
+
+
+# --- Delaware ---------------------------------------------------------------
+# The fixture's repealed chapter 14 still lists its repealed section stubs, so
+# nothing shows a Delaware container that lists nothing by law.
+
+DE_GOOD = {
+    "us-de/statute/30",
+    "us-de/statute/30/part-ii",
+    "us-de/statute/30/11",
+    "us-de/statute/30/11/subchapter-i",
+    "us-de/statute/30/1101",
+    "us-de/statute/30/1102",
+    "us-de/statute/30/14",
+    "us-de/statute/30/1401-1409",
+}
+DE_CHAPTER_20A_LINK = (
+    '<div class="title-links"><a href="../title30/c020a/index.html">'
+    "Chapter 20A. Veterans’ Opportunity Credit</a></div>"
+)
+DE_SUBCHAPTER_II_LINK = (
+    '<div class="title-links"><a href="../../title30/c011/sc02/index.html">'
+    "Subchapter II. Resident Individuals</a></div>"
+)
+
+
+def _delaware_pages() -> dict[str, str]:
+    return {
+        "index.html": DE_INDEX_HTML,
+        "title30/index.html": DE_TITLE_30.replace(DE_CHAPTER_20A_LINK, ""),
+        "title30/c011/index.html": DE_CHAPTER_11,
+        "title30/c011/sc01/index.html": DE_SUBCHAPTER_I,
+        "title30/c014/index.html": DE_CHAPTER_14,
+    }
+
+
+def _extract_delaware(tmp_path: Path, pages: dict[str, str], **kwargs):
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_delaware_code(store, version=VERSION, source_dir=tmp_path / "source", **kwargs)
+    return store, report
+
+
+def _de_empty_chapter_page(head: str) -> str:
+    return (
+        '<html><body><div id="content"><div id="TitleHead"><h1>TITLE 30</h1>'
+        f'<h3>{head}</h3></div><div id="CodeBody"></div></div></body></html>'
+    )
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_delaware_failed_title_page_remains_inventory_gap(tmp_path, failure):
+    pages = _delaware_pages()
+    _fail_page(
+        pages,
+        "title1/index.html",
+        failure,
+        '<html><body><div id="content"><div class="row"><h2>General Provisions</h2>'
+        "</div></div></body></html>",
+    )
+    store, report = _extract_delaware(tmp_path, pages)
+    assert report.section_count == 3
+    assert "title1/index.html" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=DE_GOOD | {"us-de/statute/1"},
+        missing={"us-de/statute/1"},
+        gap_source=(
+            "delaware-code-html/index.html" if failure == "missing-file" else "title1/index.html"
+        ),
+    )
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_delaware_failed_chapter_page_remains_inventory_gap(tmp_path, failure):
+    pages = _delaware_pages()
+    pages["title30/index.html"] = DE_TITLE_30
+    _fail_page(
+        pages,
+        "title30/c020a/index.html",
+        failure,
+        _de_empty_chapter_page("CHAPTER 20A. Veterans’ Opportunity Credit"),
+    )
+    store, report = _extract_delaware(tmp_path, pages, only_title="30")
+    assert report.section_count == 3
+    assert "c020a" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=DE_GOOD | {"us-de/statute/30/20A"},
+        missing={"us-de/statute/30/20A"},
+        gap_source=(
+            "title30/index.html" if failure == "missing-file" else "title30/c020a/index.html"
+        ),
+    )
+
+
+@pytest.mark.parametrize("failure", FAILURES)
+def test_delaware_failed_subchapter_page_remains_inventory_gap(tmp_path, failure):
+    pages = _delaware_pages()
+    pages["title30/c011/index.html"] = DE_CHAPTER_11.replace(
+        "</div>\n</div>\n</body>", DE_SUBCHAPTER_II_LINK + "\n</div>\n</body>", 1
+    )
+    assert "sc02" in pages["title30/c011/index.html"]
+    _fail_page(
+        pages,
+        "title30/c011/sc02/index.html",
+        failure,
+        _de_empty_chapter_page("CHAPTER 11. Personal Income Tax").replace(
+            "</h3>", "</h3><h4>Subchapter II. Resident Individuals</h4>"
+        ),
+    )
+    store, report = _extract_delaware(tmp_path, pages, only_title="30")
+    assert report.section_count == 3
+    assert "sc02" in report.errors[0]
+    subchapter = "us-de/statute/30/11/subchapter-ii"
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=DE_GOOD | {subchapter},
+        missing={subchapter},
+        gap_source=(
+            "title30/c011/index.html"
+            if failure == "missing-file"
+            else "title30/c011/sc02/index.html"
+        ),
+    )
