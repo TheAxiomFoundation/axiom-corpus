@@ -449,6 +449,9 @@ def extract_massachusetts_general_laws(
 
     chapter_targets: list[MassachusettsChapter] = []
     section_targets: list[MassachusettsSectionTarget] = []
+    # The chapter page that names each section: the source of a section gap
+    # when the section page itself could not be fetched.
+    section_listing_sources: dict[str, _RecordedSource] = {}
 
     for part in parts:
         added = _append_provision(
@@ -560,6 +563,7 @@ def extract_massachusetts_general_laws(
                 matched_section_filters.add(matched)
             if section_budget is not None and len(section_targets) >= section_budget:
                 break
+            section_listing_sources.setdefault(target.citation_path, chapter_recorded)
             section_targets.append(target)
         if section_budget is not None and len(section_targets) >= section_budget:
             break
@@ -578,9 +582,26 @@ def extract_massachusetts_general_laws(
         section_targets,
         workers=max(1, workers),
     )
+    # A section the chapter page names stays an inventory gap when its page
+    # cannot be fetched or read, so coverage reads incomplete instead of
+    # silently losing it. A page that could not be fetched is sourced from the
+    # chapter page; a page that was fetched but is unusable from itself.
     for target, source, parsed, error in fetched_sections:
         if error is not None:
             errors.append(f"{target.chapter_number} {target.section}: {error}")
+            gap_source = (
+                section_listing_sources[target.citation_path]
+                if source is None
+                else _record_source(
+                    store,
+                    jurisdiction=jurisdiction,
+                    run_id=run_id,
+                    source=source,
+                    source_by_relative=source_by_relative,
+                    source_paths=source_paths,
+                )
+            )
+            _append_section_gap(target, gap_source, items=items, seen=seen)
             continue
         if source is None or parsed is None:
             continue
@@ -891,9 +912,12 @@ def _fetch_section_pages(
     ]:
         try:
             source = fetcher.fetch_section(target)
-            return target, source, parse_massachusetts_section(source.data, target=target), None
         except Exception as exc:  # noqa: BLE001
             return target, None, None, exc
+        try:
+            return target, source, parse_massachusetts_section(source.data, target=target), None
+        except Exception as exc:  # noqa: BLE001
+            return target, source, None, exc
 
     if workers <= 1:
         return [fetch_one(target) for target in targets]
@@ -941,6 +965,35 @@ def _record_source(
     )
     source_by_relative[source.relative_path] = recorded
     return recorded
+
+
+def _append_section_gap(
+    target: MassachusettsSectionTarget,
+    source: _RecordedSource,
+    *,
+    items: list[SourceInventoryItem],
+    seen: set[str],
+) -> None:
+    """Record a listed section whose page yielded no provision.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the section
+    is expected: the chapter page, or the section's own unusable page.
+    """
+    if target.citation_path in seen:
+        return
+    seen.add(target.citation_path)
+    placeholder = MassachusettsParsedSection(heading=target.heading, body=None, references_to=())
+    items.append(
+        SourceInventoryItem(
+            citation_path=target.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=MASSACHUSETTS_GENERAL_LAWS_SOURCE_FORMAT,
+            sha256=source.sha256,
+            metadata=_metadata(_section_provision(target, placeholder)),
+        )
+    )
 
 
 def _append_provision(

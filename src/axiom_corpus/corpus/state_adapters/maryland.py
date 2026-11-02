@@ -338,6 +338,9 @@ def extract_maryland_code(
         raise ValueError(f"no Maryland article sources selected for filter: {only_article!r}")
 
     section_targets: list[MarylandSectionTarget] = []
+    # The article section list that names each section: the source of a
+    # section gap when the section page itself could not be fetched.
+    section_listing_sources: dict[str, _RecordedSource] = {}
     for article in articles:
         if limit is not None and len(section_targets) >= limit:
             break
@@ -381,6 +384,8 @@ def extract_maryland_code(
             if added:
                 container_count += 1
 
+        for target in targets:
+            section_listing_sources.setdefault(target.citation_path, sections_recorded)
         section_targets.extend(targets)
 
     fetched_sections = _fetch_section_pages(
@@ -388,9 +393,26 @@ def extract_maryland_code(
         section_targets,
         workers=max(1, workers),
     )
+    # A section the article's section list names stays an inventory gap when
+    # its page cannot be fetched or read, so coverage reads incomplete instead
+    # of silently losing it. A page that could not be fetched is sourced from
+    # that section list; a page that was fetched but is unusable from itself.
     for target, source, parsed, error in fetched_sections:
         if error is not None:
             errors.append(f"{target.article_code} {target.section}: {error}")
+            gap_source = (
+                section_listing_sources[target.citation_path]
+                if source is None
+                else _record_source(
+                    store,
+                    jurisdiction=jurisdiction,
+                    run_id=run_id,
+                    source=source,
+                    source_by_relative=source_by_relative,
+                    source_paths=source_paths,
+                )
+            )
+            _append_section_gap(target, gap_source, items=items, seen=seen)
             continue
         if source is None or parsed is None:
             continue
@@ -534,9 +556,12 @@ def _fetch_section_pages(
     ]:
         try:
             source = fetcher.fetch_section(target)
-            return target, source, parse_maryland_section(source.data, target=target), None
         except Exception as exc:  # noqa: BLE001
             return target, None, None, exc
+        try:
+            return target, source, parse_maryland_section(source.data, target=target), None
+        except Exception as exc:  # noqa: BLE001
+            return target, source, None, exc
 
     if workers <= 1:
         return [fetch_one(target) for target in targets]
@@ -584,6 +609,37 @@ def _record_source(
     )
     source_by_relative[source.relative_path] = recorded
     return recorded
+
+
+def _append_section_gap(
+    target: MarylandSectionTarget,
+    source: _RecordedSource,
+    *,
+    items: list[SourceInventoryItem],
+    seen: set[str],
+) -> None:
+    """Record a listed section whose page yielded no provision.
+
+    The inventory item has no matching provision, so coverage lists it in
+    ``missing_from_provisions``. ``source`` is the page that shows the section
+    is expected: the article's section list, or the section's own unusable
+    page.
+    """
+    if target.citation_path in seen:
+        return
+    seen.add(target.citation_path)
+    items.append(
+        SourceInventoryItem(
+            citation_path=target.citation_path,
+            source_url=source.source_url,
+            source_path=source.source_path,
+            source_format=MARYLAND_CODE_SOURCE_FORMAT,
+            sha256=source.sha256,
+            metadata=_metadata(
+                _section_provision(target, MarylandParsedSection(body=None, references_to=()))
+            ),
+        )
+    )
 
 
 def _append_provision(
