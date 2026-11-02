@@ -380,9 +380,10 @@ def extract_south_carolina_code(
     # the title page for a chapter); a page that was fetched but lists nothing
     # stays a gap sourced from that page. Either way coverage reads incomplete
     # instead of silently losing everything under it. A chapter that lists no
-    # section but carries a note (a repealed chapter) is written as before,
-    # and a title whose chapters the chapter filter leaves out is skipped, not
-    # lost.
+    # section is written as before only when its page carries a note and the
+    # note or the chapter's heading marks it repealed or reserved (every such
+    # chapter in the live Code does). A title whose chapters the chapter filter
+    # leaves out is skipped, not lost.
     for title in titles:
         if remaining_sections is not None and remaining_sections <= 0:
             break
@@ -497,19 +498,20 @@ def extract_south_carolina_code(
             chapter_sha = store.write_bytes(chapter_path, chapter_page.data)
             source_paths.append(chapter_path)
             chapter_source_key = _state_source_key(jurisdiction, run_id, chapter_page.relative_path)
+            listed_sections = parse_south_carolina_chapter_html(
+                chapter_page.data,
+                title=title.number,
+                chapter=chapter.number,
+            )
             sections = tuple(
                 section
-                for section in parse_south_carolina_chapter_html(
-                    chapter_page.data,
-                    title=title.number,
-                    chapter=chapter.number,
-                )
+                for section in listed_sections
                 if section.section.lower() not in excluded_section_keys
             )
             chapter_body_lines = _chapter_note_lines(chapter_page.data) if not sections else []
             chapter_body = "\n".join(chapter_body_lines).strip() or None
             chapter_status = _status(chapter.heading, chapter_body_lines)
-            if not sections and not chapter_body:
+            if not listed_sections and (chapter_body is None or chapter_status is None):
                 errors.append(f"title {title.number} chapter {chapter.number}: no sections parsed")
                 _append_inventory_gap(
                     seen,
