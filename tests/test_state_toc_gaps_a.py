@@ -15,7 +15,7 @@ from pathlib import Path
 import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-from axiom_corpus.corpus.io import load_source_inventory
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters import florida
 from axiom_corpus.corpus.state_adapters.alaska import (
     ALASKA_CHAPTER_PRINT_SOURCE_FORMAT,
@@ -31,6 +31,7 @@ from axiom_corpus.corpus.state_adapters.arizona import (
 )
 from axiom_corpus.corpus.state_adapters.connecticut import (
     CONNECTICUT_CURRENT_SOURCE_FORMAT,
+    CONNECTICUT_SUPPLEMENT_SOURCE_FORMAT,
     extract_connecticut_statutes,
 )
 from axiom_corpus.corpus.state_adapters.delaware import extract_delaware_code
@@ -477,6 +478,75 @@ def test_connecticut_chapter_marked_empty_by_law_stays_complete(tmp_path, status
     assert report.coverage.complete is True
     inventory = {item.citation_path for item in load_source_inventory(report.inventory_path)}
     assert inventory == CT_GOOD | {"us-ct/statute/chapter-204"}
+
+
+@pytest.mark.parametrize("status", ["Obsolete", "Expired", "Omitted", "Conditionally Repealed"])
+def test_connecticut_chapter_marked_other_status_listing_nothing_remains_gap(tmp_path, status):
+    # Only repealed, reserved and transferred mean a chapter lists nothing by
+    # law. A chapter marked with any other status the adapter reads, whose
+    # page lists no sections, is still a gap.
+    pages = _connecticut_pages()
+    pages[CT_TITLE_12] = CT_TITLE.replace(
+        "</table>", _ct_chapter_row("204", f"Local Levy [{status}]"), 1
+    )
+    pages[CT_CHAPTER_204] = CT_EMPTY_CHAPTER
+    store, report = _extract_connecticut(tmp_path, pages, only_title="12")
+    assert "chapter 204" in report.errors[0]
+    _assert_visible_gaps(
+        store,
+        report,
+        expected=CT_GOOD | {"us-ct/statute/chapter-204"},
+        missing={"us-ct/statute/chapter-204"},
+        gap_source=CT_CHAPTER_204,
+    )
+
+
+CT_SUPPLEMENT_CHAPTER_204 = """<html><body><div id="chap_204.htm">
+  <h2 class="chap-no">CHAPTER 204</h2>
+  <h2 class="chap-name">LOCAL LEVY</h2>
+  <p><span class="catchln" id="sec_12-50">Sec. 12-50. Levy of tax.</span> Supplement text.</p>
+</div></body></html>"""
+
+
+def test_connecticut_supplement_does_not_fill_a_current_set_gap(tmp_path):
+    # The current chapter 204 page cannot be fetched, so chapter 204 is a gap.
+    # The supplement lists chapter 204 and holds its page, but a supplement
+    # row must not fill the gap or duplicate the container.
+    title_12 = CT_TITLE.replace("</table>", _ct_chapter_row("204", "Local Levy"), 1)
+    supplement = CONNECTICUT_SUPPLEMENT_SOURCE_FORMAT
+    pages = {
+        CT_INDEX: CT_TITLES,
+        CT_TITLE_12: title_12,
+        CT_CHAPTER_203: CT_CHAPTER,
+        f"{supplement}/titles.html": CT_TITLES,
+        f"{supplement}/title-12.html": title_12,
+        f"{supplement}/chapter-203.html": CT_CHAPTER,
+        f"{supplement}/chapter-204.html": CT_SUPPLEMENT_CHAPTER_204,
+    }
+    _write_sources(tmp_path / "source", pages)
+    store = _store(tmp_path)
+    report = extract_connecticut_statutes(
+        store,
+        version=VERSION,
+        source_dir=tmp_path / "source",
+        only_title="12",
+        include_supplement=True,
+    )
+    chapter = "us-ct/statute/chapter-204"
+    assert len(report.errors) == 1
+    assert "chapter 204" in report.errors[0]
+    assert report.coverage.complete is False
+    assert report.coverage.missing_from_provisions == (chapter,)
+    assert chapter not in report.coverage.duplicate_provision_citations
+    assert chapter not in report.coverage.duplicate_source_citations
+    inventory = load_source_inventory(report.inventory_path)
+    gap = [item for item in inventory if item.citation_path == chapter]
+    assert len(gap) == 1
+    assert gap[0].source_path is not None
+    assert gap[0].source_path.endswith(CT_TITLE_12)
+    provisions = {record.citation_path for record in load_provisions(report.provisions_path)}
+    assert chapter not in provisions
+    assert "us-ct/statute/12-50" in provisions
 
 
 # --- Delaware ---------------------------------------------------------------
